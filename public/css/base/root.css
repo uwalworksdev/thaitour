@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+:root {
+  --bs-point: #0066b3;
+  --bs-point2: #22a0ff;
+  --bs-point3: #004999;
+  --bs-point4: #004897;
+  --bs-point5: #525dc2;
+  --bs-white: #fff;
+  --bs-gray: #353535;
+  --bs-gray-dark: #252525;
+  --bs-gray-dark2: #232426;
+  --bs-gray-100: #eeeeee;
+  --bs-gray-200: #dbdbdb;
+  --bs-gray-300: #bbbbbb;
+  --bs-gray-400: #999999;
+  --bs-gray-500: #757575;
+  --bs-gray-600: #666666;
+  --bs-gray-700: #454545;
+  --bs-gray-800: #333333;
+  --bs-gray-900: #252525;
+  --bs-bg-100: #fafafa;
+  --bs-bg-200: #f9f9f9;
+  --bs-bg-300: #f7f7f7;
+  --bs-bg-400: #f4f4f4;
+  --bs-bg-500: #f2f2f2;
+  --bs-bg-gradient-color: rgb(255, 150, 0);
+  --bs-bg-moz-gradien: -moz-linear-gradient(100deg,
+      rgba(255, 150, 0, 1) 0%,
+      rgba(248, 54, 0, 1) 100%);
+  --bs-bg-webkit-gradien: -webkit-linear-gradient(100deg,
+      rgba(255, 150, 0, 1) 0%,
+      rgba(248, 54, 0, 1) 100%);
+  --bs-bg-gradient: linear-gradient(100deg,
+      rgba(255, 150, 0, 1) 0%,
+      rgba(248, 54, 0, 1) 100%);
+  --bs-bg-filter-gradien: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ff9600, endColorstr=#f83600, GradientType=1);
+  --bs-font-sans-serif: "SUIT", sans-serif;
+  --bs-font-noto: "Noto Sans KR", sans-serif;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 700;
+  --bs-body-line-height: 1;
+  --bs-body-color: var(--bs-gray);
+  --bs-border-color: var(--bs-gray-200);
+  --bs-border-color: #dbdbdb;
+  --bs-input-height: 52px;
+  --bs-input-padding: 0 15px;
+  --bs-input-rounded: 0;
+}
