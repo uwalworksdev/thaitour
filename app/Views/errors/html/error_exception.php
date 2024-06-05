@@ -1,5 +1,4 @@
 <?php
-use CodeIgniter\HTTP\Header;
 use Config\Services;
 use CodeIgniter\CodeIgniter;
 
@@ -24,12 +23,6 @@ $errorId = uniqid('error', true);
 
     <!-- Header -->
     <div class="header">
-        <div class="environment">
-            Displayed at <?= esc(date('H:i:sa')) ?> &mdash;
-            PHP: <?= esc(PHP_VERSION) ?>  &mdash;
-            CodeIgniter: <?= esc(CodeIgniter::CI_VERSION) ?> --
-            Environment: <?= ENVIRONMENT ?>
-        </div>
         <div class="container">
             <h1><?= esc($title), esc($exception->getCode() ? ' #' . $exception->getCode() : '') ?></h1>
             <p>
@@ -49,29 +42,6 @@ $errorId = uniqid('error', true);
                 <?= static::highlightFile($file, $line, 15); ?>
             </div>
         <?php endif; ?>
-    </div>
-
-    <div class="container">
-        <?php
-        $last = $exception;
-
-        while ($prevException = $last->getPrevious()) {
-            $last = $prevException;
-            ?>
-
-    <pre>
-    Caused by:
-    <?= esc($prevException::class), esc($prevException->getCode() ? ' #' . $prevException->getCode() : '') ?>
-
-    <?= nl2br(esc($prevException->getMessage())) ?>
-    <a href="https://www.duckduckgo.com/?q=<?= urlencode($prevException::class . ' ' . preg_replace('#\'.*\'|".*"#Us', '', $prevException->getMessage())) ?>"
-       rel="noreferrer" target="_blank">search &rarr;</a>
-    <?= esc(clean_path($prevException->getFile()) . ':' . $prevException->getLine()) ?>
-    </pre>
-
-        <?php
-        }
-        ?>
     </div>
 
     <?php if (defined('SHOW_DEBUG_BACKTRACE') && SHOW_DEBUG_BACKTRACE) : ?>
@@ -121,7 +91,7 @@ $errorId = uniqid('error', true);
                                         <?php
                                         $params = null;
                                         // Reflection by name is not available for closure function
-                                        if (! str_ends_with($row['function'], '}')) {
+                                        if (substr($row['function'], -1) !== '}') {
                                             $mirror = isset($row['class']) ? new ReflectionMethod($row['class'], $row['function']) : new ReflectionFunction($row['function']);
                                             $params = $mirror->getParameters();
                                         }
@@ -235,7 +205,7 @@ $errorId = uniqid('error', true);
                         </tr>
                         <tr>
                             <td>HTTP Method</td>
-                            <td><?= esc($request->getMethod()) ?></td>
+                            <td><?= esc(strtoupper($request->getMethod())) ?></td>
                         </tr>
                         <tr>
                             <td>IP Address</td>
@@ -319,20 +289,10 @@ $errorId = uniqid('error', true);
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($headers as $name => $value) : ?>
+                        <?php foreach ($headers as $header) : ?>
                             <tr>
-                                <td><?= esc($name, 'html') ?></td>
-                                <td>
-                                <?php
-                                if ($value instanceof Header) {
-                                    echo esc($value->getValueLine(), 'html');
-                                } else {
-                                    foreach ($value as $i => $header) {
-                                        echo ' ('. $i+1 . ') ' . esc($header->getValueLine(), 'html');
-                                    }
-                                }
-                                ?>
-                                </td>
+                                <td><?= esc($header->getName(), 'html') ?></td>
+                                <td><?= esc($header->getValueLine(), 'html') ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -356,6 +316,8 @@ $errorId = uniqid('error', true);
 
                 <?php $headers = $response->headers(); ?>
                 <?php if (! empty($headers)) : ?>
+                    <?php natsort($headers) ?>
+
                     <h3>Headers</h3>
 
                     <table>
@@ -366,20 +328,10 @@ $errorId = uniqid('error', true);
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($headers as $name => $value) : ?>
+                        <?php foreach (array_keys($headers) as $name) : ?>
                             <tr>
                                 <td><?= esc($name, 'html') ?></td>
-                                <td>
-                                <?php
-                                if ($value instanceof Header) {
-                                    echo esc($response->getHeaderLine($name), 'html');
-                                } else {
-                                    foreach ($value as $i => $header) {
-                                        echo ' ('. $i+1 . ') ' . esc($header->getValueLine(), 'html');
-                                    }
-                                }
-                                ?>
-                                </td>
+                                <td><?= esc($response->getHeaderLine($name), 'html') ?></td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
@@ -425,6 +377,19 @@ $errorId = uniqid('error', true);
 
     </div> <!-- /container -->
     <?php endif; ?>
+
+    <div class="footer">
+        <div class="container">
+
+            <p>
+                Displayed at <?= esc(date('H:i:sa')) ?> &mdash;
+                PHP: <?= esc(PHP_VERSION) ?>  &mdash;
+                CodeIgniter: <?= esc(CodeIgniter::CI_VERSION) ?> --
+                Environment: <?= ENVIRONMENT ?>
+            </p>
+
+        </div>
+    </div>
 
 </body>
 </html>
