@@ -1,0 +1,75 @@
+<footer id="footer">
+    <div class="inner">
+        <div>
+            <ul class="flex_footer_top">
+                <li><a href="">회사소개</a></li>
+                <li><a href="">자주묻는 질문</a></li>
+                <li><a href="">예약변경 및 취소 정책 </a></li>
+                <li><a href="">개인정보처리방침 </a></li>
+                <li><a href="">이용약관</a></li>
+                <li><a href="">이용약관</a></li>
+                <li><a href="">여행사전용 윈윈트래블</a></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="flex_footer_bot">
+            <div class="footer_l">
+                <div class="ft_logo">
+                    <img src="/images/sub/logo_footer.png" alt="">
+                </div>
+                <div class="add_footer">
+                    <p>대표이사 : 홍길동<br>
+                        서울시 중구 세종대로21길 49 오양수산빌딩 602호<br>
+                        이메일 : thetourlab@naver.com<br>
+                        한국 사업자번호 101-86-79949<br>
+                        태국 사업자번호 010-5555-096-398</p>
+                </div>
+                <div>
+                    <div class="custom-select2">
+                        <select id="language-select-2" style="width: 100%;">
+                            <option value="kr">kr</option>
+                            <!-- Add more options here -->
+                        </select>
+                    </div>
+                </div>
+                <div class="copy_f">
+                    <p>Copyright © thetourlab Co.,Ltd. All Rights Reserved.</p>
+                </div>
+            </div>
+            <div class="footer_r">
+                <div>
+                    <ul class="footer_icon">
+                        <li><a href=""><img src="/images/ico/ig_footer.png" alt=""></a></li>
+                        <li><a href=""><img src="/images/ico/bl_footer.png" alt=""></a></li>
+                        <li><a href=""><img src="/images/ico/n_footer.png" alt=""></a></li>
+                        <li><a href=""><img src="/images/ico/ytb_footer.png" alt=""></a></li>
+
+                    </ul>
+                </div>
+                <div class="lh-1-6">
+                    <p class="text-w text-18">고객센터</p>
+                    <p>한국에서 걸 때 <span class="text-w">070-7010-8266</span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
+                    <p>태국에서 걸 때 <span class="text-w">(0)2-730-5690</span> (방콕) 로밍폰, 태국 유심폰 모두 02-730-5690 번호만 누르면 됩니다.
+                    </p>
+                    <p class="text-18 p_bot_f">업무시간 :</p>
+                    <p>10:30 사무실 오픈 / 업무종료시간 - <span class="text-w">월~금 19:20, 토,일,공휴일 19:00</span> </p>
+                    <p>긴급예약처리 - <span class="text-w">매일 19:30~21:50 (한국시간)</span></p>
+                </div>
+                <div class="btn_cus_f">
+                    <button class="btn_custom_f">실시간 채팅형 간단 문의</button>
+                    <button class="btn_custom_f">1:1 게시판 상세 문의</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script>
+     $(document).ready(function() {
+            $('#language-select-2').select2();
+        });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+#header {
+  font-size: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #252525;
+}
+
+#header>hr {
+  border: 0;
+  height: 1px;
+  background: #eeeeee;
+}
+.select2-container--default .select2-selection--single {
+  border: none !important;
+}
+.flex_header_top {
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.img-flag {
+  margin-top: 3px;
+}
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 13px 20px;
+  outline: none;
+  width: 400px;
+  font-size: 14px;
+}
+
+.search-icon {
+  margin-left: -35px;
+  color: #333;
+}
+.custom-select-rounded{
+  margin-left: 30px;
+}
+.custom-select-rounded .select2-container--default .select2-selection--single {
+  border: 2px solid #000 !important;
+  border-radius: 30px; /* Rounded corners */
+  background-color: white;
+  padding: 5px 20px; /* Adjust padding as needed */
+  height: auto;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.custom-select-rounded .select2-container--default .select2-selection--single .select2-selection__arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-select-rounded .select2-container--default .select2-selection--single .select2-selection__rendered {
+  text-align: center; /* Center text */
+  color: black;
+}
+
+.custom-select-rounded .select2-dropdown {
+  border-radius: 0; /* Optional: remove border radius from dropdown */
+}
+
+.custom-select-rounded .select2-results__option {
+  padding: 8px 16px;
+}
+
+.custom-select-rounded .select2-results__option--highlighted {
+  background-color: #ddd;
+  color: black;
+}
+
+.custom-select-rounded  .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+  border-bottom-left-radius: 30px !important;
+  border-bottom-right-radius: 30px !important;
+}
+
+
+.icon-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  gap: 20px;
+}
+
+.icon-menu-item {
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.icon-menu-item img {
+  margin-bottom: 10px;
+}
+
+.icon-menu-item:hover {
+  color: #000;
+}
+
+.flex_header_top>li>a:hover {
+  text-decoration: underline;
+}
