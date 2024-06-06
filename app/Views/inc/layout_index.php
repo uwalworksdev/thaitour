@@ -1,6 +1,14 @@
-<?php echo view('inc/head'); ?>
-<?php echo view('inc/header'); ?>
+<?php
+try {
+    helper("setting");
+    $setting = homeSetInfo();
+} catch (\Throwable $th) {
+    die("Something went wrong!");
+}
+?>
+<?php echo view('inc/head', ["setting" => $setting]); ?>
+<?php echo view('inc/header', ["setting" => $setting]); ?>
 <main>
     <?php echo $this->renderSection('content'); ?>
 </main>
-<?php echo view('inc/footer'); ?>
+<?php echo view('inc/footer', ["setting" => $setting]); ?>
