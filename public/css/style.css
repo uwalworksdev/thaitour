@@ -23,9 +23,11 @@
 /* contents */
  @import url(./contents/common.css);
 /* @import url(./contents/main.css);
-@import url(./contents/sub.css);
 @import url(./contents/table.css);  */
-
+@import url(./contents/sub.css); 
+@import url(./contents/custom.css); 
+@import url(./contents/slider_common.css); 
+@import url(./contents/pagi.css); 
 /* responsive */
 /* @import url(./contents/responsive.css);
 @import url(./contents/main_responsive.css);
