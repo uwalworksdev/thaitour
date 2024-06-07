@@ -19,6 +19,7 @@
 
 <!-- list_mid_banner -->
 <section class="list_mid_banner">
+    <div class="list_box_slider">
     <div class="slick-container-mid visual_slider half_slider">
         <?php foreach ($codeBanners as $banner) { ?>
             <div class="slide_item">
@@ -29,6 +30,7 @@
                 </a>
             </div>
         <?php } ?>
+    </div>
     </div>
 </section>
 
@@ -206,12 +208,12 @@ function getOrderBy(orderBy) {
             $('.slick-container-mid').slick({
               slidesToShow: 2,
               slidesToScroll: 1,
-              autoplay: true,
+            //   autoplay: true,
               autoplaySpeed: 2000,
-              dots: true,
+              dots: false,
               arrows: true,
-              nextArrow: '<button type="button" class="slick-next">Next</button>',
-              prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+              nextArrow: '<button type="button" class="slick-next slick-arrow"></button>',
+              prevArrow: '<button type="button" class="slick-prev slick-arrow"></button>',
               responsive: [
                 {
                   breakpoint: 850,
