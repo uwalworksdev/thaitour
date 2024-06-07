@@ -21,7 +21,7 @@
     <hr>
     <div class="inner flex_header_top">
         <div class="flex_header_top">
-            <a href=""><img src="/images/sub/logo_w.png" alt=""></a>
+            <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
             <div class="search-container">
             <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
             <i class="fa fa-search search-icon"></i>
@@ -60,7 +60,7 @@
         <div class="inner flex_header_top">
             <div>
                 <ul class="flex_header_top">
-                    <li><a href="">호텔</a></li>
+                    <li><a href="/product/1324/1">호텔</a></li>
                     <li><a href="">골프</a></li>
                     <li><a href="">투어</a></li>
                     <li><a href="">스파</a></li>
