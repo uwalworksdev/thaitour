@@ -1078,3 +1078,18 @@ html {
 .flex {
   display: flex;
 }
+.justify-center {
+  justify-content: center;
+}
+.items-center {
+  align-items: center;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.items-end {
+  align-items: flex-end;
+}
+.relative {
+  position: relative;
+}
