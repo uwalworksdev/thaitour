@@ -20,6 +20,9 @@ class Member extends BaseController {
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
     }
+    public function LoginForm(){
+        return view("member/member_login");
+    }
 
     public function AdminPasswordChange(){
         $scripts = [];

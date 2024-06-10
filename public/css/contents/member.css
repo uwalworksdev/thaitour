@@ -1,0 +1,1103 @@
+@charset "utf-8";
+
+.member .logo_box {
+  margin-bottom: 60px;
+}
+
+.member .sub_sec_ttl {
+  margin-bottom: 74px;
+}
+
+.member .inner_550 .sub_sec_ttl {
+  margin-bottom: 34px;
+}
+
+.login_tab {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.login_tab button {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 54px;
+  border: 1px solid #dbdbdb;
+  border-bottom-color: #252525;
+  line-height: 52px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #999999;
+  box-sizing: border-box;
+}
+
+.login_tab button+button {
+  margin-left: -1px;
+}
+
+.login_tab button.on {
+  border: 1px solid #252525;
+  color: #252525;
+  border-bottom: 0;
+  z-index: 1;
+}
+
+.login_box {
+  display: none;
+}
+
+.login_box.on {
+  display: block;
+}
+
+.login_cont .find_btn,
+.login_box .login_input .login_btn {
+  box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
+}
+
+.login_cont .find_btn {
+  margin-top: 40px;
+}
+
+.member .login_box .save_id {
+  margin-top: 30px;
+}
+
+.member .btn_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.member .btn_link a {
+  color: #757575;
+  display: block;
+  position: relative;
+
+}
+
+.member .btn_link a+a {
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.member .btn_link a+a::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 11px;
+  background: #dddddd;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.member .btn_link a span {
+  color: #252525;
+}
+
+.sns_login_ttl {
+  margin: 60px 0 50px;
+  position: relative;
+  text-align: center;
+}
+
+.sns_login_ttl::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: #dbdbdb;
+  content: '';
+}
+
+.sns_login_ttl span {
+  position: relative;
+  display: inline-block;
+  padding: 0 40px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  background: #fff;
+  z-index: 1;
+}
+
+.another_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 860px;
+  gap: 20px;
+  margin: 0 auto;
+  color: red;
+}
+
+.another_login .another_btn {
+  display: block;
+  width: 60px;
+  height: 60px;
+  background: no-repeat center / cover;
+  font-size: 0;
+  color: transparent;
+}
+
+.another_login .another_btn:nth-child(n+2) {
+  margin-left: 40px;
+}
+
+.another_login .another_btn.naver {
+  background-image: url(/images/ico/naver_ico.png);
+}
+
+.another_login .another_btn.kakao {
+  background-image: url(/images/ico/kakao_ico.png);
+}
+
+.another_login .another_btn.google {
+  background-image: url(/images/ico/google_ico.png);
+}
+
+
+
+.login_cont .find_radio {
+  margin-bottom: 20px;
+}
+
+.login_cont .find_radio>div {
+  width: 50%;
+}
+
+.login_cont .find_radio input+label {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.login_cont .button-row .cta_btn {
+  width: 90px;
+  border: 1px solid;
+  border-radius: 4px;
+  line-height: 50px;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.login_cont .button-row .tel_row,
+.login_cont .button-row .email_row {
+  /* width: calc(100% - 100px); */
+}
+
+
+/* ============================= 회원가입 선택 */
+.join .sub_sec_ttl .ttl {
+  line-height: 1.4;
+}
+
+.join .join_list li+li {
+  margin-top: 10px;
+}
+
+.join .join_list a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 60px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.join .join_list li.naver a {
+  background: #21c95b;
+  color: #fff;
+  border-color: #21c95b;
+}
+
+.join .join_list li.kakao a {
+  background: #ffe100;
+  color: #371d1e;
+  border-color: #ffe100;
+}
+
+.join .join_list a i {
+  display: block;
+  background: no-repeat center;
+  margin-right: 10px;
+}
+
+.join .join_list .naver a i {
+  width: 26px;
+  height: 28px;
+  background-image: url(../img/ico/join_naver_ico.png);
+}
+
+.join .join_list .kakao a i {
+  width: 30px;
+  height: 28px;
+  background-image: url(../img/ico/join_kakao_ico.png);
+}
+
+.join .join_list .google a i {
+  width: 31px;
+  height: 32px;
+  background-image: url(../img/ico/join_google_ico.png);
+}
+
+.join_step {
+  margin-bottom: 50px;
+}
+
+.complete .join_step {
+  margin-bottom: 80px;
+}
+
+.join_step ul {
+  display: flex;
+  align-items: center;
+  background: #f7f7f9;
+  border-radius: 50px;
+}
+
+.join_step ul li {
+  width: calc(33.333% - 13.333px);
+}
+
+.join_step ul li+li {
+  margin-left: 20px;
+}
+
+.join_step ul .step_ele {
+  display: block;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #757575;
+}
+
+.join_step ul .on .step_ele {
+  background: var(--bs-point);
+  color: #fff;
+  box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
+}
+
+.member form .form_list li {
+  display: block;
+  border-bottom: none;
+}
+
+.member form .form_list li+li {
+  margin-top: 30px;
+}
+
+.member .mem_ttl {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.member form .form_list .bs-input-check input+label {
+  color: #454545;
+}
+
+.member form .form_list .bs-input-check {
+  margin-bottom: 20px;
+}
+
+.member form .form_list .terms_view {
+    height: 190px;
+    line-height: 1.5;
+    overflow: auto;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    padding: 10px;
+    
+}
+.member form .form_list .terms_view * {
+    font-size: 1rem !important;
+    font-family: inherit !important;
+}
+
+.member .form_list+.bot_btn {
+  margin-top: 50px;
+}
+
+.member .bot_btn .cta_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 18px;
+  font-weight: 500;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.member .bot_btn .cta_btn.btn-point {
+  box-shadow: 0px 16px 15.04px 0.96px rgba(46, 62, 146, 0.28);
+}
+
+.join_complete_img_box+.bot_btn .cta_btn {
+  max-width: 300px;
+  margin: 0 auto;
+
+}
+
+.join_complete_img_box {
+  display: block;
+  margin: 70px auto 0;
+}
+
+.join_complete_img_box img {
+  margin: 0 auto;
+  display: block;
+}
+
+
+
+
+form .input-group .form_label {
+  width: inherit;
+  padding: 0;
+  font-size: 18px;
+  margin-bottom: 12px;
+
+}
+
+form .input-group .val {
+  padding: 0;
+  max-width: inherit;
+}
+
+form .form_list .id_btn .btn-outline-dark {
+  width: 130px;
+}
+
+form .input-group .caption {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.datepick .ui-datepicker-trigger {
+  right: 20px;
+}
+
+form .input-group .val textarea {
+  height: 120px;
+  padding: 10px;
+}
+
+form .form_list .check_route {
+  font-size: 18px;
+  letter-spacing: -1px;
+  line-height: 50px;
+  color: #252525;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
+}
+
+
+form .form_list .ch_area [type="checkbox"]+label {
+  font-size: 16px;
+  letter-spacing: -1px;
+  color: #252525;
+  font-weight: 400;
+  font-family: "Noto Sans KR";
+  line-height: 2.5;
+  background: url(../img/ico/checkbox20x20.png) no-repeat left center;
+}
+
+
+
+.login_find .find_id_password {
+  display: none;
+}
+
+.login_find .find_id .find_id_box .login_form p.text_deco {
+  margin-top: 5px;
+}
+
+.find_radio {
+  margin-bottom: 20px;
+}
+
+.find_radio .radio_item {
+  display: inline-block;
+}
+
+.find_radio .radio_item+.radio_item {
+  margin-left: 28px;
+}
+
+/* 회원가입 선택 */
+.mem_check.form_cont {
+  padding: 140px 0 190px;
+}
+
+.mem_box {
+  max-width: 600px;
+  width: calc(100% - 30px);
+  margin: 0 auto;
+}
+
+.mem_box .tit_box {
+  margin-bottom: 60px;
+}
+
+.mem_box ul {
+  display: flex;
+}
+
+.mem_box ul li {
+  width: calc(50% - 17px);
+  margin-right: 34px;
+}
+
+.mem_box ul li+li {
+  margin: 0;
+}
+
+.mem_box ul li a {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dbdbdb;
+  border-radius: #dbdbdb;
+  width: 100%;
+  height: 100%;
+  padding: 38px 0 44px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+}
+
+.mem_box ul li a:hover {
+  border-color: #f77725;
+}
+
+.mem_box ul li .ico {
+  width: 90px;
+  height: 90px;
+  background: #e3e3e3;
+  border-radius: 50%;
+  display: block;
+  position: relative;
+}
+
+.mem_box ul li a:hover .ico {
+  background-image: -moz-linear-gradient(90deg,
+      rgb(252, 104, 71) 0%,
+      rgb(242, 132, 6) 100%);
+  background-image: -webkit-linear-gradient(90deg,
+      rgb(252, 104, 71) 0%,
+      rgb(242, 132, 6) 100%);
+  background-image: -ms-linear-gradient(90deg,
+      rgb(252, 104, 71) 0%,
+      rgb(242, 132, 6) 100%);
+}
+
+.mem_box ul li .ico i {
+  position: absolute;
+  display: block;
+  background: no-repeat center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mem_box ul li .ico.people i {
+  width: 36px;
+  height: 47px;
+  background-image: url(../img/ico/ico_join_01.png);
+}
+
+.find_radio>div {
+  width: 50%;
+}
+
+.mem_box ul li .ico.company i {
+  width: 42px;
+  height: 36px;
+  background-image: url(../img/ico/ico_join_02.png);
+}
+
+.mem_box ul li .txt {
+  padding-top: 24px;
+}
+
+.mem_box ul li .txt strong {
+  font-size: 20px;
+  display: block;
+  text-align: center;
+  margin-bottom: 16px;
+  color: #666666;
+}
+
+.mem_box ul li a:hover .txt strong {
+  color: #252525;
+}
+
+.mem_box ul li .txt p {
+  text-align: center;
+  color: #757575;
+}
+
+/* 회원가입 */
+.form_cont.member_cont {
+  padding: 140px 0 120px;
+}
+
+.member_cont .form_wrap {
+  max-width: 640px;
+}
+
+.member_cont .input_wrap+.input_wrap {
+  margin-top: 30px;
+}
+
+.input_wrap .checkbox {
+  margin-top: 20px;
+}
+
+.input_wrap .count_box {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #ee0505;
+}
+
+.login_find input[type="checkbox"] {
+  display: none;
+}
+
+.login_find input[type="checkbox"]+label {
+  font-size: 15px;
+  padding-left: 45px;
+  line-height: 2.5;
+  background: url('../img/ico/checkbox20x20.png') no-repeat left center;
+}
+
+.login_find input[type="checkbox"]:checked+label {
+  background-image: url('../img/ico/checked20x20.png');
+}
+
+/* radio */
+
+.login_find input[type="radio"] {
+  display: none;
+}
+
+/* .login_find input[type="radio"]+label {
+  font-size: 22px;
+  font-weight: 500;
+  padding-left: 40px;
+  line-height: 2.5;
+  background: url('../img/ico/radio30.png') no-repeat left center;
+  cursor: pointer;
+} */
+
+/* .login_find input[type="radio"]:checked+label {
+  background-image: url('../img/ico/radio_on30x30.png');
+} */
+
+
+.login_find {
+  padding-bottom: 60px;
+}
+
+.find_id .find_cation {
+  color: #757575;
+  line-height: 1.5;
+  letter-spacing: -0.06em;
+  margin-bottom: 30px;
+}
+
+.find_id .find_cation.ncat {
+  margin-bottom: 0;
+}
+
+.find_id .button_wrap input {
+  width: calc(100% - 110px);
+}
+
+.find_id .button_wrap button {
+  width: 100px;
+}
+
+.find_id .input_wrap+.input_wrap {
+  margin-top: 30px;
+}
+
+/* 아이디 찾기 */
+
+.login_find .find_id .find_id_box .login_form {
+  display: none;
+  margin-right: 0;
+  width: 100%;
+  border: none;
+}
+
+.login_find .find_id .find_id_box .login_form.on {
+  display: block;
+}
+
+.login_find .find_id .find_id_box .inp_info {
+  font-size: 18px;
+  color: #252525;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
+  margin-bottom: 10px;
+}
+
+.login_find .find_id .find_id_box .ph_wrap {
+  gap: 10px;
+  align-items: center;
+}
+
+.login_find .find_id .find_id_box .email_wrap {
+  gap: 10px;
+  align-items: center;
+}
+
+.login_find .find_id .find_id_box .button_wrap {
+  /* margin-top: 10px; */
+  gap: 10px;
+}
+
+.login_find .find_id .find_id_box .button_wrap.email {
+  margin-top: 10px;
+}
+
+.login_find .find_id .find_id_box .button_wrap .certi_ok {
+  width: 90px;
+  height: 50px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: 1px solid #757575;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  letter-spacing: -1px;
+  line-height: 81px;
+  color: #252525;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
+}
+
+.login_find .find_id .find_id_box .one_btn {
+  width: 550px;
+  height: 50px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: 1px solid #757575;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  letter-spacing: -1px;
+  line-height: 1.4;
+  color: #252525;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
+}
+
+.login_find .find_id .find_id_box .ph_wrap .certi_ok {
+  width: 90px;
+  height: 50px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: 1px solid #757575;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  letter-spacing: -1px;
+  line-height: 81px;
+  color: #252525;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
+}
+
+.login_find .find_id .find_id_box .input_wrap {
+  margin-top: 10px;
+}
+
+.login_find .find_id .find_id_box .email {
+  margin-top: 30px;
+}
+
+.login_find .find_id .find_id_box .email .form_label {
+  font-size: 18px;
+  letter-spacing: -1px;
+  line-height: 1.4;
+  color: #252525;
+  font-weight: 500;
+  font-family: "Noto Sans KR";
+}
+
+.login_find .find_id .find_id_box .email .email_row {
+  margin-top: 10px;
+}
+
+.login_find .find_id .find_id_box .login_form:last-child {
+  position: relative;
+  width: 100%;
+}
+
+.login_find .find_id .find_id_box .login_form .in_member {
+  margin-left: 0;
+}
+/* 추가 */
+.alert_box{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .alert_box p{
+    text-align: center;
+    line-height: 1.4444;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ff163e;
+  }
+
+  .inner_620 {
+    max-width: 620px;
+  }
+
+@media screen and (max-width: 850px) {
+  .inner_620 {
+    max-width: 660px;
+  }
+
+.find_radio input+label {
+    font-size: 1rem;
+  }
+
+  .login_cont .cta_btn,
+  .login_cont .find_btn {
+    line-height: 3.1578rem;
+  }
+
+  .join_step ul .step_ele {
+    font-size: 1rem;
+    line-height: 3.4615rem;
+  }
+
+  .join_step ul li {
+    width: 33.333%;
+  }
+
+  .join_step ul li+li {
+    margin-left: 0;
+  }
+
+  .member .mem_ttl {
+    font-size: 1.2308rem;
+    margin-bottom: 1.5385rem;
+  }
+
+  .member form .form_list .terms_view {
+    height: 8.7692rem;
+    line-height: 1.5;
+    border-radius: 0.0769rem;
+    padding: .7143rem;
+  }
+
+  .login_find .find_id .find_id_box .ph_wrap {
+    flex-wrap: wrap;
+    gap: .7143rem;
+  }
+
+  .login_find .find_id .find_id_box .email_wrap {
+    gap: .7143rem;
+    align-items: center;
+  }
+
+  .login_find .find_id .find_id_box .email_wrap select,
+  .login_find .find_id .find_id_box .email_wrap input {
+    height: 3.4615rem;
+    font-size: 1rem;
+    border-radius: 0.2631rem;
+    width: calc((100% - 0.7692rem) / 3);
+  }
+
+  .login_find .find_id .find_id_box .ph_wrap select,
+  .login_find .find_id .find_id_box .ph_wrap input {
+    height: 3.4615rem;
+    font-size: 1rem;
+    border-radius: 0.2631rem;
+    width: calc((100% - 0.7692rem) / 3);
+  }
+
+  .login_find .find_id .find_id_box .one_btn {
+    width: 100%;
+    height: 3.4615rem;
+    border-radius: 0.0769rem;
+    border: 0.0769rem solid #757575;
+    margin-top: 0.7692rem;
+    font-size: 1rem;
+  }
+
+  .login_find .find_id .find_id_box .input_wrap input {
+    height: 3.4615rem;
+    font-size: 1rem;
+    border-radius: 0.2631rem;
+  }
+
+  .login_find .find_id .find_id_box .input_wrap .confirm_text {
+    width: 17.333rem;
+  }
+
+  .login_find .find_id .find_id_box .ph_wrap .button_wrap {
+    width: 100%;
+  }
+
+  .login_find .find_id .find_id_box .ph_wrap button.certi_ok {
+    height: 3.1578rem;
+    font-size: 1rem;
+    border-radius: 0.2631rem;
+    width: 100%;
+  }
+
+  form .form_list .id_btn .btn-outline-dark {
+    height: 3.1578rem;
+    font-size: 1rem;
+    width: 10rem;
+    line-height: 1rem;
+  }
+
+  form .form_list .addr_row .button_row.mw-260 {
+    max-width: unset;
+  }
+
+  form .form_list .addr_row .button_row button {
+    height: 3.1578rem;
+    font-size: 1rem;
+    line-height: 1rem;
+    width: unset;
+    padding: 0 1rem;
+  }
+
+  /* 
+  .login_find input[type="radio"]+label {
+    font-size: 1rem;
+    background-size: 1.1538rem 1.1538rem;
+    padding-left: 1.5385rem;
+  } */
+
+  form .input-group .form_label,
+  .login_find .find_id .find_id_box .email .form_label,
+  .login_find .find_id .find_id_box .inp_info {
+    font-size: 1rem;
+  }
+
+  form .input-group .caption {
+    font-size: 1rem;
+  }
+
+  .member .bot_btn .cta_btn {
+    height: 3.5714rem;
+    font-size: 1rem;
+    line-height: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+  }
+
+  form .form_list .ch_area [type="checkbox"]+label {
+    font-size: 1rem;
+    background-size: 1.1538rem 1.1538rem;
+    padding-left: 1.5385rem;
+  }
+
+  .ch_area input[type="radio"]+label::before,
+  .ch_area input[type="checkbox"]+label::before {
+    width: 0.3846rem;
+    height: 0.5769rem;
+    left: 0.15rem;
+    top: calc(50% - 0.1538rem);
+    border: 0.1538rem solid transparent;
+    border-top: none;
+    border-left: none;
+  }
+
+  .ch_area input[type="radio"]+label::after,
+  .ch_area input[type="checkbox"]+label::after {
+    width: 1.1538rem;
+    height: 1.1538rem;
+  }
+
+  .join_step,
+  .complete .join_step {
+    margin-bottom: 3.8462rem;
+  }
+
+  .join_complete_img_box {
+    margin: 2.6923rem 0 0;
+  }
+
+  .member .sub_sec_ttl {
+    margin-top: 2.6923rem;
+    margin-bottom: 1.9231rem;
+  }
+
+  .find_radio {
+    margin-bottom: 1.4286rem;
+    flex-direction: column;
+  }
+   .find_radio>div+div{
+    margin-top: .7143rem;
+  }
+  .login_cont {
+    padding-bottom: 2.3077rem;
+  }
+.join_form {
+    padding-bottom: 2.3077rem;
+}
+  .member form .form_list li+li {
+    margin-top: 1.1538rem;
+  }
+
+  .member .form_list+.bot_btn {
+    margin-top: 1.9231rem;
+  }
+
+  .join_step ul .on .step_ele {
+    height: 3.4615rem;
+    box-shadow: 0px 0.6154rem 0.5785rem 0.0369rem rgba(46, 62, 146, 0.28);
+  }
+
+  .member .logo_box {
+    padding-top: 3.8462rem;
+    margin-bottom: 4.6154rem;
+  }
+
+  .member .logo_box img {
+    width: 10.0385rem;
+    height: 1.9615rem;
+  }
+
+  .login_tab {
+    margin-bottom: 1.9231rem;
+  }
+
+  .login_tab button {
+    height: 3.5769rem;
+    border: 0.0769rem solid #dbdbdb;
+    font-size: 1rem;
+    line-height: unset;
+    border-bottom-color: #252525;
+  }
+
+  .login_tab button.on {
+    border: 0.0769rem solid #252525;
+    border-bottom: 0;
+  }
+
+  .member .login_input>div+div {
+    margin-top: 0.7692rem;
+  }
+
+  .member .login_box .save_id {
+    margin-top: 1.5385rem;
+  }
+
+
+  .sns_login_ttl {
+    margin: 3.8462rem 0 2.3077rem;
+  }
+
+  .sns_login_ttl span {
+    padding: 0 1.5385rem;
+    font-size: 1rem;
+    line-height: 2.5rem;
+  }
+
+  .another_login {
+    max-width: 15rem;
+    margin-bottom: 11.5385rem;
+  }
+
+  .another_login .another_btn {
+    width: 3.4615rem;
+    height: 3.4615rem;
+    background-size: 3.4615rem;
+  }
+
+  .another_login .another_btn:nth-child(n+2) {
+    margin-left: 20px;
+  }
+
+  .another_login .another_btn.naver {
+    background-image: url(../img/btn/naver_ico_m.png);
+  }
+
+  .another_login .another_btn.kakao {
+    background-image: url(../img/btn/kakao_ico_m.png);
+  }
+
+  .another_login .another_btn.google {
+    background-image: url(../img/btn/google_ico_m.png);
+  }
+
+  .login_box .login_input .login_btn.tab_2 {
+    margin-bottom: 13.4615rem;
+  }
+
+  .login_find .find_id .find_id_box .button_wrap .certi_ok {
+    width: 5.2692rem;
+    height: 3.4615rem;
+    border-radius: 0.0769rem;
+    border: 0.0769rem solid #757575;
+    font-size: 1rem;
+  }
+
+  .login_find .find_id .find_id_box .button_wrap {
+    /* margin-top: 10px; */
+    gap: 0;
+    justify-content: space-between;
+  }
+.datepick .ui-datepicker-trigger {
+    right: 1.5385rem;
+  }
+
+  .member .join_list {
+    margin-bottom: 5rem;
+  }
+
+  .join .join_list a {
+    font-size: 1.0769rem;
+    line-height: 3.4615rem;
+    border: 0.0769rem solid;
+    border-radius: 0.1538rem;
+  }
+
+  .join .join_list .naver a i {
+    width: 1.3462rem;
+    height: 1.3462rem;
+    background-image: url(../img/ico/join_naver_ico.png);
+    background-size: 1.3462rem;
+  }
+
+  .join .join_list .kakao a i {
+    width: 1.4231rem;
+    height: 1.3462rem;
+    background-image: url(../img/ico/join_kakao_ico.png);
+    background-size: 1.4231rem;
+  }
+
+  .join .join_list .google a i {
+    width: 35px;
+    height: 36px;
+    background-image: url(../img/ico/join_google_ico.png);
+    background-size: 1.3462rem;
+  }
+}

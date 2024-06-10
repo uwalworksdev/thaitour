@@ -81,7 +81,9 @@ use CodeIgniter\Router\RouteCollection;
     });
 });
 $routes->get('/', 'Home::index');
-
+$routes->group("member", static function($routes){
+    $routes->get("login", "Member::LoginForm");
+});
 // $routes->group("/package", static function($routes){
 //     $routes->get("", "Package::Main");
 //     // $routes->get("(:segment)/view/(:segment)", "Promotion::View/$1/$2");
