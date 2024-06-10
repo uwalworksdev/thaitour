@@ -101,6 +101,17 @@ padding-top: calc(310% / 224 * 100);
     position: relative;
 }
 
+.main_swiper2__text {
+    position: absolute;
+    top: 40px;
+    left: 32px;
+    font-size: 20px;
+    font-family: "Pretendard";
+    color: #252525;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
 .swiper-button-main-2 {
     border-style: solid;
     border-width: 1px;
