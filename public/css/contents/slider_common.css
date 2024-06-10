@@ -1,6 +1,6 @@
 
 
- .slick-next, .slick-prev {
+ .slick-next2, .slick-prev2 {
     /* background: #ccc; */
     /* border-radius: 50%; */
     width: 25px;
@@ -8,19 +8,19 @@
     z-index: 1000;
     /* border: 1px solid #ccc; */
 }
-.slick-prev {
+.slick-prev2 {
     position: absolute;
     left: 0px;
     top: 50%;
     transform: translateY(-50%);
 }
-.slick-next {
+.slick-next2 {
     right: 0px;    
     position: absolute;
     top: 40%;
     transform: translateY(-40%);
 }
-.slide_item{
+.slide_item2{
     border-radius: 30px;
     margin: 0 15px;
     overflow: hidden;
@@ -28,14 +28,14 @@
 .list_box_slider{
     margin: 0 -15px;
 }
-.slick-next{
+.slick-next2{
     background-image: url("/images/ico/slider_btn.png");
     background-repeat: no-repeat;
     background-size: cover;
     padding: 25px;
     transform: rotate(180deg);
 }
-.slick-prev{
+.slick-prev2{
     background-image: url("/images/ico/slider_btn.png");
     background-repeat: no-repeat;
     background-size: cover;
