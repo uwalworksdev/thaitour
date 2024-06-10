@@ -53,6 +53,20 @@ padding-top: calc(310% / 224 * 100);
 .main_visual_slider .slick-list {
     overflow: visible;
 }
+.main_visual_slider .slide_item .img_box::before {
+    transition: all 1s ease;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000000;
+    z-index: 1;
+}
+.main_visual_slider .slide_item[aria-hidden="true"] .img_box::before {
+    background-color: #00000080;
+}
 .swiper-main-tools {
     display: flex;
     justify-content: center;
