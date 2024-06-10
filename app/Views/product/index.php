@@ -22,7 +22,7 @@
     <div class="list_box_slider">
     <div class="slick-container-mid visual_slider half_slider">
         <?php foreach ($codeBanners as $banner) { ?>
-            <div class="slide_item">
+            <div class="slide_item2">
                 <a href="<?= $banner['url'] ?>">
                     <picture>
                         <img src="<?= base_url('images/banner/' . $banner['ufile']) ?>" alt="배너1 이름 넣어주세요">
@@ -212,8 +212,8 @@ function getOrderBy(orderBy) {
               autoplaySpeed: 2000,
               dots: false,
               arrows: true,
-              nextArrow: '<button type="button" class="slick-next slick-arrow"></button>',
-              prevArrow: '<button type="button" class="slick-prev slick-arrow"></button>',
+              nextArrow: '<button type="button" class="slick-next2 slick-arrow"></button>',
+              prevArrow: '<button type="button" class="slick-prev2 slick-arrow"></button>',
               responsive: [
                 {
                   breakpoint: 850,
