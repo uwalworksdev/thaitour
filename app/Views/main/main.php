@@ -65,7 +65,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_1.png" alt="main_1">
+                                <img src="/uploads/main/main_banner_1.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">
                                 # 왜 더투어랩이 답일까요?
@@ -73,31 +73,31 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_2.png" alt="main_1">
+                                <img src="/uploads/main/main_banner_2.png" alt="main">
                             </div>
                             <div class="main_swiper2__text"> # 더투어랩의 <br> 신용도는 <br> AAA</div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_3.png" alt="main_1">
+                                <img src="/uploads/main/main_banner_3.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_4.png" alt="main_1">
+                                <img src="/uploads/main/main_banner_4.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#무려 4% <br> 포인트 적립</div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_5.png" alt="main_1">
+                                <img src="/uploads/main/main_banner_5.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#예약이 <br> 정말 쉬워요! </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_3.png" alt="main_1">
+                                <img src="/uploads/main/main_banner_3.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
                         </div>
@@ -134,7 +134,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 <div class="best_list">
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_best_1.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -157,7 +157,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_best_2.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -180,7 +180,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_best_3.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -203,7 +203,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_best_4.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -226,7 +226,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_best_5.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -249,7 +249,53 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_best_6.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_7.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_8.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -373,7 +419,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_1.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -383,7 +429,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_2.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -393,7 +439,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_3.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -403,7 +449,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_4.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -413,7 +459,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_5.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -423,7 +469,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_3.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -450,12 +496,12 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             <div class="main_section7__banner">
                 <div class="main_section7__banner__item">
                     <div class="img_box img_box_4">
-                        <img src="/images/main/image.svg" alt="">
+                        <img src="/uploads/main/main_banner_6.png" alt="">
                     </div>
                 </div>
                 <div class="main_section7__banner__item">
                     <div class="img_box img_box_4">
-                        <img src="/images/main/image.svg" alt="">
+                        <img src="/uploads/main/main_banner_7.png" alt="">
                     </div>
                 </div>
             </div>
@@ -485,7 +531,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_5.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -495,7 +541,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_6.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -505,7 +551,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_7.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -515,7 +561,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_8.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -525,7 +571,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_6.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -535,7 +581,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_hot_7.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -571,13 +617,13 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/images/main/image.svg" alt="">
+                        <img src="/uploads/main/main_banner_8.png" alt="">
                     </div>
                     <div class="main_section9__prd">
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/images/main/image.svg" alt="">
+                                    <img src="/uploads/main/main_tour_1.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
@@ -598,7 +644,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/images/main/image.svg" alt="">
+                                    <img src="/uploads/main/main_tour_2.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
@@ -624,13 +670,13 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/images/main/image.svg" alt="">
+                        <img src="/uploads/main/main_banner_9.png" alt="">
                     </div>
                     <div class="main_section9__prd">
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/images/main/image.svg" alt="">
+                                    <img src="/uploads/main/main_tour_3.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
@@ -651,7 +697,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/images/main/image.svg" alt="">
+                                    <img src="/uploads/main/main_tour_4.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
@@ -688,7 +734,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_review_1.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
@@ -720,7 +766,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_review_2.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
@@ -752,7 +798,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_review_3.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
@@ -784,7 +830,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_review_4.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
@@ -816,7 +862,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/images/main/image.svg" alt="main_1">
+                                    <img src="/uploads/main/main_review_2.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
@@ -868,7 +914,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_magazine_1.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -879,7 +925,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_magazine_2.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -890,7 +936,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_magazine_3.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -901,7 +947,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_magazine_4.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -912,7 +958,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_magazine_5.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -923,7 +969,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_magazine_3.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -934,7 +980,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/main/main_magazine_4.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">

@@ -594,6 +594,9 @@ padding-top: calc(310% / 224 * 100);
 .magazine_swiper {
     margin-top: 50px;
 }
+.magazine_swiper .swiper-pagination-bullet-active {
+    background-color: #39b9aa;
+}
 .magazine_swiper__pagination {
     display: flex;
     justify-content: center;
