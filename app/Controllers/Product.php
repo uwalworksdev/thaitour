@@ -7,22 +7,26 @@ use App\Models\Product_model;
 use CodeIgniter\Controller;
 use Exception;
 
-class Product extends BaseController {
+class Product extends BaseController
+{
 
     private $bannerModel;
     private $productModel;
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = db_connect();
         $this->bannerModel = model("Banner_model");
         $this->productModel = model("Product_model");
+        helper('my_helper');
     }
 
-    public function index($code_no, $s = "1") {
+    public function index($code_no, $s = "1")
+    {
         try {
             $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
-            $perPage = 5; 
+            $perPage = 5;
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
@@ -36,25 +40,25 @@ class Product extends BaseController {
             $pager = \Config\Services::pager();
 
             $code_name = $this->db->table('tbl_code')
-                                  ->select('code_name')
-                                  ->where('code_gubun', 'tour')
-                                  ->where('code_no', $code_no)
-                                  ->get()
-                                  ->getRow()
-                                  ->code_name;
+                ->select('code_name')
+                ->where('code_gubun', 'tour')
+                ->where('code_no', $code_no)
+                ->get()
+                ->getRow()
+                ->code_name;
 
             if (strlen($code_no) == 4) {
                 $codes = $this->db->table('tbl_code')
-                                  ->where('parent_code_no', $code_no)
-                                  ->get()
-                                  ->getResult();
+                    ->where('parent_code_no', $code_no)
+                    ->get()
+                    ->getResult();
             } else {
                 $codes = $this->db->table('tbl_code')
-                                  ->where('code_gubun', 'tour')
-                                  ->where('parent_code_no', substr($code_no, 0, 6))
-                                  ->orderBy('onum', 'DESC')
-                                  ->get()
-                                  ->getResult();
+                    ->where('code_gubun', 'tour')
+                    ->where('parent_code_no', substr($code_no, 0, 6))
+                    ->orderBy('onum', 'DESC')
+                    ->get()
+                    ->getResult();
             }
 
             // Truyền dữ liệu sang view
@@ -82,14 +86,56 @@ class Product extends BaseController {
             ]);
         }
     }
-    public function view($product_idx) {
 
+
+    
+    public function view($product_idx, $air_idx = null) {
+        // Lấy các chi tiết sản phẩm hiện tại
         $data['product'] = $this->productModel->getProductDetails($product_idx);
-
+    
         if (!$data['product']) {
             return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
         }
-
+    
+        // Bổ sung đoạn mã mới
+        $start_date_in = $this->request->getVar('start_date_in') ?: date("Y-m-d");
+        $product_info = $this->productModel->get_product_info($product_idx, $start_date_in);
+        $air_info = $this->productModel->get_air_info($product_idx, $start_date_in);
+        $day_details = $this->productModel->getDayDetails($product_idx, $air_idx); // Lấy dữ liệu từ tbl_product_day_detail
+    
+        // Tính giá trị min_amt
+        $min_amt = $this->calculateMinAmt($air_info);
+    
+        // Lấy ngày bắt đầu (_start_dd)
+        $_start_dd = date('d', strtotime($start_date_in));
+    
+        // Lấy giá trị tour_price và các biến liên quan từ $air_info
+        $tour_price = $air_info[0]['tour_price'] ?? 0; // Nếu không có giá trị, đặt mặc định là 0
+        $oil_price = $air_info[0]['oil_price'] ?? 0;
+        $tour_price_kids = $air_info[0]['tour_price_kids'] ?? 0;
+        $tour_price_baby = $air_info[0]['tour_price_baby'] ?? 0;
+    
+        // Thêm vào mảng dữ liệu
+        $data['start_date_in'] = $start_date_in;
+        $data['product_info'] = $product_info;
+        $data['air_info'] = $air_info;
+        $data['min_amt'] = $min_amt;
+        $data['_start_dd'] = $_start_dd;
+        $data['tour_price'] = $tour_price;
+        $data['oil_price'] = $oil_price;
+        $data['tour_price_kids'] = $tour_price_kids;
+        $data['tour_price_baby'] = $tour_price_baby;
+        $data['product_idx'] = $product_idx;
+        $data['product_confirm'] = $data['product']['product_confirm']; 
+        $data['product_able'] = $data['product']['product_able']; 
+        $data['product_unable'] = $data['product']['product_unable']; 
+        $data['day_details'] = $day_details; // Truyền dữ liệu từ tbl_product_day_detail sang view
+    
+        if (!$data['product_info']) {
+            return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
+        }
+    
+        // Tiếp tục với các chi tiết sản phẩm hiện tại
         $data['product_level'] = $this->productModel->getProductLevel($data['product']['product_level']);
         $data['img_1'] = $this->getImage($data['product']['ufile1']);
         $data['img_2'] = $this->getImage($data['product']['ufile2']);
@@ -101,12 +147,63 @@ class Product extends BaseController {
         return view('product/product_view', $data);
     }
 
-    private function getImage($fileName) {
+    // Các phương thức hiện có ...
+
+
+    
+    
+    private function calculateMinAmt($air_info) {
+        $min_amt = PHP_INT_MAX; // Khởi tạo giá trị lớn nhất
+    
+        foreach ($air_info as $info) {
+            if ($info['tour_price'] < $min_amt) {
+                $min_amt = $info['tour_price'];
+            }
+        }
+    
+        // Nếu không tìm thấy giá trị nào hợp lệ, đặt min_amt thành 0
+        return $min_amt === PHP_INT_MAX ? 0 : $min_amt;
+    }
+    
+
+
+    public function available_date($product_idx)
+    {
+        $current_date = date("Y-m-d");
+        $next_available_date = $this->productModel->get_next_available_date($product_idx, $current_date);
+
+        $data = [
+            'next_available_date' => $next_available_date
+        ];
+
+        return $this->response->setJSON($data);
+    }
+
+    public function product_info($product_idx)
+    {
+        $start_date_in = $this->request->getVar('start_date_in') ?: date("Y-m-d");
+
+        $product_info = $this->productModel->get_product_info($product_idx, $start_date_in);
+        $air_info = $this->productModel->get_air_info($product_idx, $start_date_in);
+
+        $data = [
+            'start_date_in' => $start_date_in,
+            'product_info' => $product_info,
+            'air_info' => $air_info
+        ];
+
+        return view('product/product_view', $data);
+    }
+
+    private function getImage($fileName)
+    {
         if ($fileName) {
             return "/images/slider_product/" . $fileName;
         }
         return null;
     }
+
+
 
 }
 ?>

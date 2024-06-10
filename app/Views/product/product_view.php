@@ -131,7 +131,253 @@
       </div>
     </section>
   </div>
+  <div class="inner">
+  <?php echo view('shared/air_info', [
+    'start_date_in' => $start_date_in,
+    'air_info' => $air_info,
+    'min_amt' => $min_amt, // Truyền biến min_amt vào view
+    '_start_dd' => $_start_dd, // Truyền biến _start_dd vào view
+    'tour_price' => $tour_price,
+    'oil_price' => $oil_price,
+    'tour_price_kids' => $tour_price_kids,
+    'tour_price_baby' => $tour_price_baby,
+    'product_idx' => $product_idx // Truyền biến product_idx vào view
+]); ?>
+<article>
+    <a id="prd_info"></a>
+    <?php if (isset($tour_info) && $tour_info != "&lt;p&gt;&nbsp;&lt;/p&gt;" && $tour_info != ""): ?>
+        <ul class="item_anchor">
+            <li><a href="#prd_info" class="on">상품소개</a></li>
+            <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
+                <li><a href="#itinerary">여행일정</a></li>
+            <?php endif; ?>
+            <?php if (isset($row_ht['stay_name_eng']) && $row_ht['stay_name_eng'] != ''): ?>
+                <li><a href="#lodging">숙박정보</a></li>
+            <?php endif; ?>
+            <?php if (isset($tour_detail) && $tour_detail != "&lt;p&gt;&nbsp;&lt;/p&gt;"): ?>
+                <li><a href="#detail_info">상세정보</a></li>
+            <?php endif; ?>
+        </ul>
+        <div class="item_cont info">
+            <p class="label">상품 핵심 포인트</p>
+            <?= view('t-package/view_info_inc') ?>
+        </div>
+    <?php endif; ?>
+</article>
+
+<!-- 여행일정  -->
+<article>
+    <a id="itinerary"></a>
+    <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
+        <ul class="item_anchor">
+            <li><a href="#prd_info">상품소개</a></li>
+            <li><a href="#itinerary" class="on">여행일정</a></li>
+            <?php if (isset($row_ht['stay_name_eng']) && $row_ht['stay_name_eng'] != ''): ?>
+                <li><a href="#lodging">숙박정보</a></li>
+            <?php endif; ?>
+            <?php if (isset($tour_detail) && $tour_detail != "&lt;p&gt;&nbsp;&lt;/p&gt;"): ?>
+                <li><a href="#detail_info">상세정보</a></li>
+            <?php endif; ?>
+        </ul>
+        <div class="item_cont info">
+            <p class="label">여행일정</p>
+            <?= view('t-package/view_itinerary_inc') ?>
+        </div>
+    <?php endif; ?>
+</article>
+
+<!-- 숙박정보  -->
+<article>
+    <a id="lodging"></a>
+    <?php if (isset($row_ht['stay_name_eng']) && $row_ht['stay_name_eng'] != ''): ?>
+        <ul class="item_anchor">
+            <li><a href="#prd_info">상품소개</a></li>
+            <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
+                <li><a href="#itinerary">여행일정</a></li>
+            <?php endif; ?>
+            <li><a href="#lodging" class="on">숙박정보</a></li>
+            <?php if (isset($tour_detail) && $tour_detail != "&lt;p&gt;&nbsp;&lt;/p&gt;"): ?>
+                <li><a href="#detail_info">상세정보</a></li>
+            <?php endif; ?>
+        </ul>
+        <div class="item_cont info">
+            <p class="label">숙박정보</p>
+            <?= view('t-package/view_lodging_inc') ?>
+        </div>
+    <?php endif; ?>
+</article>
+
+<!-- 상세정보  -->
+<article>
+    <a id="detail_info"></a>
+    <?php if (isset($tour_detail) && $tour_detail != "&lt;p&gt;&nbsp;&lt;/p&gt;"): ?>
+        <ul class="item_anchor">
+            <li><a href="#prd_info">상품소개</a></li>
+            <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
+                <li><a href="#itinerary">여행일정</a></li>
+            <?php endif; ?>
+            <?php if (isset($row_ht['stay_name_eng']) && $row_ht['stay_name_eng'] != ''): ?>
+                <li><a href="#lodging">숙박정보</a></li>
+            <?php endif; ?>
+            <li><a href="#detail_info" class="on">상세정보</a></li>
+        </ul>
+        <div class="item_cont info">
+            <p class="label">상세정보</p>
+            <?= view('t-package/view_detail_info_inc') ?>
+        </div>
+    <?php endif; ?>
+</article>
+
+
+</div>
+
+
 </section>
+
+<script>
+  function set_plus(id) {
+    //if($("#adult_air").val() == 0 || $("#kids_air").val() == 0 || $("#baby_air").val() == 0) {
+    //   alert('항공편을 선택해 주세요.2');
+    //   return false;
+    //}
+
+    var $n = $(this).parent(".count_box").find(".input-qty");
+
+    if (id == "1") {
+      var man_cnt = parseInt($("#man_cnt").val()) + 1;
+      $("#adult_mem").val(man_cnt);
+      $("#man_cnt").val(man_cnt);
+      $n.val(man_cnt);
+      $("#adult_qty").val(man_cnt);
+    }
+
+    if (id == "2") {
+      var kids_cnt = parseInt($("#kids_cnt").val()) + 1;
+      $("#kids_mem").val(kids_cnt);
+      $("#kids_cnt").val(kids_cnt);
+      $n.val(kids_cnt);
+      $("#kids_qty").val(kids_cnt);
+    }
+
+    if (id == "3") {
+      var baby_cnt = parseInt($("#baby_cnt").val()) + 1;
+      $("#baby_mem").val(baby_cnt);
+      $("#baby_cnt").val(baby_cnt);
+      $n.val(baby_cnt);
+      $("#baby_qty").val(baby_cnt);
+    }
+
+    price_account();
+
+  }
+
+  function set_minus(id) {
+
+    //if($("#adult_air").val() == 0 || $("#kids_air").val() == 0 || $("#baby_air").val() == 0) {
+    //   alert('항공편을 선택해 주세요.3'); 
+    //   return false;
+    //}
+    var $n = $(this).parent(".count_box").find(".input-qty");
+    if (id == "1") {
+      var man_cnt = parseInt($("#man_cnt").val()) - 1;
+      if (man_cnt < 1) man_cnt = 1;
+      $("#adult_mem").val(man_cnt);
+      $("#man_cnt").val(man_cnt);
+      $n.val(man_cnt);
+    }
+
+    if (id == "2") {
+      var kids_cnt = parseInt($("#kids_cnt").val()) - 1;
+      if (kids_cnt < 0) kids_cnt = 0;
+      $("#kids_mem").val(kids_cnt);
+      $("#kids_cnt").val(kids_cnt);
+      $n.val(kids_cnt);
+    }
+
+    if (id == "3") {
+      var baby_cnt = parseInt($("#baby_cnt").val()) - 1;
+      if (baby_cnt < 0) baby_cnt = 0;
+      $("#baby_mem").val(baby_cnt);
+      $("#baby_cnt").val(baby_cnt);
+      $n.val(baby_cnt);
+    }
+
+    price_account();
+  }
+
+  function get_reservation(idx) {
+
+    $("#air_idx").val(idx);
+
+    var message = "";
+    var detail = "";
+    $.ajax({
+      url: "/ajax/ajax.get_air.php",
+      type: "POST",
+      data: {
+        "product_idx": '<?= $product_idx ?>',
+        "idx": idx
+      },
+      dataType: "json",
+      async: false,
+      cache: false,
+      success: function (data, textStatus) {
+        message = data.message;
+
+
+        var _price = message.split("|");
+
+        $("#adult_air").val(_price[0]);
+        $("#kids_air").val(_price[1]);
+        $("#baby_air").val(_price[2]);
+        $("#air_code").val(_price[3]);
+        $("#air_code_in").val(_price[3]);
+        $("#air_idx_in").val(idx);
+
+        $("#tour_price").val(_price[0]);
+        $("#tour_price_kids").val(_price[1]);
+        $("#tour_price_baby").val(_price[2]);
+
+        var adult_price = _price[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+        var kids_price = _price[1].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+        var baby_price = _price[2].replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+        $("#adult_price").text(adult_price);
+        $("#kids_price").text(kids_price);
+        $("#baby_price").text(baby_price);
+        $("#detail").html(detail);
+
+        $("#kids_mem").val('0');
+        $("#kids_cnt").val('0');
+        $("#baby_mem").val('0');
+        $("#baby_cnt").val('0');
+        $("#go_view").submit();
+        //price_account();
+      }
+    });
+  }
+
+  function price_account() {
+    var adult_cnt = parseInt($("#adult_mem").val() || 0);
+    var kids_cnt = parseInt($("#kids_mem").val() || 0);
+    var baby_cnt = parseInt($("#baby_mem").val() || 0);
+
+    var adult_tot = parseInt($("#adult_air").val() || 0) * adult_cnt;
+    var kids_tot = parseInt($("#kids_air").val() || 0) * kids_cnt;
+    var baby_tot = parseInt($("#baby_air").val() || 0) * baby_cnt;
+    var oil_price_tot = (parseInt($("#oil_price").val() || 0) * adult_cnt) + (parseInt($("#oil_price").val() || 0) * kids_cnt);
+
+    //alert('adult_tot- '+adult_tot);
+    //alert('kids_tot- '+kids_tot);
+    //alert('baby_tot- '+baby_tot);
+
+
+    var price_tot = parseInt(adult_tot + kids_tot + baby_tot + oil_price_tot);
+    $("#total_price").val(price_tot);
+    var txt_price = String(price_tot);
+    var _total_price = txt_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    $(".total_txt").text(_total_price);
+  }
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.detail_slider', {
