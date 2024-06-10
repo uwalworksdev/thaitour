@@ -3,7 +3,7 @@
 <?php $this->section('content'); ?>
 <?php 
     $Bbs = model("Bbs");
-    $list = $Bbs->List("banner")->findAll();
+    $list = $Bbs->List("banner", ["category" => "1"])->findAll();
 ?>
 
 <link rel="stylesheet" href="/css/contents/main.css">
