@@ -1,9 +1,9 @@
 <!-- app/Views/main/home.php -->
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
-<?php 
-    $Bbs = model("Bbs");
-    $list = $Bbs->List("banner", ["category" => "1"])->findAll();
+<?php
+$Bbs = model("Bbs");
+$list = $Bbs->List("banner", ["category" => "1"])->findAll();
 ?>
 
 <link rel="stylesheet" href="/css/contents/main.css">
@@ -12,13 +12,14 @@
         <div class="body_inner">
             <div class="relative">
                 <div class="main_visual_slider">
-                <?php foreach ($list as $item): ?>
-                    <div class="slide_item">
-                        <div class="img_box img_box_1">
-                            <img src="/uploads/bbs/<?= $item['ufile5'] ?>" alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
+                    <?php foreach ($list as $item): ?>
+                        <div class="slide_item">
+                            <div class="img_box img_box_1">
+                                <img src="/uploads/bbs/<?= $item['ufile5'] ?>" alt="<?= $item['rfile5'] ?>"
+                                    onerror="this.src='/images/main/image.svg'">
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
                 <button class="swiper-button-prev-main swiper-button-main">
                     <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,15 +43,16 @@
                         <rect width="2" height="10" fill="#757575" />
                         <rect x="4" width="2" height="10" fill="#757575" />
                     </svg>
-                    <svg id="play-button" style="display: none;" class="play" width="8" height="10" viewBox="0 0 8 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
+                    <svg id="play-button" style="display: none;" class="play" width="8" height="10" viewBox="0 0 8 10"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
                             fill="#757575" />
                     </svg>
                 </div>
                 <div class="swiper-pagination-main">
-                    <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span class="main_total_slide">3</span> <!-- get total slide from database -->
+                    <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span class="main_total_slide">3</span>
+                    <!-- get total slide from database -->
                 </div>
             </div>
         </div>
@@ -63,33 +65,41 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/images/main/image.svg" alt="main_1">
+                                <img src="/uploads/main/main_banner_1.png" alt="main_1">
+                            </div>
+                            <div class="main_swiper2__text">
+                                # 왜 더투어랩이 답일까요?
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/images/main/image.svg" alt="main_1">
+                                <img src="/uploads/main/main_banner_2.png" alt="main_1">
                             </div>
+                            <div class="main_swiper2__text"> # 더투어랩의 <br> 신용도는 <br> AAA</div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/images/main/image.svg" alt="main_1">
+                                <img src="/uploads/main/main_banner_3.png" alt="main_1">
                             </div>
+                            <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/images/main/image.svg" alt="main_1">
+                                <img src="/uploads/main/main_banner_4.png" alt="main_1">
                             </div>
+                            <div class="main_swiper2__text">#무려 4% <br> 포인트 적립</div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/images/main/image.svg" alt="main_1">
+                                <img src="/uploads/main/main_banner_5.png" alt="main_1">
                             </div>
+                            <div class="main_swiper2__text">#예약이 <br> 정말 쉬워요! </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="img_box img_box_2">
-                                <img src="/images/main/image.svg" alt="main_1">
+                                <img src="/uploads/main/main_banner_3.png" alt="main_1">
                             </div>
+                            <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +116,7 @@
         <div class="body_inner">
             <div class="main_section3__head">
                 <div class="main_section3__head__ttl">
-                취향저격 더투어랩 Best
+                    취향저격 더투어랩 Best
                 </div>
                 <div class="main_section3__place">
                     <button class="main_section3__place_btn active">방콕</button>
@@ -344,7 +354,7 @@
             <div class="main_hot__head">
                 <div class="main_hot__head__left">
                     <div class="main_hot__head_ttl">
-                    1주일간 예약순위 : <span>호텔</span>
+                        1주일간 예약순위 : <span>호텔</span>
                     </div>
                     <div class="main_hot__head__place">
                         <a href="#!" class="place_item active">방콕</a>
@@ -430,7 +440,8 @@
                 </div>
             </div>
             <div class="flex">
-                <a href="#!" class="btn_more_hot_product btn_more_hot_product_1 flex justify-center items-center">더보기 +</a>
+                <a href="#!" class="btn_more_hot_product btn_more_hot_product_1 flex justify-center items-center">더보기
+                    +</a>
             </div>
         </div>
     </section>
@@ -455,7 +466,7 @@
             <div class="main_hot__head">
                 <div class="main_hot__head__left">
                     <div class="main_hot__head_ttl">
-                    1주일간 예약순위 : <span>골프</span>
+                        1주일간 예약순위 : <span>골프</span>
                     </div>
                     <div class="main_hot__head__place">
                         <div class="place_item">방콕</div>
@@ -541,7 +552,8 @@
                 </div>
             </div>
             <div class="flex">
-                <a href="#!" class="btn_more_hot_product btn_more_hot_product_2  flex justify-center items-center">더보기 +</a>
+                <a href="#!" class="btn_more_hot_product btn_more_hot_product_2  flex justify-center items-center">더보기
+                    +</a>
             </div>
         </div>
     </section>
@@ -681,7 +693,8 @@
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우 말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
+                                        말할것도...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -689,9 +702,14 @@
                                             <span class="star_review_cnt">(954)</span>
                                         </div>
                                         <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z" stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z" stroke="#ADADAD" stroke-width="1.5"/>
+                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                <path
+                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -707,7 +725,8 @@
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우 말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
+                                        말할것도...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -715,9 +734,14 @@
                                             <span class="star_review_cnt">(954)</span>
                                         </div>
                                         <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z" stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z" stroke="#ADADAD" stroke-width="1.5"/>
+                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                <path
+                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -733,7 +757,8 @@
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우 말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
+                                        말할것도...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -741,9 +766,14 @@
                                             <span class="star_review_cnt">(954)</span>
                                         </div>
                                         <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z" stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z" stroke="#ADADAD" stroke-width="1.5"/>
+                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                <path
+                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -759,7 +789,8 @@
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우 말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
+                                        말할것도...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -767,9 +798,14 @@
                                             <span class="star_review_cnt">(954)</span>
                                         </div>
                                         <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z" stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z" stroke="#ADADAD" stroke-width="1.5"/>
+                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                <path
+                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -785,7 +821,8 @@
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우 말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
+                                        말할것도...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -793,9 +830,14 @@
                                             <span class="star_review_cnt">(954)</span>
                                         </div>
                                         <div class="eye">
-                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z" stroke="#ADADAD" stroke-width="1.5"/>
-                                                <path d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z" stroke="#ADADAD" stroke-width="1.5"/>
+                                            <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                <path
+                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                    stroke="#ADADAD" stroke-width="1.5" />
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -818,7 +860,7 @@
         <div class="body_inner">
             <div class="main_section_magazine__head">
                 <div class="main_section_magazine__head__ttl">
-                더투어랩 <span>매거진</span>
+                    더투어랩 <span>매거진</span>
                 </div>
                 <a href="#!" class="main_section_magazine__head__more">더보기 +</a>
             </div>
@@ -831,7 +873,7 @@
                         </div>
                         <div class="magazine_content">
                             <div class="magazine_content_txt">
-                                여름휴가  준비할 때가 왔다.  에이스 오브  후아힌 리조트
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
                         </div>
                     </div>
@@ -842,7 +884,7 @@
                         </div>
                         <div class="magazine_content">
                             <div class="magazine_content_txt">
-                                여름휴가  준비할 때가 왔다.  에이스 오브  후아힌 리조트
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
                         </div>
                     </div>
@@ -853,7 +895,7 @@
                         </div>
                         <div class="magazine_content">
                             <div class="magazine_content_txt">
-                                여름휴가  준비할 때가 왔다.  에이스 오브  후아힌 리조트
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
                         </div>
                     </div>
@@ -864,7 +906,7 @@
                         </div>
                         <div class="magazine_content">
                             <div class="magazine_content_txt">
-                                여름휴가  준비할 때가 왔다.  에이스 오브  후아힌 리조트
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
                         </div>
                     </div>
@@ -875,7 +917,7 @@
                         </div>
                         <div class="magazine_content">
                             <div class="magazine_content_txt">
-                                여름휴가  준비할 때가 왔다.  에이스 오브  후아힌 리조트
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
                         </div>
                     </div>
@@ -886,7 +928,7 @@
                         </div>
                         <div class="magazine_content">
                             <div class="magazine_content_txt">
-                                여름휴가  준비할 때가 왔다.  에이스 오브  후아힌 리조트
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
                         </div>
                     </div>
@@ -897,7 +939,7 @@
                         </div>
                         <div class="magazine_content">
                             <div class="magazine_content_txt">
-                                여름휴가  준비할 때가 왔다.  에이스 오브  후아힌 리조트
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
                         </div>
                     </div>
