@@ -1,71 +1,24 @@
 <!-- app/Views/main/home.php -->
 <?php $this->extend('inc/layout_index'); ?>
-
 <?php $this->section('content'); ?>
+<?php 
+    $Bbs = model("Bbs");
+    $list = $Bbs->List("banner")->findAll();
+?>
+
 <link rel="stylesheet" href="/css/contents/main.css">
 <div class="body_container">
     <section class="main_visual">
         <div class="body_inner">
-            <!-- <div class="swiper main_swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-button-prev-main swiper-button-main">
-                    <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M14.4827 1.09832C14.0952 0.724604 13.4815 0.724612 13.0941 1.09834L0.88889 12.8725C0.481262 13.2658 0.481269 13.9187 0.888907 14.3119L12.7555 25.7589C13.1429 26.1326 13.7566 26.1326 14.144 25.7589L16.058 23.9125C16.4657 23.5193 16.4657 22.8663 16.058 22.4731L7.59657 14.312C7.18887 13.9188 7.18886 13.2657 7.59654 12.8725L16.3967 4.38412C16.8043 3.9909 16.8043 3.3379 16.3967 2.94466L14.4827 1.09832Z"
-                            fill="white" />
-                    </svg>
-                </div>
-                <div class="swiper-button-next-main swiper-button-main">
-                    <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M2.51733 1.09832C2.90475 0.724604 3.51848 0.724612 3.90588 1.09834L16.1111 12.8725C16.5187 13.2658 16.5187 13.9187 16.1111 14.3119L4.24452 25.7589C3.85711 26.1326 3.2434 26.1326 2.85599 25.7589L0.941972 23.9125C0.534308 23.5193 0.53433 22.8663 0.942021 22.4731L9.40343 14.312C9.81113 13.9188 9.81114 13.2657 9.40346 12.8725L0.603329 4.38412C0.195662 3.9909 0.195651 3.3379 0.603305 2.94466L2.51733 1.09832Z"
-                            fill="white" />
-                    </svg>
-                </div>
-            </div> -->
             <div class="relative">
                 <div class="main_visual_slider">
+                <?php foreach ($list as $item): ?>
                     <div class="slide_item">
                         <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
+                            <img src="/uploads/bbs/<?= $item['ufile5'] ?>" alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
                         </div>
                     </div>
-                    <div class="slide_item">
-                        <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
-                        </div>
-                    </div>
-                    <div class="slide_item">
-                        <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
-                        </div>
-                    </div>
-                    <div class="slide_item">
-                        <div class="img_box img_box_1">
-                            <img src="/images/main/image.svg" alt="main_1">
-                        </div>
-                    </div>
+                <?php endforeach; ?>
                 </div>
                 <button class="swiper-button-prev-main swiper-button-main">
                     <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">
