@@ -54,7 +54,6 @@ class AdminLogin extends BaseController {
                 if ($result->user_level != '1') {
                     throw new Exception("탙퇴한 회원 입니다.");
                 }
-
                 // if ($result->member_grade != '1') {
                 //     throw new Exception("권한이 없습니다.");
                 // }
@@ -62,11 +61,9 @@ class AdminLogin extends BaseController {
                 // if (!password_verify($userPw, $result->member_pw)) {
                 //     throw new Exception("패스워드를 확인 하세요.");
                 // }
-
             }else{
                 throw new Exception("존재 하지 않는 아이디 입니다.");
-            }
-            
+            }           
             $this->session->set('user_id', $userId);
             $this->session->set('user_name', $result->user_name);
             $this->session->set('create_at', time());

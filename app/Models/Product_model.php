@@ -48,10 +48,9 @@ class Product_model extends Model {
         return [];
     }
 
-
-    public function getDayDetails($product_idx, $air_idx) {
-        $sql = "SELECT * FROM tbl_product_day_detail WHERE product_idx = ? AND air_code = ?";
-        $query = $this->db->query($sql, [$product_idx, $air_idx]);
+    public function getDayDetails($product_idx) {
+        $sql = "SELECT * FROM tbl_product_day_detail WHERE product_idx = ? ";
+        $query = $this->db->query($sql, [$product_idx]);
         return $query->getRowArray();
     }
 
@@ -165,10 +164,12 @@ class Product_model extends Model {
 
         return $current_date;
     }
+    
     public function get_product_info($product_idx, $start_date_in) {
         $sql = "SELECT * FROM tbl_product_yoil WHERE product_idx = ? AND depth = '1' AND e_date >= ?";
         return $this->db->query($sql, array($product_idx, $start_date_in))->getResultArray();
     }
+
     public function get_air_info($product_idx, $start_date_in) {
         $selDate = $start_date_in; // Gán giá trị cho biến $selDate
         $dow = date('w', strtotime($start_date_in));
@@ -186,5 +187,83 @@ class Product_model extends Model {
         return $this->db->query($sql, [$product_idx])->getResultArray();
     }
 
+    public function insertPriceVal($seq, $product_idx, $current_date) {
+        $addDay = 1;
+
+        while (true) {
+            $addDay++;
+            $next_date = date("Y-m-d", strtotime("+$addDay days", strtotime($current_date)));
+            $day_of_week = date("w", strtotime($next_date));
+
+            $detail_sql = "";
+            if ($day_of_week == 0) {
+                $detail_sql = " AND yoil_0 = 'Y' ";
+            } else if ($day_of_week == 1) {
+                $detail_sql = " AND yoil_1 = 'Y' ";
+            } else if ($day_of_week == 2) {
+                $detail_sql = " AND yoil_2 = 'Y' ";
+            } else if ($day_of_week == 3) {
+                $detail_sql = " AND yoil_3 = 'Y' ";
+            } else if ($day_of_week == 4) {
+                $detail_sql = " AND yoil_4 = 'Y' ";
+            } else if ($day_of_week == 5) {
+                $detail_sql = " AND yoil_5 = 'Y' ";
+            } else if ($day_of_week == 6) {
+                $detail_sql = " AND yoil_6 = 'Y' ";
+            }
+
+            $sql_g = "
+                SELECT * 
+                FROM tbl_product_yoil 
+                WHERE product_idx = ? 
+                AND depth = '1' 
+                AND ? BETWEEN s_date AND e_date
+                $detail_sql
+            ";
+
+            $query_g = $this->db->query($sql_g, array($product_idx, $next_date));
+            $nTotalCount = $query_g->getNumRows();
+
+            if ($nTotalCount > 0) {
+                return $next_date;
+            }
+
+            $sql_m = "
+                SELECT * 
+                FROM tbl_product_yoil 
+                WHERE product_idx = ? 
+                AND depth = '1' 
+                AND ? <= e_date
+            ";
+
+            $query_m = $this->db->query($sql_m, array($product_idx, $next_date));
+            $nTotalCount2 = $query_m->getNumRows();
+
+            if ($nTotalCount2 < 1) {
+                break;
+            }
+
+            if ($addDay > 365) {
+                break;
+            }
+        }
+
+        return $current_date;
+    }
+
+    public function getPriceData($seq, $product_idx, $sDate) {
+        $sql = "SELECT get_date, MIN(tour_price) as price FROM price_val WHERE seq = ? AND product_idx = ? AND get_date >= ? GROUP BY get_date";
+        return $this->db->query($sql, [$seq, $product_idx, $sDate])->getResultArray();
+    }
+
+    public function getFirstDate($seq, $product_idx, $today) {
+        $sql = "SELECT get_date FROM price_val WHERE seq = ? AND product_idx = ? AND get_date > ? GROUP BY get_date LIMIT 1";
+        return $this->db->query($sql, [$seq, $product_idx, $today])->getRowArray();
+    }
+
+    public function deletePriceVal($seq) {
+        $sql = "DELETE FROM price_val WHERE seq = ?";
+        $this->db->query($sql, [$seq]);
+    }
 }
 ?>
