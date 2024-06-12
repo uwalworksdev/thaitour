@@ -230,19 +230,19 @@
 .join .join_list .naver a i {
   width: 26px;
   height: 28px;
-  background-image: url(../img/ico/join_naver_ico.png);
+  background-image: url(/images/ico/join_naver_ico.png);
 }
 
 .join .join_list .kakao a i {
   width: 30px;
   height: 28px;
-  background-image: url(../img/ico/join_kakao_ico.png);
+  background-image: url(/images/ico/join_kakao_ico.png);
 }
 
 .join .join_list .google a i {
   width: 31px;
   height: 32px;
-  background-image: url(../img/ico/join_google_ico.png);
+  background-image: url(/images/ico/join_google_ico.png);
 }
 
 .join_step {
