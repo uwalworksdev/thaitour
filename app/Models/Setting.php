@@ -12,11 +12,14 @@ class Setting extends Model{
     protected function initialize()
     {
         $this->allowedFields = [
-            'site_name', 'domain_url', 'browser_title', 'meta_tag', 'meta_keyword', 'og_title', 
-            'og_des', 'og_url', 'og_site', 'buytext', 'trantext', 'naver_verfct', 
-            'google_verfct', 'home_name', 'home_name_en', 'store_service01', 'store_service02',
-            'zip', 'addr1', 'addr2', 'comnum', 'mall_order', 'com_owner', 
-            'info_owner', 'custom_phone', 'fax', 'counsel1', 'counsel2',
+            'site_name', 'domain_url', 'admin_name', 'admin_email', 'browser_title', 'meta_tag', 'meta_keyword', 'admin_mobile_list',
+            'og_title', 'og_des', 'og_url', 'og_site', 'buytext', 'trantext', 'oversea_purchase', 'home_name', 'brand_name',
+            'home_name_en', 'store_service01', 'store_service02', 'tour_no', 'qna_email', 'service_item', 'zip', 'addr1', 'addr2',
+            'sydney_addr', 'custom_service_phone_sydney', 'comnum', 'tournum', 'mallOrder', 'com_owner', 'info_owner', 'custom_phone',
+            'fax', 'allim_apikey', 'allim_userid', 'allim_senderkey', 'smtp_host', 'smtp_id', 'smtp_pass', 'nicepay_pass', 'nicepay_mid',
+            'nicepay_key', 'nicepay_mid_b', 'nicepay_key_b', 'nicepay_mid_m', 'nicepay_key_m', 'copyright', 'mileage_min', 'mileage_max',
+            'bank_owner', 'bank_owner_australia', 'bank_name', 'bank_name_australia', 'bank_no', 'bank_no1', 'bank_no_australia',
+            'bank_no_australia1', 'paymethod', 'us_dollar', 'search_word', 'sms_phone', 'email', 'munnote_code', 'language', 'ssl_chk', 'banks'
         ];
     }
 
@@ -33,6 +36,11 @@ class Setting extends Model{
     public function infoUpdate($idx, $post){
         // $this->allowedFields = [''];
         return $this->update($idx, $post);
+    }
+
+    public function updateSettings($data)
+    {
+        return $this->update(1, $data);
     }
     /**
      * 홈페이지 파일 데이터 수정

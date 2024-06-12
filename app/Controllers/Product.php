@@ -9,7 +9,6 @@ use Exception;
 
 class Product extends BaseController
 {
-
     private $bannerModel;
     private $productModel;
     private $db;
@@ -87,9 +86,7 @@ class Product extends BaseController
         }
     }
 
-
-    
-    public function view($product_idx, $air_idx = null) {
+    public function view($product_idx) {
         // Lấy các chi tiết sản phẩm hiện tại
         $data['product'] = $this->productModel->getProductDetails($product_idx);
     
@@ -101,7 +98,7 @@ class Product extends BaseController
         $start_date_in = $this->request->getVar('start_date_in') ?: date("Y-m-d");
         $product_info = $this->productModel->get_product_info($product_idx, $start_date_in);
         $air_info = $this->productModel->get_air_info($product_idx, $start_date_in);
-        $day_details = $this->productModel->getDayDetails($product_idx, $air_idx); // Lấy dữ liệu từ tbl_product_day_detail
+        $day_details = $this->productModel->getDayDetails($product_idx); // Lấy dữ liệu từ tbl_product_day_detail
     
         // Tính giá trị min_amt
         $min_amt = $this->calculateMinAmt($air_info);
@@ -114,6 +111,27 @@ class Product extends BaseController
         $oil_price = $air_info[0]['oil_price'] ?? 0;
         $tour_price_kids = $air_info[0]['tour_price_kids'] ?? 0;
         $tour_price_baby = $air_info[0]['tour_price_baby'] ?? 0;
+    
+        // Chuẩn bị giá trị sel_date và sel_price
+        $seq = time();
+        $sDate = date('Y-m-01');
+        $today = date('Y-m-d');
+        $priceData = $this->productModel->getPriceData($seq, $product_idx, $sDate);
+        $first_date = $this->productModel->getFirstDate($seq, $product_idx, $today);
+        $this->productModel->deletePriceVal($seq);
+    
+        $sel_date = '';
+        $sel_price = '';
+        foreach ($priceData as $row) {
+            $cal_amt = $row['price'] / 10000;
+            $sel_date .= $row['get_date'] . "|";
+            $sel_price .= $cal_amt . "|";
+        }
+    
+        // Debug các giá trị
+        echo "sel_date: " . $sel_date . "===========";
+        echo "sel_price: " . $sel_price . "===========";
+        echo "first_date: " . ($first_date['get_date'] ?? '') . "===========";
     
         // Thêm vào mảng dữ liệu
         $data['start_date_in'] = $start_date_in;
@@ -129,7 +147,12 @@ class Product extends BaseController
         $data['product_confirm'] = $data['product']['product_confirm']; 
         $data['product_able'] = $data['product']['product_able']; 
         $data['product_unable'] = $data['product']['product_unable']; 
+        $data['tour_info'] = $data['product']['tour_info']; 
+        $data['special_benefit'] = $data['product']['special_benefit']; 
         $data['day_details'] = $day_details; // Truyền dữ liệu từ tbl_product_day_detail sang view
+        $data['sel_date'] = $sel_date;
+        $data['sel_price'] = $sel_price;
+        $data['first_date'] = $first_date['get_date'] ?? '';
     
         if (!$data['product_info']) {
             return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
@@ -143,67 +166,24 @@ class Product extends BaseController
         $data['img_4'] = $this->getImage($data['product']['ufile4']);
         $data['img_5'] = $this->getImage($data['product']['ufile5']);
         $data['img_6'] = $this->getImage($data['product']['ufile6']);
-        
+    
         return view('product/product_view', $data);
     }
-
-    // Các phương thức hiện có ...
-
-
     
     
     private function calculateMinAmt($air_info) {
-        $min_amt = PHP_INT_MAX; // Khởi tạo giá trị lớn nhất
-    
+        $min_amt = 9999999999;
         foreach ($air_info as $info) {
-            if ($info['tour_price'] < $min_amt) {
-                $min_amt = $info['tour_price'];
+            $tour_price = $info['tour_price'] / 10000;
+            if ($tour_price < $min_amt && $tour_price > 0) {
+                $min_amt = $tour_price;
             }
         }
-    
-        // Nếu không tìm thấy giá trị nào hợp lệ, đặt min_amt thành 0
-        return $min_amt === PHP_INT_MAX ? 0 : $min_amt;
-    }
-    
-
-
-    public function available_date($product_idx)
-    {
-        $current_date = date("Y-m-d");
-        $next_available_date = $this->productModel->get_next_available_date($product_idx, $current_date);
-
-        $data = [
-            'next_available_date' => $next_available_date
-        ];
-
-        return $this->response->setJSON($data);
+        return $min_amt;
     }
 
-    public function product_info($product_idx)
-    {
-        $start_date_in = $this->request->getVar('start_date_in') ?: date("Y-m-d");
-
-        $product_info = $this->productModel->get_product_info($product_idx, $start_date_in);
-        $air_info = $this->productModel->get_air_info($product_idx, $start_date_in);
-
-        $data = [
-            'start_date_in' => $start_date_in,
-            'product_info' => $product_info,
-            'air_info' => $air_info
-        ];
-
-        return view('product/product_view', $data);
+    private function getImage($file) {
+        return base_url("images/{$file}");
     }
-
-    private function getImage($fileName)
-    {
-        if ($fileName) {
-            return "/images/slider_product/" . $fileName;
-        }
-        return null;
-    }
-
-
-
 }
 ?>

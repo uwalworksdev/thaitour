@@ -1098,6 +1098,7 @@ text-decoration: underline;
   height: 182px;
   padding: 0 40px;
   overflow: hidden;
+  margin-top: 100px;
 }
 
 .calendar.not_price {
@@ -1121,8 +1122,6 @@ text-decoration: underline;
   left: -5%;
   position: absolute;
   z-index: 999999999;
-
-
 }
 
 .calendar .swiper-button-next2 {
@@ -1139,8 +1138,6 @@ text-decoration: underline;
   transform: scaleX(-1);
   z-index: 999999999;
 }
-
-
 
 
 .calendar .swiper-button {

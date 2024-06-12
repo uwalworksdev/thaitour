@@ -43,7 +43,6 @@ function viewSQ($textToFilter)
 		$textToFilter = str_replace('updat&#101','update',$textToFilter);
 		$textToFilter = str_replace('s&#101t','set',$textToFilter);
 		$textToFilter = str_replace('fl&#117sh','flush',$textToFilter);
-
 		$textToFilter = str_replace('&amp;',"&",$textToFilter);
 		$textToFilter = str_replace('&#59',";",$textToFilter);
 		$textToFilter = str_replace('&gt;',">",$textToFilter);
@@ -52,7 +51,10 @@ function viewSQ($textToFilter)
 		$textToFilter = str_replace('&amp;',"&",$textToFilter);
 		$textToFilter = str_replace('&amp;',"&",$textToFilter);
 		$textToFilter = str_replace('scr&#105pt'," ",$textToFilter);
-		// $textToFilter = strip_tags($textToFilter);
+
 		return $textToFilter;
 }
+
+
+
 ?>

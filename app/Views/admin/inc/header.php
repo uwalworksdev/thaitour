@@ -1,11 +1,11 @@
 <?php
-    helper(['gnb', 'setting']);
-    $uri = service('uri');
-    $currentPath = $uri->getPath();
-    $adminGnb = adminGnb();
-    $setting = homeSetInfo();
-    $createAt = session("create_at");
-    $sessionCreateDate = date('Y-m-d H:i:s',$createAt);
+helper(['gnb', 'setting']);
+$uri = service('uri');
+$currentPath = $uri->getPath();
+$adminGnb = adminGnb();
+$setting = homeSetInfo();
+$createAt = session("create_at");
+$sessionCreateDate = date('Y-m-d H:i:s',$createAt);
 ?>
 <header id="header">
     <div class="header_top">
@@ -23,7 +23,6 @@
                 <li>IP : <?=$_SERVER['REMOTE_ADDR']?> /</li>
                 <li>최근접속일시 : <?=$sessionCreateDate?></li>
             </ul>
-
             <!-- <a href="/AdmMaster/_adminrator/store_config_admin.php">비밀번호변경</a> -->
             <a href="/adm/member/admin/change">정보수정</a>
             <a class="logout" href="/adm/logout">로그아웃</a>
@@ -43,7 +42,6 @@
                         <a href="<?=$gnbChild['link']?>"><?=$gnbChild['title']?></a>
                     </li>
                     <?php } ?>
-
                 </ul>
                 <?php } ?>
             </li>
@@ -116,7 +114,6 @@ $(function() {
             closeText: '닫기',
             prevText: '이전',
             nextText: '다음'
-
         });
         $(".datepicker2").datepicker({
             showButtonPanel: true,
@@ -139,7 +136,6 @@ $(function() {
             closeText: '닫기',
             prevText: '이전',
             nextText: '다음'
-
         });
         $('img.ui-datepicker-trigger').css({
             'cursor': 'pointer'
@@ -148,7 +144,6 @@ $(function() {
             'cursor': 'pointer'
         });
     }, 100);
-
 });
 </script>
 <script>
@@ -157,12 +152,10 @@ $(document).ready(function() {
         $(this).next('.depth2').toggleClass('on');
         // $(this).next('.depth2').children('.depth2 li').toggleClass('on');
         $(this).toggleClass('on');
-
         if ($('.depth2').hasClass('on')) {
             // $('.depth2 li') addClass('on');
             $('.depth2').removeClass('on');
             $('.depth1_ttl > a').removeClass('on');
-
             $(this).next('.depth2').toggleClass('on');
             $(this).toggleClass('on');
         } else {

@@ -17,7 +17,6 @@
                 </div>
             </div>
         </header>
-
         <div id="contents">
             <div class="listWrap_noline">
                 <form name='frm' id="frm" method="POST" enctype="multipart/form-data">
@@ -39,7 +38,6 @@
                             </tbody>
                         </table>
                     </div>
-
                     <div class="listTop">
                         <div class="left">
                             <p class="schTxt">■ 수집하는 개인정보의 항목</p>
