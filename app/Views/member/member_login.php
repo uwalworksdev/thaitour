@@ -1,9 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <!-- 구글로그인버튼 -->
- <link rel="stylesheet" href="/css/contents/root.css">
- <link rel="stylesheet" href="/css/contents/member.css">
- <link rel="stylesheet" href="/css/contents/form-control.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <!-- 구글로그인버튼 -->
@@ -38,7 +35,7 @@
 
       <!-- 회원 -->
       <div class="login_box on">
-		<form action="login_check.php" method="post" name="loginForm" id="loginFrm" class="login_form01">
+		<form action="login_check" method="post" name="loginForm" id="loginFrm" class="login_form01">
 		<input type="hidden" name="returnUrl" value="<?=urlencode($returnUrl)?>">
 		<input type="hidden" name="mode" id="mode" value="true" />
 		<input type="hidden" name="sType" id="sType" value="login">

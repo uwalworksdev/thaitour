@@ -11,10 +11,16 @@
         </div>
         <div>
             <ul class="flex_header_top">
-                <li><a href="/member/login" class="text-grey">로그인</a></li>
-                <li><a href="" class="text-grey">회원가입</a></li>
-                <li><a href="" class="text-grey">마이페이지</a></li>
-                <li><a href="" class="text-grey">고객센터</a></li>
+                <li>
+                    <?php if (session("member")) : ?>
+                        <a href="/member/logout" class="text-grey">로그아엇</a>
+                    <?php else : ?>
+                        <a href="/member/login" class="text-grey">로그인</a>
+                    <?php endif; ?>
+                </li>
+                <li><a href="/member/join_choice" class="text-grey">회원가입</a></li>
+                <li><a href="#!" class="text-grey">마이페이지</a></li>
+                <li><a href="#!" class="text-grey">고객센터</a></li>
             </ul>
         </div>
     </div>
