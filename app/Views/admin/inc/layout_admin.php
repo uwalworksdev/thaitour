@@ -8,7 +8,6 @@
     <!-- ckeditor5 -->
     <script type='text/javascript' src="<?=base_url("WYSIWYG/ckeditor5/ckeditor.js")?>"></script>
     <link rel='stylesheet' href="<?=base_url("WYSIWYG/ckeditor5/styles.css")?>" />
-
     <link rel="stylesheet" href="<?=base_url("css/admin/import.css")?>" type="text/css" />
     <link rel="stylesheet" href="<?=base_url("css/lib/jquery-ui.css")?>" type="text/css" />
     <script src="<?=base_url("vendor/jquery-1.12.4.min.js")?>" type="text/javascript"></script>
@@ -22,7 +21,6 @@
         }
     }
     ?>
-
     <title>관리자</title>
 </head>
 
