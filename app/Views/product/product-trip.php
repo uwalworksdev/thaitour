@@ -105,7 +105,7 @@ $( document ).ready(function() {
   <div class="inner">
 
     <!-- half_slider_sec -->
-    <section class="half_slider_sec">
+    <!-- <section class="half_slider_sec">
       <div class="visual_slider half_slider slick-initialized slick-slider slick-dotted"><button
           class="slick-prev slick-arrow" aria-label="Previous" type="button" style="display: block;">Previous</button>
 
@@ -224,7 +224,7 @@ $( document ).ready(function() {
         </div>
         <button class="slick-next slick-arrow" aria-label="Next" type="button" style="display: block;">Next</button>
       </div>
-    </section>
+    </section> -->
     <!-- //half_slider_sec -->
     <style>
       .slick-track {
@@ -236,7 +236,7 @@ $( document ).ready(function() {
       }
     </style>
     <!-- one_txt_slider_sec -->
-    <section class="one_txt_slider_sec item_list">
+    <!-- <section class="one_txt_slider_sec item_list">
       <div class="sub_sec_ttl flex_b_c">
         <h2 class="ttl">하이호주 에서만 즐기는 <b class="color_point">단독투어</b></h2>
       </div>
@@ -1295,7 +1295,7 @@ $( document ).ready(function() {
 
         <button class="slick-next slick-arrow" aria-label="Next" type="button" style="display: block;">Next</button>
       </div>
-    </section>
+    </section> -->
     <!-- //one_txt_slider_sec -->
 
     <!-- daytour_sec -->
