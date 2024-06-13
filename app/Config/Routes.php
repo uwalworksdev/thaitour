@@ -100,5 +100,9 @@ $routes->group("member", static function ($routes) {
 // });
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
+$routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
+$routes->get('product-trip/(:any)/(:any)', 'Product::index3/$1/$2');
+$routes->get('product-honey/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
+
 

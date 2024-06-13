@@ -33,9 +33,9 @@
 .search-input {
   border: 1px solid #ddd;
   border-radius: 25px;
-  padding: 13px 20px;
+  padding: 13px 20px !important;
   outline: none;
-  width: 400px;
+  width: 400px !important;
   font-size: 14px;
 }
 

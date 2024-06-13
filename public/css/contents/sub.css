@@ -588,11 +588,12 @@
 .one_btn_custom_slider .slide_item:nth-child(n + 2) .cover_img {
   display: none;
 }
+
 .slick-counter {
   display: flex !important;
   align-items: center;
   position: absolute;
-  bottom: 20px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(0, 0, 0, 0.4);
@@ -628,7 +629,7 @@
   margin-top: 20px;
 }
 .view_banner {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .detail_txt_info {
@@ -1676,4 +1677,7 @@ text-decoration: underline;
   color: #252525;
   font-size: 18px;
   line-height: 1.44;
+}
+.next_cust{
+  top: 26% !important;
 }
