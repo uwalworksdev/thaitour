@@ -35,65 +35,6 @@
 </section>
 
 
-        <!-- best_prd -->
-        <section class="best_prd" id="best_prd" style="<?= (!empty($suggestedProducts) ? "" : "display: none;") ?>">
-            <div class="sub_sec_ttl flex_b_c">
-                <h2 class="ttl">하이호주 MD 추천 베스트 <span class="font_emoji">💕</span> </h2>
-                <div class="slider_btn">
-                    <ul class="sub-dots"></ul>
-                </div>
-            </div>
-
-            <div class="item_list_wrap">
-                <div class="prd_slider item_list quarter_slider">
-                    <?php foreach ($suggestedProducts as $product) { ?>
-                        <div class="slide_item">
-                            <a
-                                href="<?= $product['product_code_1'] == '1324' ? '/product_view' : ($product['product_code_1'] == '1320' ? '/t-honeymoon' : ($product['product_code_1'] == '1317' ? '/t-tours' : ($product['product_code_1'] == '1325' ? '/t-trip' : ''))) ?><?= $product['product_idx'] ?>">
-                                <div class="list_prd_img">
-                                    <figure class="cover_img">
-                                        <img src="<?= base_url($product['ufile1'] ? 'images/thumb_product/' . $product['ufile1'] : 'data/product/noimg.png') ?>"
-                                            alt="<?= $product['product_name'] ?>상품썸네일">
-                                    </figure>
-                                    <div class="tag_box">
-                                        <?php if ($product['product_best'] == "Y") { ?>
-                                            <picture class="best_ico">
-                                                <source media="(max-width: 850px)" srcset="<?=base_url("images/thumb_product/tag_best_m.png") ?>">
-                                                <img src="<?=base_url("images/thumb_product/tag_best.png") ?>" alt="베스트상품">
-                                            </picture>
-                                        <?php } ?>
-                                        <?php if ($product['special_price'] == "Y") { ?>
-                                            <picture class="sale_ico">
-                                                <source media="(max-width: 850px)" srcset="images/thumb_product/tag_sale_m.png">
-                                                <img src="images/thumb_product/tag_sale.png" alt="특가상품">
-                                            </picture>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div class="list_prd_info">
-                                    <strong class="prd_tit"><?= html_entity_decode($product['product_name']) ?></strong>
-                                    <span
-                                        class="prd_desc only_web"><?= html_entity_decode($product['product_info']) ?></span>
-                                    <div class="amount flex__e">
-                                        <?php $percent = 100 - ((int) ($product['product_price'] / $product['original_price'] * 100));
-                                        if ($percent != 0) { ?>
-                                            <p class="discount">
-                                                <strong><?= 100 - ((int) ($product['product_price'] / $product['original_price'] * 100)) ?></strong>%
-                                            </p>
-                                        <?php } ?>
-                                        <p class="price"><strong><?= number_format($product['product_price']) ?></strong>원~
-                                        </p>
-                                        <?php if ($percent != 0) { ?>
-                                            <p class="cost"><?= number_format($product['original_price']) ?>원</p>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </section>
 
         <!-- item_list_sec -->
         <section class="item_list_sec" id="item_list_sec">

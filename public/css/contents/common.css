@@ -810,7 +810,9 @@ html {
       margin-top: .5333rem;
     }
   
-  
+  .hiddenx{ 
+    display: none !important;
+  }
     /* boxIconList **recruitment */
     .boxIconList li {
       text-align: center;
@@ -1093,3 +1095,4 @@ html {
 .relative {
   position: relative;
 }
+
