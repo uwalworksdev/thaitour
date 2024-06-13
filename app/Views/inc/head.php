@@ -16,6 +16,7 @@
     <script src="/lib/jquery/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="/lib/slick/slick.css">
     <link rel="stylesheet" href="/css/contents/root.css">
+    <link rel="stylesheet" href="/css/layout/popup.css">
     <link rel="stylesheet" href="/css/contents/member.css">
     <link rel="stylesheet" href="/css/contents/form-control.css">
     <title><?= $setting['site_name'] ?></title>

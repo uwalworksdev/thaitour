@@ -24,7 +24,7 @@ $member = session('member') ?? [];
     </picture>
 
     <div class="bot_btn">
-      <a href="../main/main.php" class="cta_btn btn-point">홈으로</a>
+      <a href="../" class="cta_btn btn-point">홈으로</a>
     </div>
     
 
