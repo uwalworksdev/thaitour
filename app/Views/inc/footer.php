@@ -67,7 +67,9 @@
 
 <script>
      $(document).ready(function() {
-            $('#language-select-2').select2();
+            $('#language-select-2').select2({
+                minimumResultsForSearch: Infinity
+            });
         });
 </script>
 </body>
