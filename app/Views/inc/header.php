@@ -72,9 +72,9 @@
             <div>
                 <ul class="flex_header_top">
                     <li><a href="/product/1324/1">호텔</a></li>
-                    <li><a href="">골프</a></li>
-                    <li><a href="">투어</a></li>
-                    <li><a href="">스파</a></li>
+                    <li><a href="/product-golf/1325/1">골프</a></li>
+                    <li><a href="/product-trip/1317/1">투어</a></li>
+                    <li><a href="/product-honey/1320/1">스파</a></li>
                     <li><a href="">쇼ㆍ입장권</a></li>
                     <li><a href="">레스토랑</a></li>
                     <li><a href="">차량ㆍ가이드</a></li>
@@ -99,10 +99,13 @@
     $(document).ready(function () {
         $('#language-select').select2({
             templateResult: formatState,
-            templateSelection: formatState
+            templateSelection: formatState,
+            minimumResultsForSearch: Infinity
         });
 
-        $('#language-select-rounded').select2();
+        $('#language-select-rounded').select2({
+            minimumResultsForSearch: Infinity
+        });
 
         function formatState(state) {
             if (!state.id) {

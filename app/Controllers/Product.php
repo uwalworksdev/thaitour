@@ -85,6 +85,198 @@ class Product extends BaseController
             ]);
         }
     }
+    public function index2($code_no, $s = "1")
+    {
+        try {
+            $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
+            $perPage = 16;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $code_name = $this->db->table('tbl_code')
+                ->select('code_name')
+                ->where('code_gubun', 'tour')
+                ->where('code_no', $code_no)
+                ->get()
+                ->getRow()
+                ->code_name;
+
+            if (strlen($code_no) == 4) {
+                $codes = $this->db->table('tbl_code')
+                    ->where('parent_code_no', $code_no)
+                    ->get()
+                    ->getResult();
+            } else {
+                $codes = $this->db->table('tbl_code')
+                    ->where('code_gubun', 'tour')
+                    ->where('parent_code_no', substr($code_no, 0, 6))
+                    ->orderBy('onum', 'DESC')
+                    ->get()
+                    ->getResult();
+            }
+
+            // Truyền dữ liệu sang view
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'codes' => $codes,
+                'code_name' => $code_name,
+                'pager' => $pager,
+                'page' => $page,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+            ];
+
+            return view('product/product-golf', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    public function index3($code_no, $s = "1")
+    {
+        try {
+            $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $code_name = $this->db->table('tbl_code')
+                ->select('code_name')
+                ->where('code_gubun', 'tour')
+                ->where('code_no', $code_no)
+                ->get()
+                ->getRow()
+                ->code_name;
+
+            if (strlen($code_no) == 4) {
+                $codes = $this->db->table('tbl_code')
+                    ->where('parent_code_no', $code_no)
+                    ->get()
+                    ->getResult();
+            } else {
+                $codes = $this->db->table('tbl_code')
+                    ->where('code_gubun', 'tour')
+                    ->where('parent_code_no', substr($code_no, 0, 6))
+                    ->orderBy('onum', 'DESC')
+                    ->get()
+                    ->getResult();
+            }
+
+            // Truyền dữ liệu sang view
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'codes' => $codes,
+                'code_name' => $code_name,
+                'pager' => $pager,
+                'page' => $page,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+            ];
+
+            return view('product/product-trip', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    public function index4($code_no, $s = "1")
+    {
+        try {
+            $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $code_name = $this->db->table('tbl_code')
+                ->select('code_name')
+                ->where('code_gubun', 'tour')
+                ->where('code_no', $code_no)
+                ->get()
+                ->getRow()
+                ->code_name;
+
+            if (strlen($code_no) == 4) {
+                $codes = $this->db->table('tbl_code')
+                    ->where('parent_code_no', $code_no)
+                    ->get()
+                    ->getResult();
+            } else {
+                $codes = $this->db->table('tbl_code')
+                    ->where('code_gubun', 'tour')
+                    ->where('parent_code_no', substr($code_no, 0, 6))
+                    ->orderBy('onum', 'DESC')
+                    ->get()
+                    ->getResult();
+            }
+
+            // Truyền dữ liệu sang view
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'codes' => $codes,
+                'code_name' => $code_name,
+                'pager' => $pager,
+                'page' => $page,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+            ];
+
+            return view('product/product-honey', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 
     public function view($product_idx) {
         // Lấy các chi tiết sản phẩm hiện tại
@@ -129,9 +321,9 @@ class Product extends BaseController
         }
     
         // Debug các giá trị
-        echo "sel_date: " . $sel_date . "===========";
-        echo "sel_price: " . $sel_price . "===========";
-        echo "first_date: " . ($first_date['get_date'] ?? '') . "===========";
+        // echo "sel_date: " . $sel_date . "===========";
+        // echo "sel_price: " . $sel_price . "===========";
+        // echo "first_date: " . ($first_date['get_date'] ?? '') . "===========";
     
         // Thêm vào mảng dữ liệu
         $data['start_date_in'] = $start_date_in;
@@ -154,9 +346,9 @@ class Product extends BaseController
         $data['sel_price'] = $sel_price;
         $data['first_date'] = $first_date['get_date'] ?? '';
     
-        if (!$data['product_info']) {
-            return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
-        }
+        // if (!$data['product_info']) {
+        //     return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
+        // }
     
         // Tiếp tục với các chi tiết sản phẩm hiện tại
         $data['product_level'] = $this->productModel->getProductLevel($data['product']['product_level']);
@@ -183,7 +375,8 @@ class Product extends BaseController
     }
 
     private function getImage($file) {
-        return base_url("images/{$file}");
+        // return base_url("images/{$file}");
+         return "https://hihojoonew.cafe24.com/data/product/thum_798_463/{$file}";
     }
 }
 ?>

@@ -8,38 +8,63 @@
       <div class="detail_img_wrap">
         <div class="detail_slider_wrap">
           <!-- <div class="loading-container" style="top:50%;" id="loading-container">
-            <div class="spinner"></div>
-            <div class="loading-text">Loading...</div>
-          </div> -->
-          <!-- Swiper Container -->
-          <div class="swiper-container detail_slider one_btn_custom_slider">
-            <div class="swiper-wrapper">
-              <?php if ($img_1): ?>
-                <div class="swiper-slide">
-                  <figure class="cover_img list_view_slider_img preload" id="cover_img_f">
-                    <picture>
-                      <img id="firstImage" src="<?= $img_1 ?>" alt="상세이미지">
-                    </picture>
-                  </figure>
-                </div>
-              <?php endif; ?>
-              <?php if ($img_2): ?>
-                <div class="swiper-slide">
-                  <figure class="cover_img">
-                    <picture>
-                      <img loading="lazy" src="<?= $img_2 ?>" alt="상세이미지">
-                    </picture>
-                  </figure>
-                </div>
-              <?php endif; ?>
-              <!-- Add more images as needed -->
-            </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-            <!-- Add Navigation -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-          </div>
+    <div class="spinner"></div>
+    <div class="loading-text">Loading...</div>
+  </div> -->
+          <!-- Slick Container -->
+         <?php $images = [$img_1, $img_2, $img_3, $img_4, $img_5]; ?>
+<?php $hasImages = array_filter($images); ?>
+
+<?php if ($hasImages): ?>
+<div class="detail_slider one_btn_custom_slider">
+    <?php if ($img_1): ?>
+      <div>
+        <figure class="cover_img list_view_slider_img preload" id="cover_img_f">
+          <picture>
+            <img id="firstImage" src="<?= $img_1 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_2): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_2 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_3): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_3 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_4): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_4 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_5): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_5 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <!-- Add more images as needed -->
+</div>
+<?php endif; ?>
 
           <div class="slick-counter">
             <span class="prevBtn slider_btn">prev</span>
@@ -48,11 +73,11 @@
           </div>
         </div>
         <ul class="ux_btn_wrap flex_e_c">
-          <li><button type="button" onclick="openPopup()" class="ux_txt_btn message"><i></i>일정보내기</button></li>
-          <li><button type="button" onclick="printPage()" class="ux_txt_btn print"><i></i>인쇄</button></li>
+          <li><button type="button" onclick="openPopup()" class="ux_txt_btn message"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_message.png" alt="">일정보내기</button></li>
+          <li><button type="button" onclick="printPage()" class="ux_txt_btn print"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_print.png" alt="">인쇄</button></li>
           <li>
-            <button type="button" aria-label="공유버튼" class="ux_square_btn share"><i></i></button>
-            <div class="wrap_share">
+            <button type="button" aria-label="공유버튼" class="ux_txt_btn share"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_share.png" alt=""></button>
+            <!-- <div class="wrap_share">
               <button type="button" class="sns_close"></button>
               <ul class="sns_list flex_c_c">
                 <li>
@@ -62,24 +87,24 @@
                   </a>
                 </li>
                 <li>
-                  <a onclick="copyItemLink(`<?= 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ?>`)">
+                  <a onclick="copyItemLink(`https://hihojoonew.cafe24.com/t-package/item_view.php?product_idx=1707`)">
                     <img src="../img/ico/share_link_icon.png" alt="">
                     <p>링그</p>
                   </a>
                 </li>
               </ul>
-            </div>
+            </div> -->
           </li>
         </ul>
-
         <div class="view_banner only_web">
           <a href="/mypage/discount_download.php">
             <picture>
-              <source media="(max-width: 768px)" srcset="<?= base_url("images/banner/view_mid_banner.png") ?>">
-              <img src="<?= base_url("images/banner/view_mid_banner.png") ?>" alt="쿠폰받고 더욱 저렴하게 여행가기 배너">
+              <source media="(max-width: 768px)" srcset="https://hihojoonew.cafe24.com/assets/img/sub/view_mid_banner.png">
+              <img src="https://hihojoonew.cafe24.com/assets/img/sub/view_mid_banner.png" alt="쿠폰받고 더욱 저렴하게 여행가기 배너">
             </picture>
           </a>
         </div>
+
       </div>
 
       <div class="detail_txt_info">
@@ -117,7 +142,7 @@
 
         <div class="manager flex__c">
           <figure class="cover_img">
-            <img src="../assets/img/sub/sub_logo.png" alt="하이호주 로고">
+            <img src="https://hihojoonew.cafe24.com/assets/img/sub/sub_logo.png" alt="하이호주 로고">
           </figure>
           <div class="profile">
             <strong class="name"><?= $product['product_manager'] ?></strong>
@@ -132,7 +157,7 @@
     </section>
   </div>
   <div class="inner">
-  <?= view('shared/air_info', [
+    <?= view('shared/air_info', [
       'start_date_in' => $start_date_in,
       'air_info' => $air_info,
       'min_amt' => $min_amt,
@@ -143,7 +168,7 @@
       'tour_price_baby' => $tour_price_baby,
       'product_idx' => $product_idx
     ]); ?>
-    <article>
+    <!-- <article>
       <a id="prd_info"></a>
       <?php if (isset($tour_info) && $tour_info != "&lt;p&gt;&nbsp;&lt;/p&gt;" && $tour_info != ""): ?>
         <ul class="item_anchor">
@@ -162,12 +187,12 @@
           <p class="label">상품 핵심 포인트</p>
         </div>
       <?php endif; ?>
-    </article>
+    </article> -->
 
     <!-- 여행일정  -->
     <article>
       <a id="itinerary"></a>
-      <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
+      <!-- <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
         <ul class="item_anchor">
           <li><a href="#prd_info">상품소개</a></li>
           <li><a href="#itinerary" class="on">여행일정</a></li>
@@ -181,7 +206,7 @@
         <div class="item_cont info">
           <p class="label">여행일정</p>
         </div>
-      <?php endif; ?>
+      <?php endif; ?> -->
     </article>
 
     <!-- 숙박정보  -->
@@ -234,37 +259,37 @@
 
 <script>
 
-    //if($("#adult_air").val() == 0 || $("#kids_air").val() == 0 || $("#baby_air").val() == 0) {
-    //   alert('항공편을 선택해 주세요.3'); 
-    //   return false;
-    //}
-    var $n = $(this).parent(".count_box").find(".input-qty");
-    if (id == "1") {
-      var man_cnt = parseInt($("#man_cnt").val()) - 1;
-      if (man_cnt < 1) man_cnt = 1;
-      $("#adult_mem").val(man_cnt);
-      $("#man_cnt").val(man_cnt);
-      $n.val(man_cnt);
-    }
+  //if($("#adult_air").val() == 0 || $("#kids_air").val() == 0 || $("#baby_air").val() == 0) {
+  //   alert('항공편을 선택해 주세요.3'); 
+  //   return false;
+  //}
+  var $n = $(this).parent(".count_box").find(".input-qty");
+  if (id == "1") {
+    var man_cnt = parseInt($("#man_cnt").val()) - 1;
+    if (man_cnt < 1) man_cnt = 1;
+    $("#adult_mem").val(man_cnt);
+    $("#man_cnt").val(man_cnt);
+    $n.val(man_cnt);
+  }
 
-    if (id == "2") {
-      var kids_cnt = parseInt($("#kids_cnt").val()) - 1;
-      if (kids_cnt < 0) kids_cnt = 0;
-      $("#kids_mem").val(kids_cnt);
-      $("#kids_cnt").val(kids_cnt);
-      $n.val(kids_cnt);
-    }
+  if (id == "2") {
+    var kids_cnt = parseInt($("#kids_cnt").val()) - 1;
+    if (kids_cnt < 0) kids_cnt = 0;
+    $("#kids_mem").val(kids_cnt);
+    $("#kids_cnt").val(kids_cnt);
+    $n.val(kids_cnt);
+  }
 
-    if (id == "3") {
-      var baby_cnt = parseInt($("#baby_cnt").val()) - 1;
-      if (baby_cnt < 0) baby_cnt = 0;
-      $("#baby_mem").val(baby_cnt);
-      $("#baby_cnt").val(baby_cnt);
-      $n.val(baby_cnt);
-    }
+  if (id == "3") {
+    var baby_cnt = parseInt($("#baby_cnt").val()) - 1;
+    if (baby_cnt < 0) baby_cnt = 0;
+    $("#baby_mem").val(baby_cnt);
+    $("#baby_cnt").val(baby_cnt);
+    $n.val(baby_cnt);
+  }
 
-    price_account();
-  
+  price_account();
+
 
   function get_reservation(idx) {
 
@@ -341,20 +366,29 @@
 </script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    var swiper = new Swiper('.detail_slider', {
-      slidesPerView: 1,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      loop: true,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      // Additional Swiper options
+    $('.detail_slider').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      dots: false,
+      infinite: true,
+      nextArrow: '<button type="button" class="hiddenx"></button>',
+      prevArrow: '<button type="button" class="hiddenx"></button>',
+      // customPaging: function (slider, i) {
+      //   return '<button>' + (i + 1) + '</button>';
+      // }
     });
+
+    $('.detail_slider').on('afterChange', function (event, slick, currentSlide) {
+      var totalSlides = slick.slideCount;
+      var currentSlideNumber = currentSlide + 1;
+      $('.slick-counter .current').text(currentSlideNumber.toString().padStart(2, '0'));
+      $('.slick-counter .total').text(totalSlides.toString().padStart(2, '0'));
+    });
+
+    var totalSlides = $('.detail_slider').slick("getSlick").slideCount;
+    $('.slick-counter .total').text(totalSlides.toString().padStart(2, '0'));
   });
 </script>
+
 
 <?php $this->endSection(); ?>

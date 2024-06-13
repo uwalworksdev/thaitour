@@ -303,9 +303,9 @@
                             <p class="money"><strong><?= number_format($tour_price + $oil_price) ?></strong> 원</p>
                         </div>
                         <div class="opt_count_box count_box flex__c">
-                            <button type="button" class="minus_btn" onclick="set_minus.bind(this)('1');"></button>
+                            <button type="button" class="minus_btn" onclick="set_minus.bind(this)('1');"><img src="	https://hihojoonew.cafe24.com/assets/img/btn/minus_btn.png" alt=""></button>
                             <input type="text" class="input-qty" name="qty" id="adult_qty" value="1">
-                            <button type="button" class="plus_btn" onclick="set_plus.bind(this)('1');"></button>
+                            <button type="button" class="plus_btn" onclick="set_plus.bind(this)('1');"><img src="https://hihojoonew.cafe24.com/assets/img/btn/plus_btn.png" alt=""></button>
                         </div>
                     </li>
                     <li class="flex_b_c">
@@ -314,9 +314,9 @@
                             <p class="money"><strong><?= number_format($tour_price_kids + $oil_price) ?></strong> 원</p>
                         </div>
                         <div class="opt_count_box count_box flex__c">
-                            <button type="button" class="minus_btn" onclick="set_minus.bind(this)('2');"></button>
+                            <button type="button" class="minus_btn" onclick="set_minus.bind(this)('2');"><img src="	https://hihojoonew.cafe24.com/assets/img/btn/minus_btn.png" alt=""></button>
                             <input type="text" class="input-qty" name="qty" id="kids_qty" value="0">
-                            <button type="button" class="plus_btn" onclick="set_plus.bind(this)('2');"></button>
+                            <button type="button" class="plus_btn" onclick="set_plus.bind(this)('2');"> <img src="https://hihojoonew.cafe24.com/assets/img/btn/plus_btn.png" alt=""></button>
                         </div>
                     </li>
                     <li class="flex_b_c">
@@ -325,9 +325,9 @@
                             <p class="money"><strong><?= number_format($tour_price_baby) ?></strong> 원</p>
                         </div>
                         <div class="opt_count_box count_box flex__c">
-                            <button type="button" class="minus_btn" onclick="set_minus.bind(this)('3');"></button>
+                            <button type="button" class="minus_btn" onclick="set_minus.bind(this)('3');"><img src="	https://hihojoonew.cafe24.com/assets/img/btn/minus_btn.png" alt=""></button>
                             <input type="text" class="input-qty" name="qty" id="baby_qty" value="0">
-                            <button type="button" class="plus_btn" onclick="set_plus.bind(this)('3');"></button>
+                            <button type="button" class="plus_btn" onclick="set_plus.bind(this)('3');"><img src="https://hihojoonew.cafe24.com/assets/img/btn/plus_btn.png" alt=""></button>
                         </div>
                     </li>
                 </ul>
@@ -350,7 +350,7 @@
                     <button type="button " class="btn-default"
                         onclick="location='/inquiry/inquiry_write.php?product_idx=<?= $product_idx ?>'">상담 문의하기</button>
                     <button type="button " class="btn-default wish_btn"
-                        onclick="javascript:wish_it('<?= $product_idx ?>')"><i></i></button>
+                        onclick="javascript:wish_it('<?= $product_idx ?>')"><img src="https://hihojoonew.cafe24.com/assets/img/ico/icon_heart_off.png" alt=""></button>
                 </div>
             </div>
         </div>

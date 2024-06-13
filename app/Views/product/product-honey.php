@@ -7,34 +7,97 @@
 
         <!-- list_top_banner -->
         <?php if (!empty($banners) && count($banners) == 2) { ?>
-    <section class="list_top_banner">
-        <a href="<?= $banners[0]['url'] ?>" id="myLink">
-            <picture>
-                <source media="(max-width: 850px)" srcset="<?= base_url($banners[1]['ufile1']) ?>">
-                <img src="<?= base_url($banners[0]['ufile1']) ?>" alt="패키지 탑 배너">
-            </picture>
-        </a>
-    </section>
-<?php } ?>
-
-<!-- list_mid_banner -->
-<section class="list_mid_banner">
-    <div class="list_box_slider">
-    <div class="slick-container-mid visual_slider half_slider">
-        <?php foreach ($codeBanners as $banner) { ?>
-            <div class="slide_item2">
-                <a href="<?= $banner['url'] ?>">
-                    <picture>
-                        <img src="<?= base_url('images/banner/' . $banner['ufile']) ?>" alt="배너1 이름 넣어주세요">
-                    </picture>
-                </a>
-            </div>
+        <section class="list_top_banner">
+            <a href="<?= $banners[0]['url'] ?>" id="myLink">
+                <picture>
+                    <source media="(max-width: 850px)" srcset="https://hihojoonew.cafe24.com/data/banner/<?= $banners[1]['ufile1'] ?>">
+                    <img src="https://hihojoonew.cafe24.com/data/banner/<?= $banners[0]['ufile1'] ?>" alt="패키지 탑 배너">
+                </picture>
+            </a>
+        </section>
         <?php } ?>
-    </div>
-    </div>
-</section>
 
+        <!-- list_mid_banner -->
+        <section class="list_mid_banner">
+            <div class="list_box_slider">
+                <div class="slick-container-mid visual_slider half_slider">
+                    <?php foreach ($codeBanners as $banner) { ?>
+                    <div class="slide_item2">
+                        <a href="<?= $banner['url'] ?>">
+                            <picture>
+                                <img src="https://hihojoonew.cafe24.com/data/banner/<?= $banner['ufile'] ?>" alt="배너1 이름 넣어주세요">
+                            </picture>
+                        </a>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </section>
+        <section class="best_prd" id="best_prd">
+      <div class="sub_sec_ttl sub_sec_ttl_horizon flex_b_c">
+        <h2 class="ttl">하이호주 MD 추천 베스트 <span class="font_emoji">💕</span> </h2>
+        <!-- <div class="slider_btn"> -->
+        <!-- <ul class="sub-dots">
+                <ul class="slick-dots" role="tablist">
+                    <li class="slick-active" role="presentation">
+                        <button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 1" tabindex="0" aria-selected="true">1</button>
+                    </li>
+                </ul>
+            </ul> -->
+        <!-- </div> -->
+      </div>
 
+      <div class="item_list_wrap">
+        <div class="prd_slider item_list quarter_slider">
+          <?php foreach ($suggestedProducts as $product) { ?>
+            <div class="slide_item">
+            <a href="<?=base_url('product_view/'.$product['product_idx']) ?>">           
+                <div class="list_prd_img">
+                  <figure class="cover_img">
+                    <img
+                      src="https://hihojoonew.cafe24.com/data/<?= $product['ufile1'] ? 'product/thum_300_218/' . $product['ufile1'] : 'product/noimg.png' ?>"
+                      alt="<?= $product['product_name'] ?> 상품썸네일">
+                  </figure>
+                  <div class="tag_box">
+                    <?php if ($product['product_best'] == "Y") { ?>
+                      <picture class="best_ico">
+                        <source media="(max-width: 850px)"
+                          srcset="https://hihojoonew.cafe24.com/data/images/thumb_product/tag_best_m.png">
+                        <img src="https://hihojoonew.cafe24.com/data/images/thumb_product/tag_best.png" alt="베스트상품">
+                      </picture>
+                    <?php } ?>
+                    <?php if ($product['special_price'] == "Y") { ?>
+                      <picture class="sale_ico">
+                        <source media="(max-width: 850px)"
+                          srcset="https://hihojoonew.cafe24.com/data/images/thumb_product/tag_sale_m.png">
+                        <img src="https://hihojoonew.cafe24.com/data/images/thumb_product/tag_sale.png" alt="특가상품">
+                      </picture>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="list_prd_info">
+                  <strong class="prd_tit"><?= html_entity_decode($product['product_name']) ?></strong>
+                  <span class="prd_desc only_web"><?= html_entity_decode($product['product_info']) ?></span>
+                  <div class="amount flex__e">
+                    <?php $percent = 100 - ((int) ($product['product_price'] / $product['original_price'] * 100));
+                    if ($percent != 0) { ?>
+                      <p class="discount">
+                        <strong><?= 100 - ((int) ($product['product_price'] / $product['original_price'] * 100)) ?></strong>%
+                      </p>
+                    <?php } ?>
+                    <p class="price"><strong><?= number_format($product['product_price']) ?></strong>원~
+                    </p>
+                    <?php if ($percent != 0) { ?>
+                      <p class="cost"><?= number_format($product['original_price']) ?>원</p>
+                    <?php } ?>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <?php } ?>
+        </div>
+      </div>
+    </section>
 
         <!-- item_list_sec -->
         <section class="item_list_sec" id="item_list_sec">
@@ -89,14 +152,14 @@
                                 <div class="tag_box">
                                     <?php if ($product['product_best'] == "Y") { ?>
                                     <picture class="best_ico">
-                                    <source media="(max-width: 850px)" srcset="<?= base_url("images/thumb_product/tag_best.png") ?>">
-                                    <img src="<?= base_url("images/thumb_product/tag_best.png") ?>" alt="베스트상품">
+                                        <source media="(max-width: 850px)" srcset="https://hihojoonew.cafe24.com/data/product/thum_300_218/tag_best.png">
+                                        <img src="https://hihojoonew.cafe24.com/data/product/thum_300_218/tag_best.png" alt="베스트상품">
                                     </picture>
                                     <?php } ?>
                                     <?php if ($product['special_price'] == "Y") { ?>
                                     <picture class="sale_ico">
-                                    <source media="(max-width: 850px)" srcset="<?= base_url("images/thumb_product/tag_sale.png") ?>">
-                                    <img src="<?= base_url("images/thumb_product/tag_sale.png") ?>" alt="베스트상품">
+                                        <source media="(max-width: 850px)" srcset="https://hihojoonew.cafe24.com/data/product/thum_300_218/tag_sale.png">
+                                        <img src="https://hihojoonew.cafe24.com/data/product/thum_300_218/tag_sale.png" alt="특가상품">
                                     </picture>
                                     <?php } ?>
                                 </div>
@@ -135,7 +198,6 @@
 >
 
 <script>
-
 function getOrderBy(orderBy) {
     // Lấy giá trị code_no từ URL hoặc từ một biến JavaScript
     var code_no = '<?= $code_no ?>';
@@ -144,29 +206,46 @@ function getOrderBy(orderBy) {
     var url = `<?= base_url() ?>product/${code_no}/${orderBy}`;
     // Chuyển hướng trình duyệt đến URL mới
     window.location.href = url;
-  }
-  $(document).ready(function(){
-            $('.slick-container-mid').slick({
-              slidesToShow: 2,
-              slidesToScroll: 1,
-            //   autoplay: true,
-              autoplaySpeed: 2000,
-              dots: false,
-              arrows: true,
-              nextArrow: '<button type="button" class="slick-next2 slick-arrow"></button>',
-              prevArrow: '<button type="button" class="slick-prev2 slick-arrow"></button>',
-              responsive: [
-                {
-                  breakpoint: 850,
-                  settings: {
+}
+
+$(document).ready(function(){
+    $('.slick-container-mid').slick({
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: false,
+        arrows: true,
+        nextArrow: '<button type="button" class="slick-next2 slick-arrow"></button>',
+        prevArrow: '<button type="button" class="slick-prev2 slick-arrow"></button>',
+        responsive: [
+            {
+                breakpoint: 850,
+                settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1
-                  }
                 }
-              ]
-            });
-          });
-</script>
+            }
+        ]
+    });
 
+    // Ẩn các nút điều hướng slick
+    $('.slick-prev2, .slick-next2').hide();
+});
+</script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('.prd_slider').slick({
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      dots: false,
+      arrows: true,
+      nextArrow: '<button type="button" class="slick-next2 slick-arrow next_cust"></button>',
+      prevArrow: '<button type="button" class="slick-prev2 slick-arrow "></button>',
+    });
+  });
+</script>
 
 <?php $this->endSection(); ?>
