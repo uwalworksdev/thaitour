@@ -47,9 +47,9 @@
                         </em><i></i></button>
                     <ul class="filter_cho">
                         <?php foreach ($codes as $code) { ?>
-                            <li class="<?= ($code->code_no == $code_no ? 'active' : '') ?>"><a
-                                    href="<?= base_url('/t-package/item_list.php?code_no=' . $code->code_no) ?>"><?= $code->code_name ?></a>
-                            </li>
+                        <li class="<?= ($code->code_no == $code_no ? 'active' : '') ?>"><a
+                                href="<?= base_url('/t-package/item_list.php?code_no=' . $code->code_no) ?>"><?= $code->code_name ?></a>
+                        </li>
                         <?php } ?>
                     </ul>
                 </div>
@@ -77,50 +77,50 @@
             <div class="item_list_wrap">
                 <ul class="w100 item_list" style="--mg-x:14px; --mg-t:40px" id="line_add">
                     <?php foreach ($products as $product) { ?>
-                        <li>
-                            <a href="<?=base_url('product_view/'.$product['product_idx']) ?>">
-                                <div class="list_prd_img">
+                    <li>
+                        <a href="<?=base_url('product_view/'.$product['product_idx']) ?>">
+                            <div class="list_prd_img">
+                                <picture class="best_ico">
+                                    <source media="(max-width: 850px)"
+                                        srcset="https://hihojoonew.cafe24.com/data/product/<?= $product['ufile1'] ? 'thum_300_218/' . $product['ufile1'] : 'data/product/noimg.png' ?>">
+                                    <img src="https://hihojoonew.cafe24.com/data/product/<?= $product['ufile1'] ? 'thum_300_218/' . $product['ufile1'] : 'data/product/noimg.png' ?>"
+                                        alt="<?= $product['product_name'] ?>썸네일">
+                                </picture>
+                                <div class="tag_box">
+                                    <?php if ($product['product_best'] == "Y") { ?>
                                     <picture class="best_ico">
-                                        <source media="(max-width: 850px)"
-                                            srcset="<?= base_url($product['ufile1'] ? 'images/thumb_product/' . $product['ufile1'] : 'data/product/noimg.png') ?>">
-                                        <img src="<?= base_url($product['ufile1'] ? 'images/thumb_product/' . $product['ufile1'] : 'data/product/noimg.png') ?>"
-                                            alt="<?= $product['product_name'] ?>썸네일">
+                                    <source media="(max-width: 850px)" srcset="<?= base_url("images/thumb_product/tag_best.png") ?>">
+                                    <img src="<?= base_url("images/thumb_product/tag_best.png") ?>" alt="베스트상품">
                                     </picture>
-                                    <div class="tag_box">
-                                        <?php if ($product['product_best'] == "Y") { ?>
-                                            <picture class="best_ico">
-                                                <source media="(max-width: 850px)" srcset="<?=base_url("images/thumb_product/tag_best.png") ?>">
-                                                <img src="<?=base_url("images/thumb_product/tag_best.png") ?>" alt="베스트상품">
-                                            </picture>
-                                        <?php } ?>
-                                        <?php if ($product['special_price'] == "Y") { ?>
-                                            <picture class="sale_ico">
-                                                <source media="(max-width: 850px)" srcset="<?=base_url("images/thumb_product/tag_sale.png") ?>">
-                                                <img src="<?=base_url("images/thumb_product/tag_sale.png") ?>" alt="특가상품">
-                                            </picture>
-                                        <?php } ?>
-                                    </div>
+                                    <?php } ?>
+                                    <?php if ($product['special_price'] == "Y") { ?>
+                                    <picture class="sale_ico">
+                                    <source media="(max-width: 850px)" srcset="<?= base_url("images/thumb_product/tag_sale.png") ?>">
+                                    <img src="<?= base_url("images/thumb_product/tag_sale.png") ?>" alt="베스트상품">
+                                    </picture>
+                                    <?php } ?>
                                 </div>
-                                <div class="list_prd_info">
-                                    <strong class="prd_tit"><?= html_entity_decode($product['product_name']) ?></strong>
-                                    <span
-                                        class="prd_desc only_web"><?= html_entity_decode($product['product_info']) ?></span>
-                                    <div class="amount flex__e">
-                                        <?php $percent = 100 - ((int) ($product['product_price'] / $product['original_price'] * 100));
-                                        if ($percent != 0) { ?>
-                                            <p class="discount">
-                                                <strong><?= 100 - ((int) ($product['product_price'] / $product['original_price'] * 100)) ?></strong>%
-                                            </p>
-                                        <?php } ?>
-                                        <p class="price"><strong><?= number_format($product['product_price']) ?></strong>원~
-                                        </p>
-                                        <?php if ($percent != 0) { ?>
-                                            <p class="cost"><?= number_format($product['original_price']) ?>원</p>
-                                        <?php } ?>
-                                    </div>
+                            </div>
+                            <div class="list_prd_info">
+                                <strong class="prd_tit"><?= html_entity_decode($product['product_name']) ?></strong>
+                                <span
+                                    class="prd_desc only_web"><?= html_entity_decode($product['product_info']) ?></span>
+                                <div class="amount flex__e">
+                                    <?php $percent = 100 - ((int) ($product['product_price'] / $product['original_price'] * 100));
+                                    if ($percent != 0) { ?>
+                                    <p class="discount">
+                                        <strong><?= 100 - ((int) ($product['product_price'] / $product['original_price'] * 100)) ?></strong>%
+                                    </p>
+                                    <?php } ?>
+                                    <p class="price"><strong><?= number_format($product['product_price']) ?></strong>원~
+                                    </p>
+                                    <?php if ($percent != 0) { ?>
+                                    <p class="cost"><?= number_format($product['original_price']) ?>원</p>
+                                    <?php } ?>
                                 </div>
-                            </a>
-                        </li>
+                            </div>
+                        </a>
+                    </li>
                     <?php } ?>
                 </ul>
             </div>

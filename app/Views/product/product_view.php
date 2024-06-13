@@ -12,55 +12,59 @@
     <div class="loading-text">Loading...</div>
   </div> -->
           <!-- Slick Container -->
-          <div class="detail_slider one_btn_custom_slider">
-            <?php if ($img_1): ?>
-              <div>
-                <figure class="cover_img list_view_slider_img preload" id="cover_img_f">
-                  <picture>
-                    <img id="firstImage" src="<?= $img_1 ?>" alt="상세이미지">
-                  </picture>
-                </figure>
-              </div>
-            <?php endif; ?>
-            <?php if ($img_2): ?>
-              <div>
-                <figure class="cover_img">
-                  <picture>
-                    <img loading="lazy" src="<?= $img_2 ?>" alt="상세이미지">
-                  </picture>
-                </figure>
-              </div>
-            <?php endif; ?>
-            <?php if ($img_3): ?>
-              <div>
-                <figure class="cover_img">
-                  <picture>
-                    <img loading="lazy" src="<?= $img_3 ?>" alt="상세이미지">
-                  </picture>
-                </figure>
-              </div>
-            <?php endif; ?>
-            <?php if ($img_4): ?>
-              <div>
-                <figure class="cover_img">
-                  <picture>
-                    <img loading="lazy" src="<?= $img_4 ?>" alt="상세이미지">
-                  </picture>
-                </figure>
-              </div>
-            <?php endif; ?>
-            <?php if ($img_5): ?>
-              <div>
-                <figure class="cover_img">
-                  <picture>
-                    <img loading="lazy" src="<?= $img_5 ?>" alt="상세이미지">
-                  </picture>
-                </figure>
-              </div>
-            <?php endif; ?>
-            <!-- Add more images as needed -->
+         <?php $images = [$img_1, $img_2, $img_3, $img_4, $img_5]; ?>
+<?php $hasImages = array_filter($images); ?>
 
-          </div>
+<?php if ($hasImages): ?>
+<div class="detail_slider one_btn_custom_slider">
+    <?php if ($img_1): ?>
+      <div>
+        <figure class="cover_img list_view_slider_img preload" id="cover_img_f">
+          <picture>
+            <img id="firstImage" src="<?= $img_1 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_2): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_2 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_3): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_3 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_4): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_4 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <?php if ($img_5): ?>
+      <div>
+        <figure class="cover_img">
+          <picture>
+            <img loading="lazy" src="<?= $img_5 ?>" alt="상세이미지">
+          </picture>
+        </figure>
+      </div>
+    <?php endif; ?>
+    <!-- Add more images as needed -->
+</div>
+<?php endif; ?>
 
           <div class="slick-counter">
             <span class="prevBtn slider_btn">prev</span>
@@ -72,7 +76,7 @@
           <li><button type="button" onclick="openPopup()" class="ux_txt_btn message"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_message.png" alt="">일정보내기</button></li>
           <li><button type="button" onclick="printPage()" class="ux_txt_btn print"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_print.png" alt="">인쇄</button></li>
           <li>
-            <button type="button" aria-label="공유버튼" class="ux_square_btn share"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_share.png" alt=""></button>
+            <button type="button" aria-label="공유버튼" class="ux_txt_btn share"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_share.png" alt=""></button>
             <!-- <div class="wrap_share">
               <button type="button" class="sns_close"></button>
               <ul class="sns_list flex_c_c">
@@ -188,7 +192,7 @@
     <!-- 여행일정  -->
     <article>
       <a id="itinerary"></a>
-      <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
+      <!-- <?php if (!empty($day_details) && $day_details['total_day'] > 0): ?>
         <ul class="item_anchor">
           <li><a href="#prd_info">상품소개</a></li>
           <li><a href="#itinerary" class="on">여행일정</a></li>
@@ -202,7 +206,7 @@
         <div class="item_cont info">
           <p class="label">여행일정</p>
         </div>
-      <?php endif; ?>
+      <?php endif; ?> -->
     </article>
 
     <!-- 숙박정보  -->
