@@ -833,7 +833,7 @@ label {
     color: #252525;
     -moz-appearance: none;
     appearance: none;
-    background: #fff url(../img/ico/select_ico.png) right 20px center no-repeat;
+    background: #fff url(/images/ico/select_ico.png) right 20px center no-repeat;
     text-overflow: ellipsis;
     overflow: hidden !important;
     padding-right: 35px !important;

@@ -55,7 +55,7 @@ class Member extends BaseController
 
     public function LoginCheck()
     {
-        $private_key = "";
+        $private_key = private_key();
         $returnUrl  = updateSQ($this->request->getPost("returnUrl"));
         $user_id    = updateSQ($this->request->getPost("user_id"));
         $user_pw    = updateSQ($this->request->getPost("user_pw"));
@@ -124,7 +124,7 @@ class Member extends BaseController
     {
         $member = session("member");
 
-        $private_key = "";
+        $private_key = private_key();
 
         function validate_required_fields($fields)
         {
