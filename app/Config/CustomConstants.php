@@ -33,7 +33,7 @@ class CustomConstants extends BaseConfig
         define("_IT_FAVICO", $row_home_info['favico']);
         define("_IT_HOME_NAME", $row_home_info['home_name']);
         define("_IT_BRAND_NAME", $row_home_info['brand_name']);
-        define("_IT_ADDRESS", $row_home_info['address']);
+        // define("_IT_ADDRESS", $row_home_info['address']);
         define("_IT_TOURNUM", $row_home_info['tournum']);
         define("_IT_PHONE_ADMIN", $row_home_info['admin_mobile_list']);
         define("_IT_COMNUM", $row_home_info['comnum']);
@@ -51,8 +51,8 @@ class CustomConstants extends BaseConfig
         define("_SYDNEY_ADDR", $row_home_info['sydney_addr']);
         define("_CUSTOM_SERVICE_PHONE_SYDNEY", $row_home_info['custom_service_phone_sydney']);
         define("_CUSTOM_SERVICE_PHONE_SYDNEY_CALL_FROM_AUSTRALIA", $row_home_info['custom_service_phone_sydney_call_from_australia']);
-        define("_IT_MAIN_COUNTRY", $row_home_info['main_country']);
-        define("_IT_MAIN_MEMBER", $row_home_info['main_member']);
+        // define("_IT_MAIN_COUNTRY", $row_home_info['main_country']);
+        // define("_IT_MAIN_MEMBER", $row_home_info['main_member']);
         define("_IT_BANKS", $row_home_info['banks']);
         define("_IT_FAX", $row_home_info['fax']);
         define("_ALLIM_APIKEY", $row_home_info['allim_apikey']);
@@ -77,9 +77,9 @@ class CustomConstants extends BaseConfig
         define("_PAYMETHOD", $row_home_info['paymethod']);
         define("_US_DOLLAR", $row_home_info['us_dollar']);
         define("_SEARCH_WORD", $row_home_info['search_word']);
-        define("_ADULT_TEXT", $row_home_info['adult_text']);
-        define("_KIDS_TEXT", $row_home_info['kids_text']);
-        define("_BABY_TEXT", $row_home_info['baby_text']);
+        // define("_ADULT_TEXT", $row_home_info['adult_text']);
+        // define("_KIDS_TEXT", $row_home_info['kids_text']);
+        // define("_BABY_TEXT", $row_home_info['baby_text']);
         define("_BROWSER_TITLE", $row_home_info['browser_title']);
         define("_META_TAG", $row_home_info['meta_tag']);
         define("_META_KEYWORD", $row_home_info['meta_keyword']);

@@ -77,7 +77,7 @@ input[type=text], input[type=password] {
                                                value="<?=!empty($data['us_dollar']) ? esc($data['us_dollar']) : null?>"
                                              class="input_txt placeHolder" rel=""
                                             style="width:6.25rem" />(원)_US_DOLLAR</td>
-                                </tr>
+                                </tr>            
 
                                 <tr>
                                     <th>쇼핑몰 대표 도메인</th>

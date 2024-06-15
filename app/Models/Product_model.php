@@ -49,6 +49,8 @@ class Product_model extends Model
     {
     }
 
+
+
     public function getSuggestedProducts($code_no)
     {
         $suggest_code_no = '';
@@ -120,6 +122,38 @@ class Product_model extends Model
             ->where('is_view', 'Y')
             ->orderBy($order_by)
             ->findAll($perPage, $offset);
+    }
+    public function getCodes($parent_code_no)
+    {
+        return $this->db->table('tbl_code')
+                        ->where('parent_code_no', $parent_code_no)
+                        ->where('depth', 3)
+                        ->where('status', 'Y')
+                        ->orderBy('onum', 'desc')
+                        ->get()
+                        ->getResultArray();
+    }
+
+    public function getProductsByCode($suggest_code, $limit)
+    {
+        return $this->db->table('tbl_product_mst a')
+                        ->select('a.*, b.onum, b.code_idx')
+                        ->join('tbl_main_disp b', 'a.product_idx = b.product_idx')
+                        ->whereIn('b.code_no', $suggest_code)
+                        ->orderBy('b.onum', 'desc')
+                        ->orderBy('b.code_idx', 'desc')
+                        ->limit($limit)
+                        ->get()
+                        ->getResultArray();
+    }
+
+    public function getTotalProducts($suggest_code)
+    {
+        return $this->db->table('tbl_product_mst a')
+                        ->select('a.*, b.onum, b.code_idx')
+                        ->join('tbl_main_disp b', 'a.product_idx = b.product_idx')
+                        ->whereIn('b.code_no', $suggest_code)
+                        ->countAllResults();
     }
 
     private function getOrderBy($s)
@@ -331,6 +365,13 @@ class Product_model extends Model
     {
         $sql = "DELETE FROM price_val WHERE seq = ?";
         $this->db->query($sql, [$seq]);
+    }
+    public function getCodeName($code_no)
+    {
+        return $this->db->table('tbl_code')
+            ->where('code_no', $code_no)
+            ->get()
+            ->getRowArray();
     }
 }
 ?>

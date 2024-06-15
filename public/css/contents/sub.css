@@ -136,6 +136,7 @@
 
 .sub_sec_ttl {
   position: relative;
+  margin-top: 50px;
 }
 
 .sub_sec_ttl.border_b {
@@ -544,6 +545,9 @@
 .item_list_sec .item_filter li:hover {
   color: var(--bs-point);
 }
+.main_tours{
+  padding-top: 320px;
+}
 
 .item_list_sec .item_filter li.active {
   color: var(--bs-point);
@@ -560,7 +564,7 @@
 }
 
 .daytour_sec {
-  margin-top: 400px;
+  margin-top: 80px;
 }
 
 .daytour_sec .line_tab {

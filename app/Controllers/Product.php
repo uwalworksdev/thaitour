@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\Banner_model;
 use App\Models\Product_model;
 use CodeIgniter\Controller;
+use App\Config\CustomConstants;
+use Config\CustomConstants as ConfigCustomConstants;
 use Exception;
 
 class Product extends BaseController
@@ -19,6 +21,7 @@ class Product extends BaseController
         $this->bannerModel = model("Banner_model");
         $this->productModel = model("Product_model");
         helper('my_helper');
+        $constants = new ConfigCustomConstants();
     }
 
     public function index($code_no, $s = "1")
@@ -153,8 +156,8 @@ class Product extends BaseController
     {
         try {
             $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
-            $perPage = 5;
-
+            $perPage = 10;
+            $perCnt = $perPage;
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
 
@@ -162,7 +165,9 @@ class Product extends BaseController
 
             $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
 
-            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)
+                ->where('is_view', 'Y')
+                ->countAllResults();
 
             $pager = \Config\Services::pager();
 
@@ -188,7 +193,47 @@ class Product extends BaseController
                     ->getResult();
             }
 
-            // Truyền dữ liệu sang view
+            // Dữ liệu cho sub_visual
+            $len = strlen($code_no);
+            $code_name1 = $code_name2 = $code_name3 = '';
+
+            if ($len == 8) {
+                $code_1 = substr($code_no, 0, 4);
+                $code_2 = substr($code_no, 0, 6);
+                $code_3 = $code_no;
+            } elseif ($len == 6) {
+                $code_1 = substr($code_no, 0, 4);
+                $code_2 = $code_no;
+            } else {
+                $code_1 = $code_no;
+            }
+
+            $result1 = $this->productModel->getCodeName($code_1);
+            $code_name1 = $result1 ? $result1['code_name'] : '';
+
+            if (isset($code_2)) {
+                $result2 = $this->productModel->getCodeName($code_2);
+                $code_name2 = $result2 ? ', ' . $result2['code_name'] : '';
+            }
+
+            if (isset($code_3)) {
+                $result3 = $this->productModel->getCodeName($code_3);
+                $code_name3 = $result3 ? ', ' . $result3['code_name'] : '';
+            }
+
+            $sub_banners = $this->bannerModel->getBanners('1317');
+
+            // Xử lý biến yoil cho mỗi sản phẩm
+            foreach ($products as &$product) {
+                $product['yoil_values'] = explode('|', $product['yoil_0'] ."|".$product['yoil_1'] ."|".$product['yoil_2'] ."|".$product['yoil_3'] ."|".$product['yoil_4'] ."|".$product['yoil_5'] ."|".$product['yoil_6']);
+            }
+
+            // Get codes for day tour section
+            $dayTourCodes = $this->productModel->getCodes('2329');
+            $suggest_code = $this->request->getVar('suggest_code') ?: $dayTourCodes[0]['code_no'];
+            $dayTourProducts = $this->productModel->getProductsByCode([$suggest_code], $perPage);
+            $totalDayTourProducts = $this->productModel->getTotalProducts([$suggest_code]);
+
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
@@ -202,9 +247,18 @@ class Product extends BaseController
                 'page' => $page,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'sub_banners' => $sub_banners,
+                'code_name1' => $code_name1,
+                'code_name2' => $code_name2,
+                'code_name3' => $code_name3,
+                'dayTourCodes' => $dayTourCodes,
+                'dayTourProducts' => $dayTourProducts,
+                'totalDayTourProducts' => $totalDayTourProducts,
+                'suggest_code' => $suggest_code,
+                'perCnt' => $perCnt,
             ];
 
-            return view('product/product-trip', $data);
+            return view('product/product-tours', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -213,6 +267,7 @@ class Product extends BaseController
             ]);
         }
     }
+    
     public function index4($code_no, $s = "1")
     {
         try {
