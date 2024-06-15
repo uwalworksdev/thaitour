@@ -1,0 +1,136 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Libraries\SessionChk;
+use Exception;
+
+class Community extends BaseController
+{
+
+    private $comment;
+
+    protected $sessionLib;
+    protected $sessionChk;
+
+    public function __construct()
+    {
+        $this->bbs = model("Bbs");
+        helper(['html']);
+        $this->db = db_connect();
+        $this->sessionLib = new SessionChk();
+        $this->sessionChk = $this->sessionLib->infoChk();
+        helper('my_helper');
+        helper('comment_helper');
+    }
+    public function main()
+    {
+        $code_no = $this->request->getVar('code_no');
+        $private_key = private_key();
+        if ($code_no)
+            $searchSql = " and a.r_category = '$code_no' ";
+        $sql = "select a.*, b.* from tbl_bbs a
+                inner join tbl_code b on a.r_category = b.code_no and a.r_code = b.code_gubun
+                where a.r_code = 'faq'  and  a.r_status != 'D' $searchSql order by r_reg_date desc ";
+        $faq_list = $this->db->query($sql)->getResultArray();
+        $sql = "select * from tbl_bbs_list  where code = 'b2b_notice' and status = '' order by notice_yn desc, r_date desc limit 0,4 ";
+        $b2b_notice_list = $this->db->query($sql)->getResultArray();
+        $toDay = date('Y-m-d');
+        $sql = "select * from tbl_bbs_list where code = 'event' and s_date <= '$toDay' and e_date >= '$toDay' order by r_date desc limit 2";
+        $event_list = $this->db->query($sql)->getResultArray();
+        $sql = "select * from tbl_bbs_list where code = 'winner' order by r_date desc limit 3";
+        $winner_list = $this->db->query($sql)->getResultArray();
+
+        $total_sql = "select s1.order_user_name, s1.order_status, s1.m_idx, s1.order_idx, s1.order_r_date, s1.product_idx
+                                            from tbl_order_mst s1 where s1.is_modify='N' and s1.isDelete != 'Y' and s1.order_gubun='tour' and s1.order_status != 'D'";
+        $total_order = $this->db->query($total_sql)->getNumRows();
+        $sql = $total_sql . " order by s1.order_r_date desc, s1.order_idx desc limit 0, 5 ";
+        $order_list = $this->db->query($sql)->getResultArray();
+
+        foreach ($order_list as $key => $row) {
+            $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') order_user_name";
+            $row_d = $this->db->query($sql_d)->getRowArray();
+            $row['order_user_name'] = $row_d['order_user_name'];
+
+            $sql_p = "SELECT s2.code_name from tbl_product_mst s1 inner join tbl_code s2 on s1.product_code_1 = s2.code_no where s1.product_idx = '{$row['product_idx']}' ";
+            $row_p = $this->db->query($sql_p)->getRowArray();
+            $row['code_name'] = $row_p['code_name'];
+
+            $sql_c = "SELECT count(r_idx) as cmt_cnt from tbl_bbs_cmt where r_idx = '{$row['order_idx']}' and r_code = 'order' ";
+            $row_c = $this->db->query($sql_c)->getRowArray();
+            $row['cmt_cnt'] = $row_c['cmt_cnt'];
+            $order_list[$key] = $row;
+        }
+
+        return view("community/main", [
+            'faq_list' => $faq_list,
+            'b2b_notice_list' => $b2b_notice_list,
+            'event_list' => $event_list,
+            'winner_list' => $winner_list,
+            'total_order' => $total_order,
+            'order_list' => $order_list
+        ]);
+
+    }
+    public function questions()
+    {
+        $code_no = $this->request->getVar('code_no');
+        $sql_c = "select * from tbl_code where code_gubun = 'faq' and depth = '2' order by onum desc ";
+        $code_gubun = $this->db->query($sql_c)->getResultArray();
+        $searchSql = "";
+        if ($code_no)
+            $searchSql = " and a.r_category = '$code_no' ";
+        $sql = "select r_idx, r_reg_date, r_reg_m_idx, r_mod_date, r_mod_m_idx, r_code, r_order, r_date, r_name, r_view_cnt, r_score, r_category, r_category2, r_title, r_desc, r_content, r_url, r_file_code, r_file_name, r_file_list, r_answer_status, r_answer_date, r_answer_m_idx, r_answer_name, r_answer_content, r_cmt_cnt, r_order, r_flag
+                                    , case a.r_status  when 'Y' then '사용'  when 'N' then '중지'  when 'D' then '삭제'  else '' end as str_status
+                                    ,(select ifnull(count(*),0) from tbl_bbs_cmt where tbl_bbs_cmt.r_idx=a.r_idx and tbl_bbs_cmt.r_delYN != 'Y') as r_cmt_cnt
+                                        from tbl_bbs a
+                                        join tbl_code b on a.r_category = b.code_no and a.r_code = b.code_gubun
+                                    where  a.r_code = 'faq'  and  a.r_status != 'D' $searchSql order by r_reg_date desc";
+        $question_list = $this->db->query($sql)->getResultArray();
+        return view("community/questions", ['code_no' => $code_no, 'code_gubun' => $code_gubun, 'question_list' => $question_list]);
+    }
+    public function announcement()
+    {
+        $search_mode = updateSQ($_GET['search_mode']);
+        $page = updateSQ($_GET['page']);
+        $category = updateSQ($_GET['category']);
+        $search_word = trim($_GET['search_word']);
+        $search_word = trim($_GET['search_word']);
+        $strSql = "";
+        if ($search_word != "") {
+            if ($search_mode != "") {
+                $strSql = " and $search_mode like '%$search_word%' ";
+            } else {
+                if ($search_mode == "subject" || $search_mode == "contents") {
+                    $strSql = $strSql . " and $search_mode like '%" . $search_word . "%'";
+                }
+            }
+        }
+        if (!$page) {
+            $page = 1;
+        }
+
+        $scale = 10;
+
+        $is_best_expect = $category == "best" ? " AND A.is_best = 'Y' " : "";
+
+        $total_sql = "  select * from tbl_bbs_list  where code = 'b2b_notice' $strSql $is_best_expect and status = ''  ";
+        $total_cnt = $this->db->query($total_sql)->getNumRows();
+
+        $total_page = ceil($total_cnt / $scale);
+        if ($page == "")
+            $page = 1;
+        $start = ($page - 1) * $scale;
+
+        $sql = $total_sql . " order by notice_yn desc, r_date desc limit $start, $scale ";
+        $b2b_notice_list = $this->db->query($sql)->getResultArray();
+        $no = $total_cnt - $start;
+        return view("community/announcement", ['b2b_notice_list' => $b2b_notice_list, 'total_page' => $total_page, 'page' => $page, 'no' => $no, 'search_mode' => $search_mode, 'search_word' => $search_word, 'category' => $category]);
+    }
+    public function announcement_view()
+    {
+        $bbs_idx = updateSQ($_GET['bbs_idx']);
+        $announcement = $this->bbs->View($bbs_idx);
+        return view("community/announcement_view", ['announcement' => $announcement]);
+    }
+}

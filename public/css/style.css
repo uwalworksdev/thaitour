@@ -33,3 +33,9 @@
 @import url(./contents/main_responsive.css);
 @import url(./contents/sub_responsive.css);
 @import url(./contents/table_responsive.css); */
+
+@import url(../lib/slick/slick.css);
+@import url(./contents/root.css);
+@import url(./layout/popup.css);
+@import url(./contents/member.css);
+@import url(./contents/form-control.css);

@@ -41,9 +41,9 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
             <div class="content">
                 <h1 class="ttl_table_discount">쿠폰함</h1>
                 <div class="slide_tab discount flex">
-                    <a class="slide_tab_btn active" href="../mypage/discount.php">사용 가능한 쿠폰</a>
-                    <a class="slide_tab_btn" href="../mypage/discount_owned.php">지난 쿠폰</a>
-                    <a class="slide_tab_btn" href="../mypage/discount_download.php">쿠폰 다운로드</a>
+                    <a class="slide_tab_btn active" href="../mypage/discount">사용 가능한 쿠폰</a>
+                    <a class="slide_tab_btn" href="../mypage/discount_owned">지난 쿠폰</a>
+                    <a class="slide_tab_btn" href="../mypage/discount_download">쿠폰 다운로드</a>
                     <div></div>
                 </div>
                 <p class="count">전체 <span><?= $nTotalCount ?></span>개</p>

@@ -219,7 +219,7 @@
         })
         $.ajax({
             type: "POST",
-            url: "./ajax.contact_del.php",
+            url: "./qnaDel",
             data: {
                 del_idxs: del_idxs.join(",")
             },

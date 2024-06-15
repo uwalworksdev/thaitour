@@ -226,7 +226,7 @@
         showButtonPanel: true,
         showOn: 'button',
         buttonImageOnly: true,
-        buttonImage: '/assets/img/mypage/icon_datepic.png',
+        buttonImage: '/images/ico/datepicker_ico.png',
         changeMonth: true,
         changeYear: true,
         yearRange: "1900:" + currentYear,

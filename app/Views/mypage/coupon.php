@@ -95,7 +95,7 @@
                                     <div class="departure_date">
                                         <div class="flex__c">
                                             <input type="text" name="s_date" id="departure_date1" placeholder="" class="date_pic">
-                                            <!-- <img class="ui-datepicker-trigger" src="../assets/img/mypage/icon_datepic.png"
+                                            <!-- <img class="ui-datepicker-trigger" src="/images/ico/datepicker_ico.png"
                                                 alt="..." title="..."> -->
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                     <div class="departure_date">
                                         <div class="flex__c">
                                             <input type="text" name="e_date" id="departure_date2" placeholder="" class="date_pic">
-                                            <!-- <img class="ui-datepicker-trigger" src="../assets/img/mypage/icon_datepic.png"
+                                            <!-- <img class="ui-datepicker-trigger" src="/images/ico/datepicker_ico.png"
                                                 alt="..." title="..."> -->
                                         </div>
                                     </div>
@@ -236,7 +236,7 @@
         showButtonPanel: true,
         showOn: 'button',
         buttonImageOnly: true,
-        buttonImage: '/assets/img/mypage/icon_datepic.png',
+        buttonImage: '/images/ico/datepicker_ico.png',
         changeMonth: true,
         changeYear: true,
         yearRange: "1900:" + currentYear,

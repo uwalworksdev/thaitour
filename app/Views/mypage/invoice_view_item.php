@@ -1138,7 +1138,7 @@ if ($_paymod == "lg") {
 
 <script>
 	function go_list(pg) {
-		location.href = '/mypage/details.php?pg=' + pg
+		location.href = '/mypage/details?pg=' + pg
 	}
 	$(".change_passport").change(function (evt) {
 		if (evt.target.files?.[0]) {

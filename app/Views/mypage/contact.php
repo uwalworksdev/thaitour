@@ -212,9 +212,12 @@
                 y.push(x[i].id);
             }
         }
+        if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+            return;
+        }
         $.ajax({
             type: 'POST',
-            url: './contactDel.ajax.php',
+            url: './contactDel',
             data: {
                 data: y
             },
@@ -223,7 +226,7 @@
                 location.reload();
             },
             error: function(error) {
-                alert("lỗi");
+                alert("삭제에 실패했습니다!");
             }
         });
     })

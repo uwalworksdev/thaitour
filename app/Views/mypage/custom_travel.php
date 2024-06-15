@@ -109,7 +109,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                                 <td class="no"><span><?= $stt++ ?></span></td>
                                 <td class="num"><?=sqlSecretConver($row["user_name_eng"], 'decode')?></td>
                                 </td>
-                                <td class="des"><a href="../mypage/custom_travel_view.php?idx=<?= $row["idx"] ?>"><?=sqlSecretConver($row["user_email"], 'decode')?></a></td>
+                                <td class="des"><a href="../mypage/custom_travel_view?idx=<?= $row["idx"] ?>"><?=sqlSecretConver($row["user_email"], 'decode')?></a></td>
                                 <td class="stt">
 
                                     <?php

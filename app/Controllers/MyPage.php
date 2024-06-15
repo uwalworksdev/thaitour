@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Libraries\SessionChk;
 use Exception;
+use TravelContactModel;
 
 class MyPage extends BaseController
 {
@@ -11,6 +12,8 @@ class MyPage extends BaseController
     {
         helper(['html']);
         $this->db = db_connect();
+        $this->travel_contact = model('TravelContactModel');
+        $this->travel_qna = model('TravelQnaModel');
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
@@ -24,13 +27,39 @@ class MyPage extends BaseController
     {
         return view('mypage/custom_travel');
     }
+    public function custom_travel_view()
+    {
+        return view('mypage/custom_travel_view');
+    }
     public function contact()
     {
         return view('mypage/contact');
     }
+    public function contactDel()
+    {
+        $data = $_POST['data'];
+        if ($data && count($data) > 0) {
+            foreach ($data as $value) {
+                $this->travel_contact->deleteTravelContact($value);
+            }
+        }
+    }
     public function consultation()
     {
         return view('mypage/consultation');
+    }
+    public function qnaDel()
+    {
+
+        $del_idxs = $_POST['del_idxs'];
+
+        $idxs = array_map('trim', explode(',', $del_idxs));
+
+        if ($this->travel_qna->deleteTravelQna($idxs)) {
+            return "OK";
+        } else {
+            return "ERROR";
+        }
     }
     public function fav_list()
     {
@@ -79,80 +108,75 @@ class MyPage extends BaseController
     public function invoice_view_item()
     {
         $order_idx = updateSQ($_GET["order_idx"]);
-        return view('mypage/invoice_view_item', ["order_idx" => $order_idx]);
+        return view('mypage/invoice_view_item', ["order_idx" => $order_idx, "pg" => updateSQ($_GET["pg"])]);
     }
     public function info_option_ok()
     {
-        $user_id				= updateSQ($_POST["user_id"]);
-        $user_pw				= updateSQ($_POST["user_pw"]);
+        $user_id = updateSQ($_POST["user_id"]);
+        $user_pw = updateSQ($_POST["user_pw"]);
 
-        $total_sql	= " select *, SHA1(MD5('".$user_pw."')) as user_pw2 from tbl_member where user_id = '".$user_id."' ";
-        $row		= $this->db->query($total_sql)->getRowArray();	
-    
-        if ($_SESSION["member"]["mIdx"] == "")
-        {
+        $total_sql = " select *, SHA1(MD5('" . $user_pw . "')) as user_pw2 from tbl_member where user_id = '" . $user_id . "' ";
+        $row = $this->db->query($total_sql)->getRowArray();
+
+        if ($_SESSION["member"]["mIdx"] == "") {
             return "";
         }
-        if ($row["user_id"] == "")
-        { 
+        if ($row["user_id"] == "") {
             return "NOUSER";
         } else if ($row["user_pw2"] != $row["user_pw"]) {
             return "NOPASS";
         }
-    
+
         return "OK";
     }
     public function info_change_ok()
     {
-        $private_key            = private_key();
-        $user_id				= updateSQ($_POST["user_id"]);
-        $user_pw				= updateSQ($_POST["user_pw"]);
-        $user_name				= updateSQ($_POST["user_name"]);
-        $gender					= updateSQ($_POST["gender"]);
-        $user_email				= updateSQ($_POST["email1"])."@".updateSQ($_POST["email2"]);
-        $user_email_yn			= updateSQ($_POST["user_email_yn"]);
-        $sms_yn			        = updateSQ($_POST["sms_yn"]);
-        $user_phone				= updateSQ($_POST["phone1"])."-".updateSQ($_POST["phone2"])."-".updateSQ($_POST["phone3"]);
-        $user_mobile			= updateSQ($_POST["mobile1"])."-".updateSQ($_POST["mobile2"])."-".updateSQ($_POST["mobile3"]);
-        $zip					= updateSQ($_POST["zip"]);
-        $addr1					= updateSQ($_POST["addr1"]);
-        $addr2					= updateSQ($_POST["addr2"]);
-        $job					= updateSQ($_POST["job"]);
-        $birthday				= updateSQ($_POST["birthday"]);
-        $marriage				= updateSQ($_POST["marriage"]);
-        $user_level				= updateSQ($_POST["user_level"]);
+        $private_key = private_key();
+        $user_id = updateSQ($_POST["user_id"]);
+        $user_pw = updateSQ($_POST["user_pw"]);
+        $user_name = updateSQ($_POST["user_name"]);
+        $gender = updateSQ($_POST["gender"]);
+        $user_email = updateSQ($_POST["email1"]) . "@" . updateSQ($_POST["email2"]);
+        $user_email_yn = updateSQ($_POST["user_email_yn"]);
+        $sms_yn = updateSQ($_POST["sms_yn"]);
+        $user_phone = updateSQ($_POST["phone1"]) . "-" . updateSQ($_POST["phone2"]) . "-" . updateSQ($_POST["phone3"]);
+        $user_mobile = updateSQ($_POST["mobile1"]) . "-" . updateSQ($_POST["mobile2"]) . "-" . updateSQ($_POST["mobile3"]);
+        $zip = updateSQ($_POST["zip"]);
+        $addr1 = updateSQ($_POST["addr1"]);
+        $addr2 = updateSQ($_POST["addr2"]);
+        $job = updateSQ($_POST["job"]);
+        $birthday = updateSQ($_POST["birthday"]);
+        $marriage = updateSQ($_POST["marriage"]);
+        $user_level = updateSQ($_POST["user_level"]);
 
-        $ip_address				= $_SERVER['REMOTE_ADDR'];
-        if ($_SESSION["member"]["mIdx"] == "")
-        {
+        $ip_address = $_SERVER['REMOTE_ADDR'];
+        if ($_SESSION["member"]["mIdx"] == "") {
             exit();
         }
-        if (strlen($user_mobile) < 5 ) 
-        {
+        if (strlen($user_mobile) < 5) {
             echo "NI";
             exit();
         }
 
 
-        if ($user_pw != "")
-        {
-        $sql	= " update tbl_member set 
-                    user_pw			= SHA1(MD5('".$user_pw."'))
-                    where m_idx  = '".$_SESSION["member"]["mIdx"]."'
+        if ($user_pw != "") {
+            $sql = " update tbl_member set 
+                    user_pw			= SHA1(MD5('" . $user_pw . "'))
+                    where m_idx  = '" . $_SESSION["member"]["mIdx"] . "'
                 ";
-        $this->db->query($sql);
-        // write_log("본인패스워드수정:".$sql);
-        } 
-        $sql	= " update tbl_member set 
-                    birthday	   = '".$birthday."' 
-                    ,zip		   = HEX(AES_ENCRYPT('".$zip."' , '".$private_key."')) 
-                    ,addr1		   = HEX(AES_ENCRYPT('".$addr1."' , '".$private_key."'))
-                    ,addr2		   = HEX(AES_ENCRYPT('".$addr2."' , '".$private_key."'))
-                    ,user_mobile   = HEX(AES_ENCRYPT('".$user_mobile."' , '".$private_key."'))
-                    ,sms_yn        = '".$sms_yn."'
-                    ,user_email_yn = '".$user_email_yn."'
+            $this->db->query($sql);
+            // write_log("본인패스워드수정:".$sql);
+        }
+        $sql = " update tbl_member set 
+                    birthday	   = '" . $birthday . "' 
+                    ,zip		   = HEX(AES_ENCRYPT('" . $zip . "' , '" . $private_key . "')) 
+                    ,addr1		   = HEX(AES_ENCRYPT('" . $addr1 . "' , '" . $private_key . "'))
+                    ,addr2		   = HEX(AES_ENCRYPT('" . $addr2 . "' , '" . $private_key . "'))
+                    ,user_mobile   = HEX(AES_ENCRYPT('" . $user_mobile . "' , '" . $private_key . "'))
+                    ,sms_yn        = '" . $sms_yn . "'
+                    ,user_email_yn = '" . $user_email_yn . "'
                     ,m_date		   = now()
-                    where m_idx    = '".$_SESSION["member"]["mIdx"]."'
+                    where m_idx    = '" . $_SESSION["member"]["mIdx"] . "'
                 ";
         // write_log("본인정보수정:".$sql);
         $this->db->query($sql);

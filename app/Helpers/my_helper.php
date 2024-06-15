@@ -441,4 +441,23 @@ function DateAdd($interval, $number, $date) {
     $timestamp = date("Y-m-d",mktime($hours ,$minutes, $seconds, $month, $day, $year));
 	return $timestamp;
 }
-?>
+function strAsterisk($string) {
+
+	$string = trim($string);
+	$length = mb_strlen($string, 'utf-8');
+	$string_changed = $string;
+	if ($length <= 2) {
+		// 한두 글자면 그냥 뒤에 별표 붙여서 내보낸다.
+		$string_changed = mb_substr($string, 0, 1, 'utf-8') . '*';
+	}
+	if ($length >= 3) {
+		// 3으로 나눠서 앞뒤.
+		$leave_length = floor($length/3); // 남겨 둘 길이. 반올림하니 너무 많이 남기게 돼, 내림으로 해서 남기는 걸 줄였다.
+		$asterisk_length = $length - ($leave_length * 2);
+		$offset = $leave_length + $asterisk_length;
+		$head = mb_substr($string, 0, $leave_length, 'utf-8');
+		$tail = mb_substr($string, $offset, $leave_length, 'utf-8');
+		$string_changed = $head . implode('', array_fill(0, $asterisk_length, '*')) . $tail;
+	}
+	return $string_changed;
+}
