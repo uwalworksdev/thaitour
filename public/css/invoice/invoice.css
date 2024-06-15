@@ -1,0 +1,548 @@
+.only_web{
+    display: block;
+}
+.only_mo{
+    display: none;
+}
+
+.invoice_section {
+    padding-bottom: 120px;
+}
+
+.invoice_section .ttl_img{
+    background-color: #e0ecf7;
+    border-radius: 20px;
+    min-height: 260px;
+    margin-top: 40px;
+}
+
+.invoice_section .ttl_box h1 {
+    font-size: 30px;
+    text-align: center;
+    padding-top: 80px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid;
+}
+
+.invoice_section .invoice_table {
+    width: 100%;
+}
+
+.invoice_section thead tr {
+    height: 65px;
+    border-bottom: 1px solid rgb(170, 170, 170);
+}
+
+.invoice_section thead tr th {
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    font-size: 16px;
+    color: #252525;
+}
+
+.invoice_section tbody tr {
+    height: 65px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.invoice_section tbody tr .id {
+    font-family: "Noto Sans KR";
+    text-align: center;
+    font-size: 16px;
+    color: #757575;
+}
+
+.invoice_section tbody tr .ttl {
+    font-family: "Noto Sans KR";
+    text-align: center;
+    font-size: 16px;
+}
+
+.invoice_section tbody tr .des {
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    color: #454545;
+    display: flex;
+    align-items: center;
+    height: 65px;
+}
+
+.invoice_section tbody tr .des .stt_1 {
+    font-family: "Noto Sans KR";
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #095995;
+    padding: 5px 8px;
+    border-radius: 3px;
+    margin-right: 9px;
+}
+
+.invoice_section tbody tr .des .stt_2 {
+    font-family: "Noto Sans KR";
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #cccccc;
+    padding: 5px 8px;
+    border-radius: 3px;
+    margin-right: 9px;
+}
+
+.invoice_section tbody tr .des .red {
+    font-family: "Noto Sans KR";
+    font-size: 13px;
+    color: #e9281d;
+    margin-inline: 8px;
+}
+
+.invoice_section tbody tr .des i {
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    background: no-repeat center;
+    background-image: url('../assets/img/ico/status_table_lock_ico.png');
+}
+
+.invoice_section tbody tr .name {
+    font-family: "Noto Sans KR";
+    text-align: center;
+    font-size: 16px;
+    color: #454545;
+}
+
+.invoice_section tbody tr .date {
+    font-family: "Noto Sans KR";
+    text-align: center;
+    font-size: 16px;
+    color: #757575;
+}
+
+.invoice_paid{
+    margin: 100px 0 120px;
+}
+
+.invoice_paid .ttl_box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.invoice_paid .ttl_date {
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    color: #757575;
+    margin: 30px 0 40px;
+}
+
+.invoice_paid .ttl_box h1 {
+    font-size: 30px;
+    font-family: "Noto Sans KR";
+    font-weight: bold;
+    color: #252525;
+    margin-right: 9px;
+}
+
+.invoice_paid .ttl_box span {
+    font-family: "Noto Sans KR";
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #095995;
+    padding: 5px 8px;
+    border-radius: 3px;
+}
+
+.invoice_paid .invoice_img_wrap {
+    
+    padding: 20px;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 10px;
+}
+
+.invoice_paid .invoice_img_wrap .invoice_img_top {
+    display: flex;
+    gap: 0 20px;
+}
+
+.invoice_paid .invoice_img_wrap img{
+    width: 100px;
+    height: 100px;
+}
+
+.invoice_paid .invoice_img_content {
+    padding: 10px 0;
+}
+
+.invoice_paid .invoice_img_content .invoice_img_ttl {
+    font-family: "Noto Sans KR";
+    font-size: 14px;
+    color: #252525;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.invoice_paid .invoice_img_content .invoice_img_ttl span {
+    font-weight: bold;
+}
+
+.invoice_paid .invoice_img_content h3 {
+    font-family: "Noto Sans KR";
+    font-weight: bold;
+    font-size: 20px;
+    color: #252525;
+    margin-bottom: 20px;
+}
+
+.invoice_paid .invoice_img_content .invoice_img_des {
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    color: #757575;
+    line-height: 27px;
+}
+
+.invoice_paid .invoice_img_wrap .m_invoice_img_des {
+    display: none;
+}
+
+.invoice_paid .invoice_table h2{
+    font-family: "Noto Sans KR";
+    font-weight: bold;
+    font-size: 26px;
+    color: #252525;
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+
+.invoice_paid .invoice_table table {
+    width: 100%;
+    border-top: 1px solid rgb(37, 37, 37);
+}
+
+.invoice_paid .invoice_table table tr {
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.invoice_paid .invoice_table table tr .subject{
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #252525;
+    padding-left: 20px;
+    height: 65px;
+}
+
+.invoice_paid .invoice_table table tr .content {
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    color: #454545;
+    padding-left: 20px;
+    /* height: 65px; */
+}
+
+.invoice_paid .invoice_table table tr .content .product_detail{
+    height: 65px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+}
+
+.invoice_paid .invoice_table table tr .content .product_detail:last-child {
+    border-bottom: none;
+}
+
+.invoice_paid .text_red {
+    margin-top: 30px;
+}
+
+.invoice_paid .text_red p{
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    line-height: 26px;
+    color: #e5001a;
+}
+
+.invoice_paid .invoice_comment {
+    padding-top: 80px;
+}
+  
+.invoice_comment .invoice_comment-top .invoice_comment-count {
+    margin-bottom: 15px;
+}
+
+.invoice_comment .invoice_comment-top .invoice_comment-count span{
+    font-family: "Noto Sans KR";
+    font-size: 18px;
+    line-height: 28px;
+    color: #252525;
+    font-weight: 500;
+}
+
+.invoice_comment .invoice_comment-top .invoice_comment-input {
+    display: flex;
+    gap: 0 10px;
+    margin-bottom: 0.3846rem;
+}
+
+.invoice_comment .invoice_comment-top .invoice_comment-input textarea{
+    height: 100px;
+    width: calc(100% - 100px - 10px);
+    padding: 20px 20px;
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    border: 1px solid #aaaaaa;
+    border-radius: 4px;
+
+}
+
+.invoice_comment .invoice_comment-top .invoice_comment-input textarea::placeholder {
+    color: #999999;
+}
+
+.invoice_comment .invoice_comment-top .invoice_comment-input button {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    background-color: #2e3e92;
+    font-size: 18px;
+    line-height: 28px;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.invoice_comment .invoice_comment-top .bs-input-check label {
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+}
+
+.invoice_comment .invoice_comment-details {
+    margin-top: 30px;
+}
+
+.invoice_user .invoice_user-avatar img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+.invoice_comment .invoice_comment-details .invoice_user{
+    display: flex;
+    column-gap: 20px;
+    padding: 30px 0;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.invoice_comment .invoice_comment-details .invoice_user-detail {
+    max-width: calc(100% - 52px - 20px);
+}
+
+.invoice_comment-details .invoice_user-comment p {
+    font-size: 16px;
+    font-family: "Noto Sans KR";
+    line-height: 28px;
+    color: #454545;
+}
+
+.invoice_comment-details .invoice_user-content {
+    margin-top: 25px;
+}
+
+.invoice_comment-details .invoice_user-content .invoice_user-type {
+    cursor: pointer;
+}
+
+.invoice_comment-details .invoice_user-content span {
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    line-height: 28px;
+    color: #6c7580;
+    position: relative;
+    margin-right: 20px;
+}
+
+.invoice_comment-details .invoice_user-content .invoice_user-title::after,
+.invoice_comment-details .invoice_user-content .invoice_user-date::after {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 10px;
+    background-color: #d8d8d8;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% + 10px);
+}
+
+.invoice_comment-details .invoice_user-detail .invoice_user-operation {
+    margin-top: 20px;
+}
+
+.invoice_comment-details .invoice_user-detail .invoice_user-operation button{
+    font-family: "Noto Sans KR";
+    font-size: 16px;
+    line-height: 28px;
+    color: #454545;
+    border: 1px solid #dbdbdb;
+    padding: 0 10px;
+    border-radius: 3px;
+}
+
+.invoice_paid .invoice_button {
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invoice_paid .invoice_button button {
+    padding: 20px 100px;
+    color: #252525;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    margin: 0 auto;
+    font-weight: bold;
+}
+.invoice_paid .ttl_box .stt_2 {
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #cccccc;
+    padding: 5px 8px;
+    border-radius: 3px;
+    /* margin-right: 9px; */
+}
+
+.invoice_paid .invoice_table table tr .content.schedule .schedule_list {
+    height: 100%;
+    width: 600px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+}
+
+.invoice_paid .invoice_table table tr .content.logo,
+.invoice_paid .invoice_table table tr .content.file {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
+}
+
+.invoice_paid .invoice_table table tr .content.logo i {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: url("../assets/img/invoice/logo_invoice.png");
+}
+
+.invoice_paid .invoice_table table tr .content.file i {
+    display: inline-block;
+    width: 17px;
+    height: 16px;
+    background-image: url("../assets/img/invoice/file_invoice.png");
+}
+
+.invoice_paid .invoice_table table tr .content .num {
+    margin-right: 15px;
+}
+
+.invoice_paid .invoice_table table tr .content.file span {
+    margin-right: 0;
+}
+
+.ord_total_sec h3.label {
+    margin-top: 80px;
+    font-size: 26px;
+    font-weight: 700;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #252525;
+}
+/* 2024 01 08 수정 */
+.ord_total_sec .detail_money .defen_ttl,
+.ord_total_sec .total_money .defen_ttl  {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.ord_total_sec .text_defen {
+    font-size: 14px;
+}
+
+
+.ord_total_sec .detail_money.tar.flex_e_c p{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.invoice_paid .invoice_table_new table tr .subject{
+    text-align: center;
+    padding-left: 0;
+}
+.invoice_paid .invoice_table_new table tr .content{
+    padding-left: 0;
+    text-align: center;
+    height: 65px;
+    line-height: 1.3;
+}
+
+.invoice_paid .invoice_table_new table tr .content.link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invoice_paid .invoice_table_new table tr .content .btn_download_passport {
+    background-color: #095995;
+    border-radius: 4px;
+    padding: 0px 5px;
+    color: #fff;
+    height: 30px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.invoice_paid .invoice_table_new table tr .content .btn_del_passport {
+    background-color: crimson;
+    margin-left: 5px;
+}
+
+.btn_upload_passport {
+    cursor: pointer;
+    background-color: #095995;
+    border-radius: 4px;
+    padding: 0px 5px;
+    margin: 0 0 0 5px;
+    color: #fff;
+    height: 30px;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.invoice_paid .invoice_table_new table tr .btn_payment {
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #2e3e92;
+    width: fit-content;
+    height: fit-content;
+}
+
+@media screen and (max-width: 850px) {
+    .invoice_paid .invoice_table_new table tr .btn_payment {
+        padding: 0.3333rem 0.6667rem;
+        font-size: 0.6rem;
+        color: #fff;
+        background-color: #2e3e92;
+        width: fit-content;
+        height: 2rem;
+        line-height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ord_total_sec .text_defen {
+        font-size: 0.9231rem;
+    }
+}

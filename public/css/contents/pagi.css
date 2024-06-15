@@ -56,3 +56,195 @@
     cursor: not-allowed;
     border-color: #ddd;
 }
+/* paging */
+.paging_wrap {
+    margin-top: 50px;
+    position: relative;
+  }
+  .paging {
+    display: table;
+    margin: 0 auto;
+  }
+  
+  .paging.hide {
+    visibility: hidden;
+  }
+  
+  .paging strong {
+    font-weight: 400;
+  }
+  
+  .paging ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .paging ul li {
+    text-align: center;
+    margin: 0 5px;
+  }
+  
+  .paging ul li.preview {
+    margin-right: 15px;
+  }
+  
+  .paging ul li.next {
+    margin-left: 15px;
+  }
+  
+  .paging ul li a {
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+    line-height: 33px;
+    border: 1px solid #dbdbdb;
+    color: #454545;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .paging ul li.active a,
+  .paging ul li.on a {
+    border: 1px solid var(--bs-point);
+    background: var(--bs-point);
+    color: #fff;
+  }
+  
+  .paging ul li.double a {
+    background-image: url("../img/ico/ico_paging_double.png");
+  }
+  
+  .paging ul li.one a {
+    background-image: url("../img/ico/ico_paging.png");
+  }
+  
+  .paging ul li.next a {
+    transform: rotate(180deg);
+  }
+  
+  .paging ul li.last_page a {
+    transform: rotate(180deg);
+  }
+  
+  /* page event */
+  
+  .paging .page li.preview a {
+    font-size: 0;
+    background-image: url(/images/btn/prev_svg.svg);
+    background-size: 1.15rem 1.15rem;
+  }
+  
+  .paging .page li.next a {
+    font-size: 0;
+    background-image: url(/images/btn/prev_svg.svg);
+    background-size: 1.15rem 1.15rem;
+  }
+  
+  .paging .page li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    font-weight: 500;
+    border: 2px solid transparent;
+    color: #666666;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  li.skip.backward{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  li.skip.backward a{
+    background-image: url(/images/btn/first_svg.svg);
+    background-repeat: no-repeat;
+    background-size: 1.15rem 1.15rem;
+    font-size: 0;
+  }
+  
+  li.skip.forward{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  li.skip.forward a{
+    background-image: url(/images/btn/last_svg.svg);
+    background-size: 1.15rem 1.15rem;
+    background-repeat: no-repeat;
+    font-size: 0;
+  }
+  
+  @media only screen and (max-width: 850px) {
+    .paging ul.page {
+      transform: scale(0.7);
+      transform-origin: top left;
+      width: 105%;
+    }
+    .page {
+      display: flex !important;
+      justify-content: center !important;
+    }
+    /* ================================= paging */
+    .paging_wrap {
+      margin-top: 2.5rem;
+      position: relative;
+    }
+  
+    .paging {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .paging ul.page {
+      transform: scale(0.7);
+      transform-origin: unset;
+      width: unset;
+    }
+  
+    .paging ul li {
+      margin: 0 0.1538rem;
+    }
+  
+    .paging ul li.preview {
+      margin-right: 0.5769rem;
+    }
+  
+    .paging ul li.next {
+      margin-left: 0.5769rem;
+    }
+  
+    .paging .page li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.0769rem;
+      height: 3.0769rem;
+      line-height: 3.0769rem;
+      font-weight: 500;
+      border: 0.0769rem solid transparent;
+      color: #666666;
+      background-position: center center;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+  
+    .paging ul li.double a {
+      background-image: url(../img/ico/ico_paging_double_m.png);
+    }
+  
+    .paging ul li.one a {
+      background-image: url(../img/ico/ico_paging_m.png);
+      background-size: 0.6923rem 1.1538rem;
+    }
+  }
+  

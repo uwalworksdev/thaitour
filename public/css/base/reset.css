@@ -308,3 +308,12 @@ progress {
   font-family: "Lato", sans-serif;
   font-weight: 700;
 }
+.blind, legend {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: -1000em;
+  left: 0;
+  font-size: 0;
+  color: transparent;
+}
