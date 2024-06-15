@@ -7,15 +7,15 @@
 
         <!-- list_top_banner -->
         <?php if (!empty($banners) && count($banners) == 2) { ?>
-        <section class="list_top_banner">
-            <a href="<?= $banners[0]['url'] ?>" id="myLink">
-                <picture>
-                    <source media="(max-width: 850px)" srcset="https://hihojoonew.cafe24.com/data/banner/<?= $banners[1]['ufile1'] ?>">
-                    <img src="https://hihojoonew.cafe24.com/data/banner/<?= $banners[0]['ufile1'] ?>" alt="패키지 탑 배너">
-                </picture>
-            </a>
-        </section>
-        <?php } ?>
+    <section class="list_top_banner">
+        <a href="<?= $banners[0]['url'] ?>" id="myLink">
+            <picture>
+                <source media="(max-width: 850px)" srcset="<?= base_url($banners[1]['ufile1']) ?>">
+                <img src="<?= base_url($banners[0]['ufile1']) ?>" alt="패키지 탑 배너">
+            </picture>
+        </a>
+    </section>
+<?php } ?>
 
         <!-- list_mid_banner -->
         <section class="list_mid_banner">

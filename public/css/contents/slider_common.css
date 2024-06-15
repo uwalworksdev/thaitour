@@ -164,3 +164,9 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+.slidero-l{
+    left: -20px;
+}
+.slidero-r{
+    right: -20px;
+}
