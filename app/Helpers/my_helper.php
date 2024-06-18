@@ -553,3 +553,9 @@ function updateSQText($textToFilter)
 	}
 	 
 }
+function yoil_convert($day)
+{
+      $yoil = array("일","월","화","수","목","금","토");
+      $yoil = $yoil[date('w', strtotime($day))];
+	  return $yoil;
+}

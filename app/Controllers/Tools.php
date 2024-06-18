@@ -8,12 +8,14 @@ use Exception;
 class Tools extends BaseController
 {
     protected $Code;
+    protected $Product_model;
     protected $sessionLib;
     protected $sessionChk;
     public function __construct()
     {
         helper(['html']);
         $this->Code = model("Code");
+        $this->Product_model = model("Product_model");
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
@@ -39,5 +41,22 @@ class Tools extends BaseController
             "data"  => $data,
             "cnt"   => $cnt
         ]);
+    }
+    public function get_list_product()
+    {
+        $product_code = $_POST['product_code'];
+    
+        $result	= $this->Product_model->where('product_code_3', $product_code)->findAll();
+        $cnt = count($result);
+        $data = "";
+        if ($cnt == 0) {
+               $data .= "<option value=''>선택</option>";
+        }
+    
+        foreach ($result as $row) {
+                $data .= "<option value='".$row["product_idx"]."'>".viewSQ($row["product_name"])."</option>";
+        }
+    
+        echo $data;
     }
 }

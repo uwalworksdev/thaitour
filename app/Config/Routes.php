@@ -84,6 +84,7 @@ $routes->get('/', 'Home::index');
 $routes->group("tools", static function ($routes) {
     $routes->get('generate_captcha'     , 'Tools::generate_captcha');
     $routes->post('get_travel_types'    , 'Tools::get_travel_types');
+    $routes->post('get_list_product'    , 'Tools::get_list_product');
 });
 $routes->group("member", static function ($routes) {
     $routes->get("login"                , "Member::LoginForm");
@@ -142,7 +143,17 @@ $routes->group("qna", static function ($routes) {
     $routes->get("write"                , "Qna::write");
     $routes->post("write_ok"            , "Qna::write_ok");
 });
-
+$routes->group("invoice", static function ($routes) {
+    $routes->get("list"                 , "Orders::list_invoice");
+    $routes->get("view_paid"            , "Orders::invoice_view_paid");
+});
+$routes->group("review", static function ($routes) {
+    $routes->get("review_list"          , "ReviewController::list_review");
+    $routes->get("review_detail"        , "ReviewController::detail_review");
+    $routes->get("review_write"         , "ReviewController::write_review");
+    $routes->post("review_write_ok"     , "ReviewController::save_review");
+    $routes->post("review_delete"       , "ReviewController::review_delete");
+});
 
 
 

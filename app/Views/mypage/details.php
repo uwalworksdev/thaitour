@@ -177,7 +177,7 @@ $nFrom = ($pg - 1) * $g_list_rows;
                                             <?php } elseif ($row["order_status"] == "Y") { ?>
                                                 <!-- <span class="btn pops_btn complete" data_order_idx="">결제완료</span> -->
                                                 <!-- <a href="/community/review_write.php?cmd=new&sch_product_idx=<?= $row["product_idx"] ?>" class="btn pops_btn review_write" data_order_idx="">후기쓰기</a> -->
-                                                <a href="/evaluate/evaluate_write.php?product_idx=<?= $row["product_idx"] ?>" class="btn pops_btn review_write" data_order_idx="">후기쓰기</a>
+                                                <a href="/review/review_write?product_idx=<?= $row["product_idx"] ?>" class="btn pops_btn review_write" data_order_idx="">후기쓰기</a>
                                             <?php } elseif ($row["order_status"] == "C") {  ?>
                                                 <!-- <span class="no_click" data_order_idx="">중도금</span> -->
                                             <?php } ?>

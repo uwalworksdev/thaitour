@@ -350,15 +350,6 @@ if ($qna_item) {
                 document.getElementById('cap_re').style.opacity = "1"
             }
         })
-        // fetch('/generate_captcha')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         document.getElementById('cap_re').src = data.captcha_image;
-        //         document.getElementById('hidden_captcha').value = data.captcha_value;
-        //         document.getElementById('spinner_load').style.display = "none"
-        //         document.getElementById('cap_re').style.opacity = "1"
-        //     })
-        //     .catch(error => console.error('Error:', error));
     }
 
     reloadCaptcha(); 

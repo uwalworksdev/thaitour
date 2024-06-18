@@ -100,7 +100,7 @@
                         </a>
                     </div>
                     <div class="info_detail">
-                        <a href="/invoice/invoice_list">
+                        <a href="/invoice/list">
                             <picture>
                                 <source media="(max-width:850px)" srcset="/images/community/info_detail_3_m.png">
                                 <img src="/images/community/info_detail_3.png" alt="">
@@ -108,7 +108,7 @@
                         </a>
                     </div>
                     <div class="info_detail">
-                        <a href="/evaluate/evaluate">
+                        <a href="/review/review_list">
                             <picture>
                                 <source media="(max-width:850px)" srcset="/images/community/info_detail_4_m.png">
                                 <img src="/images/community/info_detail_4.png" alt="">
@@ -204,7 +204,7 @@
                                     <?php
                                     if ($row['m_idx'] == $_SESSION['member']['mIdx']) {
                                         ?>
-                                        <a href="/invoice/invoice_view_paid?order_idx=<?= $row['order_idx'] ?>"><?= strAsterisk($row["order_user_name"]) ?>님의
+                                        <a href="/invoice/view_paid?order_idx=<?= $row['order_idx'] ?>"><?= strAsterisk($row["order_user_name"]) ?>님의
                                             여행예약이 <?= get_status_name($row["order_status"]) ?>되었습니다.</a><span
                                             class="red">(<?= $row['cmt_cnt'] ?>)</span>
                                         <?php

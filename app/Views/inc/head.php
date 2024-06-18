@@ -14,5 +14,8 @@
     <script src="/lib/swiper-11.1.4/package/swiper-bundle.min.js"></script>
     <script src="/lib/slick/slick.js"></script>
     <script src="/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/lib/summernote/summernote-lite.js"></script>
+    <script src="/lib/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="/lib/summernote/summernote-lite.css">
     <title><?= $setting['site_name'] ?></title>
 </head>

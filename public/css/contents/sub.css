@@ -2514,3 +2514,344 @@ width: 100%;
   font-weight: 700;
   color: var(--bs-point);
 }
+.evaluate_search input {
+  width: 210px;
+  height: 35px;
+}
+
+.evaluate_search select {
+  height: 35px;
+  width: 100px;
+}
+
+
+.evaluate_search .search_button {
+  width: 60px;
+  height: 35px;
+  border: 1px solid #2e3e92;
+  color: #2e3e92;
+  border-radius: 3px;
+}
+
+/* 여행후기 */
+
+.tour_slider {
+  position: relative;
+    margin: 0 -15px;
+}
+
+.tour_slider .card {
+    width: 380px;
+    min-height: 363px;
+}
+
+.tour_slider .slider_box {
+    margin: 0 15px;
+}
+
+.tour_slider .card .card_top {
+    width: 100%;
+    position: relative;
+    height: 230px;
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+}
+
+.tour_slider .card .card_top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tour_slider .card .card_top .card_best {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    border-radius: 11px;
+    background-color: rgb(69, 77, 235);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+
+}
+
+.tour_slider .card .card_top .card_best span:first-child {
+    color: #ffffff;
+    font-size: 11px;
+    line-height: 15px;
+}
+
+
+.tour_slider .card .card_top .card_best span:last-child {
+    color: #ffffff;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.tour_slider .card .card_desc {
+    padding: 20px 15px;
+    border-left: 1px solid #dbdbdb;
+    border-right: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    border-radius: 0 0 6px 6px;
+    min-height: calc(363px - 230px);
+}
+
+.tour_slider .card .card_desc span {
+    font-size: "Noto Sans KR";
+    font-size: 15px;
+    color: #999999;
+}
+
+.tour_slider .card .card_desc h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    margin-top: 15px;
+    font-size: "Noto Sans KR";
+    font-size: 18px;
+    font-weight: bold;
+    color: #252525;
+    line-height: 26px;
+}
+.evaluate_section_2{
+  margin-top: 100px;
+}
+.preload{
+  opacity: 0;
+}
+.loading-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 999999;
+}
+.relative{
+  position: relative;
+}
+
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  z-index: 9999;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 20px;
+}
+
+.evaluate_section .slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: no-repeat center;
+  background-image: url(/images/ico/slider_btn.png);
+  font-size: 0;
+  color: transparent;
+  z-index: 100;
+}
+
+.evaluate_section .swiper-button-next {
+  right: -10px;
+  transform: translateY(-50%) rotateY(180deg);
+}
+
+.evaluate_section .swiper-button-prev {
+  left: -10px;
+}
+.bold-row {
+  font-weight: 600;
+}
+/* new */
+#container.write_container,
+#container.view_container,
+#container.contact {
+  padding: 100px 0 120px;
+}
+.list_container .sub_visual {
+  background-color: #e0ecf7;
+  border-radius: 20px;
+  min-height: 260px;
+  margin-bottom: 80px;
+}
+
+/* inquiry_view start */
+
+.view_container .sect_ttl_box .date {
+  color: #757575;
+  /* margin-top: 30px; */
+}
+
+.view_container .bs_table {
+  word-break: break-all;
+}
+
+.view_container .bs_table tbody td.contents {
+  line-height: 1.625;
+}
+.view_container .bs_table tbody tr:first-child {
+  border-bottom-color: #aaaaaa;
+}
+
+.view_container .file i {
+  display: inline-block;
+  width: 17px;
+  height: 16px;
+  background: no-repeat center;
+  background-image: url(../img/ico/inquiry_file.png);
+  margin-left: 8px;
+}
+
+.view_container .btn-wrap {
+  margin-top: 60px;
+}
+
+.view_container .go_to_list {
+  display: block;
+  max-width: 270px;
+  margin: 0 auto;
+}
+
+.view_container .comment_box {
+  margin-top: 80px;
+}
+
+
+.view_container .view_top {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #2b2b2b;
+  }
+
+  .view_container .view_content-top .main_info {
+    gap: 30px;
+  }
+
+  .view_container .view_content-top .line {
+    border-bottom: 1px solid #e5e5e5;
+    padding-right: 20px;
+  }
+
+  .view_container .view_content-top .line li {
+    border-bottom: none;
+  }
+  
+  .view_container .view_top .sect_ttl_box {
+    margin-bottom: 30px;
+  }
+  
+  .view_container .view_top .date {
+    color: #757575;
+  }
+  
+  .view_container .view_content {
+    padding: 0px 30px 100px 30px;
+    border-bottom: 1px solid rgb(229, 229, 229);
+  }
+  
+  .view_container .view_content * {
+    /*color: #454545;*/
+    line-height: 1.5;
+  word-break: break-all;
+    }
+  
+  .view_container .view_content .view_content-detail {
+    margin-top: 40px;
+  }
+
+  .view_container .view_relate {
+    margin-top: 30px;
+  }
+
+  .view_container .view_relate .ttl {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+  }
+
+  .view_container .view_relate .ttl span {
+    color: var(--bs-point);
+  }
+
+  .view_container .view_relate .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: no-repeat center;
+    background-image: url(../img/common/slider_btn.png);
+    font-size: 0;
+    color: transparent;
+    z-index: 100;
+}
+
+  .view_container .view_relate .slick-arrow {
+    top: 33%;
+  }
+
+  .view_container .view_relate .slick-next {
+    right: 0;
+    transform: translateY(-50%) rotateY(180deg);
+  }
+
+  .view_container .view_relate .slick-prev {
+    left: 0;
+  }
+
+
+  
+.view_content-top ul li {
+    height: 80px;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+  }
+  .view_content-top ul li h4{
+      width: 100px;
+      text-align: center;
+      font-weight: 500;
+    }
+    .view_content-top ul li .view_content-info{
+        width: calc(100% - 100px);
+        padding-left: 50px;
+    }
+
+
+    
+.view_container .f_list {
+    margin-top: 20px;
+  }
+  
+  .view_container .f_list a, .view_container .f_list button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 140px;
+    font-size: 18px;
+    height: 54px;
+  }
+.view_container .btn_edit {
+    margin-right: 10px;
+  }

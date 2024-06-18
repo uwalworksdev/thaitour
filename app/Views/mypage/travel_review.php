@@ -29,7 +29,7 @@
                 <h1 class="ttl_table">여행후기</h1>
 
                 <?php
-                $sql = "SELECT A.*, COUNT(B.r_idx) AS cmt_cnt, C.code_name, CASE WHEN A.is_best = 'Y' THEN 1 ELSE 0 END AS is_best_in_number
+                $sql = "SELECT A.*, COUNT(B.r_idx) AS cmt_cnt, C.code_name
                             FROM tbl_travel_review A
                             LEFT JOIN tbl_bbs_cmt B ON A.idx = B.r_idx AND B.r_code = 'review'
                             LEFT JOIN tbl_code C ON A.travel_type = C.code_no
@@ -78,7 +78,7 @@
                             <tr>
                                 <td class="no"><span><?= $j ?></span></td>
                                 <td class="num"><?= $frow['code_name'] ?></td>
-                                <td class="des"><a href="../evaluate/evaluate_view.php?idx=<?= $frow['idx'] ?>"><?= $frow['title'] ?></a></td>
+                                <td class="des"><a href="../review/review_detail?idx=<?= $frow['idx'] ?>"><?= $frow['title'] ?></a></td>
                                 <td class="date"><?= date("Y.m.d", strtotime($frow['r_date'])) ?></td>
                             </tr>
 
@@ -88,7 +88,7 @@
                 </table>
                 <div class="travel_review_bottom">
                     <?php echo ipageListing2($pg, $nPage, $g_list_rows, $_SERVER['PHP_SELF'] . "?scategory=$scategory&pg=") ?>
-                    <a href="../evaluate/evaluate_write.php" class="sub_write">글쓰기</a>
+                    <a href="../review/review_write" class="sub_write">글쓰기</a>
                 </div>
             </div>
         </div>
