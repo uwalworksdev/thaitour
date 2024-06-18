@@ -187,12 +187,11 @@ function handleReportBad() {
         type: "POST",
         data: $("#report_frm").serialize(),
         success: function(rs) {
-            const data = JSON.parse(rs);
-            if (data.result == "OK") {
+            if (rs.result == "OK") {
                 alert("신고되었습니다");
                 closePopup();
             } else {
-                alert(data.msg||"Error")
+                alert(rs.msg||"Error")
             }
         },
         error: function() {

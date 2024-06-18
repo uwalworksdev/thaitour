@@ -71,8 +71,8 @@
                     <p>신고 내용은 이용약관 및 정책에 의해 처리됩니다. </p>
                 </div>
                     <form action="" id="report_frm">
-                        <input type="hidden" value="" name="code">
-                        <input type="hidden" value="" name="r_idx">
+                        <input type="hidden" value="<?=$r_code?>" name="code">
+                        <input type="hidden" value="<?=$idx?>" name="r_idx">
                         <input type="hidden" value="" name="r_cmt_idx">
                         <div class="pop_input wrap_check flex_s_c">
                             <div class="check_box">

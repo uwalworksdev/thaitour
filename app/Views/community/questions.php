@@ -66,7 +66,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        $('.faq_list .answer_box_wrap').slideUp();
+        $('.faq_list .answer_box_wrap').hide();
 
 
         // qna 클릭시 슬라이드
@@ -75,12 +75,12 @@
                 $('.ques_box').removeClass('active');
                 $(this).addClass('active');
 
-                $('.faq_list .answer_box_wrap').slideUp();
-                $(this).siblings('.answer_box_wrap').slideDown();
+                $('.faq_list .answer_box_wrap').hide();
+                $(this).siblings('.answer_box_wrap').show();
 
             } else {
                 $(this).removeClass('active');
-                $(this).siblings('.answer_box_wrap').slideUp();
+                $(this).siblings('.answer_box_wrap').hide();
 
             }
         });

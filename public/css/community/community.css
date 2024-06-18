@@ -769,7 +769,7 @@ strong {
     width: 26px;
     height: 26px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/question_box_item_Q.png');
+    background-image: url('/images/ico/question_box_item_Q.png');
     margin-left: 50px;
     margin-right: 10px;
 }
@@ -790,7 +790,7 @@ strong {
     width: 25px;
     height: 15px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/question_box_arrow.png');
+    background-image: url('/images/ico/question_box_arrow.png');
     margin-left: auto;
 }
 
@@ -901,7 +901,7 @@ strong {
     width: 10px;
     height: 16px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/box_box_arrow.png');
+    background-image: url('/images/ico/box_box_arrow.png');
 }
 
 .main_section_2 .announcement_box .announ_box .announ_box_item {
@@ -969,7 +969,7 @@ strong {
     width: 10px;
     height: 16px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/box_box_arrow.png');
+    background-image: url('/images/ico/box_box_arrow.png');
 }
 
 .main_section_3 .status_table {
@@ -1030,7 +1030,7 @@ strong {
     width: 12px;
     height: 14px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/status_table_lock_ico.png');
+    background-image: url('/images/ico/status_table_lock_ico.png');
 }
 
 .main_section_3 tbody tr .name {
@@ -1168,7 +1168,7 @@ strong {
     width: 26px;
     height: 26px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/question_box_item_Q.png');
+    background-image: url('/images/ico/question_box_item_Q.png');
     margin-left: 50px;
     margin-right: 10px;
 }
@@ -1184,7 +1184,7 @@ strong {
     width: 25px;
     height: 15px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/question_box_arrow.png');
+    background-image: url('/images/ico/question_box_arrow.png');
     margin-left: auto;
 }
 .questions_section_1 .ques_box .answer_box {
@@ -1203,7 +1203,7 @@ strong {
     width: 26px;
     height: 26px;
     background: no-repeat center;
-    background-image: url('../assets/img/ico/answer_box_item_a.png');
+    background-image: url('/images/ico/answer_box_item_a.png');
     margin-right: 6px;
 }
 

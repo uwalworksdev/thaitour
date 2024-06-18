@@ -461,3 +461,95 @@ function strAsterisk($string) {
 	}
 	return $string_changed;
 }
+function createAndUpdateCaptcha()
+{
+	$session = session();
+	$image = imagecreatetruecolor(200, 50);
+
+	$background = imagecolorallocate($image, 22, 86, 165);
+	$text_color = imagecolorallocate($image, 255, 255, 255);
+	$noise_color = imagecolorallocate($image, 200, 200, 200);
+
+	imagefill($image, 0, 0, $background);
+
+	for ($i = 0; $i < 1000; $i++) {
+		imagesetpixel($image, rand(0, 200), rand(0, 50), $noise_color);
+	}
+
+	for ($i = 0; $i < 10; $i++) {
+		imageline($image, rand(0, 200), rand(0, 50), rand(0, 200), rand(0, 50), $noise_color);
+	}
+
+	$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	$rand_str = '';
+	for ($i = 0; $i < 6; $i++) {
+		$rand_str .= $chars[rand(0, strlen($chars) - 1)];
+	}
+
+	$session->set('captcha', $rand_str);
+	$font_size = 18;
+	$font_path = FCPATH . 'fonts/ONE-Mobile-Regular.ttf';
+	$char_width = 8;
+	$char_height = 16;
+
+	$string_length = strlen($rand_str);
+	$string_width = $string_length * $char_width;
+
+	$x = (170 - $string_width) / 2;
+	$y = (80 - $char_height) / 2;
+
+	imagettftext($image, $font_size, 0, $x, $y, $text_color, $font_path, $rand_str);
+
+	ob_start();
+	imagejpeg($image);
+	$image_data = ob_get_clean();
+	imagedestroy($image);
+
+	$captcha_image = 'data:image/jpeg;base64,' . base64_encode($image_data);
+
+	return array('captcha_image' => $captcha_image, 'captcha_value' => $rand_str);
+}
+function noFileExt($fileName)
+{
+	$allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+	$extension = pathinfo($fileName, PATHINFO_EXTENSION);
+	return in_array(strtolower($extension), $allowedExtensions);
+}
+function updateSQText($textToFilter)
+{
+	//a = &#97;
+    //e = &#101;
+    //i = &#105;
+    //o = &#111;
+    //u  = &#117;
+
+    //A = &#65;
+    //E = &#69;
+    //I = &#73;
+    //O = &#79;
+    //U = &#85;
+    if ($textToFilter != null)
+	{
+		$textToFilter = str_replace('insert','ins&#101rt',$textToFilter);
+		$textToFilter = str_replace('select','s&#101lect',$textToFilter);
+		$textToFilter = str_replace('values','valu&#101s',$textToFilter);
+		$textToFilter = str_replace('where','wher&#101',$textToFilter);
+		$textToFilter = str_replace('order','ord&#101r',$textToFilter);
+		$textToFilter = str_replace('into','int&#111',$textToFilter);
+		$textToFilter = str_replace('drop','dr&#111p',$textToFilter);
+		$textToFilter = str_replace('delete','delet&#101',$textToFilter);
+		$textToFilter = str_replace('update','updat&#101',$textToFilter);
+		$textToFilter = str_replace('set','s&#101t',$textToFilter);
+		$textToFilter = str_replace('flush','fl&#117sh',$textToFilter);
+		$textToFilter = str_replace("'","''",$textToFilter);
+		$textToFilter = str_replace('"',"&#34",$textToFilter);
+		$textToFilter = str_replace('>',"&gt;",$textToFilter);
+		$textToFilter = str_replace('<',"&lt;",$textToFilter);
+		$textToFilter = str_replace('script','scr&#105pt',$textToFilter);
+		$textToFilter = strip_tags($textToFilter);
+	//	$textToFilter = nl2br($textToFilter);
+		$filterInputOutput = $textToFilter;
+		return trim($filterInputOutput);  
+	}
+	 
+}

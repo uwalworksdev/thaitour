@@ -6,12 +6,10 @@ function fetchCommentsFromDatabase($list, $parentCommentId, $level)
     });
     return $filteredArray;
 }
-function displayComments($list, $parentCommentId = 0, $level = 1)
+function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 1)
 {
     $html = '';
     $comments = fetchCommentsFromDatabase($list, $parentCommentId, $level);
-    global $r_idx;
-    global $r_code;
 
     foreach ($comments as $comment) {
         $ww = ($comment['r_level'] - 1) * 40;
@@ -62,15 +60,15 @@ function displayComments($list, $parentCommentId = 0, $level = 1)
         $html .= '</div>';
         $html .= '</div>';
         if ($level < 5) {
-            displayComments($list, $comment['r_cmt_idx'], $level + 1);
+            displayComments($list, $r_code, $r_idx, $comment['r_cmt_idx'], $level + 1);
         }
     }
     return $html;
 }
-function getComment($list)
+function getComment($list, $r_code, $r_idx)
 {
     $html = '<div class="comment">';
-    $html .= displayComments($list);
+    $html .= displayComments($list, $r_code, $r_idx);
     $html .= '</div>';
     $html .= '<script>';
     $html .= '$("#comment_count").text(`(' . count($list) . ')`)';

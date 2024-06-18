@@ -1010,7 +1010,7 @@
 		width: 0.6538rem;
 		height: 0.7692rem;
 		background: no-repeat center;
-		background-image: url(../assets/img/ico/status_table_lock_ico.png);
+		background-image: url(/images/ico/status_table_lock_ico.png);
 
 		background-size: 0.5769rem;
 	}

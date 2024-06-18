@@ -81,6 +81,10 @@ $routes->group("/adm", static function ($routes) {
     });
 });
 $routes->get('/', 'Home::index');
+$routes->group("tools", static function ($routes) {
+    $routes->get('generate_captcha'     , 'Tools::generate_captcha');
+    $routes->post('get_travel_types'    , 'Tools::get_travel_types');
+});
 $routes->group("member", static function ($routes) {
     $routes->get("login"                , "Member::LoginForm");
     $routes->post("login_check"         , "Member::LoginCheck");
@@ -128,6 +132,15 @@ $routes->group("community", static function ($routes) {
     $routes->get("questions"            , "Community::questions");
     $routes->get("announcement"         , "Community::announcement");
     $routes->get("announcement_view"    , "Community::announcement_view");
+});
+$routes->group("contact", static function ($routes) {
+    $routes->get("main"                 , "Contact::main");
+});
+$routes->group("qna", static function ($routes) {
+    $routes->get("list"                 , "Qna::list");
+    $routes->get("view"                 , "Qna::view");
+    $routes->get("write"                , "Qna::write");
+    $routes->post("write_ok"            , "Qna::write_ok");
 });
 
 

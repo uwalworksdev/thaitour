@@ -27,7 +27,7 @@ class Comment extends BaseController
     {
         $r_code = $this->request->getVar("r_code");
         $r_idx = updateSQ($this->request->getVar("r_idx"));
-        $list = getComment($this->comment->getComments($r_code, $r_idx, private_key()));
+        $list = getComment($this->comment->getComments($r_code, $r_idx, private_key()), $r_code, $r_idx);
         return $list;
     }
     public function addComment()
@@ -109,7 +109,7 @@ class Comment extends BaseController
     
         return $this->response->setJSON($result);
     }
-    public function cmtReport()
+    public function reportComment()
     {
         $code = updateSQ($this->request->getPost('code'));
         $r_idx = updateSQ($this->request->getPost('r_idx'));

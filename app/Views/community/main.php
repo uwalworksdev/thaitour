@@ -84,7 +84,7 @@
             <div class="qiuck_box">
                 <div class="info flex">
                     <div class="info_detail">
-                        <a href="/inquiry/main">
+                        <a href="/contact/main">
                             <picture>
                                 <source media="(max-width:850px)" srcset="/images/community/info_detail_1_m.png">
                                 <img src="/images/community/info_detail_1.png" alt="">
@@ -92,7 +92,7 @@
                         </a>
                     </div>
                     <div class="info_detail">
-                        <a href="/travel/travel_list">
+                        <a href="/qna/list">
                             <picture>
                                 <source media="(max-width:850px)" srcset="/images/community/info_detail_2_m.png">
                                 <img src="/images/community/info_detail_2.png" alt="">
@@ -230,7 +230,7 @@
 
 <script>
     $(document).ready(function () {
-        $('.ques_box .answer_box_wrap').slideUp();
+        $('.ques_box .answer_box_wrap').hide();
 
 
         // qna 클릭시 슬라이드
@@ -239,12 +239,12 @@
                 $('.ques_box').removeClass('active');
                 $(this).addClass('active');
 
-                $('.answer_box_wrap').slideUp();
-                $(this).siblings('.answer_box_wrap').slideDown();
+                $('.answer_box_wrap').hide();
+                $(this).siblings('.answer_box_wrap').show();
 
             } else {
                 $(this).removeClass('active');
-                $(this).siblings('.answer_box_wrap').slideUp();
+                $(this).siblings('.answer_box_wrap').hide();
 
             }
         });
