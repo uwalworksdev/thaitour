@@ -20,6 +20,10 @@ class Banner_model extends Model {
                     ->orderBy('onum', 'ASC')
                     ->findAll(2);
     }
+    public function getLineBanners($category = '123')
+    {
+        return $this->where('category', $category)->first();
+    }
 
     public function getCodeBanners($code_no) {
         return $this->db->table('tbl_code_banner a')
