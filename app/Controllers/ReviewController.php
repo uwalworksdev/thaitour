@@ -62,7 +62,7 @@ class ReviewController extends BaseController
             if ($review) {
                 return view("review/review_detail", ["review" => $review, "idx" => $idx]);
             } else {
-                return view("errors/html/error_404");
+                return view("errors/html/error_404", ["message" => "<a href='/'>마이페이지에 접속된 것가 없는 모든 것이 있습니다. </a>"]);
             }
         } else {
             return view("errors/html/error_404");

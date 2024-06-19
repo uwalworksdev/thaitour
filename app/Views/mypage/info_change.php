@@ -1,59 +1,16 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
-<?php
-	$connect = db_connect();
-	$private_key = private_key();
-	if ($_SESSION["member"]["mIdx"] == "")
-	{
-		alert_msg("","/");
-		exit();
-	}
-?>
-
 
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
-
-
 
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
 				echo view("/mypage/mypage_gnb_menu_inc", ["tab_9" => "on", "tab_9_1" => "on"]);
-            	// include $_SERVER['DOCUMENT_ROOT'] . "/inc/postcode.php";
 				echo view("member/postcode_inc")
             ?>
-		<?php
-			$total_sql	= " select *,  CONVERT(AES_DECRYPT(UNHEX(user_name),'$private_key') USING utf8) as user_name_new
-			                        ,  CONVERT(AES_DECRYPT(UNHEX(user_mobile),'$private_key') USING utf8) as user_mobile_new from tbl_member where m_idx = '".$_SESSION["member"]["mIdx"]."' ";
-			$row		= $connect->query($total_sql)->getRowArray();
-			if ($row["user_id"] == "" || $_SESSION["member"]["mIdx"] == "") {
-		?>
-		<script>
-			location.href="/";
-		</script>
-		<?php
-
-			exit();
-			}
-		?>
-
-		<?php
-				if($row["encode"] == "Y") {
-				   $sql_d    = "SELECT   AES_DECRYPT(UNHEX('{$row['user_email']}'), '$private_key') AS user_email
-				                       , AES_DECRYPT(UNHEX('{$row['zip']}'),        '$private_key') AS zip
-									   , AES_DECRYPT(UNHEX('{$row['addr1']}'),      '$private_key') AS addr1 
-									   , AES_DECRYPT(UNHEX('{$row['addr2']}'),      '$private_key') AS addr2 "; 
-				   $row_d    = $connect->query($sql_d)->getRowArray();
-
-
-				   $row['user_email'] = $row_d['user_email'];
-				   $row['zip']        = $row_d['zip'];
-				   $row['addr1']      = $row_d['addr1'];
-				   $row['addr2']      = $row_d['addr2'];
-				}
-        ?>
 		<div class="sub_wrap sub_wrap_padding">
 			<div class="sub_content imfor_change">
 				<h1 class="ttl_table_discount">정보수정</h1>
@@ -64,7 +21,7 @@
 					<div></div>
                 </div>
 				<div class="imfor_tb">
-					<h4 class="imfor_tit">내 정보수정<?=$row['sms_yn']?></h4>
+					<h4 class="imfor_tit">내 정보수정</h4>
 					<form action="imfor_change_ok" method="post" name="frm" id="frm">
                         <input type="hidden" name="mode"    id="mode"    value="mypage" />
                         <input type="hidden" name="sns_key" id="sns_key" value="" />
@@ -87,31 +44,32 @@
 									<col width="*">
 								</colgroup>
 								<tbody>
-									<tr <?php if ($row["gubun"] == "naver" || $row["gubun"] == "kakao" || $row["gubun"] == "google") {echo "style='display:none'";} ?>>
+									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>>
 										<th><p>아이디</p></th>
-										<td colspan="3"><p class="no_write"><?=$row["user_id"]?></p></td>
+										<td colspan="3"><p class="no_write"><?=$member["user_id"]?></p></td>
 									</tr>
 									<tr>
 										<th><p>이메일</p></th>
 										<td colspan="3">
-											<p class="no_write"><?=$row['user_email']?></p>
+											<p class="no_write"><?=$member['user_email']?></p>
 										</td>
 									</tr>
 									<tr>
 										<th><p>이름</p></th>
 										<td colspan="3">
-											<p class="no_write"><?=$row["user_name_new"]?></p>
+											<!-- <p class="no_write"><?=$member["user_name"]?></p> -->
+											<input type="text" name="user_name" id="user_name" value="<?=$member["user_name"]?>" placeholder="" class="bs-input">
 										</td>
 									</tr>
 									<tr>
 										<th><p>생년월일</p></th>
 										<td>
 										<div class="input-row ">
-											<div class="datepick"><input type="text" name="birthday" id="birthday" value="<?=$row["birthday"]?>" onfocus="this.blur()" class="bs-input"></div>
+											<div class="datepick"><input type="text" name="birthday" id="birthday" value="<?=$member["birthday"]?>" onfocus="this.blur()" class="bs-input"></div>
 										</div>
 										</td>
 									</tr>
-									<tr <?php if ($row["gubun"] == "naver" || $row["gubun"] == "kakao" || $row["gubun"] == "google") {echo "style='display:none'";} ?>>
+									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>>
 										<th><p>신규 비밀번호</p></th>
 										<td colspan="3" class="wrap_pass">
 											<input type="password" class="pass_input" name="user_pw" maxlength="20">
@@ -121,7 +79,7 @@
 											</p> -->
 										</td>
 									</tr>
-									<tr <?php if ($row["gubun"] == "naver" || $row["gubun"] == "kakao" || $row["gubun"] == "google") {echo "style='display:none'";} ?>>
+									<tr <?php if ($member["gubun"] == "naver" || $member["gubun"] == "kakao" || $member["gubun"] == "google") {echo "style='display:none'";} ?>>
 										<th><p class="pass_confirm">신규 비밀번호 확인</p></th>
 										<td colspan="3">
 											<input type="password" class="pass_input" name="user_pw2" maxlength="20">
@@ -135,26 +93,26 @@
 										<th class="gender_th"><p>성별</p></th>
 										<td class="gender_td">
 											<label for="imfor_r01">
-												<input type="radio" id="imfor_r01" name="gender" value="M" <? if ($row["gender"] == "M") {echo "checked"; } ?>><span></span>남성
+												<input type="radio" id="imfor_r01" name="gender" value="M" <? if ($member["gender"] == "M") {echo "checked"; } ?>><span></span>남성
 											</label>
 											<label for="imfor_r02">
-											<input type="radio" id="imfor_r02" name="gender" value="F" <? if ($row["gender"] == "F") {echo "checked"; } ?>class="mar_l"><span></span>여성
+											<input type="radio" id="imfor_r02" name="gender" value="F" <? if ($member["gender"] == "F") {echo "checked"; } ?>class="mar_l"><span></span>여성
 											</label>
 										</td>
 									</tr> -->
 									<?php
-										// $arr_email	= explode("@",$row["user_email_new"]);
+										// $arr_email	= explode("@",$member["user_email_new"]);
 										// $email1		= $arr_email[0];
 										// $email2		= $arr_email[1];
-										$arr_mobile	= explode("-",$row["user_mobile_new"]);
+										$arr_mobile	= explode("-",$member["user_mobile"]);
 										$mobile1	= $arr_mobile[0];
 										$mobile2	= $arr_mobile[1];
 										$mobile3	= $arr_mobile[2];
-										$arr_phone	= explode("-",$row["user_phone"]);
+										$arr_phone	= explode("-",$member["user_phone"]);
 										$phone1		= $arr_phone[0];
 										$phone2		= $arr_phone[1];
 										$phone3		= $arr_phone[2];
-										$arr_birthday= explode("-",$row["birthday"]);		
+										$arr_birthday= explode("-",$member["birthday"]);		
 										$byy		= $arr_birthday[0];		
 										$bmm		= $arr_birthday[1];		
 										$bdd		= $arr_birthday[2];		
@@ -180,11 +138,11 @@
 										<td>
 											<div class="input-row">
 												<div class="button-row">
-													<input type="text" name="zip" id="sample2_postcode" value="<?=$row['zip']?>" placeholder="" class="bs-input">
+													<input type="text" name="zip" id="sample2_postcode" value="<?=$member['zip']?>" placeholder="" class="bs-input">
 													<button type="button" onclick="openPostCode()" class="btn cling-btn btn-outline-dark">우편번호</button>
 												</div>
-												<input type="text" name="addr1" id="sample2_address" value="<?=$row['addr1']?>" placeholder="" class="bs-input">
-												<input type="text" name="addr2" id="sample2_detailAddress" value="<?=$row['addr2']?>" placeholder="" class="bs-input">
+												<input type="text" name="addr1" id="sample2_address" value="<?=$member['addr1']?>" placeholder="" class="bs-input">
+												<input type="text" name="addr2" id="sample2_detailAddress" value="<?=$member['addr2']?>" placeholder="" class="bs-input">
 											</div>
 										</td>
 									</tr>
@@ -198,11 +156,11 @@
                                         <td>
 											<div class="input-row">
 												<div class="bs-input-check">
-													<input type="checkbox" name="sms_yn" id="agree_sms" class="agree" value="Y" <?php if($row["sms_yn"] == "Y") echo "checked";?> >
+													<input type="checkbox" name="sms_yn" id="agree_sms" class="agree" value="Y" <?php if($member["sms_yn"] == "Y") echo "checked";?> >
 													<label for="agree_sms">SMS 수신동의</label>
 												</div>
 												<div class="bs-input-check">
-													<input type="checkbox" name="user_email_yn" id="agree_email" class="agree" value="Y" <?php if($row["user_email_yn"] == "Y") echo "checked";?> >
+													<input type="checkbox" name="user_email_yn" id="agree_email" class="agree" value="Y" <?php if($member["user_email_yn"] == "Y") echo "checked";?> >
 													<label for="agree_email">이메일 수신동의</label>
 												</div>
 											</div>
