@@ -221,6 +221,17 @@
                 <?php endif; ?>
             </div>
         </section>
+        <section class="line_banner">
+    <?php if ($lineBanners): ?>
+        <a href="<?= $lineBanners['url'] ?>">
+            <picture>
+                <source media="(max-width: 768px)" srcset="https://hihojoonew.cafe24.com/data/bbs/<?= $lineBanners['ufile5'] ?>">
+                <img src="https://hihojoonew.cafe24.com/data/bbs/<?= $lineBanners['ufile6'] ?>" alt="쉽고 빠른 골프 예약! 하이호주에서 배너">
+            </picture>
+        </a>
+    <?php endif; ?>
+</section>
+
     </div>
 
 </main>
