@@ -2,7 +2,8 @@
 
 use CodeIgniter\Model;
 
-class Bbs extends Model{
+class Bbs extends Model
+{
 
     protected $table = 'tbl_bbs_list';
 
@@ -12,40 +13,44 @@ class Bbs extends Model{
 
     protected function initialize()
     {
-        
+
     }
 
     /**
      * 게시글 출력
      * * Model 로 페이지네이션 사용용도
      */
-    public function List($code, $whereArr = []){
+    public function List($code, $whereArr = [])
+    {
         $builder = $this;
-        $builder->select("{$this->table}.*");
-        if(!empty($whereArr['search_word'])){
-            if(!empty($whereArr['search_mode'])){
+        $builder->select("{$this->table}.*, 
+        (select subject from tbl_bbs_category where tbl_bbs_category.tbc_idx=tbl_bbs_list.category) as scategory,
+        (select count(*) from tbl_bbs_cmt where tbl_bbs_cmt.r_idx=tbl_bbs_list.bbs_idx) as comment_cnt");
+        if (!empty($whereArr['search_word'])) {
+            if (!empty($whereArr['search_mode'])) {
                 $builder->like($whereArr['search_mode'], $whereArr['search_word']);
-            }else{
+            } else {
                 $builder->orLike('subject', $whereArr['search_word']);
                 $builder->orLike('contents', $whereArr['search_word']);
                 $builder->orLike('writer', $whereArr['search_word']);
             }
         }
-        if(!empty($whereArr['category'])){
+        if (!empty($whereArr['category'])) {
             $builder->where('category', $whereArr['category']);
         }
         $builder->where('code', $code);
         $builder->groupBy("{$this->table}.bbs_idx");
         $onumCodeArray = ['banner'];
-        if(in_array($code, $onumCodeArray)){
+        if (in_array($code, $onumCodeArray)) {
             $builder->orderBy("{$this->table}.onum", "DESC");
         }
         $builder->orderBy("{$this->table}.bbs_idx", "desc");
 
         return $builder;
     }
-    
-    public function View($bbs_idx = null){
+
+    public function View($bbs_idx = null)
+    {
         $builder = $this;
         $builder->select("{$this->table}.*");
 
@@ -81,24 +86,25 @@ class Bbs extends Model{
     /**
      * 게시글 등록
      */
-    public function InfoInsert($code, $data){
+    public function InfoInsert($code, $data)
+    {
         try {
-            switch($code) {
+            switch ($code) {
                 case in_array($code, ['license', 'certified', 'brochure']):
                     $this->allowedFields = ['title', 'code', 'category', 'lan'];
                     break;
-                case in_array($code, ['ultrapure','waterTreatment','wasteWater', 'seaWater', 'report', 'notice']):
-                    $this->allowedFields = ['code','topic1','topic2','topic3','content','title','writer','url', 'lan'];
-                    if($code == 'report'){
+                case in_array($code, ['ultrapure', 'waterTreatment', 'wasteWater', 'seaWater', 'report', 'notice']):
+                    $this->allowedFields = ['code', 'topic1', 'topic2', 'topic3', 'content', 'title', 'writer', 'url', 'lan'];
+                    if ($code == 'report') {
                         $this->allowedFields[] = 'reg_date';
                     }
                     break;
                 case in_array($code, ['notice', 'publicNotice']):
-                    $this->allowedFields = ['code','content','title','writer', 'lan'];
+                    $this->allowedFields = ['code', 'content', 'title', 'writer', 'lan'];
                     break;
                 default:
-                   throw new Exception("게시글 코드가 없습니다.");
-                break;
+                    throw new Exception("게시글 코드가 없습니다.");
+                    break;
             }
             $insertId = $this->insert($data);
             $resultArr['result'] = true;
@@ -117,30 +123,31 @@ class Bbs extends Model{
      * @param array $data 업데이트할 정보
      * @return array 
      */
-    public function InfoUpdate($idx, $code, $data){
+    public function InfoUpdate($idx, $code, $data)
+    {
         try {
-            switch($code){
+            switch ($code) {
                 case in_array($code, ['license', 'certified', 'brochure']):
-                    $this->allowedFields = ['title', 'category','lan'];
+                    $this->allowedFields = ['title', 'category', 'lan'];
                     $updateResult = $this->update($idx, $data);
-                    if(!$updateResult){
+                    if (!$updateResult) {
                         throw new Exception("수정 과정 중 오류가 발생했습니다.");
                     }
                     break;
-                case in_array($code, ['ultrapure','waterTreatment','wasteWater', 'seaWater', 'report', 'notice']):
-                    $this->allowedFields = ['code','topic1','topic2','topic3','content','title','url','lan'];
-                    if($code == 'report'){
+                case in_array($code, ['ultrapure', 'waterTreatment', 'wasteWater', 'seaWater', 'report', 'notice']):
+                    $this->allowedFields = ['code', 'topic1', 'topic2', 'topic3', 'content', 'title', 'url', 'lan'];
+                    if ($code == 'report') {
                         $this->allowedFields[] = 'reg_date';
                     }
                     $updateResult = $this->update($idx, $data);
-                    if(!$updateResult){
+                    if (!$updateResult) {
                         throw new Exception("수정 과정 중 오류가 발생했습니다.");
                     }
                     break;
                 case in_array($code, ['notice', 'publicNotice']):
-                    $this->allowedFields = ['content','title'];
+                    $this->allowedFields = ['content', 'title'];
                     $updateResult = $this->update($idx, $data);
-                    if(!$updateResult){
+                    if (!$updateResult) {
                         throw new Exception("수정 과정 중 오류가 발생했습니다.");
                     }
                     break;
@@ -162,16 +169,25 @@ class Bbs extends Model{
      * @param array $data 업데이트 할 정보
      * @return bool
      */
-    public function InfoContentUpdate($idx, $code, $data){
+    public function InfoContentUpdate($idx, $code, $data)
+    {
         $this->allowedFields = ['content'];
         return $this->update($idx, $data);
     }
     /**
      * 우선순위 변경
      */
-    public function OnumUpdate($idx, $code, $data){
+    public function OnumUpdate($idx, $code, $data)
+    {
         $this->allowedFields = ['onum'];
         return $this->where('code', $code)
-                    ->update($idx, $data);
+            ->update($idx, $data);
+    }
+    public function Hit($code, $idx)
+    {
+        $this->allowedFields = ['hit'];
+        $hit = $this->where('code', $code)->where('bbs_idx', $idx)->get()->getRow()->hit;
+        return $this->where('code', $code)->where('bbs_idx', $idx)
+            ->update($idx, ['hit' => $hit + 1]);
     }
 }

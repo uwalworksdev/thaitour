@@ -122,7 +122,7 @@
                     <section class="event_sect ing">
                         <div class="cont_ttl flex_b_c">
                             <h3>진행 중인 이벤트</h3>
-                            <a class="more_btn" href="/event/event03">
+                            <a class="more_btn" href="/event/event_list">
                                 더보기 <i></i>
                             </a>
                         </div>
@@ -131,9 +131,9 @@
                                 <?php
                                 foreach ($event_list as $row) {
                                     if ($row['ufile6'] != '') {
-                                        $img = 'https://hihojoo.com/data/bbs/' . $row['ufile6'];
+                                        $img = '/data/bbs/' . $row['ufile6'];
                                     } else {
-                                        $img = 'https://hihojoo.com/data/product/noimg.png';
+                                        $img = '/data/product/noimg.png';
                                     }
                                     ?>
                                     <li class="list_box">
@@ -153,7 +153,7 @@
                     <section class="event_sect announcement">
                         <div class="cont_ttl flex_b_c">
                             <h3>이벤트 당첨자 발표</h3>
-                            <a class="more_btn" href="/event/event_list">
+                            <a class="more_btn" href="/event/winning_list">
                                 더보기 <i></i>
                             </a>
                         </div>

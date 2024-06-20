@@ -559,3 +559,38 @@ function yoil_convert($day)
       $yoil = $yoil[date('w', strtotime($day))];
 	  return $yoil;
 }
+function GD2_make_thumb($source, $destination, $width, $height) {
+    $image = imagecreatefromjpeg($source);
+
+    list($original_width, $original_height) = getimagesize($source);
+
+    $ratio = $original_width / $original_height;
+    if ($width / $height > $ratio) {
+        $width = $height * $ratio;
+    } else {
+        $height = $width / $ratio;
+    }
+
+    $thumb = imagecreatetruecolor($width, $height);
+
+    imagecopyresampled($thumb, $image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
+
+    imagejpeg($thumb, $destination);
+
+    imagedestroy($image);
+    imagedestroy($thumb);
+}
+function get_img($img, $path, $width, $height, $water = "")
+{
+	$file_dir = "";
+	$thumb_img_path = $_SERVER["DOCUMENT_ROOT"].$path."/thum_".$width."_$height/";
+	if(!is_dir($thumb_img_path)){
+		@mkdir($thumb_img_path, 0777);
+	}
+	$thumb_img = $thumb_img_path.$img;
+	if(!file_exists($thumb_img))
+	{
+		@GD2_make_thumb($width,$height,$thumb_img,$_SERVER["DOCUMENT_ROOT"]."/".$path."/".$img);
+	}
+	return $path."/thum_".$width."_".$height."/".$img;
+}

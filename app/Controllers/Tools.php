@@ -8,6 +8,7 @@ use Exception;
 class Tools extends BaseController
 {
     protected $Code;
+    protected $WishModel;
     protected $Product_model;
     protected $sessionLib;
     protected $sessionChk;
@@ -15,6 +16,7 @@ class Tools extends BaseController
     {
         helper(['html']);
         $this->Code = model("Code");
+        $this->WishModel = model("WishModel");
         $this->Product_model = model("Product_model");
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
@@ -38,25 +40,56 @@ class Tools extends BaseController
             $data .= "<option value='$row[code_no]'>$row[code_name]</option>";
         }
         return json_encode([
-            "data"  => $data,
-            "cnt"   => $cnt
+            "data" => $data,
+            "cnt" => $cnt
         ]);
     }
     public function get_list_product()
     {
         $product_code = $_POST['product_code'];
-    
-        $result	= $this->Product_model->where('product_code_3', $product_code)->findAll();
+
+        $result = $this->Product_model->where('product_code_3', $product_code)->findAll();
         $cnt = count($result);
         $data = "";
         if ($cnt == 0) {
-               $data .= "<option value=''>선택</option>";
+            $data .= "<option value=''>선택</option>";
         }
-    
+
         foreach ($result as $row) {
-                $data .= "<option value='".$row["product_idx"]."'>".viewSQ($row["product_name"])."</option>";
+            $data .= "<option value='" . $row["product_idx"] . "'>" . viewSQ($row["product_name"]) . "</option>";
         }
-    
+
         echo $data;
+    }
+    public function wish_set()
+    {
+        $product_idx = $_POST["product_idx"];
+        if ($_SESSION["member"]["idx"] == "") {
+            $msg = "로그인 하셔야 합니다.";
+            return "{\"message\":\"$msg\"}";
+        }
+        $cnt = $this->WishModel->getWishCnt($_SESSION["member"]["idx"], $product_idx);
+        if ($cnt > 0) {
+            $cnt = $this->WishModel->deleteWish([
+                "m_idx" => $_SESSION["member"]["idx"],
+                "product_idx" => $product_idx
+            ]);
+            $msg = "찜하기 삭제 하셨습니다.";
+            return "{\"message\":\"$msg\"}";
+        }
+
+        $result = $this->WishModel->insertWish([
+            "m_idx" => $_SESSION["member"]["idx"],
+            "product_idx" => $product_idx,
+            "wish_r_date" => date("Y-m-d H:i:s")
+        ]);
+
+        if ($result) {
+            $msg = "찜하기 추가되었습니다.";
+        } else {
+            $msg = "오류발생.";
+        }
+
+        return "{\"message\":\"$msg\"}";
     }
 }

@@ -63,7 +63,6 @@ class Product extends BaseController
                     ->getResult();
             }
 
-            // Truyền dữ liệu sang view
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,

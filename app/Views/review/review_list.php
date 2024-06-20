@@ -4,7 +4,7 @@
     <section class="evaluate_section">
         <div class="inner">
             <a href="<?= $visual['url'] ?>" id="myLink">
-                <div class="sub_visual" style="background-image: url(<?= $visual['ufile6'] ? "https://hihojoo.com/data/bbs/".$visual['ufile6'] : '' ?>);"></div>
+                <div class="sub_visual" style="background-image: url(<?= $visual['ufile6'] ? "/data/bbs/".$visual['ufile6'] : '' ?>);"></div>
             </a>
             <div class="sect_ttl_box">
                 <h2>Best 여행후기</h2>
@@ -21,7 +21,7 @@
                         $img_url = "";
 
                         if (!$img_url and $value['ufile1']) {
-                            $img_url = "https://hihojoo.com/data/review/" . $value['ufile1'];
+                            $img_url = "/data/review/" . $value['ufile1'];
                         }
 
                         $pattern = '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i';
@@ -32,7 +32,7 @@
 
                         if (!$img_url) {
                             if ($value['product_img']) {
-                                $img_url = "https://hihojoo.com/data/review/" . $value['product_img'];
+                                $img_url = "/data/review/" . $value['product_img'];
                             }
                         }
 

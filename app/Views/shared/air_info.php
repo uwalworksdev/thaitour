@@ -350,7 +350,9 @@
                     <button type="button " class="btn-default"
                         onclick="location='/inquiry/inquiry_write.php?product_idx=<?= $product_idx ?>'">상담 문의하기</button>
                     <button type="button " class="btn-default wish_btn"
-                        onclick="javascript:wish_it('<?= $product_idx ?>')"><img src="https://hihojoonew.cafe24.com/assets/img/ico/icon_heart_off.png" alt=""></button>
+                        onclick="javascript:wish_it('<?= $product_idx ?>')">
+                        <img src="https://hihojoonew.cafe24.com/assets/img/ico/icon_heart_off.png" alt="">
+                    </button>
                 </div>
             </div>
         </div>
@@ -492,4 +494,31 @@
 
         $("#total_txt").text(total.toLocaleString() + " 원");
     }
+</script>
+<script>
+  function wish_it() {
+
+    if (<?= session("member.mIdx") ?> == "") {
+      alert("로그인 하셔야 합니다.");
+      location.href = '/member/login?returnUrl=' + $("#req_url").val();
+    } else {
+        var message = "";
+        $.ajax({
+            url: "/tools/wish_set",
+            type: "POST",
+            data: { "product_idx": '1714' },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                message = data.message;
+                alert(message);
+                location.reload();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
+  }
 </script>

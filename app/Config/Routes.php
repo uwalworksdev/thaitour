@@ -85,6 +85,7 @@ $routes->group("tools", static function ($routes) {
     $routes->get('generate_captcha'     , 'Tools::generate_captcha');
     $routes->post('get_travel_types'    , 'Tools::get_travel_types');
     $routes->post('get_list_product'    , 'Tools::get_list_product');
+    $routes->post('wish_set'            , 'Tools::wish_set');
 });
 $routes->group("member", static function ($routes) {
     $routes->get("login"                , "Member::LoginForm");
@@ -153,6 +154,17 @@ $routes->group("review", static function ($routes) {
     $routes->get("review_write"         , "ReviewController::write_review");
     $routes->post("review_write_ok"     , "ReviewController::save_review");
     $routes->post("review_delete"       , "ReviewController::review_delete");
+});
+$routes->group("event", static function ($routes) {
+    $routes->get("event_list"           , "EventController::event_list");
+    $routes->get("winning_list"         , "EventController::winning_list");
+    $routes->get("event_view"           , "EventController::event_view");
+});
+$routes->group("center", static function ($routes) {
+    $routes->get("insurance"            , "CustomerCenterController::insurance");
+    $routes->get("tourterms"            , "CustomerCenterController::tourterms");
+    $routes->get("terms"                , "CustomerCenterController::terms");
+    $routes->get("privacy"              , "CustomerCenterController::privacy");
 });
 
 

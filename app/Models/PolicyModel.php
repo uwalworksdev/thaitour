@@ -1,0 +1,16 @@
+<?php
+
+use CodeIgniter\Model;
+
+class PolicyModel extends Model
+{
+    protected $table = 'tbl_policy_info';
+
+    protected $primaryKey = 'p_idx';
+
+    protected $allowedFields = ["policy_code", "policy_type", "policy_contents"];
+    public function getByCode($code)
+    {
+        return $this->select("*")->where("policy_code", $code)->get()->getRowArray();
+    }
+}
