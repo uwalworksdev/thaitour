@@ -406,12 +406,12 @@
     font-family: "Noto Sans KR";
     padding-left: 40px;
     line-height: 2.5;
-    background: url('../img/ico/radio30.png') no-repeat left center;
+    background: url('/images/ico/radio30.png') no-repeat left center;
     cursor: pointer;
 }
 
 .table_form input[type="radio"]:checked+label {
-    background-image: url('../img/ico/radio_on30x30.png');
+    background-image: url('/images/ico/radio_on30x30.png');
 }
 
 

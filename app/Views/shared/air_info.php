@@ -84,7 +84,6 @@
             console.log('startDateIn:', startDateIn);
 
             function setSlide(currentMonth, currentYear) {
-                // Đoạn mã setSlide
                 console.log('setSlide - currentMonth:', currentMonth);
                 console.log('setSlide - currentYear:', currentYear);
 
@@ -137,7 +136,6 @@
                 `);
                     }
                 });
-
 
                 swiper01 = new Swiper('.calendar-swiper-container', {
             slidesPerView: 13,
@@ -496,7 +494,7 @@
     }
 </script>
 <script>
-  function wish_it() {
+  function wish_it(product_idx) {
 
     if (<?= session("member.mIdx") ?> == "") {
       alert("로그인 하셔야 합니다.");
@@ -506,7 +504,7 @@
         $.ajax({
             url: "/tools/wish_set",
             type: "POST",
-            data: { "product_idx": '1714' },
+            data: { "product_idx": product_idx },
             dataType: "json",
             async: false,
             cache: false,

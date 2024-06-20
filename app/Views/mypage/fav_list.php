@@ -18,12 +18,6 @@
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
-<style>
-    /* .popup_wrap .popup {
-        top: 32%;
-        left: 32.6%;
-    } */
-</style>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
@@ -41,7 +35,7 @@
             ?>
             <div class="content">
                 <h1 class="ttl_table">찜한 상품</h1>
-                <p class="count">전체 <span><?= $talCount_wish_cnt ?></span>개</p>
+                <p class="count">전체 <span><?= $total_cnt ?></span>개</p>
                 <form name="frm" id="frm">
                     <table class="fav_list_table">
                         <colgroup>
@@ -70,7 +64,7 @@
                         <tbody>
 
                             <?php
-                            $nPage = ceil($talCount_wish_cnt / $g_list_rows);
+                            $nPage = ceil($total_cnt / $g_list_rows);
                             if ($page == "") $page = 1;
                             $nFrom = ($page - 1) * $g_list_rows;
                             $fsql   = $sql_wish . " order by wish_r_date asc  limit $nFrom, $g_list_rows ";
@@ -79,7 +73,7 @@
 
                             $fresult = $connect->query($fsql)->getResultArray();
 
-                            $num = $talCount_wish_cnt - $nFrom;
+                            $num = $total_cnt - $nFrom;
                             foreach ($fresult as $frow) {
                             ?>
                                 <tr>
@@ -174,7 +168,7 @@
 
     function SELECT_DELETE() {
         if ($(".input_check").is(":checked") == false) {
-            alert_("삭제할 내용을 선택하셔야 합니다.");
+            alert("삭제할 내용을 선택하셔야 합니다.");
             return;
         }
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
@@ -184,12 +178,12 @@
         // console.log($("#frm").serialize());
 
         $.ajax({
-            url: "del_wish.php",
+            url: "/tools/del_wish",
             type: "POST",
             data: $("#frm").serialize(),
             error: function(request, status, error) {
                 //통신 에러 발생시 처리
-                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
             },
             success: function(data, status, request) {

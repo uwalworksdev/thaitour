@@ -86,6 +86,7 @@ $routes->group("tools", static function ($routes) {
     $routes->post('get_travel_types'    , 'Tools::get_travel_types');
     $routes->post('get_list_product'    , 'Tools::get_list_product');
     $routes->post('wish_set'            , 'Tools::wish_set');
+    $routes->post('del_wish'            , 'Tools::del_wish');
 });
 $routes->group("member", static function ($routes) {
     $routes->get("login"                , "Member::LoginForm");
@@ -166,7 +167,10 @@ $routes->group("center", static function ($routes) {
     $routes->get("terms"                , "CustomerCenterController::terms");
     $routes->get("privacy"              , "CustomerCenterController::privacy");
 });
-
+$routes->group("custom_travel", static function ($routes) {
+    $routes->get("item_write"           , "CustomTravelController::item_write");
+    $routes->post("inquiry_ok"          , "CustomTravelController::inquiry_ok");
+});
 
 
 

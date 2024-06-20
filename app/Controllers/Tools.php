@@ -92,4 +92,11 @@ class Tools extends BaseController
 
         return "{\"message\":\"$msg\"}";
     }
+    public function del_wish() {
+        $idx = $_POST["idx"];
+        if (is_array($idx)) {
+            $this->WishModel->deleteWish($idx);
+        }
+        return "OK";
+    }
 }
