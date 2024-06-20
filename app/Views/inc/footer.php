@@ -63,14 +63,18 @@
         </div>
     </div>
 </footer>
-
-
+<script src="/js/slider_option.js"></script>
 <script>
-     $(document).ready(function() {
-            $('#language-select-2').select2({
-                minimumResultsForSearch: Infinity
-            });
+    $(document).ready(function () {
+        $('#language-select-2').select2({
+            minimumResultsForSearch: Infinity
         });
+        console.log($("img"));
+        $("img").on("error", function () {
+            console.log("error_image");
+            $(this).attr("src", `https://hihojoo.com/${$(this).attr("src")}`);
+        })
+    });
 </script>
 </body>
 

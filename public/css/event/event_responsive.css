@@ -1,0 +1,153 @@
+
+
+/* 반응형 작성 사이즈 구분 목록  */
+/*
+	300~768px (portrait and landscape) : find -> respon01
+	300~699px (portrait) : find -> respon02
+	700~768px (portrait) : find -> respon03
+	300~768px (landscape) : find -> respon04
+	769~1024px (portrait and landscape) : find -> respon05
+	769~1024px (portrait) : find -> respon06
+	769~800px (landscape) : find -> respon07
+	801~1024px (landscape) : find -> respon08
+*/
+
+
+
+/*/////////////////////////////// 스마트폰 시작 ///////////////////////////////*/
+/* phone (portrait and landscape) START */
+/* respon01 */  
+@media only screen and (min-width : 300px) and (max-width : 768px) 
+{
+	/*.sub_wrap .event_left > ul.left_nav{ margin-bottom: 0; }
+	.sub_wrap .event_left > ul.left_nav > li{ width: 50%; }
+	.sub_wrap .event_left > ul.left_nav > li a{ font-size: 0.75em; }*/
+
+	/* 이벤트 상단 */
+	/*.sub_wrap .sub_content .event_top{ height: auto; padding: 3%; background-size: cover; background-position: center center; }
+	.sub_wrap .sub_content .event_top .text{ position: static;  }
+	.sub_wrap .sub_content .event_top .text01{ font-size: 0.7em; }
+	.sub_wrap .sub_content .event_top .text02{ font-size: 1.2em; text-shadow: 2px 2px 0 rgba(255,255,255,1); }
+	.sub_wrap .sub_content .event_top .text03{ font-size: 0.7em; display: none; }
+
+	/* 이벤트 리스트 */
+	/*.event_list_wrap ul.event_list li{ width: 100%; padding: 5% 0 2% 0; border-bottom: 1px solid #e2e2e2; }
+	.event_list_wrap ul.event_list li .event_img{ display: none; }
+	.event_list_wrap ul.event_list li .event_con{ width: 100%; }
+
+	/* 이벤트 view */
+	.event_view .view_title li p{ text-indent: 3%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 75%; font-size: 0.75em; }
+	.event_view .view_title li p.title{ width: 25%; }
+	.event_view .view_title li.subject{ width: 100%; }
+	.event_view .view_title li.date{ width: 100%; }
+	.event_view .view_content{ padding: 3%; font-size: 0.75em; min-height: 100px;  }
+
+	/* 이벤트 view 버튼 */
+	.event_view .tb_btn_box{ margin-bottom: 15%; }
+	.event_view .tb_btn_box .btn{ width: 20%; height: 30px; line-height: 30px; font-size: 0.75em; }
+	/* 이벤트 리스트 */
+	.event_list_wrap{ margin-top:0px;}
+	.event_list_wrap ul.event_list{ margin-bottom: 10px; border-top:2px solid #555; }
+	.event_list_wrap ul.event_list li{padding:20px 10px; border-bottom:1px solid #dfdfdf;}
+	.event_list_wrap ul.event_list li .event_img{float:none; width:100%;}
+	.event_list_wrap ul.event_list li .event_img a{ display: block;}
+	.event_list_wrap ul.event_list li .event_img a img{}
+	.event_list_wrap ul.event_list li .event_con{float:none;margin-left:0px;padding-top:10px; width:100%;}
+	.event_list_wrap ul.event_list li .event_con p{display:block;}
+	.event_list_wrap ul.event_list li .event_con p.event_subject{font-size:14px; line-height:14px; }
+	.event_list_wrap ul.event_list li .event_con p.event_subject a{font-size:14px;}
+	.event_list_wrap ul.event_list li .event_con p.event_coment{ color: #666; overflow: hidden; margin:8px 0 14px;
+	 text-overflow: ellipsis; white-space:nowrap; word-wrap:break-word; font-size:11px;font-weight:300;
+	 line-height: 1; }
+	.event_list_wrap ul.event_list li .event_con p.event_date{ color: #666; font-size:11px; font-weight:300;}
+
+	.event_list_wrap ul.event_list li .event_img.over img{-webkit-filter: grayscale(100%); filter: gray;-webkit-filter: grayscale(100%);
+	 -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%);filter: grayscale(100%);filter: gray; 
+	  filter: gray; /* IE 6-9 */}
+
+	
+}
+
+/* phone (portrait) START */
+/* respon02 */
+@media only screen and (min-device-width : 300px) and (max-device-width : 699px) 
+and (orientation : portrait) 
+{
+
+}
+/* respon03 */
+@media only screen and (min-device-width : 700px) and (max-device-width : 768px) 
+and (orientation : portrait) 
+{
+
+}
+
+/* phone (landscape) START */
+/* respon04 */ 
+@media only screen and (min-device-width : 300px) and (max-device-width : 768px) 
+and (orientation : landscape) 
+{ 
+
+}
+
+/*/////////////////////////////// 스마트폰 종료 ///////////////////////////////*/
+
+
+
+
+
+/*/////////////////////////////// 태블릿 시작 ///////////////////////////////*/
+/* tablet (portrait and landscape) START */
+/* respon05 */ 
+@media only screen and (min-width : 769px) and (max-width : 1024px) 
+{
+	.sub_wrap .event_left > ul.left_nav{ margin-bottom: 0; }
+	.sub_wrap .event_left > ul.left_nav > li{ width: 50%; }
+	.sub_wrap .event_left > ul.left_nav > li a{ font-size: 0.75em; }
+
+	/* 이벤트 상단 */
+	.sub_wrap .sub_content .event_top{ height: auto; padding: 3%; background-size: cover; background-position: center center; }
+	.sub_wrap .sub_content .event_top .text{ position: static;  }
+	.sub_wrap .sub_content .event_top .text01{ font-size: 0.7em; }
+	.sub_wrap .sub_content .event_top .text02{ font-size: 1.2em; text-shadow: 2px 2px 0 rgba(255,255,255,1); }
+	.sub_wrap .sub_content .event_top .text03{ font-size: 0.7em; display: none; }
+
+	/* 이벤트 리스트 */
+	.event_list_wrap ul.event_list li{ width: 100%; padding: 5% 0 2% 0; border-bottom: 1px solid #e2e2e2; }
+	.event_list_wrap ul.event_list li .event_img{ display: none; }
+	.event_list_wrap ul.event_list li .event_con{ width: 100%; }
+
+	/* 이벤트 view */
+	.event_view .view_title li p{ text-indent: 3%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 75%; font-size: 0.75em; }
+	.event_view .view_title li p.title{ width: 25%; }
+	.event_view .view_title li.subject{ width: 100%; }
+	.event_view .view_title li.date{ width: 100%; }
+	.event_view .view_content{ padding: 3%; font-size: 0.75em; min-height: 100px;  }
+
+	/* 이벤트 view 버튼 */
+	.event_view .tb_btn_box{ margin-bottom: 15%; }
+	.event_view .tb_btn_box .btn{ width: 20%; height: 30px; line-height: 30px; font-size: 0.75em; }
+}
+/* tablet (portrait) START */
+/* respon06 */ 
+@media only screen and (min-device-width : 769px) and (max-device-width : 1024px) 
+and (orientation : portrait) 
+{
+
+}
+/* tablet (landscape) START */
+/* respon07 */ 
+@media only screen and (min-device-width : 769px) and (max-device-width : 800px) 
+and (orientation : landscape) 
+{ 
+	
+}
+/* respon08 */
+@media only screen and (min-device-width : 801px) and (max-device-width : 1024px) 
+and (orientation : landscape) 
+{ 
+
+}
+
+
+/*/////////////////////////////// 태블릿 종료 ///////////////////////////////*/

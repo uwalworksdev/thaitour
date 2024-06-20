@@ -23,7 +23,6 @@
 @import url(../lib/slick/slick.css);
 @import url(./contents/root.css);
 @import url(./layout/popup.css);
-@import url(./contents/member.css);
 @import url(./contents/form-control.css);
 
 /* contents */
@@ -34,6 +33,8 @@
 @import url(./contents/custom.css); 
 @import url(./contents/slider_common.css); 
 @import url(./contents/pagi.css); 
+@import url(./contents/member.css);
+@import url(./contents/item.css);
 /* responsive */
 /* @import url(./contents/responsive.css);
 @import url(./contents/main_responsive.css);

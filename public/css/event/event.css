@@ -1,0 +1,995 @@
+
+
+/* 이벤트 상단 */
+/* .sub_wrap .sub_content .event_top{}
+.sub_wrap .sub_content .event_top .text{}
+.sub_wrap .sub_content .event_top .text03{}
+.sub_wrap .sub_content .event_top .text03 p{ font-size: 14px; color: #666666; line-height:1.6;} */
+
+/* 이벤트 리스트 */
+/* .event_list_wrap{padding-top:20px; border-top:1px solid #eeeeee; margin-top:30px;}
+.event_list_wrap ul.event_list{ margin-bottom: 20px; border-top:2px solid #555; }
+.event_list_wrap ul.event_list::after{display:block; content:""; clear:both;}
+.event_list_wrap ul.event_list li{padding:10px; border-bottom:1px solid #dfdfdf;}
+.event_list_wrap ul.event_list li::after{content:""; display:block; clear:both;}
+.event_list_wrap ul.event_list li .event_img{float:left; width:233px; border:1px solid #ddd;}
+.event_list_wrap ul.event_list li .event_img a{ display: block;}
+.event_list_wrap ul.event_list li .event_img a img{}
+.event_list_wrap ul.event_list li .event_con{float:left;margin-left:20px;padding-top:10px; width:520px;}
+.event_list_wrap ul.event_list li .event_con p{display:block;}
+.event_list_wrap ul.event_list li .event_con p.event_subject{font-size:18px; line-height:18px;position:relative; }
+.event_list_wrap ul.event_list li .event_con p.event_subject a{ display: block; color: #333; font-weight: bold;white-space:nowrap; overflow:hidden;
+text-overflow:ellipsis;font-weight:400; }
+.event_list_wrap ul.event_list li .event_con p.event_coment{ color: #666; overflow: hidden; margin:12px 0 30px;
+ text-overflow: ellipsis; white-space:nowrap; word-wrap:break-word; font-size:15px;font-weight:300;
+ line-height: 1; }
+.event_list_wrap ul.event_list li .event_con p.event_date{ color: #666; font-size:15px; font-weight:300;}
+
+.event_list_wrap ul.event_list li .event_img.over img{-webkit-filter: grayscale(100%); filter: gray;-webkit-filter: grayscale(100%);
+ -moz-filter: grayscale(100%); -ms-filter: grayscale(100%); -o-filter: grayscale(100%);filter: grayscale(100%);filter: gray; 
+  filter: gray; /* IE 6-9 */
+
+/* 이벤트 view */
+/* .event_view{ width: 100%; margin: 0 auto; padding-top: 5px; background:url('./write_top.png') left top no-repeat; }
+.event_view .view_title{ border-top: 2px solid #c5c5c5;  }
+.event_view .view_title li{ float: left; height: 35px; line-height: 35px; border-bottom: 1px solid #dbdbdb; overflow: hidden; }
+.event_view .view_title li p{ float: left; color: #333333; font-size: 14px; text-indent: 25px; }
+.event_view .view_title li p.title{ background: #f4f4f4; width: 125px; }
+.event_view .view_title li.subject{ width: 56%; }
+.event_view .view_title li.date{ width: 44%; }
+.event_view .view_title li.ref{ width: 100%; }
+.event_view .view_content{ padding: 25px; font-size: 14px; color: #555555; min-height: 200px; border-bottom: 1px solid #dbdbdb; } */
+
+/* 이벤트 view 버튼 */
+/* .event_view .tb_btn_box{ margin-bottom: 100px; }
+.event_view .tb_btn_box{text-align:right;}
+.event_view .tb_btn_box:after{clear:both; content:""; display:block;}
+.event_view .tb_btn_box button{ width:90px; height:40px; box-sizing:border-box; color:#fff; font-size:17px; font-weight:bold; text-align:center; line-height:40px; border-radius:5px; background:#3a7ab8;}
+.event_view .tb_btn_box .write{ display: inline-block; width:90px; height:40px; box-sizing:border-box; color:#fff; font-size:17px; font-weight:bold; text-align:center; line-height:40px; border-radius:5px; background:#3a7ab8;}
+.event_view .tb_btn_box .btn{ display: inline-block; width:90px; height:40px; line-height: 40px; color: #3a7ab8; text-align: center; border-radius:5px; border: 1px solid #3a7ab8; margin-top: 10px; } */
+
+
+.event_container {
+  padding-top: 95px;
+  padding-bottom: 145px;
+  padding-left: calc((100% - 1200px)/2);
+  padding-right: calc((100% - 1200px)/2);
+  margin: 0 auto;
+
+}
+
+.event_container .event_title {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 60px;
+}
+
+.event_container .event_title h1{
+  font-family: "Noto Sans KR";
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 42px;
+}
+
+.event_container .event_top .event_tab {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+} 
+
+.event_container .event_top .event_tab ul {
+  width: 100%;
+  display: flex;
+  overflow-x: scroll;
+  justify-content: space-between;
+}
+
+.event_tab ul::-webkit-scrollbar {
+  display: none;
+}
+
+.event_tab ul li {
+  width: 100%;
+  display: flex;
+}
+
+.event_tab ul li a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 24px;
+  font-family: "Noto Sans KR";
+  line-height: 26px;
+  color: #999999;
+  font-weight: bold;
+  position: relative;
+  border-bottom: 1px solid #dbdbdb;
+  padding-bottom: 30px;
+
+}
+
+.event_tab ul li.on a {
+  color: #252525;
+}
+
+.event_tab ul li.on a::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #252525;
+  position: absolute;
+  top: 99%;
+  left: 0;
+}
+
+.event_container .event_top .event_list {
+  display: flex;
+  gap: 40px 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.event_list .event_child {
+  width: calc(33.33% - 20px);
+}
+
+.event_list .event_child .event_image {
+  position: relative;
+  width: 380px;
+  height: 230px;
+  /* cursor: pointer; */
+}
+
+.event_image .event_image-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.9;
+  background-color: rgb(41, 37, 39, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  /* display: none; */
+}
+
+.event_image .event_image-hover span {
+  font-size: 18px;
+  line-height: 26px;
+  font-family: "Noto Sans KR";
+  color: #ffffff;
+}
+
+.event_list .event_child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  
+}
+
+/* .event_list .event_child .event_image:not(:hover) .event_image-hover{
+  display: none;
+} */
+
+.event_child a h3 {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Noto Sans KR";
+  line-height: 26px;
+  color: #252525;
+  margin-bottom: 20px;
+  margin-top: 30px;
+
+}
+
+.event_child-content .event_child-date {
+  color: rgb(117, 117, 117);
+  font-size: 16px;
+  font-family: "Noto Sans KR";
+}
+
+
+/* Table  */
+
+.event_top .content {
+  padding-top: 40px;
+}
+
+.event_list .event_table {
+  width: 100%;
+  border-top: 1px solid #252525;
+}
+
+.event_list .event_table thead {
+  border-bottom: 1px solid thead;
+}
+
+.event_list .event_table tr {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.event_list .event_table th {
+  font-size: 18px;
+  font-weight: 500;
+  color: #252525;
+  background: #fafafa;
+  padding: 20px 0;
+  height: 60px;
+}
+
+.event_list .event_table td {
+  font-size: 16px;
+}
+
+.event_list .event_table .num {
+
+}
+
+.event_list .event_table .date {
+  font-family: "Noto Sans KR";
+  color: #757575;
+}
+
+.event_list .event_table td {
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.event_list .event_table .num {
+  font-size: 16px;
+  color: #757575;
+  font-family: "Noto Sans KR";
+}
+
+.event_list .event_table .num span {
+  font-family: "Noto Sans KR";
+}
+
+.event_list .event_table .subject {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  
+}
+
+.event_list .event_table .subject a {
+  display: inline-block;
+  max-width: 100%;
+  padding-right: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Noto Sans KR";
+}
+
+.event_list .event_table .subject span {
+  color: #e9281d;
+  font-size: 13px;
+  margin-left: 5px;
+  font-family: "Noto Sans KR";
+}
+
+
+.event_view {
+  padding-top: 95px;
+  padding-bottom: 115px;
+  padding-left: calc((100% - 1200px) / 2);
+  padding-right: calc((100% - 1200px) / 2);
+}
+
+.event_view .event_top {
+  padding-bottom: 40px;
+  border-bottom: 1px solid #2b2b2b;
+}
+
+.event_view .event_top .event_top_title {
+  margin-bottom: 30px;
+}
+
+.event_view .event_top .event_top_title span {
+  font-size: 30px;
+  font-family: "Noto Sans KR";
+  font-weight: bold;
+  color: #252525;
+}
+
+.event_view .event_top span {
+  margin-bottom: 40px;
+  font-size: 16px;
+  font-family: "Noto Sans KR";
+  color: #757575;
+}
+
+.event_view .event_content {
+  padding: 0px 30px 100px 30px;
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+
+.event_view .event_content p {
+  font-size: 16px;
+  color: #454545;
+  line-height: 28px;
+  font-family: "Noto Sans KR";
+}
+
+.event_view .event_content .event_content-detail {
+  margin-top: 40px;
+}
+
+.event_view .event_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.event_view .event_button button {
+  padding: 20px 100px;
+  color: #252525;
+  border-radius: 4px;
+  border: 1px solid #dbdbdb;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+.event_view .event_comment {
+  padding: 80px 0 0;
+}
+
+.event_comment .event_comment-top .event_comment-count {
+  margin-bottom: 15px;
+}
+
+.event_comment .event_comment-top .event_comment-count span{
+  font-family: "Noto Sans KR";
+  font-size: 18px;
+  line-height: 28px;
+  color: #252525;
+  font-weight: 500;
+}
+
+.event_comment .event_comment-top .event_comment-input {
+  display: flex;
+  gap: 0 10px;
+  margin-bottom: 0.3846rem;
+}
+
+.event_comment .event_comment-top .event_comment-input textarea{
+  height: 100px;
+  width: calc(100% - 100px - 10px);
+  padding: 20px 20px;
+  font-size: 16px;
+ 
+}
+
+.event_comment .event_comment-top .event_comment-input textarea::placeholder {
+  color: #999999;
+  
+}
+
+.event_comment .event_comment-top .event_comment-input button {
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+  background-color: #2e3e92;
+  font-size: 18px;
+  line-height: 28px;
+  font-family: "Noto Sans KR";
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.event_comment .event_comment-top .bs-input-check label {
+  font-family: "Noto Sans KR";
+  font-size: 16px;
+}
+
+.event_comment .event_comment-details {
+  margin-top: 30px;
+}
+
+.event_user .event_user-avatar img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+}
+
+.event_comment .event_comment-details .event_user{
+  display: flex;
+  column-gap: 20px;
+  padding: 30px 0;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.event_comment .event_comment-details .event_user-detail {
+  max-width: calc(100% - 52px - 20px);
+}
+
+.event_comment-details .event_user-comment p {
+  font-size: 16px;
+  font-family: "Noto Sans KR";
+  line-height: 28px;
+  color: #454545;
+}
+
+.event_comment-details .event_user-content {
+  margin-top: 25px;
+}
+
+.event_comment-details .event_user-content .event_user-type {
+  cursor: pointer;
+}
+
+.event_comment-details .event_user-content span {
+  font-family: "Noto Sans KR";
+  font-size: 16px;
+  line-height: 28px;
+  color: #6c7580;
+  position: relative;
+  margin-right: 20px;
+}
+
+.event_comment-details .event_user-content .event_user-title::after,
+.event_comment-details .event_user-content .event_user-date::after {
+  position: absolute;
+  content: '';
+  width: 1px;
+  height: 10px;
+  background-color: #d8d8d8;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc(100% + 10px);
+}
+
+.event_comment-details .event_user-detail .event_user-operation {
+  margin-top: 20px;
+}
+
+.event_comment-details .event_user-detail .event_user-operation button{
+  font-family: "Noto Sans KR";
+  font-size: 16px;
+  line-height: 28px;
+  color: #454545;
+  border: 1px solid #dbdbdb;
+  padding: 0 10px;
+  border-radius: 3px;
+}
+
+/* popup */
+
+/* popup_wrap */
+/* .popup_wrap {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  font-family: 'Noto Sans KR';
+  z-index: 9999;
+}
+
+.popup_wrap .pop_box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  background: #fff;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.popup_wrap.edit_input_pop .pop_box {
+  width: 600px;
+}
+
+.popup_wrap .pop_box .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 23px;
+  height: 23px;
+  background: url(/assets/img/btn/pop_close_btn.png) no-repeat center;
+}
+
+.popup_wrap .pop_box .pop_txt p {
+  margin-top: 50px;
+  font-family: "Noto Sans KR";
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
+  color: #252525;
+  text-align: center;
+}
+
+.popup_wrap .pop_box .pop_desc {
+  margin-top: 30px;
+}
+
+.popup_wrap .pop_box .pop_desc p{
+  font-family: "Noto Sans KR";
+  font-size: 16px;
+  line-height: 28px;
+  color: #454545;
+  text-align: center;
+}
+
+.popup_wrap .pop_box .padding {
+  padding-bottom: 45px;
+}
+
+.popup_wrap .pop_box input {
+  height: 50px;
+  width: 300px;
+}
+
+.popup_wrap .pop_box .wrap_check {
+  flex-direction: column;
+}
+
+.popup_wrap .pop_box .pop_input {
+  margin-top: 60px;
+}
+
+.popup_wrap .pop_box .pop_input.wrap_check {
+  margin-top: 30px;
+  padding: 0 75px;
+}
+
+.popup_wrap .pop_box .pop_input.wrap_check .check_box {
+  margin-bottom: 20px;
+}
+
+.popup_wrap .pop_box .pop_input button {
+  padding: 10px 30px;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  color: #454545;
+  font-family: "Noto Sans KR";
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.edit_input_pop .pop_box .pop_input {
+  margin-top: 30px;
+}
+
+.popup_wrap .pop_box .pop_input button:last-child {
+  background-color: #253dbe;
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.popup_wrap .pop_input .check_box input[type="radio"]:checked,
+.popup_wrap .pop_input .check_box input[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+.popup_wrap .pop_input .check_box input[type="radio"]:checked + label,
+.popup_wrap .pop_input .check_box input[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+.popup_wrap .pop_input .check_box input[type="radio"]:checked + label:before,
+.popup_wrap .pop_input .check_box input[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+.popup_wrap .pop_input .check_box input[type="radio"]:checked + label:after,
+.popup_wrap .pop_input .check_box input[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #2e3e92;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transform: translate(-50%, -50%);
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.popup_wrap .pop_input .check_box input[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+.popup_wrap .pop_input .check_box input[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.popup_wrap .pop_input .check_box label {
+  font-size: 16px;
+  font-family: "Noto Sans KR";
+  color: #252525;
+  margin-left: 10px;
+}
+
+.popup_wrap .dim {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+} */
+
+@media screen and (max-width : 850px) {
+  .event_container {
+    padding: 3.6538rem 1.1538rem 5.7692rem;
+  }
+
+  .event_container .event_title {
+    padding-bottom: 4.5rem;
+  }
+
+  .event_list .event_child {
+    width: 100%;
+  }
+
+  .event_container .event_title h1 {
+    font-size: 1.5385rem;
+  }
+
+  .event_tab ul li a {
+    font-size: 1.3077rem;
+    padding-bottom: 1.1538rem;
+    border-bottom: 2px solid #dbdbdb;
+  }
+
+  .event_list .event_child .event_image {
+    width: 25.3846rem;
+    height: 15.3846rem;
+  }
+
+  .event_child a h3 {
+    font-size: 1.0769rem;
+    line-height: 1.7192rem;
+    margin-top: 1.1538rem;
+
+  }
+
+  .event_list .event_child img {
+    border-radius: 0.3846rem;
+  }
+
+  .event_child-content .event_child-date {
+    font-size: 1rem;
+  }
+
+  .event_container .event_top .event_list {
+    gap: 1.9231rem 0;
+    margin-top: 1.9231rem;
+  }
+
+  .event_top .content {
+    padding-top: 1.5385rem;
+  }
+
+  .event_child-content h3 {
+    margin-bottom: 0.7692rem;
+  }
+
+  .event_list .event_table {
+    width: 100%;
+    border-top: 2px solid #252525;
+
+  }
+
+  .event_list .event_table colgroup {
+    display: none !important;
+
+  }
+
+  .event_list .event_table thead {
+    display: none !important;
+
+  }
+  
+  .event_list .event_table tr {
+    border-bottom: 1px solid #dbdbdb;
+  }
+  
+  .event_list .event_table tbody tr {
+    /* height: 3.4615rem; */
+    padding: 1.1538rem 0.7692rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  
+  .event_list .event_table td {
+    font-size: 0.846rem;
+  }
+
+  .event_list .event_table td:nth-of-type(1) {
+    order: 2;
+  }
+
+  .event_list .event_table td:nth-of-type(2) {
+    order: 1;
+  }
+
+  .event_list .event_table td:nth-of-type(3) {
+    order: 3;
+  }
+  
+  .event_list .event_table .num {
+    width: 0;
+  }
+  
+  .event_list .event_table td.num {
+    display: inline-block;
+    font-weight: 500;
+    color: #454545;
+  }
+
+  .event_list .event_table .date {
+    color: #757575;
+    font-size: 0.8462rem;
+    line-height: 1.3;
+  }
+  
+  .event_list .event_table td {
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .event_list .event_table .num {
+    font-size: 0.846rem;
+    color: #757575;
+    margin-right: 3.461rem;
+    line-height: 1.3;
+  }
+  
+  .event_list .event_table .subject {
+    text-align: left;
+    font-size: 1rem;
+    padding-bottom: 0.296rem;
+    align-items: flex-start;
+    display: block;
+  }
+  
+  .event_list .event_table .subject a {
+    display: unset;
+    -webkit-line-clamp: 2;
+    max-width: 100%;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 0;
+    font-size: 1rem;
+    line-height: 1.3846rem;
+    white-space: normal;
+
+  }
+  
+  .event_list .event_table .subject span {
+    color: #e9281d;
+    font-size: 0.9231rem;
+    margin-left: 0.692rem;
+  }
+  
+
+  /* event_view */
+
+  .event_view {
+    padding-top: 3.8462rem;
+    padding-bottom: 5.7692rem;
+    padding-left: 0.7692rem;
+    padding-right: 0.7692rem;
+  }
+  
+  .event_view .event_top {
+    padding-bottom: 1.5385rem;
+    border-bottom: 2px solid #2b2b2b;
+  }
+  
+  .event_view .event_top .event_top_title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 3.4615rem;
+  }
+
+  
+  .event_view .event_top .event_top_title span {
+    font-size: 1.5385rem;
+    line-height: 2rem;
+    font-family: "Noto Sans KR";
+    font-weight: bold;
+    color: #252525;
+    margin: 0 auto;
+  }
+  
+  .event_view .event_top span {
+    margin-bottom: 1.5385rem;
+    font-size: 1rem;
+    font-family: "Noto Sans KR";
+    color: #757575;
+  }
+  
+  .event_view .event_content {
+    padding: 0px 0px 3.8462rem 0;
+    /* border-bottom: 2px solid rgb(229, 229, 229); */
+  }
+  
+  .event_view .event_content p {
+    font-size: 1rem;
+    color: #454545;
+    line-height: 1.4615rem;
+    font-family: "Noto Sans KR";
+  }
+  
+  .event_view .event_content .event_content-detail {
+    margin-top: 1.9231rem;
+  }
+
+  .event_view .event_content .event_content-detail:first-child {
+    margin-top: 1.5385rem;
+  }
+  
+  .event_view .event_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .event_view .event_button button {
+    padding: 0.7692rem 3.8462rem;
+    color: #252525;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    margin: 0 auto;
+    font-weight: bold;
+  }
+  
+  .event_view .event_comment {
+    padding: 3.4615rem 0 0;
+  }
+  
+  .event_comment .event_comment-top .event_comment-count {
+    margin-bottom: 0.7692rem;
+  }
+  
+  .event_comment .event_comment-top .event_comment-count span{
+    font-family: "Noto Sans KR";
+    font-size: 1.0769rem;
+    line-height: 1.0769rem;
+    color: #252525;
+    font-weight: 500;
+  }
+  
+  .event_comment .event_comment-top .event_comment-input {
+    display: flex;
+    gap: 0 0.7692rem;
+    margin-bottom: 0.7692rem;
+  }
+  
+  .event_comment .event_comment-top .event_comment-input textarea{
+    height: 4.6154rem;
+    width: calc(100% - 4.6154rem - 0.7692rem);
+    padding: 0.7692rem 0.7692rem;
+    font-size: 1rem;
+  }
+  
+  .event_comment .event_comment-top .event_comment-input textarea::placeholder {
+    color: #999999;
+  }
+  
+  .event_comment .event_comment-top .event_comment-input button {
+    width: 4.6154rem;
+    height: 4.6154rem;
+    border-radius: 4px;
+    background-color: #2e3e92;
+    font-size: 1.0769rem;
+    line-height: 1.0769rem;
+    font-family: "Noto Sans KR";
+    font-weight: 500;
+    color: #ffffff;
+  }
+  
+  .event_comment .event_comment-top .bs-input-check label {
+    font-family: "Noto Sans KR";
+    font-size: 1rem;
+  }
+  
+  .event_comment .event_comment-details {
+    margin-top: 1.9231rem;
+  }
+  
+  .event_user .event_user-avatar img {
+    width: 2.7692rem;
+    height: 2.7692rem;
+    border-radius: 50%;
+  }
+  
+  .event_comment .event_comment-details .event_user{
+    display: flex;
+    column-gap: 1.1538rem;
+    padding: 1.9231rem 0;
+    /* border-bottom: 2px solid #dbdbdb; */
+  }
+  
+  .event_comment .event_comment-details .event_user-detail {
+    max-width: calc(100% - 2.7692rem - 1.1538rem);
+  }
+  
+  .event_comment-details .event_user-comment {
+    padding-right: 1.3462rem;
+  }
+
+  .event_comment-details .event_user-comment p {
+    font-size: 1rem;
+    font-family: "Noto Sans KR";
+    line-height: 1.4615rem;
+    color: #454545;
+  }
+  
+  .event_comment-details .event_user-content {
+    margin-top: 1.1538rem;
+  }
+  
+  .event_comment-details .event_user-content span {
+    font-family: "Noto Sans KR";
+    font-size: 1rem;
+    line-height: 1.0769rem;
+    color: #6c7580;
+    position: relative;
+    margin-right: 2.3077rem;
+  }
+  
+  .event_comment-details .event_user-content .event_user-title::after,
+  .event_comment-details .event_user-content .event_user-date::after {
+    position: absolute;
+    content: '';
+    width: 0.0769rem;
+    height: 0.7692rem;
+    background-color: #d8d8d8;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(100% + 1.1154rem);
+  }
+  
+  .event_comment-details .event_user-detail .event_user-operation {
+    margin-top: 0.7692rem;
+  }
+  
+  .event_comment-details .event_user-detail .event_user-operation button{
+    font-family: "Noto Sans KR";
+    font-size: 1rem;
+    line-height: 1.0769rem;
+    color: #454545;
+    border: 1px solid #dbdbdb;
+    padding: 0.7692rem 1.0769rem;
+    border-radius: 3px;
+  }
+
+  .event_comment-details .event_user-detail .event_user-operation button:first-child {
+    margin-right: 0.7692rem;
+  }
+  
+
+}

@@ -55,7 +55,7 @@
                     <img src="/images/ico/icon_note.png" alt="">
                     <p>매거진</p>
                 </a>
-                <a href="#" class="icon-menu-item">
+                <a href="<?=(session("member.idx") ? "/mypage/fav_list" : "#!")?>" class="icon-menu-item">
                     <img src="/images/ico/icon_heart.png" alt="">
                     <p>찜</p>
                 </a>
@@ -82,10 +82,10 @@
             </div>
             <div>
                 <ul class="flex_header_top">
-                    <li><a href="">여행자 보험</a></li>
-                    <li><a href="">이벤트</a></li>
-                    <li><a href="">여행 쿠폰</a></li>
-                    <li><a href="">태국뉴스</a></li>
+                    <li><a href="/center/insurance">여행자 보험</a></li>
+                    <li><a href="/event/event_list">이벤트</a></li>
+                    <li><a href="/mypage/discount">여행 쿠폰</a></li>
+                    <li><a href="/community/main">태국뉴스</a></li>
                 </ul>
             </div>
 

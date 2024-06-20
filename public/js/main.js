@@ -46,8 +46,9 @@ $(document).ready(function () {
     dots: false,
     nav: true,
     autoplay: true,
-    autoplayTimeout: 3000,
-    smartSpeed: 1000,
+    autoplayHoverPause: true,
+    autoplayTimeout: 5000,
+    smartSpeed: 2000,
     navText: [
       `<span class="swiper-button-prev-main swiper-button-main owl-prev">
             <svg width="17" height="27" viewBox="0 0 17 27" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -12,6 +12,7 @@ class MyPage extends BaseController
     {
         helper(['html']);
         $this->db = db_connect();
+        $this->member = model('Member');
         $this->travel_contact = model('TravelContactModel');
         $this->travel_qna = model('TravelQnaModel');
         $this->sessionLib = new SessionChk();
@@ -95,7 +96,14 @@ class MyPage extends BaseController
     }
     public function info_change()
     {
-        return view('mypage/info_change');
+        if ($_SESSION["member"]["mIdx"] == "") {
+            return alert_msg("", "/");
+        }
+        $member = $this->member->getByIdx($_SESSION["member"]["mIdx"]);
+        if ($member["user_id"] == "" || $_SESSION["member"]["mIdx"] == "") {
+            return alert_msg("", "/");
+        }
+        return view('mypage/info_change', ["member" => $member]);
     }
     public function user_mange()
     {
@@ -173,6 +181,7 @@ class MyPage extends BaseController
                     ,addr1		   = HEX(AES_ENCRYPT('" . $addr1 . "' , '" . $private_key . "'))
                     ,addr2		   = HEX(AES_ENCRYPT('" . $addr2 . "' , '" . $private_key . "'))
                     ,user_mobile   = HEX(AES_ENCRYPT('" . $user_mobile . "' , '" . $private_key . "'))
+                    ,user_name     = HEX(AES_ENCRYPT('" . $user_name . "' , '" . $private_key . "'))
                     ,sms_yn        = '" . $sms_yn . "'
                     ,user_email_yn = '" . $user_email_yn . "'
                     ,m_date		   = now()
@@ -180,11 +189,21 @@ class MyPage extends BaseController
                 ";
         // write_log("본인정보수정:".$sql);
         $this->db->query($sql);
-        //$_SESSION["member"]["userId"]		=  "";
-        //$_SESSION["member"]["mIdx"]			=  "";
-        //$_SESSION["member"]["userLevel"]	=  "";
-        //$_SESSION["member"]["userName"]		=  "";
 
+        $member = $this->member->getByIdx($_SESSION["member"]["idx"]);
+
+        session()->remove("member");
+
+        $data = [];
+
+        $data['id'] = $member['user_id'];
+        $data['idx'] = $member['m_idx'];
+        $data["mIdx"] = $member['m_idx'];
+        $data['name'] = $member['user_name'];
+        $data['email'] = $member['user_email'];
+        $data['level'] = $member['user_level'];
+
+        session()->set("member", $data);
         echo "정보수정되었습니다.";
     }
 }

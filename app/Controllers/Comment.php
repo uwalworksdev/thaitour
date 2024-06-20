@@ -47,7 +47,7 @@ class Comment extends BaseController
             'r_idx' => $r_idx,
             'r_code' => $r_code,
             'r_m_idx' => $r_m_idx,
-            'r_name' => $r_name,
+            'r_name' => $r_name ?? "",
             'r_content' => $r_content,
             'r_reg_date' => date('Y-m-d H:i:s'),
             'r_level' => 1,

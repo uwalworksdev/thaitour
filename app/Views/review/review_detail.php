@@ -128,7 +128,7 @@ $reg_m_idx = $review["reg_m_idx"];
                 success: (res) => {
                     if (res == "OK") {
                         alert("정상적으로 삭제되었습니다.");
-                        window.location.href = "/evaluate/evaluate.php";
+                        window.location.href = "/review/review_list";
                     } else {
                         alert("오류가 발생하였습니다!!");
                     }
