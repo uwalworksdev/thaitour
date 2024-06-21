@@ -55,15 +55,12 @@ class Member extends BaseController
 
     public function LoginCheck()
     {
-        $private_key = private_key();
         $returnUrl  = updateSQ($this->request->getPost("returnUrl"));
         $user_id    = updateSQ($this->request->getPost("user_id"));
         $user_pw    = updateSQ($this->request->getPost("user_pw"));
         $save_id    = updateSQ($this->request->getPost("save_id"));
 
-        $total_sql = " select * from tbl_member where user_id = '" . $user_id . "' AND user_level > 2 ";
-        // write_log($total_sql);
-        $row = $this->db->query($total_sql)->getRowArray();
+        $row = $this->member->getLogin($user_id);
         if ($row["user_id"] == "") {
             return '<script>
                         alert("아이디가 없거나, 패스워드가 일치하지 않습니다.");
@@ -84,13 +81,6 @@ class Member extends BaseController
         getLoginDeviceUserChk($row['user_id']);
 
         getLoginIPChk();
-
-        $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name 
-				, AES_DECRYPT(UNHEX('{$row['user_email']}'),   '$private_key') AS user_email ";
-        $row_d = $this->db->query($sql_d)->getRowArray();
-
-        $row['user_name'] = $row_d['user_name'];
-        $row['user_email'] = $row_d['user_email'];
 
         session()->remove("member");
 
@@ -168,19 +158,12 @@ class Member extends BaseController
                 'user_name' => $user_name,
                 'user_email' => $user_email,
                 'user_mobile' => $user_mobile,
-                // 'gubun' => $gubun,
-                // 'sns_key' => $sns_key,
                 'birth_day' => $birthday,
-                // 'zip' => $zip,
-                // 'addr1' => $addr1,
-                // 'addr2' => $addr2,
-                // 'visit_route' => $visit_route,
             ]);
 
         }
         $fsql = " select count(*) cnts from tbl_member where user_id = '" . $user_id . "'";
         $frow = $this->db->query($fsql)->getRowArray();
-        //$recommender        = !empty($_POST["recommender"]) ? updateSQ($_POST["recommender"]) : '';
         if ($frow['cnts'] > 0) {
             goUrl("/", "이미 가입된 아이디입니다.");
             echo $user_id;
@@ -271,7 +254,7 @@ class Member extends BaseController
         $data["mIdx"] = $m_idx;
         $data['name'] = $user_name;
         $data['email'] = $user_email;
-        // $data['level'] = $user_level;
+        $data['level'] = 10;
         $data['gubun'] = $gubun;
 
         session()->set("member", $data);
