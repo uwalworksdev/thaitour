@@ -26,6 +26,21 @@ class Product extends BaseController
         helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
+     
+
+    public function showTicket(){
+        try{
+            return view('product/show-ticket');
+        }
+        
+    catch (Exception $e) {
+        return $this->response->setJSON([
+            'result' => false,
+            'message' => $e->getMessage()
+        ]);
+    }
+}
+
 
     public function index($code_no, $s = "1")
     {
