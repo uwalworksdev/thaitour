@@ -852,12 +852,12 @@
         $("input[name='visit_routes']").val(selectedCheckboxes.join(", "))
 
         $.ajax({
-            url: "./inquiry_ok.php",
+            url: "./inquiry_ok",
             type: "POST",
             data: $("#reg_mem_fm").serialize(),
             success: () => {
                 alert("견적요청 신청되었습니다.");
-                location.href = "https://hihojoonew.cafe24.com/t-travel/item_list.php#section1"
+                location.href = "/custom-travel/item_list";
             }
         })
     })

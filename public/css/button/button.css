@@ -1,0 +1,208 @@
+@charset "utf-8";
+
+
+main .slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: no-repeat center;
+  background-image: url(../img/common/slider_btn.png);
+  font-size: 0;
+  color: transparent;
+  z-index: 100;
+}
+
+main .slick-prev {
+  left: -10px;
+}
+
+main .slick-next {
+  right: -10px;
+  transform: translateY(-50%) rotateY(180deg);
+}
+
+.sub .pop_imgView_slider .slick-prev {
+  left: -10px;
+}
+
+.sub .pop_imgView_slider .slick-next {
+  right: -10px;
+  transform: translateY(-50%) rotateY(180deg);
+}
+
+.sub .slick-prev {
+  left: 0;
+}
+
+.sub .slick-next {
+  right: 0;
+  transform: translateY(-50%) rotateY(180deg);
+}
+
+.sub .one_txt_slider_sec .slick-prev {
+  left: -27px;
+}
+
+.sub .one_txt_slider_sec .slick-next {
+  right: -27px;
+  transform: translateY(-50%) rotateY(180deg);
+}
+
+.slick-dots {
+  display: flex;
+  align-items: center;
+}
+
+.slick-dots button {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: #b5b5b2;
+  border-radius: 50%;
+  margin: 0 5px;
+  font-size: 0;
+  color: transparent;
+}
+
+.slick-dots .slick-active button {
+  background: #252525;
+}
+
+
+
+.btn_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0 0;
+}
+
+.btn_box .more_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 320px;
+  width: 100%;
+  line-height: 60px;
+  font-size: 18px;
+  font-weight: 700;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.btn_box .more_list i {
+  display: block;
+  width: 16px;
+  height: 10px;
+  background: no-repeat center;
+  background-image: url(../img/ico/ico_list_down.png);
+  margin-left: 8px;
+}
+
+
+.more_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+}
+
+.more_link i {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: no-repeat center;
+  background-image: url(../img/btn/more_link.png);
+  margin-left: 10px;
+}
+
+
+.ux_btn_wrap {
+  gap: 8px;
+}
+
+.ux_txt_btn {
+  border: 1px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #454545;
+  line-height: 32px;
+  border-radius: 3px;
+  padding: 0 10px;
+}
+
+.ux_txt_btn i {
+  display: block;
+  margin-right: 6px;
+  background: no-repeat center
+}
+
+.ux_txt_btn.message i {
+  width: 18px;
+  height: 16px;
+  background-image: url(../img/btn/ux_btn_message.png);
+}
+
+.ux_txt_btn.print i {
+  width: 22px;
+  height: 19px;
+  background-image: url(../img/btn/ux_btn_print.png);
+}
+
+.ux_txt_btn.picture i {
+  width: 16px;
+  height: 16px;
+  background-image: url(../img/btn/ux_btn_imgView.png);
+}
+
+.ux_txt_btn.map i {
+  width: 20px;
+  height: 18px;
+  background-image: url(../img/btn/ux_btn_map.png);
+}
+
+.ux_txt_btn.bg {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50px;
+  padding: 0 15px;
+  color: #fff;
+  border: none;
+}
+
+.ux_square_btn {
+  display: block;
+  width: 34px;
+  height: 34px;
+  background: no-repeat center;
+  border: 1px solid #dbdbdb;
+  border-radius: 3px;
+}
+
+.ux_square_btn.share {
+  background-image: url(../img/btn/ux_btn_share.png);
+}
+
+@media screen and (max-width : 1300px) {
+    main .slick-prev{
+        left: 0
+    }
+    
+    main .slick-next{
+        right: 0
+    }
+}
+@media screen and (max-width : 768px) {
+  .btn_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2.6923rem 0 0;
+  }
+
+}

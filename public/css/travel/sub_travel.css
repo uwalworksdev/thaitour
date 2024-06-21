@@ -1,6 +1,6 @@
 .main_visual.travel {
     height: 671px;
-    background: url("/assets/img/sub/travel_main_img.jpg") no-repeat center;
+    background: url("http://hihojoo.com/assets/img/sub/travel_main_img.jpg") no-repeat center;
 }
 
 .main_visual.travel .top {
@@ -109,7 +109,7 @@
 
 .planing_sect {
     height: 614px;
-    background: url("/assets/img/sub/plaing_sect.png") no-repeat center;
+    background: url("http://hihojoo.com/assets/img/sub/plaing_sect.png") no-repeat center;
     padding-top: 110px;
 }
 
@@ -183,7 +183,7 @@
 
 .satisfy_sect {
     height: 863px;
-    background: url("/assets/img/sub/satisfy_bg.png") no-repeat center;
+    background: url("http://hihojoo.com/assets/img/sub/satisfy_bg.png") no-repeat center;
     padding: 100px 0 60px;
     display: flex;
     align-items: center;

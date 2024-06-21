@@ -168,6 +168,7 @@ $routes->group("center", static function ($routes) {
     $routes->get("privacy"              , "CustomerCenterController::privacy");
 });
 $routes->group("custom_travel", static function ($routes) {
+    $routes->get("item_list"           , "CustomTravelController::item_list");
     $routes->get("item_write"           , "CustomTravelController::item_write");
     $routes->post("inquiry_ok"          , "CustomTravelController::inquiry_ok");
 });
