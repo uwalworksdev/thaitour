@@ -191,6 +191,7 @@ $routes->group("custom_travel", static function ($routes) {
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('show-ticket', 'Product::showTicket');
+$routes->get('vehicle-guide', 'Product::vehicleGuide');
 $routes->get('product-list/(:any)', 'Product::index/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/(:any)/(:any)', 'Product::index3/$1/$2');
