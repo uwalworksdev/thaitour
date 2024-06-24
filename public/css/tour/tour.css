@@ -7,6 +7,12 @@
 .img_box_11 {
   padding-top: calc(150% / 1200 * 100);
 }
+.img_box_12 {
+  padding-top: calc(284% / 386 * 100);
+}
+.img_box_13 {
+  padding-top: calc(180% / 590 * 100);
+}
 .ttl {
   font-size: 28px;
   font-family: "Pretendard";
@@ -15,60 +21,60 @@
   line-height: 0.929;
 }
 .prd_name {
-    font-size: 18px;
-    font-family: "Pretendard";
-    color: #252525;
-    margin-top: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  font-size: 18px;
+  font-family: "Pretendard";
+  color: #252525;
+  margin-top: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .prd_keywords {
-    font-size: 16px;
-    font-family: "Pretendard";
-    color: #397eb9;
-    display: flex;
-    gap: 7px;
-    margin-top: 10px;
+  font-size: 16px;
+  font-family: "Pretendard";
+  color: #397eb9;
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
 }
 .prd_info {
-    margin-top: 10px;
-    font-size: 16px;
-    font-family: "Pretendard";
-    color: #252525;
-    display: flex;
-    gap: 5px;
-    align-items: center;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Pretendard";
+  color: #252525;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 .star_avg {
-    color: #252525;
+  color: #252525;
 }
 .star_review_cnt {
-    color: #757575;
+  color: #757575;
 }
 .prd_info__right__ttl {
-    color: #757575;
+  color: #757575;
 }
 .new_review_cnt {
-    color: #252525;
+  color: #252525;
 }
 .prd_price_ko {
-    margin-top: 16px;
-    font-size: 22px;
-    font-family: "Pretendard";
-    color: #252525;
-    font-weight: bold;
+  margin-top: 16px;
+  font-size: 22px;
+  font-family: "Pretendard";
+  color: #252525;
+  font-weight: bold;
 }
 .prd_price_ko span {
-    color: #757575;
-    font-size: 16px;
+  color: #757575;
+  font-size: 16px;
 }
 .prd_price_thai {
-    margin-top: 10px;
-    font-size: 16px;
-    font-family: "Pretendard";
-    color: #757575;
-    font-weight: 400;
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Pretendard";
+  color: #757575;
+  font-weight: 400;
 }
 .sub_top_visual {
   background: linear-gradient(to top, #fff, #fff 66px, #f9f8d2 66px, #f9f8d2);
@@ -199,21 +205,21 @@
   font-weight: bold;
 }
 .sub_section3_swiper {
-    padding: 30px 0 0 0 !important;
+  padding: 30px 0 0 0 !important;
 }
 .prd_name {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 .prd_price_ko {
-    margin-top: 14px;
+  margin-top: 14px;
 }
 .sub_section3_swiper_pagination {
-    padding: 20px 0 0 0;
-    display: flex;
-    justify-content: center;
+  padding: 20px 0 0 0;
+  display: flex;
+  justify-content: center;
 }
 .sub_section3_swiper_pagination .swiper-pagination-bullet-active {
-    background-color: #39b9aa;
+  background-color: #39b9aa;
 }
 
 /* sub_tour_section4 */
@@ -225,7 +231,6 @@
   padding: 100px 0 0 0;
 }
 .sub_tour_section5__head {
-
 }
 .sub_tour_section5__head_ttl {
   font-size: 28px;
@@ -235,7 +240,6 @@
   line-height: 0.929;
 }
 .sub_tour_section5__head__tabs1 {
-
 }
 .tour__head__tabs1__tabs {
   border-radius: 6px;
@@ -336,9 +340,10 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-    font-size: 18px;
-    font-family: "Pretendard";
-    color: rgb(37, 37, 37);
+  font-size: 18px;
+  font-family: "Pretendard";
+  color: rgb(37, 37, 37);
+  cursor: pointer;
 }
 .prd_list_pagination__btn__pages {
   color: #cccccc;
@@ -347,20 +352,97 @@
 .prd_list_pagination__btn__current {
   color: #353535;
 }
-.prd_list_pagination__btn__total { }
+.prd_list_pagination__btn__total {
+}
 
 /* sub_tour_section6 */
 .sub_tour_section6 {
   padding: 100px 0 0 0;
 }
 .sub_tour_section6__head {
-
 }
 .sub_tour_section6__head__tabs {
   margin-top: 30px;
+  display: flex;
+  position: relative;
+}
+.sub_tour_section6__head__tabs::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 12;
 }
 .sub_tour_section6__head__tabs__tab {
-
+  display: flex;
+  height: 54px;
+  padding: 0 35px;
+  font-size: 18px;
+  font-family: "Pretendard";
+  color: #999999;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #fff;
+  border-radius: 16px 0 0 0;
+  border: 1px solid #dbdbdb;
+  border-width: 1px 0px 0px 1px; */
+}
+.sub_tour_section6__head__tabs__tab:nth-child(1) {
+  z-index: 10;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(2) {
+  z-index: 9;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(3) {
+  z-index: 8;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(4) {
+  z-index: 7;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(5) {
+  z-index: 6;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(6) {
+  z-index: 5;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(7) {
+  z-index: 4;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(8) {
+  z-index: 3;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(9) {
+  z-index: 2;
+}
+.sub_tour_section6__head__tabs__tab:nth-child(10) {
+  z-index: 1;
+}
+.sub_tour_section6__head__tabs__tab::after {
+  content: "";
+  width: calc(100% + 15px);
+  height: 100%;
+  position: absolute;
+  background: url(/images/sub/tab_bg_1.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position-x: left;
+  left: 0;
+  z-index: -1;
+}
+.sub_tour_section6__head__tabs__tab.active {
+  color: #252525;
+  z-index: 12;
+}
+.sub_tour_section6__head__tabs__tab.active::after {
+  background: url(/images/sub/tab_bg_1_active.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position-x: left;
 }
 .sub_tour_section6_product_list {
   display: flex;
@@ -370,4 +452,60 @@
 }
 .sub_tour_section6_item {
   width: calc((100% - 60px) / 4);
+}
+
+/* sub_tour_section7 */
+.sub_tour_section7 {
+  padding: 120px 0 0 0;
+}
+.sub_tour_section7__head {
+
+}
+.sub_tour_section7__head_ttl {
+
+}
+.sub_tour_section7_product_list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 29px;
+}
+.sub_tour_section7_product_item {
+  width: calc((100% - 40px) / 3);
+  position: relative;
+}
+.ico_special_prd {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+}
+.sub_tour_section7_product_item__name {
+  font-size: 24px;
+  font-family: "Pretendard";
+  color: rgb(37, 37, 37);
+  font-weight: bold;
+  margin-top: 25px;
+}
+.sub_tour_section7_product_item__keywords {
+    font-size: 16px;
+    font-family: "Pretendard";
+    color: rgba(37, 37, 37, 0.6);
+    line-height: 2;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* sub_tour_section8 */
+.sub_tour_section8 {
+  padding: 100px 0 0 0;
+}
+.sub_tour_section8__banners {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.sub_tour_section8__banner {
+  width: calc((100% - 20px) / 2);
 }
