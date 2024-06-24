@@ -77,7 +77,7 @@
                     <li><a href="/product-spa/1320/1">스파</a></li>
                     <li><a href="/show-ticket">쇼ㆍ입장권</a></li>
                     <li><a href="">레스토랑</a></li>
-                    <li><a href="">차량ㆍ가이드</a></li>
+                    <li><a href="/vehicle-guide">차량ㆍ가이드</a></li>
                 </ul>
             </div>
             <div>

@@ -352,6 +352,18 @@ class Product extends BaseController
             ]);
         }
     }
+    public function vehicleGuide()
+    {
+        try {
+            return view('product/vehicle-guide');
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
 
     public function view($product_idx)
     {
