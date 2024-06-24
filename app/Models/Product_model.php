@@ -374,4 +374,3 @@ class Product_model extends Model
             ->getRowArray();
     }
 }
-?>

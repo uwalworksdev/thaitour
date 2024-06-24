@@ -1,4 +1,8 @@
 @font-face {
-    font-family: "ONEMobileTitle";
-    src: url("/fonts/ONEMobileTitle-regular.ttf");
-  }
+  font-family: "ONEMobileTitle";
+  src: url("/fonts/ONEMobileTitle-regular.ttf");
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Medium.woff");
+}
