@@ -122,6 +122,9 @@
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img1.png" alt="main">
                     </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
+                    </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
@@ -145,6 +148,9 @@
                 <a href="#!" class="list-ticket-item">
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img2.png" alt="main">
+                    </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -170,6 +176,9 @@
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img3.png" alt="main">
                     </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
+                    </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
@@ -193,6 +202,9 @@
                 <a href="#!" class="list-ticket-item">
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img4.png" alt="main">
+                    </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -218,6 +230,9 @@
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img1.png" alt="main">
                     </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
+                    </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
@@ -241,6 +256,9 @@
                 <a href="#!" class="list-ticket-item">
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img2.png" alt="main">
+                    </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -266,6 +284,9 @@
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img3.png" alt="main">
                     </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
+                    </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
@@ -289,6 +310,9 @@
                 <a href="#!" class="list-ticket-item">
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img4.png" alt="main">
+                    </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -314,6 +338,9 @@
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img1.png" alt="main">
                     </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
+                    </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
@@ -337,6 +364,9 @@
                 <a href="#!" class="list-ticket-item">
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img2.png" alt="main">
+                    </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -362,6 +392,9 @@
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img3.png" alt="main">
                     </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
+                    </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
@@ -385,6 +418,9 @@
                 <a href="#!" class="list-ticket-item">
                     <div class="img_box img_box_10">
                         <img src="/uploads/products/list-ticket-img4.png" alt="main">
+                    </div>
+                    <div class="breakcum">
+                        <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
                     <div class="prd_name">
                         쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
