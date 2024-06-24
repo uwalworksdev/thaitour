@@ -189,10 +189,13 @@ $routes->group("custom_travel", static function ($routes) {
 //     // $routes->get("dnload/(:segment)/(:segment)", "Filedown::brochureDownload/$1/$2");
 // });
 
+$routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
+$routes->get('show-ticket', 'Product::showTicket');
+$routes->get('vehicle-guide', 'Product::vehicleGuide');
 $routes->get('product-list/(:any)', 'Product::index/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/(:any)/(:any)', 'Product::index3/$1/$2');
-$routes->get('product-honey/(:any)/(:any)', 'Product::index4/$1/$2');
+$routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 
 

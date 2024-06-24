@@ -26,6 +26,21 @@ class Product extends BaseController
         helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
+     
+
+    public function showTicket(){
+        try{
+            return view('product/show-ticket');
+        }
+        
+    catch (Exception $e) {
+        return $this->response->setJSON([
+            'result' => false,
+            'message' => $e->getMessage()
+        ]);
+    }
+}
+
 
     public function index($code_no)
     {
@@ -328,7 +343,19 @@ class Product extends BaseController
                 'totalProducts' => $totalProducts,
             ];
 
-            return view('product/product-honey', $data);
+            return view('product/product-spa', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    public function vehicleGuide()
+    {
+        try {
+            return view('product/vehicle-guide');
 
         } catch (Exception $e) {
             return $this->response->setJSON([
