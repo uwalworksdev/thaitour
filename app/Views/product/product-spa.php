@@ -1,7 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-
 <style>
     .swiper-container-ticket {
         position: relative;
@@ -12,11 +11,9 @@
     .swiper-button-prev {
         position: absolute;
         top: 50%;
-        /* Canh giữa theo chiều dọc */
         transform: translateY(-50%);
         z-index: 10;
         background-color: rgba(0, 0, 0, 0.5);
-        /* Nền mờ */
         color: #fff;
         padding: 10px;
         border-radius: 50%;
@@ -25,7 +22,6 @@
     .swiper-button-next-ticket {
         z-index: 999;
         right: 0px;
-        /* Canh phải */
         position: absolute;
         top: 40%;
     }
@@ -35,7 +31,6 @@
         position: absolute;
         top: 40%;
         left: 0px;
-        /* Canh trái */
     }
 </style>
 
@@ -44,23 +39,23 @@
         <div class="banner-ticket">
             <div class="swiper-container-ticket">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner1.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner1.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner2.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner2.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner3.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner3.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner2.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner2.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner3.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner3.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner3.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner3.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner1.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner1.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner3.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner3.png') ?>" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/ticket-banner2.png') ?>" alt="">
+                    <div class="swiper-slide"><img src="<?= base_url('/uploads/products/spa-banner2.png') ?>" alt="">
                     </div>
                     <!-- Add more slides as needed -->
                 </div>
@@ -69,7 +64,8 @@
                 <!-- Add Navigation -->
                 <div class="swiper-button-next-ticket"><img src="/uploads/icons/next_s.png" alt=""></div>
                 <div class="swiper-button-prev-ticket"><img src="/uploads/icons/prev_s.png" alt=""></div>
-            </div>
+            </div>        
+ 
 
         </div>
         <div class="swiper-main-tools">
@@ -434,12 +430,12 @@
 <script>
     var swiper = new Swiper('.swiper-container-ticket', {
         slidesPerView: 3, // Hiển thị 3 item mỗi lần
-        spaceBetween: 25,
         loop: true, // Cho phép loop qua các item
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
         },
+        spaceBetween: 22,
         navigation: {
             nextEl: '.swiper-button-next-ticket',
             prevEl: '.swiper-button-prev-ticket',
@@ -477,5 +473,6 @@
         }
     });
 </script>
+
 
 <?php $this->endSection(); ?>
