@@ -1055,6 +1055,7 @@ figure.cover_img img {
 .img_box {
   position: relative;
   padding-top: 100%;
+  overflow: hidden;
 }
 
 .img_box>img {

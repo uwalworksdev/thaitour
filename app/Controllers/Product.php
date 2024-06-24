@@ -27,10 +27,10 @@ class Product extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
-    public function index($code_no, $s = "1")
+    public function index($code_no)
     {
         try {
-            $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
             $perPage = 5;
 
             $banners = $this->bannerModel->getBanners($code_no);
@@ -38,7 +38,7 @@ class Product extends BaseController
 
             $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
 
-            $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
 
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
 
@@ -76,7 +76,6 @@ class Product extends BaseController
                 'codes' => $codes,
                 'code_name' => $code_name,
                 'pager' => $pager,
-                'page' => $page,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
             ];
