@@ -3283,13 +3283,13 @@
   cursor: pointer;
   user-select: none;
 }
-input[type=checkbox] + .vehicle_options__label__vehicle_prd::before {
+input[type=checkbox] + .vehicle_options__label__vehicle_prd::after {
   content: url(/images/ico/checkbox_1.png);
   position: absolute;
   left: 8px;
   top: -15px;
 }
-input[type=checkbox] + .vehicle_options__label__vehicle_prd::after {
+input[type=checkbox] + .vehicle_options__label__vehicle_prd::before {
   content: "";
   position: absolute;
   left: 0;
@@ -3299,7 +3299,7 @@ input[type=checkbox] + .vehicle_options__label__vehicle_prd::after {
   width: 45px;
   height: 40px;
 }
-input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::before {
+input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   content: url(/images/ico/checkbox_1_active.png);
 }
 .vehicle_cnt {
