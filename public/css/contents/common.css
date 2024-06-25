@@ -1068,6 +1068,14 @@ figure.cover_img img {
   object-fit: cover;
 }
 
+.img_box_14 {
+  padding-top: calc(360% / 1200 * 100);
+}
+
+.img_box_15 {
+  padding-top: calc(178% / 277 * 100);
+}
+
 .body_inner {
   position: relative;
   overflow: hidden;
