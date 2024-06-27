@@ -154,7 +154,7 @@
                 </div>
             </div>
 
-            <div class="body_inner">
+            <div class="">
             <div class="list-ticket-grid">
             <a href="#!" class="list-ticket-item">
                     <div class="img_box  ">
