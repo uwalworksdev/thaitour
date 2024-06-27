@@ -9,9 +9,11 @@
   height: 1px;
   background: #eeeeee;
 }
+
 .select2-container--default .select2-selection--single {
   border: none !important;
 }
+
 .flex_header_top {
   display: flex;
   padding: 10px 0;
@@ -39,18 +41,24 @@
   font-size: 14px;
 }
 
+
 .search-icon {
   margin-left: -35px;
   color: #333;
 }
-.custom-select-rounded{
+
+
+.custom-select-rounded {
   margin-left: 30px;
 }
+
 .custom-select-rounded .select2-container--default .select2-selection--single {
   border: 2px solid #000 !important;
-  border-radius: 30px; /* Rounded corners */
+  border-radius: 30px;
+  /* Rounded corners */
   background-color: white;
-  padding: 5px 20px; /* Adjust padding as needed */
+  padding: 5px 20px;
+  /* Adjust padding as needed */
   height: auto;
   width: 200px;
   display: flex;
@@ -66,12 +74,14 @@
 }
 
 .custom-select-rounded .select2-container--default .select2-selection--single .select2-selection__rendered {
-  text-align: center; /* Center text */
+  text-align: center;
+  /* Center text */
   color: black;
 }
 
 .custom-select-rounded .select2-dropdown {
-  border-radius: 0; /* Optional: remove border radius from dropdown */
+  border-radius: 0;
+  /* Optional: remove border radius from dropdown */
 }
 
 .custom-select-rounded .select2-results__option {
@@ -83,7 +93,8 @@
   color: black;
 }
 
-.custom-select-rounded  .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+.custom-select-rounded .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
   border-bottom-left-radius: 30px !important;
   border-bottom-right-radius: 30px !important;
 }
@@ -114,4 +125,127 @@
 
 .flex_header_top>li>a:hover {
   text-decoration: underline;
+}
+
+
+
+@media screen and (max-width: 850px) {
+  .select_res_header {
+    font-size: 1.6rem;
+    min-width: 16.2rem;
+  }
+
+  .header_logo_m {
+    width: 21rem;
+    height: 4.7rem;
+  }
+
+  .burger {
+    cursor: pointer;
+    /* background-image: url("/uploads/icons/menu_m.png"); */
+  }
+
+  .burger div {
+    width: 2.5rem;
+    height: .3rem;
+    background: white;
+    margin: .5rem;
+    transition: all 0.3s ease;
+  }
+
+  .nav-active {
+    display: flex;
+  }
+  .flex_header_top {
+    display: flex;
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .flex_header_top > .burger > img{
+      width: 4rem;
+      height: 4rem;
+  }
+  .search_m_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-icon-m {
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+    transform: translateY(-1rem);
+    transform: translateX(-2rem);
+    color: #333;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .search-container-m {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-input-m {
+    border: 1px solid #ddd;
+    border-radius: 5rem;
+    padding: 1.3rem 2rem !important;
+    outline: none;
+    width: 66rem !important;
+    font-size: 1.4rem;
+    height: 7.8rem;
+  }
+
+  .search-input-m::placeholder {
+    font-size: 2.6rem;
+    color: #999999;
+  }
+  .flex_header_mo_bots{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+  }
+  .flex_header_mo_bot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  .select_header_m{
+    width: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    border-radius: 3rem;
+    padding: 0 2.5rem;
+    border: 2px solid #e9e9e9;
+    color: #252525;
+    font-size: 2.6rem;
+  }
+  .select_header_m.on{
+    width: 12rem;
+    height: 5rem;
+    border-radius: 3rem;
+    border: 2px solid #39b9aa;
+    color: #39b9aa;
+  }
+  .font-26{
+    font-size: 2.6rem;
+  }
+  .mtb{
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+  }
+  .inner_header_m{
+    margin-top: 2rem;
+  }
+
 }
