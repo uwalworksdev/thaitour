@@ -144,9 +144,9 @@
         </div>
     </div>
     <div class="flex_header_mo_bots mtb font-26">
-        <a href="">여행자 보험여행</a>
+        <a href=""> 여행자 보험 </a>
         <a href="">이벤트</a>
-        <a href="">쿠폰</a>
+        <a href="">여행 쿠폰</a>
         <a href="">태국뉴스</a>
     </div>
 </header>
