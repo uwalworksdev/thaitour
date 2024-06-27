@@ -147,3 +147,99 @@ scale: 1.05;
   background-color: #ddd;
   color: black;
 }
+@media screen and (max-width: 850px) {
+.flex_mo_notice__body{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notice__ttl{
+  font-size: 3.2rem;
+}
+.notice_item__title{
+  font-size: 2.8rem;
+}
+.notice_item__date{
+  font-size: 2.8rem;
+}
+.notice_item__date{
+  margin-left: 7rem;
+}
+.flex_mobile_notice_item{
+  display: flex;
+  align-items: center;
+}
+.flex_footer_top{
+  gap: 3rem;
+  overflow-x: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+.flex_footer_top >li {
+  font-size: 2.6rem;
+  white-space: nowrap;
+}
+.add_footer p{
+  font-size: 2.6rem;
+}
+.text-18{
+  font-size: 2.6rem !important;
+}
+.flex_footer_bot{
+  flex-direction: column;
+}
+.copy_f{
+  font-size: 2.6rem;
+}
+.text-25{
+  font-size: 2.5rem;
+}
+.no-w{
+  white-space: nowrap;
+}
+.btn_cus_f button{
+width: 30rem;
+padding: 1rem 0;
+font-size: 2.6rem;
+
+}
+.btn_custom_f{
+border-radius: 5rem;
+}
+.custom-select2{
+max-width: 16.6rem;
+height: 4.5rem;
+font-size: 2.6rem;
+}
+.custom-select2 .select2-container--default .select2-selection--single .select2-selection__rendered {
+  font-size: 2.6rem;
+  padding-left: 2rem;
+}
+.custom-select2 .select2-container--default .select2-selection--single {
+  background-color: #222222;
+  background-image: url('/images/ico/global_select_f.png');
+  background-repeat: no-repeat;
+  background-position: left 1.3rem bottom 1.2rem;
+  border: 1px solid #888 !important;
+  background-size: 2.5rem 2.5rem;
+  border-radius: 3rem;
+  color: white;
+  padding: .5rem 1.6rem;
+  font-size: 2.6rem;
+  height: auto;
+}
+.custom-select2 .select2-container--default .select2-selection--single .select2-selection__arrow {
+  scale: 1.8;
+  top: 70%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #5897fb;
+  color: white;
+  font-size: 2.6rem;
+}
+.btn_cus_f{
+  margin-top: 5rem;
+}
+}
