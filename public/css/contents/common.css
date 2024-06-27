@@ -664,344 +664,27 @@ figure.cover_img img {
 }
 
 @media screen and (max-width: 850px) {
-
-  .download_btn {
-    width: 5.4rem;
-    height: 1.9333rem;
-    font-size: .8rem;
-    border-width: .0667rem;
-    border-radius: .1333rem;
+  html{
+    font-size: 1.38888889vw;
   }
 
-  .download_btn .ico {
-    width: .6667rem;
-    height: .7333rem;
-    margin-left: .3333rem;
-    background: url(/images/ico/download_ico_mo.png) no-repeat center / .6667rem;
-  }
-
-  .download_btn.blue .ico {
-    width: .8rem;
-    height: .8667rem;
-    background-size: .8rem;
-    background-image: url(/images/ico/download_ico_blue_mo.png)
-  }
-
-  /* more_view 자세히보기 */
-  .more_view {
-    font-size: 1rem;
-    margin-top: 1rem;
-  }
-
-  .more_view .ico {
-    margin-left: .5333rem;
-    width: 1.4rem;
-    height: 1.4rem;
-    background: var(--bs-point) url(/images/sub/view_arrow_mo.png) no-repeat .566rem / .333rem;
-    border-radius: 50%;
-  }
-
-  /* subTabList */
-  .subTabList {
-    padding-bottom: 0.25rem;
-    margin-bottom: 2rem;
-  }
-
-  .subTabList li {
-    width: 50%;
-    max-width: initial;
-    border-width: .0667rem;
-  }
-
-  .subTabList li button {
-    padding: 1.0667rem 0;
-    font-size: .9333rem;
-  }
-
-  /* subNavList */
-  .subNavList {
-    overflow-x: auto;
-    margin-bottom: 1rem;
-    padding-bottom: 0.25rem;
-  }
-
-  .subNavList li+li {
-    margin-left: 1.3667rem
-  }
-
-  .subNavList li button {
-    padding-bottom: .3333rem;
-    font-size: 1rem;
-    white-space: nowrap;
-  }
-
-  .subNavList li button::after {
-    height: .0667rem;
-  }
-
-  /* itemList */
-  .itemList li {
-    border-width: .0667rem;
-  }
-
-  .itemList li .mask {
-    font-size: 1rem;
-  }
-
-  .itemList li .mask .ico {
-    width: 1.5333rem;
-    height: 1.5333rem;
-    margin-bottom: .5667rem;
-    background: url(/images/ico/modal_view_ico_mo.png) no-repeat center center / 1.5333rem;
-  }
-
-  /* boxList */
-
-  .boxList .info_box .info_data span+span::before {
-    width: .0667rem;
-    height: .5333rem;
-    margin: 0 .7rem .0333rem;
-  }
-
-
-  /* positoinBox */
-  .positionBox .process_bg {
-    background: url(/images/sub/process_bg_mo.png) no-repeat center top;
-    background-size: 10rem;
+  .main_current_slide{
 
   }
-
-  .positionBox .boxList {
-    padding-bottom: 3.6333rem;
+  .swiper-pagination-main{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dbdbdb;
+    background-color: #ffffff;
+    border-radius: 4.5rem !important;
+    width: 14rem !important;
+    height: 5rem !important;
+    color: #cccccc;
+    display: flex;
+    justify-content: center;
+    font-size: 2.0rem;
+    align-items: center;
   }
-
-  .positionBox .boxList li {
-    max-width: 20.3333rem;
-    width: 100%;
-    padding: 2.0333rem 3.1rem;
-    text-align: left;
-    align-items: flex-start !important;
-    margin-left: auto;
-    border-radius: 1.1333rem;
-  }
-
-  .positionBox .boxList li:first-of-type {
-    margin-top: 1.5333rem;
-  }
-
-  .positionBox .boxList li figure {
-    top: 50%;
-    left: -1.6667rem;
-    transform: translateY(-50%);
-  }
-
-  .positionBox .boxList li figure img {
-    width: 3.2667rem;
-  }
-
-  .positionBox .boxList li .info_box strong {
-    font-size: 1rem;
-  }
-
-  .positionBox .boxList li .info_box p {
-    font-size: .9333rem;
-    font-weight: 400;
-    line-height: 1.35;
-    margin-top: .5333rem;
-  }
-
-  .hiddenx {
-    display: none !important;
-  }
-
-  /* boxIconList **recruitment */
-  .boxIconList li {
-    text-align: center;
-  }
-
-  .boxIconList li.border {
-    padding: 28px 24px;
-    border: 1px solid var(--bs-gray-200);
-  }
-
-  .boxIconList li figure img {
-    margin: 0 auto;
-    width: 4.5rem;
-  }
-
-  .boxIconList li .info_box {
-    margin-top: .8667rem;
-    margin-left: 0;
-  }
-
-  .boxIconList li .info_box .subject {
-    font-size: 1rem;
-  }
-
-  .boxIconList li .info_box .summary {
-    font-size: .9333rem;
-    font-weight: 400;
-    line-height: 1.42;
-    margin-top: .4rem;
-  }
-
-
-  /* boardView */
-  .boardView .subject {
-    font-size: 1.0667rem;
-    padding: 1.3667rem .6rem 1.3667rem;
-  }
-
-  .boardView .view_info {
-    justify-content: flex-start;
-    padding: 1.4333rem .6rem 1.3333rem;
-    border-bottom: 1px solid #dbdbdb;
-  }
-
-  .boardView .view_info p {
-    position: relative;
-    font-size: .9333rem;
-  }
-
-  .boardView .view_info p+p {
-    padding-left: .8333rem;
-    margin-left: .7rem;
-  }
-
-  .boardView .view_info p+p::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: .0667rem;
-    height: 1rem;
-    background: var(--bs-gray-100);
-  }
-
-  .boardView .view_info p strong {
-    margin-left: .2667rem;
-  }
-
-  .boardView .desc {
-    padding: 1rem .6rem 1.6667rem;
-    border-bottom: .0667rem solid var(--bs-gray-200);
-    font-size: .9333rem;
-    line-height: 1.42;
-  }
-
-  .boardView .view_list li {
-    font-size: .9333rem;
-    padding: 1.4rem .5333rem 1.4rem;
-    border-width: .0667rem;
-  }
-
-  .boardView .view_list li span {
-    width: .7rem;
-    height: .4333rem;
-    background-size: .7rem;
-    margin-left: .6333rem;
-    margin-right: 1.3333rem;
-  }
-
-  .boardView .view_list li div {
-    padding-left: 1.3333rem;
-  }
-
-  .boardView .view_list li div::before {
-    width: .0667rem;
-  }
-
-  .boardView .view_list li.view_next span {
-    background-image: url(/images/btn/view_arrow_next_mo.png);
-  }
-
-  .boardView .view_list li.view_prev span {
-    background-image: url(/images/btn/view_arrow_prev_mo.png);
-  }
-
-  .boardView .back_btn {
-    max-width: 100%;
-  }
-
-  .boardView .btn_wrap {
-    margin-top: 1rem;
-  }
-
-  /* paging - 페이징 */
-  .paging {
-    margin-top: 2.6667rem;
-  }
-
-  .paging .page li {
-    margin-right: 1.2rem;
-  }
-
-  .paging .page li.next {
-    margin-left: 1.2rem;
-    margin-right: .3rem;
-  }
-
-  .paging .page li:first-child {
-    margin-right: .3rem;
-  }
-
-
-  .paging .page .num+.num {
-    margin-left: .4667rem;
-  }
-
-  .paging .page li a {
-    font-size: .9333rem;
-    width: 1.8667rem;
-    height: 1.8667rem;
-  }
-
-  .paging .page li.more_prev a {
-    background-image: url(/images/btn/more_prev_mo.png);
-    background-size: .7333rem;
-  }
-
-  .paging .page li.prev a {
-    background-image: url(/images/btn/page_prev_mo.png);
-    background-size: .4333rem;
-  }
-
-  .paging .page li.next a {
-    background-image: url(/images/btn/page_next_mo.png);
-    background-size: .4rem;
-  }
-
-  .paging .page li.more_next a {
-    background-image: url(/images/btn/more_next_mo.png);
-    background-size: .7rem;
-  }
-
-  /* // paging - 페이징 end */
-
-
-  /* scroll_btn */
-  .scroll_btn {
-    right: 1rem;
-    bottom: 2rem;
-  }
-
-  .scroll_btn button {
-    width: 2.6667rem;
-    height: 2.6667rem;
-    background: var(--bs-point) url(/images/common/top_btn_mo.png) no-repeat center / .7667rem;
-  }
-
-  .scroll_btn button::after {
-    content: '';
-    position: absolute;
-    width: 4.2667rem;
-    height: 4.2667rem;
-    top: -0.3rem;
-    left: -0.8rem;
-    background: url(/images/common/top_btn_shadow_mo.png) no-repeat center / 4.2667rem;
-
-  }
-
 }
 
 .gap-10 {
@@ -1307,4 +990,8 @@ figure.cover_img img {
 }
 .main_current_slide {
   color: #252525;
+}
+
+.inner{
+  padding: 0 3rem;
 }

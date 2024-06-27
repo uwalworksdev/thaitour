@@ -2694,6 +2694,11 @@
   animation: spin 1s linear infinite;
   z-index: 9999;
 }
+.prd_price{
+  font-size: 22px !important;
+  color: #222222 !important;
+}
+
 
 @keyframes spin {
   0% {
@@ -2975,19 +2980,14 @@
   position: relative;
 }
 
-.ticket-tool-r {
-  position: relative;
-}
+
 
 .ticket-tool-r input {
   border-radius: 21px;
   height: 42px;
 }
 
-.ticket-tool-r input {
-  border-radius: 21px;
-  height: 42px;
-}
+
 
 .ticket-s-i {
   position: absolute;
@@ -3000,6 +3000,7 @@
   align-items: center;
   justify-content: start;
   gap: 10px;
+  /* overflow: scroll; */
 }
 
 .btn-gr-ticket button {
@@ -3012,10 +3013,7 @@
 
 .btn-gr-ticket button.on {
   border: 1px solid var(--bs-point);
-  padding: 8px 16px;
-  font-size: 16px;
   color: var(--bs-point);
-  border-radius: 30px;
 }
 
 .tiket-tool-b {
@@ -3047,6 +3045,7 @@
 
 .list-ticket-item {
   max-width: 285px;
+  overflow: hidden;
   margin-bottom: 40px;
 }
 
@@ -3609,4 +3608,246 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   border: none;
   background-color: #2e3e92;
   color: #fff;
+}
+.tag-red{
+  position: absolute;
+  left: 30px;
+  transform: translateX(-30px);
+  top: 15px;
+  transform: translateY(15px);
+  z-index: 99999;
+}
+.img_box_re{
+  position: relative;
+  
+}
+
+.img_box_re::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; 
+  background: linear-gradient(to top,rgba(0, 0, 0,0.8), rgba(0, 0, 0, 0)); 
+    z-index: 1;
+}
+.text_img_box_re{
+  color: white;
+  z-index: 9899999;
+  position: absolute;
+  font-size: 28px;
+  line-height: 36px;
+  bottom: 30px;
+  left: 30px;
+  font-weight: bold;
+}
+.prd_name{
+  color: #252525;
+}
+.prd_names{
+ margin-top: 10px !important;
+}
+.breakcum p{
+  font-size: 15px !important;
+  color: #757575;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .only_tb{
+    display: none !important;
+  }
+}
+@media screen and (max-width: 850px) {
+.img_box_re_img{
+  width: 100%;
+  max-height: 61.5rem;
+}
+.text_img_box_re{
+  color: white;
+  z-index: 9899999;
+  position: absolute;
+  font-size: 3.8rem;
+  line-height: 1.4;
+  bottom: 3rem;
+  left: 3rem;
+  font-weight: bold;
+}
+.swiper-main-tools .play_pause {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #dbdbdb;
+  border-radius: 50%;
+  background-color: #ffffff;
+  width: 5rem;
+  height: 5rem;
+  cursor: pointer;
+}
+.text_img_box_re{
+  color: white;
+  z-index: 9899999;
+  position: absolute;
+  font-size: 3.8rem;
+  line-height: 1.4;
+  bottom: 5rem;
+  left: 5rem;
+  font-weight: bold;
+}
+.tag-red{
+  position: absolute;
+  left: 5rem;
+  transform: translateX(-3rem);
+  top: 3rem;
+  transform: translateY(1.5rem);
+  z-index: 99999;
+}
+.pause{
+  width: 1.3rem;
+  height: 2.3rem;
+}
+.play{
+  width: 1.3rem;
+  height: 2.3rem;
+}
+.ticket-tool-l>p {
+  font-size: 3.8rem;
+  font-weight: bold;
+}
+.ticket-tool {
+  padding-top: 8rem;
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+}
+.ticket-tool-r {
+  padding-top: 3rem;
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+}
+.ticket-tool-r input {
+  border-radius: 5rem;
+  height: 6.6rem !important;
+}
+.ticket-s-i {
+  position: absolute;
+  right: 3rem;
+  width: 3rem;
+  height: 3rem;
+  /* padding: 0 2rem; */
+  top: 4.5rem;
+  font-size: 2.8rem;
+}
+.btn-gr-ticket button {
+  border: 1px solid #dcdcdc;
+  padding: 1rem 1.8rem;
+  font-size: 2.2rem;
+  color: #757575;
+  border-radius: 30px;
+}
+
+.list-ticket-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.list-ticket-item {
+  max-width: 32rem;
+  margin-bottom: 4rem;
+}
+
+.list-ticket-item .img_box img{
+  width: 100%;
+}
+.breakcum p{
+  font-size: 2.4rem !important;
+  margin: 2rem 0;
+  color: #757575;
+}
+.prd_name p{
+  font-size: 2.8rem;
+  color: #222222;
+  letter-spacing: -0.04em;
+}
+.prd_info__left > span{
+  font-size: 2.6rem;
+}
+.prd_info__right > span{
+  font-size: 2.6rem;
+}
+
+.prd_price_ko_m .prd_price {
+  font-size: 3.2rem !important;
+  color: #222222 !important;
+}
+.prd_info_m{
+  margin: 2.5rem 0 !important;
+}
+
+.ko_m_price {
+font-size: 2.6rem !important;
+}
+.y_price{
+  font-weight: 500;
+}
+.select-tool select{
+  font-size: 2.6rem;
+}
+
+.select-tool {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 40px; /* Adjust the height as needed */
+  font-size: 16px;
+}
+
+.select-tool select {
+  width: 100%;
+  height: 4rem; 
+  /* padding: 10px; */
+  font-size: 2.6rem;
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right 10px center;
+  background-size: 2.1rem 1.5rem; 
+  /* border: 1px solid #ccc; */
+  padding-left: 2.5rem;
+  border-radius: .4rem;
+  outline: none;
+}
+.ico_star{
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-right: .5rem;
+}
+.prd_list_pagination__btn__text{
+  font-size: 2.8rem;
+}
+.prd_list_pagination__btn__pages{
+  font-size: 2.8rem;
+}
+.prd_list_pagination__btn{
+  font-weight: 500;
+  height: 8rem;
+  width: 32rem;
+}
+.prd_list_pagination__btn svg{
+  width: 3.5rem;
+  height: 3rem;
+}
+.body_inner{
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+.mid-banner-ticket >.only_mo{
+  width: 100%;
+}
+
+
 }
