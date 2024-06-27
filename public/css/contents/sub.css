@@ -3814,10 +3814,10 @@ font-size: 2.6rem !important;
   appearance: none; 
   -webkit-appearance: none; 
   -moz-appearance: none; 
-  background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right 10px center;
+  background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right 3px center;
   background-size: 2.1rem 1.5rem; 
   /* border: 1px solid #ccc; */
-  padding-left: 2.5rem;
+  padding-left: 3rem;
   border-radius: .4rem;
   outline: none;
 }
