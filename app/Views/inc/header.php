@@ -93,7 +93,7 @@
     </div>
 </header>
 <header id="header" class="only_mo inner_header_m">
-    <div class="inner flex_header_top ">
+    <div class="inner flex_header_top pb-24">
         <div>
             <div class="custom-select-lang">
                 <select id="language-select2" style="width: 130px;">
