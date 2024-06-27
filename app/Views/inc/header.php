@@ -93,7 +93,7 @@
     </div>
 </header>
 <header id="header" class="only_mo inner_header_m">
-    <div class="inner flex_header_top ">
+    <div class="inner flex_header_top pb-24">
         <div>
             <div class="custom-select-lang">
                 <select id="language-select2" style="width: 130px;">
@@ -144,9 +144,9 @@
         </div>
     </div>
     <div class="flex_header_mo_bots mtb font-26">
-        <a href="">여행자 보험여행</a>
+        <a href=""> 여행자 보험 </a>
         <a href="">이벤트</a>
-        <a href="">쿠폰</a>
+        <a href="">여행 쿠폰</a>
         <a href="">태국뉴스</a>
     </div>
 </header>

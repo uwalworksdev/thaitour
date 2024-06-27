@@ -903,6 +903,9 @@ figure.cover_img img {
   padding: 40px 0 0 0;
   border-top: 2px solid #dbdbdb;
 }
+.pb-24{
+  padding-bottom: 2.4rem;
+}
 .main_section_notice__body {
   display: flex;
   align-items: center;
@@ -992,6 +995,3 @@ figure.cover_img img {
   color: #252525;
 }
 
-.inner{
-  padding: 0 3rem;
-}
