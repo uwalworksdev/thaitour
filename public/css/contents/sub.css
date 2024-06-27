@@ -3814,10 +3814,10 @@ font-size: 2.6rem !important;
   appearance: none; 
   -webkit-appearance: none; 
   -moz-appearance: none; 
-  background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right 10px center;
-  background-size: 2.1rem 1.5rem; 
+  background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right 3px center;
+  /* background-size: 2.1rem 1.5rem;  */
   /* border: 1px solid #ccc; */
-  padding-left: 2.5rem;
+  padding-left: 3rem;
   border-radius: .4rem;
   outline: none;
 }
@@ -3834,8 +3834,19 @@ font-size: 2.6rem !important;
 }
 .prd_list_pagination__btn{
   font-weight: 500;
+  border-width: 2px !important;
   height: 8rem;
   width: 32rem;
+}
+.notice__ttl{
+  font-size: 3.2rem !important;
+
+}
+.notice_item__icon{
+  border-width: 2px !important;
+}
+.notice_swiper_btn{
+border-width: 2px !important;
 }
 .prd_list_pagination__btn svg{
   width: 3.5rem;

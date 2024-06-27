@@ -1,7 +1,7 @@
-
+<div class="body_inner">
 <section class="main_section_notice">
-<div class="inner">
-        <div class="body_inner">
+<div class="">
+       
             <div class="main_section_notice__body only_web_flex">
                 <div class="notice__ttl">공지사항</div>
 
@@ -90,14 +90,14 @@
                
        
             </div>
-        </div>
+       
         </div>
     </section>
-
+    </div>
 <footer id="footer">
     <div class="inner">
         <div>
-            <ul class="flex_footer_top">
+            <ul class="flex_footer_top pl-10">
                 <li><a href="">회사소개</a></li>
                 <li><a href="">자주묻는 질문</a></li>
                 <li><a href="">예약변경 및 취소 정책 </a></li>

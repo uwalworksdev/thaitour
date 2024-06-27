@@ -73,12 +73,13 @@ scale: 1.05;
 }
 
 .btn_custom_f {
+  font-family: Pretendard;
   background-color: transparent;
   border: 1px solid #888;
   border-radius: 20px;
   color: #fff;
   padding: 10px 20px;
-  margin: 0 10px;
+  letter-spacing: -0.04em !important;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -102,7 +103,6 @@ scale: 1.05;
   background-color: #222222;
   background-image: url('/images/ico/global_select_f.png');
   background-repeat: no-repeat;
-
   background-position: left 10px bottom 8px;
   border: 1px solid #888 !important;
   border-radius: 30px;
@@ -151,23 +151,36 @@ scale: 1.05;
 .flex_mo_notice__body{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 3rem;
   align-items: center;
+}
+.notice_item__icon{
+  font-size: 2.6rem !important;
+  padding: 0.2rem 1rem !important;
+  width: 8rem !important;
+  height: 4rem !important;
+  border-radius: 2.3rem !important;
 }
 .notice__ttl{
   font-size: 3.2rem;
 }
+
 .notice_item__title{
-  font-size: 2.8rem;
+  font-size: 2.8rem !important;
 }
 .notice_item__date{
-  font-size: 2.8rem;
+  font-size: 2.8rem !important;
 }
 .notice_item__date{
-  margin-left: 7rem;
+  margin-left: 8.8rem !important;
 }
 .flex_mobile_notice_item{
   display: flex;
   align-items: center;
+}
+.ico_plus{
+  width: 2rem !important;
+  height: 2rem !important;
 }
 .flex_footer_top{
   gap: 3rem;
@@ -186,6 +199,7 @@ scale: 1.05;
   font-size: 2.6rem !important;
 }
 .flex_footer_bot{
+  padding: 0 1rem;
   flex-direction: column;
 }
 .copy_f{
@@ -198,8 +212,8 @@ scale: 1.05;
   white-space: nowrap;
 }
 .btn_cus_f button{
-width: 30rem;
-padding: 1rem 0;
+/* width: 30rem; */
+padding: 1rem 2rem;
 font-size: 2.6rem;
 
 }
@@ -220,7 +234,7 @@ font-size: 2.6rem;
   background-image: url('/images/ico/global_select_f.png');
   background-repeat: no-repeat;
   background-position: left 1.3rem bottom 1.2rem;
-  border: 1px solid #888 !important;
+  border:2px solid #888 !important;
   background-size: 2.5rem 2.5rem;
   border-radius: 3rem;
   color: white;
@@ -240,6 +254,12 @@ font-size: 2.6rem;
   font-size: 2.6rem;
 }
 .btn_cus_f{
+  display: flex;
+  justify-content: start;
+  gap: 2rem;
   margin-top: 5rem;
+}
+.pl-10{
+  padding-left: 1rem;
 }
 }
