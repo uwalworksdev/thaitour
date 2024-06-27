@@ -3216,6 +3216,9 @@
 .vehicle_list tr td {
   vertical-align: top;
 }
+.vehicle_list tr td:last-child {
+  vertical-align: middle;
+}
 .vehicle_list tr + tr td {
   padding: 26px 0 0 0;
 }
@@ -3752,7 +3755,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .list-ticket-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 33.9rem 33rem;
 }
 
 .list-ticket-item {
@@ -3761,7 +3764,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .list-ticket-item .img_box img{
-  width: 100%;
+   min-width: 33rem;
 }
 .breakcum p{
   font-size: 2.4rem !important;
@@ -3835,8 +3838,8 @@ font-size: 2.6rem !important;
 .prd_list_pagination__btn{
   font-weight: 500;
   border-width: 2px !important;
-  height: 8rem;
-  width: 32rem;
+  height: 8rem !important;  width: 32rem !important;
+  border-radius: 50px !important;
 }
 .notice__ttl{
   font-size: 3.2rem !important;
