@@ -111,7 +111,7 @@
                     </ul>
                     <div class="section_vehicle_2_2__airport">
                         <span>
-                            <input type="radio" id="airport1" name="airport" value="airport">
+                            <input checked type="radio" id="airport1" name="airport" value="airport">
                             <label for="airport1">공항1</label>
                         </span>
                         <span>
