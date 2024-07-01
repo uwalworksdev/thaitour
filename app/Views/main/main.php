@@ -6,7 +6,7 @@ $Bbs = model("Bbs");
 $list = $Bbs->List("banner", ["category" => "1"])->findAll();
 ?>
 
-<link rel="stylesheet" href="/css/contents/main.css">
+<!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.carousel.min.css">
 <link rel="stylesheet"
     href="/lib/owl-carousel2/owl.theme.default.min.css">
@@ -16,13 +16,28 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
     <section class="main_visual">
         <div class="body_inner">
             <div class="relative">
-                <div class="main_visual_slider owl-carousel">
+                <div class="main_visual_slider owl-carousel only_web">
                     <?php foreach ($list as $item): ?>
-                        <div class="img_box img_box_1">
-                            <img src="/uploads/bbs/<?= $item['ufile5'] ?>" alt="<?= $item['rfile5'] ?>"
+                        <div class="img_box img_box_1 only_web">
+                            <img class="only_web" src="http://happythaitour.com/uploads/bbs/<?= $item['ufile5'] ?>" alt="<?= $item['rfile5'] ?>"
                                 onerror="this.src='/images/main/image.svg'">
                         </div>
                     <?php endforeach; ?>
+
+                </div>
+                <div class="main_visual_slider owl-carousel only_mo">
+                    <div class="img_box img_box_1_m  only_mo">
+                            <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
+                                onerror="this.src='/images/main/image.svg'">
+                        </div>
+                    <div class="img_box img_box_1_m only_mo ">
+                            <img class="only_mo" src="/uploads/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
+                                onerror="this.src='/images/main/image.svg'">
+                        </div>
+                    <div class="img_box img_box_1_m only_mo ">
+                            <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
+                                onerror="this.src='/images/main/image.svg'">
+                        </div>
                 </div>
             </div>
             <div class="swiper-main-tools">
@@ -53,44 +68,52 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 <div class="swiper main_swiper2">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_1.png" alt="main">
+                            <div class="img_box img_box_2 img_box_2_m">
+                                <img class="only_web" src="http://happythaitour.com/uploads/main/main_banner_1.png" alt="main">
+                                <img  class="only_mo" src="../uploads/main/main_banner_1_m.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">
-                                # 왜 더투어랩이 답일까요?
+                                # 왜 더투어랩이<br class="only_mo"> 답일까요?
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_2.png" alt="main">
+                            <div class="img_box img_box_2 img_box_2_m">
+                                <img src="http://happythaitour.com/uploads/main/main_banner_2.png" alt="main">
+                                <img  class="only_mo" src="../uploads/main/main_banner_2_m.png" alt="main">
+
                             </div>
                             <div class="main_swiper2__text"> # 더투어랩의 <br> 신용도는 <br> AAA</div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_3.png" alt="main">
+                            <div class="img_box img_box_2 img_box_2_m">
+                                <img src="http://happythaitour.com/uploads/main/main_banner_3.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_4.png" alt="main">
+                            <div class="img_box img_box_2 img_box_2_m">
+                                <img src="http://happythaitour.com/uploads/main/main_banner_4.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#무려 4% <br> 포인트 적립</div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_5.png" alt="main">
+                            <div class="img_box img_box_2 img_box_2_m">
+                                <img src="http://happythaitour.com/uploads/main/main_banner_5.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#예약이 <br> 정말 쉬워요! </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box img_box_2">
-                                <img src="/uploads/main/main_banner_3.png" alt="main">
+                            <div class="img_box img_box_2 img_box_2_m">
+                                <img src="http://happythaitour.com/uploads/main/main_banner_3.png" alt="main">
                             </div>
                             <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
                         </div>
+                
                     </div>
+                  
+                </div>
+                <div class="swiper_pagination_main_swiper2_box">
+                <div class="swiper_pagination_main_swiper2"></div>
                 </div>
                 <div class="swiper-button-prev-main-2 swiper-button-main-2 main_swiper2_btn_prev">
                     <img src="/images/ico/ico_prev_slide.svg" alt="">
@@ -99,6 +122,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <img src="/images/ico/ico_next_slide.svg" alt="">
                 </div>
             </div>
+        
+
         </div>
     </section>
     <section class="main_section3">
@@ -123,7 +148,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 <div class="best_list">
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_1.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_best_1.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -146,7 +171,30 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_2.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_best_2.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <!-- <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div> -->
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="http://happythaitour.com/uploads/main/main_best_3.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -169,7 +217,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_3.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_best_4.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -192,7 +240,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_4.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_best_5.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -215,7 +263,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_5.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_best_6.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -238,7 +286,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_6.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_best_7.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -261,30 +309,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_7.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_8.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_best_8.png" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
@@ -314,7 +339,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             <div class="main_section4_community">
                 <a href="#!" class="community_item">
                     <div class="community_item_img">
-                        <img src="/images/main/community_ico_1.png" alt="">
+                        <img src="/images/main/community_ico_1.png" alt="" class="only_web">
+                        <img src="/uploads/main/community_ico_1_m.png" alt="" class="only_mo">
                     </div>
                     <div class="community_item_name">
                         태국 뉴스
@@ -323,37 +349,44 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 </a>
                 <a href="#!" class="community_item">
                     <div class="community_item_img">
-                        <img src="/images/main/community_ico_2.png" alt="">
+                        <img src="/images/main/community_ico_2.png" alt="" class="only_web">
+                        <img src="/uploads/main/community_ico_2_m.png" alt="" class="only_mo">
+
                     </div>
                     <div class="community_item_name">
-                        태국 뉴스
+                    타임세일
                     </div>
                     <i class="community_item_bread"></i>
                 </a>
                 <a href="#!" class="community_item">
                     <div class="community_item_img">
-                        <img src="/images/main/community_ico_3.png" alt="">
+                        <img src="/images/main/community_ico_3.png" alt="" class="only_web">
+                        <img src="/uploads/main/community_ico_3_m.png" alt="" class="only_mo">
+
                     </div>
                     <div class="community_item_name">
-                        태국 뉴스
+                    여행 일정표
                     </div>
                     <i class="community_item_bread"></i>
                 </a>
                 <a href="#!" class="community_item">
                     <div class="community_item_img">
-                        <img src="/images/main/community_ico_4.png" alt="">
+                        <img src="/images/main/community_ico_4.png" alt="" class="only_web">
+                        <img src="/uploads/main/community_ico_4_m.png" alt="" class="only_mo">
+
                     </div>
                     <div class="community_item_name">
-                        태국 뉴스
+                    매거진
                     </div>
                     <i class="community_item_bread"></i>
                 </a>
                 <a href="#!" class="community_item">
                     <div class="community_item_img">
-                        <img src="/images/main/community_ico_5.png" alt="">
+                        <img src="/images/main/community_ico_5.png" alt="" class="only_web">
+                        <img src="/uploads/main/community_ico_5_m.png" alt="" class="only_mo">
                     </div>
                     <div class="community_item_name">
-                        태국 뉴스
+                    여행 쿠폰
                     </div>
                     <i class="community_item_bread"></i>
                 </a>
@@ -371,16 +404,17 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             <div class="main_section5__words_list">
                 <a href="#!" class="words_list_item">#5성급호텔</a>
                 <a href="#!" class="words_list_item">#호텔투어</a>
-                <a href="#!" class="words_list_item active">#5성급호텔</a>
-                <a href="#!" class="words_list_item">#호텔투어</a>
+                <a href="#!" class="words_list_item active">#태국호캉스</a>
+                <a href="#!" class="words_list_item">#바닷가라운딩</a>
+                <a href="#!" class="words_list_item">#골프투어</a>
+                <a href="#!" class="words_list_item">#로컬투어</a>
                 <a href="#!" class="words_list_item">#5성급호텔</a>
                 <a href="#!" class="words_list_item">#호텔투어</a>
-                <a href="#!" class="words_list_item">#5성급호텔</a>
+                <a href="#!" class="words_list_item">#태국호캉스</a>
+                <a href="#!" class="words_list_item">#바닷가라운딩</a>
                 <a href="#!" class="words_list_item">#호텔투어</a>
-                <a href="#!" class="words_list_item">#5성급호텔</a>
-                <a href="#!" class="words_list_item">#호텔투어</a>
-                <a href="#!" class="words_list_item">#5성급호텔</a>
-                <a href="#!" class="words_list_item">#호텔투어</a>
+                <!-- <a href="#!" class="words_list_item">#5성급호텔</a>
+                <a href="#!" class="words_list_item">#호텔투어</a> -->
             </div>
         </div>
     </section>
@@ -391,7 +425,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <div class="main_hot__head_ttl">
                         1주일간 예약순위 : <span>호텔</span>
                     </div>
-                    <div class="main_hot__head__place">
+                    <div class="main_hot__head__place only_web_flex">
                         <a href="#!" class="place_item active">방콕</a>
                         <a href="#!" class="place_item">파타야</a>
                         <a href="#!" class="place_item">방콕</a>
@@ -402,13 +436,19 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <div class="hot_product_list_swiper_pagination_1"></div>
                 </div>
             </div>
+            <div class="main_hot__head__place only_mo_flex">
+                        <a href="#!" class="place_item active">방콕</a>
+                        <a href="#!" class="place_item">파타야</a>
+                        <a href="#!" class="place_item">방콕</a>
+                        <a href="#!" class="place_item">파타야</a>
+                    </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_1.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_1.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -418,7 +458,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_2.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_2.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -428,7 +468,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_3.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_3.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -438,7 +478,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_4.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_4.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -448,7 +488,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_5.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_5.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -458,7 +498,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_3.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_3.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -485,12 +525,14 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             <div class="main_section7__banner">
                 <div class="main_section7__banner__item">
                     <div class="img_box img_box_4">
-                        <img src="/uploads/main/main_banner_6.png" alt="">
+                        <img src="http://happythaitour.com/uploads/main/main_banner_6.png" alt="" class="only_web">
+                        <img src="/uploads/main/main_banner_6_m.png" alt="" class="only_mo">
                     </div>
                 </div>
                 <div class="main_section7__banner__item">
                     <div class="img_box img_box_4">
-                        <img src="/uploads/main/main_banner_7.png" alt="">
+                        <img src="http://happythaitour.com/uploads/main/main_banner_7.png" alt="" class="only_web">
+                        <img src="/uploads/main/main_banner_7_m.png" alt="" class="only_mo">
                     </div>
                 </div>
             </div>
@@ -503,7 +545,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <div class="main_hot__head_ttl">
                         1주일간 예약순위 : <span>골프</span>
                     </div>
-                    <div class="main_hot__head__place">
+                    <div class="main_hot__head__place only_web_flex">
                         <div class="place_item">방콕</div>
                         <div class="place_item">파타야</div>
                         <div class="place_item">방콕</div>
@@ -514,13 +556,19 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <div class="hot_product_list_swiper_pagination_2"></div>
                 </div>
             </div>
+            <div class="main_hot__head__place only_mo_flex">
+                        <div class="place_item">방콕</div>
+                        <div class="place_item">파타야</div>
+                        <div class="place_item">방콕</div>
+                        <div class="place_item active">파타야</div>
+                    </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_5.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_5.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -530,7 +578,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_6.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_6.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -540,7 +588,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_7.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_7.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -550,7 +598,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_8.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_8.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -560,7 +608,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_6.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_6.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -570,7 +618,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_7.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_hot_7.png" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
@@ -606,20 +654,20 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/uploads/main/main_banner_8.png" alt="">
+                        <img src="http://happythaitour.com/uploads/main/main_banner_8.png" alt="">
                     </div>
                     <div class="main_section9__prd">
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_1.png" alt="">
+                                    <img src="http://happythaitour.com/uploads/main/main_tour_1.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
                                     <div class="prd_name">아난타라 시암 방콕 호텔</div>
                                     <div class="prd_description">
-                                        연박 프로모션 "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    연박 프로모션 "3박 이상시 룸 업그레이드...
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb_item">방콕</li>
@@ -633,14 +681,14 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_2.png" alt="">
+                                    <img src="http://happythaitour.com/uploads/main/main_tour_2.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
                                     <div class="prd_name">아난타라 시암 방콕 호텔</div>
                                     <div class="prd_description">
-                                        연박 프로모션 "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    2박 이상시 레이트 체크아웃 (보장) | 16시...
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb_item">방콕</li>
@@ -659,21 +707,21 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/uploads/main/main_banner_9.png" alt="">
+                        <img src="http://happythaitour.com/uploads/main/main_banner_9.png" alt="">
                     </div>
                     <div class="main_section9__prd">
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_3.png" alt="">
+                                    <img src="http://happythaitour.com/uploads/main/main_tour_3.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
                                     <div class="prd_name">아난타라 시암 방콕 호텔</div>
                                     <div class="prd_description">
-                                        연박 프로모션 "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
-                                    </div>
+                                    3박 했습니다. 조식은 거의
+                                    동일하고 과일 이랑 쌀국수 ... </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
@@ -686,15 +734,14 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_4.png" alt="">
+                                    <img src="http://happythaitour.com/uploads/main/main_tour_4.png" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
                                     <div class="prd_name">아난타라 시암 방콕 호텔</div>
                                     <div class="prd_description">
-                                        연박 프로모션 "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
-                                    </div>
+                                    로얄 방파인 골프 클럽에 관한 짧은 설명이... </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
@@ -715,21 +762,29 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 <div class="main_section_review__head_ttl">
                     여행을 다녀온 고객님들의 <span>솔직한 후기</span>
                 </div>
-                <a href="#!" class="main_section_review__head__more_review">더보기 +</a>
+                <a href="#!" class="main_section_review__head__more_review only_web">더보기 +</a>
+            </div>
+            <div class="only_mo_flex main_section_review_pagi_mo">
+                <div>
+                    
+                </div>
+                <div>            
+                    <a href="#!" class="main_section_review__head__more_review only_mo">더보기 +</a>
+                </div>
             </div>
             <div style="position: relative">
                 <div class="main_section_review__list review__list_swiper swiper">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper swiper-wrapper-cus-top">
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_1.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_review_1.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
-                                        말할것도...</div>
+                                    <div class="review__list__item__content">3박 했습니다. 조식은 거의
+                                    동일하고 과일 이랑 쌀국수 ...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -755,13 +810,13 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_2.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_review_2.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
-                                        말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
+                                    그린 모두 적 당히 괞찮습니다...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -787,13 +842,13 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_3.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_review_3.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
-                                        말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
+                                    그린 모두 적 당히 괞찮습니다...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -819,13 +874,13 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_4.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_review_4.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
-                                        말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
+                                    그린 모두 적 당히 괞찮습니다...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -851,13 +906,13 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <div class="swiper-slide">
                             <div class="review__list__item">
                                 <div class="img_box img_box_7">
-                                    <img src="/uploads/main/main_review_2.png" alt="main">
+                                    <img src="http://happythaitour.com/uploads/main/main_review_2.png" alt="main">
                                 </div>
                                 <div class="review_list__item__body">
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
-                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이 그린 모두 적 당히 괞찮습니다. 가격우
-                                        말할것도...</div>
+                                    <div class="review__list__item__content">파타야에서 가깝고 페어웨이
+                                    그린 모두 적 당히 괞찮습니다...</div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -883,10 +938,10 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                 </div>
                 <button class="swiper-button-prev-main-2 swiper-button-main-2 review__list_swiper_btn_prev">
-                    <img src="/images/ico/ico_prev_slide.svg" alt="">
+                    <img src="http://happythaitour.com/images/ico/ico_prev_slide.svg" alt="" class="ico_prev_slide">
                 </button>
                 <button class="swiper-button-next-main-2 swiper-button-main-2 review__list_swiper_btn_next">
-                    <img src="/images/ico/ico_next_slide.svg" alt="">
+                    <img src="http://happythaitour.com/images/ico/ico_next_slide.svg" alt=""  class="ico_next_slide">
                 </button>
             </div>
         </div>
@@ -903,7 +958,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_1.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_magazine_1.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -914,7 +969,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_2.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_magazine_2.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -925,7 +980,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_3.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_magazine_3.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -936,7 +991,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_4.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_magazine_4.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -947,7 +1002,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_5.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_magazine_5.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -958,7 +1013,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_3.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_magazine_3.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
@@ -969,7 +1024,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_4.png" alt="main">
+                            <img src="http://happythaitour.com/uploads/main/main_magazine_4.png" alt="main">
                             <div class="img_box__shadow"></div>
                         </div>
                         <div class="magazine_content">
