@@ -428,8 +428,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <div class="main_hot__head__place only_web_flex">
                         <a href="#!" class="place_item active">방콕</a>
                         <a href="#!" class="place_item">파타야</a>
-                        <a href="#!" class="place_item">방콕</a>
-                        <a href="#!" class="place_item">파타야</a>
+                        <a href="#!" class="place_item">푸켓</a>
+                        <a href="#!" class="place_item">치앙마이</a>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -439,8 +439,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             <div class="main_hot__head__place only_mo_flex">
                         <a href="#!" class="place_item active">방콕</a>
                         <a href="#!" class="place_item">파타야</a>
-                        <a href="#!" class="place_item">방콕</a>
-                        <a href="#!" class="place_item">파타야</a>
+                        <a href="#!" class="place_item">푸켓</a>
+                        <a href="#!" class="place_item">치앙마이</a>
                     </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
@@ -548,8 +548,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     <div class="main_hot__head__place only_web_flex">
                         <div class="place_item">방콕</div>
                         <div class="place_item">파타야</div>
-                        <div class="place_item">방콕</div>
-                        <div class="place_item active">파타야</div>
+                        <div class="place_item">푸켓</div>
+                        <div class="place_item active">치앙마이</div>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -559,8 +559,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             <div class="main_hot__head__place only_mo_flex">
                         <div class="place_item">방콕</div>
                         <div class="place_item">파타야</div>
-                        <div class="place_item">방콕</div>
-                        <div class="place_item active">파타야</div>
+                        <div class="place_item">푸켓</div>
+                        <div class="place_item active">치앙마이</div>
                     </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
