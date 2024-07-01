@@ -360,11 +360,12 @@ padding-top: 0 !important; */
     content: "";
     position: absolute;
     left: -12px;
-    top: 59%;
+    top: 50%;
     transform: translateY(-50%);
     background-image: url(/images/ico/ico_breadcrumb.svg);
+    background-position: center;
     background-repeat: no-repeat;
-    scale: 1.6;
+    background-size: 1.3rem;
     display: inline-block;
 }
 }
