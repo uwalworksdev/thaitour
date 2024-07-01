@@ -219,6 +219,30 @@
     gap: 2rem;
   }
   .select_header_m{
+    -webkit-appearance: none;  
+    -moz-appearance: none;    
+    appearance: none;        
+    background: url('../../uploads/icons/arrow-select-m.png') no-repeat right center;
+    background-size: 2rem;
+    background-position: calc(100% - 1rem) center;
+    padding-right: 1.5rem; 
+    width: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    border-radius: 3rem;
+    padding: 0 2rem;
+    border: 2px solid #e9e9e9;
+    color: #252525;
+    font-size: 2.6rem;
+  }
+  
+  .select_header_m_no_arr{
+    -webkit-appearance: none;  
+    -moz-appearance: none;    
+    appearance: none;        
+    padding-right: 1.5rem; 
     width: 12rem;
     display: flex;
     justify-content: center;
@@ -231,6 +255,10 @@
     font-size: 2.6rem;
   }
   .select_header_m.on{
+    background: url('../../uploads/icons/arrow-select-m-active.png') no-repeat right center;
+    background-size: 2rem;
+    background-position: calc(100% - 1rem) center;
+    padding-right: 1.5rem; 
     width: 12rem;
     height: 5rem;
     border-radius: 3rem;
@@ -247,5 +275,19 @@
   .inner_header_m{
     margin-top: 1rem;
   }
+.select2-container--default .select2-selection--single .select2-selection__arrow{
+height: 2.6rem !important;
+width: 1.2rem !important;
+}
+
+.custom-select-lang {
+  width: 100%; /* Đặt chiều rộng cho màn hình nhỏ hơn */
+}
+
+.select2-container--default .select2-results__options {
+  max-height: 200px;
+  overflow-y: auto;
+}
 
 }
+
