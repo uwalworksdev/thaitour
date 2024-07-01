@@ -30,10 +30,10 @@
                 </a>
                 <div class="swiper-button-box">
                     <button class="notice_swiper_btn_prev notice_swiper_btn">
-                        <img src="/images/ico/ico_prev_slide.svg" alt="">
+                        <img  src="/images/ico/ico_prev_slide.svg" alt="">
                     </button>
                     <button class="notice_swiper_btn_next notice_swiper_btn">
-                        <img src="/images/ico/ico_next_slide.svg" alt="">
+                        <img   src="/images/ico/ico_next_slide.svg" alt="">
                     </button>
                 </div>
             </div>
@@ -43,15 +43,15 @@
             <div class="main_section_notice__body only_mo">
 
                 <div class="flex_mo_notice__body">
-                    <div class="notice__ttl">공지사항</div>
-                    <div class="swiper-button-box">
-                        <button class="notice_swiper_btn_prev notice_swiper_btn">
-                            <img src="/images/ico/ico_prev_slide.svg" alt="">
-                        </button>
-                        <button class="notice_swiper_btn_next notice_swiper_btn">
-                            <img src="/images/ico/ico_next_slide.svg" alt="">
-                        </button>
-                    </div>
+                <div class="notice__ttl">공지사항</div>
+                <div class="swiper-button-box">
+                    <button class="notice_swiper_btn_prev notice_swiper_btn">
+                        <img  class="ico_prev_slide" src="/images/ico/ico_prev_slide.svg" alt="">
+                    </button>
+                    <button class="notice_swiper_btn_next notice_swiper_btn">
+                        <img class="ico_prev_slide"  src="/images/ico/ico_next_slide.svg" alt="">
+                    </button>
+                </div>
                 </div>
 
 
