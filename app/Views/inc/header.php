@@ -92,6 +92,8 @@
         </div>
     </div>
 </header>
+
+
 <header id="header" class="only_mo inner_header_m">
     <div class="inner flex_header_top pb-24">
         <div>
@@ -139,7 +141,7 @@
                 <option value="">투어</option>
             </select>
         </div>
-        <div class="select_header_m">
+        <div class="select_header_m_no_arr">
             <button class="font-26">차량</button>
         </div>
     </div>
@@ -150,6 +152,7 @@
         <a href="">태국뉴스</a>
     </div>
 </header>
+
 
 <script>
     $(document).ready(function () {
