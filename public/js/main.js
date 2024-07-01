@@ -220,13 +220,3 @@ const swiper5 = new Swiper(".magazine_swiper", {
     el: ".magazine_swiper__pagination",
   },
 });
-
-const swiper6 = new Swiper(".notice_swiper", {
-  loop: true,
-  slidesPerView: 1,
-  spaceBetween: 5,
-  navigation: {
-    nextEl: ".notice_swiper_btn_next",
-    prevEl: ".notice_swiper_btn_prev",
-  },
-});

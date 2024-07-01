@@ -3216,6 +3216,9 @@
 .vehicle_list tr td {
   vertical-align: top;
 }
+.vehicle_list tr td:last-child {
+  vertical-align: middle;
+}
 .vehicle_list tr + tr td {
   padding: 26px 0 0 0;
 }

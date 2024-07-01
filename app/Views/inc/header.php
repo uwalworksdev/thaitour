@@ -73,7 +73,7 @@
                 <ul class="flex_header_top">
                     <li><a href="/product-list/1324">호텔</a></li>
                     <li><a href="/product-golf/1325/1">골프</a></li>
-                    <li><a href="/product-tours/1317/1">투어</a></li>
+                    <li><a href="/product-list/1324">투어</a></li>
                     <li><a href="/product-spa/1320/1">스파</a></li>
                     <li><a href="/show-ticket">쇼ㆍ입장권</a></li>
                     <li><a href="">레스토랑</a></li>
