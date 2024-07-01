@@ -104,11 +104,24 @@ $(document).ready(function () {
 
 const swiper1 = new Swiper(".main_swiper2", {
   loop: true,
-  slidesPerView: 5,
+    breakpoints: {
+      851: {
+          slidesPerView: 5,
+          pagination:false
+        
+    }
+  },
+  slidesPerView:2,
+  pagination: {
+    el: '.swiper_pagination_main_swiper2',
+    clickable: true,
+    type: 'bullets'
+    // dynamicBullets: true
+},
   spaceBetween: 20,
   navigation: {
-    nextEl: ".main_swiper2_btn_next",
-    prevEl: ".main_swiper2_btn_prev",
+    nextEl: ".main_swiper2_btn_next only_web",
+    prevEl: ".main_swiper2_btn_prev only_web",
   },
 });
 
@@ -121,7 +134,14 @@ function setButtonPosition(el) {
 
 const swiper2 = new Swiper(".hot_product_list_swiper_1", {
   loop: true,
-  slidesPerView: 4,
+  breakpoints: {
+    851: {
+        slidesPerView: 4,
+        pagination:false
+      
+  }
+},
+  slidesPerView: 2,
   spaceBetween: 20,
   pagination: {
     el: ".hot_product_list_swiper_pagination_1",
@@ -142,7 +162,14 @@ const swiper2 = new Swiper(".hot_product_list_swiper_1", {
 
 const swiper3 = new Swiper(".hot_product_list_swiper_2", {
   loop: true,
-  slidesPerView: 4,
+  breakpoints: {
+    851: {
+        slidesPerView: 4,
+        pagination:false
+      
+  }
+},
+  slidesPerView: 2,
   spaceBetween: 20,
   pagination: {
     el: ".hot_product_list_swiper_pagination_2",
@@ -163,7 +190,14 @@ const swiper3 = new Swiper(".hot_product_list_swiper_2", {
 
 const swiper4 = new Swiper(".review__list_swiper", {
   loop: true,
-  slidesPerView: 4,
+  breakpoints: {
+    851: {
+        slidesPerView: 4,
+        pagination:false
+      
+  }
+},
+  slidesPerView: 2,
   spaceBetween: 20,
   navigation: {
     nextEl: ".review__list_swiper_btn_next",
@@ -173,7 +207,14 @@ const swiper4 = new Swiper(".review__list_swiper", {
 
 const swiper5 = new Swiper(".magazine_swiper", {
   loop: true,
-  slidesPerView: 5,
+  breakpoints: {
+    851: {
+        slidesPerView: 5,
+        pagination:false
+      
+  }
+},
+  slidesPerView: 2,
   spaceBetween: 20,
   pagination: {
     el: ".magazine_swiper__pagination",

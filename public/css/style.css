@@ -27,9 +27,11 @@
 @import url(./contents/form-control.css);
 
 /* contents */
+
  @import url(./contents/common.css);
-/* @import url(./contents/main.css);
-@import url(./contents/table.css);  */
+@import url(./contents/main.css); 
+@import url(./contents/main-responsive.css);
+/*@import url(./contents/table.css);  */
 @import url(./contents/sub.css); 
 @import url(./contents/custom.css); 
 @import url(./contents/slider_common.css); 
@@ -37,6 +39,7 @@
 @import url(./contents/member.css);
 @import url(./contents/item.css);
 @import url(./button/button.css);
+
 @import url(./tour/tour.css);
 /* responsive */
 /* @import url(./contents/responsive.css);
