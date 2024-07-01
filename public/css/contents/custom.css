@@ -588,6 +588,10 @@
 .only_mo {
   display: none !important;
 }
+.only_mo_flex {
+  display: none !important;
+}
+
 
 .only_mo_inline {
   display: none !important;
@@ -1085,6 +1089,9 @@ display: none; /* 화살표 없애기 for IE10, 11*/
 
 }
 @media screen and (max-width: 850px) {
+  .only_mo_flex {
+    display: flex !important;
+  }
   .ta_block_100 {
     display: block !important;
     margin-right: 0 !important;
