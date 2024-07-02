@@ -671,8 +671,9 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                         연박 프로모션 "3박 이상시 룸 업그레이드...
                                     </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                        <img src="/uploads/icons/icon-location-m.png" alt="">
-                                        <li class="breadcrumb_item">방콕</li>
+                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">                                      
+                                      <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
                                     <div class="prd_price_ko">236,100<span>원</span></div>
@@ -693,8 +694,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                         2박 이상시 레이트 체크아웃 (보장) | 16시...
                                     </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                    <img src="/uploads/icons/icon-location-m.png" alt="">
-                                        <li class="breadcrumb_item">방콕</li>
+                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">                                        <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
                                     <div class="prd_price_ko">236,100<span>원</span></div>
@@ -726,7 +727,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                         3박 했습니다. 조식은 거의
                                         동일하고 과일 이랑 쌀국수 ... </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                    <img src="/uploads/icons/icon-location-m.png" alt="">
+                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
@@ -747,7 +749,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                     <div class="prd_description">
                                         로얄 방파인 골프 클럽에 관한 짧은 설명이... </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                    <img src="/uploads/icons/icon-location-m.png" alt="">
+                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>

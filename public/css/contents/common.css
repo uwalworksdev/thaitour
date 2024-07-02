@@ -6,6 +6,12 @@ html.overflow,
 body.overflow {
   overflow: hidden;
 }
+.breadcrumb_item{
+ margin: 0 10px;
+}
+.breadcrumb{
+  gap:0 !important;
+}
 
 body.stop_scroll {
   overflow: hidden;
