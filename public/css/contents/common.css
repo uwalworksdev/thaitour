@@ -707,10 +707,11 @@ figure.cover_img img {
   .breadcrumb_item + .breadcrumb_item::before {
     content: "";
     position: absolute;
-    left: -1.2rem;
+    left: -0.5rem;
     top: 50%;
     transform: translateY(-50%);
     background-image: url(/images/ico/ico_breadcrumb.svg);
+    background-size: 1.2rem;
     background-repeat: no-repeat;
     width: 2.4rem;
     height: 2.3rem;
