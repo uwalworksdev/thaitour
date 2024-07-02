@@ -691,6 +691,7 @@ figure.cover_img img {
    display: flex;
    justify-content: start !important;
    gap: 1rem !important;
+ 
   }
   .breadcrumb_location > img{
     width: 2.5rem;
@@ -699,6 +700,7 @@ figure.cover_img img {
   
   .breadcrumb_item{
     padding: 0 1rem;
+    margin: 0;
   }
 }
 
