@@ -20,62 +20,6 @@
   font-weight: bold;
   line-height: 0.929;
 }
-.prd_name {
-  font-size: 18px;
-  font-family: "Pretendard";
-  color: #252525;
-  margin-top: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.prd_keywords {
-  font-size: 16px;
-  font-family: "Pretendard";
-  color: #397eb9;
-  display: flex;
-  gap: 7px;
-  margin-top: 10px;
-}
-.prd_info {
-  margin-top: 10px;
-  font-size: 16px;
-  font-family: "Pretendard";
-  color: #252525;
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
-.star_avg {
-  color: #252525;
-}
-.star_review_cnt {
-  color: #757575;
-}
-.prd_info__right__ttl {
-  color: #757575;
-}
-.new_review_cnt {
-  color: #252525;
-}
-.prd_price_ko {
-  margin-top: 16px;
-  font-size: 22px;
-  font-family: "Pretendard";
-  color: #252525;
-  font-weight: bold;
-}
-.prd_price_ko span {
-  color: #757575;
-  font-size: 16px;
-}
-.prd_price_thai {
-  margin-top: 10px;
-  font-size: 16px;
-  font-family: "Pretendard";
-  color: #757575;
-  font-weight: 400;
-}
 .sub_top_visual {
   background: linear-gradient(to top, #fff, #fff 66px, #f9f8d2 66px, #f9f8d2);
 }
@@ -112,6 +56,11 @@
 }
 .sub_tour__left__more {
   margin-top: 30px;
+  font-size: 18px;
+  font-family: "Pretendard";
+  font-weight: 500;
+  color: #353535;
+  line-height: 1.444;
 }
 .sub_tour__left__bottom {
   margin: auto 0 0 0;
@@ -226,6 +175,43 @@
 .sub_tour_section4 {
   padding: 50px 0 0 0;
 }
+.sub_tour_section4_banner {
+  position: relative;
+}
+.sub_tour_section4_banner__des {
+  position: absolute;
+  top: 50%;
+  left: 80px;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.ico_block {
+
+}
+.ico_block img {
+  height: 100%;
+  width: auto;
+  max-width: unset;
+}
+.ico_block:last-child {
+  transform: scale(-1);
+}
+.sub_tour_section4_banner__des__text {
+  font-family: "Pretendard";
+}
+.sub_tour_section4_banner__des__ttl {
+    font-size: 26px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+.sub_tour_section4_banner__des__bottom {
+    font-size: 18px;
+    color: #ffffffcc;
+    margin-top: 10px;
+}
 /* sub_tour_section5 */
 .sub_tour_section5 {
   padding: 100px 0 0 0;
@@ -284,10 +270,12 @@
   margin-top: 39px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .sub_tour_section5__head__tabs2 select {
   border: none;
   color: #222222;
+  width: unset;
 }
 .tour__head__tabs2__tabs {
   display: flex;
@@ -358,7 +346,7 @@
 
 /* sub_tour_section6 */
 .sub_tour_section6 {
-  padding: 100px 0 0 0;
+  padding: 20px 0 0 0;
 }
 .sub_tour_section6__head {
 }
@@ -366,8 +354,10 @@
   margin-top: 30px;
   display: flex;
   position: relative;
+  overflow: auto;
 }
-.sub_tour_section6__head__tabs::after {
+.sub_tour_section6__head__tabs::before,
+.sub_tour_section6__head__tabs__tab::before {
   content: "";
   width: 100%;
   height: 1px;
@@ -376,6 +366,9 @@
   bottom: 0;
   left: 0;
   z-index: 12;
+}
+.sub_tour_section6__head__tabs__tab::before {
+  width: calc(100% + 15px);
 }
 .sub_tour_section6__head__tabs__tab {
   display: flex;
@@ -388,10 +381,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  /* background-color: #fff;
-  border-radius: 16px 0 0 0;
-  border: 1px solid #dbdbdb;
-  border-width: 1px 0px 0px 1px; */
+  position: relative;
 }
 .sub_tour_section6__head__tabs__tab:nth-child(1) {
   z-index: 10;
@@ -447,7 +437,7 @@
 }
 .sub_tour_section6_product_list {
   display: flex;
-  gap: 20px;
+  gap: 50px 20px;
   flex-wrap: wrap;
   margin-top: 29px;
 }
@@ -467,7 +457,7 @@
 }
 .sub_tour_section7_product_list {
   display: flex;
-  gap: 20px;
+  gap: 50px 20px;
   flex-wrap: wrap;
   margin-top: 29px;
 }

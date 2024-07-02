@@ -223,47 +223,6 @@ padding-top: calc(310% / 224 * 100);
 .best_list_item .breadcrumb {
     margin-top: 28px;
 }
-.prd_name {
-    font-size: 18px;
-    font-family: "Pretendard";
-    color: #252525;
-    margin-top: 14px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.prd_info {
-    margin-top: 10px;
-    font-size: 16px;
-    font-family: "Pretendard";
-    color: #252525;
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
-.star_avg {
-    color: #252525;
-}
-.star_review_cnt {
-    color: #757575;
-}
-.prd_price_ko {
-    margin-top: 16px;
-    font-size: 22px;
-    font-family: "Pretendard";
-    color: #252525;
-    font-weight: bold;
-}
-.prd_price_ko span {
-    color: #757575;
-    font-size: 16px;
-}
-.prd_price_thai {
-    margin-top: 10px;
-    font-size: 16px;
-    font-family: "Pretendard";
-    color: #757575;
-}
 .main_section4 {
     margin-top: 120px;
 }

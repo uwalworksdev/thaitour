@@ -667,6 +667,10 @@ figure.cover_img img {
   html{
     font-size: 1.38888889vw;
   }
+  body {
+    font-size: 2.6rem;
+    line-height: 1.2;
+  }
 
   .main_current_slide{
 
@@ -741,7 +745,7 @@ figure.cover_img img {
   overflow: hidden;
 }
 
-.img_box>img {
+.img_box>img, .img_box__img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -995,3 +999,78 @@ figure.cover_img img {
   color: #252525;
 }
 
+.prd_name {
+  font-size: 18px;
+  font-family: "Pretendard";
+  color: #252525;
+  margin-top: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.prd_info {
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Pretendard";
+  color: #252525;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.star_avg {
+  color: #252525;
+}
+.star_review_cnt {
+  color: #757575;
+}
+.prd_price_ko {
+  margin-top: 16px;
+  font-size: 22px;
+  font-family: "Pretendard";
+  color: #252525;
+  font-weight: bold;
+}
+.prd_price_ko span {
+  color: #757575;
+  font-size: 16px;
+}
+.prd_price_thai {
+  margin-top: 10px;
+  font-size: 16px;
+  font-family: "Pretendard";
+  color: #757575;
+  font-weight: 400;
+}
+.prd_keywords {
+  font-size: 16px;
+  font-family: "Pretendard";
+  color: #397eb9;
+  display: flex;
+  gap: 7px;
+  margin-top: 10px;
+}
+.prd_info__right__ttl {
+  color: #757575;
+}
+.new_review_cnt {
+  color: #252525;
+}
+@media screen and (max-width: 850px) {
+  .swiper-pagination-bullet {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+  .prd_name {
+    font-size: 2.8rem;
+    color: #252525;
+  }
+  .prd_keywords {
+    font-size: 2.4rem;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .prd_info {
+    margin-top: 2rem;
+  }
+}
