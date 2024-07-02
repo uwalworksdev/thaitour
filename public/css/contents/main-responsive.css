@@ -391,7 +391,7 @@
   /* .swiper-main-tools {
 padding-top: 0 !important; */
   /* } */
-  .breadcrumb_item + .breadcrumb_item::before {
+  .breadcrumb_location > .breadcrumb_item + .breadcrumb_item::before {
     content: "";
     position: absolute;
     left: -1.5rem;
@@ -409,6 +409,7 @@ padding-top: 0 !important; */
 .breadcrumb {
     display: flex;
     gap: 26px;
+    align-items: center;
 }
 
 }

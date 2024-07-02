@@ -30,10 +30,10 @@
                 </a>
                 <div class="swiper-button-box">
                     <button class="notice_swiper_btn_prev notice_swiper_btn">
-                        <img  src="/images/ico/ico_prev_slide.svg" alt="">
+                        <img src="/images/ico/ico_prev_slide.svg" alt="">
                     </button>
                     <button class="notice_swiper_btn_next notice_swiper_btn">
-                        <img   src="/images/ico/ico_next_slide.svg" alt="">
+                        <img src="/images/ico/ico_next_slide.svg" alt="">
                     </button>
                 </div>
             </div>
@@ -43,15 +43,15 @@
             <div class="main_section_notice__body only_mo">
 
                 <div class="flex_mo_notice__body">
-                <div class="notice__ttl">공지사항</div>
-                <div class="swiper-button-box">
-                    <button class="notice_swiper_btn_prev notice_swiper_btn">
-                        <img  class="ico_prev_slide" src="/images/ico/ico_prev_slide.svg" alt="">
-                    </button>
-                    <button class="notice_swiper_btn_next notice_swiper_btn">
-                        <img class="ico_prev_slide"  src="/images/ico/ico_next_slide.svg" alt="">
-                    </button>
-                </div>
+                    <div class="notice__ttl">공지사항</div>
+                    <div class="swiper-button-box">
+                        <button class="notice_swiper_btn_prev notice_swiper_btn">
+                            <img class="ico_prev_slide" src="/images/ico/ico_prev_slide.svg" alt="">
+                        </button>
+                        <button class="notice_swiper_btn_next notice_swiper_btn">
+                            <img class="ico_prev_slide" src="/images/ico/ico_next_slide.svg" alt="">
+                        </button>
+                    </div>
                 </div>
 
 
@@ -65,7 +65,12 @@
                                 </div>
                                 <!-- <div class="notice_item__date">2022.05.23</div> -->
                             </div>
-                            <!-- <div class="notice_item__date">2022.05.23</div> -->
+                            <div class="flex_mobile_notice_item">
+                                    <div class="notice_item__date">2022.05.23</div>
+                                    <div> <a href="#!" class="main_section_notice__more">
+                                            <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
+                                        </a></div>
+                                </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="notice_item">
@@ -74,17 +79,20 @@
                                     <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시 </div>
                                 </div>
 
+                              
                             </div>
+                            <div class="flex_mobile_notice_item">
+                                    <div class="notice_item__date">2022.05.23</div>
+                                    <div> <a href="#!" class="main_section_notice__more">
+                                            <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
+                                        </a></div>
+                                </div>
                         </div>
 
                     </div>
+
                 </div>
-                <div class="flex_mobile_notice_item">
-                    <div class="notice_item__date">2022.05.23</div>
-                    <div> <a href="#!" class="main_section_notice__more">
-                            <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
-                        </a></div>
-                </div>
+
 
 
             </div>

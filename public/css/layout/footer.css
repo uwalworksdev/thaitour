@@ -126,6 +126,9 @@ scale: 1.05;
   height: 2rem !important;
 }
 
+
+
+
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
   border-color: #888 transparent transparent transparent;
   border-style: solid;
@@ -187,7 +190,7 @@ scale: 1.05;
   font-size: 2.8rem !important;
 }
 .notice_item__date{
-  margin-left: 8.8rem !important;
+  margin-left: 9.2rem !important;
 }
 .flex_mobile_notice_item{
   display: flex;
@@ -259,9 +262,9 @@ font-size: 2.6rem;
 }
 .custom-select2 .select2-container--default .select2-selection--single .select2-selection__arrow {
   scale: 1.8;
-  top: 70%;
+  top: 70% !important;
   transform: translateY(-50%);
-  right: 10px;
+  right: 10px !important;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: #5897fb;
@@ -293,4 +296,13 @@ font-size: 2.6rem;
   justify-content: center;
   align-items: center;
 }
+}
+
+
+@media screen and (max-width:470px) {
+  .notice_item__date{
+    margin-left: 10rem !important;
+  }
+
+  
 }
