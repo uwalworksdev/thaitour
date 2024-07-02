@@ -11,6 +11,7 @@ body.overflow {
 }
 .breadcrumb{
   gap:0 !important;
+  align-items: center;
 }
 
 body.stop_scroll {
