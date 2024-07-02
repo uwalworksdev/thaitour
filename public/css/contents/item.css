@@ -94,9 +94,11 @@
   width: 200px;
   margin-right: 30px;
 }
+
 .item_list_wrap .w100 .list_prd_img img {
   border-radius: 10px;
 }
+
 .item_list_wrap .w100 .list_prd_info {
   margin-top: 0;
   width: calc(100% - 230px);
@@ -241,4 +243,3 @@
 .item_list .point_list li i {
   margin-right: 4px;
 }
-

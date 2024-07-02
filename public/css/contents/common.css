@@ -703,6 +703,19 @@ figure.cover_img img {
     padding: 0 1rem;
     margin: 0;
   }
+
+  .breadcrumb_item + .breadcrumb_item::before {
+    content: "";
+    position: absolute;
+    left: -1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url(/images/ico/ico_breadcrumb.svg);
+    background-repeat: no-repeat;
+    width: 2.4rem;
+    height: 2.3rem;
+    display: inline-block;
+}
 }
 
 .gap-10 {
@@ -795,7 +808,7 @@ figure.cover_img img {
   position: relative;
 }
 
-.breadcrumb_item + .breadcrumb_item::before {
+/* .breadcrumb_item + .breadcrumb_item::before {
   content: "";
   position: absolute;
   left: -12px;
@@ -805,7 +818,7 @@ figure.cover_img img {
   width: 8px;
   height: 15px;
   display: inline-block;
-}
+} */
 
 .flex {
   display: flex;
