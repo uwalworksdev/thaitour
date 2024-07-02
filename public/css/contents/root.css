@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 :root {
   --bs-point: #39b9aa;
   --bs-point2: #d50c2a;
@@ -34,7 +35,7 @@
   --bs-font-sans-serif: "Pretendard";
   --bs-font-Noto: "Noto Sans KR";
   --bs-font-lato: "Lato";
-  --bs-font-gmarket:  "Gmarket Sans";
+  --bs-font-gmarket: "Gmarket Sans";
   --bs-body-font-family: var(--bs-font-Noto);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
@@ -47,9 +48,9 @@
   --bs-input-rounded: 2px;
   --bs-input-rounded-lg: 4px;
 
-  --bs-chk-w:22px;
-  --bs-rid-w:30px;
-  --bs-rid-w-after:12px;
+  --bs-chk-w: 22px;
+  --bs-rid-w: 30px;
+  --bs-rid-w-after: 12px;
 
 }
 
