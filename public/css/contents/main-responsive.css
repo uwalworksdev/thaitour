@@ -394,7 +394,7 @@ padding-top: 0 !important; */
   .breadcrumb_item + .breadcrumb_item::before {
     content: "";
     position: absolute;
-    left: -20px;
+    left: -1.5rem;
     top: 50%;
     transform: translateY(-50%);
     background-image: url(/images/ico/ico_breadcrumb.svg);
