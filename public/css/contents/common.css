@@ -1086,4 +1086,7 @@ figure.cover_img img {
   .prd_info {
     margin-top: 2rem;
   }
+  .img_box_14 {
+    padding-top: calc(492% / 658 * 100);
+  }
 }

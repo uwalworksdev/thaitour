@@ -1,28 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<style>
-    .swiper-button-next-ticket,
-    .swiper-button-prev-ticket {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-    }
-
-    .swiper-button-next-ticket {
-        right: 0px;
-    }
-
-    .swiper-button-prev-ticket {
-        left: 0px;
-    }
-
-    .section_vehicle_1 {
-        background-color: #7e6dff;
-        padding-bottom: 180px;
-    }
-</style>
 
 <section class="section_vehicle_1">
     <div class="banner_vehicle">
@@ -31,17 +9,23 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="img_box img_box_14">
-                            <img src="<?= base_url('/uploads/products/car_banner.png') ?>" alt="">
+                            <picture>
+                                <source media="(min-width: 850px)" srcset="<?= base_url('/uploads/products/car_banner.png') ?>">
+                                <img class="img_box__img" src="<?= base_url('/uploads/products/car_banner.png') ?>" alt="">
+                            </picture>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="img_box img_box_14">
-                            <img src="<?= base_url('/uploads/products/car_banner.png') ?>" alt="">
+                            <picture>
+                                <source media="(min-width: 850px)" srcset="<?= base_url('/uploads/products/car_banner.png') ?>">
+                                <img class="img_box__img" src="<?= base_url('/uploads/products/car_banner.png') ?>" alt="">
+                            </picture>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-button-next-ticket"><img src="/uploads/icons/next_s.png" alt=""></div>
-                <div class="swiper-button-prev-ticket"><img src="/uploads/icons/prev_s.png" alt=""></div>
+                <div class="swiper-button-next-vehicle"><img src="/uploads/icons/next_s.png" alt=""></div>
+                <div class="swiper-button-prev-vehicle"><img src="/uploads/icons/prev_s.png" alt=""></div>
             </div>
         </div>
     </div>
@@ -74,18 +58,21 @@
                             <img src="/images/ico/ico_place.svg" alt="">
                             도착지역
                         </div>
-                        <div class="bg_gray">
+                        <div class="place_chosen__date bg_gray">
                             <img src="/images/ico/ico_calendar_1.png" alt="">
                             미팅날짜 : 06.21(토)
                         </div>
                         <div></div>
-                        <div class="bg_gray">
+                        <div class="place_chosen__people bg_gray">
                             <img src="/images/ico/ico_person_1.png" alt="">
                             성인 1명, 소아 1명
                         </div>
                     </div>
                     <a href="#!" class="view_map_btn">
-                        <img src="/images/sub/btn_view_map.png" alt="view_map">
+                        <picture>
+                            <source media="(max-width: 850px)" srcset="/images/sub/btn_view_map_m.png">
+                            <img src="/images/sub/btn_view_map.png" alt="view_map">
+                        </picture>
                     </a>
                 </div>
             </section>
@@ -185,8 +172,8 @@
                                     <select name="" id="vehicle_cnt" class="vehicle_options__select">
                                         <option value="">1</option>
                                     </select>
-                                    <input type="checkbox" id="vehicle_prd" name="">
-                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd">상품담기</label>
+                                    <input type="checkbox" id="vehicle_prd1" name="">
+                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd1">상품담기</label>
                                 </div>
                             </td>
                         </tr>
@@ -241,8 +228,8 @@
                                     <select name="" id="vehicle_cnt" class="vehicle_options__select">
                                         <option value="">1</option>
                                     </select>
-                                    <input type="checkbox" id="vehicle_prd" name="">
-                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd">상품담기</label>
+                                    <input type="checkbox" id="vehicle_prd2" name="">
+                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd2">상품담기</label>
                                 </div>
                             </td>
                         </tr>
@@ -297,8 +284,8 @@
                                     <select name="" id="vehicle_cnt" class="vehicle_options__select">
                                         <option value="">1</option>
                                     </select>
-                                    <input type="checkbox" id="vehicle_prd" name="">
-                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd">상품담기</label>
+                                    <input type="checkbox" id="vehicle_prd3" name="">
+                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd3">상품담기</label>
                                 </div>
                             </td>
                         </tr>
@@ -312,49 +299,34 @@
                         <a class="vehicle_ttl__link" href="#!">본 예약건 취소규정 자세히 보기</a>
                     </div>
                 </div>
-                <table class="vehicle_synthetic">
-                    <colgroup>
-                        <col width="10%">
-                        <col width="15%">
-                        <col width="5%">
-                        <col width="15%">
-                        <col width="10%">
-                        <col width="15%">
-                        <col width="10%">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>선택상품</th>
-                            <th>차량가격</th>
-                            <th rowspan="2">
-                                <span class="minus_ico"></span>
-                            </th>
-                            <th>할인</th>
-                            <th rowspan="2">
-                                <span class="equal_ico"></span>
-                            </th>
-                            <th>결제예정금액</th>
-                            <th>
-                                <button class="coupon_btn">쿠폰선택</button>
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>차량 3대 </td>
-                            <td>
-                                <div class="vehicle_all_price">43,758<span>원 (1,100바트)</span></div>
-                            </td>
-                            <td>
-                                <div class="vehicle_all_price">43,758<span>원 (1,100바트)</span></div>
-                            </td>
-                            <td>
-                                <div class="vehicle_price">43,758<span>원 (1,100바트)</span></div>
-                            </td>
-                            <td>
-                                <button class="point_btn">포인트사용</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="vehicle_synthetic">
+                    <div>
+                        <p class="vehicle_synthetic__ttl">선택상품</p>
+                        <p class="vehicle_synthetic__txt">차량 3대</p>
+                    </div>
+                    <div>
+                        <p class="vehicle_synthetic__ttl">차량가격</p>
+                        <div class="vehicle_all_price">43,758<span>원 (1,100바트)</span></div>
+                        </div>
+                    <div class="vehicle_minus">
+                        <span class="minus_ico"></span>
+                    </div>
+                    <div>
+                        <p class="vehicle_synthetic__ttl">할인</p>
+                        <div class="vehicle_all_price">43,758<span>원 (1,100바트)</span></div>
+                    </div>
+                    <div class="vehicle_equal">
+                        <span class="equal_ico"></span>
+                    </div>
+                    <div>
+                        <p class="vehicle_synthetic__ttl">결제예정금액</p>
+                        <div class="vehicle_price">43,758<span>원 (1,100바트)</span></div>
+                    </div>
+                    <div class="vehicle_coupon">
+                        <button class="coupon_btn">쿠폰선택</button>
+                        <button class="point_btn">포인트사용</button>
+                    </div>
+                </div>
                 <div class="section_vehicle_2_4__foot">
                     예약시 기재하신 미팅장소에서 목적지까지의 단순 편도 차량입니다. <br> 샌딩 지역이 예약하신 상품의 지역이 아닌 곳은 추
                 </div>
@@ -428,7 +400,7 @@
                 <div class="section_vehicle_2_7__body">
                     <form action="" method="post">
                         <table>
-                            <colgroup>
+                            <colgroup class="only_web">
                                 <col width="150px" >
                                 <col width="*" >
                             </colgroup>
@@ -456,7 +428,7 @@
                                     <td>
                                         <div class="departure">
                                             <span>방콕</span>
-                                            <input type="text">
+                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)">
                                         </div>
                                         <div class="departure__note">
                                             - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
@@ -472,7 +444,7 @@
                                     <td>
                                         <div class="destination">
                                             <span>방콕</span>
-                                            <input type="text">
+                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)">
                                         </div>
                                     </td>
                                 </tr>
@@ -541,8 +513,8 @@
         },
         spaceBetween: 22,
         navigation: {
-            nextEl: '.swiper-button-next-ticket',
-            prevEl: '.swiper-button-prev-ticket',
+            nextEl: '.swiper-button-next-vehicle',
+            prevEl: '.swiper-button-prev-vehicle',
         },
         autoplay: {
             delay: 3000,

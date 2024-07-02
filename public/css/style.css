@@ -33,6 +33,7 @@
 @import url(./contents/main-responsive.css);
 /*@import url(./contents/table.css);  */
 @import url(./contents/sub.css); 
+@import url(./contents/sub_responsive.css); 
 @import url(./contents/custom.css); 
 @import url(./contents/slider_common.css); 
 @import url(./contents/pagi.css); 
