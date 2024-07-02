@@ -165,9 +165,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >마하나콘 스카이 워크 @ 킹 파워</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
@@ -195,9 +194,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >무앙보란 입장권</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
@@ -225,9 +223,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >씨 라이프 & 마담 투소 방콕</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
@@ -255,9 +252,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >사파리 월드 입장권</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
@@ -285,9 +281,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >마하나콘 스카이 워크 @ 킹 파워</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
@@ -315,9 +310,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >무앙보란 입장권</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
@@ -345,9 +339,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >씨 라이프 & 마담 투소 방콕</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
@@ -375,9 +368,8 @@
                     <div class="breakcum">
                         <p>방콕 > 사뭇 쁘라칸</p>
                     </div>
-                    <div class="prd_name prd_names">
-                       <p class="only_web"  >쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호</p> 
-                       <p class="only_mo"  >사파리 월드 입장권</p> 
+                    <div class="prd_name">
+                       쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
                     </div>
 
                     <div class="prd_info prd_info_m ">
