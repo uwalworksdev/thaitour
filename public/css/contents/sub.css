@@ -3879,5 +3879,17 @@ border-width: 2px !important;
   font-size: 1.6rem;
 }
 
+.list-ticket-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* display: flex;
+  flex-wrap: wrap; */
+  gap: 2rem;
+  padding-bottom: 100px;
 }
+
+}
+
+
+
 
