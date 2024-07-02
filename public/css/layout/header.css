@@ -69,8 +69,9 @@
 .custom-select-rounded .select2-container--default .select2-selection--single .select2-selection__arrow {
   position: absolute;
   right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 9px !important;
+  /* top: 50%;
+  transform: translateY(-50%); */
 }
 
 .custom-select-rounded .select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -131,8 +132,8 @@
 
 @media screen and (max-width: 850px) {
   .select_res_header {
-    font-size: 1.6rem;
-    min-width: 16.2rem;
+    font-size: 1.4rem;
+    /* min-width: 16.2rem; */
   }
 
   .header_logo_m {
@@ -282,12 +283,50 @@ width: 1.2rem !important;
 
 .custom-select-lang {
   width: 100%; /* Đặt chiều rộng cho màn hình nhỏ hơn */
+  position: relative;
 }
 
 .select2-container--default .select2-results__options {
   max-height: 200px;
   overflow-y: auto;
 }
+.flex_header_top_item{
+  max-width: 30%;
+}
+
+
 
 }
 
+
+@media screen and (max-width: 550px) {
+  .select_res_header{
+    font-size: 14px;
+  
+  }
+  .img-flag{
+    margin-top: 1rem;
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 3.6rem !important;
+    width: 2.2rem !important;
+    top: 2px !important;
+    right: 8px !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+  .select_res_header{
+    font-size: 1.8rem;
+  
+  }
+
+  .select2-container--default .select2-selection--single .select2-selection__arrow{
+    height: 3.6rem !important;
+    width: 2.2rem !important;
+    top: 5px !important;
+    right: 12px !important;
+    }
+
+}

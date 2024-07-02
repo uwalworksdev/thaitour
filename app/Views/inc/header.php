@@ -96,19 +96,19 @@
 
 <header id="header" class="only_mo inner_header_m">
     <div class="inner flex_header_top pb-24">
-        <div>
+        <div class="flex_header_top_item">
             <div class="custom-select-lang">
-                <select id="language-select2" style="width: 130px;">
+                <select id="language-select2">
                     <option value="kr">KR 한국어</option>
                     <option value="en">English</option>
                     <!-- Add more options here -->
                 </select>
             </div>
         </div>
-        <div>
+        <div  class="flex_header_top_item">
             <img class="header_logo_m" src="<?= base_url('/uploads/sub/logo_header_m.png') ?>" alt="">
         </div>
-        <div class="flex_header_top">
+        <div class="flex_header_top flex_header_top_item"  >
             <div class="burger">
                 <img src="<?= base_url('/uploads/icons/icon-user-m.png') ?>" alt="">
             </div>
