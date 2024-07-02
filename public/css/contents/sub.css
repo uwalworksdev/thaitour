@@ -3026,6 +3026,7 @@
 
 .select-tool>select {
   border: none;
+  padding-right: 40px;
   font-size: 15px;
   color: #222222;
 }
@@ -3656,6 +3657,21 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   color: #757575;
   margin-top: 1rem;
 }
+.select-tool select {
+  width: 100%;
+  height: 4rem; 
+  font-size: 15px;
+  padding-right: 32px;
+  appearance: none; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right .3rem center;
+  background-size: 15px;
+  padding-left: 0;
+  border-radius: .4rem;
+  outline: none;
+}
+
 
 @media screen and (max-width: 1200px) {
   .only_tb{
@@ -3801,25 +3817,20 @@ font-size: 2.6rem !important;
   font-size: 2.6rem;
 }
 
-.select-tool {
-  position: relative;
-  display: inline-block;
-  width: 20rem;
-  height: 4rem; /* Adjust the height as needed */
-  font-size: 1.6rem;
-}
+
 
 .select-tool select {
   width: 100%;
   height: 4rem; 
   font-size: 2.3rem;
+  padding-right: 0;
   appearance: none; 
   -webkit-appearance: none; 
   -moz-appearance: none; 
   background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right .3rem center;
   background-size: 2.4rem;
   padding-left: 0;
-    border-radius: .4rem;
+  border-radius: .4rem;
   outline: none;
 }
 .ico_star{
@@ -3860,18 +3871,13 @@ border-width: 2px !important;
 .mid-banner-ticket >.only_mo{
   width: 100%;
 }
-
+.select-tool {
+  position: relative;
+  display: inline-block;
+  width: 16rem;
+  height: 4rem;
+  font-size: 1.6rem;
+}
 
 }
 
-@media screen and (max-width: 450px) {
-  .select-tool {
-    position: relative;
-    display: inline-block;
-    width: 16rem;
-    height: 4rem;
-    font-size: 1.6rem;
-}
-
-
-}
