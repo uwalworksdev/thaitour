@@ -116,7 +116,7 @@
                 <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
             </div>
             <div class="burger">
-                <img src="<?= base_url('/uploads/icons/menu_m.png') ?>" alt="">
+                <img style="scale: 0.7;" src="<?= base_url('/uploads/icons/menu_m.png') ?>" alt="">
             </div>
         </div>
     </div>
