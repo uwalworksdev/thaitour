@@ -836,7 +836,7 @@ label {
     background: #fff url(/images/ico/select_ico.png) right 20px center no-repeat;
     text-overflow: ellipsis;
     overflow: hidden !important;
-    padding-right: 35px !important;
+    /* padding-right: 35px !important; */
   }
   select:focus {
     outline: none;
