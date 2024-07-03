@@ -1,7 +1,7 @@
 @media screen and (max-width: 850px) {
-  .main_section2 {
+  /* .main_section2 {
     padding-top: 20rem !important;
-  }
+  } */
 
   .owl-prev,
   .owl-next {
@@ -411,5 +411,38 @@ padding-top: 0 !important; */
     gap: 26px;
     align-items: center;
 }
+.magazine_content_txt {
+  font-size: 3.2rem;
+  font-family: "Pretendard";
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 1.4;
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  transform: translateX(-50%);
+  min-width: 65%;
+}
 
+.main_section_review{
+  margin:6rem 0;
+}
+.main_section8{
+  padding: 6rem 0;
+}
+.main_section9{
+  padding: 6rem 0 3rem 0;
+}
+.main_hot{
+  padding: 7rem 0 0 0;
+}
+.main_section3__head{
+  padding: 7rem 0 0 0;
+}
+.main_section2{
+  padding-top: 5rem;
+}
+.main_section5{
+  padding: 7rem 0 0;
+}
 }
