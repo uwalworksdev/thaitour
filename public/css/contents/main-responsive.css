@@ -197,16 +197,16 @@
 
   .hot_product_list_swiper_pagination_1 .swiper-pagination-bullet-active {
     background: #39b9aa;
-    scale: 1.4;
+    /* scale: 1.4; */
   }
 
   .hot_product_list_swiper_pagination_1 .swiper-pagination-bullet {
-    scale: 1.4;
+    /* scale: 1.4; */
   }
 
   .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet-active {
     background: #39b9aa;
-    scale: 1.4;
+    /* scale: 1.4; */
   }
 
   .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet {
