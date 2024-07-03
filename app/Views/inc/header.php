@@ -5,7 +5,6 @@
                 <select id="language-select" style="width: 130px;">
                     <option value="kr">KR 한국어</option>
                     <option value="en">English</option>
-                    <!-- Add more options here -->
                 </select>
             </div>
         </div>
@@ -39,7 +38,6 @@
                 <div class="custom-select-rounded">
                     <select id="language-select-rounded" style="width: 100%;">
                         <option value="kr">상세검색 호텔</option>
-                        <!-- Add more options here -->
                     </select>
                 </div>
             </div>
@@ -94,29 +92,85 @@
 </header>
 
 
-<header id="header" class="only_mo inner_header_m">
-    <div class="inner flex_header_top pb-24">
-        <div class="flex_header_top_item">
-            <div class="custom-select-lang">
-                <select id="language-select2">
-                    <option value="kr">KR 한국어</option>
-                    <option value="en">English</option>
-                    <!-- Add more options here -->
-                </select>
+<header id="header_mobile" class="only_mo inner_header_m">
+    <div class="header_mobile__wrap">
+        <div class="body_inner flex_header_top pb-24">
+            <div class="flex_header_top_item">
+                <div class="custom-select-lang">
+                    <select id="language-select2">
+                        <option value="kr">KR 한국어</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+            </div>
+            <div  class="flex_header_top_item">
+                <img class="header_logo_m" src="<?= base_url('/uploads/sub/logo_header_m.png') ?>" alt="">
+            </div>
+            <div class="flex_header_top flex_header_top_item"  >
+                <div class="burger">
+                    <img src="<?= base_url('/uploads/icons/icon-user-m.png') ?>" alt="">
+                </div>
+                <div class="burger">
+                    <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <div class="bar bar1"></div>
+                    <div class="bar bar2"></div>
+                    <div class="bar bar3"></div>
+                </div>
             </div>
         </div>
-        <div  class="flex_header_top_item">
-            <img class="header_logo_m" src="<?= base_url('/uploads/sub/logo_header_m.png') ?>" alt="">
-        </div>
-        <div class="flex_header_top flex_header_top_item"  >
-            <div class="burger">
-                <img src="<?= base_url('/uploads/icons/icon-user-m.png') ?>" alt="">
-            </div>
-            <div class="burger">
-                <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
-            </div>
-            <div class="burger">
-                <img style="scale: 0.7;" src="<?= base_url('/uploads/icons/menu_m.png') ?>" alt="">
+        <div class="menu_mobile" id="menu_mobile">
+            <div class="body_inner">
+                <ul class="menu_mobile__head">
+                    <li>
+                        <?php if (session("member")): ?>
+                            <a href="/member/logout" class="text-grey">로그아엇</a>
+                        <?php else: ?>
+                            <a href="/member/login" class="text-grey">로그인</a>
+                        <?php endif; ?>
+                    </li>
+                    <li>
+                        <?php if (session("member")): ?>
+                            <a href="/mypage/details" class="text-grey">마이페이지</a>
+                        <?php else: ?>
+                            <a href="/member/join_choice" class="text-grey">회원가입</a>
+                        <?php endif; ?>
+                    </li>
+                    <li><a href="/community/main" class="text-grey">고객센터</a></li>
+                </ul>
+                <ul class="menu_mobile__tools">
+                    <li>
+                        
+                        <a href="/event/event_list" class="text-grey">
+                            <img style="width:4.6rem; height:3.9rem" src="/images/ico/ico_order_list.svg" alt="">
+                        주문목록</a>
+                    </li>
+                    <li>
+                        <a href="/event/event_list" class="text-grey">
+                            <img style="width:3.6rem; height:4.4rem" src="/images/ico/ico_book_1.svg" alt="">
+                            찜한상품</a>
+                    </li>
+                    <li>
+                        <a href="/event/event_list" class="text-grey">
+                            <img style="width:4.5rem; height:4.2rem" src="/images/ico/ico_heart_1.svg" alt="">
+                            고객센터</a>
+                    </li>
+                    <li>
+                        <a href="/event/event_list" class="text-grey">
+                            <img style="width:4.8rem; height:4.3rem" src="/images/ico/ico_cart_1.svg" alt="">
+                            상담문의</a>
+                    </li>
+                </ul>
+                <ul class="menu_mobile__list">
+                    <li><a href="/product-list/1324">호텔</a></li>
+                    <li><a href="/product-golf/1325/1">골프</a></li>
+                    <li><a href="/product-list/1324">투어</a></li>
+                    <li><a href="/product-spa/1320/1">스파</a></li>
+                    <li><a href="/show-ticket">쇼ㆍ입장권</a></li>
+                    <li><a href="">레스토랑</a></li>
+                    <li><a href="/vehicle-guide">차량ㆍ가이드</a></li>
+                </ul>
             </div>
         </div>
     </div>
@@ -146,7 +200,7 @@
         </div>
     </div>
     <div class="flex_header_mo_bots mtb font-26">
-        <a href=""> 여행자 보험 </a>
+        <a href="">여행자 보험 </a>
         <a href="">이벤트</a>
         <a href="">여행 쿠폰</a>
         <a href="">태국뉴스</a>
@@ -155,6 +209,14 @@
 
 
 <script>
+    $("#hamburger").click(function () {
+        $(this).toggleClass("change");
+        if ($(this).hasClass("change")) {
+            $("#menu_mobile").show();
+        } else {
+            $("#menu_mobile").hide();
+        }
+    });
     $(document).ready(function () {
         $('#language-select').select2({
             templateResult: formatState,

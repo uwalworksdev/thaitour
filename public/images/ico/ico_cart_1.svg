@@ -1,0 +1,17 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    width="54.5px" height="45.5px">
+    <path fill-rule="evenodd" stroke-linecap="butt"
+        stroke-linejoin="miter" stroke-width="2px" stroke="rgb(51, 51, 51)" fill="none"
+        d="M14.531,8.216 L45.114,8.216 C47.225,8.216 48.937,9.921 48.937,12.024 L43.202,27.260 C43.202,29.363 41.491,31.069 39.379,31.069 L20.265,31.069 C18.154,31.069 16.443,29.363 16.443,27.260 L10.708,12.024 C10.708,9.921 12.420,8.216 14.531,8.216 Z" />
+    <path fill-rule="evenodd" stroke="rgb(51, 51, 51)" stroke-width="3px" stroke-linecap="butt"
+        stroke-linejoin="miter" fill="none"
+        d="M21.221,32.973 C23.860,32.973 26.000,35.105 26.000,37.734 C26.000,40.363 23.860,42.495 21.221,42.495 C18.582,42.495 16.443,40.363 16.443,37.734 C16.443,35.105 18.582,32.973 21.221,32.973 Z" />
+    <path fill-rule="evenodd" stroke="rgb(51, 51, 51)" stroke-width="3px" stroke-linecap="butt"
+        stroke-linejoin="miter" fill="none"
+        d="M38.424,32.973 C41.063,32.973 43.202,35.105 43.202,37.734 C43.202,40.363 41.063,42.495 38.424,42.495 C35.785,42.495 33.645,40.363 33.645,37.734 C33.645,35.105 35.785,32.973 38.424,32.973 Z" />
+    <path fill-rule="evenodd" stroke="rgb(51, 51, 51)" stroke-width="3px" stroke-linecap="butt"
+        stroke-linejoin="miter" fill="none"
+        d="M2.063,1.502 L11.620,1.502 L13.531,11.024 " />
+</svg>
