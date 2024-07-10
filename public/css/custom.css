@@ -1,0 +1,186 @@
+/*    Css for : w_sub_1호텔_1main.psd   */
+.swiper-pagination-bullet-active {
+    background: #39b9aa;
+}
+
+.thailand_hotel_ {
+
+}
+
+.thailand_hotel_ .sub_section3__head {
+    justify-content: start;
+    padding-top: 100px;
+}
+
+.best_tour_section5_ .swiper-wrapper,
+.thailand_hotel_ .thailand_hotel_swiper_ .swiper-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thailand_hotel_ .thailand_hotel_swiper_ .thailand_hotel_swiper_item_ {
+    /*margin: 0 !important;*/
+}
+
+.best_tour_section5_ .sub_tour_section5_item,
+.sub_tour_section6 .custom_pagination_,
+.thailand_hotel_ .thailand_hotel_swiper_ .thailand_hotel_swiper_item_ {
+    margin-top: 50px !important;
+}
+
+.sub_tour_section6 .custom_pagination_,
+.thailand_hotel_ .custom_pagination_ {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub_tour_section6 .custom_pagination_ .pagination_show_,
+.thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_,
+.thailand_hotel_ .custom_pagination_ .pagination_show_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 282px;
+    height: 64px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    border-radius: 31px;
+    cursor: pointer;
+}
+
+.thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_ p {
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #353535;
+    font-weight: bold;
+}
+
+.sub_tour_section6 .custom_pagination_ p,
+.thailand_hotel_ .custom_pagination_ .pagination_show_ p {
+    margin: 0 25px 0 10px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #252525;
+    font-family: "Pretendard";
+}
+
+.sub_tour_section6 .custom_pagination_ .sub_tour_section6_swiper_pagination_,
+.thailand_hotel_ .custom_pagination_ .thailand_hotel_swiper_pagination_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: unset;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #aaaaaa;
+    font-weight: 500;
+    font-family: "Pretendard";
+}
+
+.sub_tour_section6 .custom_pagination_ .sub_tour_section6_swiper_pagination_ .swiper-pagination-current,
+.thailand_hotel_ .custom_pagination_ .thailand_hotel_swiper_pagination_ .swiper-pagination-current {
+    color: #353535;
+}
+
+.best_tour_section5_ .prd_name,
+.thailand_hotel_ .thailand_hotel_swiper_ .prd_name {
+    margin-top: 10px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: 500;
+    font-family: "Pretendard";
+}
+
+.best_tour_section5_ .prd_keywords,
+.thailand_hotel_ .prd_keywords {
+    font-size: 15px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #757575;
+    font-family: "Pretendard";
+    margin-top: 25px;
+}
+
+.swiper_product_list_pagination_ {
+    width: auto !important;
+}
+
+.sub_tour_section4 {
+    padding: 100px 0 0 0;
+}
+
+.sub_tour_section6 {
+    padding: 100px 0 0 0;
+}
+
+.most_searched_ .tab_box_area_ {
+    margin-top: 30px;
+}
+
+.most_searched_ .tab_box_area_ .tab_box_show_ {
+    gap: 10px;
+}
+
+.most_searched_ .tab_box_area_ .tab_box_element_ {
+    border-radius: 30px;
+    width: 100%;
+    height: auto;
+    padding: 8px 15px;
+    border: 1px solid #dbdbdb;
+    text-wrap: nowrap;
+    font-size: 16px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #757575;
+    font-weight: 500;
+    font-family: "Pretendard";
+    text-align: center;
+    cursor: pointer;
+}
+
+.most_searched_ .tab_box_area_ .tab_box_element_.tab_active_ {
+    border: 1px solid #39b9aa;
+    color: #39b9aa;
+}
+
+.most_searched_ .content_tab_show_ {
+    display: none;
+}
+
+.most_searched_ .tab_box_content_ {
+    margin-top: 40px;
+    overflow: hidden;
+}
+
+.most_searched_ .content_tab_show_.tab_active_ {
+    display: block;
+}
+
+.most_searched_ .sub_tour_section7_product_item {
+    /*width: calc((100% - 15px) / 4) !important;*/
+    position: relative;
+}
+
+.most_searched_ .swiper-wrapper {
+    max-width: 1200px;
+}
+
+.sub_tour_section8 {
+    padding: 100px 0 100px 0;
+}
