@@ -17,11 +17,6 @@
                         <a href="/member/login" class="text-grey">로그인</a>
                     <?php endif; ?>
                 </li>
-                <?php if (session("member")): ?>
-
-                <?php else: ?>
-                    <li><a href="/member/register" class="text-black">회원가입</a></li>
-                <?php endif; ?>
                 <li>
                     <?php if (session("member")): ?>
                         <a href="/mypage/details" class="text-grey">마이페이지</a>
@@ -34,28 +29,6 @@
         </div>
     </div>
     <hr>
-    <?php
-    switch ($tab_active) {
-        case 1:
-            $tab_1 = 'on';
-            break;
-        case 2:
-            $tab_2 = 'on';
-            break;
-        case 3:
-            $tab_3 = 'on';
-            break;
-        case 4:
-            $tab_4 = 'on';
-            break;
-        case 5:
-            $tab_5 = 'on';
-            break;
-        default:
-            $tab_active = 1;
-            break;
-    }
-    ?>
     <div class="inner flex_header_top">
         <div class="flex_header_top">
             <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
