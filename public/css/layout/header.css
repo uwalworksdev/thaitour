@@ -154,7 +154,7 @@
     border-radius: 22px;
     background-color: #ffffff;
     border: 1px solid #dbdbdb;
-    min-height: 44px;
+    padding: 10px 0 10px 20px;
     font-size: 16px;
     letter-spacing: -1px;
     line-height: 26px;
@@ -162,6 +162,7 @@
     color: #252525;
     font-weight: 500;
     font-family: "Pretendard";
+    height: 44px;
 }
 
 .custom_select_rounded .select_custom_.active_ {
