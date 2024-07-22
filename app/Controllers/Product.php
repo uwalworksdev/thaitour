@@ -31,7 +31,10 @@ class Product extends BaseController
     public function showTicket()
     {
         try {
-            return view('product/show-ticket');
+            $data = [
+                'tab_active' => '5',
+            ];
+            return view('product/show-ticket', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -92,6 +95,7 @@ class Product extends BaseController
                 'pager' => $pager,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'tab_active' => '3',
             ];
 
             return view('product/index', $data);
@@ -222,6 +226,7 @@ class Product extends BaseController
                 'page' => $page,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'tab_active' => '2',
             ];
 
             return view('product/product-golf', $data);
@@ -342,6 +347,7 @@ class Product extends BaseController
                 'totalDayTourProducts' => $totalDayTourProducts,
                 'suggest_code' => $suggest_code,
                 'perCnt' => $perCnt,
+                'tab_active' => '6',
             ];
 
             return view('product/product-tours', $data);
@@ -407,6 +413,7 @@ class Product extends BaseController
                 'page' => $page,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'tab_active' => '4',
             ];
 
             return view('product/product-spa', $data);
@@ -422,8 +429,11 @@ class Product extends BaseController
     public function vehicleGuide()
     {
         try {
-            return view('product/vehicle-guide');
+            $data = [
+                'tab_active' => '7',
+            ];
 
+            return view('product/vehicle-guide', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
