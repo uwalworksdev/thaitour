@@ -1,62 +1,30 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-
+    <div class="d-none" id="currentHeader">1</div>
     <div class="body_container main_page_01 page_share_ page_product_list_">
         <section class="sub_top_visual">
-            <div class="body_inner">
-                <div class="sub_tour">
-                    <div class="sub_tour_left">
-                        <div class="sub_tour_left__top">
-                            <svg width="110" height="37" viewBox="0 0 110 37" fill="none"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M96 28H28C0.774 27.973 0 37 0 37V14C0 6.268 6.268 0 14 0H96C103.732 0 110 6.268 110 14C110 21.732 103.732 28 96 28Z"
-                                      fill="#4B4B4B"/>
-                            </svg>
-                            <h4 class="sub_tour_left__top__text">주목! 이 상품</h4>
+            <img src="/images/banner/main_visual_banner.png" alt="">
+            <div class="main_visual_content_">
+                <div class="text_title">지금, 바로 떠날 수 있는 이유</div>
+                <div class="form_search">
+                    <div class="form_element_">
+                        <div class="form_input_">
+                            <label for="input_day">체크인/체크아웃 날짜</label>
+                            <input type="text" id="input_day" class="input_custom_" placeholder="날짜를 선택해주세요.">
                         </div>
-                        <div class="sub_tour_left__ttl">
-                            끄라비 엘리펀트 <br> 생추어리 체험 + 호텔투어 <br> 7박 8일sd
+                        <div class="form_input_">
+                            <label for="input_hotel">호텔명(미입력 시 전체)</label>
+                            <input type="text" id="input_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                         </div>
-                        <div class="sub_tour__left__more">
-                            자세히 보기 >
-                        </div>
-                        <div class="sub_tour__left__bottom">
-                            <div class="sub_tour__slide__scroll"></div>
-                            <div class="sub_tour__slide__paging">
-                                <img class="sub_tour__slide__paging__prev" src="/images/ico/ico_prev_slide_1.svg"
-                                     alt="">
-                                <span class="sub_tour__slide__paging__divider"></span>
-                                <img class="sub_tour__slide__paging__next" src="/images/ico/ico_next_slide_1.svg"
-                                     alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sub_tour_right">
-                        <div class="swiper sub_swiper1">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="img_box img_box_9">
-                                        <img src="/uploads/sub/tour_slide1_1.png" alt="main">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img_box img_box_9">
-                                        <img src="/uploads/sub/tour_slide1_1.png" alt="main">
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="img_box img_box_9">
-                                        <img src="/uploads/sub/tour_slide1_1.png" alt="main">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button class="btn_search_">
+                            검색
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="sub_tour_section2">
             <div class="body_inner">
                 <div style="position: relative;">
@@ -815,7 +783,7 @@
                 <div class="sub_tour_section7_product_list swiper swiper_product_list_">
                     <div class="swiper-wrapper">
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_1.png" alt="">
                             </div>
@@ -827,7 +795,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_2.png" alt="">
                             </div>
@@ -838,7 +806,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_3.png" alt="">
                             </div>
@@ -849,7 +817,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_1.png" alt="">
                             </div>
@@ -861,7 +829,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_2.png" alt="">
                             </div>
@@ -872,7 +840,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_3.png" alt="">
                             </div>
@@ -883,7 +851,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_1.png" alt="">
                             </div>
@@ -895,7 +863,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_2.png" alt="">
                             </div>
@@ -906,7 +874,7 @@
                             </div>
                         </div>
                         <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <img class="ico_special_prd" src="/images/ico_special_prd_success.png" alt="">
                             <div class="img_box img_box_12">
                                 <img src="/uploads/sub/tour_special_3.png" alt="">
                             </div>
@@ -1856,7 +1824,6 @@
         // });
 
     </script>
-
     <script>
         $(document).ready(function () {
             const swiper1 = new Swiper(".sub_swiper1", {

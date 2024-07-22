@@ -17,6 +17,11 @@
                         <a href="/member/login" class="text-grey">로그인</a>
                     <?php endif; ?>
                 </li>
+                <?php if (session("member")): ?>
+
+                <?php else: ?>
+                    <li><a href="/member/register" class="text-black">회원가입</a></li>
+                <?php endif; ?>
                 <li>
                     <?php if (session("member")): ?>
                         <a href="/mypage/details" class="text-grey">마이페이지</a>
@@ -29,16 +34,45 @@
         </div>
     </div>
     <hr>
+    <?php
+    switch ($tab_active) {
+        case 1:
+            $tab_1 = 'on';
+            break;
+        case 2:
+            $tab_2 = 'on';
+            break;
+        case 3:
+            $tab_3 = 'on';
+            break;
+        case 4:
+            $tab_4 = 'on';
+            break;
+        case 5:
+            $tab_5 = 'on';
+            break;
+        default:
+            $tab_active = 1;
+            break;
+    }
+    ?>
     <div class="inner flex_header_top">
         <div class="flex_header_top">
             <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
-                <i class="fa fa-search search-icon"></i>
-                <div class="custom-select-rounded">
-                    <select id="language-select-rounded" style="width: 100%;">
-                        <option value="kr">상세검색 호텔</option>
+              <div class="main-search-container">
+                  <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
+                  <i class="fa fa-search search-icon"></i>
+              </div>
+                <div class="custom_select_rounded">
+                    <a class="text_custom_" href="#">상세검색</a>
+                    <select class="select_custom_ active_" name="" id="">
+                        <option value="">호텔</option>
                     </select>
+                    <select class="select_custom_" name="" id="">
+                        <option value="">투어</option>
+                    </select>
+                    <a class="text_custom_v2_" href="#">차량</a>
                 </div>
             </div>
         </div>
@@ -68,14 +102,14 @@
     <div class="">
         <div class="inner flex_header_top ">
             <div>
-                <ul class="flex_header_top">
-                    <li><a href="/product-hotel/1324">호텔</a></li>
-                    <li><a href="/product-golf/1325/1">골프</a></li>
-                    <li><a href="/product-list/1324">투어</a></li>
-                    <li><a href="/product-spa/1320/1">스파</a></li>
-                    <li><a href="/show-ticket">쇼ㆍ입장권</a></li>
-                    <li><a href="">레스토랑</a></li>
-                    <li><a href="/vehicle-guide">차량ㆍ가이드</a></li>
+                <ul class="flex_header_top flex_header_top_content_list">
+                    <li><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></li>
+                    <li><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></li>
+                    <li><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-list/1324">투어</a></li>
+                    <li><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></li>
+                    <li><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></li>
+                    <li><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="">레스토랑</a></li>
+                    <li><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide">차량ㆍ가이드</a></li>
                 </ul>
             </div>
             <div>
