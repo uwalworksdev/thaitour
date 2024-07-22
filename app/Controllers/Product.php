@@ -156,6 +156,7 @@ class Product extends BaseController
                 'pager' => $pager,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'tab_active' => '1',
             ];
 
             return view('product/product-hotel', $data);

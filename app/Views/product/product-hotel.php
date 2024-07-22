@@ -1,7 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-    <div class="d-none" id="currentHeader">1</div>
     <div class="body_container main_page_01 page_share_ page_product_list_">
         <section class="sub_top_visual">
             <img src="/images/banner/main_visual_banner.png" alt="">

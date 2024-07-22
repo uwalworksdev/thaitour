@@ -29,14 +29,37 @@
         </div>
     </div>
     <hr>
+    <?php
+    $tab_ = $tab_active ?? 0;
+    switch ($tab_) {
+        case 1:
+            $tab_1 = 'on';
+            break;
+        case 2:
+            $tab_2 = 'on';
+            break;
+        case 3:
+            $tab_3 = 'on';
+            break;
+        case 4:
+            $tab_4 = 'on';
+            break;
+        case 5:
+            $tab_5 = 'on';
+            break;
+        default:
+            $tab_active = 1;
+            break;
+    }
+    ?>
     <div class="inner flex_header_top">
         <div class="flex_header_top">
             <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
             <div class="search-container">
-              <div class="main-search-container">
-                  <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
-                  <i class="fa fa-search search-icon"></i>
-              </div>
+                <div class="main-search-container">
+                    <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
+                    <i class="fa fa-search search-icon"></i>
+                </div>
                 <div class="custom_select_rounded">
                     <a class="text_custom_" href="#">상세검색</a>
                     <select class="select_custom_ active_" name="" id="">
