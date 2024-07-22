@@ -12,3 +12,12 @@ try {
     <?php echo $this->renderSection('content'); ?>
 </main>
 <?php echo view('inc/footer', ["setting" => $setting]); ?>
+<script>
+    // $(document).ready(function () {
+    //     let currentHeader = $('#currentHeader').text();
+    //     if (currentHeader) {
+    //         let number = parseInt(currentHeader);
+    //         $('.flex_header_top_content_list').find('a').eq(number - 1).addClass('active_');
+    //     }
+    // })
+</script>
