@@ -273,7 +273,7 @@ font-size: 2.6rem;
 }
 .btn_cus_f{
   display: flex;
-  justify-content: start;
+  justify-content: center;
   gap: 2rem;
   margin-top: 5rem;
 }
