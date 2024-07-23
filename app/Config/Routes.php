@@ -173,15 +173,6 @@ $routes->group("custom_travel", static function ($routes) {
     $routes->post("inquiry_ok"          , "CustomTravelController::inquiry_ok");
 });
 
-
-
-
-
-
-
-
-
-
 // $routes->group("/package", static function($routes){
 //     $routes->get("", "Package::Main");
 //     // $routes->get("(:segment)/view/(:segment)", "Promotion::View/$1/$2");
@@ -194,6 +185,7 @@ $routes->get('show-ticket', 'Product::showTicket');
 $routes->get('vehicle-guide', 'Product::vehicleGuide');
 $routes->get('product-list/(:any)', 'Product::index/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
+$routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/(:any)/(:any)', 'Product::index3/$1/$2');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');

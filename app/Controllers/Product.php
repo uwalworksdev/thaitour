@@ -9,6 +9,7 @@ use CodeIgniter\Controller;
 use App\Config\CustomConstants;
 use Config\CustomConstants as ConfigCustomConstants;
 use Exception;
+use http\Client\Request;
 
 class Product extends BaseController
 {
@@ -27,7 +28,6 @@ class Product extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
-
     public function showTicket()
     {
         try {
@@ -42,7 +42,6 @@ class Product extends BaseController
             ]);
         }
     }
-
 
     public function index($code_no)
     {
@@ -108,7 +107,6 @@ class Product extends BaseController
         }
     }
 
-
     public function indexHotel($code_no)
     {
         try {
@@ -164,6 +162,69 @@ class Product extends BaseController
             ];
 
             return view('product/product-hotel', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function indexResult($code_no)
+    {
+        try {
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $code_name = $this->db->table('tbl_code')
+                ->select('code_name')
+                ->where('code_gubun', 'tour')
+                ->where('code_no', $code_no)
+                ->get()
+                ->getRow()
+                ->code_name;
+
+            if (strlen($code_no) == 4) {
+                $codes = $this->db->table('tbl_code')
+                    ->where('parent_code_no', $code_no)
+                    ->get()
+                    ->getResult();
+            } else {
+                $codes = $this->db->table('tbl_code')
+                    ->where('code_gubun', 'tour')
+                    ->where('parent_code_no', substr($code_no, 0, 6))
+                    ->orderBy('onum', 'DESC')
+                    ->get()
+                    ->getResult();
+            }
+
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'codes' => $codes,
+                'code_name' => $code_name,
+                'pager' => $pager,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+            ];
+
+            return view('product/product-result', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -527,7 +588,6 @@ class Product extends BaseController
         return view('product/product_view', $data);
     }
 
-
     private function calculateMinAmt($air_info)
     {
         $min_amt = 9999999999;
@@ -546,5 +606,3 @@ class Product extends BaseController
         return "https://hihojoonew.cafe24.com/data/product/thum_798_463/{$file}";
     }
 }
-
-?>

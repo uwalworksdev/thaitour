@@ -294,3 +294,268 @@
 .sub_tour_section8 {
     padding: 100px 0 100px 0;
 }
+
+/*    Css for : w_sub_1호텔_2list.psd   */
+.main_page_product_result_ {
+    margin: 0;
+}
+
+.main_page_product_result_ .breadcrumbs_custom_ a {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.main_page_product_result_ .breadcrumbs_custom_ a img {
+    width: 18px;
+    height: 18px;
+}
+
+.main_page_product_result_ .breadcrumbs_custom_ a img.img_c {
+    width: 7px;
+    height: 14px;
+}
+
+.main_page_product_result_ .breadcrumbs_custom_ a p {
+    font-size: 15px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #757575;
+    font-family: "Pretendard";
+}
+
+.main_page_product_result_ .breadcrumbs_custom_ a.active_ p {
+    color: #252525;
+}
+
+.main_page_product_result_ .breadcrumbs_custom_ ul {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 30px;
+}
+
+.main_page_product_result_ .breadcrumbs_custom_ {
+    padding: 20px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.main_page_product_result_ .product_result_content_ {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 40px;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.main_page_product_result_ .product_result_content_left_ {
+    width: 100%;
+    max-width: calc(23% - 20px);
+}
+
+.main_page_product_result_ .product_result_content_right_ {
+    width: 100%;
+    max-width: calc(77% - 20px);
+}
+
+.main_page_product_result_ .product_result_content_left_header_ {
+    font-size: 28px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: bold;
+    font-family: "Pretendard";
+    border-bottom: 2px solid #000000;
+    width: 100%;
+    height: 50px;
+    padding: 5px 0;
+}
+
+.main_page_product_result_ .product_result_content_right_header_ {
+    width: 100%;
+}
+
+.main_page_product_result_ .form_search_ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.main_page_product_result_ .form_search_ .form_element_ {
+    width: 100%;
+    max-width: 40%;
+}
+
+.main_page_product_result_ .form_search_ .render_date_to_text_ {
+    width: 100%;
+    max-width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+    height: 50px;
+}
+
+.main_page_product_result_ .form_search_ .render_date_to_text_ .text_content_ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #353535;
+    font-family: "Pretendard";
+}
+
+.main_page_product_result_ .form_search_ .text_placeholder_ {
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #454545;
+    font-family: "Pretendard";
+}
+
+.main_page_product_result_ .form_search_ button {
+    border-radius: 6px;
+    width: 100%;
+    max-width: 80px;
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-family: "Pretendard";
+    background-color: #47beb0;
+    height: 50px;
+}
+
+.main_page_product_result_ .form_search_ input::placeholder {
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #999999;
+    font-family: "Pretendard";
+}
+
+.main_page_product_result_ .form_search_ input {
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #454545;
+    font-family: "Pretendard";
+    padding: 0 0 0 10px;
+    border: 1px solid #dbdbdb;
+}
+
+.main_page_product_result_ .startDayRender,
+.main_page_product_result_ .endDayRender {
+    cursor: pointer;
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
+
+.main_page_product_result_ {
+
+}
