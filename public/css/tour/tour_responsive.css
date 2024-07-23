@@ -88,6 +88,41 @@
   .sub_swiper2 .img_box {
     border-radius: 16px;
   }
+
+  .pagination_show_ {
+    border: 0 !important;
+  }
+
+  .sub_tour_section7 .justify_content_end {
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    justify-content: center;
+    top: 75%;
+  }
+
+  .sub_section3.thailand_hotel_ .custom_pagination_ {
+    margin-top: 8.75rem !important;
+  }
+
+  .most_searched_ .tab_box_area_ .tab_box_show_ {
+    flex-wrap: wrap;
+  }
+
+  .most_searched_ .tab_box_area_ .tab_box_element_ {
+    width: unset !important;
+    justify-content: unset !important;
+  }
+  
+  .sub_tour_section6 .most_searched_tab_1 .custom_pagination_ {
+    width: 100vw !important;
+  }
+
+  .sub_tour_section6_product_list .img_box_12 {
+    width: 100vw;
+    padding-top: calc(130% / 386* 100);
+  }
+
   .sub_swiper2__text {
     position: absolute;
     bottom: 20px;
@@ -156,7 +191,7 @@
 
   /* sub_tour_section4 */
   .sub_tour_section4 {
-    padding: 5rem 0 0 0;
+    padding: 5rem 0 0 0 !important;
   }
   .sub_tour_section4_banner__des {
     position: absolute;
@@ -311,7 +346,7 @@
 
   /* sub_tour_section8 */
   .sub_tour_section8 {
-    padding: 12rem 0 14rem 0;
+    padding: 6rem 0 14rem 0 !important;
   }
   .sub_tour_section8__banners {
     display: flex;

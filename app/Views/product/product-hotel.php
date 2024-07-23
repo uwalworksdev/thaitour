@@ -761,8 +761,8 @@
                     <div class="thailand_hotel_swiper_pagination_prev_"></div>
                     <div class="custom_pagination_ w_100">
                         <div class="pagination_show_">
-                            <img src="/images/ico/reloadicon.png" alt="">
-                            <p>다음상품</p>
+                            <img class="only_web" src="/images/ico/reloadicon.png" alt="">
+                            <p class="only_web">다음상품</p>
                             <div class="thailand_hotel_swiper_pagination_"></div>
                         </div>
                     </div>
@@ -1268,8 +1268,8 @@
                             <div class="most_searched_tab_1_pagination_prev_"></div>
                             <div class="custom_pagination_ w_100">
                                 <div class="pagination_show_">
-                                    <img src="/images/ico/reloadicon.png" alt="">
-                                    <p>다음상품</p>
+                                    <img class="only_web" src="/images/ico/reloadicon.png" alt="">
+                                    <p class="only_web">다음상품</p>
                                     <div class="most_searched_tab_1_pagination_ sub_tour_section6_swiper_pagination_"></div>
                                 </div>
                             </div>
@@ -1748,35 +1748,61 @@
         });
 
         let swiper = new Swiper(".swiper_product_list_", {
-            slidesPerView: 3,
+            slidesPerView: 1, // Default slidesPerView for larger screens
             spaceBetween: 20,
             loop: true,
             pagination: {
                 el: ".swiper_product_list_pagination_",
                 clickable: true,
             },
+            breakpoints: {
+                850: {
+                    slidesPerView: 3, // Change slidesPerView to 1 for screens smaller than 850px
+                    spaceBetween: 10,
+                }
+            }
         });
 
         function loadMultipleSlider() {
             for (let i = 0; i < 6; i++) {
-                let most_searched_tab_ = new Swiper(`.most_searched_tab_${i}`, {
-                    slidesPerView: 4,
+                new Swiper(`.most_searched_tab_${i}`, {
+                    slidesPerView: 1,
                     spaceBetween: 20,
                     loop: true,
                     pagination: {
                         el: `.most_searched_tab_${i}_pagination_`,
                         clickable: true,
-                        type: "fraction",
+                        type: "bullets",
                     },
                     navigation: {
                         nextEl: `.most_searched_tab_${i}_pagination_next_`,
                         prevEl: `.most_searched_tab_${i}_pagination_prev_`,
                     },
+                    breakpoints: {
+                        850: {
+                            slidesPerView: 4,
+                            spaceBetween: 20,
+                            pagination: {
+                                el: `.most_searched_tab_${i}_pagination_`,
+                                clickable: true,
+                                type: "fraction",
+                            },
+                        }
+                    }
                 });
             }
         }
 
+        // Initial load
         loadMultipleSlider();
+
+        // Re-initialize on window resize
+        window.addEventListener('resize', () => {
+            document.querySelectorAll('.swiper-container-initialized').forEach(swiperContainer => {
+                swiperContainer.swiper.destroy(true, true);
+            });
+            loadMultipleSlider();
+        });
 
         // let most_searched_tab_2 = new Swiper(".most_searched_tab_2", {
         //     slidesPerView: 4,
@@ -1915,29 +1941,31 @@
     </script>
     <script>
         let thailand_hotel_swiper_ = new Swiper(".thailand_hotel_swiper_", {
-            slidesPerView: 4,
+            slidesPerView: 1, // Default slidesPerView for screens < 850px
             grid: {
                 rows: 2,
+            },
+            breakpoints: {
+                850: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".thailand_hotel_swiper_pagination_",
+                        type: "fraction",
+                        clickable: true,
+                    },
+                }
             },
             spaceBetween: 20,
             pagination: {
                 el: ".thailand_hotel_swiper_pagination_",
-                type: "fraction",
+                type: "bullets", // Default pagination type for mobile
                 clickable: true,
             },
             navigation: {
                 nextEl: ".thailand_hotel_swiper_pagination_next_",
                 prevEl: ".thailand_hotel_swiper_pagination_prev_",
             },
-        });
-
-        let best_tour_section5_ = new Swiper(".best_tour_section5_", {
-            slidesPerView: 4,
-            grid: {
-                rows: 2,
-            },
-            loop: true,
-            spaceBetween: 20,
         });
     </script>
     <script>
