@@ -17,7 +17,7 @@
                         <h4 class="sub_tour_left__top__text">주목! 이 상품</h4>
                     </div>
                     <div class="sub_tour_left__ttl">
-                        끄라비 엘리펀트 <br> 생추어리 체험 + 호텔투어 <br> 7박 8일sd
+                        끄라비 엘리펀트 <br> 생추어리 체험 + 호텔투어 <br> 7박 8일
                     </div>
                     <div class="sub_tour__left__more">
                         자세히 보기 >
