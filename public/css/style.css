@@ -42,7 +42,6 @@
 @import url(./button/button.css);
 
 @import url(./tour/tour.css);
-@import url(./tour/tour_responsive.css);
 /* responsive */
 /* @import url(./contents/responsive.css);
 @import url(./contents/main_responsive.css);
@@ -50,3 +49,4 @@
 @import url(./contents/table_responsive.css); */
 @import url(./base.css);
 @import url(./custom.css);
+@import url(./tour/tour_responsive.css);

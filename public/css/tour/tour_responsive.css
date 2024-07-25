@@ -83,26 +83,14 @@
     width: unset;
   }
   .sub_tour_section2 {
-    padding: 100px 0 0 0;
+    padding: 250px 0 0 0;
   }
   .sub_swiper2 .img_box {
     border-radius: 16px;
   }
 
-  .pagination_show_ {
-    border: 0 !important;
-  }
-
-  .sub_tour_section7 .justify_content_end {
-    width: 100%;
-    position: absolute;
-    z-index: 3;
-    justify-content: center;
-    top: 75%;
-  }
-
   .sub_section3.thailand_hotel_ .custom_pagination_ {
-    margin-top: 8.75rem !important;
+    margin: 7.75rem 0;
   }
 
   .most_searched_ .tab_box_area_ .tab_box_show_ {
@@ -120,7 +108,7 @@
 
   .sub_tour_section6_product_list .img_box_12 {
     width: 100vw;
-    padding-top: calc(130% / 386* 100);
+    padding-top: calc(250% / 386* 100);
   }
 
   .sub_swiper2__text {
@@ -322,28 +310,12 @@
 
   /* sub_tour_section7 */
   .sub_tour_section7 {
-    padding: 12rem 0 0 0;
+    padding: 8rem 0 0 0;
   }
   .sub_tour_section7_product_list {
     margin-top: 5.4rem;
     gap: 5rem;
   }
-  .sub_tour_section7_product_item {
-    width: 100%;
-  }
-  .ico_special_prd {
-    top: 3.1rem;
-    width: 7rem;
-  }
-  .sub_tour_section7_product_item__name {
-    margin-top: 2.8rem;
-    font-size: 3.4rem;
-  }
-  .sub_tour_section7_product_item__keywords {
-    font-size: 26px;
-    gap: 2rem;
-  }
-
   /* sub_tour_section8 */
   .sub_tour_section8 {
     padding: 6rem 0 14rem 0 !important;
@@ -356,4 +328,44 @@
   .sub_tour_section8__banner {
     width: 100%;
   }
+
+  .main_page_01 .main_visual_content_ .text_title {
+    font-size: 4.2rem !important;
+    font-weight: 600;
+  }
+
+  .main_page_01 .main_visual_content_ .form_element_ {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .main_page_01 .main_visual_content_ .form_element_ .form_input_ {
+    max-width: unset !important;
+  }
+
+  .main_page_01 .main_visual_content_ button {
+    width: 100%;
+    font-size: 3.2rem;
+  }
+
+  .thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_ p {
+    font-size: 2.8rem;
+  }
+
+  .sub_tour_section6 .sub_tour_section6_product_list .custom_pagination_ {
+    width: 100vw;
+  }
+
+  .sub_tour_section6 .custom_pagination_ p, .thailand_hotel_ .custom_pagination_ .pagination_show_ p {
+    font-size: 2.8rem;
+  }
+
+  .sub_tour_section7_product_item__name {
+    font-size: 2.8rem;
+  }
+
+  .sub_tour_section7_product_item__keywords {
+    font-size: 2.4rem;
+  }
+
 }
