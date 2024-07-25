@@ -223,11 +223,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -273,11 +277,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -323,11 +331,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -373,11 +385,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -423,11 +439,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -473,11 +493,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -523,11 +547,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -573,11 +601,15 @@
                 </div>
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
-                        <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                        </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
-                            <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                            </a>
                             <div class="star-container">
                                 <div class="">
                                     <img src="/uploads/icons/star_icon.png" alt="star_icon">
