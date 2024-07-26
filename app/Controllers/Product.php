@@ -466,6 +466,46 @@ class Product extends BaseController
         }
     }
 
+    public function index6($code_no)
+    {
+        try {
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'pager' => $pager,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+                'tab_active' => '1',
+            ];
+
+            return view('product/hotel-details', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
     public function vehicleGuide()
     {
         try {
