@@ -172,14 +172,16 @@
                 <div class="form_element_">
                     <div class="date-container">
                         <label for="checkin" class="label">체크인/아웃</label>
-                        <div class="date-wrapper">
-                            <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
-                            <span class="suffix">(화)</span>
-                        </div>
-                        <span class="arrow">→</span>
-                        <div class="date-wrapper">
-                            <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
-                            <span class="suffix">(수)</span>
+                        <div class="">
+                            <div class="date-wrapper">
+                                <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
+                                <span class="suffix">(화)</span>
+                            </div>
+                            <span class="arrow">→</span>
+                            <div class="date-wrapper">
+                                <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
+                                <span class="suffix">(수)</span>
+                            </div>
                         </div>
                     </div>
                     <div class="form_input_">
