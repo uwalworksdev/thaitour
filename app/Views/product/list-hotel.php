@@ -14,6 +14,9 @@
                 <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                 <span>방콕</span>
             </div>
+            <div class="navigation-container-next">
+                <img src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+            </div>
         </div>
         <div class="sub-hotel-container">
             <div class="category-left">
@@ -80,39 +83,13 @@
                             <span>1박 평균가격</span>
                             <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
                         </div>
-                        <span><strong>원</strong> · 바트</span>
+                        <span><strong>원</strong class="text-primary"> · 바트</span>
 
-                        <div slider id="slider-distance">
-                            <div>
-                                <div inverse-left style="width:70%;"></div>
-                                <div inverse-right style="width:70%;"></div>
-                                <div range style="left:30%;right:40%;"></div>
-                                <span thumb style="left:30%;"></span>
-                                <span thumb style="left:60%;"></span>
-                                <div sign style="left:30%;">
-                                    <span id="value">30</span>
-                                </div>
-                                <div sign style="left:60%;">
-                                    <span id="value">60</span>
-                                </div>
-                            </div>
-                            <input type="range" tabindex="0" value="30" max="100" min="0" step="1" oninput="
-                                this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
-                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                var children = this.parentNode.childNodes[1].childNodes;
-                                children[1].style.width=value+'%';
-                                children[5].style.left=value+'%';
-                                children[7].style.left=value+'%';children[11].style.left=value+'%';
-                                children[11].childNodes[1].innerHTML=this.value;" />
-
-                            <input type="range" tabindex="0" value="60" max="100" min="0" step="1" oninput="
-                                this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
-                                var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                                var children = this.parentNode.childNodes[1].childNodes;
-                                children[3].style.width=(100-value)+'%';
-                                children[5].style.right=(100-value)+'%';
-                                children[9].style.left=value+'%';children[13].style.left=value+'%';
-                                children[13].childNodes[1].innerHTML=this.value;" />
+                        <div class="slider-container">
+                            <div class="slider-background"></div>
+                            <div class="slider-track" id="slider-track"></div>
+                            <input type="range" min="0" max="100" value="25" class="slider" id="slider-min">
+                            <input type="range" min="0" max="100" value="75" class="slider" id="slider-max">
                         </div>
                         <span>10,000원 ~ 500,000원 이상</span>
                     </div>
@@ -123,7 +100,7 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">무료숙박(1+1,2+1등)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab1">무료숙박(1+1,2+1등)</li>
                                 <li class="tab_box_element_ p--20 border " rel="tab2">특별패키지</li>
                                 <li class="tab_box_element_ p--20 border " rel="tab3">룸업그레이드</li>
                                 <li class="tab_box_element_ p--20 border " rel="tab4">공항픽업 무료</li>
@@ -142,7 +119,7 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">체크인 후 24시간 이용 가능</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab1">체크인 후 24시간 이용 가능</li>
                                 <li class="tab_box_element_ p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
                                 <li class="tab_box_element_ p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
                                 <li class="tab_box_element_ p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
@@ -161,7 +138,7 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">2 베드룸(성인 4~5인)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab1">2 베드룸(성인 4~5인)</li>
                                 <li class="tab_box_element_ p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
                             </ul>
                         </div>
@@ -172,14 +149,16 @@
                 <div class="form_element_">
                     <div class="date-container">
                         <label for="checkin" class="label">체크인/아웃</label>
-                        <div class="date-wrapper">
-                            <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
-                            <span class="suffix">(화)</span>
-                        </div>
-                        <span class="arrow">→</span>
-                        <div class="date-wrapper">
-                            <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
-                            <span class="suffix">(수)</span>
+                        <div class="date-sub-container">
+                            <div class="date-wrapper">
+                                <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
+                                <span class="suffix">(화)</span>
+                            </div>
+                            <span class="arrow">→</span>
+                            <div class="date-wrapper">
+                                <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
+                                <span class="suffix">(수)</span>
+                            </div>
                         </div>
                     </div>
                     <div class="form_input_">
@@ -216,9 +195,11 @@
                     <div class="total_number">
                         <p>총 상품 <span>70</span></p>
                     </div>
-                    <div class="2way-arrow-content">
-                        <img src="/uploads/icons/2-way_arrow.png" alt="2-way_arrow">
-                        <span>추천순</span>
+                    <div class="two-way-arrow-content">
+                        <a href="#" class="">
+                            <img src="/uploads/icons/2-way_arrow.png" alt="2-way_arrow">
+                            <span class="text-primary">추천순</span>
+                        </a>
                     </div>
                 </div>
                 <div class="product-card-item-container">
@@ -230,7 +211,7 @@
                     <div class="product-card-item-right">
                         <div class="title-container">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                                <h2>아난타라 시암 방콕 호텔</h2>
                             </a>
                             <div class="star-container">
                                 <div class="">
@@ -238,7 +219,7 @@
                                     <span>4.7</span>
                                 </div>
                                 <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -278,13 +259,13 @@
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
                         <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                            <img src="/uploads/sub/sub_hotel_2.png" alt="sub_hotel_2">
                         </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                                <h2>아난타라 시암 방콕 호텔</h2>
                             </a>
                             <div class="star-container">
                                 <div class="">
@@ -299,7 +280,7 @@
                         <div class="sub-title">
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
+                            <span>시암</span>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -313,7 +294,170 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
+                                <h2>트윈룸 : 도시전망</h2>
+                                <p>싱글침대 2개</p>
+                            </div>
+                            <div class="item-info">
+                                <h2>프로모션</h2>
+                                <div class="item-info-label">
+                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                </div>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card-item-container">
+                    <div class="product-card-item-left">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_3.png" alt="sub_hotel_3">
+                        </a>
+                    </div>
+                    <div class="product-card-item-right">
+                        <div class="title-container">
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>두앙따완 호텔 치앙마이</h2>
+                            </a>
+                            <div class="star-container">
+                                <div class="">
+                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span>생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-title">
+                            <span>방콕</span>
+                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                            <span>시암</span>
+                        </div>
+                        <div class="list-item-info">
+                            <div class="item-info">
+                                <h2>추천 포인트</h2>
+                                <div class="tab_box_area_">
+                                    <ul class="tab_box_show_">
+                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                </div>
+                            </div>
+                            <div class="item-info">
+                                <h2>수페리어룸 : 마운틴뷰</h2>
+                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
+                            </div>
+                            <div class="item-info">
+                                <h2>프로모션</h2>
+                                <div class="item-info-label">
+                                    <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
+                                    <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
+                                </div>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card-item-container">
+                    <div class="product-card-item-left">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_4.png" alt="sub_hotel_4">
+                        </a>
+                    </div>
+                    <div class="product-card-item-right">
+                        <div class="title-container">
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>애스콧 엠바시 사톤</h2>
+                            </a>
+                            <div class="star-container">
+                                <div class="">
+                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span>생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-title">
+                            <span>방콕</span>
+                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                            <span>시암</span>
+                        </div>
+                        <div class="list-item-info">
+                            <div class="item-info">
+                                <h2>추천 포인트</h2>
+                                <div class="tab_box_area_">
+                                    <ul class="tab_box_show_">
+                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                </div>
+                            </div>
+                            <div class="item-info">
+                                <h2>수페리어룸 : 마운틴뷰</h2>
+                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
+                            </div>
+                            <div class="item-info">
+                                <h2>프로모션</h2>
+                                <div class="item-info-label">
+                                    <span>연박 프로모션</span> "2박 이상시 레이트 체크아웃 (보장) / 18시 / 단독 프로모션"
+                                </div>
+                            </div>
+                            <div class="item-info">
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card-item-container">
+                    <div class="product-card-item-left">
+                        <a href="/product-hotel/hotel-detail/1324">
+                            <img src="/uploads/sub/sub_hotel_5.png" alt="sub_hotel_5">
+                        </a>
+                    </div>
+                    <div class="product-card-item-right">
+                        <div class="title-container">
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <h2>더 살릴 호텔 리버사이드 방콕</h2>
+                            </a>
+                            <div class="star-container">
+                                <div class="">
+                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span>생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-title">
+                            <span>방콕</span>
+                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                            <span>짜오프라야강가</span>
+                        </div>
+                        <div class="list-item-info">
+                            <div class="item-info">
+                                <h2>추천 포인트</h2>
+                                <div class="tab_box_area_">
+                                    <ul class="tab_box_show_">
+                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                </div>
+                            </div>
+                            <div class="item-info">
+                                <h2>수페리어 트윈룸</h2>
                                 <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
                             </div>
                             <div class="item-info">
@@ -332,13 +476,13 @@
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
                         <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                            <img src="/uploads/sub/sub_hotel_6.png" alt="sub_hotel_6">
                         </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                                <h2>킴튼 말라이 방콕</h2>
                             </a>
                             <div class="star-container">
                                 <div class="">
@@ -353,7 +497,7 @@
                         <div class="sub-title">
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
+                            <span>랑수언/위타유</span>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -367,8 +511,8 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                <h2>트윈룸 : 도시전망</h2>
+                                <p>싱글침대 2개</p>
                             </div>
                             <div class="item-info">
                                 <h2>프로모션</h2>
@@ -377,8 +521,8 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
@@ -386,13 +530,13 @@
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
                         <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                            <img src="/uploads/sub/sub_hotel_7.png" alt="sub_hotel_7">
                         </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                                <h2>힐튼 방콕 그랑데 아속 (구-풀만 방콕 그랑데 스쿰빗)</h2>
                             </a>
                             <div class="star-container">
                                 <div class="">
@@ -407,7 +551,7 @@
                         <div class="sub-title">
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
+                            <span>스쿰빗(아속-프롬퐁)</span>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -421,18 +565,19 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                <h2>수페리어룸 : 마운틴뷰</h2>
+                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
                             </div>
                             <div class="item-info">
                                 <h2>프로모션</h2>
                                 <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
+                                    <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
                                 </div>
                             </div>
                             <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
@@ -440,13 +585,13 @@
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
                         <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                            <img src="/uploads/sub/sub_hotel_8.png" alt="sub_hotel_8">
                         </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                                <h2>신돈 켐핀스키 호텔 방콕</h2>
                             </a>
                             <div class="star-container">
                                 <div class="">
@@ -461,7 +606,7 @@
                         <div class="sub-title">
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
+                            <span>랑수언/위타유</span>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -475,8 +620,8 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                <h2>수페리어룸 : 마운틴뷰</h2>
+                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
                             </div>
                             <div class="item-info">
                                 <h2>프로모션</h2>
@@ -485,8 +630,8 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
@@ -494,13 +639,13 @@
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
                         <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                            <img src="/uploads/sub/sub_hotel_9.png" alt="sub_hotel_8">
                         </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                                <h2>하얏트 리젠시 방콕 스쿰빗</h2>
                             </a>
                             <div class="star-container">
                                 <div class="">
@@ -515,7 +660,7 @@
                         <div class="sub-title">
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
+                            <span>스쿰빗(나나-플런칫)</span>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -529,18 +674,19 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                <h2>수페리어룸 : 마운틴뷰</h2>
+                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
                             </div>
                             <div class="item-info">
                                 <h2>프로모션</h2>
                                 <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
+                                    <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
                                 </div>
                             </div>
                             <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
@@ -548,13 +694,13 @@
                 <div class="product-card-item-container">
                     <div class="product-card-item-left">
                         <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                            <img src="/uploads/sub/sub_hotel_10.png" alt="sub_hotel_8">
                         </a>
                     </div>
                     <div class="product-card-item-right">
                         <div class="title-container">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
+                                <h2>비 호텔 방콕 엠 갤러리</h2>
                             </a>
                             <div class="star-container">
                                 <div class="">
@@ -569,7 +715,7 @@
                         <div class="sub-title">
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
+                            <span>빠뚜남/펫부리</span>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -583,84 +729,31 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                <h2>수페리어룸 : 마운틴뷰</h2>
+                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
                             </div>
                             <div class="item-info">
                                 <h2>프로모션</h2>
                                 <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    <span>연박 프로모션</span> 2박 이상시 레이트 체크아웃 (보장) / 18시 / 단독 프로모션"
                                 </div>
                             </div>
                             <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
-                            <a href="/product-hotel/hotel-detail/1324">
-                                <h2>로투스 팡 수안 캐우 호텔 치앙 마이</h2>
-                            </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
-                                </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
-                                </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
+                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="pagination">
                     <a href="#" class="page-link">≪</a>
-                    <a href="#" class="page-link" style="margin-right: 24px;"><</a>
-                    <a href="#" class="page-link active">1</a>
-                    <a href="#" class="page-link">2</a>
-                    <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link" style="margin-left: 24px;">></a>
-                    <a href="#" class="page-link">≫</a>
+                    <a href="#" class="page-link" style="margin-right: 24px;">
+                        <
+                            <a href="#" class="page-link active">1</a>
+                            <a href="#" class="page-link">2</a>
+                            <a href="#" class="page-link">3</a>
+                            <a href="#" class="page-link" style="margin-left: 24px;">></a>
+                            <a href="#" class="page-link">≫</a>
                 </div>
             </div>
         </div>
@@ -693,6 +786,31 @@
         $('#checkout').val(formatDate('2024/07/10'));
         console.log("TEST");
     });
+
+
+    const sliderMin = document.getElementById('slider-min');
+    const sliderMax = document.getElementById('slider-max');
+    const sliderTrack = document.getElementById('slider-track');
+
+    function updateSliderTrack() {
+        const min = parseFloat(sliderMin.value);
+        const max = parseFloat(sliderMax.value);
+
+        if (min > max) {
+            [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
+        }
+
+        const percentMin = (sliderMin.value - sliderMin.min) / (sliderMin.max - sliderMin.min) * 100;
+        const percentMax = (sliderMax.value - sliderMax.min) / (sliderMax.max - sliderMax.min) * 100;
+
+        sliderTrack.style.left = percentMin + '%';
+        sliderTrack.style.width = (percentMax - percentMin) + '%';
+    }
+
+    sliderMin.addEventListener('input', updateSliderTrack);
+    sliderMax.addEventListener('input', updateSliderTrack);
+
+    window.addEventListener('DOMContentLoaded', updateSliderTrack);
     </script>
 
     <?php $this->endSection(); ?>
