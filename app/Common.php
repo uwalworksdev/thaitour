@@ -13,3 +13,24 @@
  *
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
+
+function private_key() {
+    return "gkdlghwn!@12";
+}
+
+function no_file_ext($filename)
+{
+
+    $ext  = explode(".", strtolower($filename));
+    $cnt  = count($ext)-1;
+    $extend = $ext[$cnt];
+    $_ext = explode("|", "php|php3|php4|htm|inc|html|xls|exe");
+    $chk  = "Y";
+
+    for($i=0;$i<count($_ext);$i++)
+    {
+        if($extend == $_ext[$i]) $chk = "N";
+    }
+
+    return $chk;
+}

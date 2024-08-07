@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 
 
-$routes->group("/adm", static function ($routes) {
+$routes->group("AdmMaster", static function ($routes) {
 
     $routes->get("", "AdminLogin::loginView");
     $routes->post("login", "AdminLogin::LoginCheckAjax");
