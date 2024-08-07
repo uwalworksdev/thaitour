@@ -203,7 +203,7 @@ if ($top_menu == "") {
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-title" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="/uploads/home/<?= $setting['favico_img'] ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="/uploads/setting/<?= $setting['favico_img'] ?>">
     <link rel="apple-touch-icon" href="" />
     <meta name="Generator" content="">
     <meta name="Author" content="">
@@ -354,7 +354,7 @@ if ($top_menu == "") {
             <div class="top_box">
                 <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM ?>" alt="로고"></a> -->
                 <a href="/" class="txt_admin" target="_blank"></a>
-                <a href="/AdmMaster/_main/main.php" class="logo"><img src="/uploads/home/<?= $setting['logos'] ?>" alt=""></a>
+                <a href="/AdmMaster/_main/main.php" class="logo"><img src="/uploads/setting/<?= $setting['logos'] ?>" alt=""></a>
             </div>
             <div class="info_box">
                 <ul class="connect_info">

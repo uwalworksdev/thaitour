@@ -192,7 +192,7 @@
                                         <input type="file" name="ufile2" class="bbs_inputbox_pixel"
                                                style="width:300px" />
                                         <br />
-                                        <img src="/uploads/home/<?= $row["og_img"] ?>" style="max-height:200px">_OG_IMG
+                                        <img src="/uploads/setting/<?= $row["og_img"] ?>" style="max-height:200px">_OG_IMG
                                     </td>
                                 </tr>
 
@@ -378,14 +378,14 @@
                                                style="width:300px" /> 삭제 : <input type="checkbox" name="dels" id="dels"
                                                                                   value="y" />
                                         <br />
-                                        <img src="/uploads/home/<?= $row["logos"] ?>" style="max-height:200px">
+                                        <img src="/uploads/setting/<?= $row["logos"] ?>" style="max-height:200px">
                                     </td>
                                     <th>파비콘</th>
                                     <td>
                                         <input type="file" name="ufile3" class="bbs_inputbox_pixel"
                                                style="width:300px" />
                                         <br />
-                                        <img src="/uploads/home/<?= $row["favico"] ?>" style="max-height:200px">
+                                        <img src="/uploads/setting/<?= $row["favico"] ?>" style="max-height:200px">
                                         _IT_FAVICO
                                     </td>
                                 </tr>

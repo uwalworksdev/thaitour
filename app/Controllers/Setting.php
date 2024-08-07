@@ -48,7 +48,7 @@ class Setting extends BaseController {
         {
 
 
-            $uploadPath = WRITEPATH . 'uploads/home/';
+            $uploadPath = $this->uploadPath;
 
             $site_name = $this->request->getPost('site_name');
             $domain_url = $this->request->getPost('domain_url');
