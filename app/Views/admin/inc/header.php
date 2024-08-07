@@ -67,7 +67,7 @@ if ($top_menu == "") {
     // 게시판
     if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_bbs/") !== false) {
         // 환경설정
-        if ($_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/fair_opt.php" || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/board_write.php" || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/board_view.php" || $code == "hashtag" || $code == "main_event" || $code == "awards")
+        if ($_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/fair_opt" || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/board_write" || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards")
             $top_menu = "config";
         // 고객센터
         else if (in_array($r_code, array("qna", "qna_group", "suggest", "faq", "contact")))
@@ -127,12 +127,12 @@ if ($top_menu == "") {
     }
     // 기타상품관리
     else if (
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourShopping/list.php" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourOption/list.php" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSuggestion/list.php" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSuggestionSub/list.php" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSub/list.php" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourLevel/list.php"
+        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourShopping/list" ||
+        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourOption/list" ||
+        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSuggestion/list" ||
+        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSuggestionSub/list" ||
+        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSub/list" ||
+        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourLevel/list"
     ) {
         $top_menu = "etc";
     }
@@ -161,15 +161,15 @@ if ($top_menu == "") {
     }
     // 환경설정
     else if (
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/adm_setting.php"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/write.php"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/store_config_admin.php"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/setting.php"
+        $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/adm_setting"
+        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/write"
+        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/store_config_admin"
+        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/setting"
         || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_codeBanner/") !== false
         || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_cateBanner/") !== false
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbsBanner/list.php"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/search_word.php"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/block_ip_list.php"
+        || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbsBanner/list"
+        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/search_word"
+        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/block_ip_list"
     ) {
         $top_menu = "config";
     }
@@ -354,7 +354,7 @@ if ($top_menu == "") {
             <div class="top_box">
                 <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM ?>" alt="로고"></a> -->
                 <a href="/" class="txt_admin" target="_blank"></a>
-                <a href="/AdmMaster/_main/main.php" class="logo"><img src="/uploads/setting/<?= $setting['logos'] ?>" alt=""></a>
+                <a href="/AdmMaster/_main/main" class="logo"><img src="/uploads/setting/<?= $setting['logos'] ?>" alt=""></a>
             </div>
             <div class="info_box">
                 <ul class="connect_info">
@@ -365,9 +365,9 @@ if ($top_menu == "") {
                     <li>최근접속일시 : 2021-12-28 09:34:01 </li>
                 </ul>
 
-                <!-- <a href="/AdmMaster/_adminrator/store_config_admin.php">비밀번호변경</a> -->
-                <a href="/AdmMaster/_adminrator/setting.php">정보수정</a>
-                <a class="logout" href="/AdmMaster/logout.php">로그아웃</a>
+                <!-- <a href="/AdmMaster/_adminrator/store_config_admin">비밀번호변경</a> -->
+                <a href="/AdmMaster/_adminrator/setting">정보수정</a>
+                <a class="logout" href="/AdmMaster/logout">로그아웃</a>
             </div>
 
         </div>
@@ -390,7 +390,7 @@ if ($top_menu == "") {
                         } ?>
                                 class="fir
                                 <?= $top_menu == "_review" ? "on" : "" ?>">
-                            <?= check_perm('B001', '/AdmMaster/_review/list.php', '여행후기관리'); ?>
+                            <?= check_perm('B001', '/AdmMaster/_review/list', '여행후기관리'); ?>
                         </li>
                     </ul>
                 </li>
@@ -410,43 +410,43 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="fir
-                                <?= strpos('/AdmMaster/_code/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('C001', '/AdmMaster/_code/list.php', '공통코드'); ?>
+                                <?= strpos('/AdmMaster/_code/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('C001', '/AdmMaster/_code/list', '공통코드'); ?>
                         </li>
                         <li <?php if (!check_auth('C002')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourRegist/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('C002', '/AdmMaster/_tourRegist/list.php', '패키지 상품관리'); ?>
+                                <?= strpos('/AdmMaster/_tourRegist/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('C002', '/AdmMaster/_tourRegist/list', '패키지 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C003')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourRegist/list_honeymoon.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('C003', '/AdmMaster/_tourRegist/list_honeymoon.php', '허니문 상품관리'); ?>
+                                <?= strpos('/AdmMaster/_tourRegist/list_honeymoon', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('C003', '/AdmMaster/_tourRegist/list_honeymoon', '허니문 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C004')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourRegist/list_tours.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('C004', '/AdmMaster/_tourRegist/list_tours.php', '자유여행 상품관리'); ?>
+                                <?= strpos('/AdmMaster/_tourRegist/list_tours', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('C004', '/AdmMaster/_tourRegist/list_tours', '자유여행 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C005')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourRegist/list_golf.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('C005', '/AdmMaster/_tourRegist/list_golf.php', '골프 상품관리'); ?>
+                                <?= strpos('/AdmMaster/_tourRegist/list_golf', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('C005', '/AdmMaster/_tourRegist/list_golf', '골프 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C006')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourStay/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('C006', '/AdmMaster/_tourStay/list.php', '숙박정보관리(공통)'); ?>
+                                <?= strpos('/AdmMaster/_tourStay/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('C006', '/AdmMaster/_tourStay/list', '숙박정보관리(공통)'); ?>
                         </li>
                     </ul>
                 </li>
@@ -467,35 +467,35 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourSuggestion/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('D001', '/AdmMaster/_tourSuggestion/list.php', '메인 추천상품 관리'); ?>
+                                <?= strpos('/AdmMaster/_tourSuggestion/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('D001', '/AdmMaster/_tourSuggestion/list', '메인 추천상품 관리'); ?>
                         </li>
                         <li <?php if (!check_auth('D002')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourSuggestionSub/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('D002', '/AdmMaster/_tourSuggestionSub/list.php', '서브 추천상품 관리'); ?>
+                                <?= strpos('/AdmMaster/_tourSuggestionSub/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('D002', '/AdmMaster/_tourSuggestionSub/list', '서브 추천상품 관리'); ?>
                         </li>
                         <!-- <li
                                 <?php if (!check_auth('D005')) {
                             echo "style='display: none;'";
                         } ?>
-                                class="<?= strpos('/AdmMaster/_tourSub/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                                <?= check_perm('D005', '/AdmMaster/_tourSub/list.php', '관심상품 관리'); ?></li> -->
+                                class="<?= strpos('/AdmMaster/_tourSub/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                                <?= check_perm('D005', '/AdmMaster/_tourSub/list', '관심상품 관리'); ?></li> -->
                         <li <?php if (!check_auth('D003')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourLevel/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('D003', '/AdmMaster/_tourLevel/list.php', '상품등급 관리'); ?>
+                                <?= strpos('/AdmMaster/_tourLevel/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('D003', '/AdmMaster/_tourLevel/list', '상품등급 관리'); ?>
                         </li>
                         <li <?php if (!check_auth('D004')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_tourOption/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('D004', '/AdmMaster/_tourOption/list.php', '상품옵션 관리'); ?>
+                                <?= strpos('/AdmMaster/_tourOption/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('D004', '/AdmMaster/_tourOption/list', '상품옵션 관리'); ?>
                         </li>
                     </ul>
                 </li>
@@ -513,23 +513,23 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?> class="fir
                                 <?= $code == "b2b_notice" ? "on" : "" ?>">
-                            <?= check_perm('A001', '/AdmMaster/_bbs/board_list.php?code=b2b_notice', '공지사항'); ?>
+                            <?= check_perm('A001', '/AdmMaster/_bbs/board_list?code=b2b_notice', '공지사항'); ?>
                         </li>
                         <!-- <li <?php if (!check_auth('A002')) {
                             echo "style='display: none;'";
-                        } ?> class="<?= $r_code == "qna_group" ? "on" : "" ?>"><?= check_perm('A002', '/AdmMaster/_bbs/index.php?r_code=qna_group', '기업/단체여행문의'); ?></li> -->
+                        } ?> class="<?= $r_code == "qna_group" ? "on" : "" ?>"><?= check_perm('A002', '/AdmMaster/_bbs/index?r_code=qna_group', '기업/단체여행문의'); ?></li> -->
                         <li <?php if (!check_auth('A003')) {
                             echo "style='display: none;'";
                         } ?> class="
                                 <?= $r_code == "faq" ? "on" : "" ?>">
-                            <?= check_perm('A003', '/AdmMaster/_bbs/index.php?r_code=faq', '자주하시는질문'); ?>
+                            <?= check_perm('A003', '/AdmMaster/_bbs/index?r_code=faq', '자주하시는질문'); ?>
                         </li>
 
                         <li <?php if (!check_auth('A008')) {
                             echo "style='display: none;'";
                         } ?> class="end
                                 <?= $code == "winner" ? "on" : "" ?>">
-                            <?= check_perm('A008', '/AdmMaster/_bbs/board_list.php?code=winner', '당첨자 발표'); ?>
+                            <?= check_perm('A008', '/AdmMaster/_bbs/board_list?code=winner', '당첨자 발표'); ?>
                         </li>
 
                     </ul>
@@ -549,60 +549,60 @@ if ($top_menu == "") {
                         } ?>
                                 class="fir
                                 <?= strpos($_SERVER["PHP_SELF"], '/AdmMaster/_reservation/') !== false ? "on" : "" ?>">
-                            <?= check_perm('E001', '/AdmMaster/_reservation/list.php', '여행상품예약'); ?>
+                            <?= check_perm('E001', '/AdmMaster/_reservation/list', '여행상품예약'); ?>
                         </li>
                         <li <?php if (!check_auth('A004')) {
                             echo "style='display: none;'";
                         } ?> class="
                                 <?= strpos($_SERVER["PHP_SELF"], '/AdmMaster/_qna/') !== false ? "on" : "" ?>">
-                            <?= check_perm('A004', '/AdmMaster/_qna/list.php', '1:1 여행상담'); ?>
+                            <?= check_perm('A004', '/AdmMaster/_qna/list', '1:1 여행상담'); ?>
                         </li>
 
                         <li <?php if (!check_auth('A005')) {
                             echo "style='display: none;'";
                         } ?> class="
                                 <?= strpos($_SERVER["PHP_SELF"], '/AdmMaster/_contact/') !== false ? "on" : "" ?>">
-                            <?= check_perm('A005', '/AdmMaster/_contact/list.php', '여행문의'); ?>
+                            <?= check_perm('A005', '/AdmMaster/_contact/list', '여행문의'); ?>
                         </li>
                         <li <?php if (!check_auth('A006')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= strpos($_SERVER["PHP_SELF"], '/AdmMaster/_inquiry') !== false ? "on" : "" ?>">
-                            <?= check_perm('A006', '/AdmMaster/_inquiry/list.php', '맞춤문의'); ?>
+                            <?= check_perm('A006', '/AdmMaster/_inquiry/list', '맞춤문의'); ?>
                         </li>
                         <li <?php if (!check_auth('A007')) {
                             echo "style='display: none;'";
                         } ?> class="
                                 <?= $code == "event" ? "on" : "" ?>">
-                            <?= check_perm('A007', '/AdmMaster/_bbs/board_list.php?code=event', '이벤트관리'); ?>
+                            <?= check_perm('A007', '/AdmMaster/_bbs/board_list?code=event', '이벤트관리'); ?>
                         </li>
                         <!--li
                                 <?php if (!check_auth('E005')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="<?= strpos($_SERVER["PHP_SELF"], '/AdmMaster/_guide/') !== false ? "on" : "" ?>">
-                                <?= check_perm('E005', '/AdmMaster/_guide/list.php', '현지투어예약'); ?></li-->
+                                <?= check_perm('E005', '/AdmMaster/_guide/list', '현지투어예약'); ?></li-->
                         <li <?php if (!check_auth('E002')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_operator/coupon_setting.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('E002', '/AdmMaster/_operator/coupon_setting.php', '쿠폰생성관리'); ?>
+                                <?= strpos('/AdmMaster/_operator/coupon_setting', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('E002', '/AdmMaster/_operator/coupon_setting', '쿠폰생성관리'); ?>
                         </li>
                         <li <?php if (!check_auth('E003')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_operator/coupon_list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('E003', '/AdmMaster/_operator/coupon_list.php', '쿠폰사용관리'); ?>
+                                <?= strpos('/AdmMaster/_operator/coupon_list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('E003', '/AdmMaster/_operator/coupon_list', '쿠폰사용관리'); ?>
                         </li>
                         <li <?php if (!check_auth('E004')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_mileage/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('E004', '/AdmMaster/_mileage/list.php', '마일리지관리'); ?>
+                                <?= strpos('/AdmMaster/_mileage/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('E004', '/AdmMaster/_mileage/list', '마일리지관리'); ?>
                         </li>
 
                     </ul>
@@ -622,37 +622,37 @@ if ($top_menu == "") {
                         } ?>
                                 class="fir
                                 <?= $s_status == "Y" ? "on" : "" ?>">
-                            <?= check_perm('F001', '/AdmMaster/_member/list.php?s_status=Y', '일반회원관리'); ?>
+                            <?= check_perm('F001', '/AdmMaster/_member/list?s_status=Y', '일반회원관리'); ?>
                         </li>
                         <li <?php if (!check_auth('F002')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= $s_status == "N" ? "on" : "" ?>">
-                            <?= check_perm('F002', '/AdmMaster/_member/list.php?s_status=N', '탈퇴회원관리'); ?>
+                            <?= check_perm('F002', '/AdmMaster/_member/list?s_status=N', '탈퇴회원관리'); ?>
                         </li>
                         <li <?php if (!check_auth('F003')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/email01.php") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/email01_view.php") !== false) { ?>on
+                                <?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/email01") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/email01_view") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('F003', '/AdmMaster/_member/email01.php', '이메일 관리'); ?></a>
+                            <?= check_perm('F003', '/AdmMaster/_member/email01', '이메일 관리'); ?></a>
                         </li>
                         <li <?php if (!check_auth('F004')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/sms01.php") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/sms01_view.php") !== false) { ?>on
+                                <?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/sms01") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/sms01_view") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('F004', '/AdmMaster/_member/sms01.php', 'SMS 관리'); ?></a>
+                            <?= check_perm('F004', '/AdmMaster/_member/sms01', 'SMS 관리'); ?></a>
                         </li>
                         <!-- <li
                                 <?php if (!check_auth('F005')) {
                             echo "style='display: none;'";
                         } ?>
-                                class="<?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/user_report_list.php") !== false) { ?>on<?php } ?>">
-                                <?= check_perm('F005', '/AdmMaster/_member/user_report_list.php', '신고 리스트'); ?></a>
+                                class="<?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/user_report_list") !== false) { ?>on<?php } ?>">
+                                <?= check_perm('F005', '/AdmMaster/_member/user_report_list', '신고 리스트'); ?></a>
                             </li> -->
                     </ul>
                 </li>
@@ -674,21 +674,21 @@ if ($top_menu == "") {
                         } ?>
                                 class="fir
                                 <?= $code == "mem_board" ? "on" : "" ?>">
-                            <?= check_perm('G001', '/AdmMaster/_memberBoard/board_list.php?code=mem_board', '사내게시판'); ?>
+                            <?= check_perm('G001', '/AdmMaster/_memberBoard/board_list?code=mem_board', '사내게시판'); ?>
                         </li>
                         <li <?php if (!check_auth('G002')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= $code == "mem_pds" ? "on" : "" ?>">
-                            <?= check_perm('G002', '/AdmMaster/_memberBoard/board_list.php?code=mem_pds', '자료실'); ?>
+                            <?= check_perm('G002', '/AdmMaster/_memberBoard/board_list?code=mem_pds', '자료실'); ?>
                         </li>
                         <li <?php if (!check_auth('G003')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="end
-                                <?= strpos('/AdmMaster/_memberBreak/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('G003', '/AdmMaster/_memberBreak/list.php', '연차관리'); ?>
+                                <?= strpos('/AdmMaster/_memberBreak/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('G003', '/AdmMaster/_memberBreak/list', '연차관리'); ?>
                         </li>
                     </ul>
                 </li>
@@ -709,47 +709,47 @@ if ($top_menu == "") {
                         } ?>
                                 class="
                                 <?= $code == "awards" ? "on" : "" ?>">
-                            <?= check_perm('H001', '/AdmMaster/_bbs/board_list.php?code=awards', '인증수상내역'); ?>
+                            <?= check_perm('H001', '/AdmMaster/_bbs/board_list?code=awards', '인증수상내역'); ?>
                         </li>
                         <!-- <li <?php if (!check_auth('H002')) {
                             echo "style='display: none;'";
                         } ?>
-                                class="<?= $code == "banner" ? "on" : "" ?>"><?= check_perm('H002', '/AdmMaster/_bbs/board_list.php?code=banner', '메인비주얼관리'); ?></li> -->
+                                class="<?= $code == "banner" ? "on" : "" ?>"><?= check_perm('H002', '/AdmMaster/_bbs/board_list?code=banner', '메인비주얼관리'); ?></li> -->
                         <li <?php if (!check_auth('H002')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= $code == "banner" ? "on" : "" ?>">
-                            <?= check_perm('H002', '/AdmMaster/_bbsBanner/list.php?code=banner', '메인/서브비주얼관리'); ?>
+                            <?= check_perm('H002', '/AdmMaster/_bbsBanner/list?code=banner', '메인/서브비주얼관리'); ?>
                         </li>
                         <li <?php if (!check_auth('H003')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= $code == "main_event" ? "on" : "" ?>">
-                            <?= check_perm('H003', '/AdmMaster/_bbs/board_list.php?code=main_event', '메인이벤트 관리'); ?>
+                            <?= check_perm('H003', '/AdmMaster/_bbs/board_list?code=main_event', '메인이벤트 관리'); ?>
                         </li>
                         <li <?php if (!check_auth('H004')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= $code == "hashtag" ? "on" : "" ?>">
-                            <?= check_perm('H004', '/AdmMaster/_bbs/board_list.php?code=hashtag', '키워드 링크'); ?>
+                            <?= check_perm('H004', '/AdmMaster/_bbs/board_list?code=hashtag', '키워드 링크'); ?>
                         </li>
                         <li <?php if (!check_auth('H005')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="fir
-                                <?= strpos('/AdmMaster/_codeBanner/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('H005', '/AdmMaster/_codeBanner/list.php', '서브배너관리'); ?>
+                                <?= strpos('/AdmMaster/_codeBanner/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('H005', '/AdmMaster/_codeBanner/list', '서브배너관리'); ?>
                         </li>
 
                         <li <?php if (!check_auth('H006')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="fir
-                                <?= strpos('/AdmMaster/_cateBanner/list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('H006', '/AdmMaster/_cateBanner/list.php', '카테고리배너관리'); ?>
+                                <?= strpos('/AdmMaster/_cateBanner/list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('H006', '/AdmMaster/_cateBanner/list', '카테고리배너관리'); ?>
                         </li>
 
                         <li <?php if (!check_auth('H007')) {
@@ -757,47 +757,47 @@ if ($top_menu == "") {
                         } ?>
                                 class="
                                 <?= $r_code == "popup" ? "on" : "" ?>">
-                            <?= check_perm('H007', '/AdmMaster/_cms/index.php?r_code=popup', '팝업관리'); ?>
+                            <?= check_perm('H007', '/AdmMaster/_cms/index?r_code=popup', '팝업관리'); ?>
                         </li>
                         <!-- <li <?php if (!check_auth('H004')) {
                             echo "style='display: none;'";
                         } ?>
-                                class="<?= $r_code == "staff" ? "on" : "" ?>"><?= check_perm('H004', '/AdmMaster/_cms/index.php?r_code=staff', '운영자관리'); ?></li> -->
+                                class="<?= $r_code == "staff" ? "on" : "" ?>"><?= check_perm('H004', '/AdmMaster/_cms/index?r_code=staff', '운영자관리'); ?></li> -->
                         <li <?php if (!check_auth('H008')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= $r_code == "info" ? "on" : "" ?>">
-                            <?= check_perm('H008', '/AdmMaster/_cms/policy_list.php?r_code=info', '약관및정책관리'); ?>
+                            <?= check_perm('H008', '/AdmMaster/_cms/policy_list?r_code=info', '약관및정책관리'); ?>
                         </li>
                         <li <?php if (!check_auth('H009')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_adminrator/setting.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('H009', '/AdmMaster/_adminrator/setting.php', '쇼핑몰설정관리'); ?>
+                                <?= strpos('/AdmMaster/_adminrator/setting', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('H009', '/AdmMaster/_adminrator/setting', '쇼핑몰설정관리'); ?>
                         </li>
                         <li <?php if (!check_auth('H010')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_adminrator/store_config_admin.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('H010', '/AdmMaster/_adminrator/store_config_admin.php', '운영자계정관리'); ?>
+                                <?= strpos('/AdmMaster/_adminrator/store_config_admin', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('H010', '/AdmMaster/_adminrator/store_config_admin', '운영자계정관리'); ?>
                         </li>
                         <li <?php if (!check_auth('H011')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_adminrator/search_word.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('H011', '/AdmMaster/_adminrator/search_word.php', '추천 검색어'); ?>
+                                <?= strpos('/AdmMaster/_adminrator/search_word', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('H011', '/AdmMaster/_adminrator/search_word', '추천 검색어'); ?>
                         </li>
 
                         <li <?php if (!check_auth('H012')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos('/AdmMaster/_adminrator/block_ip_list.php', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
-                            <?= check_perm('H012', '/AdmMaster/_adminrator/block_ip_list.php', '아이피 차단'); ?>
+                                <?= strpos('/AdmMaster/_adminrator/block_ip_list', $_SERVER["PHP_SELF"]) !== false ? "on" : "" ?>">
+                            <?= check_perm('H012', '/AdmMaster/_adminrator/block_ip_list', '아이피 차단'); ?>
                         </li>
 
                     </ul>
@@ -820,7 +820,7 @@ if ($top_menu == "") {
                                 class="
                                 <?php if (strpos($_SERVER['PHP_SELF'], "statistics01_") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('I001', '/AdmMaster/_statistics/statistics01_01.php', '예약분석'); ?>
+                            <?= check_perm('I001', '/AdmMaster/_statistics/statistics01_01', '예약분석'); ?>
                         </li>
                         <li <?php if (!check_auth('I002')) {
                             echo "style='display: none;'";
@@ -828,7 +828,7 @@ if ($top_menu == "") {
                                 class="
                                 <?php if (strpos($_SERVER['PHP_SELF'], "statistics02_") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('I002', '/AdmMaster/_statistics/statistics02_01.php', '매출분석'); ?>
+                            <?= check_perm('I002', '/AdmMaster/_statistics/statistics02_01', '매출분석'); ?>
                         </li>
                         <li <?php if (!check_auth('I003')) {
                             echo "style='display: none;'";
@@ -836,7 +836,7 @@ if ($top_menu == "") {
                                 class="
                                 <?php if (strpos($_SERVER['PHP_SELF'], "statistics03_") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('I003', '/AdmMaster/_statistics/statistics03_01.php', '방문분석'); ?>
+                            <?= check_perm('I003', '/AdmMaster/_statistics/statistics03_01', '방문분석'); ?>
                         </li>
                         <li <?php if (!check_auth('I004')) {
                             echo "style='display: none;'";
@@ -844,7 +844,7 @@ if ($top_menu == "") {
                                 class="
                                 <?php if (strpos($_SERVER['PHP_SELF'], "statistics04_") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('I004', '/AdmMaster/_statistics/statistics04_01.php', '상품분석'); ?>
+                            <?= check_perm('I004', '/AdmMaster/_statistics/statistics04_01', '상품분석'); ?>
                         </li>
                         <li <?php if (!check_auth('I005')) {
                             echo "style='display: none;'";
@@ -852,7 +852,7 @@ if ($top_menu == "") {
                                 class="
                                 <?php if (strpos($_SERVER['PHP_SELF'], "statistics05_") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('I005', '/AdmMaster/_statistics/statistics05_01.php', '회원분석'); ?>
+                            <?= check_perm('I005', '/AdmMaster/_statistics/statistics05_01', '회원분석'); ?>
                         </li>
                     </ul>
                 </li>

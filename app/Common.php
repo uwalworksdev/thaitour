@@ -34,3 +34,44 @@ function no_file_ext($filename)
 
     return $chk;
 }
+
+function ipagelisting($cur_page, $total_page, $n, $url) {
+
+	$retValue = "<div class='paging mt30'><ul>";
+	if ($cur_page > 1) {
+		$retValue .= "<li class='first'><a href='" . $url . "1' title='Go to next page'>&lt;&lt;  처음</a></li>";
+		$retValue .= "<li class='prev'><a href='" . $url . ($cur_page-1) . "' title='Go to first page'>&lt; 이전</a></li>";
+	} else {	
+		$retValue .= "<li class='first'><a href='javascript:;' title='Go to next page'>&lt;&lt; 처음</a></li>";
+		$retValue .= "<li class='prev'><a href='javascript:;' title='Go to first page'>&lt; 이전</a></li>";
+	}
+	$retValue .= "";
+	$start_page = ( ( (int)( ($cur_page - 1 ) / 10 ) ) * 10 ) + 1;
+	$end_page = $start_page + 9;
+	if ($end_page >= $total_page) $end_page = $total_page;
+	if ($total_page == 0)
+	{
+		$retValue .= "<li class='active'><a href='javascript:;' title='Go to 0 page'><strong>1</strong></a></li>";
+	} elseif ($total_page >= 1)
+	{
+		for ($k=$start_page;$k<=$end_page;$k++)
+		{
+			if ($cur_page != $k) 
+			{
+				$retValue .= "<li><a href='$url$k' title='Go to page $k'>$k</a></li>";
+			} else { 
+				$retValue .= "<li class='active'><a href='javascript:;' title='Go to $k page'><strong>$k</strong></a></li>";
+			}
+		}
+	}
+	$retValue .= "";
+	if ($cur_page < $total_page) {
+		$retValue .= "<li class='next'><a href='$url" . ($cur_page+1) . "' title='Go to next page'>다음 &gt;</a></li>";
+		$retValue .= "<li class='last'><a href='$url$total_page' title='Go to last page'>맨끝 &gt;&gt;</a></li>";
+	} else {
+		$retValue .= "<li class='next'><a href='javascript:;' title='Go to next page'>다음 &gt;</a></li>";
+		$retValue .= "<li class='last'><a href='javascript:;' title='Go to last page'>맨끝 &gt;&gt;</a></li>";
+	}
+	$retValue .= "</ul></div>";
+	return $retValue;
+}

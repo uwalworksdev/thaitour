@@ -46,8 +46,6 @@ class Setting extends BaseController {
      */
     public function writeUpdate(){
         {
-
-
             $uploadPath = $this->uploadPath;
 
             $site_name = $this->request->getPost('site_name');

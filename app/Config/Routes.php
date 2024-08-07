@@ -14,51 +14,9 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->post("login", "AdminLogin::LoginCheckAjax");
     $routes->get("logout", "AdminLogin::Logout");
 
-    // 게시판
-    $routes->group("board", static function ($routes) {
-        $routes->get("(:segment)/list", "Board::ListView/$1");
-        $routes->get("(:segment)/write", "Board::WriteView/$1");
-        $routes->get("(:segment)/write/(:segment)", "Board::WriteView/$1/$2");
-        // $routes->get("(:segment)/view", "");
-        $routes->post("(:segment)/insert", "Board::WriteInsert/$1");
-        $routes->post("(:segment)/update/(:segment)", "Board::WriteUpdate/$1/$2");
-        $routes->get('dnload/(:segment)', "Filedown::dnload/$1");
-        $routes->post('(:segment)/delete', "Board::delPost/$1");
-
-        $routes->post("(:segment)/onum", "Board::OnumChange/$1");
+    $routes->group("_review", static function ($routes) {
+        $routes->get("list", "ReviewController::list_admin");
     });
-    $routes->group("{locale}/board", static function ($routes) {
-        $routes->get("(:segment)/list", "Board::ListView/$1");
-        $routes->get("(:segment)/write", "Board::WriteView/$1");
-        $routes->get("(:segment)/write/(:segment)", "Board::WriteView/$1/$2");
-        // $routes->get("(:segment)/view", "");
-        $routes->post("(:segment)/insert", "Board::WriteInsert/$1");
-        $routes->post("(:segment)/update/(:segment)", "Board::WriteUpdate/$1/$2");
-        $routes->get('dnload/(:segment)', "Filedown::dnload/$1");
-        $routes->post('(:segment)/delete', "Board::delPost/$1");
-
-        $routes->post("(:segment)/onum", "Board::OnumChange/$1");
-    });
-
-    // 회원(서브관리자,관리자)
-    $routes->group("member", static function ($routes) {
-        $routes->get("admin/change", "Member::AdminPasswordChange");
-        $routes->post("admin/change", "Member::AdminPasswordUpdate");
-        // $routes->get("(:segment)/list", "");
-        // $routes->get("(:segment)/write", "");
-        // $routes->get("(:segment)/view", "");
-        // $routes->post("(:segment)/insert", "");
-        // $routes->post("(:segment)/update/(:segment)", "");
-    });
-    // 다운로드 파일
-    // 메인페이지,회사소개(CI)
-    // $routes->group("download", static function($routes){
-    //     $routes->get("(:segment)", "");
-    //     // $routes->get("(:segment)/write", "");
-    //     // $routes->get("(:segment)/view", "");
-    //     $routes->post("(:segment)/insert", "");
-    //     $routes->post("(:segment)/update", "");
-    // });
 
     $routes->group("setting", static function ($routes) {
         // 사이트 기본설정

@@ -48,6 +48,41 @@ class ReviewController extends BaseController
             "category" => $category
         ]);
     }
+    public function list_admin()
+    {
+        $deviceType = get_device();
+        $page = $this->request->getVar('page');
+        $s_txt = $this->request->getVar('s_txt');
+        $search_category = $this->request->getVar('search_category');
+        $search_gubun = $this->request->getVar('search_gubun');
+        $currentUri = $this->request->getUri()->getPath();
+        $g_list_rows = 10;
+
+        $category = $_GET['category'];
+
+        $visual = $this->Bbs->List("banner", ['category' => '117'])->get()->getRowArray();
+
+        $best_review = $this->ReviewModel->getBestReviews($s_txt, $search_category);
+
+        $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, $g_list_rows);
+
+        return view("admin/_review/list", [
+            "best_review" => $best_review,
+            "visual" => $visual,
+            "review_list" => $resultObj['review_list'],
+            "nTotalCount" => $resultObj['total_cnt'],
+            "pg" => $resultObj['page'],
+            "nPage" => $resultObj['total_page'],
+            "num" => $resultObj['no'],
+            "s_txt" => $s_txt,
+            "search_category" => $search_category,
+            "currentUri" => $currentUri,
+            "deviceType" => $deviceType,
+            "category" => $category,
+            'search_gubun' => $search_gubun,
+            'g_list_rows' => $g_list_rows
+        ]);
+    }
     public function detail_review()
     {
         $idx = updateSQ($_GET["idx"]);

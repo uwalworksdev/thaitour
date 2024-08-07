@@ -163,7 +163,7 @@ body {
   width: 20px;
   height: 60px;
   margin-right: 22px;
-  background: url(../../_images/home_ico_02.png) center center no-repeat;
+  background: url(/images/admin/home_ico_02.png) center center no-repeat;
   vertical-align: middle;
 }
 
@@ -380,43 +380,43 @@ div.gnb_update>ul>li>a {
 }
 
 #gnb .gnb_menu>li.menu1 a span {
-  background: url(../../_images/ico_01.png) no-repeat left center;
+  background: url(/images/admin/ico_01.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu11 a span {
-  background: url(../../_images/ico_02.png) no-repeat left center;
+  background: url(/images/admin/ico_02.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu3 a span {
-  background: url(../../_images/ico_03.png) no-repeat left center;
+  background: url(/images/admin/ico_03.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu4 a span {
-  background: url(../../_images/ico_04.png) no-repeat left center;
+  background: url(/images/admin/ico_04.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu6 a span {
-  background: url(../../_images/ico_05.png) no-repeat left center;
+  background: url(/images/admin/ico_05.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu13 a span {
-  background: url(../../_images/ico_06.png) no-repeat left center;
+  background: url(/images/admin/ico_06.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu5 a span {
-  background: url(../../_images/ico_07.png) no-repeat left center;
+  background: url(/images/admin/ico_07.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu7 a span {
-  background: url(../../_images/ico_08.png) no-repeat left center;
+  background: url(/images/admin/ico_08.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu16 a span {
-  background: url(../../_images/ico_09.png) no-repeat left center;
+  background: url(/images/admin/ico_09.png) no-repeat left center;
 }
 
 #gnb .gnb_menu>li.menu8 a span {
-  background: url(../../_images/ico_10.png) no-repeat left center;
+  background: url(/images/admin/ico_10.png) no-repeat left center;
 }
 
 
@@ -438,7 +438,7 @@ div.gnb_update ul li a span.tit:after {
   height: 8px;
   clear: both;
   content: '';
-  background: url(../../_images/btn_arrow_open.png);
+  background: url(/images/admin/btn_arrow_open.png);
   display: block;
   color: #b3b5b6;
 }
@@ -570,7 +570,7 @@ header#headerContainer h2 {
   font-size: 18px;
   font-weight: bold;
   color: #575757;
-  background: url("../../_images/common/bg_h2.gif") no-repeat 0 bottom;
+  background: url("/images/admin/common/bg_h2.gif") no-repeat 0 bottom;
   padding-left: 20px;
 }
 
@@ -1445,7 +1445,7 @@ div#headerContainer h2 {
   font-size: 18px;
   font-weight: bold;
   color: #575757;
-  background: url("../../_images/common/bg_h2.gif") no-repeat 0 bottom;
+  background: url("/images/admin/common/bg_h2.gif") no-repeat 0 bottom;
   padding-left: 20px;
 }
 
@@ -3526,7 +3526,7 @@ div#container::after {
   width: 90px;
   height: 90px;
   box-sizing: border-box;
-  background: #f5f6f8 url('../../_images/common/img_add_basic.png') center no-repeat;
+  background: #f5f6f8 url('/images/admin/common/img_add_basic.png') center no-repeat;
 }
 
 .img_add .file_input .img_txt {
@@ -3570,7 +3570,7 @@ div#container::after {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, .8) url('../../_images/file_del.png') center no-repeat;
+  background: rgba(0, 0, 0, .8) url('/images/admin/file_del.png') center no-repeat;
 }
 
 /* //201201 이미지 등록 추가 */
@@ -4045,7 +4045,7 @@ div#container::after {
   height: 300px;
   white-space: nowrap;
   padding-left: 40px;
-  background: url('../../_images/content/graph_backimg.png') no-repeat left center;
+  background: url('/images/admin/content/graph_backimg.png') no-repeat left center;
 }
 
 .progress_wrap li {
@@ -4055,7 +4055,7 @@ div#container::after {
   box-sizing: border-box;
   vertical-align: bottom;
   position: relative;
-  background: url('../../_images/content/graph_backborder.png') no-repeat center center/cover;
+  background: url('/images/admin/content/graph_backborder.png') no-repeat center center/cover;
 }
 
 .progress_wrap li+li {
@@ -4186,7 +4186,7 @@ div#container::after {
   font-weight: 700;
   font-family: 'Nanum Gothic', 'NanumGothic', 'Malgun Gothic', '돋움', 'dotum', 'AppleGothic', 'Apple SD Gothic Neo Medium', Helvetica, Arial, Sans-Serif;
   color: #555555;
-  background: url(../../_images/content/ico_excel.png) left center no-repeat;
+  background: url(/images/admin/content/ico_excel.png) left center no-repeat;
 }
 
 .statistics_table table {
@@ -4511,7 +4511,7 @@ transition: all 0.3s; */
   width: 30px;
   height: 30px;
   background: no-repeat center;
-  background-image: url(../../_images/common_close.png);
+  background-image: url(/images/admin/common_close.png);
   border: none;
   margin-left: auto;
   font-size: 0;
@@ -4650,7 +4650,7 @@ transition: all 0.3s; */
   height: 30px;
   font-size: 0;
   border-radius: 50%;
-  background: #fff url('../../_images/file_del.png') no-repeat center center/cover;
+  background: #fff url('/images/admin/file_del.png') no-repeat center center/cover;
   position: absolute;
   top: -10px;
   right: -17px;
