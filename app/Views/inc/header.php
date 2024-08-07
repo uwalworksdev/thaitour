@@ -29,16 +29,52 @@
         </div>
     </div>
     <hr>
+    <?php
+    $tab_ = $tab_active ?? 0;
+    switch ($tab_) {
+        case 1:
+            $tab_1 = 'on';
+            break;
+        case 2:
+            $tab_2 = 'on';
+            break;
+        case 3:
+            $tab_3 = 'on';
+            break;
+        case 4:
+            $tab_4 = 'on';
+            break;
+        case 5:
+            $tab_5 = 'on';
+            break;
+        case 6:
+            $tab_6 = 'on';
+            break;
+        case 7:
+            $tab_7 = 'on';
+            break;
+        default:
+            $tab_active = 1;
+            break;
+    }
+    ?>
     <div class="inner flex_header_top">
         <div class="flex_header_top">
             <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
             <div class="search-container">
-                <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
-                <i class="fa fa-search search-icon"></i>
-                <div class="custom-select-rounded">
-                    <select id="language-select-rounded" style="width: 100%;">
-                        <option value="kr">상세검색 호텔</option>
+                <div class="main-search-container">
+                    <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
+                    <i class="fa fa-search search-icon"></i>
+                </div>
+                <div class="custom_select_rounded">
+                    <a class="text_custom_" href="#">상세검색</a>
+                    <select class="select_custom_ active_" name="" id="">
+                        <option value="">호텔</option>
                     </select>
+                    <select class="select_custom_" name="" id="">
+                        <option value="">투어</option>
+                    </select>
+                    <a class="text_custom_v2_" href="#">차량</a>
                 </div>
             </div>
         </div>
@@ -68,14 +104,14 @@
     <div class="">
         <div class="inner flex_header_top ">
             <div>
-                <ul class="flex_header_top">
-                    <li><a href="/product-list/1324">호텔</a></li>
-                    <li><a href="/product-golf/1325/1">골프</a></li>
-                    <li><a href="/product-list/1324">투어</a></li>
-                    <li><a href="/product-spa/1320/1">스파</a></li>
-                    <li><a href="/show-ticket">쇼ㆍ입장권</a></li>
-                    <li><a href="">레스토랑</a></li>
-                    <li><a href="/vehicle-guide">차량ㆍ가이드</a></li>
+                <ul class="flex_header_top flex_header_top_content_list">
+                    <li><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></li>
+                    <li><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></li>
+                    <li><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-list/1324">투어</a></li>
+                    <li><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></li>
+                    <li><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></li>
+                    <li><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-tours/1320/1">레스토랑</a></li>
+                    <li><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide">차량ㆍ가이드</a></li>
                 </ul>
             </div>
             <div>
@@ -88,10 +124,23 @@
             </div>
 
         </div>
+        <!-- <div class="inner flex_header_top ">
+            <div>
+                <ul class="flex_header_top flex_header_top_content_list">
+                    <li><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></li>
+                    <li><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></li>
+                    <li><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-list/1324">투어</a></li>
+                    <li><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></li>
+                    <li><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></li>
+                    <li><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-tours/1320/1">레스토랑</a></li>
+                    <li><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide">차량ㆍ가이드</a></li>
+                </ul>
+            </div>
+
+            <button class="header_top_btn"></button>
+        </div> -->
     </div>
 </header>
-
-
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top pb-24">
@@ -103,10 +152,10 @@
                     </select>
                 </div>
             </div>
-            <div  class="flex_header_top_item">
+            <div class="flex_header_top_item">
                 <img class="header_logo_m" src="<?= base_url('/uploads/sub/logo_header_m.png') ?>" alt="">
             </div>
-            <div class="flex_header_top flex_header_top_item"  >
+            <div class="flex_header_top flex_header_top_item">
                 <div class="burger">
                     <img src="<?= base_url('/uploads/icons/icon-user-m.png') ?>" alt="">
                 </div>
@@ -141,10 +190,10 @@
                 </ul>
                 <ul class="menu_mobile__tools">
                     <li>
-                        
+
                         <a href="/event/event_list" class="text-grey">
                             <img style="width:4.6rem; height:3.9rem" src="/images/ico/ico_order_list.svg" alt="">
-                        주문목록</a>
+                            주문목록</a>
                     </li>
                     <li>
                         <a href="/event/event_list" class="text-grey">
@@ -163,7 +212,7 @@
                     </li>
                 </ul>
                 <ul class="menu_mobile__list">
-                    <li><a href="/product-list/1324">호텔</a></li>
+                    <li><a href="/product-hotel/1324">호텔</a></li>
                     <li><a href="/product-golf/1325/1">골프</a></li>
                     <li><a href="/product-list/1324">투어</a></li>
                     <li><a href="/product-spa/1320/1">스파</a></li>
@@ -206,7 +255,6 @@
         <a href="">태국뉴스</a>
     </div>
 </header>
-
 
 <script>
     $("#hamburger").click(function () {

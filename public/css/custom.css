@@ -1,0 +1,296 @@
+/*    Css for : w_sub_1호텔_1main.psd   */
+.main_page_01 .sub_top_visual {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.main_page_01 .sub_top_visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+}
+
+.main_page_01 .main_visual_content_ {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    margin: 0 auto;
+    width: -webkit-calc(100% - 2rem);
+    width: -moz-calc(100% - 2rem);
+    width: calc(100% - 2rem);
+    max-width: 1200px;
+}
+
+.main_page_01 .main_visual_content_ .text_title {
+    font-size: 32px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-family: "Nanum Square EB";
+}
+
+.main_page_01 .main_visual_content_ .form_element_ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 75px;
+    border-radius: 16px;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.main_page_01 .main_visual_content_ .form_element_ .form_input_ {
+    width: 100%;
+    max-width: calc(50% - 60px - 20px);
+    height: auto;
+    max-height: 72px;
+    position: relative;
+}
+
+.main_page_01 .main_visual_content_ .form_element_ input {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    padding: 40px 20px 10px 20px;
+    font-size: 19px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #353535;
+    font-weight: bold;
+    font-family: "Pretendard";
+}
+
+.main_page_01 .main_visual_content_ .form_element_ input::placeholder {
+    font-size: 19px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #353535;
+    font-weight: bold;
+    font-family: "Pretendard";
+}
+
+.main_page_01 .main_visual_content_ .form_element_ .form_button_ {
+    width: 100%;
+    max-width: 120px;
+    height: 100%;
+    max-height: 72px;
+}
+
+.main_page_01 .main_visual_content_ label {
+    font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #999999;
+    font-family: "Pretendard";
+    position: absolute;
+    left: 20px;
+    top: 10px;
+}
+
+.main_page_01 .main_visual_content_ button {
+    border-radius: 6px;
+    background-color: #39b9aa;
+    font-size: 22px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: "Pretendard";
+    text-align: center;
+    padding: 24px;
+}
+
+.swiper-pagination-bullet-active {
+    background: #39b9aa;
+}
+
+.thailand_hotel_ {
+
+}
+
+.thailand_hotel_ .sub_section3__head {
+    justify-content: start;
+    padding-top: 100px;
+}
+
+.best_tour_section5_ .swiper-wrapper,
+.thailand_hotel_ .thailand_hotel_swiper_ .swiper-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thailand_hotel_ .thailand_hotel_swiper_ .thailand_hotel_swiper_item_ {
+    /*margin: 0 !important;*/
+}
+
+.best_tour_section5_ .sub_tour_section5_item,
+.sub_tour_section6 .custom_pagination_,
+.thailand_hotel_ .thailand_hotel_swiper_ .thailand_hotel_swiper_item_ {
+    margin-top: 50px !important;
+}
+
+.sub_tour_section6 .custom_pagination_,
+.thailand_hotel_ .custom_pagination_ {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub_tour_section6 .custom_pagination_ .pagination_show_,
+.thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_,
+.thailand_hotel_ .custom_pagination_ .pagination_show_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 282px;
+    height: 64px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    border-radius: 31px;
+    cursor: pointer;
+}
+
+.thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_ p {
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #353535;
+    font-weight: bold;
+}
+
+.sub_tour_section6 .custom_pagination_ p,
+.thailand_hotel_ .custom_pagination_ .pagination_show_ p {
+    margin: 0 25px 0 10px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #252525;
+    font-family: "Pretendard";
+}
+
+.sub_tour_section6 .custom_pagination_ .sub_tour_section6_swiper_pagination_,
+.thailand_hotel_ .custom_pagination_ .thailand_hotel_swiper_pagination_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: unset;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #aaaaaa;
+    font-weight: 500;
+    font-family: "Pretendard";
+}
+
+.sub_tour_section6 .custom_pagination_ .sub_tour_section6_swiper_pagination_ .swiper-pagination-current,
+.thailand_hotel_ .custom_pagination_ .thailand_hotel_swiper_pagination_ .swiper-pagination-current {
+    color: #353535;
+}
+
+.best_tour_section5_ .prd_name,
+.thailand_hotel_ .thailand_hotel_swiper_ .prd_name {
+    margin-top: 10px;
+    font-size: 18px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: 500;
+    font-family: "Pretendard";
+}
+
+.best_tour_section5_ .prd_keywords,
+.thailand_hotel_ .prd_keywords {
+    font-size: 15px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #757575;
+    font-family: "Pretendard";
+    margin-top: 25px;
+}
+
+.swiper_product_list_pagination_ {
+    width: auto !important;
+}
+
+.sub_tour_section4 {
+    padding: 100px 0 0 0;
+}
+
+.sub_tour_section6 {
+    padding: 100px 0 0 0;
+}
+
+.most_searched_ .tab_box_area_ {
+    margin-top: 30px;
+}
+
+.most_searched_ .tab_box_area_ .tab_box_show_ {
+    gap: 10px;
+}
+
+.most_searched_ .tab_box_area_ .tab_box_element_ {
+    border-radius: 30px;
+    width: 100%;
+    height: auto;
+    padding: 8px 15px;
+    border: 1px solid #dbdbdb;
+    text-wrap: nowrap;
+    font-size: 16px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #757575;
+    font-weight: 500;
+    font-family: "Pretendard";
+    text-align: center;
+    cursor: pointer;
+}
+
+.most_searched_ .tab_box_area_ .tab_box_element_.tab_active_ {
+    border: 1px solid #39b9aa;
+    color: #39b9aa;
+}
+
+.most_searched_ .content_tab_show_ {
+    display: none;
+}
+
+.most_searched_ .tab_box_content_ {
+    margin-top: 40px;
+    overflow: hidden;
+}
+
+.most_searched_ .content_tab_show_.tab_active_ {
+    display: block;
+}
+
+.most_searched_ .sub_tour_section7_product_item {
+    /*width: calc((100% - 15px) / 4) !important;*/
+    position: relative;
+}
+
+.most_searched_ .swiper-wrapper {
+    max-width: 1200px;
+}
+
+.sub_tour_section8 {
+    padding: 100px 0 100px 0;
+}

@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 
 
 
-$routes->group("/adm", static function ($routes) {
+$routes->group("AdmMaster", static function ($routes) {
 
     $routes->get("", "AdminLogin::loginView");
     $routes->post("login", "AdminLogin::LoginCheckAjax");
@@ -193,6 +193,9 @@ $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('show-ticket', 'Product::showTicket');
 $routes->get('vehicle-guide', 'Product::vehicleGuide');
 $routes->get('product-list/(:any)', 'Product::index/$1');
+$routes->get('product-hotel/list-hotel/(:any)', 'Product::index5/$1');
+$routes->get('product-hotel/hotel-detail/(:any)', 'Product::index6/$1');
+$routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/(:any)/(:any)', 'Product::index3/$1/$2');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');

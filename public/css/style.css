@@ -32,7 +32,7 @@
 @import url(./contents/main.css); 
 @import url(./contents/main-responsive.css);
 /*@import url(./contents/table.css);  */
-@import url(./contents/sub.css); 
+@import url(./contents/sub.css);
 @import url(./contents/sub_responsive.css); 
 @import url(./contents/custom.css); 
 @import url(./contents/slider_common.css); 
@@ -42,9 +42,11 @@
 @import url(./button/button.css);
 
 @import url(./tour/tour.css);
-@import url(./tour/tour_responsive.css);
 /* responsive */
 /* @import url(./contents/responsive.css);
 @import url(./contents/main_responsive.css);
 @import url(./contents/sub_responsive.css);
 @import url(./contents/table_responsive.css); */
+@import url(./base.css);
+@import url(./custom.css);
+@import url(./tour/tour_responsive.css);

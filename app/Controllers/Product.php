@@ -26,20 +26,22 @@ class Product extends BaseController
         helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
-     
 
-    public function showTicket(){
-        try{
-            return view('product/show-ticket');
+
+    public function showTicket()
+    {
+        try {
+            $data = [
+                'tab_active' => '5',
+            ];
+            return view('product/show-ticket', $data);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
         }
-        
-    catch (Exception $e) {
-        return $this->response->setJSON([
-            'result' => false,
-            'message' => $e->getMessage()
-        ]);
     }
-}
 
 
     public function index($code_no)
@@ -93,6 +95,7 @@ class Product extends BaseController
                 'pager' => $pager,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'tab_active' => '3',
             ];
 
             return view('product/index', $data);
@@ -104,6 +107,72 @@ class Product extends BaseController
             ]);
         }
     }
+
+
+    public function indexHotel($code_no)
+    {
+        try {
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $code_name = $this->db->table('tbl_code')
+                ->select('code_name')
+                ->where('code_gubun', 'tour')
+                ->where('code_no', $code_no)
+                ->get()
+                ->getRow()
+                ->code_name;
+
+            if (strlen($code_no) == 4) {
+                $codes = $this->db->table('tbl_code')
+                    ->where('parent_code_no', $code_no)
+                    ->get()
+                    ->getResult();
+            } else {
+                $codes = $this->db->table('tbl_code')
+                    ->where('code_gubun', 'tour')
+                    ->where('parent_code_no', substr($code_no, 0, 6))
+                    ->orderBy('onum', 'DESC')
+                    ->get()
+                    ->getResult();
+            }
+
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'codes' => $codes,
+                'code_name' => $code_name,
+                'pager' => $pager,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+                'tab_active' => '1',
+            ];
+
+            return view('product/product-hotel', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
     public function index2($code_no, $s = "1")
     {
         try {
@@ -157,6 +226,7 @@ class Product extends BaseController
                 'page' => $page,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'tab_active' => '2',
             ];
 
             return view('product/product-golf', $data);
@@ -168,6 +238,7 @@ class Product extends BaseController
             ]);
         }
     }
+
     public function index3($code_no, $s = "1")
     {
         try {
@@ -276,6 +347,7 @@ class Product extends BaseController
                 'totalDayTourProducts' => $totalDayTourProducts,
                 'suggest_code' => $suggest_code,
                 'perCnt' => $perCnt,
+                'tab_active' => '6',
             ];
 
             return view('product/product-tours', $data);
@@ -341,6 +413,7 @@ class Product extends BaseController
                 'page' => $page,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
+                'tab_active' => '4',
             ];
 
             return view('product/product-spa', $data);
@@ -352,11 +425,95 @@ class Product extends BaseController
             ]);
         }
     }
+
+    public function index5($code_no)
+    {
+        try {
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'pager' => $pager,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+                'tab_active' => '1',
+            ];
+
+            return view('product/list-hotel', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function index6($code_no)
+    {
+        try {
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'pager' => $pager,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+                'tab_active' => '1',
+            ];
+
+            return view('product/hotel-details', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
     public function vehicleGuide()
     {
         try {
-            return view('product/vehicle-guide');
+            $data = [
+                'tab_active' => '7',
+            ];
 
+            return view('product/vehicle-guide', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -469,4 +626,5 @@ class Product extends BaseController
         return "https://hihojoonew.cafe24.com/data/product/thum_798_463/{$file}";
     }
 }
+
 ?>
