@@ -13,7 +13,7 @@
 						<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), true)" class="btn btn-success">전체선택</a></li>
 						<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), false)" class="btn btn-success">선택해체</a></li>
 						<li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
-						<li><a href="write.php" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> <span class="txt">글 등록</span></a></li>
+						<li><a href="write" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> <span class="txt">글 등록</span></a></li>
 					</ul>
 
 					<ul class="last">
@@ -157,7 +157,7 @@
 										<td><input type="checkbox" name="idx[]" class="idx" value="<?= $row['idx'] ?>" class="input_check" /></a></td>
 										<td><input type="text" name="onum[]" value="<?= $row['onum'] ?>" style="max-width: 50px;text-align: center;padding: 3px;"></td>
 									
-										<td class="tac"><a href="detail.php?idx=<?= $row['idx'] ?>"><?= $row['title'] ?></a></td>
+										<td class="tac"><a href="detail?idx=<?= $row['idx'] ?>"><?= $row['title'] ?></a></td>
 										<td class="tac"><?= sqlSecretConver($row["user_name"], 'decode') ?></td>
 										<td class="tac"><?= sqlSecretConver($row["user_email"], 'decode') ?></td>
 										<td class="tac"><?= $row["r_date"] ?></td>
@@ -175,8 +175,8 @@
 											<input hidden type="text" name="display[]" value= <?=$row['display'] == "Y" ?  "Y" :"N" ?> >
 										</td>
 										<td>
-											<a href="write.php?idx=<?= $row['idx'] ?>"><img src="/AdmMaster/_images/common/ico_setting2.png"></a>
-											<a href="javascript:del_it('<?= $row['idx'] ?>');"><img src="/AdmMaster/_images/common/ico_error.png" alt="삭제" /></a>
+											<a href="write?idx=<?= $row['idx'] ?>"><img src="/images/admin/common/ico_setting2.png"></a>
+											<a href="javascript:del_it('<?= $row['idx'] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>
 										</td>
 									</tr>
 								<?php  } ?>
@@ -261,7 +261,7 @@
 		$("#ajax_loader").removeClass("display-none");
 
 		$.ajax({
-			url: "del.php",
+			url: "del",
 			type: "POST",
 			data: $("#frm").serialize(),
 			error: function(request, status, error) {
@@ -295,7 +295,7 @@
 		var message = "";
 		$.ajax({
 
-			url: "./ajax.del.php",
+			url: "./ajax_del",
 			type: "POST",
 			data: {
 				"idx": idx
@@ -318,7 +318,7 @@
 	function change_it() {
 		$("#ajax_loader").removeClass("display-none");
 		$.ajax({
-			url: "./change.ajax.php",
+			url: "./change_ajax",
 			type: "POST",
 			data: $("#frm").serialize(),
 			dataType: "json",

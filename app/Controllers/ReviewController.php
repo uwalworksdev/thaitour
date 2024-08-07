@@ -83,6 +83,69 @@ class ReviewController extends BaseController
             'g_list_rows' => $g_list_rows
         ]);
     }
+    public function write_admin() {
+        $idx			= updateSQ($_GET['idx']);
+        $row			= null;
+        if ($idx) {
+            $row = $this->ReviewModel->find($idx);
+        }
+        return view("admin/_review/write", [
+            "row" => $row,
+        ]);
+    }
+    public function change_ajax() {
+        $idx = $this->request->getPost('idx_change');
+        $onum = $this->request->getPost('onum');
+        $display = $this->request->getPost('display');
+        $is_best = $this->request->getPost('is_best');
+
+        $success = true;
+
+        foreach ($idx as $i => $id) {
+            $data = [
+                'onum' => $onum[$i],
+                'display' => $display[$i],
+                'is_best' => $is_best[$i]
+            ];
+
+            if (!$this->ReviewModel->update($id, $data)) {
+                $success = false;
+                break;
+            }
+        }
+
+        $msg = $success ? "순위변경되었습니다." : "순위변경실패!!!";
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+    public function del() {
+        $idx = $this->request->getPost('idx');
+        $mode = $this->request->getPost('mode');
+
+        foreach ($idx as $id) {
+            $this->ReviewModel->delete($id);
+        }
+
+        if ($mode == "view") {
+            return $this->response->setBody("<script>
+                    alert('삭제처리되었습니다.');
+                    parent.history.back();
+                  </script>");
+        } else {
+            return $this->response->setBody('OK');
+        }
+    }
+    public function ajax_del() {
+        $idx = $this->request->getPost('idx');
+
+        if ($this->ReviewModel->delete($idx)) {
+            $msg = "삭제 성공.";
+        } else {
+            $msg = "삭제 오류.";
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
     public function detail_review()
     {
         $idx = updateSQ($_GET["idx"]);

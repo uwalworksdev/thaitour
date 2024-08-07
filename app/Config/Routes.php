@@ -16,6 +16,10 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_review", static function ($routes) {
         $routes->get("list", "ReviewController::list_admin");
+        $routes->get("write", "ReviewController::write_admin");
+        $routes->post("change_ajax", "ReviewController::change_ajax");
+        $routes->post("del", "ReviewController::del");
+        $routes->post("ajax_del", "ReviewController::ajax_del");
     });
 
     $routes->group("setting", static function ($routes) {

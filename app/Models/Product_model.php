@@ -118,10 +118,17 @@ class Product_model extends Model
 
         $offset = ($page - 1) * $perPage;
 
-        return $this->where($code_col, $code_no)
-            ->where('is_view', 'Y')
-            ->orderBy($order_by)
-            ->findAll($perPage, $offset);
+        $builder = $this->builder();
+
+        if ($code_col) {
+            $builder->where($code_col, $code_no);
+        }
+
+        $builder->where('is_view', 'Y');
+        $builder->orderBy($order_by);
+        $builder->limit($perPage, $offset);
+
+        return $builder->get()->getResultArray();
     }
     public function getCodes($parent_code_no)
     {
