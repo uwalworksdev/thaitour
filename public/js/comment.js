@@ -31,7 +31,8 @@ function fn_comment_list() {
         url: "/comment/comment_list",
         data: {
             "r_code": r_code,
-            "r_idx": r_idx
+            "r_idx": r_idx,
+            "role": typeof role !== 'undefined' ? role : ''
         },
         cache: false,
         success: function (ret) {

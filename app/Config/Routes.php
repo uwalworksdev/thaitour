@@ -14,20 +14,21 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->post("login", "AdminLogin::LoginCheckAjax");
     $routes->get("logout", "AdminLogin::Logout");
 
+    $routes->get("main", "StatisticsController::main");
+
     $routes->group("_review", static function ($routes) {
         $routes->get("list", "ReviewController::list_admin");
         $routes->get("write", "ReviewController::write_admin");
+        $routes->get("detail", "ReviewController::detail_admin");
         $routes->post("change_ajax", "ReviewController::change_ajax");
         $routes->post("del", "ReviewController::del");
         $routes->post("ajax_del", "ReviewController::ajax_del");
     });
 
-    $routes->group("setting", static function ($routes) {
+    $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
-        $routes->group("site", static function ($routes) {
-            $routes->get("", "Setting::writeView");
-            $routes->post("update", "Setting::writeUpdate");
-        });
+        $routes->get("setting", "Setting::writeView");
+        $routes->post("update", "Setting::writeUpdate");
         // 팝업
         $routes->group("popup", static function ($routes) {
             $routes->get("list", "Popup::ListView");
@@ -41,6 +42,9 @@ $routes->group("AdmMaster", static function ($routes) {
         });
         $routes->get("policy", "Policy::WriteView");
     });
+});
+$routes->group("ajax", static function ($routes) {
+    $routes->post("uploader", "AjaxController::uploader");
 });
 $routes->get('/', 'Home::index');
 $routes->group("tools", static function ($routes) {

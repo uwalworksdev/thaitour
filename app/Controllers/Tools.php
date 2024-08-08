@@ -59,7 +59,10 @@ class Tools extends BaseController
             $data .= "<option value='" . $row["product_idx"] . "'>" . viewSQ($row["product_name"]) . "</option>";
         }
 
-        echo $data;
+        return json_encode([
+            "data" => $data,
+            "cnt" => $cnt
+        ]);
     }
     public function wish_set()
     {

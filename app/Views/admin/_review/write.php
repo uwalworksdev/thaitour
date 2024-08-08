@@ -2,9 +2,9 @@
 <?= $this->section("body") ?>
 
 <link rel="stylesheet" href="./assets/css/write.css">
-<script src="/js/summernote/summernote-lite.js"></script>
-<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="/js/summernote/summernote-lite.css">
+<script src="/lib/summernote/summernote-lite.js"></script>
+<script src="/lib/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/lib/summernote/summernote-lite.css">
 <script>
 $(function() {
 	$.datepicker.regional['ko'] = {
@@ -103,7 +103,8 @@ $(function() {
 		$product_idx 		= $row['product_idx'];
 		$title 				= $row['title'];
 		$contents			= $row["contents"];	
-		$display			= $row["display"];	
+		$display			= $row["display"];
+		$idx 				= $row["idx"];
 		// echo $product_idx;
 	}
 ?>
@@ -134,13 +135,13 @@ function checkForNumber(str) {
 		}
 
 		$.ajax({
-            url: "./write_ok.php",
+            url: "/review/review_write_ok",
             type: "POST",
 			data: formData,
 			contentType: false,
 			processData: false,
             success: () => {
-				window.history.back();;
+				window.history.back();
             }
         })
 	}
@@ -170,9 +171,10 @@ function checkForNumber(str) {
 	</header>
 	<!-- // headerContainer -->
 	
-<form name=frm id="frm" action="write_ok.php" method=post target="hiddenFrame" >
+<form name=frm id="frm" action="/review/review_write_ok" method=post target="hiddenFrame" >
 
-	<input type=hidden name="idx" value='<?=$row?>'> 
+	<input type=hidden name="idx" value='<?=$idx?>'>
+	<input type="hidden" id="role" name="role" value="admin">
 	<div id="contents">
 		<div class="listWrap_noline">
 				
@@ -322,7 +324,7 @@ function checkForNumber(str) {
 			<li class="right_sub">
 
 				<a href="/AdmMaster/_review/list.php" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-				<?php if ($row == "") { ?>	
+				<?php if ($idx == "") { ?>	
 				<a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
 				<?php } else { ?>
 				<a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -339,10 +341,10 @@ function checkForNumber(str) {
 			<form action="" id="frm" name="com_form" class="com_form">
 				<input type="hidden" name="code" id="code" value="review">
 				<input type="hidden" name="r_code" id="r_code" value="review">
-				<input type="hidden" name="r_idx" id="r_idx" value="<?= $row ?>">
+				<input type="hidden" name="r_idx" id="r_idx" value="<?= $idx ?>">
 				<div class="comment_box-input flex">
 					<textarea class="cmt_input" name="comment" id="comment" placeholder="댓글을 입력해주세요."></textarea>
-					<button type="button" class="btn btn-point comment_btn" onclick="fn_comment()">등록</button>
+					<button type="button" class="btn btn-point comment_btn" onclick="fn_comment('<?=session('member.idx')?>')">등록</button>
 				</div>
 			</form>
 			<div id="comment_list"></div>
@@ -353,7 +355,7 @@ function checkForNumber(str) {
 <script>
 	function del_it() {
 		if(confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-			hiddenFrame.location.href = "del.php?idx[]=<?=$row?>&mode=view";
+			hiddenFrame.location.href = "del.php?idx[]=<?=$idx?>&mode=view";
 		}
 	 
 	}
@@ -368,13 +370,15 @@ function checkForNumber(str) {
         data = new FormData(form);
         
         data.append("file", files);
+
+		data.append("r_code", "review");
     
         for (var pair of data.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
+            console.log(pair[0]+ ', ' + pair[1]);
         }
         
         $.ajax({
-            url: "/ajax/uploader.php",
+            url: "/ajax/uploader",
             data: data,
             cache: false,
             contentType: false,
@@ -430,7 +434,7 @@ function checkForNumber(str) {
 
 	  $("#travel_type_1").on("change", function(event) {
             $.ajax({
-                url: "/include/get_travel_types.ajax.php",
+                url: "/tools/get_travel_types",
                 type: "POST",
                 data: {
                     code: event.target.value,
@@ -454,7 +458,7 @@ function checkForNumber(str) {
         
         $("#travel_type_2").on("change", function(event) {
             $.ajax({
-                url: "/include/get_travel_types.ajax.php",
+                url: "/tools/get_travel_types",
                 type: "POST",
                 data: {
                     code: event.target.value,
@@ -470,7 +474,7 @@ function checkForNumber(str) {
         
         $("#travel_type_3").on("change", function(event) {
             $.ajax({
-                url: "/include/get_list_product.ajax.php",
+                url: "/tools/get_list_product",
                 type: "POST",
                 data: {
                     product_code: event.target.value
@@ -481,55 +485,11 @@ function checkForNumber(str) {
                 }
             })
         })
-	function fn_comment() {
-
-		<?php if (session("member.id") != "") { ?>
-			if ($("#comment").val() == "") {
-				alert("댓글을 입력해주세요.");
-				return;
-			}
-			var queryString = $("form[name=com_form]").serialize();
-			$.ajax({
-				type: "POST",
-				url: "/AdmMaster/_include/comment_proc.php",
-				data: queryString,
-				cache: false,
-				success: function (ret) {
-					console.log(ret);
-					if (ret.trim() == "OK") {
-						fn_comment_list();
-						$("#comment").val("");
-					} else {
-						alert("등록 오류입니다." + ret);
-					}
-				}
-			});
-		<?php } else { ?>
-			alert("로그인을 해주세요.");
-		<?php } ?>
-	}
-
-	function fn_comment_list() {
-
-		$.ajax({
-			type: "POST",
-			url: "/AdmMaster/_include/comment_list.ajax.php",
-			data: {
-				"r_code": "review",
-				"r_idx": "<?=$row?>"
-			},
-			cache: false,
-			success: function (ret) {
-				$("#comment_list").html(ret);
-
-			}
-		});
-
-	}
-	fn_comment_list();
-      
+	const r_code = "review";
+	const r_idx	= "<?=$idx?>";
+	const role = "admin";
 </script>
-<script src="/AdmMaster/_include/comment.js"></script>
+<script src="/js/comment.js"></script>
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
 <?= $this->endSection() ?>

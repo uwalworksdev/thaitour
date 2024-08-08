@@ -47,7 +47,7 @@
 
         <div id="contents">
             <div class="listWrap_noline">
-                <form name="frm" id="frm" action="/AdmMaster/setting/site/update" method="post" enctype="multipart/form-data">
+                <form name="frm" id="frm" action="/AdmMaster/_adminrator/update" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="paymethod" id="paymethod" value="<?= $row['paymethod'] ?>">
                     <div class="listTop">
                         <div class="left">

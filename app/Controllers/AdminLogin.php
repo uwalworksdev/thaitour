@@ -24,7 +24,7 @@ class AdminLogin extends BaseController {
 
     public function LoginView(){
         $scripts = [];
-        array_push($scripts, script_tag(["src"=>"js/admin/login.js", "defer"=>false]));
+        array_push($scripts, script_tag(["src"=>"js/admin/login.js?version=1", "defer"=>false]));
 
         
         return view("admin/login",[
@@ -74,8 +74,10 @@ class AdminLogin extends BaseController {
             'm_auth'=> $row['auth']
         ]);
 
+        $this->session->set('create_at', time());
+
         $resultArr['result'] = true;
-        $resultArr['location'] = url_to('Setting::writeView');
+        $resultArr['location'] = '/AdmMaster/main';
 
         return $this->response->setJSON($resultArr);
     }

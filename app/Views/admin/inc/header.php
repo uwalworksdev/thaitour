@@ -65,9 +65,9 @@ function check_auth($code)
 // 탑 메뉴
 if ($top_menu == "") {
     // 게시판
-    if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_bbs/") !== false) {
+    if (strpos($currentPath, "/AdmMaster/_bbs/") !== false) {
         // 환경설정
-        if ($_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/fair_opt" || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/board_write" || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards")
+        if ($currentPath == "/AdmMaster/_bbs/fair_opt" || $currentPath == "/AdmMaster/_bbs/board_write" || $currentPath == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards")
             $top_menu = "config";
         // 고객센터
         else if (in_array($r_code, array("qna", "qna_group", "suggest", "faq", "contact")))
@@ -87,96 +87,96 @@ if ($top_menu == "") {
             $top_menu = "reserve";
     }
     // CMS2023-11-02
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_cms/") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_cms/") !== false) {
         // 기타 게시판
         if (in_array($r_code, array("exibition", "jarubook")))
             $top_menu = "bbs_3";
         else
             $top_menu = "config";
-    } else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_inquiry/") !== false) {
+    } else if (strpos($currentPath, "/AdmMaster/_inquiry/") !== false) {
         $top_menu = "reserve";
-    } else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_qna/") !== false) {
+    } else if (strpos($currentPath, "/AdmMaster/_qna/") !== false) {
         $top_menu = "reserve";
-    } else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_review/") !== false) {
+    } else if (strpos($currentPath, "/AdmMaster/_review/") !== false) {
         $top_menu = "_review";
     }
     // 등록관리
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_regi/") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_regi/") !== false) {
         $top_menu = "regi";
     } else if (
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_code/") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_tourStay/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_tourSights/") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_tourCountry/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_tourGuide/") !== false
+        strpos($currentPath, "/AdmMaster/_code/") !== false || strpos($currentPath, "/AdmMaster/_tourStay/") !== false ||
+        strpos($currentPath, "/AdmMaster/_tourSights/") !== false || strpos($currentPath, "/AdmMaster/_tourCountry/") !== false ||
+        strpos($currentPath, "/AdmMaster/_tourGuide/") !== false
     ) {
         $top_menu = "regi";
-    } else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_tourRegist/") !== false) {
+    } else if (strpos($currentPath, "/AdmMaster/_tourRegist/") !== false) {
         $top_menu = "regi";
     }
     // 여행예약관리
     else if (
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_tour/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_reservation/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_guide/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_operator/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_mileage/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_mileageTrans/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_pass/") !== false ||
-        strpos($_SERVER['PHP_SELF'], "/AdmMaster/_qna/") !== false
+        strpos($currentPath, "/AdmMaster/_tour/") !== false ||
+        strpos($currentPath, "/AdmMaster/_reservation/") !== false ||
+        strpos($currentPath, "/AdmMaster/_guide/") !== false ||
+        strpos($currentPath, "/AdmMaster/_operator/") !== false ||
+        strpos($currentPath, "/AdmMaster/_mileage/") !== false ||
+        strpos($currentPath, "/AdmMaster/_mileageTrans/") !== false ||
+        strpos($currentPath, "/AdmMaster/_pass/") !== false ||
+        strpos($currentPath, "/AdmMaster/_qna/") !== false
     ) {
         $top_menu = "reserve";
     }
     // 기타상품관리
     else if (
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourShopping/list" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourOption/list" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSuggestion/list" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSuggestionSub/list" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourSub/list" ||
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_tourLevel/list"
+        $currentPath == "/AdmMaster/_tourShopping/list" ||
+        $currentPath == "/AdmMaster/_tourOption/list" ||
+        $currentPath == "/AdmMaster/_tourSuggestion/list" ||
+        $currentPath == "/AdmMaster/_tourSuggestionSub/list" ||
+        $currentPath == "/AdmMaster/_tourSub/list" ||
+        $currentPath == "/AdmMaster/_tourLevel/list"
     ) {
         $top_menu = "etc";
     }
     // 인트라넷
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_memberBoard") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_schedule/") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_memberBreak/") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_memberBoard") !== false || strpos($currentPath, "/AdmMaster/_schedule/") !== false || strpos($currentPath, "/AdmMaster/_memberBreak/") !== false) {
         $top_menu = "intra";
         // 회원관리
-    } else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member") !== false) {
+    } else if (strpos($currentPath, "/AdmMaster/_member") !== false) {
         $top_menu = "member";
     }
     // 로그분석기
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_logAnalysis") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_logAnalysis") !== false) {
         $top_menu = "analysis";
     }
     // 기존웹사이트
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_admold") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_admold") !== false) {
         $top_menu = "admold";
     }
     // B2B등록
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_b2b") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_b2b") !== false) {
         $top_menu = "b2b";
     }
     // 상담관리
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_consult/") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_consult/") !== false) {
         $top_menu = "consult";
     }
     // 환경설정
     else if (
-        $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/adm_setting"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/write"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/store_config_admin"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/setting"
-        || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_codeBanner/") !== false
-        || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_cateBanner/") !== false
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_bbsBanner/list"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/search_word"
-        || $_SERVER['PHP_SELF'] == "/AdmMaster/_adminrator/block_ip_list"
+        $currentPath == "/AdmMaster/_adminrator/adm_setting"
+        || $currentPath == "/AdmMaster/_adminrator/write"
+        || $currentPath == "/AdmMaster/_adminrator/store_config_admin"
+        || $currentPath == "/AdmMaster/_adminrator/setting"
+        || strpos($currentPath, "/AdmMaster/_codeBanner/") !== false
+        || strpos($currentPath, "/AdmMaster/_cateBanner/") !== false
+        || $currentPath == "/AdmMaster/_bbsBanner/list"
+        || $currentPath == "/AdmMaster/_adminrator/search_word"
+        || $currentPath == "/AdmMaster/_adminrator/block_ip_list"
     ) {
         $top_menu = "config";
     }
     // 통계
-    else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_statistics/") !== false) {
+    else if (strpos($currentPath, "/AdmMaster/_statistics/") !== false) {
         $top_menu = "summary";
-    } else if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_contact/") !== false) {
+    } else if (strpos($currentPath, "/AdmMaster/_contact/") !== false) {
         $top_menu = "reserve";
     }
     if ($code == "winner") {
@@ -361,9 +361,25 @@ if ($top_menu == "") {
                     <li>
                         <?= $setting['site_name'] ?> /
                     </li>
-                    <li>IP : 220.86.61.165 /</li>
-                    <li>최근접속일시 : 2021-12-28 09:34:01 </li>
+                    <li>IP : <?= $_SERVER['REMOTE_ADDR'] ?> /</li>
+                    <li>최근접속일시 : <span id="time"></span> </li>
                 </ul>
+
+                <script>
+                    var serverTime = new Date('<?=$sessionCreateDate?>');
+
+                    var clientTimezoneOffset = new Date().getTimezoneOffset() * 60000;
+
+                    var clientTime = new Date(serverTime.getTime() - clientTimezoneOffset);
+                    var year = clientTime.getFullYear();
+                    var month = String(clientTime.getMonth() + 1).padStart(2, '0');
+                    var day = String(clientTime.getDate()).padStart(2, '0');
+                    var hours = String(clientTime.getHours()).padStart(2, '0');
+                    var minutes = String(clientTime.getMinutes()).padStart(2, '0');
+                    var seconds = String(clientTime.getSeconds()).padStart(2, '0');
+                    var formattedClientTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+                    $("#time").text(formattedClientTime);
+                </script>
 
                 <!-- <a href="/AdmMaster/_adminrator/store_config_admin">비밀번호변경</a> -->
                 <a href="/AdmMaster/_adminrator/setting">정보수정</a>
@@ -635,7 +651,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/email01") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/email01_view") !== false) { ?>on
+                                <?php if (strpos($currentPath, "/AdmMaster/_member/email01") !== false || strpos($currentPath, "/AdmMaster/_member/email01_view") !== false) { ?>on
                                 <?php } ?>">
                             <?= check_perm('F003', '/AdmMaster/_member/email01', '이메일 관리'); ?></a>
                         </li>
@@ -643,7 +659,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/sms01") !== false || strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/sms01_view") !== false) { ?>on
+                                <?php if (strpos($currentPath, "/AdmMaster/_member/sms01") !== false || strpos($currentPath, "/AdmMaster/_member/sms01_view") !== false) { ?>on
                                 <?php } ?>">
                             <?= check_perm('F004', '/AdmMaster/_member/sms01', 'SMS 관리'); ?></a>
                         </li>
@@ -651,7 +667,7 @@ if ($top_menu == "") {
                                 <?php if (!check_auth('F005')) {
                             echo "style='display: none;'";
                         } ?>
-                                class="<?php if (strpos($_SERVER['PHP_SELF'], "/AdmMaster/_member/user_report_list") !== false) { ?>on<?php } ?>">
+                                class="<?php if (strpos($currentPath, "/AdmMaster/_member/user_report_list") !== false) { ?>on<?php } ?>">
                                 <?= check_perm('F005', '/AdmMaster/_member/user_report_list', '신고 리스트'); ?></a>
                             </li> -->
                     </ul>
@@ -818,7 +834,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "statistics01_") !== false) { ?>on
+                                <?php if (strpos($currentPath, "statistics01_") !== false) { ?>on
                                 <?php } ?>">
                             <?= check_perm('I001', '/AdmMaster/_statistics/statistics01_01', '예약분석'); ?>
                         </li>
@@ -826,7 +842,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "statistics02_") !== false) { ?>on
+                                <?php if (strpos($currentPath, "statistics02_") !== false) { ?>on
                                 <?php } ?>">
                             <?= check_perm('I002', '/AdmMaster/_statistics/statistics02_01', '매출분석'); ?>
                         </li>
@@ -834,7 +850,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "statistics03_") !== false) { ?>on
+                                <?php if (strpos($currentPath, "statistics03_") !== false) { ?>on
                                 <?php } ?>">
                             <?= check_perm('I003', '/AdmMaster/_statistics/statistics03_01', '방문분석'); ?>
                         </li>
@@ -842,7 +858,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "statistics04_") !== false) { ?>on
+                                <?php if (strpos($currentPath, "statistics04_") !== false) { ?>on
                                 <?php } ?>">
                             <?= check_perm('I004', '/AdmMaster/_statistics/statistics04_01', '상품분석'); ?>
                         </li>
@@ -850,7 +866,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($_SERVER['PHP_SELF'], "statistics05_") !== false) { ?>on
+                                <?php if (strpos($currentPath, "statistics05_") !== false) { ?>on
                                 <?php } ?>">
                             <?= check_perm('I005', '/AdmMaster/_statistics/statistics05_01', '회원분석'); ?>
                         </li>
