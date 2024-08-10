@@ -905,7 +905,7 @@
         <section class="sub_tour_section4">
             <div class="body_inner">
                 <div class="sub_tour_section4_banner">
-                    <div class="sub_tour_section4_banner__des only_mo">
+                    <div class="sub_tour_section4_banner__des">
                         <p class="ico_block">
                             <img src="/images/ico/ico_block_1.svg" alt="">
                         </p>
