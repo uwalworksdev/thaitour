@@ -255,21 +255,23 @@
     <section class="sub_tour_section4">
         <div class="body_inner">
             <div class="sub_tour_section4_banner">
-                <div class="sub_tour_section4_banner__des">
-                    <p class="ico_block">
-                    <img src="/images/ico/ico_block_1.svg" alt="">    
-                    </p>
-                    <div class="sub_tour_section4_banner__des__text">
-                        <div class="sub_tour_section4_banner__des__ttl">
-                            여름휴가쿠폰대잔치
+                <div class="only_mo">
+                    <div class="sub_tour_section4_banner__des">
+                        <p class="ico_block">
+                        <img src="/images/ico/ico_block_1.svg" alt="">    
+                        </p>
+                        <div class="sub_tour_section4_banner__des__text">
+                            <div class="sub_tour_section4_banner__des__ttl">
+                                여름휴가쿠폰대잔치
+                            </div>
+                            <p class="sub_tour_section4_banner__des__bottom">
+                                다운로드 기간 : 2024. 05. 22 ~ 07. 31
+                            </p>
                         </div>
-                        <p class="sub_tour_section4_banner__des__bottom">
-                            다운로드 기간 : 2024. 05. 22 ~ 07. 31
+                        <p class="ico_block">
+                        <img src="/images/ico/ico_block_1.svg" alt="">
                         </p>
                     </div>
-                    <p class="ico_block">
-                    <img src="/images/ico/ico_block_1.svg" alt="">
-                    </p>
                 </div>
                 <div class="img_box img_box_11">
                     <picture>
