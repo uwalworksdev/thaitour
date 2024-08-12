@@ -27,7 +27,7 @@
 
 		<div id="contents">
 			<form name="search" id="search">
-				<input type="hidden" name="gubun" value="<?= $gubun ?>">
+				<input type="hidden" name="gubun" value="<?= isset($gubun) ? $gubun : '' ?>">
 				<header id="headerContents">
                
 				<select id="search_gubun" name="search_gubun" class="input_select" style="width:112px">
