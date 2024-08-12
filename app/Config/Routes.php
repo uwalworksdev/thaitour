@@ -173,6 +173,7 @@ $routes->group("community", static function ($routes) {
     $routes->get("main"                 , "Community::main");
     $routes->get("questions"            , "Community::questions");
     $routes->get("announcement"         , "Community::announcement");
+    $routes->get("customer_center"      , "Community::customer_center");
     $routes->get("announcement_view"    , "Community::announcement_view");
 });
 $routes->group("contact", static function ($routes) {
