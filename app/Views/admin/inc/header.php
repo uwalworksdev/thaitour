@@ -6,9 +6,12 @@ $adminGnb = adminGnb();
 $setting = homeSetInfo();
 $createAt = session("create_at");
 $sessionCreateDate = date('Y-m-d H:i:s', $createAt);
+$top_menu = isset($top_menu) ? $top_menu : "";
+$r_code = isset($r_code) ? $r_code : '';
+$s_status = isset($$s_status) ? $s_status : '';
 ?>
 <?php
-$code = $_GET['code'];
+$code = isset($_GET['code']) ? $_GET['code'] : null;
 
 //if ($_SESSION[member][id] != "admin") {
 //if ($_SESSION[member][level] != "1") {
@@ -67,7 +70,7 @@ if ($top_menu == "") {
     // 게시판
     if (strpos($currentPath, "/AdmMaster/_bbs/") !== false) {
         // 환경설정
-        if ($currentPath == "/AdmMaster/_bbs/fair_opt" || $currentPath == "/AdmMaster/_bbs/board_write" || $currentPath == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards")
+        if ($currentPath == "/AdmMaster/_bbs/fair_opt" || $currentPath == "/AdmMaster/_bbs/board_write" || $currentPath == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards" || $r_code )
             $top_menu = "config";
         // 고객센터
         else if (in_array($r_code, array("qna", "qna_group", "suggest", "faq", "contact")))
@@ -203,7 +206,7 @@ if ($top_menu == "") {
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-title" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="/uploads/setting/<?= $setting['favico_img'] ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="/uploads/setting/<?= $setting['favico'] ?>">
     <link rel="apple-touch-icon" href="" />
     <meta name="Generator" content="">
     <meta name="Author" content="">
@@ -322,11 +325,11 @@ if ($top_menu == "") {
     </script>
 
     <!-- 다음 우편번호 -->
-    <?php if ($_IT_TOP_PROTOCOL == "https://") { ?>
+    <?php //if ($_IT_TOP_PROTOCOL == "https://") { ?>
         <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
-    <?php } else { ?>
+    <?php //} else { ?>
         <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-    <?php } ?>
+    <?php //} ?>
 
 </head>
 

@@ -1,7 +1,8 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 <?php
-
+  error_reporting(E_ALL & ~E_WARNING);
+  ini_set('display_errors', 1); 
 	// 전월 판매금액
     $last_ym = date("Y-m", strtotime("-1 month", time()));
 

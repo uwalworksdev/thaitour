@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Config\CustomConstants as ConfigCustomConstants;
 
-class ReviewController extends BaseController
+class CodeController extends BaseController
 {
     private $ReviewModel;
     private $Bbs;
