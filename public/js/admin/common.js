@@ -1140,7 +1140,11 @@ function execDaumPostcode(frm_name, zip, addr1, addr2) {
 }
 
 var fileInputs = document.querySelectorAll('input[type="file"]');
+console.log(fileInputs);
+
 	fileInputs.forEach(function(input) {
+		console.log(input);
+		
 		var button = document.createElement('button');
 		button.type = 'button';
 		button.textContent = '선택파일';

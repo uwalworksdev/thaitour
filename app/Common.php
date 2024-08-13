@@ -128,3 +128,17 @@ function fileCheckImgUpload($m_idx, $ufile, $rfile, $path, $fileType){
 	return $attached;
 	}
 }
+
+function write_log($message){   
+	$dir = "./log/";
+
+	if(!file_exists($dir)){
+		mkdir($dir);
+	}
+
+   $myfile = fopen($dir.date("Ymd").".txt", "a") or die("Unable to open file!");
+   $txt = chr(13).chr(10).date("Y.m.d G:i:s")."(".$_SERVER['REMOTE_ADDR'].") : ".chr(13).chr(10).$message.chr(13).chr(10);
+   fwrite($myfile, chr(13).chr(10). $txt .chr(13).chr(10));
+   fclose($myfile);
+
+}  
