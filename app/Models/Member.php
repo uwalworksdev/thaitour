@@ -71,4 +71,36 @@ class Member extends Model
         $this->allowedFields = ['member_pw'];
         return $builder->update($idx, $data);
     }
+    public function getMemberCount($strSql)
+    {
+        $query = $this->db->query("SELECT COUNT(*) as count FROM {$this->table} {$strSql}");
+        return $query->getRow()->count;
+    }
+
+    public function getMembers($strSql, $private_key, $nFrom, $g_list_rows)
+    {
+        $sql = "SELECT * FROM {$this->table} {$strSql} ORDER BY r_date DESC LIMIT $nFrom, $g_list_rows";
+        $query = $this->db->query($sql);
+        $members = $query->getResultArray();
+
+        foreach ($members as &$row) {
+            if ($row['encode'] == 'Y') {
+                $sql_d = "SELECT 
+                            AES_DECRYPT(UNHEX('{$row['user_name']}'), '$private_key') AS user_name,
+                            AES_DECRYPT(UNHEX('{$row['user_email']}'), '$private_key') AS user_email,
+                            AES_DECRYPT(UNHEX('{$row['user_mobile']}'), '$private_key') AS user_mobile,
+                            AES_DECRYPT(UNHEX('{$row['user_phone']}'), '$private_key') AS user_phone";
+
+                $result_d = $this->db->query($sql_d);
+                $row_d = $result_d->getRowArray();
+
+                $row['user_name'] = $row_d['user_name'];
+                $row['user_email'] = $row_d['user_email'];
+                $row['user_mobile'] = $row_d['user_mobile'];
+                $row['user_phone'] = $row_d['user_phone'];
+            }
+        }
+
+        return $members;
+    }
 }
