@@ -11,8 +11,8 @@
         </div><!-- // wrap -->
 
 
-        <script type="text/javascript" src="/AdmMaster/_common/js/jquery.easing.min.js" charset="utf-8"></script>
-        <script type="text/javascript" src="/AdmMaster/_common/js/common.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/lib/jquery/jquery.easing.min.js" charset="utf-8"></script>
+        <script src="/js/admin/common.js"></script>
         <script>
             //$(".imgpop").colorbox({rel:'imgpop'});
             $(document).ready(function(){

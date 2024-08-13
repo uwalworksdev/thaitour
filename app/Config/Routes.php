@@ -29,10 +29,9 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_code", static function ($routes) {
         $routes->get("list", "CodeController::list_admin");
         $routes->get("write", "CodeController::write_admin");
-        $routes->get("detail", "CodeController::detail_admin");
-        $routes->post("change_ajax", "CodeController::change_ajax");
+        $routes->post("write_ok", "CodeController::write_ok");
+        $routes->post("change", "CodeController::change_ajax");
         $routes->post("del", "CodeController::del");
-        $routes->post("ajax_del", "CodeController::ajax_del");
     });
 
     $routes->group("_tourRegist", static function ($routes) {

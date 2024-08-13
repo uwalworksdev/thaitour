@@ -36,4 +36,81 @@ class Code extends Model
     public function getByCodeNo($code_no) {
         return $this->where('code_no', $code_no)->first();
     }
+    public function getTotalCount($parentCodeNo = '')
+    {
+        $builder = $this->builder();
+        
+        if ($parentCodeNo != "") {
+            $builder->where('parent_code_no', $parentCodeNo);
+        } else {
+            $builder->where('parent_code_no', '0');
+        }
+
+        $builder->where('code_gubun !=', 'bank');
+        return $builder->countAllResults();
+    }
+
+    public function getPagedData($parentCodeNo = '', $nFrom, $g_list_rows)
+    {
+        $builder = $this->builder();
+        
+        if ($parentCodeNo != "") {
+            $builder->where('parent_code_no', $parentCodeNo);
+        } else {
+            $builder->where('parent_code_no', '0');
+        }
+
+        $builder->where('code_gubun !=', 'bank');
+        $builder->orderBy('onum', 'DESC')
+                ->orderBy('code_idx', 'DESC')
+                ->limit($g_list_rows, $nFrom);
+        
+        return $builder->get()->getResultArray();
+    }
+    public function getCodeName($code_no)
+    {
+        if (empty($code_no)) {
+            return "전체";
+        }
+
+        $builder = $this->builder();
+        $builder->select('code_name')
+                ->where('code_no', $code_no);
+
+        $result = $builder->get()->getRow();
+
+        if ($result) {
+            return $result->code_name;
+        } else {
+            return "전체";
+        }
+    }
+    public function getCodeByIdx($code_idx)
+    {
+        return $this->where('code_idx', $code_idx)->first();
+    }
+
+    public function countByParentCodeNo($parent_code_no)
+    {
+        return $this->where('parent_code_no', $parent_code_no)->countAllResults();
+    }
+
+    public function getDepthAndCodeGubunByNo($code_no)
+    {
+        return $this->select('depth, code_gubun')->where('code_no', $code_no)->first();
+    }
+
+    public function getMaxCodeNo($parent_code_no, $s_parent_code_no)
+    {
+        return $this->select("IFNULL(MAX(code_no),'{$s_parent_code_no}00')+1 as code_no")
+                    ->where('parent_code_no', $parent_code_no)
+                    ->first();
+    }
+
+    public function getMaxCodeNoWithReserved($parent_code_no, $s_parent_code_no)
+    {
+        return $this->select("IFNULL(MAX(code_no),'{$s_parent_code_no}00')+2 as code_no")
+                    ->where('parent_code_no', $parent_code_no)
+                    ->first();
+    }
 }
