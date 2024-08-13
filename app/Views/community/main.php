@@ -50,7 +50,7 @@
                 <section class="notice_sect">
                     <div class="cont_ttl flex_b_c">
                         <h3>공지사항</h3>
-                        <a class="more_btn" href="/community/announcement">
+                        <a class="more_btn" href="/community/customer_center">
                             더보기 <i></i>
                         </a>
                     </div>

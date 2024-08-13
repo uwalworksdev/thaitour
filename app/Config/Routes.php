@@ -26,6 +26,16 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("ajax_del", "ReviewController::ajax_del");
     });
 
+    $routes->group("_member", static function ($routes) {
+        $routes->get("list", "Member::list_member");
+        // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
+        // $routes->get("list_tours", "TourRegistController::list_admin");
+        // $routes->get("list_golf", "TourRegistController::list_admin");
+        // $routes->get("_tourStay", "TourRegistController::list_admin");
+        // $routes->post("del", "TourRegistController::del");
+        // $routes->post("ajax_del", "TourRegistController::ajax_del");
+    });
+
     $routes->group("_code", static function ($routes) {
         $routes->get("list", "CodeController::list_admin");
         $routes->get("write", "CodeController::write_admin");
@@ -173,6 +183,7 @@ $routes->group("community", static function ($routes) {
     $routes->get("main"                 , "Community::main");
     $routes->get("questions"            , "Community::questions");
     $routes->get("announcement"         , "Community::announcement");
+    $routes->get("customer_center"      , "Community::customer_center");
     $routes->get("announcement_view"    , "Community::announcement_view");
 });
 $routes->group("contact", static function ($routes) {

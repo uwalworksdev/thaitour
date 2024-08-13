@@ -1369,7 +1369,7 @@
   background-color: #f1f4f9;
 }
 
-.content-sub-hotel-detail .section5 th, td {
+.content-sub-hotel-detail .section5 th, .content-sub-hotel-detail .section5 td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;

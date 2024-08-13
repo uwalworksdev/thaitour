@@ -436,6 +436,7 @@
     </div><!-- // container -->
 
     <?php
+    $now = strtotime(date("Y-m-d H:i:s"));
 		$yy = date('Y',strtotime($now."-12 month"));     // -1년
 		$mm = date('m',strtotime($now."-12 month"));     // -1년
 
