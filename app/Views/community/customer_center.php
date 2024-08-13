@@ -1,0 +1,191 @@
+<?php $this->extend('inc/layout_index'); ?>
+<?php $this->section('content'); ?>
+<link href="/css/community/community.css" rel="stylesheet" type="text/css" />
+<link href="/css/community/community_responsive.css" rel="stylesheet" type="text/css" />
+<section class="customer-center-page">
+    <div class="inner">
+        <div class="main-container">
+            <div class="side-bar">
+                <h2 class="title-side-bar">커뮤니티</h2>
+                <div class="list-item-bar">
+                    <div class="itembar active">
+                        <a href="">자주 찾는 질문</a>
+                    </div>
+                    <div class="itembar"><a>공지사항</a></div>
+                    <div class="itembar"><a>1 : 1 게시판</a></div>
+                    <div class="itembar"><a>칭찬·건의·불편사항</a></div>
+                    <div class="itembar"><a>실시간 채팅형 상담</a></div>
+                </div>
+            </div>
+            <div class="con-right">
+                <div class="menu">
+                    <div class="menu-header">
+                        <h3 class="title-menu">
+                            자주 찾는 질문
+                        </h3>
+                        <div class="list-tag">
+                            <div class="item-tag active">
+                                <img src="/images/community/customer_icon_01_active.png" alt="customer_icon_01">
+                                <span class="tag-name">전체</span>
+                            </div>
+                            <div class="item-tag">
+                                <img src="/images/community/customer_icon_02.png" alt="customer_icon_01">
+                                <span class="tag-name">상품문의</span>
+                            </div>
+                            <div class="item-tag">
+                                <img src="/images/community/customer_icon_03.png" alt="customer_icon_01">
+                                <span class="tag-name">예약문의</span>
+                            </div>
+                            <div class="item-tag">
+                                <img src="/images/community/customer_icon_04.png" alt="customer_icon_01">
+                                <span class="tag-name">결제문의</span>
+                            </div>
+                            <div class="item-tag">
+                                <img src="/images/community/customer_icon_05.png" alt="customer_icon_01">
+                                <span class="tag-name">항공권</span>
+                            </div>
+                            <div class="item-tag">
+                                <img src="/images/community/customer_icon_06.png" alt="customer_icon_01">
+                                <span class="tag-name">포인트</span>
+                            </div>
+                            <div class="item-tag">
+                                <span class="icon-custom">ATC</span>
+                                <span class="tag-name">기타문의</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-q">
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">상품문의</span>
+                            </div>
+                            <p class="content">트래블 케어에는 어떤 것들이 있나요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">예약문의</span>
+                            </div>
+                            <p class="content">내맘대로 항공호텔이란 무엇인가요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">결제문의</span>
+                            </div>
+                            <p class="content">항공여정과 호텔 투숙일정이 통일해야만 예약 가능한가요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">결제문의</span>
+                            </div>
+                            <p class="content">호텔을 여러 개 예약 할 수 있나요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">포인트</span>
+                            </div>
+                            <p class="content">여권보험을 모르는데 예약이 가능한가요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">기타문의</span>
+                            </div>
+                            <p class="content">비회원 예약이 가능한가요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">상품문의</span>
+                            </div>
+                            <p class="content">최대 몇 명까지 한번에 예약할 수 있나요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">상품문의</span>
+                            </div>
+                            <p class="content">내 맘대로 항고예약을 위한 결제방법을 무엇이 있나요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="con-q">
+                                <div class="label-q">Q</div>
+                                <span class="name">상품문의</span>
+                            </div>
+                            <p class="content">쿠폰 사용이 가능한가요?</p>
+                        </div>
+                        <div class="item-q">
+                            <div class="custom-con">
+                                <div class="flex-title-con">
+                                    <div class="con-q">
+                                        <div class="label-q">Q</div>
+                                        <span class="name">항공권</span>
+                                    </div>
+                                    <p class="content">두개의 카드로 분할 결제가 가능한가요?</p>
+                                </div>
+                                <div class="con-a">
+                                    <div class="label-a">A</div>
+                                    <p class="content">여행자 1인당 총 면세품 구입금액이 $3,000을 넘어서는 안되며, 시계 등의 고가품은 물건 1개당 $400을 넘어서는 안됩니다.
+                                        $3,000을 초과하여 물품을 반입하는 경우, 비록 출국시 국내 면세점에서 구입한 물품일지라도 세관에 반드시 신고하여 관세를
+                                        납부하여야 합니다. 위 사항을 위반할 시에는 관세법 규정에 의거 처벌받게 됩니다.
+                                        우리나라 입국 시에는 면세금액 한도가 $400미만으로 적용되기 때문에 주의해서 들어오셔야 합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="pagination">
+                        <a href="#" class="page-link">≪</a>
+                        <a href="#" class="page-link" style="margin-right: 24px;">
+                        <<a href="#" class="page-link active">1
+                        </a>
+                        <a href="#" class="page-link">2</a>
+                        <a href="#" class="page-link">3</a>
+                        <a href="#" class="page-link" style="margin-left: 24px;">></a>
+                        <a href="#" class="page-link">≫</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+const items = document.querySelectorAll('.item-tag');
+
+items.forEach((item, index) => {
+    item.addEventListener('click', function() {
+        // Remove 'active' class from all items
+        items.forEach(i => i.classList.remove('active'));
+
+        // Add 'active' class to the clicked item
+        this.classList.add('active');
+
+        // Change the image of the active item
+        const img = this.querySelector('img');
+        if (img) {
+            // Change to corresponding active image
+            img.src = `/images/community/customer_icon_0${index + 1}_active.png`;
+        }
+
+        // Reset images for all non-active items
+        items.forEach((i, idx) => {
+            if (i !== this) {
+                const nonActiveImg = i.querySelector('img');
+                if (nonActiveImg) {
+                    nonActiveImg.src = `/images/community/customer_icon_0${idx + 1}.png`;
+                }
+            }
+        });
+    });
+});
+
+function go_list() {
+    window.history.back();
+}
+</script>
+<?php $this->endSection(); ?>
