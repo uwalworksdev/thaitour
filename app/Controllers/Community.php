@@ -138,4 +138,24 @@ class Community extends BaseController
     {
         return view("community/customer_center");
     }
+
+    public function customer_center_notify()
+    {
+        return view("community/notify");
+    }
+
+    public function list_notify()
+    {
+        return view("community/list_notify");
+    }
+
+    public function notify_table()
+    {
+        return view("community/notify_table");
+    }
+
+    public function customer_speak()
+    {
+        return view("community/customer_speak");
+    }
 }

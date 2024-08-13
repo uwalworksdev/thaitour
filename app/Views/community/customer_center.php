@@ -9,12 +9,11 @@
                 <h2 class="title-side-bar">커뮤니티</h2>
                 <div class="list-item-bar">
                     <div class="itembar active">
-                        <a href="">자주 찾는 질문</a>
+                        <a href="/community/customer_center">자주 찾는 질문</a>
                     </div>
-                    <div class="itembar"><a>공지사항</a></div>
-                    <div class="itembar"><a>1 : 1 게시판</a></div>
-                    <div class="itembar"><a>칭찬·건의·불편사항</a></div>
-                    <div class="itembar"><a>실시간 채팅형 상담</a></div>
+                    <div class="itembar"><a href="/community/customer_center/list_notify">공지사항</a></div>
+                    <div class="itembar"><a href="/community/customer_center/notify_table">1 : 1 게시판</a></div>
+                    <div class="itembar"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
                 </div>
             </div>
             <div class="con-right">
