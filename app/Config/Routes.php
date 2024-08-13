@@ -186,6 +186,10 @@ $routes->group("community", static function ($routes) {
     $routes->get("questions"            , "Community::questions");
     $routes->get("announcement"         , "Community::announcement");
     $routes->get("customer_center"      , "Community::customer_center");
+    $routes->get("customer_center/notify"      , "Community::customer_center_notify");
+    $routes->get("customer_center/list_notify"      , "Community::list_notify");
+    $routes->get("customer_center/notify_table"      , "Community::notify_table");
+    $routes->get("customer_center/customer_speak"      , "Community::customer_speak");
     $routes->get("announcement_view"    , "Community::announcement_view");
 });
 $routes->group("contact", static function ($routes) {
