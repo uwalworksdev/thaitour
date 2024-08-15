@@ -30,6 +30,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "Member::list_member");
         $routes->get("email01", "AutoMailController::index");
         $routes->get("sms01", "SmsSettings::index");
+        $routes->get("write", "Member::detail");
         // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         // $routes->get("list_tours", "TourRegistController::list_admin");
         // $routes->get("list_golf", "TourRegistController::list_admin");
