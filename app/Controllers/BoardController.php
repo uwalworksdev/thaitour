@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Libraries\JkBbs; 
+
 
 
 class BoardController extends BaseController
@@ -23,62 +23,62 @@ class BoardController extends BaseController
     }
 
 
-    public function index2()
-    {
-        // Load common functions
-        helper('common'); // Assuming common functions are in a helper
+    // public function index2()
+    // {
+    //     // Load common functions
+    //     helper('common'); // Assuming common functions are in a helper
 
-        $r_code = $this->request->getGet('r_code') ?? 'notice';
-        $page = $this->request->getGet('page') ?? 1;
+    //     $r_code = $this->request->getGet('r_code') ?? 'notice';
+    //     $page = $this->request->getGet('page') ?? 1;
 
-        // Initialize JkBbs class
-        $Bbs = new JkBbs($r_code);
+    //     // Initialize JkBbs class
+    //     $Bbs = new JkBbs($r_code);
 
-        $code_info = $Bbs->get_code_info();
-        $category_arr = $Bbs->category_arr;
+    //     $code_info = $Bbs->get_code_info();
+    //     $category_arr = $Bbs->category_arr;
 
-        $scale = 20; // Number of items per page
-        $page_cnt = 10; // Number of pages to display
+    //     $scale = 20; // Number of items per page
+    //     $page_cnt = 10; // Number of pages to display
 
-        $total_cnt = $Bbs->get_total_cnt();
-        $total_page = ceil($total_cnt / $scale);
+    //     $total_cnt = $Bbs->get_total_cnt();
+    //     $total_page = ceil($total_cnt / $scale);
 
-        if ($page > $total_page) $page = $total_page;
-        if ($page < 1) $page = 1;
+    //     if ($page > $total_page) $page = $total_page;
+    //     if ($page < 1) $page = 1;
 
-        $start = ($page - 1) * $scale;
-        $Bbs->input['start'] = $start;
-        $Bbs->input['scale'] = $scale;
-        array_push($Bbs->list_field_arr, "r_order", "r_flag");
-        if ($r_code == "review") {
-            $Bbs->sort_query = 'ORDER BY T.r_flag DESC, T.r_order DESC, r_reg_date DESC';
-        }
-        $list_arr = $Bbs->get_list();
-        $list_cnt = count($list_arr);
+    //     $start = ($page - 1) * $scale;
+    //     $Bbs->input['start'] = $start;
+    //     $Bbs->input['scale'] = $scale;
+    //     array_push($Bbs->list_field_arr, "r_order", "r_flag");
+    //     if ($r_code == "review") {
+    //         $Bbs->sort_query = 'ORDER BY T.r_flag DESC, T.r_order DESC, r_reg_date DESC';
+    //     }
+    //     $list_arr = $Bbs->get_list();
+    //     $list_cnt = count($list_arr);
 
-        // Check user authentication
-        $auth = null;
-        if ($r_code == 'faq') {
-            $auth = 'A003';
-        }
+    //     // Check user authentication
+    //     $auth = null;
+    //     if ($r_code == 'faq') {
+    //         $auth = 'A003';
+    //     }
 
-        if ($auth && !$this->check_auth($auth)) {
-            return redirect()->to('/AdmMaster/_main/main.php')->with('error', '당신은 접근 권한이 없습니다');
-        }
+    //     if ($auth && !$this->check_auth($auth)) {
+    //         return redirect()->to('/AdmMaster/_main/main.php')->with('error', '당신은 접근 권한이 없습니다');
+    //     }
 
-        $data = [
-            'r_code' => $r_code,
-            'code_info' => $code_info,
-            'list_arr' => $list_arr,
-            'list_cnt' => $list_cnt,
-            'total_cnt' => $total_cnt,
-            'scale' => $scale,
-            'page' => $page,
-            'Bbs' => $Bbs
-        ];
+    //     $data = [
+    //         'r_code' => $r_code,
+    //         'code_info' => $code_info,
+    //         'list_arr' => $list_arr,
+    //         'list_cnt' => $list_cnt,
+    //         'total_cnt' => $total_cnt,
+    //         'scale' => $scale,
+    //         'page' => $page,
+    //         'Bbs' => $Bbs
+    //     ];
 
-        return view('admin/_board/list_rcode', $data); // Replace 'board_view' with the appropriate view file
-    }
+    //     return view('admin/_board/list_rcode', $data); // Replace 'board_view' with the appropriate view file
+    // }
 
 
     public function check_auth($auth)
