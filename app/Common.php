@@ -129,8 +129,8 @@ function fileCheckImgUpload($m_idx, $ufile, $rfile, $path, $fileType){
 	}
 }
 
-function write_log($message){   
-	$dir = "./log/";
+function write_log($message){
+	$dir = WRITEPATH . "logs/";
 
 	if(!file_exists($dir)){
 		mkdir($dir);
