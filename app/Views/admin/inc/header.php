@@ -539,7 +539,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?> class="
                                 <?= $r_code == "faq" ? "on" : "" ?>">
-                            <?= check_perm('A003', '/AdmMaster/_bbs/index?r_code=faq', '자주하시는질문'); ?>
+                            <?= check_perm('A003', '/AdmMaster/_bbs/board_list_q?r_code=faq', '자주하시는질문'); ?>
                         </li>
 
                         <li <?php if (!check_auth('A008')) {
