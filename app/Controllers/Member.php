@@ -17,6 +17,7 @@ class Member extends BaseController
     {
         $this->member = model("Member");
         helper(['html']);
+        helper('form'); 
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
@@ -406,5 +407,125 @@ class Member extends BaseController
         } finally {
             return $this->response->setJSON($resultArr);
         }
+    }
+
+    public function detail()
+    {
+        // Lấy giá trị của query string 'idx'
+        $m_idx = $this->request->getGet('idx');
+        $titleStr = '회원정보';
+        // Kiểm tra nếu 'idx' tồn tại
+        if ($m_idx) {
+            $private_key = private_key(); // Lấy khóa mã hóa
+
+            // Lấy thông tin thành viên từ cơ sở dữ liệu
+            $member = $this->member->find($m_idx);
+
+            if (!$member) {
+                throw new Exception("Thành viên không tồn tại");
+            }
+
+            // Giải mã thông tin nếu cần thiết
+            if ($member['encode'] == 'Y') {
+                $member['user_name'] = $this->decrypt($member['user_name'], $private_key);
+                $member['user_email'] = $this->decrypt($member['user_email'], $private_key);
+                $member['user_phone'] = $this->decrypt($member['user_phone'], $private_key);
+                $member['user_mobile'] = $this->decrypt($member['user_mobile'], $private_key);
+                $member['zip'] = $this->decrypt($member['zip'], $private_key);
+                $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
+                $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
+            }
+            $status = $member['status'] ?? 'Y';  
+            $gubun = $member['gubun'] ?? null;
+            list($email1, $email2) = explode('@', $member['user_email']);
+
+            // Hiển thị thông tin trong view
+            return view('admin/_member/write', [
+                'member' => $member,
+                'titleStr'  => $titleStr,
+                'status'    => $status, 
+                'gubun'     => $gubun, 
+                'email1'    => $email1,
+                'email2'    => $email2,
+            ]);
+        } else {
+            // Xử lý trường hợp không có 'idx'
+            return redirect()->to('/some-default-page')->with('error', 'Không có ID thành viên được cung cấp.');
+        }
+    }
+
+    // Cập nhật thông tin thành viên
+    public function update_member($m_idx)
+    {
+        $request = $this->request;
+        $private_key = private_key();
+
+        // Lấy dữ liệu từ POST và xử lý
+        $data = [
+            'user_id'       => updateSQ($request->getPost("user_id")),
+            'user_pw'       => updateSQ($request->getPost("user_pw")),
+            'user_name'     => updateSQ($request->getPost("user_name")),
+            'gender'        => updateSQ($request->getPost("gender")),
+            'user_email'    => updateSQ($request->getPost("email1")) . "@" . updateSQ($request->getPost("email2")),
+            'user_email_yn' => updateSQ($request->getPost("user_email_yn")),
+            'user_phone'    => updateSQ($request->getPost("phone1")) . "-" . updateSQ($request->getPost("phone2")) . "-" . updateSQ($request->getPost("phone3")),
+            'user_mobile'   => updateSQ($request->getPost("mobile1")) . "-" . updateSQ($request->getPost("mobile2")) . "-" . updateSQ($request->getPost("mobile3")),
+            'zip'           => updateSQ($request->getPost("zip")),
+            'addr1'         => updateSQ($request->getPost("addr1")),
+            'addr2'         => updateSQ($request->getPost("addr2")),
+            'job'           => updateSQ($request->getPost("job")),
+            'birthday'      => updateSQ($request->getPost("byy")) . "-" . updateSQ($request->getPost("bmm")) . "-" . updateSQ($request->getPost("bdd")),
+            'marriage_yn'   => updateSQ($request->getPost("marriage")),
+            'user_level'    => updateSQ($request->getPost("user_level")),
+            'sms_yn'        => updateSQ($request->getPost("sms_yn")),
+            'kakao_yn'      => updateSQ($request->getPost("kakao_yn")),
+            'ip_address'    => $request->getIPAddress(),
+        ];
+
+        // Cập nhật mật khẩu nếu có
+        if (!empty($data['user_pw'])) {
+            $passwordSql = [
+                'user_pw' => sha1(md5($data['user_pw'])),
+            ];
+            $this->member->update($m_idx, $passwordSql);
+            write_log("Cập nhật mật khẩu: " . json_encode($passwordSql));
+        }
+
+        // Mã hóa và cập nhật các trường còn lại
+        $updateData = [
+            'gender'        => $data['gender'],
+            'user_email'    => $this->encrypt($data['user_email'], $private_key),
+            'user_phone'    => $this->encrypt($data['user_phone'], $private_key),
+            'user_mobile'   => $this->encrypt($data['user_mobile'], $private_key),
+            'user_email_yn' => $data['user_email_yn'],
+            'zip'           => $this->encrypt($data['zip'], $private_key),
+            'addr1'         => $this->encrypt($data['addr1'], $private_key),
+            'addr2'         => $this->encrypt($data['addr2'], $private_key),
+            'job'           => $data['job'],
+            'birthday'      => $data['birthday'],
+            'marriage_yn'   => $data['marriage_yn'],
+            'user_level'    => $data['user_level'],
+            'sms_yn'        => $data['sms_yn'],
+            'kakao_yn'      => $data['kakao_yn'],
+            'm_date'        => date('Y-m-d H:i:s'),
+            'encode'        => 'Y',
+        ];
+
+        $this->member->update($m_idx, $updateData);
+        write_log("Cập nhật thông tin thành viên: " . json_encode($updateData));
+
+        return redirect()->back()->with('message', 'Thông tin đã được cập nhật thành công.');
+    }
+
+    // Hàm mã hóa dữ liệu
+    private function encrypt($data, $key)
+    {
+        return "HEX(AES_ENCRYPT('$data', '$key'))";
+    }
+
+    // Hàm giải mã dữ liệu
+    private function decrypt($data, $key)
+    {
+        return $this->db->query("SELECT AES_DECRYPT(UNHEX('$data'), '$key') AS decrypted")->getRow()->decrypted;
     }
 }
