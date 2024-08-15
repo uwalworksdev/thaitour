@@ -7,10 +7,7 @@ use App\Libraries\JkBbs;
 
 class BoardController extends BaseController
 {
-    public function __construct()
-    {
-        $Bbs = new JkBbs($r_code);
-    }
+
     public function isBoardCategory($code)
     {    $this->db = db_connect();
         $builder = $this->db->table('tbl_bbs_config');
