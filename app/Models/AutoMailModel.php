@@ -8,7 +8,7 @@ class AutoMailModel extends Model
 {
     protected $table = 'tbl_auto_mail_skin';
     protected $primaryKey = 'idx';
-    protected $allowedFields = ['code', 'title', 'autosend']; 
+    protected $allowedFields = ['code', 'title', 'autosend', 'content', 'send_name', 'send_email', 'mail_title']; 
 
     public function getTotalCount()
     {

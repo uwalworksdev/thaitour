@@ -79,8 +79,13 @@ class Member extends BaseController
             'nPage' => $nPage,
         ]);
     }
-    public function update() {
-
+    public function del() {
+        $m_idx = $this->request->getPost('m_idx');
+        $tot=count($m_idx);
+        for ($j=0;$j<$tot;$j++){
+            $this->member->delete($m_idx[$j]);
+        }
+        return "OK";
     }
 
     public function LoginForm()

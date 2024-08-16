@@ -48,7 +48,7 @@
                                 <?php foreach ($emails as $row) : ?>
                                     <tr>
                                         <td><?= esc($row['code']) ?></td>
-                                        <td><a href="email01_view.php?idx=<?= esc($row['idx']) ?>"><?= esc($row['title']) ?></a></td>
+                                        <td><a href="/AdmMaster/_member/email_view?idx=<?= esc($row['idx']) ?>"><?= esc($row['title']) ?></a></td>
                                         <td><a href="javascript:void(0)" class="btn_preview" rel="<?= esc($row['idx']) ?>">미리보기</a></td>
                                         <td>
                                             <?= ($row['autosend'] == "Y") ? "자동발송" : "사용안함" ?>

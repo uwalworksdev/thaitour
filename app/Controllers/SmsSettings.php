@@ -5,6 +5,12 @@ use App\Models\SmsModel;
 
 class SmsSettings extends BaseController
 {
+    private $SmsModel;
+
+    public function __construct()
+    {
+        $this->SmsModel = new SmsModel();
+    }
     public function index()
     {
         $model = new SmsModel();
@@ -24,5 +30,32 @@ class SmsSettings extends BaseController
         ];
 
         return view('admin/_member/sms_settings', $data);
+    }
+
+    public function sms_view()
+    {
+        $idx = $this->request->getVar('idx');
+        $sms = $this->SmsModel->find($idx);
+        return view('admin/_member/sms_view', ['sms' => $sms]);
+    }
+    public function sms_mod_ok()
+    {
+        $idx				= updateSQ($this->request->getPost("idx"));
+        $autosend			= updateSQ($this->request->getPost("autosend"));
+        $content			= updateSQ($this->request->getPost("content"));
+
+        $data = [
+            'autosend'		=> $autosend,
+            'content'		=> $content,
+        ];
+
+        
+        if ($idx) {
+            $this->SmsModel->update($idx, $data);
+            return $this->response->setBody('<script>alert("수정되었습니다.");parent.location.reload();</script>');
+        } else {
+            $this->SmsModel->insert($data);
+            return $this->response->setBody('<script>alert("등록되었습니다.");parent.location.reload();</script>');
+        }
     }
 }

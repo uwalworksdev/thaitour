@@ -28,21 +28,22 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_member", static function ($routes) {
         $routes->get("list", "Member::list_member");
-        $routes->get("email01", "AutoMailController::index");
-        $routes->get("sms01", "SmsSettings::index");
+        $routes->post("del", "Member::del");
+        $routes->get("email", "AutoMailController::index");
+        $routes->get("sms", "SmsSettings::index");
         $routes->get("write", "Member::detail");
-        // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
-        // $routes->get("list_tours", "TourRegistController::list_admin");
-        // $routes->get("list_golf", "TourRegistController::list_admin");
-        // $routes->get("_tourStay", "TourRegistController::list_admin");
+        $routes->get("sms_view", "SmsSettings::sms_view");
+        $routes->post("sms_mod_ok", "SmsSettings::sms_mod_ok");
+        $routes->get("email_view", "AutoMailController::email_view");
+        $routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
     $routes->group("_bbs", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
         $routes->get("board_list_q", "BoardController::index2");
-        // $routes->get("email01", "AutoMailController::index");
-        // $routes->get("sms01", "SmsSettings::index");
+        // $routes->get("email", "AutoMailController::index");
+        // $routes->get("sms", "SmsSettings::index");
         // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         // $routes->get("list_tours", "TourRegistController::list_admin");
         // $routes->get("list_golf", "TourRegistController::list_admin");
