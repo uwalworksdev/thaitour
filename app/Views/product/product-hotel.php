@@ -1,6 +1,9 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css" />
+    <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
+    <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
     <div class="body_container main_page_01 page_share_ page_product_list_">
         <section class="sub_top_visual">
             <img class="only_web" src="/images/banner/main_visual_banner.png" alt="">
@@ -11,7 +14,7 @@
                     <div class="form_element_">
                         <div class="form_input_">
                             <label for="input_day">체크인/체크아웃 날짜</label>
-                            <input type="text" id="input_day" class="input_custom_" placeholder="날짜를 선택해주세요.">
+                            <input type="text" id="input_day" class="input_custom_" placeholder="날짜를 선택해주세요." readonly>
                         </div>
                         <div class="form_input_">
                             <label for="input_hotel">호텔명(미입력 시 전체)</label>
@@ -2009,5 +2012,27 @@
         //         location.reload();
         //     }, 2000);
         // });
+        $(function() {
+            $('#input_day').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    format: 'YYYY-MM-DD',
+                    separator: ' -> ',
+                    applyLabel: "적용",
+                    cancelLabel: "취소",
+                    fromLabel: "시작일",
+                    toLabel: "종료일",
+                    customRangeLabel: "사용자 정의",
+                    weekLabel: "주",
+                    daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+                    monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                    firstDay: 1
+                }
+            });
+
+            $('#input_day').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
+            });
+        });
     </script>
 <?php $this->endSection(); ?>

@@ -11,7 +11,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.theme.default.min.css">
 <script src="/lib/owl-carousel2/owl.carousel.min.js"></script>
 
-<div class="body_container">
+<div class="body_container main_body_container">
     <section class="main_visual">
         <div class="body_inner">
             <div class="relative">
