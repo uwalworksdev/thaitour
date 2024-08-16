@@ -85,13 +85,18 @@ class Member extends Model
 
         foreach ($members as &$row) {
             if ($row['encode'] == 'Y') {
-                $sql_d = "SELECT 
-                            AES_DECRYPT(UNHEX('{$row['user_name']}'), '$private_key') AS user_name,
-                            AES_DECRYPT(UNHEX('{$row['user_email']}'), '$private_key') AS user_email,
-                            AES_DECRYPT(UNHEX('{$row['user_mobile']}'), '$private_key') AS user_mobile,
-                            AES_DECRYPT(UNHEX('{$row['user_phone']}'), '$private_key') AS user_phone";
+                $sql_d = "SELECT
+                            AES_DECRYPT(UNHEX(?), ?) AS user_name,
+                            AES_DECRYPT(UNHEX(?), ?) AS user_email,
+                            AES_DECRYPT(UNHEX(?), ?) AS user_mobile,
+                            AES_DECRYPT(UNHEX(?), ?) AS user_phone";
 
-                $result_d = $this->db->query($sql_d);
+                $result_d = $this->db->query($sql_d, [
+                    $row['user_name'], $private_key,
+                    $row['user_email'], $private_key,
+                    $row['user_mobile'], $private_key,
+                    $row['user_phone'], $private_key]);
+
                 $row_d = $result_d->getRowArray();
 
                 $row['user_name'] = $row_d['user_name'];

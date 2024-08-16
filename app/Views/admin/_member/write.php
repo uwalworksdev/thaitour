@@ -40,14 +40,14 @@
                             <th>아이디</th>
                             <td><?= esc($member['user_id']) ?></td>
                             <th>비밀번호</th>
-                            <td><input type="password" name="user_pw" value="" class="bbs_inputbox_pixel" style="width:200px" maxlength="50" /></td>
+                            <td><input type="password" name="user_pw" autocomplete="new-password" value="" class="bbs_inputbox_pixel" style="width:200px" maxlength="50" /></td>
                         </tr>
 
                         <!-- 레벨 và 현황 -->
                         <tr height="45">
                             <th>레벨</th>
                             <td>
-                                <select name="user_level" onchange="javascript:change_it(this.value)">
+                                <select name="user_level">
                                     <option value="10" <?= $member['user_level'] == "10" ? 'selected' : '' ?>>일반</option>
                                     <option value="9" <?= $member['user_level'] == "9" ? 'selected' : '' ?>>실버</option>
                                     <option value="8" <?= $member['user_level'] == "8" ? 'selected' : '' ?>>골드</option>
@@ -126,7 +126,7 @@
                                         <option value="<?= $i ?>" <?= $i == $byy ? 'selected' : '' ?>><?= $i ?></option>
                                     <?php endfor; ?>
                                 </select>
-                                <em class="ig_line"><img src="/img/sub/sub_ml.png" alt="-"></em>
+                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
                                 <select name="bmm" id="bmm">
                                     <option value="">월선택</option>
                                     <!-- Các tùy chọn cho tháng -->
@@ -134,7 +134,7 @@
                                         <option value="<?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>" <?= $m == $bmm ? 'selected' : '' ?>><?= str_pad($m, 2, '0', STR_PAD_LEFT) ?>월</option>
                                     <?php endfor; ?>
                                 </select>
-                                <em class="ig_line"><img src="/img/sub/sub_ml.png" alt="-"></em>
+                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
                                 <select name="bdd" id="bdd">
                                     <option value="">선택</option>
                                     <!-- Các tùy chọn cho ngày -->
@@ -153,11 +153,15 @@
                                     <option value="">선택</option>
                                     <option value="010" <?= $mobile1 == "010" ? 'selected' : '' ?>>010</option>
                                     <option value="011" <?= $mobile1 == "011" ? 'selected' : '' ?>>011</option>
-                                    <!-- Các tùy chọn khác -->
+                                    <option value="013" <?= $mobile1 == "013" ? 'selected' : '' ?>>013</option>
+                                    <option value="016" <?= $mobile1 == "016" ? 'selected' : '' ?>>016</option>
+                                    <option value="017" <?= $mobile1 == "017" ? 'selected' : '' ?>>017</option>
+                                    <option value="018" <?= $mobile1 == "018" ? 'selected' : '' ?>>018</option>
+                                    <option value="019" <?= $mobile1 == "019" ? 'selected' : '' ?>>019</option>
                                 </select>
-                                <em class="ig_line"><img src="/img/sub/sub_ml.png" alt="-"></em>
+                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
                                 <input type="number" class="wd_md" value="<?= esc($mobile2) ?>" name="mobile2" id="mobile2" style="width:60px;height:25px;">
-                                <em class="ig_line"><img src="/img/sub/sub_ml.png" alt="-"></em>
+                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
                                 <input type="number" class="wd_md" value="<?= esc($mobile3) ?>" name="mobile3" id="mobile3" style="width:60px;height:25px;">
                                 <?= !empty($member['user_mobile']) ? "({$member['user_mobile']})" : '' ?>
                             </td>
@@ -165,12 +169,11 @@
                             <td>
                                 <select class="wd_sel" name="phone1" id="phone1">
                                     <option value="">선택</option>
-                                    <!-- Các tùy chọn khác -->
                                     <option value="02" <?= $phone1 == "02" ? 'selected' : '' ?>>02</option>
                                 </select>
-                                <em class="ig_line"><img src="/img/sub/sub_ml.png" alt="-" ></em>
+                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-" ></em>
                                 <input type="number" name="phone2" value="<?= esc($phone2) ?>" class="wd_md" style="width:60px;height:25px;">
-                                <em class="ig_line"><img src="/img/sub/sub_ml.png" alt="-"></em>
+                                <em class="ig_line"><img src="/images/ico/sub_ml.png" alt="-"></em>
                                 <input type="number" name="phone3" value="<?= esc($phone3) ?>" class="wd_md" style="width:60px;height:25px;">
                                 <?= !empty($member['user_phone']) ? "({$member['user_phone']})" : '' ?>
                             </td>
@@ -187,7 +190,7 @@
                             </td>
                         </tr>
 
-                        <!-- 문자메세지, 이메일 và 카카오톡 -->
+                        <!-- 문자메세지, 이메일 and 카카오톡 -->
                         <tr height="45">
                             <th>문자메세지</th>
                             <td>
@@ -212,18 +215,16 @@
                         </tr>
 
                         <!-- 탈퇴 관련 -->
-                        <?php if ($member['status'] == 'O'): ?>
-                        <tr height="45" class="cls_out">
+                        <tr height="45" class="cls_out" style="display:none;">
                             <th>탈퇴일</th>
                             <td colspan="3"><?= esc($member['out_date']) ?></td>
                         </tr>
-                        <tr height="45" class="cls_out">
+                        <tr height="45" class="cls_out" style="display:none;">
                             <th>탈퇴내용</th>
                             <td colspan="3">
                                 <textarea name="out_reason" id="out_reason" style="width:90%;height:300px;"><?= esc($member['out_reason']) ?></textarea>
                             </td>
                         </tr>
-                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
@@ -252,11 +253,15 @@
         }
     }
 
+    <?php if ($member["status"] == "O") { ?>
+	change_it('<?=$member["status"]?>');
+	<?php } ?>
+
     function del_it() {
         if (confirm("삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
             hiddenFrame.location.href = "<?= site_url('member/delete/' . $member['m_idx']) ?>";
         }
     }
 </script>
-
-<?= $this->endSection() ?> <!-- Kết thúc phần nội dung -->
+<iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
+<?= $this->endSection() ?>

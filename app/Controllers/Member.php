@@ -22,6 +22,7 @@ class Member extends BaseController
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
+        error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
     }
     public function list_member()
     {
@@ -77,6 +78,9 @@ class Member extends BaseController
             'g_list_rows' => $g_list_rows,
             'nPage' => $nPage,
         ]);
+    }
+    public function update() {
+
     }
 
     public function LoginForm()
@@ -386,21 +390,17 @@ class Member extends BaseController
 
     public function detail()
     {
-        // Lấy giá trị của query string 'idx'
         $m_idx = $this->request->getGet('idx');
         $titleStr = '회원정보';
-        // Kiểm tra nếu 'idx' tồn tại
         if ($m_idx) {
-            $private_key = private_key(); // Lấy khóa mã hóa
+            $private_key = private_key();
 
-            // Lấy thông tin thành viên từ cơ sở dữ liệu
             $member = $this->member->find($m_idx);
 
             if (!$member) {
-                throw new Exception("Thành viên không tồn tại");
+                throw new Exception("이전 회원가 없습니다.", 404);
             }
 
-            // Giải mã thông tin nếu cần thiết
             if ($member['encode'] == 'Y') {
                 $member['user_name'] = $this->decrypt($member['user_name'], $private_key);
                 $member['user_email'] = $this->decrypt($member['user_email'], $private_key);
@@ -412,9 +412,10 @@ class Member extends BaseController
             }
             $status = $member['status'] ?? 'Y';
             $gubun = $member['gubun'] ?? null;
-            list($email1, $email2) = explode('@', $member['user_email']);
+            [$email1, $email2] = explode('@', $member['user_email']);
+            [$mobile1, $mobile2, $mobile3] = explode('-', $member['user_mobile']);
+            [$phone1, $phone2, $phone3] = explode('-', $member['user_phone']);
 
-            // Hiển thị thông tin trong view
             return view('admin/_member/write', [
                 'member' => $member,
                 'titleStr' => $titleStr,
@@ -422,20 +423,23 @@ class Member extends BaseController
                 'gubun' => $gubun,
                 'email1' => $email1,
                 'email2' => $email2,
+                'mobile1' => $mobile1,
+                'mobile2' => $mobile2,
+                'mobile3' => $mobile3,
+                'phone1' => $phone1,
+                'phone2' => $phone2,
+                'phone3' => $phone3
             ]);
         } else {
-            // Xử lý trường hợp không có 'idx'
-            return redirect()->to('/some-default-page')->with('error', 'Không có ID thành viên được cung cấp.');
+            return "Thwarted.";
         }
     }
 
-    // Cập nhật thông tin thành viên
     public function update_member($m_idx)
     {
         $request = $this->request;
         $private_key = private_key();
 
-        // Lấy dữ liệu từ POST và xử lý
         $data = [
             'user_id' => updateSQ($request->getPost("user_id")),
             'user_pw' => updateSQ($request->getPost("user_pw")),
@@ -455,20 +459,20 @@ class Member extends BaseController
             'sms_yn' => updateSQ($request->getPost("sms_yn")),
             'kakao_yn' => updateSQ($request->getPost("kakao_yn")),
             'ip_address' => $request->getIPAddress(),
+            'status' => updateSQ($request->getPost("status")),
         ];
 
-        // Cập nhật mật khẩu nếu có
         if (!empty($data['user_pw'])) {
             $passwordSql = [
                 'user_pw' => sha1(md5($data['user_pw'])),
             ];
             $this->member->update($m_idx, $passwordSql);
-            write_log("Cập nhật mật khẩu: " . json_encode($passwordSql));
+            write_log("password update: " . json_encode($passwordSql));
         }
 
-        // Mã hóa và cập nhật các trường còn lại
         $updateData = [
             'gender' => $data['gender'],
+            'user_name' => $this->encrypt($data['user_name'], $private_key),
             'user_email' => $this->encrypt($data['user_email'], $private_key),
             'user_phone' => $this->encrypt($data['user_phone'], $private_key),
             'user_mobile' => $this->encrypt($data['user_mobile'], $private_key),
@@ -484,24 +488,23 @@ class Member extends BaseController
             'kakao_yn' => $data['kakao_yn'],
             'm_date' => date('Y-m-d H:i:s'),
             'encode' => 'Y',
+            'status' => $data['status'],
         ];
 
-        $this->member->update($m_idx, $updateData);
-        write_log("Cập nhật thông tin thành viên: " . json_encode($updateData));
+        $this->member->update($m_idx, $updateData, false);
+        write_log("Update member: " . json_encode($updateData));
 
-        return redirect()->back()->with('message', 'Thông tin đã được cập nhật thành công.');
+        return $this->response->setBody("<script>parent.location.reload();</script>");
     }
 
-    // Hàm mã hóa dữ liệu
     private function encrypt($data, $key)
     {
-        return "HEX(AES_ENCRYPT('$data', '$key'))";
+        return $this->db->query("SELECT HEX(AES_ENCRYPT(?, ?)) AS encrypted", [$data, $key])->getRow()->encrypted;
     }
 
-    // Hàm giải mã dữ liệu
     private function decrypt($data, $key)
     {
-        return $this->db->query("SELECT AES_DECRYPT(UNHEX('$data'), '$key') AS decrypted")->getRow()->decrypted;
+        return $this->db->query("SELECT AES_DECRYPT(UNHEX(?), ?) AS decrypted", [$data, $key])->getRow()->decrypted;
     }
     public function phone_chk_ajax()
     {

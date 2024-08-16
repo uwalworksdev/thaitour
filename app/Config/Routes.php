@@ -166,6 +166,7 @@ $routes->group("member", static function ($routes) {
     $routes->post("email_chk_ajax"      , "Member::email_chk_ajax");
     $routes->post("num_chk_ajax"        , "Member::num_chk_ajax");
     $routes->post("num_chk2_ajax"       , "Member::num_chk2_ajax");
+    $routes->post("update/(:segment)"   , "Member::update_member/$1");
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details"              , "MyPage::details");

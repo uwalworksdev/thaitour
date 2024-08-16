@@ -8,7 +8,7 @@ $createAt = session("create_at");
 $sessionCreateDate = date('Y-m-d H:i:s', $createAt);
 $top_menu = isset($top_menu) ? $top_menu : "";
 $r_code = isset($r_code) ? $r_code : '';
-$s_status = isset($$s_status) ? $s_status : '';
+$s_status = isset($s_status) ? $s_status : '';
 ?>
 <?php
 $code = isset($_GET['code']) ? $_GET['code'] : null;
