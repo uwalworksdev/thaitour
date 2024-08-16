@@ -162,6 +162,10 @@ $routes->group("member", static function ($routes) {
     $routes->post("member_reg_ok"       , "Member::RegOk");
     $routes->get("id_chk_ajax"          , "Member::IdCheck");
     $routes->get("logout"               , "Member::Logout");
+    $routes->post("phone_chk_ajax"      , "Member::phone_chk_ajax");
+    $routes->post("email_chk_ajax"      , "Member::email_chk_ajax");
+    $routes->post("num_chk_ajax"        , "Member::num_chk_ajax");
+    $routes->post("num_chk2_ajax"       , "Member::num_chk2_ajax");
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details"              , "MyPage::details");

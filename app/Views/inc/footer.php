@@ -188,6 +188,8 @@
             loop: true,
             slidesPerView: 1,
             spaceBetween: 5,
+            autoplay: true,
+            speed: 2000,
             navigation: {
                 nextEl: ".notice_swiper_btn_next",
                 prevEl: ".notice_swiper_btn_prev",

@@ -79,6 +79,10 @@ class Setting extends BaseController {
             $custom_phone = $this->request->getPost('custom_phone');
             $fax = $this->request->getPost('fax');
 
+            $allim_apikey = $this->request->getPost('allim_apikey');
+            $allim_userid = $this->request->getPost('allim_userid');
+            $allim_senderkey = $this->request->getPost('allim_senderkey');
+
             $sms_phone = $this->request->getPost('sms_phone');
             $email = $this->request->getPost('email');
             $munnote_code = $this->request->getPost('munnote_code');
@@ -233,6 +237,9 @@ class Setting extends BaseController {
                 'custom_phone' => $custom_phone,
                 'fax' => $fax,
                 'sms_phone' => $sms_phone,
+                'allim_apikey' => $allim_apikey,
+                'allim_userid' => $allim_userid,
+                'allim_senderkey' => $allim_senderkey,
                 'email' => $email,
                 'munnote_code' => $munnote_code,
                 'language' => $language,
@@ -255,7 +262,7 @@ class Setting extends BaseController {
                 'purchase_limit_1' => $purchase_limit_1,
             ];
             $this->Setting->infoUpdate(1, $dataToUpdate);
-            return redirect()->to('AdmMaster/setting/site');
+            return redirect()->to('AdmMaster/_adminrator/setting');
         }
     }
 }

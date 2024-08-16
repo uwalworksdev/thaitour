@@ -201,7 +201,7 @@ function getLoginIPChk(){
 	$gTime = time() + 86400; //하루 24시간 	
 	$cookieValue = "user_ip_".str_replace(".","", $REMOTE_ADDR);
 
-	$cookieVal = $_COOKIE[$cookieValue];
+	$cookieVal = $_COOKIE[$cookieValue] ?? "";
 	
 	if($cookieVal == ""){
 

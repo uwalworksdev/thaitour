@@ -103,4 +103,48 @@ class Member extends Model
 
         return $members;
     }
+    public function insertMember($data, $privateKey)
+    {
+        $builder = $this->db->table($this->table);
+        
+        $data['user_name'] = "HEX(AES_ENCRYPT('{$data['user_name']}', '$privateKey'))";
+        $data['user_email'] = "HEX(AES_ENCRYPT('{$data['user_email']}', '$privateKey'))";
+        $data['user_mobile'] = "HEX(AES_ENCRYPT('{$data['user_mobile']}', '$privateKey'))";
+
+        $builder->set('user_name', $data['user_name'], false);
+        $builder->set('user_email', $data['user_email'], false);
+        $builder->set('user_mobile', $data['user_mobile'], false);
+
+        if (!empty($data['zip'])) {
+            $data['zip'] = "HEX(AES_ENCRYPT('{$data['zip']}', '$privateKey'))";
+            $builder ->set('zip', $data['zip'], false);
+        }
+        if (!empty($data['addr1'])) {
+            $data['addr1'] = "HEX(AES_ENCRYPT('{$data['addr1']}', '$privateKey'))";
+            $builder ->set('addr1', $data['addr1'], false);
+        }
+        if (!empty($data['addr2'])) {
+            $data['addr2'] = "HEX(AES_ENCRYPT('{$data['addr2']}', '$privateKey'))";
+            $builder ->set('addr2', $data['addr2'], false);
+        }
+
+        $data['user_level'] = '10';
+        $data['status'] = '1';
+        $data['user_ip'] = $_SERVER['REMOTE_ADDR'];
+        $data['r_date'] = date('Y-m-d H:i:s');
+        $data['encode'] = 'Y';
+
+        $builder->set('user_level', $data['user_level'], true);
+        $builder->set('status', $data['status'], true);
+        $builder->set('user_ip', $data['user_ip'], true);
+        $builder->set('r_date', $data['r_date'], true);
+        $builder->set('encode', $data['encode'], true);
+
+        if (!empty($data['user_pw'])) {
+            $data['user_pw'] = sql_password($data['user_pw']);
+            $builder->set('member_pw', $data['user_pw'], true);
+        }
+
+        return $builder->insert();
+    }
 }

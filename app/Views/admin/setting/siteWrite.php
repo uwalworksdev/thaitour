@@ -206,13 +206,13 @@
 
                                 <tr>
                                     <th>예약안내</th>
-                                    <td><textarea name="trantext" cols="100" rows="5"><?= $row['trantext'] ?></textarea>_SITE_INFORM
+                                    <td><textarea style="border:1px solid #bbb;padding: 0.45rem 0.9rem;border-radius: 0.25em;" name="trantext" cols="100" rows="5"><?= $row['trantext'] ?></textarea>_SITE_INFORM
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>해외구매안내</th>
-                                    <td><textarea name="oversea_purchase" cols="100"
+                                    <td><textarea style="border:1px solid #bbb;padding: 0.45rem 0.9rem;border-radius: 0.25em;" name="oversea_purchase" cols="100"
                                                   rows="5"><?= $row['oversea_purchase'] ?></textarea>_OVEREA_PURCHASE</td>
                                 </tr>
 
@@ -521,6 +521,13 @@
                                                style="width:250px" /> _SMTP_PASS</td>
                                 </tr>
 
+                                <tr>
+                                    <th>이메일 발송</th>
+                                    <td><input type="text" id="admin_email_list" name="admin_email_list"
+                                               value="<?= $row['admin_email_list'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:80%" /> _ADMIN_EMAIL_LIST</td>
+                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -575,9 +582,9 @@
                                             }
 
                                             if ($check != 0) {
-                                                echo "<input type='checkbox' name='_paymethod' id='paymethod_" . $i . "' value='" . $_paymethod[$i] . "' checked><label for='paymethod_" . $i . "'><span>" . $_pg_Method[$_paymethod[$i]] . "</span></label>";
+                                                echo "<input type='checkbox' name='_paymethod' id='paymethod_" . $i . "' value='" . $_paymethod[$i] . "' checked><label for='paymethod_" . $i . "'><span>" . getPgMethod($_paymethod[$i]) . "</span></label>";
                                             } else {
-                                                echo "<input type='checkbox' name='_paymethod' id='paymethod_" . $i . "' value='" . $_paymethod[$i] . "' ><label for='paymethod_" . $i . "'><span>" . $_pg_Method[$_paymethod[$i]] . "</span></label>";
+                                                echo "<input type='checkbox' name='_paymethod' id='paymethod_" . $i . "' value='" . $_paymethod[$i] . "' ><label for='paymethod_" . $i . "'><span>" . getPgMethod($_paymethod[$i]) . "</span></label>";
                                             }
                                         }
 

@@ -17,7 +17,7 @@ class Member extends BaseController
     {
         $this->member = model("Member");
         helper(['html']);
-        helper('form'); 
+        helper('form');
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
@@ -27,15 +27,15 @@ class Member extends BaseController
     {
         $model = $this->member;
         $private_key = private_key();
-        
+
         $search_name = $this->request->getGet('search_name');
         $search_category = $this->request->getGet('search_category');
         $s_status = $this->request->getGet('s_status') ?? 'Y';
         $pg = $this->request->getGet('pg') ?? 1;
-    
+
         // Khởi tạo câu truy vấn
         $strSql = "WHERE 1=1";
-        
+
         if ($search_name) {
             if ($search_category == "user_id") {
                 $strSql .= " AND user_id = '" . $this->db->escapeString($search_name) . "'";
@@ -43,7 +43,7 @@ class Member extends BaseController
                 $strSql .= " AND CONVERT(AES_DECRYPT(UNHEX($search_category), '$private_key') USING utf8) LIKE '%" . $this->db->escapeString($search_name) . "%'";
             }
         }
-    
+
         if ($s_status == "Y") {
             $strTitle = "(일반)";
             $strSql .= " AND status != 'O'";
@@ -51,20 +51,20 @@ class Member extends BaseController
             $strTitle = "(탈퇴)";
             $strSql .= " AND status = 'O'";
         }
-    
+
         $strSql .= " AND user_level = 10";
-    
+
         // Phân trang
         $g_list_rows = 20;
         $nFrom = ($pg - 1) * $g_list_rows;
-    
+
         // Lấy tổng số bản ghi
         $total_count = $model->getMemberCount($strSql);
         $nPage = ceil($total_count / $g_list_rows);
-    
+
         // Lấy danh sách thành viên
         $members = $model->getMembers($strSql, $private_key, $nFrom, $g_list_rows);
-    
+
         // Load view
         return view('admin/_member/list', [
             'strTitle' => $strTitle,
@@ -78,10 +78,10 @@ class Member extends BaseController
             'nPage' => $nPage,
         ]);
     }
-    
+
     public function LoginForm()
     {
-        return view("member/member_login");
+        return view("member/member_login", ['returnUrl' => $this->request->getGet('returnUrl')]);
     }
 
     public function JoinChoice()
@@ -112,10 +112,10 @@ class Member extends BaseController
 
     public function LoginCheck()
     {
-        $returnUrl  = updateSQ($this->request->getPost("returnUrl"));
-        $user_id    = updateSQ($this->request->getPost("user_id"));
-        $user_pw    = updateSQ($this->request->getPost("user_pw"));
-        $save_id    = updateSQ($this->request->getPost("save_id"));
+        $returnUrl = updateSQ($this->request->getPost("returnUrl"));
+        $user_id = updateSQ($this->request->getPost("user_id"));
+        $user_pw = updateSQ($this->request->getPost("user_pw"));
+        $save_id = updateSQ($this->request->getPost("save_id"));
 
         $row = $this->member->getLogin($user_id);
         if ($row["user_id"] == "") {
@@ -173,22 +173,12 @@ class Member extends BaseController
 
         $private_key = private_key();
 
-        function validate_required_fields($fields)
-        {
-            foreach ($fields as $field => $value) {
-                if (empty($value)) {
-                    die("Error: The field '$field' cannot be empty.");
-                }
-            }
-        }
-
         $phone_sms = updateSQ($this->request->getPost("hidden_input"));
 
-        // echo $phone_sms."==========";
-        // echo $member['phone_chk']."++++++++++";
-        if ($member['phone_chk'] != $phone_sms) {
+        if (($member['phone_chk'] ?? "") != $phone_sms) {
             die("Error: The field 'SMS'.");
         }
+
 
 
         $user_id = updateSQ($this->request->getPost("user_id"));
@@ -209,21 +199,26 @@ class Member extends BaseController
         $visit_route = updateSQ($this->request->getPost("visit_route"));
 
         if ($gubun == "") {
-            validate_required_fields([
+            $fields = [
                 'user_id' => $user_id,
                 'user_pw' => $user_pw,
                 'user_name' => $user_name,
                 'user_email' => $user_email,
                 'user_mobile' => $user_mobile,
                 'birth_day' => $birthday,
-            ]);
-
+            ];
+            for ($idx = 0; $idx < count($fields); $idx++) {
+                $field = array_keys($fields)[$idx];
+                $value = array_values($fields)[$idx];
+                if (empty($value)) {
+                    return $this->response->setJSON(['message' => "Error: The field '$field' cannot be empty."])->setStatusCode(400);
+                }
+            }
         }
-        $fsql = " select count(*) cnts from tbl_member where user_id = '" . $user_id . "'";
-        $frow = $this->db->query($fsql)->getRowArray();
-        if ($frow['cnts'] > 0) {
-            goUrl("/", "이미 가입된 아이디입니다.");
-            echo $user_id;
+
+        $cnt = $this->member->getMemberCount("where user_id = '" . $user_id . "'");
+        if ($cnt > 0) {
+            return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(400);
         }
 
         if ($gubun == "kakao")
@@ -234,47 +229,34 @@ class Member extends BaseController
             $user_id = "naver_" . $sns_key;
 
         if ($gubun != "") {
-            $sql_su = "
-                insert into tbl_member SET 
-                     user_id		= '" . $user_id . "'
-                    ,user_name      = HEX(AES_ENCRYPT('$user_name',   '$private_key'))   
-                    ,user_email		= HEX(AES_ENCRYPT('$user_email',  '$private_key'))   
-                    ,user_mobile	= HEX(AES_ENCRYPT('$user_mobile', '$private_key'))   
-                    ,user_level		= '10'
-                    ,status			= '1'
-                    ,gubun			= '" . $gubun . "'
-                    ,sns_key		= '" . $sns_key . "'
-                    ,user_ip		= '" . $_SERVER['REMOTE_ADDR'] . "'
-                    ,r_date			= now()
-                    ,encode      	= 'Y'
-            ";
+            $this->member->insertMember([
+                'user_id' => $user_id,
+                'user_name' => $user_name,
+                'user_email' => $user_email,
+                'user_mobile' => $user_mobile,
+                'gubun' => $gubun,
+                'sns_key' => $sns_key,
+            ], $private_key);
         } else {
-            $sql_su = "
-                insert into tbl_member SET 
-                     user_id		= '" . $user_id . "'
-                    ,user_pw		= '" . sql_password($user_pw) . "'
-                    ,user_name      = HEX(AES_ENCRYPT('$user_name',   '$private_key'))   
-                    ,birthday		= '" . $birthday . "'
-                    ,user_email		= HEX(AES_ENCRYPT('$user_email',  '$private_key'))   
-                    ,user_email_yn	= '" . $user_email_yn . "'
-                    ,user_mobile	= HEX(AES_ENCRYPT('$user_mobile', '$private_key'))   
-                    ,sms_yn         = '" . $sms_yn . "'
-                    ,user_level		= '10'
-                    ,status			= '1'
-                    ,gubun			= '" . $gubun . "'
-                    ,sns_key		= '" . $sns_key . "'
-                    ,user_ip		= '" . $_SERVER['REMOTE_ADDR'] . "'
-                    ,r_date			= now()
-                    ,zip	        = HEX(AES_ENCRYPT('$zip',    '$private_key'))   
-                    ,addr1	        = HEX(AES_ENCRYPT('$addr1',  '$private_key'))   
-                    ,addr2	        = HEX(AES_ENCRYPT('$addr2',  '$private_key'))   
-                    ,visit_route	= '" . $visit_route . "'
-                    ,encode      	= 'Y'
-            ";
+            $this->member->insertMember([
+                'user_id' => $user_id,
+                'user_pw' => sql_password($user_pw),
+                'user_name' => $user_name,
+                'birthday' => $birthday,
+                'user_email' => $user_email,
+                'user_email_yn' => $user_email_yn,
+                'user_mobile' => $user_mobile,
+                'sms_yn' => $sms_yn,
+                'gubun' => "",
+                'sns_key' => "",
+                'zip' => $zip,
+                'addr1' => $addr1,
+                'addr2' => $addr2,
+                'visit_route' => $visit_route,
+            ], $private_key);
         }
 
-        // write_log("회원가입 : " . $sql_su);
-        $this->db->query($sql_su);
+        write_log("회원가입 : " . $user_id);
         $m_idx = $this->db->insertID();
 
         $code = "A01";
@@ -282,8 +264,6 @@ class Member extends BaseController
         $replace_text = "|||[name]:::" . $user_name;
         // autoEmail($code,$user_mail,$replace_text);
 
-        // $_IT_SITE_NAME = _IT_SITE_NAME;
-        // $_IT_CUSTOM_PHONE = _IT_CUSTOM_PHONE;
 
         $code = "S04";
         $to_phone = $user_mobile;
@@ -291,17 +271,14 @@ class Member extends BaseController
         // autoSms($code, $to_phone, $replace_text);
 
         // 로그인 처리 부분
-        $total_sql = " select * from tbl_member where user_id='" . $user_id . "'";
-        $row = $this->db->query($total_sql)->getRowArray();
+        $row = $this->member->where(['user_id' => $user_id])->first();
 
-        if ($row['user_id'] == "") {
-            //아이디가 없습니다.
-            // alert_msg("존재하지 않는 아이디입니다.");
-            return;
+        if (!$row || $row['user_id'] == "") {
+            return $this->response->setJSON(['message' => "존재하지 않는 아이디입니다"])->setStatusCode(404);
         }
 
 
-        // write_log("회원로그인 : ".$total_sql);
+        write_log("회원로그인 : ". $user_id);
 
         $data = [];
 
@@ -316,14 +293,12 @@ class Member extends BaseController
 
         session()->set("member", $data);
 
-        // 로그인 횟수를 증가시키고 마지막 접속 일자 변경
-        $total_sql = " update tbl_member
-                          set login_count = login_count+1
-                            , login_date = now()
-                        where user_id='" . $user_id . "'";
-        // write_log("2- ". $total_sql);
-        $this->db->query($total_sql);
-        return redirect()->to(base_url("/"));
+        // $this->member->update(["login_count" => "login_count+1", "login_date" => "now()"], "user_id = '$user_id'");
+        $this->member->set('login_count', 'login_count + 1', false);
+        $this->member->set('login_date', 'NOW()', false);
+        $this->member->where('user_id', $user_id);
+        $this->member->update();
+        return $this->response->setJSON(['message' => "success"]);
     }
 
     public function JoinComplete()
@@ -435,18 +410,18 @@ class Member extends BaseController
                 $member['addr1'] = $this->decrypt($member['addr1'], $private_key);
                 $member['addr2'] = $this->decrypt($member['addr2'], $private_key);
             }
-            $status = $member['status'] ?? 'Y';  
+            $status = $member['status'] ?? 'Y';
             $gubun = $member['gubun'] ?? null;
             list($email1, $email2) = explode('@', $member['user_email']);
 
             // Hiển thị thông tin trong view
             return view('admin/_member/write', [
                 'member' => $member,
-                'titleStr'  => $titleStr,
-                'status'    => $status, 
-                'gubun'     => $gubun, 
-                'email1'    => $email1,
-                'email2'    => $email2,
+                'titleStr' => $titleStr,
+                'status' => $status,
+                'gubun' => $gubun,
+                'email1' => $email1,
+                'email2' => $email2,
             ]);
         } else {
             // Xử lý trường hợp không có 'idx'
@@ -462,24 +437,24 @@ class Member extends BaseController
 
         // Lấy dữ liệu từ POST và xử lý
         $data = [
-            'user_id'       => updateSQ($request->getPost("user_id")),
-            'user_pw'       => updateSQ($request->getPost("user_pw")),
-            'user_name'     => updateSQ($request->getPost("user_name")),
-            'gender'        => updateSQ($request->getPost("gender")),
-            'user_email'    => updateSQ($request->getPost("email1")) . "@" . updateSQ($request->getPost("email2")),
+            'user_id' => updateSQ($request->getPost("user_id")),
+            'user_pw' => updateSQ($request->getPost("user_pw")),
+            'user_name' => updateSQ($request->getPost("user_name")),
+            'gender' => updateSQ($request->getPost("gender")),
+            'user_email' => updateSQ($request->getPost("email1")) . "@" . updateSQ($request->getPost("email2")),
             'user_email_yn' => updateSQ($request->getPost("user_email_yn")),
-            'user_phone'    => updateSQ($request->getPost("phone1")) . "-" . updateSQ($request->getPost("phone2")) . "-" . updateSQ($request->getPost("phone3")),
-            'user_mobile'   => updateSQ($request->getPost("mobile1")) . "-" . updateSQ($request->getPost("mobile2")) . "-" . updateSQ($request->getPost("mobile3")),
-            'zip'           => updateSQ($request->getPost("zip")),
-            'addr1'         => updateSQ($request->getPost("addr1")),
-            'addr2'         => updateSQ($request->getPost("addr2")),
-            'job'           => updateSQ($request->getPost("job")),
-            'birthday'      => updateSQ($request->getPost("byy")) . "-" . updateSQ($request->getPost("bmm")) . "-" . updateSQ($request->getPost("bdd")),
-            'marriage_yn'   => updateSQ($request->getPost("marriage")),
-            'user_level'    => updateSQ($request->getPost("user_level")),
-            'sms_yn'        => updateSQ($request->getPost("sms_yn")),
-            'kakao_yn'      => updateSQ($request->getPost("kakao_yn")),
-            'ip_address'    => $request->getIPAddress(),
+            'user_phone' => updateSQ($request->getPost("phone1")) . "-" . updateSQ($request->getPost("phone2")) . "-" . updateSQ($request->getPost("phone3")),
+            'user_mobile' => updateSQ($request->getPost("mobile1")) . "-" . updateSQ($request->getPost("mobile2")) . "-" . updateSQ($request->getPost("mobile3")),
+            'zip' => updateSQ($request->getPost("zip")),
+            'addr1' => updateSQ($request->getPost("addr1")),
+            'addr2' => updateSQ($request->getPost("addr2")),
+            'job' => updateSQ($request->getPost("job")),
+            'birthday' => updateSQ($request->getPost("byy")) . "-" . updateSQ($request->getPost("bmm")) . "-" . updateSQ($request->getPost("bdd")),
+            'marriage_yn' => updateSQ($request->getPost("marriage")),
+            'user_level' => updateSQ($request->getPost("user_level")),
+            'sms_yn' => updateSQ($request->getPost("sms_yn")),
+            'kakao_yn' => updateSQ($request->getPost("kakao_yn")),
+            'ip_address' => $request->getIPAddress(),
         ];
 
         // Cập nhật mật khẩu nếu có
@@ -493,22 +468,22 @@ class Member extends BaseController
 
         // Mã hóa và cập nhật các trường còn lại
         $updateData = [
-            'gender'        => $data['gender'],
-            'user_email'    => $this->encrypt($data['user_email'], $private_key),
-            'user_phone'    => $this->encrypt($data['user_phone'], $private_key),
-            'user_mobile'   => $this->encrypt($data['user_mobile'], $private_key),
+            'gender' => $data['gender'],
+            'user_email' => $this->encrypt($data['user_email'], $private_key),
+            'user_phone' => $this->encrypt($data['user_phone'], $private_key),
+            'user_mobile' => $this->encrypt($data['user_mobile'], $private_key),
             'user_email_yn' => $data['user_email_yn'],
-            'zip'           => $this->encrypt($data['zip'], $private_key),
-            'addr1'         => $this->encrypt($data['addr1'], $private_key),
-            'addr2'         => $this->encrypt($data['addr2'], $private_key),
-            'job'           => $data['job'],
-            'birthday'      => $data['birthday'],
-            'marriage_yn'   => $data['marriage_yn'],
-            'user_level'    => $data['user_level'],
-            'sms_yn'        => $data['sms_yn'],
-            'kakao_yn'      => $data['kakao_yn'],
-            'm_date'        => date('Y-m-d H:i:s'),
-            'encode'        => 'Y',
+            'zip' => $this->encrypt($data['zip'], $private_key),
+            'addr1' => $this->encrypt($data['addr1'], $private_key),
+            'addr2' => $this->encrypt($data['addr2'], $private_key),
+            'job' => $data['job'],
+            'birthday' => $data['birthday'],
+            'marriage_yn' => $data['marriage_yn'],
+            'user_level' => $data['user_level'],
+            'sms_yn' => $data['sms_yn'],
+            'kakao_yn' => $data['kakao_yn'],
+            'm_date' => date('Y-m-d H:i:s'),
+            'encode' => 'Y',
         ];
 
         $this->member->update($m_idx, $updateData);
@@ -527,5 +502,52 @@ class Member extends BaseController
     private function decrypt($data, $key)
     {
         return $this->db->query("SELECT AES_DECRYPT(UNHEX('$data'), '$key') AS decrypted")->getRow()->decrypted;
+    }
+    public function phone_chk_ajax()
+    {
+        $request = $this->request;
+        $tophone = $request->getPost("tophone");
+
+        if (empty($tophone)) {
+            return "전화번호를 입력해주세요";
+        } else {
+            if (phone_chk($tophone)) {
+                return "Y";
+            } else {
+                return "오류가 발생하였습니다.";
+            }
+        }
+    }
+    public function email_chk_ajax()
+    {
+        $request = $this->request;
+        $email = $request->getPost("email");
+
+        if (empty($email)) {
+            return "NO";
+        } else {
+            if (email_chk($email)) {
+                return "OK";
+            } else {
+                return "NO";
+            }
+        }
+    }
+    public function num_chk_ajax() {
+        $request = $this->request;
+
+        $chkNum = $request->getPost("chkNum");
+
+        // return phone_chk_ok($chkNum);
+        return "Y";
+    }
+
+    public function num_chk2_ajax() {
+        $request = $this->request;
+
+        $chkNum = $request->getPost("chkNum");
+
+        // return email_chk_ok($chkNum);
+        return "Y";
     }
 }
