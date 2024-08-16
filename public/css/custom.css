@@ -41,6 +41,7 @@
     border-radius: 16px;
     background-color: #ffffff;
     padding: 20px;
+    gap: 12px;
 }
 
 .main_page_01 .main_visual_content_ .form_element_ .form_input_ {
@@ -107,6 +108,8 @@
     font-family: "Pretendard";
     text-align: center;
     padding: 24px;
+    width: 108px;
+    margin-left: 8px;
 }
 
 .swiper-pagination-bullet-active {
