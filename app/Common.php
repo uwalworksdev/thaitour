@@ -750,3 +750,29 @@ function updateSQText($textToFilter)
 	}
 	 
 }
+
+function sqlSecretConver($value, $way)
+{
+	$connect = db_connect();
+	$private_key = private_key();
+
+	$outText = "";
+
+	if( $way == "encode"){
+
+		$sql	= " SELECT CONVERT( TO_BASE64(hex(AES_ENCRYPT('".$value."', '".$private_key."') ) ) using UTF8) as pass FROM dual ";
+		$row	= $connect->query($sql)->getRowArray();
+
+		$outText = $row['pass'];
+
+	} else if( $way == "decode"){
+
+		$sql	= " SELECT CONVERT( AES_DECRYPT( UNHEX( FROM_BASE64('".$value."') ), '".$private_key."') using UTF8) as pass FROM dual ";
+		$row	= $connect->query($sql)->getRowArray();
+
+		$outText = $row['pass'];
+	}
+
+
+    return $outText;
+}

@@ -380,4 +380,14 @@ class Product_model extends Model
             ->get()
             ->getRowArray();
     }
+    public function getProductsByEvent($bbs_idx)
+    {
+        return $this->db->table('tbl_product_mst a')
+                        ->select('a.product_name, a.product_idx, a.product_code, a.is_view, b.onum, b.code_idx')
+                        ->join('tbl_event_disp b', 'a.product_idx = b.product_idx')
+                        ->where('b.code_no', $bbs_idx)
+                        ->orderBy('b.onum', 'ASC')
+                        ->get()
+                        ->getResultArray();
+    }
 }

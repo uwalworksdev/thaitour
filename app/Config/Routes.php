@@ -41,6 +41,7 @@ $routes->group("AdmMaster", static function ($routes) {
     });
     $routes->group("_bbs", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
+        $routes->get("board_write", "BoardController::board_write");
         $routes->get("board_list_q", "BoardController::index2");
         // $routes->get("email", "AutoMailController::index");
         // $routes->get("sms", "SmsSettings::index");
@@ -120,10 +121,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("ajax_del", "TourSuggestionController::ajax_del");
     });
 
-    $routes->group("_bbs", static function ($routes) {
-        $routes->get("board_list/(:segment)", "TourSuggestionController::list_admin/$1");
-    });
-    
     $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");

@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Banner_model;
-use App\Models\Bbs_list_model;
 use App\Models\Product_model;
 use CodeIgniter\Controller;
 use App\Config\CustomConstants;
@@ -22,7 +21,7 @@ class Product extends BaseController
         $this->db = db_connect();
         $this->bannerModel = model("Banner_model");
         $this->productModel = model("Product_model");
-        $this->bbsListModel = model("Bbs_list_model");
+        $this->bbsListModel = model("Bbs");
         helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
