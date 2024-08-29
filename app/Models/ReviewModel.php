@@ -17,7 +17,7 @@ class ReviewModel extends Model
     {
         $private_key = private_key();
 
-        $builder = $this->db->table('tbl_travel_review as a')
+        $builder = $this->db->table($this->table . ' a')
             ->select('a.*, b.product_name, b.ufile1 as product_img')
             ->join('tbl_product_mst as b', 'a.product_idx = b.product_idx', 'left')
             ->where('a.is_best', 'Y')
@@ -82,5 +82,20 @@ class ReviewModel extends Model
             'total_page' => $total_page,
             'no' => $no,
         ];
+    }
+    public function getReview($idx)
+    {
+        $builder = $this->db->table($this->table . ' a');
+        
+        $builder->select('a.*, b.product_name, c.code_name');
+        $builder->join('tbl_product_mst b', 'a.product_idx = b.product_idx', 'left');
+        $builder->join('tbl_code c', 'a.travel_type = c.code_no', 'left');
+        
+        $builder->where('a.idx', $idx);
+        
+        $query = $builder->get();
+        $result = $query->getRowArray();
+
+        return $result;
     }
 }

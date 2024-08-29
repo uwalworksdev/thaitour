@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Controllers;
+
+class AjaxController extends BaseController {
+
+    public function __construct() {
+        
+    }
+
+    public function uploader() {
+        $r_reg_m_idx = $this->request->getPost('r_reg_m_idx');
+        $r_code = $this->request->getPost('r_code');
+        $path = "/uploads/data/editor_img/$r_code/";
+        $uploadPath = WRITEPATH . $path;
+
+        if ($this->request->getFile('file')->getSize() > 5242880) {
+            $output = [
+                "result" => "ERROR",
+                "msg" => "파일의 사이즈가 5MB를 초과할 수 없습니다."
+            ];
+
+            return $this->response->setJSON($output);
+        }
+
+        if (!is_dir($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+
+        $file = $this->request->getFile('file');
+
+        if ($file->isValid() && !$file->hasMoved()) {
+            $fileName = $file->getName();
+
+            if (no_file_ext($fileName) != "Y") {
+                exit();
+            }
+
+            $tempPath = $file->getTempName();
+
+            $ufile = fileCheckImgUpload($r_reg_m_idx, $fileName, $tempPath, $uploadPath, "N");
+
+            $resultMsg = $path . $ufile;
+        } else {
+            $resultMsg = 'Your upload triggered the following error: ' . $file->getErrorString();
+        }
+
+        $output = [
+            "result" => "OK",
+            "msg" => $resultMsg
+        ];
+
+        return $this->response->setJSON($output);
+    }
+}

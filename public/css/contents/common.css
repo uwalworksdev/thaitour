@@ -661,6 +661,11 @@ figure.cover_img img {
   background: url(/images/common/top_btn_shadow.png) no-repeat center;
 }
 
+.daterangepicker .drp-buttons .btn {
+  width: auto;
+  height: auto;
+}
+
 @media screen and (max-width: 1340px) {
   .positionBox .boxList {
     margin-left: 0;

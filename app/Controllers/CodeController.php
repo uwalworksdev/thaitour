@@ -1,0 +1,203 @@
+<?php
+
+namespace App\Controllers;
+
+use Config\CustomConstants as ConfigCustomConstants;
+
+class CodeController extends BaseController
+{
+    private $CodeModel;
+    private $Bbs;
+    private $ProductAirModel;
+    public function __construct()
+    {
+        $this->db = db_connect();
+        $this->CodeModel = model("Code");
+        $this->ProductAirModel = model("ProductAirModel");
+        $this->Bbs = model("Bbs");
+        helper('my_helper');
+        helper('alert_helper');
+    }
+    public function list_admin() {
+        $g_list_rows = 100;
+        $s_parent_code_no = $this->request->getVar("s_parent_code_no");
+        $pg = $this->request->getVar("pg"); 
+
+        $code_name = $this->CodeModel->getCodeName($s_parent_code_no);
+
+        $nTotalCount = $this->CodeModel->getTotalCount($s_parent_code_no);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if (empty($pg)) $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $result = $this->CodeModel->getPagedData($s_parent_code_no, $nFrom, $g_list_rows);
+        $num = $nTotalCount - $nFrom;
+        return view("admin/_code/list", [
+            "result" => $result,
+            "num" => $num,
+            "s_parent_code_no" => $s_parent_code_no,
+            "nPage" => $nPage,
+            "pg" => $pg,
+            "nTotalCount" => $nTotalCount,
+            "currentUri" => $this->request->getUri()->getPath(),
+            "g_list_rows" => $g_list_rows,
+            "code_name" => $code_name
+        ]);
+    }
+    public function write_admin() {
+        $code_idx = $this->request->getVar('code_idx');
+        $s_parent_code_no = $this->request->getVar('s_parent_code_no');
+        $product_idx = $this->request->getVar('product_idx');
+        $yoil_idx = $this->request->getVar('yoil_idx');
+
+        $row_ds = $this->ProductAirModel->getProductAir();
+
+        $titleStr = "생성";
+        $parent_code_no = empty($s_parent_code_no) ? "0" : $s_parent_code_no;
+
+        if ($code_idx) {
+            $row = $this->CodeModel->getCodeByIdx($code_idx);
+            $code_no = $row['code_no'];
+            $code_name = $row['code_name'];
+            $init_oil_price = $row['init_oil_price'];
+            $ufile1 = $row['ufile1'];
+            $rfile1 = $row['rfile1'];
+            $status = $row['status'];
+            $onum = $row['onum'];
+            $titleStr = "수정";
+
+            $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
+        } else {
+            $row = $this->CodeModel->getDepthAndCodeGubunByNo($parent_code_no);
+            $depth = $row['depth'] + 1;
+            $code_gubun = $row['code_gubun'];
+
+            $maxCodeNoRow = $this->CodeModel->getMaxCodeNo($parent_code_no, $s_parent_code_no);
+            $code_no = $maxCodeNoRow['code_no'];
+
+            if ($code_no == "1308") { // 예약된 코드(현지투어)로 사용할 수 없습니다.
+                $maxCodeNoRow = $this->CodeModel->getMaxCodeNoWithReserved($parent_code_no, $s_parent_code_no);
+                $code_no = $maxCodeNoRow['code_no'];
+            }
+
+            $onum = 0;
+        }
+        return view("admin/_code/write", [
+            "row" => $row,
+            "row_ds" => $row_ds,
+            "s_parent_code_no" => $s_parent_code_no,
+            "parent_code_no" => $parent_code_no,
+            "product_idx" => $product_idx,
+            "yoil_idx" => $yoil_idx,
+            "code_no" => $code_no,
+            "code_name" => $code_name ?? "",
+            "init_oil_price" => $init_oil_price ?? "",
+            "ufile1" => $ufile1 ?? "",
+            "rfile1" => $rfile1 ?? "",
+            "status" => $status ?? "",
+            "onum" => $onum,
+            "depth" => $depth,
+            "code_gubun" => $code_gubun ?? "",
+            "titleStr" => $titleStr,
+            'code_idx' => $code_idx
+        ]);
+    }
+
+    public function write_ok() {
+        $code_idx = $this->request->getPost('code_idx');
+        $code_gubun = $this->request->getPost('code_gubun');
+        $code_no = $this->request->getPost('code_no');
+        $code_name = $this->request->getPost('code_name');
+        $parent_code_no = $this->request->getPost('parent_code_no');
+        $depth = $this->request->getPost('depth');
+        $status = $this->request->getPost('status');
+        $init_oil_price = $this->request->getPost('init_oil_price') ?? 0;
+        $onum = $this->request->getPost('onum');
+        $product_idx = $this->request->getPost('product_idx');
+        $yoil_idx = $this->request->getPost('yoil_idx');
+
+        $upload = WRITEPATH . 'uploads/code/';
+
+        if ($code_idx) {
+            $data = [
+                'code_name' => $code_name,
+                'status' => $status,
+                'init_oil_price' => $init_oil_price,
+                'onum' => $onum,
+            ];
+            $this->CodeModel->update($code_idx, $data);
+            write_log("코드수정: " . json_encode($data));
+        } else {
+            if ($parent_code_no == "0") {
+                $existingCode = $this->CodeModel->where('code_gubun', $code_gubun)->first();
+                if ($existingCode) {
+                    echo "<script>alert('중복된 코드값입니다.');</script>";
+                    return;
+                }
+            }
+
+            $data = [
+                'code_gubun' => $code_gubun,
+                'code_no' => $code_no,
+                'code_name' => $code_name,
+                'parent_code_no' => $parent_code_no,
+                'depth' => $depth,
+                'status' => $status,
+                'init_oil_price' => $init_oil_price,
+                'onum' => $onum,
+            ];
+            $this->CodeModel->insert($data);
+            $code_idx = $this->CodeModel->insertID();
+            write_log("코드등록: " . json_encode($data));
+        }
+
+        for ($i = 1; $i <= 1; $i++) {
+            if ($this->request->getPost('del_' . $i) == 'Y') {
+                $this->CodeModel->update($code_idx, [
+                    'ufile' . $i => '',
+                    'rfile' . $i => ''
+                ]);
+                write_log("0- Delete file ufile{$i} and rfile{$i}");
+            }
+
+            if ($file = $this->request->getFile('ufile' . $i)) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $newName = $file->getRandomName();
+                    $file->move($upload, $newName);
+
+                    $this->CodeModel->update($code_idx, [
+                        'ufile' . $i => $newName,
+                        'rfile' . $i => $file->getName()
+                    ]);
+                    write_log("2- Upload file ufile{$i} and rfile{$i}");
+                }
+            }
+        }
+
+        if ($code_idx) {
+            echo "<script>parent.location.reload();</script>";
+        } else {
+            echo "<script>parent.location.href='list?s_parent_code_no={$parent_code_no}';</script>";
+        }
+    }
+
+    public function del() {
+        $code_idx = $this->request->getPost('code_idx');
+        try {
+            $this->CodeModel->delete($code_idx);
+            $message = "삭제완료";
+        } catch (\Throwable $th) {
+            $message = "삭제오류: " . $th->getMessage();
+        }
+        return $this->response->setJSON(['message' => $message]);
+    }
+    public function change_ajax() {
+        $code_idx = $this->request->getPost('code_idx');
+        $onum = $this->request->getPost('onum');
+        $tot=count($code_idx);
+        for ($j=0;$j<$tot;$j++){
+            $this->CodeModel->update($code_idx[$j], ['onum' => $onum[$j]]);
+        }
+        return "OK";
+    }
+}

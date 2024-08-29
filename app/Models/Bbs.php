@@ -190,4 +190,8 @@ class Bbs extends Model
         return $this->where('code', $code)->where('bbs_idx', $idx)
             ->update($idx, ['hit' => $hit + 1]);
     }
+    public function getLineBanners($category = '123')
+    {
+        return $this->where('category', $category)->first();
+    }
 }

@@ -33,4 +33,6 @@ async function handleSubmit(event) {
     }
 }
 
-document.querySelector("form[name='loginForm']").addEventListener("submit", handleSubmit);
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("form[name='loginForm']").addEventListener("submit", handleSubmit);
+})

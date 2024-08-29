@@ -1,0 +1,454 @@
+@import url(apexcharts.css);
+#container.main *{
+    box-sizing: border-box;
+    font-family: Spoqa Han Sans Neo,Noto Sans KR,sans-serif,NanumSquare;
+}
+#container.main {
+    background: #f6f8fc;  padding: 30px;
+  }
+  #container .top_table,
+  #container .top_table table {
+    width: 100%;
+  }
+  #container .top_table table {
+    table-layout: fixed;
+  }
+  #container .top_table table th {
+    background: #f5f5f5;
+    border: 1px solid #e2e2e2;
+    padding: 20px 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 15px;
+  }
+  #container .top_table table td {
+    padding: 15px 20px;
+    border: 1px solid #e2e2e2;
+    font-size: 15px;
+    vertical-align: middle;
+  }
+  #container .top_table .btn_row {
+    display: flex;
+    align-items: center;
+    margin: 0 15px;
+  }
+  #container .top_table .btn_row li + li {
+    margin-left: 6px;
+  }
+  #container .top_table .btn_row button {
+    background: #999999;
+    border: 1px solid #909090;
+    width: 48px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 2px;
+  }
+  #container .top_table .btn_row .on button {
+    background: #5d92ff;
+    border-color: #2780c5;
+  }
+  #container .top_table .sel_box {
+    width: calc(100% - 210px);
+  }
+  #container .top_table .sel_box.w_100 {
+    width: 100%;
+  }
+  #container .top_table select {
+    height: 42px;
+    /* max-width: 200px; */
+    width: 100%;
+    padding-right: 30px;
+    border-radius: 4px;
+    text-overflow: ellipsis;
+  }
+  #container .top_table .btn_st_02 {
+    line-height: 40px;
+    height: 42px;
+    padding: 0 15px;
+  }
+  #container .top_table select + select {
+    margin-left: 10px;
+  }
+  #container .top_table input {
+    line-height: 40px;
+    font-size: 15px;
+    border-radius: 4px;
+  }
+  
+  #container .top_table p + p,
+  #container .top_table input + p {
+    margin-top: 6px;
+  }
+  #container .top_table .in_box {
+    width: calc(100% - 210px);
+  }
+  /* #container .top_table .flex .in_box  {
+      width: 50%;
+  } */
+  #container .top_table .sel_box + .in_box {
+    margin-left: 10px;
+  }
+  .mr_10 {
+    margin-right: 10px;
+  }
+  .table_cont_1 {
+    max-width: 339px;
+    width: 100%;
+  }
+  #container .flex.table_cont_1 .sel_box {
+    width: 100%;
+  }
+  #container .wd_auto {
+    width: auto !important;
+  }
+  
+  #container .top_table .check_box input + label span {
+    margin-right: 10px;
+  }
+
+  
+/* -- main */
+.main .main_cont {
+    margin-bottom: 20px;
+  }
+  .main .main_cont:last-child {
+    margin: 0;
+  }
+  .main .payment_info_sec {
+    display: flex;
+  }
+  .main .w_80 {
+    width: calc(100% - 430px);
+    margin-right: 20px;
+  }
+  .main .w_20 {
+    width: 410px;
+    background: #fff;
+    border-radius: 10px;
+  }
+  .main .payment_info_sec .w_80 {
+    display: flex;
+  }
+  .main .payment_info_row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .main .payment_info_row li {
+    width: calc(25% - 15px);
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px 30px 35px;
+    box-sizing: border-box;
+  }
+  .main .payment_info_row li:not(:last-child) {
+    margin-right: 20px;
+  }
+  .main .payment_info_row .label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .main .payment_info_row .label span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #757575;
+    margin-left: 8px;
+  }
+  .main .all_pay {
+    margin: 30px 0;
+    font-size: 20px;
+  }
+  .main .all_pay b {
+    font-size: 28px;
+    font-weight: 700;
+    margin-right: 3px;
+  }
+  .main .pay_detail dl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .main .pay_detail dl + dl {
+    margin-top: 10px;
+  }
+  .main .pay_detail dl dt {
+    color: #454545;
+  }
+  .main .pay_detail dl:first-child dd {
+    color: #4280ff;
+  }
+  .main .pay_detail dl:last-child dd {
+    color: #ff2c27;
+  }
+  
+  .main .color_cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  .main .color_cont.top {
+    background: #3f73e3;
+  }
+  .main .color_cont.bot {
+    margin-top: 20px;
+    background: #7256cb;
+  }
+  .main .color_cont .left p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .main .color_cont .left span {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+    margin-top: 10px;
+  }
+  .main .color_cont .right {
+    font-size: 20px;
+    color: #fff;
+  }
+  
+  .main .color_cont .right b {
+    font-size: 28px;
+    font-weight: 700;
+    margin-right: 3px;
+  }
+  
+  .calculate_sec {
+    display: flex;
+  }
+  
+  .main .management_info {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 20px 30px;
+  }
+  .main .management_info .ico_ttl {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .main .management_info .ico_ttl i {
+    display: block;
+    width: 38px;
+    height: 38px;
+    background: #3a82f8 no-repeat center;
+    background-image: url(/images/admin/building05.png);
+    border-radius: 6px;
+    margin-right: 8px;
+  }
+  .main .management_info ul {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+  }
+  .main .management_info ul .link_go {
+    color: #454545;
+  }
+  .main .management_info ul .link_go span {
+    color: #4280ff;
+    margin-left: 12px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .main .management_info ul li + li {
+    margin-left: 60px;
+  }
+  .calculate_sec .graph_cont {
+    width: 100%;
+  }
+  .graph_cont {
+    background: #fff;
+    padding: 24px 24px 0;
+    border-radius: 10px;
+  }
+  #chart * {
+    font-family: "Spoqa Han Sans Neo" !important;
+  }
+  
+  #chart .apexcharts-tooltip {
+    min-width: 210px;
+  }
+  #chart .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+    border: none !important;
+    background: #fff !important;
+    font-size: 18px !important;
+    padding: 20px;
+    margin: 0;
+  }
+  #chart .apexcharts-yaxis-texts-g text {
+    fill: #757575;
+    font-size: 15px;
+  }
+  #chart .apexcharts-xaxis text {
+    fill: #757575;
+    font-size: 15px;
+  }
+  #chart .apexcharts-tooltip-series-group {
+    padding: 0 20px;
+    display: none;
+    text-align: left;
+    justify-content: left;
+    align-items: center;
+  }
+  #chart .apexcharts-tooltip-series-group .apexcharts-tooltip-text-y-value {
+    color: #4280ff;
+    font-weight: 500;
+  }
+  #chart .apexcharts-tooltip-series-group + .apexcharts-tooltip-series-group {
+    padding-bottom: 14px;
+  }
+  #chart
+    .apexcharts-tooltip-series-group
+    + .apexcharts-tooltip-series-group
+    .apexcharts-tooltip-text-y-value {
+    color: #ff2c27;
+  }
+  #chart .apexcharts-tooltip-marker {
+    display: none;
+  }
+  #chart .apexcharts-tooltip-text {
+    width: 100%;
+    font-size: 16px !important;
+  }
+  #chart .apexcharts-tooltip-y-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  #chart .apexcharts-legend-text {
+    font-size: 16px !important;
+    color: #757575 !important;
+  }
+  #chart .apexcharts-legend {
+    position: inherit !important;
+    margin-left: 57%;
+  }
+  #chart .apexcharts-xaxistooltip {
+    display: none !important;
+  }
+  
+  .main .cal_item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px 30px 10px;
+  }
+  .main .cal_item .top .sub_ttl {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .main .cal_item .top .sub_ttl span {
+    font-size: 16px;
+    color: #757575;
+    font-weight: 400;
+    margin-left: 6px;
+  }
+  .main .cal_item .bot_list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 10px;
+  }
+  .main .cal_item .bot_list li:not(:last-child) {
+    border-bottom: 1px solid #eeeeee;
+  }
+  .main .cal_item .bot_list li P {
+    display: flex;
+    align-items: center;
+    color: #454545;
+  }
+  .main .cal_item .bot_list li i {
+    display: block;
+    width: 38px;
+    height: 38px;
+    background: no-repeat center;
+    border-radius: 14px;
+    margin-right: 10px;
+  }
+  .main .cal_item .bot_list li.cont_01 i {
+    background-color: #699ff7;
+    background-image: url("/images/admin/money.png");
+  }
+  .main .cal_item .bot_list li.cont_02 i {
+    background-color: #ffa001;
+    background-image: url(/images/admin/building01.png);
+  }
+  .main .cal_item .bot_list li.cont_03 i {
+    background-color: #ff6761;
+    background-image: url(/images/admin/building02.png);
+  }
+  .main .cal_item .bot_list li.cont_04 i {
+    background-color: #49c49d;
+    background-image: url(/images/admin/building03.png);
+  }
+  .main .cal_item .bot_list li.cont_05 i {
+    background-color: #bcbecb;
+    background-image: url(/images/admin/building04.png);
+  }
+  .main .cal_item .bot_list li em {
+    color: #ff2c27;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .main .bod_list_wrap {
+    display: flex;
+  }
+  .main .bod_list_wrap > li {
+    width: calc(100% / 3 - 13.333px);
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+  }
+  .main .bod_list_wrap > li:not(:last-child) {
+    margin-right: 20px;
+  }
+  .main .bod_list_wrap .ttl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  .main .bod_list_wrap .ttl strong {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .main .bod_list_wrap .ttl a {
+    color: #454545;
+    display: flex;
+    align-items: center;
+  }
+  .main .bod_list_wrap .ttl a i {
+    margin-left: 6px;
+    font-family: dotum;
+}
+  .main .bod_list_wrap .bod_list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .main .bod_list_wrap .bod_list a .sb_ttl {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #454545;
+  }
+  .main .bod_list_wrap .bod_list a .date {
+    color: #757575;
+    margin-left: 10px;
+  }
+  .main .bod_list_wrap .bod_list li + li {
+    margin-top: 10px;
+  }

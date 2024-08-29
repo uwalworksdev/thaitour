@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Banner_model;
-use App\Models\Bbs_list_model;
 use App\Models\Product_model;
 use CodeIgniter\Controller;
 use App\Config\CustomConstants;
@@ -23,7 +22,7 @@ class Product extends BaseController
         $this->db = db_connect();
         $this->bannerModel = model("Banner_model");
         $this->productModel = model("Product_model");
-        $this->bbsListModel = model("Bbs_list_model");
+        $this->bbsListModel = model("Bbs");
         helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
@@ -478,6 +477,86 @@ class Product extends BaseController
             ];
 
             return view('product/product-spa', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function index5($code_no)
+    {
+        try {
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'pager' => $pager,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+                'tab_active' => '1',
+            ];
+
+            return view('product/list-hotel', $data);
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function index6($code_no)
+    {
+        try {
+            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $perPage = 5;
+
+            $banners = $this->bannerModel->getBanners($code_no);
+            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+
+            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+
+            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+
+            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $pager = \Config\Services::pager();
+
+            $data = [
+                'banners' => $banners,
+                'codeBanners' => $codeBanners,
+                'suggestedProducts' => $suggestedProducts,
+                'products' => $products,
+                'code_no' => $code_no,
+                's' => $s,
+                'pager' => $pager,
+                'perPage' => $perPage,
+                'totalProducts' => $totalProducts,
+                'tab_active' => '1',
+            ];
+
+            return view('product/hotel-details', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([

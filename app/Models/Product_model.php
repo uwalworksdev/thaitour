@@ -117,10 +117,17 @@ class Product_model extends Model
 
         $offset = ($page - 1) * $perPage;
 
-        return $this->where($code_col, $code_no)
-            ->where('is_view', 'Y')
-            ->orderBy($order_by)
-            ->findAll($perPage, $offset);
+        $builder = $this->builder();
+
+        if ($code_col) {
+            $builder->where($code_col, $code_no);
+        }
+
+        $builder->where('is_view', 'Y');
+        $builder->orderBy($order_by);
+        $builder->limit($perPage, $offset);
+
+        return $builder->get()->getResultArray();
     }
 
     public function getCodes($parent_code_no)
@@ -373,5 +380,15 @@ class Product_model extends Model
             ->where('code_no', $code_no)
             ->get()
             ->getRowArray();
+    }
+    public function getProductsByEvent($bbs_idx)
+    {
+        return $this->db->table('tbl_product_mst a')
+                        ->select('a.product_name, a.product_idx, a.product_code, a.is_view, b.onum, b.code_idx')
+                        ->join('tbl_event_disp b', 'a.product_idx = b.product_idx')
+                        ->where('b.code_no', $bbs_idx)
+                        ->orderBy('b.onum', 'ASC')
+                        ->get()
+                        ->getResultArray();
     }
 }

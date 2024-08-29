@@ -6,32 +6,42 @@ $sns = session('sns') ?? [];
 $naver = session('naver') ?? [];
 $google = session('google') ?? [];
 $facebook = session('facebook') ?? [];
+$kakao = session('kakao') ?? [];
 $member = session('member') ?? [];
+$sns_gubun = $sns['gubun'] ?? '';
+$user_name = '';
 
-if ($sns['gubun'] == "naver") {
-    $gubun = $sns['gubun'];
+if ($sns_gubun == "naver") {
+    $gubun = $sns_gubun;
     $userEmail = $naver['userEmail'];
     $userId = $naver['user_id'];
     $sns_key = $naver['sns_key'];
-} else if ($sns['gubun'] == "google") {
-    $gubun = $sns['gubun'];
+} else if ($sns_gubun == "google") {
+    $gubun = $sns_gubun;
     $userEmail = $google['userEmail'];
     $userId = $google['user_id'];
     $sns_key = $google['sns_key'];
-} else if ($sns['gubun'] == "facebook") {
-    $gubun = $sns['gubun'];
+} else if ($sns_gubun == "facebook") {
+    $gubun = $sns_gubun;
     $userEmail = $facebook['userEmail'];
     $userId = $facebook['user_id'];
     $sns_key = $facebook['sns_key'];
+} else if ($sns_gubun == "kakao") {
+    $gubun = $sns_gubun;
+    $userEmail = updateSQ($_POST["userEmail"] ?? "");
+    $userId = "kakao_" . updateSQ($_POST["sns_key"] ?? "");
+    $sns_key = $kakao['sns_key'];
 } else {
-    $userEmail = updateSQ($_POST["userEmail"]);
-    $userId = "kakao_" . updateSQ($_POST["sns_key"]);
+    $gubun = "";
+    $userEmail = updateSQ($_POST["userEmail"] ?? "");
+    $userId = "";
+    $sns_key = "";
 }
 
 $email = explode("@", $userEmail);
 
 // 실명인증 확인
-$real_code = $_REQUEST['real_code'];
+$real_code = $_REQUEST['real_code'] ?? "";
 $real_info = session('REAL_' . $real_code);
 // CMS 클래스
 // require_once ($_SERVER['DOCUMENT_ROOT'] . "/class/JkCms.php");
@@ -44,8 +54,8 @@ $real_info = session('REAL_' . $real_code);
        exit;
    }
    */
-
-if ($member["mIdx"] != "") {
+$mIdx = $_REQUEST['mIdx'] ?? "";
+if ($mIdx != "") {
     echo "<script> document.location.href = '/'; </script>";
     exit;
 }
@@ -120,10 +130,10 @@ if ($member["mIdx"] != "") {
                                         <div class="input-row">
                                             <div class="email_row">
                                                 <input name="user_email_1_1" id="user_email_1_1" type="text"
-                                                    class="bs-input" size="30" value="<?= $email[0] ?>">
+                                                    class="bs-input" size="30" value="<?= $email[0] ?? "" ?>">
                                                 <span>@</span>
                                                 <input type="email" name="user_email_1_2" id="user_email_1_2"
-                                                    class="email02 bs-input domain_input" value="<?= $email[1] ?>"
+                                                    class="email02 bs-input domain_input" value="<?= $email[1] ?? "" ?>"
                                                     disabled>
                                                 <select name="res_email_sel" class="bs-select domain_list">
                                                     <option value="">선택</option>
@@ -230,8 +240,8 @@ if ($member["mIdx"] != "") {
         <form name="reg_mem_fm" id="reg_mem_fm" action="member_reg_ok" method="post"
             onsubmit="return fn_submit(this);" enctype="multipart/form-data"> <!--  -->
             <input type="hidden" name="cert_type" id="cert_type" value="mobile">
-            <input type="hidden" name="cert_yn_1" id="cert_yn_1" value="Y">
-            <input type="hidden" name="cert_yn_2" id="cert_yn_2" value="Y">
+            <input type="hidden" name="cert_yn_1" id="cert_yn_1" value="">
+            <input type="hidden" name="cert_yn_2" id="cert_yn_2" value="">
             <?php if ($gubun != "" || $sns_key != "") { ?>
                 <input type="hidden" name="user_id" id="user_id" value="<?= $userId ?>">
             <?php } ?>
@@ -272,7 +282,7 @@ if ($member["mIdx"] != "") {
                     <div class="input-wrap">
                         <label class="label">비밀번호*</label>
                         <div class="input-row">
-                            <input type="password" name="user_pw" id="user_pw" class="bs-input">
+                            <input type="password" name="user_pw" id="user_pw" class="bs-input" autocomplete="new-password">
                         </div>
                         <p class="caption passwdWarning1 gray">6 ~ 15자의 영문 대/소문자, 숫자, 특수문자를 사용하세요.</p>
                         <p class="caption passwdWarning1 red">비밀번호는 8~20자의 영문 대/소문자, 숫자, 특수문자 등 3종류 이상으로 조합해주세요.</p>
@@ -383,7 +393,7 @@ if ($member["mIdx"] != "") {
             </div>
             <br><br>
             <div class="btn-wrap">
-                <button onclick="fn_submit();" class="btn btn-lg btn-point">다음</button>
+                <button type="submit" class="btn btn-lg btn-point">다음</button>
             </div>
 
 
@@ -548,8 +558,8 @@ if ($member["mIdx"] != "") {
 
 
         $.ajax({
-            url: "phone_chk_ajax.php",
-            type: "GET",
+            url: "phone_chk_ajax",
+            type: "POST",
             data: "tophone=" + tophone,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
@@ -563,11 +573,11 @@ if ($member["mIdx"] != "") {
 
                 if (response == "Y") {
                     console.log(response, '=============')
-                    // alert("문자가 발송되었습니다.");
-                    $("#certi_num_1").focus();
+                    alert("문자가 발송되었습니다.");
                     return false;
                 } else {
                     alert(response);
+                    $("#certi_num_1").focus();
                     return false;
                 }
             }
@@ -586,8 +596,8 @@ if ($member["mIdx"] != "") {
         }
 
         $.ajax({
-            url: "num_chk_ajax.php",
-            type: "GET",
+            url: "num_chk_ajax",
+            type: "POST",
             data: "chkNum=" + chkNum,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
@@ -626,12 +636,10 @@ if ($member["mIdx"] != "") {
         }
 
         var email = $("#user_email_2_1").val() + '@' + $("#user_email_2_2").val();
-        //ifm_chks.location.href="phone_chk_ajax.php?tophone="+tophone;
-
 
         $.ajax({
-            url: "email_chk_ajax.php",
-            type: "GET",
+            url: "email_chk_ajax",
+            type: "POST",
             data: "email=" + email,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
@@ -645,10 +653,10 @@ if ($member["mIdx"] != "") {
 
                 if (response == "Y") {
                     alert("인증문자가 이메일로 발송되었습니다.");
-                    $("#certi_num_2").focus();
                     return false;
                 } else {
                     alert(response);
+                    $("#certi_num_2").focus();
                     return false;
                 }
             }
@@ -664,9 +672,9 @@ if ($member["mIdx"] != "") {
         }
 
         $.ajax({
-            url: "num_chk2_ajax.php",
+            url: "num_chk2_ajax",
             data: "chkNum=" + $('#certi_num_2').val(),
-            type: "GET",
+            type: "POST",
             error: function (request, status, error) {
                 alert("CODE : " + request.status + "\r\nmessage : " + request.reponseText);
                 return false;
@@ -808,7 +816,6 @@ if ($member["mIdx"] != "") {
             hiddenFrame22.location.href = "find_id_ok.php?mobile=" + mobile + "&user_name=" + frm.user_name.value +
                 "&gubun=" + gubun;
 
-
         } else {
             gubun = "A2";
 
@@ -872,11 +879,29 @@ if ($member["mIdx"] != "") {
     function fn_submit() {
         var frm = document.reg_mem_fm;
 
-        // var captchaValue = $("#hidden_captcha").val();
-        // var userInputCaptcha = $("#captcha_input").val();
         if ($("#cert_type").val() == "mobile") {
+
+            if ($("#mobile_1_1").val() == "") {
+                alert("휴대폰 입력해주세요.");
+                $("#mobile_1_1").focus();
+                return false;
+            }
+
+            if ($("#mobile_1_2").val() == "") {
+                alert("휴대폰 입력해주세요.");
+                $("#mobile_1_2").focus();
+                return false;
+            }
+
+            if ($("#mobile_1_3").val() == "") {
+                alert("휴대폰 입력해주세요.");
+                $("#mobile_1_3").focus();
+                return false;
+            }
+
             if ($("#cert_yn_1").val() != "Y") {
                 alert("휴대폰 인증을 해주세요.");
+                $("#certi_num_1").focus();
                 return false;
             }
 
@@ -894,15 +919,12 @@ if ($member["mIdx"] != "") {
                 return false;
             }
 
-
-
             var email = $("#user_email_1_1").val() + '@' + $("#user_email_1_2").val();
 
             $("#user_mobile").val(mobile);
             $("#user_email").val(email);
 
-        }
-        else {
+        } else {
             if ($("#cert_yn_2").val() != "Y") {
                 alert("이메일 인증을 해주세요.");
                 return false;
@@ -1046,7 +1068,24 @@ if ($member["mIdx"] != "") {
                     return false;
                 }
         */
-        frm.submit();
+       $.ajax({
+           type: "POST",
+           url: $(frm).attr("action"),
+           data: $(frm).serialize(),
+           dataType: "json",
+           success: function (data) {
+            if (data.message == "success") {
+                location.replace("/member/join_complete")
+            } else {
+                alert(data.message);
+            }
+           },
+           error: function (data) {
+               console.log(data);
+               alert(data.message);
+           }
+       })
+       return false;
     }
 
     let idReg = /^(?=.*[a-zA-Z])(?=.*[0-9]).{4,16}$/; //대/소문자 + 숫자 + 특수문자

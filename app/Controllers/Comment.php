@@ -27,7 +27,13 @@ class Comment extends BaseController
     {
         $r_code = $this->request->getVar("r_code");
         $r_idx = updateSQ($this->request->getVar("r_idx"));
-        $list = getComment($this->comment->getComments($r_code, $r_idx, private_key()), $r_code, $r_idx);
+        $role = updateSQ($this->request->getVar("role"));
+        $commentsArray = $this->comment->getComments($r_code, $r_idx, private_key());
+        if ($role == "admin") {
+            $list = generateCommentsAdminHTML($commentsArray, $r_code, $r_idx);
+        } else {
+            $list = getComment($commentsArray, $r_code, $r_idx);
+        }
         return $list;
     }
     public function addComment()

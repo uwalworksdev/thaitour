@@ -12,7 +12,7 @@
                 <h1>Welcome to Back<br> Thaitour CMS</h1>
             </div>
             <div class="login_form">
-                <form action="/adm/login" method="post" name="loginForm">
+                <form action="/AdmMaster/login" method="post" name="loginForm">
                     <div class="login_box">
                         <h2>관리자 로그인</h2>
 

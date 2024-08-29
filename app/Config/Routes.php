@@ -8,64 +8,123 @@ use CodeIgniter\Router\RouteCollection;
 
 
 
-$routes->group("/adm", static function ($routes) {
+$routes->group("AdmMaster", static function ($routes) {
 
     $routes->get("", "AdminLogin::loginView");
     $routes->post("login", "AdminLogin::LoginCheckAjax");
     $routes->get("logout", "AdminLogin::Logout");
 
-    // 게시판
-    $routes->group("board", static function ($routes) {
-        $routes->get("(:segment)/list", "Board::ListView/$1");
-        $routes->get("(:segment)/write", "Board::WriteView/$1");
-        $routes->get("(:segment)/write/(:segment)", "Board::WriteView/$1/$2");
-        // $routes->get("(:segment)/view", "");
-        $routes->post("(:segment)/insert", "Board::WriteInsert/$1");
-        $routes->post("(:segment)/update/(:segment)", "Board::WriteUpdate/$1/$2");
-        $routes->get('dnload/(:segment)', "Filedown::dnload/$1");
-        $routes->post('(:segment)/delete', "Board::delPost/$1");
+    $routes->get("main", "StatisticsController::main");
 
-        $routes->post("(:segment)/onum", "Board::OnumChange/$1");
-    });
-    $routes->group("{locale}/board", static function ($routes) {
-        $routes->get("(:segment)/list", "Board::ListView/$1");
-        $routes->get("(:segment)/write", "Board::WriteView/$1");
-        $routes->get("(:segment)/write/(:segment)", "Board::WriteView/$1/$2");
-        // $routes->get("(:segment)/view", "");
-        $routes->post("(:segment)/insert", "Board::WriteInsert/$1");
-        $routes->post("(:segment)/update/(:segment)", "Board::WriteUpdate/$1/$2");
-        $routes->get('dnload/(:segment)', "Filedown::dnload/$1");
-        $routes->post('(:segment)/delete', "Board::delPost/$1");
-
-        $routes->post("(:segment)/onum", "Board::OnumChange/$1");
+    $routes->group("_review", static function ($routes) {
+        $routes->get("list", "ReviewController::list_admin");
+        $routes->get("write", "ReviewController::write_admin");
+        $routes->get("detail", "ReviewController::detail_admin");
+        $routes->post("change_ajax", "ReviewController::change_ajax");
+        
+        $routes->post("del", "ReviewController::del");
+        $routes->post("ajax_del", "ReviewController::ajax_del");
     });
 
-    // 회원(서브관리자,관리자)
-    $routes->group("member", static function ($routes) {
-        $routes->get("admin/change", "Member::AdminPasswordChange");
-        $routes->post("admin/change", "Member::AdminPasswordUpdate");
-        // $routes->get("(:segment)/list", "");
-        // $routes->get("(:segment)/write", "");
-        // $routes->get("(:segment)/view", "");
-        // $routes->post("(:segment)/insert", "");
-        // $routes->post("(:segment)/update/(:segment)", "");
+    $routes->group("_member", static function ($routes) {
+        $routes->get("list", "Member::list_member");
+        $routes->post("del", "Member::del");
+        $routes->get("email", "AutoMailController::index");
+        $routes->get("sms", "SmsSettings::index");
+        $routes->get("write", "Member::detail");
+        $routes->get("sms_view", "SmsSettings::sms_view");
+        $routes->post("sms_mod_ok", "SmsSettings::sms_mod_ok");
+        $routes->get("email_view", "AutoMailController::email_view");
+        $routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
+        // $routes->post("del", "TourRegistController::del");
+        // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
-    // 다운로드 파일
-    // 메인페이지,회사소개(CI)
-    // $routes->group("download", static function($routes){
-    //     $routes->get("(:segment)", "");
-    //     // $routes->get("(:segment)/write", "");
-    //     // $routes->get("(:segment)/view", "");
-    //     $routes->post("(:segment)/insert", "");
-    //     $routes->post("(:segment)/update", "");
-    // });
+    $routes->group("_bbs", static function ($routes) {
+        $routes->get("board_list", "BoardController::index");
+        $routes->get("board_write", "BoardController::board_write");
+        $routes->get("board_list_q", "BoardController::index2");
+        // $routes->get("email", "AutoMailController::index");
+        // $routes->get("sms", "SmsSettings::index");
+        // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
+        // $routes->get("list_tours", "TourRegistController::list_admin");
+        // $routes->get("list_golf", "TourRegistController::list_admin");
+        // $routes->get("_tourStay", "TourRegistController::list_admin");
+        // $routes->post("del", "TourRegistController::del");
+        // $routes->post("ajax_del", "TourRegistController::ajax_del");
+    });
 
-    $routes->group("setting", static function ($routes) {
+    $routes->group("_code", static function ($routes) {
+        $routes->get("list", "CodeController::list_admin");
+        $routes->get("write", "CodeController::write_admin");
+        $routes->post("write_ok", "CodeController::write_ok");
+        $routes->post("change", "CodeController::change_ajax");
+        $routes->post("del", "CodeController::del");
+    });
+
+    $routes->group("_tourRegist", static function ($routes) {
+        $routes->get("list", "TourRegistController::list_admin");
+        $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
+        $routes->get("list_tours", "TourRegistController::list_admin");
+        $routes->get("list_golf", "TourRegistController::list_admin");
+        $routes->get("_tourStay", "TourRegistController::list_admin");
+        $routes->post("del", "TourRegistController::del");
+        $routes->post("ajax_del", "TourRegistController::ajax_del");
+    });
+
+    $routes->group("_tourSuggestion", static function ($routes) {
+        $routes->get("list", "TourSuggestionController::list_admin");
+        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
+        $routes->get("list_tours", "TourSuggestionController::list_admin");
+        $routes->get("list_golf", "TourSuggestionController::list_admin");
+        $routes->get("_tourStay", "TourSuggestionController::list_admin");
+        $routes->post("del", "TourSuggestionController::del");
+        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+    });
+
+    $routes->group("_tourSuggestionSub", static function ($routes) {
+        $routes->get("list", "TourSuggestionController::list_admin");
+        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
+        $routes->get("list_tours", "TourSuggestionController::list_admin");
+        $routes->get("list_golf", "TourSuggestionController::list_admin");
+        $routes->get("_tourStay", "TourSuggestionController::list_admin");
+        $routes->post("del", "TourSuggestionController::del");
+        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+    });
+
+    $routes->group("_tourLevel", static function ($routes) {
+        $routes->get("list", "TourSuggestionController::list_admin");
+        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
+        $routes->get("list_tours", "TourSuggestionController::list_admin");
+        $routes->get("list_golf", "TourSuggestionController::list_admin");
+        $routes->get("_tourStay", "TourSuggestionController::list_admin");
+        $routes->post("del", "TourSuggestionController::del");
+        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+    });
+
+    $routes->group("_tourOption", static function ($routes) {
+        $routes->get("list", "TourSuggestionController::list_admin");
+        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
+        $routes->get("list_tours", "TourSuggestionController::list_admin");
+        $routes->get("list_golf", "TourSuggestionController::list_admin");
+        $routes->get("_tourStay", "TourSuggestionController::list_admin");
+        $routes->post("del", "TourSuggestionController::del");
+        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+    });
+
+    $routes->group("_tourStay", static function ($routes) {
+        $routes->get("list", "TourSuggestionController::list_admin");
+        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
+        $routes->get("list_tours", "TourSuggestionController::list_admin");
+        $routes->get("list_golf", "TourSuggestionController::list_admin");
+        $routes->get("_tourStay", "TourSuggestionController::list_admin");
+        $routes->post("del", "TourSuggestionController::del");
+        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+    });
+
+    $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
-        $routes->group("site", static function ($routes) {
-            $routes->get("", "Setting::writeView");
-            $routes->post("update", "Setting::writeUpdate");
-        });
+        $routes->get("setting", "Setting::writeView");
+        $routes->post("update", "Setting::writeUpdate");
         // 팝업
         $routes->group("popup", static function ($routes) {
             $routes->get("list", "Popup::ListView");
@@ -79,6 +138,9 @@ $routes->group("/adm", static function ($routes) {
         });
         $routes->get("policy", "Policy::WriteView");
     });
+});
+$routes->group("ajax", static function ($routes) {
+    $routes->post("uploader", "AjaxController::uploader");
 });
 $routes->get('/', 'Home::index');
 $routes->group("tools", static function ($routes) {
@@ -98,6 +160,11 @@ $routes->group("member", static function ($routes) {
     $routes->post("member_reg_ok"       , "Member::RegOk");
     $routes->get("id_chk_ajax"          , "Member::IdCheck");
     $routes->get("logout"               , "Member::Logout");
+    $routes->post("phone_chk_ajax"      , "Member::phone_chk_ajax");
+    $routes->post("email_chk_ajax"      , "Member::email_chk_ajax");
+    $routes->post("num_chk_ajax"        , "Member::num_chk_ajax");
+    $routes->post("num_chk2_ajax"       , "Member::num_chk2_ajax");
+    $routes->post("update/(:segment)"   , "Member::update_member/$1");
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details"              , "MyPage::details");
@@ -134,6 +201,11 @@ $routes->group("community", static function ($routes) {
     $routes->get("main"                 , "Community::main");
     $routes->get("questions"            , "Community::questions");
     $routes->get("announcement"         , "Community::announcement");
+    $routes->get("customer_center"      , "Community::customer_center");
+    $routes->get("customer_center/notify"      , "Community::customer_center_notify");
+    $routes->get("customer_center/list_notify"      , "Community::list_notify");
+    $routes->get("customer_center/notify_table"      , "Community::notify_table");
+    $routes->get("customer_center/customer_speak"      , "Community::customer_speak");
     $routes->get("announcement_view"    , "Community::announcement_view");
 });
 $routes->group("contact", static function ($routes) {
@@ -184,6 +256,8 @@ $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('show-ticket', 'Product::showTicket');
 $routes->get('vehicle-guide', 'Product::vehicleGuide');
 $routes->get('product-list/(:any)', 'Product::index/$1');
+$routes->get('product-hotel/list-hotel/(:any)', 'Product::index5/$1');
+$routes->get('product-hotel/hotel-detail/(:any)', 'Product::index6/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');

@@ -118,14 +118,14 @@
             <div class="footer_l">
                 <div class="ft_logo">
                     <img src="/images/sub/logo_footer.png" alt="" class="only_web">
-                    <img src="/uploads/sub/logo_footer_m.png" alt="" class="only_mo">
+                    <img src="/images/sub/logo_footer_m.png" alt="" class="only_mo">
                 </div>
                 <div class="add_footer">
-                    <p>대표이사 : 홍길동<br>
-                        서울시 중구 세종대로21길 49 오양수산빌딩 602호<br>
+                    <p>대표이사 : 김영환                    <br>
+                        충청북도 청주시 상당구 문의면 미천고은로 269-26(솔로몬가구)<br>
                         이메일 : thetourlab@naver.com<br>
-                        한국 사업자번호 101-86-79949<br>
-                        태국 사업자번호 010-5555-096-398</p>
+                        한국 사업자번호 214-19-20927<br>
+                        태국 사업자번호 0105565060507</p>
                 </div>
                 <div>
                     <div class="custom-select2">
@@ -188,6 +188,8 @@
             loop: true,
             slidesPerView: 1,
             spaceBetween: 5,
+            autoplay: true,
+            speed: 2000,
             navigation: {
                 nextEl: ".notice_swiper_btn_next",
                 prevEl: ".notice_swiper_btn_prev",

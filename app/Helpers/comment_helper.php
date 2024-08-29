@@ -75,3 +75,70 @@ function getComment($list, $r_code, $r_idx)
     $html .= '</script>';
     return $html;
 }
+function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId = 0, $level = 1)
+{
+    $comments = fetchCommentsFromDatabase($commentsArray, $parentCommentId, $level);
+    $html = '';
+
+    foreach ($comments as $comment) {
+        if ($comment['user_level'] == 1) {
+            $avatar = "/AdmMaster/_images/hi_avatar.jpg";
+        } else if ($comment['user_level'] == 2) {
+            $avatar = "/data/member/" . $comment['user_avatar'];
+        } else {
+            $avatar = "/assets/img/event/user_2.png";
+        }
+        $is_reported = !!$comment['report_idx'];
+        $should_show = $comment['report_state'] == '2';
+
+        $html .= '<tr class="' . ($is_reported && !$should_show ? "reported" : "") . '" style="position: relative;">';
+        $html .= '<td><div class="user_info">';
+        $html .= '<img src="' . $avatar . '" class="user_avatar" width="100px" height="100px" alt="">';
+        $html .= '<div class="user_info_1">';
+        $html .= '<p class="user-name">' . $comment['user_name'];
+        if ($r_code == "qna") {
+            $html .= ' <span style="color: #757575;">' . $comment['user_post'] . '</span>';
+        }
+        $html .= '</p><p>' . $comment['user_phone'] . '</p><p>' . $comment['user_email'] . '</p></div></div></td>';
+        $html .= '<td><div class="user-comment" id="rrp_content_' . $comment['r_cmt_idx'] . '">';
+        $html .= nl2br($comment['r_content']);
+        $html .= '</div><div class="comment-input write_box flex" id="rrp_edit_' . $comment['r_cmt_idx'] . '" style="display: none;" tabindex="0" onblur="handleBlurEdit(' . $comment['r_cmt_idx'] . ')">';
+        $html .= '<input type="hidden" value="' . $comment['r_cmt_idx'] . '">';
+        $html .= '<textarea class="cmt_input" onblur="handleBlurEdit1(' . $comment['r_cmt_idx'] . ', event)" name="comment" id="contents" placeholder="댓글을 입력해주세요.">' . nl2br(viewSQ($comment['r_content'])) . '</textarea>';
+        $html .= '<button class="btn btn-point btn-lg comment_btn" type="button" onclick="handleCmtEditSubmit(event, ' . $comment['r_cmt_idx'] . ')">수정</button>';
+        $html .= '</div><p class="cmt_date">' . date("Y.m.d H:i", strtotime($comment['r_reg_date'])) . '</p></td>';
+        $html .= '<td class="user-operation">';
+        if ($is_reported) {
+            $html .= '<select name="report_state" id="report_state" onchange="handleUpdateReportState(\'' . $comment['report_idx'] . '\', this.value)">';
+            $html .= '<option value="0" ' . ($comment['report_state'] == "0" ? "selected" : "") . '>신고접수</option>';
+            $html .= '<option value="1" ' . ($comment['report_state'] == "1" ? "selected" : "") . '>비노출</option>';
+            $html .= '<option value="2" ' . ($comment['report_state'] == "2" ? "selected" : "") . '>계속노출</option>';
+            $html .= '</select>';
+        }
+        if ($_SESSION['member']['idx'] == $comment['r_m_idx']) {
+            $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
+        }
+        if ($_SESSION['member']['idx'] == $comment['r_m_idx'] || $_SESSION['member']['id'] == "admin") {
+            $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
+        }
+        if ($is_reported && !$should_show) {
+            $html .= '<div class="report_area">이 댓글이 신고된 댓글입니다. <br>신고사유 : ' . $comment['report_reason'] . '</div>';
+        }
+        $html .= '</td></tr>';
+
+        if ($level < 5) {
+            $html .= displayCommentsAdmin($commentsArray, $r_code, $r_idx, $comment['r_cmt_idx'], $level + 1);
+        }
+    }
+
+    return $html;
+}
+function generateCommentsAdminHTML($commentsArray, $r_code, $r_idx)
+{
+    $html = '<table class="comment"><colgroup><col width="20%"><col width="70%"><col width="10%"></colgroup><tbody>';
+    $html .= displayCommentsAdmin($commentsArray, $r_code, $r_idx);
+    $html .= '</tbody></table>';
+    $html .= '<script>$("#comment_count").text("(' . count($commentsArray) . ')")</script>';
+
+    return $html;
+}

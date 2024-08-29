@@ -8,12 +8,14 @@ class AdminLogin extends BaseController {
 
     protected $db;
     protected $session;
+    protected $member;
 
 
     public function __construct()
     {
         helper("html");
         $this->db = db_connect();
+        $this->member = model("Member");
 
         $this->session = \Config\Services::session();
 
@@ -22,7 +24,7 @@ class AdminLogin extends BaseController {
 
     public function LoginView(){
         $scripts = [];
-        array_push($scripts, script_tag(["src"=>"js/admin/login.js", "defer"=>false]));
+        array_push($scripts, script_tag(["src"=>"js/admin/login.js?version=1", "defer"=>false]));
 
         
         return view("admin/login",[
@@ -32,55 +34,52 @@ class AdminLogin extends BaseController {
 
     public function LoginCheckAjax(){
 
-        $ajax = $this->request->isAJAX();
-        $userId = $this->request->getPost('user_id');
-        $userPw = $this->request->getPost('user_pw');
+        $user_id = $this->request->getPost('user_id');
+        $user_pw = $this->request->getPost('user_pw');
 
-        try{
+        $row = $this->member->getAdminLogin($user_id);
 
-            if(!$this->validate('login')) {
-                $errors = $this->validator->getErrors();
-                $errorMessage = array_values($errors)[0];
-                throw new Exception($errorMessage);
-            }
+        $resultArr = [];
 
-            $builder = $this->db->table('tbl_member');
-            $builder->where('user_id', $userId);
-            $query = $builder->get();
-            $result = $query->getRow();
-
-            if ($result) {
-
-                if ($result->user_level != '1') {
-                    throw new Exception("탙퇴한 회원 입니다.");
-                }
-                // if ($result->member_grade != '1') {
-                //     throw new Exception("권한이 없습니다.");
-                // }
-
-                // if (!password_verify($userPw, $result->member_pw)) {
-                //     throw new Exception("패스워드를 확인 하세요.");
-                // }
-            }else{
-                throw new Exception("존재 하지 않는 아이디 입니다.");
-            }           
-            $this->session->set('user_id', $userId);
-            $this->session->set('user_name', $result->user_name);
-            $this->session->set('create_at', time());
-
-            $resultArr['result'] = true;
-            $resultArr['location'] = url_to('Setting::writeView');
-
-        }catch(Exception $err){
-
+        if (!$row) {
             $resultArr['result'] = false;
-            $resultArr['message'] = $err->getMessage();
-
-        } finally {
-
+            $resultArr['message'] = '존재하지 않는 아이디입니다.';
             return $this->response->setJSON($resultArr);
-
         }
+
+        if ($row["user_pw"] != $this->member->sql_password($user_pw)) {
+            $resultArr['result'] = false;
+            $resultArr['message'] = '패스워드가 일치하지 않습니다.';
+            return $this->response->setJSON($resultArr);
+        }
+
+        if ($row['status'] == 'N') {
+            $resultArr['result'] = false;
+            $resultArr['message'] = '현재 인증대기중입니다.';
+            return $this->response->setJSON($resultArr);
+        }
+
+        if ($row['user_level'] > 2) {
+            $resultArr['result'] = false;
+            $resultArr['message'] = '로그인 하실 권한이 없으십니다.';
+            return $this->response->setJSON($resultArr);
+        }
+
+        $this->session->set('member', [
+            'id'    => $row['user_id'],
+            'idx'   => $row['m_idx'],
+            'mIdx'  => $row['m_idx'],
+            'name'  => $row['user_name'],
+            'level' => $row['user_level'],
+            'm_auth'=> $row['auth']
+        ]);
+
+        $this->session->set('create_at', time());
+
+        $resultArr['result'] = true;
+        $resultArr['location'] = '/AdmMaster/main';
+
+        return $this->response->setJSON($resultArr);
     }
 
     public function LogoutAjax(){
@@ -90,6 +89,6 @@ class AdminLogin extends BaseController {
     public function Logout()
     {
         $this->session->destroy();
-        return redirect()->to('/adm');
+        return redirect()->to('/AdmMaster');
     }
 }

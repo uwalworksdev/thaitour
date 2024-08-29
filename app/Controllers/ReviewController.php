@@ -48,6 +48,111 @@ class ReviewController extends BaseController
             "category" => $category
         ]);
     }
+    public function list_admin()
+    {
+        $deviceType = get_device();
+        $page = $this->request->getVar('page');
+        $s_txt = $this->request->getVar('s_txt');
+        $search_category = $this->request->getVar('search_category');
+        $search_gubun = $this->request->getVar('search_gubun');
+        $currentUri = $this->request->getUri()->getPath();
+        $g_list_rows = 10;
+
+        $category = $_GET['category'] ?? null;
+
+        $visual = $this->Bbs->List("banner", ['category' => '117'])->get()->getRowArray();
+
+        $best_review = $this->ReviewModel->getBestReviews($s_txt, $search_category);
+
+        $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, $g_list_rows);
+
+        return view("admin/_review/list", [
+            "best_review" => $best_review,
+            "visual" => $visual,
+            "review_list" => $resultObj['review_list'],
+            "nTotalCount" => $resultObj['total_cnt'],
+            "pg" => $resultObj['page'],
+            "nPage" => $resultObj['total_page'],
+            "num" => $resultObj['no'],
+            "s_txt" => $s_txt,
+            "search_category" => $search_category,
+            "currentUri" => $currentUri,
+            "deviceType" => $deviceType,
+            "category" => $category,
+            'search_gubun' => $search_gubun,
+            'g_list_rows' => $g_list_rows
+        ]);
+    }
+    public function write_admin() {
+        $idx			= updateSQ($_GET['idx']);
+        $row			= null;
+        if ($idx) {
+            $row = $this->ReviewModel->find($idx);
+        }
+        return view("admin/_review/write", [
+            "row" => $row,
+        ]);
+    }
+    public function detail_admin() {
+        $idx = updateSQ($_GET['idx']);
+        $row = $this->ReviewModel->getReview($idx);
+        return view("admin/_review/detail", [
+            "row" => $row
+        ]);
+    }
+    public function change_ajax() {
+        $idx = $this->request->getPost('idx_change');
+        $onum = $this->request->getPost('onum');
+        $display = $this->request->getPost('display');
+        $is_best = $this->request->getPost('is_best');
+
+        $success = true;
+
+        foreach ($idx as $i => $id) {
+            $data = [
+                'onum' => $onum[$i],
+                'display' => $display[$i],
+                'is_best' => $is_best[$i]
+            ];
+
+            if (!$this->ReviewModel->update($id, $data)) {
+                $success = false;
+                break;
+            }
+        }
+
+        $msg = $success ? "순위변경되었습니다." : "순위변경실패!!!";
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+    public function del() {
+        $idx = $this->request->getPost('idx');
+        $mode = $this->request->getPost('mode');
+
+        foreach ($idx as $id) {
+            $this->ReviewModel->delete($id);
+        }
+
+        if ($mode == "view") {
+            return $this->response->setBody("<script>
+                    alert('삭제처리되었습니다.');
+                    parent.history.back();
+                  </script>");
+        } else {
+            return $this->response->setBody('OK');
+        }
+    }
+    public function ajax_del() {
+        $idx = $this->request->getPost('idx');
+
+        if ($this->ReviewModel->delete($idx)) {
+            $msg = "삭제 성공.";
+        } else {
+            $msg = "삭제 오류.";
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
     public function detail_review()
     {
         $idx = updateSQ($_GET["idx"]);
@@ -194,19 +299,35 @@ class ReviewController extends BaseController
             "ufile2" => $this->request->getFile("ufile2"),
         ];
         $session = session();
+        $role = updateSQText($data['role']);
+
+        $idx = updateSQText($data['idx']);
         $travel_type_2 = updateSQText($data['travel_type_2']);
         $travel_type_3 = updateSQText($data['travel_type_3']);
         $travel_type = updateSQText($data['travel_type']);
-        $user_name = updateSQText($data['name']);
-        $mail_name = updateSQText($data['mail_name']);
-        $mail_host = updateSQText($data['mail_host']);
+        $user_name = updateSQText($data['user_name']);
         $title = updateSQText($data['title']);
         $contents = updateSQ($data['contents']);
         $product_idx = updateSQText($data['product_idx']);
-        $idx = updateSQText($data['idx']);
+        $user_phone       		= updateSQ($_POST["user_phone"]);
 
-        $user_email = $mail_name . '@' . $mail_host;
-        $user_phone_string = implode(explode("-", $data['user_phone']));
+        if ($role == "admin") {
+            $user_email       		= updateSQ($_POST["user_email"]);
+            $status					= updateSQ($_POST["status"]);
+            $is_best				= updateSQ($_POST["is_best"]);
+            $display				= updateSQ($_POST["display"]);
+            $r_date				    = updateSQ($_POST["r_date"]);
+        } else {
+            $mail_name = updateSQText($data['mail_name']);
+            $mail_host = updateSQText($data['mail_host']);
+            $user_email = $mail_name . '@' . $mail_host;
+            $status = "Y";
+            $is_best = "N";
+            $display = "Y";
+            $r_date = date("Y-m-d H:i:s");
+        }
+
+        $user_phone_string = implode(explode("-", $user_phone));
         $pass = substr($user_phone_string, -4);
 
         $upload = WRITEPATH . 'uploads/review/';
@@ -241,6 +362,14 @@ class ReviewController extends BaseController
                 'contents' => $contents
             ];
 
+            if ($role == "admin") {
+                $dataToUpdate['status'] = $status;
+                $dataToUpdate['is_best'] = $is_best;
+                $dataToUpdate['display'] = $display;
+                $dataToUpdate['r_date'] = $r_date;
+                $dataToUpdate['user_phone'] = $user_phone;
+            }
+
             if ($r_file_name1) {
                 $dataToUpdate['rfile1'] = $r_file_name1;
                 $dataToUpdate['ufile1'] = $r_file_code1;
@@ -268,11 +397,17 @@ class ReviewController extends BaseController
                 'travel_type_3' => $travel_type_3,
                 'title' => $title,
                 'contents' => $contents,
-                'status' => 'Y',
-                'r_date' => date('Y-m-d H:i:s'),
+                'r_date' => $r_date,
                 'passwd' => $pass,
                 'user_ip' => $_SERVER['REMOTE_ADDR']
             ];
+
+            if ($role == "admin") {
+                $dataToInsert['status'] = $status;
+                $dataToInsert['is_best'] = $is_best;
+                $dataToInsert['display'] = $display;
+                $dataToInsert['user_phone'] = $user_phone;
+            }
 
             $this->ReviewModel->insert($dataToInsert);
             return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");

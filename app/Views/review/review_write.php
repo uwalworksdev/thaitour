@@ -77,7 +77,7 @@
                     <tr>
                         <td class="subject">작성자</td>
                         <td class="input_box">
-                            <input class="name" name="name" type="text" value="<?= $user_name ?>">
+                            <input class="name" name="user_name" type="text" value="<?= $user_name ?>">
                         </td>
                     </tr>
 
@@ -563,8 +563,9 @@
             data: {
                 product_code: event.target.value
             },
+            dataType: 'json',
             success: function (res) {
-                $("#products").html(res)
+                $("#products").html(res.data)
             }
         })
     })

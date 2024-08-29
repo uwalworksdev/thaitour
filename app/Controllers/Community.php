@@ -25,7 +25,7 @@ class Community extends BaseController
     }
     public function main()
     {
-        $code_no = $this->request->getVar('code_no');
+        $code_no = 1;
         $private_key = private_key();
         if ($code_no)
             $searchSql = " and a.r_category = '$code_no' ";
@@ -132,5 +132,30 @@ class Community extends BaseController
         $bbs_idx = updateSQ($_GET['bbs_idx']);
         $announcement = $this->bbs->View($bbs_idx);
         return view("community/announcement_view", ['announcement' => $announcement]);
+    }
+
+    public function customer_center()
+    {
+        return view("community/customer_center");
+    }
+
+    public function customer_center_notify()
+    {
+        return view("community/notify");
+    }
+
+    public function list_notify()
+    {
+        return view("community/list_notify");
+    }
+
+    public function notify_table()
+    {
+        return view("community/notify_table");
+    }
+
+    public function customer_speak()
+    {
+        return view("community/customer_speak");
     }
 }
