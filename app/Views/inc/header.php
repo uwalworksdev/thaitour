@@ -153,7 +153,7 @@
                 </div>
             </div>
             <div class="flex_header_top_item">
-                <img class="header_logo_m" src="<?= base_url('/uploads/sub/logo_header_m.png') ?>" alt="">
+                <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt="">
             </div>
             <div class="flex_header_top flex_header_top_item">
                 <div class="burger">

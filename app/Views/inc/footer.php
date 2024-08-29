@@ -118,7 +118,7 @@
             <div class="footer_l">
                 <div class="ft_logo">
                     <img src="/images/sub/logo_footer.png" alt="" class="only_web">
-                    <img src="/uploads/sub/logo_footer_m.png" alt="" class="only_mo">
+                    <img src="/images/sub/logo_footer_m.png" alt="" class="only_mo">
                 </div>
                 <div class="add_footer">
                     <p>대표이사 : 김영환                    <br>
