@@ -652,17 +652,17 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($currentPath, "/AdmMaster/_member/email01") !== false || strpos($currentPath, "/AdmMaster/_member/email01_view") !== false) { ?>on
+                                <?php if (strpos($currentPath, "/AdmMaster/_member/email") !== false || strpos($currentPath, "/AdmMaster/_member/email01_view") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('F003', '/AdmMaster/_member/email01', '이메일 관리'); ?></a>
+                            <?= check_perm('F003', '/AdmMaster/_member/email', '이메일 관리'); ?></a>
                         </li>
                         <li <?php if (!check_auth('F004')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?php if (strpos($currentPath, "/AdmMaster/_member/sms01") !== false || strpos($currentPath, "/AdmMaster/_member/sms01_view") !== false) { ?>on
+                                <?php if (strpos($currentPath, "/AdmMaster/_member/sms") !== false || strpos($currentPath, "/AdmMaster/_member/sms_view") !== false) { ?>on
                                 <?php } ?>">
-                            <?= check_perm('F004', '/AdmMaster/_member/sms01', 'SMS 관리'); ?></a>
+                            <?= check_perm('F004', '/AdmMaster/_member/sms', 'SMS 관리'); ?></a>
                         </li>
                         <!-- <li
                                 <?php if (!check_auth('F005')) {

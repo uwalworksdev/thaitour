@@ -54,7 +54,7 @@
                                         <?php foreach ($sms_list as $row): ?>
                                             <tr>
                                                 <td><?= esc($row['code']) ?></td>
-                                                <td><a href="<?= site_url('sms-view/' . $row['idx']) ?>"><?= esc($row['title']) ?></a></td>
+                                                <td><a href="<?= site_url('/AdmMaster/_member/sms_view?idx=' . $row['idx']) ?>"><?= esc($row['title']) ?></a></td>
                                                 <td><?= esc($row['content']) ?></td>
                                                 <td><?= ($row['autosend'] == "Y") ? "사용" : "사용안함" ?></td>
                                             </tr>

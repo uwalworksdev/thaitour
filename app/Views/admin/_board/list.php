@@ -16,7 +16,7 @@
                         <?php if ($code == "banner" || $code == "event" || $code == "main_event" || $code == "awards") { ?>
                             <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                         <?php } ?>
-                        <li><a href="board_write.php?code=<?= esc($code) ?>&scategory=<?= esc($scategory) ?>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> <span class="txt">글 등록</span></a></li>
+                        <li><a href="board_write?code=<?= esc($code) ?>&scategory=<?= esc($scategory) ?>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> <span class="txt">글 등록</span></a></li>
                     </ul>
                 </div>
             </div>

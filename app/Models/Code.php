@@ -53,6 +53,8 @@ class Code extends Model
     public function getPagedData($parentCodeNo = '', $nFrom, $g_list_rows)
     {
         $builder = $this->builder();
+
+        $builder->select('*, (select ifnull(count(*),0) as cnt from tbl_code a where a.parent_code_no=tbl_code.code_no) as cnt');
         
         if ($parentCodeNo != "") {
             $builder->where('parent_code_no', $parentCodeNo);
@@ -112,5 +114,23 @@ class Code extends Model
         return $this->select("IFNULL(MAX(code_no),'{$s_parent_code_no}00')+2 as code_no")
                     ->where('parent_code_no', $parent_code_no)
                     ->first();
+    }
+    public function getCodesByGubunDepthAndStatus($code_gubun, $depth)
+    {
+        return $this->where('code_gubun', $code_gubun)
+                    ->where('depth', $depth)
+                    ->where('status', 'Y')
+                    ->orderBy('onum', 'DESC')
+                    ->findAll();
+    }
+    public function getCodesByGubunDepthAndStatusExclude($code_gubun, $depth, $exclude)
+    {
+        return $this->where('code_gubun', $code_gubun)
+                    ->where('depth', $depth)
+                    ->where('status', 'Y')
+                    ->whereNotIn('code_no', $exclude)
+                    ->orderBy('onum', 'DESC')
+                    ->orderBy('code_idx', 'DESC')
+                    ->findAll();
     }
 }

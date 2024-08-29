@@ -1,6 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
 <?php
 	// $code_idx				= updateSQ($_GET["code_idx"]);
 	// $s_parent_code_no		= updateSQ($_GET["s_parent_code_no"]);

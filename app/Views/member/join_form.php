@@ -282,7 +282,7 @@ if ($mIdx != "") {
                     <div class="input-wrap">
                         <label class="label">비밀번호*</label>
                         <div class="input-row">
-                            <input type="password" name="user_pw" id="user_pw" class="bs-input">
+                            <input type="password" name="user_pw" id="user_pw" class="bs-input" autocomplete="new-password">
                         </div>
                         <p class="caption passwdWarning1 gray">6 ~ 15자의 영문 대/소문자, 숫자, 특수문자를 사용하세요.</p>
                         <p class="caption passwdWarning1 red">비밀번호는 8~20자의 영문 대/소문자, 숫자, 특수문자 등 3종류 이상으로 조합해주세요.</p>
