@@ -117,7 +117,7 @@
         <div class="flex_footer_bot">
             <div class="footer_l">
                 <div class="ft_logo">
-                    <img src="/images/sub/logo_footer.png" alt="" class="only_web">
+                    <img src="/images/sub/logo_foorer.png" alt="" class="only_web">
                     <img src="/images/sub/logo_footer_m.png" alt="" class="only_mo">
                 </div>
                 <div class="add_footer">
