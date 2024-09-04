@@ -25,7 +25,7 @@ class BoardController extends BaseController
 
     public function isBoardCategory($code)
     {
-        $result = $this->bbsConfigModel->find($code);
+        $result = $this->bbsConfigModel->where('board_code', $code)->first();
 
         if (!$result || $result['is_category'] === '') {
             throw new \Exception("정상적으로 이용바랍니다.");
