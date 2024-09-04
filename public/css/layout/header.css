@@ -127,6 +127,10 @@
     text-decoration: none;
 }
 
+.icon-menu-item:nth-child(3) {
+    width: 24px;
+}
+
 .icon-menu-item img {
     margin-bottom: 10px;
 }

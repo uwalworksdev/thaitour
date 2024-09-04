@@ -96,7 +96,7 @@ class Product extends BaseController
                 'tab_active' => '3',
             ];
 
-            return view('product/index', $data);
+            return view('product/product-tours', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -410,7 +410,7 @@ class Product extends BaseController
                 'tab_active' => '6',
             ];
 
-            return view('product/product-tours', $data);
+            return view('product/product-list', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -564,6 +564,11 @@ class Product extends BaseController
                 'message' => $e->getMessage()
             ]);
         }
+    }
+
+    public function index7($code_no)
+    {
+        return view('tours/tour-details');
     }
 
     public function vehicleGuide()

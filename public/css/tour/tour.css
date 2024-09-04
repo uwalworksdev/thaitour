@@ -94,6 +94,7 @@
 }
 .sub_swiper2 .img_box {
   border-radius: 16px;
+  cursor: pointer;
 }
 .sub_swiper2__text {
   position: absolute;
