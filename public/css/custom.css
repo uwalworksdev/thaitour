@@ -467,7 +467,7 @@
     cursor: pointer;
 }
 
-/* Update css for: w_sub_8고객센터_3일대일게시판.psd */
+/* Update css for: w_sub_8고객센터_4고객의소리.psd */
 .form_notify_ {
 
 }
@@ -598,54 +598,200 @@
     text-align: center;
 }
 
-.main_page_product_result_ {
+/* Update css for: w_sub_8고객센터_3일대일게시판.psd */
+.form_table_notify_ {
 
 }
 
-.main_page_product_result_ {
+.form_table_notify_ .form_el {
+    margin-bottom: 25px;
+}
+
+.form_table_notify_ .form_label_ {
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: 500;
+    font-family: "Pretendard", sans-serif;
+    margin-bottom: 15px;
+}
+
+.form_table_notify_ .form_input_ {
+    height: 52px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+}
+
+.form_table_notify_ .form_input_.form_50 {
+    width: 230px;
+}
+
+.form_table_notify_ .form_textarea_ {
+    width: 920px;
+    height: 440px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    padding: 10px;
+}
+
+.form_table_notify_ .form_upload_info {
 
 }
 
-.main_page_product_result_ {
+.form_table_notify_ .form_upload_button {
+    width: 110px;
+    height: 52px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 1px solid #252525;
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: 500;
+    font-family: "Pretendard", sans-serif;
+    text-align: center;
+}
+
+.form_table_notify_ .form_uploaded_file_list {
 
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .form_upload_container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 570px;
+    gap: 10px;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .form_upload_text {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #bbbbbb;
+    font-family: "Pretendard", sans-serif;
+    cursor: pointer;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .form_uploaded_file_list {
+    display: flex;
+    gap: 25px;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    margin-top: 15px;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .file_item_ {
+    display: flex;
+    gap: 5px;
+    justify-content: start;
+    align-items: center;
+    font-size: 16px;
+    color: #757575;
+    font-family: "Pretendard", sans-serif;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .file_remove_ {
+    cursor: pointer;
+    justify-content: start;
+    align-items: center;
+    background-image: url("/images/admin/common_close.png");
+    background-position: center;
+    background-size: 12px 12px;
+    width: 12px;
+    height: 12px;
+    background-repeat: no-repeat;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .form_el_cont {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .form_radio {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .form_radio input[type="radio"]:checked + label,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 1.75rem;
+    cursor: pointer;
+    line-height: 1.25rem;
+    display: inline-block;
+    color: #252525;
 }
 
-.main_page_product_result_ {
-
+.form_table_notify_ .form_radio input[type="radio"]:checked + label:before,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 21px;
+    height: 19px;
+    background: url("/images/ico/icon_radio.png") no-repeat center;
+    border-radius: 100%;
 }
 
+.form_table_notify_ .form_radio input[type="radio"]:checked + label:before {
+    background: url("/images/ico/icon_radio_selected.png") no-repeat center;
+}
+
+.form_table_notify_ .list_btn_ {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 60px;
+    margin-bottom: 120px;
+}
+
+.form_table_notify_ .btn_cancel_ {
+    width: 260px;
+    height: 66px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    font-size: 22px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #454545;
+    font-weight: 600;
+    font-family: "Pretendard", sans-serif;
+    text-align: center;
+}
+
+.form_table_notify_ .btn_submit_ {
+    width: 260px;
+    height: 66px;
+    border-radius: 6px;
+    background-color: #17469E;
+    font-size: 22px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Pretendard", sans-serif;
+    text-align: center;
+}
+
+/**/
 .main_page_product_result_ {
 
 }

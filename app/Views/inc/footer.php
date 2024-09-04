@@ -9,7 +9,7 @@
                             <div class="notice_item">
                                 <div class="notice_item__left">
                                     <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시 </div>
+                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
                                 </div>
                                 <div class="notice_item__date">2022.05.23</div>
                             </div>
@@ -18,7 +18,7 @@
                             <div class="notice_item">
                                 <div class="notice_item__left">
                                     <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시 </div>
+                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
                                 </div>
                                 <div class="notice_item__date">2022.05.23</div>
                             </div>
@@ -37,7 +37,6 @@
                     </button>
                 </div>
             </div>
-
 
 
             <div class="main_section_notice__body only_mo">
@@ -61,38 +60,37 @@
                             <div class="notice_item">
                                 <div class="notice_item__left">
                                     <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시 </div>
+                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
                                 </div>
                                 <!-- <div class="notice_item__date">2022.05.23</div> -->
                             </div>
                             <div class="flex_mobile_notice_item">
-                                    <div class="notice_item__date">2022.05.23</div>
-                                    <div> <a href="#!" class="main_section_notice__more">
-                                            <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
-                                        </a></div>
-                                </div>
+                                <div class="notice_item__date">2022.05.23</div>
+                                <div><a href="#!" class="main_section_notice__more">
+                                        <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
+                                    </a></div>
+                            </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="notice_item">
                                 <div class="notice_item__left">
                                     <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시 </div>
+                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
                                 </div>
 
-                              
+
                             </div>
                             <div class="flex_mobile_notice_item">
-                                    <div class="notice_item__date">2022.05.23</div>
-                                    <div> <a href="#!" class="main_section_notice__more">
-                                            <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
-                                        </a></div>
-                                </div>
+                                <div class="notice_item__date">2022.05.23</div>
+                                <div><a href="#!" class="main_section_notice__more">
+                                        <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
+                                    </a></div>
+                            </div>
                         </div>
 
                     </div>
 
                 </div>
-
 
 
             </div>
@@ -121,7 +119,7 @@
                     <img src="/images/sub/logo_footer_m.png" alt="" class="only_mo">
                 </div>
                 <div class="add_footer">
-                    <p>대표이사 : 김영환                    <br>
+                    <p>대표이사 : 김영환 <br>
                         충청북도 청주시 상당구 문의면 미천고은로 269-26(솔로몬가구)<br>
                         이메일 : thetourlab@naver.com<br>
                         한국 사업자번호 214-19-20927<br>
@@ -143,14 +141,14 @@
                 <div>
                     <ul class="footer_icon">
                         <li><a href=""><img class="only_web" src="/images/ico/ig_footer.png" alt=""> <img
-                                    class="only_mo" src="/uploads/icons/ig_footer_m.png" alt=""></a></li>
+                                        class="only_mo" src="/uploads/icons/ig_footer_m.png" alt=""></a></li>
                         <li><a href=""><img class="only_web" src="/images/ico/bl_footer.png" alt=""> <img
-                                    class="only_mo" src="/uploads/icons/bl_footer_m.png" alt=""></a></li>
+                                        class="only_mo" src="/uploads/icons/bl_footer_m.png" alt=""></a></li>
                         <li><a href=""><img class="only_web" src="/images/ico/n_footer.png" alt=""><img class="only_mo"
-                                    src="/uploads/icons/n_footer_m.png" alt=""></a></li>
+                                                                                                        src="/uploads/icons/n_footer_m.png"
+                                                                                                        alt=""></a></li>
                         <li><a href=""><img class="only_web" src="/images/ico/ytb_footer.png" alt=""><img
-                                    class="only_mo" src="/uploads/icons/ytb_footer_m.png" alt=""></a></li>
-
+                                        class="only_mo" src="/uploads/icons/ytb_footer_m.png" alt=""></a></li>
 
 
                     </ul>
@@ -159,7 +157,7 @@
                     <p class="text-w text-18">고객센터</p>
                     <p class="text-25">한국에서 걸 때 <span class="text-w"> 070-7010-8256</span> (시내통화요금) (호텔/골프/투어/차량 상담)</p>
                     <p class="text-25">태국에서 걸 때 <span class="text-w"> (0)2-730-5690</span> (방콕) 로밍폰, 태국 유심폰 <br
-                            class="only_mo"> 모두 02-730-5690 번호만 누르면 됩니다.
+                                class="only_mo"> 모두 02-730-5690 번호만 누르면 됩니다.
                     </p>
                     <p class="text-18 p_bot_f">업무시간 :</p>
                     <p class="text-25 no-w">10:30 사무실 오픈 / 업무종료시간 - <span class="text-w">월~금 19:20,토,일,공휴일 19:00</span>
