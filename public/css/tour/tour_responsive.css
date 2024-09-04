@@ -150,7 +150,7 @@
     justify-content: center;
   }
   .sub_swiper2_pagination .swiper-pagination-bullet-active {
-    background-color: #39b9aa;
+    background-color: #17469E;
   }
   /* sub_section3 */
   .sub_section3__head {
@@ -174,7 +174,7 @@
     justify-content: center;
   }
   .sub_section3_swiper_pagination .swiper-pagination-bullet-active {
-    background-color: #39b9aa;
+    background-color: #17469E;
   }
 
   /* sub_tour_section4 */
@@ -259,8 +259,8 @@
     border-width: 2px;
   }
   .tour__head__tabs2__tab.active {
-    border-color: #39b9aa;
-    color: #39b9aa;
+    border-color: #17469E;
+    color: #17469E;
   }
   .sub_tour_section5__prd_list {
     margin-top: 45px;

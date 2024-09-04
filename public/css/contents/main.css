@@ -186,14 +186,14 @@ padding-top: calc(310% / 224 * 100);
     position: relative;
 }
 .main_section3__place_btn.active {
-    color: #39b9aa;
+    color: #17469E;
 }
 .main_section3__place_btn.active::after {
     content: "";
     display: inline-block;
     width: 6px;
     height: 6px;
-    background: #39b9aa;
+    background: #17469E;
     position: absolute;
     top: -2px;
     right: -12px;
@@ -213,8 +213,8 @@ padding-top: calc(310% / 224 * 100);
     color: #757575;
 }
 .main_section3__type_btn.active {
-    color: #39b9aa;
-    border-color: #39b9aa;
+    color: #17469E;
+    border-color: #17469E;
 }
 .best_list {
     display: flex;
@@ -315,9 +315,9 @@ padding-top: calc(310% / 224 * 100);
 }
 .words_list_item.active {
     border-width: 2px;
-    border-color: #39b9aa;
+    border-color: #17469E;
     border-style: solid;
-    color: #39b9aa;
+    color: #17469E;
 }
 
 .main_hot {
@@ -340,7 +340,7 @@ padding-top: calc(310% / 224 * 100);
     margin-right: 35px;
 }
 .main_hot__head_ttl span {
-    color: #39b9aa;
+    color: #17469E;
 }
 .main_hot__head__place {
     display: flex;
@@ -363,8 +363,8 @@ padding-top: calc(310% / 224 * 100);
     padding: 0 15px;
 }
 .place_item.active {
-    border-color: #39b9aa;
-    color: #39b9aa;
+    border-color: #17469E;
+    color: #17469E;
 }
 .main_hot__head__right {
 
@@ -472,7 +472,7 @@ padding-top: calc(310% / 224 * 100);
     margin-top: 15px;
 }
 .main_hot .swiper-pagination-bullet-active {
-    background-color: #39b9aa;
+    background-color: #17469E;
 }
 .main_section_review {
     padding: 109px 0;
@@ -493,7 +493,7 @@ padding-top: calc(310% / 224 * 100);
     text-align: center;
 }
 .main_section_review__head_ttl span {
-    color: #39b9aa;
+    color: #17469E;
 }
 .main_section_review__head__more_review {
     position: absolute;
@@ -515,7 +515,7 @@ padding-top: calc(310% / 224 * 100);
 }
 .review__list__item__type {
     font-size: 15px;
-    color: #39b9aa;
+    color: #17469E;
     margin-top: 25px;
 }
 .review__list__item__title {
@@ -564,7 +564,7 @@ padding-top: calc(310% / 224 * 100);
     text-align: center;
 }
 .main_section_magazine__head__ttl span {
-    color: #39b9aa;
+    color: #17469E;
 }
 .main_section_magazine__head__more {
     font-size: 18px;
@@ -576,7 +576,7 @@ padding-top: calc(310% / 224 * 100);
     margin-top: 50px;
 }
 .magazine_swiper .swiper-pagination-bullet-active {
-    background-color: #39b9aa;
+    background-color: #17469E;
 }
 .magazine_swiper__pagination {
     display: flex;

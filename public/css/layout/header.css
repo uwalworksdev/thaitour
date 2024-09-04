@@ -140,7 +140,7 @@
 }
 
 .flex_header_top a.active_ {
-    color: #39b9aa;
+    color: #17469E;
 }
 
 .custom_select_rounded {
@@ -166,8 +166,8 @@
 }
 
 .custom_select_rounded .select_custom_.active_ {
-    border: 1px solid #39b9aa;
-    color: #39b9aa;
+    border: 1px solid #17469E;
+    color: #17469E;
 }
 
 .custom_select_rounded .text_custom_ {
@@ -376,8 +376,8 @@
         width: 12rem;
         height: 5rem;
         border-radius: 3rem;
-        border: 2px solid #39b9aa;
-        color: #39b9aa;
+        border: 2px solid #17469E;
+        color: #17469E;
     }
 
     .font-26 {
