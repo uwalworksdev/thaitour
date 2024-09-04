@@ -39,18 +39,10 @@
                                         <div class="form_upload_text form_input_">최대 3개까지 30MB, JPG, PNG 파일만 첨부 가능합니다.
                                         </div>
                                     </div>
-                                    <button class="form_upload_button" id="upload-button">파일첨부</button>
+                                    <button type="button" class="form_upload_button" id="upload-button">파일첨부</button>
                                 </div>
                                 <div class="form_uploaded_file_list" id="uploaded-file-list">
-                                    <div class="file_item_">
-                                        images.jpg
-                                        <span class="file_remove_"></span>
-                                    </div>
 
-                                    <div class="file_item_">
-                                        images.jpg
-                                        <span class="file_remove_"></span>
-                                    </div>
                                 </div>
                             </div>
 
@@ -73,12 +65,12 @@
                             </div>
                             <div class="form_radio">
                                 <label class="form_label_" for="yes">답변여부를 메일로 받으시겠습니까?</label>
-                                <input type="radio" id="yes" name="yes" value="yes">
-                                <label class="form_label_" for="yes">예</label><br>
-                                <input type="radio" id="no" name="no" value="no">
+                                <input type="radio" id="yes" name="receive" value="yes">
+                                <label class="form_label_" for="yes">예</label>
+                                <input type="radio" id="no" name="receive" value="no" checked>
                                 <label class="form_label_" for="no">아니오</label>
                             </div>
-                            <div class="btn-con">
+                            <div class="list_btn_">
                                 <button type="button" class="btn_cancel_">취소하기</button>
                                 <button type="button" class="btn_submit_">문의하기</button>
                             </div>
@@ -90,53 +82,13 @@
     </section>
 
     <script>
-        const items = document.querySelectorAll('.item-tag');
-
-        items.forEach((item, index) => {
-            item.addEventListener('click', function () {
-                // Remove 'active' class from all items
-                items.forEach(i => i.classList.remove('active'));
-
-                // Add 'active' class to the clicked item
-                this.classList.add('active');
-
-                // Change the image of the active item
-                const img = this.querySelector('img');
-                if (img) {
-                    // Change to corresponding active image
-                    img.src = `/images/community/customer_icon_0${index + 1}_active.png`;
-                }
-
-                // Reset images for all non-active items
-                items.forEach((i, idx) => {
-                    if (i !== this) {
-                        const nonActiveImg = i.querySelector('img');
-                        if (nonActiveImg) {
-                            nonActiveImg.src = `/images/community/customer_icon_0${idx + 1}.png`;
-                        }
-                    }
-                });
-            });
-        });
-
-
-        const item_no = document.querySelectorAll('.item-no');
-
-        item_no.forEach(item => {
-            item.addEventListener('click', function () {
-                const url = this.getAttribute('data-url');
-                if (url) {
-                    window.location.href = url;
-                } else {
-                    alert("No URL provided!");
-                }
-            });
-        });
-
         function go_list() {
             window.history.back();
         }
 
+        $('.form_upload_text').click(function () {
+            $('#file-upload').click();
+        })
 
         document.addEventListener('DOMContentLoaded', function () {
             const uploadInput = document.getElementById('file-upload');
@@ -156,27 +108,16 @@
 
                 // Loop through files and add them to the list
                 files.forEach(file => {
-                    if (uploadedFileList.children.length >= maxFiles) return;
-
-                    const fileItem = document.createElement('div');
-                    fileItem.className = 'uploaded-file-item';
+                    if (uploadedFileList.children.length >= maxFiles) {
+                        return;
+                    }
 
                     const fileName = document.createElement('span');
-                    fileName.className = 'file-name';
-                    fileName.textContent = file.name;
 
-                    const removeButton = document.createElement('button');
-                    removeButton.className = 'remove-button';
-                    removeButton.textContent = 'x';
-
-                    // Add click event to remove file from list
-                    removeButton.addEventListener('click', function () {
-                        uploadedFileList.removeChild(fileItem);
-                    });
-
-                    fileItem.appendChild(fileName);
-                    fileItem.appendChild(removeButton);
-                    uploadedFileList.appendChild(fileItem);
+                    let html = `<div class="file_item_">
+                                        ${fileName}
+                                        <span class="file_remove_"></span>
+                                    </div>`;
                 });
 
                 // Clear the input

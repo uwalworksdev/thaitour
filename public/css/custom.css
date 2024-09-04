@@ -634,6 +634,7 @@
     border-radius: 3px;
     background-color: #ffffff;
     border: 1px solid #dbdbdb;
+    padding: 10px;
 }
 
 .form_table_notify_ .form_upload_info {
@@ -677,6 +678,7 @@
     text-transform: uppercase;
     color: #bbbbbb;
     font-family: "Pretendard", sans-serif;
+    cursor: pointer;
 }
 
 .form_table_notify_ .form_uploaded_file_list {
@@ -724,8 +726,8 @@
     gap: 10px;
 }
 
-.modal_authentic .form_element_radio_ input[type="radio"]:checked + label,
-.modal_authentic .form_element_radio_ input[type="radio"]:not(:checked) + label {
+.form_table_notify_ .form_radio input[type="radio"]:checked + label,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label {
     position: relative;
     padding-left: 1.75rem;
     cursor: pointer;
@@ -734,18 +736,62 @@
     color: #252525;
 }
 
-.modal_authentic .form_element_radio_ input[type="radio"]:checked + label:before,
-.modal_authentic .form_element_radio_ input[type="radio"]:not(:checked) + label:before {
+.form_table_notify_ .form_radio input[type="radio"]:checked + label:before,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label:before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     width: 21px;
     height: 19px;
-    background: url("/assets/icon/icon_radio.png") no-repeat center;
+    background: url("/images/ico/icon_radio.png") no-repeat center;
     border-radius: 100%;
 }
 
+.form_table_notify_ .form_radio input[type="radio"]:checked + label:before {
+    background: url("/images/ico/icon_radio_selected.png") no-repeat center;
+}
+
+.form_table_notify_ .list_btn_ {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 60px;
+    margin-bottom: 120px;
+}
+
+.form_table_notify_ .btn_cancel_ {
+    width: 260px;
+    height: 66px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    font-size: 22px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #454545;
+    font-weight: 600;
+    font-family: "Pretendard", sans-serif;
+    text-align: center;
+}
+
+.form_table_notify_ .btn_submit_ {
+    width: 260px;
+    height: 66px;
+    border-radius: 6px;
+    background-color: #17469E;
+    font-size: 22px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Pretendard", sans-serif;
+    text-align: center;
+}
+
+/**/
 .main_page_product_result_ {
 
 }
