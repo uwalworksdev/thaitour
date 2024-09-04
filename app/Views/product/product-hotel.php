@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
     <div class="body_container main_page_01 page_share_ page_product_list_">
@@ -33,16 +33,16 @@
                 <div style="position: relative;">
                     <div class="swiper sub_swiper2">
                         <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a href="/product-hotel/list-hotel/1324">
-                                        <div class="img_box">
-                                            <img src="/uploads/sub/tour_slide_1.png" alt="main">
-                                        </div>
-                                        <div class="sub_swiper2__text">
-                                            방콕 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                        </div>
-                                    </a>
-                                </div>
+                            <div class="swiper-slide">
+                                <a href="/product-hotel/list-hotel/1324">
+                                    <div class="img_box">
+                                        <img src="/uploads/sub/tour_slide_1.png" alt="main">
+                                    </div>
+                                    <div class="sub_swiper2__text">
+                                        방콕 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
+                                    </div>
+                                </a>
+                            </div>
                             <div class="swiper-slide">
                                 <a href="/product-hotel/list-hotel/1324">
                                     <div class="img_box">
@@ -119,7 +119,7 @@
             <div class="body_inner">
                 <div class="sub_section3__head">
                     <div class="sub_section3__head__ttl">
-                        태국 갈 때는 <span class="text_active_39b9aa">이 호텔 꼭 가야해요!</span>
+                        태국 갈 때는 <span class="text_active_17469E">이 호텔 꼭 가야해요!</span>
                     </div>
                 </div>
                 <div>
@@ -235,7 +235,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_5.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -262,7 +262,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_6.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_6.png" alt="main " loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -343,7 +343,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_5.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_5.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -370,7 +370,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_6.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_6.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -451,7 +451,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_5.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -478,7 +478,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_6.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_6.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -559,7 +559,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_5.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -586,7 +586,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -667,7 +667,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_5.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -694,7 +694,7 @@
                             </a>
                             <a href="#!" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -881,7 +881,7 @@
             <div class="body_inner">
                 <div class="sub_section3__head">
                     <div class="sub_section3__head__ttl">
-                        더투어랩에서 만나는 <span class="text_active_39b9aa">역대급 호텔 초특가</span>
+                        더투어랩에서 만나는 <span class="text_active_17469E">역대급 호텔 초특가</span>
                     </div>
                 </div>
                 <div class="best_tour_section5_ swiper">
@@ -1236,9 +1236,9 @@
                                     <div class="most_searched_tab_2_pagination_ sub_tour_section6_swiper_pagination_"></div>
                                 </div>
                             </div>
-                    
-                            </div>
+
                         </div>
+                    </div>
                     <div class="content_tab_show_" id="tab2">
                         <div class="most_searched_tab_2 smart_slider_">
                             <div class="swiper-wrapper">
@@ -1903,7 +1903,7 @@
     </script>
     <script>
         let thailand_hotel_swiper_ = new Swiper(".thailand_hotel_swiper_", {
-            slidesPerView: 2, 
+            slidesPerView: 2,
             grid: {
                 rows: 2,
             },
@@ -1956,7 +1956,7 @@
         //         location.reload();
         //     }, 2000);
         // });
-        $(function() {
+        $(function () {
             $('#input_day').daterangepicker({
                 autoUpdateInput: false,
                 locale: {
@@ -1974,7 +1974,7 @@
                 }
             });
 
-            $('#input_day').on('apply.daterangepicker', function(ev, picker) {
+            $('#input_day').on('apply.daterangepicker', function (ev, picker) {
                 $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
             });
         });

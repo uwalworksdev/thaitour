@@ -134,7 +134,7 @@
   justify-content: center;
 }
 .sub_swiper2_pagination .swiper-pagination-bullet-active {
-  background-color: #39b9aa;
+  background-color: #17469E;
 }
 /* sub_section3 */
 
@@ -168,7 +168,7 @@
   justify-content: center;
 }
 .sub_section3_swiper_pagination .swiper-pagination-bullet-active {
-  background-color: #39b9aa;
+  background-color: #17469E;
 }
 
 /* sub_tour_section4 */
@@ -250,8 +250,8 @@
 }
 .tour__head__tabs1__tab.active {
   color: #fff;
-  background-color: #39b9aa;
-  box-shadow: 0px 16px 13px 0px #39b9aa2e;
+  background-color: #17469E;
+  box-shadow: 0px 16px 13px 0px #17469E2e;
   border-radius: 6px;
   position: relative;
 }
@@ -260,7 +260,7 @@
   width: 30px;
   height: 30px;
   position: absolute;
-  background-color: #39b9aa;
+  background-color: #17469E;
   border-radius: 6px;
   z-index: -1;
   bottom: -5px;
@@ -298,8 +298,8 @@
   padding: 0 18px;
 }
 .tour__head__tabs2__tab.active {
-  border-color: #39b9aa;
-  color: #39b9aa;
+  border-color: #17469E;
+  color: #17469E;
 }
 .sub_tour_section5__prd_list {
   margin-top: 29px;
@@ -563,8 +563,8 @@
 }
 
 .content-sub-product-hotel .tab_box_area_ .tab_box_element_.tab_active_ {
-  border: 1px solid #39b9aa;
-  color: #39b9aa;
+  border: 1px solid #17469E;
+  color: #17469E;
 }
 
 .content-sub-product-hotel .tab_box_show_ {
@@ -711,7 +711,7 @@
 }
 
 .content-sub-product-hotel .form_element_ button {
-  background-color: #39b9aa;
+  background-color: #17469E;
   font-size: 16px;
   letter-spacing: -1px;
   line-height: 26px;
