@@ -1296,7 +1296,7 @@ strong {
 }
 
 .customer-center-page .side-bar .list-item-bar .itembar.active {
-    color: #39b9aa;
+    color: #17469E;
 }
 
 .customer-center-page .side-bar {
@@ -1356,7 +1356,7 @@ strong {
 .customer-center-page .list-q .item-q .label-q {
     color: white;
     border-radius: 99px;
-    background-color: #39b9aa;
+    background-color: #17469E;
     padding: 9px 12px;
 }
 
@@ -1375,16 +1375,16 @@ strong {
 }
 
 .customer-center-page .list-tag .item-tag.active {
-    border-color: #39b9aa;
-    color: #39b9aa;
+    border-color: #17469E;
+    color: #17469E;
 }
 
 .customer-center-page .list-tag .item-tag.active .tag-name {
-    color: #39b9aa;
+    color: #17469E;
 }
 
 .customer-center-page .list-tag .item-tag.active .icon-custom {
-    color: #39b9aa;
+    color: #17469E;
 }
 
 .customer-center-page .menu-header {

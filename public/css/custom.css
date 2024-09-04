@@ -98,7 +98,7 @@
 
 .main_page_01 .main_visual_content_ button {
     border-radius: 6px;
-    background-color: #39b9aa;
+    background-color: #17469E;
     font-size: 22px;
     letter-spacing: -1px;
     line-height: 26px;
@@ -113,7 +113,7 @@
 }
 
 .swiper-pagination-bullet-active {
-    background: #39b9aa;
+    background: #17469E;
 }
 
 .thailand_hotel_ {
@@ -268,8 +268,8 @@
 }
 
 .most_searched_ .tab_box_area_ .tab_box_element_.tab_active_ {
-    border: 1px solid #39b9aa;
-    color: #39b9aa;
+    border: 1px solid #17469E;
+    color: #17469E;
 }
 
 .most_searched_ .content_tab_show_ {
@@ -467,40 +467,135 @@
     cursor: pointer;
 }
 
-.main_page_product_result_ {
+/* Update css for: w_sub_8고객센터_3일대일게시판.psd */
+.form_notify_ {
 
 }
 
-.main_page_product_result_ {
-
+.form_notify_ .icon_star_5 {
+    background-image: url("/images/ico/ico_star.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    width: 14px;
+    height: 14px;
 }
 
-.main_page_product_result_ {
-
+.form_notify_ .custom-select {
+    position: relative;
+    display: inline-block;
 }
 
-.main_page_product_result_ {
-
+.form_notify_ .select-hide {
+    display: none;
 }
 
-.main_page_product_result_ {
-
+.form_notify_ .select-selected {
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+    background: #fff url(/images/ico/select_ico.png) right 20px center no-repeat;
 }
 
-.main_page_product_result_ {
-
+.form_notify_ .select-items {
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    z-index: 99;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.main_page_product_result_ {
-
+.form_notify_ .select-items div {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
-.main_page_product_result_ {
-
+.form_notify_ .select-items div:hover {
+    background-color: #ddd;
 }
 
-.main_page_product_result_ {
+.form_notify_ .form_label_ {
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: 500;
+    font-family: "Pretendard", sans-serif;
+    margin-bottom: 15px;
+}
 
+.form_notify_ .form_el {
+    margin-bottom: 25px;
+}
+
+.form_notify_ .form_input_ {
+    height: 52px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    width: 280px;
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #454545;
+    font-family: "Pretendard", sans-serif;
+}
+
+.form_notify_ input.form_input_ {
+    width: 450px;
+}
+
+.form_notify_ .form_textarea_ {
+    width: 920px;
+    height: 440px;
+    border-radius: 3px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+}
+
+.form_notify_ .list_btn_ {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 60px;
+    margin-bottom: 140px;
+}
+
+.form_notify_ .btn_cancel_ {
+    width: 260px;
+    height: 66px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    font-size: 22px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #454545;
+    font-weight: 600;
+    font-family: "Pretendard", sans-serif;
+    text-align: center;
+}
+
+.form_notify_ .btn_submit_ {
+    width: 260px;
+    height: 66px;
+    border-radius: 6px;
+    background-color: #17469E;
+    font-size: 22px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 600;
+    font-family: "Pretendard", sans-serif;
+    text-align: center;
 }
 
 .main_page_product_result_ {
