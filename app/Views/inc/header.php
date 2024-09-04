@@ -107,10 +107,10 @@
                 <ul class="flex_header_top flex_header_top_content_list">
                     <li><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></li>
                     <li><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></li>
-                    <li><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-list/1324">투어</a></li>
+                    <li><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-tours/1325/1">투어</a></li>
                     <li><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></li>
                     <li><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></li>
-                    <li><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-tours/1320/1">레스토랑</a></li>
+                    <li><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-list/1320/1">레스토랑</a></li>
                     <li><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide">차량ㆍ가이드</a></li>
                 </ul>
             </div>
@@ -214,10 +214,10 @@
                 <ul class="menu_mobile__list">
                     <li><a href="/product-hotel/1324">호텔</a></li>
                     <li><a href="/product-golf/1325/1">골프</a></li>
-                    <li><a href="/product-list/1324">투어</a></li>
+                    <li><a href="/product-tours/1324/1">투어</a></li>
                     <li><a href="/product-spa/1320/1">스파</a></li>
                     <li><a href="/show-ticket">쇼ㆍ입장권</a></li>
-                    <li><a href="">레스토랑</a></li>
+                    <li><a href="/product-list/1320/1">레스토랑</a></li>
                     <li><a href="/vehicle-guide">차량ㆍ가이드</a></li>
                 </ul>
             </div>
