@@ -88,8 +88,7 @@ if ($top_menu == "") {
             $top_menu = "regi";
         else if (in_array($code, array("event")))
             $top_menu = "reserve";
-    }
-    // CMS2023-11-02
+    } // CMS2023-11-02
     else if (strpos($currentPath, "/AdmMaster/_cms/") !== false) {
         // 기타 게시판
         if (in_array($r_code, array("exibition", "jarubook")))
@@ -102,8 +101,7 @@ if ($top_menu == "") {
         $top_menu = "reserve";
     } else if (strpos($currentPath, "/AdmMaster/_review/") !== false) {
         $top_menu = "_review";
-    }
-    // 등록관리
+    } // 등록관리
     else if (strpos($currentPath, "/AdmMaster/_regi/") !== false) {
         $top_menu = "regi";
     } else if (
@@ -114,8 +112,7 @@ if ($top_menu == "") {
         $top_menu = "regi";
     } else if (strpos($currentPath, "/AdmMaster/_tourRegist/") !== false) {
         $top_menu = "regi";
-    }
-    // 여행예약관리
+    } // 여행예약관리
     else if (
         strpos($currentPath, "/AdmMaster/_tour/") !== false ||
         strpos($currentPath, "/AdmMaster/_reservation/") !== false ||
@@ -127,8 +124,7 @@ if ($top_menu == "") {
         strpos($currentPath, "/AdmMaster/_qna/") !== false
     ) {
         $top_menu = "reserve";
-    }
-    // 기타상품관리
+    } // 기타상품관리
     else if (
         $currentPath == "/AdmMaster/_tourShopping/list" ||
         $currentPath == "/AdmMaster/_tourOption/list" ||
@@ -138,31 +134,25 @@ if ($top_menu == "") {
         $currentPath == "/AdmMaster/_tourLevel/list"
     ) {
         $top_menu = "etc";
-    }
-    // 인트라넷
+    } // 인트라넷
     else if (strpos($currentPath, "/AdmMaster/_memberBoard") !== false || strpos($currentPath, "/AdmMaster/_schedule/") !== false || strpos($currentPath, "/AdmMaster/_memberBreak/") !== false) {
         $top_menu = "intra";
         // 회원관리
     } else if (strpos($currentPath, "/AdmMaster/_member") !== false) {
         $top_menu = "member";
-    }
-    // 로그분석기
+    } // 로그분석기
     else if (strpos($currentPath, "/AdmMaster/_logAnalysis") !== false) {
         $top_menu = "analysis";
-    }
-    // 기존웹사이트
+    } // 기존웹사이트
     else if (strpos($currentPath, "/AdmMaster/_admold") !== false) {
         $top_menu = "admold";
-    }
-    // B2B등록
+    } // B2B등록
     else if (strpos($currentPath, "/AdmMaster/_b2b") !== false) {
         $top_menu = "b2b";
-    }
-    // 상담관리
+    } // 상담관리
     else if (strpos($currentPath, "/AdmMaster/_consult/") !== false) {
         $top_menu = "consult";
-    }
-    // 환경설정
+    } // 환경설정
     else if (
         $currentPath == "/AdmMaster/_adminrator/adm_setting"
         || $currentPath == "/AdmMaster/_adminrator/write"
@@ -175,8 +165,7 @@ if ($top_menu == "") {
         || $currentPath == "/AdmMaster/_adminrator/block_ip_list"
     ) {
         $top_menu = "config";
-    }
-    // 통계
+    } // 통계
     else if (strpos($currentPath, "/AdmMaster/_statistics/") !== false) {
         $top_menu = "summary";
     } else if (strpos($currentPath, "/AdmMaster/_contact/") !== false) {
@@ -189,11 +178,17 @@ if ($top_menu == "") {
     if ($code == "b2b_notice") {
         $top_menu = "bbs_1";
     }
+    if ($code == "faq") {
+        $top_menu = "bbs_1";
+    }
 }
 ?>
-<!--[if lt IE 7]>      <html class="ie6"> <![endif]-->
-<!--[if IE 7]>         <html class="ie7"> <![endif]-->
-<!--[if IE 8]>         <html class="ie8"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="ie6"> <![endif]-->
+<!--[if IE 7]>
+<html class="ie7"> <![endif]-->
+<!--[if IE 8]>
+<html class="ie8"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <!DOCTYPE HTML><!--<![endif]-->
 <html lang="ko">
@@ -203,16 +198,16 @@ if ($top_menu == "") {
         <?= $setting['site_name'] ?>
     </title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="apple-mobile-web-app-title" content="">
     <link rel="shortcut icon" type="image/x-icon" href="/uploads/setting/<?= $setting['favico'] ?>">
-    <link rel="apple-touch-icon" href="" />
+    <link rel="apple-touch-icon" href=""/>
     <meta name="Generator" content="">
     <meta name="Author" content="">
     <meta name="Keywords" content="">
     <meta name="Description" content="">
-    <link rel="stylesheet" href="/css/admin/import.css" type="text/css" />
+    <link rel="stylesheet" href="/css/admin/import.css" type="text/css"/>
     <script type="text/javascript" src="/lib/jquery/jquery-1.8.3.min.js"></script>
     <!--[if lte IE 9]>
     <script src="/js/admin/html5.js"></script>
@@ -226,9 +221,8 @@ if ($top_menu == "") {
     <script src="/lib/notifIt/notifIt.js" type="text/javascript"></script>
     <link href="/lib/notifIt/notifIt.css" type="text/css" rel="stylesheet">
 
-    <link rel="stylesheet" href="/lib/colorbox-master/example4/colorbox.css" />
+    <link rel="stylesheet" href="/lib/colorbox-master/example4/colorbox.css"/>
     <script src="/lib/colorbox-master/jquery.colorbox.js"></script>
-
 
 
     <!--notice 스크립트끝-->
@@ -274,7 +268,7 @@ if ($top_menu == "") {
         }
     </style>
 
-    <link rel="stylesheet" href="/css/admin/pop.css" type="text/css" />
+    <link rel="stylesheet" href="/css/admin/pop.css" type="text/css"/>
     <script>
         //화면의 중앙으로 팝업창 띄우기
         function PopUp(url, wName, width, height) {//화면의 중앙
@@ -325,9 +319,9 @@ if ($top_menu == "") {
 
     <!-- 다음 우편번호 -->
     <?php //if ($_IT_TOP_PROTOCOL == "https://") { ?>
-        <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+    <script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
     <?php //} else { ?>
-        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     <?php //} ?>
 
 </head>
@@ -338,12 +332,16 @@ if ($top_menu == "") {
         <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" stroke="#fff">
             <g fill="none" fill-rule="evenodd" stroke-width="2">
                 <circle cx="22" cy="22" r="1">
-                    <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
-                    <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline" keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
+                    <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
+                             keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
+                    <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline"
+                             keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
                 </circle>
                 <circle cx="22" cy="22" r="1">
-                    <animate attributeName="r" begin="-0.9s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
-                    <animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1; 0" calcMode="spline" keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
+                    <animate attributeName="r" begin="-0.9s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1"
+                             keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
+                    <animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1; 0" calcMode="spline"
+                             keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
                 </circle>
             </g>
         </svg>
@@ -356,7 +354,8 @@ if ($top_menu == "") {
             <div class="top_box">
                 <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM ?>" alt="로고"></a> -->
                 <a href="/" class="txt_admin" target="_blank"></a>
-                <a href="/AdmMaster/_main/main" class="logo"><img src="/uploads/setting/<?= $setting['logos'] ?>" alt=""></a>
+                <a href="/AdmMaster/_main/main" class="logo"><img src="/uploads/setting/<?= $setting['logos'] ?>"
+                                                                  alt=""></a>
             </div>
             <div class="info_box">
                 <ul class="connect_info">
@@ -364,7 +363,7 @@ if ($top_menu == "") {
                         <?= $setting['site_name'] ?> /
                     </li>
                     <li>IP : <?= $_SERVER['REMOTE_ADDR'] ?> /</li>
-                    <li>최근접속일시 : <span id="time"></span> </li>
+                    <li>최근접속일시 : <span id="time"></span></li>
                 </ul>
 
                 <script>
@@ -434,8 +433,8 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos($currentPath, '/AdmMaster/_tourRegist/list') !== false ? "on" : "" ?>">
-                            <?= check_perm('C002', '/AdmMaster/_tourRegist/list', '패키지 상품관리'); ?>
+                                <?= strpos($currentPath, '/AdmMaster/_tourRegist/list_all') !== false ? "on" : "" ?>">
+                            <?= check_perm('C002', '/AdmMaster/_tourRegist/list_all', '패키지 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C003')) {
                             echo "style='display: none;'";
@@ -521,8 +520,9 @@ if ($top_menu == "") {
                 } ?> class="menu1 depth1_ttl
                         <?php if ($top_menu == "bbs_1" || $top_menu == "_inquiry" || $top_menu == "contact" || $top_menu == "_qna")
                     echo "on"; ?>">
-                    <a href="#!" class="<?php if ($top_menu == "bbs_1" || $top_menu == "_inquiry" || $top_menu == "contact" || $top_menu == "_qna")
-                        echo "on"; ?>"><span class="tit">고객센터
+                    <a href="#!"
+                       class="<?php if ($top_menu == "bbs_1" || $top_menu == "_inquiry" || $top_menu == "contact" || $top_menu == "_qna")
+                           echo "on"; ?>"><span class="tit">고객센터
                                 관리</span></a>
                     <ul class="smenu_1 depth2 <?php if ($top_menu == "bbs_1" || $top_menu == "_inquiry" || $top_menu == "contact" || $top_menu == "_qna")
                         echo "on"; ?>">
@@ -538,8 +538,8 @@ if ($top_menu == "") {
                         <li <?php if (!check_auth('A003')) {
                             echo "style='display: none;'";
                         } ?> class="
-                                <?= $r_code == "faq" ? "on" : "" ?>">
-                            <?= check_perm('A003', '/AdmMaster/_bbs/board_list_q?r_code=faq', '자주하시는질문'); ?>
+                                <?= $code == "faq" ? "on" : "" ?>">
+                            <?= check_perm('A003', '/AdmMaster/_bbs/board_list_q?code=faq', '자주하시는질문'); ?>
                         </li>
 
                         <li <?php if (!check_auth('A008')) {
@@ -558,7 +558,7 @@ if ($top_menu == "") {
                         <?php if ($top_menu == "reserve")
                             echo "on"; ?>">
                     <a href="#!" class="<?php if ($top_menu == "reserve")
-                        echo "on"; ?>"><span      class="tit">상품예약</span></a>
+                        echo "on"; ?>"><span class="tit">상품예약</span></a>
                     <ul class="smenu_1 depth2 <?php if ($top_menu == "reserve")
                         echo "on"; ?>">
                         <li <?php if (!check_auth('E001')) {
@@ -631,7 +631,7 @@ if ($top_menu == "") {
                         <?php if ($top_menu == "member")
                             echo "on"; ?>">
                     <a href="#!" class="<?php if ($top_menu == "member")
-                        echo "on"; ?>"><span      class="tit">회원관리</span></a>
+                        echo "on"; ?>"><span class="tit">회원관리</span></a>
                     <ul class="smenu_1 depth2 <?php if ($top_menu == "member")
                         echo "on"; ?>">
                         <li <?php if (!check_auth('F001')) {
@@ -675,7 +675,6 @@ if ($top_menu == "") {
                 </li>
 
 
-
                 <li <?php if (!check_auth('G')) {
                     echo "style='display: none;'";
                 } ?>
@@ -683,7 +682,7 @@ if ($top_menu == "") {
                         <?php if ($top_menu == "intra")
                             echo "on"; ?>">
                     <a href="#!" class="<?php if ($top_menu == "intra")
-                        echo "on"; ?>"><span      class="tit">인트라넷</span></a>
+                        echo "on"; ?>"><span class="tit">인트라넷</span></a>
                     <ul class="smenu_1 depth2 <?php if ($top_menu == "intra")
                         echo "on"; ?>">
                         <li <?php if (!check_auth('G001')) {
@@ -893,7 +892,9 @@ if ($top_menu == "") {
 
                     $(this).next('.depth2').toggleClass('on');
                     $(this).toggleClass('on');
-                } else { return; }
+                } else {
+                    return;
+                }
             });
 
 
