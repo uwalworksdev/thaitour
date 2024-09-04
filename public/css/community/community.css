@@ -1,6 +1,7 @@
 body {
     font-family: 'Noto Sans KR';
 }
+
 .sub_wrap .sub_content.commu {
     padding-bottom: 60px;
 }
@@ -426,7 +427,7 @@ strong {
     margin-bottom: 30px;
 }
 
-.sub_content .item_info>p {
+.sub_content .item_info > p {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 5px;
@@ -600,9 +601,6 @@ strong {
 .write .wide2{ width: 70%; } */
 
 
-
-
-
 /* write form 다른 클래스*/
 .new_tabcs {
     border-top: 2px solid #c5c5c5;
@@ -610,7 +608,8 @@ strong {
     margin: 0 auto;
 }
 
-.new_tabcs form {}
+.new_tabcs form {
+}
 
 .new_tabcs table {
     width: 100%;
@@ -666,11 +665,14 @@ strong {
     box-sizing: border-box;
 }
 
-.new_tabcs table tr.address th {}
+.new_tabcs table tr.address th {
+}
 
-.new_tabcs table tr.address th input {}
+.new_tabcs table tr.address th input {
+}
 
-.new_tabcs table tr.address th button {}
+.new_tabcs table tr.address th button {
+}
 
 .new_tabcs .narrow {
     width: 30%;
@@ -736,7 +738,7 @@ strong {
     padding: 6px 10px;
 }
 
-.main_section_1 .box_box >div{
+.main_section_1 .box_box > div {
     width: calc(50% - 20px);
 }
 
@@ -752,10 +754,12 @@ strong {
     justify-content: start;
     align-items: center;
 }
+
 .main_section_1 .questions_box .ques_box .answer_box_1 {
     padding: 20px;
     padding-left: 100px;
 }
+
 .main_section_1 .questions_box .ques_box .ques_box_item .title {
     font-size: 16px;
     font-weight: 600;
@@ -837,11 +841,12 @@ strong {
     width: 100%;
     border: 1px solid #dbdbdb;
 }
+
 .main_section_1 .info .info_detail + .info_detail {
     margin-left: -1px;
 }
 
-.main_section_1 .info .info_detail a{
+.main_section_1 .info .info_detail a {
     font-size: 18px;
     width: 100%;
     display: flex;
@@ -1152,9 +1157,11 @@ strong {
     align-items: center;
     cursor: pointer;
 }
+
 .questions_section_1 .ques_box .ques_box_item.active .arrow {
     transform: rotate(180deg);
 }
+
 .questions_section_1 .ques_box .ques_box_item .title {
     font-size: 16px;
     font-weight: 600;
@@ -1187,6 +1194,7 @@ strong {
     background-image: url('/images/ico/question_box_arrow.png');
     margin-left: auto;
 }
+
 .questions_section_1 .ques_box .answer_box {
     padding-left: 100px;
     padding-top: 20px;
@@ -1197,6 +1205,7 @@ strong {
 .questions_section_1 .ques_box .answer_box_1.active {
     display: block;
 }
+
 .questions_section_1 .ques_box .answer_box .ans {
     /* margin-bottom: 70px; */
     display: inline-block;
@@ -1436,7 +1445,7 @@ strong {
 
 .customer-notify-page .title-menu {
     padding-bottom: 30px;
-    border-bottom: 1px solid;
+    /*border-bottom: 1px solid;*/
     margin-bottom: 0;
 }
 
