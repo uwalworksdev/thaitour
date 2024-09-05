@@ -173,7 +173,7 @@ $routes->group("member", static function ($routes) {
     $routes->post("num_chk_ajax", "Member::num_chk_ajax");
     $routes->post("num_chk2_ajax", "Member::num_chk2_ajax");
     $routes->post("sns_kakao_login", "Member::sns_kakao_login");
-    $routes->post("google_login", "Member::google_login");
+    $routes->get("google_login", "Member::google_login");
     $routes->post("join_form_sns", "Member::join_form_sns");
     $routes->post("update/(:segment)", "Member::update_member/$1");
 });
