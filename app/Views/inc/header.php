@@ -12,7 +12,7 @@
             <ul class="flex_header_top">
                 <li>
                     <?php if (session("member")): ?>
-                        <a href="/member/logout" class="text-grey">로그아엇</a>
+                        <a href="/member/logout" class="text-grey">로그아웃</a>
                     <?php else: ?>
                         <a href="/member/login" class="text-grey">로그인</a>
                     <?php endif; ?>
@@ -174,7 +174,7 @@
                 <ul class="menu_mobile__head">
                     <li>
                         <?php if (session("member")): ?>
-                            <a href="/member/logout" class="text-grey">로그아엇</a>
+                            <a href="/member/logout" class="text-grey">로그아웃</a>
                         <?php else: ?>
                             <a href="/member/login" class="text-grey">로그인</a>
                         <?php endif; ?>
