@@ -14,7 +14,7 @@ if(bSuccessUpload) {
 	if(!in_array($filename_ext, $allow_file)) {
 		$url .= '&errstr='.$name;
 	} else {
-		$uploadDir = '../../../data/editor/';
+		$uploadDir = WRITEPATH . 'uploads/editor/';
 		if(!is_dir($uploadDir)){
 			mkdir($uploadDir, 0777);
 		}
@@ -25,7 +25,7 @@ if(bSuccessUpload) {
 		
 		$url .= "&bNewLine=true";
 		$url .= "&sFileName=".$name;
-		$url .= "&sFileURL=/data/editor/".$name;
+		$url .= "&sFileURL=/uploads/editor/".$name;
 	}
 }
 // FAILED

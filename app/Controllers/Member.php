@@ -532,12 +532,12 @@ class Member extends BaseController
         $email = $request->getPost("email");
 
         if (empty($email)) {
-            return "NO";
+            return "N";
         } else {
             if (email_chk($email)) {
-                return "OK";
+                return "Y";
             } else {
-                return "NO";
+                return "N";
             }
         }
     }
