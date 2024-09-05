@@ -364,15 +364,17 @@
 
     document.getElementById('cap_re').style.opacity = "0"
     function reloadCaptcha() {
-        fetch('./generate_captcha.php')
-            .then(response => response.json()) // Chuyển đổi kết quả trả về thành JSON
-            .then(data => {
+        $.ajax({
+            url: '/tools/generate_captcha',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
                 document.getElementById('cap_re').src = data.captcha_image;
                 document.getElementById('hidden_captcha').value = data.captcha_value;
                 document.getElementById('spinner_load').style.display = "none"
                 document.getElementById('cap_re').style.opacity = "1"
-            })
-            .catch(error => console.error('Error:', error));
+            }
+        })
     }
 
     reloadCaptcha(); // Gọi hàm ngay sau khi được khai báo

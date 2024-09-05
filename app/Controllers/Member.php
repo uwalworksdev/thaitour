@@ -227,7 +227,17 @@ class Member extends BaseController
 
         $cnt = $this->member->getMemberCount("where user_id = '" . $user_id . "'");
         if ($cnt > 0) {
-            return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(400);
+            $member = $this->member->getMembers("where user_id = '" . $user_id . "'", $private_key, 0, 1)[0];
+            $data['id'] = $user_id;
+            $data['shop'] = $user_id;
+            $data['idx'] = $member['m_idx'];
+            $data["mIdx"] = $member['m_idx'];
+            $data['name'] = $member['user_name'];
+            $data['email'] = $member['user_email'];
+            $data['level'] = 10;
+            $data['gubun'] = $member['gubun'];
+            session()->set("member", $data);
+            return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(200);
         }
 
         if ($gubun == "kakao")
@@ -557,5 +567,144 @@ class Member extends BaseController
 
         // return email_chk_ok($chkNum);
         return "Y";
+    }
+    public function sns_kakao_login() {
+        helper(['form', 'url']);
+        $session = session();
+
+        $mode = updateSQ($this->request->getPost('mode'));
+        $sns_key = updateSQ($this->request->getPost('sns_key'));
+        $num = 0;
+
+        $session->set('sns.gubun', 'kakao');
+
+        if ($mode == "false" || $mode == "mypage") {
+            $existingMember = $this->member->where('sns_key', $sns_key)->first();
+            if ($existingMember) {
+                $num = 2;
+            }
+        } else {
+            $existingMember = $this->member->where('sns_key', $sns_key)->first();
+            if ($existingMember) {
+                $session->set([
+                    'member.id'     => $existingMember['user_id'],
+                    'member.shop'   => $existingMember['user_id'],
+                    'member.idx'    => $existingMember['m_idx'],
+                    'member.mIdx'   => $existingMember['m_idx'],
+                    'member.level'  => $existingMember['user_level'],
+                    'member.email'  => $existingMember['user_email'],
+                    'member.gubun'  => $existingMember['gubun'],
+                    'member.name'   => $existingMember['user_name'],
+                    'member.mlevel' => $existingMember['mem_level']
+                ]);
+
+                if (!empty($existingMember['sns_key'])) {
+                    $session->set('member.sns_login', 'Y');
+                }
+
+                $num = 2;
+            }
+        }
+
+        return $num;
+    }
+    public function join_form_sns() {
+        $gubun = $this->request->getPost('gubun');
+        $sns_key = $this->request->getPost('sns_key');
+        $user_name = $this->request->getPost('user_name');
+        $user_email = $this->request->getPost('userEmail');
+        $email_arr = explode("@", $user_email);
+        return view('member/join_form_sns', [
+            'gubun' => $gubun,
+            'sns_key' => $sns_key,
+            'user_name' => $user_name,
+            'user_email' => $user_email,
+            'email_arr' => $email_arr
+        ]);
+    }
+    public function google_login()
+    {
+        $session = session();
+        $token = $this->request->getVar('code');
+        $client_id = "201811301708-psla2uvr74i6mrt01a45379omt5inbdn.apps.googleusercontent.com";
+        $client_secret = "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";
+        $redirect_uri = "https://{$_SERVER['HTTP_HOST']}/member/google_login";
+        $url = "https://www.googleapis.com/oauth2/v4/token";
+
+        $query = http_build_query([
+            'client_id' => $client_id,
+            'redirect_uri' => $redirect_uri,
+            'client_secret' => $client_secret,
+            'code' => $token,
+            'grant_type' => 'authorization_code'
+        ]);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
+
+        $response = json_decode(curl_exec($ch), true);
+        $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if ($status_code == 200) {
+            $access_token = $response['access_token'];
+
+            $user_info_url = "https://www.googleapis.com/oauth2/v2/userinfo?access_token=" . $access_token;
+            curl_setopt($ch, CURLOPT_URL, $user_info_url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Authorization: Bearer ' . $access_token]);
+
+            $info = json_decode(curl_exec($ch), true);
+            $info_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+            if ($info_code == 200) {
+                $id = $info['id'];
+                $email = $info['email'];
+                $name = $info['name'];
+
+                $db = \Config\Database::connect();
+                $builder = $db->table('tbl_member');
+                $builder->where('status', '1');
+                $builder->where('sns_key', $id);
+                $row = $builder->get()->getRowArray();
+
+                if (!$row) {
+                    $session->set('sns.gubun', 'google');
+                    $session->set('google.userEmail', $email);
+                    $session->set('google.userName', $name);
+                    $session->set('google.user_id', 'google_' . $id);
+                    $session->set('google.sns_key', $id);
+
+                    return redirect()->to('/member/join_form_sns')->withInput([
+                        'gubun' => 'google',
+                        'sns_key' => $id,
+                        'user_email' => $email,
+                        'user_name' => $name
+                    ]);
+                } else {
+                    $session->set('member', [
+                        'id' => $row['user_id'],
+                        'idx' => $row['m_idx'],
+                        'mIdx' => $row['m_idx'],
+                        'name' => $row['user_name'],
+                        'email' => $row['user_email'],
+                        'level' => $row['user_level'],
+                        'gubun' => $row['gubun'],
+                        'sns_key' => $row['sns_key'],
+                        'mlevel' => $row['mem_level']
+                    ]);
+
+                    return redirect()->to('/');
+                }
+            } else {
+                return redirect()->to('/');
+            }
+        }
+
+        return redirect()->to('/');
     }
 }
