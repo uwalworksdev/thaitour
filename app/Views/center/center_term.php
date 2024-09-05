@@ -3,7 +3,7 @@
         <h1 class="title">하이호주 약관</h1>
         <nav class="snb ">
             <ul>
-                <li class="<?= $tab1 ?>"><a href="./insurance">해외여행자보험</a></li>
+                <li class="<?= $tab1 ?>"><a href="./insurance">여행자보험</a></li>
                 <li class="<?= $tab2 ?>"><a href="./tourterms">여행약관</a></li>
                 <li class="<?= $tab3 ?>"><a href="./terms">이용약관</a></li>
                 <li class="<?= $tab4 ?>"><a href="./privacy">개인정보처리방침</a></li>
