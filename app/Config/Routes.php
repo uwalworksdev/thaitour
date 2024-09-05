@@ -150,6 +150,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
 });
 $routes->get('/', 'Home::index');
+$routes->post('/file_uploader', 'FileUpload::file_uploader');
 $routes->group("tools", static function ($routes) {
     $routes->get('generate_captcha', 'Tools::generate_captcha');
     $routes->post('get_travel_types', 'Tools::get_travel_types');
