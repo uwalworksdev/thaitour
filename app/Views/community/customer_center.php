@@ -138,14 +138,22 @@
 
                     </div>
                     <div class="pagination">
-                        <a href="#" class="page-link">≪</a>
+                        <a href="#" class="page-link">
+                            <img src="/images/community/pagination_prev.png" alt="pagination_prev">
+                        </a>
                         <a href="#" class="page-link" style="margin-right: 24px;">
-                        <<a href="#" class="page-link active">1
+                            <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
+                        </a>
+                        <a href="#" class="page-link active">1
                         </a>
                         <a href="#" class="page-link">2</a>
                         <a href="#" class="page-link">3</a>
-                        <a href="#" class="page-link" style="margin-left: 24px;">></a>
-                        <a href="#" class="page-link">≫</a>
+                        <a href="#" class="page-link" style="margin-left: 24px;">
+                            <img src="/images/community/pagination_next_s.png" alt="pagination_next">
+                        </a>
+                        <a href="#" class="page-link">
+                            <img src="/images/community/pagination_next.png" alt="pagination_next">
+                        </a>
                     </div>
                 </div>
             </div>

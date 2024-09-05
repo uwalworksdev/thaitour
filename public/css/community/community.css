@@ -1346,7 +1346,6 @@ strong {
 
 .customer-center-page .list-q .item-q {
     display: flex;
-    gap: 30px;
     padding: 24px 12px;
     font-size: 18px;
     align-items: center;
@@ -1366,7 +1365,11 @@ strong {
     color: white;
     border-radius: 99px;
     background-color: #17469E;
-    padding: 9px 12px;
+    padding: 8px 14px 14px 13px;
+}
+
+.customer-center-page .list-q .item-q .con-q span.name {
+    width: 100px;
 }
 
 .customer-center-page .list-q .content {
@@ -1404,8 +1407,8 @@ strong {
     color: white;
     border-radius: 99px;
     background-color: #494949;
-    padding: 9px 12px;
-    height: 38px;
+    padding: 9px 14px;
+    height: 40px;
 }
 
 .customer-center-page .con-a {
@@ -1415,7 +1418,6 @@ strong {
 
 .customer-center-page .flex-title-con {
     display: flex;
-    gap: 45px;
     padding-bottom: 24px;
 }
 
@@ -1439,8 +1441,8 @@ strong {
 }
 
 .customer-center-page .page-link.active {
-    color: #39B9AA;
-    border-color: #39B9AA;
+    color: var(--bs-point);
+    border-color: var(--bs-point);
 }
 
 .customer-notify-page .title-menu {
@@ -1614,7 +1616,6 @@ strong {
 
 .customer-center-page .content {
     line-height: 1.5rem;
-    margin-top: 16px;
     color: #757575;
 }
 
