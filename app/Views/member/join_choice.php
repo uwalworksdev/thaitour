@@ -12,7 +12,7 @@
    $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=".$client_id."&redirect_uri=".$redirectURI."&state=".$state;
 
    // 구글
-   $client_id = "177955450137-86lvbesbv35j5mrd0339oit62f326la3.apps.googleusercontent.com";
+   $client_id = "585430043451-c4gi3u183fi42r1848vmt0klasnnb1ae.apps.googleusercontent.com";
    $redirection_url = "https://{$_SERVER['HTTP_HOST']}/member/google_login";
    $scope = "https://www.googleapis.com/auth/userinfo.email ";
    $response_type = "code";

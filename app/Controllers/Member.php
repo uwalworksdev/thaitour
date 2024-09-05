@@ -626,8 +626,8 @@ class Member extends BaseController
     {
         $session = session();
         $token = $this->request->getVar('code');
-        $client_id = "201811301708-psla2uvr74i6mrt01a45379omt5inbdn.apps.googleusercontent.com";
-        $client_secret = "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";
+        $client_id = "585430043451-c4gi3u183fi42r1848vmt0klasnnb1ae.apps.googleusercontent.com";
+        $client_secret = "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";
         $redirect_uri = "https://{$_SERVER['HTTP_HOST']}/member/google_login";
         $url = "https://www.googleapis.com/oauth2/v4/token";
 
