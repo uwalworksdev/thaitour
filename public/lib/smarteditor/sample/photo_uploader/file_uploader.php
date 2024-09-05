@@ -14,7 +14,7 @@ if(bSuccessUpload) {
 	if(!in_array($filename_ext, $allow_file)) {
 		$url .= '&errstr='.$name;
 	} else {
-		$uploadDir = WRITEPATH . 'uploads/editor/';
+		$uploadDir = '../../../../writable/uploads/editor/';
 		if(!is_dir($uploadDir)){
 			mkdir($uploadDir, 0777);
 		}
