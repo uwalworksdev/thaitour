@@ -1,4 +1,4 @@
-Kakao.init('af40b057bc41e9c0f0028199a377d3fa'); // JavaScript 키
+Kakao.init('7af820332f93a341cbfcce2456fedb73'); // JavaScript 키
 Kakao.isInitialized();
 
 
