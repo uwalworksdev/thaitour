@@ -377,7 +377,7 @@ class Member extends BaseController
             }
             $adminInfo = $this->member->AdminInfo($memberId);
             $idx = $adminInfo[0]['idx'];
-            $data['member_pw'] = $passwordHash;
+            $data['user_pw'] = $passwordHash;
 
             $updateResult = $this->member->AdminPasswordChange($idx, $data);
 
