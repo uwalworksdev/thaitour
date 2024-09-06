@@ -15,15 +15,16 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
     <section class="main_visual">
         <div class="body_inner">
             <div class="relative">
-                <div class="main_visual_slider owl-carousel">
+                <div class="main_visual_slider owl-carousel only_web">
                     <?php foreach ($list as $item): ?>
-                        <div class="img_box img_box_1">
-                            <img src="/uploads/bbs/<?= $item['ufile5'] ?>"
+                        <div class="img_box img_box_1 only_web">
+                            <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
                         </div>
                     <?php endforeach; ?>
+
                 </div>
-                <!-- <div class="main_visual_slider owl-carousel only_mo">
+                <div class="main_visual_slider owl-carousel only_mo">
                     <div class="img_box img_box_1_m  only_mo">
                         <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
                             onerror="this.src='/images/main/image.svg'">
@@ -36,7 +37,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
                             onerror="this.src='/images/main/image.svg'">
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="swiper-main-tools">
                 <div class="play_pause" id="autoplay-button">
@@ -133,10 +134,10 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     취향저격 더투어랩 Best
                 </div>
                 <div class="main_section3__place">
-                    <button class="main_section3__place_btn active">방콕</button>
-                    <button class="main_section3__place_btn">파타야</button>
-                    <button class="main_section3__place_btn">푸켓</button>
-                    <button class="main_section3__place_btn">치양마이</button>
+                    <button class="main_section3__place_btn active" data-list="1">방콕</button>
+                    <button class="main_section3__place_btn" data-list="2">파타야</button>
+                    <button class="main_section3__place_btn" data-list="3">푸켓</button>
+                    <button class="main_section3__place_btn" data-list="4">치양마이</button>
                 </div>
                 <div class="main_section3__type">
                     <button class="main_section3__type_btn active">호텔</button>
@@ -145,7 +146,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 </div>
             </div>
             <div>
-                <div class="best_list">
+                <div class="best_list best_list_1">
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_1.png" alt="main">
@@ -331,6 +332,192 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         </div>
                     </a>
                 </div>
+                <div class="best_list best_list_2 hidden">
+                <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_5.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_6.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_7.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_8.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_1.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_2.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <!-- <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div> -->
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_3.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <a href="#!" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/uploads/main/main_best_4.png" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100 <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -453,6 +640,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                <span class="number_item_label number_one">1</span>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -463,6 +651,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                <span class="number_item_label">2</span>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -473,6 +662,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                <span class="number_item_label">3</span>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -483,6 +673,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                <span class="number_item_label">4</span>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -528,11 +719,19 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <img src="/uploads/main/main_banner_6.png" alt="" class="only_web">
                         <img src="/uploads/main/main_banner_6_m.png" alt="" class="only_mo">
                     </div>
+                    <div class="text-content only_web">
+                        <h3>유심도 도시락으로<br>도시락 usim</h3>
+                        <span class="text-gray">2024.06.04~</span>
+                    </div>
                 </div>
                 <div class="main_section7__banner__item">
                     <div class="img_box img_box_4">
                         <img src="/uploads/main/main_banner_7.png" alt="" class="only_web">
                         <img src="/uploads/main/main_banner_7_m.png" alt="" class="only_mo">
+                    </div>
+                    <div class="text-content only_web">
+                        <h3>여행일정표 만들기<br>공유 이벤트 </h3>
+                        <span>일정표 공유시 포인트 2,000점!</span>
                     </div>
                 </div>
             </div>
@@ -573,6 +772,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                <span class="number_item_label number_one">1</span>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -583,6 +783,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                <span class="number_item_label">2</span>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -594,6 +795,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
                             </div>
+                            <span class="number_item_label">3</span>
                         </div>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
@@ -604,6 +806,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
                             </div>
+                            <span class="number_item_label">4</span>
                         </div>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
