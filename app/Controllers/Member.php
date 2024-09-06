@@ -276,14 +276,19 @@ class Member extends BaseController
 
         $code = "A01";
         $user_mail = $user_email;
-        $replace_text = "|||[name]:::" . $user_name;
-        // autoEmail($code,$user_mail,$replace_text);
+        $_tmp_fir_array = [
+            'name' => $user_name
+        ];
+        autoEmail($code, $user_mail, $_tmp_fir_array);
 
-
-        $code = "S04";
-        $to_phone = $user_mobile;
-        $replace_text = "|||{{MEMBER_NAME}}:::" . $user_name;
-        // autoSms($code, $to_phone, $replace_text);
+        if ($user_mobile) {
+            $code = "S04";
+            $to_phone = $user_mobile;
+            $_tmp_fir_array = [
+                'MEMBER_NAME' => $user_name
+            ];
+            autoSms($code, $to_phone, $_tmp_fir_array);
+        }
 
         // 로그인 처리 부분
         $row = $this->member->where(['user_id' => $user_id])->first();
