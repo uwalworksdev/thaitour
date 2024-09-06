@@ -1082,7 +1082,7 @@ if ($mIdx != "") {
            },
            error: function (data) {
                console.log(data);
-               alert(data.message);
+               alert(data.responseJSON.message || "error");
            }
        })
        return false;

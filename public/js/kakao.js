@@ -1,4 +1,4 @@
-Kakao.init('7af820332f93a341cbfcce2456fedb73'); // JavaScript 키
+Kakao.init(kakao_key); // JavaScript 키
 Kakao.isInitialized();
 
 
@@ -8,8 +8,6 @@ function loginWithKakao() {
             Kakao.API.request({
                 url: '/v2/user/me',
                 success: function (res) {
-
-                    //alert(JSON.stringify(res));
 
                     var tmp_date = JSON.stringify(res);
                     var list = $.parseJSON(tmp_date);

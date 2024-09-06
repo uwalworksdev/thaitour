@@ -4,27 +4,27 @@
 <script src="/js/kakao.js"></script>
 <?php
 
-   // 네이버 로그인 접근토큰 요청 예제
-   $client_id   = "nEJfS5h48JVMBwecw1NJ";
-   $redirectURI = urlencode("https://".$_SERVER["HTTP_HOST"]."/include/naver.php");
-   $state       = md5(microtime() . mt_rand())."log";
-   $_SESSION['naver_state'] = $state;
-   $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=".$client_id."&redirect_uri=".$redirectURI."&state=".$state;
+  // 네이버 로그인 접근토큰 요청 예제
+  $client_id   = "nEJfS5h48JVMBwecw1NJ";
+  $redirectURI = urlencode("https://".$_SERVER["HTTP_HOST"]."/include/naver.php");
+  $state       = md5(microtime() . mt_rand())."log";
+  $_SESSION['naver_state'] = $state;
+  $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=".$client_id."&redirect_uri=".$redirectURI."&state=".$state;
 
-   // 구글
-   $client_id = "585430043451-c4gi3u183fi42r1848vmt0klasnnb1ae.apps.googleusercontent.com";
-   $redirection_url = "https://{$_SERVER['HTTP_HOST']}/member/google_login";
-   $scope = "https://www.googleapis.com/auth/userinfo.email ";
-   $response_type = "code";
+  // 구글
+  $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
+  $redirection_url = env("GOOGLE_REDIRECT_URI");
+  $scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
+  $response_type = "code";
 
-   $_url = "https://accounts.google.com/o/oauth2/v2/auth";
-   $_url .="?client_id=".$client_id;
-   $_url .="&redirect_uri=".urlencode($redirection_url);
-   $_url .="&scope=".$scope;
-   $_url .="&response_type=".$response_type;
-   $_url .="&state=OK";
+  $_url = "https://accounts.google.com/o/oauth2/v2/auth";
+  $_url .="?client_id=".$client_id;
+  $_url .="&redirect_uri=".urlencode($redirection_url);
+  $_url .="&scope=".$scope;
+  $_url .="&response_type=".$response_type;
+  $_url .="&state=OK";
 
-   $returnUrl = "";
+  $returnUrl = "";
 ?>
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -75,55 +75,5 @@
     </ul>
   </div>
 </main>
-
-<script>
-
-// var googleUser = {};
-//   var startApp = function() {
-//     gapi.load('auth2', function(){
-//       // Retrieve the singleton for the GoogleAuth library and set up the client.
-//       auth2 = gapi.auth2.init({
-//         client_id: '201811301708-psla2uvr74i6mrt01a45379omt5inbdn.apps.googleusercontent.com',
-//         cookiepolicy: 'single_host_origin',
-//         // Request scopes in addition to 'profile' and 'email'
-//         //scope: 'additional_scope'
-//       });
-//       attachSignin(document.getElementById('customBtn'));
-//     });
-//   };
-
-//   function attachSignin(element) {
-//     // console.log(element.id);
-//     auth2.attachClickHandler(element, {},
-//         function(googleUser) {
-//             // document.getElementById('name').innerText = "Signed in: " + googleUser.getBasicProfile().getName();
-//             const userId = googleUser.getBasicProfile().getId();
-//             const userName = googleUser.getBasicProfile().getName();
-//             const userEmail = googleUser.getBasicProfile().getEmail();
-//             let userArr = [
-//                 {key:"userKey", val: userId}, 
-//                 {key:"userName", val: userName}, 
-//                 {key:"userEmail", val: userEmail},
-//                 {key:"gubun", val: "google"}
-//             ]
-//             const frm   = document.createElement("form");
-//             frm.method  = 'POST';
-//             frm.action  = "/include/google.php";
-//             for(let i=0; i < userArr.length; i++){
-//                 let input   = document.createElement("input");
-//                 input.name  = userArr[i].key;
-//                 input.value = userArr[i].val;
-//                 input.type  = "hidden";
-//                 frm.appendChild(input);
-//             }
-//             document.body.appendChild(frm);
-//             frm.submit();
-//         }, function(error) {
-//           console.log(JSON.stringify(error, undefined, 2));
-//         });
-//   }
-
-// startApp();
-</script>
 
 <?php $this->endSection(); ?>

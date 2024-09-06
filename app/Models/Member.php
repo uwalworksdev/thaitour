@@ -116,6 +116,7 @@ class Member extends Model
         $data['user_email'] = "HEX(AES_ENCRYPT('{$data['user_email']}', '$privateKey'))";
         $data['user_mobile'] = "HEX(AES_ENCRYPT('{$data['user_mobile']}', '$privateKey'))";
 
+        $builder->set('user_id', $data['user_id'], true);
         $builder->set('user_name', $data['user_name'], false);
         $builder->set('user_email', $data['user_email'], false);
         $builder->set('user_mobile', $data['user_mobile'], false);
