@@ -77,14 +77,14 @@ $(document).ready(function () {
       },
     },
   });
-  const currentSlideIndex = $('.main_current_slide');
-  owl.on('changed.owl.carousel', function(event) {
+  const currentSlideIndex = $(".main_current_slide");
+  owl.on("changed.owl.carousel", function (event) {
     var currentItem = event.item.index - event.relatedTarget._clones.length / 2;
     var totalItems = event.item.count;
     if (currentItem < 0) {
       currentItem = totalItems + currentItem;
     }
-    currentSlideIndex.text((currentItem + 1));
+    currentSlideIndex.text(currentItem + 1);
   });
   $("#autoplay-button").click(function () {
     var $this = $(this);
@@ -100,28 +100,57 @@ $(document).ready(function () {
       $("#play-button").show();
     }
   });
+
+  $(".main_section3__place_btn").on("click", function () {
+    $(".main_section3__place_btn").removeClass("active");
+    $(this).addClass("active");
+
+    var listNumber = $(this).data("list");
+
+    $(".best_list").addClass("hidden");
+
+    $(".best_list_" + listNumber).removeClass("hidden");
+  });
+
+  $(".main_section3__type_btn").on("click", function () {
+    $(".main_section3__type_btn").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  $(".words_list_item").on("click", function (event) {
+    event.preventDefault();
+
+    $(".words_list_item").removeClass("active");
+
+    $(this).addClass("active");
+  });
+  $(".place_item").on("click", function (event) {
+    event.preventDefault();
+    $(".place_item").removeClass("active");
+    $(this).addClass("active");
+  });
+  
 });
 
 const swiper1 = new Swiper(".main_swiper2", {
   loop: true,
-    breakpoints: {
-      851: {
-          slidesPerView: 5,
-          pagination:false
-        
-    }
+  breakpoints: {
+    851: {
+      slidesPerView: 5,
+      pagination: false,
+    },
   },
-  slidesPerView:2,
+  slidesPerView: 2,
   pagination: {
-    el: '.swiper_pagination_main_swiper2',
+    el: ".swiper_pagination_main_swiper2",
     clickable: true,
-    type: 'bullets'
+    type: "bullets",
     // dynamicBullets: true
-},
+  },
   spaceBetween: 20,
   navigation: {
-    nextEl: ".main_swiper2_btn_next only_web",
-    prevEl: ".main_swiper2_btn_prev only_web",
+    nextEl: ".main_swiper2_btn_next",
+    prevEl: ".main_swiper2_btn_prev",
   },
 });
 
@@ -136,11 +165,9 @@ const swiper2 = new Swiper(".hot_product_list_swiper_1", {
   loop: true,
   breakpoints: {
     851: {
-        slidesPerView: 4,
-        pagination:false
-      
-  }
-},
+      slidesPerView: 4,
+    },
+  },
   slidesPerView: 2,
   spaceBetween: 20,
   pagination: {
@@ -164,15 +191,14 @@ const swiper3 = new Swiper(".hot_product_list_swiper_2", {
   loop: true,
   breakpoints: {
     851: {
-        slidesPerView: 4,
-        pagination:false
-      
-  }
-},
+      slidesPerView: 4,
+    },
+  },
   slidesPerView: 2,
   spaceBetween: 20,
   pagination: {
     el: ".hot_product_list_swiper_pagination_2",
+    clickable: true,
   },
   navigation: {
     nextEl: ".hot_product_list_swiper_2_btn_next",
@@ -192,11 +218,10 @@ const swiper4 = new Swiper(".review__list_swiper", {
   loop: true,
   breakpoints: {
     851: {
-        slidesPerView: 4,
-        pagination:false
-      
-  }
-},
+      slidesPerView: 4,
+      pagination: false,
+    },
+  },
   slidesPerView: 2,
   spaceBetween: 20,
   navigation: {
@@ -209,11 +234,10 @@ const swiper5 = new Swiper(".magazine_swiper", {
   loop: true,
   breakpoints: {
     851: {
-        slidesPerView: 5,
-        pagination:false
-      
-  }
-},
+      slidesPerView: 5,
+      pagination: false,
+    },
+  },
   slidesPerView: 2,
   spaceBetween: 20,
   pagination: {
