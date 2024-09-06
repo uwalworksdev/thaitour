@@ -47,7 +47,7 @@ class Member extends Model
     {
         $builder = $this;
         $builder->where("member_id", 'admin');
-        return $builder->findColumn('member_pw');
+        return $builder->findColumn('user_pw');
     }
 
     function sql_password($value)
@@ -68,7 +68,7 @@ class Member extends Model
     public function AdminPasswordChange($idx, $data)
     {
         $builder = $this;
-        $this->allowedFields = ['member_pw'];
+        $this->allowedFields = ['user_pw'];
         return $builder->update($idx, $data);
     }
     public function getMemberCount($strSql)
@@ -116,6 +116,7 @@ class Member extends Model
         $data['user_email'] = "HEX(AES_ENCRYPT('{$data['user_email']}', '$privateKey'))";
         $data['user_mobile'] = "HEX(AES_ENCRYPT('{$data['user_mobile']}', '$privateKey'))";
 
+        $builder->set('user_id', $data['user_id'], true);
         $builder->set('user_name', $data['user_name'], false);
         $builder->set('user_email', $data['user_email'], false);
         $builder->set('user_mobile', $data['user_mobile'], false);
@@ -147,7 +148,7 @@ class Member extends Model
 
         if (!empty($data['user_pw'])) {
             $data['user_pw'] = sql_password($data['user_pw']);
-            $builder->set('member_pw', $data['user_pw'], true);
+            $builder->set('user_pw', $data['user_pw'], true);
         }
 
         return $builder->insert();

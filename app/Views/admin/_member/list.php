@@ -8,8 +8,10 @@
                 <h2><?= esc($strTitle) ?> 회원리스트</h2>
                 <div class="menus">
                     <ul class="first">
-                        <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), true)" class="btn btn-success">전체선택</a></li>
-                        <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), false)" class="btn btn-success">선택해체</a></li>
+                        <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), true)"
+                                class="btn btn-success">전체선택</a></li>
+                        <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), false)"
+                                class="btn btn-success">선택해체</a></li>
                         <li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
                     </ul>
                 </div>
@@ -17,7 +19,7 @@
         </header>
 
         <div id="contents">
-            <form name="search" id="search">		
+            <form name="search" id="search">
                 <header id="headerContents">
                     <select name="search_category" class="input_select" style="width:112px">
                         <option value="user_name" <?= ($search_category == "user_name") ? "selected" : "" ?>>성명</option>
@@ -25,8 +27,10 @@
                         <option value="user_email" <?= ($search_category == "user_email") ? "selected" : "" ?>>이메일</option>
                         <option value="user_mobile" <?= ($search_category == "user_mobile") ? "selected" : "" ?>>모바일</option>
                     </select>
-                    <input type="text" name="search_name" value="<?= esc($search_name) ?>" class="input_txt placeHolder" rel="검색어 입력" style="width:240px" />
-                    <a href="javascript:search_it()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+                    <input type="text" name="search_name" value="<?= esc($search_name) ?>" class="input_txt placeHolder"
+                        rel="검색어 입력" style="width:240px" />
+                    <a href="javascript:search_it()" class="btn btn-default"><span
+                            class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
                 </header>
             </form>
             <script>
@@ -38,7 +42,6 @@
                     frm.submit();
                 }
             </script>
-
             <div class="listWrap">
                 <div class="listTop">
                     <div class="left">
@@ -46,7 +49,7 @@
                     </div>
                 </div>
 
-                <form name="frm" id="frm">				
+                <form name="frm" id="frm">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
@@ -58,11 +61,12 @@
                                 <col width="150px" />
                                 <?php if ($s_status == 'Y') { ?>
                                     <col width="100px" />
-                                    <col width="*" />						
-                                <?php } if ($s_status == 'N') { ?>
+                                    <col width="*" />
+                                <?php }
+                                if ($s_status == 'N') { ?>
                                     <col width="*" />
                                     <col width="150px" />
-                                <?php } ?>				
+                                <?php } ?>
                                 <col width="150px" />
                                 <col width="150px" />
                                 <?php if ($s_status == 'Y') { ?>
@@ -77,20 +81,23 @@
                                     <th>번호</th>
                                     <th>현황</th>
                                     <th>아이디</th>
-                                    <th>이름</th>	
+                                    <th>이름</th>
                                     <?php if ($s_status == 'Y') { ?>
                                         <th>회원등급</th>
-                                    <?php } if ($s_status == 'N') { ?>
+                                    <?php }
+                                    if ($s_status == 'N') { ?>
                                         <th>탈퇴사유</th>
                                     <?php } ?>
                                     <?php if ($s_status == 'Y') { ?>
                                         <th>이메일</th>
-                                    <?php } if ($s_status == 'N') { ?>
+                                    <?php }
+                                    if ($s_status == 'N') { ?>
                                         <th>기타이유</th>
                                     <?php } ?>
                                     <?php if ($s_status == 'Y') { ?>
                                         <th>모바일</th>
-                                    <?php } if ($s_status == 'N') { ?>
+                                    <?php }
+                                    if ($s_status == 'N') { ?>
                                         <th>탈퇴일</th>
                                     <?php } ?>
                                     <?php if ($s_status == 'Y') { ?>
@@ -115,24 +122,28 @@
                                             <td><?= esc($row['user_level']) ?></td>
                                         <?php } ?>
                                         <?php if ($s_status == 'N') { ?>
-                                            <td class="tac"><?=$row["out_reason"]?></td>
-									<td class="tac"><?=$row["out_etc"]?></td>
-									<td class="tac"><?=$row["out_date"]?></td>                                        <?php } ?>
+                                            <td class="tac"><?= $row["out_reason"] ?></td>
+                                            <td class="tac"><?= $row["out_etc"] ?></td>
+                                            <td class="tac"><?= $row["out_date"] ?></td>
+                                        <?php } ?>
                                         <?php if ($s_status == 'Y') { ?>
                                             <td><?= esc($row['user_email']) ?></td>
                                             <td><?= esc($row['user_mobile']) ?></td>
                                             <td><?= esc($row['user_phone']) ?></td>
                                             <td><?= esc($row['mileage']) ?></td>
-                                        <?php } if ($s_status == 'N') { ?>
+                                        <?php }
+                                        if ($s_status == 'N') { ?>
                                             <!-- <td><?= esc($row['r_date']) ?></td> -->
                                         <?php } ?>
                                         <td><?= esc($row['r_date']) ?></td>
                                         <td>
-											<a href="write?idx=<?= $row['m_idx'] ?>"><img src="/images/admin/common/ico_setting2.png"></a>
-											<a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>
-										</td>
+                                            <a href="write?idx=<?= $row['m_idx'] ?>"><img
+                                                    src="/images/admin/common/ico_setting2.png"></a>
+                                            <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img
+                                                    src="/images/admin/common/ico_error.png" alt="삭제" /></a>
+                                        </td>
                                     </tr>
-                                    
+
                                 <?php } ?>
                             </tbody>
                         </table>
@@ -141,83 +152,80 @@
 
                 <!-- 페이지네이션 -->
                 <div class="pagination">
-                <?echo ipageListing($pg, $nPage, $g_list_rows, $_SERVER[PHP_SELF]."?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=")?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, $_SERVER['PHP_SELF'] . "?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=") ?>
                 </div>
             </div>
         </div>
     </span>
 </div>
 <script>
- function CheckAll(checkBoxes,checked){
-    var i;
-    if(checkBoxes.length){
-        for(i=0;i<checkBoxes.length;i++){
-            checkBoxes[i].checked=checked;
+    function CheckAll(checkBoxes, checked) {
+        var i;
+        if (checkBoxes.length) {
+            for (i = 0; i < checkBoxes.length; i++) {
+                checkBoxes[i].checked = checked;
+            }
+        } else {
+            checkBoxes.checked = checked;
         }
-    }else{
-        checkBoxes.checked=checked;
-   }
 
-}
+    }
 
-function SELECT_DELETE() {
-		if ($(".m_idx").is(":checked") == false)
-		{
-			alert_("삭제할 내용을 선택하셔야 합니다.");
-			return;
-		}
-		if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false)
-		{
-			return;
-		}
+    function SELECT_DELETE() {
+        if ($(".m_idx").is(":checked") == false) {
+            alert_("삭제할 내용을 선택하셔야 합니다.");
+            return;
+        }
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
 
-		$("#ajax_loader").removeClass("display-none");
+        $("#ajax_loader").removeClass("display-none");
 
         $.ajax({
-			url: "del.php",
-			type: "POST",
-			data: $("#frm").serialize(),
-			error : function(request, status, error) {
-			 //통신 에러 발생시 처리
-				alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-				$("#ajax_loader").addClass("display-none");
-			}
-			,complete: function(request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-			}
-			, success : function(response, status, request) {
-				alert_("정상적으로 삭제되었습니다.");
-				location.reload();
-				return;
-			}
+            url: "del.php",
+            type: "POST",
+            data: $("#frm").serialize(),
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , complete: function (request, status, error) {
+                //				$("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                alert_("정상적으로 삭제되었습니다.");
+                location.reload();
+                return;
+            }
         });
-}
+    }
 
-function del_it(m_idx) {
+    function del_it(m_idx) {
 
-		if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false)
-		{
-			return;
-		}
-		$("#ajax_loader").removeClass("display-none");
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+        $("#ajax_loader").removeClass("display-none");
         $.ajax({
-			url: "del.php",
-			type: "POST",
-			data: "m_idx[]="+m_idx,
-			error : function(request, status, error) {
-				//통신 에러 발생시 처리
-				alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-				$("#ajax_loader").addClass("display-none");
-			}
-			,complete: function(request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-			}
-			, success : function(response, status, request) {
-				console.log(response);
-				alert("삭제되었습니다.");
-				location.reload();
-			}
+            url: "del.php",
+            type: "POST",
+            data: "m_idx[]=" + m_idx,
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , complete: function (request, status, error) {
+                //				$("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                console.log(response);
+                alert("삭제되었습니다.");
+                location.reload();
+            }
         });
-}
+    }
 </script>
 <?= $this->endSection() ?>

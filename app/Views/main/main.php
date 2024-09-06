@@ -15,16 +15,15 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
     <section class="main_visual">
         <div class="body_inner">
             <div class="relative">
-                <div class="main_visual_slider owl-carousel only_web">
+                <div class="main_visual_slider owl-carousel">
                     <?php foreach ($list as $item): ?>
-                        <div class="img_box img_box_1 only_web">
-                            <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
+                        <div class="img_box img_box_1">
+                            <img src="/uploads/bbs/<?= $item['ufile5'] ?>"
                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
                         </div>
                     <?php endforeach; ?>
-
                 </div>
-                <div class="main_visual_slider owl-carousel only_mo">
+                <!-- <div class="main_visual_slider owl-carousel only_mo">
                     <div class="img_box img_box_1_m  only_mo">
                         <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
                             onerror="this.src='/images/main/image.svg'">
@@ -37,7 +36,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
                             onerror="this.src='/images/main/image.svg'">
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="swiper-main-tools">
                 <div class="play_pause" id="autoplay-button">

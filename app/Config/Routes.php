@@ -150,6 +150,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
 });
 $routes->get('/', 'Home::index');
+$routes->post('/file_uploader', 'FileUpload::file_uploader');
 $routes->group("tools", static function ($routes) {
     $routes->get('generate_captcha', 'Tools::generate_captcha');
     $routes->post('get_travel_types', 'Tools::get_travel_types');
@@ -171,6 +172,9 @@ $routes->group("member", static function ($routes) {
     $routes->post("email_chk_ajax", "Member::email_chk_ajax");
     $routes->post("num_chk_ajax", "Member::num_chk_ajax");
     $routes->post("num_chk2_ajax", "Member::num_chk2_ajax");
+    $routes->post("sns_kakao_login", "Member::sns_kakao_login");
+    $routes->get("google_login", "Member::google_login");
+    $routes->post("join_form_sns", "Member::join_form_sns");
     $routes->post("update/(:segment)", "Member::update_member/$1");
 });
 $routes->group("mypage", static function ($routes) {
