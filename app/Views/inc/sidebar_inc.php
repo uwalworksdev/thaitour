@@ -1,4 +1,4 @@
-<div class="side-bar only_web">
+<div class="side-bar-inc only_web">
     <div class="card-side-bar">
         <div class="side-bar-above side_bar_swipper swiper">
             <h3 class="title-side-bar">최근본상품</h3>
