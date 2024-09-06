@@ -1248,7 +1248,9 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             </div>
         </div>
     </section>
-
+    <?php
+        echo view("inc/sidebar_inc");
+    ?>
 </div>
 
 <script src="/js/main.js"></script>
