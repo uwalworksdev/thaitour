@@ -665,7 +665,7 @@ padding-top: calc(310% / 224 * 100);
 .side-bar-inc {
     z-index: 99;
     position: fixed;
-    bottom: 19%;
+    bottom: 22%;
     right: 60px;
     width: 90px;
     height: 268px;
