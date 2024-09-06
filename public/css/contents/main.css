@@ -662,7 +662,7 @@ padding-top: calc(310% / 224 * 100);
     line-height: 2rem;
 }
 
-.side-bar {
+.side-bar-inc {
     z-index: 99;
     position: fixed;
     bottom: 19%;
@@ -674,16 +674,16 @@ padding-top: calc(310% / 224 * 100);
     background: white;
 }
 
-.side-bar .side-bar-above {
+.side-bar-inc .side-bar-above {
     padding: 20px 10px 0 10px;
 }
 
-.side-bar .title-side-bar {
+.side-bar-inc .title-side-bar {
     font-size: 15px;
     margin-bottom: 10px;
 }
 
-.side-bar .img-sidebar {
+.side-bar-inc .img-sidebar {
     margin-bottom: 6px;
 }
 
@@ -725,11 +725,11 @@ padding-top: calc(310% / 224 * 100);
     margin-bottom: 10px;
 }
 
-.side-bar .side-bar-below {
+.side-bar-inc .side-bar-below {
     display: flex;
 }
 
-.side-bar .side-bar-below .left {
+.side-bar-inc .side-bar-below .left {
     border-top: 1px solid #ccc;
     border-right: 1px solid #ccc;
     display: flex;
@@ -739,7 +739,7 @@ padding-top: calc(310% / 224 * 100);
     height: 35px;
 }
 
-.side-bar .side-bar-below .right {
+.side-bar-inc .side-bar-below .right {
     border-top: 1px solid #ccc;
     display: flex;
     width: 50%;
@@ -748,18 +748,18 @@ padding-top: calc(310% / 224 * 100);
     height: 35px;
 }
 
-.side-bar .left, 
-.side-bar .right {
+.side-bar-inc .left, 
+.side-bar-inc .right {
     cursor: pointer;
 }
 
-.side-bar .img-container {
+.side-bar-inc .img-container {
     position: relative;
     width: 100%;
     overflow: hidden;
 }
 
-.side-bar .slide {
+.side-bar-inc .slide {
     position: absolute;
     top: 0;
     left: 100%;
@@ -771,12 +771,12 @@ padding-top: calc(310% / 224 * 100);
     opacity: 0;
 }
 
-.side-bar .slide.active {
+.side-bar-inc .slide.active {
     left: 0;
     opacity: 1;
 }
 
-.side-bar .icon-wrap-social {
+.side-bar-inc .icon-wrap-social {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -784,7 +784,7 @@ padding-top: calc(310% / 224 * 100);
     gap: 10px;
 }
 
-.side-bar .robot-container {
+.side-bar-inc .robot-container {
     padding: 14px;
     background-color: #9c75f2;
     border-radius: 50%;
