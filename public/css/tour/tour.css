@@ -923,7 +923,7 @@
 }
 
 .content-sub-hotel-detail .title-container .list-icon {
-  display: flex;
+  display: flex !important;
   gap: 16px;
   align-items: center;
 }
@@ -987,7 +987,7 @@
 
 .content-sub-hotel-detail .button-show-detail-image {
   position: absolute;
-  background: rgb(0, 0, 0, 0.7);
+  background: rgb(0, 0, 0, 0.1);
   width: 100%;
   height: 100%;
   top: 0%;
@@ -1003,14 +1003,14 @@
 .content-sub-hotel-detail .sub-header-hotel-detail {
   display: flex;
   justify-content: space-between;
-  padding: 12px 32px;
+  padding: 30px 32px;
   border: solid 1px #ccc;
   border-radius: 5px;
   margin-bottom: 64px;
 }
 
 .content-sub-hotel-detail .main {
-  gap: 16px;
+  gap: 30px;
   display: flex;
   align-items: center;
   font-weight: 500;
@@ -1018,11 +1018,11 @@
 }
 
 .content-sub-hotel-detail .main a.active {
-  color: #39B9AA;
+  color: var(--bs-point);
 }
 
 .content-sub-hotel-detail .main a:hover {
-  color: #39B9AA;
+  color: var(--bs-point);
 }
 
 .content-sub-hotel-detail .section1 button {
@@ -1576,4 +1576,380 @@
 
 .content-sub-product-hotel .product-card-item-container .item-pd {
   margin-left: 84px;
+}
+
+.tours-detail .section2 .title-sec2 {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.tours-detail .section2 .sec2-date-main {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.tours-detail .section2 .sec2-date-sub {
+  margin-bottom: 30px;
+}
+
+.tours-detail .section2 .sec2-item-card {
+  padding: 40px 30px 20px 30px;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
+}
+
+.tours-detail .section2 .sec2-item-card:last-child {
+  padding-bottom: 160px;
+}
+
+.tours-detail .section2 .text-content-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tours-detail .section2 .text-content-1 h3 {
+  font-size: 22px;
+}
+
+.tours-detail .section2 .text-content-1 span {
+  font-size: 15px;
+}
+
+.tours-detail .section2 .text-content-2 {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tours-detail .section2 .text-content-2 .ps-right {
+  font-weight: bold;
+  font-size: 24px;
+  margin-left: 12px;
+}
+
+.tours-detail .section2 .text-content-3 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.tours-detail .section2 .text-content-3 .btn-ct-3 {
+  padding: 12px 40px;
+  border-radius: 6px;
+  border: 1px solid #d8d8d8;
+  width: 120px;
+  color: var(--bs-point);
+  font-weight: 500;
+}
+
+
+.tours-detail .calendar-container {
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tours-detail .nav-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.tours-detail #datepicker {
+  margin-top: 20px;
+}
+
+.tours-detail .ui-datepicker {
+  width: 100%;
+  padding: 10px;
+}
+
+.tours-detail .ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+  font-size: 18px;
+}
+
+.tours-detail .ui-datepicker .ui-datepicker-title {
+  font-size: 18px;
+}
+
+.tours-detail .ui-datepicker td {
+  text-align: center;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.tours-detail .ui-state-default {
+  color: black;
+}
+
+.tours-detail .ui-datepicker td.ui-datepicker-unselectable .ui-state-default {
+  color: red;
+}
+
+.tours-detail .ui-datepicker td.ui-datepicker-current-day .ui-state-active {
+  background-color: blue;
+  color: white;
+  border-radius: 50%;
+}
+
+.calendar-container {
+  width: 400px;
+  margin: 50px auto;
+  font-family: Arial, sans-serif;
+}
+
+.ui-datepicker {
+  width: 100%;
+  font-size: 16px;
+}
+
+.ui-datepicker th {
+  color: black;
+}
+
+.ui-datepicker .ui-datepicker-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.ui-datepicker td a {
+  display: block;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.ui-datepicker td a.special-rate {
+  color: red;
+  font-weight: bold;
+}
+
+.ui-datepicker td span {
+  color: grey;
+  text-align: center;
+  display: block;
+  padding: 8px;
+}
+
+.ui-datepicker td .fully-booked {
+  color: grey;
+}
+
+.ui-datepicker td a.selected {
+  background-color: #0044cc;
+  color: white;
+  font-weight: bold;
+}
+
+.price-info {
+  font-size: 0.8rem;
+  color: grey;
+}
+
+.price-info.special {
+  color: red;
+}
+
+
+.tours-detail .quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+  width: 540px;
+  padding: 32px 0;
+  border-bottom: 1px dashed rgb(216, 216, 216);
+}
+
+.tours-detail .quantity-info {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  margin-left: 31px;
+}
+
+.tours-detail .quantity-info .price {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.tours-detail .quantity-info .currency {
+  font-size: 16px;
+  color: grey;
+}
+
+.tours-detail .quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tours-detail .quantity-selector button {
+  background-color: white;
+  border: none;
+  padding: 0 15px;
+  font-size: 20px;
+  cursor: pointer;
+  outline: none;
+}
+
+.tours-detail .quantity-selector button:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.tours-detail .quantity-selector .quantity {
+  font-size: 18px;
+  padding: 0 20px;
+  text-align: center;
+  width: 70px;
+}
+
+.tours-detail .container-calendar {
+  display: flex;
+  margin-top: 20px;
+  border-top: 1px solid rgb(216, 216, 216);
+  padding-top: 50px;
+  position: relative;
+}
+
+.tours-detail .calendar-left {
+  width: 50%;
+}
+
+.tours-detail .quantity-selector button.decrease {
+  padding-bottom: 4px;
+  border-right: 1px solid rgb(216, 216, 216);
+  height: 42px;
+  font-size: 30px;
+  width: 48px;
+}
+
+.tours-detail .quantity-selector button.increase {
+  border-left: 1px solid rgb(216, 216, 216);
+  height: 42px;
+  font-size: 30px;
+  width: 48px;
+}
+
+.tours-detail .container-calendar .calendar-right {
+  margin-left: 40px;
+}
+
+.tours-detail .container-calendar .calendar-right .title-right {
+  font-size: 18px;
+}
+
+.tours-detail .container-calendar .calendar-right .title-right {
+  font-size: 18px;
+}
+
+.tours-detail .container-calendar .quantity-info-con {
+  display: flex;
+  flex-direction: column;
+}
+
+.tours-detail .container-calendar .quantity-info-con span.des {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.tours-detail .text-content-3-last {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.tours-detail .text-content-3-last button {
+  padding: 12px 40px;
+  border-radius: 6px;
+  border: 1px solid #d8d8d8;
+  width: 120px;
+  color: black;
+  font-weight: 500;
+}
+
+.tours-detail .container-calendar .calendar-left .title-left {
+  font-size: 18px;
+}
+
+.tours-detail .form-group {
+  display: block;
+  padding: 32px 0;
+  border-bottom: 1px dashed #d8d8d8;
+}
+
+.tours-detail .form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.tours-detail .form-group label {
+  position: relative;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.tours-detail .form-group label:before {
+  content:'';
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 12px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.tours-detail .form-group input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  width: 6px;
+  height: 14px;
+  border: solid var(--bs-point);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.tours-detail .container-calendar .title-second {
+  font-size: 18px;
+  margin: 40px 0px 8px 0;
+}
+
+.tours-detail .des-below {
+  line-height: 1.5rem;
+  margin-top: 20px;
+}
+
+.tours-detail .primary-btn-calendar {
+  position: absolute;
+  bottom: -12%;
+  left: 42%;
+  width: 250px;
+  height: 66px;
+  border-radius: 6px;
+  background-color: rgb(42, 69, 159);
+  color: white;
+  font-size: 22px;
 }
