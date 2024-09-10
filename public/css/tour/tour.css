@@ -1985,9 +1985,10 @@
 
 .tours-detail p.des-type {
   font-size: 17px;
-  line-height: 1.4rem;
+  line-height: 1.5rem;
   margin-top: 20px;
   margin-bottom: 50px;
+  color: #757575;
 }
 
 .tours-detail .tag-item .picture {
@@ -1996,4 +1997,123 @@
 
 .tours-detail .tit-swip-pic {
  margin-bottom: 30px;
+}
+
+.container-pic-slider {
+  background-color: #fafafa;
+  margin-bottom: 50px;
+}
+
+.container-pic-slider .swiper-container_tour_content .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0 0 0;
+  margin-right: 80px;
+}
+
+.container-pic-slider .swiper-container_tour_content .swiper-slide img {
+  width: 700px;
+  height: 450px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container-pic-slider .swiper-container_tour_content .swiper-tour_content-pagination {
+  justify-content: center;
+  display: flex;
+  padding: 40px 0px;
+}
+
+.tours-detail .des-type-1 {
+  color: #757575;
+  background-color: #fef4f6;
+  padding: 30px 16px;
+  line-height: 1.5rem;
+  margin: 20px 0 50px 0;
+}
+
+.tours-detail .tit-blue {
+  color: #2a459f;
+  font-size: 18px;
+  margin: 18px 0;
+  display: block;
+}
+
+.tours-detail .timeline-con .timeline-item {
+  list-style: disc;
+  display: flex;
+  line-height: 1.5rem;
+  gap: 20px;
+}
+
+.tours-detail .timeline-con .time-l {
+  width: 100px;
+  color: #757575;
+}
+
+.tours-detail .timeline-con {
+  margin-bottom: 50px;
+}
+
+.tours-detail .steps-type {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  margin-bottom: 110px;
+  padding-left: 120px;
+}
+
+.tours-detail .steps-type .step-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+}
+
+.tours-detail .steps-type .con-step {
+  padding: 60px;
+  background-color: #fafafa;
+  border-radius: 999px;
+}
+
+.tours-detail .steps-type .step-label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.tours-detail .steps-type .number-step {
+  width: 46px;
+  position: absolute;
+  padding: 14px 18px;
+  border-radius: 999px;
+  background-color: #2a459f;
+  color: white;
+  font-size: 17px;
+  top: 0;
+  left: 0;
+}
+
+.tours-detail .cus-step-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: absolute;
+  right: -56%;
+  bottom: 37%;
+}
+
+.tours-detail .cus-step-note span:first-child {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  padding-left: 16px;
+}
+
+.tours-detail .cus-step-note .txt-step-note {
+  color: #757575;
+  width: 85px;
+  text-align: center;
 }

@@ -323,29 +323,19 @@
             투어 사진
         </h2>
         <div class="container-pic-slider">
-            <div class="swiper-container">
-                <!-- Additional required wrapper -->
+            <div class="swiper-container_tour_content">
                 <div class="swiper-wrapper">
-                    <!-- Slides -->
-                    <div class="swiper-slide"><img
-                            src="https://images.unsplash.com/photo-1445964047600-cdbdb873673d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1156&q=80"
-                            alt=""></div>
-                    <div class="swiper-slide"><img
-                            src="https://images.unsplash.com/photo-1462275646964-a0e3386b89fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80"
-                            alt=""></div>
-                    <div class="swiper-slide"><img
-                            src="https://images.unsplash.com/photo-1561152092-12f18f8a222a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                            alt=""></div>
+                    <div class="swiper-slide">
+                        <img src="/uploads/sub/tour_details_1.png" alt="tour_details_1">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/uploads/sub/tour_details_2.png" alt="tour_details_2">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="/uploads/sub/tour_details_3.png" alt="tour_details_3">
+                    </div>
                 </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-
-                <!-- If we need navigation buttons -->
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-
-                <!-- If we need scrollbar -->
-                <div class="swiper-scrollbar"></div>
+                <div class="swiper-tour_content-pagination"></div>
             </div>
         </div>
         <h2 class="title-sec2">
@@ -416,8 +406,7 @@
             포함/불포함 사항
         </h2>
         <div class="tit-blue-type-2">
-            <img src="" alt="">
-            <span>포함사항</span>
+            <span class="tit-blue">포함사항</span>
         </div>
         <p class="des-type">
             - 단독차량 & 드라이빙가이드<br>
@@ -426,8 +415,7 @@
             - 시드니 동물원 입장권
         </p>
         <div class="tit-blue-type-2">
-            <img src="" alt="">
-            <span>불포함 사항</span>
+            <span class="tit-blue">불포함 사항</span>
         </div>
         <p class="des-type">
             - 박물관 입장료(150바트)<br>
@@ -476,29 +464,44 @@
                 <div class="con-step">
                     <img src="/uploads/sub/step_img1.png" alt="step_img1">
                 </div>
-                <span class="step-label">예약신청</span> 
+                <span class="step-label">예약신청</span>
                 <span class="number-step">1</span>
+                <div class="cus-step-note">
+                    <span>
+                    〉</span>
+                    <span class="txt-step-note">기능유무조회</span>
+                </div>
             </div>
             <div class="step-type">
                 <div class="con-step">
                     <img src="/uploads/sub/step_img2.png" alt="step_img2">
                 </div>
-                <span class="step-label">예약신청</span> 
+                <span class="step-label">예약신청</span>
                 <span class="number-step">2</span>
+                <div class="cus-step-note">
+                    <span>
+                    〉</span>
+                    <span class="txt-step-note">결제</span>
+                </div>
             </div>
-            
+
             <div class="step-type">
                 <div class="con-step">
                     <img src="/uploads/sub/step_img3.png" alt="step_img2">
                 </div>
-                <span class="step-label">예약신청</span> 
+                <span class="step-label">예약신청</span>
                 <span class="number-step">3</span>
+                <div class="cus-step-note">
+                    <span>
+                    〉</span>
+                    <span class="txt-step-note">확정 후</span>
+                </div>
             </div>
             <div class="step-type">
                 <div class="con-step">
                     <img src="/uploads/sub/step_img4.png" alt="step_img2">
                 </div>
-                <span class="step-label">예약신청</span> 
+                <span class="step-label">예약신청</span>
                 <span class="number-step">4</span>
             </div>
         </div>
@@ -549,6 +552,15 @@
                     $decreaseBtn.attr('disabled', true);
                 }
             });
+        });
+
+        const swiper_content = new Swiper(".swiper-container_tour_content", {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 80,
+            pagination: {
+                el: ".swiper-tour_content-pagination",
+            },
         });
 
         $(function() {
