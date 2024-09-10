@@ -280,8 +280,8 @@
                     <table class="room-table only_web">
                         <thead>
                             <tr>
-                                <th>객실옵션 상세</th>
-                                <th>투숙객 정원</th>
+                                <th>옵션 상세</th>
+                                <th>쿠폰</th>
                                 <th>객실 요금</th>
                             </tr>
                         </thead>
@@ -289,16 +289,19 @@
                             <tr>
                                 <td>
                                     <div class="room-details">
+                                        <p class="room-p-cus-1">객실 상세</p>
                                         <p>초대형 더블침대 1개</p>
                                         <ul>
                                             <li class="highlight">조식 2인 포함</li>
                                             <li>환불 불가</li>
                                         </ul>
+                                        <p class="room-p-cus-2">투숙객 정원</p>
+                                        <p>성인 2명</p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="occupancy">
-                                        <img src="/uploads/icons/double_person_icon.png" alt="double_person_icon">
+                                        <span class="occupancy_button">쿠폰적용</span>
                                     </div>
                                 </td>
                                 <td>
@@ -329,7 +332,7 @@
                                 </td>
                                 <td>
                                     <div class="occupancy">
-                                        <img src="/uploads/icons/double_person_icon.png" alt="double_person_icon">
+                                        <span class="occupancy_button">쿠폰적용</span>
                                     </div>
                                 </td>
                                 <td>

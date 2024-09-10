@@ -19,7 +19,7 @@
                 <div class="form-customer">
                     <div class="menu">
                         <div class="menu-header">
-                            <h3 class="title-menu4">
+                            <h3 class="title-menu cus-font">
                                 고객의 소리
                             </h3>
                         </div>
