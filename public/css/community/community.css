@@ -1,5 +1,5 @@
 body {
-    font-family: 'Noto Sans KR';
+    font-family: 'Pretendard';
 }
 
 .sub_wrap .sub_content.commu {
@@ -1464,6 +1464,7 @@ strong {
 
 .customer-notify-page .item-title {
     font-size: 18px;
+    font-weight: 500;
 }
 
 .customer-notify-page .item-date {
