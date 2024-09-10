@@ -10,6 +10,9 @@ try {
 <?php echo view('inc/header', ["setting" => $setting]); ?>
 <main>
     <?php echo $this->renderSection('content'); ?>
+    <?php
+        echo view("inc/sidebar_inc");
+    ?>
 </main>
 <?php echo view('inc/footer', ["setting" => $setting]); ?>
 <script>

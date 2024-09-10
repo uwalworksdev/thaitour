@@ -1446,9 +1446,13 @@ strong {
 }
 
 .customer-notify-page .title-menu {
-    padding-bottom: 30px;
-    /*border-bottom: 1px solid;*/
+    padding-bottom: 27px;
     margin-bottom: 0;
+    font-family: 'Pretendard';
+}
+
+.customer-notify-page .title-menu.title-menu-line-bot {
+    border-bottom: 1px solid;
 }
 
 .customer-notify-page .item-no {
@@ -1590,11 +1594,6 @@ strong {
 
 .customer-notify-page .sec-img {
     background-image: url(/images/community/customer_bg_form.png);
-}
-
-.customer-notify-page .title-menu4 {
-    padding-bottom: 30px;
-    font-size: 26px;
 }
 
 .customer-center-page .sec-img {

@@ -74,7 +74,7 @@
                     <select class="select_custom_" name="" id="">
                         <option value="">투어</option>
                     </select>
-                    <a class="text_custom_v2_" href="#">차량</a>
+                    <a class="text_custom_v2_" href="/vehicle-guide">차량</a>
                 </div>
             </div>
         </div>

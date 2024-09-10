@@ -19,7 +19,7 @@
             <div class="con-right">
                 <div class="menu">
                     <div class="menu-header">
-                        <h3 class="title-menu">
+                        <h3 class="title-menu title-menu-line-bot">
                             공지사항
                         </h3>
                     </div>

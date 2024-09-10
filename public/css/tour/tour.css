@@ -987,7 +987,7 @@
 
 .content-sub-hotel-detail .button-show-detail-image {
   position: absolute;
-  background: rgb(0, 0, 0, 0.1);
+  background: rgb(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
   top: 0%;
@@ -1027,7 +1027,7 @@
 
 .content-sub-hotel-detail .section1 button {
   font-size: 18px;
-  background-color: #006CE4;
+  background-color: var(--bs-point);
   color: white;
   border-radius: 5px;
   padding: 12px 50px;
@@ -1129,6 +1129,18 @@
   text-align: center;
 }
 
+.content-sub-hotel-detail .room-table th:nth-child(1) {
+  width: 290px;
+}
+
+.content-sub-hotel-detail .room-table th:nth-child(2) {
+  width: 160px;
+}
+
+.content-sub-hotel-detail .room-table th:nth-child(3) {
+  width: 380px;
+}
+
 .content-sub-hotel-detail .room-details {
   height: 100%;
 }
@@ -1150,7 +1162,7 @@
 }
 
 .content-sub-hotel-detail .room-details ul li.highlight {
-  color: #39B9AA;
+  color: var(--bs-point);
   font-size: 16px;
 }
 
@@ -1246,8 +1258,8 @@
 .content-sub-hotel-detail .list-tag-sec3 .tag-item-sec3--active {
   padding: 10px 14px;
   border-radius: 20px;
-  color: #1779E6;
-  border: 1px solid #1779E6;
+  color: var(--bs-point);
+  border: 1px solid var(--bs-point);
 }
 
 .content-sub-hotel-detail .list-tag-sec3 .tag-item-sec3 {
@@ -1260,7 +1272,7 @@
   padding: 10px 14px;
   border-radius: 20px;
   color: white;
-  background-color: #1779E6;
+  background-color: var(--bs-point);
   font-weight: bold;
 }
 
@@ -1283,9 +1295,9 @@
 }
 
 .content-sub-hotel-detail .card-item-sec3 .card-title-sec3-container .label {
-  color: #39B9AA;
+  color: var(--bs-point);
   font-weight: bold;
-  padding: 6px;
+  padding: 6px 6px 9px 6px;
   background-color: #E7F8F8;
 }
 
@@ -1301,7 +1313,7 @@
 
 .content-sub-hotel-detail .section3 .card-item-left .grid2_2_1 {
   width: 285px;
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   gap: 11px;
 }
@@ -2116,4 +2128,18 @@
   color: #757575;
   width: 85px;
   text-align: center;
+}
+
+.content-sub-hotel-detail .room-p-cus-1 {
+  padding-bottom: 16px;
+}
+
+.content-sub-hotel-detail .room-p-cus-2 {
+  margin-top: 30px;
+}
+
+.content-sub-hotel-detail .occupancy_button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
