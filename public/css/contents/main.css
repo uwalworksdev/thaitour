@@ -753,10 +753,14 @@ padding-top: calc(310% / 224 * 100);
     cursor: pointer;
 }
 
+.side_bar_swipper {
+    overflow: hidden;
+}
+
 .side-bar-inc .img-container {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .side-bar-inc .slide {

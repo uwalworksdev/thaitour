@@ -1,6 +1,6 @@
 <div class="side-bar-inc only_web">
     <div class="card-side-bar">
-        <div class="side-bar-above side_bar_swipper swiper">
+        <div class="side-bar-above side_bar_swipper swiper-container">
             <h3 class="title-side-bar">최근본상품</h3>
             <div class="img-container swiper-wrapper">
                 <div class="swiper-slide">
@@ -99,6 +99,7 @@ $(document).ready(function() {
     const swiper3 = new Swiper(".side_bar_swipper", {
         loop: true,
         slidesPerView: 1,
+        spaceBetween: 20,
         pagination: {
             pagination: false, 
         },
