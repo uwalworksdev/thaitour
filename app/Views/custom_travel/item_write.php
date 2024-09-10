@@ -22,7 +22,7 @@
 
             <form action="./inquiry_ok.php" id="reg_mem_fm" name="reg_mem_fm" enctype="multipart/form-data"
                 method="post">
-                <input type="hidden" name="user_id" value="<?= $_SESSION['member']['mIdx'] ?>">
+                <input type="hidden" name="user_id" value="<?= session('member.mIdx') ?>">
                 <table class="table_form">
                     <colgroup>
                         <col width="125px" />

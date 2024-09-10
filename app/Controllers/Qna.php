@@ -99,7 +99,7 @@ class Qna extends BaseController
     public function write()
     {
         $private_key = private_key();
-        $member_Id = $_SESSION['member']['idx'];
+        $member_Id = session('member.idx');
 
         if (!$member_Id) {
             echo "<script>

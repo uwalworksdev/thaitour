@@ -15,14 +15,14 @@ $code = isset($_GET['code']) ? $_GET['code'] : null;
 
 //if ($_SESSION[member][id] != "admin") {
 //if ($_SESSION[member][level] != "1") {
-if ($_SESSION['member']['level'] > 2 || $_SESSION['member']['level'] == "") {
+if (session('member.level') > 2 || session('member.level') == "") {
     header('Location:/AdmMaster/');
     exit();
 }
 // 권한 확인하여 링크 표시
 function check_perm($r_code, $url, $title)
 {
-    if ($_SESSION['member']['id'] == "admin" || strrpos($_SESSION['member']['m_auth'], $r_code) !== false)
+    if (session('member.id') == "admin" || strrpos(session('member.m_auth'), $r_code) !== false)
         $link = "<a href='$url'>$title</a>";
     //else
 //	$link = "<a href='#!' style='color:#aaa;'>$title</a>";
@@ -42,13 +42,13 @@ function check_perm($r_code, $url, $title)
 function check_auth($code)
 {
 
-    if ($_SESSION['member']['id'] == "admin" || $_SESSION['member']['level'] == 1) {
+    if (session('member.id') == "admin" || session('member.level') == 1) {
         return true;
     }
 
     $count = strlen($code);
 
-    $m_auth_arr = explode("|", $_SESSION['member']['m_auth']);
+    $m_auth_arr = explode("|", session('member.m_auth'));
 
     if ($count == 1) {
         foreach ($m_auth_arr as $auth) {
@@ -70,7 +70,7 @@ if ($top_menu == "") {
     // 게시판
     if (strpos($currentPath, "/AdmMaster/_bbs/") !== false) {
         // 환경설정
-        if ($currentPath == "/AdmMaster/_bbs/fair_opt" || $currentPath == "/AdmMaster/_bbs/board_write" || $currentPath == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards" || $r_code )
+        if ($currentPath == "/AdmMaster/_bbs/fair_opt" || $currentPath == "/AdmMaster/_bbs/board_write" || $currentPath == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards" )
             $top_menu = "config";
         // 고객센터
         else if (in_array($r_code, array("qna", "qna_group", "suggest", "faq", "contact")))
@@ -354,8 +354,7 @@ if ($top_menu == "") {
             <div class="top_box">
                 <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM ?>" alt="로고"></a> -->
                 <a href="/" class="txt_admin" target="_blank"></a>
-                <a href="/AdmMaster/_main/main" class="logo"><img src="/uploads/setting/<?= $setting['logos'] ?>"
-                                                                  alt=""></a>
+                <a href="/AdmMaster/_main/main" class="logo"><img src="/uploads/setting/<?= $setting['logos'] ?>" alt=""></a>
             </div>
             <div class="info_box">
                 <ul class="connect_info">
@@ -538,8 +537,8 @@ if ($top_menu == "") {
                         <li <?php if (!check_auth('A003')) {
                             echo "style='display: none;'";
                         } ?> class="
-                                <?= $code == "faq" ? "on" : "" ?>">
-                            <?= check_perm('A003', '/AdmMaster/_bbs/board_list_q?code=faq', '자주하시는질문'); ?>
+                                <?= $r_code == "faq" ? "on" : "" ?>">
+                            <?= check_perm('A003', '/AdmMaster/_bbs/board_list_q?r_code=faq', '자주하시는질문'); ?>
                         </li>
 
                         <li <?php if (!check_auth('A008')) {

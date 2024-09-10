@@ -113,8 +113,8 @@ class Orders extends BaseController
 
         $m_idx = $order_detail["m_idx"];
 
-        if ($_SESSION['member']['id'] != 'admin' && $_SESSION['member']['level'] > 2) {
-            if ($m_idx !== $_SESSION['member']['idx']) {
+        if (session('member.id') != 'admin' && session('member.level') > 2) {
+            if ($m_idx !== session('member.idx')) {
                 return "<script>
             alert('비밀글입니다!');
             location.href= '/invoice/invoice_list.php';

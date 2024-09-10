@@ -2,8 +2,8 @@
 <?php $this->section('content'); ?>
 <?php
 if ($qna) {
-    if ($_SESSION['member']['id'] != 'admin' && $_SESSION['member']['level'] > 2) {
-        if ($qna['reg_m_idx'] != $_SESSION['member']['idx'] or !$_SESSION['member']['idx']) {
+    if (session('member.id') != 'admin' && session('member.level') > 2) {
+        if ($qna['reg_m_idx'] != session('member.idx') or !session('member.idx')) {
             echo "
                 <script>
                     alert('비밀번호 올바르게 입력해주세요!');
@@ -128,7 +128,7 @@ if ($qna) {
                     <span>댓글</span>
                     <span id="comment_count">(0)</span>
                 </div>
-                <?php if ($_SESSION['member']['id']) { ?>
+                <?php if (session('member.id')) { ?>
                     <form action="" id="frm" name="com_form" class="frm">
                         <input type="hidden" name="code" id="code" value="qna">
                         <input type="hidden" name="r_code" id="r_code" value="qna">

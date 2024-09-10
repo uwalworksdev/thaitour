@@ -202,14 +202,14 @@
                                 <td class="ttl"><span><?= $row['code_name'] ?></span></td>
                                 <td class="subject">
                                     <?php
-                                    if ($row['m_idx'] == $_SESSION['member']['mIdx']) {
+                                    if ($row['m_idx'] == session('member.mIdx')) {
                                         ?>
                                         <a href="/invoice/view_paid?order_idx=<?= $row['order_idx'] ?>"><?= strAsterisk($row["order_user_name"]) ?>님의
                                             여행예약이 <?= get_status_name($row["order_status"]) ?>되었습니다.</a><span
                                             class="red">(<?= $row['cmt_cnt'] ?>)</span>
                                         <?php
                                     } else {
-                                        $message = !$_SESSION['member']['idx'] ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
+                                        $message = !session('member.idx') ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
                                         ?>
                                         <button onclick="alert(`<?= $message ?>`);">비밀글입니다!</button>&nbsp;<i></i>
                                         <?php

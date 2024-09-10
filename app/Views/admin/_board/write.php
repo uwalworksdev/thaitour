@@ -777,10 +777,10 @@
                                             <option value="2" <?= ($row_c['report_state'] == "2" ? "selected" : "") ?>>계속노출</option>
                                         </select>
                                     <?php } ?>
-                                    <?php if (($_SESSION['member']['idx'] == $row_c['m_idx'])) { ?>
+                                    <?php if ((session('member.idx') == $row_c['m_idx'])) { ?>
                                         <button type="button" onclick="handleCmtEdit('<?= $row_c['tbc_idx'] ?>')">수정</button>
                                     <?php } ?>
-                                    <?php if (($_SESSION['member']['idx'] == $row_c['m_idx']) || $_SESSION['member']['id'] == "admin") { ?>
+                                    <?php if ((session('member.idx') == $row_c['m_idx']) || session('member.id') == "admin") { ?>
                                         <button type="button" onclick="commentDelete(<?= $row_c['tbc_idx'] ?>)">삭제</button>
                                     <?php } ?>
                                     <?php if ($is_reported && !$should_show) { ?>

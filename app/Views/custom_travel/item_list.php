@@ -283,12 +283,12 @@
                         $diff_time = $now - $time;
                         $is_new = $diff_time < (24 * 60 * 60) ? "<i></i>" : "";
                         if (
-                            ($_SESSION['member']['idx'] && $row["user_id"] == $_SESSION['member']['idx'])
-                            || ($_SESSION['member']['idx'] && $_SESSION['member']['level'] <= 2)
+                            (session('member.idx') && $row["user_id"] == session('member.idx'))
+                            || (session('member.idx') && session('member.level') <= 2)
                         ) {
                             $is_secure = false;
                             $href = "/mypage/custom_travel_view.php?idx=" . $row['idx'];
-                        } else if ($row['m_idx'] && $row['m_idx'] != $_SESSION['member']['idx']) {
+                        } else if ($row['m_idx'] && $row['m_idx'] != session('member.idx')) {
                             $is_secure = true;
                             $href = "javascript:alert('내가쓴글만 열람이 가능합니다.')";
                         } else {

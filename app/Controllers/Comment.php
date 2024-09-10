@@ -41,9 +41,9 @@ class Comment extends BaseController
         $r_idx = updateSQ($this->request->getPost('r_idx'));
         $r_code = $this->request->getPost('r_code');
         $r_content = updateSQ($this->request->getPost('comment'));
-        $user_id = $_SESSION['member']['id'];
-        $r_m_idx = $_SESSION['member']['idx'];
-        $r_name = $_SESSION['member']['name'];
+        $user_id = session('member.id');
+        $r_m_idx = session('member.idx');
+        $r_name = session('member.name');
 
         if (empty($user_id)) {
             return $this->response->setJSON("");
@@ -73,8 +73,8 @@ class Comment extends BaseController
         $r_level = updateSQ($this->request->getPost('r_level'));
         $r_content = updateSQ($this->request->getPost('r_content'));
         $r_code = $this->request->getPost('r_code');
-        $r_m_idx = $_SESSION['member']['idx'];
-        $r_name = $_SESSION['member']['name'];
+        $r_m_idx = session('member.idx');
+        $r_name = session('member.name');
 
         $data = [
             'r_ref' => $r_ref,
@@ -95,9 +95,9 @@ class Comment extends BaseController
     {
         $r_cmt_idx = updateSQ($this->request->getPost("r_cmt_idx"));
 
-        $userId = $_SESSION['member']['idx'];
-        $userIdx = $_SESSION['member']['idx'];
-        $userLevel = $_SESSION['member']['level'];
+        $userId = session('member.idx');
+        $userIdx = session('member.idx');
+        $userLevel = session('member.level');
 
         $result = $this->comment->softDeleteComment($r_cmt_idx, $userIdx, $userId, $userLevel);
 
@@ -107,9 +107,9 @@ class Comment extends BaseController
     {
         $r_cmt_idx  = updateSQ($this->request->getPost('r_cmt_idx'));
         $r_content  = updateSQ($this->request->getPost('r_content'));
-        $user_idx   = $_SESSION['member']['idx'];
-        $user_id    = $_SESSION['member']['id'];
-        $user_level = $_SESSION['member']['level'];
+        $user_idx   = session('member.idx');
+        $user_id    = session('member.id');
+        $user_level = session('member.level');
     
         $result = $this->comment->updateComment($r_cmt_idx, $r_content, $user_idx, $user_id, $user_level);
     
@@ -122,7 +122,7 @@ class Comment extends BaseController
         $r_cmt_idx = updateSQ($this->request->getPost('r_cmt_idx'));
         $report_reason = updateSQ($this->request->getPost('report_reason'));
 
-        $m_idx = $_SESSION['member']['idx'];
+        $m_idx = session('member.idx');
 
         if (!$m_idx) {
             return $this->response->setJSON(['result' => 'NO', 'msg' => '로그인을 해주세요.']);

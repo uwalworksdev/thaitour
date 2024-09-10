@@ -26,7 +26,7 @@
                         <input type="hidden" name="mode"    id="mode"    value="mypage" />
                         <input type="hidden" name="sns_key" id="sns_key" value="" />
                         <?php
-                        $gubun = chk_member_col($_SESSION['member']['id'],"gubun");
+                        $gubun = chk_member_col(session('member.id'),"gubun");
                         if($gubun == "kakao" && $mode = ""){
                         ?>
                             <button type="button" id="naver_id_login_anchor" class="naver_login" onclick="loginWithKakao()">
