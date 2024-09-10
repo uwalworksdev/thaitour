@@ -6,7 +6,7 @@
     <div class="inner">
         <div class="main-container">
             <div class="side-bar">
-                <h2 class="title-side-bar">커뮤니티</h2>
+                <h2 class="title-side-bar">고객센터</h2>
                 <div class="list-item-bar">
                     <div class="itembar">
                         <a href="/community/customer_center">자주 찾는 질문</a>
