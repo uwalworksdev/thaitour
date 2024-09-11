@@ -3864,6 +3864,23 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   display: inline-block;
 }
 
+.golf-custom-page .sub_section3.sub_section5_ {
+  margin-bottom: 140px;
+}
+
+.golf-custom-page .text_img_box_re_sub {
+  color: white;
+  z-index: 9899999;
+  position: absolute;
+  font-size: 16px;
+  bottom: 40px;
+  left: 30px;
+}
+
+.golf-custom-page .text_img_box_re {
+  bottom: 70px;
+}
+
 @media screen and (max-width: 1200px) {
   .only_tb {
     display: none !important;
