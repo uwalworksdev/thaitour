@@ -5,7 +5,6 @@ use App\Libraries\JkBbs;
 use CodeIgniter\Controller;
 
 
-
 class BoardController extends BaseController
 {
     private $bbsConfigModel;
@@ -14,6 +13,9 @@ class BoardController extends BaseController
     private $codeModel;
     private $Product_model;
     private $bbsCommentModel;
+    private $uploadPath = WRITEPATH."uploads/bbs/";
+
+
     public function __construct()
     {
         $this->bbsConfigModel = model("BbsConfigModel");
@@ -147,7 +149,7 @@ class BoardController extends BaseController
 
     public function getBoardName($code)
     {
-        $result = $this->bbsConfigModel->find($code);
+        $result = $this->bbsConfigModel->where("board_code", $code)->first();
 
         if ($result && isset($result['board_name'])) {
             return $result['board_name'];
@@ -248,6 +250,8 @@ class BoardController extends BaseController
             $row['is_new'] = $this->listNew(24, $row['r_date']);
         }
 
+        $data['board_name'] = $this->getBoardName($code);
+
         $data = [
             'code' => $code,
             'scategory' => $scategory,
@@ -297,7 +301,7 @@ class BoardController extends BaseController
         if ($mode == "reply") {
             $row = $this->bbsModel->View($bbs_idx);
             $subject = "[re]" . $row['subject'];
-            $contents = "-------------------- 원본글 -------------------- <br>" . $row[contents];
+            $contents = "-------------------- 원본글 -------------------- <br>" . $row["contents"];
             $b_step = $row['b_step'];
             $b_level = $row['b_level'];
             $b_ref = $row['b_ref'];
@@ -383,6 +387,8 @@ class BoardController extends BaseController
         $data['cnt'] = $cnt;
         $data['mode'] = $mode;
         $data['writer'] = $writer;
+        $data['email'] = $email ?? "";
+        $data['hit'] = $hit ?? 0;
         $data['subject'] = $subject ?? "";
         $data['contents'] = $contents ?? "";
         $data['b_step'] = $b_step ?? "";
@@ -427,5 +433,162 @@ class BoardController extends BaseController
         $data['product_code_no'] = "";
         $data['product_code_name'] = "";
         return view('admin/_board/write', $data);
+    }
+
+    public function write_ok() {
+        $bbs_idx		= updateSQ($this->request->getPost('bbs_idx'));
+        $category		= updateSQ($this->request->getPost('category'));
+        $category1		= updateSQ($this->request->getPost('category1'));
+        $search_mode	= updateSQ($this->request->getPost('search_mode'));
+        $search_word	= updateSQ($this->request->getPost('search_word'));
+        $scategory		= updateSQ($this->request->getPost('scategory'));
+        $pg				= updateSQ($this->request->getPost('pg'));
+        $subject		= updateSQ($this->request->getPost('subject'));
+        $subject_e		= updateSQ($this->request->getPost('subject_e'));
+        $seq    		= updateSQ($this->request->getPost('seq'));
+        $simple			= updateSQ($this->request->getPost('simple'));
+        $code			= updateSQ($this->request->getPost('code'));
+        $writer			= updateSQ($this->request->getPost('writer'));
+        $email			= updateSQ($this->request->getPost('email'));
+        $contents		= updateSQ($this->request->getPost('contents'));
+        $url			= updateSQ($this->request->getPost('url'));
+        $hit			= updateSQ($this->request->getPost('hit'));
+        $mode			= updateSQ($this->request->getPost('mode'));
+        $reply			= updateSQ($this->request->getPost('reply'));
+        $notice_yn		= updateSQ($this->request->getPost('notice_yn'));
+        $secure_yn		= updateSQ($this->request->getPost('secure_yn'));
+
+        $b_ref			= updateSQ($this->request->getPost('b_ref'));
+        $b_step			= updateSQ($this->request->getPost('b_step'));
+        $recomm_yn		= updateSQ($this->request->getPost('recomm_yn'));
+        $b_level		= updateSQ($this->request->getPost('b_level'));
+        $wdate		    = updateSQ($this->request->getPost('wdate'));
+        $files          = $this->request->getFiles();
+        $member = session('member') ?? [];
+
+        $user_id		= $member["id"];
+
+        if ($writer == "") {
+            $writer		= $member["name"];
+        }
+
+        if ($wdate)
+        {
+            $r_date			= "'".$wdate."'";
+        } else {
+            $r_date			= "now()";
+        }
+
+
+        $uploadPath = $this->uploadPath;
+        $db = \Config\Database::connect();
+
+        for ($i = 1; $i <= 6; $i++)
+        {
+            ${"rfile_".$i} = "";
+            ${"ufile_".$i} = "";
+            if ($this->request->getPost("del_".$i) == "Y")
+            {
+                $sql = "
+                    UPDATE tbl_bbs_list SET
+                    ufile".$i."='',
+                    rfile".$i."=''
+                    WHERE bbs_idx='$bbs_idx'
+                ";
+                $db->query($sql);
+            } elseif($files["ufile" . $i])
+            {
+                $file = $files["ufile" . $i];
+
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $fileName = $file->getClientName();
+                    ${"rfile_".$i} = $fileName;
+                    if (no_file_ext($fileName) == "Y") {
+                        $microtime = microtime(true);
+                        $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
+                        $date = date('YmdHis');
+                        $ext = explode(".", strtolower($fileName));
+                        $newName = $date . $timestamp . '.' . $ext[1];
+		                ${"ufile_".$i} = $newName;
+
+                        $file->move($uploadPath, $newName);
+                    }
+                }
+
+                if ($bbs_idx) {
+                    $sql = "
+                        UPDATE tbl_bbs_list SET
+                        ufile".$i."='".${"ufile_".$i}."',
+                        rfile".$i."='".${"rfile_".$i}."'
+                        WHERE bbs_idx='$bbs_idx';
+                    ";
+                    $db->query($sql);
+                }
+            }
+        }
+        if ($mode == "reply") {
+            $sql = "update tbl_bbs_list set b_step = b_step + 1 where b_ref = '$b_ref' and b_step > $b_step";
+            $db->query($sql);
+            $b_step	 = $b_step + 1;
+            $b_level = $b_level + 1;
+
+            $sql = "INSERT INTO tbl_bbs_list (subject, code, category, simple, writer, notice_yn, secure_yn, contents, hit, user_id, url, ufile1, rfile1, ufile2, rfile2, ufile3, rfile3, ufile4, rfile4, ufile5, rfile5, ufile6, rfile6, ip_address, onum, b_ref, b_step, b_level, recomm_yn, r_date)
+                    VALUES ('$subject', '$code', '$category', '$simple', '$writer', '$notice_yn', '$secure_yn', '$contents', 0, '$user_id', '$url', '$ufile_1', '$rfile_1', '$ufile_2', '$rfile_2', '$ufile_3', '$rfile_3', '$ufile_4', '$rfile_4', '$ufile_5', '$rfile_5','$ufile_6', '$rfile_6', '".$_SERVER["REMOTE_ADDR"]."', '$b_ref', '$b_ref', '$b_step', '$b_level', '$recomm_yn', $r_date);";
+            $query = $db->query($sql);
+
+        } else if ($bbs_idx) {
+
+            if($reply != ""){
+                $sql_s = " select l.user_id, m.user_email, m.user_name, l.r_date, l.contents, l.reply
+                            from tbl_bbs_list l 
+                            left outer join tbl_member m 
+                            on l.user_id = m.user_id
+                            where bbs_idx='$bbs_idx'";
+                $list_query = $db->query($sql_s);
+                $row_s = $list_query->getResultArray();
+
+                if($row_s['reply']==""){
+                    if($row_s['user_email'] != ""){
+
+                        $code = "A03";
+                        $user_mail = $row_s['user_email'];
+                        $replace_text = "|||{{receive_name}}:::".$row_s['user_name']."|||[date]:::".$row_s['r_date']."|||[contents]:::".nl2br(viewSQ($row_s['contents']))."|||[reply]:::".nl2br(viewSQ($reply));
+                        autoEmail($code,$user_mail,$replace_text);
+                    }
+                    
+                }
+
+            }
+
+            $sql = "update tbl_bbs_list set subject='$subject', subject_e='$subject_e', writer='$writer', seq='$seq', hit='$hit', simple='$simple', s_date='$s_date', email='$email', e_date='$e_date', secure_yn='$secure_yn', category='$category', category1='$category1', contents='$contents', notice_yn = '$notice_yn', reply = '$reply'";
+            if ($wdate)
+            {
+                $sql = $sql.",  r_date = $r_date ";
+            }
+            $sql = $sql.",  recomm_yn = '$recomm_yn', url='$url' where bbs_idx='$bbs_idx'";
+            $query = $db->query($sql);
+
+        } else {
+            $total_sql	= " select ifnull(max(bbs_idx),0)+1 as maxbbs_idx from tbl_bbs_list";
+            $list_query = $db->query($total_sql);
+            $row = $list_query->getResultArray();
+            $b_ref		= $row["maxbbs_idx"];
+
+            $sql = "INSERT INTO tbl_bbs_list (subject, subject_e, seq, simple, s_date, e_date, code, category, category1, country_code, writer, notice_yn, secure_yn, contents, hit, user_id, url, ufile1, rfile1, ufile2, rfile2, ufile3, rfile3, ufile4, rfile4, ufile5, rfile5, ufile6, rfile6, ip_address, onum, b_ref, b_step, b_level, recomm_yn, email, r_date) VALUES ('$subject','$subject_e', '$seq', '$simple', '$s_date', '$e_date', '$code', '$category', '$category1',  '', '$writer', '$notice_yn', '$secure_yn', '$contents', $hit, '$user_id', '$url', '$ufile_1', '$rfile_1', '$ufile_2', '$rfile_2', '$ufile_3', '$rfile_3', '$ufile_4', '$rfile_4', '$ufile_5', '$rfile_5', '$ufile_6', '$rfile_6',  '".$_SERVER["REMOTE_ADDR"]."', '$b_ref', '$b_ref', 0, 0, '$recomm_yn', '$email', $r_date);";
+            $query = $db->query($sql);
+        }
+
+        if ($db) {
+            if($bbs_idx) {
+               $msg = "수정완료";
+            } else {
+               $msg = "등록완료";
+            } 
+        } else {
+            $msg = "등록오류";
+        }
+    
+        die("{\"message\":\"$msg\"}");
+
     }
 }
