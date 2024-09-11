@@ -224,7 +224,7 @@
             <div class="body_inner">
                 <div class="sub_section3__head">
                     <div class="sub_section3__head__ttl">
-                      지금이 제일 저렴해요
+                        지금이 제일 저렴해요
                     </div>
                 </div>
                 <div>
@@ -232,7 +232,126 @@
                         <div class="swiper-wrapper">
                             <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_1.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/golf_popular_1.png" alt="main loading=" lazy"">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
+                                </div>
+                                <div class="prd_name">
+                                  윈저 파크 앤 골프 클럽
+                                </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">4.7</span>
+                                        <span class="star_review_cnt"></span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    236,100<span>원 </span>
+                                    <span class="prd_price_ko_sub">6,000바트</span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                                <div class="img_box img_box_10">
+                                    <img src="/uploads/sub/golf_popular_2.png" alt="main loading=" lazy"">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
+                                </div>
+                                <div class="prd_name">
+                                  카스카타 골프 클럽
+                                </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">4.7</span>
+                                        <span class="star_review_cnt"></span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    81,785<span>원</span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                                <div class="img_box img_box_10">
+                                    <img src="/uploads/sub/golf_popular_3.png" alt="main" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
+                                </div>
+                                <div class="prd_name">
+                                  더 로얄 젬스 골프 클럽 (랑싯)
+                                </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">4.7</span>
+                                        <span class="star_review_cnt"></span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    176,940<span>원 </span>
+                                    <span class="prd_price_ko_sub ">4,500바트</span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                                <div class="img_box img_box_10">
+                                    <img src="/uploads/sub/golf_popular_4.png" alt="main" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 스쿰빛(야속-프로퐁)</span>
+                                </div>
+                                <div class="prd_name">
+                                  알파인 골프 앤 스포츠 클럽
+                                </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">4.7</span>
+                                        <span class="star_review_cnt"></span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                  169,076<span>원</span>
+                                  <span class="prd_price_ko_sub">1,550바트</span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                                <div class="img_box img_box_10">
+                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -245,7 +364,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -259,91 +378,12 @@
                             </a>
                             <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/golf_popular_6.png" alt="main " loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_4.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
                                     <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
@@ -353,7 +393,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -367,11 +407,13 @@
                             </a>
                             <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_6.png" alt="main " loading=" lazy">
+                                    <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -380,7 +422,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -394,11 +436,13 @@
                             </a>
                             <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_7.png" alt="main" loading="lazy">
+                                    <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -407,34 +451,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_8.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -461,7 +478,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -478,8 +495,10 @@
                                     <img src="/uploads/sub/tour_popular_6.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -488,7 +507,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -505,8 +524,10 @@
                                     <img src="/uploads/sub/tour_popular_7.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -515,7 +536,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -532,8 +553,10 @@
                                     <img src="/uploads/sub/tour_popular_8.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -542,7 +565,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -569,7 +592,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -586,8 +609,10 @@
                                     <img src="/uploads/sub/tour_popular_6.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -596,7 +621,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -613,8 +638,10 @@
                                     <img src="/uploads/sub/tour_popular_7.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -623,7 +650,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -640,8 +667,10 @@
                                     <img src="/uploads/sub/tour_popular_8.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -650,7 +679,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -677,7 +706,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -694,8 +723,10 @@
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -704,7 +735,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -721,8 +752,10 @@
                                     <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -731,7 +764,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -748,8 +781,10 @@
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -758,7 +793,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -785,7 +820,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -802,8 +837,10 @@
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -812,7 +849,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -829,8 +866,10 @@
                                     <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -839,7 +878,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -856,8 +895,10 @@
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 기타</span>
+                                    <span class="prd_keywords_cus_span">방콕
+                                      <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                    </span>
+                                    <span> 사뭇 쁘라칸</span>
                                 </div>
                                 <div class="prd_name">
                                     쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
@@ -866,7 +907,7 @@
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
                                         <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_review_cnt"></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
@@ -892,10 +933,104 @@
                 </div>
             </div>
         </section>
+        <section class="sub_tour_section5">
+        <div class="body_inner">
+            <div class="sub_tour_section5__head">
+                <div class="sub_tour_section5__head_ttl">
+                    지역별 추천 상품
+                </div>
+                <div class="sub_tour_section5__head__tabs2 golf_custom_section5__head__tabs2">
+                    <div class="tour__head__tabs2__tabs">
+                        <a href="#!" class="tour__head__tabs2__tab active">
+                            방콕
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            파타야
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            푸켓
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            치앙마이
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            치앙라이
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            후아힌
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            카오야이
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            칸차나부리
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            기타지역
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sub_tour_section5__prd_list">
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/tour_suggest_1.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                    </div>
+
+
+                    <div class="prd_price_ko">
+                        236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                    </div>
+                </a>
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/tour_suggest_2.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                    </div>
+
+
+                    <div class="prd_price_ko">
+                        236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                    </div>
+                </a>
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/tour_suggest_3.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                    </div>
+
+
+                    <div class="prd_price_ko">
+                        236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                    </div>
+                </a>
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/tour_suggest_4.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                    </div>
+
+
+                    <div class="prd_price_ko">
+                        236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
     </div>
 
-</section>
 
+</section>
 <script>
 const swiper12 = new Swiper(".sub_swiper2", {
     loop: false,
@@ -977,27 +1112,27 @@ var swiper = new Swiper('.swiper-container-ticket', {
 });
 
 let thailand_hotel_swiper_ = new Swiper(".thailand_hotel_swiper_", {
-            slidesPerView: 2,
-            grid: {
-                rows: 2,
-            },
-            breakpoints: {
-                850: {
-                    slidesPerView: 4,
-                    spaceBetween: 20,
-                }
-            },
+    slidesPerView: 2,
+    grid: {
+        rows: 2,
+    },
+    breakpoints: {
+        850: {
+            slidesPerView: 4,
             spaceBetween: 20,
-            pagination: {
-                el: ".thailand_hotel_swiper_pagination_",
-                type: "fraction",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".thailand_hotel_swiper_pagination_next_",
-                prevEl: ".thailand_hotel_swiper_pagination_prev_",
-            },
-        });
+        }
+    },
+    spaceBetween: 20,
+    pagination: {
+        el: ".thailand_hotel_swiper_pagination_",
+        type: "fraction",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".thailand_hotel_swiper_pagination_next_",
+        prevEl: ".thailand_hotel_swiper_pagination_prev_",
+    },
+});
 
 function updateSlideCounter(swiper) {
     var currentIndex = swiper.realIndex + 1;
