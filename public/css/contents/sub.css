@@ -3809,6 +3809,37 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   padding: 0 calc((100% - 1200px) / 2);
 }
 
+.golf-custom-page .swiper-button-sub-2 {
+  top: 43%;
+}
+
+.golf-custom-page .banner-middle-tour {
+  background-image: url(/images/sub/golf_img.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 150px;
+  margin-top: 100px;
+}
+
+.golf-custom-page .container-middle-tour .son-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.golf-custom-page .container-middle-tour .son-des {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.golf-custom-page .container-middle-tour {
+  position: absolute;
+  top: 50%;
+  left: 13%;
+  color: white;
+  transform: translateY(-50%);
+}
 
 @media screen and (max-width: 1200px) {
   .only_tb {
