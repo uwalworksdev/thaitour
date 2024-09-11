@@ -42,6 +42,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
         $routes->get("board_write", "BoardController::board_write");
         $routes->get("board_list_q", "BoardController::index2");
+        $routes->get("form", "BoardController::form");
+        $routes->post("form_ok", "BoardController::form_ok");
         // $routes->get("email", "AutoMailController::index");
         // $routes->get("sms", "SmsSettings::index");
         // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");

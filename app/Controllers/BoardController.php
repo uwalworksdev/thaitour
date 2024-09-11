@@ -91,12 +91,53 @@ class BoardController extends BaseController
             'page' => $page,
             'Bbs' => $Bbs,
             'db' => \Config\Database::connect(),
-            'page_cnt' => $page_cnt
+            'page_cnt' => $page_cnt,
+            'num'=> $total_cnt - $start
         ];
 
         return view('admin/_board/list_rcode', $data); // Replace 'board_view' with the appropriate view file
     }
+    public function form() {
+        $r_code = $this->request->getGet('r_code');
 
+        // 클래스
+        $Bbs = new JkBbs($r_code);
+
+        $code_info = $Bbs->get_code_info($r_code);
+
+        $r_idx = $_GET['r_idx'];
+        if ($r_idx != "") {
+            array_push($Bbs->list_field_arr, "r_flag");
+            $form_data = $Bbs->get_form_data($r_idx);
+            $file_arr = json_decode($form_data['r_file_list'], true);
+            $file_cnt = count($file_arr);
+        } else {
+            $form_data = array();
+            foreach ($Bbs->new_default_arr as $key => $val)
+                $form_data[$key] = $val;
+        }
+
+        $product_code_arr = $Bbs->get_child_product_code_arr();
+        $product_arr = $Bbs->get_product_arr();
+        $code_arr = $this->codeModel->where([
+            'code_gubun' => $r_code,
+            'depth' => 2
+            ])->orderBy('onum', 'desc')->get()->getResultArray();
+        return view('admin/_board/form', [
+            'r_code' => $r_code,
+            'code_info' => $code_info,
+            'form_data' => $form_data,
+            'product_code_arr' => $product_code_arr,
+            'product_arr' => $product_arr,
+            'Bbs' => $Bbs,
+            'file_cnt' => $file_cnt,
+            'file_arr' => $file_arr,
+            'code_arr' => $code_arr
+        ]);
+    }
+    public function form_ok() {
+       
+    }
 
     public function check_auth($auth)
     {

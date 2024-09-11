@@ -4,7 +4,7 @@
             <!--
             <p class="tel"><img src="/AdmMaster/_images/common/tel.png" alt="시스템 이용관련 문의 02.3667.6635" /></p>
             -->
-            <p class="btnTop"><a href="#" class="scrollTop"><img src="/AdmMaster/_images/common/btn_scrolltop.png" alt="top" /></a></p>
+            <p class="btnTop"><a href="#" class="scrollTop"><img src="/images/ico/btn_scrolltop.png" alt="top" /></a></p>
         </footer><!-- // footer -->
 
 
