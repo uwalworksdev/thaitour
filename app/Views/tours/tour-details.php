@@ -557,7 +557,7 @@
         const swiper_content = new Swiper(".swiper-container_tour_content", {
             loop: true,
             slidesPerView: 1,
-            spaceBetween: 80,
+            spaceBetween: 100,
             pagination: {
                 el: ".swiper-tour_content-pagination",
             },
