@@ -22,7 +22,7 @@ class BoardController extends BaseController
         $this->codeModel = model("Code");
         $this->Product_model = model("Product_model");
         $this->bbsCommentModel = model("BbsCommentModel");
-        error_reporting(E_ALL & ~E_WARNING);
+        error_reporting(1);
     }
 
     public function isBoardCategory($code)
