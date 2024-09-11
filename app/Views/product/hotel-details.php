@@ -295,13 +295,13 @@
                                             <li class="highlight">조식 2인 포함</li>
                                             <li>환불 불가</li>
                                         </ul>
-                                        <p class="room-p-cus-2">투숙객 정원</p>
+                                        <p class="room-p-cus-2">투숙객 정원</p>foccupancy_button
                                         <p>성인 2명</p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="occupancy">
-                                        <span class="occupancy_button">쿠폰적용</span>
+                                        <span class="occupancy_button" id="openPopupBtn">쿠폰적용</span>
                                     </div>
                                 </td>
                                 <td>
@@ -315,7 +315,9 @@
                                             <span class="price">160,430</span>원
                                         </div>
                                         <span class="total">총금액: 5,091,454원</span>
-                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                        <span class="details">객실 1개 × 3박 (세금 포함)</span>
+                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
+                                        <p><span class="price">481,290</span>원</p>
                                         <button class="book-button">예약하기</button>
                                     </div>
                                 </td>
@@ -323,16 +325,19 @@
                             <tr>
                                 <td>
                                     <div class="room-details">
+                                        <p>객실 상세</p>
                                         <p>싱글침대 2개</p>
                                         <ul>
                                             <li>조식 20,895원 (선택 사항)</li>
                                             <li>환불 불가</li>
                                         </ul>
+                                        <p class="text-details-2">투숙객 정원</p>
+                                        <p>성인 2명</p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="occupancy">
-                                        <span class="occupancy_button">쿠폰적용</span>
+                                        <span class="occupancy_button" id="openPopupBtn">쿠폰적용</span>
                                     </div>
                                 </td>
                                 <td>
@@ -343,17 +348,72 @@
                                         </div>
                                         <div class="price-strike-container">
                                             <span class="price-strike">202,043원</span>
-                                            <span class="price">100,430</span>원
+                                            <span class="price">160,430</span>원
                                         </div>
                                         <span class="total">총금액: 5,091,454원</span>
                                         <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                        <button class="book-button">예약하기</button>
+                                        <p><span class="price">481,290</span>원</p>
+                                        <button class="book-button-sub">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-
+                    <div id="popup" class="popup">
+                        <div class="popup-content">
+                            <span class="close-btn">&times;</span>
+                            <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
+                            <div class="order-popup">
+                                <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
+                                <div class="description-above">
+                                    <div class="item-price-popup">
+                                        <div class="img-container">
+                                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                                        </div>
+                                        <div class="text-con">
+                                            <span>신규회원가입 웰컴 쿠폰</span>
+                                            <span>10% 할인쿠폰</span>
+                                        </div>
+                                        <span class="date-sub">~2024.10.05</span>
+                                    </div>
+                                    <div class="item-price-popup">
+                                        <div class="img-container">
+                                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                                        </div>
+                                        <div class="text-con">
+                                            <span>추가 즉시할인쿠폰</span>
+                                            <span>5,000원 할인쿠폰</span>
+                                        </div>
+                                        <span class="date-sub">~2024.10.05</span>
+                                    </div>
+                                    <div class="item-price-popup item-price-popup--button">
+                                        <span>적용안함</span>
+                                    </div>
+                                </div>
+                                <div class="footer-popup">
+                                    <div class="des-above">
+                                        <div class="item">
+                                            <span>총 주문금액</span>
+                                            <span>160,430원</span>
+                                        </div>
+                                        <div class="item">
+                                            <span>할인금액</span>
+                                            <span>16,040원</span>
+                                        </div>
+                                    </div>
+                                    <div class="des-below">
+                                        <div class="price-below">
+                                            <span>최종결제금액</span>
+                                            <p class="price-popup">144,000<span>원</span></p>
+                                        </div>
+                                    </div>
+                                    <button class="btn_accept_popup">
+                                        쿠폰적용
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="only_mo">
                         <div class="room-table table-price-info-mobile">
                             <div class="info-price-left">
@@ -1286,6 +1346,33 @@
                 slidesPerView: 4,
                 spaceBetween: 10,
             }
+        }
+    });
+
+    // Get the popup, open button, close button elements
+    const $popup = $('#popup');
+    const $openPopupBtn = $('#openPopupBtn');
+    const $closePopupBtn = $('.close-btn');
+    const $closePopupBtn2 = $('#closePopupBtn');
+
+    // Show popup when the "Open Popup" button is clicked
+    $openPopupBtn.on('click', function() {
+        $popup.css('display', 'flex');
+    });
+
+    // Close the popup when the "Close" button or the "x" is clicked
+    $closePopupBtn.on('click', function() {
+        $popup.css('display', 'none');
+    });
+
+    $closePopupBtn2.on('click', function() {
+        $popup.css('display', 'none');
+    });
+
+    // Close popup if clicked outside of content area
+    $(window).on('click', function(event) {
+        if ($(event.target).is($popup)) {
+            $popup.css('display', 'none');
         }
     });
     </script>
