@@ -41,6 +41,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_bbs", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
         $routes->get("board_write", "BoardController::board_write");
+        $routes->post("ajax_bbs_proc", "BoardController::write_ok");
         $routes->get("board_list_q", "BoardController::index2");
         $routes->get("form", "BoardController::form");
         $routes->post("form_ok", "BoardController::form_ok");
