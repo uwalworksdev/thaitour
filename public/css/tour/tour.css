@@ -793,7 +793,7 @@
 }
 
 .content-sub-product-hotel .below-filter-content .total_number p span {
-  color: #39B9AA;
+  color: var(--bs-point);
 }
 
 .content-sub-product-hotel .product-card-item-container {
@@ -860,7 +860,7 @@
 }
 
 .content-sub-product-hotel .list-item-info .item-info .titem-info-label span {
-  color: #39B9AA;
+  color: var(--bs-point);
 }
 
 .content-sub-product-hotel .list-item-info .item-info .item-price-info span.main {
@@ -880,7 +880,7 @@
 }
 
 .content-sub-product-hotel .list-item-info .item-info-label span {
-  color: #39B9AA;
+  color: var(--bs-point);
 }
 
 .content-sub-product-hotel .pagination {
@@ -907,8 +907,8 @@
 }
 
 .content-sub-product-hotel .page-link.active {
-  color: #39B9AA;
-  border-color: #39B9AA;
+  color: var(--bs-point);
+  border-color: var(--bs-point);
 }
 
 .content-sub-hotel-detail .title-container {
