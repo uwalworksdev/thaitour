@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
-    <div class="body_container main_page_01 page_share_ page_product_list_">
+    <div class="main_page_01 page_share_ page_product_list_">
         <section class="sub_top_visual">
             <img class="only_web" src="/images/banner/main_visual_banner.png" alt="">
             <img class="only_mo" src="/images/banner/main_visual_banner_m.png" alt="">
