@@ -156,7 +156,7 @@ function go_del_ok(r_idx) {
 	$.ajax({
 		type: "POST", // GET, POST
 		dataType: "text", // json, text
-		url: "ok.php",
+		url: "form_ok",
 		data: {
 			"r_code": r_code,
 			"r_idx": r_idx,

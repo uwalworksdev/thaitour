@@ -1,6 +1,6 @@
 // 목록으로 이동
 function go_list(){
-	var url = "index.php?page="+page;
+	var url = "board_list_q?page="+page;
 	url += "&"+sch_param;
 	url += "&"+sort_param;
 

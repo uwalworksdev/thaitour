@@ -2,6 +2,8 @@
 namespace App\Controllers;
 
 use App\Libraries\JkBbs;
+use App\Libraries\Lib;
+
 use CodeIgniter\Controller;
 
 
@@ -107,11 +109,11 @@ class BoardController extends BaseController
 
         $code_info = $Bbs->get_code_info($r_code);
 
-        $r_idx = $_GET['r_idx'];
+        $r_idx = $this->request->getGet('r_idx');
         if ($r_idx != "") {
             array_push($Bbs->list_field_arr, "r_flag");
             $form_data = $Bbs->get_form_data($r_idx);
-            $file_arr = json_decode($form_data['r_file_list'], true);
+            $file_arr = json_decode($form_data['r_file_list'], true) ?? [];
             $file_cnt = count($file_arr);
         } else {
             $form_data = array();
@@ -127,6 +129,7 @@ class BoardController extends BaseController
             ])->orderBy('onum', 'desc')->get()->getResultArray();
         return view('admin/_board/form', [
             'r_code' => $r_code,
+            'r_idx' => $r_idx,
             'code_info' => $code_info,
             'form_data' => $form_data,
             'product_code_arr' => $product_code_arr,
@@ -138,7 +141,36 @@ class BoardController extends BaseController
         ]);
     }
     public function form_ok() {
-       
+        $Lib = new Lib();
+        $cmd = $this->request->getPost('cmd');
+        $r_code = $this->request->getPost('r_code');
+        $r_idx = $this->request->getPost('r_idx');
+        $call_type = $this->request->getPost('call_type');
+        $data_type = $this->request->getPost('data_type');
+        if ($cmd == ""){
+            $Lib->alert_return($call_type, "실행할 명령이 지정되지 않았습니다.");
+        }        
+
+        $db = \Config\Database::connect();
+
+        if ($cmd == "del_ok") {
+            $idx = explode(",", $r_idx);
+            if (count($idx) == 0) {
+                $sql = "delete from tbl_bbs where r_idx = '$idx'";
+                $db->query($sql);
+            } else {
+                for ($i = 0; $i < count($idx); $i++) {
+                    $sql = "delete from tbl_bbs where r_idx = " . $idx[$i];
+                    $db->query($sql);
+                }
+            }
+        }
+        
+        $Bbs = new JkBbs($r_code);
+        $return = $Bbs->$cmd();
+        
+        // 실행 결과 전달
+        $Lib->alert_return($call_type, $return);
     }
 
     public function check_auth($auth)

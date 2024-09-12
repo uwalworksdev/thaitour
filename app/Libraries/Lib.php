@@ -368,13 +368,12 @@ class Lib
 		   - $msg : 메시지 내용
 		   - $ext : 추가 항목들 (전달되는 자료들)
 		*******************************************/
-	function ajax_return($return, $status = "", $item = "", $msg = "", $ext = "")
+	function ajax_return($return, $status = "", $item = "", $msg = "", $ext = "", $data_type = "")
 	{
-		global $data_type;
 		if ($data_type == "")
-			$data_type = $_GET[data_type];
+			$data_type = $_GET["data_type"];
 		if ($data_type == "")
-			$data_type = $_POST[data_type];
+			$data_type = $_POST["data_type"];
 
 		// 전달 객체는 없지만 상태가 있는 경우, 전달 객체를 생성하여 전달한다.
 		if ($return == "" && $status != "") {

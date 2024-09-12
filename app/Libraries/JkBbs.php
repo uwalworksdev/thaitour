@@ -20,6 +20,9 @@ class JkBbs extends JkClass
 	public $having_query = "";
 	public $list_sub_sql = "";
 
+	public $data_path = WRITEPATH."uploads/bbs/";
+	public $editor_path = WRITEPATH."uploads/editor/";
+
 	/*******************************************
 	 * 생성자 함수
 	 *******************************************/
@@ -231,7 +234,7 @@ class JkBbs extends JkClass
 			$field = trim($field);
 			//if(!in_array($field, $param)) continue;
 
-			$sql .= ", " . $this->Db->escape_str($field) . "=\"" . $this->Db->escape_str($param[$field]) . "\" ";
+			$sql .= ", " . $this->Db->$field . "=\"" . $this->Db->$param[$field] . "\" ";
 		}
 
 		$sql .= " where r_code='" . $param['r_code'] . "' ";
@@ -268,7 +271,7 @@ class JkBbs extends JkClass
 			$this->score_arr = json_decode($this->code_info['r_score_list'], true);
 
 			// 폴더 생성 위치
-			$this->data_path = $_SERVER['DOCUMENT_ROOT'] . "/data/bbs/" . $r_code;
+			$this->data_path = $this->data_path . $r_code;
 			if (!is_dir($this->data_path))
 				mkdir($this->data_path, 0777);
 
@@ -776,7 +779,8 @@ class JkBbs extends JkClass
 		$new_arr = array();
 
 		// 새 파일 추가
-		$new_file_cnt = count($_FILES['files']['name']);
+
+		$new_file_cnt = count($_FILES['files']['name'] ?? []);
 		for ($i = 0; $i < $new_file_cnt; $i++) {
 			if ($_FILES['files']['name'][$i] == "")
 				continue;
@@ -831,10 +835,10 @@ class JkBbs extends JkClass
 		// 대상 설정 및 쿼리 생성
 		$arr = $this->Lib->array_filter($field_arr, $param); // 입력값에서 지정한 필드만 선별
 		$query = $this->Db->sqlInsertQuery($this->table_name, $arr); // Insert 쿼리 생성
-
+		
 		// 쿼리 실행
 		$this->Db->sqlQuery($query);
-		$this->Lib->log_input("************** sqlQuery (" . $this->Db->error() . ") : " . $query);
+		// $this->Lib->log_input("************** sqlQuery (" . $this->Db->error() . ") : " . $query);
 
 		// 등록된 식별 번호
 		$r_idx = $this->Db->sqlLastId();
@@ -856,11 +860,11 @@ class JkBbs extends JkClass
 		if ($this->code_info['r_use_content_img'] == "Y") {
 			// 에디터 폴더에서 게시판 폴더로 복사
 			if ($param['r_file_name'] != "" && $param['r_file_code'] != "")
-				copy($_SERVER['DOCUMENT_ROOT'] . "/data/editor/" . $param['r_file_name'], $data_path . "/" . $param['r_file_code']);
+				copy($this->$editor_path . $param['r_file_name'], $data_path . "/" . $param['r_file_code']);
 		}
 
 		// 변경 내역 기록
-		$this->add_log($r_idx);
+		// $this->add_log($r_idx);
 
 		// 저장된 정보 전송
 		unset($this->form_data); // 새로 가져오기 위해 리셋
@@ -874,7 +878,7 @@ class JkBbs extends JkClass
 	/*******************************************
 	 * 수정
 	 *******************************************/
-	function mod_ok($param = "")
+	function mod_ok($param = "", $extra = "")
 	{
 
 		// 입력값
@@ -952,14 +956,14 @@ class JkBbs extends JkClass
 			mkdir($data_path, 0755);
 
 		// 파일 목록
-		$tmp_arr = array();
+		$tmp_arr = [];
 
 		// 기존 파일
 		if ($form_data['r_file_list'] != "") {
-			$old_arr = json_decode($form_data['r_file_list'], true);
+			$old_arr = json_decode($form_data['r_file_list'], true) ?? [];
 			$old_cnt = count($old_arr);
 
-			$del_arr = $_POST['file_del'];
+			$del_arr = $_POST['file_del'] ?? [];
 			for ($i = 0; $i < $old_cnt; $i++) {
 				$tmp = $old_arr[$i];
 				$old_code = $tmp['code'];
@@ -997,7 +1001,7 @@ class JkBbs extends JkClass
 		}
 
 		// 새 파일 추가
-		$new_file_cnt = count($_FILES['files']['name']);
+		$new_file_cnt = count($_FILES['files']['name'] ?? []);
 		for ($i = 0; $i < $new_file_cnt; $i++) {
 			if ($_FILES['files']['name'][$i] == "")
 				continue;
@@ -1021,7 +1025,7 @@ class JkBbs extends JkClass
 		}
 
 		// 순서 정리
-		$ord_arr = $_POST['file_ord'];
+		$ord_arr = $_POST['file_ord'] ?? [];
 		$ord_cnt = count($ord_arr);
 
 		$new_arr = array();
@@ -1068,7 +1072,7 @@ class JkBbs extends JkClass
 					$param['r_file_code'] = date("YmdHis") . "_" . substr($mt[0], 2);
 
 					// 에디터 폴더에서 게시판 폴더로 복사
-					copy($_SERVER['DOCUMENT_ROOT'] . "/data/editor/" . $param['r_file_name'], $data_path . "/" . $param['r_file_code']);
+					copy($this->editor_path . $param['r_file_name'], $data_path . "/" . $param['r_file_code']);
 				}
 			}
 		}
@@ -1088,7 +1092,7 @@ class JkBbs extends JkClass
 		$this->Db->sqlQuery($query);
 
 		// 변경 내역 기록
-		$this->add_log($r_idx);
+		// $this->add_log($r_idx);
 
 		// 저장된 정보
 		unset($this->form_data); // 새로 가져오기 위해 리셋
@@ -1268,11 +1272,11 @@ class JkBbs extends JkClass
 		}
 
 		// 입력값 검사
-		$r_answer_name = $this->Db->escape_str($param['r_answer_name']);
+		$r_answer_name = $this->Db->$param['r_answer_name'];
 		if ($r_answer_name == "")
 			return array("msg" => "답변자 이름을 입력해 주세요.");
 
-		$r_answer_content = $this->Db->escape_str($param['r_answer_content']);
+		$r_answer_content = $this->Db->$param['r_answer_content'];
 		if ($r_answer_content == "")
 			return array("msg" => "답변내용을 입력해 주세요.");
 
@@ -1297,7 +1301,7 @@ class JkBbs extends JkClass
 	/*******************************************
 	 * 답변 삭제하기
 	 *******************************************/
-	function answer_del_ok($r_idx = "", $_delete = "")
+	function answer_del_ok($r_idx = "", $param = "", $_delete = "")
 	{
 
 		// 입력값
