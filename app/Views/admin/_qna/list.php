@@ -1,23 +1,17 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <div id="container">
+<div id="container">
 	<span id="print_this"><!-- 인쇄영역 시작 //-->
 
 		<header id="headerContainer">
 
 			<div class="inner">
-				<h2>여행후기 관리</h2>
+				<h2>1:1 여행상담</h2>
 				<div class="menus">
 					<ul class="first">
-						<li><a href="javascript:change_it()" class="btn btn-primary">순위변경</a></li>
-						<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), true)"
-                               class="btn btn-success">전체선택</a></li>
-						<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), false)"
-                               class="btn btn-success">선택해체</a></li>
+						<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), true)" class="btn btn-success">전체선택</a></li>
+						<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), false)" class="btn btn-success">선택해체</a></li>
 						<li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
-						<li><a href="write" class="btn btn-primary"><span
-                                        class="glyphicon glyphicon-pencil"></span> <span
-                                        class="txt">글 등록</span></a></li>
 					</ul>
 
 					<ul class="last">
@@ -31,66 +25,71 @@
 
 		<div id="contents">
 			<form name="search" id="search">
-				<input type="hidden" name="gubun" value="<?= isset($gubun) ? $gubun : '' ?>">
+				<input type="hidden" name="gubun" value="<?= $gubun ?? ""?>">
 				<header id="headerContents">
-
-				<select id="search_gubun" name="search_gubun" class="input_select" style="width:112px">
-						<option value="" <?php if ($search_gubun == "") {
-                            echo "selected";
-                        } ?>>전체</option>
-						<option value="is_best" <?php if ($search_gubun == "is_best") {
-                            echo "selected";
-                        } ?>>베스트</option>
-						<option value="display" <?php if ($search_gubun == "display") {
-                            echo "selected";
-                        } ?>>메인노출</option>
-					</select>
-
 					<select id="" name="search_category" class="input_select" style="width:112px">
-						<option value="title" <?php if ($search_category == "title") {
-                            echo "selected";
-                        } ?>>제목</option>
-						<option value="user_name" <?php if ($search_category == "user_name") {
-                            echo "selected";
-                        } ?>>국문이름</option>
-						<option value="user_email" <?php if ($search_category == "user_email") {
-                            echo "selected";
-                        } ?>>이메일</option>
+						<option value="title" <? if ($search_category == "title") {
+													echo "selected";
+												} ?>>제목</option>
+						<option value="user_name" <? if ($search_category == "user_name") {
+														echo "selected";
+													} ?>>국문이름</option>
+						<option value="user_phone" <? if ($search_category == "user_phone") {
+														echo "selected";
+													} ?>>핸드폰</option>
+						<option value="user_email" <? if ($search_category == "user_email") {
+														echo "selected";
+													} ?>>이메일</option>
 					</select>
 
 
-					<input type="text" id="" name="s_txt" value="<?= $s_txt ?>" class="input_txt placeHolder"
-                           rel="검색어 입력" style="width:240px"/>
+					<input type="text" id="" name="s_txt" value="<?= $s_txt ?>" class="input_txt placeHolder" rel="검색어 입력" style="width:240px" />
 
-					<a href="javascript:search_it()" class="btn btn-default"><span
-                                class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+					<a href="javascript:search_it()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
 				</header><!-- // headerContents -->
 			</form>
 			<script>
 				function search_it() {
-                    var frm = document.search;
-                    if (frm.s_txt.value == "검색어 입력") {
-                        frm.s_txt.value = "";
-                    }
-                    frm.submit();
-                }
+					var frm = document.search;
+					if (frm.s_txt.value == "검색어 입력") {
+						frm.s_txt.value = "";
+					}
+					frm.submit();
+				}
 			</script>
 			<style>
-				div.listBottom table.listTable tbody td:nth-child(5) {
-                    text-align: left !important;
-                    padding-left: 10px;
-                    max-width: 500px;
-                    word-wrap: break-word;
-                    padding-right: 10px;
-                }
+				div.listBottom table.listTable tbody td:nth-child(3) {
+					text-align: left !important;
+					padding-left: 10px;
+					max-width: 300px;
+					word-wrap: break-word;
+					padding-right: 10px;
+				}
 
-                div.listBottom table.listTable tbody td:nth-child(5) a {
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    -webkit-box-orient: vertical;
-                }
+				div.listBottom table.listTable tbody td:nth-child(3) .new_ic {
+					display: inline-block;
+					width: 10px;
+					height: 9px;
+					margin: -1px 5px;
+					background: no-repeat center;
+					background-image: url("/images/btn/icon_new.gif");
+				}
+
+				div.listBottom table.listTable tbody td:nth-child(5) a {
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					-webkit-box-orient: vertical;
+				}
+
+				div.listBottom table.listTable tbody td.tac a {
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					max-width: 640px;
+					display: inline-flex;
+				}
 			</style>
 			<div class="listWrap">
 				<!-- 안내 문구 필요시 구성 //-->
@@ -105,99 +104,102 @@
 						<table cellpadding="0" cellspacing="0" summary="" class="listTable">
 							<caption></caption>
 							<colgroup>
-								<col width="5%"/>
-								<col width="15%"/>
-								<col width="15%"/>
-								<col width="10%"/>
-								<col width="15%"/>
-								<col width="12%"/>
-								<col width="12%"/>
-								<col width="5%"/>
-								<col width="5%"/>
-								<col width="15%"/>
+								<col width="4%" />
+								<col width="4%" />
+								<col width="34%" />
+								<col width="7%" />
+								<col width="7%" />
+								<col width="9%" />
+								<col width="9%" />
+								<col width="7%" />
+                                <col width="7%" />
+								<col width="9%" />
 							</colgroup>
 							<thead>
 								<tr>
 									<th>선택</th>
-								    <th>사용자 이름</th>
-                                    <th>전화번호</th>
-                                    <th>이메일</th>
-                                    <th>출발일</th>
-                                    <th>도착일/th>
-                                    <th>제목</th>
-                                    <th>상태</th>
+									<th>번호</th>
+									<th>제목</th>
+									<th>이름</th>
+									<th>연락처</th>
+									<th>이메일</th>
+									<th>신청일시</th>
+                                    <th>ip</th>
+									<th>진행상태</th>
 									<th>관리</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php
-                                if ($total_cnt == 0) {
-                                    ?>
-                                    <tr>
-										<td colspan=9 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+									$now = strtotime(date("Y-m-d H:i:s"));
+
+									if ($total_cnt == 0) {
+								?>
+									<tr>
+										<td colspan=10 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
 									</tr>
-                                    <?php
-                                }
-                                foreach ($list_qna as $row) {
-                                    $statusStr = "";
+								<?php
+									}
+									foreach($list_qna as $row) {
+										$time = strtotime($row['r_date']);
+										$diff_time = $now - $time;
+										$is_new = $diff_time < (24 * 60 * 60) ? "<i class='new_ic'></i>" : "";
+										$r_date = $row['r_date'];
 
-                                    if ($row["status"] == "Y") {
-                                        $statusStr = "노출";
-                                    } elseif ($row["status"] == "N") {
-                                        $statusStr = "노출해제";
-                                    }
+										$statusStr = "";
+										if ($row["status"] == "Y") {
+											$statusStr = "상담완료";
+										} elseif ($row["status"] == "C") {
+											$statusStr = "상담취소";
+										} elseif ($row["status"] == "W") {
+											$statusStr = "문의접수";
+										} elseif ($row["status"] == "V") {
+											$statusStr = "문의확인";
+										}
 
+										if($row['isViewQna'] == 'N'){ 
+											$color = "#FED4D6"; 
+										}else{
+											$color = "#fff"; 
+										}
 
-                                    ?>
-                                    <tr style="height:50px;">
-										<input type="hidden" name="idx_change[]" value="<?= $row['idx'] ?>">
-										<td><input type="checkbox" name="idx[]" class="idx" value="<?= $row['idx'] ?>"
-                                                   class="input_check"/></a></td>
-										<td><a href="detail?idx=<?= $row['idx'] ?>"><?= sqlSecretConver($row["user_name"], 'decode') ?></a></td>
-
+								?>
+									<tr style="height:50px; background-color: <?=$color?>;">
+										<td><input type="checkbox" name="idx[]" class="idx" value="<?= $row["idx"] ?>" class="input_check" /></a></td>
+										<td><?= $num-- ?></td>
+										<td class="tac">
+											<a href="detail.php?idx=<?= $row["idx"] ?>"><p><?= $row['title'] ?></p></a>
+											<span style="margin-left: 10px"><img src="/images/btn/icon_comm.gif" alt=""> </span>
+											<span class="red">(<?= $row['cmt_cnt'] ?>)</span><?= $is_new ?>
+										</td>
+										<td class="tac"><?= sqlSecretConver($row["user_name"], 'decode') ?></td>
 										<td class="tac"><?= sqlSecretConver($row["user_phone"], 'decode') ?></td>
 										<td class="tac"><?= sqlSecretConver($row["user_email"], 'decode') ?></td>
-										<td class="tac"><?= $row["departure_date"] ?></td>
-										<td class="tac"><?= $row["arrival_date"] ?></td>
-										<td class="tac"><?= $row["title"] ?></td>
+										<td class="tac"><?= $row["r_date"] ?></td>
+										<td class="tac"><?= $row["user_ip"] ?></td>
+                                        <td class="tac"><?= $statusStr ?></td>
 										<td>
-											<?= $statusStr ?>
-										</td>
-										<td>
-											<a href="write?idx=<?= $row['idx'] ?>"><img
-                                                        src="/images/admin/common/ico_setting2.png"></a>
-											<a href="javascript:del_it('<?= $row['idx'] ?>');"><img
-                                                        src="/images/admin/common/ico_error.png" alt="삭제"/></a>
+											<a href="write.php?idx=<?= $row["idx"] ?>"><img src="/images/admin/common/ico_setting2.png"></a>
+											<a href="javascript:del_it('<?= $row["idx"] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>
 										</td>
 									</tr>
-                                <?php } ?>
-
-
-
-
+								<?php  } ?>
 
 							</tbody>
 						</table>
 					</div><!-- // listBottom -->
 				</form>
 
-				<?php echo ipageListing($pg, $nPage, $g_list_rows, $currentUri . "?&search_gubun=$search_gubun&search_category=$search_category&s_txt=$s_txt&pg=") ?>
-
+				<? echo ipageListing($pg, $nPage, $scale, current_url() . "?s_status=$s_status&search_category=$search_category&s_txt=$s_txt&pg=") ?>
 
 				<div id="headerContainer">
 
 					<div class="inner">
 						<div class="menus">
 							<ul class="first">
-								<li><a href="javascript:change_it()" class="btn btn-primary">순위변경</a></li>
-								<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), true)"
-                                       class="btn btn-success">전체선택</a></li>
-								<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), false)"
-                                       class="btn btn-success">선택해체</a></li>
+								<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), true)" class="btn btn-success">전체선택</a></li>
+								<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), false)" class="btn btn-success">선택해체</a></li>
 								<li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
-							</ul>
-
-							<ul class="last">
 							</ul>
 
 						</div>
@@ -209,131 +211,75 @@
 
 		</div><!-- // contents -->
 
-
-
-
-
 	</span><!-- 인쇄 영역 끝 //-->
-    </div><!-- // container -->
+</div><!-- // container -->
 
+<script>
+	function CheckAll(checkBoxes, checked) {
+		var i;
+		if (checkBoxes.length) {
+			for (i = 0; i < checkBoxes.length; i++) {
+				checkBoxes[i].checked = checked;
+			}
+		} else {
+			checkBoxes.checked = checked;
+		}
 
-    <script>
-        $(".input_check").change(function (evt) {
-            if ($(evt.target).is(":checked")) {
-                $(evt.target).siblings("input[type=text]").val("Y");
-            } else {
-                $(evt.target).siblings("input[type=text]").val("N");
-            }
-        })
+	}
 
-    </script>
+	function SELECT_DELETE() {
+		if ($(".idx").is(":checked") == false) {
+			alert_("삭제할 내용을 선택하셔야 합니다.");
+			return;
+		}
+		if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+			return;
+		}
 
+		$.ajax({
+			url: "./ajax.del.php",
+			type: "POST",
+			data: $("#frm").serialize(),
+			dataType: "json",
+			async: false,
+			cache: false,
+			error: function(request, status, error) {
+				//통신 에러 발생시 처리
+				alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+			},
+			success: function(data, status, request) {
+				message = data.message;
+				alert_(message);
+				location.reload();
+			}
+		});
 
-    <script>
-        function CheckAll(checkBoxes, checked) {
-            var i;
-            if (checkBoxes.length) {
-                for (i = 0; i < checkBoxes.length; i++) {
-                    checkBoxes[i].checked = checked;
-                }
-            } else {
-                checkBoxes.checked = checked;
-            }
+	}
 
-        }
+	function del_it(idx) {
 
-        function SELECT_DELETE() {
-            if ($(".idx").is(":checked") == false) {
-                alert_("삭제할 내용을 선택하셔야 합니다.");
-                return;
-            }
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
+		if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+			return;
+		}
+		var message = "";
+		$.ajax({
 
-            $("#ajax_loader").removeClass("display-none");
+			url: "./ajax.del.php",
+			type: "POST",
+			data: "idx[]=" + idx,
+			dataType: "json",
+			async: false,
+			cache: false,
+			success: function(data, textStatus) {
+				message = data.message;
+				alert_(message);
+				location.reload();
+			},
+			error: function(request, status, error) {
+				alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+			}
+		});
 
-            $.ajax({
-                url: "del",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                },
-                complete: function (request, status, error) {
-                    //				$("#ajax_loader").addClass("display-none");
-                },
-                success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-
-        }
-
-        function del_it(idx) {
-
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-            var message = "";
-            $.ajax({
-
-                url: "./ajax_del",
-                type: "POST",
-                data: {
-                    "idx": idx
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-
-        }
-
-        function change_it() {
-            $("#ajax_loader").removeClass("display-none");
-            $.ajax({
-                url: "./change_ajax",
-                type: "POST",
-                data: $("#frm").serialize(),
-                dataType: "json",
-                async: false,
-                cache: false,
-                complete: function (request, status, error) {
-                    $("#ajax_loader").addClass("display-none");
-                },
-                success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
-                    location.reload();
-                }
-            })
-        }
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.getElementById('search_gubun').addEventListener('change', function () {
-                document.getElementById('search').submit();
-            });
-        });
-    </script>
+	}
+</script>
 <?= $this->endSection() ?>

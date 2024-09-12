@@ -201,7 +201,7 @@
                                 <a href="#!" class="btn btn-success" onClick="go_regist('new_ok');"><span
                                         class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                             <?php } else { ?>
-                                <a href="#!" class="btn btn-primary" onClick="send_it('mod_ok');"><span
+                                <a href="#!" class="btn btn-primary" onClick="go_regist('mod_ok');"><span
                                         class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 <!-- <a href="#!" class="btn btn-danger" onClick="go_regist('del_ok');"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a> -->
                             <?php } ?>
@@ -234,7 +234,7 @@
             </div>
             <div class="div_content">
 
-                <form name="frm_form" id="frm_form" action="write_ok.php" method="post" enctype="multipart/form-data">
+                <form name="frm_form" id="frm_form" action="form_ok" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="call_type" value="ajax">
                     <input type="hidden" name="data_type" value="json">
                     <input type="hidden" name="r_code" value="<?= $r_code; ?>">
@@ -249,11 +249,11 @@
                             <col width="*">
                         </colgroup>
                         <!-- <tr>
-                    <th>베스트</th>
-                    <td>
-                        <input type="checkbox" id="r_flag" name="r_flag" <?= $form_data['r_flag'] == 1 ? 'checked' : ''; ?>>
-                    </td>
-                </tr> -->
+                            <th>베스트</th>
+                            <td>
+                                <input type="checkbox" id="r_flag" name="r_flag" <?= $form_data['r_flag'] == 1 ? 'checked' : ''; ?>>
+                            </td>
+                        </tr> -->
                         <tr>
                             <th>상태</th>
                             <td>
@@ -562,8 +562,11 @@
                                         입력 항목은 필요에 따라 입력하시면 됩니다.</span>
                                     <ul id="ul_file" class="ul_file">
                                         <!-- 기존 파일 -->
-                                        <?php for ($i = 0; $i < $file_cnt; $i++) {
-                                            $tmp = $file_arr[$i]; ?>
+                                        <?php 
+                                            for ($i = 0; $i < $file_cnt; $i++) {
+                                            $tmp = $file_arr[$i]; 
+                                            $writablePath = WRITEPATH . 'uploads/';
+                                        ?>
                                             <li>
                                                 <input type="hidden" name="file_ord[]" value="<?= $tmp['code']; ?>">
                                                 제목 : <input type="text" name="file_title_<?= $tmp['code']; ?>"
@@ -575,14 +578,14 @@
                                                 <input type="file" name="file_<?= $tmp['code']; ?>">
                                                 &nbsp;
                                                 <a
-                                                    href="/data/bbs/<?= $r_code; ?>/<?= $r_idx; ?>/<?= $tmp['code']; ?>"><?= $tmp['name']; ?></a>
+                                                    href="<?=$writablePath . "bbs/" . $r_code . "/" . $r_idx . "/" . $tmp['code']?>"><?= $tmp['name']; ?></a>
                                                 (<input type="checkbox" name="file_del[]" class="file_del"
                                                     value="<?= $tmp['code']; ?>">삭제)
                                                 <br>
                                                 내용 : <textarea name="file_desc_<?= $tmp['code']; ?>"
                                                     style="width:80%; height:60px;margin-top: 10px;"><?= $tmp['desc']; ?></textarea>
                                                 <?php if (strtolower(substr($tmp['type'], 0, 6)) == "image/") { ?>
-                                                    <img src="/data/bbs/<?= $r_code; ?>/<?= $r_idx; ?>/<?= $tmp['code']; ?>"
+                                                    <img src="<?=$writablePath . "bbs/" . $r_code . "/" . $r_idx . "/" . $tmp['code']?>"
                                                         style="width:15%; max-width:150px; max-height:60px;">
                                                 <?php } ?>
                                             </li>
@@ -641,7 +644,7 @@
                                     <a href="#!" class="btn btn-success" onClick="go_regist('new_ok');"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="#!" class="btn btn-primary" onClick="send_it('mod_ok');"><span
+                                    <a href="#!" class="btn btn-primary" onClick="go_regist('mod_ok');"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                     <!-- <a href="#!" class="btn btn-danger" onClick="go_regist('del_ok');"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a> -->
                                 <?php } ?>

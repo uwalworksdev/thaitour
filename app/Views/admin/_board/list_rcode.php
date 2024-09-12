@@ -364,8 +364,8 @@
                                                 <?= ($row['r_answer_status'] == "Y") ? $row['r_answer_date'] : "&nbsp;"; ?></td>
                                         <?php } ?>
                                         <td class="td_control">
-                                            <img src="/AdmMaster/_images/common/ico_setting2.png" class="btn_mod" alt="관리">
-                                            <img src="/AdmMaster/_images/common/ico_error.png" class="btn_del" alt="삭제">
+                                            <img src="/images/admin/common/ico_setting2.png" class="btn_mod" alt="관리">
+                                            <img src="/images/admin/common/ico_error.png" class="btn_del" alt="삭제">
                                         </td>
                                     </tr>
                                 <?php } ?>

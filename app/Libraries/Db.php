@@ -92,7 +92,7 @@ class Db
 
 		$cnt = count($arr);
 		for ($i = 0; $i < $cnt; $i++) {
-			$args[] = $this->escape_str($arr[$i]);
+			$args[] = $this->$arr[$i];
 		}
 
 		$query = call_user_func_array("sprintf", $args);
@@ -116,10 +116,12 @@ class Db
 		$query = "INSERT INTO $table (";
 		$query .= "`" . implode("`, `", $arr_field) . "`";
 		$query .= ") VALUES (";
-		$query .= "'%s'" . str_repeat(", '%s'", count($arr_field) - 1);
+		// $query .= "'%s'" . str_repeat(", '%s'", count($arr_field) - 1);
+		$query .= "'" . implode("', '", $arr_value) . "'";
 		$query .= ")";
 
-		return $this->sqlGetQuery($query, $arr_value);
+		// return $this->sqlGetQuery($query, $arr_value);
+		return $query;
 	}
 
 
@@ -152,7 +154,7 @@ class Db
 		$arr_field = array();
 		$arr_value = array();
 		foreach ($arr as $key => $value) {
-			$arr_field[] = "`" . $key . "`='%s'";
+			$arr_field[] = "`" . $key . "`='$value'";
 			$arr_value[] = $value;
 		}
 
@@ -165,7 +167,7 @@ class Db
 		$query .= implode(", ", $arr_field);
 		$query .= $where;
 
-		return $this->sqlGetQuery($query, $arr_value);
+		return $query;
 	}
 
 
@@ -215,8 +217,8 @@ class Db
 	public function sqlSelect($query, $connect = "")
 	{
 		$re = $this->sqlQuery($query, $connect);
-			$re1 = $re['result']->getResultArray();
-			return $re1;
+		$re1 = $re['result']->getResultArray();
+		return $re1;
 	}
 
 	public function sqlSelectArray($query, $key, $val = "", $connect = "")
