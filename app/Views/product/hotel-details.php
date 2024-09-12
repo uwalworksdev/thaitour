@@ -27,13 +27,13 @@
                 <img src="/uploads/icons/share_icon.png" alt="share_icon">
             </div>
             <div class="hotel-image-container">
-                <div class="">
+                <div class="hotel-image-container-1">
                     <img src="/uploads/sub/hotel_details_1.png" alt="hotel_details_1">
                 </div>
                 <div class="grid_2_2">
-                    <img src="/uploads/sub/hotel_details_2.png" alt="hotel_details_2">
-                    <img src="/uploads/sub/hotel_details_3.png" alt="hotel_details_3">
-                    <img src="/uploads/sub/hotel_details_4.png" alt="hotel_details_4">
+                    <img class="grid_2_2_size" src="/uploads/sub/hotel_details_2.png" alt="hotel_details_2">
+                    <img class="grid_2_2_size" src="/uploads/sub/hotel_details_3.png" alt="hotel_details_3">
+                    <img class="grid_2_2_size" src="/uploads/sub/hotel_details_4.png" alt="hotel_details_4">
                     <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
                         <img class="custom_button" src="/uploads/sub/hotel_details_5.png" alt="hotel_details_5">
                         <div class="button-show-detail-image">

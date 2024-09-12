@@ -746,14 +746,21 @@
                     </div>
                 </div>
                 <div class="pagination">
-                    <a href="#" class="page-link">≪</a>
+                    <a href="#" class="page-link">
+                        <img src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                    </a>
                     <a href="#" class="page-link" style="margin-right: 24px;">
-                        <
-                            <a href="#" class="page-link active">1</a>
-                            <a href="#" class="page-link">2</a>
-                            <a href="#" class="page-link">3</a>
-                            <a href="#" class="page-link" style="margin-left: 24px;">></a>
-                            <a href="#" class="page-link">≫</a>
+                        <img src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                    </a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link" style="margin-left: 24px;">
+                        <img src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                    </a>
+                    <a href="#" class="page-link">
+                        <img src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                    </a>
                 </div>
             </div>
         </div>
