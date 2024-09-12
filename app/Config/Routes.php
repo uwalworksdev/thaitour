@@ -275,6 +275,8 @@ $routes->get('product-hotel/list-hotel/(:any)', 'Product::index5/$1');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::index6/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
+$routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
+$routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('tours/item_view/(:any)', 'Product::index7/$1');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');

@@ -110,14 +110,10 @@ $(document).ready(function() {
         on: {
             init: function(swiper) {
                 updatePagination(swiper.realIndex);
-                setButtonPosition(swiper.el);
             },
             slideChange: function(swiper) {
                 updatePagination(swiper.realIndex);
             },
-            // resize: function(swiper) {
-            //     setButtonPosition(swiper.el);
-            // },
         },
     });
 
