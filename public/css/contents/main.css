@@ -792,3 +792,9 @@ padding-top: calc(310% / 224 * 100);
     background-color: #9c75f2;
     border-radius: 50%;
 }
+
+@media screen and (max-width: 1440px) {
+    .side-bar-inc {
+        display: none;
+    }
+}

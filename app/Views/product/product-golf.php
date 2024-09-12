@@ -56,51 +56,53 @@
                         </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box_re">
-                            <img class="only_web" src="/images/sub/golf_slide_img2.png" alt="golf_slide_img2">
-                            <img class="only_mo img_box_re_img"
-                                src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
-                            <img class="only_mo tag-red" src="/uploads/icons/tag-p-m.png" alt="">
-                            <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
-                            <p class="text_img_box_re">
-                                수완 골프 & 컨트리 클럽<br>
-                                오션뷰 라운딩
-                            </p>
-                            <p class="text_img_box_re_sub">#무제한 라운딩</p>
-                        </div>
+                        <a href="/product-golf/list-golf/1">
+                            <div class="img_box_re">
+                                <img class="only_web" src="/images/sub/golf_slide_img2.png" alt="golf_slide_img2">
+                                <img class="only_mo img_box_re_img"
+                                    src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
+                                <img class="only_mo tag-red" src="/uploads/icons/tag-p-m.png" alt="">
+                                <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
+                                <p class="text_img_box_re">
+                                    수완 골프 & 컨트리 클럽<br>
+                                    오션뷰 라운딩
+                                </p>
+                                <p class="text_img_box_re_sub">#무제한 라운딩</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box_re">
-                            <img class="only_web" src="/images/sub/golf_slide_img3.png" alt="golf_slide_img3">
-                            <img class="only_mo img_box_re_img"
-                                src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
-                            <img src="/uploads/icons/tag-g.png" alt="" class="tag-red only_web">
-                            <img src="/uploads/icons/tag-g-m.png" alt="" class="tag-red only_mo">
-                            <p class="text_img_box_re">
-                                알파인 골프 리조트<br>
-                                치앙마이
-                            </p>
-                            <p class="text_img_box_re_sub">#프리미엄 옵션 무료</p>
-                        </div>
+                        <a href="/product-golf/list-golf/1">
+                            <div class="img_box_re">
+                                <img class="only_web" src="/images/sub/golf_slide_img3.png" alt="golf_slide_img3">
+                                <img class="only_mo img_box_re_img"
+                                    src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
+                                <img src="/uploads/icons/tag-g.png" alt="" class="tag-red only_web">
+                                <img src="/uploads/icons/tag-g-m.png" alt="" class="tag-red only_mo">
+                                <p class="text_img_box_re">
+                                    알파인 골프 리조트<br>
+                                    치앙마이
+                                </p>
+                                <p class="text_img_box_re_sub">#프리미엄 옵션 무료</p>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box_re">
-                            <img class="only_web" src="/images/sub/golf_slide_img2.png" alt="golf_slide_img1">
-                            <img class="only_mo img_box_re_img"
-                                src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
-                            <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
-                            <img src="/uploads/icons/tag-p-m.png" alt="" class="tag-red only_mo">
-                            <p class="text_img_box_re">
-                                차오프라야 오퓰런스 디너<br>
-                                크루즈
-                            </p>
-                            <p class="text_img_box_re_sub">#프리미엄 옵션 무료</p>
-                        </div>
+                        <a href="/product-golf/list-golf/1">
+                            <div class="img_box_re">
+                                <img class="only_web" src="/images/sub/golf_slide_img2.png" alt="golf_slide_img1">
+                                <img class="only_mo img_box_re_img"
+                                    src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
+                                <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
+                                <img src="/uploads/icons/tag-p-m.png" alt="" class="tag-red only_mo">
+                                <p class="text_img_box_re">
+                                    차오프라야 오퓰런스 디너<br>
+                                    크루즈
+                                </p>
+                                <p class="text_img_box_re_sub">#프리미엄 옵션 무료</p>
+                            </div>
+                        </a>
                     </div>
-
-
-
-
                     <!-- Add more slides as needed -->
                 </div>
                 <!-- Add Pagination -->
@@ -137,7 +139,7 @@
                     <div class="swiper sub_swiper2">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
+                                <a href="/product-golf/list-golf/1324">
                                     <div class="img_box">
                                         <img src="/uploads/sub/tour_slide_1.png" alt="main">
                                     </div>
@@ -147,7 +149,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
+                                <a href="/product-golf/list-golf/1324">
                                     <div class="img_box">
                                         <img src="/uploads/sub/tour_slide_2.png" alt="main">
                                     </div>
@@ -157,7 +159,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
+                                <a href="/product-golf/list-golf/1324">
                                     <div class="img_box">
                                         <img src="/uploads/sub/tour_slide_3.png" alt="main">
                                     </div>
@@ -167,7 +169,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
+                                <a href="/product-golf/list-golf/1324">
                                     <div class="img_box">
                                         <img src="/uploads/sub/tour_slide_4.png" alt="main">
                                     </div>
@@ -177,7 +179,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
+                                <a href="/product-golf/list-golf/1324">
                                     <div class="img_box">
                                         <img src="/uploads/sub/tour_slide_5.png" alt="main">
                                     </div>
@@ -187,7 +189,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
+                                <a href="/product-golf/list-golf/1324">
                                     <div class="img_box">
                                         <img src="/uploads/sub/tour_slide_6.png" alt="main">
                                     </div>
@@ -197,7 +199,7 @@
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
+                                <a href="/product-golf/list-golf/1324">
                                     <div class="img_box">
                                         <img src="/uploads/sub/tour_slide_3.png" alt="main">
                                     </div>
@@ -236,7 +238,7 @@
                 <div>
                     <div class="thailand_hotel_swiper_ swiper">
                         <div class="swiper-wrapper">
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_1.png" alt="main loading=" lazy"">
                                 </div>
@@ -266,7 +268,7 @@
                                     <span class="prd_price_ko_sub">6,000바트</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_2.png" alt="main loading=" lazy"">
                                 </div>
@@ -295,7 +297,7 @@
                                     81,785<span>원</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_3.png" alt="main" loading="lazy">
                                 </div>
@@ -325,7 +327,7 @@
                                     <span class="prd_price_ko_sub ">4,500바트</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_4.png" alt="main" loading="lazy">
                                 </div>
@@ -355,7 +357,7 @@
                                     <span class="prd_price_ko_sub">1,550바트</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
                                 </div>
@@ -382,7 +384,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_6.png" alt="main " loading=" lazy">
                                 </div>
@@ -411,7 +413,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
                                 </div>
@@ -440,7 +442,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
                                 </div>
@@ -469,7 +471,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
                                 </div>
@@ -496,7 +498,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
                                 </div>
@@ -525,7 +527,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
                                 </div>
@@ -554,7 +556,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
                                 </div>
@@ -583,7 +585,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
                                 </div>
@@ -614,7 +616,7 @@
                                     <span class="prd_price_ko_sub">6,000바트</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_6.png" alt="main" loading=" lazy">
                                 </div>
@@ -643,7 +645,7 @@
                                     166,057<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
                                 </div>
@@ -673,7 +675,7 @@
                                     <span class="prd_price_ko_sub">6,500바트</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
                                 </div>
@@ -703,7 +705,7 @@
                                     <span class="prd_price_ko_sub">1,550바트</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
                                 </div>
@@ -730,7 +732,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                                 </div>
@@ -759,7 +761,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
                                 </div>
@@ -788,7 +790,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                                 </div>
@@ -817,7 +819,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
                                 </div>
@@ -844,7 +846,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                                 </div>
@@ -873,7 +875,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
                                 </div>
@@ -902,7 +904,7 @@
                                     236,100<span>원~</span>
                                 </div>
                             </a>
-                            <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
                                     <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                                 </div>
@@ -1092,7 +1094,7 @@
                 </div>
                 <div class="best_tour_section5_ swiper">
                     <div class="swiper-wrapper">
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_v2_suggest_1.png" alt="main" loading="lazy">
                             </div>
@@ -1122,7 +1124,7 @@
                                 <span class="prd_price_ko_sub">6,000바트</span>
                             </div>
                         </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_v2_suggest_2.png" alt="main" loading="lazy">
                             </div>
@@ -1152,7 +1154,7 @@
                                 <span class="prd_price_ko_sub">6,000바트</span>
                             </div>
                         </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_popular_3.png" alt="main" loading="lazy">
                             </div>
@@ -1182,7 +1184,7 @@
                                 <span class="prd_price_ko_sub">6,000바트</span>
                             </div>
                         </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_popular_4.png" alt="main" loading="lazy">
                             </div>
@@ -1212,7 +1214,7 @@
                                 <span class="prd_price_ko_sub">6,000바트</span>
                             </div>
                         </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
                             </div>
@@ -1242,7 +1244,7 @@
                                 <span class="prd_price_ko_sub">6,000바트</span>
                             </div>
                         </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
                             </div>
@@ -1272,7 +1274,7 @@
                                 <span class="prd_price_ko_sub">6,000바트</span>
                             </div>
                         </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
                             </div>
@@ -1302,7 +1304,7 @@
                                 <span class="prd_price_ko_sub">6,000바트</span>
                             </div>
                         </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                        <a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
                             </div>
