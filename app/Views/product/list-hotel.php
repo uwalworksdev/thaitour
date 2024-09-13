@@ -12,7 +12,7 @@
             <div class="navigation-container-next">
                 <img src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
                 <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                <span>방콕</span>
+                <span class="font-bold">방콕</span>
             </div>
             <div class="navigation-container-next">
                 <img src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
