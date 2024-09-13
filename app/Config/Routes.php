@@ -8,7 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 
 
 $routes->group("AdmMaster", static function ($routes) {
-
     $routes->get("", "AdminLogin::loginView");
     $routes->post("login", "AdminLogin::LoginCheckAjax");
     $routes->get("logout", "AdminLogin::Logout");
@@ -72,11 +71,12 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_tourRegist", static function ($routes) {
-        $routes->get("list_all", "TourRegistController::list_admin");
+        $routes->get("list_all", "TourRegistController::list");
+        $routes->get("write", "TourRegistController::write");
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
-        $routes->get("list_tours", "TourRegistController::list_admin");
-        $routes->get("list_golf", "TourRegistController::list_admin");
-        $routes->get("_tourStay", "TourRegistController::list_admin");
+        $routes->get("list_tours", "TourRegistController::list");
+        $routes->get("list_golf", "TourRegistController::list");
+        $routes->get("_tourStay", "TourRegistController::list");
         $routes->post("del", "TourRegistController::del");
         $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
