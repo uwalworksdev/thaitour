@@ -53,7 +53,7 @@ if ($idx) {
             </script>
         <?php
         die();
-    } elseif ($row['user_id'] != $_SESSION['member']['idx'] or !$_SESSION['member']['idx']) {
+    } elseif ($row['user_id'] != session('member.idx') or !session('member.idx')) {
                 echo "
             <script>
                 alert('비밀번호 올바르게 입력해주세요!');

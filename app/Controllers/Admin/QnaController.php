@@ -9,6 +9,7 @@ class QnaController extends BaseController
 {
     private $qna;
     private $code;
+    private $db;
 
     protected $sessionLib;
     protected $sessionChk;
@@ -34,27 +35,20 @@ class QnaController extends BaseController
         $search_category = $this->request->getVar('search_category');
         $s_txt = $this->request->getVar('s_txt');
         $strSql = "";
-        if ($s_txt and ($search_category == "user_name")) {
+        if ($s_txt and ($search_category == "user_name" || $search_category == "user_phone" || $search_category == "user_email")) {
             $strSql = $strSql . " and replace(CONVERT( AES_DECRYPT( UNHEX( FROM_BASE64(" . $search_category . ") ), '" . $private_key . "') using UTF8),'-','') like '%" . str_replace("-", "", $s_txt) . "%' ";
         }
-        if ($s_txt and ($search_category == "title" || $search_category == "contents")) {
+        if ($s_txt and ($search_category == "title")) {
             $strSql = $strSql . " and $search_category like '%" . str_replace("-", "", $s_txt) . "%' ";
         }
-        $s_code = '109';
-        $sql_s = "select * from tbl_bbs_list where code = 'banner' and category = '$s_code' ";
-        $visual = $this->db->query($sql_s)->getRowArray();
+
         if (!$page) {
             $page = 1;
         }
 
         $scale = 10;
 
-        $total_sql = " SELECT A.*, COUNT(B.r_idx) AS cmt_cnt
-                        FROM tbl_travel_qna A
-                        LEFT JOIN tbl_bbs_cmt B ON A.idx = B.r_idx AND B.r_code = 'qna' AND B.r_status = 'Y' AND B.r_delYN = 'N'
-                        WHERE 1=1 $strSql 
-                        GROUP BY A.idx
-                        ";
+        $total_sql = " select * from tbl_travel_qna where 1=1 $strSql ";
         $total_cnt = $this->db->query($total_sql)->getNumRows();
 
         $total_page = ceil($total_cnt / $scale);
@@ -62,18 +56,25 @@ class QnaController extends BaseController
             $page = 1;
         $start = ($page - 1) * $scale;
 
-        $sql = $total_sql . " order by A.idx desc limit $start, $scale ";
+        $total_sqls = "  SELECT A.*, COUNT(B.r_idx) AS cmt_cnt
+                                FROM tbl_travel_qna A
+                                LEFT JOIN tbl_bbs_cmt B ON A.idx = B.r_idx AND B.r_code = 'qna' AND B.r_status = 'Y' AND B.r_delYN = 'N'
+                                WHERE 1=1 $strSql
+                                GROUP BY A.idx ";
+
+        $sql    = $total_sqls . " order by idx desc limit $start, $scale ";
+
         $result = $this->db->query($sql)->getResultArray();
-        $no = $total_cnt - $start;
+        $num = $total_cnt - $start;
         return view("admin/_qna/list", [
             'list_qna' => $result,
-            'g_list_rows' => $no,
+            'num' => $num,
             'pg' => $page,
             'nPage' => $total_page,
+            'scale' => $scale,
             'search_category' => $search_category,
             'search_gubun' => '',
             's_txt' => $s_txt,
-            'visual' => $visual,
             'deviceType' => $deviceType,
             'total_cnt' => $total_cnt,
             'currentUri' => $currentUri

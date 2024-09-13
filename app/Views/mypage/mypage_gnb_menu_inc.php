@@ -7,7 +7,7 @@
         display: block;
     }
 </style>
-<?php $gubun = chk_member_col($_SESSION['member']['id'], "gubun"); ?>
+<?php $gubun = chk_member_col(session('member.id'), "gubun"); ?>
 
 
 <div class="gnb_menu">

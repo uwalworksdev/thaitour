@@ -46,13 +46,7 @@
         </header><!-- // headerContainer -->
 
         <div id="contents">
-
-
             <div class="listWrap_noline">
-
-
-
-
                 <form name=frm id=frm action="bbs_proc.ajax.php" method=post enctype="multipart/form-data">
                     <input type=hidden name="bbs_idx" value='<?= $bbs_idx ?>'>
                     <input type=hidden name="article_num" value='<?= $cnt ?>'>
@@ -162,7 +156,7 @@
                                     <th>등록일</th>
                                     <td><input type="text" id="" name="wdate" value='<?= $wDate ?>'
                                             class="input_txt placeHolder" rel="2015-06-22 12:15:59"
-                                            style="width:150px" /></td>
+                                            style="width:200px" /></td>
                                 </tr>
                                 <?php if ($code != "banner") { ?>
                                     <tr <?php if ($skin == "faq" || $skin == "gallery" || $code == "main_event" || $code == "hashtag") { ?> style="display:none" <?php } ?>>
@@ -462,13 +456,6 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-
-
-
-
-
-
-
 
                                 <?php if ($code == "news" || $code == "ad" || $code == "hashtag") { ?>
                                     <tr>
@@ -777,10 +764,10 @@
                                             <option value="2" <?= ($row_c['report_state'] == "2" ? "selected" : "") ?>>계속노출</option>
                                         </select>
                                     <?php } ?>
-                                    <?php if (($_SESSION['member']['idx'] == $row_c['m_idx'])) { ?>
+                                    <?php if ((session('member.idx') == $row_c['m_idx'])) { ?>
                                         <button type="button" onclick="handleCmtEdit('<?= $row_c['tbc_idx'] ?>')">수정</button>
                                     <?php } ?>
-                                    <?php if (($_SESSION['member']['idx'] == $row_c['m_idx']) || $_SESSION['member']['id'] == "admin") { ?>
+                                    <?php if ((session('member.idx') == $row_c['m_idx']) || session('member.id') == "admin") { ?>
                                         <button type="button" onclick="commentDelete(<?= $row_c['tbc_idx'] ?>)">삭제</button>
                                     <?php } ?>
                                     <?php if ($is_reported && !$should_show) { ?>
@@ -987,7 +974,7 @@
         var image_form = document.getElementById('frm');
         formData = new FormData(image_form);
         $.ajax({
-            url: "./ajax_bbs_proc.php",
+            url: "ajax_bbs_proc",
             type: "post",
             data: formData,
             contentType: false,

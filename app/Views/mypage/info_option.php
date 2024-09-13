@@ -84,7 +84,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							<input type="hidden" name="sns_key" id="sns_key" value="" />
 
 							<?php
-							$gubun = chk_member_col($_SESSION['member']['id'], "gubun");
+							$gubun = chk_member_col(session('member.id'), "gubun");
 							if ($gubun == "naver") {
 								// 네이버 로그인 접근토큰 요청 예제
 								$client_id = "nEJfS5h48JVMBwecw1NJ";

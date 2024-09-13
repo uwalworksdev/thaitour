@@ -71,9 +71,9 @@
                                 <!-- <span class="stt_1"><?= get_status_name($row["order_status"]) ?></span> -->
                                 <?php
                                 if (
-                                    ($row['m_idx'] == $_SESSION['member']['mIdx'])
-                                    || ($_SESSION['member']['idx'] && $_SESSION['member']['id'] == 'admin')
-                                    || ($_SESSION['member']['idx'] && $_SESSION['member']['level'] <= 2)
+                                    ($row['m_idx'] == session('member.mIdx'))
+                                    || (session('member.idx') && session('member.id') == 'admin')
+                                    || (session('member.idx') && session('member.level') <= 2)
                                 ) {
                                     ?>
                                     <a href="./view_paid?order_idx=<?= $row['order_idx'] ?>"><?= strAsterisk($row["order_user_name"]) ?>님의
@@ -81,7 +81,7 @@
                                             class="red">(<?= $row['cmt_cnt'] ?>)</span></a>
                                     <?php
                                 } else {
-                                    $message = !$_SESSION['member']['idx'] ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
+                                    $message = !session('member.idx') ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
                                     ?>
                                     <a href="#" onclick="alert(`<?= $message ?>`);"><?= strAsterisk($row["order_user_name"]) ?>님의
                                         여행예약이 <?= get_status_name($row["order_status"]) ?>되었습니다. <span

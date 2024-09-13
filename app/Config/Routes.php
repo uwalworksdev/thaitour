@@ -8,7 +8,6 @@ use CodeIgniter\Router\RouteCollection;
 
 
 $routes->group("AdmMaster", static function ($routes) {
-
     $routes->get("", "AdminLogin::loginView");
     $routes->post("login", "AdminLogin::LoginCheckAjax");
     $routes->get("logout", "AdminLogin::Logout");
@@ -41,7 +40,10 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_bbs", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
         $routes->get("board_write", "BoardController::board_write");
-        $routes->get("board_list_q", "BoardController::index");
+        $routes->post("ajax_bbs_proc", "BoardController::write_ok");
+        $routes->get("board_list_q", "BoardController::index2");
+        $routes->get("form", "BoardController::form");
+        $routes->post("form_ok", "BoardController::form_ok");
         // $routes->get("email", "AutoMailController::index");
         // $routes->get("sms", "SmsSettings::index");
         // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
@@ -69,11 +71,12 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_tourRegist", static function ($routes) {
-        $routes->get("list_all", "TourRegistController::list_admin");
+        $routes->get("list_all", "TourRegistController::list");
+        $routes->get("write", "TourRegistController::write");
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
-        $routes->get("list_tours", "TourRegistController::list_admin");
-        $routes->get("list_golf", "TourRegistController::list_admin");
-        $routes->get("_tourStay", "TourRegistController::list_admin");
+        $routes->get("list_tours", "TourRegistController::list");
+        $routes->get("list_golf", "TourRegistController::list");
+        $routes->get("_tourStay", "TourRegistController::list");
         $routes->post("del", "TourRegistController::del");
         $routes->post("ajax_del", "TourRegistController::ajax_del");
     });
@@ -150,6 +153,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
 });
 $routes->get('/', 'Home::index');
+$routes->post('/file_uploader', 'FileUpload::file_uploader');
 $routes->group("tools", static function ($routes) {
     $routes->get('generate_captcha', 'Tools::generate_captcha');
     $routes->post('get_travel_types', 'Tools::get_travel_types');
@@ -171,6 +175,9 @@ $routes->group("member", static function ($routes) {
     $routes->post("email_chk_ajax", "Member::email_chk_ajax");
     $routes->post("num_chk_ajax", "Member::num_chk_ajax");
     $routes->post("num_chk2_ajax", "Member::num_chk2_ajax");
+    $routes->post("sns_kakao_login", "Member::sns_kakao_login");
+    $routes->get("google_login", "Member::google_login");
+    $routes->post("join_form_sns", "Member::join_form_sns");
     $routes->post("update/(:segment)", "Member::update_member/$1");
 });
 $routes->group("mypage", static function ($routes) {
@@ -268,6 +275,8 @@ $routes->get('product-hotel/list-hotel/(:any)', 'Product::index5/$1');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::index6/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
+$routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
+$routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('tours/item_view/(:any)', 'Product::index7/$1');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');

@@ -566,6 +566,16 @@ class Product extends BaseController
         }
     }
 
+    public function golfList($code_no)
+    {
+        return view('golf/list-golf');
+    }
+
+    public function golfDetail($code_no)
+    {
+        return view('golf/golf-details');
+    }
+
     public function index7($code_no)
     {
         return view('tours/tour-details');

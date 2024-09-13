@@ -363,6 +363,10 @@
     margin-bottom: 0.5rem;
   }
 
+  .img_box_1 {
+    padding-top: 100%;
+  }
+
   .img_box_1_m img {
     object-fit: contain;
   }

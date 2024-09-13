@@ -36,7 +36,7 @@
   --bs-font-Noto: "Noto Sans KR";
   --bs-font-lato: "Lato";
   --bs-font-gmarket: "Gmarket Sans";
-  --bs-body-font-family: var(--bs-font-Noto);
+  --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1;

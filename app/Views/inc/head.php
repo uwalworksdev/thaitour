@@ -31,4 +31,7 @@
     <script src="/lib/summernote/summernote-lite.js"></script>
     <script src="/lib/summernote/lang/summernote-ko-KR.js"></script>
     <title><?= $setting['site_name'] ?></title>
+    <script>
+        var kakao_key = '<?=env("KAKAO_KEY")?>';
+    </script>
 </head>

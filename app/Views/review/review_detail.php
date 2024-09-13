@@ -69,7 +69,7 @@ $reg_m_idx = $review["reg_m_idx"];
 
             <?php
 
-            if ($_SESSION['member']['idx'] == $reg_m_idx || $_SESSION['member']['id'] == 'admin') { ?>
+            if (session('member.idx') == $reg_m_idx || session('member.id') == 'admin') { ?>
                 <div class="f_list flex_e_c">
                     <a href="/review/review_write?idx=<?= $idx ?>" class="btn btn-point btn_edit">수정</a>
                     <button class="btn btn_delete" onclick="del_it()">삭제</button>

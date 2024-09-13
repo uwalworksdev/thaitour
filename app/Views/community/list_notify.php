@@ -6,7 +6,7 @@
     <div class="inner">
         <div class="main-container">
             <div class="side-bar">
-                <h2 class="title-side-bar">커뮤니티</h2>
+                <h2 class="title-side-bar">고객센터</h2>
                 <div class="list-item-bar">
                     <div class="itembar">
                         <a href="/community/customer_center">자주 찾는 질문</a>
@@ -19,7 +19,7 @@
             <div class="con-right">
                 <div class="menu">
                     <div class="menu-header">
-                        <h3 class="title-menu">
+                        <h3 class="title-menu title-menu-line-bot">
                             공지사항
                         </h3>
                     </div>
@@ -64,14 +64,22 @@
                         <div class="item-date">2024.07.26</div>
                     </div>
                     <div class="pagination">
-                        <a href="#" class="page-link">≪</a>
+                        <a href="#" class="page-link">
+                            <img src="/images/community/pagination_prev.png" alt="pagination_prev">
+                        </a>
                         <a href="#" class="page-link" style="margin-right: 24px;">
-                        <<a href="#" class="page-link active">1
+                            <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
+                        </a>
+                        <a href="#" class="page-link active">1
                         </a>
                         <a href="#" class="page-link">2</a>
                         <a href="#" class="page-link">3</a>
-                        <a href="#" class="page-link" style="margin-left: 24px;">></a>
-                        <a href="#" class="page-link">≫</a>
+                        <a href="#" class="page-link" style="margin-left: 24px;">
+                            <img src="/images/community/pagination_next_s.png" alt="pagination_next">
+                        </a>
+                        <a href="#" class="page-link">
+                            <img src="/images/community/pagination_next.png" alt="pagination_next">
+                        </a>
                     </div>
                 </div>
             </div>

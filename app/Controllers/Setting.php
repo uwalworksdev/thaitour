@@ -112,6 +112,11 @@ class Setting extends BaseController {
 
             $purchase_limit_0 = $this->request->getPost('purchase_limit_0');
             $purchase_limit_1 = $this->request->getPost('purchase_limit_1');
+            $smtp_host = $this->request->getPost('smtp_host');
+            $smtp_id = $this->request->getPost('smtp_id');
+            $smtp_pass = $this->request->getPost('smtp_pass');
+            $admin_email_list = $this->request->getPost('admin_email_list');
+            $paymethod = $this->request->getPost('paymethod');
 
             $language = $this->request->getPost('language') ? implode('||', $this->request->getPost('language')) : '';
             $row = $this->Setting->find(1);
@@ -260,9 +265,49 @@ class Setting extends BaseController {
                 'counsel2' => $counsel2,
                 'purchase_limit_0' => $purchase_limit_0,
                 'purchase_limit_1' => $purchase_limit_1,
+                'smtp_host' => $smtp_host,
+                'smtp_id' => $smtp_id,
+                'smtp_pass' => $smtp_pass,
+                'admin_email_list' => $admin_email_list,
+                'paymethod' => $paymethod,
             ];
             $this->Setting->infoUpdate(1, $dataToUpdate);
             return redirect()->to('AdmMaster/_adminrator/setting');
         }
     }
 }
+// us_dollar
+// admin_pass
+// admin_pass_r
+// admin_mobile_list
+// ufile2
+// oversea_purchase
+// qna_email
+// service_item
+// brand_name
+// sydney_addr
+// custom_service_phone_seoul
+// custom_service_phone_sydney
+// custom_service_phone_sydney_call_from_australia
+// tournum
+// mallOrder
+// copyright
+// ufile1
+// ufile3
+// nicepay_pass
+// nicepay_mid
+// nicepay_key
+// nicepay_mid_m
+// nicepay_key_m
+// nicepay_mid_b
+// nicepay_key_b
+// mileage_min
+// mileage_max
+// bank_owner
+// bank_owner_australia
+// bank_name
+// bank_name_australia
+// bank_no
+// bank_no1
+// bank_no_australia
+// bank_no_australia1

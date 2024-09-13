@@ -6,7 +6,7 @@
         <div class="inner">
             <div class="main-container">
                 <div class="side-bar">
-                    <h2 class="title-side-bar">커뮤니티</h2>
+                    <h2 class="title-side-bar">고객센터</h2>
                     <div class="list-item-bar">
                         <div class="itembar">
                             <a href="/community/customer_center">자주 찾는 질문</a>
@@ -19,7 +19,7 @@
                 <div class="form-customer">
                     <div class="menu">
                         <div class="menu-header">
-                            <h3 class="title-menu4">
+                            <h3 class="title-menu cus-font">
                                 고객의 소리
                             </h3>
                         </div>
@@ -56,37 +56,37 @@
                                 <div class="form_label_">친절도*</div>
                                 <div class="custom-select">
                                     <div class="select-selected form_input_">
-                                        <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
+                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                     </div>
                                     <div class="select-items select-hide">
                                         <div data-value="1" class="star-rating">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
                                         <div data-value="2" class="star-rating">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
                                         <div data-value="3" class="star-rating">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
                                         <div data-value="4" class="star-rating">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/ico_star.svg" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
                                         <div data-value="5" class="star-rating">
-                                            <img src="/images/ico/ico_star.svg" alt="5 stars" loading="lazy">
+                                            <img src="/images/ico/star_yellow_icon.png" alt="5 stars" loading="lazy">
                                         </div>
                                     </div>
                                 </div>

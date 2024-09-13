@@ -12,7 +12,7 @@
             <div class="navigation-container-next">
                 <img src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
                 <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                <span>방콕</span>
+                <span class="font-bold">방콕</span>
             </div>
             <div class="navigation-container-next">
                 <img src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
@@ -746,14 +746,21 @@
                     </div>
                 </div>
                 <div class="pagination">
-                    <a href="#" class="page-link">≪</a>
+                    <a href="#" class="page-link">
+                        <img src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                    </a>
                     <a href="#" class="page-link" style="margin-right: 24px;">
-                        <
-                            <a href="#" class="page-link active">1</a>
-                            <a href="#" class="page-link">2</a>
-                            <a href="#" class="page-link">3</a>
-                            <a href="#" class="page-link" style="margin-left: 24px;">></a>
-                            <a href="#" class="page-link">≫</a>
+                        <img src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                    </a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link" style="margin-left: 24px;">
+                        <img src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                    </a>
+                    <a href="#" class="page-link">
+                        <img src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                    </a>
                 </div>
             </div>
         </div>
@@ -772,7 +779,6 @@
             return [year, month, day].join('/');
         }
 
-        // Thiết lập datetimepicker cho các input
         $("#checkin, #checkout").datepicker({
             dateFormat: 'yy/mm/dd',
             onSelect: function(dateText, inst) {
@@ -781,10 +787,8 @@
             }
         });
 
-        // Đặt giá trị ban đầu cho các input
         $('#checkin').val(formatDate('2024/07/09'));
         $('#checkout').val(formatDate('2024/07/10'));
-        console.log("TEST");
     });
 
 

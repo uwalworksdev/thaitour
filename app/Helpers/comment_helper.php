@@ -51,7 +51,7 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         }
         $html .= '</div>';
         $html .= '<div class="comment_user-operation">';
-        if (($_SESSION['member']['idx'] == $comment['r_m_idx']) || $_SESSION['member']['id'] == "admin" || $_SESSION['member']['level'] <= 2) {
+        if ((session('member.idx') == $comment['r_m_idx']) || session('member.id') == "admin" || session('member.level') <= 2) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
             $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
         }
@@ -115,10 +115,10 @@ function displayCommentsAdmin($commentsArray, $r_code, $r_idx, $parentCommentId 
             $html .= '<option value="2" ' . ($comment['report_state'] == "2" ? "selected" : "") . '>계속노출</option>';
             $html .= '</select>';
         }
-        if ($_SESSION['member']['idx'] == $comment['r_m_idx']) {
+        if (session('member.idx') == $comment['r_m_idx']) {
             $html .= '<button type="button" onclick="handleCmtEdit(' . $comment['r_cmt_idx'] . ')">수정</button>';
         }
-        if ($_SESSION['member']['idx'] == $comment['r_m_idx'] || $_SESSION['member']['id'] == "admin") {
+        if (session('member.idx') == $comment['r_m_idx'] || session('member.id') == "admin") {
             $html .= '<button type="button" onclick="handleCmtDelete(' . $comment['r_cmt_idx'] . ')">삭제</button>';
         }
         if ($is_reported && !$should_show) {

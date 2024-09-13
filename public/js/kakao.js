@@ -1,4 +1,4 @@
-Kakao.init('af40b057bc41e9c0f0028199a377d3fa'); // JavaScript 키
+Kakao.init(kakao_key); // JavaScript 키
 Kakao.isInitialized();
 
 
@@ -9,18 +9,16 @@ function loginWithKakao() {
                 url: '/v2/user/me',
                 success: function (res) {
 
-                    //alert(JSON.stringify(res));
-
                     var tmp_date = JSON.stringify(res);
                     var list = $.parseJSON(tmp_date);
                     var gubun = "kakao";
                     var sns_key = list['id'];
-                    // var email      = list['kakao_account']['email'];
+                    var email      = list['kakao_account']['email'];
                     // alert('email- '+email);
                     var name = list['properties']?.['nickname'] ?? null;
                     var mode = document.getElementById("mode").value;
                     $.ajax({
-                        url: "/member/sns_kakao_login.php",
+                        url: "/member/sns_kakao_login",
                         type: "POST",
                         data: "sns_key=" + sns_key + "&mode=" + mode,
                         error: function (request, status, error) {
@@ -73,9 +71,9 @@ function loginWithKakao() {
                                 } else {
                                     document.getElementById("sns_key").value = sns_key;
                                     document.getElementById("user_name").value = name;
-                                    //document.getElementById("userEmail").value = email;
+                                    document.getElementById("userEmail").value = email ?? "";
                                     document.getElementById("gubun").value = 'kakao';
-                                    $("#loginFrm").attr("action", "/member/join_form_sns.php").submit();
+                                    $("#loginFrm").attr("action", "/member/join_form_sns").submit();
                                 }
 
                             }

@@ -573,7 +573,7 @@
                                     <th>결제수단</th>
                                     <td class="radio_sel">
                                         <?php
-                                        $_paymethod = explode(",", "CARD,BANK,VBANK");
+                                        $_paymethod = explode(",", "Card,Rbank,Vbank");
                                         $paymethod  = explode(",", $row['paymethod']);
                                         for ($i = 0; $i < count($_paymethod); $i++) {
                                             $check = 0;

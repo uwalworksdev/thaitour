@@ -34,7 +34,6 @@ class Member extends BaseController
         $s_status = $this->request->getGet('s_status') ?? 'Y';
         $pg = $this->request->getGet('pg') ?? 1;
 
-        // Khởi tạo câu truy vấn
         $strSql = "WHERE 1=1";
 
         if ($search_name) {
@@ -55,18 +54,14 @@ class Member extends BaseController
 
         $strSql .= " AND user_level = 10";
 
-        // Phân trang
         $g_list_rows = 20;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        // Lấy tổng số bản ghi
         $total_count = $model->getMemberCount($strSql);
         $nPage = ceil($total_count / $g_list_rows);
 
-        // Lấy danh sách thành viên
         $members = $model->getMembers($strSql, $private_key, $nFrom, $g_list_rows);
 
-        // Load view
         return view('admin/_member/list', [
             'strTitle' => $strTitle,
             'nTotalCount' => $total_count,
@@ -79,10 +74,11 @@ class Member extends BaseController
             'nPage' => $nPage,
         ]);
     }
-    public function del() {
+    public function del()
+    {
         $m_idx = $this->request->getPost('m_idx');
-        $tot=count($m_idx);
-        for ($j=0;$j<$tot;$j++){
+        $tot = count($m_idx);
+        for ($j = 0; $j < $tot; $j++) {
             $this->member->delete($m_idx[$j]);
         }
         return "OK";
@@ -227,7 +223,17 @@ class Member extends BaseController
 
         $cnt = $this->member->getMemberCount("where user_id = '" . $user_id . "'");
         if ($cnt > 0) {
-            return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(400);
+            $member = $this->member->getMembers("where user_id = '" . $user_id . "'", $private_key, 0, 1)[0];
+            $data['id'] = $user_id;
+            $data['shop'] = $user_id;
+            $data['idx'] = $member['m_idx'];
+            $data["mIdx"] = $member['m_idx'];
+            $data['name'] = $member['user_name'];
+            $data['email'] = $member['user_email'];
+            $data['level'] = 10;
+            $data['gubun'] = $member['gubun'];
+            session()->set("member", $data);
+            return $this->response->setJSON(['message' => "이미 가입된 아이디입니다."])->setStatusCode(200);
         }
 
         if ($gubun == "kakao")
@@ -270,14 +276,19 @@ class Member extends BaseController
 
         $code = "A01";
         $user_mail = $user_email;
-        $replace_text = "|||[name]:::" . $user_name;
-        // autoEmail($code,$user_mail,$replace_text);
+        $_tmp_fir_array = [
+            'name' => $user_name
+        ];
+        autoEmail($code, $user_mail, $_tmp_fir_array);
 
-
-        $code = "S04";
-        $to_phone = $user_mobile;
-        $replace_text = "|||{{MEMBER_NAME}}:::" . $user_name;
-        // autoSms($code, $to_phone, $replace_text);
+        if ($user_mobile) {
+            $code = "S04";
+            $to_phone = $user_mobile;
+            $_tmp_fir_array = [
+                'MEMBER_NAME' => $user_name
+            ];
+            autoSms($code, $to_phone, $_tmp_fir_array);
+        }
 
         // 로그인 처리 부분
         $row = $this->member->where(['user_id' => $user_id])->first();
@@ -287,7 +298,7 @@ class Member extends BaseController
         }
 
 
-        write_log("회원로그인 : ". $user_id);
+        write_log("회원로그인 : " . $user_id);
 
         $data = [];
 
@@ -302,7 +313,6 @@ class Member extends BaseController
 
         session()->set("member", $data);
 
-        // $this->member->update(["login_count" => "login_count+1", "login_date" => "now()"], "user_id = '$user_id'");
         $this->member->set('login_count', 'login_count + 1', false);
         $this->member->set('login_date', 'NOW()', false);
         $this->member->where('user_id', $user_id);
@@ -372,7 +382,7 @@ class Member extends BaseController
             }
             $adminInfo = $this->member->AdminInfo($memberId);
             $idx = $adminInfo[0]['idx'];
-            $data['member_pw'] = $passwordHash;
+            $data['user_pw'] = $passwordHash;
 
             $updateResult = $this->member->AdminPasswordChange($idx, $data);
 
@@ -541,21 +551,163 @@ class Member extends BaseController
             }
         }
     }
-    public function num_chk_ajax() {
+    public function num_chk_ajax()
+    {
         $request = $this->request;
 
         $chkNum = $request->getPost("chkNum");
 
-        // return phone_chk_ok($chkNum);
-        return "Y";
+        return phone_chk_ok($chkNum);
     }
 
-    public function num_chk2_ajax() {
+    public function num_chk2_ajax()
+    {
         $request = $this->request;
 
         $chkNum = $request->getPost("chkNum");
 
-        // return email_chk_ok($chkNum);
-        return "Y";
+        return email_chk_ok($chkNum);
+    }
+    public function sns_kakao_login()
+    {
+        helper(['form', 'url']);
+        $session = session();
+
+        $mode = updateSQ($this->request->getPost('mode'));
+        $sns_key = updateSQ($this->request->getPost('sns_key'));
+        $num = 0;
+
+        $session->set('sns.gubun', 'kakao');
+
+        if ($mode == "false" || $mode == "mypage") {
+            $existingMember = $this->member->where('sns_key', $sns_key)->first();
+            if ($existingMember) {
+                $num = 2;
+            }
+        } else {
+            $existingMember = $this->member->where('sns_key', $sns_key)->first();
+            if ($existingMember) {
+                $session->set([
+                    'member.id' => $existingMember['user_id'],
+                    'member.shop' => $existingMember['user_id'],
+                    'member.idx' => $existingMember['m_idx'],
+                    'member.mIdx' => $existingMember['m_idx'],
+                    'member.level' => $existingMember['user_level'],
+                    'member.email' => $existingMember['user_email'],
+                    'member.gubun' => $existingMember['gubun'],
+                    'member.name' => $existingMember['user_name'],
+                    'member.mlevel' => $existingMember['mem_level']
+                ]);
+
+                if (!empty($existingMember['sns_key'])) {
+                    $session->set('member.sns_login', 'Y');
+                }
+
+                $num = 2;
+            }
+        }
+
+        return $num;
+    }
+    public function join_form_sns()
+    {
+        $gubun = $this->request->getPost('gubun');
+        $sns_key = $this->request->getPost('sns_key');
+        $user_name = $this->request->getPost('user_name');
+        $user_email = $this->request->getPost('userEmail');
+        $email_arr = explode("@", $user_email);
+        return view('member/join_form_sns', [
+            'gubun' => $gubun,
+            'sns_key' => $sns_key,
+            'user_name' => $user_name,
+            'user_email' => $user_email,
+            'email_arr' => $email_arr
+        ]);
+    }
+    public function google_login()
+    {
+        $session = session();
+        $code = $this->request->getVar('code');
+        $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
+        $client_secret = env('GOOGLE_LOGIN_SECRET');
+        $redirect_uri = env("GOOGLE_REDIRECT_URI");
+        $url = 'https://oauth2.googleapis.com/token';
+        $data = [
+            'code' => $code,
+            'client_id' => $client_id,
+            'client_secret' => $client_secret,
+            'redirect_uri' => $redirect_uri,
+            'grant_type' => 'authorization_code'
+        ];
+
+        $options = [
+            'http' => [
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
+                'content' => http_build_query($data)
+            ]
+        ];
+
+        $context = stream_context_create($options);
+        $response = file_get_contents($url, false, $context);
+        $token = json_decode($response, true);
+        if (isset($token['access_token'])) {
+            $accessToken = $token['access_token'];
+
+            $userInfo = file_get_contents('https://www.googleapis.com/oauth2/v1/userinfo?access_token=' . $accessToken);
+            $user = json_decode($userInfo, true);
+            $id = $user['id'];
+            $email = $user['email'];
+            $name = $user['name'];
+            $db = \Config\Database::connect();
+            $builder = $db->table('tbl_member');
+            $builder->where('status', '1');
+            $builder->where('sns_key', $id);
+            $row = $builder->get()->getRowArray();
+            if (!$row) {
+                $session->set('sns.gubun', 'google');
+                $session->set('google.userEmail', $email);
+                $session->set('google.userName', $name);
+                $session->set('google.user_id', 'google_' . $id);
+                $session->set('google.sns_key', $id);
+
+                return $this->redirectForm('/member/join_form_sns', [
+                    'gubun' => 'google',
+                    'sns_key' => $id,
+                    'userEmail' => $email,
+                    'user_name' => $name
+                ]);
+            } else {
+                $session->set('member', [
+                    'id' => $row['user_id'],
+                    'idx' => $row['m_idx'],
+                    'mIdx' => $row['m_idx'],
+                    'name' => $row['user_name'],
+                    'email' => $row['user_email'],
+                    'level' => $row['user_level'],
+                    'gubun' => $row['gubun'],
+                    'sns_key' => $row['sns_key'],
+                    'mlevel' => $row['mem_level']
+                ]);
+
+                return redirect()->to('/');
+            }
+        } else {
+            return redirect()->to('/');
+        }
+    }
+    private function redirectForm($url, $data)
+    {
+
+        $form = '<form id="redirectForm" action="' . $url . '" method="POST">';
+
+        foreach ($data as $key => $value) {
+            $form .= '<input type="hidden" name="' . esc($key) . '" value="' . esc($value) . '">';
+        }
+
+        $form .= '</form>';
+        $form .= '<script type="text/javascript">document.getElementById("redirectForm").submit();</script>';
+
+        return $form;
     }
 }

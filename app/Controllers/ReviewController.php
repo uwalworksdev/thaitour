@@ -175,7 +175,7 @@ class ReviewController extends BaseController
     }
     public function write_review()
     {
-        $member_Id = $_SESSION['member']['idx'];
+        $member_Id = session('member.idx');
         $private_key = private_key();
         if (!$member_Id) {
             return "

@@ -93,13 +93,13 @@ $r_code = "qna";
                         <td class="des travel_des">
                             <?php
                             if (
-                                ($_SESSION['member']['idx'] && $row["reg_m_idx"] == $_SESSION['member']['idx'])
-                                || ($_SESSION['member']['idx'] && $_SESSION['member']['id'] == 'admin')
-                                || ($_SESSION['member']['idx'] && $_SESSION['member']['level'] <= 2)
+                                (session('member.idx') && $row["reg_m_idx"] == session('member.idx'))
+                                || (session('member.idx') && session('member.id') == 'admin')
+                                || (session('member.idx') && session('member.level') <= 2)
                             ) {
                                 echo "<a href='./view?idx=$row[idx]'>$row[title]</a>";
                             } else {
-                                $message = !$_SESSION['member']['idx'] ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
+                                $message = !session('member.idx') ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
                                 echo "<a href='#' onclick='alert(`$message`);'>$row[title]</a><i></i>";
                             }
                             ?>
