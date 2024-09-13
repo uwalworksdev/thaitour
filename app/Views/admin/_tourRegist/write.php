@@ -1065,7 +1065,7 @@
                                             <td class="tac">미등록</td>
                                             <td class="tac">미등록</td>
                                             <td>
-                                                <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
+                                                <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
                                                    class="btn btn-default">상세내역관리</a>
                                                 <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
                                                     <!-- <button type="button">Tải lên lịch trình</button> -->
