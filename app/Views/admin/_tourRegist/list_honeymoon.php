@@ -546,25 +546,7 @@
 						</thead>	
 						<tbody>
 							<?
-							    $order = " onum desc ";
-							    if($orderBy == "1") $order = " onum desc ";
-							    if($orderBy == "2") $order = " r_date desc ";
-							    if($orderBy == "3") {
-                                   order_summary();
-								   $order = " deposit_cnt desc ";
-                                }
 
-								$nPage = ceil($nTotalCount / $g_list_rows);
-								if ($pg == "") $pg = 1;
-								$nFrom = ($pg - 1) * $g_list_rows;
-
-								$sql    = $total_sql . " order by $order limit $nFrom, $g_list_rows ";
-								//echo "<pre>";
-								//echo $orderBy;
-								//echo "</pre>";
-								//exit;
-								$result = mysqli_query($connect, $sql) or die (mysqli_error($connect));
-								$num = $nTotalCount - $nFrom;
 								if ($nTotalCount == 0) {
 							?>
 							<tr>
@@ -609,25 +591,6 @@
 								</td>
 								<td class="tac">
 								<input name="is_best" name="product_best_best" class="type_chker" id="product_best_best_<?=$row["product_idx"]?>" type="checkbox" onchange="check_best(<?=$row['product_idx']?>)" value="Y" <?if($row["product_best"] == "Y") echo "checked";?> >
-									<?
-									/*
-										if ($row["product_best"] == "Y") {
-											echo "<font color='blue'>베스트</font>";
-										} elseif ($row["product_best"] == "01") {
-											echo "<font color='red'>BEST 상품</font>";
-										} elseif ($row["product_best"] == "02") {
-											echo "<font color='red'>유럽 추천상품</font>";
-										} elseif ($row["product_best"] == "03") {
-											echo "<font color='red'>미주 추천상품</font>";
-										} elseif ($row["product_best"] == "04") {
-											echo "<font color='red'>일본 추천상품</font>";
-										} elseif ($row["product_best"] == "05") {
-											echo "<font color='red'>중국(홍콩/대만) 추천상품</font>";
-										} elseif ($row["product_best"] == "06") {
-											echo "<font color='red'>동남아추천상품</font>";
-										}
-                                     */
-									?>
 								</td>
 								<td class="tac">
 									<input name="special_price_price" class="type_chker" id="special_price_price_<?=$row["product_idx"]?>" type="checkbox" onchange="check_sale(<?=$row['product_idx']?>)" <?if($row["special_price"] == "Y") echo "checked";?> >	
