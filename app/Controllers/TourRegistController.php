@@ -27,12 +27,36 @@ class TourRegistController extends BaseController
 
     public function list()
     {
+        $data = $this->get_list_('1324');
+        return view("admin/_tourRegist/list", $data);
+    }
+
+    public function list_honeymoon()
+    {
+        $data = $this->get_list_('1320');
+        return view("admin/_tourRegist/list", $data);
+    }
+
+    public function list_tours()
+    {
+        $data = $this->get_list_('1317');
+        return view("admin/_tourRegist/list", $data);
+    }
+
+    public function list_golfs()
+    {
+        $data = $this->get_list_('1325');
+        return view("admin/_tourRegist/list", $data);
+    }
+
+    private function get_list_($product_code_1)
+    {
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? "");
         if ($pg == "") $pg = 1;
         $search_name = updateSQ($_GET["search_name"] ?? "");
         $search_category = updateSQ($_GET["search_category"] ?? "");
-        $product_code_1 = "1324";
+
         $product_code_2 = updateSQ($_GET["product_code_2"] ?? "");
         $product_code = updateSQ($_GET["product_code"] ?? "");
         $product_code_3 = updateSQ($_GET["product_code_3"] ?? "");
@@ -82,6 +106,7 @@ class TourRegistController extends BaseController
         if ($search_name) {
             $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
         }
+
         if ($product_code_1) {
             $strSql = $strSql . " and product_code_1 = '" . $product_code_1 . "' ";
         }
@@ -94,8 +119,8 @@ class TourRegistController extends BaseController
 
         $total_sql = " 
 					SELECT p1.*, c1.code_name AS product_code_name_1, c2.code_name AS product_code_name_2 FROM tbl_product_mst AS p1 
-										LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
-										LEFT JOIN tbl_code AS c2 ON p1.product_code_2 = c2.code_no   where 1=1 $strSql group by p1.product_idx ";
+						LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
+						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 $strSql group by p1.product_idx ";
 
 
         $result = $this->connect->query($total_sql) or die ($this->connect->error);
@@ -128,7 +153,8 @@ class TourRegistController extends BaseController
         $result = $this->connect->query($sql) or die ($this->connect->error);
         $num = $nTotalCount - $nFrom;
         $result = $result->getResultArray();
-        return view("admin/_tourRegist/list", [
+
+        $data = [
             "fresult" => $fresult,
             "fresult2" => $fresult2,
             "fresult3" => $fresult3,
@@ -151,43 +177,9 @@ class TourRegistController extends BaseController
             "s_product_code_3" => $s_product_code_3,
             "is_view_y" => $is_view_y,
             "search_category" => $search_category,
-        ]);
-    }
+        ];
 
-    public function list_honeymoon()
-    {
-        $deviceType = get_device();
-        $page = $this->request->getVar('page');
-        $s_txt = $this->request->getVar('s_txt');
-        $search_category = $this->request->getVar('search_category');
-        $search_gubun = $this->request->getVar('search_gubun');
-        $currentUri = $this->request->getUri()->getPath();
-        $g_list_rows = 10;
-
-        $category = $_GET['category'] ?? null;
-
-        $visual = $this->Bbs->List("banner", ['category' => '117'])->get()->getRowArray();
-
-        $best_review = $this->ReviewModel->getBestReviews($s_txt, $search_category);
-
-        $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, $g_list_rows);
-
-        return view("admin/_review/list", [
-            "best_review" => $best_review,
-            "visual" => $visual,
-            "review_list" => $resultObj['review_list'],
-            "nTotalCount" => $resultObj['total_cnt'],
-            "pg" => $resultObj['page'],
-            "nPage" => $resultObj['total_page'],
-            "num" => $resultObj['no'],
-            "s_txt" => $s_txt,
-            "search_category" => $search_category,
-            "currentUri" => $currentUri,
-            "deviceType" => $deviceType,
-            "category" => $category,
-            'search_gubun' => $search_gubun,
-            'g_list_rows' => $g_list_rows
-        ]);
+        return $data;
     }
 
     public function write()
@@ -794,7 +786,9 @@ class TourRegistController extends BaseController
         $html = '<tbody>';
 
         $i = 1;
-        foreach ($fresult4 as $frow) {
+        foreach ($fresult4
+
+                 as $frow) {
             $yoilStr = $this->getYoilString($frow);
 
             $fsql2 = "SELECT a.*, b.* 
@@ -846,10 +840,48 @@ class TourRegistController extends BaseController
                             <td rowspan='2'>" . number_format($frow2['oil_price'], 0) . "원</td>
                           </tr>";
             }
-            $html .= "</thead></table></td></tr>";
+            $html .= "</thead></table></td><td class='tac'>";
+
+            $sale = '';
+            $product_code_1 = '';
+            $s_product_code_1 = '';
+            $s_product_code_2 = '';
+            $s_product_code_3 = '';
+            $search_name = '';
+            $search_category = '';
+            $pg = '';
+            $back_url = '';
+
+            if ($product_code_1 == "1301") {
+                $html .= getYoil($frow["s_date"]);
+            } else {
+                $html .= $yoilStr;
+            };
+
+            if ($sale == "N") {
+                $html .= "<span style='font-weight:bold;color:red;'><br>[예약마감]</span>";
+            };
+
+
+            $html .= "</td><td class='tac'>";
+
+            $html .= $frow["r_date"];
+            $html .= "</td><td class='tac'>
+                 <a href='" . "../_tourPrice/write?s_product_code_1=" . $s_product_code_1 .
+                "&s_product_code_2=" . $s_product_code_2 .
+                "&s_product_code_2=" . $s_product_code_3 .
+                "&search_name=" . $search_name .
+                "&search_category=" . $search_category .
+                "&pg=" . $pg .
+                "&product_idx=" . $product_idx .
+                "&back_url=" . $back_url .
+                "&yoil_idx=" . $frow["yoil_idx"] .
+                "' class='btn btn-default'>수정하기</a>";
+            $html .= "<a href='javascript:del_yoil(" . $frow["yoil_idx"] . ");' class='btn btn -default'>삭제하기</a>";
+            $html .= "</td></tr>";
         }
 
-        $html .= '</tbody>';
+        $html .= ' </tbody > ';
 
         return $html;
     }
