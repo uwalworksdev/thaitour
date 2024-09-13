@@ -183,21 +183,18 @@ function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus
     
     $retValue = "<div class='paging' $hide><ul class='page'>";
 
-    // Nút chuyển về trang đầu "<<"
     if ($cur_page > 1) {
         $retValue .= "<li class='skip backward'><a href='" . $url . "1$focus_element_id' title='Go to first page'></a></li>";
     } else {
         $retValue .= "<li class='skip backward'><a href='javascript:;' title='Go to first page'></a></li>";
     }
 
-    // Nút lùi về trang trước "<"
     if ($cur_page > ($deviceType === 'M' ? 5 :10)) {
         $retValue .= "<li class='preview one'><a href='" . $url . ($cur_page - ($deviceType === 'M' ? 5 :10)) . "$focus_element_id' title='Go to previous page'></a></li>";
     } else {
         $retValue .= "<li class='preview one'><a href='javascript:;' title='Go to previous page'></a></li>";
     }
 
-    // Hiển thị các trang
     $start_page = ((int)(($cur_page - 1) / $page_range)) * $page_range + 1;
     $end_page = min($start_page + $page_range - 1, $total_page);
 
@@ -209,14 +206,12 @@ function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus
         }
     }
 
-    // Nút tiến đến trang sau ">"
     if ($cur_page < $total_page-($deviceType === 'M' ? 5 :10)) {
         $retValue .= "<li class='next one'><a href='$url" . ($cur_page + ($deviceType === 'M' ? 5 :10)) . "$focus_element_id' title='Go to next page'></a></li>";
     } else {
         $retValue .= "<li class='next one'><a href='javascript:;' title='Go to next page'></a></li>";
     }
 
-    // Nút chuyển đến trang cuối ">>"
     if ($cur_page < $total_page) {
         $retValue .= "<li class='skip forward'><a href='" . $url . $total_page . "$focus_element_id' title='Go to last page'></a></li>";
     } else {
@@ -224,6 +219,69 @@ function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus
     }
 
     $retValue .= "</ul></div>";
+    return $retValue;
+}
+
+function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType='P', $focus_element_id="") {
+	if($focus_element_id) {
+		$focus_element_id = "#" . $focus_element_id;
+	}
+    $page_range = $deviceType === 'M' ? 5 : 10;
+    
+    $retValue = "<div class='pagination'>";
+
+    if ($cur_page > 1) {
+        $retValue .= "<a class='page-link' href='" . $url . "1$focus_element_id' title='Go to first page'>
+						<img src='/images/community/pagination_prev.png' alt='pagination_prev'>
+					</a>";
+    } else {
+        $retValue .= "<a class='page-link' href='javascript:;'  title='Go to first page'>
+						<img src='/images/community/pagination_prev.png' alt='pagination_prev'>
+					</a>";
+    }
+
+    if ($cur_page > 1) {
+        $retValue .= "<a class='page-link' style='margin-right: 24px;' href='" . $url . ($cur_page - 1) . "$focus_element_id' title='Go to previous page'>
+						<img src='/images/community/pagination_prev_s.png' alt='pagination_prev'>
+					</a>";
+    } else {
+        $retValue .= "<a class='page-link' style='margin-right: 24px;' href='javascript:;' title='Go to previous page'>
+						<img src='/images/community/pagination_prev_s.png' alt='pagination_prev'>
+					</a>";
+    }
+
+    $start_page = ((int)(($cur_page - 1) / $page_range)) * $page_range + 1;
+    $end_page = min($start_page + $page_range - 1, $total_page);
+
+    for ($k = $start_page; $k <= $end_page; $k++) {
+        if ($cur_page != $k) {
+            $retValue .= "<a class='page-link' href='$url$k$focus_element_id' title='Go to page $k'>$k</a>";
+        } else {
+            $retValue .= "<a class='page-link active' href='javascript:;' title='Go to page $k'><strong>$k</strong></a>";
+        }
+    }
+
+    if ($cur_page < $total_page) {
+        $retValue .= "<a class='page-link' style='margin-left: 24px;' href='$url" . ($cur_page + 1) . "$focus_element_id' title='Go to next page'>
+						<img src='/images/community/pagination_next_s.png' alt='pagination_next'>
+					</a>";
+    } else {
+        $retValue .= "<a class='page-link' style='margin-left: 24px;' href='javascript:;' title='Go to next page'>
+						<img src='/images/community/pagination_next_s.png' alt='pagination_next'>
+					</a>";
+    }
+
+    if ($cur_page < $total_page) {
+        $retValue .= "<a class='page-link'  href='" . $url . $total_page . "$focus_element_id' title='Go to last page'>
+						<img src='/images/community/pagination_next.png' alt='pagination_next'>
+					</a>";
+    } else {
+        $retValue .= "<a class='page-link' href='javascript:;' title='Go to last page'>
+						<img src='/images/community/pagination_next.png' alt='pagination_next'>
+					</a>";
+    }
+
+    $retValue .= "</div>";
     return $retValue;
 }
 

@@ -23,38 +23,68 @@
                             자주 찾는 질문
                         </h3>
                         <div class="list-tag">
-                            <div class="item-tag active">
-                                <img src="/images/community/customer_icon_01_active.png" alt="customer_icon_01">
+                            <div class="item-tag <?php if($code_no == ""){ echo "active"; }?>" onclick="location.href='/community/customer_center'">
+                                <?php 
+                                    if($code_no == ""){ 
+                                        $img_all = "customer_icon_01_active.png";
+                                    }else{
+                                        $img_all = "customer_icon_01.png";
+                                    }
+                                ?>
+                                <img src="/images/community/<?=$img_all?>" alt="customer_icon_01">
                                 <span class="tag-name">전체</span>
                             </div>
-                            <div class="item-tag">
-                                <img src="/images/community/customer_icon_02.png" alt="customer_icon_01">
-                                <span class="tag-name">상품문의</span>
-                            </div>
-                            <div class="item-tag">
-                                <img src="/images/community/customer_icon_03.png" alt="customer_icon_01">
-                                <span class="tag-name">예약문의</span>
-                            </div>
-                            <div class="item-tag">
-                                <img src="/images/community/customer_icon_04.png" alt="customer_icon_01">
-                                <span class="tag-name">결제문의</span>
-                            </div>
-                            <div class="item-tag">
-                                <img src="/images/community/customer_icon_05.png" alt="customer_icon_01">
-                                <span class="tag-name">항공권</span>
-                            </div>
-                            <div class="item-tag">
-                                <img src="/images/community/customer_icon_06.png" alt="customer_icon_01">
-                                <span class="tag-name">포인트</span>
-                            </div>
-                            <div class="item-tag">
-                                <span class="icon-custom">ATC</span>
-                                <span class="tag-name">기타문의</span>
-                            </div>
+                            <?php
+                                $i = 2;
+                                foreach($code_gubun as $code){
+                                    if($code["code_no"] == $code_no){
+                                        $img = "customer_icon_0". $i ."_active.png";
+                                    }else{
+                                        $img = "customer_icon_0". $i .".png";
+                                    }
+                            ?>
+                                <div class="item-tag" <?php if($code["code_no"] == $code_no){ echo "active"; } ?> onclick="location.href='/community/customer_center?code_no=<?=$code['code_no']?>'">
+                                    <?php 
+                                        if($i < 7) {
+                                    ?>      
+                                        <img src="/images/community/<?=$img?>" alt="customer_icon">
+                                    <?php
+                                        }else{
+                                    ?>
+                                        <span class="icon-custom">ATC</span>
+                                    <?php } ?>
+                                    <span class="tag-name"><?=$code["code_name"]?></span>
+                                </div>
+                            <?php 
+                                $i++;
+                                } 
+                            ?>
+                            
                         </div>
                     </div>
                     <div class="list-q">
-                        <div class="item-q">
+                        <?php 
+                            foreach($question_list as $row) {
+                        ?>
+                            <div class="item-q">
+                                <div class="custom-con">
+                                    <div class="flex-title-con">
+                                        <div class="con-q">
+                                            <div class="label-q">Q</div>
+                                            <span class="name"><?= $row['code_name'] ?></span>
+                                        </div>
+                                        <p class="content"><?= $row['r_title'] ?></p>
+                                    </div>
+                                    <div class="con-a" style="display: none;">
+                                        <div class="label-a">A</div>
+                                        <div class="content"><?= viewSQ($row['r_content']) ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+                            }
+                        ?>
+                        <!-- <div class="item-q">
                             <div class="custom-con">
                                 <div class="flex-title-con">
                                     <div class="con-q">
@@ -233,10 +263,15 @@
                                         우리나라 입국 시에는 면세금액 한도가 $400미만으로 적용되기 때문에 주의해서 들어오셔야 합니다.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
-                    <div class="pagination">
+
+                    <?php 
+                        echo ipagelistingSub($pg, $total_page, $scale, current_url() . "?code_no=". $code_no ."&pg=")
+                    ?>
+
+                    <!-- <div class="pagination">
                         <a href="#" class="page-link">
                             <img src="/images/community/pagination_prev.png" alt="pagination_prev">
                         </a>
@@ -253,7 +288,7 @@
                         <a href="#" class="page-link">
                             <img src="/images/community/pagination_next.png" alt="pagination_next">
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -276,20 +311,15 @@
 
     items.forEach((item, index) => {
         item.addEventListener('click', function() {
-            // Remove 'active' class from all items
             items.forEach(i => i.classList.remove('active'));
 
-            // Add 'active' class to the clicked item
             this.classList.add('active');
 
-            // Change the image of the active item
             const img = this.querySelector('img');
             if (img) {
-                // Change to corresponding active image
                 img.src = `/images/community/customer_icon_0${index + 1}_active.png`;
             }
 
-            // Reset images for all non-active items
             items.forEach((i, idx) => {
                 if (i !== this) {
                     const nonActiveImg = i.querySelector('img');

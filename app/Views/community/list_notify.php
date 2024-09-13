@@ -23,7 +23,17 @@
                             공지사항
                         </h3>
                     </div>
-                    <div class="item-no" data-url="/community/customer_center/notify">
+                    <?php 
+                        foreach($notice as $row) {
+                    ?>
+                        <div class="item-no" data-url="/community/customer_center/notify?bbs_idx=<?=$row["bbs_idx"]?>">
+                            <h3 class="item-title"><?=$row["subject"]?></h3>
+                            <div class="item-date"><?=date("Y.m.d", strtotime($row["r_date"]))?></div>
+                        </div>
+                    <?php
+                        }
+                    ?>
+                    <!-- <div class="item-no" data-url="/community/customer_center/notify">
                         <h3 class="item-title">2024년 8월 국제선 대한항공/아시아나항공 유류할증료 안내</h3>
                         <div class="item-date">2024.07.26</div>
                     </div>
@@ -62,25 +72,10 @@
                     <div class="item-no" data-url="/community/customer_center/notify">
                         <h3 class="item-title">2024년 8월 국제선 대한항공/아시아나항공 유류할증료 안내</h3>
                         <div class="item-date">2024.07.26</div>
-                    </div>
-                    <div class="pagination">
-                        <a href="#" class="page-link">
-                            <img src="/images/community/pagination_prev.png" alt="pagination_prev">
-                        </a>
-                        <a href="#" class="page-link" style="margin-right: 24px;">
-                            <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
-                        </a>
-                        <a href="#" class="page-link active">1
-                        </a>
-                        <a href="#" class="page-link">2</a>
-                        <a href="#" class="page-link">3</a>
-                        <a href="#" class="page-link" style="margin-left: 24px;">
-                            <img src="/images/community/pagination_next_s.png" alt="pagination_next">
-                        </a>
-                        <a href="#" class="page-link">
-                            <img src="/images/community/pagination_next.png" alt="pagination_next">
-                        </a>
-                    </div>
+                    </div> -->
+                    <?php 
+                        echo ipagelistingSub($pg, $total_page, $scale, current_url() . "?pg=")
+                    ?>
                 </div>
             </div>
         </div>
@@ -92,20 +87,15 @@ const items = document.querySelectorAll('.item-tag');
 
 items.forEach((item, index) => {
     item.addEventListener('click', function() {
-        // Remove 'active' class from all items
         items.forEach(i => i.classList.remove('active'));
 
-        // Add 'active' class to the clicked item
         this.classList.add('active');
 
-        // Change the image of the active item
         const img = this.querySelector('img');
         if (img) {
-            // Change to corresponding active image
             img.src = `/images/community/customer_icon_0${index + 1}_active.png`;
         }
 
-        // Reset images for all non-active items
         items.forEach((i, idx) => {
             if (i !== this) {
                 const nonActiveImg = i.querySelector('img');

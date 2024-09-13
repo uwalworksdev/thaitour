@@ -106,8 +106,9 @@
 							<colgroup>
 								<col width="4%" />
 								<col width="4%" />
-								<col width="34%" />
+								<col width="*%" />
 								<col width="7%" />
+								<col width="9%" />
 								<col width="7%" />
 								<col width="9%" />
 								<col width="9%" />
@@ -121,6 +122,7 @@
 									<th>번호</th>
 									<th>제목</th>
 									<th>이름</th>
+									<th>아이디</th>
 									<th>연락처</th>
 									<th>이메일</th>
 									<th>신청일시</th>
@@ -140,7 +142,7 @@
 									</tr>
 								<?php
 									}
-									foreach($list_qna as $row) {
+									foreach($list_contact as $row) {
 										$time = strtotime($row['r_date']);
 										$diff_time = $now - $time;
 										$is_new = $diff_time < (24 * 60 * 60) ? "<i class='new_ic'></i>" : "";
@@ -157,7 +159,7 @@
 											$statusStr = "문의확인";
 										}
 
-										if($row['isViewQna'] == 'N'){ 
+										if($row['isViewAdmin'] == 'N'){ 
 											$color = "#FED4D6"; 
 										}else{
 											$color = "#fff"; 
@@ -173,6 +175,7 @@
 											<span class="red">(<?= $row['cmt_cnt'] ?>)</span><?= $is_new ?>
 										</td>
 										<td class="tac"><?= sqlSecretConver($row["user_name"], 'decode') ?></td>
+										<td class="tac"><?= $row["user_id"] ?></td>
 										<td class="tac"><?= sqlSecretConver($row["user_phone"], 'decode') ?></td>
 										<td class="tac"><?= sqlSecretConver($row["user_email"], 'decode') ?></td>
 										<td class="tac"><?= $row["r_date"] ?></td>

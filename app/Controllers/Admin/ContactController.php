@@ -6,21 +6,19 @@ use App\Controllers\BaseController;
 use App\Libraries\SessionChk;
 use Exception;
 
-class QnaController extends BaseController
+class ContactController extends BaseController
 {
-    private $qna;
     private $code;
     private $db;
 
     protected $sessionLib;
     protected $sessionChk;
-    private $uploadPath = WRITEPATH."uploads/qna/";
+    private $uploadPath = WRITEPATH."uploads/contact/";
 
 
     public function __construct()
     {
         $this->code = model("Code");
-        $this->qna = model("Qna");
         helper(['html']);
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
@@ -51,7 +49,7 @@ class QnaController extends BaseController
 
         $scale = 10;
 
-        $total_sql = " select * from tbl_travel_qna where 1=1 $strSql ";
+        $total_sql = " select * from tbl_travel_contact where 1=1 $strSql ";
         $total_cnt = $this->db->query($total_sql)->getNumRows();
 
         $total_page = ceil($total_cnt / $scale);
@@ -59,18 +57,19 @@ class QnaController extends BaseController
             $page = 1;
         $start = ($page - 1) * $scale;
 
-        $total_sqls = "  SELECT A.*, COUNT(B.r_idx) AS cmt_cnt
-                                FROM tbl_travel_qna A
-                                LEFT JOIN tbl_bbs_cmt B ON A.idx = B.r_idx AND B.r_code = 'qna' AND B.r_status = 'Y' AND B.r_delYN = 'N'
-                                WHERE 1=1 $strSql
-                                GROUP BY A.idx ";
+        $total_sqls = "  SELECT A.*, COUNT(B.r_idx) AS cmt_cnt, C.user_id
+                                        FROM tbl_travel_contact A
+                                        LEFT JOIN tbl_bbs_cmt B ON A.idx = B.r_idx AND B.r_code = 'contact' AND B.r_status = 'Y' AND B.r_delYN = 'N'
+                                        LEFT JOIN tbl_member C ON A.reg_m_idx = C.m_idx
+                                        WHERE 1=1 $strSql
+                                        GROUP BY A.idx ";
 
-        $sql    = $total_sqls . " order by idx desc limit $start, $scale ";
+        $sql    = $total_sqls . " order by r_date desc, idx desc limit $start, $scale ";
 
         $result = $this->db->query($sql)->getResultArray();
         $num = $total_cnt - $start;
-        return view("admin/_qna/list", [
-            'list_qna' => $result,
+        return view("admin/_contact/list", [
+            'list_contact' => $result,
             'num' => $num,
             'pg' => $page,
             'nPage' => $total_page,
@@ -92,10 +91,12 @@ class QnaController extends BaseController
         $idx			= updateSQ($this->request->getVar('idx'));
         if ($idx) {
 
-            $updateViewSql = "update tbl_travel_qna set isViewQna = 'Y' where idx = '". $idx ."'";
+            $updateViewSql = "update tbl_travel_contact set isViewAdmin = 'Y' where idx = '". $idx ."'";
             $this->db->query($updateViewSql);
 
-            $total_sql		= " select a.* from tbl_travel_qna a where a.idx='".$idx."'";
+            $total_sql		= " select a.*, b.user_id from tbl_travel_contact a 
+                                        left join tbl_member b on a.reg_m_idx = b.m_idx
+                                        where a.idx='" . $idx . "'";
             $row			= $this->db->query($total_sql)->getRowArray();
 
             $user_name			= sqlSecretConver($row["user_name"], 'decode');
@@ -116,6 +117,8 @@ class QnaController extends BaseController
             $product_name       = $row['product_name'];
             $title 	            = $row['title'];
             $contents	        = $row["contents"];	 
+	        $user_id			= $row["user_id"];
+
         }
 
         $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no = 13 AND depth = '2' order by onum";
@@ -136,6 +139,7 @@ class QnaController extends BaseController
         $data["scode"] = $scode ?? "";
         $data["pg"] = $pg ?? "";
         $data["idx"] = $idx ?? "";
+        $data["user_id"] = $user_id ?? "";
         $data["user_name"] = $user_name ?? "";
         $data["user_phone"] = $user_phone ?? "";
         $data["user_email"] = $user_email ?? "";
@@ -153,7 +157,7 @@ class QnaController extends BaseController
         $data["title"] = $title ?? "";
         $data["contents"] = $contents ?? "";
 
-        return view('admin/_qna/write', $data);
+        return view('admin/_contact/write', $data);
     }
 
     public function write_ok() {
@@ -181,7 +185,7 @@ class QnaController extends BaseController
         if ($this->request->getPost("del_1") == "Y")
         {
             $sql = "
-                UPDATE tbl_travel_qna SET
+                UPDATE tbl_travel_contact SET
                 ufile1='',
                 rfile1=''
                 WHERE idx='$idx'
@@ -206,7 +210,7 @@ class QnaController extends BaseController
 
             if ($idx) {
                 $sql = "
-                    UPDATE tbl_travel_qna SET
+                    UPDATE tbl_travel_contact SET
                     ufile1='".$ufile1."',
                     rfile1='".$rfile1."'
                     WHERE idx='$idx';
@@ -216,7 +220,7 @@ class QnaController extends BaseController
         }
         
         $sql = "
-                    update tbl_travel_qna SET 
+                    update tbl_travel_contact SET 
                     user_name    		    = '" . sqlSecretConver($user_name, 'encode') . "'
                     ,user_phone       		= '" . sqlSecretConver($user_phone, 'encode') . "'
                     ,user_email       		= '" . sqlSecretConver($user_email, 'encode') . "'
@@ -244,7 +248,7 @@ class QnaController extends BaseController
                 $uploadPath = $this->uploadPath;
 
                 foreach ($arr_idx as $idx) {
-                    $sql		= " select * from tbl_travel_qna where idx='".$idx."'";
+                    $sql		= " select * from tbl_travel_contact where idx='".$idx."'";
                     $row		= $this->db->query($sql)->getRowArray();
                     if($row["ufile1"]){
                         $filePath = $uploadPath . $row["ufile1"];
@@ -252,7 +256,7 @@ class QnaController extends BaseController
                             unlink($filePath);
                         }
                     }
-                    $sql_del = " delete from tbl_travel_qna where idx='".$idx."'";
+                    $sql_del = " delete from tbl_travel_contact where idx='".$idx."'";
                     $this->db->query($sql_del);
                 }
 
