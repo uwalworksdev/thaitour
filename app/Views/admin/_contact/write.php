@@ -124,9 +124,10 @@
 
 		</header>
 		<!-- // headerContainer -->
-		<form name=frm id="frm" action="write_ok" method=post target="hiddenFrame">
+		<form name="frm" id="frm" class="form_contact" action="write_ok" method=post target="hiddenFrame">
 
 			<input type=hidden name="idx" value='<?= $idx ?>'>
+			<input type="hidden" name="star" id="star" value="5">
 
 			<div id="contents">
 				<div class="listWrap_noline">
@@ -171,6 +172,25 @@
                                         </div>
 									</td>
 								</tr>
+								<tr>
+									<th>정확성</th>
+									<td>
+										<select class="form_input_" name="accuracy" id="accuracy">
+											<option value="">선택해주세요.</option>
+											<option value="test1">test1</option>
+											<option value="test2">test2</option>
+										</select>
+									</td>
+									<th>신속성</th>
+									<td>
+										<select class="form_input_" name="speed" id="speed">
+											<option value="">선택해주세요.</option>
+											<option value="test1">test1</option>
+											<option value="test2">test2</option>
+										</select>
+									</td>
+								</tr>
+
 								<tr>
 									<th>이메일</th>
 									<td>
@@ -345,6 +365,34 @@
 	}
 </script>
 <script>
+	 document.addEventListener('DOMContentLoaded', function () {
+		var selected = document.querySelector('.select-selected');
+		var items = document.querySelector('.select-items');
+		var options = items.querySelectorAll('div');
+		var star = document.querySelector('#star');
+
+		selected.addEventListener('click', function () {
+			items.classList.toggle('select-hide');
+		});
+
+		options.forEach(function (option) {
+			option.addEventListener('click', function () {
+				var value = this.getAttribute('data-value');
+				star.value = value;
+				selected.innerHTML = this.innerHTML;
+				items.classList.add('select-hide');
+			});
+		});
+
+		document.addEventListener('click', function (event) {
+			if (!event.target.matches('.select-selected')) {
+				var openDropdowns = document.querySelectorAll('.select-items');
+				openDropdowns.forEach(function (dropdown) {
+					dropdown.classList.add('select-hide');
+				});
+			}
+		});
+	});
 
 	$('.tick_ch input[type="radio"]').on('change', function () {
 		var idx = $(this).parent().index();

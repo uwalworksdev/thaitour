@@ -243,6 +243,8 @@ $routes->group("community", static function ($routes) {
     $routes->post("customer_center/notify_table_ok", "Community::notify_table_ok");
 
     $routes->get("customer_center/customer_speak", "Community::customer_speak");
+    $routes->post("customer_center/customer_speak_ok", "Community::customer_speak_ok");
+
     $routes->get("announcement_view", "Community::announcement_view");
 });
 $routes->group("contact", static function ($routes) {

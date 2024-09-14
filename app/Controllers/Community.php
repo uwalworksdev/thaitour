@@ -13,7 +13,9 @@ class Community extends BaseController
     private $comment;
     private $db;
     private $uploadPath = WRITEPATH."uploads/qna/";
+    protected $bbs;
     protected $qna;
+    protected $contact;
     protected $currentTime;
 
     protected $sessionLib;
@@ -23,6 +25,7 @@ class Community extends BaseController
     {
         $this->bbs = model("Bbs");
         $this->qna = model("Qna");
+        $this->contact = model("TravelContactModel");
         helper(['html']);
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
@@ -242,6 +245,7 @@ class Community extends BaseController
         $contents = $this->request->getPost("contents");
         $email = $this->request->getPost("email");
         $email_yn = $this->request->getPost("email_yn");
+        $ipAddress = $this->request->getIPAddress();
         $r_date = $this->currentTime;
         try {  
             $this->db->transBegin();
@@ -256,8 +260,9 @@ class Community extends BaseController
                 $data = [
                     'title' => $title,
                     'contents' => $contents,
-                    'user_email' => $email,
+                    'user_email' => sqlSecretConver($email, 'encode'),
                     'email_yn' => $email_yn,
+                    'user_ip' => $ipAddress,
                     'r_date' => $r_date
                 ];
 
@@ -302,5 +307,51 @@ class Community extends BaseController
     public function customer_speak()
     {
         return view("community/customer_speak");
+    }
+
+    public function customer_speak_ok() {
+        $user_name = $this->request->getPost("user_name");
+        $accuracy = $this->request->getPost("accuracy");
+        $speed = $this->request->getPost("speed");
+        $star = $this->request->getPost("star");
+        $contents = $this->request->getPost("contents");
+        $ipAddress = $this->request->getIPAddress();
+        $r_date = $this->currentTime;
+        try {  
+            $this->db->transBegin();
+            if(!empty($user_name) && !empty($accuracy) && !empty($speed) && !empty($star) && !empty($contents)){
+                
+                $data = [
+                    'user_name' => sqlSecretConver($user_name, 'encode'),
+                    'accuracy' => $accuracy,
+                    'speed' => $speed,
+                    'star' => $star,
+                    'contents' => $contents,
+                    'user_ip' => $ipAddress,
+                    'r_date' => $r_date
+                ];
+
+                $idx = $this->contact->insertContact($data);
+
+                if($idx) {
+                    $this->db->transCommit();
+                    $resultArr['result'] = true;
+                    $resultArr['message'] = "성공적으로 등록되었습니다.";
+                }else{
+                    $this->db->transCommit();
+                    $resultArr['result'] = false;
+                    $resultArr['message'] = "새로 추가하지 못했습니다.";
+                }
+            }else{
+                $resultArr['result'] = false;
+                $resultArr['message'] = "누락된 데이터.";
+            }
+        } catch (Exception $err) {
+            $this->db->transRollback();
+            $resultArr['result'] = false;
+            $resultArr['message'] = $err->getMessage();
+        } finally {
+            return $this->response->setJSON($resultArr);
+        }
     }
 }
