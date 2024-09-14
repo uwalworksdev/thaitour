@@ -292,13 +292,13 @@
                         </div>
                         <div class="right_btn">
                             <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
-                                        src="../_images/common/filter.png" alt="">순위순
+                                        src="/images/admin/common/filter.png" alt="">순위순
                             </button>
                             <button type="button" class="btn_filter" onclick="orderBy_set('2');"><img
-                                        src="../_images/common/filter.png" alt="">최신순
+                                        src="/images/admin/common/filter.png" alt="">최신순
                             </button>
                             <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
-                                        src="../_images/common/filter.png" alt="">예약순
+                                        src="/images/admin/common/filter.png" alt="">예약순
                             </button>
                         </div>
 
