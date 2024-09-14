@@ -129,33 +129,25 @@
                         <td class="inbox">
                             <div class="r_box">
                                 <select id="" name="search_category" class="input_select" style="width:112px">
-                                    <option value="product_name" <? if ($search_category == "product_name") {
+                                    <option value="product_name" <?php if ($search_category == "product_name") {
                                         echo "selected";
-                                    } ?>>상품명
+                                    } ?> >
+                                        상품명
                                     </option>
-                                    <option value="product_air" <? if ($search_category == "product_air") {
+                                    <option value="product_air" <?php if ($search_category == "product_air") {
                                         echo "selected";
-                                    } ?>>이용항공
+                                    } ?> >
+                                        이용항공
                                     </option>
-                                    <option value="phone" <? if ($search_category == "phone") {
+                                    <option value="phone" <?php if ($search_category == "phone") {
                                         echo "selected";
-                                    } ?>>담당자 전화번호
+                                    } ?> >
+                                        담당자 전화번호
                                     </option>
-                                    <!-- <option value="product_code" <? if ($search_category == "product_code") {
+                                    <option value="product_code" <?php if ($search_category == "product_code") {
                                         echo "selected";
-                                    } ?>>상품코드</option> -->
-                                    <!--option value="product_code_name_4" <? if ($search_category == "product_code_name_4") {
-                                        echo "selected";
-                                    } ?>>코스명</option>
-											<option value="product_code_name_1" <? if ($search_category == "product_code_name_1") {
-                                        echo "selected";
-                                    } ?>>여행분류</option>
-											<option value="product_code_name_2" <? if ($search_category == "product_code_name_2") {
-                                        echo "selected";
-                                    } ?>>지역분류</option-->
-                                    <option value="product_code" <? if ($search_category == "product_code") {
-                                        echo "selected";
-                                    } ?>>상품코드
+                                    } ?> >
+                                        상품코드
                                     </option>
                                 </select>
                                 <input type="text" id="search_name" name="search_name"
