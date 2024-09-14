@@ -114,13 +114,13 @@
                         <td class="label">상태</td>
                         <td class="inbox">
                             <p><input name="is_view_y" class="type_chker" id="is_view_y" type="checkbox"
-                                      value="Y" <? if ($is_view_y == "Y") echo "checked"; ?>> <label
+                                      value="Y" <?php if ($is_view_y == "Y") echo "checked"; ?>> <label
                                         for="state_chker_1">사용</label></p>
                             <p><input name="is_view_n" class="type_chker" id="is_view_n" type="checkbox"
-                                      value="Y" <? if ($is_view_n == "Y") echo "checked"; ?>> <label
+                                      value="Y" <?php if ($is_view_n == "Y") echo "checked"; ?>> <label
                                         for="state_chker_2">사용안함</label></p>
                             <p><input name="best" class="type_chker" id="best" type="checkbox"
-                                      value="Y" <? if ($best == "Y") echo "checked"; ?>> <label
+                                      value="Y" <?php if ($best == "Y") echo "checked"; ?>> <label
                                         for="state_chker_3">베스트</label></p>
                         </td>
                     </tr>
@@ -290,13 +290,13 @@
                     </div>
                     <div class="right_btn">
                         <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
-                                    src="../_images/common/filter.png" alt="">순위순
+                                    src="/images/admin/common/filter.png" alt="">순위순
                         </button>
                         <button type="button" class="btn_filter" onclick="orderBy_set('2');"><img
-                                    src="../_images/common/filter.png" alt="">최신순
+                                    src="/images/admin/common/filter.png" alt="">최신순
                         </button>
                         <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
-                                    src="../_images/common/filter.png" alt="">예약순
+                                    src="/images/admin/common/filter.png" alt="">예약순
                         </button>
                     </div>
 
