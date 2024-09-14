@@ -196,13 +196,102 @@ class TourRegistController extends BaseController
 
     public function write_golf()
     {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $data = $this->getWrite();
+
+        $db = $this->connect;
+
+        $sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
+        $result_c = $db->query($sql_c) or die ($db->error);
+        $fresult_c = $result_c->getResultArray();
+
+        $builder = $db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $options = $query->getResultArray();
+
+        foreach ($options as &$option) {
+            $optionBuilder = $db->table('tbl_tours_option');
+            $optionBuilder->where('product_idx', $product_idx);
+            $optionBuilder->where('code_idx', $option['code_idx']);
+            $optionBuilder->orderBy('onum', 'desc');
+            $optionQuery = $optionBuilder->get();
+            $option['additional_options'] = $optionQuery->getResultArray();
+        }
+
+        $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
+        $query = $db->query($sql, [$product_idx]);
+        $result = $query->getRowArray();
+        $data['tourCount'] = $result['cnt'];
+
+        $sql = "SELECT * FROM tbl_product_tours WHERE product_idx = ? ORDER BY tours_idx ASC";
+        $query = $db->query($sql, [$product_idx]);
+        $data['tours'] = $query->getResultArray();
+
+        $sql = "SELECT IFNULL(total_day, 0) as cnt FROM tbl_product_day_detail WHERE air_code = '0000' AND product_idx = ?";
+        $query = $db->query($sql, [$product_idx]);
+        $data['dayDetails'] = $query->getResultArray();
+
+        $new_data = [
+            'product_idx' => $product_idx,
+            'codes' => $fresult_c,
+            'options' => $options,
+        ];
+
+        $data = array_merge($data, $new_data);
+
         return view("admin/_tourRegist/write_golf", $data);
     }
 
     public function write_tours()
     {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $data = $this->getWrite();
+
+        $db = $this->connect;
+
+        $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum DESC";
+        $result_c = $db->query($sql_c) or die ($db->error);
+        $fresult_c = $result_c->getResultArray();
+
+        $builder = $db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $options = $query->getResultArray();
+
+        foreach ($options as &$option) {
+            $optionBuilder = $db->table('tbl_tours_option');
+            $optionBuilder->where('product_idx', $product_idx);
+            $optionBuilder->where('code_idx', $option['code_idx']);
+            $optionBuilder->orderBy('onum', 'desc');
+            $optionQuery = $optionBuilder->get();
+            $option['additional_options'] = $optionQuery->getResultArray();
+        }
+
+        $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
+        $query = $db->query($sql, [$product_idx]);
+        $result = $query->getRowArray();
+        $data['tourCount'] = $result['cnt'];
+
+        $sql = "SELECT * FROM tbl_product_tours WHERE product_idx = ? ORDER BY tours_idx ASC";
+        $query = $db->query($sql, [$product_idx]);
+        $data['tours'] = $query->getResultArray();
+
+        $sql = "SELECT IFNULL(total_day, 0) as cnt FROM tbl_product_day_detail WHERE air_code = '0000' AND product_idx = ?";
+        $query = $db->query($sql, [$product_idx]);
+        $data['dayDetails'] = $query->getResultArray();
+
+        $new_data = [
+            'product_idx' => $product_idx,
+            'codes' => $fresult_c,
+            'options' => $options,
+        ];
+
+        $data = array_merge($data, $new_data);
         return view("admin/_tourRegist/write_tours", $data);
     }
 
@@ -321,6 +410,17 @@ class TourRegistController extends BaseController
 
             $m_date = $row["m_date"];
             $r_date = $row["r_date"];
+            $tours_cate = $row["tours_cate"];
+            $tour_transport = $row["tour_transport"];
+
+            $yoil_0 = $row["yoil_0"];
+            $yoil_1 = $row["yoil_1"];
+            $yoil_2 = $row["yoil_2"];
+            $yoil_3 = $row["yoil_3"];
+            $yoil_4 = $row["yoil_4"];
+            $yoil_5 = $row["yoil_5"];
+            $yoil_6 = $row["yoil_6"];
+            $guide_lang = $row["guide_lang"];
         }
 
 
@@ -454,7 +554,17 @@ class TourRegistController extends BaseController
             "coupon_y" => $coupon_y ?? '',
             "product_manager_id" => $product_manager_id ?? '',
             "m_date" => $m_date ?? '',
-            "r_date" => $r_date ?? ''
+            "r_date" => $r_date ?? '',
+            "tours_cate" => $tours_cate ?? '',
+            "tour_transport" => $tour_transport ?? '',
+            "yoil_0" => $yoil_0 ?? '',
+            "yoil_1" => $yoil_1 ?? '',
+            "yoil_2" => $yoil_2 ?? '',
+            "yoil_3" => $yoil_3 ?? '',
+            "yoil_4" => $yoil_4 ?? '',
+            "yoil_5" => $yoil_5 ?? '',
+            "yoil_6" => $yoil_6 ?? '',
+            "guide_lang" => $guide_lang ?? '',
         ];
 
         return $data;
@@ -470,9 +580,7 @@ class TourRegistController extends BaseController
         $html = '<tbody>';
 
         $i = 1;
-        foreach ($fresult4
-
-                 as $frow) {
+        foreach ($fresult4 as $frow) {
             $yoilStr = $this->getYoilString($frow);
 
             $fsql2 = "SELECT a.*, b.* 
