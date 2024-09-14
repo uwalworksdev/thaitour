@@ -82,10 +82,13 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_tourRegist", static function ($routes) {
         $routes->get("list_all", "TourRegistController::list");
-        $routes->get("write", "TourRegistController::write");
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         $routes->get("list_tours", "TourRegistController::list_tours");
         $routes->get("list_golf", "TourRegistController::list_golfs");
+        $routes->get("write", "TourRegistController::write");
+        $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
+        $routes->get("write_golf", "TourRegistController::write_golf");
+        $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("_tourStay", "TourRegistController::list");
         $routes->post("del", "TourRegistController::del");
         $routes->post("ajax_del", "TourRegistController::ajax_del");

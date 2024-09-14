@@ -114,13 +114,13 @@
                         <td class="label">상태</td>
                         <td class="inbox">
                             <p><input name="is_view_y" class="type_chker" id="is_view_y" type="checkbox"
-                                      value="Y" <? if ($is_view_y == "Y") echo "checked"; ?>> <label
+                                      value="Y" <?php if ($is_view_y == "Y") echo "checked"; ?>> <label
                                         for="state_chker_1">사용</label></p>
                             <p><input name="is_view_n" class="type_chker" id="is_view_n" type="checkbox"
-                                      value="Y" <? if ($is_view_n == "Y") echo "checked"; ?>> <label
+                                      value="Y" <?php if ($is_view_n == "Y") echo "checked"; ?>> <label
                                         for="state_chker_2">사용안함</label></p>
                             <p><input name="best" class="type_chker" id="best" type="checkbox"
-                                      value="Y" <? if ($best == "Y") echo "checked"; ?>> <label
+                                      value="Y" <?php if ($best == "Y") echo "checked"; ?>> <label
                                         for="state_chker_3">베스트</label></p>
                         </td>
                     </tr>
@@ -129,33 +129,25 @@
                         <td class="inbox">
                             <div class="r_box">
                                 <select id="" name="search_category" class="input_select" style="width:112px">
-                                    <option value="product_name" <? if ($search_category == "product_name") {
+                                    <option value="product_name" <?php if ($search_category == "product_name") {
                                         echo "selected";
-                                    } ?>>상품명
+                                    } ?> >
+                                        상품명
                                     </option>
-                                    <option value="product_air" <? if ($search_category == "product_air") {
+                                    <option value="product_air" <?php if ($search_category == "product_air") {
                                         echo "selected";
-                                    } ?>>이용항공
+                                    } ?> >
+                                        이용항공
                                     </option>
-                                    <option value="phone" <? if ($search_category == "phone") {
+                                    <option value="phone" <?php if ($search_category == "phone") {
                                         echo "selected";
-                                    } ?>>담당자 전화번호
+                                    } ?> >
+                                        담당자 전화번호
                                     </option>
-                                    <!-- <option value="product_code" <? if ($search_category == "product_code") {
+                                    <option value="product_code" <?php if ($search_category == "product_code") {
                                         echo "selected";
-                                    } ?>>상품코드</option> -->
-                                    <!--option value="product_code_name_4" <? if ($search_category == "product_code_name_4") {
-                                        echo "selected";
-                                    } ?>>코스명</option>
-											<option value="product_code_name_1" <? if ($search_category == "product_code_name_1") {
-                                        echo "selected";
-                                    } ?>>여행분류</option>
-											<option value="product_code_name_2" <? if ($search_category == "product_code_name_2") {
-                                        echo "selected";
-                                    } ?>>지역분류</option-->
-                                    <option value="product_code" <? if ($search_category == "product_code") {
-                                        echo "selected";
-                                    } ?>>상품코드
+                                    } ?> >
+                                        상품코드
                                     </option>
                                 </select>
                                 <input type="text" id="search_name" name="search_name"
@@ -298,13 +290,13 @@
                     </div>
                     <div class="right_btn">
                         <button type="button" class="btn_filter" onclick="orderBy_set('1');"><img
-                                    src="../_images/common/filter.png" alt="">순위순
+                                    src="/images/admin/common/filter.png" alt="">순위순
                         </button>
                         <button type="button" class="btn_filter" onclick="orderBy_set('2');"><img
-                                    src="../_images/common/filter.png" alt="">최신순
+                                    src="/images/admin/common/filter.png" alt="">최신순
                         </button>
                         <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
-                                    src="../_images/common/filter.png" alt="">예약순
+                                    src="/images/admin/common/filter.png" alt="">예약순
                         </button>
                     </div>
 
