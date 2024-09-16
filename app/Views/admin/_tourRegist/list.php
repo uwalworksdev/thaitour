@@ -128,7 +128,7 @@
                         <td class="label">검색어</td>
                         <td class="inbox">
                             <div class="r_box">
-                                <select id="" name="search_category" class="input_select" style="width:112px">
+                                <select id="" name="search_category" class="input_select" style="width:180px">
                                     <option value="product_name" <?php if ($search_category == "product_name") {
                                         echo "selected";
                                     } ?> >

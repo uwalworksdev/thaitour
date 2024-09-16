@@ -114,13 +114,13 @@
                             <td class="label">상태</td>
                             <td class="inbox">
                                 <p><input name="is_view_y" class="type_chker" id="is_view_y" type="checkbox"
-                                          value="Y" <? if ($is_view_y == "Y") echo "checked"; ?>> <label
+                                          value="Y" <?php if ($is_view_y == "Y") echo "checked"; ?>> <label
                                             for="state_chker_1">사용</label></p>
                                 <p><input name="is_view_n" class="type_chker" id="is_view_n" type="checkbox"
-                                          value="Y" <? if ($is_view_n == "Y") echo "checked"; ?>> <label
+                                          value="Y" <?php if ($is_view_n == "Y") echo "checked"; ?>> <label
                                             for="state_chker_2">사용안함</label></p>
                                 <p><input name="best" class="type_chker" id="best" type="checkbox"
-                                          value="Y" <? if ($best == "Y") echo "checked"; ?>> <label
+                                          value="Y" <?php if ($best == "Y") echo "checked"; ?>> <label
                                             for="state_chker_3">베스트</label></p>
                             </td>
                         </tr>
@@ -129,7 +129,7 @@
                             <td class="label">검색어</td>
                             <td class="inbox">
                                 <div class="r_box">
-                                    <select id="" name="search_category" class="input_select" style="width:112px">
+                                    <select id="" name="search_category" class="input_select" style="width:180px">
                                         <option value="product_name" <?php if ($search_category == "product_name") {
                                             echo "selected";
                                         } ?> >
