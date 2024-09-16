@@ -183,7 +183,7 @@
                                     <td rowspan=7>
                                         <?php for ($i = 1; $i <= 6; $i++) { ?>
                                             <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
-                                                   style="width:500px;margin-bottom:10px"/>
+                                                   style="width:90%;margin-bottom:10px"/>
                                             <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox
                                                                                                  name="del_<?= $i ?>"
                                                                                                  value='Y'><a
@@ -233,7 +233,7 @@
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="text"
-                                               value="<?= $minium_people_cnt ?>" style="width:500px"/>
+                                               value="<?= $minium_people_cnt ?>" style="width:90%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -254,7 +254,7 @@
                                     <th>대표도시</th>
                                     <td>
                                         <input id="capital_city" name="capital_city" class="input_txt" type="text"
-                                               value="<?= $capital_city ?>" style="width:200px"/>
+                                               value="<?= $capital_city ?>" style="width:40%"/>
                                     </td>
                                 </tr>
 
@@ -268,12 +268,12 @@
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
-                                            <option value='Y' <? if ($is_view == "Y") {
+                                            <option value='Y' <?php if ($is_view == "Y") {
                                                 echo "selected";
                                             } ?> >
                                                 사용
                                             </option>
-                                            <option value='N' <? if ($is_view == "N") {
+                                            <option value='N' <?php if ($is_view == "N") {
                                                 echo "selected";
                                             } ?> >
                                                 사용안함
@@ -393,7 +393,7 @@
                                     <th>옵션상품추가</th>
                                     <td colspan="3">
                                         <input id="active_list" name="active_list" class="input_txt" type="text"
-                                               value="<?= $active_list ?>" style="width:400px"/>
+                                               value="<?= $active_list ?>" style="width:80%"/>
                                         <a href="javascript:active_add_it();" class="btn btn-primary">추가</a>
                                     </td>
                                 </tr>
@@ -434,14 +434,11 @@
                                     <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
-                                            <?php if (isset($row_m['maintitle1'])) { ?>
-                                                <?= $row_m['maintitle1'] ?>
                                                 <input type="checkbox" name="product_best"
                                                        id="product_best"
-                                                       value="Y" <?php if ($row["product_best"] == "Y") {
+                                                       value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
                                                     echo "checked";
                                                 } ?>/>
-                                            <?php } ?>
                                         <?php endforeach; ?>
                                     </td>
                                     <th>우선순위</th>
@@ -464,15 +461,15 @@
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">
                                         <input type="text" name="adult_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
+                                               style="width:75%"
                                                value="<?= isset($row) ? $row["adult_text"] : '' ?>"/>
                                         <span style="margin-right:20px;"></span>
                                         <input type="text" name="kids_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
+                                               style="width:75%"
                                                value="<?= isset($row) ? $row["kids_text"] : '' ?>"/>
                                         <span style="margin-right:20px;"></span>
                                         <input type="text" name="baby_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
+                                               style="width:75%"
                                                value="<?= isset($row) ? $row["baby_text"] : '' ?>"/>
                                         <span style="margin-right:20px;"></span>
                                     </td>
@@ -978,18 +975,18 @@
                                     <a href="list_honeymoon?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                        class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                                 class="txt">리스트</span></a>
-                                    <? if ($product_idx == "") { ?>
+                                    <?php if ($product_idx == "") { ?>
                                         <a href="javascript:send_it()" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-cog"></span><span
                                                     class="txt">등록</span></a>
-                                    <? } else { ?>
+                                    <?php } else { ?>
                                         <a href="javascript:send_it()" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-cog"></span><span
                                                     class="txt">수정</span></a>
                                         <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-trash"></span><span
                                                     class="txt">완전삭제</span></a>
-                                    <? } ?>
+                                    <?php } ?>
                                 </li>
                             </ul>
                         </div>

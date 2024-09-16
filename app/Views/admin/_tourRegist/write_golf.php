@@ -311,11 +311,11 @@
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
-                                            <option value='Y' <? if ($is_view == "Y") {
+                                            <option value='Y' <?php if ($is_view == "Y") {
                                                 echo "selected";
                                             } ?>>사용
                                             </option>
-                                            <option value='N' <? if ($is_view == "N") {
+                                            <option value='N' <?php if ($is_view == "N") {
                                                 echo "selected";
                                             } ?>>사용안함
                                             </option>
@@ -431,14 +431,11 @@
                                     <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
-                                            <?php if (isset($row_m['maintitle1'])) { ?>
-                                                <?= $row_m['maintitle1'] ?>
                                                 <input type="checkbox" name="product_best"
                                                        id="product_best"
-                                                       value="Y" <?php if ($row["product_best"] == "Y") {
+                                                       value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
                                                     echo "checked";
                                                 } ?>/>
-                                            <?php } ?>
                                         <?php endforeach; ?>
                                     </td>
                                     <th>우선순위</th>
@@ -945,17 +942,17 @@
                     <li class="left"></li>
                     <li class="right_sub">
 
-                        <a href="list_golf.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                        <a href="list_golf?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                            class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                        <? if ($product_idx == "") { ?>
+                        <?php if ($product_idx == "") { ?>
                             <a href="javascript:send_it()" class="btn btn-default"><span
                                         class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                        <? } else { ?>
+                        <?php } else { ?>
                             <a href="javascript:send_it()" class="btn btn-default"><span
                                         class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                         class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
-                        <? } ?>
+                        <?php } ?>
                     </li>
                 </ul>
             </div>

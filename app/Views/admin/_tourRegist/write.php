@@ -40,7 +40,7 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="list?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                                <a href="list_all?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <? if ($product_idx) { ?>
@@ -956,21 +956,21 @@
                                 <li class="left"></li>
                                 <li class="right_sub">
 
-                                    <a href="list.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                                    <a href="list_all?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                        class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                                 class="txt">리스트</span></a>
-                                    <? if ($product_idx == "") { ?>
+                                    <?php if ($product_idx == "") { ?>
                                         <a href="javascript:send_it()" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-cog"></span><span
                                                     class="txt">등록</span></a>
-                                    <? } else { ?>
+                                    <?php } else { ?>
                                         <a href="javascript:send_it()" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-cog"></span><span
                                                     class="txt">수정</span></a>
                                         <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-trash"></span><span
                                                     class="txt">완전삭제</span></a>
-                                    <? } ?>
+                                    <?php } ?>
                                 </li>
                             </ul>
                         </div>
@@ -1047,7 +1047,7 @@
                                                 <td class="tac"><?= $frow["code_name"] ?></td>
                                                 <td class="tac"><?= $frow["cnt"] ?>일차</td>
                                                 <td>
-                                                    <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
+                                                    <a href="detailwrite_new?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
                                                        class="btn btn-default">상세내역관리</a>
                                                     <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
                                                         <input type="file" hidden name="fileInput"
@@ -1063,7 +1063,7 @@
                                             <td class="tac">미등록</td>
                                             <td class="tac">미등록</td>
                                             <td>
-                                                <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
+                                                <a href="detailwrite_new?product_idx=<?= $product_idx ?>&air_code="
                                                    class="btn btn-default">상세내역관리</a>
                                                 <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
                                                     <!-- <button type="button">Tải lên lịch trình</button> -->
