@@ -105,7 +105,7 @@
 				<h2>1:1 여행상담</h2>
 				<div class="menus">
 					<ul>
-						<li><a href="/AdmMaster/_qna/list" class="btn btn-default"><span
+						<li><a href="/AdmMaster/_contact/list" class="btn btn-default"><span
 									class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
 						<?php if ($idx != "") { ?>
 							<li><a href="javascript:send_it()" class="btn btn-default"><span
@@ -124,9 +124,10 @@
 
 		</header>
 		<!-- // headerContainer -->
-		<form name=frm id="frm" action="write_ok" method=post target="hiddenFrame">
+		<form name="frm" id="frm" class="form_contact" action="write_ok" method=post target="hiddenFrame">
 
 			<input type=hidden name="idx" value='<?= $idx ?>'>
+			<input type="hidden" name="star" id="star" value="5">
 
 			<div id="contents">
 				<div class="listWrap_noline">
@@ -160,12 +161,36 @@
 									</td>
 									<th>여행자 성함</th>
 									<td>
-										<div class="tra_name flex">
-											<input type="text" value="<?= $user_name ?>" name="user_name" id="user_name"
-												placeholder="한글이름">
-										</div>
+                                        <div style="display: flex; gap: 10px;">
+                                            <div class="tra_name flex">
+                                                <input type="text" value="<?= $user_name ?>" name="user_name" id="user_name" style="width: 250px;"
+                                                    placeholder="한글이름">
+                                            </div>
+                                            <div class="tra_name flex">
+                                                <input type="text" value="<?= $user_id ?>" name="user_id" id="user_id" style="width: 250px;" disabled>
+                                            </div>
+                                        </div>
 									</td>
 								</tr>
+								<tr>
+									<th>정확성</th>
+									<td>
+										<select class="form_input_" name="accuracy" id="accuracy">
+											<option value="">선택해주세요.</option>
+											<option value="test1">test1</option>
+											<option value="test2">test2</option>
+										</select>
+									</td>
+									<th>신속성</th>
+									<td>
+										<select class="form_input_" name="speed" id="speed">
+											<option value="">선택해주세요.</option>
+											<option value="test1">test1</option>
+											<option value="test2">test2</option>
+										</select>
+									</td>
+								</tr>
+
 								<tr>
 									<th>이메일</th>
 									<td>
@@ -286,7 +311,7 @@
 									<th>첨부파일</th>
 									<td colspan="3">
 										<input type="file" name="ufile1">
-										<a href="<?= base_url('image/qna/' . $ufile1) ?>" download="<?= $rfile1 ?>"><?= $rfile1 ?></a>
+										<a href="<?= base_url('image/contact/' . $ufile1) ?>" download="<?= $rfile1 ?>"><?= $rfile1 ?></a>
 									</td>
 								</tr>
 							</tbody>
@@ -318,8 +343,8 @@
 		</form>
 		<div class="inner cmt_area" style="">
 			<form action="" id="frm" name="com_form" class="com_form">
-				<input type="hidden" name="code" id="code" value="qna">
-				<input type="hidden" name="r_code" id="r_code" value="qna">
+				<input type="hidden" name="code" id="code" value="contact">
+				<input type="hidden" name="r_code" id="r_code" value="contact">
 				<input type="hidden" name="r_idx" id="r_idx" value="<?= $idx ?>">
 				<div class="comment_box-input flex">
 					<textarea class="cmt_input" name="comment" id="comment" placeholder="댓글을 입력해주세요."></textarea>
@@ -340,6 +365,34 @@
 	}
 </script>
 <script>
+	 document.addEventListener('DOMContentLoaded', function () {
+		var selected = document.querySelector('.select-selected');
+		var items = document.querySelector('.select-items');
+		var options = items.querySelectorAll('div');
+		var star = document.querySelector('#star');
+
+		selected.addEventListener('click', function () {
+			items.classList.toggle('select-hide');
+		});
+
+		options.forEach(function (option) {
+			option.addEventListener('click', function () {
+				var value = this.getAttribute('data-value');
+				star.value = value;
+				selected.innerHTML = this.innerHTML;
+				items.classList.add('select-hide');
+			});
+		});
+
+		document.addEventListener('click', function (event) {
+			if (!event.target.matches('.select-selected')) {
+				var openDropdowns = document.querySelectorAll('.select-items');
+				openDropdowns.forEach(function (dropdown) {
+					dropdown.classList.add('select-hide');
+				});
+			}
+		});
+	});
 
 	$('.tick_ch input[type="radio"]').on('change', function () {
 		var idx = $(this).parent().index();
@@ -462,7 +515,7 @@
 			type: "GET",
 			url: "/comment/comment_list",
 			data: {
-				"r_code": "qna",
+				"r_code": "contact",
 				"r_idx": "<?= $idx ?>",
 				"role": "admin"
 			},
@@ -499,6 +552,7 @@
 			}
 		})
 	}
+
 	function handleCmtEdit(idx) {
 		const displayChk = document.querySelector("#rrp_edit_" + idx).style.display;
 		if (displayChk == '') {

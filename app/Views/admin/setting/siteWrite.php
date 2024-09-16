@@ -35,8 +35,7 @@
                 <h2>쇼핑몰 기본설정</h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="javascript:send_its()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>
+                        <li><a href="javascript:send_its()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>
                     </ul>
                 </div>
             </div>

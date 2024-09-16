@@ -60,6 +60,16 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_qna", static function ($routes) {
         $routes->get("list", "Admin\QnaController::list");
+        $routes->get("write", "Admin\QnaController::write");
+        $routes->post("write_ok", "Admin\QnaController::write_ok");
+        $routes->post("delete", "Admin\QnaController::delete");
+    });
+
+    $routes->group("_contact", static function ($routes) {
+        $routes->get("list", "Admin\ContactController::list");
+        $routes->get("write", "Admin\ContactController::write");
+        $routes->post("write_ok", "Admin\ContactController::write_ok");
+        $routes->post("delete", "Admin\ContactController::delete");
     });
 
     $routes->group("_code", static function ($routes) {
@@ -156,9 +166,14 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("policy", "Policy::WriteView");
     });
 });
+
 $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
+    $routes->post("get_travel_types", "AjaxController::get_travel_types");
 });
+
+$routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
+
 $routes->get('/', 'Home::index');
 $routes->post('/file_uploader', 'FileUpload::file_uploader');
 $routes->group("tools", static function ($routes) {
@@ -223,10 +238,16 @@ $routes->group("community", static function ($routes) {
     $routes->get("questions", "Community::questions");
     $routes->get("announcement", "Community::announcement");
     $routes->get("customer_center", "Community::customer_center");
+
     $routes->get("customer_center/notify", "Community::customer_center_notify");
     $routes->get("customer_center/list_notify", "Community::list_notify");
+
     $routes->get("customer_center/notify_table", "Community::notify_table");
+    $routes->post("customer_center/notify_table_ok", "Community::notify_table_ok");
+
     $routes->get("customer_center/customer_speak", "Community::customer_speak");
+    $routes->post("customer_center/customer_speak_ok", "Community::customer_speak_ok");
+
     $routes->get("announcement_view", "Community::announcement_view");
 });
 $routes->group("contact", static function ($routes) {
