@@ -20,7 +20,7 @@
             width: 500px;
         }
     </style>
-    <?php $back_url = "write"; ?>
+<?php $back_url = "write"; ?>
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -260,11 +260,11 @@
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
-                                            <option value='Y' <? if ($is_view == "Y") {
+                                            <option value='Y' <?php if ($is_view == "Y") {
                                                 echo "selected";
                                             } ?>>사용
                                             </option>
-                                            <option value='N' <? if ($is_view == "N") {
+                                            <option value='N' <?php if ($is_view == "N") {
                                                 echo "selected";
                                             } ?>>사용안함
                                             </option>
@@ -413,14 +413,11 @@
                                     <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
-                                            <?php if (isset($row_m['maintitle1'])) { ?>
-                                                <?= $row_m['maintitle1'] ?>
-                                                <input type="checkbox" name="product_best"
-                                                       id="product_best"
-                                                       value="Y" <?php if ($row["product_best"] == "Y") {
-                                                    echo "checked";
-                                                } ?>/>
-                                            <?php } ?>
+                                            <input type="checkbox" name="product_best"
+                                                   id="product_best"
+                                                   value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
+                                                echo "checked";
+                                            } ?>/>
                                         <?php endforeach; ?>
                                     </td>
                                     <th>우선순위</th>
@@ -1054,7 +1051,8 @@
                                                        class="btn btn-default">상세내역관리</a>
                                                     <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
                                                         <input type="file" hidden name="fileInput"
-                                                               data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput" accept=".json">
+                                                               data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput"
+                                                               accept=".json">
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
