@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
 
-class TourSuggestionController extends BaseController
+class TourSuggestionSubController extends BaseController
 {
     private $tourRegistModel;
     private $Bbs;
@@ -27,15 +28,17 @@ class TourSuggestionController extends BaseController
 
     public function list()
     {
-        $code = $_POST['code'] ?? '';
+        $code = $_POST['code'] ?? "";
+        $parent_code = $_POST["parent_code"] ?? '';
+
         $product_code_no = '';
         $product_code_name = '';
         if ($code == "") {
             $code = "0";
         } else {
             $sql1 = "select t1.*, t2.code_no as product_code_no from tbl_code t1
-                    left join tbl_code t2 on t1.ref_product_code_idx = t2.code_no
-                    where t1.code_no = '$code' ";
+                left join tbl_code t2 on t1.ref_product_code_idx = t2.code_no
+                where t1.code_no = '$code' ";
 
             $result = $this->connect->query($sql1);
 
@@ -45,9 +48,19 @@ class TourSuggestionController extends BaseController
             $product_code_name = $row1['code_name'];
         };
 
-        $sql = " select  * from tbl_code where parent_code_no = 29 and depth = '2' and status = 'Y' order by  onum desc, CASE WHEN code_no = 2901 THEN 0 ELSE 1 END ";
+        $sql = "  select  * from tbl_code where code_gubun = 'suggestion' and depth = '2' and status = 'Y' order by onum desc ";
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
+
+        $sql = "select  * from tbl_code where parent_code_no = '$parent_code' and depth = '3' and status = 'Y' order by onum desc ";
+        $result2 = $this->connect->query($sql);
+        $result2 = $result2->getResultArray();
+
+        if ($code != '0' && isset($code)) {
+            $replace_code = $code;
+        } else {
+            $replace_code = $parent_code;
+        }
 
         $sql = "select  a.product_name, 
                         a.product_idx, 
@@ -57,12 +70,11 @@ class TourSuggestionController extends BaseController
                         b.code_idx
                         from tbl_product_mst a, tbl_main_disp b
                         where a.product_idx    =  b.product_idx
-                        and b.code_no    = '$code' 
-                        order by b.onum desc, b.code_idx desc
-        ";
+                        and b.code_no    = '$replace_code' 
+                        order by b.onum desc, b.code_idx desc";
 
-        $result2 = $this->connect->query($sql);
-        $result2 = $result2->getResultArray();
+        $result3 = $this->connect->query($sql);
+        $result3 = $result3->getResultArray();
 
         $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no not in ('1308','1309')  and status='Y' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql);
@@ -82,8 +94,11 @@ class TourSuggestionController extends BaseController
         $data = [
             'row1' => $row1 ?? [],
             'code' => $code,
+            'parent_code' => $parent_code,
+            'replace_code' => $replace_code,
             'result' => $result,
             'result2' => $result2,
+            'result3' => $result3,
             'fresult' => $fresult,
             'fresult2' => $fresult2,
             'fresult3' => $fresult3,
@@ -93,14 +108,13 @@ class TourSuggestionController extends BaseController
             'product_code_name' => $product_code_name
         ];
 
-        return view('admin/_tourSuggestion/list', $data);
+        return view('admin/_tourSuggestionSub/list', $data);
     }
 
-    public function write()
+    public function create()
     {
         $data = [];
 
-        return view('admin/_tourSuggestion/write', $data);
+        return view('admin/_tourSuggestionSub/write', $data);
     }
-
 }

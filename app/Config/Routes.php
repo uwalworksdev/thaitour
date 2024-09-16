@@ -100,23 +100,13 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_tourSuggestion", static function ($routes) {
-        $routes->get("list", "TourSuggestionController::list_admin");
-        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
-        $routes->get("list_tours", "TourSuggestionController::list_admin");
-        $routes->get("list_golf", "TourSuggestionController::list_admin");
-        $routes->get("_tourStay", "TourSuggestionController::list_admin");
-        $routes->post("del", "TourSuggestionController::del");
-        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+        $routes->get("list", "TourSuggestionSubController::list");
+        $routes->get("write", "TourSuggestionController::write");
     });
 
     $routes->group("_tourSuggestionSub", static function ($routes) {
-        $routes->get("list", "TourSuggestionController::list_admin");
-        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
-        $routes->get("list_tours", "TourSuggestionController::list_admin");
-        $routes->get("list_golf", "TourSuggestionController::list_admin");
-        $routes->get("_tourStay", "TourSuggestionController::list_admin");
-        $routes->post("del", "TourSuggestionController::del");
-        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+        $routes->get("list", "TourSuggestionSubController::list");
+        $routes->get("write", "TourSuggestionSubController::write");
     });
 
     $routes->group("_tourLevel", static function ($routes) {
