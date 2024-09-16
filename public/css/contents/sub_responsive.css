@@ -1,9 +1,11 @@
 @media screen and (max-width: 850px) {
+
   /* section_vehicle */
   .swiper-button-next-vehicle,
   .swiper-button-prev-vehicle {
-      display: none;
+    display: none;
   }
+
   /* section_vehicle_1 */
   .section_vehicle_1 {
     padding-bottom: 30rem;
@@ -13,27 +15,35 @@
   .vehicle_ttl {
     font-size: 3.2rem;
   }
+
   .vehicle_ttl span {
     font-size: 2.5rem;
   }
+
   .section_vehicle_2 {
     font-family: "Noto Sans CJK KR";
   }
-  .section_vehicle_1 .body_inner, .section_vehicle_2 .body_inner {
+
+  .section_vehicle_1 .body_inner,
+  .section_vehicle_2 .body_inner {
     padding: 0 3rem;
   }
+
   .section_vehicle_2__wrap {
     margin-top: -30rem;
     padding: 5rem 0 17rem;
   }
+
   .section_vehicle_2_1 {
     padding: 0 3.2rem;
   }
+
   .section_vehicle_2_1__head__ttl span {
     margin-left: 0;
     display: inline-block;
     width: 100%;
   }
+
   .section_vehicle_2_1__head__icon a {
     width: 16rem;
     height: 6.2rem;
@@ -42,65 +52,82 @@
     gap: 1rem;
     padding-right: 0.5rem;
   }
+
   .section_vehicle_2_1__head__icon a img {
     width: 3.9rem;
     height: 3.9rem;
   }
+
   .section_vehicle_2_1__body {
     margin-top: 6rem;
     font-size: 2.8rem;
     gap: 3rem;
     flex-direction: column;
   }
+
   .place_chosen {
     grid-template-columns: calc(50% - 4rem) 8rem calc(50% - 4rem);
     row-gap: 2rem;
   }
-  .place_chosen > :nth-child(5) {
+
+  .place_chosen> :nth-child(5) {
     display: none;
   }
-  .place_chosen > :nth-child(4), .place_chosen > :nth-child(6) {
+
+  .place_chosen> :nth-child(4),
+  .place_chosen> :nth-child(6) {
     grid-column: 1 / span 3;
   }
+
   .place_chosen .bg_gray {
     border-radius: 0.4rem;
     padding: 2.7rem 3rem;
     gap: 2rem;
   }
+
   .place_chosen__start img,
   .place_chosen__end img {
     width: 1.9rem;
     height: 2.2rem;
   }
+
   .place_chosen__date img {
     width: 1.8rem;
     height: 2.1rem;
   }
+
   .place_chosen__people img {
     width: 2.8rem;
     height: 3.4rem;
   }
+
   .place_chosen__icon img {
     width: 3rem;
     height: 3rem;
   }
+
   .view_map_btn {
     display: block;
   }
+
   .view_map_btn img {
     width: 100%;
   }
+
   /* section_vehicle_2_2 */
   .section_vehicle_2_2 {
     margin-top: 10rem;
   }
+
   .section_vehicle_2_2__head__ttl img {
     width: 2.7rem;
   }
+
   .section_vehicle_2_2__head__tabs {
     gap: 1.1rem;
     margin-top: 4rem;
   }
+
   .section_vehicle_2_2__head__tabs__item {
     border-width: 0.2rem;
     width: 15.6rem;
@@ -108,96 +135,127 @@
     border-radius: 3.6rem;
     font-size: 2.8rem;
   }
+
   .section_vehicle_2_2__head__tabs__item.active {
     background-color: rgb(39, 158, 235);
     color: #fff;
     border: none;
   }
+
   .section_vehicle_2_2__airport {
     margin-top: 6rem;
   }
-  .section_vehicle_2_2__airport > span {
+
+  .section_vehicle_2_2__airport>span {
     margin-right: 7.2rem;
   }
-  .section_vehicle_2_2__airport input[type="radio"] + label {
+
+  .section_vehicle_2_2__airport input[type="radio"]+label {
     padding-left: 4.9rem;
     font-size: 2.8rem;
   }
-  .section_vehicle_2_2__airport input[type="radio"] + label::before {
+
+  .section_vehicle_2_2__airport input[type="radio"]+label::before {
     border-width: 0.2rem;
     width: 3.8rem;
     height: 3.8rem;
   }
+
   .section_vehicle_2_3 {
     margin-top: 10rem;
     padding-bottom: 10rem;
   }
+
   .section_vehicle_2_3__head__ttl {
     padding-bottom: 3rem;
     border-bottom-width: 0.2rem;
   }
+
   .vehicle_list {
     margin-top: 5rem;
   }
-  .vehicle_list, .vehicle_list > tbody, .vehicle_list > tbody > tr, .vehicle_list > tbody > tr > td {
+
+  .vehicle_list,
+  .vehicle_list>tbody,
+  .vehicle_list>tbody>tr,
+  .vehicle_list>tbody>tr>td {
     display: block;
   }
+
   .vehicle_list tr td:last-child {
     vertical-align: middle;
   }
-  .vehicle_list tr + tr td {
+
+  .vehicle_list tr+tr td {
     padding: 0;
   }
-  .vehicle_list tr + tr {
+
+  .vehicle_list tr+tr {
     padding-top: 8rem;
   }
+
   .vehicle_image {
     border-width: 0.2rem;
     border-radius: 1.6rem;
   }
+
   .vehicle_info {
     padding: 3.1rem 0 5rem;
   }
+
   .vehicle_info table {
     margin-top: 2rem;
   }
-  .vehicle_info table td, .vehicle_info table td > img {
+
+  .vehicle_info table td,
+  .vehicle_info table td>img {
     vertical-align: middle;
   }
-  .vehicle_info table td > img {
+
+  .vehicle_info table td>img {
     width: 2.3rem;
   }
-  .vehicle_info table tr + tr td {
+
+  .vehicle_info table tr+tr td {
     padding-top: 1.5rem;
   }
+
   .vehicle_info__name {
     font-size: 3rem;
   }
+
   .vehicle_info__item {
     font-size: 2.6rem;
   }
+
   .vehicle_price {
     font-size: 4rem;
   }
+
   .vehicle_price span {
     font-size: 3rem;
   }
+
   .vehicle_options {
     font-size: 2.6rem;
     margin-top: 2rem;
   }
+
   .vehicle_options__label__vehicle_cnt {
     margin-right: 2.9rem;
   }
+
   .vehicle_options__select {
     width: 17.2rem;
     height: 7.2rem;
     margin-right: 2rem;
   }
+
   .vehicle_options__label__vehicle_prd {
     padding-left: 12.4rem;
   }
-  input[type="checkbox"] + .vehicle_options__label__vehicle_prd::after {
+
+  input[type="checkbox"]+.vehicle_options__label__vehicle_prd::after {
     content: "";
     background-image: url(/images/ico/checkbox_1.png);
     background-size: 100% auto;
@@ -207,129 +265,164 @@
     left: 1.9rem;
     top: -2.2rem;
   }
-  input[type="checkbox"] + .vehicle_options__label__vehicle_prd::before {
+
+  input[type="checkbox"]+.vehicle_options__label__vehicle_prd::before {
     border: 0.2rem solid #dbdbdb;
     width: 8.2rem;
     height: 7.2rem;
   }
-  input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
+
+  input[type="checkbox"]:checked+.vehicle_options__label__vehicle_prd::after {
     content: "";
     background-image: url(/images/ico/checkbox_1_active.png);
   }
+
   .section_vehicle_2_4 {
     padding-bottom: 8rem;
     border-bottom: 0.2rem solid #dbdbdb;
   }
+
   .section_vehicle_2_4__head__ttl {
     font-size: 2.6rem;
     color: #555555;
     margin-top: 8rem;
   }
+
   .vehicle_ttl__link {
     font-size: 2.4rem;
     margin-left: 4rem;
   }
+
   .vehicle_synthetic {
     margin-top: 4.5rem;
   }
+
   .vehicle_synthetic {
     flex-wrap: wrap;
   }
-  .vehicle_synthetic > :nth-child(1) {
+
+  .vehicle_synthetic> :nth-child(1) {
     width: 20rem;
     padding-left: 6rem;
   }
-  .vehicle_synthetic > :nth-child(2) {
+
+  .vehicle_synthetic> :nth-child(2) {
     width: 20rem;
   }
-  .vehicle_synthetic > :nth-child(3) {
+
+  .vehicle_synthetic> :nth-child(3) {
     width: 6rem;
   }
-  .vehicle_synthetic > :nth-child(4) {
+
+  .vehicle_synthetic> :nth-child(4) {
     width: 20rem;
   }
-  .vehicle_synthetic > :nth-child(5) {
+
+  .vehicle_synthetic> :nth-child(5) {
     width: 6rem;
     padding-top: 4rem;
   }
-  .vehicle_synthetic > :nth-child(6) {
+
+  .vehicle_synthetic> :nth-child(6) {
     width: 32rem;
     padding-top: 4rem;
   }
-  .vehicle_synthetic > :nth-child(7) {
+
+  .vehicle_synthetic> :nth-child(7) {
     width: 28rem;
     padding-top: 4rem;
   }
+
   .vehicle_coupon {
     gap: 1rem;
     align-items: flex-end;
   }
-  .vehicle_synthetic__ttl, .vehicle_synthetic__txt {
-      font-size: 3rem;
+
+  .vehicle_synthetic__ttl,
+  .vehicle_synthetic__txt {
+    font-size: 3rem;
   }
+
   .vehicle_synthetic__ttl {
     margin-bottom: 4rem;
   }
+
   .minus_ico {
     width: 2.5rem;
     height: 0.6rem;
   }
+
   .equal_ico {
     width: 2.5rem;
     height: 1.6rem;
   }
+
   .equal_ico::after,
   .equal_ico::before {
     top: 1rem;
   }
+
   .equal_ico::before {
     top: 0;
   }
+
   .vehicle_all_price {
     font-size: 4rem;
   }
+
   .vehicle_all_price span {
     font-size: 3rem;
   }
-  .coupon_btn, .point_btn {
+
+  .coupon_btn,
+  .point_btn {
     border-radius: 3.1rem;
     height: 6.2rem;
     font-size: 2.6rem;
     width: 23rem;
   }
+
   .section_vehicle_2_4__foot {
     font-size: 2.6rem;
     margin-top: 6rem;
   }
+
   /* section_vehicle_2_5 */
   .section_vehicle_2_5 {
     padding: 8rem 0;
   }
+
   .section_vehicle_2_5__body {
     margin-top: 4.5rem;
     flex-direction: column;
   }
+
   .section_vehicle_2_5__body .include_box {
     margin-bottom: 6rem;
   }
+
   .section_vehicle_2_5__body .sub_label {
     margin-bottom: 3rem;
   }
+
   .section_vehicle_2_5__body .txt_box p {
     line-height: 1.5 !important;
     color: #757575 !important;
     display: flex;
     font-family: inherit !important;
   }
+
   .section_vehicle_2_5__body .sub_label i {
     width: 2.8rem;
     height: 2.8rem;
     margin-right: 1rem;
     background-size: 100% 100%;
   }
+
   .section_vehicle_2_5__body .include_box .sub_label i {
     background-image: url(/images/ico/view_ok_ico.png);
   }
+
   .section_vehicle_2_5__body .no_include_box .sub_label i {
     background-image: url(/images/ico/view_no_ico.png);
   }
@@ -338,15 +431,18 @@
   .section_vehicle_2_6 {
     padding: 7.5rem 0 0 0;
   }
+
   .section_vehicle_2_6__body {
     margin-top: 3.5rem;
     font-size: 2.8rem;
     font-weight: 600;
   }
-  .section_vehicle_2_6__body > ul {
+
+  .section_vehicle_2_6__body>ul {
     margin-left: 3rem;
   }
-  .section_vehicle_2_6__body > ul > li {
+
+  .section_vehicle_2_6__body>ul>li {
     list-style: decimal;
   }
 
@@ -354,16 +450,19 @@
   .section_vehicle_2_7 {
     padding: 11.5rem 0 0 0;
   }
+
   .section_vehicle_2_7__body table {
     margin-top: 2.8rem;
     border-top: 0.2rem solid #333333;
     display: block;
   }
+
   .section_vehicle_2_7__body table tr {
     border-bottom: 0.2rem solid #dddddd;
     display: block;
     padding: 4rem 0;
   }
+
   .section_vehicle_2_7__body table th,
   .section_vehicle_2_7__body table td {
     display: block;
@@ -371,66 +470,83 @@
     font-weight: 600;
     padding: 0;
   }
+
   .section_vehicle_2_7__body table th br {
     display: none;
   }
+
   .section_vehicle_2_7__body table td {
     font-weight: 600;
     margin-top: 3rem;
   }
+
   .meeting_time__date {
     margin-right: 2.5rem;
   }
+
   .meeting_time select {
     width: 16.8rem;
     height: 9rem;
     margin-left: 2.5rem;
     margin-right: 1rem;
   }
+
   .departure {
     gap: 3.5rem;
   }
+
   .section_vehicle_2_7 input[type="text"] {
     height: 9rem;
   }
+
   .departure__note {
     margin-top: 3.1rem;
     font-size: 2.6rem;
     font-weight: 400;
   }
+
   .destination {
     gap: 3.5rem;
   }
+
   .other_irregularities {
     height: 18rem;
   }
+
   .phone_number {
     gap: 2rem;
   }
-  .phone_number > * {
+
+  .phone_number>* {
     width: calc((100% - 4rem) / 3) !important;
   }
+
   .phone_number select {
     border: 0.2rem solid #757575;
     height: 9rem;
   }
+
   .contact_email {
     display: flex;
     gap: 0.5rem;
     align-items: center;
   }
-  .contact_email > select {
+
+  .contact_email>select {
     height: 9rem;
     width: calc((100% - 4rem) / 3) !important;
     margin-left: 1.5rem;
   }
-  .contact_email > input {
+
+  .contact_email>input {
     width: 20rem !important;
   }
+
   .section_vehicle_2_7__btn_wrap {
     margin-top: 10rem;
     gap: 2rem;
   }
+
   .section_vehicle_2_7__btn_wrap .btn_add_cart,
   .section_vehicle_2_7__btn_wrap .btn_submit {
     width: auto;
@@ -438,5 +554,244 @@
     height: 10rem;
     border-radius: 0.4rem;
     font-size: 2.8rem;
+  }
+  
+  .img_box_re_img {
+    width: 100%;
+    max-height: 61.5rem;
+  }
+
+  .text_img_box_re {
+    color: white;
+    z-index: 9899999;
+    position: absolute;
+    font-size: 3.8rem;
+    line-height: 1.4;
+    bottom: 3rem;
+    left: 3rem;
+    font-weight: bold;
+  }
+
+  .swiper-main-tools .play_pause {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #dbdbdb;
+    border-radius: 50%;
+    background-color: #ffffff;
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+  }
+
+  .text_img_box_re {
+    color: white;
+    z-index: 9899999;
+    position: absolute;
+    font-size: 3.8rem;
+    line-height: 1.4;
+    bottom: 5rem;
+    left: 5rem;
+    font-weight: bold;
+  }
+
+  .tag-red {
+    position: absolute;
+    left: 5rem;
+    transform: translateX(-3rem);
+    top: 3rem;
+    transform: translateY(1.5rem);
+    z-index: 99999;
+  }
+
+  .pause {
+    width: 1.3rem;
+    height: 2.3rem;
+  }
+
+  .play {
+    width: 1.3rem;
+    height: 2.3rem;
+  }
+
+  .ticket-tool-l>p {
+    font-size: 3.8rem;
+    font-weight: bold;
+  }
+
+  .ticket-tool {
+    padding-top: 8rem;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ticket-tool-r {
+    padding-top: 3rem;
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ticket-tool-r input {
+    border-radius: 5rem;
+    height: 6.6rem !important;
+  }
+
+  .ticket-s-i {
+    position: absolute;
+    right: 3rem;
+    width: 3rem;
+    height: 3rem;
+    /* padding: 0 2rem; */
+    top: 4.5rem;
+    font-size: 2.8rem;
+  }
+
+  .btn-gr-ticket button {
+    border: 1px solid #dcdcdc;
+    padding: 1rem 1.8rem;
+    font-size: 2.2rem;
+    color: #757575;
+    border-radius: 30px;
+  }
+
+  .list-ticket-grid {
+    display: grid;
+    grid-template-columns: 33.9rem 33rem;
+  }
+
+  .list-ticket-item {
+    max-width: 32rem;
+    margin-bottom: 4rem;
+  }
+
+  .list-ticket-item .img_box img {
+    min-width: 33rem;
+  }
+
+  .breakcum p {
+    font-size: 2.4rem !important;
+    margin: 2rem 0;
+    color: #757575;
+  }
+
+  .prd_name p {
+    font-size: 2.8rem;
+    color: #222222;
+    letter-spacing: -0.04em;
+  }
+
+  .prd_info__left>span {
+    font-size: 2.6rem;
+  }
+
+  .prd_info__right>span {
+    font-size: 2.6rem;
+  }
+
+  .prd_price_ko_m .prd_price {
+    font-size: 3.2rem !important;
+    color: #222222 !important;
+  }
+
+  .prd_info_m {
+    margin: 2.5rem 0 !important;
+  }
+
+  .ko_m_price {
+    font-size: 2.6rem !important;
+  }
+
+  .y_price {
+    font-weight: 500;
+  }
+
+  .select-tool select {
+    font-size: 2.6rem;
+  }
+
+
+
+  .select-tool select {
+    width: 100%;
+    height: 4rem;
+    font-size: 2.3rem;
+    padding-right: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right .3rem center;
+    background-size: 2.4rem;
+    padding-left: 0;
+    border-radius: .4rem;
+    outline: none;
+  }
+
+  .ico_star {
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-right: .5rem;
+  }
+
+  .prd_list_pagination__btn__text {
+    font-size: 2.8rem;
+  }
+
+  .prd_list_pagination__btn__pages {
+    font-size: 2.8rem;
+  }
+
+  .prd_list_pagination__btn {
+    font-weight: 500;
+    border-width: 2px !important;
+    height: 8rem !important;
+    width: 32rem !important;
+    border-radius: 50px !important;
+  }
+
+  .notice__ttl {
+    font-size: 3.2rem !important;
+  }
+
+  .notice_item__icon {
+    border-width: 2px !important;
+  }
+
+  .notice_swiper_btn {
+    border-width: 2px !important;
+  }
+
+  .prd_list_pagination__btn svg {
+    width: 3.5rem;
+    height: 3rem;
+  }
+
+  .body_inner {
+    padding: 0 2rem;
+    margin: 0 auto;
+  }
+
+  .mid-banner-ticket>.only_mo {
+    width: 100%;
+  }
+
+  .select-tool {
+    position: relative;
+    display: inline-block;
+    width: 16rem;
+    height: 4rem;
+    font-size: 1.6rem;
+  }
+
+  .list-ticket-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* display: flex;
+    flex-wrap: wrap; */
+    gap: 2rem;
+    padding-bottom: 100px;
   }
 }

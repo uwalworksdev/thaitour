@@ -47,15 +47,16 @@
             </div>
             <div class="sub-header-hotel-detail">
                 <div class="main">
-                    <a class="active" href="">숙소개요</a>
-                    <a href="">객실</a>
-                    <a href="">시설&서비스</a>
-                    <a href="">호텔 정책</a>
+                    <a class="active" href="">상품 정보</a>
+                    <a href="">상품예약</a>
+                    <a href="">상품설명</a>
+                    <a href="">위치정보</a>
                     <a href="">생생리뷰(159개)</a>
+                    <a href="">상품 Q&A</a>
                 </div>
                 <div class="btn-container">
                     <button>
-                        객실선택
+                        상품예약
                     </button>
                 </div>
             </div>
@@ -305,6 +306,8 @@
                         <span class="l-label">인원</span>
                         <span class="l-label2">2명</span>
                     </p>
+                    <button class="btn-price-content-normal"
+                        onclick="location.href='/product-golf/customer-form/1324'">예약하기</button>
                 </div>
                 <div class="right-main">
                     <div class="item-right">
@@ -319,15 +322,20 @@
                         <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>승용차 x 2대</p>
                         <span class="price-text text-gray">214,812원 (5,200바트)</span>
                     </div>
-                    <div class="item-right cus-border">
+                    <div class="item-right">
                         <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>SUV x 1대</p>
                         <span class="price-text text-gray">115,668원 (2,800바트)</span>
+                    </div>
+                    <div class="item-right cus-border">
+                        <p><span class="">쿠폰 적용</span></p>
+                        <span class="price-text">- 11,566원 (280바트)</span>
                     </div>
                     <div class="item-last-right">
                         <p>합계</p>
                         <p class="price-text">1,012,095<span>원(24,500바트)</span></p>
                     </div>
-                    <button style="width: 100%; height: 66px;">예약하기</button>
+                    <button class="btn-price-content"
+                        onclick="location.href='/product-golf/customer-form/1324'">예약하기</button>
                 </div>
             </div>
             <h3 class="title-size-24">상품설명</h3>
@@ -350,20 +358,16 @@
                     <span>- 라운딩 전/후로 4회의 식사와 간식이 제공됩니다.</span>
                     <br>
                     <span>[식사 이용 시간]</span><br>
-                <ul class="text-gray">
-                    <li>아침 : 06:00 AM ~ 10:30 AM</li>
-                    <li>점심 : 10:30 AM ~ 15:30 PM</li>
-                    <li>저녁 : 15:30 AM ~ 19:30 PM ( 마지막 주문 시간 18:00 PM)</li>
-                </ul>
+                    <span>- 아침 : 06:00 AM ~ 10:30 AM</span><br>
+                    <span>- 점심 : 10:30 AM ~ 15:30 PM</span><br>
+                    <span>- 저녁 : 15:30 AM ~ 19:30 PM ( 마지막 주문 시간 18:00 PM)</span>
                 </p>
-
-
-                <p>해당 골프장은 라운드하시는 모든 분들의 영문 성함과 성별이 필요합니다. 영문 성함은 여권과 일치 하지 않아도 괜찮으며 미정이실 경우 TBS 라고 기재해주세요.</p>
-                <h1 class="sub-title-18">주요장비</h1>
+                <p>해당 골프장은 라운드하시는 모든 분들의 영문 성함과 성별이 필요합니다. 영문 성함은 여권과 일치 하지 않아도 괜찮으며<br>미정이실 경우 TBS 라고 기재해주세요.</p>
+                <h1 class="sub-title-18 mt-50">코스정보</h1>
                 <div class="info-container">
-                    <span>종류:</span> <span class="text-gray">18홀</span><br>
+                    <span>총 홀수:</span> <span class="text-gray">18홀</span><br>
                     <span>그린 스피드:</span> <span class="text-gray">빠름</span><br>
-                    <span>자리타입:</span> <span style="width: unset;" class="text-gray">백연드 테이블, 파쿠시빌, 백연드 419</span>
+                    <span>잔디타입:</span> <span style="width: unset;" class="text-gray">백연드 테이블, 파쿠시빌, 백연드 419</span>
                 </div>
                 <div class="highlight-des">
                     <p class="highlight-des-p text-gray">
@@ -378,13 +382,13 @@
                         어 이 글의 기회도 그만큼 많으나 홀 주위로 장애물로 세컨샷을 온을 시키기에는 모험이 따릅니다.
                     </p>
                 </div>
-                <h2>티오프 시간</h2>
+                <h2 class="sub-title-18 mt-50">티오프 시간</h2>
                 <ul class="text-gray mb-40">
-                    <li>- 주중: 1부, 2부 06:30 ~ 13:40</li>
-                    <li>- 주말: 1부 06:40 ~ 08:20 / 2부 12:00 ~ 13:40</li>
+                    <li>- 주중: <span class="text-gray">1부, 2부 06:30 ~ 13:40</span></li>
+                    <li>- 주말: <span class="text-gray">1부 06:40 ~ 08:20 / 2부 12:00 ~ 13:40</span></li>
                 </ul>
                 <h3 class="sub-title-18">상품소개</h3>
-                <h3 class="sub-title-18">위치정보</h3>
+                <p class="sub-title-18">위치정보</p>
                 <p class="text-gray">니칸티 골프클럽은 방콕에서 서쪽으로 60킬로미터 떨어진 니콘파톰 지역에 위치한 골프장으로서 방콕 시내에서 70km(약 70~75분 내외 소요) 되는
                     거리에 위치하고 있습니다.
                     공항에서 골프장에 오실 때에는 85km로 약 90여 분이 소요됩니다.방콕 시내에서 골프장까지 가는 도로가 교통 체증이 심한 곳입니다. 예상 시간보다 더 여유있게 출발해야 합니다.
@@ -400,32 +404,32 @@
                     <li>2017년 아시아 태평양 골프 그룹 상수상 받은 골프장 중 하나로 선정됨</li>
                     <li>Asia Pacific Golf Group의 상장향 2016년 아시아 태평양 지역 최고의 골프장으로 인식</li>
                 </ul>
-                <h1 class="sub-title-18">체크인</h1>
-                <p class="text-gray">라운드 체크인<br>- 프로샵에서 티모스 시간과 성함을 말씀해주세요.</p>
-
-                <h2 class="sub-title-18">시설정보</h2>
+                <h3 class="sub-title-18">체크인</h3>
+                <span class="">라운드 체크인</span>
+                <p class="text-gray mb-50">- 프로샵에서 티모스 시간과 성함을 말씀해주세요.</p>
+                <h2 class="sub-title-18 mt-50">시설정보</h2>
                 <p class="text-gray">사이즈: 시설, 러프, 탈잉실, 퍼팅그린, 프로샵, 레스토랑, 카페(스 드라이빙레인지(없음)</p>
 
-                <h2 class="sub-title-18">레스토랑 정보</h2>
+                <h2 class="sub-title-18 mt-50">레스토랑 정보</h2>
                 <p class="text-gray">인터내셔널, 태국식<br>운영시간: 06:00 ~ 19:00</p>
-                <h2 class="sub-title-18">장비렌탈</h2>
-                <h3 class="sub-title-18">클럽렌탈:</h3>
+                <h2 class="sub-title-18 mt-50">장비렌탈</h2>
+                <span class="sub-title-18">클럽렌탈:</span>
                 <p class="text-gray">(1)아이템리스트 : 샤프트 2300버트, 클럽 2000버트, 남녀<br>(2)아이템 : 2000버트, 남/골프: 500버트</p>
-                <p class="sub-title-18">클럽렌탈 디파짓</p>
+                <span class="sub-title-18">클럽렌탈 디파짓</span>
                 <p class="text-gray">5000버트(세트당/환불가능)<br>**해당 정보는 골프장 사정에 의해 예고없이 변경될 수 있습니다.</p>
 
-                <h2 class="sub-title-18">추가정보/참고사항</h2>
-                <h3 class="sub-title-18">복장규정</h3>
+                <h2 class="sub-title-18 mt-50">추가정보/참고사항</h2>
+                <span class="sub-title-18">복장규정</span>
                 <p class="text-gray"> - 라운드 티, 착용 유니폼, 보드셔츠, 청바지 계열, 짧은 반바지는 입장이 불가능합니다.<br>
                     - 한국에서 골프웨어로 나온 차이나 바지나 카라티 입장이 가능한 곳이므로 되도록 일반 피켓(카라티)를 착용하는 것이 좋습니다.<br>
                     - 무료 길이 반바지는 허용되고 있습니다.</p>
-                <h3 class="sub-title-18">캐디팁</h3>
+                <span class="sub-title-18 mt-50">캐디팁</span>
                 <p class="text-"> - 캐디팁이 전체 가격에 이미 포함되어있지만, 캐디에게 좋은 서비스를 받으셨다면 200~300버트 정도 더 주시면 좋습니다.</p>
 
-                <h3 class="sub-title-18">갤러리 규정</h3>
+                <span class="sub-title-18 mt-50">갤러리 규정</span>
                 <p class="text-"> - 갤러리와 플레이어와 동반하는 것이 가능합니다.</p>
 
-                <h3 class="sub-title-18">레인저 규정</h3>
+                <span class="sub-title-18 mt-50">레인저 규정</span>
                 <p class="text-">약속대로 인하더라도 라운딩 불가할 경우 추후 이용이 가능한 레인저 체계 쿠폰을 발급해드립니다.</p>
             </div>
             <h3 class="title-size-24">위치정보</h3>
@@ -541,7 +545,7 @@
                                 <span class="qa-tag normal-style">답변대기중</span>
                                 <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
                             </div>
-                            <div class="qa-meta">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
@@ -549,7 +553,7 @@
                                 <span class="qa-tag">답변대기중</span>
                                 <p class="qa-text">결제 시점은 언제인가요?</p>
                             </div>
-                            <div class="qa-meta">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
@@ -557,7 +561,7 @@
                                 <span class="qa-tag normal-style">답변대기중</span>
                                 <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
                             </div>
-                            <div class="qa-meta">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
@@ -565,7 +569,7 @@
                                 <span class="qa-tag normal-style">답변대기중</span>
                                 <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
                             </div>
-                            <div class="qa-meta">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
@@ -573,16 +577,14 @@
                                 <span class="qa-tag">답변대기중</span>
                                 <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
                             </div>
-                            <div class="qa-meta">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
                         </li>
                     </ul>
-
-                    <button class="load-more">더보기</button>
-
                     <div class="additional-info">
+                        <span class="load-more">더투어랩</span>
                         <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
                         </p>
-                        <p>만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
+                        <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
                     </div>
                 </div>
                 <div class="pagination">
