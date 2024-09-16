@@ -36,16 +36,16 @@
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
                 <div class="inner">
-                    <h2>패키지 상품관리 정보입력 <?= $titleStr ?> </h2>
+                    <h2>허니문 상품관리 정보입력 <?= $titleStr ?> </h2>
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="list?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                                <a href="list_honeymoon?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
-                            <? if ($product_idx) { ?>
+                            <?php if ($product_idx) { ?>
                                 <li><a href="javascript:prod_copy('<?= $product_idx ?>')" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">상품복사</span></a>
+                                                class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
                                 </li>
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
@@ -60,11 +60,11 @@
                                         }
                                     }
                                 </script>
-                            <? } else { ?>
+                            <?php } else { ?>
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 </li>
-                            <? } ?>
+                            <?php } ?>
 
                         </ul>
                     </div>
@@ -74,6 +74,8 @@
             <!-- // headerContainer -->
 
             <form name=frm action="write_ok" method=post enctype="multipart/form-data" target="hiddenFrame">
+                <input type=hidden name="back_url"
+                       value="/AdmMaster/_tourRegist/write_honeymoon.php?<?= $_SERVER['QUERY_STRING'] ?>">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -177,8 +179,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th rowspan=8>썸네일<br>(600 * 450)</th>
-                                    <td rowspan=8>
+                                    <th rowspan=7>썸네일<br>(600 * 450)</th>
+                                    <td rowspan=7>
                                         <?php for ($i = 1; $i <= 6; $i++) { ?>
                                             <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
                                                    style="width:500px;margin-bottom:10px"/>
@@ -243,6 +245,12 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>여행혜택</th>
+                                    <td>
+                                        <input id="benefit" name="benefit" class="input_txt" type="text"
+                                               value="<?= $benefit ?>"
+                                               style="width:90%"/><br/>
+                                    </td>
                                     <th>대표도시</th>
                                     <td>
                                         <input id="capital_city" name="capital_city" class="input_txt" type="text"
@@ -260,13 +268,15 @@
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
-                                            <option value='Y' <?php if ($is_view == "Y") {
+                                            <option value='Y' <? if ($is_view == "Y") {
                                                 echo "selected";
-                                            } ?>>사용
+                                            } ?> >
+                                                사용
                                             </option>
-                                            <option value='N' <?php if ($is_view == "N") {
+                                            <option value='N' <? if ($is_view == "N") {
                                                 echo "selected";
-                                            } ?>>사용안함
+                                            } ?> >
+                                                사용안함
                                             </option>
                                         </select>
                                     </td>
@@ -293,9 +303,11 @@
                                             <?php
                                             foreach ($member_list as $row_member) :
                                                 ?>
-                                                <option value="<?= $row_member["user_id"] ?>" <? if ($product_manager_id == $row_member["user_id"]) {
+                                                <option value="<?= $row_member["user_id"] ?>" <?php if ($product_manager_id == $row_member["user_id"]) {
                                                     echo "selected";
-                                                } ?>><?= $row_member["user_name"] ?></option>
+                                                } ?> >
+                                                    <?= $row_member["user_name"] ?>
+                                                </option>
                                             <?php endforeach; ?>
                                             <option value="서소연 대리" <?php if ($product_manager == "서소연 대리") {
                                                 echo "selected";
@@ -378,6 +390,15 @@
                                 </script>
 
                                 <tr>
+                                    <th>옵션상품추가</th>
+                                    <td colspan="3">
+                                        <input id="active_list" name="active_list" class="input_txt" type="text"
+                                               value="<?= $active_list ?>" style="width:400px"/>
+                                        <a href="javascript:active_add_it();" class="btn btn-primary">추가</a>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>상품옵션</th>
                                     <td>
                                         <?php
@@ -413,11 +434,14 @@
                                     <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
-                                            <input type="checkbox" name="product_best"
-                                                   id="product_best"
-                                                   value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
-                                                echo "checked";
-                                            } ?>/>
+                                            <?php if (isset($row_m['maintitle1'])) { ?>
+                                                <?= $row_m['maintitle1'] ?>
+                                                <input type="checkbox" name="product_best"
+                                                       id="product_best"
+                                                       value="Y" <?php if ($row["product_best"] == "Y") {
+                                                    echo "checked";
+                                                } ?>/>
+                                            <?php } ?>
                                         <?php endforeach; ?>
                                     </td>
                                     <th>우선순위</th>
@@ -425,16 +449,6 @@
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>쿠폰사용</th>
-                                    <td colspan="3">
-                                        <input type="checkbox" name="coupon_y" id="coupon_y"
-                                               value="Y" <?php if (isset($row["coupon_y"]) && $row["coupon_y"] == "Y") {
-                                            echo "checked";
-                                        } ?> />&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
                                 <tr>
@@ -446,7 +460,6 @@
                                         } ?> />&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">
@@ -679,6 +692,8 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
+
+
                                     </td>
                                 </tr>
 
@@ -749,7 +764,6 @@
                                     </td>
                                 </tr>
 
-
                                 <tr>
                                     <th>스페셜 혜택</th>
                                     <td>
@@ -781,6 +795,7 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
+
                                     </td>
 
                                     <th>모바일용<br>스페셜 혜택</th>
@@ -813,6 +828,7 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
+
                                     </td>
                                 </tr>
 
@@ -948,15 +964,18 @@
                                     </td>
                                 </tr>
                                 </tbody>
+
                             </table>
                         </div>
                         <!-- // listBottom -->
+
+
                         <div class="tail_menu">
                             <ul>
                                 <li class="left"></li>
                                 <li class="right_sub">
 
-                                    <a href="list.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                                    <a href="list_honeymoon?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
                                        class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                                 class="txt">리스트</span></a>
                                     <? if ($product_idx == "") { ?>
@@ -974,6 +993,8 @@
                                 </li>
                             </ul>
                         </div>
+
+
                         <?php if ($product_idx): ?>
                             <div class="tail_menu">
                                 <ul>
@@ -1051,8 +1072,7 @@
                                                        class="btn btn-default">상세내역관리</a>
                                                     <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
                                                         <input type="file" hidden name="fileInput"
-                                                               data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput"
-                                                               accept=".json">
+                                                               data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput" accept=".json">
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
@@ -1087,6 +1107,41 @@
     <!-- // container -->
 
     <script>
+
+        function change_manager(user_id) {
+            console.log(user_id);
+
+            if (user_id === "서소연 대리") {
+                $("#product_manager").val("서소연 대리");
+                $("#phone").val("070-7430-5893");
+                $("#email").val("travel@hihojoo.com");
+            } else {
+                $.ajax({
+                    url: "../../ajax/ajax.change_manager.php",
+                    type: "POST",
+                    data: {
+                        "user_id": user_id
+                    },
+                    dataType: "json",
+                    async: false,
+                    cache: false,
+                    success: function (data, textStatus) {
+                        // message = data.message;
+                        // alert(message);
+                        // $("#listForm").submit();
+                        $("#product_manager").val(data.user_name);
+                        $("#phone").val(data.user_phone);
+                        $("#email").val(data.user_email);
+
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    }
+                });
+            }
+
+        }
+
         function img_remove(img) {
             //alert('img- '+img);
             if (!confirm("선택한 이미지를 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다\n\n."))
@@ -1133,42 +1188,6 @@
 
     </script>
     <script>
-        function change_manager(user_id) {
-            console.log(user_id);
-
-            if (user_id === "서소연 대리") {
-                $("#product_manager").val("서소연 대리");
-                $("#phone").val("070-7430-5893");
-                $("#email").val("travel@hihojoo.com");
-            } else {
-                $.ajax({
-                    url: "../../ajax/ajax.change_manager.php",
-                    type: "POST",
-                    data: {
-                        "user_id": user_id
-                    },
-                    dataType: "json",
-                    async: false,
-                    cache: false,
-                    success: function (data, textStatus) {
-                        // message = data.message;
-                        // alert(message);
-                        // $("#listForm").submit();
-                        $("#product_manager").val(data.user_name);
-                        $("#phone").val(data.user_phone);
-                        $("#email").val(data.user_email);
-
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                    }
-                });
-            }
-
-        }
-
-        var formSubmitted = false;
-
         function send_it() {
             var frm = document.frm;
             /*
@@ -1188,10 +1207,6 @@
             oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors15.getById["tour_detail"].exec("UPDATE_CONTENTS_FIELD", []);
-
-            if (formSubmitted) {
-                return;
-            }
 
 
             if (frm.tour_period.value == "") {
@@ -1230,15 +1245,12 @@
                 return;
             }
 
-            formSubmitted = true;
-
             var option = "";
             $("input:checkbox[name='_option']:checked").each(function () {
                 option += '|' + $(this).val();
             });
             option += '|';
             $("#product_option").val(option);
-
 
             frm.submit();
         }
@@ -1319,41 +1331,9 @@
             });
         }
     </script>
-    <script>
-        document.getElementById('fileInput').addEventListener('change', function (event) {
-            const fileInput = event.target;
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    try {
-                        const jsonData = JSON.parse(e.target.result);
-                        console.log(jsonData);
-                        $.ajax({
-                            url: "ajax.auto_schedule.php",
-                            type: "POST",
-                            data: {
-                                product_idx: "<?=$product_idx?>",
-                                air_code: $(fileInput).data("air_code"),
-                                shopping: "",
-                                total_day: Object.keys(jsonData).length,
-                                detail_summary: JSON.stringify(jsonData)
-                            },
-                            success: () => {
-                                event.target.value = '';
-                            }
-                        })
-                    } catch (error) {
-                        console.error('Không thể đọc tệp JSON:', error);
-                    }
-                };
-                reader.readAsText(file);
-            }
-        });
-    </script>
     <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
-    <form id="listForm" action="./list.php">
+    <form id="listForm" action="./list_honeymoon.php">
         <input type="hidden" name="orderBy" value="<?= $orderBy ?>">
         <input type="hidden" name="pg" value="<?= $pg ?>">
         <input type="hidden" name="product_idx" value="<?= $product_idx ?>">

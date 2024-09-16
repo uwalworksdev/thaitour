@@ -24,18 +24,17 @@
                                 1 : 1 게시판
                             </h3>
                         </div>
-                        <form class="form_table_notify_" action="#">
+                        <form class="form_table_notify_" name=frm id=frm action="/community/customer_center/notify_table_ok" method=post enctype="multipart/form-data">
                             <div class="form_el">
-                                <label class="form_label_" for="title_">제목*</label>
-                                <input class="form_input_" type="text" id="title_" name="title_" placeholder="">
+                                <label class="form_label_" for="title">제목*</label>
+                                <input class="form_input_" type="text" id="title" name="title" placeholder="">
                             </div>
 
                             <div class="form_el">
                                 <label class="form_label_" for="lname">첨부파일</label>
                                 <div class="form_upload_container">
                                     <div class="form_upload_info">
-                                        <input type="file" id="file-upload" multiple class="upload-input"
-                                               style="display: none">
+                                        <input type="file" id="file-upload" class="upload-input" name="ufile1" style="display: none">
                                         <div class="form_upload_text form_input_">최대 3개까지 30MB, JPG, PNG 파일만 첨부 가능합니다.
                                         </div>
                                     </div>
@@ -47,32 +46,44 @@
                             </div>
 
                             <div class="form_el">
-                                <label class="form_label_" for="w3review">내용*</label>
-                                <textarea class="form_textarea_" id="w3review" name="w3review" rows="4"
-                                          cols="50"></textarea>
+                                <label class="form_label_" for="contents">내용*</label>
+                                <textarea class="form_textarea_" id="contents" name="contents" rows="4" cols="50"></textarea>
                             </div>
 
                             <div class="form_el">
-                                <label class="form_label_" for="email">이메일 주소*</label>
+                                <label class="form_label_" for="email_name">이메일 주소*</label>
                                 <div class="form_el_cont">
-                                    <input class="form_input_ form_50" id="email" name="email" type="text"
+                                    <input class="form_input_ form_50" id="email_name" name="email_name" type="text"
                                            placeholder="이메일">
-                                    <label for="email_select">@</label>
-                                    <select class="form_input_ form_50" name="email_select" id="email_select">
-                                        <option value="선택해주세요.">선택해주세요.</option>
+                                    <label for="email_host">@</label>
+                                    <select class="form_input_ form_50" name="email_host" id="email_host">
+                                        <option value="naver.com">선택해주세요.</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="hanmail.net">hanmail.net</option>
+                                        <option value="hotmail.com">hotmail.com</option>
+                                        <option value="nate.com">nate.com</option>
+                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                        <option value="empas.com">empas.com</option>
+                                        <option value="dreamwiz.com">dreamwiz.com</option>
+                                        <option value="freechal.com">freechal.com</option>
+                                        <option value="lycos.co.kr">lycos.co.kr</option>
+                                        <option value="korea.com">korea.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="hanmir.com">hanmir.com</option>
+                                        <option value="paran.com">paran.com</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form_radio">
                                 <label class="form_label_" for="yes">답변여부를 메일로 받으시겠습니까?</label>
-                                <input type="radio" id="yes" name="receive" value="yes">
+                                <input type="radio" id="yes" name="email_yn" value="Y">
                                 <label class="form_label_" for="yes">예</label>
-                                <input type="radio" id="no" name="receive" value="no" checked>
+                                <input type="radio" id="no" name="email_yn" value="N" checked>
                                 <label class="form_label_" for="no">아니오</label>
                             </div>
                             <div class="list_btn_">
                                 <button type="button" class="btn_cancel_">취소하기</button>
-                                <button type="button" class="btn_submit_">문의하기</button>
+                                <button type="button" onclick="send_it()" class="btn_submit_">문의하기</button>
                             </div>
                         </form>
                     </div>
@@ -82,13 +93,81 @@
     </section>
 
     <script>
+
+        function send_it() {
+            var frm = document.frm;         
+
+            formData = new FormData(frm);
+
+            if(frm.title.value == ""){
+                alert("제목를 입력해주세요!");
+                frm.title.focus();
+                return false;
+            }
+
+            if(frm.contents.value == ""){
+                alert("내용를 입력해주세요!");
+                frm.contents.focus();
+                return false;
+            }
+
+            let email = $("#email_name").val() + "@" + $("#email_host").val();
+
+            if(!validateEmail(email)){
+                alert("잘못된 이메일 주소!");
+                frm.email_name.focus();
+                return false;
+            }
+
+            formData.append("email", email);
+
+            $.ajax({
+                type  : "POST",
+                data  : formData,
+                url   :  "/community/customer_center/notify_table_ok",
+                processData: false,
+                contentType: false,
+                success: function(data, textStatus) {
+                    alert(data.message);
+                    if(data.result == true) {
+                        location.reload();
+                    }
+                },
+                error:function(request,status,error){
+                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+
+        }
+
+        function validateEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            return regex.test(email);
+        }
+
+
         function go_list() {
             window.history.back();
         }
 
-        $('.form_upload_text').click(function () {
+        $('#upload-button').click(function () {
             $('#file-upload').click();
+            const input = document.getElementById('file-upload');
+    
+            input.addEventListener('change', function() {
+                if (this.files && this.files.length > 0) {
+                    const file = this.files[0];
+                    
+                    const fileName = file.name;
+                    
+                    document.querySelector('.form_upload_text').textContent = fileName;
+                } else {
+                    document.querySelector('.form_upload_text').textContent = "No file chosen";
+                }
+            });
         })
+
 
         document.addEventListener('DOMContentLoaded', function () {
             const uploadInput = document.getElementById('file-upload');
@@ -98,7 +177,6 @@
 
             // Add event listener for the upload button
             uploadButton.addEventListener('click', function () {
-                // Get the files from the input
                 const files = Array.from(uploadInput.files);
 
                 if (files.length + uploadedFileList.children.length > maxFiles) {
@@ -106,7 +184,6 @@
                     return;
                 }
 
-                // Loop through files and add them to the list
                 files.forEach(file => {
                     if (uploadedFileList.children.length >= maxFiles) {
                         return;
@@ -120,7 +197,6 @@
                                     </div>`;
                 });
 
-                // Clear the input
                 uploadInput.value = '';
             });
         });

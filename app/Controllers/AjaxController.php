@@ -3,9 +3,10 @@
 namespace App\Controllers;
 
 class AjaxController extends BaseController {
+    private $db;
 
     public function __construct() {
-        
+        $this->db = db_connect();
     }
 
     public function uploader() {
@@ -50,6 +51,29 @@ class AjaxController extends BaseController {
             "msg" => $resultMsg
         ];
 
+        return $this->response->setJSON($output);
+    }
+
+    public function get_travel_types() {
+        $code = $this->request->getPost('code');
+        $depth = $this->request->getPost('depth');
+        $db = \Config\Database::connect();
+
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$code' AND depth = '$depth' order by onum desc";
+        $cnt = $db->query($sql)->getNumRows();
+
+        $rows = $db->query($sql)->getResultArray();
+        $data = "";
+        $data .= "<option value=''>선택</option>";
+        foreach ($rows as $row) {
+            $data .= "<option value='$row[code_no]'>$row[code_name]</option>";
+        }
+
+        $output = [
+            "data"  => $data,
+            "cnt"   => $cnt
+        ];
+        
         return $this->response->setJSON($output);
     }
 }

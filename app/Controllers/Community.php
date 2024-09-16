@@ -3,12 +3,20 @@
 namespace App\Controllers;
 
 use App\Libraries\SessionChk;
+use CodeIgniter\I18n\Time;
+
 use Exception;
 
 class Community extends BaseController
 {
 
     private $comment;
+    private $db;
+    private $uploadPath = WRITEPATH."uploads/qna/";
+    protected $bbs;
+    protected $qna;
+    protected $contact;
+    protected $currentTime;
 
     protected $sessionLib;
     protected $sessionChk;
@@ -16,12 +24,17 @@ class Community extends BaseController
     public function __construct()
     {
         $this->bbs = model("Bbs");
+        $this->qna = model("Qna");
+        $this->contact = model("TravelContactModel");
         helper(['html']);
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
         helper('comment_helper');
+
+        $this->currentTime = Time::now('Asia/Seoul')->toDateTimeString();
+
     }
     public function main()
     {
@@ -80,7 +93,7 @@ class Community extends BaseController
         $searchSql = "";
         if ($code_no)
             $searchSql = " and a.r_category = '$code_no' ";
-        $sql = "select r_idx, r_reg_date, r_reg_m_idx, r_mod_date, r_mod_m_idx, r_code, r_order, r_date, r_name, r_view_cnt, r_score, r_category, r_category2, r_title, r_desc, r_content, r_url, r_file_code, r_file_name, r_file_list, r_answer_status, r_answer_date, r_answer_m_idx, r_answer_name, r_answer_content, r_cmt_cnt, r_order, r_flag
+        $sql = "select r_idx, r_reg_date, r_reg_m_idx, r_mod_date, r_mod_m_idx, r_code, r_order, r_date, r_name, r_view_cnt, r_score, r_category, r_category2, r_title, r_desc, r_content, r_url, r_file_code, r_file_name, r_file_list, r_answer_status, r_answer_date, r_answer_m_idx, r_answer_name, r_answer_content, r_cmt_cnt, r_order, r_flag, code_name
                                     , case a.r_status  when 'Y' then '사용'  when 'N' then '중지'  when 'D' then '삭제'  else '' end as str_status
                                     ,(select ifnull(count(*),0) from tbl_bbs_cmt where tbl_bbs_cmt.r_idx=a.r_idx and tbl_bbs_cmt.r_delYN != 'Y') as r_cmt_cnt
                                         from tbl_bbs a
@@ -136,17 +149,90 @@ class Community extends BaseController
 
     public function customer_center()
     {
-        return view("community/customer_center");
+        $code_no = updateSQ($this->request->getVar('code_no')) ?? "";
+        $page = updateSQ($this->request->getVar('pg'));
+        $sql_c = "select * from tbl_code where code_gubun = 'faq' and depth = '2' order by onum desc ";
+        $code_gubun = $this->db->query($sql_c)->getResultArray();
+        $searchSql = "";
+        if ($code_no){
+            $searchSql = " and b.code_no = '$code_no' ";
+        }
+        $total_sql = "select r_idx, r_reg_date, r_reg_m_idx, r_mod_date, r_mod_m_idx, r_code, r_order, r_date, r_name, r_view_cnt, r_score, r_category, r_category2, r_title, r_desc, r_content, r_url, r_file_code, r_file_name, r_file_list, r_answer_status, r_answer_date, r_answer_m_idx, r_answer_name, r_answer_content, r_cmt_cnt, r_order, r_flag, code_name
+                                    , case a.r_status  when 'Y' then '사용'  when 'N' then '중지'  when 'D' then '삭제'  else '' end as str_status
+                                    ,(select ifnull(count(*),0) from tbl_bbs_cmt where tbl_bbs_cmt.r_idx=a.r_idx and tbl_bbs_cmt.r_delYN != 'Y') as r_cmt_cnt
+                                        from tbl_bbs a
+                                        join tbl_code b on a.r_category = b.code_no and a.r_code = b.code_gubun
+                                    where  a.r_code = 'faq' and a.r_status != 'D' $searchSql ";
+        
+        $scale = 10;
+
+        $total_cnt = $this->db->query($total_sql)->getNumRows();
+
+        $total_page = ceil($total_cnt / $scale);
+        if ($page == ""){
+            $page = 1;
+        }
+        $start = ($page - 1) * $scale;
+        $num = $total_cnt - $start;
+
+        $sql = $total_sql . "order by r_reg_date desc limit $start, $scale";
+
+        $question_list = $this->db->query($sql)->getResultArray(); 
+
+        
+        $data["code_gubun"] = $code_gubun;
+        $data["question_list"] = $question_list;
+        $data["total_cnt"] = $total_cnt;
+        $data["total_page"] = $total_page;
+        $data["code_no"] = $code_no;
+        $data["pg"] = $page;
+        $data["scale"] = $scale;
+        $data["num"] = $num;
+
+        return view("community/customer_center", $data);
     }
 
     public function customer_center_notify()
     {
-        return view("community/notify");
+        $bbs_idx = updateSQ($this->request->getVar('bbs_idx')) ?? "";
+        $sql = " select * from tbl_bbs_list WHERE 1=1 and code='b2b_notice' and bbs_idx = '$bbs_idx' ";
+        $view_notice = $this->db->query($sql)->getRowArray();
+        $data["subject"] = $view_notice["subject"] ?? "";
+        $data["contents"] = $view_notice["contents"] ?? "";
+        $data["r_date"] = $view_notice["r_date"] ?? "";
+
+        return view("community/notify", $data);
     }
 
     public function list_notify()
     {
-        return view("community/list_notify");
+        $page = updateSQ($this->request->getVar('pg'));
+
+        $total_sql = " select * from tbl_bbs_list WHERE 1=1 and code='b2b_notice' ";
+
+        $scale = 10;
+
+        $total_cnt = $this->db->query($total_sql)->getNumRows();
+
+        $total_page = ceil($total_cnt / $scale);
+        if ($page == ""){
+            $page = 1;
+        }
+        $start = ($page - 1) * $scale;
+        $num = $total_cnt - $start;
+
+        $sql = $total_sql . "order by notice_yn desc, r_date desc limit $start, $scale";
+
+        $notice = $this->db->query($sql)->getResultArray();
+
+        $data["notice"] = $notice;
+        $data["total_cnt"] = $total_cnt;
+        $data["total_page"] = $total_page;
+        $data["pg"] = $page;
+        $data["scale"] = $scale;
+        $data["num"] = $num;
+
+        return view("community/list_notify", $data);
     }
 
     public function notify_table()
@@ -154,8 +240,118 @@ class Community extends BaseController
         return view("community/notify_table");
     }
 
+    public function notify_table_ok() {
+        $title = $this->request->getPost("title");
+        $contents = $this->request->getPost("contents");
+        $email = $this->request->getPost("email");
+        $email_yn = $this->request->getPost("email_yn");
+        $ipAddress = $this->request->getIPAddress();
+        $r_date = $this->currentTime;
+        try {  
+            $this->db->transBegin();
+            if(!empty($title) && !empty($contents) && !empty($email)){
+                $uploadPath = $this->uploadPath;
+                if(!is_dir($uploadPath)){
+                    mkdir($uploadPath, 0755, true);
+                }
+    
+                $file = $this->request->getFile('ufile1');
+                
+                $data = [
+                    'title' => $title,
+                    'contents' => $contents,
+                    'user_email' => sqlSecretConver($email, 'encode'),
+                    'email_yn' => $email_yn,
+                    'user_ip' => $ipAddress,
+                    'r_date' => $r_date
+                ];
+
+                $idx = $this->qna->insertQna($data);
+
+                if($file->isValid() && !$file->hasMoved()){
+                    $newName = $file->getRandomName();
+                    $oldName = $file->getClientName();
+                    if($newName){
+                        $file->move($uploadPath, $newName);
+                    }
+                    $data_file = [
+                        "ufile1" => $newName,
+                        "rfile1" => $oldName
+                    ];
+                    $this->qna->updateQna($idx, $data_file);
+
+                }
+
+                if($idx) {
+                    $this->db->transCommit();
+                    $resultArr['result'] = true;
+                    $resultArr['message'] = "성공적으로 등록되었습니다.";
+                }else{
+                    $this->db->transCommit();
+                    $resultArr['result'] = false;
+                    $resultArr['message'] = "새로 추가하지 못했습니다.";
+                }
+            }else{
+                $resultArr['result'] = false;
+                $resultArr['message'] = "누락된 데이터.";
+            }
+        } catch (Exception $err) {
+            $this->db->transRollback();
+            $resultArr['result'] = false;
+            $resultArr['message'] = $err->getMessage();
+        } finally {
+            return $this->response->setJSON($resultArr);
+        }
+    }
+
     public function customer_speak()
     {
         return view("community/customer_speak");
+    }
+
+    public function customer_speak_ok() {
+        $user_name = $this->request->getPost("user_name");
+        $accuracy = $this->request->getPost("accuracy");
+        $speed = $this->request->getPost("speed");
+        $star = $this->request->getPost("star");
+        $contents = $this->request->getPost("contents");
+        $ipAddress = $this->request->getIPAddress();
+        $r_date = $this->currentTime;
+        try {  
+            $this->db->transBegin();
+            if(!empty($user_name) && !empty($accuracy) && !empty($speed) && !empty($star) && !empty($contents)){
+                
+                $data = [
+                    'user_name' => sqlSecretConver($user_name, 'encode'),
+                    'accuracy' => $accuracy,
+                    'speed' => $speed,
+                    'star' => $star,
+                    'contents' => $contents,
+                    'user_ip' => $ipAddress,
+                    'r_date' => $r_date
+                ];
+
+                $idx = $this->contact->insertContact($data);
+
+                if($idx) {
+                    $this->db->transCommit();
+                    $resultArr['result'] = true;
+                    $resultArr['message'] = "성공적으로 등록되었습니다.";
+                }else{
+                    $this->db->transCommit();
+                    $resultArr['result'] = false;
+                    $resultArr['message'] = "새로 추가하지 못했습니다.";
+                }
+            }else{
+                $resultArr['result'] = false;
+                $resultArr['message'] = "누락된 데이터.";
+            }
+        } catch (Exception $err) {
+            $this->db->transRollback();
+            $resultArr['result'] = false;
+            $resultArr['message'] = $err->getMessage();
+        } finally {
+            return $this->response->setJSON($resultArr);
+        }
     }
 }

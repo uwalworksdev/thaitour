@@ -1617,9 +1617,11 @@ strong {
     line-height: 2rem;
 }
 
-.customer-center-page .content {
-    line-height: 1.5rem;
-    color: #757575;
+.customer-center-page .con-a .content * {
+    color: #787878 !important;
+    line-height: 2rem !important;
+    font-size: 18px !important;
+    font-family: "Pretendard" !important;
 }
 
 .customer-center-page .form-customer {

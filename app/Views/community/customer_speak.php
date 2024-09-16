@@ -34,21 +34,26 @@
                                 </p>
                             </div>
                         </div>
-                        <form class="form_notify_" action="#">
+                        <form class="form_notify_" name=frm id=frm action="/community/customer_center/notify_table_ok" method=post enctype="multipart/form-data">
+                            <input type="hidden" name="star" id="star" value="5">
                             <div class="form_el">
-                                <label class="form_label_" for="name">더투어랩 직원 이름 또는 별명*</label>
-                                <input class="form_input_" type="text" id="name" name="name" placeholder="">
+                                <label class="form_label_" for="user_name">더투어랩 직원 이름 또는 별명*</label>
+                                <input class="form_input_" type="text" id="user_name" name="user_name" placeholder="">
                             </div>
                             <div class="form_el">
                                 <label class="form_label_" for="accuracy">정확성*</label>
                                 <select class="form_input_" name="accuracy" id="accuracy">
-                                    <option value="선택해주세요.">선택해주세요.</option>
+                                    <option value="">선택해주세요.</option>
+                                    <option value="test1">test1</option>
+                                    <option value="test2">test2</option>
                                 </select>
                             </div>
                             <div class="form_el">
                                 <label class="form_label_" for="speed">신속성*</label>
                                 <select class="form_input_" name="speed" id="speed">
-                                    <option value="선택해주세요.">선택해주세요.</option>
+                                    <option value="">선택해주세요.</option>
+                                    <option value="test1">test1</option>
+                                    <option value="test2">test2</option>
                                 </select>
                             </div>
 
@@ -63,14 +68,14 @@
                                         <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                     </div>
                                     <div class="select-items select-hide">
-                                        <div data-value="1" class="star-rating">
+                                        <div data-value="5" class="star-rating">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
-                                        <div data-value="2" class="star-rating">
+                                        <div data-value="4" class="star-rating">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
@@ -81,11 +86,11 @@
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
-                                        <div data-value="4" class="star-rating">
+                                        <div data-value="2" class="star-rating">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
-                                        <div data-value="5" class="star-rating">
+                                        <div data-value="1" class="star-rating">
                                             <img src="/images/ico/star_yellow_icon.png" alt="5 stars" loading="lazy">
                                         </div>
                                     </div>
@@ -93,13 +98,13 @@
                             </div>
 
                             <div class="form_el">
-                                <label class="form_label_" for="detail">내용*</label>
-                                <textarea class="form_textarea_" id="detail" name="detail" rows="4" cols="20"></textarea>
+                                <label class="form_label_" for="contents">내용*</label>
+                                <textarea class="form_textarea_" id="contents" name="contents" rows="4" cols="20"></textarea>
                             </div>
 
                             <div class="list_btn_">
                                 <button type="button" class="btn_cancel_">취소하기</button>
-                                <button type="button" class="btn_submit_">문의하기</button>
+                                <button type="button" onclick="send_it()" class="btn_submit_">문의하기</button>
                             </div>
                         </form>
                     </div>
@@ -108,11 +113,64 @@
         </div>
     </section>
     <script>
+        function send_it() {
+            var frm = document.frm;         
+
+            formData = new FormData(frm);
+
+            if(frm.user_name.value == ""){
+                alert("이름를 입력해주세요!");
+                frm.user_name.focus();
+                return false;
+            }
+
+            if(frm.accuracy.value == ""){
+                alert("정확성를 선택해주세요!");
+                frm.accuracy.focus();
+                return false;
+            }
+
+            if(frm.speed.value == ""){
+                alert("신속성를 선택해주세요!");
+                frm.speed.focus();
+                return false;
+            }
+
+            if(frm.star.value == ""){
+                alert("친절도를 선택해주세요!");
+                return false;
+            }
+
+            if(frm.contents.value == ""){
+                alert("내용를 입력해주세요!");
+                frm.contents.focus();
+                return false;
+            }
+
+            $.ajax({
+                type  : "POST",
+                data  : formData,
+                url   :  "/community/customer_center/customer_speak_ok",
+                processData: false,
+                contentType: false,
+                success: function(data, textStatus) {
+                    alert(data.message);
+                    if(data.result == true) {
+                        location.reload();
+                    }
+                },
+                error:function(request,status,error){
+                    alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             var selected = document.querySelector('.select-selected');
             var items = document.querySelector('.select-items');
             var options = items.querySelectorAll('div');
-            var select = document.querySelector('select');
+            var star = document.querySelector('#star');
 
             selected.addEventListener('click', function () {
                 items.classList.toggle('select-hide');
@@ -121,7 +179,7 @@
             options.forEach(function (option) {
                 option.addEventListener('click', function () {
                     var value = this.getAttribute('data-value');
-                    select.value = value;
+                    star.value = value;
                     selected.innerHTML = this.innerHTML;
                     items.classList.add('select-hide');
                 });

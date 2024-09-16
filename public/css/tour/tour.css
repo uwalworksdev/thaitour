@@ -1588,6 +1588,7 @@
 .content-sub-hotel-detail .section6 .sub-title-sec6 {
   font-size: 18px;
   margin: 48px 0 32px;
+  font-weight: 500;
 }
 
 .content-sub-hotel-detail .section6 .card-list-recommemded {
@@ -2437,7 +2438,7 @@
 }
 
 .custom-product-golf .form-group label:before {
-  content:'';
+  content: '';
   -webkit-appearance: none;
   background-color: transparent;
   border: 2px solid #ccc;
@@ -2449,7 +2450,7 @@
   cursor: pointer;
 }
 
-.custom-product-golf .form-group input:checked + label:after {
+.custom-product-golf .form-group input:checked+label:after {
   content: '';
   display: block;
   position: absolute;
@@ -2462,7 +2463,7 @@
   transform: rotate(45deg);
 }
 
-.custom-product-golf .form-group input:checked + label:before {
+.custom-product-golf .form-group input:checked+label:before {
   background-color: var(--bs-point);
   border-color: var(--bs-point);
 }
@@ -2498,3 +2499,615 @@
   background-repeat: no-repeat;
 }
 
+.custom-golf-detail .golf-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+}
+
+.custom-golf-detail .golf-table thead th {
+  font-weight: bold;
+  padding: 20px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.custom-golf-detail .golf-table thead th:nth-child(1),
+.custom-golf-detail .golf-table thead th:nth-child(3),
+.custom-golf-detail .golf-table thead th:nth-child(5) {
+  background-color: #f4f4f4;
+}
+
+.custom-golf-detail .golf-table tbody tr:first-child td:nth-child(1),
+.custom-golf-detail .golf-table tbody tr:first-child td:nth-child(3),
+.custom-golf-detail .golf-table tbody tr:first-child td:nth-child(5) {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  color: #252525;
+}
+
+.custom-golf-detail .golf-table tbody td {
+  padding: 20px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.custom-golf-detail .golf-table tbody tr td:first-child {
+  background-color: #f4f4f4;
+  color: #252525;
+}
+
+.custom-golf-detail .golf-table thead th:first-child,
+.custom-golf-detail .golf-table tbody td:first-child {
+  font-weight: bold;
+}
+
+.custom-golf-detail .golf-table thead th:last-child,
+.custom-golf-detail .golf-table tbody td:last-child {
+  text-align: left;
+}
+
+.custom-golf-detail .golf-table tbody td {
+  white-space: nowrap;
+}
+
+.custom-golf-detail .golf-table td[colspan="5"] {
+  text-align: left;
+}
+
+.custom-golf-detail .title-size-24 {
+  font-size: 24px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.custom-golf-detail .text-parent span {
+  color: #999999;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* calendar */
+
+.custom-golf-detail .calendar {
+  height: 182px;
+  padding: 0 55px;
+  max-width: 100%;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.custom-golf-detail .calendar.not_price {
+  height: 100%;
+}
+
+.custom-golf-detail .calendar .calendar-swiper-container {
+  padding: 27px 10px;
+  overflow: hidden;
+}
+
+.custom-golf-detail .calendar .swiper-button-prev {
+  width: 6px;
+  height: 10px;
+  background-size: 6px 10px;
+  background-repeat: no-repeat;
+  margin-top: 0;
+  top: 32%;
+  left: -5%;
+}
+
+.custom-golf-detail .calendar .swiper-button-next {
+  width: 6px;
+  height: 10px;
+  background-size: 6px 10px;
+  background-repeat: no-repeat;
+  margin-top: 0;
+  top: 32%;
+  right: -5%;
+}
+
+.custom-golf-detail .calendar .swiper-button {
+  opacity: 0.902;
+  width: 28px;
+  height: 42px;
+  border-radius: 6px;
+  filter: drop-shadow(0px 5px 3px rgba(0, 0, 0, 0.05));
+  background-color: rgba(255, 255, 255, 0.9019607843137255);
+  border: 1px solid #dbdbdb;
+}
+
+.custom-golf-detail .calendar .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50px;
+  gap: 25px;
+}
+
+.custom-golf-detail .year {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+}
+
+.custom-golf-detail .swiper-button-custom:after,
+.custom-golf-detail .swiper-rtl .swiper-button-prev:after {
+  display: none;
+}
+
+.custom-golf-detail .calendar span {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.custom-golf-detail .calendar .dates {
+  position: relative;
+}
+
+.custom-golf-detail .calendar .dates .day,
+.custom-golf-detail .calendar .dates .txt {
+  color: #999;
+}
+
+.custom-golf-detail .calendar .dates .day a {
+  color: #252525;
+}
+
+.custom-golf-detail .calendar .dates .day a.on {
+  color: #fff !important;
+  position: relative;
+}
+
+.custom-golf-detail .calendar .dates .day a.on::before {
+  content: "";
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: var(--bs-point);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.custom-golf-detail #toDay {
+  color: #dba365;
+}
+
+.custom-golf-detail .year img {
+  cursor: pointer;
+}
+
+.custom-golf-detail .tag-con-below-calendar {
+  padding: 40px 0;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.custom-golf-detail .tag-con-below-calendar .item-tag {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-golf-detail .tag-con-below-calendar .cus-width {
+  width: 280px;
+  padding-left: 20px;
+  padding-right: 0;
+}
+
+.custom-golf-detail .tag-con-below-calendar .item-tag span.label {
+  font-size: 17px;
+  width: 62px;
+}
+
+.custom-golf-detail .tag-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-golf-detail .tag-list span.tag {
+  border-radius: 17px;
+  border: 1px solid rgb(238, 238, 238);
+  padding: 8px;
+  width: 56px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.custom-golf-detail .tag-list span.tag.active {
+  border-color: var(--bs-point);
+  color: var(--bs-point);
+}
+
+.custom-golf-detail .date-text-2 {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.custom-golf-detail .date-text-2 span {
+  color: #999999;
+}
+
+.custom-golf-detail .date-text-2 p:last-child {
+  font-size: 16px;
+  color: #999999;
+}
+
+.custom-golf-detail .card-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.custom-golf-detail .card-content .card-item {
+  padding: 30px;
+  border-radius: 6px;
+  border: 1px solid rgb(219, 219, 219);
+  width: 380px;
+  height: 160px;
+}
+
+.custom-golf-detail .card-content .card-item.active_1 {
+  color: var(--bs-point);
+  border-color: var(--bs-point);
+  border-width: 2px;
+}
+
+.custom-golf-detail .card-content .card-item.active_2 {
+  color: white !important;
+  background-color: var(--bs-point);
+}
+
+.custom-golf-detail .card-content .card-item.active_2 span.font-bold {
+  color: white;
+}
+
+.custom-golf-detail .card-content .header-con {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.custom-golf-detail .card-content p.text-gray {
+  margin-bottom: 10px;
+}
+
+.custom-golf-detail .card-content .card-item.active_2 p.cus-text {
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+.custom-golf-detail .card-content .card-item.active_2 .cus-text_div {
+  display: flex;
+  gap: 4px;
+}
+
+.custom-golf-detail .card-content span.font-bold {
+  color: #252525;
+}
+
+.custom-golf-detail .list-select-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.custom-golf-detail .list-select-element .item-select {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.custom-golf-detail .list-select-element .item-select .select_custom_ {
+  width: 280px;
+}
+
+.custom-golf-detail .section2-sub {
+  display: flex;
+}
+
+.custom-golf-detail .section2-sub .left-main {
+  width: 50%;
+  border: 1px solid rgb(238, 238, 238);
+  border-top: 2px solid #000;
+  padding: 40px;
+  border-radius: 0 0 0 6px;
+  box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
+}
+
+.custom-golf-detail .section2-sub .left-main .tit-left {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.custom-golf-detail .section2-sub .left-main p {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  line-height: 1.5rem;
+}
+
+.custom-golf-detail .section2-sub .left-main .l-label {
+  width: 100px;
+}
+
+.custom-golf-detail .section2-sub .right-main {
+  width: 50%;
+  border: 1px solid rgb(238, 238, 238);
+  padding: 12px 40px 40px 40px;
+  border-top: 2px solid #000;
+  border-left: none;
+  border-radius: 0 0 6px 0;
+  box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
+}
+
+.custom-golf-detail .section2-sub .right-main .item-right {
+  display: flex;
+  align-items: center;
+  padding: 24px 0;
+}
+
+.custom-golf-detail .section2-sub .right-main .item-right:not(:last-child) {
+  border-bottom: 1px dashed #ccc;
+}
+
+.custom-golf-detail .section2-sub .right-main .item-right.cus-border {
+  border-bottom: 1px solid #ccc;
+}
+
+.custom-golf-detail .section2-sub .item-last-right {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0px;
+  font-size: 20px;
+}
+
+.custom-golf-detail .section2-sub .item-last-right .price-text {
+  font-weight: bold;
+}
+
+.custom-golf-detail .section2-sub .item-last-right .price-text span {
+  font-weight: 500 !important;
+}
+
+.custom-golf-detail .section2-sub .right-main .list-text {
+  line-height: 1.5rem;
+  width: 360px;
+}
+
+.custom-golf-detail .section2-sub .item-right p:first-child {
+  width: 360px;
+}
+
+.custom-golf-detail .container-big-text .sub-title-18 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.custom-golf-detail .container-big-text p {
+  margin-bottom: 20px;
+  line-height: 1.5rem;
+}
+
+.custom-golf-detail .container-big-text ul {
+  margin-top: 20px;
+  line-height: 1.5rem;
+}
+
+.custom-golf-detail .info-container span {
+  width: 110px;
+  display: inline-block;
+}
+
+.custom-golf-detail .info-container {
+  line-height: 1.5rem;
+}
+
+.custom-golf-detail .highlight-des .highlight-des-p {
+  margin-top: 28px;
+  padding: 30px 20px;
+  background-color: #F3F5F7;
+}
+
+.custom-golf-detail .section6 .card-list-recommemded .recommemded-item button {
+  margin-top: 24px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #4576FE;
+  background-color: unset;
+  padding: 0;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
+.custom-golf-detail .ul-html-content li {
+  list-style: decimal;
+}
+
+.custom-golf-detail .ul-html-content {
+  list-style: decimal;
+  margin-left: 16px;
+  margin-bottom: 50px;
+}
+
+.custom-golf-detail .qa-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.custom-golf-detail .qa-form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.custom-golf-detail .qa-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.custom-golf-detail .qa-submit {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.custom-golf-detail .qa-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.custom-golf-detail .qa-list {
+  border-top: 1px solid #ddd;
+}
+
+.custom-golf-detail .qa-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.custom-golf-detail .qa-question {
+  display: flex;
+  align-items: center;
+}
+
+.custom-golf-detail .qa-number {
+  margin: 0 28px;
+  font-size: 15px;
+}
+
+.custom-golf-detail .qa-tag {
+  background-color: #0056b3;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.custom-golf-detail .qa-text {
+  font-size: 17px;
+}
+
+.custom-golf-detail .qa-meta {
+  font-size: 15px;
+}
+
+.custom-golf-detail .load-more {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #eee;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.custom-golf-detail .additional-info {
+  background-color: #f8f8f8;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.custom-golf-detail .additional-info p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.custom-golf-detail .pagination {
+  margin: 32px 0 128px 0 !important;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.custom-golf-detail .page-link {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 0 5px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.custom-golf-detail .page-link:hover {
+  background-color: #f0f0f0;
+}
+
+.custom-golf-detail .page-link.active {
+  color: var(--bs-point);
+  border-color: var(--bs-point);
+}
+
+.custom-golf-detail .custom-area-text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 132px;
+  max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px
+}
+
+.custom-golf-detail .custom-label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.custom-golf-detail .custom-main-input-style {
+  width: 100%;
+  /* min-height: 50px; */
+  padding: 10px 10px;
+  border: none;
+  outline: none;
+  /* background: #f8f8f8; */
+  resize: none;
+  font-size: 14px;
+  color: #999999;
+  border-radius: 5px;
+  height: 120px;
+  text-align: start;
+}
+
+.custom-golf-detail .qa-submit-btn {
+  font-size: 18px;
+    padding: 38px;
+    border-left: 1px solid rgb(238, 238, 238);
+}
+
+.custom-golf-detail .qa-submit-btn:hover {
+  background-color: #e0e0e0;
+}
