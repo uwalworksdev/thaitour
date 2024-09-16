@@ -576,6 +576,11 @@ class Product extends BaseController
         return view('golf/golf-details');
     }
 
+    public function customerForm($code_no)
+    {
+        return view('golf/customer-form');
+    }
+
     public function index7($code_no)
     {
         return view('tours/tour-details');
