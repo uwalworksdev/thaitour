@@ -253,7 +253,7 @@
                             <span>여행안전수칙 동의(필수)</span>
                             <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                         </div>
-                        <button class="btn-order">예약하기</button>
+                        <button class="btn-order" onclick="location.href='/product-golf/completed-order/1'">예약하기</button>
                     </div>
                 </div>
             </div>

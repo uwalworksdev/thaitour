@@ -566,6 +566,11 @@ class Product extends BaseController
         }
     }
 
+    public function completedOrder($code_no)
+    {
+        return view('golf/completed-order');
+    }
+
     public function golfList($code_no)
     {
         return view('golf/list-golf');
