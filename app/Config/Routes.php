@@ -276,10 +276,10 @@ $routes->group("custom_travel", static function ($routes) {
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('show-ticket', 'Product::showTicket');
 $routes->get('vehicle-guide', 'Product::vehicleGuide');
-$routes->get('product-tours/(:any)', 'Product::index/$1');
 $routes->get('product-list/(:any)', 'Product::index3/$1');
 $routes->get('product-hotel/list-hotel/(:any)', 'Product::index5/$1');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::index6/$1');
+$routes->get('product-hotel/customer-form', 'Product::index7/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product-golf/completed-order/(:any)', 'Product::completedOrder/$1');
@@ -287,7 +287,11 @@ $routes->get('product-golf/customer-form/(:any)', 'Product::customerForm/$1');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
-$routes->get('tours/item_view/(:any)', 'Product::index7/$1');
+$routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
+$routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
+$routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
+$routes->get('product-tours/(:any)', 'Product::index/$1');
+
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 

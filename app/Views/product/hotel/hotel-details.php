@@ -318,7 +318,7 @@
                                         <span class="details">객실 1개 × 3박 (세금 포함)</span>
                                         <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button">예약하기</button>
+                                        <button class="book-button" onclick="location.href='/product-hotel/customer-form'">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -352,7 +352,7 @@
                                         </div>
                                         <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub">예약하기</button>
+                                        <button class="book-button-sub" onclick="location.href='/product-hotel/customer-form'">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -568,7 +568,7 @@
                                         <span class="details">객실 1개 × 3박 (세금 포함)</span>
                                         <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub">예약하기</button>
+                                        <button class="book-button-sub" onclick="location.href='/product-hotel/customer-form'">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -602,7 +602,7 @@
                                         </div>
                                         <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub">예약하기</button>
+                                        <button class="book-button-sub" onclick="location.href='/product-hotel/customer-form'">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -818,7 +818,7 @@
                                         <span class="details">객실 1개 × 3박 (세금 포함)</span>
                                         <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub">예약하기</button>
+                                        <button class="book-button-sub" onclick="location.href='/product-hotel/customer-form'">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -852,7 +852,7 @@
                                         </div>
                                         <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub">예약하기</button>
+                                        <button class="book-button-sub" onclick="location.href='/product-hotel/customer-form'">예약하기</button>
                                     </div>
                                 </td>
                             </tr>

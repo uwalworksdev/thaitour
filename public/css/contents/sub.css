@@ -3718,7 +3718,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .card-left {
   width: 820px;
-  height: 1028px;
+  height: 724px;
   padding: 40px 30px;
   background-color: white;
   border-radius: 6px;
@@ -3770,7 +3770,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .customer-form-page .container-card .item-info-r.item-info-r-border-b {
   border-bottom: 1px dashed rgb(238, 238, 238);
   padding-bottom: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .customer-form-page .container-card .card-right img {
@@ -4104,6 +4104,158 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   font-weight: 600;
   border-radius: 6px;
   width: 360px;
+}
+
+.hotel-custom-form .card-left {
+  padding: 30px;
+}
+
+.hotel-custom-form .card-left .section1-img {
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.hotel-custom-form .card-left .img-left {
+  border-radius: 6px;
+  width: 200px;
+  height: 140px;
+}
+
+.hotel-custom-form .card-left .img-left img {
+  border-radius: 6px;
+  width: 200px;
+  height: 140px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hotel-custom-form .card-left .section1-img {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hotel-custom-form .card-left .content-right .title-h {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.hotel-custom-form .card-left .content-right .sub-title-h {
+  font-size: 16px;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.hotel-custom-form .card-left .content-right .des-h p {
+  line-height: 1.5rem;
+}
+
+.hotel-custom-form .card-left .title-font-22 {
+  margin: 40px 0 20px 0;
+  font-size: 22px;
+}
+
+.hotel-custom-form .card-left .title-font-22 {
+  margin: 40px 0 20px 0;
+  font-size: 22px;
+}
+
+.hotel-custom-form .card-left .section2-con {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.hotel-custom-form .card-left .section2-con input {
+  width: 200px;
+}
+
+.hotel-custom-form .card-left .section2-con .sub_btn {
+  font-size: 16px;
+  color: var(--bs-point);
+  border: 1px solid var(--bs-point);
+  padding: 12px 37px;
+  background-color: white;
+  height: 50px;
+  border-radius: 3px;
+}
+
+.hotel-custom-form .card-left .section2-con .primary_btn {
+  font-size: 16px;
+  color: white;
+  padding: 12px 37px;
+  background-color: var(--bs-point);
+  height: 50px;
+  border-radius: 3px;
+}
+
+.hotel-custom-form .card-left .section2-button {
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.hotel-custom-form .card-left .container-relative {
+  position: relative;
+}
+
+.hotel-custom-form .card-left .container-relative .text-p {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.hotel-custom-form .card-left .tag-list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hotel-custom-form .card-left .tag-list .tag-h {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 175px;
+  border: 2px solid #ccc;
+  padding: 50px 20px;
+  height: 175px;
+  border-radius: 10px;
+}
+
+.hotel-custom-form .card-left .tag-list .tag-h.active {
+  color: var(--bs-point);
+  border-color: var(--bs-point);
+}
+
+.hotel-custom-form .card-left .tag-list .tag-h span {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hotel-custom-form .card-left .tag-list .tag-h img {
+  width: 37px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hotel-custom-form .card-right2 {
+  margin-top: unset !important;
+}
+
+.hotel-custom-form .below-des-price {
+  color: #999999;
+  font-size: 15px;
+}
+
+.hotel-custom-form .card-right2 {
+  height: 690px;
+}
+
+.hotel-custom-form .container-card {
+  margin-bottom: 140px;
 }
 
 @media screen and (max-width: 1200px) {

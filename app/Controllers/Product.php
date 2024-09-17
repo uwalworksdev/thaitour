@@ -516,7 +516,7 @@ class Product extends BaseController
                 'tab_active' => '1',
             ];
 
-            return view('product/list-hotel', $data);
+            return view('product/hotel/list-hotel', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -556,7 +556,7 @@ class Product extends BaseController
                 'tab_active' => '1',
             ];
 
-            return view('product/hotel-details', $data);
+            return view('product/hotel/hotel-details', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -566,29 +566,44 @@ class Product extends BaseController
         }
     }
 
+    public function index7($code_no)
+    {
+        return view('product/hotel/customer-form');
+    }
+
     public function completedOrder($code_no)
     {
-        return view('golf/completed-order');
+        return view('product/golf/completed-order');
     }
 
     public function golfList($code_no)
     {
-        return view('golf/list-golf');
+        return view('product/golf/list-golf');
     }
 
     public function golfDetail($code_no)
     {
-        return view('golf/golf-details');
+        return view('product/golf/golf-details');
     }
 
     public function customerForm($code_no)
     {
-        return view('golf/customer-form');
+        return view('product/golf/customer-form');
     }
 
-    public function index7($code_no)
+    public function index8($code_no)
     {
         return view('tours/tour-details');
+    }
+
+    public function index9($code_no)
+    {
+        return view('tours/list-tour');
+    }
+
+    public function tourOrderForm($code_no)
+    {
+        return view('tours/order-form');
     }
 
     public function vehicleGuide()
@@ -609,32 +624,32 @@ class Product extends BaseController
 
     public function view($product_idx)
     {
-        // Lấy các chi tiết sản phẩm hiện tại
+        
         $data['product'] = $this->productModel->getProductDetails($product_idx);
 
         if (!$data['product']) {
             return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
         }
 
-        // Bổ sung đoạn mã mới
+        
         $start_date_in = $this->request->getVar('start_date_in') ?: date("Y-m-d");
         $product_info = $this->productModel->get_product_info($product_idx, $start_date_in);
         $air_info = $this->productModel->get_air_info($product_idx, $start_date_in);
-        $day_details = $this->productModel->getDayDetails($product_idx); // Lấy dữ liệu từ tbl_product_day_detail
+        $day_details = $this->productModel->getDayDetails($product_idx); 
 
-        // Tính giá trị min_amt
+        
         $min_amt = $this->calculateMinAmt($air_info);
 
-        // Lấy ngày bắt đầu (_start_dd)
+        
         $_start_dd = date('d', strtotime($start_date_in));
 
-        // Lấy giá trị tour_price và các biến liên quan từ $air_info
-        $tour_price = $air_info[0]['tour_price'] ?? 0; // Nếu không có giá trị, đặt mặc định là 0
+        
+        $tour_price = $air_info[0]['tour_price'] ?? 0; 
         $oil_price = $air_info[0]['oil_price'] ?? 0;
         $tour_price_kids = $air_info[0]['tour_price_kids'] ?? 0;
         $tour_price_baby = $air_info[0]['tour_price_baby'] ?? 0;
 
-        // Chuẩn bị giá trị sel_date và sel_price
+        
         $seq = time();
         $sDate = date('Y-m-01');
         $today = date('Y-m-d');
@@ -650,12 +665,12 @@ class Product extends BaseController
             $sel_price .= $cal_amt . "|";
         }
 
-        // Debug các giá trị
-        // echo "sel_date: " . $sel_date . "===========";
-        // echo "sel_price: " . $sel_price . "===========";
-        // echo "first_date: " . ($first_date['get_date'] ?? '') . "===========";
+        
+        
+        
+        
 
-        // Thêm vào mảng dữ liệu
+        
         $data['start_date_in'] = $start_date_in;
         $data['product_info'] = $product_info;
         $data['air_info'] = $air_info;
@@ -671,16 +686,16 @@ class Product extends BaseController
         $data['product_unable'] = $data['product']['product_unable'];
         $data['tour_info'] = $data['product']['tour_info'];
         $data['special_benefit'] = $data['product']['special_benefit'];
-        $data['day_details'] = $day_details; // Truyền dữ liệu từ tbl_product_day_detail sang view
+        $data['day_details'] = $day_details; 
         $data['sel_date'] = $sel_date;
         $data['sel_price'] = $sel_price;
         $data['first_date'] = $first_date['get_date'] ?? '';
 
-        // if (!$data['product_info']) {
-        //     return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
-        // }
+        
+        
+        
 
-        // Tiếp tục với các chi tiết sản phẩm hiện tại
+        
         $data['product_level'] = $this->productModel->getProductLevel($data['product']['product_level']);
         $data['img_1'] = $this->getImage($data['product']['ufile1']);
         $data['img_2'] = $this->getImage($data['product']['ufile2']);

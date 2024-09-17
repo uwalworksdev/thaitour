@@ -110,142 +110,70 @@
                     <button class="btn-ct-3">선택</button>
                 </div>
                 <div class="container-calendar">
-                    <div class="calendar-left">
-                        <h3 class="title-left">
-                            이용일자 선택
-                        </h3>
-                        <div class="calendar-container">
-                            <div class="calendar-header">
-                                <div id="prev-month" class="btn-action-calendar">
-                                    <img src="/uploads/icons/tour-left_icon.png" alt="tour-left_icon">
-                                </div>
-                                <span id="month-year"></span>
-                                <div id="next-month" class="btn-action-calendar">
-                                    <img src="/uploads/icons/tour-right_icon.png" alt="tour-right_icon">
-                                </div>
-                            </div>
-                            <div class="calendar-body">
-                                <div class="calendar-weekdays">
-                                    <div class="text-red-cus">일</div>
-                                    <div>월</div>
-                                    <div>화</div>
-                                    <div>수</div>
-                                    <div>목</div>
-                                    <div>금</div>
-                                    <div class="text-blue-cus">토</div>
-                                </div>
-                                <div class="calendar-days"></div>
-                            </div>
-                            <div class="note-container">
-                                <div class="first-note">
-                                    <div class="ball-red-n"></div>
-                                    <span>예약마감</span>
-                                </div>
-                                <div class="first-note">
-                                    <div class="ball-blue-n"></div>
-                                    <span> 특별요금</span>
-                                </div>
-                            </div>
-                            <div class="form-below-calendar">
-                                <label class="lb-18" for="">예약시간</label>
-                                <select class="select-time-c">
-                                    <option value="01">07:50 ~ 13:30</option>
-                                </select>
-                            </div>
+                    <div class="main-order-form">
+                        <div class="main-order-form-container">
+                            <h1>선택하신 날짜에 즉시확정 예약이 가능합니다.</h1>
+                            <p>예약 즉시 결제가 가능하며, 엄격하게 관련 예약정책이 발생됩니다.</p>
                         </div>
 
-                    </div>
+                        <h2>예약정보</h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>이용일</th>
+                                    <td>2024.07.31(수)</td>
+                                </tr>
+                                <tr>
+                                    <th>상품명</th>
+                                    <td>타피야 선상 카페 오징어 낚시 반단독 투어</td>
+                                </tr>
+                                <tr>
+                                    <th>선택옵션</th>
+                                    <td>파이타야 선상 카페 + 파이타야 호텔 왕복 픽업 / 5-9인 승합차<br>320,560원 (8,000바트)</td>
+                                </tr>
+                                <tr>
+                                    <th>총인원</th>
+                                    <td>3명 (성인 : 2, 아이 : 1)</td>
+                                </tr>
+                                <tr>
+                                    <th>회원등급 할인</th>
+                                    <td>없음</td>
+                                </tr>
+                                <tr>
+                                    <th>예약시간</th>
+                                    <td>15:00 - 18:30</td>
+                                </tr>
+                                <tr>
+                                    <th>픽업</th>
+                                    <td>포함(장소)</td>
+                                </tr>
+                                <tr>
+                                    <th>호텔명</th>
+                                    <td>호텔명을 영어로 적어주세요(주소포함)</td>
+                                </tr>
+                                <tr>
+                                    <th>미팅 시간</th>
+                                    <td>미팅 없음</td>
+                                </tr>
+                                <tr>
+                                    <th>종료 후 내리실 곳</th>
+                                    <td>종료 후 내리실 곳 항목은 필수입력입니다.</td>
+                                </tr>
+                                <tr>
+                                    <th>카카오톡 아이디</th>
+                                    <td>카카오톡 아이디 항목은 선택 입력입니다.</td>
+                                </tr>
+                                <tr>
+                                    <th>기타 옵션</th>
+                                    <td>원하는 미팅 시간을 적어주세요(15:30분 이후)</td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <div class="calendar-right">
-                        <h3 class="title-right">
-                            인원 선택
-                        </h3>
-                        <div class="quantity-container">
-                            <div class="quantity-info-con">
-                                <span class="des">성인, Adult (키 120cm 이상)</span>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <button class="decrease" disabled>-</button>
-                                <span class="quantity">0</span>
-                                <button class="increase">+</button>
-                            </div>
-                        </div>
-                        <div class="quantity-container">
-                            <div class="quantity-info-con">
-                                <span class="des">아동, Child (키 91~119cm)</span>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <button class="decrease" disabled>-</button>
-                                <span class="quantity">0</span>
-                                <button class="increase">+</button>
-                            </div>
-                        </div>
-                        <div class="quantity-container">
-                            <div class="quantity-info-con">
-                                <span class="des">유아, baby (키 90cm 이하)</span>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <button class="decrease" disabled>-</button>
-                                <span class="quantity">0</span>
-                                <button class="increase">+</button>
-                            </div>
-                        </div>
-                        <h3 class="title-second">선택옵션</h3>
-                        <form>
-                            <div class="form-group">
-                                <div class="above">
-                                    <input type="checkbox" id="html">
-                                    <label for="html">승용차 >>> SUV</label>
-                                </div>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="above">
-                                    <input type="checkbox" id="css">
-                                    <label for="css">돈므앙&수완나품 공항 미팅 또는 샌딩(편도)</label>
-                                </div>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="above">
-                                    <input type="checkbox" id="javascript">
-                                    <label for="javascript">돈므앙&수완나품 공항 미팅/샌딩(왕복) | 성인 : 800바트</label>
-                                </div>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="des-below text-gray">
-                            <p>
-                                ※ 본 상품은 1인 이상 예약 가능합니다.
-                            </p>
-                            <p>
-                                ※ 최소 4인 이상 모객시 출발 가능한 상품입니다. 출발 하루전까지 최소 인원 미달시
-                            </p>
-                            <p>취소될 수 있습니다. 출발이 불가능할 경우 개별 연락을 통해 일정 변경/취소 안내드립니다.</p>
-                        </div>
+                        <p class="note">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
+                        <p class="details"><a href="#">본 예약안내 및 규정 더보기</a></p>
                     </div>
-                    <button class="primary-btn-calendar" onclick="location.href='/product-tours/order-form/1'">견적/예약하기</button>
+                    <button class="primary-btn-calendar">견적/예약하기</button>
                 </div>
             </div>
             <!-- <h2 class="title-sec2">
