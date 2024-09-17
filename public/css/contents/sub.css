@@ -3718,7 +3718,6 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .card-left {
   width: 820px;
-  height: 724px;
   padding: 40px 30px;
   background-color: white;
   border-radius: 6px;
