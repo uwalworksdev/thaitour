@@ -17,9 +17,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_review", static function ($routes) {
         $routes->get("list", "ReviewController::list_admin");
         $routes->get("write", "ReviewController::write_admin");
-        $routes->get("detail", "ReviewController::detail_admin");
         $routes->post("change_ajax", "ReviewController::change_ajax");
-
         $routes->post("del", "ReviewController::del");
         $routes->post("ajax_del", "ReviewController::ajax_del");
     });
@@ -56,6 +54,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_reservation", static function ($routes) {
         $routes->get("list", "Admin\ReservationController::list");
+        $routes->get("write", "Admin\ReservationController::write");
     });
 
     $routes->group("_qna", static function ($routes) {
