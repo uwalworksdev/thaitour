@@ -8,6 +8,7 @@ class ReviewController extends BaseController
 {
     private $ReviewModel;
     private $Bbs;
+
     public function __construct()
     {
         $this->db = db_connect();
@@ -17,6 +18,7 @@ class ReviewController extends BaseController
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
     }
+
     public function list_review()
     {
         $deviceType = get_device();
@@ -48,6 +50,7 @@ class ReviewController extends BaseController
             "category" => $category
         ]);
     }
+
     public function list_admin()
     {
         $deviceType = get_device();
@@ -83,24 +86,74 @@ class ReviewController extends BaseController
             'g_list_rows' => $g_list_rows
         ]);
     }
-    public function write_admin() {
-        $idx			= updateSQ($_GET['idx']);
-        $row			= null;
+
+    public function write_admin()
+    {
+        $idx = updateSQ($_GET['idx'] ?? '');
+        $row = null;
         if ($idx) {
             $row = $this->ReviewModel->find($idx);
+
+
+            $user_name = sqlSecretConver($row["user_name"], 'decode');
+
+            if (isset($row["user_phone"])){
+                $user_phone = sqlSecretConver($row["user_phone"], 'decode');
+            }
+
+            $user_email = sqlSecretConver($row["user_email"], 'decode');
+
+            $status = $row["status"];
+            $is_best = $row["is_best"];
+            $ufile1 = $row["ufile1"];
+            $rfile1 = $row["rfile1"];
+            $ufile2 = $row["ufile2"];
+            $rfile2 = $row["rfile2"];
+            $r_date = $row["r_date"];
+            $travel_type = $row["travel_type"];
+            $travel_type_2 = $row['travel_type_2'];
+            $travel_type_3 = $row['travel_type_3'];
+            $product_idx = $row['product_idx'];
+            $title = $row['title'];
+            $contents = $row["contents"];
+            $display = $row["display"];
         }
         return view("admin/_review/write", [
             "row" => $row,
+            "idx" => $idx ?? '',
+            "product_idx" => $product_idx ?? '',
+            "title" => $title ?? '',
+            "contents" => $contents ?? '',
+            "ufile1" => $ufile1 ?? '',
+            "rfile1" => $rfile1 ?? '',
+            "ufile2" => $ufile2 ?? '',
+            "rfile2" => $rfile2 ?? '',
+            "r_date" => $r_date ?? '',
+            "status" => $status ?? '',
+            "is_best" => $is_best ?? '',
+            "display" => $display ?? '',
+            "user_name" => $user_name ?? '',
+            "user_email" => $user_email ?? '',
+            "user_phone" => $user_phone ?? '',
+            "travel_type" => $travel_type ?? '',
+            "travel_type_2" => $travel_type_2 ?? '',
+            "travel_type_3" => $travel_type_3 ?? '',
+            "str_guide" => $str_guide ?? '',
+            "guide_e_date" => $guide_e_date ?? '',
         ]);
     }
-    public function detail_admin() {
+
+    public function detail_admin()
+    {
         $idx = updateSQ($_GET['idx']);
         $row = $this->ReviewModel->getReview($idx);
         return view("admin/_review/detail", [
             "row" => $row
         ]);
     }
-    public function change_ajax() {
+
+    public function change_ajax()
+    {
         $idx = $this->request->getPost('idx_change');
         $onum = $this->request->getPost('onum');
         $display = $this->request->getPost('display');
@@ -125,7 +178,9 @@ class ReviewController extends BaseController
 
         return $this->response->setJSON(['message' => $msg]);
     }
-    public function del() {
+
+    public function del()
+    {
         $idx = $this->request->getPost('idx');
         $mode = $this->request->getPost('mode');
 
@@ -142,7 +197,9 @@ class ReviewController extends BaseController
             return $this->response->setBody('OK');
         }
     }
-    public function ajax_del() {
+
+    public function ajax_del()
+    {
         $idx = $this->request->getPost('idx');
 
         if ($this->ReviewModel->delete($idx)) {
@@ -153,6 +210,7 @@ class ReviewController extends BaseController
 
         return $this->response->setJSON(['message' => $msg]);
     }
+
     public function detail_review()
     {
         $idx = updateSQ($_GET["idx"]);
@@ -173,6 +231,7 @@ class ReviewController extends BaseController
             return view("errors/html/error_404");
         }
     }
+
     public function write_review()
     {
         $member_Id = session('member.idx');
@@ -209,7 +268,7 @@ class ReviewController extends BaseController
         $user_name = $row_m["user_name"];
 
         $idx = updateSQ($_GET["idx"]);
-        $product_idx = updateSQ($_GET["product_idx"]);
+        $product_idx = updateSQ($_GET["product_idx"] ?? 0);
         if ($idx) {
             $sql_info = "select t1.*, t2.code_no as travel_type, t3.code_no as travel_type_2, t4.code_no as travel_type_3,
                 t2.code_name as travel_type_name, t3.code_name as travel_type_name_2, t4.code_name as travel_type_name_3, t5.product_name
@@ -291,6 +350,7 @@ class ReviewController extends BaseController
 
         return view("review/review_write", $data);
     }
+
     public function save_review()
     {
         $data = $this->request->getPost();
@@ -299,27 +359,27 @@ class ReviewController extends BaseController
             "ufile2" => $this->request->getFile("ufile2"),
         ];
         $session = session();
-        $role = updateSQText($data['role']);
+        $role = updateSQText($data['role'] ?? '');
 
-        $idx = updateSQText($data['idx']);
-        $travel_type_2 = updateSQText($data['travel_type_2']);
-        $travel_type_3 = updateSQText($data['travel_type_3']);
-        $travel_type = updateSQText($data['travel_type']);
-        $user_name = updateSQText($data['user_name']);
-        $title = updateSQText($data['title']);
-        $contents = updateSQ($data['contents']);
-        $product_idx = updateSQText($data['product_idx']);
-        $user_phone       		= updateSQ($_POST["user_phone"]);
+        $idx = updateSQText($data['idx'] ?? '');
+        $travel_type_2 = updateSQText($data['travel_type_2'] ?? '');
+        $travel_type_3 = updateSQText($data['travel_type_3'] ?? '');
+        $travel_type = updateSQText($data['travel_type'] ?? '');
+        $user_name = updateSQText($data['user_name'] ?? '');
+        $title = updateSQText($data['title'] ?? '');
+        $contents = updateSQ($data['contents'] ?? '');
+        $product_idx = updateSQText($data['product_idx'] ?? 0);
+        $user_phone = updateSQ($_POST["user_phone"] ?? '');
 
         if ($role == "admin") {
-            $user_email       		= updateSQ($_POST["user_email"]);
-            $status					= updateSQ($_POST["status"]);
-            $is_best				= updateSQ($_POST["is_best"]);
-            $display				= updateSQ($_POST["display"]);
-            $r_date				    = updateSQ($_POST["r_date"]);
+            $user_email = updateSQ($_POST["user_email"] ?? '');
+            $status = updateSQ($_POST["status"] ?? '');
+            $is_best = updateSQ($_POST["is_best"] ?? '');
+            $display = updateSQ($_POST["display"] ?? '');
+            $r_date = updateSQ($_POST["r_date"] ?? '');
         } else {
-            $mail_name = updateSQText($data['mail_name']);
-            $mail_host = updateSQText($data['mail_host']);
+            $mail_name = updateSQText($data['mail_name'] ?? '');
+            $mail_host = updateSQText($data['mail_host'] ?? '');
             $user_email = $mail_name . '@' . $mail_host;
             $status = "Y";
             $is_best = "N";
@@ -391,13 +451,13 @@ class ReviewController extends BaseController
                 'ufile1' => $r_file_code1,
                 'rfile2' => $r_file_name2,
                 'ufile2' => $r_file_code2,
-                'product_idx' => $product_idx,
+                'product_idx' => $product_idx ?? 0,
                 'travel_type' => $travel_type,
-                'travel_type_2' => $travel_type_2,
-                'travel_type_3' => $travel_type_3,
+                'travel_type_2' => $travel_type_2 ?? 0,
+                'travel_type_3' => $travel_type_3 ?? 0,
                 'title' => $title,
                 'contents' => $contents,
-                'r_date' => $r_date,
+                'r_date' => $r_date ?? date("Y-m-d H:i:s"),
                 'passwd' => $pass,
                 'user_ip' => $_SERVER['REMOTE_ADDR']
             ];
@@ -413,6 +473,7 @@ class ReviewController extends BaseController
             return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
         }
     }
+
     public function review_delete()
     {
         $idx = $_POST['idx'];
