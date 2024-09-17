@@ -4058,6 +4058,54 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   width: 280px;
 }
 
+.completed-order-page {
+  background-color: #f0f2f5;
+}
+
+.completed-order-page .container-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0 90px 0;
+  background-color: white;
+  margin: 30px 0 50px 0;
+  border-radius: 6px;
+}
+
+.completed-order-page .img-con img {
+  width: 461px;
+  height: 488px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.completed-order-page .title-main-o {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.completed-order-page .sub-title-o {
+  font-size: 18px;
+  line-height: 1.5rem;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.completed-order-page .btb-back-order {
+  width: 100%;
+  height: 66px;
+  background-color: var(--bs-point);
+  font-size: 22px;
+  font-weight: unset;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  width: 360px;
+}
+
 @media screen and (max-width: 1200px) {
   .only_tb {
     display: none !important;

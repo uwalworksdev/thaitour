@@ -293,6 +293,7 @@ $routes->get('product-hotel/list-hotel/(:any)', 'Product::index5/$1');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::index6/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
+$routes->get('product-golf/completed-order/(:any)', 'Product::completedOrder/$1');
 $routes->get('product-golf/customer-form/(:any)', 'Product::customerForm/$1');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
