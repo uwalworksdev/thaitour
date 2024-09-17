@@ -56,6 +56,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_reservation", static function ($routes) {
         $routes->get("list", "Admin\ReservationController::list");
+        $routes->get("write", "Admin\ReservationController::write");
     });
 
     $routes->group("_qna", static function ($routes) {
