@@ -61,7 +61,7 @@
                 <div class="swiper sub_swiper2">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <div class="img_box" onclick="window.location.href='/tours/item_view/1325/2';">
+                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">
                                 <img src="/uploads/sub/tour_slide_1.png" alt="main">
                             </div>
                             <div class="sub_swiper2__text">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box" onclick="window.location.href='/tours/item_view/1325/2';">
+                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">
                                 <img src="/uploads/sub/tour_slide_2.png" alt="main">
                             </div>
                             <div class="sub_swiper2__text">
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box" onclick="window.location.href='/tours/item_view/1325/2';">
+                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">
                                 <img src="/uploads/sub/tour_slide_3.png" alt="main">
                             </div>
                             <div class="sub_swiper2__text">
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box" onclick="window.location.href='/tours/item_view/1325/2';">
+                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">
                                 <img src="/uploads/sub/tour_slide_4.png" alt="main">
                             </div>
                             <div class="sub_swiper2__text">
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box" onclick="window.location.href='/tours/item_view/1325/2';">
+                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">
                                 <img src="/uploads/sub/tour_slide_5.png" alt="main">
                             </div>
                             <div class="sub_swiper2__text">
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="img_box" onclick="window.location.href='/tours/item_view/1325/2';">
+                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">
                                 <img src="/uploads/sub/tour_slide_3.png" alt="main">
                             </div>
                             <div class="sub_swiper2__text">
@@ -138,7 +138,7 @@
             <div>
                 <div class="sub_section3_swiper swiper">
                     <div class="swiper-wrapper">
-                        <a href="/tours/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
+                        <a href="/product-tours/item_view/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/tour_popular_1.png" alt="main">
                             </div>
@@ -165,7 +165,7 @@
                                 236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
                             </div>
                         </a>
-                        <a href="/tours/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
+                        <a href="/product-tours/item_view/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/tour_popular_2.png" alt="main">
                             </div>
@@ -192,7 +192,7 @@
                                 236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
                             </div>
                         </a>
-                        <a href="/tours/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
+                        <a href="/product-tours/item_view/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/tour_popular_3.png" alt="main">
                             </div>
@@ -219,7 +219,7 @@
                                 236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
                             </div>
                         </a>
-                        <a href="/tours/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
+                        <a href="/product-tours/item_view/item_view/1325/2" class="sub_section3_swiper_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/tour_popular_2.png" alt="main">
                             </div>

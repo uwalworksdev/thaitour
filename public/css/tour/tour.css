@@ -1041,7 +1041,7 @@
 .content-sub-hotel-detail .rating-container span:last-child {
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 12px;
   padding-left: 12px;
   border-left: 1px solid #ccc;
 }
@@ -1103,7 +1103,7 @@
 .content-sub-hotel-detail .sub-header-hotel-detail {
   display: flex;
   justify-content: space-between;
-  padding: 12px 12px 12px 32px;
+  padding: 28px 30px;
   border: solid 1px #ccc;
   border-radius: 5px;
   margin-bottom: 64px;
@@ -1782,10 +1782,23 @@
 
 .tours-detail .calendar-container {
   text-align: center;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 40px;
+}
+
+.tours-detail .calendar-container .btn-action-calendar {
+  padding: 7px 4px 3px 6px;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 50%;
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
+}
+
+.tours-detail .calendar-container .btn-action-calendar img {
+  width: 7px;
+  height: 11px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .tours-detail .nav-btn {
@@ -1827,71 +1840,169 @@
   color: red;
 }
 
-.tours-detail .ui-datepicker td.ui-datepicker-current-day .ui-state-active {
-  background-color: blue;
-  color: white;
-  border-radius: 50%;
+.tours-detail .calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+  gap: 20px;
 }
 
-.calendar-container {
-  width: 400px;
-  margin: 50px auto;
-  font-family: Arial, sans-serif;
+.tours-detail .text-red {
+  color: #e31d1d;
 }
 
-.ui-datepicker {
-  width: 100%;
-  font-size: 16px;
-}
-
-.ui-datepicker th {
-  color: black;
-}
-
-.ui-datepicker .ui-datepicker-title {
+.tours-detail #month-year {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
-.ui-datepicker td a {
-  display: block;
-  padding: 8px;
+.tours-detail .calendar-body {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.tours-detail .calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  text-decoration: none;
-  color: black;
-}
-
-.ui-datepicker td a.special-rate {
-  color: red;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.ui-datepicker td span {
-  color: grey;
+.tours-detail .calendar-weekdays div {
+  padding: 10px;
+}
+
+.tours-detail .calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   text-align: center;
-  display: block;
-  padding: 8px;
 }
 
-.ui-datepicker td .fully-booked {
-  color: grey;
+.tours-detail .calendar-days div {
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 74px;
+  height: 77px;
 }
 
-.ui-datepicker td a.selected {
-  background-color: #0044cc;
-  color: white;
+.tours-detail .calendar-days div .price1 {
+  color: #e31d1d;
+  font-size: 15px;
   font-weight: bold;
 }
 
-.price-info {
+.tours-detail .text-red-cus {
+  color: #e31d1d !important;
+}
+
+.tours-detail .text-blue-cus {
+  color: #006ce4 !important;
+}
+
+.tours-detail .calendar-days div .price2 {
+  color: #252525;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.tours-detail .booked {
+  color: #757575;
+  font-weight: 600;
+}
+
+.tours-detail .booked p {
+  color: #999999;
+  font-size: 15px;
+}
+
+.tours-detail .special-rate {
+  color: #757575;
+  font-weight: 600;
+}
+
+.tours-detail .special-rate span {
+  display: block;
+  font-size: 12px;
+  color: gray;
+}
+
+.tours-detail .day.current-day {
+  background-color: #556ab2;
+  color: white !important;
+}
+
+.tours-detail .day.active {
+  background-color: #556ab2;
+  color: white !important;
+}
+
+.tours-detail .day.active p {
+  color: white !important;
+}
+
+.tours-detail .price-info {
   font-size: 0.8rem;
   color: grey;
 }
 
-.price-info.special {
-  color: red;
+.tours-detail .price-info.special {
+  color: #e31d1d;
 }
 
+.tours-detail .note-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.tours-detail .note-container .first-note {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.tours-detail .note-container .first-note .ball-red-n {
+  background-color: #e31d1d;
+  border-radius: 50%;
+  padding: 4px;
+  width: 8px;
+  height: 8px;
+}
+
+.tours-detail .note-container .first-note .ball-blue-n {
+  background-color: var(--bs-point);
+  border-radius: 50%;
+  padding: 4px;
+  width: 8px;
+  height: 8px;
+}
+
+.tours-detail .container-calendar .lb-18 {
+  font-size: 18px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.tours-detail .container-calendar .select-time-c {
+  width: 260px;
+}
+
+.form-below-calendar {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+}
 
 .tours-detail .quantity-container {
   display: flex;
@@ -2247,7 +2358,6 @@
   font-size: 30px;
   font-weight: bold;
   text-align: center;
-  padding-left: 16px;
 }
 
 .tours-detail .cus-step-note .txt-step-note {
@@ -2900,7 +3010,8 @@
   width: 100%;
   height: 66px;
   color: var(--bs-point) !important;
-  border: 1px solid var(--bs-point) !important;;
+  border: 1px solid var(--bs-point) !important;
+  ;
   background-color: white !important;
   font-size: 22px !important;
   font-weight: unset;
