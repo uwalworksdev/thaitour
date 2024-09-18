@@ -93,7 +93,7 @@
                     <img src="/images/ico/icon_heart.png" alt="">
                     <p>찜</p>
                 </a>
-                <a href="#" class="icon-menu-item">
+                <a href="/cart/item-list/123" class="icon-menu-item">
                     <img src="/images/ico/icon_cart.png" alt="">
                     <p style="margin-top:3px;">장바구니</p>
                 </a>
