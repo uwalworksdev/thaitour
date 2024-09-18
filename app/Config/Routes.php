@@ -123,6 +123,18 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminInquiryController::write");
     });
 
+    $routes->group("_operator", static function ($routes) {
+        $routes->get("coupon_setting", "Admin\AdminOperatorController::coupon_setting");
+        $routes->get("coupon_setting_write", "Admin\AdminOperatorController::coupon_setting_write");
+        $routes->get("coupon_list", "Admin\AdminOperatorController::coupon_list");
+        $routes->get("coupon_write", "Admin\AdminOperatorController::coupon_write");
+    });
+
+    $routes->group("_mileage", static function ($routes) {
+        $routes->get("list", "Admin\AdminMileageController::list");
+        $routes->get("write", "Admin\AdminMileageController::write");
+    });
+
     $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
