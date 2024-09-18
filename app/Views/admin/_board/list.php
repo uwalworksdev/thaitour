@@ -1,7 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 <div id="container">
-    <span id="print_this">
+    <div id="print_this">
         <!-- 인쇄영역 시작 //-->
 
         <header id="headerContainer">
@@ -21,6 +21,7 @@
                 </div>
             </div>
         </header>
+
 
         <div id="contents">
             <form name="frmSearch" method="GET">
@@ -62,9 +63,9 @@
                 </div>
 
                 <?php if (in_array($skin, ['gallery', 'media', 'event']) || $code == 'main_event'): ?>
-                <?= $this->include('photo') ?>
+                <?= $this->include('admin/_board/photo') ?>
             <?php elseif ($code == 'qna'): ?>
-                <?= $this->include('list2') ?>
+                <?= $this->include('admin/_board/list2') ?>
             <?php else: ?>
                 <?= $this->include('admin/_board/list1') ?>
             <?php endif; ?>
@@ -72,7 +73,7 @@
                 <?= ipageListing($pg, $nPage, $g_list_rows, current_url() . "?scategory=$scategory&search_mode=$search_mode&search_word=$search_word&code=$code&pg=") ?>
             </div>
         </div>
-    </span>
+    </div>
 </div>
 
 <script>

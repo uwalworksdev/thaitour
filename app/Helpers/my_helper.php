@@ -499,21 +499,23 @@ function GD2_make_thumb($source, $destination, $width, $height) {
 
     list($original_width, $original_height) = getimagesize($source);
 
-    $ratio = $original_width / $original_height;
-    if ($width / $height > $ratio) {
-        $width = $height * $ratio;
-    } else {
-        $height = $width / $ratio;
+    if ($original_width > 0 && $original_height > 0) {
+        $ratio = $original_width / $original_height;
+        if ($width / $height > $ratio) {
+            $width = $height * $ratio;
+        } else {
+            $height = $width / $ratio;
+        }
+
+        $thumb = imagecreatetruecolor($width, $height);
+
+        imagecopyresampled($thumb, $image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
+
+        imagejpeg($thumb, $destination);
+
+        imagedestroy($image);
+        imagedestroy($thumb);
     }
-
-    $thumb = imagecreatetruecolor($width, $height);
-
-    imagecopyresampled($thumb, $image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
-
-    imagejpeg($thumb, $destination);
-
-    imagedestroy($image);
-    imagedestroy($thumb);
 }
 function get_img($img, $path, $width, $height, $water = "")
 {
