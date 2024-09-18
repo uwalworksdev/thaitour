@@ -2,7 +2,7 @@
     <ul class="gallery-wrap" style="text-align:center;width:1500px; margin: 0 auto; }">
 
         <?php
-        foreach ($result as $row) {
+        foreach ($rows as $row) {
 
             if ($row['notice_yn'] == "Y") {
                 $nums = "Notice";

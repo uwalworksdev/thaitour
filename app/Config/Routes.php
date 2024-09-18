@@ -150,6 +150,18 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->get("delete", "Popup::ItemDelete");
             $routes->post("status/change", "Popup::ListStatusChangeAjax");
         });
+
+        $routes->group("block_ip", static function ($routes) {
+            $routes->get("list", "Popup::ListView");
+            $routes->get("write", "Popup::WriteView");
+            $routes->get("write/(:segment)", "Popup::WriteView/$1");
+
+            $routes->post("insert", "Popup::WriteInsert");
+            $routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
+            $routes->get("delete", "Popup::ItemDelete");
+            $routes->post("status/change", "Popup::ListStatusChangeAjax");
+        });
+
         $routes->get("policy", "Policy::WriteView");
     });
 });
