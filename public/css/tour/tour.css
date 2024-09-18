@@ -2008,7 +2008,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: Arial, sans-serif;
   width: 540px;
   padding: 32px 0;
   border-bottom: 1px dashed rgb(216, 216, 216);
@@ -2624,7 +2623,6 @@
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
-  font-family: Arial, sans-serif;
 }
 
 .custom-golf-detail .golf-table thead th {
