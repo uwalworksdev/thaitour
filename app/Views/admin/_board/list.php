@@ -6,6 +6,7 @@
 
         <header id="headerContainer">
             <div class="inner">
+                <h2><?= $board_name ?></h2>
                 <div class="menus">
                     <ul class="first">
                         <li><a href="javascript:CheckAll(document.getElementsByName('bbs_idx[]'), true)" class="btn btn-success">전체선택</a></li>
@@ -62,13 +63,13 @@
                     </div>
                 </div>
 
-                <?php if (in_array($skin, ['gallery', 'media', 'event']) || $code == 'main_event'): ?>
+                <?php if (in_array($skin, ['gallery', 'media', 'event']) || $code == 'main_event' || $code == 'awards'): ?>
                 <?= $this->include('admin/_board/photo') ?>
-            <?php elseif ($code == 'qna'): ?>
-                <?= $this->include('admin/_board/list2') ?>
-            <?php else: ?>
-                <?= $this->include('admin/_board/list1') ?>
-            <?php endif; ?>
+                <?php elseif ($code == 'qna'): ?>
+                    <?= $this->include('admin/_board/list2') ?>
+                <?php else: ?>
+                    <?= $this->include('admin/_board/list1') ?>
+                <?php endif; ?>
 
                 <?= ipageListing($pg, $nPage, $g_list_rows, current_url() . "?scategory=$scategory&search_mode=$search_mode&search_word=$search_word&code=$code&pg=") ?>
             </div>
