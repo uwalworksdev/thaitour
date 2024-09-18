@@ -118,13 +118,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\TourOptionController::write");
     });
 
-    $routes->group("_tourStay", static function ($routes) {
-        $routes->get("list_honeymoon", "TourSuggestionController::list_honeymoon");
-        $routes->get("list_tours", "TourSuggestionController::list_admin");
-        $routes->get("list_golf", "TourSuggestionController::list_admin");
-        $routes->get("_tourStay", "TourSuggestionController::list_admin");
-        $routes->post("del", "TourSuggestionController::del");
-        $routes->post("ajax_del", "TourSuggestionController::ajax_del");
+    $routes->group("_inquiry", static function ($routes) {
+        $routes->get("list", "Admin\AdminInquiryController::list");
+        $routes->get("write", "Admin\AdminInquiryController::write");
     });
 
     $routes->group("_adminrator", static function ($routes) {
