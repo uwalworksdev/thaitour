@@ -450,8 +450,7 @@
                 <span class="step-label">예약신청</span>
                 <span class="number-step">1</span>
                 <div class="cus-step-note">
-                    <span>
-                        〉</span>
+                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
                     <span class="txt-step-note">기능유무조회</span>
                 </div>
             </div>
@@ -462,8 +461,7 @@
                 <span class="step-label">예약신청</span>
                 <span class="number-step">2</span>
                 <div class="cus-step-note">
-                    <span>
-                        〉</span>
+                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
                     <span class="txt-step-note">결제</span>
                 </div>
             </div>
@@ -475,8 +473,7 @@
                 <span class="step-label">예약신청</span>
                 <span class="number-step">3</span>
                 <div class="cus-step-note">
-                    <span>
-                        〉</span>
+                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
                     <span class="txt-step-note">확정 후</span>
                 </div>
             </div>
