@@ -1028,7 +1028,7 @@
 .content-sub-hotel-detail .location-container {
   display: flex;
   align-items: center;
-  margin: 16px 0;
+  margin-bottom: 16px;
   gap: 4px;
 }
 
@@ -1127,7 +1127,7 @@
 
 .content-sub-hotel-detail .section1 button {
   font-size: 18px;
-  background-color: #006ce4;
+  background-color: var(--bs-point);
   color: white;
   border-radius: 5px;
   padding: 12px 50px;

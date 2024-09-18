@@ -4257,6 +4257,180 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   margin-bottom: 140px;
 }
 
+.order-form-page .main-order-form-container h1 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.order-form-page .main-order-form-container p {
+  font-size: 17px;
+}
+
+.order-form-page .main-order-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  background-color: #fafafa;
+  margin-bottom: 60px;
+  width: 100%;
+}
+
+.order-form-page .title-above-tb {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.order-form-page .main-order-form {
+  width: 100%;
+}
+
+.order-form-page .info-table-order {
+  width: 550px;
+  border-collapse: collapse;
+}
+
+.order-form-page .info-table-order th,
+.info-table td {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-right: none;
+  border-left: none;
+  text-align: left;
+  font-size: 15px;
+}
+
+.order-form-page .info-table-order th {
+  background-color: #f5f7fa;
+  width: 136px;
+}
+
+.order-form-page .info-table-order td {
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  padding: 20px;
+  font-size: 15px;
+  line-height: 1.5rem;
+}
+
+.order-form-page .two-table-tb {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.order-form-page .two-table-tb .form-table {
+  border-collapse: collapse;
+  margin: 20px 0;
+  width: 550px;
+}
+
+.order-form-page .two-table-tb .form-table th,
+.order-form-page .two-table-tb .form-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.order-form-page .two-table-tb .form-table th {
+  background-color: #f7f7f7;
+  text-align: left;
+  width: 20%;
+  font-size: 14px;
+  color: #333;
+}
+
+.order-form-page .two-table-tb .form-table td {
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #333;
+}
+
+.order-form-page .two-table-tb .form-table input[type="text"],
+.form-table textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+}
+
+.order-form-page .two-table-tb .form-table textarea {
+  resize: none;
+}
+
+.order-form-page .two-table-tb .note {
+  font-size: 15px;
+  color: #999999;
+  margin-top: 5px;
+  display: block;
+}
+
+.order-form-page .two-table-tb .lb-tb-cus {
+  margin-bottom: 10px;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.order-form-page .two-table-tb .textarea-tb {
+  width: 370px;
+  height: 112px;
+}
+
+.order-form-page .two-table-tb .summary-tb {
+  font-size: 16px;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+.order-form-page .two-table-tb .summary-tb2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-decoration: underline;
+  color: #0000cc;
+  cursor: pointer;
+}
+
+.order-form-page .info-table-order.info-table-cus-padding td {
+  padding: 11px;
+}
+
+.order-form-page .info-table-order.info-table-cus-padding td input {
+  width: 370px;
+}
+
+.order-form-page .container-below-tb {
+  position: absolute;
+  bottom: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-form-page .primary-btn-calendar {
+  position: static !important;
+}
+
+.order-form-page .section2 .sec2-item-card:last-child {
+  padding-bottom: 180px !important;
+}
+
+.order-form-page .container-below-tb .primary-btn-sub {
+  width: 250px;
+  height: 66px;
+  border-radius: 6px;
+  background-color: white;
+  border: 1px solid rgb(219, 219, 219);
+  color: black;
+  font-size: 22px;
+}
+
 @media screen and (max-width: 1200px) {
   .only_tb {
     display: none !important;

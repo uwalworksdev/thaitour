@@ -288,6 +288,7 @@ $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
+$routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/(:any)', 'Product::index/$1');

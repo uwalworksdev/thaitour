@@ -49,7 +49,7 @@
                 <div class="main">
                     <a class="active" href="">상품예약</a>
                     <a href="">상품설명</a>
-                    <a href="">위치정보</a>
+                    <a href="/product-tours/location_info/1324">위치정보</a>
                     <a href="">더투어랩리뷰</a>
                     <a href="">생생리뷰(159개)</a>
                     <a href="">상품Q&A</a>
