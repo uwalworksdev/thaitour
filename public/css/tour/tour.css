@@ -1025,11 +1025,8 @@
   padding: 8px 6px;
 }
 
-.content-sub-hotel-detail .location-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  gap: 4px;
+.custom-golf-detail .location-container {
+  margin-top: 20px;
 }
 
 .content-sub-hotel-detail .rating-container {
