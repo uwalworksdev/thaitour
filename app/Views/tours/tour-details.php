@@ -245,7 +245,8 @@
                             <p>취소될 수 있습니다. 출발이 불가능할 경우 개별 연락을 통해 일정 변경/취소 안내드립니다.</p>
                         </div>
                     </div>
-                    <button class="primary-btn-calendar" onclick="location.href='/product-tours/order-form/1'">견적/예약하기</button>
+                    <button class="primary-btn-calendar"
+                        onclick="location.href='/product-tours/order-form/1'">견적/예약하기</button>
                 </div>
             </div>
             <!-- <h2 class="title-sec2">
@@ -506,8 +507,7 @@
                 <span class="step-label">예약신청</span>
                 <span class="number-step">1</span>
                 <div class="cus-step-note">
-                    <span>
-                        〉</span>
+                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
                     <span class="txt-step-note">기능유무조회</span>
                 </div>
             </div>
@@ -518,8 +518,7 @@
                 <span class="step-label">예약신청</span>
                 <span class="number-step">2</span>
                 <div class="cus-step-note">
-                    <span>
-                        〉</span>
+                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
                     <span class="txt-step-note">결제</span>
                 </div>
             </div>
@@ -531,8 +530,7 @@
                 <span class="step-label">예약신청</span>
                 <span class="number-step">3</span>
                 <div class="cus-step-note">
-                    <span>
-                        〉</span>
+                    <img src="/uploads/icons/detail_step_icon.png" alt="detail_step_icon">
                     <span class="txt-step-note">확정 후</span>
                 </div>
             </div>
