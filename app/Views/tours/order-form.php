@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<div class="content-sub-hotel-detail tours-detail">
+<div class="content-sub-hotel-detail tours-detail order-form-page">
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
@@ -113,27 +113,27 @@
                     <div class="main-order-form">
                         <div class="main-order-form-container">
                             <h1>선택하신 날짜에 즉시확정 예약이 가능합니다.</h1>
-                            <p>예약 즉시 결제가 가능하며, 엄격하게 관련 예약정책이 발생됩니다.</p>
+                            <p class="text-grey">예약 즉시 결제가 가능하며, 엄격하게 관련 예약정책이 발생됩니다.</p>
                         </div>
 
-                        <h2>예약정보</h2>
-                        <table>
-                            <tbody>
+                        <h2 class="title-above-tb">예약정보</h2>
+                        <div class="two-table-tb">
+                            <table class="info-table-order">
                                 <tr>
                                     <th>이용일</th>
                                     <td>2024.07.31(수)</td>
                                 </tr>
                                 <tr>
                                     <th>상품명</th>
-                                    <td>타피야 선상 카페 오징어 낚시 반단독 투어</td>
+                                    <td>타피야 선상 카페 오징어 낚시 반일 단독 투어</td>
                                 </tr>
                                 <tr>
                                     <th>선택옵션</th>
-                                    <td>파이타야 선상 카페 + 파이타야 호텔 왕복 픽업 / 5-9인 승합차<br>320,560원 (8,000바트)</td>
+                                    <td>파타야 선상 카페 + 파타야 호텔 왕복 픽업 / 5-9인 승합차 320,560원 (8,000바트)</td>
                                 </tr>
                                 <tr>
                                     <th>총인원</th>
-                                    <td>3명 (성인 : 2, 아이 : 1)</td>
+                                    <td>3명 (성인: 2, 아이: 1)</td>
                                 </tr>
                                 <tr>
                                     <th>회원등급 할인</th>
@@ -141,39 +141,55 @@
                                 </tr>
                                 <tr>
                                     <th>예약시간</th>
-                                    <td>15:00 - 18:30</td>
+                                    <td>15:00 ~ 18:30</td>
                                 </tr>
                                 <tr>
                                     <th>픽업</th>
-                                    <td>포함(장소)</td>
+                                    <td>포함 (왕복)</td>
                                 </tr>
-                                <tr>
-                                    <th>호텔명</th>
-                                    <td>호텔명을 영어로 적어주세요(주소포함)</td>
-                                </tr>
-                                <tr>
-                                    <th>미팅 시간</th>
-                                    <td>미팅 없음</td>
-                                </tr>
-                                <tr>
-                                    <th>종료 후 내리실 곳</th>
-                                    <td>종료 후 내리실 곳 항목은 필수입력입니다.</td>
-                                </tr>
-                                <tr>
-                                    <th>카카오톡 아이디</th>
-                                    <td>카카오톡 아이디 항목은 선택 입력입니다.</td>
-                                </tr>
-                                <tr>
-                                    <th>기타 옵션</th>
-                                    <td>원하는 미팅 시간을 적어주세요(15:30분 이후)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <p class="note">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                        <p class="details"><a href="#">본 예약안내 및 규정 더보기</a></p>
+                            </table>
+                            <div class="">
+                                <table class="info-table-order info-table-cus-padding">
+                                    <tr>
+                                        <th>미팅장소</th>
+                                        <td>
+                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                            <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>미팅 시간</th>
+                                        <td>미팅 없음</td>
+                                    </tr>
+                                    <tr>
+                                        <th>종료 후 내리실 곳</th>
+                                        <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다."></td>
+                                    </tr>
+                                    <tr>
+                                        <th>카카오톡 아이디</th>
+                                        <td>
+                                            <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다.">
+                                            <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>기타 요청</th>
+                                        <td>
+                                            <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
+                                            <textarea class="textarea-tb" rows="5" placeholder="">
+                                        </textarea>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
+                                <p class="summary-tb2">본 예약건 취소규정 자세히보기</p>
+                            </div>
+                        </div>
                     </div>
-                    <button class="primary-btn-calendar">견적/예약하기</button>
+                    <div class="container-below-tb">
+                        <button class="primary-btn-sub" onclick="location.href='/product-tours/item_view/item_view/1325/2'">이 상품만 예약하기</button>
+                        <button class="primary-btn-calendar" onclick="location.href='/product-tours/item_view/item_view/1325/2'">견적/예약하기</button>
+                    </div>
                 </div>
             </div>
             <!-- <h2 class="title-sec2">

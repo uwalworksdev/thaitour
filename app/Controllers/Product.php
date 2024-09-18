@@ -601,6 +601,11 @@ class Product extends BaseController
         return view('tours/list-tour');
     }
 
+    public function tourLocationInfo($code_no)
+    {
+        return view('tours/location-info');
+    }
+
     public function tourOrderForm($code_no)
     {
         return view('tours/order-form');
@@ -624,32 +629,32 @@ class Product extends BaseController
 
     public function view($product_idx)
     {
-        
+
         $data['product'] = $this->productModel->getProductDetails($product_idx);
 
         if (!$data['product']) {
             return redirect()->to('/')->with('error', '상품이 없거나 판매중이 아닙니다.');
         }
 
-        
+
         $start_date_in = $this->request->getVar('start_date_in') ?: date("Y-m-d");
         $product_info = $this->productModel->get_product_info($product_idx, $start_date_in);
         $air_info = $this->productModel->get_air_info($product_idx, $start_date_in);
-        $day_details = $this->productModel->getDayDetails($product_idx); 
+        $day_details = $this->productModel->getDayDetails($product_idx);
 
-        
+
         $min_amt = $this->calculateMinAmt($air_info);
 
-        
+
         $_start_dd = date('d', strtotime($start_date_in));
 
-        
-        $tour_price = $air_info[0]['tour_price'] ?? 0; 
+
+        $tour_price = $air_info[0]['tour_price'] ?? 0;
         $oil_price = $air_info[0]['oil_price'] ?? 0;
         $tour_price_kids = $air_info[0]['tour_price_kids'] ?? 0;
         $tour_price_baby = $air_info[0]['tour_price_baby'] ?? 0;
 
-        
+
         $seq = time();
         $sDate = date('Y-m-01');
         $today = date('Y-m-d');
@@ -665,12 +670,12 @@ class Product extends BaseController
             $sel_price .= $cal_amt . "|";
         }
 
-        
-        
-        
-        
 
-        
+
+
+
+
+
         $data['start_date_in'] = $start_date_in;
         $data['product_info'] = $product_info;
         $data['air_info'] = $air_info;
@@ -686,16 +691,16 @@ class Product extends BaseController
         $data['product_unable'] = $data['product']['product_unable'];
         $data['tour_info'] = $data['product']['tour_info'];
         $data['special_benefit'] = $data['product']['special_benefit'];
-        $data['day_details'] = $day_details; 
+        $data['day_details'] = $day_details;
         $data['sel_date'] = $sel_date;
         $data['sel_price'] = $sel_price;
         $data['first_date'] = $first_date['get_date'] ?? '';
 
-        
-        
-        
 
-        
+
+
+
+
         $data['product_level'] = $this->productModel->getProductLevel($data['product']['product_level']);
         $data['img_1'] = $this->getImage($data['product']['ufile1']);
         $data['img_2'] = $this->getImage($data['product']['ufile2']);
