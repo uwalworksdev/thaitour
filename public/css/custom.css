@@ -90,7 +90,6 @@
     line-height: 26px;
     text-transform: uppercase;
     color: #999999;
-    font-family: "Pretendard";
     position: absolute;
     left: 20px;
     top: 10px;
@@ -116,9 +115,7 @@
     background: #17469E;
 }
 
-.thailand_hotel_ {
-
-}
+.thailand_hotel_ {}
 
 .thailand_hotel_ .sub_section3__head {
     justify-content: start;
@@ -468,9 +465,7 @@
 }
 
 /* Update css for: w_sub_8고객센터_4고객의소리.psd */
-.form_notify_ {
-
-}
+.form_notify_ {}
 
 .form_notify_ .icon_star_5 {
     background-image: url("/images/ico/ico_star.svg");
@@ -599,9 +594,7 @@
 }
 
 /* Update css for: w_sub_8고객센터_3일대일게시판.psd */
-.form_table_notify_ {
-
-}
+.form_table_notify_ {}
 
 .form_table_notify_ .form_el {
     margin-bottom: 25px;
@@ -637,9 +630,7 @@
     padding: 10px;
 }
 
-.form_table_notify_ .form_upload_info {
-
-}
+.form_table_notify_ .form_upload_info {}
 
 .form_table_notify_ .form_upload_button {
     width: 110px;
@@ -656,9 +647,7 @@
     text-align: center;
 }
 
-.form_table_notify_ .form_uploaded_file_list {
-
-}
+.form_table_notify_ .form_uploaded_file_list {}
 
 .form_table_notify_ .form_upload_container {
     display: flex;
@@ -726,8 +715,8 @@
     gap: 10px;
 }
 
-.form_table_notify_ .form_radio input[type="radio"]:checked + label,
-.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label {
+.form_table_notify_ .form_radio input[type="radio"]:checked+label,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked)+label {
     position: relative;
     padding-left: 1.75rem;
     cursor: pointer;
@@ -736,8 +725,8 @@
     color: #252525;
 }
 
-.form_table_notify_ .form_radio input[type="radio"]:checked + label:before,
-.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label:before {
+.form_table_notify_ .form_radio input[type="radio"]:checked+label:before,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked)+label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -748,7 +737,7 @@
     border-radius: 100%;
 }
 
-.form_table_notify_ .form_radio input[type="radio"]:checked + label:before {
+.form_table_notify_ .form_radio input[type="radio"]:checked+label:before {
     background: url("/images/ico/icon_radio_selected.png") no-repeat center;
 }
 
@@ -792,14 +781,402 @@
 }
 
 /**/
-.main_page_product_result_ {
+.main_page_product_result_ {}
 
-}
+.main_page_product_result_ {}
 
-.main_page_product_result_ {
+.main_page_product_result_ {}
 
-}
+@media screen and (max-width: 850px) {
+    .page_product_list_.main_page_01 .main_visual_content_ {
+        width: 66rem;
+    }
 
-.main_page_product_result_ {
+    .main_page_01 .main_visual_content_ .form_element_ input {
+        width: 100%;
+        height: 100%;
+        border: 0.1rem solid #dbdbdb;
+        border-radius: 0.6rem;
+        padding: 4rem 2rem 1rem 2rem;
+        font-size: 1.9rem;
+        letter-spacing: -0.1rem;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #353535;
+        font-weight: bold;
+    }
 
+    .main_page_01 .main_visual_content_ label {
+        font-size: 1.4rem;
+        letter-spacing: -0.1rem;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #999999;
+        position: absolute;
+        left: 2rem;
+        top: 1rem;
+    }
+
+    .main_page_01 .main_visual_content_ .form_element_ input {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #dbdbdb;
+        border-radius: 0.6rem;
+        padding: 4rem 2rem 1rem 2rem;
+        font-size: 1.9rem;
+        letter-spacing: -0.1rem;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #353535;
+        font-weight: bold;
+    }
+
+    .main_page_01 .main_visual_content_ .form_element_ input::placeholder {
+        font-size: 2.8rem;
+    }
+
+    .main_page_01 .main_visual_content_ button {
+        border-radius: 0.6rem;
+        background-color: #17469E;
+        font-size: 2.2rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-weight: bold;
+        font-family: "Pretendard";
+        text-align: center;
+        padding: 2.4rem;
+        width: 10.8rem;
+        margin-left: 0.8rem;
+    }
+
+    .main_page_01 .main_visual_content_ .form_element_ {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 7.5rem;
+        border-radius: 1.6rem;
+        background-color: #ffffff;
+        padding: 2rem;
+    }
+
+    .page_product_list_ .sub_section3__head__ttl {
+        font-size: 3.8rem;
+    }
+
+    .best_tour_section5_ .prd_name,
+    .thailand_hotel_ .thailand_hotel_swiper_ .prd_name {
+        margin-top: 1rem;
+        font-size: 2.8rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #252525;
+        font-weight: 500;
+        font-family: "Pretendard";
+    }
+
+    .best_tour_section5_ .prd_keywords,
+    .thailand_hotel_ .prd_keywords {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #757575;
+        font-family: "Pretendard";
+        margin-top: 2.5rem;
+    }
+
+    .swiper_product_list_pagination_ {
+        width: auto !important;
+    }
+
+    .sub_tour_section4 {
+        padding: 10rem 0 0 0;
+    }
+
+    .sub_tour_section6 {
+        padding: 10rem 0 0 0;
+    }
+
+    .most_searched_ .tab_box_area_ {
+        margin-top: 3rem;
+    }
+
+    .most_searched_ .tab_box_area_ .tab_box_show_ {
+        gap: 1rem;
+    }
+
+    .most_searched_ .tab_box_area_ .tab_box_element_ {
+        border-radius: 99px;
+        width: 100%;
+        height: auto;
+        padding: 2rem 3rem;
+        border: 1px solid #dbdbdb;
+        text-wrap: nowrap;
+        font-size: 2.6rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #757575;
+        font-weight: 500;
+        font-family: "Pretendard";
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .most_searched_ .tab_box_area_ .tab_box_element_.tab_active_ {
+        border: 1px solid #17469E;
+        color: #17469E;
+    }
+
+    .most_searched_ .content_tab_show_ {
+        display: none;
+    }
+
+    .most_searched_ .tab_box_content_ {
+        margin-top: 4rem;
+        overflow: hidden;
+    }
+
+    .most_searched_ .content_tab_show_.tab_active_ {
+        display: block;
+    }
+
+    .most_searched_ .sub_tour_section7_product_item {
+        /*width: calc((100% - 15px) / 4) !important;*/
+        position: relative;
+    }
+
+    .most_searched_ .swiper-wrapper {
+        max-width: 120rem;
+    }
+
+    .sub_tour_section8 {
+        padding: 10rem 0 10rem 0;
+    }
+
+    /*    Css for : w_sub_1호텔_2list.psd   */
+    .main_page_product_result_ {
+        margin: 0;
+    }
+
+    .main_page_product_result_ .breadcrumbs_custom_ a {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .main_page_product_result_ .breadcrumbs_custom_ a img {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .main_page_product_result_ .breadcrumbs_custom_ a img.img_c {
+        width: 0.7rem;
+        height: 1.4rem;
+    }
+
+    .main_page_product_result_ .breadcrumbs_custom_ a p {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #757575;
+        font-family: "Pretendard";
+    }
+
+    .main_page_product_result_ .breadcrumbs_custom_ a.active_ p {
+        color: #252525;
+    }
+
+    .main_page_product_result_ .breadcrumbs_custom_ ul {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .main_page_product_result_ .breadcrumbs_custom_ {
+        padding: 2rem 0;
+        border-bottom: 1px solid #eeeeee;
+    }
+
+    .main_page_product_result_ .product_result_content_ {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-top: 4rem;
+        gap: 4rem;
+        margin-bottom: 5rem;
+    }
+
+    .main_page_product_result_ .product_result_content_left_ {
+        width: 100%;
+        max-width: calc(23% - 2rem);
+    }
+
+    .main_page_product_result_ .product_result_content_right_ {
+        width: 100%;
+        max-width: calc(77% - 2rem);
+    }
+
+    .main_page_product_result_ .product_result_content_left_header_ {
+        font-size: 3.8rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #252525;
+        font-weight: bold;
+        font-family: "Pretendard";
+        border-bottom: 2px solid #000000;
+        width: 100%;
+        height: 5rem;
+        padding: 0.5rem 0;
+    }
+
+    .main_page_product_result_ .product_result_content_right_header_ {
+        width: 100%;
+    }
+
+    .main_page_product_result_ .form_search_ {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .main_page_product_result_ .form_search_ .form_element_ {
+        width: 100%;
+        max-width: 40%;
+    }
+
+    .main_page_product_result_ .form_search_ .render_date_to_text_ {
+        width: 100%;
+        max-width: 50%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3rem;
+        padding: 1rem;
+        border: 0.1rem solid #dbdbdb;
+        height: 5rem;
+    }
+
+    .main_page_product_result_ .form_search_ .render_date_to_text_ .text_content_ {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3rem;
+        font-size: 2.7rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #353535;
+        font-family: "Pretendard";
+    }
+
+    .main_page_product_result_ .form_search_ .text_placeholder_ {
+        font-size: 2.7rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #454545;
+        font-family: "Pretendard";
+    }
+
+    .main_page_product_result_ .form_search_ button {
+        border-radius: 0.6rem;
+        width: 100%;
+        max-width: 8rem;
+        font-size: 2.7rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #ffffff;
+        font-family: "Pretendard";
+        background-color: #47beb0;
+        height: 5rem;
+    }
+
+    .main_page_product_result_ .form_search_ input::placeholder {
+        font-size: 2.7rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #999999;
+        font-family: "Pretendard";
+    }
+
+    .main_page_product_result_ .form_search_ input {
+        font-size: 2.7rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #454545;
+        font-family: "Pretendard";
+        padding: 0 0 0 10px;
+        border: 1px solid #dbdbdb;
+    }
+
+    .main_page_product_result_ .startDayRender,
+    .main_page_product_result_ .endDayRender {
+        cursor: pointer;
+    }
+
+    .main_page_01 .sub_top_visual img {
+        width: 100%;
+        height: 100%;
+        min-height: 26rem;
+    }
+
+    .main_page_01 .sub_tour_section7 {
+        padding: 8rem 0 0 0;
+    }
+
+    .main_page_01 .sub_swiper2_pagination {
+        padding-top: 6rem;
+    }
+
+    .main_page_01 .thailand_hotel_ .sub_section3__head {
+        padding-top: 12rem;
+    }
+
+    .main_page_01 .sub_section3.thailand_hotel_ .custom_pagination_ {
+        margin: 7.75rem 0;
+    }
+
+    .main_page_01 .sub_tour_section6 .custom_pagination_ .pagination_show_,
+    .main_page_01 .thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_,
+    .main_page_01 .thailand_hotel_ .custom_pagination_ .pagination_show_ {
+        width: 28.2rem;
+        height: 6.4rem;
+    }
+
+    .main_page_01 .sub_tour_section7_product_item {
+        width: 56rem;
+    }
+
+    .main_page_01 .ico_special_prd {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        width: 8rem;
+    }
+
+    .main_page_01 .ico_block img {
+        display: none;
+    }
+
+    .main_page_01 .most_searched_ .tab_box_area_ {
+        margin-top: 3rem;
+        overflow-x: scroll;
+        justify-content: flex-start;
+    }
+
+    .main_page_01 .most_searched_ .tab_box_area_ .tab_box_show_ {
+        flex-wrap: unset;
+    }
 }
