@@ -1,13 +1,3 @@
-<svg width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g clip-path="url(#clip0_237_16)">
-        <path
-            d="M7.43998 0.246853L9.41403 3.55988C9.48619 3.68113 9.60728 3.76601 9.74798 3.79547L13.5972 4.59839C13.9792 4.67807 14.1306 5.1302 13.8697 5.41257L11.2411 8.26307C11.145 8.36702 11.0988 8.50558 11.1138 8.64419L11.5181 12.4535C11.5582 12.832 11.1628 13.1109 10.8057 12.9568L7.20666 11.4054C7.07582 11.3491 6.92532 11.3491 6.79442 11.4054L3.19533 12.9568C2.83826 13.1109 2.44291 12.8311 2.48299 12.4535L2.88724 8.64419C2.90237 8.50558 2.85608 8.36702 2.75991 8.26307L0.130491 5.41257C-0.130406 5.12933 0.0200735 4.67807 0.402963 4.59839L4.25225 3.79547C4.39294 3.76601 4.51404 3.68027 4.58616 3.55988L6.55932 0.246853C6.75522 -0.0822842 7.24408 -0.0822842 7.43998 0.246853Z"
-            fill="#17469E" />
-    </g>
-    <defs>
-        <clipPath id="clip0_237_16">
-            <rect width="14" height="13" fill="white" />
-        </clipPath>
-    </defs>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="22" viewBox="0 0 23 22">
+  <image id="Vector_Smart_Object" data-name="Vector Smart Object" width="23" height="22" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAABOklEQVQ4ja3VsUoDQRDG8V+CCGlEQUGF+AKWPoBWViIINlZaCQEfxNLC0sLSxiew0cbC3iYpBAstImoropENEzFHzuSSWxjm9tuZ/y63c3OVzq0io4rvUeOrBcCzuAtfOvwEa+FLhW9iP573Y14KfAZnGe0s9Inhx6hntHroY8Mr2EYjZ70R65VcwJ9STEGr2Ahbx/yw0+EFN7gOu0enB1/EaQHYqJsdpdfSxkJJYMFJvHaCf2EHrZLgreB99S70FVt4mxD8FpzE66uWZuz4OSb4M/KbPSFbiukiDseEH0b+78jrik9YKgB+xnJWzPuIRu58/8UPgk+jVhBei7yh8KKnzs0rAn/HZfhS4KlHXGGPbpvYDZ/mSe/2kDz41AD4HB5wHvaYWf/ARdgKDsJSXt8YVIqFfsK5efgB/Ag+NQ9wpyIAAAAASUVORK5CYII="/>
 </svg>
-    
