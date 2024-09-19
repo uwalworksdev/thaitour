@@ -135,6 +135,26 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminMileageController::write");
     });
 
+    $routes->group("_memberBoard", static function ($routes) {
+        $routes->get("board_list", "Admin\AdminMemberBoardController::board_list");
+        $routes->get("board_write", "Admin\AdminMemberBoardController::board_write");
+    });
+
+    $routes->group("_memberBreak", static function ($routes) {
+        $routes->get("list", "Admin\AdminMemberBreakController::list");
+        $routes->get("write", "Admin\AdminMemberBreakController::write");
+    });
+
+    $routes->group("_bbsBanner", static function ($routes) {
+        $routes->get("list", "Admin\AdminBbsBannerController::list");
+        $routes->get("write", "Admin\AdminBbsBannerController::write");
+    });
+
+    $routes->group("_codeBanner", static function ($routes) {
+        $routes->get("list", "Admin\AdminCodeBannerController::list");
+        $routes->get("write", "Admin\AdminCodeBannerController::write");
+    });
+
     $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");

@@ -1,15 +1,19 @@
 <?php
 
 if (!function_exists('private_key')) {
-    function private_key() {
+    function private_key()
+    {
         return "gkdlghwn!@12";
     }
 }
 
 if (!function_exists('isDateInRange')) {
-    function isDateInRange($date, $deadline_date) {
+    function isDateInRange($date, $deadline_date)
+    {
         $deadline_date_array = explode(",", $deadline_date);
-        $deadline_date_array = array_filter($deadline_date_array, function($value) { return $value; });
+        $deadline_date_array = array_filter($deadline_date_array, function ($value) {
+            return $value;
+        });
         $is_date_in_range = false;
 
         foreach ($deadline_date_array as $value) {
@@ -28,26 +32,25 @@ if (!function_exists('isDateInRange')) {
 }
 
 
-
 function dowYoil($strdate)
 {
-	$yoil = array("일","월","화","수","목","금","토");
-	$date= $strdate;
+    $yoil = array("일", "월", "화", "수", "목", "금", "토");
+    $date = $strdate;
 
-    $dow = $yoil[date('w',strtotime($date))];
+    $dow = $yoil[date('w', strtotime($date))];
     return $dow;
 }
 
 
-
-function get_device() {
+function get_device()
+{
     // 모바일 기종(배열 순서 중요, 대소문자 구분 안함)
-    $ary_m = array("iPhone","iPod","IPad","Android","Blackberry","SymbianOS|SCH-M\d+","Opera Mini","Windows CE","Nokia","Sony","Samsung","LGTelecom","SKT","Mobile","Phone");
-	$str = "P";
-    for($i=0; $i<count($ary_m); $i++){
-        if(preg_match("/$ary_m[$i]/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+    $ary_m = array("iPhone", "iPod", "IPad", "Android", "Blackberry", "SymbianOS|SCH-M\d+", "Opera Mini", "Windows CE", "Nokia", "Sony", "Samsung", "LGTelecom", "SKT", "Mobile", "Phone");
+    $str = "P";
+    for ($i = 0; $i < count($ary_m); $i++) {
+        if (preg_match("/$ary_m[$i]/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
             //return $ary_m[$i];
-			$str = "M";
+            $str = "M";
             break;
         }
     }
@@ -57,122 +60,125 @@ function get_device() {
 
 function sql_password($value)
 {
-	$row = db_connect()->query(" select SHA1(MD5('".$value."')) as pass ")->getRowArray();
+    $row = db_connect()->query(" select SHA1(MD5('" . $value . "')) as pass ")->getRowArray();
     return $row['pass'];
 }
 
 function goUrl($url = "", $msg = "")
 {
-	echo "<script type='text/javascript'>";
-	if ($msg) {
-		echo "	alert('" . $msg . "');";
-	}
-	if ($url) {
+    echo "<script type='text/javascript'>";
+    if ($msg) {
+        echo "	alert('" . $msg . "');";
+    }
+    if ($url) {
 
-		echo "setTimeout( function() {	";
-		echo "	location.href='" . $url . "';";
-		echo "}, 1000);					";
+        echo "setTimeout( function() {	";
+        echo "	location.href='" . $url . "';";
+        echo "}, 1000);					";
 
-		//echo "	location.href='".$url."';";
-	}
-	echo "</script>";
+        //echo "	location.href='".$url."';";
+    }
+    echo "</script>";
 }
 
-function getLoginDeviceUserChk($user_id){
-	
-	$device_type = get_device();
-	$gTime = time() + 86400; //하루 24시간 	
-	$cookieValue = "user_id_".$user_id;
-		
-	if($user_id != ""){
-		
-		$cookieVal = cookie($cookieValue);
+function getLoginDeviceUserChk($user_id)
+{
 
-		if($cookieVal == ""){
-			$sql = " select * from tbl_login_device where DATE(regdate) = DATE(now())";			
-			$row = db_connect()->query($sql)->getRowArray();
-			$login_type_P = $row['login_type_P'];
-			$login_type_M = $row['login_type_M'];
+    $device_type = get_device();
+    $gTime = time() + 86400; //하루 24시간
+    $cookieValue = "user_id_" . $user_id;
 
-			if($login_type_P == ""){
+    if ($user_id != "") {
 
-				if($device_type == "P"){
-					$login_type_P = 1;
-					$login_type_M = 0;
-				}else if($device_type == "M"){
-					$login_type_P = 0;
-					$login_type_M = 1;
-				}
-									
-				$sql = " insert into tbl_login_device set regdate = now()
-					, login_type_P = ".$login_type_P."
-					, login_type_M = ".$login_type_M."
+        $cookieVal = cookie($cookieValue);
+
+        if ($cookieVal == "") {
+            $sql = " select * from tbl_login_device where DATE(regdate) = DATE(now())";
+            $row = db_connect()->query($sql)->getRowArray();
+            $login_type_P = $row['login_type_P'];
+            $login_type_M = $row['login_type_M'];
+
+            if ($login_type_P == "") {
+
+                if ($device_type == "P") {
+                    $login_type_P = 1;
+                    $login_type_M = 0;
+                } else if ($device_type == "M") {
+                    $login_type_P = 0;
+                    $login_type_M = 1;
+                }
+
+                $sql = " insert into tbl_login_device set regdate = now()
+					, login_type_P = " . $login_type_P . "
+					, login_type_M = " . $login_type_M . "
 					, itemCnt_P = 0
 					, itemCnt_M = 0
-					";						 
-					
-				db_connect()->query($sql);				
-			}else{
+					";
 
-				if($device_type == "P"){
-					$login_type_P = $login_type_P + 1;	
-					$sSQl = " login_type_P = ".$login_type_P;
-				}else if($device_type == "M"){					
-					$login_type_M = $login_type_M + 1;
-					$sSQl = " login_type_M = ".$login_type_M;
-				}
+                db_connect()->query($sql);
+            } else {
 
-				$sql = " update tbl_login_device set ".$sSQl." where DATE(regdate) = DATE(now())";
-				db_connect()->query($sql);
-			}	
-		}
-		
-		setcookie($cookieValue, $cookieValue, $gTime);	
-	}
+                if ($device_type == "P") {
+                    $login_type_P = $login_type_P + 1;
+                    $sSQl = " login_type_P = " . $login_type_P;
+                } else if ($device_type == "M") {
+                    $login_type_M = $login_type_M + 1;
+                    $sSQl = " login_type_M = " . $login_type_M;
+                }
 
-	$out_text = "";
-			
-	return $out_text;
+                $sql = " update tbl_login_device set " . $sSQl . " where DATE(regdate) = DATE(now())";
+                db_connect()->query($sql);
+            }
+        }
+
+        setcookie($cookieValue, $cookieValue, $gTime);
+    }
+
+    $out_text = "";
+
+    return $out_text;
 }
 
-function getLoginIPChk(){
-	$REMOTE_ADDR = request()->getIPAddress();
-	
-	$gTime = time() + 86400; //하루 24시간 	
-	$cookieValue = "user_ip_".str_replace(".","", $REMOTE_ADDR);
+function getLoginIPChk()
+{
+    $REMOTE_ADDR = request()->getIPAddress();
 
-	$cookieVal = $_COOKIE[$cookieValue] ?? "";
-	
-	if($cookieVal == ""){
+    $gTime = time() + 86400; //하루 24시간
+    $cookieValue = "user_ip_" . str_replace(".", "", $REMOTE_ADDR);
 
-		$sql = " select * from tbl_login_ip where loginIP = '".$REMOTE_ADDR."' ";
+    $cookieVal = $_COOKIE[$cookieValue] ?? "";
 
-		$row = db_connect()->query($sql)->getRowArray();
-		$loginIP = $row['loginIP'];
-		$loginCnt = $row['loginCnt'];	
-	
-		if($loginIP == ""){
-			$sql = " insert into tbl_login_ip set loginIP = '".$REMOTE_ADDR."', loginCnt = 1";						 
-			db_connect()->query($sql);
-		}else{				
-				$loginCnt = $loginCnt + 1;
-				$sql = "
-					update tbl_login_ip set loginCnt = ".$loginCnt." where loginIP = '".$REMOTE_ADDR."'
+    if ($cookieVal == "") {
+
+        $sql = " select * from tbl_login_ip where loginIP = '" . $REMOTE_ADDR . "' ";
+
+        $row = db_connect()->query($sql)->getRowArray();
+        $loginIP = $row['loginIP'];
+        $loginCnt = $row['loginCnt'];
+
+        if ($loginIP == "") {
+            $sql = " insert into tbl_login_ip set loginIP = '" . $REMOTE_ADDR . "', loginCnt = 1";
+            db_connect()->query($sql);
+        } else {
+            $loginCnt = $loginCnt + 1;
+            $sql = "
+					update tbl_login_ip set loginCnt = " . $loginCnt . " where loginIP = '" . $REMOTE_ADDR . "'
 				";
-				db_connect()->query($sql);			
-		}
-	}
+            db_connect()->query($sql);
+        }
+    }
 
-	setcookie($cookieValue, $cookieValue, $gTime);	
+    setcookie($cookieValue, $cookieValue, $gTime);
 
-	$out_text = "";			
-	return $out_text;
+    $out_text = "";
+    return $out_text;
 }
 
-function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus_element_id="") {
-	if($focus_element_id) {
-		$focus_element_id = "#" . $focus_element_id;
-	}
+function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType = 'P', $focus_element_id = "")
+{
+    if ($focus_element_id) {
+        $focus_element_id = "#" . $focus_element_id;
+    }
     $page_range = $deviceType === 'M' ? 5 : 10;
 
     if ($total_page < 2) {
@@ -180,7 +186,7 @@ function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus
     } else {
         $hide = "";
     }
-    
+
     $retValue = "<div class='paging' $hide><ul class='page'>";
 
     if ($cur_page > 1) {
@@ -189,8 +195,8 @@ function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus
         $retValue .= "<li class='skip backward'><a href='javascript:;' title='Go to first page'></a></li>";
     }
 
-    if ($cur_page > ($deviceType === 'M' ? 5 :10)) {
-        $retValue .= "<li class='preview one'><a href='" . $url . ($cur_page - ($deviceType === 'M' ? 5 :10)) . "$focus_element_id' title='Go to previous page'></a></li>";
+    if ($cur_page > ($deviceType === 'M' ? 5 : 10)) {
+        $retValue .= "<li class='preview one'><a href='" . $url . ($cur_page - ($deviceType === 'M' ? 5 : 10)) . "$focus_element_id' title='Go to previous page'></a></li>";
     } else {
         $retValue .= "<li class='preview one'><a href='javascript:;' title='Go to previous page'></a></li>";
     }
@@ -206,8 +212,8 @@ function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus
         }
     }
 
-    if ($cur_page < $total_page-($deviceType === 'M' ? 5 :10)) {
-        $retValue .= "<li class='next one'><a href='$url" . ($cur_page + ($deviceType === 'M' ? 5 :10)) . "$focus_element_id' title='Go to next page'></a></li>";
+    if ($cur_page < $total_page - ($deviceType === 'M' ? 5 : 10)) {
+        $retValue .= "<li class='next one'><a href='$url" . ($cur_page + ($deviceType === 'M' ? 5 : 10)) . "$focus_element_id' title='Go to next page'></a></li>";
     } else {
         $retValue .= "<li class='next one'><a href='javascript:;' title='Go to next page'></a></li>";
     }
@@ -222,12 +228,13 @@ function ipagelisting2($cur_page, $total_page, $n, $url, $deviceType='P', $focus
     return $retValue;
 }
 
-function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType='P', $focus_element_id="") {
-	if($focus_element_id) {
-		$focus_element_id = "#" . $focus_element_id;
-	}
+function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType = 'P', $focus_element_id = "")
+{
+    if ($focus_element_id) {
+        $focus_element_id = "#" . $focus_element_id;
+    }
     $page_range = $deviceType === 'M' ? 5 : 10;
-    
+
     $retValue = "<div class='pagination'>";
 
     if ($cur_page > 1) {
@@ -285,216 +292,230 @@ function ipagelistingSub($cur_page, $total_page, $n, $url, $deviceType='P', $foc
     return $retValue;
 }
 
-function device_chk() {
+function device_chk()
+{
     // 모바일 기종(배열 순서 중요, 대소문자 구분 안함)
-    $ary_m = array("iPhone","iPod","IPad","Android","Blackberry","SymbianOS|SCH-M\d+","Opera Mini","Windows CE","Nokia","Sony","Samsung","LGTelecom","SKT","Mobile","Phone");
-	$str = "PC";
-    for($i=0; $i<count($ary_m); $i++){
-        if(preg_match("/$ary_m[$i]/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
+    $ary_m = array("iPhone", "iPod", "IPad", "Android", "Blackberry", "SymbianOS|SCH-M\d+", "Opera Mini", "Windows CE", "Nokia", "Sony", "Samsung", "LGTelecom", "SKT", "Mobile", "Phone");
+    $str = "PC";
+    for ($i = 0; $i < count($ary_m); $i++) {
+        if (preg_match("/$ary_m[$i]/i", strtolower($_SERVER['HTTP_USER_AGENT']))) {
             //return $ary_m[$i];
-			$str = "MO";
+            $str = "MO";
             break;
         }
     }
     return $str;
 }
+
 function get_status_name($status)
 {
-	$str = "";
-	if ($status == "W") {
-		$str = "예약접수";
-	} elseif ($status == "Y") {
-		$str = "결제완료";
-	} elseif ($status == "G") {
-		$str = "예약금대기";
-	} elseif ($status == "J") {
-		$str = "예약금입금대기";
-	} elseif ($status == "C") {
-		$str = "예약취소";
-	} elseif ($status == "R") {
-		$str = "잔금대기";
-	}
-	return $str;
-};
+    $str = "";
+    if ($status == "W") {
+        $str = "예약접수";
+    } elseif ($status == "Y") {
+        $str = "결제완료";
+    } elseif ($status == "G") {
+        $str = "예약금대기";
+    } elseif ($status == "J") {
+        $str = "예약금입금대기";
+    } elseif ($status == "C") {
+        $str = "예약취소";
+    } elseif ($status == "R") {
+        $str = "잔금대기";
+    }
+    return $str;
+}
+
+;
 function get_mileage_name($code)
 {
-	$str = "";
-	if ($code == "tour") {
-		$str = "여행";
-	} elseif ($code == "guide") {
-		$str = "가이드";
-	} elseif ($code == "trans") {
-		$str = "마일리지양도";
-	} elseif ($code == "trans_del") {
-		$str = "마일리지양도거절";
-	} elseif ($code == "receive") {
-		$str = "마일리지양도";
-	} elseif ($code == "admin") {
-		$str = "관리자부여";
-	}
-	return $str;
+    $str = "";
+    if ($code == "tour") {
+        $str = "여행";
+    } elseif ($code == "guide") {
+        $str = "가이드";
+    } elseif ($code == "trans") {
+        $str = "마일리지양도";
+    } elseif ($code == "trans_del") {
+        $str = "마일리지양도거절";
+    } elseif ($code == "receive") {
+        $str = "마일리지양도";
+    } elseif ($code == "admin") {
+        $str = "관리자부여";
+    }
+    return $str;
 }
+
 function chk_member_id($userid)
 {
-	$connect = db_connect();
+    $connect = db_connect();
 
-	$fsql		= " select count(*) cnts from tbl_member where user_id = '".$userid."'";
-	$frow		= $connect->query($fsql)->getRowArray();
+    $fsql = " select count(*) cnts from tbl_member where user_id = '" . $userid . "'";
+    $frow = $connect->query($fsql)->getRowArray();
 
-	return $frow['cnts'];
+    return $frow['cnts'];
 }
+
 function chk_member_col($userid, $cols)
 {
     $connect = db_connect();
-	if( chk_member_id($userid) < 1){
+    if (chk_member_id($userid) < 1) {
 
-		return "error";
+        return "error";
 
-	} else {
-		$fsql		= " select ".$cols." as outcol from tbl_member where user_id = '".$userid."'";
-		$frow		= $connect->query($fsql)->getRowArray();
+    } else {
+        $fsql = " select " . $cols . " as outcol from tbl_member where user_id = '" . $userid . "'";
+        $frow = $connect->query($fsql)->getRowArray();
 
-		return $frow['outcol'];
-	}
+        return $frow['outcol'];
+    }
 }
-function DateAdd($interval, $number, $date) {
+
+function DateAdd($interval, $number, $date)
+{
 
     //getdate()함수를 통해 얻은 배열값을 각각의 변수에 지정합니다.
 
-	$date_time_array = getdate($date);
-	$hours = $date_time_array["hours"];
-	$minutes = $date_time_array["minutes"];
-	$seconds = $date_time_array["seconds"];
-	$month = $date_time_array["mon"];
-	$day = $date_time_array["mday"];
-	$year = $date_time_array["year"];
+    $date_time_array = getdate($date);
+    $hours = $date_time_array["hours"];
+    $minutes = $date_time_array["minutes"];
+    $seconds = $date_time_array["seconds"];
+    $month = $date_time_array["mon"];
+    $day = $date_time_array["mday"];
+    $year = $date_time_array["year"];
 
 
-     //switch()구문을 사용해서 interval에 따라 적용합니다.
+    //switch()구문을 사용해서 interval에 따라 적용합니다.
 
-     switch ($interval) {
-          case "yyyy": 
-              $year +=$number; 
-              break; 
+    switch ($interval) {
+        case "yyyy":
+            $year += $number;
+            break;
 
-          case "q":
-              $year +=($number*3);
-              break;
+        case "q":
+            $year += ($number * 3);
+            break;
 
-          case "m":
-              $month +=$number;
-              break;
+        case "m":
+            $month += $number;
+            break;
 
-          case "y":
-          case "d":
-          case "w":
-              $day+=$number;
-              break;
+        case "y":
+        case "d":
+        case "w":
+            $day += $number;
+            break;
 
-          case "ww":
-              $day+=($number*7);
-              break;
+        case "ww":
+            $day += ($number * 7);
+            break;
 
-          case "h":
-              $hours+=$number;
-              break;
+        case "h":
+            $hours += $number;
+            break;
 
-          case "n":
-              $minutes+=$number;
-              break;
+        case "n":
+            $minutes += $number;
+            break;
 
-          case "s":
-              $seconds+=$number;
-              break;
+        case "s":
+            $seconds += $number;
+            break;
 
-     }
+    }
 
 
-    $timestamp = date("Y-m-d",mktime($hours ,$minutes, $seconds, $month, $day, $year));
-	return $timestamp;
+    $timestamp = date("Y-m-d", mktime($hours, $minutes, $seconds, $month, $day, $year));
+    return $timestamp;
 }
-function strAsterisk($string) {
 
-	$string = trim($string);
-	$length = mb_strlen($string, 'utf-8');
-	$string_changed = $string;
-	if ($length <= 2) {
-		// 한두 글자면 그냥 뒤에 별표 붙여서 내보낸다.
-		$string_changed = mb_substr($string, 0, 1, 'utf-8') . '*';
-	}
-	if ($length >= 3) {
-		// 3으로 나눠서 앞뒤.
-		$leave_length = floor($length/3); // 남겨 둘 길이. 반올림하니 너무 많이 남기게 돼, 내림으로 해서 남기는 걸 줄였다.
-		$asterisk_length = $length - ($leave_length * 2);
-		$offset = $leave_length + $asterisk_length;
-		$head = mb_substr($string, 0, $leave_length, 'utf-8');
-		$tail = mb_substr($string, $offset, $leave_length, 'utf-8');
-		$string_changed = $head . implode('', array_fill(0, $asterisk_length, '*')) . $tail;
-	}
-	return $string_changed;
+function strAsterisk($string)
+{
+
+    $string = trim($string);
+    $length = mb_strlen($string, 'utf-8');
+    $string_changed = $string;
+    if ($length <= 2) {
+        // 한두 글자면 그냥 뒤에 별표 붙여서 내보낸다.
+        $string_changed = mb_substr($string, 0, 1, 'utf-8') . '*';
+    }
+    if ($length >= 3) {
+        // 3으로 나눠서 앞뒤.
+        $leave_length = floor($length / 3); // 남겨 둘 길이. 반올림하니 너무 많이 남기게 돼, 내림으로 해서 남기는 걸 줄였다.
+        $asterisk_length = $length - ($leave_length * 2);
+        $offset = $leave_length + $asterisk_length;
+        $head = mb_substr($string, 0, $leave_length, 'utf-8');
+        $tail = mb_substr($string, $offset, $leave_length, 'utf-8');
+        $string_changed = $head . implode('', array_fill(0, $asterisk_length, '*')) . $tail;
+    }
+    return $string_changed;
 }
+
 function createAndUpdateCaptcha()
 {
-	$session = session();
-	$image = imagecreatetruecolor(200, 50);
+    $session = session();
+    $image = imagecreatetruecolor(200, 50);
 
-	$background = imagecolorallocate($image, 22, 86, 165);
-	$text_color = imagecolorallocate($image, 255, 255, 255);
-	$noise_color = imagecolorallocate($image, 200, 200, 200);
+    $background = imagecolorallocate($image, 22, 86, 165);
+    $text_color = imagecolorallocate($image, 255, 255, 255);
+    $noise_color = imagecolorallocate($image, 200, 200, 200);
 
-	imagefill($image, 0, 0, $background);
+    imagefill($image, 0, 0, $background);
 
-	for ($i = 0; $i < 1000; $i++) {
-		imagesetpixel($image, rand(0, 200), rand(0, 50), $noise_color);
-	}
+    for ($i = 0; $i < 1000; $i++) {
+        imagesetpixel($image, rand(0, 200), rand(0, 50), $noise_color);
+    }
 
-	for ($i = 0; $i < 10; $i++) {
-		imageline($image, rand(0, 200), rand(0, 50), rand(0, 200), rand(0, 50), $noise_color);
-	}
+    for ($i = 0; $i < 10; $i++) {
+        imageline($image, rand(0, 200), rand(0, 50), rand(0, 200), rand(0, 50), $noise_color);
+    }
 
-	$chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	$rand_str = '';
-	for ($i = 0; $i < 6; $i++) {
-		$rand_str .= $chars[rand(0, strlen($chars) - 1)];
-	}
+    $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    $rand_str = '';
+    for ($i = 0; $i < 6; $i++) {
+        $rand_str .= $chars[rand(0, strlen($chars) - 1)];
+    }
 
-	$session->set('captcha', $rand_str);
-	$font_size = 18;
-	$font_path = FCPATH . 'fonts/ONE-Mobile-Regular.ttf';
-	$char_width = 8;
-	$char_height = 16;
+    $session->set('captcha', $rand_str);
+    $font_size = 18;
+    $font_path = FCPATH . 'fonts/ONE-Mobile-Regular.ttf';
+    $char_width = 8;
+    $char_height = 16;
 
-	$string_length = strlen($rand_str);
-	$string_width = $string_length * $char_width;
+    $string_length = strlen($rand_str);
+    $string_width = $string_length * $char_width;
 
-	$x = (170 - $string_width) / 2;
-	$y = (80 - $char_height) / 2;
+    $x = (170 - $string_width) / 2;
+    $y = (80 - $char_height) / 2;
 
-	imagettftext($image, $font_size, 0, $x, $y, $text_color, $font_path, $rand_str);
+    imagettftext($image, $font_size, 0, $x, $y, $text_color, $font_path, $rand_str);
 
-	ob_start();
-	imagejpeg($image);
-	$image_data = ob_get_clean();
-	imagedestroy($image);
+    ob_start();
+    imagejpeg($image);
+    $image_data = ob_get_clean();
+    imagedestroy($image);
 
-	$captcha_image = 'data:image/jpeg;base64,' . base64_encode($image_data);
+    $captcha_image = 'data:image/jpeg;base64,' . base64_encode($image_data);
 
-	return array('captcha_image' => $captcha_image, 'captcha_value' => $rand_str);
+    return array('captcha_image' => $captcha_image, 'captcha_value' => $rand_str);
 }
+
 function noFileExt($fileName)
 {
-	$allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-	$extension = pathinfo($fileName, PATHINFO_EXTENSION);
-	return in_array(strtolower($extension), $allowedExtensions);
+    $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+    $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+    return in_array(strtolower($extension), $allowedExtensions);
 }
 
 function yoil_convert($day)
 {
-      $yoil = array("일","월","화","수","목","금","토");
-      $yoil = $yoil[date('w', strtotime($day))];
-	  return $yoil;
+    $yoil = array("일", "월", "화", "수", "목", "금", "토");
+    $yoil = $yoil[date('w', strtotime($day))];
+    return $yoil;
 }
-function GD2_make_thumb($source, $destination, $width, $height) {
+
+function GD2_make_thumb($source, $destination, $width, $height)
+{
     $image = imagecreatefromjpeg($source);
 
     list($original_width, $original_height) = getimagesize($source);
@@ -517,17 +538,33 @@ function GD2_make_thumb($source, $destination, $width, $height) {
         imagedestroy($thumb);
     }
 }
+
 function get_img($img, $path, $width, $height, $water = "")
 {
-	$file_dir = "";
-	$thumb_img_path = $_SERVER["DOCUMENT_ROOT"].$path."/thum_".$width."_$height/";
-	if(!is_dir($thumb_img_path)){
-		@mkdir($thumb_img_path, 0777);
-	}
-	$thumb_img = $thumb_img_path.$img;
-	if(!file_exists($thumb_img))
-	{
-		@GD2_make_thumb($width,$height,$thumb_img,$_SERVER["DOCUMENT_ROOT"]."/".$path."/".$img);
-	}
-	return $path."/thum_".$width."_".$height."/".$img;
+    $file_dir = "";
+    $thumb_img_path = $_SERVER["DOCUMENT_ROOT"] . $path . "/thum_" . $width . "_$height/";
+    if (!is_dir($thumb_img_path)) {
+        @mkdir($thumb_img_path, 0777);
+    }
+    $thumb_img = $thumb_img_path . $img;
+    if (!file_exists($thumb_img)) {
+        @GD2_make_thumb($width, $height, $thumb_img, $_SERVER["DOCUMENT_ROOT"] . "/" . $path . "/" . $img);
+    }
+    return $path . "/thum_" . $width . "_" . $height . "/" . $img;
+}
+
+function getConImg($con)
+{
+    $cnt = preg_match_all('@<img\s[^>]*src\s*=\s*(["\'])?([^\s>]+?)\1@i', stripslashes($con), $output);
+    $j = 0;
+    $img = '';
+    for ($i = 0; $i < $cnt; $i++) {
+        $cols[$j][] = str_replace('""', '"', ($output[2][$i] != '') ? $output[2][$i] : $output[4][$i]);
+
+        if ($output[6][$i] != '')
+            $j++;
+
+        $img = $cols[0][$i];
+    }
+    return $img;
 }
