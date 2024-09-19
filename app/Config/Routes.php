@@ -140,6 +140,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("board_write", "Admin\MemberBoardController::board_write");
     });
 
+    $routes->group("_memberBreak", static function ($routes) {
+        $routes->get("list", "Admin\MemberBreakController::list");
+        $routes->get("write", "Admin\MemberBreakController::write");
+    });
+
     $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
