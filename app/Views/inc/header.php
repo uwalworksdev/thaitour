@@ -224,13 +224,13 @@
         </div>
     </div>
     <hr>
-    <div class="search_m_header">
+    <div class="search_m_header only_web">
         <div class="search-container-m">
             <input type="text" class="search-input-m" placeholder="검색어를 입력해 주세요">
             <img class="fa fa-search search-icon-m" src="/uploads/icons/icon-search-m.png" alt="">
         </div>
     </div>
-    <div class="flex_header_mo_bot">
+    <div class="flex_header_mo_bot only_web">
         <div>
             <p class="font-26">상세검색</p>
         </div>
@@ -248,7 +248,7 @@
             <button class="font-26">차량</button>
         </div>
     </div>
-    <div class="flex_header_mo_bots mtb font-26">
+    <div class="flex_header_mo_bots mtb font-26 only_web">
         <a href="">여행자 보험 </a>
         <a href="">이벤트</a>
         <a href="">여행 쿠폰</a>
