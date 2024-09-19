@@ -7,7 +7,7 @@ use App\Controllers\BoardController;
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
 
-class MemberBoardController extends BaseController
+class AdminMemberBoardController extends BaseController
 {
     protected $connect;
 

@@ -136,13 +136,18 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_memberBoard", static function ($routes) {
-        $routes->get("board_list", "Admin\MemberBoardController::board_list");
-        $routes->get("board_write", "Admin\MemberBoardController::board_write");
+        $routes->get("board_list", "Admin\AdminMemberBoardController::board_list");
+        $routes->get("board_write", "Admin\AdminMemberBoardController::board_write");
     });
 
     $routes->group("_memberBreak", static function ($routes) {
-        $routes->get("list", "Admin\MemberBreakController::list");
-        $routes->get("write", "Admin\MemberBreakController::write");
+        $routes->get("list", "Admin\AdminMemberBreakController::list");
+        $routes->get("write", "Admin\AdminMemberBreakController::write");
+    });
+
+    $routes->group("_bbsBanner", static function ($routes) {
+        $routes->get("list", "Admin\AdminBbsBannerController::list");
+        $routes->get("write", "Admin\AdminBbsBannerController::write");
     });
 
     $routes->group("_adminrator", static function ($routes) {

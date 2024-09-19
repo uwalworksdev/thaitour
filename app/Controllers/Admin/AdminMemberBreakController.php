@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
 
-class MemberBreakController extends BaseController
+class AdminMemberBreakController extends BaseController
 {
     protected $connect;
 
