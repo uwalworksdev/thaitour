@@ -104,8 +104,26 @@ class AdminMileageController extends BaseController
 
     public function write()
     {
-        $data = [
+        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $mi_idx = updateSQ($_GET["mi_idx"] ?? '');
+        $coupon_idx = updateSQ($_GET["coupon_idx"] ?? '');
+        $user_id = updateSQ($_GET["user_id"] ?? '');
 
+        if ($mi_idx) {
+            $total_sql = " select * from bl_order_mileage where mi_idx='" . $mi_idx . "'";
+            $result = $this->connect->query($total_sql);
+            $row = $result->getRowArray();
+        }
+        $data = [
+            'row' => $row ?? '',
+            'search_category' => $search_category,
+            'search_name' => $search_name,
+            'pg' => $pg,
+            'mi_idx' => $mi_idx,
+            'coupon_idx' => $coupon_idx,
+            'user_id' => $user_id,
         ];
         return view('admin/_mileage/write', $data);
     }

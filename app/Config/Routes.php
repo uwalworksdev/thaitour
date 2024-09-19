@@ -135,6 +135,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminMileageController::write");
     });
 
+    $routes->group("_memberBoard", static function ($routes) {
+        $routes->get("board_list", "Admin\MemberBoardController::board_list");
+        $routes->get("board_write", "Admin\MemberBoardController::board_write");
+    });
+
     $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
