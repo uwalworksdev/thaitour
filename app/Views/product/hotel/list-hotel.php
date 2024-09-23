@@ -5,21 +5,21 @@
     <div class="body_inner">
         <div class="sub-hotel-navigation-container">
             <div class="navigation-container-prev">
-                <img src="/uploads/icons/icon_home.png" alt="icon_home">
-                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
+                <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
                 <span>호텔</span>
             </div>
             <div class="navigation-container-next">
-                <img src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
-                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+                <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
                 <span class="font-bold">방콕</span>
             </div>
             <div class="navigation-container-next">
-                <img src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
+                <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
             </div>
         </div>
         <div class="sub-hotel-container">
-            <div class="category-left">
+            <div class="category-left only_web">
                 <h1 class="title">방콕</h1>
                 <div class="category-left-list">
                     <div class="category-left-item">
@@ -167,25 +167,31 @@
                     <button class="btn_search_">
                         검색
                     </button>
+                    <div class="only_mo category-mo-cus">
+                        <span class="title-cate">방콕</span>
+                        <div class="img-div">
+                            <img src="/uploads/icons/hotel_filter_icon.png" alt="hotel_filter_icon">
+                        </div>
+                    </div>
                 </div>
                 <div class="filter-container">
                     <div class="">
                         <div class="filter-content">
-                            <img src="/uploads/icons/filter_icon.png" alt="filter_icon">
+                            <img class="filter_icon" src="/uploads/icons/filter_icon.png" alt="filter_icon">
                             <span>필터</span>
                         </div>
                         <div class="list-tag">
                             <div class="tag-item">
                                 <span>전체</span>
-                                <img src="/uploads/icons/close_icon.png" alt="close_icon">
+                                <img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">
                             </div>
                             <div class="tag-item">
                                 <span>오전</span>
-                                <img src="/uploads/icons/close_icon.png" alt="close_icon">
+                                <img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">
                             </div>
                             <div class="tag-item">
                                 <span>18홀</span>
-                                <img src="/uploads/icons/close_icon.png" alt="close_icon">
+                                <img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">
                             </div>
                         </div>
                     </div>
@@ -197,7 +203,7 @@
                     </div>
                     <div class="two-way-arrow-content">
                         <a href="#" class="">
-                            <img src="/uploads/icons/2-way_arrow.png" alt="2-way_arrow">
+                            <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">
                             <span class="text-primary">추천순</span>
                         </a>
                     </div>
@@ -213,20 +219,35 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>아난타라 시암 방콕 호텔</h2>
                             </a>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-title">
+                            <span>방콕</span>
+                            <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                            <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                alt="arrow_right_mo">
+                            <span>스쿰빛(야속-프로퐁)</span>
+                        </div>
+                        <div class="only_mo">
                             <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                     <span>4.7</span>
                                 </div>
                                 <div class="star-content">
                                     <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빛(야속-프로퐁)</span>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -250,8 +271,8 @@
                                 </div>
                             </div>
                             <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
+                                <div class="item-price-info"><span class="main">236,100</span><span class="text-gray">원
+                                        ~</span> <span class="sub text-gray">6,000바트~</span></div>
                             </div>
                         </div>
                     </div>
@@ -267,13 +288,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>아난타라 시암 방콕 호텔</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -281,6 +304,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>시암</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -321,13 +355,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>두앙따완 호텔 치앙마이</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -335,6 +371,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>시암</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -376,13 +423,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>애스콧 엠바시 사톤</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -390,6 +439,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>시암</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -430,13 +490,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>더 살릴 호텔 리버사이드 방콕</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -444,6 +506,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>짜오프라야강가</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -484,13 +557,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>킴튼 말라이 방콕</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -498,6 +573,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>랑수언/위타유</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -538,13 +624,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>힐튼 방콕 그랑데 아속 (구-풀만 방콕 그랑데 스쿰빗)</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -552,6 +640,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>스쿰빗(아속-프롬퐁)</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -593,13 +692,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>신돈 켐핀스키 호텔 방콕</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -607,6 +708,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>랑수언/위타유</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -647,13 +759,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>하얏트 리젠시 방콕 스쿰빗</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -661,6 +775,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>스쿰빗(나나-플런칫)</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -702,13 +827,15 @@
                             <a href="/product-hotel/hotel-detail/1324">
                                 <h2>비 호텔 방콕 엠 갤러리</h2>
                             </a>
-                            <div class="star-container">
-                                <div class="">
-                                    <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span>생생리뷰 <strong>(0)</strong></span>
+                            <div class="only_web">
+                                <div class="star-container">
+                                    <div class="">
+                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <span>4.7</span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -716,6 +843,17 @@
                             <span>방콕</span>
                             <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
                             <span>빠뚜남/펫부리</span>
+                        </div>
+                        <div class="only_mo">
+                            <div class="star-container">
+                                <div class="star-left">
+                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                    <span>4.7</span>
+                                </div>
+                                <div class="star-content">
+                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                </div>
+                            </div>
                         </div>
                         <div class="list-item-info">
                             <div class="item-info">
@@ -766,55 +904,55 @@
         </div>
     </div>
     <script>
-    $(document).ready(function() {
-        function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
+        $(document).ready(function () {
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
 
-            if (month.length < 2) month = '0' + month;
-            if (day.length < 2) day = '0' + day;
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
 
-            return [year, month, day].join('/');
-        }
-
-        $("#checkin, #checkout").datepicker({
-            dateFormat: 'yy/mm/dd',
-            onSelect: function(dateText, inst) {
-                var date = $(this).datepicker('getDate');
-                $(this).val(formatDate(date));
+                return [year, month, day].join('/');
             }
+
+            $("#checkin, #checkout").datepicker({
+                dateFormat: 'yy/mm/dd',
+                onSelect: function (dateText, inst) {
+                    var date = $(this).datepicker('getDate');
+                    $(this).val(formatDate(date));
+                }
+            });
+
+            $('#checkin').val(formatDate('2024/07/09'));
+            $('#checkout').val(formatDate('2024/07/10'));
         });
 
-        $('#checkin').val(formatDate('2024/07/09'));
-        $('#checkout').val(formatDate('2024/07/10'));
-    });
 
+        const sliderMin = document.getElementById('slider-min');
+        const sliderMax = document.getElementById('slider-max');
+        const sliderTrack = document.getElementById('slider-track');
 
-    const sliderMin = document.getElementById('slider-min');
-    const sliderMax = document.getElementById('slider-max');
-    const sliderTrack = document.getElementById('slider-track');
+        function updateSliderTrack() {
+            const min = parseFloat(sliderMin.value);
+            const max = parseFloat(sliderMax.value);
 
-    function updateSliderTrack() {
-        const min = parseFloat(sliderMin.value);
-        const max = parseFloat(sliderMax.value);
+            if (min > max) {
+                [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
+            }
 
-        if (min > max) {
-            [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
+            const percentMin = (sliderMin.value - sliderMin.min) / (sliderMin.max - sliderMin.min) * 100;
+            const percentMax = (sliderMax.value - sliderMax.min) / (sliderMax.max - sliderMax.min) * 100;
+
+            sliderTrack.style.left = percentMin + '%';
+            sliderTrack.style.width = (percentMax - percentMin) + '%';
         }
 
-        const percentMin = (sliderMin.value - sliderMin.min) / (sliderMin.max - sliderMin.min) * 100;
-        const percentMax = (sliderMax.value - sliderMax.min) / (sliderMax.max - sliderMax.min) * 100;
+        sliderMin.addEventListener('input', updateSliderTrack);
+        sliderMax.addEventListener('input', updateSliderTrack);
 
-        sliderTrack.style.left = percentMin + '%';
-        sliderTrack.style.width = (percentMax - percentMin) + '%';
-    }
-
-    sliderMin.addEventListener('input', updateSliderTrack);
-    sliderMax.addEventListener('input', updateSliderTrack);
-
-    window.addEventListener('DOMContentLoaded', updateSliderTrack);
+        window.addEventListener('DOMContentLoaded', updateSliderTrack);
     </script>
 
     <?php $this->endSection(); ?>

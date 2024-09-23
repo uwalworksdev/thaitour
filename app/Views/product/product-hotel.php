@@ -777,7 +777,7 @@
                 </div>
                 <div class="thailand_hotel_swiper_pagination_next_"></div>
                 <div class="thailand_hotel_swiper_pagination_prev_"></div>
-                <div class="custom_pagination_ w_100">
+                <div class="custom_pagination_ w_100 only_web">
                     <div class="pagination_show_">
                         <img src="/images/ico/reloadicon.png" alt="">
                         <p>다음상품</p>
@@ -1113,22 +1113,22 @@
     </section>
 
     <section class="sub_tour_section6 most_searched_">
-        <div class="body_inner">
-            <div class="sub_tour_section6__head">
-                <div class="sub_tour_section6__head_ttl ttl text_center">
-                    가장 많이 검색되는 #키워드
-                </div>
-                <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
-                    <ul class="tab_box_show_ d_flex justify_content_center align_items_center">
-                        <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">#5성급</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab2">#풀빌라</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab3">#얼리버드 할인</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab4">#인피니티 풀</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab5">#공항픽업</li>
-                    </ul>
-                </div>
+        <div class="sub_tour_section6__head">
+            <div class="sub_tour_section6__head_ttl ttl text_center">
+                가장 많이 검색되는 #키워드
             </div>
-            <!-- tab1 last slide section -->
+            <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
+                <ul class="tab_box_show_ d_flex justify_content_center align_items_center">
+                    <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">#5성급</li>
+                    <li class="tab_box_element_ p--20 border " rel="tab2">#풀빌라</li>
+                    <li class="tab_box_element_ p--20 border " rel="tab3">#얼리버드 할인</li>
+                    <li class="tab_box_element_ p--20 border " rel="tab4">#인피니티 풀</li>
+                    <li class="tab_box_element_ p--20 border " rel="tab5">#공항픽업</li>
+                </ul>
+            </div>
+        </div>
+        <!-- tab1 last slide section -->
+        <div class="body_inner">
             <div class="sub_tour_section6_product_list tab_box_content_">
                 <div class="content_tab_show_ tab_active_" id="tab1">
                     <div class="most_searched_tab_2 smart_slider_">
@@ -1735,11 +1735,6 @@
     function loadMultipleSlider() {
         for (let i = 0; i < 6; i++) {
             new Swiper(`.most_searched_tab_${i}`, {
-                slidesPerView: 2,
-                grid: {
-                    rows: 1,
-                },
-                spaceBetween: 20,
                 loop: true,
                 pagination: {
                     el: `.most_searched_tab_${i}_pagination_`,
@@ -1751,6 +1746,10 @@
                     prevEl: `.most_searched_tab_${i}_pagination_prev_`,
                 },
                 breakpoints: {
+                    300: {
+                        slidesPerView: 2,
+                        spaceBetween: 20,
+                    },
                     850: {
                         slidesPerView: 4,
                         grid: {
@@ -1913,6 +1912,13 @@
             rows: 2,
         },
         breakpoints: {
+            300: {
+                slidesPerView: 2,
+                grid: {
+                    rows: 4,
+                },
+                pagination: false,
+            },
             850: {
                 slidesPerView: 4,
                 spaceBetween: 20,

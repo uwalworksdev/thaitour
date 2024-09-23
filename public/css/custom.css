@@ -1133,7 +1133,7 @@
     }
 
     .main_page_01 .sub_tour_section7 {
-        padding: 8rem 0 0 0;
+        padding: 10rem 0 0 0;
     }
 
     .main_page_01 .sub_swiper2_pagination {
@@ -1141,7 +1141,7 @@
     }
 
     .main_page_01 .thailand_hotel_ .sub_section3__head {
-        padding-top: 12rem;
+        padding-top: 6rem;
     }
 
     .main_page_01 .sub_section3.thailand_hotel_ .custom_pagination_ {
@@ -1153,6 +1153,12 @@
     .main_page_01 .thailand_hotel_ .custom_pagination_ .pagination_show_ {
         width: 28.2rem;
         height: 6.4rem;
+    }
+
+    .main_page_01 .thailand_hotel_ .custom_pagination_ .pagination_show_ img {
+        width: 1.8rem;
+        height: 2rem;
+        background-size: cover;
     }
 
     .main_page_01 .sub_tour_section7_product_item {
@@ -1178,5 +1184,12 @@
 
     .main_page_01 .most_searched_ .tab_box_area_ .tab_box_show_ {
         flex-wrap: unset;
+        padding-left: 3rem;
+    }
+
+    .main_page_01 .sub_tour_section4_banner .img_box__img {
+        width: 66rem;
+        height: 24rem;
+        background-size: cover;
     }
 }
