@@ -239,7 +239,9 @@
 }
 
 .sub_tour_section4_banner__des__text {
-  font-family: "Pretendard";
+  text-wrap: nowrap;
+  margin-top: 8rem;
+  margin-left: -21rem;
 }
 
 .sub_tour_section4_banner__des__ttl {
@@ -595,19 +597,36 @@
   padding: 16px 0;
   border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
   display: flex;
+  align-items: center;
 }
 
 .sub-hotel-navigation-container .navigation-container-prev {
   display: flex;
   gap: 12px;
-  margin-right: 60px;
+  margin-right: 40px;
   align-items: center;
+}
+
+.sub-hotel-navigation-container .icon_home {
+  width: 14px;
+  height: 12px;
+}
+
+.sub-hotel-navigation-container .ball_dot_icon {
+  width: 18px;
+  height: 18px;
+}
+
+.sub-hotel-navigation-container .bread_arrow_right {
+  width: 7px;
+  height: 14px;
 }
 
 .sub-hotel-navigation-container .navigation-container-next {
   display: flex;
   gap: 8px;
   margin-right: 60px;
+  align-items: center;
 }
 
 .content-sub-product-hotel .sub-hotel-container {
@@ -782,12 +801,12 @@
 }
 
 .content-sub-product-hotel .arrow {
-  padding-top: 10px;
   font-size: 24px;
 }
 
 .content-sub-product-hotel .date-sub-container {
   display: flex;
+  align-items: center;
 }
 
 .content-sub-product-hotel .form_element_ {
@@ -870,6 +889,7 @@
 .content-sub-product-hotel .below-filter-content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 32px;
   padding-bottom: 20px;
   border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
@@ -924,6 +944,9 @@
   margin-top: 16px;
   padding-bottom: 16px;
   border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .content-sub-product-hotel .list-item-info .item-info {
@@ -3276,3 +3299,25 @@
 .custom-golf-detail .qa-submit-btn:hover {
   background-color: #e0e0e0;
 }
+
+.content-sub-product-hotel .filter_icon {
+  width: 17px;
+  height: 18px;
+}
+
+.content-sub-product-hotel .close_icon {
+  width: 9px;
+  height: 10px;
+}
+
+.content-sub-product-hotel .two-way_arrow {
+  width: 18px;
+  height: 14px;
+}
+
+.content-sub-product-hotel .two-way-arrow-content a {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
