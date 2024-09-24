@@ -118,6 +118,9 @@ class ContactController extends BaseController
             $title 	            = $row['title'];
             $contents	        = $row["contents"];	 
 	        $user_id			= $row["user_id"];
+	        $accuracy			= $row["accuracy"];
+	        $speed			    = $row["speed"];
+	        $star			    = $row["star"];
 
         }
 
@@ -134,28 +137,31 @@ class ContactController extends BaseController
         $data["arr_type_1"] = $row1;
         $data["arr_type_2"] = $row2;
 
-        $data["search_mode"] = $search_mode ?? "";
-        $data["search_word"] = $search_word ?? "";
-        $data["scode"] = $scode ?? "";
-        $data["pg"] = $pg ?? "";
-        $data["idx"] = $idx ?? "";
-        $data["user_id"] = $user_id ?? "";
-        $data["user_name"] = $user_name ?? "";
-        $data["user_phone"] = $user_phone ?? "";
-        $data["user_email"] = $user_email ?? "";
-        $data["travel_type_1"] = $travel_type_1 ?? "";
-        $data["travel_type_2"] = $travel_type_2 ?? "";
-        $data["travel_type_3"] = $travel_type_3 ?? "";
+        $data["search_mode"]    = $search_mode ?? "";
+        $data["search_word"]    = $search_word ?? "";
+        $data["scode"]          = $scode ?? "";
+        $data["pg"]             = $pg ?? "";
+        $data["idx"]            = $idx ?? "";
+        $data["user_id"]        = $user_id ?? "";
+        $data["user_name"]      = $user_name ?? "";
+        $data["user_phone"]     = $user_phone ?? "";
+        $data["user_email"]     = $user_email ?? "";
+        $data["travel_type_1"]  = $travel_type_1 ?? "";
+        $data["travel_type_2"]  = $travel_type_2 ?? "";
+        $data["travel_type_3"]  = $travel_type_3 ?? "";
         $data["departure_date"] = $departure_date ?? "";
-        $data["arrival_date"] = $arrival_date ?? "";
-        $data["status"] = $status ?? "";
-        $data["ufile1"] = $ufile1 ?? "";
-        $data["rfile1"] = $rfile1 ?? "";
-        $data["r_date"] = $r_date ?? "";
+        $data["arrival_date"]   = $arrival_date ?? "";
+        $data["status"]     = $status ?? "";
+        $data["ufile1"]     = $ufile1 ?? "";
+        $data["rfile1"]     = $rfile1 ?? "";
+        $data["r_date"]     = $r_date ?? "";
         $data["consultation_time"] = $consultation_time ?? "";
         $data["product_name"] = $product_name ?? "";
-        $data["title"] = $title ?? "";
-        $data["contents"] = $contents ?? "";
+        $data["title"]      = $title ?? "";
+        $data["contents"]   = $contents ?? "";
+        $data["accuracy"]   = $accuracy ?? "";
+        $data["speed"]      = $speed ?? "";
+        $data["star"]       = $star ?? "";
 
         return view('admin/_contact/write', $data);
     }
@@ -175,6 +181,9 @@ class ContactController extends BaseController
         $title  				= updateSQ($this->request->getPost('title'));
         $contents  				= updateSQ($this->request->getPost('contents'));
         $status					= updateSQ($this->request->getPost('status'));
+        $accuracy				= updateSQ($this->request->getPost('accuracy'));
+        $speed					= updateSQ($this->request->getPost('speed'));
+        $star					= updateSQ($this->request->getPost('star'));
         $file                   = $this->request->getFile("ufile1");
         
         $ufile1 = "";
@@ -234,6 +243,9 @@ class ContactController extends BaseController
                     ,title        	        = '$title'
                     ,contents        	    = '$contents'
                     ,status        	    	= '$status'
+                    ,accuracy        	    = '$accuracy'
+                    ,speed        	    	= '$speed'
+                    ,star        	    	= '$star'
                     ,m_date	    	  		= now()
                     where idx		 	 	= '".$idx."'
                 ";

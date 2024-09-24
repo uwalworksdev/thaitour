@@ -158,15 +158,6 @@
 											} ?>>답변완료</option>
 										</select>
 									</td>
-									<th>여행자 성함</th>
-									<td>
-										<div class="tra_name flex">
-											<input type="text" value="<?= $user_name ?>" name="user_name" id="user_name"
-												placeholder="한글이름">
-										</div>
-									</td>
-								</tr>
-								<tr>
 									<th>이메일</th>
 									<td>
 										<div class="email flex__c">
@@ -174,16 +165,25 @@
 												value="<?= $user_email ?>">
 										</div>
 									</td>
-									<th>전화번호</th>
+									<!-- <th>여행자 성함</th>
+									<td>
+										<div class="tra_name flex">
+											<input type="text" value="<?= $user_name ?>" name="user_name" id="user_name"
+												placeholder="한글이름">
+										</div>
+									</td> -->
+								</tr>
+								<tr>
+									<!-- <th>전화번호</th>
 									<td>
 										<div class="phone flex gap-1">
 											<input value="<?= $user_phone ?>" type="text" id="user_phone"
 												oninput="this.value = formatPhoneNumber(this.value.replace(/[^0-9]/g, ''))"
 												class="s_input" name="user_phone" maxlength="13" numberonly="true">
 										</div>
-									</td>
+									</td> -->
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th>여행형태</th>
 									<td>
 										<div class="email flex__c">
@@ -241,8 +241,8 @@
 												class="s_input" name="consultation_time">
 										</div>
 									</td>
-								</tr>
-								<tr>
+								</tr> -->
+								<!-- <tr>
 									<th>상품명</th>
 									<td>
 										<div class="depart flex__c gap-1">
@@ -271,7 +271,7 @@
 											</div>
 										</div>
 									</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<th>제목</th>
 									<td colspan="3"><input style="width: 100%;" type="text" name="title" id="title"
@@ -282,11 +282,20 @@
 									<td colspan="3"><textarea name="contents" id="contents"
 											rows="8" style="width: 100%;"><?= $contents ?></textarea></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th>첨부파일</th>
 									<td colspan="3">
 										<input type="file" name="ufile1">
 										<a href="<?= base_url('image/qna/' . $ufile1) ?>" download="<?= $rfile1 ?>"><?= $rfile1 ?></a>
+									</td>
+								</tr> -->
+								<tr>
+									<th>답변여부를 메일로 받으시겠습니까?</th>
+									<td colspan="3">
+										<input type="radio" id="yes" name="email_yn" value="Y" <?= ($email_yn == "Y" ? "checked" : "") ?>>
+										<label class="form_label_" for="yes">예</label>
+										<input type="radio" id="no" name="email_yn" value="N" <?= ($email_yn == "N" ? "checked" : "") ?>>
+										<label class="form_label_" for="no">아니오</label>
 									</td>
 								</tr>
 							</tbody>

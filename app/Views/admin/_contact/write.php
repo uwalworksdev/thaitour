@@ -166,9 +166,9 @@
                                                 <input type="text" value="<?= $user_name ?>" name="user_name" id="user_name" style="width: 250px;"
                                                     placeholder="한글이름">
                                             </div>
-                                            <div class="tra_name flex">
+                                            <!-- <div class="tra_name flex">
                                                 <input type="text" value="<?= $user_id ?>" name="user_id" id="user_id" style="width: 250px;" disabled>
-                                            </div>
+                                            </div> -->
                                         </div>
 									</td>
 								</tr>
@@ -177,21 +177,21 @@
 									<td>
 										<select class="form_input_" name="accuracy" id="accuracy">
 											<option value="">선택해주세요.</option>
-											<option value="test1">test1</option>
-											<option value="test2">test2</option>
+											<option <?= $accuracy == "test1" ? "selected" : ""?> value="test1">test1</option>
+											<option <?= $accuracy == "test2" ? "selected" : ""?> value="test2">test2</option>
 										</select>
 									</td>
 									<th>신속성</th>
 									<td>
 										<select class="form_input_" name="speed" id="speed">
 											<option value="">선택해주세요.</option>
-											<option value="test1">test1</option>
-											<option value="test2">test2</option>
+											<option <?= $speed == "test1" ? "selected" : ""?> value="test1">test1</option>
+											<option <?= $speed == "test2" ? "selected" : ""?> value="test2">test2</option>
 										</select>
 									</td>
 								</tr>
 
-								<tr>
+								<!-- <tr>
 									<th>이메일</th>
 									<td>
 										<div class="email flex__c">
@@ -207,8 +207,8 @@
 												class="s_input" name="user_phone" maxlength="13" numberonly="true">
 										</div>
 									</td>
-								</tr>
-								<tr>
+								</tr> -->
+								<!-- <tr>
 									<th>여행형태</th>
 									<td>
 										<div class="email flex__c">
@@ -266,8 +266,8 @@
 												class="s_input" name="consultation_time">
 										</div>
 									</td>
-								</tr>
-								<tr>
+								</tr> -->
+								<!-- <tr>
 									<th>상품명</th>
 									<td>
 										<div class="depart flex__c gap-1">
@@ -296,24 +296,46 @@
 											</div>
 										</div>
 									</td>
-								</tr>
-								<tr>
+								</tr> -->
+								<!-- <tr>
 									<th>제목</th>
 									<td colspan="3"><input style="width: 100%;" type="text" name="title" id="title"
 											value="<?= $title ?>" /></td>
+								</tr> -->
+								<tr>
+									<th>친절도</th>
+									<td colspan="3">
+										<select name="star" id="star">
+											<option value="1" <?= $star == 1 ? "selected" : "" ?>>
+												&#9733;
+											</option>
+											<option value="2" <?= $star == 2 ? "selected" : "" ?>>
+												&#9733;&#9733;
+											</option>
+											<option value="3" <?= $star == 3 ? "selected" : "" ?>>
+												&#9733;&#9733;&#9733;
+											</option>
+											<option value="4" <?= $star == 4 ? "selected" : "" ?>>
+												&#9733;&#9733;&#9733;&#9733;
+											</option>
+											<option value="5" <?= $star == 5 ? "selected" : "" ?>>
+												&#9733;&#9733;&#9733;&#9733;&#9733;
+											</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>내용</th>
 									<td colspan="3"><textarea name="contents" id="contents"
 											rows="8" style="width: 100%;"><?= $contents ?></textarea></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th>첨부파일</th>
 									<td colspan="3">
 										<input type="file" name="ufile1">
 										<a href="<?= base_url('image/contact/' . $ufile1) ?>" download="<?= $rfile1 ?>"><?= $rfile1 ?></a>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>

@@ -106,13 +106,12 @@
 							<colgroup>
 								<col width="4%" />
 								<col width="4%" />
-								<col width="*%" />
 								<col width="7%" />
 								<col width="9%" />
 								<col width="7%" />
 								<col width="9%" />
-								<col width="9%" />
 								<col width="7%" />
+                                <col width="7%" />
                                 <col width="7%" />
 								<col width="9%" />
 							</colgroup>
@@ -120,13 +119,12 @@
 								<tr>
 									<th>선택</th>
 									<th>번호</th>
-									<th>제목</th>
 									<th>이름</th>
-									<th>아이디</th>
-									<th>연락처</th>
-									<th>이메일</th>
+									<th>정확성</th>
+									<th>신속성</th>
 									<th>신청일시</th>
                                     <th>ip</th>
+									<th>친절도</th>
 									<th>진행상태</th>
 									<th>관리</th>
 								</tr>
@@ -170,16 +168,13 @@
 										<td><input type="checkbox" name="idx[]" class="idx" value="<?= $row["idx"] ?>" class="input_check" /></a></td>
 										<td><?= $num-- ?></td>
 										<td class="tac">
-											<a href="write?idx=<?= $row["idx"] ?>"><p><?= $row['title'] ?></p></a>
-											<span style="margin-left: 10px"><img src="/images/btn/icon_comm.gif" alt=""> </span>
-											<span class="red">(<?= $row['cmt_cnt'] ?>)</span><?= $is_new ?>
+											<a href="write?idx=<?= $row["idx"] ?>"><p><?= sqlSecretConver($row["user_name"], 'decode') ?></p></a>
 										</td>
-										<td class="tac"><?= sqlSecretConver($row["user_name"], 'decode') ?></td>
-										<td class="tac"><?= $row["user_id"] ?></td>
-										<td class="tac"><?= sqlSecretConver($row["user_phone"], 'decode') ?></td>
-										<td class="tac"><?= sqlSecretConver($row["user_email"], 'decode') ?></td>
+										<td class="tac"><?= $row["accuracy"] ?></td>
+										<td class="tac"><?= $row["speed"] ?></td>
 										<td class="tac"><?= $row["r_date"] ?></td>
 										<td class="tac"><?= $row["user_ip"] ?></td>
+                                        <td class="tac"><?= $row["star"] ?></td>
                                         <td class="tac"><?= $statusStr ?></td>
 										<td>
 											<a href="write?idx=<?= $row["idx"] ?>"><img src="/images/admin/common/ico_setting2.png"></a>

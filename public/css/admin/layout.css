@@ -1361,6 +1361,11 @@ input[type=file] {
     height: 30px;
 }
 
+textarea {
+    border: 1px solid #bbbbbb;
+    border-radius: 0.25em;
+}
+
 select {
     height: 27px;
     line-height: 27px;

@@ -110,6 +110,7 @@
 								<col width="9%" />
 								<col width="9%" />
 								<col width="7%" />
+								<col width="7%" />
 								<col width="9%" />
 							</colgroup>
 							<thead>
@@ -120,6 +121,7 @@
 									<th>이메일</th>
 									<th>신청일시</th>
                                     <th>ip</th>
+                                    <th>진행상태</th>
 									<th>관리</th>
 								</tr>
 							</thead>
@@ -169,6 +171,7 @@
 										<td class="tac"><?= sqlSecretConver($row["user_email"], 'decode') ?></td>
 										<td class="tac"><?= $row["r_date"] ?></td>
 										<td class="tac"><?= $row["user_ip"] ?></td>
+										<td class="tac"><?= $statusStr ?></td>
 										<td>
 											<a href="write?idx=<?= $row["idx"] ?>"><img src="/images/admin/common/ico_setting2.png"></a>
 											<a href="javascript:del_it('<?= $row["idx"] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>

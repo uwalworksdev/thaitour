@@ -116,6 +116,7 @@ class QnaController extends BaseController
             $product_name       = $row['product_name'];
             $title 	            = $row['title'];
             $contents	        = $row["contents"];	 
+            $email_yn	        = $row["email_yn"];	 
         }
 
         $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no = 13 AND depth = '2' order by onum";
@@ -152,6 +153,7 @@ class QnaController extends BaseController
         $data["product_name"] = $product_name ?? "";
         $data["title"] = $title ?? "";
         $data["contents"] = $contents ?? "";
+        $data["email_yn"] = $email_yn ?? "";
 
         return view('admin/_qna/write', $data);
     }
@@ -171,6 +173,7 @@ class QnaController extends BaseController
         $title  				= updateSQ($this->request->getPost('title'));
         $contents  				= updateSQ($this->request->getPost('contents'));
         $status					= updateSQ($this->request->getPost('status'));
+        $email_yn					= updateSQ($this->request->getPost('email_yn'));
         $file                   = $this->request->getFile("ufile1");
         
         $ufile1 = "";
@@ -230,6 +233,7 @@ class QnaController extends BaseController
                     ,title        	        = '$title'
                     ,contents        	    = '$contents'
                     ,status        	    	= '$status'
+                    ,email_yn        	    = '$email_yn'
                     ,m_date	    	  		= now()
                     where idx		 	 	= '".$idx."'
                 ";
