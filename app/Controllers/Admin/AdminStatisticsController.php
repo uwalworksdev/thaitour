@@ -169,8 +169,38 @@ class AdminStatisticsController extends BaseController
 
     public function statistics02_01()
     {
-        $data = [
+        $search_name = updateSQ($_GET['search_name'] ?? '');
+        $search_category = updateSQ($_GET['search_category'] ?? '');
+        $s_status = updateSQ($_GET['s_status'] ?? '');
+        $gubun = updateSQ($_GET['gubun'] ?? '');
+        $strSql = '';
 
+        $g_list_rows = 10;
+        if ($search_name) {
+            $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
+        }
+
+        if ($s_status == "") {
+            $s_status = "Y";
+        }
+
+//        $total_sql = " select d.*, g.goods_name_front
+//	                 from tbl_counsel_deal d
+//					 left outer join tbl_goods g
+//					   on d.sel_goods = g.g_idx
+//					where 1=1 $strSql ";
+//        $result = $this->connect->query($total_sql);
+//        $nTotalCount = $result->getNumRows();
+
+        $data = [
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            's_status' => $s_status,
+            'gubun' => $gubun,
+            'pg' => $pg ?? 1,
+            'nPage' => $nPage ?? 1,
+            'g_list_rows' => $g_list_rows,
+            'nTotalCount' => $nTotalCount ?? 0,
         ];
 
         return view('admin/_statistics/statistics02_01', $data);
