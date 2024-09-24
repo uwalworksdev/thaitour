@@ -732,7 +732,7 @@
 .content-sub-product-hotel .slider-track {
   position: absolute;
   height: 5px;
-  background: #007bff;
+  background: var(--bs-point);
   top: 50%;
   transform: translateY(-193%);
   border-radius: 5px;
