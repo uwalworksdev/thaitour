@@ -44,8 +44,6 @@ class BoardController extends BaseController
 
     public function index2()
     {
-        // Load common functions
-        helper('common'); // Assuming common functions are in a helper
 
         $r_code = $this->request->getGet('r_code') ?? 'notice';
         $page = $this->request->getGet('page') ?? 1;
