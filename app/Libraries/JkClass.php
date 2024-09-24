@@ -46,6 +46,8 @@ class JkClass
 
     public $category_arr;
     public $Auth;
+    public $r_code;
+    public $code_info ;
 
     /*******************************************
      * 생성자 함수
@@ -88,12 +90,14 @@ class JkClass
         $this->input = &$this->Config->input;
 
         // 목록 페이지 파라미터 정리 (page -> start)
-        if ($this->input['scale'] > 0) {
-            if ($this->input['page'] > 0)
-                $this->input['start'] = ($this->input['page'] - 1) * $this->input['scale'];
+        if (isset($this->input['scale'])){
+            if ($this->input['scale'] > 0) {
+                if ($this->input['page'] > 0)
+                    $this->input['start'] = ($this->input['page'] - 1) * $this->input['scale'];
 
-            if ($this->input['start'] == "")
-                $this->input['start'] = 0;
+                if ($this->input['start'] == "")
+                    $this->input['start'] = 0;
+            }
         }
 
         // 첨부파일 저장 위치
@@ -145,6 +149,9 @@ class JkClass
             "required"=>"", // Y:필수 항목
             "pass_check"=>"" // Y:검사 예외 (pass_check_item = 'Y'인 경우)
         );*/
+
+        $this->r_code = '';
+        $this->code_info = '';
     }
 
     /*******************************************
