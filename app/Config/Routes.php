@@ -169,6 +169,13 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_statistics", static function ($routes) {
         $routes->get("statistics01_01", "Admin\AdminStatisticsController::statistics01_01");
+        $routes->get("statistics01_02", "Admin\AdminStatisticsController::statistics01_02");
+        $routes->get("statistics01_03", "Admin\AdminStatisticsController::statistics01_03");
+        $routes->get("statistics01_04", "Admin\AdminStatisticsController::statistics01_04");
+        $routes->get("statistics01_05", "Admin\AdminStatisticsController::statistics01_05");
+        $routes->get("statistics01_06", "Admin\AdminStatisticsController::statistics01_06");
+        $routes->get("statistics01_07", "Admin\AdminStatisticsController::statistics01_07");
+        $routes->get("statistics01_08", "Admin\AdminStatisticsController::statistics01_08");
         $routes->get("statistics02_01", "Admin\AdminStatisticsController::statistics02_01");
         $routes->get("statistics03_01", "Admin\AdminStatisticsController::statistics03_01");
         $routes->get("statistics04_01", "Admin\AdminStatisticsController::statistics04_01");
