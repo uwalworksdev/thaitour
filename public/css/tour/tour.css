@@ -699,6 +699,8 @@
   background: transparent;
   position: absolute;
   pointer-events: none;
+  padding: 0;
+  border: none;
 }
 
 .content-sub-product-hotel .slider::-webkit-slider-thumb {
@@ -748,6 +750,14 @@
   border-radius: 5px;
   z-index: 0;
   pointer-events: none;
+}
+
+.content-sub-product-hotel .currency {
+  cursor: pointer;
+}
+
+.content-sub-product-hotel .currency.active {
+  font-weight: bold;
 }
 
 .date-container {
@@ -1012,6 +1022,14 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
+.content-sub-product-hotel .page-link.ml {
+  margin-left: 24px;
+}
+
+.content-sub-product-hotel .page-link.mr {
+  margin-right: 24px;
+}
+
 .content-sub-product-hotel .page-link:hover {
   background-color: #f0f0f0;
 }
@@ -1047,10 +1065,6 @@
 .content-sub-hotel-detail .title-container .list-icon img {
   cursor: pointer;
   padding: 8px 6px;
-}
-
-.custom-golf-detail .location-container {
-  margin-top: 20px;
 }
 
 .content-sub-hotel-detail .rating-container {
@@ -1706,6 +1720,13 @@
 
 .content-sub-hotel-detail .section7 .prd_price_ko {
   margin-bottom: 120px;
+}
+
+.content-sub-hotel-detail .location-container {
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .content-sub-product-hotel .two-way-arrow-content span {
@@ -3306,8 +3327,8 @@
 }
 
 .content-sub-product-hotel .close_icon {
-  width: 9px;
-  height: 10px;
+  width: 10px;
+  height: 12px;
 }
 
 .content-sub-product-hotel .two-way_arrow {
@@ -3320,4 +3341,3 @@
   align-items: center;
   gap: 3px;
 }
-
