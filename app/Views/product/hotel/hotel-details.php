@@ -6,7 +6,7 @@
         <div class="section1">
             <div class="title-container">
                 <h2>더 콰르티어 호텔 프롬퐁 / 통로 방콕 바이 컴패스 호스피탈리티</h2>
-                <div class="list-icon only_web">
+                <div class="list-icon">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">
@@ -14,17 +14,12 @@
             </div>
             <div class="location-container">
                 <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                <span>413 Soi Sukhumvit 49, Watthana 10110,방콕,태국</span>
+                <span class="text-gray">413 Soi Sukhumvit 49, Watthana 10110,방콕,태국</span>
             </div>
             <div class="rating-container">
                 <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                 <span><strong> 4.7</strong></span>
-                <span>생생리뷰 <strong>(124)</strong></span>
-            </div>
-            <div class="list-icon only_mo">
-                <img src="/uploads/icons/print_icon.png" alt="print_icon">
-                <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
-                <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                <span class="text-gray">생생리뷰 <strong style="color: #000;">(124)</strong></span>
             </div>
             <div class="hotel-image-container">
                 <div class="hotel-image-container-1">

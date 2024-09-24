@@ -83,9 +83,11 @@
                             <span>1박 평균가격</span>
                             <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
                         </div>
-                        <span><strong>원</strong class="text-primary"> · 바트</span>
+                        <p class="tab-currency">
+                            <span class="currency active">원 · </span><span class="currency">바트</span>
+                        </p>
 
-                        <div class="slider-container">
+                        <div class="slider-container only_web">
                             <div class="slider-background"></div>
                             <div class="slider-track" id="slider-track"></div>
                             <input type="range" min="0" max="100" value="25" class="slider" id="slider-min">
@@ -148,7 +150,7 @@
             <div class="content-right">
                 <div class="form_element_">
                     <div class="date-container">
-                        <label for="checkin" class="label">체크인/아웃</label>
+                        <label for="checkin" class="label text-gray">체크인/아웃</label>
                         <div class="date-sub-container">
                             <div class="date-wrapper">
                                 <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
@@ -885,54 +887,199 @@
                 </div>
                 <div class="pagination">
                     <a href="#" class="page-link">
-                        <img src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                        <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
                     </a>
-                    <a href="#" class="page-link" style="margin-right: 24px;">
-                        <img src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                    <a href="#" class="page-link cus-padding mr">
+                        <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                        <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
                     </a>
                     <a href="#" class="page-link active">1</a>
                     <a href="#" class="page-link">2</a>
                     <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link" style="margin-left: 24px;">
-                        <img src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                    <a href="#" class="page-link cus-padding ml">
+                        <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
                     </a>
                     <a href="#" class="page-link">
-                        <img src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                        <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            function formatDate(date) {
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + d.getDate(),
-                    year = d.getFullYear();
+    <section class="popup" style="display: none;">
+        <div class="popup__content">
+            <div class="header-con-p">
+                <h3 class="title-header">호텔 상세검색</h3>
+                <img class="close_popup" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
+            </div>
+            <div class="popup_inner">
+                <div class="category-left-list">
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>세부지역</span>
 
-                if (month.length < 2) month = '0' + month;
-                if (day.length < 2) day = '0' + day;
+                        </div>
+                        <div class="tab_box_area_">
+                            <ul class="tab_box_show_">
+                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab3">짜오프라야강가</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab4">실롬/사톤</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">시암</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab7">랑수언/위타유</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab10">라차다</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab11">수완나품 공항주변</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab12">람캄행</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab14">논타부리</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab15">빠뚜남/펫부리</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>호텔타입</span>
 
-                return [year, month, day].join('/');
+                        </div>
+                        <div class="tab_box_area_">
+                            <ul class="tab_box_show_">
+                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab2">호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab3">레지던스</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab4">리조트</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">풀빌라</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>호텔등급</span>
+
+                        </div>
+                        <div class="tab_box_area_">
+                            <ul class="tab_box_show_">
+                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab2">5성급</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab3">4성급</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab4">3성급</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">2성급</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>1박 평균가격</span>
+
+                        </div>
+                        <div class="slider-container only_mo">
+                            <div class="slider-background"></div>
+                            <div class="slider-track" id="slider-track" style="left: 25%; width: 50%;"></div>
+                            <input type="range" min="0" max="100" value="25" class="slider" id="slider-min">
+                            <input type="range" min="0" max="100" value="75" class="slider" id="slider-max">
+                        </div>
+                        <div class="value-container">
+                            <span>10,000원</span>
+                            <span>500,000원 이상</span>
+                        </div>
+                        <p class="tab-currency">
+                            <span class="currency active">원</span>
+                            <span class="currency">바트</span>
+                        </p>
+                    </div>
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>프로모션</span>
+
+                        </div>
+                        <div class="tab_box_area_">
+                            <ul class="tab_box_show_">
+                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">무료숙박(1+1,2+1등)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab2">특별패키지</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab3">룸업그레이드</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab4">공항픽업 무료</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">레이트 체크아웃 무료</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">얼리버드 할인</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">엑스트라베드 무료</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">아동 엑스트라베드 무료</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">아동조식 무료</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>테마</span>
+
+                        </div>
+                        <div class="tab_box_area_">
+                            <ul class="tab_box_show_">
+                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">체크인 후 24시간 이용 가능</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">가성비 5성급 호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab5">펫프렌들리 호텔</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="category-left-item">
+                        <div class="subtitle">
+                            <span>침실수</span>
+
+                        </div>
+                        <div class="tab_box_area_">
+                            <ul class="tab_box_show_">
+                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">2 베드룸(성인 4~5인)</li>
+                                <li class="tab_box_element_ p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    $(document).ready(function () {
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('/');
+        }
+
+        $("#checkin, #checkout").datepicker({
+            dateFormat: 'yy/mm/dd',
+            onSelect: function (dateText, inst) {
+                var date = $(this).datepicker('getDate');
+                $(this).val(formatDate(date));
             }
-
-            $("#checkin, #checkout").datepicker({
-                dateFormat: 'yy/mm/dd',
-                onSelect: function (dateText, inst) {
-                    var date = $(this).datepicker('getDate');
-                    $(this).val(formatDate(date));
-                }
-            });
-
-            $('#checkin').val(formatDate('2024/07/09'));
-            $('#checkout').val(formatDate('2024/07/10'));
         });
 
+        $('#checkin').val(formatDate('2024/07/09'));
+        $('#checkout').val(formatDate('2024/07/10'));
+    });
 
-        const sliderMin = document.getElementById('slider-min');
-        const sliderMax = document.getElementById('slider-max');
-        const sliderTrack = document.getElementById('slider-track');
+
+    const sliders = document.querySelectorAll('.slider-container');
+    sliders.forEach(slider => {
+        const sliderMin = slider.querySelector('#slider-min');
+        const sliderMax = slider.querySelector('#slider-max');
+        const sliderTrack = slider.querySelector('#slider-track');
 
         function updateSliderTrack() {
             const min = parseFloat(sliderMin.value);
@@ -953,6 +1100,15 @@
         sliderMax.addEventListener('input', updateSliderTrack);
 
         window.addEventListener('DOMContentLoaded', updateSliderTrack);
-    </script>
+    });
 
-    <?php $this->endSection(); ?>
+    $(".img-div").click(function () {
+        $(".popup").show();
+    });
+    $(".close_popup").click(function () {
+        $(".popup").hide();
+    });
+
+</script>
+
+<?php $this->endSection(); ?>
