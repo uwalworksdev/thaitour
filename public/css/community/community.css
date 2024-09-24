@@ -1469,6 +1469,10 @@ strong {
     font-weight: 500;
 }
 
+.customer-notify-page .item-title .notice {
+    color: var(--bs-point);
+}
+
 .customer-notify-page .item-date {
     font-size: 16px;
     color: #999;

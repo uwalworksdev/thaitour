@@ -6,7 +6,7 @@
 		<header id="headerContainer">
 
 			<div class="inner">
-				<h2>1:1 여행상담</h2>
+				<h2>고객의 소리</h2>
 				<div class="menus">
 					<ul class="first">
 						<li><a href="javascript:CheckAll(document.getElementsByName('idx[]'), true)" class="btn btn-success">전체선택</a></li>

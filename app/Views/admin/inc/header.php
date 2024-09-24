@@ -189,8 +189,8 @@ if ($top_menu == "") {
 <html class="ie7"> <![endif]-->
 <!--[if IE 8]>
 <html class="ie8"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<!DOCTYPE HTML><!--<![endif]-->
+<!--[if gt IE 8]> <![endif]-->
+<!DOCTYPE HTML>
 <html lang="ko">
 
 <head>
@@ -581,7 +581,7 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?> class="
                                 <?= strpos($currentPath, '/AdmMaster/_contact/') !== false ? "on" : "" ?>">
-                            <?= check_perm('A005', '/AdmMaster/_contact/list', '여행문의'); ?>
+                            <?= check_perm('A005', '/AdmMaster/_contact/list', '고객의 소리'); ?>
                         </li>
                         <li <?php if (!check_auth('A006')) {
                             echo "style='display: none;'";

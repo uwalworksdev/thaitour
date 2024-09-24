@@ -27,7 +27,10 @@
                         foreach($notice as $row) {
                     ?>
                         <div class="item-no" data-url="/community/customer_center/notify?bbs_idx=<?=$row["bbs_idx"]?>">
-                            <h3 class="item-title"><?=$row["subject"]?></h3>
+                            <h3 class="item-title">
+                                <?=$row["notice_yn"] == "Y" ? "<span class='notice'>[공지]</span>" : ""?>
+                                <?=$row["subject"]?>
+                            </h3>
                             <div class="item-date"><?=date("Y.m.d", strtotime($row["r_date"]))?></div>
                         </div>
                     <?php
