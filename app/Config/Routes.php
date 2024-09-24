@@ -160,6 +160,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminCateBannerController::write");
     });
 
+    $routes->group("_cms", static function ($routes) {
+        $routes->get("index", "Admin\AdminCmsController::index");
+        $routes->get("write", "Admin\AdminCmsController::write");
+    });
+
     $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
