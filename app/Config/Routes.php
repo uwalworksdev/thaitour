@@ -163,6 +163,16 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_cms", static function ($routes) {
         $routes->get("index", "Admin\AdminCmsController::index");
         $routes->get("write", "Admin\AdminCmsController::write");
+        $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
+        $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
+    });
+
+    $routes->group("_statistics", static function ($routes) {
+        $routes->get("statistics01_01", "Admin\AdminStatisticsController::statistics01_01");
+        $routes->get("statistics02_01", "Admin\AdminStatisticsController::statistics02_01");
+        $routes->get("statistics03_01", "Admin\AdminStatisticsController::statistics03_01");
+        $routes->get("statistics04_01", "Admin\AdminStatisticsController::statistics04_01");
+        $routes->get("statistics05_01", "Admin\AdminStatisticsController::statistics05_01");
     });
 
     $routes->group("_adminrator", static function ($routes) {
@@ -193,6 +203,12 @@ $routes->group("AdmMaster", static function ($routes) {
         });
 
         $routes->get("policy", "Policy::WriteView");
+
+        $routes->get("store_config_admin", "Admin\AdminController::store_config_admin");
+        $routes->get("write", "Admin\AdminController::write");
+        $routes->get("search_word", "Admin\AdminController::search_word");
+        $routes->get("search_write", "Admin\AdminController::search_write");
+        $routes->get("block_ip_list", "Admin\AdminController::block_ip_list");
     });
 });
 

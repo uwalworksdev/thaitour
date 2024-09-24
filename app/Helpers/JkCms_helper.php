@@ -10,7 +10,8 @@ class JkCms extends JkClass
 
     public $input; // 입력값 ($_GET + $_POST + 추가변수)
     public $conf; // 클래스 자체 설정
-    public $having_query; // 클래스 자체 설정
+    public $having_query;
+    public $product_arr;
 
     public $sch_item_arr, $sch_arr, $sch_param, $sch_query; // 검색 정보
     public $sort_param, $sort_query; // 정렬 정보
@@ -521,8 +522,10 @@ class JkCms extends JkClass
 
         if ($r_idx != "") {
             // 기존 정보 재사용
-            if ($r_idx == $this->form_data[$this->idx_name])
-                return $this->form_data;
+            if (isset($this->form_data[$this->idx_name])){
+                if ($r_idx == $this->form_data[$this->idx_name])
+                    return $this->form_data;
+            }
 
             if ($this->where != "")
                 $where = $this->where . " and T." . $this->idx_name . " = '" . $r_idx . "' ";

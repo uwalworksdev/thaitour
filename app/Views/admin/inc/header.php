@@ -70,7 +70,7 @@ if ($top_menu == "") {
     // 게시판
     if (strpos($currentPath, "/AdmMaster/_bbs/") !== false) {
         // 환경설정
-        if ($currentPath == "/AdmMaster/_bbs/fair_opt" || $currentPath == "/AdmMaster/_bbs/board_write" || $currentPath == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards" )
+        if ($currentPath == "/AdmMaster/_bbs/fair_opt" || $currentPath == "/AdmMaster/_bbs/board_write" || $currentPath == "/AdmMaster/_bbs/board_view" || $code == "hashtag" || $code == "main_event" || $code == "awards")
             $top_menu = "config";
         // 고객센터
         else if (in_array($r_code, array("qna", "qna_group", "suggest", "faq", "contact")))
@@ -163,6 +163,7 @@ if ($top_menu == "") {
         || $currentPath == "/AdmMaster/_bbsBanner/list"
         || $currentPath == "/AdmMaster/_adminrator/search_word"
         || $currentPath == "/AdmMaster/_adminrator/block_ip_list"
+        || $currentPath == "/AdmMaster/_adminrator/search_write"
     ) {
         $top_menu = "config";
     } // 통계
@@ -355,7 +356,7 @@ if ($top_menu == "") {
                 <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM ?>" alt="로고"></a> -->
                 <a href="/" class="txt_admin" target="_blank"></a>
                 <a href="/AdmMaster/_main/main" class="logo">
-<!--                    <img src="/uploads/setting/--><?php //= $setting['logos'] ?><!--" alt="">-->
+                    <!--                    <img src="/uploads/setting/--><?php //= $setting['logos'] ?><!--" alt="">-->
                     <img src="/images/sub/logo_w.png" alt="" style="height: 30px;">
                 </a>
             </div>
@@ -774,18 +775,15 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= $r_code == "popup" ? "on" : "" ?>">
+                               <?= strpos($currentPath, '/AdmMaster/_cms/index') !== false || strpos($currentPath, '/AdmMaster/_cms/write') !== false ? "on" : "" ?>">
                             <?= check_perm('H007', '/AdmMaster/_cms/index?r_code=popup', '팝업관리'); ?>
                         </li>
-                        <!-- <li <?php if (!check_auth('H004')) {
-                            echo "style='display: none;'";
-                        } ?>
-                                class="<?= $r_code == "staff" ? "on" : "" ?>"><?= check_perm('H004', '/AdmMaster/_cms/index?r_code=staff', '운영자관리'); ?></li> -->
+
                         <li <?php if (!check_auth('H008')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= $r_code == "info" ? "on" : "" ?>">
+                                <?= strpos($currentPath, '/AdmMaster/_cms/policy_list') !== false || strpos($currentPath, '/AdmMaster/_cms/policy_write') !== false ? "on" : "" ?> ">
                             <?= check_perm('H008', '/AdmMaster/_cms/policy_list?r_code=info', '약관및정책관리'); ?>
                         </li>
                         <li <?php if (!check_auth('H009')) {

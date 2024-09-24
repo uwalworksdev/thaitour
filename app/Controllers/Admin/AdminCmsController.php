@@ -72,46 +72,85 @@ class AdminCmsController extends BaseController
         // 공용 클래스 (+관리자 인증)
 
         // 메뉴 구분
-//        $r_code = $_GET['r_code'] ?? '';
-//
-//        // 클래스
-//        $Cms = new JkCms($r_code);
-//
-//        $code_info = $Cms->get_code_info($r_code);
-//        $type_arr = $Cms->type_arr;
-//        $template_arr = $Cms->template_arr;
-//
-//        $r_idx = $_GET['r_idx'];
-//        if ($r_idx != "") {
-//            $form_data = $Cms->get_form_data($r_idx);
-//            $file_arr = json_decode($form_data['r_file_list'], true);
-//            $file_cnt = count($file_arr);
-//        } else {
-//            $form_data = array();
-//            foreach ($Cms->new_default_arr as $key => $val)
-//                $form_data[$key] = $val;
-//        }
-//
-//        $product_arr = $Cms->get_product_arr();
-//
-//        // 헤더 (관리자 기본 설정 및 인증)
-//
-//        $data = [
-//            'code_info' => $code_info,
-//            'type_arr' => $type_arr,
-//            'template_arr' => $template_arr,
-//            'form_data' => $form_data,
-//            'product_arr' => $product_arr,
-//            'Cms' => $Cms,
-//            'r_idx' => $r_idx,
-//            'file_cnt' => $file_cnt ?? '',
-//            'file_arr' => $file_arr ?? '',
-//            'scale' => $scale ?? '',
-//            'start' => $start ?? '',
-//            'sch_status' => $sch_status ?? '',
-//            'sch_item' => $sch_item ?? '',
-//            'sch_value' => $sch_value ?? '',
-//        ];
-        return view('admin/_cms/write');
+        $r_code = $_GET['r_code'] ?? '';
+
+        // 클래스
+        $Cms = new JkCms($r_code);
+
+        $code_info = $Cms->get_code_info($r_code);
+        $type_arr = $Cms->type_arr;
+        $template_arr = $Cms->template_arr;
+
+        $r_idx = $_GET['r_idx'];
+        if ($r_idx != "") {
+            $form_data = $Cms->get_form_data($r_idx);
+            $file_arr = json_decode($form_data['r_file_list'], true);
+            $file_cnt = count($file_arr);
+        } else {
+            $form_data = array();
+            foreach ($Cms->new_default_arr as $key => $val)
+                $form_data[$key] = $val;
+        }
+
+        $product_arr = $Cms->get_product_arr();
+
+        // 헤더 (관리자 기본 설정 및 인증)
+
+        $data = [
+            'page' => $_GET['page'] ?? 1,
+            'code_info' => $code_info,
+            'type_arr' => $type_arr,
+            'template_arr' => $template_arr,
+            'form_data' => $form_data,
+            'product_arr' => $product_arr,
+            'Cms' => $Cms,
+            'r_idx' => $r_idx,
+            'file_cnt' => $file_cnt ?? '',
+            'file_arr' => $file_arr ?? '',
+            'scale' => $scale ?? '',
+            'start' => $start ?? '',
+            'sch_status' => $sch_status ?? '',
+            'sch_item' => $sch_item ?? '',
+            'sch_value' => $sch_value ?? '',
+            'r_code' => $r_code ?? '',
+            'cmd' => $cmd ?? '',
+        ];
+        return view('admin/_cms/write', $data);
+    }
+
+    public function policy_list()
+    {
+        $sql = " select * from tbl_policy_info order by p_idx asc ";
+        $result = $this->connect->query($sql);
+        $result = $result->getResultArray();
+
+        $data = [
+            'page' => $_GET['page'] ?? 1,
+            'result' => $result,
+            'num' => $num ?? 0,
+            'pg' => $pg ?? 0,
+            'nTotalCount' => $nTotalCount ?? 0,
+            'nPage' => $nPage ?? 0,
+            's_parent_code_no' => $s_parent_code_no ?? '',
+            'g_list_rows' => $g_list_rows ?? 10,
+            'ca_idx' => $ca_idx ?? '',
+            'search_category' => $search_category ?? '',
+            'search_name' => $search_name ?? '',
+        ];
+        return view('admin/_cms/policy_list', $data);
+    }
+
+    public function policy_write()
+    {
+        $p_idx = $_GET['p_idx'] ?? '';
+        $total_sql = " select * from tbl_policy_info where p_idx = '$p_idx' ";
+        $result = $this->connect->query($total_sql);
+        $row = $result->getRowArray();
+
+        $data = [
+            'p_idx' => $p_idx,
+            'row' => $row
+        ];
+        return view('admin/_cms/policy_write', $data);
     }
 }
