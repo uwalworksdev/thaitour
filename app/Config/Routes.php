@@ -155,6 +155,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminCodeBannerController::write");
     });
 
+    $routes->group("_cateBanner", static function ($routes) {
+        $routes->get("list", "Admin\AdminCateBannerController::list");
+        $routes->get("write", "Admin\AdminCateBannerController::write");
+    });
+
     $routes->group("_adminrator", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
