@@ -9,6 +9,7 @@ class CodeController extends BaseController
     private $CodeModel;
     private $Bbs;
     private $ProductAirModel;
+
     public function __construct()
     {
         $this->db = db_connect();
@@ -18,10 +19,12 @@ class CodeController extends BaseController
         helper('my_helper');
         helper('alert_helper');
     }
-    public function list_admin() {
+
+    public function list_admin()
+    {
         $g_list_rows = 100;
         $s_parent_code_no = $this->request->getVar("s_parent_code_no");
-        $pg = $this->request->getVar("pg"); 
+        $pg = $this->request->getVar("pg");
 
         $code_name = $this->CodeModel->getCodeName($s_parent_code_no);
 
@@ -44,7 +47,9 @@ class CodeController extends BaseController
             "code_name" => $code_name
         ]);
     }
-    public function write_admin() {
+
+    public function write_admin()
+    {
         $code_idx = $this->request->getVar('code_idx');
         $s_parent_code_no = $this->request->getVar('s_parent_code_no');
         $product_idx = $this->request->getVar('product_idx');
@@ -103,7 +108,8 @@ class CodeController extends BaseController
         ]);
     }
 
-    public function write_ok() {
+    public function write_ok()
+    {
         $code_idx = $this->request->getPost('code_idx');
         $code_gubun = $this->request->getPost('code_gubun');
         $code_no = $this->request->getPost('code_no');
@@ -181,7 +187,8 @@ class CodeController extends BaseController
         }
     }
 
-    public function del() {
+    public function del()
+    {
         $code_idx = $this->request->getPost('code_idx');
         try {
             $this->CodeModel->delete($code_idx);
@@ -191,11 +198,13 @@ class CodeController extends BaseController
         }
         return $this->response->setJSON(['message' => $message]);
     }
-    public function change_ajax() {
+
+    public function change_ajax()
+    {
         $code_idx = $this->request->getPost('code_idx');
         $onum = $this->request->getPost('onum');
-        $tot=count($code_idx);
-        for ($j=0;$j<$tot;$j++){
+        $tot = count($code_idx);
+        for ($j = 0; $j < $tot; $j++) {
             $this->CodeModel->update($code_idx[$j], ['onum' => $onum[$j]]);
         }
         return "OK";
