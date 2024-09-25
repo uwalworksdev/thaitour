@@ -90,8 +90,14 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_golf", "TourRegistController::write_golf");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("_tourStay", "TourRegistController::list");
-        $routes->post("del", "TourRegistController::del");
-        $routes->post("ajax_del", "TourRegistController::ajax_del");
+    });
+
+    $routes->group("api", static function ($routes) {
+        $routes->get("get_code", "Api\AdminTourApi::get_code");
+        $routes->post("ajax_change", "Api\AdminTourApi::ajax_change");
+        $routes->post("del", "Api\AdminTourApi::del");
+        $routes->post("prod_update", "Api\AdminTourApi::prod_update");
+        $routes->post("ajax_del", "Api\AdminTourApi::ajax_del");
     });
 
     $routes->group("_tourStay", static function ($routes) {
