@@ -89,7 +89,7 @@
     $(document).ready(function(){
         $('.btn_preview').on('click',function(){
             var tmp_idx = $(this).attr("rel");
-            $("#previews").prop("src", "/AdmMaster/_member/pre_viw_mail.php?idx=" + tmp_idx);
+            $("#previews").prop("src", "/AdmMaster/_member/pre_viw_mail?idx=" + tmp_idx);
             $('.preview_popup').css({'display':'block'});
         });
 

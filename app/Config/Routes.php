@@ -32,6 +32,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("sms_mod_ok", "SmsSettings::sms_mod_ok");
         $routes->get("email_view", "AutoMailController::email_view");
         $routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
+        $routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");
         // $routes->post("del", "TourRegistController::del");
         // $routes->post("ajax_del", "TourRegistController::ajax_del");
     });

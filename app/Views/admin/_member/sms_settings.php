@@ -8,7 +8,7 @@
                     <h2>자동SMS설정</h2>
                     <div class="menus">
                         <ul class="first">
-                            <li><a href="<?= site_url('sms-settings') ?>" class="btn btn_email01">자동SMS설정</a></li>
+                            <li><a href="sms" class="btn btn_email01">자동SMS설정</a></li>
                             <!--
                             <li><a href="sms02.php" class="btn btn_email01">단체SMS발송</a></li>  
                             <li><a href="sms03.php" class="btn btn_email01">SMS발송</a></li>  
