@@ -4637,8 +4637,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .price,
-.discount,
-.total {
+.cart-item-list .discount,
+.cart-item-list .total {
   font-weight: bold;
   text-align: center;
 }

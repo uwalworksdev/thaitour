@@ -1222,6 +1222,11 @@
   min-width: 180px;
 }
 
+.content-sub-hotel-detail .section2 .tag_list_done .item_done img {
+  width: 19px;
+  height: 14px;
+}
+
 .content-sub-hotel-detail .section2 .tag_list_done .item_done span {
   color: #1779E6;
 }
@@ -1604,6 +1609,18 @@
 .content-sub-hotel-detail .section6 .rating-left {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+.content-sub-hotel-detail .section6 .rating-left img {
+  width: 26px;
+  height: 26px;
+}
+
+.content-sub-hotel-detail .prd_info__left {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .content-sub-hotel-detail .section6 .rating-left strong {
@@ -3340,4 +3357,9 @@
   display: flex;
   align-items: center;
   gap: 3px;
+}
+
+.content-sub-hotel-detail .section2 .tag-list-icon .item-tag img {
+  max-height: 26px;
+  max-width: 26px;
 }
