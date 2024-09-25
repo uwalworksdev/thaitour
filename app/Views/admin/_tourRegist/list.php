@@ -259,18 +259,14 @@
                     var f = document.frm;
 
                     var prod_data = $(f).serialize();
-                    var save_result = "";
                     $.ajax({
                         type: "POST",
                         data: prod_data,
-                        url: "ajax_change.php",
+                        url: "/AdmMaster/api/ajax_change",
                         cache: false,
                         async: false,
                         success: function (data, textStatus) {
-                            save_result = data;
-                            //alert('save_result- '+save_result);
-                            var obj = jQuery.parseJSON(save_result);
-                            var message = obj.message;
+                            let message = data.message;
                             alert(message);
                             location.reload();
                         },
@@ -357,7 +353,7 @@
                                            onclick="go_write('<?= $row["product_idx"] ?>');"><?= $row["product_code_name_1"] ?>
                                             / <?= $row["product_code_name_2"] ?></a>
                                         <br>
-                                        <a href="<?php echo '/t-package/item_view.php?product_idx=' . $row['product_idx'] ?>"
+                                        <a href="<?php echo '/t-package/item_view?product_idx=' . $row['product_idx'] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
                                     <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
@@ -516,10 +512,9 @@
         if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
             return false;
 
-        var message = "";
+        let  message = "";
         $.ajax({
-
-            url: "/ajax/ajax.prod_update.php",
+            url: "/AdmMaster/api/prod_update",
             type: "POST",
             data: {
                 "product_idx": idx,
@@ -547,7 +542,7 @@
 <script>
     function go_write(idx) {
         $("#product_idx").val(idx);
-        $("#search").attr("action", "./write.php").submit();
+        $("#search").attr("action", "./write").submit();
     }
 </script>
 
@@ -583,7 +578,7 @@
         $("#ajax_loader").removeClass("display-none");
 
         $.ajax({
-            url: "del.php",
+            url: "/AdmMaster/api/del",
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {
@@ -595,7 +590,8 @@
 //				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
-                if (response == "OK") {
+                $("#ajax_loader").addClass("display-none");
+                if (response.status == "success") {
                     alert_("정상적으로 삭제되었습니다.");
                     location.reload();
                     return;
@@ -609,35 +605,6 @@
 
     }
 
-    function prod_del(product_idx) {
-        alert(product_idx);
-
-        if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 상품은 복구할 수 없습니다."))
-            return false;
-
-        var subject = "";
-        var content = "";
-        $.ajax({
-
-            url: "/ajax/ajax.prod_del.php",
-            type: "POST",
-            data: {
-                "subject": f.wr_subject.value,
-                "content": f.wr_content.value
-            },
-            dataType: "json",
-            async: false,
-            cache: false,
-            success: function (data, textStatus) {
-                subject = data.subject;
-                content = data.content;
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
-    }
-
     function del_it(product_idx) {
 
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
@@ -645,7 +612,7 @@
         }
         $("#ajax_loader").removeClass("display-none");
         $.ajax({
-            url: "del.php",
+            url: "/AdmMaster/api/del",
             type: "POST",
             data: "product_idx[]=" + product_idx,
             error: function (request, status, error) {
@@ -657,16 +624,16 @@
 //				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
-                //if (response == "OK")
-                //{
-                alert_("정상적으로 삭제되었습니다.");
-                location.reload();
-                return;
-                //} else {
-                //	alert(response);
-                //	alert_("오류가 발생하였습니다!!");
-                //	return;
-                //}
+                $("#ajax_loader").addClass("display-none");
+                if (response.status == "success") {
+                    alert_("정상적으로 삭제되었습니다.");
+                    location.reload();
+                    return;
+                } else {
+                    alert(response);
+                    alert_("오류가 발생하였습니다!!");
+                    return;
+                }
             }
         });
 
@@ -675,7 +642,7 @@
     function get_code(strs, depth) {
         $.ajax({
             type: "GET"
-            , url: "get_code.ajax.php"
+            , url: "/AdmMaster/api/get_code"
             , dataType: "html" //전송받을 데이터의 타입
             , timeout: 30000 //제한시간 지정
             , cache: false  //true, false

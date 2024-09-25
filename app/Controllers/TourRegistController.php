@@ -678,7 +678,6 @@ class TourRegistController extends BaseController
         return $html;
     }
 
-
     private function getYoilString($frow)
     {
         $yoilStr = "";
