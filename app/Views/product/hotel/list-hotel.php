@@ -29,22 +29,22 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">짜오프라야강가</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">실롬/사톤</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">시암</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab7">랑수언/위타유</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab10">라차다</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab11">수완나품 공항주변</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab12">람캄행</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab14">논타부리</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab15">빠뚜남/펫부리</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">짜오프라야강가</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">실롬/사톤</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">시암</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab7">랑수언/위타유</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab10">라차다</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab11">수완나품 공항주변</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab12">람캄행</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab14">논타부리</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab15">빠뚜남/펫부리</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li>
                             </ul>
                         </div>
                     </div>
@@ -55,11 +55,11 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">레지던스</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">리조트</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">풀빌라</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">오전</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">레지던스</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">리조트</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">풀빌라</li>
                             </ul>
                         </div>
                     </div>
@@ -70,11 +70,11 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">5성급</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">4성급</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">3성급</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">2성급</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">18홀</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">5성급</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">4성급</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">3성급</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">2성급</li>
                             </ul>
                         </div>
                     </div>
@@ -102,15 +102,15 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border " rel="tab1">무료숙박(1+1,2+1등)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">특별패키지</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">룸업그레이드</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">공항픽업 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">레이트 체크아웃 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">얼리버드 할인</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">엑스트라베드 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">아동 엑스트라베드 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">아동조식 무료</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab1">무료숙박(1+1,2+1등)</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">특별패키지</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">룸업그레이드</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">공항픽업 무료</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">레이트 체크아웃 무료</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">얼리버드 할인</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">엑스트라베드 무료</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">아동 엑스트라베드 무료</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">아동조식 무료</li>
                             </ul>
                         </div>
                     </div>
@@ -121,15 +121,15 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border " rel="tab1">체크인 후 24시간 이용 가능</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">가성비 5성급 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">펫프렌들리 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab1">체크인 후 24시간 이용 가능</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">가성비 5성급 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">펫프렌들리 호텔</li>
                             </ul>
                         </div>
                     </div>
@@ -140,8 +140,8 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border " rel="tab1">2 베드룸(성인 4~5인)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab1">2 베드룸(성인 4~5인)</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
                             </ul>
                         </div>
                     </div>
@@ -150,7 +150,7 @@
             <div class="content-right">
                 <div class="form_element_">
                     <div class="date-container">
-                        <label for="checkin" class="label text-gray">체크인/아웃</label>
+                        <label for="checkin" class="label text-gray pt-2">체크인/아웃</label>
                         <div class="date-sub-container">
                             <div class="date-wrapper">
                                 <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
@@ -183,21 +183,9 @@
                             <span>필터</span>
                         </div>
                         <div class="list-tag">
-                            <div class="tag-item">
-                                <span>전체</span>
-                                <img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">
-                            </div>
-                            <div class="tag-item">
-                                <span>오전</span>
-                                <img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">
-                            </div>
-                            <div class="tag-item">
-                                <span>18홀</span>
-                                <img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">
-                            </div>
                         </div>
                     </div>
-                    <button>전체삭제</button>
+                    <button id="delete_all">전체삭제</button>
                 </div>
                 <div class="below-filter-content">
                     <div class="total_number">
@@ -924,22 +912,22 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">짜오프라야강가</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">실롬/사톤</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">시암</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab7">랑수언/위타유</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab10">라차다</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab11">수완나품 공항주변</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab12">람캄행</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab14">논타부리</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab15">빠뚜남/펫부리</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">짜오프라야강가</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">실롬/사톤</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">시암</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab7">랑수언/위타유</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab10">라차다</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab11">수완나품 공항주변</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab12">람캄행</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab14">논타부리</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab15">빠뚜남/펫부리</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li>
                             </ul>
                         </div>
                     </div>
@@ -950,11 +938,11 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">레지던스</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">리조트</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">풀빌라</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">레지던스</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">리조트</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">풀빌라</li>
                             </ul>
                         </div>
                     </div>
@@ -965,11 +953,11 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">5성급</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">4성급</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">3성급</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">2성급</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">5성급</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">4성급</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">3성급</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">2성급</li>
                             </ul>
                         </div>
                     </div>
@@ -1000,15 +988,15 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">무료숙박(1+1,2+1등)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">특별패키지</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">룸업그레이드</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">공항픽업 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">레이트 체크아웃 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">얼리버드 할인</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">엑스트라베드 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">아동 엑스트라베드 무료</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">아동조식 무료</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">무료숙박(1+1,2+1등)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">특별패키지</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">룸업그레이드</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">공항픽업 무료</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">레이트 체크아웃 무료</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">얼리버드 할인</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">엑스트라베드 무료</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">아동 엑스트라베드 무료</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">아동조식 무료</li>
                             </ul>
                         </div>
                     </div>
@@ -1019,15 +1007,15 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">체크인 후 24시간 이용 가능</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">가성비 5성급 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab5">펫프렌들리 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">체크인 후 24시간 이용 가능</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">가성비 5성급 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">펫프렌들리 호텔</li>
                             </ul>
                         </div>
                     </div>
@@ -1038,12 +1026,11 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">2 베드룸(성인 4~5인)</li>
-                                <li class="tab_box_element_ p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">2 베드룸(성인 4~5인)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
                             </ul>
                         </div>
-                    </div>
-                </div>
+                    </div>                </div>
             </div>
         </div>
     </section>
@@ -1073,6 +1060,59 @@
         $('#checkin').val(formatDate('2024/07/09'));
         $('#checkout').val(formatDate('2024/07/10'));
     });
+
+    $(document).ready(function () {       
+        $('.tab_box_js.tab_active_').each(function () {
+            var tabText = $(this).text();
+            $('.list-tag').append(
+                '<div class="tag-item">' +
+                '<span>' + tabText + '</span>' +
+                '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+                '</div>'
+            );
+        });
+
+        $('.tab_box_js').click(function () {
+            var $group = $(this).closest('.tab_box_area_');
+            var tabText = $(this).text();
+            var activeTab = $group.find('.tab_box_js.tab_active_').text();
+
+            if (activeTab) {
+                
+                $('.list-tag .tag-item span').each(function () {
+                    if ($(this).text() === activeTab) {
+                        $(this).text(tabText);
+                        return false;
+                    }
+                });
+            } else {
+                
+                $('.list-tag').append(
+                    '<div class="tag-item">' +
+                    '<span>' + tabText + '</span>' +
+                    '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+                    '</div>'
+                );
+            }
+
+            
+            $group.find('.tab_box_js').removeClass('tab_active_');
+            $(this).addClass('tab_active_');
+        });
+
+        
+        $(document).on('click', '.close_icon', function () {
+            $(this).parent('.tag-item').remove();
+        });
+
+        $('#delete_all').click(function () {
+            $('.list-tag .tag-item span').remove();
+        });
+    });
+
+
+
+
 
 
     const sliders = document.querySelectorAll('.slider-container');
