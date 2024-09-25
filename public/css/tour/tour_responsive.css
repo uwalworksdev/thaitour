@@ -144,6 +144,14 @@
     left: 2rem;
     font-size: 2.8rem;
     color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .sub_swiper2__text img {
+    width: 1.4rem;
+    height: 2.2rem;
   }
 
   .swiper-button-sub-2 {
@@ -204,6 +212,7 @@
 
   .prd_price_ko {
     margin-top: 2rem;
+    width: 18rem;
   }
 
   .sub_section3_swiper_pagination {
@@ -403,7 +412,7 @@
   .main_page_01 .main_visual_content_ .text_title {
     font-size: 4.2rem !important;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
   }
 
   .main_page_01 .main_visual_content_ .form_element_ {
@@ -739,6 +748,15 @@
     gap: 0.2rem;
   }
 
+  .content-sub-hotel-detail .section6 .list-label-tag .label-tag-item .square {
+    max-width: 4.1rem;
+    max-height: 4.1rem;
+  }
+
+  .content-sub-hotel-detail .section6 .list-label-tag .label-tag-item {
+    gap: 1.6rem;
+  }
+
   .content-sub-hotel-detail .section6 .rating-left {
     display: flex;
     align-items: center;
@@ -849,6 +867,7 @@
   .content-sub-product-hotel .date-container .label {
     text-align: left;
     font-weight: 500;
+    padding: 0;
   }
 
   .content-sub-product-hotel .date-container div {

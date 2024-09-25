@@ -18,6 +18,10 @@
   padding-top: calc(180% / 590 * 100);
 }
 
+.pt-2 {
+  padding-top: 2px;
+}
+
 .ttl {
   font-size: 28px;
   font-family: "Pretendard";
@@ -134,7 +138,7 @@
   width: 44px;
   height: 44px;
   position: absolute;
-  top: 50%;
+  top: 43%;
   transform: translateY(-50%);
   z-index: 1;
   display: flex;
@@ -562,7 +566,7 @@
   font-size: 24px;
   font-family: "Pretendard";
   color: rgb(37, 37, 37);
-  font-weight: bold;
+  font-weight: normal;
   margin-top: 25px;
 }
 
@@ -1629,7 +1633,7 @@
 
 .content-sub-hotel-detail .section6 .list-label-tag {
   display: flex;
-  gap: 160px;
+  gap: 80px;
   margin-top: 32px;
 }
 
@@ -1640,8 +1644,8 @@
 }
 
 .content-sub-hotel-detail .section6 .list-label-tag .label-tag-item .square {
-  width: auto;
-  height: auto;
+  max-width: 33px;
+  max-height: 33px;
 }
 
 .content-sub-hotel-detail .section6 .list-label-tag .label-tag-item .label-tag-item-text {
@@ -3346,6 +3350,7 @@
 .content-sub-product-hotel .close_icon {
   width: 10px;
   height: 12px;
+  cursor: pointer;
 }
 
 .content-sub-product-hotel .two-way_arrow {

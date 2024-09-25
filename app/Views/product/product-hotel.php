@@ -130,11 +130,11 @@
                                 <img src="/uploads/sub/tour_popular_1.png" alt="main loading=" lazy"">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 사뭇 쁘라칸</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -149,7 +149,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -157,11 +157,11 @@
                                 <img src="/uploads/sub/tour_popular_2.png" alt="main loading=" lazy"">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -176,7 +176,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -184,11 +184,11 @@
                                 <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -203,7 +203,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -211,11 +211,11 @@
                                 <img src="/uploads/sub/tour_popular_4.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -230,7 +230,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -238,11 +238,11 @@
                                 <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 사뭇 쁘라칸</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -257,7 +257,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -265,11 +265,11 @@
                                 <img src="/uploads/sub/tour_popular_6.png" alt="main " loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -284,7 +284,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -292,11 +292,11 @@
                                 <img src="/uploads/sub/tour_popular_7.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -311,7 +311,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -319,11 +319,11 @@
                                 <img src="/uploads/sub/tour_popular_8.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -338,7 +338,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -346,11 +346,11 @@
                                 <img src="/uploads/sub/tour_popular_5.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 사뭇 쁘라칸</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -365,7 +365,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -373,11 +373,11 @@
                                 <img src="/uploads/sub/tour_popular_6.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -392,7 +392,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -400,11 +400,11 @@
                                 <img src="/uploads/sub/tour_popular_7.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -419,7 +419,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -427,11 +427,11 @@
                                 <img src="/uploads/sub/tour_popular_8.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -446,7 +446,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -454,11 +454,11 @@
                                 <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 사뭇 쁘라칸</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -473,7 +473,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -481,11 +481,11 @@
                                 <img src="/uploads/sub/tour_popular_6.png" alt="main" loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -500,7 +500,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -508,11 +508,11 @@
                                 <img src="/uploads/sub/tour_popular_7.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -527,7 +527,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -535,11 +535,11 @@
                                 <img src="/uploads/sub/tour_popular_8.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -554,7 +554,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -562,11 +562,11 @@
                                 <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 사뭇 쁘라칸</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -581,7 +581,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -589,11 +589,11 @@
                                 <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -608,7 +608,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -616,11 +616,11 @@
                                 <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -635,7 +635,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -643,11 +643,11 @@
                                 <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -662,7 +662,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -670,11 +670,11 @@
                                 <img src="/uploads/sub/tour_popular_5.png" alt="main" loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 사뭇 쁘라칸</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -689,7 +689,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -697,11 +697,11 @@
                                 <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -716,7 +716,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -724,11 +724,11 @@
                                 <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -743,7 +743,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                         <a href="/product-hotel/list-hotel/1324" class="thailand_hotel_swiper_item_ swiper-slide">
@@ -751,11 +751,11 @@
                                 <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                             </div>
                             <div class="prd_keywords">
-                                <span>방콕></span>
+                                <span>방콕<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                 <span> 기타</span>
                             </div>
                             <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                아난타라 시암 방콕 호텔
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
@@ -770,18 +770,20 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                236,100<span>원~</span>
+                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="thailand_hotel_swiper_pagination_next_"></div>
                 <div class="thailand_hotel_swiper_pagination_prev_"></div>
-                <div class="custom_pagination_ w_100 only_web">
-                    <div class="pagination_show_">
-                        <img src="/images/ico/reloadicon.png" alt="">
-                        <p>다음상품</p>
-                        <div class="thailand_hotel_swiper_pagination_"></div>
+                <div class="only_web">
+                    <div class="custom_pagination_ w_100">
+                        <div class="pagination_show_">
+                            <img src="/images/ico/reloadicon.png" alt="">
+                            <p>다음상품</p>
+                            <div class="thailand_hotel_swiper_pagination_"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -849,30 +851,12 @@
             </div>
         </div>
     </section>
-    <section class="sub_tour_section4">
+    <section class="banner_section_main_page">
         <div class="body_inner">
-            <div class="sub_tour_section4_banner">
-                <div class="sub_tour_section4_banner__des">
-                    <p class="ico_block">
-                        <img src="/images/ico/ico_block_1.svg" alt="">
-                    </p>
-                    <div class="sub_tour_section4_banner__des__text">
-                        <div class="sub_tour_section4_banner__des__ttl">
-                            여름휴가쿠폰대잔치
-                        </div>
-                        <p class="sub_tour_section4_banner__des__bottom">
-                            다운로드 기간 : 2024. 05. 22 ~ 07. 31
-                        </p>
-                    </div>
-                    <p class="ico_block">
-                        <img src="/images/ico/ico_block_1.svg" alt="">
-                    </p>
-                </div>
-                <div class="img_box img_box_11">
-                    <picture>
-                        <source media="(max-width: 850px)" srcset="/uploads/sub/banner_tour_1_m.png">
-                        <img class="img_box__img" src="/uploads/sub/banner_tour_1.png" alt="main">
-                    </picture>
+            <div class="banner_section_image" style="position: relative;">
+                <div class="box-text">
+                    <h3 class="title-box">여름휴가쿠폰대잔치</h3>
+                    <p class="des-box">다운로드 기간 : 2024. 05. 22 ~ 07. 31</p>
                 </div>
             </div>
         </div>
@@ -891,7 +875,7 @@
                             <img src="/uploads/sub/tour_suggest_1.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -910,7 +894,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                     <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
@@ -918,7 +902,7 @@
                             <img src="/uploads/sub/tour_suggest_2.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -937,7 +921,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                     <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
@@ -945,7 +929,7 @@
                             <img src="/uploads/sub/tour_suggest_3.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -964,7 +948,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                     <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
@@ -972,7 +956,7 @@
                             <img src="/uploads/sub/tour_suggest_4.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -991,7 +975,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                     <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
@@ -999,7 +983,7 @@
                             <img src="/uploads/sub/tour_suggest_5.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -1018,7 +1002,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                     <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
@@ -1026,7 +1010,7 @@
                             <img src="/uploads/sub/tour_suggest_6.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -1045,7 +1029,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                     <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
@@ -1053,7 +1037,7 @@
                             <img src="/uploads/sub/tour_suggest_7.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -1072,7 +1056,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                     <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
@@ -1080,7 +1064,7 @@
                             <img src="/uploads/sub/tour_suggest_8.png" alt="main" loading="lazy">
                         </div>
                         <div class="prd_keywords">
-                            <span>조인></span>
+                            <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 한국거 기이드</span>
                         </div>
                         <div class="prd_name">
@@ -1099,7 +1083,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                         </div>
                     </a>
                 </div>
@@ -1137,93 +1121,81 @@
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_last_section_slide_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아카라 호텔 파타야 </div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_last_section_slide_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">호텔 제이 파타야 </div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_last_section_slide_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_last_section_slide_4.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">홀리데이 인 파타야</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                         </div>
@@ -1246,94 +1218,73 @@
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                         </div>
                         <div class="most_searched_tab_2_pagination_next_"></div>
@@ -1354,94 +1305,73 @@
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                         </div>
                         <div class="most_searched_tab_3_pagination_next_"></div>
@@ -1462,94 +1392,73 @@
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                         </div>
                         <div class="most_searched_tab_4_pagination_next_"></div>
@@ -1570,94 +1479,73 @@
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_1.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#인피니티풀</span>
-                                    <span>#호텔수영장</span>
-                                    <span>#뷰맛집</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_2.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#펫프렌들리호텔</span>
-                                    <span>#내새끼랑여행</span>
+                                <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
+                                <div class="prd_price_ko">
+                                    199,424 <span>원~</span> <span class="prd_price_thai">2,800 <span>바트~</span></span>
                                 </div>
                             </div>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <div class="img_box img_box_12">
                                     <img src="/uploads/sub/tour_special_3.png" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                                <div class="sub_tour_section7_product_item__keywords">
-                                    <span>#쇼핑몰</span>
-                                    <span>#럭셔리여행은쇼핑이완성</span>
-                                </div>
+
                             </div>
                         </div>
                         <div class="most_searched_tab_5_pagination_next_"></div>
