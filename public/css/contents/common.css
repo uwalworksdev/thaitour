@@ -1077,7 +1077,8 @@ figure.cover_img img {
   font-family: "Pretendard";
   color: #397eb9;
   display: flex;
-  gap: 7px;
+  gap: 4px;
+  align-items: center;
   margin-top: 10px;
 }
 .prd_info__right__ttl {

@@ -780,6 +780,17 @@
     text-align: center;
 }
 
+.prd_info__left {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.prd_info__left img {
+    width: 14px;
+    height: 13px;
+}
+
 /**/
 .main_page_product_result_ {}
 
@@ -1191,5 +1202,16 @@
         width: 66rem;
         height: 24rem;
         background-size: cover;
+    }
+
+    .prd_info__left {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .prd_info__left img {
+        width: 2.3rem;
+        height: 2.2rem;
     }
 }

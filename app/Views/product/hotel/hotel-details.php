@@ -7,9 +7,12 @@
             <div class="title-container">
                 <h2>더 콰르티어 호텔 프롬퐁 / 통로 방콕 바이 컴패스 호스피탈리티</h2>
                 <div class="list-icon">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
-                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
-                    <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                    <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                    <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
+                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
+                    <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
+                    <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                 </div>
             </div>
             <div class="location-container">
@@ -41,12 +44,12 @@
                 </div>
             </div>
             <div class="sub-header-hotel-detail">
-                <div class="main">
-                    <a class="active" href="">숙소개요</a>
-                    <a href="">객실</a>
-                    <a href="">시설&서비스</a>
-                    <a href="">호텔 정책</a>
-                    <a href="">생생리뷰(159개)</a>
+                <div class="main nav-list">
+                    <a class="nav-item active">숙소개요</a>
+                    <a class="nav-item">객실</a>
+                    <a class="nav-item">시설&서비스</a>
+                    <a class="nav-item">호텔 정책</a>
+                    <a class="nav-item">생생리뷰(159개)</a>
                 </div>
                 <div class="btn-container">
                     <button>
@@ -237,14 +240,17 @@
                 </div>
                 <div class="card-item-container">
                     <div class="card-item-left">
-                        <div class="grid2_2_1 only_web">
-                            <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
-                            <img src="/uploads/sub/hotel_item_1_2.png" alt="hotel_item_1_2">
-                            <div class="" style="position: relative;">
-                                <img class="custom_button" src="/uploads/sub/hotel_item_1_3.png" alt="hotel_item_1_3">
-                                <div class="button-show-detail-image">
-                                    <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                    <span>22</span>
+                        <div class="only_web">
+                            <div class="grid2_2_1">
+                                <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
+                                <img src="/uploads/sub/hotel_item_1_2.png" alt="hotel_item_1_2">
+                                <div class="" style="position: relative;">
+                                    <img class="custom_button" src="/uploads/sub/hotel_item_1_3.png"
+                                        alt="hotel_item_1_3">
+                                    <div class="button-show-detail-image">
+                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
+                                        <span>22</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -347,7 +353,7 @@
                                         </div>
                                         <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub openPopupBtn" >예약하기</button>
+                                        <button class="book-button-sub openPopupBtn">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -431,14 +437,17 @@
                 </div>
                 <div class="card-item-container">
                     <div class="card-item-left">
-                        <div class="grid2_2_1 only_web">
-                            <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
-                            <img src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
-                            <div class="" style="position: relative;">
-                                <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png" alt="hotel_item_1_3">
-                                <div class="button-show-detail-image">
-                                    <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                    <span>22</span>
+                        <div class="only_web">
+                            <div class="grid2_2_1">
+                                <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
+                                <img src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
+                                <div class="" style="position: relative;">
+                                    <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png"
+                                        alt="hotel_item_1_3">
+                                    <div class="button-show-detail-image">
+                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
+                                        <span>22</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -507,7 +516,7 @@
                                         <span class="details">객실 1개 × 3박 (세금 포함)</span>
                                         <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub openPopupBtn" >예약하기</button>
+                                        <button class="book-button-sub openPopupBtn">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -541,7 +550,7 @@
                                         </div>
                                         <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub openPopupBtn" >예약하기</button>
+                                        <button class="book-button-sub openPopupBtn">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -625,14 +634,17 @@
                 </div>
                 <div class="card-item-container">
                     <div class="card-item-left">
-                        <div class="grid2_2_1 only_web">
-                            <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
-                            <img src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
-                            <div class="" style="position: relative;">
-                                <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png" alt="hotel_item_1_3">
-                                <div class="button-show-detail-image">
-                                    <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                    <span>22</span>
+                        <div class="only_web">
+                            <div class="grid2_2_1">
+                                <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
+                                <img src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
+                                <div class="" style="position: relative;">
+                                    <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png"
+                                        alt="hotel_item_1_3">
+                                    <div class="button-show-detail-image">
+                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
+                                        <span>22</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -701,7 +713,7 @@
                                         <span class="details">객실 1개 × 3박 (세금 포함)</span>
                                         <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub openPopupBtn" >예약하기</button>
+                                        <button class="book-button-sub openPopupBtn">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -735,7 +747,7 @@
                                         </div>
                                         <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                         <p><span class="price">481,290</span>원</p>
-                                        <button class="book-button-sub openPopupBtn" >예약하기</button>
+                                        <button class="book-button-sub openPopupBtn">예약하기</button>
                                     </div>
                                 </td>
                             </tr>
@@ -790,7 +802,8 @@
                                             <p class="price-popup">144,000<span class="text-gray">원</span></p>
                                         </div>
                                     </div>
-                                    <button class="btn_accept_popup" onclick="location.href='/product-hotel/customer-form'">
+                                    <button class="btn_accept_popup"
+                                        onclick="location.href='/product-hotel/customer-form'">
                                         쿠폰적용
                                     </button>
                                 </div>
@@ -962,8 +975,8 @@
             <h1 class="title-sec5">호텔정책</h1>
             <div class="content-container-sec5">
                 <div class="content-item">
-                    <span class="label">
-                        체크인 & 체크아웃 시간
+                    <span class="label">체크인 &<br class="only_mo">
+                        체크아웃 시간
                     </span>
                     <div class="description">
                         <p>체크인 : <strong>14:00</strong> 이전 <br>체크아웃 : <strong>12:00</strong> 이후<br>프런트 데스크 운영시간 : 연중무휴
@@ -1051,7 +1064,7 @@
                     <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
                     <strong>4.5/5</strong>
                 </div>
-                <span class="rating-right">928개 고객기준</span>
+                <span class="rating-right text-gray">928개 고객기준</span>
             </div>
             <div class="list-label-tag">
                 <div class="label-tag-item">
@@ -1175,7 +1188,7 @@
                             <img src="/uploads/sub/hotel_slide_detail1.png" alt="hotel_slide_detail1">
                         </div>
                         <div class="prd_keywords">
-                            <span>방콕 &gt;</span>
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 사뭇 쁘라칸</span>
                         </div>
                         <div class="prd_name">
@@ -1204,7 +1217,7 @@
                             <img src="/uploads/sub/hotel_slide_detail2.png" alt="">
                         </div>
                         <div class="prd_keywords">
-                            <span>방콕 &gt;</span>
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 기타</span>
                         </div>
                         <div class="prd_name">
@@ -1232,7 +1245,7 @@
                             <img src="/uploads/sub/hotel_slide_detail3.png" alt="">
                         </div>
                         <div class="prd_keywords">
-                            <span>방콕 &gt;</span>
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 시암</span>
                         </div>
                         <div class="prd_name">
@@ -1261,7 +1274,7 @@
                             <img src="/uploads/sub/hotel_slide_detail4.png" alt="">
                         </div>
                         <div class="prd_keywords">
-                            <span>방콕 &gt;</span>
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 방콕 스쿰빛(야속-프로퐁)</span>
                         </div>
                         <div class="prd_name">
@@ -1290,7 +1303,7 @@
                             <img src="/uploads/sub/hotel_slide_detail1.png" alt="hotel_slide_detail1">
                         </div>
                         <div class="prd_keywords">
-                            <span>방콕 &gt;</span>
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 사뭇 쁘라칸</span>
                         </div>
                         <div class="prd_name">
@@ -1319,7 +1332,7 @@
                             <img src="/uploads/sub/hotel_slide_detail2.png" alt="">
                         </div>
                         <div class="prd_keywords">
-                            <span>방콕 &gt;</span>
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                             <span> 기타</span>
                         </div>
                         <div class="prd_name">
@@ -1346,56 +1359,108 @@
         </div>
     </div>
     <script>
-    let swiper = new Swiper(".swiper_product_list_", {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        pagination: {
-            el: ".swiper_product_list_pagination_",
-            clickable: true,
-        },
-        breakpoints: {
-            850: {
-                slidesPerView: 4,
-                spaceBetween: 10,
+        let swiper = new Swiper(".swiper_product_list_", {
+            slidesPerView: 2,
+            grid: {
+                rows: 2,
+            },
+            breakpoints: {
+                300: {
+                    slidesPerView: 2,
+                    grid: {
+                        rows: 4,
+                    },
+                    pagination: false,
+                },
+                850: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                }
+            },
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper_product_list_pagination_",
+                clickable: true,
+            },
+        });
+
+        let thailand_hotel_swiper_ = new Swiper(".thailand_hotel_swiper_", {
+            slidesPerView: 2,
+            grid: {
+                rows: 1,
+            },
+            breakpoints: {
+                300: {
+                    slidesPerView: 2,
+                    grid: {
+                        rows: 1,
+                    },
+                    pagination: false,
+                },
+                850: {
+                    slidesPerView: 4,
+                    spaceBetween: 20,
+                }
+            },
+            spaceBetween: 20,
+            pagination: {
+                el: ".thailand_hotel_swiper_pagination_",
+                type: "fraction",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".thailand_hotel_swiper_pagination_next_",
+                prevEl: ".thailand_hotel_swiper_pagination_prev_",
+            },
+        });
+
+        // Get the popup, open button, close button elements
+        const $popup = $('#popup');
+        const $openPopupBtns = $('.openPopupBtn');
+        const $closePopupBtn = $('.close-btn');
+        const $closePopupBtn2 = $('#closePopupBtn');
+
+        // Show popup when the "Open Popup" button is clicked
+        $openPopupBtns.on('click', function () {
+            $popup.css('display', 'flex');
+        });
+
+        $('.list-icon img[alt="heart_icon"], .list-icon img[alt="heart_icon_mo"]').click(function () {
+            if ($(this).attr('src').includes('_mo')) {
+                if ($(this).attr('src') === '/uploads/icons/heart_icon_mo.png') {
+                    $(this).attr('src', '/uploads/icons/heart_on_icon_mo.png');
+                } else {
+                    $(this).attr('src', '/uploads/icons/heart_icon_mo.png');
+                }
+            } else {
+                if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
+                    $(this).attr('src', '/uploads/icons/heart_on_icon.png');
+                } else {
+                    $(this).attr('src', '/uploads/icons/heart_icon.png');
+                }
             }
-        }
-    });
+        });
 
-    // Get the popup, open button, close button elements
-    const $popup = $('#popup');
-    const $openPopupBtns = $('.openPopupBtn');
-    const $closePopupBtn = $('.close-btn');
-    const $closePopupBtn2 = $('#closePopupBtn');
-
-    // Show popup when the "Open Popup" button is clicked
-    $openPopupBtns.on('click', function() {
-        $popup.css('display', 'flex');
-    });
-
-    $('.list-icon img[alt="heart_icon"]').click(function() {
-        if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
-            $(this).attr('src', '/uploads/icons/heart_on_icon.png');
-        } else {
-            $(this).attr('src', '/uploads/icons/heart_icon.png');
-        }
-    });
-
-    // Close the popup when the "Close" button or the "x" is clicked
-    $closePopupBtn.on('click', function() {
-        $popup.css('display', 'none');
-    });
-
-    $closePopupBtn2.on('click', function() {
-        $popup.css('display', 'none');
-    });
-
-    // Close popup if clicked outside of content area
-    $(window).on('click', function(event) {
-        if ($(event.target).is($popup)) {
+        // Close the popup when the "Close" button or the "x" is clicked
+        $closePopupBtn.on('click', function () {
             $popup.css('display', 'none');
-        }
-    });
+        });
+
+        $closePopupBtn2.on('click', function () {
+            $popup.css('display', 'none');
+        });
+
+        // Close popup if clicked outside of content area
+        $(window).on('click', function (event) {
+            if ($(event.target).is($popup)) {
+                $popup.css('display', 'none');
+            }
+        });
+
+        $('.nav-item').on('click', function () {
+            $('.nav-item').removeClass('active');
+            $(this).addClass('active');
+        });
     </script>
 
     <?php $this->endSection(); ?>
