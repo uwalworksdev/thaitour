@@ -52,10 +52,10 @@
 									<th>구분</th>
 									<td>
 										<input type="radio" name="autosend" id="autosend" value="Y"
-											<? if ($email['autosend'] == "Y")
+											<?php if ($email['autosend'] == "Y")
 												echo "checked"; ?>>자동발송
 										<input type="radio" name="autosend" id="autosend" value="N"
-											<? if ($email['autosend'] == "N")
+											<?php if ($email['autosend'] == "N")
 												echo "checked"; ?>>자동발송안함
 									</td>
 								</tr>
