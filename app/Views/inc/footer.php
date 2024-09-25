@@ -1,3 +1,4 @@
+<?php if (isset($notice_list_footer)) : ?>
 <section class="main_section_notice">
     <div class="body_inner">
         <div class="">
@@ -5,27 +6,22 @@
                 <div class="notice__ttl">공지사항</div>
                 <div class="notice_list notice_swiper swiper">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="notice_item">
-                                <div class="notice_item__left">
-                                    <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
+                        <?php foreach ($notice_list_footer as $notice) : ?>
+                            <div class="swiper-slide">
+                                <div class="notice_item">
+                                    <div class="notice_item__left">
+                                        <?php if($notice['notice_yn'] == 'Y') : ?>
+                                        <div class="notice_item__icon">공지</div>
+                                        <?php endif; ?>
+                                        <a href="/community/customer_center/notify?bbs_idx=<?=$notice['bbs_idx']?>" class="notice_item__title"><?=$notice['subject']?></a>
+                                    </div>
+                                    <div class="notice_item__date"><?=date("Y.m.d", strtotime($notice['r_date']))?></div>
                                 </div>
-                                <div class="notice_item__date">2022.05.23</div>
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="notice_item">
-                                <div class="notice_item__left">
-                                    <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
-                                </div>
-                                <div class="notice_item__date">2022.05.23</div>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-                <a href="#!" class="main_section_notice__more">
+                <a href="/community/customer_center/list_notify" class="main_section_notice__more">
                     <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
                 </a>
                 <div class="swiper-button-box">
@@ -56,38 +52,24 @@
 
                 <div class="notice_list notice_swiper swiper">
                     <div class="swiper-wrapper">
+                        <?php foreach ($notice_list_footer as $notice) : ?>
                         <div class="swiper-slide">
                             <div class="notice_item">
                                 <div class="notice_item__left">
+                                    <?php if($notice['notice_yn'] == 'Y') : ?>
                                     <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
+                                    <?php endif; ?>
+                                    <div class="notice_item__title"><?=$notice['subject']?></div>
                                 </div>
-                                <!-- <div class="notice_item__date">2022.05.23</div> -->
                             </div>
                             <div class="flex_mobile_notice_item">
-                                <div class="notice_item__date">2022.05.23</div>
-                                <div><a href="#!" class="main_section_notice__more">
+                                <div class="notice_item__date"><?=date("Y.m.d", strtotime($notice['r_date']))?></div>
+                                <div><a href="/community/customer_center/list_notify" class="main_section_notice__more">
                                         <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
                                     </a></div>
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="notice_item">
-                                <div class="notice_item__left">
-                                    <div class="notice_item__icon">공지</div>
-                                    <div class="notice_item__title">(여행소식) 수완나폼 공항내 그랩 택시 서비스 개시</div>
-                                </div>
-
-
-                            </div>
-                            <div class="flex_mobile_notice_item">
-                                <div class="notice_item__date">2022.05.23</div>
-                                <div><a href="#!" class="main_section_notice__more">
-                                        <img class="ico_plus" src="/images/ico/ico_plus.svg" alt="">
-                                    </a></div>
-                            </div>
-                        </div>
-
+                        <?php endforeach; ?>
                     </div>
 
                 </div>
@@ -98,12 +80,13 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
 <footer id="footer">
     <div class="inner">
         <div>
             <ul class="flex_footer_top pl-10">
                 <li><a href="">회사소개</a></li>
-                <li><a href="">자주묻는 질문</a></li>
+                <li><a href="/community/customer_center">자주묻는 질문</a></li>
                 <li><a href="">예약변경 및 취소 정책 </a></li>
                 <li><a href="">개인정보처리방침 </a></li>
                 <li><a href="">이용약관</a></li>

@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use App\Models\Bbs;
 
 /**
  * Class BaseController
@@ -43,6 +44,7 @@ abstract class BaseController extends Controller
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
     // protected $session;
+    protected $data = [];
 
     /**
      * @return void
@@ -57,5 +59,14 @@ abstract class BaseController extends Controller
         // 세션 서비스 시작
         $this->session = \Config\Services::session();
 
+        $model = new Bbs();
+        $this->data['notice_list_footer'] = $model->List('b2b_notice')->get()->getResultArray();
+
+    }
+
+    protected function renderView($view, $additionalData = [])
+    {
+        $data = array_merge($this->data, $additionalData);
+        return view($view, $data);
     }
 }

@@ -263,7 +263,8 @@ class Community extends BaseController
                     'user_email' => sqlSecretConver($email, 'encode'),
                     'email_yn' => $email_yn,
                     'user_ip' => $ipAddress,
-                    'r_date' => $r_date
+                    'r_date' => $r_date,
+                    'status' => 'W'
                 ];
 
                 $idx = $this->qna->insertQna($data);
@@ -328,7 +329,8 @@ class Community extends BaseController
                     'star' => $star,
                     'contents' => $contents,
                     'user_ip' => $ipAddress,
-                    'r_date' => $r_date
+                    'r_date' => $r_date,
+                    'status' => 'W'
                 ];
 
                 $idx = $this->contact->insertContact($data);

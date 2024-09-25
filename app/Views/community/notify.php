@@ -41,9 +41,9 @@
                         <?=viewSQ($contents)?>
                     </div>
                     <div class="btn-c">
-                        <button class="notity-btn">
+                        <a href="/community/customer_center/list_notify" class="notity-btn">
                             목록으로
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>

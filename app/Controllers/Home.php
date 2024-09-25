@@ -6,6 +6,6 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('main/main');
+        return $this->renderView('main/main');
     }
 }

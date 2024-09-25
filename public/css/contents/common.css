@@ -21,10 +21,6 @@ body.stop_scroll {
   touch-action: none;
 }
 
-#toolbarContainer {
-  display: none;
-}
-
 .only_w {
   display: block !important;
 }
@@ -963,6 +959,7 @@ figure.cover_img img {
 .notice_item__left {
   display: flex;
   align-items: center;
+  flex: 1;
 }
 .notice_item__icon {
   border-style: solid;
@@ -986,6 +983,11 @@ figure.cover_img img {
   font-family: "Pretendard";
   color: #454545;
   line-height: 1.444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  flex: 1;
 }
 .notice_item__date {
   font-size: 18px;
