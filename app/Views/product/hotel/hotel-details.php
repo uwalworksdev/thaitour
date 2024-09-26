@@ -1159,83 +1159,204 @@
             </div>
 
         </div>
-        <section class="sub_section3 sub_tour_section7">
-            <div class="body_inner">
-                <div class="sub_tour_section7__head">
-                    <div class="sub_tour_section7__head_ttl ttl">
-                        테마로 즐기는 태국여행
-                    </div>
-                </div>
-                <div class="d_flex justify_content_end">
-                    <div class="swiper_product_list_pagination_"></div>
-                </div>
-                <div class="sub_tour_section7_product_list swiper swiper_product_list_">
-                    <div class="swiper-wrapper">
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_1.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원</span>
-                            </div>
-                        </a>
-                        <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="/uploads/sub/tour_special_2.png" alt="">
-                            </div>
-                            <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                                <span>#펫프렌들리호텔</span>
-                                <span>#내새끼랑여행</span>
-                            </div>
-                        </div>
-                        <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="/uploads/sub/tour_special_3.png" alt="">
-                            </div>
-                            <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                                <span>#쇼핑몰</span>
-                                <span>#럭셔리여행은쇼핑이완성</span>
-                            </div>
-                        </div>
-                        <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="/uploads/sub/tour_special_2.png" alt="">
-                            </div>
-                            <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                                <span>#인피니티풀</span>
-                                <span>#호텔수영장</span>
-                                <span>#뷰맛집</span>
-                            </div>
-                        </div>
-                    </div>
+        <div class="section7">
+            <div class="d_flex justify_content_end">
+                <h1 class="title-sec7">다른 추천 호텔도 확인해 보세요 : )</h1>
+                <div
+                    class="swiper_product_list_pagination_ swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button"
+                        aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet"
+                        tabindex="0" role="button" aria-label="Go to slide 2"></span><span
+                        class="swiper-pagination-bullet" tabindex="0" role="button"
+                        aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0"
+                        role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet"
+                        tabindex="0" role="button" aria-label="Go to slide 5"></span><span
+                        class="swiper-pagination-bullet" tabindex="0" role="button"
+                        aria-label="Go to slide 6"></span><span class="swiper-pagination-bullet" tabindex="0"
+                        role="button" aria-label="Go to slide 7"></span><span class="swiper-pagination-bullet"
+                        tabindex="0" role="button" aria-label="Go to slide 8"></span><span
+                        class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 9"></span>
                 </div>
             </div>
-        </section>
+            <div
+                class="sub_tour_section7_product_list swiper swiper_product_list_ swiper-initialized swiper-horizontal swiper-backface-hidden">
+                <div class="swiper-wrapper" id="swiper-wrapper-c2d811557361007f3" aria-live="polite">
+                    <div class="sub_tour_section7_product_item swiper-slide swiper-slide-active" role="group"
+                        aria-label="1 / 9" data-swiper-slide-index="0" style="width: 393.333px; margin-right: 10px;">
+
+                        <div class="img_box img_box_12">
+                            <img src="/uploads/sub/hotel_slide_detail1.png" alt="hotel_slide_detail1">
+                        </div>
+                        <div class="prd_keywords">
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                            <span> 사뭇 쁘라칸</span>
+                        </div>
+                        <div class="prd_name">
+                            웨스턴 플러스 넥센 호텔 파타야
+                        </div>
+                        <div class="prd_info">
+                            <div class="prd_info__left">
+                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                <span class="star_avg">4.7</span>
+                            </div>
+                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                            <div class="prd_info__right">
+                                <span class="prd_info__right__ttl">생생리뷰</span>
+                                <span class="new_review_cnt">(0)</span>
+                            </div>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100<span>원~</span>
+                            <span class="sub">6,000바트~</span>
+                        </div>
+                    </div>
+                    <div class="sub_tour_section7_product_item swiper-slide swiper-slide-next" role="group"
+                        aria-label="2 / 9" data-swiper-slide-index="1" style="width: 393.333px; margin-right: 10px;">
+
+                        <div class="img_box img_box_12">
+                            <img src="/uploads/sub/hotel_slide_detail2.png" alt="">
+                        </div>
+                        <div class="prd_keywords">
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                            <span> 기타</span>
+                        </div>
+                        <div class="prd_name">
+                            코지 파타야 웡 아맛 비치
+                        </div>
+                        <div class="prd_info">
+                            <div class="prd_info__left">
+                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                <span class="star_avg">4.7</span>
+                            </div>
+                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                            <div class="prd_info__right">
+                                <span class="prd_info__right__ttl">생생리뷰</span>
+                                <span class="new_review_cnt">(0)</span>
+                            </div>
+                        </div>
+                        <div class="prd_price_ko">
+                            81,785<span>원~</span>
+                        </div>
+                    </div>
+                    <div class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="3 / 9"
+                        data-swiper-slide-index="2" style="width: 393.333px; margin-right: 10px;">
+
+                        <div class="img_box img_box_12">
+                            <img src="/uploads/sub/hotel_slide_detail3.png" alt="">
+                        </div>
+                        <div class="prd_keywords">
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                            <span> 시암</span>
+                        </div>
+                        <div class="prd_name">
+                            웨스턴 플러스 넥센 호텔 파타야
+                        </div>
+                        <div class="prd_info">
+                            <div class="prd_info__left">
+                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                <span class="star_avg">4.7</span>
+                            </div>
+                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                            <div class="prd_info__right">
+                                <span class="prd_info__right__ttl">생생리뷰</span>
+                                <span class="new_review_cnt">(0)</span>
+                            </div>
+                        </div>
+                        <div class="prd_price_ko">
+                            176,940<span>원~</span>
+                            <span class="sub">4,500바트~</span>
+                        </div>
+                    </div>
+                    <div class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="5 / 9"
+                        data-swiper-slide-index="4" style="width: 393.333px; margin-right: 10px;">
+
+                        <div class="img_box img_box_12">
+                            <img src="/uploads/sub/hotel_slide_detail4.png" alt="">
+                        </div>
+                        <div class="prd_keywords">
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                            <span> 방콕 스쿰빛(야속-프로퐁)</span>
+                        </div>
+                        <div class="prd_name">
+                            센타라 그랜드 미라지 비치 리조트 파타야
+                        </div>
+                        <div class="prd_info">
+                            <div class="prd_info__left">
+                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                <span class="star_avg">4.7</span>
+                            </div>
+                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                            <div class="prd_info__right">
+                                <span class="prd_info__right__ttl">생생리뷰</span>
+                                <span class="new_review_cnt">(0)</span>
+                            </div>
+                        </div>
+                        <div class="prd_price_ko">
+                            169,076<span>원~</span>
+                            <span class="sub">1,550바트~</span>
+                        </div>
+                    </div>
+                    <div class="sub_tour_section7_product_item swiper-slide swiper-slide-active" role="group"
+                        aria-label="1 / 9" data-swiper-slide-index="0" style="width: 393.333px; margin-right: 10px;">
+
+                        <div class="img_box img_box_12">
+                            <img src="/uploads/sub/hotel_slide_detail1.png" alt="hotel_slide_detail1">
+                        </div>
+                        <div class="prd_keywords">
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                            <span> 사뭇 쁘라칸</span>
+                        </div>
+                        <div class="prd_name">
+                            웨스턴 플러스 넥센 호텔 파타야
+                        </div>
+                        <div class="prd_info">
+                            <div class="prd_info__left">
+                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                <span class="star_avg">4.7</span>
+                            </div>
+                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                            <div class="prd_info__right">
+                                <span class="prd_info__right__ttl">생생리뷰</span>
+                                <span class="new_review_cnt">(0)</span>
+                            </div>
+                        </div>
+                        <div class="prd_price_ko">
+                            236,100<span>원~</span>
+                            <span class="sub">6,000바트~</span>
+                        </div>
+                    </div>
+                    <div class="sub_tour_section7_product_item swiper-slide swiper-slide-next" role="group"
+                        aria-label="2 / 9" data-swiper-slide-index="1" style="width: 393.333px; margin-right: 10px;">
+
+                        <div class="img_box img_box_12">
+                            <img src="/uploads/sub/hotel_slide_detail2.png" alt="">
+                        </div>
+                        <div class="prd_keywords">
+                            <span>방콕 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                            <span> 기타</span>
+                        </div>
+                        <div class="prd_name">
+                            코지 파타야 웡 아맛 비치
+                        </div>
+                        <div class="prd_info">
+                            <div class="prd_info__left">
+                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                <span class="star_avg">4.7</span>
+                            </div>
+                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                            <div class="prd_info__right">
+                                <span class="prd_info__right__ttl">생생리뷰</span>
+                                <span class="new_review_cnt">(0)</span>
+                            </div>
+                        </div>
+                        <div class="prd_price_ko">
+                            81,785<span>원~</span>
+                        </div>
+                    </div>
+                </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </div>
+        </div>
     </div>
     <script>
         let swiper = new Swiper(".swiper_product_list_", {
