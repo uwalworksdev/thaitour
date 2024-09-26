@@ -10,14 +10,16 @@
                         1
                     </span>
                     <span class="label-n">상품선택</span>
-                    <img src="/uploads/icons/arrow_right_nav.png" alt="">
+                    <img class="only_web" src="/uploads/icons/arrow_right_nav.png" alt="">
+                    <img class="only_mo" src="/uploads/icons/arrow_right_nav_mo.png" alt="">
                 </div>
                 <div class="item-n">
                     <span class="number-n">
                         2
                     </span>
                     <span class="label-n">예약정보</span>
-                    <img src="/uploads/icons/arrow_right_nav.png" alt="">
+                    <img class="only_web" src="/uploads/icons/arrow_right_nav.png" alt="">
+                    <img class="only_mo" src="/uploads/icons/arrow_right_nav_mo.png" alt="">
                 </div>
                 <div class="item-n">
                     <span class="number-n">
@@ -110,7 +112,7 @@
                         <span>-2,600원</span>
                     </div>
                     <div class="item-info-r font-bold-cus">
-                        <span>총 결제금액 </span>
+                        <span>온라인 사전 결제</span>
                         <span>1,085400원</span>
                     </div>
                     
