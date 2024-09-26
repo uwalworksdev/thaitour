@@ -33,7 +33,7 @@ class Product extends BaseController
             $data = [
                 'tab_active' => '5',
             ];
-            return view('product/show-ticket', $data);
+            return $this->renderView('product/show-ticket', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -96,7 +96,7 @@ class Product extends BaseController
                 'tab_active' => '3',
             ];
 
-            return view('product/product-tours', $data);
+            return $this->renderView('product/product-tours', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -160,7 +160,7 @@ class Product extends BaseController
                 'tab_active' => '1',
             ];
 
-            return view('product/product-hotel', $data);
+            return $this->renderView('product/product-hotel', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -223,7 +223,7 @@ class Product extends BaseController
                 'totalProducts' => $totalProducts,
             ];
 
-            return view('product/product-result', $data);
+            return $this->renderView('product/product-result', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -289,7 +289,7 @@ class Product extends BaseController
                 'tab_active' => '2',
             ];
 
-            return view('product/product-golf', $data);
+            return $this->renderView('product/product-golf', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -410,7 +410,7 @@ class Product extends BaseController
                 'tab_active' => '6',
             ];
 
-            return view('product/product-list', $data);
+            return $this->renderView('product/product-list', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -476,7 +476,7 @@ class Product extends BaseController
                 'tab_active' => '4',
             ];
 
-            return view('product/product-spa', $data);
+            return $this->renderView('product/product-spa', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -516,7 +516,7 @@ class Product extends BaseController
                 'tab_active' => '1',
             ];
 
-            return view('product/hotel/list-hotel', $data);
+            return $this->renderView('product/hotel/list-hotel', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -556,7 +556,7 @@ class Product extends BaseController
                 'tab_active' => '1',
             ];
 
-            return view('product/hotel/hotel-details', $data);
+            return $this->renderView('product/hotel/hotel-details', $data);
 
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -568,47 +568,47 @@ class Product extends BaseController
 
     public function index7($code_no)
     {
-        return view('product/hotel/customer-form');
+        return $this->renderView('product/hotel/customer-form');
     }
 
     public function completedOrder($code_no)
     {
-        return view('product/golf/completed-order');
+        return $this->renderView('product/golf/completed-order');
     }
 
     public function golfList($code_no)
     {
-        return view('product/golf/list-golf');
+        return $this->renderView('product/golf/list-golf');
     }
 
     public function golfDetail($code_no)
     {
-        return view('product/golf/golf-details');
+        return $this->renderView('product/golf/golf-details');
     }
 
     public function customerForm($code_no)
     {
-        return view('product/golf/customer-form');
+        return $this->renderView('product/golf/customer-form');
     }
 
     public function index8($code_no)
     {
-        return view('tours/tour-details');
+        return $this->renderView('tours/tour-details');
     }
 
     public function index9($code_no)
     {
-        return view('tours/list-tour');
+        return $this->renderView('tours/list-tour');
     }
 
     public function tourLocationInfo($code_no)
     {
-        return view('tours/location-info');
+        return $this->renderView('tours/location-info');
     }
 
     public function tourOrderForm($code_no)
     {
-        return view('tours/order-form');
+        return $this->renderView('tours/order-form');
     }
 
     public function vehicleGuide()
@@ -618,7 +618,7 @@ class Product extends BaseController
                 'tab_active' => '7',
             ];
 
-            return view('product/vehicle-guide', $data);
+            return $this->renderView('product/vehicle-guide', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -709,7 +709,7 @@ class Product extends BaseController
         $data['img_5'] = $this->getImage($data['product']['ufile5']);
         $data['img_6'] = $this->getImage($data['product']['ufile6']);
 
-        return view('product/product_view', $data);
+        return $this->renderView('product/product_view', $data);
     }
 
     private function calculateMinAmt($air_info)
