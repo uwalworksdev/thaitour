@@ -988,7 +988,8 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">무료숙박(1+1,2+1등)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">
+                                    무료숙박(1+1,2+1등)</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">특별패키지</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">룸업그레이드</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">공항픽업 무료</li>
@@ -1007,14 +1008,16 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">체크인 후 24시간 이용 가능</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">체크인 후
+                                    24시간 이용 가능</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">가성비 5성급 호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔
+                                </li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">펫프렌들리 호텔</li>
                             </ul>
                         </div>
@@ -1026,11 +1029,13 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">2 베드룸(성인 4~5인)</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">2 베드룸(성인
+                                    4~5인)</li>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
                             </ul>
                         </div>
-                    </div>                </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1061,7 +1066,7 @@
         $('#checkout').val(formatDate('2024/07/10'));
     });
 
-    $(document).ready(function () {       
+    $(document).ready(function () {
         $('.tab_box_js.tab_active_').each(function () {
             var tabText = $(this).text();
             $('.list-tag').append(
@@ -1078,7 +1083,6 @@
             var activeTab = $group.find('.tab_box_js.tab_active_').text();
 
             if (activeTab) {
-                
                 $('.list-tag .tag-item span').each(function () {
                     if ($(this).text() === activeTab) {
                         $(this).text(tabText);
@@ -1086,7 +1090,6 @@
                     }
                 });
             } else {
-                
                 $('.list-tag').append(
                     '<div class="tag-item">' +
                     '<span>' + tabText + '</span>' +
@@ -1095,26 +1098,31 @@
                 );
             }
 
-            
             $group.find('.tab_box_js').removeClass('tab_active_');
             $(this).addClass('tab_active_');
         });
 
-        
         $(document).on('click', '.close_icon', function () {
-            $(this).parent('.tag-item').remove();
+            var $tagItem = $(this).parent('.tag-item');
+            var tagText = $tagItem.find('span').text();
+
+            // Remove the active class from the corresponding tab
+            $('.tab_box_js').each(function () {
+                if ($(this).text() === tagText) {
+                    $(this).removeClass('tab_active_');
+                }
+            });
+
+            // Remove the tag item
+            $tagItem.remove();
         });
 
         $('#delete_all').click(function () {
-            $('.list-tag .tag-item span').remove();
+            $('.list-tag .tag-item').remove();
+            $('.tab_box_js').removeClass('tab_active_');
         });
     });
-
-
-
-
-
-
+    
     const sliders = document.querySelectorAll('.slider-container');
     sliders.forEach(slider => {
         const sliderMin = slider.querySelector('#slider-min');
