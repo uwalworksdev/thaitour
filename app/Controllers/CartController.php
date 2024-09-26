@@ -13,6 +13,6 @@ class CartController extends BaseController
     }
     public function itemList($code_no)
     {
-        return view('cart/item-list');
+        return $this->renderView('cart/item-list');
     }
 }

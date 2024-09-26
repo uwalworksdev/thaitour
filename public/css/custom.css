@@ -859,14 +859,14 @@
     }
 
     .main_page_01 .main_visual_content_ label {
-        font-size: 1.4rem;
+        font-size: 2.2rem;
         letter-spacing: -0.1rem;
         line-height: 2.6rem;
         text-transform: uppercase;
         color: #999999;
         position: absolute;
-        left: 2rem;
-        top: 1rem;
+        left: 2.2rem;
+        top: 2rem;
     }
 
     .main_page_01 .main_visual_content_ .form_element_ input {
@@ -875,12 +875,13 @@
         border: 1px solid #dbdbdb;
         border-radius: 0.6rem;
         padding: 4rem 2rem 1rem 2rem;
-        font-size: 1.9rem;
+        font-size: 3.2rem;
         letter-spacing: -0.1rem;
         line-height: 2.6rem;
         text-transform: uppercase;
         color: #353535;
         font-weight: bold;
+        border-width: 2px;
     }
 
     .main_page_01 .main_visual_content_ .form_element_ input::placeholder {
@@ -900,6 +901,7 @@
         text-align: center;
         padding: 2.4rem;
         width: 10.8rem;
+        height: 9rem;
         margin-left: 0.8rem;
     }
 
@@ -1193,7 +1195,7 @@
     }
 
     .main_page_01 .thailand_hotel_ .sub_section3__head {
-        padding-top: 6rem;
+        padding-top: 10rem;
     }
 
     .main_page_01 .sub_section3.thailand_hotel_ .custom_pagination_ {
@@ -1260,5 +1262,38 @@
         width: 1.1rem;
         height: 2rem;
     }
-    
+
+    .main_page_01 .main_visual_content_ .form_element_ .form_input_ {
+        height: 10rem;
+        max-height: unset;
+    }
+
+    .main_page_01 .banner_section_main_page {
+        height: 24rem;
+        margin-top: 10rem;
+    }
+
+    .main_page_01 .banner_section_main_page .banner_section_image {
+        height: 24rem;
+        background: url(/uploads/sub/banner_tour_1_m.png) no-repeat center;
+        background-size: cover;
+    }
+
+    .main_page_01 .banner_section_main_page .box-text {
+        position: absolute;
+        top: 8rem;
+        left: 3rem;
+    }
+
+    .main_page_01 .banner_section_main_page .box-text .title-box {
+        font-size: 3.6rem;
+        color: #ffffff;
+        margin-bottom: 1.6rem;
+    }
+
+    .main_page_01 .banner_section_main_page .box-text .des-box {
+        font-size: 2.6rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-weight: 300;
+    }
 }
