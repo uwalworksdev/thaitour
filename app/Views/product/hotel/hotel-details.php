@@ -1360,24 +1360,27 @@
     </div>
     <script>
         let swiper = new Swiper(".swiper_product_list_", {
-            slidesPerView: "auto",
-            spaceBetween: 20,
-            loop: true,
-            pagination: {
-                el: ".swiper_product_list_pagination_",
-                clickable: true,
+            slidesPerView: 2,
+            grid: {
+                rows: 1,
             },
+            loop: true,
+            spaceBetween: 20,
             breakpoints: {
                 300: {
-                    slidesPerView: "auto",
+                    slidesPerView: 2,
                     spaceBetween: 20,
                     pagination: false,
                 },
                 850: {
-                    slidesPerView: 3,
+                    slidesPerView: 4,
                     spaceBetween: 10,
+                    pagination: {
+                        el: ".swiper_product_list_pagination_",
+                        clickable: true,
+                    },
                 },
-            }
+            },
         });
         // Get the popup, open button, close button elements
         const $popup = $('#popup');
