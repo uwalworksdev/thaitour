@@ -547,6 +547,7 @@
   gap: 50px 20px;
   flex-wrap: wrap;
   margin-top: 29px;
+  margin-bottom: 180px;
 }
 
 .sub_tour_section7_product_item {
@@ -1661,7 +1662,7 @@
 .content-sub-hotel-detail .section6 .card-list-recommemded {
   display: flex;
   gap: 20px;
-  margin-bottom: 32px;
+  margin-bottom: 100px;
 }
 
 .content-sub-hotel-detail .section6 .card-list-recommemded .recommemded-item {
@@ -1737,10 +1738,6 @@
 
 .content-sub-hotel-detail .section7 .prd_name {
   margin-top: 16px;
-}
-
-.content-sub-hotel-detail .section7 .prd_price_ko {
-  margin-bottom: 120px;
 }
 
 .content-sub-hotel-detail .location-container {

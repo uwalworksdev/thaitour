@@ -930,8 +930,7 @@ figure.cover_img img {
   left: 0;
 }
 .main_section_notice {
-  margin: 0px 0 32px 0;
-  padding: 40px 0 0 0;
+  padding: 30px 0;
   border-top: 2px solid #dbdbdb;
 }
 .pb-24 {
@@ -955,6 +954,7 @@ figure.cover_img img {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 }
 .notice_item__left {
   display: flex;
