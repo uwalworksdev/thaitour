@@ -81,23 +81,30 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_tourRegist", static function ($routes) {
-        $routes->get("list_all", "TourRegistController::list");
+        $routes->get("list", "TourRegistController::list");
+        $routes->get("list_all", "TourRegistController::list_all");
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         $routes->get("list_tours", "TourRegistController::list_tours");
         $routes->get("list_golf", "TourRegistController::list_golfs");
         $routes->get("write", "TourRegistController::write");
+        $routes->get("write_all", "TourRegistController::write_all");
         $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
         $routes->get("write_golf", "TourRegistController::write_golf");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("_tourStay", "TourRegistController::list");
     });
 
-    $routes->group("api", static function ($routes) {
+    $routes->group("api", function ($routes) {
         $routes->get("get_code", "Api\AdminTourApi::get_code");
         $routes->post("ajax_change", "Api\AdminTourApi::ajax_change");
         $routes->post("del", "Api\AdminTourApi::del");
         $routes->post("prod_update", "Api\AdminTourApi::prod_update");
         $routes->post("ajax_del", "Api\AdminTourApi::ajax_del");
+
+        // Nested group for 'bbs_'
+        $routes->group("bbs_", function ($routes) {
+            $routes->get("comment_proc", "Api\AdminBbsApi::comment_proc", ['as' => "admin.api.bbs.comment_proc"]);
+        });
     });
 
     $routes->group("_tourStay", static function ($routes) {

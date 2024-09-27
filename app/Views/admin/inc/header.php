@@ -436,22 +436,29 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
+                                <?= strpos($currentPath, '/AdmMaster/_tourRegist/list') !== false ? "on" : "" ?>">
+                            <?= check_perm('C002', '/AdmMaster/_tourRegist/list', '호텔 상품관리'); ?>
+                        </li>
+                        <li <?php if (!check_auth('C007')) {
+                            echo "style='display: none;'";
+                        } ?>
+                                class="
                                 <?= strpos($currentPath, '/AdmMaster/_tourRegist/list_all') !== false ? "on" : "" ?>">
-                            <?= check_perm('C002', '/AdmMaster/_tourRegist/list_all', '패키지 상품관리'); ?>
+                            <?= check_perm('C007', '/AdmMaster/_tourRegist/list_all', '쇼ㆍ입장권 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C003')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= strpos($currentPath, '/AdmMaster/_tourRegist/list_honeymoon') !== false ? "on" : "" ?>">
-                            <?= check_perm('C003', '/AdmMaster/_tourRegist/list_honeymoon', '허니문 상품관리'); ?>
+                            <?= check_perm('C003', '/AdmMaster/_tourRegist/list_honeymoon', '스파 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C004')) {
                             echo "style='display: none;'";
                         } ?>
                                 class="
                                 <?= strpos($currentPath, '/AdmMaster/_tourRegist/list_tours') !== false ? "on" : "" ?>">
-                            <?= check_perm('C004', '/AdmMaster/_tourRegist/list_tours', '자유여행 상품관리'); ?>
+                            <?= check_perm('C004', '/AdmMaster/_tourRegist/list_tours', '투어 상품관리'); ?>
                         </li>
                         <li <?php if (!check_auth('C005')) {
                             echo "style='display: none;'";

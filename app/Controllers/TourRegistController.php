@@ -31,6 +31,12 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/list", $data);
     }
 
+    public function list_all()
+    {
+        $data = $this->get_list_('1324');
+        return view("admin/_tourRegist/list_all", $data);
+    }
+
     public function list_honeymoon()
     {
         $data = $this->get_list_('1320');
@@ -186,6 +192,12 @@ class TourRegistController extends BaseController
     {
         $data = $this->getWrite();
         return view("admin/_tourRegist/write", $data);
+    }
+
+    public function write_all()
+    {
+        $data = $this->getWrite();
+        return view("admin/_tourRegist/write_all", $data);
     }
 
     public function write_honeymoon()
