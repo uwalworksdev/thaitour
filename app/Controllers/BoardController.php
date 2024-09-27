@@ -6,6 +6,7 @@ use App\Libraries\JkBbs;
 use App\Libraries\Lib;
 
 use CodeIgniter\Controller;
+use Config\Database;
 
 
 class BoardController extends BaseController
@@ -17,7 +18,6 @@ class BoardController extends BaseController
     private $Product_model;
     private $bbsCommentModel;
     private $uploadPath = WRITEPATH . "uploads/bbs/";
-
 
     public function __construct()
     {
@@ -40,7 +40,6 @@ class BoardController extends BaseController
 
         return $result['is_category'];
     }
-
 
     public function index2()
     {
@@ -277,7 +276,7 @@ class BoardController extends BaseController
 
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $list_sql = $total_sql . " ORDER BY notice_yn DESC, onum DESC, r_date DESC, b_ref DESC, b_step ASC LIMIT $nFrom, $g_list_rows";
+        $list_sql = $total_sql . " ORDER BY notice_yn DESC, r_date DESC, onum DESC, b_ref DESC, b_step ASC LIMIT $nFrom, $g_list_rows";
         $list_query = $db->query($list_sql);
         $rows = $list_query->getResultArray();
 
@@ -636,5 +635,45 @@ class BoardController extends BaseController
 
         die("{\"message\":\"$msg\"}");
 
+    }
+
+    public function view()
+    {
+
+        $r_code = $_GET['r_code'] ?? "";
+        $Bbs = new JkBbs($r_code);
+
+        $code_info = $Bbs->get_code_info($r_code);
+        $category_arr = $Bbs->category_arr;
+
+        $r_idx = $_GET['r_idx'] ?? "";
+        if ($r_idx != "") {
+            array_push($Bbs->list_field_arr, "r_flag");
+            $view_data = $Bbs->get_view_data($r_idx);
+            $file_arr = json_decode($view_data['r_file_list'], true);
+            $file_cnt = count($file_arr);
+        } else {
+            $view_data = array();
+            foreach ($Bbs->new_default_arr as $key => $val)
+                $view_data[$key] = $val;
+        }
+
+        $product_arr = $Bbs->get_product_arr();
+
+        $sql_c = "select * from tbl_code where code_no = '{$view_data['r_category']}'  ";
+        $db = Database::connect();
+        $result_c = $db->query($sql_c);
+        $row_c = $result_c->getRowArray();
+
+        $data = [
+            'code_info' => $code_info,
+            'category_arr' => $category_arr,
+            'view_data' => $view_data,
+            'file_cnt' => $file_cnt ?? '',
+            'file_arr' => $file_arr ?? [],
+            'product_arr' => $product_arr,
+            'row_c' => $row_c
+        ];
+        return view('admin/_board/view', $data);
     }
 }
