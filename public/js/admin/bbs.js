@@ -101,7 +101,7 @@ function go_excel_download() {
 // 상세보기
 function go_view(r_idx) {
 
-	var url = "view.php";
+	var url = "view";
 	url += "?cmd=view";
 	url += "&r_idx=" + r_idx;
 

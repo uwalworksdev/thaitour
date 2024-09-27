@@ -384,7 +384,7 @@
 			  {
         ?>
 			  <li>
-				<a href="/AdmMaster/_bbs/view.php?cmd=view&r_idx=<?=$row['r_idx']?>&page=1&r_code=faq"><span class="sb_ttl"><?=$row['r_title']?></span><em class="date"><?=date("Y.m.d", strtotime($row['r_date']))?></em></a>
+				<a href="/AdmMaster/_bbs/view?cmd=view&r_idx=<?=$row['r_idx']?>&page=1&r_code=faq"><span class="sb_ttl"><?=$row['r_title']?></span><em class="date"><?=date("Y.m.d", strtotime($row['r_date']))?></em></a>
 			  </li>
         <?php
               }

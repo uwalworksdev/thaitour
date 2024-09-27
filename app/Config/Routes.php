@@ -104,7 +104,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
         // Nested group for 'bbs_'
         $routes->group("bbs_", function ($routes) {
-            $routes->get("comment_proc", "Api\AdminBbsApi::comment_proc", ['as' => "admin.api.bbs.comment_proc"]);
+            $routes->post("comment_proc", "Api\AdminBbsApi::comment_proc", ['as' => "admin.api.bbs.comment_proc"]);
         });
     });
 

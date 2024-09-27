@@ -99,7 +99,7 @@
                                     }
                                     ?>
 
-                                    <td class="schedule"><a href="/<?= $product ?>/item_view.php?product_idx=<?= $frow['product_idx'] ?>">상세보기</a></td>
+                                    <td class="schedule"><a href="/<?= $product ?>/item_view?product_idx=<?= $frow['product_idx'] ?>">상세보기</a></td>
                                     <td class="date"><?= date("Y.m.d", strtotime($frow['wish_r_date'])) ?></td>
                                 </tr>
 

@@ -47,7 +47,7 @@
 
                         ?>
                         <div class="slide_item">
-                            <a href="<?= $urlLink ?>/item_view.php?product_idx=<?= $row_s['product_idx'] ?>">
+                            <a href="<?= $urlLink ?>/item_view?product_idx=<?= $row_s['product_idx'] ?>">
                                 <div class="list_prd_img">
                                     <figure class="cover_img">
                                         <img src="<?= $img ?>" alt="<?= $row_s['product_name'] ?>상품썸네일">

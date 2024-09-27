@@ -1327,8 +1327,7 @@
                 url: "<?= route_to('admin.api.bbs.comment_proc')?>",
                 type: "POST",
                 data: queryString,
-                dataType: "json",
-                async: false,
+                async: true,
                 cache: false,
                 success: function (data, textStatus) {
                     // message = data.message;
@@ -1336,7 +1335,8 @@
                     location.reload();
                 },
                 error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " +
+                    console.log(request)
+                    alert("code = " + request.status + " \n message = " + request.responseText + " \n error = " +
                         error); // 실패 시 처리
                 }
             });

@@ -227,7 +227,7 @@
               if(order_no.startsWith("S")) {
               $("#resulrForm").submit();
             } else if(order_no.startsWith("R")) {
-              $("#check_pass_form").attr('action', '/mypage/custom_travel_view.php?idx='+ data.idx)
+              $("#check_pass_form").attr('action', '/mypage/custom_travel_view?idx='+ data.idx)
               $("#check_pass_input").val('Y')
               $("#check_pass_form").submit()
             } else {
