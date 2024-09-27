@@ -141,6 +141,7 @@
         </div> -->
     </div>
 </header>
+<div class="header_replace only_web"></div>
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top pb-24">

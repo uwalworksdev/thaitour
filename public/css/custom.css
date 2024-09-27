@@ -1296,4 +1296,8 @@
         color: rgba(255, 255, 255, 0.8);
         font-weight: 300;
     }
+
+    .main_page_01 .sub_tour_section7_product_list {
+        margin-bottom: 0;
+    }
 }
