@@ -181,7 +181,7 @@
                                     <td class="images">
                                         <?php if ($row["ufile1"]) {
                                             ?>
-                                            <img src="/data/product/<?= $row["ufile1"] ?>" alt="제품 이미지">
+                                            <img src="/data/product/<?= $row["ufile1"] ?>" alt="제품 이미지" onerror="this.src='/data/product/noimg.png'">
                                         <?php } ?>
                                     </td>
                                     <td class="product_name">

@@ -594,5 +594,9 @@
 
 	</span><!-- print_this -->
     </div><!-- container -->
-
+    <script>
+        function go_list() {
+            location.href = "/AdmMaster/_bbs/board_list_q?r_code=faq";
+        }
+</script>
 <?= $this->endSection() ?>
