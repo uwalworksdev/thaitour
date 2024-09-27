@@ -105,7 +105,7 @@
                     <?php endif; ?>
                     <td>
                         <a href="board_write?code=<?= esc($code) ?>&bbs_idx=<?= $row['bbs_idx'] ?>"><img src="/images/admin/common/ico_setting2.png"></a>
-                        <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>
+                        <a href="javascript:del_it('<?= $row['bbs_idx'] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>
                     </td>
                 </tr>
                 <?php $num--; endforeach; ?>

@@ -58,15 +58,109 @@ class AdminBbsApi extends BaseController
                     'code' => 200
                 ], 200
             );
-        } else {
-            return $this->response->setJSON(
-                $data = [
-                    'result' => 'fail',
-                    'msg' => 'fail',
-                    'data' => '',
-                    'code' => 400
-                ], 400
-            );
+        }
+
+        return $this->response->setJSON(
+            $data = [
+                'result' => 'fail',
+                'msg' => 'fail',
+                'data' => '',
+                'code' => 400
+            ], 400
+        );
+    }
+
+    public function bbs_change()
+    {
+        try {
+            $bbs_idx = $_POST['bbs_idx'] ?? [];
+            $onum = $_POST['onum'] ?? [];
+
+            if (empty($bbs_idx)) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON([
+                        'status' => 'error',
+                        'message' => 'No bbs_idx provided'
+                    ]);
+            }
+
+            $tot = count($bbs_idx);
+            for ($j = 0; $j < $tot; $j++) {
+
+                $sql = " update tbl_bbs_list set onum='" . $onum[$j] . "' where bbs_idx='" . $bbs_idx[$j] . "'";
+                $result = $this->connect->query($sql);
+            }
+
+            if (isset($result) && $result) {
+                $msg = "순위변경 완료";
+            } else {
+                $msg = "순위변경 오류";
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
+    public function bbs_del()
+    {
+        try {
+            $upload = "../data/bbs/";
+            $bbs_idx = $_POST['bbs_idx'] ?? [];
+
+            if (empty($bbs_idx)) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON([
+                        'status' => 'error',
+                        'message' => 'No bbs_idx provided'
+                    ]);
+            }
+
+            foreach ($bbs_idx as $jValue) {
+                $total_sql = "SELECT * FROM tbl_bbs_list WHERE bbs_idx = ?";
+                $result = $this->connect->query($total_sql, [$jValue]);
+
+                if ($row = $result->getRowArray()) {
+                    for ($a = 1; $a <= 5; $a++) {
+                        $rfile = $row["rfile$a"];
+                        if (!empty($rfile) && file_exists($upload . $rfile)) {
+                            @unlink($upload . $rfile);
+                        }
+                    }
+
+                    $sql = "DELETE FROM tbl_bbs_list WHERE bbs_idx = ?";
+                    $this->connect->query($sql, [$jValue]);
+                }
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => 'delete success'
+                ]);
+        } catch (\Exception $e) {
+            log_message('error', $e->getMessage());
+
+            return $this->response
+                ->setStatusCode(500)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => 'An error occurred during deletion'
+                ]);
         }
     }
 }
