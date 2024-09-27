@@ -25,89 +25,15 @@ class TourRegistController extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
-    public function list()
+    public function list_hotel()
     {
-        $g_list_rows = 10;
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
-        $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
-        $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
-        $s_product_code_3 = updateSQ($_GET["s_product_code_3"] ?? '');
-        $is_view_y = $_GET["is_view_y"] ?? "";
-        $is_view_n = $_GET["is_view_n"] ?? "";
-        $best = $_GET["best"] ?? "";
-        $product_code = updateSQ($_GET["product_code"] ?? "");
-        $product_code_1 = updateSQ($_GET["product_code_1"] ?? "1324");
-        $product_code_2 = updateSQ($_GET["product_code_2"] ?? "");
-        $product_code_3 = updateSQ($_GET["product_code_3"] ?? "");
-        $strSql = "";
-        if ($is_view_y == "Y") {
-            $strSql = $strSql . " and is_view = 'Y' ";
-        }
-
-        if ($is_view_n == "Y") {
-            $strSql = $strSql . " and is_view = 'N' ";
-        }
-
-        if ($best == "Y") {
-            $strSql = $strSql . " and product_best = 'Y' ";
-        }
-
-        if ($search_name) {
-            $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
-        }
-
-        if ($product_code_1) {
-            $strSql = $strSql . " and product_code_1 = '" . $product_code_1 . "' ";
-        }
-        if ($product_code_2) {
-            $strSql = $strSql . " and product_code_2 = '" . $product_code_2 . "' ";
-        }
-        if ($product_code_3) {
-            $strSql = $strSql . " and product_code_3 = '" . $product_code_3 . "' ";
-        }
-
-        $total_sql = " 
-					SELECT p1.*, c1.code_name AS product_code_name_1, c2.code_name AS product_code_name_2 FROM tbl_product_mst AS p1 
-						LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
-						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 $strSql group by p1.product_idx ";
-        $result = $this->connect->query($total_sql);
-        $nTotalCount = $result->getNumRows();
-
-        $fsql = "select * from tbl_code where depth='1' order by onum desc, code_idx desc";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
-
-        $nPage = ceil($nTotalCount / $g_list_rows);
-        if ($pg == "") $pg = 1;
-        $nFrom = ($pg - 1) * $g_list_rows;
-
-        $sql = $total_sql . " order by onum desc limit $nFrom, $g_list_rows ";
-        $result = $this->connect->query($sql);
-        $num = $nTotalCount - $nFrom;
-        $result = $result->getResultArray();
-
-        $data = [
-            "fresult" => $fresult,
-            "result" => $result,
-            "num" => $num,
-            "pg" => $pg,
-            "nPage" => $nPage,
-            'g_list_rows' => $g_list_rows,
-            "search_name" => $search_name,
-            "search_category" => $search_category,
-            "s_product_code_1" => $s_product_code_1,
-            "s_product_code_2" => $s_product_code_2,
-            "s_product_code_3" => $s_product_code_3,
-            "nTotalCount" => $nTotalCount
-        ];
+        $data = $this->get_list_('1324');
         return view("admin/_tourRegist/list", $data);
     }
 
     public function list_all()
     {
-        $data = $this->get_list_('1324');
+        $data = $this->get_list_('');
         return view("admin/_tourRegist/list_all", $data);
     }
 
@@ -115,6 +41,12 @@ class TourRegistController extends BaseController
     {
         $data = $this->get_list_('1320');
         return view("admin/_tourRegist/list_honeymoon", $data);
+    }
+
+    public function list_spas()
+    {
+        $data = $this->get_list_('1317');
+        return view("admin/_tourRegist/list_spas", $data);
     }
 
     public function list_tours()
@@ -388,6 +320,56 @@ class TourRegistController extends BaseController
         $data = array_merge($data, $new_data);
 
         return view("admin/_tourRegist/write_golf", $data);
+    }
+
+    public function write_spas()
+    {
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $data = $this->getWrite();
+
+        $db = $this->connect;
+
+        $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum DESC";
+        $result_c = $db->query($sql_c) or die ($db->error);
+        $fresult_c = $result_c->getResultArray();
+
+        $builder = $db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $options = $query->getResultArray();
+
+        foreach ($options as &$option) {
+            $optionBuilder = $db->table('tbl_tours_option');
+            $optionBuilder->where('product_idx', $product_idx);
+            $optionBuilder->where('code_idx', $option['code_idx']);
+            $optionBuilder->orderBy('onum', 'desc');
+            $optionQuery = $optionBuilder->get();
+            $option['additional_options'] = $optionQuery->getResultArray();
+        }
+
+        $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
+        $query = $db->query($sql, [$product_idx]);
+        $result = $query->getRowArray();
+        $data['tourCount'] = $result['cnt'];
+
+        $sql = "SELECT * FROM tbl_product_tours WHERE product_idx = ? ORDER BY tours_idx ASC";
+        $query = $db->query($sql, [$product_idx]);
+        $data['tours'] = $query->getResultArray();
+
+        $sql = "SELECT IFNULL(total_day, 0) as cnt FROM tbl_product_day_detail WHERE air_code = '0000' AND product_idx = ?";
+        $query = $db->query($sql, [$product_idx]);
+        $data['dayDetails'] = $query->getResultArray();
+
+        $new_data = [
+            'product_idx' => $product_idx,
+            'codes' => $fresult_c,
+            'options' => $options,
+        ];
+
+        $data = array_merge($data, $new_data);
+        return view("admin/_tourRegist/write_spas", $data);
     }
 
     public function write_tours()

@@ -82,7 +82,8 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_tourRegist", static function ($routes) {
-        $routes->get("list", "TourRegistController::list");
+        $routes->get("list_hotel", "TourRegistController::list_hotel");
+        $routes->get("list_spas", "TourRegistController::list_spas");
         $routes->get("list_all", "TourRegistController::list_all");
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         $routes->get("list_tours", "TourRegistController::list_tours");
@@ -91,6 +92,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_all", "TourRegistController::write_all");
         $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
         $routes->get("write_golf", "TourRegistController::write_golf");
+        $routes->get("write_spas", "TourRegistController::write_spas");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("_tourStay", "TourRegistController::list");
     });
