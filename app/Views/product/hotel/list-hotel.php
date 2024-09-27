@@ -1041,7 +1041,7 @@
     </section>
 </div>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         function formatDate(date) {
             var d = new Date(date),
                 month = '' + (d.getMonth() + 1),
@@ -1056,7 +1056,7 @@
 
         $("#checkin, #checkout").datepicker({
             dateFormat: 'yy/mm/dd',
-            onSelect: function (dateText, inst) {
+            onSelect: function(dateText, inst) {
                 var date = $(this).datepicker('getDate');
                 $(this).val(formatDate(date));
             }
@@ -1066,8 +1066,8 @@
         $('#checkout').val(formatDate('2024/07/10'));
     });
 
-    $(document).ready(function () {
-        $('.tab_box_js.tab_active_').each(function () {
+    $(document).ready(function() {
+        $('.tab_box_js.tab_active_').each(function() {
             var tabText = $(this).text();
             $('.list-tag').append(
                 '<div class="tag-item">' +
@@ -1077,13 +1077,13 @@
             );
         });
 
-        $('.tab_box_js').click(function () {
+        $('.tab_box_js').click(function() {
             var $group = $(this).closest('.tab_box_area_');
             var tabText = $(this).text();
             var activeTab = $group.find('.tab_box_js.tab_active_').text();
 
             if (activeTab) {
-                $('.list-tag .tag-item span').each(function () {
+                $('.list-tag .tag-item span').each(function() {
                     if ($(this).text() === activeTab) {
                         $(this).text(tabText);
                         return false;
@@ -1102,12 +1102,12 @@
             $(this).addClass('tab_active_');
         });
 
-        $(document).on('click', '.close_icon', function () {
+        $(document).on('click', '.close_icon', function() {
             var $tagItem = $(this).parent('.tag-item');
             var tagText = $tagItem.find('span').text();
 
             // Remove the active class from the corresponding tab
-            $('.tab_box_js').each(function () {
+            $('.tab_box_js').each(function() {
                 if ($(this).text() === tagText) {
                     $(this).removeClass('tab_active_');
                 }
@@ -1117,12 +1117,23 @@
             $tagItem.remove();
         });
 
-        $('#delete_all').click(function () {
+        $('#delete_all').click(function() {
             $('.list-tag .tag-item').remove();
             $('.tab_box_js').removeClass('tab_active_');
         });
+
+        $('.tab_box_mo_js').click(function() {
+            var $this = $(this); // The clicked tab element
+            var $group = $this.closest('.category-left-item'); // Find the parent group
+
+            // Remove 'tab_active_' class from all tabs in this group
+            $group.find('.tab_box_mo_js').removeClass('tab_active_');
+
+            // Add 'tab_active_' class to the clicked tab
+            $this.addClass('tab_active_');
+        });
     });
-    
+
     const sliders = document.querySelectorAll('.slider-container');
     sliders.forEach(slider => {
         const sliderMin = slider.querySelector('#slider-min');
@@ -1150,13 +1161,12 @@
         window.addEventListener('DOMContentLoaded', updateSliderTrack);
     });
 
-    $(".img-div").click(function () {
+    $(".img-div").click(function() {
         $(".popup").show();
     });
-    $(".close_popup").click(function () {
+    $(".close_popup").click(function() {
         $(".popup").hide();
     });
-
 </script>
 
 <?php $this->endSection(); ?>

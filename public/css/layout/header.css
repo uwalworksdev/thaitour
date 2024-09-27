@@ -2,6 +2,10 @@
     font-size: 16px;
     padding-bottom: 10px;
     border-bottom: 1px solid #252525;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    z-index: 999;
 }
 
 #header > hr {
@@ -204,6 +208,11 @@
 
 .custom_select_rounded .select_custom_.active_ {
     background: #fff url(/images/ico/select_ico_active.png) right 20px center no-repeat;
+}
+
+.header_replace {
+    height: 203px;
+    width: 100%;
 }
 
 @media screen and (max-width: 850px) {

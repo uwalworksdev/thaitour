@@ -4233,6 +4233,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   padding: 50px 20px;
   height: 175px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .hotel-custom-form .card-left .tag-list .tag-h.active {
