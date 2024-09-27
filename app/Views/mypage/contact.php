@@ -112,7 +112,7 @@
                                 <td class="num">
                                     <?php echo $row['code_name'] ?>
                                 </td>
-                                <td class="des"><a href="../mypage/inquiry_view.php?idx=<?= $row['idx'] ?>">
+                                <td class="des"><a href="../mypage/inquiry_view?idx=<?= $row['idx'] ?>">
                                         <? echo $row['title'] ?>
                                     </a></td>
                                 <td class="stt">

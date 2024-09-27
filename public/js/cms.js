@@ -32,7 +32,7 @@ function go_page(_page){
 // 상세보기
 function go_view(r_idx){
 
-	var url = r_code+"_view.php";
+	var url = r_code+"_view";
 	url += "?cmd=view";
 	url += "&r_idx="+r_idx;
 

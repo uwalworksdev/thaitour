@@ -533,13 +533,12 @@
                         </tr> -->
 						</table>
 						<?php
-                        $fsql2 = "select * from tbl_bbs_cmt where r_idx = '" . $r_idx . "' order by r_cmt_idx desc";
-                        $fresult2 = mysqli_query($connect, $fsql2) or die(mysqli_error($connect));
-                        if (mysqli_num_rows($fresult2) > 0) {
+
+                        if (count($fresult2) > 0) {
                             ?>
                             <table border=1 style="width:700px">
-								<?
-                                while ($frow2 = mysqli_fetch_array($fresult2)) {
+								<?php
+                                foreach ($fresult2 as $frow2) {
                                     ?>
                                     <tr>
 										<td>

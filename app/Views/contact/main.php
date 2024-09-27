@@ -83,7 +83,7 @@
                             if ((session('member.idx') && $row["reg_m_idx"] == session('member.idx')) 
                                     || (session('member.idx') && session('member.id') == 'admin')
                                     || (session('member.idx') && session('member.level') <= 2)) {
-                                echo "<a href='./inquiry_view.php?idx=$row[idx]'>$row[title]</a> <span class='red'>($row[cmt_cnt])</span>";
+                                echo "<a href='./inquiry_view?idx=$row[idx]'>$row[title]</a> <span class='red'>($row[cmt_cnt])</span>";
                             } else {
                                 $message = !session('member.idx') ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
                                 echo "<a href='#' onclick='alert(`$message`);'>$row[title]</a><span class='red'>($row[cmt_cnt])</span><i></i>";
@@ -106,7 +106,7 @@
             </div>
     
             <div class="popup_wrap edit_input_pop">
-                <form id="view_inquiry_frm" class="pop_box" action="./inquiry_view.php" method="post">
+                <form id="view_inquiry_frm" class="pop_box" action="./inquiry_view" method="post">
                     <button type="button" class="close" onclick="closePopup()"></button>
                     <div class="pop_body">
                         <div class="padding">
@@ -131,7 +131,7 @@
 
 <script>
     function showCheckPass(idx) {
-        $("#view_inquiry_frm").attr("action", `./inquiry_view.php?idx=${idx}`)
+        $("#view_inquiry_frm").attr("action", `./inquiry_view?idx=${idx}`)
         $('.edit_input_pop').show();
     }
 

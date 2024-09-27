@@ -651,7 +651,9 @@ class BoardController extends BaseController
             array_push($Bbs->list_field_arr, "r_flag");
             $view_data = $Bbs->get_view_data($r_idx);
             $file_arr = json_decode($view_data['r_file_list'], true);
-            $file_cnt = count($file_arr);
+            if (isset($file_arr)) {
+                $file_cnt = count($file_arr);
+            }
         } else {
             $view_data = array();
             foreach ($Bbs->new_default_arr as $key => $val)
@@ -665,6 +667,10 @@ class BoardController extends BaseController
         $result_c = $db->query($sql_c);
         $row_c = $result_c->getRowArray();
 
+        $fsql2 = "select * from tbl_bbs_cmt where r_idx = '" . $r_idx . "' order by r_cmt_idx desc";
+        $fresult2 = $db->query($fsql2);
+        $fresult2 = $fresult2->getRowArray();
+
         $data = [
             'code_info' => $code_info,
             'category_arr' => $category_arr,
@@ -672,6 +678,7 @@ class BoardController extends BaseController
             'file_cnt' => $file_cnt ?? '',
             'file_arr' => $file_arr ?? [],
             'product_arr' => $product_arr,
+            'fresult2' => $fresult2,
             'row_c' => $row_c
         ];
         return view('admin/_board/view', $data);

@@ -84,7 +84,7 @@ $r_code = "qna";
                     if ($row["passwd_yn"] == "Y") {
                         $href = "javascript:showCheckPass('$row[idx]')";
                     } else {
-                        $href = "./travel_view.php?idx=$row[idx]";
+                        $href = "./travel_view?idx=$row[idx]";
                     }
 
                     ?>
@@ -121,7 +121,7 @@ $r_code = "qna";
         </div>
 
         <div class="popup_wrap edit_input_pop">
-            <form id="view_inquiry_frm" class="pop_box" action="./inquiry_view.php" method="post">
+            <form id="view_inquiry_frm" class="pop_box" action="./inquiry_view" method="post">
                 <button type="button" class="close" onclick="closePopup()"></button>
                 <div class="pop_body">
                     <div class="padding">
@@ -145,7 +145,7 @@ $r_code = "qna";
 
 <script>
     function showCheckPass(idx) {
-        $("#view_inquiry_frm").attr("action", `./inquiry_view.php?idx=${idx}`)
+        $("#view_inquiry_frm").attr("action", `./inquiry_view?idx=${idx}`)
         $('.edit_input_pop').show();
     }
 

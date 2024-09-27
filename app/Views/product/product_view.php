@@ -87,7 +87,7 @@
                   </a>
                 </li>
                 <li>
-                  <a onclick="copyItemLink(`https://hihojoonew.cafe24.com/t-package/item_view.php?product_idx=1707`)">
+                  <a onclick="copyItemLink(`https://hihojoonew.cafe24.com/t-package/item_view?product_idx=1707`)">
                     <img src="../img/ico/share_link_icon.png" alt="">
                     <p>링그</p>
                   </a>

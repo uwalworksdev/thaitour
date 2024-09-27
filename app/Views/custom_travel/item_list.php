@@ -287,13 +287,13 @@
                             || (session('member.idx') && session('member.level') <= 2)
                         ) {
                             $is_secure = false;
-                            $href = "/mypage/custom_travel_view.php?idx=" . $row['idx'];
+                            $href = "/mypage/custom_travel_view?idx=" . $row['idx'];
                         } else if ($row['m_idx'] && $row['m_idx'] != session('member.idx')) {
                             $is_secure = true;
                             $href = "javascript:alert('내가쓴글만 열람이 가능합니다.')";
                         } else {
                             $is_secure = true;
-                            $href = "/mypage/custom_travel_view.php?idx=" . $row['idx'];
+                            $href = "/mypage/custom_travel_view?idx=" . $row['idx'];
                         }
 
                         ?>
