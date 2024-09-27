@@ -356,7 +356,7 @@
 			  {
         ?>
           <li>
-            <a href="/AdmMaster/_bbs/board_view.php?scategory=&search_mode=&search_word=&code=b2b_notice&bbs_idx=<?=$row['bbs_idx']?>&pg=1"><span class="sb_ttl"><?= $row['subject'] ?> </span><em class="date"><?= substr($row['r_date'], 0, 10) ?></em></a>
+            <a href="/AdmMaster/_bbs/board_write?scategory=&search_mode=&search_word=&code=b2b_notice&bbs_idx=<?=$row['bbs_idx']?>&pg=1"><span class="sb_ttl"><?= $row['subject'] ?> </span><em class="date"><?= substr($row['r_date'], 0, 10) ?></em></a>
           </li>
         <?php 
 			  }

@@ -91,7 +91,7 @@
                         <td><img src="../../data/bbs/<?= $row['ufile1'] ?: "panda.jpg" ?>" /></td>
                     <?php endif; ?>
                     <td class="<?= $code != "hashtag" ? "tal" : "" ?> bold txt_black">
-                        <?= $rstr ?><a href="board_view.php?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&bbs_idx=<?= $row['bbs_idx'] ?>&pg=<?= $pg ?>">
+                        <?= $rstr ?><a href="board_write?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&bbs_idx=<?= $row['bbs_idx'] ?>&pg=<?= $pg ?>">
                             <?= $recStr ?> <?= $row['subject'] ?> <?= $secureStr ?> <?= $c_cnt ?>
                         </a>
                     </td>
