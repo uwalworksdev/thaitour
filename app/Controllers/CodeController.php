@@ -122,7 +122,9 @@ class CodeController extends BaseController
         $product_idx = $this->request->getPost('product_idx');
         $yoil_idx = $this->request->getPost('yoil_idx');
 
-        $upload = WRITEPATH . 'uploads/code/';
+        //$upload = WRITEPATH . 'uploads/code/';
+        $upload = ROOTPATH . 'public/data/code/';
+
 
         if ($code_idx) {
             $data = [

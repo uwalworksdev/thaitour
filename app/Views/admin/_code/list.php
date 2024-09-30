@@ -176,7 +176,7 @@ function code_delete(idx)
 		var message = "";
 		$.ajax({
 
-			url: "./ajax.code_delete",
+			url: "<?= route_to('admin.api.code.code_del') ?>",
 			type: "POST",
 			data: {
 				"code_idx": idx

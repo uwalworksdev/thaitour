@@ -452,7 +452,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=15 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=16 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
@@ -505,10 +505,10 @@
                                                     href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 / <?= $row["tours_subject"] ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
-                                        <td class="tac"><?= $row["order_user_name"] ?></td>
-                                        <td class="tac"><?= $row["manager_name"] ?><br><?= $row["manager_phone"] ?>
-                                            <br><?= $row["manager_email"] ?></td>
-                                        <td class="tac"><?= $row["order_user_mobile"] ?></td>
+                                        <td class="tac"><?= $row['user_name'] ?></td>
+                                        <td class="tac"><?= $row["man_name"] ?><br><?= $row["man_phone"] ?>
+                                            <br><?= $row["man_email"] ?></td>
+                                        <td class="tac"><?= $row["user_mobile"] ?></td>
                                         <td class="tac"><?= str_replace("-", ".", $row["start_date"]) ?>
                                             ~<?= str_replace("-", ".", $row["end_date"]) ?>
                                         </td>

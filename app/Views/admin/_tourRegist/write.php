@@ -19,13 +19,9 @@ if (isset($product_idx) && isset($row)) {
                     <div class="menus">
                         <ul>
 
-                            <li><a href="/AdmMaster/_tourRegist/list" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                            </li>
+                            <li><a href="/AdmMaster/_tourRegist/list_hotel" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
                             <?php if ($product_idx) { ?>
-                                <li><a href="javascript:copy_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
-                                </li>
+                                <li><a href="javascript:copy_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a></li>
                                 <script>
                                     function copy_it() {
                                         if (confirm("제품을 복사하시겠습니까?")) {
@@ -35,16 +31,10 @@ if (isset($product_idx) && isset($row)) {
                                 </script>
                             <?php } ?>
                             <?php if (isset($idx)) { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                </li>
-                                <li><a href="javascript:del_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
-                                </li>
+                                <li><a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a></li>
+                                <li><a href="javascript:del_it()" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a></li>
                             <?php } else { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                                </li>
+                                <li><a href="javascript:send_it()" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a></li>
                             <?php } ?>
 
                         </ul>
@@ -92,19 +82,72 @@ if (isset($product_idx) && isset($row)) {
                                 <tr height="45">
                                     <th>카테고리선택</th>
                                     <td colspan="3">
-                                        <select id="product_code_1" name="product_code_1" class="input_select"
-                                                onchange="javascript:get_code(this.value, 2)">
-                                            <option value="">1차분류</option>
+                                        <select id="product_code_1" name="product_code_1" class="input_select" onchange="javascript:get_code(this.value, 3)">
+										<option value="">1차분류</option>
+
+										<?php
+										foreach ($fresult as $frow):
+											$status_txt = "";
+											if ($frow["status"] == "Y") {
+												$status_txt = "";
+											} elseif ($frow["status"] == "N") {
+												$status_txt = "[삭제]";
+											} elseif ($frow["status"] == "C") {
+												$status_txt = "[마감]";
+											}
+
+											?>
+											<option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_1) {
+												echo "selected";
+											} ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+										<?php endforeach; ?>
+
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select"
-                                                onchange="javascript:get_code(this.value, 3)">
+                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="javascript:get_code(this.value, 4)">
                                             <option value="">2차분류</option>
+											
+											<?php
+											foreach ($fresult2 as $frow):
+												$status_txt = "";
+												if ($frow["status"] == "Y") {
+													$status_txt = "";
+												} elseif ($frow["status"] == "N") {
+													$status_txt = "[삭제]";
+												} elseif ($frow["status"] == "C") {
+													$status_txt = "[마감]";
+												}
+
+												?>
+												<option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+													echo "selected";
+												} ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+											<?php endforeach; ?>
+
                                         </select>
-                                        <select id="product_code_3" name="product_code_3" class="input_select"
-                                                onchange="javascript:get_code(this.value, 4)">
+                                        <select id="product_code_3" name="product_code_3" class="input_select" onchange="javascript:get_code(this.value, 5)">
                                             <option value="">3차분류</option>
-                                        </select>
-                                        <select id="product_code_4" name="product_code_4" class="input_select">
+											<?php
+											foreach ($fresult3 as $frow):
+												$status_txt = "";
+												if ($frow["status"] == "Y") {
+													$status_txt = "";
+												} elseif ($frow["status"] == "N") {
+													$status_txt = "[삭제]";
+												} elseif ($frow["status"] == "C") {
+													$status_txt = "[마감]";
+												}
+
+												?>
+												<option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $product_code_2) {
+													echo "selected";
+												} ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+											<?php endforeach; ?>
+										</select>
+                                        
+										<select id="product_code_4" name="product_code_4" class="input_select">
                                             <option value="">4차분류</option>
                                         </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
@@ -122,8 +165,7 @@ if (isset($product_idx) && isset($row)) {
                                 <tr height="45">
                                     <th>상품코드</th>
                                     <td colspan="3">
-                                        <input type="text" name="goods_code" id="goods_code" value=""
-                                               readonly="readonly" class="text" style="width:200px">
+                                        <input type="text" name="goods_code" id="goods_code" value="<?=$row['product_code']?>" readonly="readonly" class="text" style="width:200px">
                                         <?php if ($product_idx == "") { ?>
                                             <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button>
                                         <?php } else { ?>
@@ -136,20 +178,31 @@ if (isset($product_idx) && isset($row)) {
                                 <tr height="45">
                                     <th>상품명</th>
                                     <td colspan="3">
-                                        <input type="text" name="goods_name_front" value=""
-                                               class="text" style="width:300px" maxlength="50"/>
+                                        <input type="text" name="goods_name_front" value="<?=$row['product_name']?>" class="text" style="width:300px" maxlength="50"/>
                                     </td>
                                 </tr>
 
                                 <tr height="45">
                                     <th>등급</th>
                                     <td colspan="3">
-                                        <select name="grade">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                        <select name="product_level">
+											<?php
+											foreach ($fresult_l as $frow):
+												$status_txt = "";
+												if ($frow["status"] == "Y") {
+													$status_txt = "";
+												} elseif ($frow["status"] == "N") {
+													$status_txt = "[삭제]";
+												} elseif ($frow["status"] == "C") {
+													$status_txt = "[마감]";
+												}
+
+												?>
+												<option value="<?= $frow["code_no"] ?>" <?php if ($frow["code_no"] == $row['product_level']) {
+													echo "selected";
+												} ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+
+											<?php endforeach; ?>
                                         </select>
                                     </td>
                                 </tr>
@@ -711,6 +764,154 @@ if (isset($product_idx) && isset($row)) {
         </div><!-- 인쇄 영역 끝 //-->
     </div>
 
+    <script>
+    function get_code(strs, depth) {
 
-    <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
+        $.ajax({
+            type: "GET"
+            , url: "/AdmMaster/api/get_code"
+            , dataType: "html" //전송받을 데이터의 타입
+            , timeout: 30000 //제한시간 지정
+            , cache: false  //true, false
+            , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
+            , error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            }
+            , success: function (json) {
+                //alert(json);
+                if (depth <= 3) {
+                    $("#product_code_2").find('option').each(function () {
+                        $(this).remove();
+                    });
+                    $("#product_code_2").append("<option value=''>2차분류</option>");
+                }
+                if (depth <= 4) {
+                    $("#product_code_3").find('option').each(function () {
+                        $(this).remove();
+                    });
+                    $("#product_code_3").append("<option value=''>3차분류</option>");
+                }
+                if (depth <= 4) {
+                    $("#product_code_4").find('option').each(function () {
+                        $(this).remove();
+                    });
+                    $("#product_code_4").append("<option value=''>4차분류</option>");
+                }
+                var list       = $.parseJSON(json);
+                var listLen    = list.length;
+                var contentStr = "";
+                for (var i = 0; i < listLen; i++) {
+                    contentStr = "";
+                    if (list[i].code_status == "C") {
+                        contentStr = "[마감]";
+                    } else if (list[i].code_status == "N") {
+                        contentStr = "[사용안함]";
+                    }
+                    $("#product_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                }
+            }
+        });
+    }
+</script>
+
+<script>
+	function send_it() 
+	{
+		var frm = document.frm;
+		<?php
+		if ($is_category == "Y") {
+		?>
+		/*
+	if (frm.category.value == "")
+	{
+		frm.category.focus();
+		alert("구분을 선택해주세요.");
+		return;
+
+	}
+		*/
+		<?php
+		}
+
+
+		if($code != "banner"){
+		?>
+		if (frm?.subject?.value === "") {
+			frm?.subject?.focus();
+			alert("제목을 입력해주세요.");
+			return;
+
+		}
+		if (frm.writer.value == "") {
+			frm.writer.focus();
+			alert("작성자를 입력해주세요.");
+			return;
+
+		}
+
+		oEditors.getById?.["contents_"]?.exec("UPDATE_CONTENTS_FIELD", []);
+		if (frm?.contents?.length < 2) {
+			frm.contents.focus();
+			alert("내용을 입력하셔야 합니다.");
+			return;
+		}
+
+		<?php
+		}
+		?>
+
+
+		$("#ajax_loader").removeClass("display-none");
+		// $("#frm").submit();
+		$.ajax({
+			url: "/AdmMaster/bbs/board_save",
+			type: "POST",
+			data: new FormData($("#frm")[0]),
+			contentType: false,
+			processData: false,
+			cache: false,
+			dataType: false,
+			error: function (request, status, error) {
+				//통신 에러 발생시 처리
+				alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+				$("#ajax_loader").addClass("display-none");
+			}
+			, success: function (response, status, request) {
+
+				if (response == "success") {
+					<?php
+					if ($mode == "reply")
+					{
+					?>
+					alert("정상적으로 등록되었습니다.");
+					setTimeout(function () {
+						location.href = "board_list?scategory=<?=$scategory?>&search_mode=<?=$search_mode?>&search_word=<?=$search_word?>&code=<?=$code?>&bbs_idx=<?=$bbs_idx?>&pg=<?=$pg?>";
+					}, 1000);
+					<?php
+					} else if ($bbs_idx == "") {
+					?>
+					alert("정상적으로 등록되었습니다.");
+					setTimeout(function () {
+						location.href = "board_list?code=<?=$code?>&scategory=<?=$scategory?>";
+					}, 1000);
+					<?php } else { ?>
+					alert("정상적으로 수정되었습니다.");
+					setTimeout(function () {
+						location.reload();
+					}, 1000);
+					<?php } ?>
+				} else if (response == "NF") {
+					alert("업로드 금지 파일입니다.");
+				} else {
+					alert(response);
+					// alert("오류가 발생하였습니다!!");
+				}
+			}
+		});
+
+	}
+</script>
+
+<iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>

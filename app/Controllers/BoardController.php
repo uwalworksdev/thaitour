@@ -486,6 +486,8 @@ class BoardController extends BaseController
 
     public function write_ok()
     {
+        //$upload = ROOTPATH . 'public/data/bbs/';
+
         $bbs_idx = updateSQ($this->request->getPost('bbs_idx'));
         $category = updateSQ($this->request->getPost('category'));
         $category1 = updateSQ($this->request->getPost('category1'));
