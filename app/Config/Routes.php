@@ -110,6 +110,11 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("bbs_change", "Api\AdminBbsApi::bbs_change", ['as' => "admin.api.bbs.bbs_change"]);
             $routes->post("bbs_del", "Api\AdminBbsApi::bbs_del", ['as' => "admin.api.bbs.bbs_del"]);
         });
+
+        // Nested group for 'code_'
+        $routes->group("code_", function ($routes) {
+            $routes->post("code_del", "Api\AdminCodeApi::code_del", ['as' => "admin.api.code.code_del"]);
+        });
     });
 
     $routes->group("_tourStay", static function ($routes) {
@@ -397,4 +402,4 @@ $routes->get('product-tours/(:any)', 'Product::index/$1');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 
-
+?>

@@ -66,12 +66,12 @@ class TourRegistController extends BaseController
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? "");
         if ($pg == "") $pg = 1;
-        $search_name = updateSQ($_GET["search_name"] ?? "");
-        $search_category = updateSQ($_GET["search_category"] ?? "");
+        $search_name      = updateSQ($_GET["search_name"] ?? "");
+        $search_category  = updateSQ($_GET["search_category"] ?? "");
 
-        $product_code_2 = updateSQ($_GET["product_code_2"] ?? "");
-        $product_code = updateSQ($_GET["product_code"] ?? "");
-        $product_code_3 = updateSQ($_GET["product_code_3"] ?? "");
+        $product_code_2   = updateSQ($_GET["product_code_2"] ?? "");
+        $product_code     = updateSQ($_GET["product_code"] ?? "");
+        $product_code_3   = updateSQ($_GET["product_code_3"] ?? "");
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? "");
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? "");
         $s_product_code_3 = updateSQ($_GET["s_product_code_3"] ?? "");
@@ -134,20 +134,19 @@ class TourRegistController extends BaseController
 						LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
 						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 $strSql group by p1.product_idx ";
 
-
-        $result = $this->connect->query($total_sql) or die ($this->connect->error);
+        $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '" . $s_product_code_1 . "' and status='Y' order by onum desc, code_idx desc";
-        $fresult = $this->connect->query($fsql) or die ($this->connect->error);
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and parent_code_no = '13' and status='Y' order by onum desc, code_idx desc";
+        $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
-        $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fresult2 = $this->connect->query($fsql);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_3 . "' and status='Y'  order by onum desc, code_idx desc";
-        $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fresult3 = $this->connect->query($fsql);
         $fresult3 = $fresult3->getResultArray();
 
         $order = " onum desc ";
@@ -162,33 +161,33 @@ class TourRegistController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $sql = $total_sql . " order by $order limit $nFrom, $g_list_rows ";
-        $result = $this->connect->query($sql) or die ($this->connect->error);
+        $result = $this->connect->query($sql);
         $num = $nTotalCount - $nFrom;
         $result = $result->getResultArray();
 
         $data = [
-            "fresult" => $fresult,
-            "fresult2" => $fresult2,
-            "fresult3" => $fresult3,
-            "num" => $num,
-            "nPage" => $nPage,
-            "pg" => $pg,
-            "g_list_rows" => $g_list_rows,
-            "search_val" => $search_val,
-            "nTotalCount" => $nTotalCount,
-            "result" => $result,
-            "orderBy" => $orderBy,
-            "best" => $best,
-            "is_view_n" => $is_view_n,
-            "search_name" => $search_name,
-            "product_code_1" => $product_code_1,
-            "product_code_2" => $product_code_2,
-            "product_code_3" => $product_code_3,
+            "fresult"          => $fresult,
+            "fresult2"         => $fresult2,
+            "fresult3"         => $fresult3,
+            "num"              => $num,
+            "nPage"            => $nPage,
+            "pg"               => $pg,
+            "g_list_rows"      => $g_list_rows,
+            "search_val"       => $search_val,
+            "nTotalCount"      => $nTotalCount,
+            "result"           => $result,
+            "orderBy"          => $orderBy,
+            "best"             => $best,
+            "is_view_n"        => $is_view_n,
+            "search_name"      => $search_name,
+            "product_code_1"   => $product_code_1,
+            "product_code_2"   => $product_code_2,
+            "product_code_3"   => $product_code_3,
             "s_product_code_1" => $s_product_code_1,
             "s_product_code_2" => $s_product_code_2,
             "s_product_code_3" => $s_product_code_3,
-            "is_view_y" => $is_view_y,
-            "search_category" => $search_category,
+            "is_view_y"        => $is_view_y,
+            "search_category"  => $search_category,
         ];
 
         return $data;
@@ -196,21 +195,40 @@ class TourRegistController extends BaseController
 
     public function write()
     {
-        $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $product_idx      = updateSQ($_GET["product_idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
         if ($product_idx) {
-            $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
+            $sql    = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
             $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
+            $row    = $result->getRowArray();
         }
 
+        // 상품 카테고리
+        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='2' and parent_code_no = '13' and status='Y' order by onum desc, code_idx desc";
+        $fresult  = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult  = $fresult->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $row['product_code_1'] . "' and status='Y'  order by onum desc, code_idx desc";
+        $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult2 = $fresult2->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $row['product_code_2'] . "' and status='Y'  order by onum desc, code_idx desc";
+        $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult3 = $fresult3->getResultArray();
+
+        // 호텔 등급
+        $fsql_l     = "select * from tbl_code where depth='2' and parent_code_no = '30' and status='Y' order by onum desc, code_idx desc";
+        $fresult_l  = $this->connect->query($fsql_l) or die ($this->connect->error);
+        $fresult_l  = $fresult_l->getResultArray();
+
+
         $titleStr = "호텔정보 수정";
-        $links = "list";
+        $links    = "list";
 //
 //        $fsql = "select * from tbl_hotel_code where status = 'Y' order by code_idx desc";
 //        $fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
@@ -245,13 +263,20 @@ class TourRegistController extends BaseController
 //
 //        $fsql = "select * from tbl_code where depth='1' and code_no = '3' and status='Y' order by onum desc, code_idx desc";
 //        $fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
+
         $data = [
-            "titleStr" => $titleStr,
-            "links" => $links,
-            "product_idx" => $product_idx,
-            "pg" => $pg,
-            "search_name" => $search_name,
-            "search_category" => $search_category,
+			"fresult"          => $fresult,
+			"fresult2"         => $fresult2,
+			"fresult3"         => $fresult3,
+			"fresult_l"        => $fresult_l,
+            "titleStr"         => $titleStr,
+            "links"            => $links,
+            "product_idx"      => $product_idx,
+            "pg"               => $pg,
+            "search_name"      => $search_name,
+            "search_category"  => $search_category,
+            "product_code_1"   => $row['product_code_1'],
+            "product_code_2"   => $row['product_code_2'],
             "s_product_code_1" => $s_product_code_1,
             "s_product_code_2" => $s_product_code_2,
             "row" => $row ?? null

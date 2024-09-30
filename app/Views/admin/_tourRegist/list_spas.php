@@ -471,14 +471,14 @@
                                                 ?>
                                                 <a href="/data/product/<?= $row["ufile1"] ?>" class="imgpop">
                                                     <img src="/data/product/<?= $row["ufile1"] ?>"
-                                                         style="max-width:150px;max-height:100px"
-                                                         onerror="this.src='/data/product/noimg.png'"></a>
+                                                         style="max-width:150px;max-height:100px" loading="lazy"
+                                                         ></a>
                                             <?php } else {
                                                 ?>
                                                 <a href="/data/product/noimg.png" class="imgpop">
                                                     <img src="/data/product/noimg.png"
-                                                         style="max-width:150px;max-height:100px"
-                                                         onerror="this.src='/data/product/noimg.png'"></a>
+                                                         style="max-width:150px;max-height:100px" loading="lazy"
+                                                         ></a>
                                             <?php }
                                             ?>
                                         </td>

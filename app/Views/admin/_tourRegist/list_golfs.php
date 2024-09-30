@@ -570,7 +570,7 @@
 <script>
     function go_write(idx) {
         $("#product_idx").val(idx);
-        $("#search").attr("action", "/write_golf").submit();
+        $("#search").attr("action", "./write_golf").submit();
     }
 </script>
 
