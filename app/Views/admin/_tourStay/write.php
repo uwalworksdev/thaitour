@@ -622,15 +622,43 @@
         }
 
         function del_it() {
-            if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-                hiddenFrame.location.href = "del.php?stay_idx[]=<?=$stay_idx?>&mode=view";
+
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+                return;
             }
+            $("#ajax_loader").removeClass("display-none");
+            $.ajax({
+                url: "<?= route_to('admin.api.tour_stay.del') ?>",
+                type: "POST",
+                data: "stay_idx[]=" + '<?= $stay_idx ?>',
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    // if (response == "OK")
+                    // {
+                    console.log(response);
+                    alert_("정상적으로 삭제되었습니다.");
+                    window.location.href = "/AdmMaster/_tourStay/list";
+                    // } else {
+                    // 	alert(response);
+                    // 	alert_("오류가 발생하였습니다!!");
+                    // 	return;
+                    // }
+                }
+            });
+
         }
 
         function get_code(strs, depth) {
             $.ajax({
                 type: "GET"
-                , url: "../_tourRegist/get_code.ajax.php"
+                , url: "/AdmMaster/api/get_code"
                 , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
@@ -652,6 +680,12 @@
                             $(this).remove();
                         });
                         $("#country_code_3").append("<option value=''>3차분류</option>");
+                    }
+                    if (depth <= 4) {
+                        $("#country_code_4").find('option').each(function () {
+                            $(this).remove();
+                        });
+                        $("#country_code_4").append("<option value=''>4차분류</option>");
                     }
                     var list = $.parseJSON(json);
                     var listLen = list.length;
