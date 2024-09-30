@@ -104,6 +104,14 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("prod_update", "Api\AdminTourApi::prod_update");
         $routes->post("ajax_del", "Api\AdminTourApi::ajax_del");
 
+        // Nested group for 'tour_stay_'
+        $routes->group("tour_stay_", function ($routes) {
+            $routes->get("get_code", "Api\AdminTourStayApi::get_code", ['as' => "admin.api.tour_stay.get_code"]);
+            $routes->post("ajax_change", "Api\AdminTourStayApi::ajax_change", ['as' => "admin.api.tour_stay.ajax_change"]);
+            $routes->post("del", "Api\AdminTourStayApi::del", ['as' => "admin.api.tour_stay.del"]);
+            $routes->post("prod_update", "Api\AdminTourStayApi::prod_update", ['as' => "admin.api.tour_stay.prod_update"]);
+        });
+
         // Nested group for 'bbs_'
         $routes->group("bbs_", function ($routes) {
             $routes->post("comment_proc", "Api\AdminBbsApi::comment_proc", ['as' => "admin.api.bbs.comment_proc"]);
@@ -120,6 +128,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_tourStay", static function ($routes) {
         $routes->get("list", "TourStayController::list");
         $routes->get("write", "TourStayController::write");
+        $routes->post("write_ok", "TourStayController::write_ok", ['as' => "admin.tourStay.write_ok"]);
     });
     $routes->group("_room", static function ($routes) {
         $routes->get("list", "Admin\AdminRoomController::list", ['as' => "admin.room.list"]);

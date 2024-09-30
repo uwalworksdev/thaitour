@@ -890,7 +890,7 @@ div.listBottom table.listTable tbody td p.color_chart {
 
 div.listBottom table.listTable tbody td button {
     display: inline-block;
-    width: 70px;
+    width: 100px;
     height: 25px;
     margin: 0 auto;
     border: 1px solid rgb(204, 204, 204);

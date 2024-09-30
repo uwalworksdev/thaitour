@@ -212,8 +212,9 @@ class TourRegistController extends BaseController
         $titleStr = "호텔정보 수정";
         $links = "list";
 //
-//        $fsql = "select * from tbl_hotel_code where status = 'Y' order by code_idx desc";
-//        $fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
+        $fsql = "select * from tbl_hotel_code where status = 'Y' order by code_idx desc";
+        $fresult = $this->connect->query($fsql);
+        $fresult = $fresult->getResultArray();
 //
 //
 //        $gsql = "
@@ -243,11 +244,22 @@ class TourRegistController extends BaseController
 //        $fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
 //
 //
-//        $fsql = "select * from tbl_code where depth='1' and code_no = '3' and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='1' and code_no = '3' and status='Y' order by onum desc, code_idx desc";
 //        $fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
+        $fresult2 = $this->connect->query($fsql);
+        $fresult2 = $fresult2->getResultArray();
         $data = [
             "titleStr" => $titleStr,
+            "fresult" => $fresult,
+            "fresult2" => $fresult2,
+            "fresult3" => $fresult3 ?? [],
+            "fresult_l" => $fresult_l ?? [],
             "links" => $links,
+            "is_category" => $is_category ?? '',
+            "code" => $code ?? '',
+            "mode" => $mode ?? '',
+            "bbs_idx" => $bbs_idx ?? '',
+            "scategory" => $scategory ?? '',
             "product_idx" => $product_idx,
             "pg" => $pg,
             "search_name" => $search_name,

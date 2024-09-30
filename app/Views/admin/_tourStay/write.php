@@ -19,6 +19,85 @@
             display: inline-block;
             width: 500px;
         }
+
+        .popup_ {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: rgba(0, 0, 0, 0.2);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup_.show_ {
+            display: flex;
+        }
+
+        .popup_area_ {
+            height: 100%;
+            max-height: 50vh;
+            overflow: scroll;
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px 40px;
+        }
+
+        .popup_top_ {
+            width: 100%;
+            height: 50px;
+            background-color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #dbdbdb;
+        }
+
+        .popup_content_ {
+
+        }
+
+        .popup_bottom_ {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            padding-top: 20px;
+            width: 100%;
+            border-top: 1px solid #dbdbdb;
+        }
+
+        .popup_bottom_ button {
+            display: inline-block;
+            width: 100px;
+            height: 25px;
+            border: 1px solid rgb(204, 204, 204);
+        }
+
+        .table_border_ {
+            border: 2px solid #dbdbdb;
+        }
+
+        .table_border_ th,
+        .table_border_ td {
+            border: 1px solid #dbdbdb;
+            padding: 10px 20px;
+        }
+
+        .table_border_ th {
+            background-color: rgba(220, 220, 220, 0.5);
+        }
+
+        .table_border_ td.list_g_idx_ {
+            vertical-align: middle;
+            text-align: center;
+        }
     </style>
 <?php $back_url = "write"; ?>
     <div id="container">
@@ -54,7 +133,7 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_ok.php" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="<?= route_to('admin.tourStay.write_ok') ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -64,6 +143,7 @@
                 <input type=hidden name="s_country_code_3" value='<?= $s_country_code_3 ?>'>
                 <input type=hidden name="facilities" id="facilities" value='<?= $facilities ?>'>
                 <input type=hidden name="room_facil" id="room_facil" value='<?= $room_facil ?>'>
+                <input type=hidden name="room_list" id="room_list" value='<?= $room_list ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -343,6 +423,14 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>객실 목록</th>
+                                    <td colspan="3">
+                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
+                                            선택하세요
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>내용</th>
                                     <td colspan=3>
                                         <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
@@ -431,17 +519,74 @@
 
                 </div>
                 <!-- // contents -->
+
+                <div class="popup_">
+                    <div class="popup_area_">
+                        <div class="popup_top_">
+                            선택
+                        </div>
+                        <div class="popup_content_">
+                            <table class="table_border_">
+                                <colgroup>
+                                    <col width="8%">
+                                    <col width="*">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>선택하다</th>
+                                    <th>객실명</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $_arr = explode("|", $room_list);
+                                foreach ($rresult as $row_r) : ?>
+                                    <tr>
+                                        <td class="list_g_idx_">
+                                            <?php
+                                            $find = "";
+                                            foreach ($_arr as $iValue) {
+                                                if ($iValue) {
+                                                    if ($iValue == $row_r['g_idx']) {
+                                                        $find = "Y";
+                                                    }
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="room_list_<?= $row_r['g_idx'] ?>"
+                                                   name="_room_list"
+                                                   value="<?= $row_r['g_idx'] ?>"
+                                                <?php if ($find === "Y") echo "checked"; ?> />
+                                        </td>
+                                        <td>
+                                            <label for="room_list_<?= $row_r['g_idx'] ?>"> <?= $row_r['roomName'] ?></label>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="popup_bottom_">
+                            <button type="button" class="close_popup_" onclick="showOrHide();">닫습니다.</button>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div><!-- 인쇄 영역 끝 //-->
     </div>
     <!-- // container -->
     <script>
 
+        function showOrHide() {
+            $(".popup_").toggleClass('show_');
+        }
+
         function send_it() {
             var frm = document.frm;
 
-            var facilities = "";
-            var room_facil = "";
+            let facilities = "";
+            let room_facil = "";
+            let room_list = "";
 
             $("input[name=_facilities]:checked").each(function () {
                 facilities += $(this).val() + '|';
@@ -467,19 +612,53 @@
             }
             */
 
+            $("input[name=_room_list]:checked").each(function () {
+                room_list += $(this).val() + '|';
+            })
+
+            $("#room_list").val(room_list);
+
             frm.submit();
         }
 
         function del_it() {
-            if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-                hiddenFrame.location.href = "del.php?stay_idx[]=<?=$stay_idx?>&mode=view";
+
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+                return;
             }
+            $("#ajax_loader").removeClass("display-none");
+            $.ajax({
+                url: "<?= route_to('admin.api.tour_stay.del') ?>",
+                type: "POST",
+                data: "stay_idx[]=" + '<?= $stay_idx ?>',
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    // if (response == "OK")
+                    // {
+                    console.log(response);
+                    alert_("정상적으로 삭제되었습니다.");
+                    window.location.href = "/AdmMaster/_tourStay/list";
+                    // } else {
+                    // 	alert(response);
+                    // 	alert_("오류가 발생하였습니다!!");
+                    // 	return;
+                    // }
+                }
+            });
+
         }
 
         function get_code(strs, depth) {
             $.ajax({
                 type: "GET"
-                , url: "../_tourRegist/get_code.ajax.php"
+                , url: "/AdmMaster/api/get_code"
                 , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
@@ -501,6 +680,12 @@
                             $(this).remove();
                         });
                         $("#country_code_3").append("<option value=''>3차분류</option>");
+                    }
+                    if (depth <= 4) {
+                        $("#country_code_4").find('option').each(function () {
+                            $(this).remove();
+                        });
+                        $("#country_code_4").append("<option value=''>4차분류</option>");
                     }
                     var list = $.parseJSON(json);
                     var listLen = list.length;

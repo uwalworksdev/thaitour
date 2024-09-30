@@ -114,7 +114,7 @@
                     $.ajax({
                         type: "POST",
                         data: stay_data,
-                        url: "ajax_change.php",
+                        url: "ajax_change",
                         cache: false,
                         async: false,
                         success: function (data, textStatus) {
@@ -196,8 +196,9 @@
                                     </td>
                                     <td class="tac">
                                         <? if ($row["ufile1"] != "") { ?>
-                                            <a href="/data/stay/<?= $row["ufile1"] ?>" class="imgpop"><img
-                                                        src="/data/stay/<?= $row["ufile1"] ?>" style="max-width:150px"></a>
+                                            <a href="/uploads/products/<?= $row["ufile1"] ?>" class="imgpop"><img
+                                                        src="/uploads/products/<?= $row["ufile1"] ?>"
+                                                        style="max-width:150px"></a>
                                         <? } ?>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
@@ -205,7 +206,7 @@
 
                                     </td>
                                     <td class="tac">
-                                        <a href="write.php?s_country_code_1=<?= $s_country_code_1 ?>&s_country_code_2=<?= $s_country_code_2 ?>&s_country_code_2=<?= $s_country_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&stay_idx=<?= $row["stay_idx"] ?>"><?= $row["stay_name_kor"] ?></a>
+                                        <a href="write?s_country_code_1=<?= $s_country_code_1 ?>&s_country_code_2=<?= $s_country_code_2 ?>&s_country_code_2=<?= $s_country_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&stay_idx=<?= $row["stay_idx"] ?>"><?= $row["stay_name_kor"] ?></a>
                                     </td>
                                     <td>
                                         <input type="text" name="onum[]" id="onum_<?= $row["stay_idx"] ?>"
@@ -232,7 +233,7 @@
                                     </td>
                                     <td>
                                         <a href="javascript:del_it('<?= $row["stay_idx"] ?>');"><img
-                                                    src="/AdmMaster/_images/common/ico_error.png" alt="삭제"/></a>
+                                                    src="/images/admin/common/ico_error.png" alt="삭제"/></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -243,7 +244,7 @@
                     </div><!-- // listBottom -->
                 </form>
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_all') . $search_val . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourStay/list') . $search_val . "&pg=") ?>
 
                 <div id="headerContainer">
 
@@ -273,56 +274,6 @@
 </div><!-- // container -->
 
 <script>
-    function CheckAll(checkBoxes, checked) {
-        var i;
-        if (checkBoxes.length) {
-            for (i = 0; i < checkBoxes.length; i++) {
-                checkBoxes[i].checked = checked;
-            }
-        } else {
-            checkBoxes.checked = checked;
-        }
-
-    }
-
-    function SELECT_DELETE() {
-        if ($(".stay_idx").is(":checked") == false) {
-            alert_("삭제할 내용을 선택하셔야 합니다.");
-            return;
-        }
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-            return;
-        }
-
-        $("#ajax_loader").removeClass("display-none");
-
-        $.ajax({
-            url: "del.php",
-            type: "POST",
-            data: $("#frm").serialize(),
-            error: function (request, status, error) {
-                //통신 에러 발생시 처리
-                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                $("#ajax_loader").addClass("display-none");
-            }
-            , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-            }
-            , success: function (response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 삭제되었습니다.");
-                    location.reload();
-                    return;
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                    return;
-                }
-            }
-        });
-
-    }
-
     function del_it(stay_idx) {
 
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
@@ -330,7 +281,7 @@
         }
         $("#ajax_loader").removeClass("display-none");
         $.ajax({
-            url: "del.php",
+            url: "<?= route_to('admin.api.tour_stay.del') ?>",
             type: "POST",
             data: "stay_idx[]=" + stay_idx,
             error: function (request, status, error) {
@@ -344,9 +295,9 @@
             , success: function (response, status, request) {
                 // if (response == "OK")
                 // {
+                console.log(response);
                 alert_("정상적으로 삭제되었습니다.");
                 location.reload();
-                return;
                 // } else {
                 // 	alert(response);
                 // 	alert_("오류가 발생하였습니다!!");
@@ -355,54 +306,6 @@
             }
         });
 
-    }
-
-    function get_code(strs, depth) {
-        $.ajax({
-            type: "GET"
-            , url: "get_code.ajax.php"
-            , dataType: "html" //전송받을 데이터의 타입
-            , timeout: 30000 //제한시간 지정
-            , cache: false  //true, false
-            , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-            , error: function (request, status, error) {
-                //통신 에러 발생시 처리
-                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            }
-            , success: function (json) {
-                //alert(json);
-                if (depth <= 3) {
-                    $("#country_code_2").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#country_code_2").append("<option value=''>2차분류</option>");
-                }
-                if (depth <= 4) {
-                    $("#country_code_3").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#country_code_3").append("<option value=''>3차분류</option>");
-                }
-                if (depth <= 4) {
-                    $("#country_code_4").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#country_code_4").append("<option value=''>4차분류</option>");
-                }
-                var list = $.parseJSON(json);
-                var listLen = list.length;
-                var contentStr = "";
-                for (var i = 0; i < listLen; i++) {
-                    contentStr = "";
-                    if (list[i].code_status == "C") {
-                        contentStr = "[마감]";
-                    } else if (list[i].code_status == "N") {
-                        contentStr = "[사용안함]";
-                    }
-                    $("#country_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
-                }
-            }
-        });
     }
 </script>
 <?= $this->endSection() ?>

@@ -7,22 +7,14 @@ use Config\CustomConstants as ConfigCustomConstants;
 
 class TourStayController extends BaseController
 {
-    private $model;
-    private $Bbs;
-    private $tours;
-    private $db;
 
     protected $connect;
 
     public function __construct()
     {
-        $this->db = db_connect();
         $this->connect = Config::connect();
-        $this->model = model("ReviewModel");
-        $this->Bbs = model("Bbs");
         helper('my_helper');
         helper('alert_helper');
-        $constants = new ConfigCustomConstants();
     }
 
     public function list()
@@ -227,6 +219,7 @@ class TourStayController extends BaseController
 
             $facilities = $row["facilities"];
             $room_facil = $row["room_facil"];
+            $room_list = $row["room_list"];
 
             $note = $row["note"];
 
@@ -239,7 +232,7 @@ class TourStayController extends BaseController
 
         $pq = $country_code_1 ?? '';
 
-        $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='country' and depth='2' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
@@ -255,12 +248,22 @@ class TourStayController extends BaseController
         $result_f = $this->connect->query($sql_f) or die ($this->connect->error);
         $fresult4 = $result_f->getResultArray();
 
+        $r_sql = " SELECT r.* 
+					      ,c.code_name as hotelName
+					  FROM tbl_room r
+					  LEFT OUTER JOIN tbl_code c
+					    ON r.hotel_code = c.code_no
+					 WHERE 1=1 ";
+        $rresult = $this->connect->query($r_sql);
+        $rresult = $rresult->getResultArray();
+
         $data = [
             "row" => $row,
             "fresult" => $fresult,
             "fresult2" => $fresult2,
             "fresult3" => $fresult3,
             "fresult4" => $fresult4,
+            "rresult" => $rresult,
             "titleStr" => $titleStr,
             "stay_idx" => $stay_idx ?? '',
             "agency_name" => $agency_name ?? '',
@@ -358,6 +361,7 @@ class TourStayController extends BaseController
             "mobile_no" => $mobile_no ?? '',
             "facilities" => $facilities ?? '',
             "room_facil" => $room_facil ?? '',
+            "room_list" => $room_list ?? '',
             "note" => $note ?? '',
             "stay_onum" => $stay_onum ?? '',
             "stay_m_date" => $stay_m_date ?? '',
@@ -392,6 +396,205 @@ class TourStayController extends BaseController
         return $data;
     }
 
+    public function write_ok()
+    {
+        try {
+            $files = $this->request->getFiles();
+            $pg = updateSQ($_POST["pg"] ?? '');
+            $search_name = updateSQ($_POST["search_name"] ?? '');
+            $search_category = updateSQ($_POST["search_category"] ?? '');
+
+            $stay_idx = updateSQ($_POST["stay_idx"] ?? '');
+            $stay_code = updateSQ($_POST["stay_code"] ?? '');
+
+            $country_code_1 = updateSQ($_POST["country_code_1"] ?? '');
+            $country_code_2 = updateSQ($_POST["country_code_2"] ?? '');
+            $country_code_3 = updateSQ($_POST["country_code_3"] ?? '');
+
+            $stay_city = updateSQ($_POST["stay_city"] ?? '');
+            $stay_user_name = updateSQ($_POST["stay_user_name"] ?? '');
+            $stay_name_eng = updateSQ($_POST["stay_name_eng"] ?? '');
+            $stay_name_kor = updateSQ($_POST["stay_name_kor"] ?? '');
+            $stay_address = updateSQ($_POST["stay_address"] ?? '');
+            $stay_level = updateSQ($_POST["stay_level"] ?? '');
+            $stay_check_in = updateSQ($_POST["stay_check_in"] ?? '');
+            $stay_check_in_ampm = updateSQ($_POST["stay_check_in_ampm"] ?? '');
+            $stay_check_in_hour = updateSQ($_POST["stay_check_in_hour"] ?? '');
+            $stay_check_in_min = updateSQ($_POST["stay_check_in_min"] ?? '');
+
+            $stay_check_out = updateSQ($_POST["stay_check_out"] ?? '');
+            $stay_check_out_ampm = updateSQ($_POST["stay_check_out_ampm"] ?? '');
+            $stay_check_out_hour = updateSQ($_POST["stay_check_out_hour"] ?? '');
+            $stay_check_out_min = updateSQ($_POST["stay_check_out_min"] ?? '');
+
+            $stay_service = updateSQ($_POST["stay_service"] ?? '');
+            $stay_parking = updateSQ($_POST["stay_parking"] ?? '');
+            $stay_room = updateSQ($_POST["stay_room"] ?? '');
+            $stay_homepage = updateSQ($_POST["stay_homepage"] ?? '');
+            $stay_contents = updateSQ($_POST["stay_contents"] ?? '');
+
+            $facilities = updateSQ($_POST["facilities"] ?? '');
+            $room_facil = updateSQ($_POST["room_facil"] ?? '');
+            $room_list = updateSQ($_POST["room_list"] ?? '');
+
+            $tel_no = updateSQ($_POST["tel_no"] ?? '');
+            $note = updateSQ($_POST["note"] ?? '');
+            $stay_onum = updateSQ($_POST["stay_onum"] ?? '');
+
+            for ($i = 1; $i <= 5; $i++) {
+                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+
+                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                    $sql = "UPDATE tbl_product_stay SET 
+                            ufile" . $i . "='',
+                            rfile" . $i . "=''
+                            WHERE stay_idx='$stay_idx'
+                        ";
+                    $this->connect->query($sql);
+                } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    ${"rfile_" . $i} = $file->getName();
+                    ${"ufile_" . $i} = $file->getRandomName();
+                    $publicPath = WRITEPATH . '../public/uploads/products/';
+                    $file->move($publicPath, ${"ufile_" . $i});
+
+                    if ($stay_idx) {
+                        $sql = "UPDATE tbl_product_stay SET 
+                                ufile" . $i . "='" . ${"ufile_" . $i} . "',
+                                rfile" . $i . "='" . ${"rfile_" . $i} . "'
+                                WHERE stay_idx='$stay_idx';
+                            ";
+                        $this->connect->query($sql);
+                    }
+                } else {
+                    ${"rfile_" . $i} = '';
+                    ${"ufile_" . $i} = '';
+                }
+            }
+
+            if ($stay_idx) {
+                $sql = "update tbl_product_stay SET 
+                            stay_code				= '" . $stay_code . "'
+                            ,country_code_1			= '" . $country_code_1 . "'
+                            ,country_code_2			= '" . $country_code_2 . "'
+                            ,country_code_3			= '" . $country_code_3 . "'
+                            ,stay_city				= '" . $stay_city . "'
+                            ,stay_user_name			= '" . $stay_user_name . "'
+                            ,stay_name_eng			= '" . $stay_name_eng . "'
+                            ,stay_name_kor			= '" . $stay_name_kor . "'
+                            ,stay_address			= '" . $stay_address . "'
+                            ,stay_level				= '" . $stay_level . "'
+                            ,stay_check_in			= '" . $stay_check_in . "'
+                            ,stay_check_in_ampm		= '" . $stay_check_in_ampm . "'
+                            ,stay_check_in_hour		= '" . $stay_check_in_hour . "'
+                            ,stay_check_in_min		= '" . $stay_check_in_min . "'
+                            ,stay_check_out			= '" . $stay_check_out . "'
+                            ,stay_check_out_ampm	= '" . $stay_check_out_ampm . "'
+                            ,stay_check_out_hour	= '" . $stay_check_out_hour . "'
+                            ,stay_check_out_min		= '" . $stay_check_out_min . "'
+                            ,stay_service			= '" . $stay_service . "'
+                            ,stay_parking			= '" . $stay_parking . "'
+                            ,stay_room				= '" . $stay_room . "'
+                            ,facilities			    = '" . $facilities . "'
+                            ,room_facil			    = '" . $room_facil . "'
+                            ,room_list			    = '" . $room_list . "'
+                            ,stay_homepage			= '" . $stay_homepage . "'
+                            ,stay_contents			= '" . $stay_contents . "'
+                            ,tel_no			        = '" . $tel_no . "'
+                            ,note			   	 	= '" . $note . "'
+                            ,stay_onum				= '" . $stay_onum . "'
+                            ,stay_m_date			= now()
+                        where stay_idx				= '" . $stay_idx . "'
+                    ";
+
+                $db = $this->connect->query($sql);
+
+
+            } else {
+                $sql = "insert into tbl_product_stay SET 
+                            stay_code				= '" . $stay_code . "'
+                            ,country_code_1			= '" . $country_code_1 . "'
+                            ,country_code_2			= '" . $country_code_2 . "'
+                            ,country_code_3			= '" . $country_code_3 . "'
+                            ,stay_city				= '" . $stay_city . "'
+                            ,stay_user_name			= '" . $stay_user_name . "'
+                            ,stay_name_eng			= '" . $stay_name_eng . "'
+                            ,stay_name_kor			= '" . $stay_name_kor . "'
+                            ,stay_address			= '" . $stay_address . "'
+                            ,stay_level				= '" . $stay_level . "'
+                            ,stay_check_in			= '" . $stay_check_in . "'
+                            ,stay_check_in_ampm		= '" . $stay_check_in_ampm . "'
+                            ,stay_check_in_hour		= '" . $stay_check_in_hour . "'
+                            ,stay_check_in_min		= '" . $stay_check_in_min . "'
+                            ,stay_check_out			= '" . $stay_check_out . "'
+                            ,stay_check_out_ampm	= '" . $stay_check_out_ampm . "'
+                            ,stay_check_out_hour	= '" . $stay_check_out_hour . "'
+                            ,stay_check_out_min		= '" . $stay_check_out_min . "'
+                            ,stay_service			= '" . $stay_service . "'
+                            ,stay_parking			= '" . $stay_parking . "'
+                            ,stay_room				= '" . $stay_room . "'
+                            ,facilities			    = '" . $facilities . "'
+                            ,room_facil			    = '" . $room_facil . "'
+                            ,room_list			    = '" . $room_list . "'
+                            ,stay_homepage			= '" . $stay_homepage . "'
+                            ,stay_contents			= '" . $stay_contents . "'
+                            ,tel_no			        = '" . $tel_no . "'
+                            ,stay_onum				= '" . $stay_onum . "'
+                            ,rfile1					= '" . $rfile_1 . "'
+                            ,rfile2					= '" . $rfile_2 . "'
+                            ,rfile3					= '" . $rfile_3 . "'
+                            ,rfile4					= '" . $rfile_4 . "'
+                            ,rfile5					= '" . $rfile_5 . "'
+                            ,ufile1					= '" . $ufile_1 . "'
+                            ,ufile2					= '" . $ufile_2 . "'
+                            ,ufile3					= '" . $ufile_3 . "'
+                            ,ufile4					= '" . $ufile_4 . "'
+                            ,ufile5					= '" . $ufile_5 . "'
+                            ,stay_m_date			= now()
+                            ,stay_r_date			= now()
+                    ";
+                $db = $this->connect->query($sql);
+
+                $stay_idx = $this->connect->insertID();
+                $sql = "update tbl_product_stay SET 
+                            code_no = 'H" . str_pad($stay_idx, 4, "0", STR_PAD_LEFT) . "'
+                            where stay_idx = '" . $stay_idx . "'
+                    ";
+
+                $db = $this->connect->query($sql);
+            }
+
+            if ($stay_idx) {
+                $message = "수정되었습니다.";
+            } else {
+                $message = "등록되었습니다.";
+            }
+
+            if (isset($db) && $db) {
+                return "<script>
+                        alert('$message');
+                            parent.location.href='/AdmMaster/_tourStay/list';
+                        </script>";
+            }
+
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => '저장 중 오류가 발생했습니다.'
+                    ]
+                );
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
 
     public function get_yoil($product_idx)
     {

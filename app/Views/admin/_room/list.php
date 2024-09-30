@@ -32,18 +32,18 @@
             <div id="contents">
                 <form name="search" id="search">
                     <header id="headerContents">
-                        <select id="hotel_code" name="hotel_code" class="input_select"
-                                onchange="javascript:document.search.submit();">
-                            <option value="">전체</option>
-                            <?php
-                            foreach ($fresult as $frow) {
-                                ?>
-                                <option value="<?= $frow["code_no"] ?>" <?php if ($hotel_code == $frow["code_no"]) {
-                                    echo "selected";
-                                } ?>><?= $frow["code_name"] ?></option>
-                            <?php } ?>
-
-                        </select>
+<!--                        <select id="hotel_code" name="hotel_code" class="input_select"-->
+<!--                                onchange="javascript:document.search.submit();">-->
+<!--                            <option value="">전체</option>-->
+<!--                            --><?php
+//                            foreach ($fresult as $frow) {
+//                                ?>
+<!--                                <option value="--><?php //= $frow["code_no"] ?><!--" --><?php //if ($hotel_code == $frow["code_no"]) {
+//                                    echo "selected";
+//                                } ?><!-->--><?php //= $frow["code_name"] ?><!--</option>-->
+<!--                            --><?php //} ?>
+<!---->
+<!--                        </select>-->
 
                         <input type="text" id="" name="search_name" value="<?= $search_name ?>"
                                class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px"/>
@@ -83,7 +83,7 @@
                                     <col width="4%"/>
                                     <col width="4%"/>
                                     <col width="10%"/>
-                                    <col width="10%"/>
+<!--                                    <col width="10%"/>-->
                                     <col width="*"/>
                                 </colgroup>
                                 <thead>
@@ -91,7 +91,7 @@
                                     <th>선택</th>
                                     <th>EDIT</th>
                                     <th>이미지</th>
-                                    <th>호텔명</th>
+<!--                                    <th>호텔명</th>-->
                                     <th>룸명</th>
                                 </tr>
                                 </thead>
@@ -126,9 +126,9 @@
                                                 <img src="/uploads/rooms/<?= $row["ufile1"] ?>" alt="제품 이미지">
                                             <?php } ?>
                                         </td>
-                                        <td class="product_name">
-                                            <?= $row['hotelName'] ?>
-                                        </td>
+<!--                                        <td class="product_name">-->
+<!--                                            --><?php //= $row['hotelName'] ?>
+<!--                                        </td>-->
                                         <td class="product_name">
                                             <?= $row['roomName'] ?>
                                         </td>
