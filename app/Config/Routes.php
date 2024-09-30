@@ -122,10 +122,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "TourStayController::write");
     });
     $routes->group("_room", static function ($routes) {
-        $routes->get("list", "Admin\AdminRoomController::list");
-        $routes->get("write", "Admin\AdminRoomController::write");
-        $routes->post("write_ok", "Admin\AdminRoomController::write_ok");
-        $routes->post("write", "Admin\AdminRoomController::del");
+        $routes->get("list", "Admin\AdminRoomController::list", ['as' => "admin.room.list"]);
+        $routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);
+        $routes->post("write_ok", "Admin\AdminRoomController::write_ok", ['as' => "admin.room.write_ok"]);
+        $routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
     });
 
     $routes->group("_tourSuggestion", static function ($routes) {

@@ -115,15 +115,15 @@ class AdminRoomController extends BaseController
     {
 
         try {
-            $upload = "../../data/product/";
-
-
+            $files = $this->request->getFiles();
             $g_idx = updateSQ($_POST["g_idx"]);
             $hotel_code = updateSQ($_POST["hotel_code"]);
             $roomName = updateSQ($_POST["roomName"]);
 
 
             for ($i = 1; $i <= 6; $i++) {
+                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+
                 if (isset(${"del_" . $i}) && ${"del_" . $i} == "Y") {
                     $sql = "
 			UPDATE tbl_room SET
@@ -133,28 +133,24 @@ class AdminRoomController extends BaseController
 		";
                     $this->connect->query($sql);
 
-                } elseif ($_FILES["ufile" . $i]['name']) {
-
-                    $wow = $_FILES["ufile" . $i]['name'];
-                    if (no_file_ext($_FILES["ufile" . $i]['name']) != "Y") {
-                        echo "NF";
-                        exit();
-                    }
-
-                    ${"rfile_" . $i} = $wow;
-                    $wow2 = $_FILES["ufile" . $i]['tmp_name'];//tmp 폴더의 파일
-                    ${"ufile_" . $i} = file_check($wow, $wow2, $upload, "N");
+                } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    ${"rfile_" . $i} = $file->getName();
+                    ${"ufile_" . $i} = $file->getRandomName();
+                    $publicPath = WRITEPATH . '../public/uploads/rooms';
+                    $file->move($publicPath, ${"ufile_" . $i});
 
                     if ($g_idx) {
-                        $sql = "
-					UPDATE tbl_room SET
-					ufile" . $i . "='" . ${"ufile_" . $i} . "',
-					rfile" . $i . "='" . ${"rfile_" . $i} . "'
-					WHERE g_idx='$g_idx';
-				";
+                        $sql = "UPDATE tbl_room SET
+                                ufile" . $i . "='" . ${"ufile_" . $i} . "',
+                                rfile" . $i . "='" . ${"rfile_" . $i} . "'
+                                WHERE g_idx='$g_idx';
+                            ";
                         $this->connect->query($sql);
                     }
 
+                } else {
+                    ${"rfile_" . $i} = '';
+                    ${"ufile_" . $i} = '';
                 }
             }
 
@@ -199,14 +195,18 @@ class AdminRoomController extends BaseController
                 $message = "등록되었습니다.";
             }
             if ($db) {
-                return $this->response
-                    ->setStatusCode(200)
-                    ->setJSON(
-                        [
-                            'status' => 'success',
-                            'message' => $message
-                        ]
-                    );
+//                return $this->response
+//                    ->setStatusCode(200)
+//                    ->setJSON(
+//                        [
+//                            'status' => 'success',
+//                            'message' => $message
+//                        ]
+//                    );
+                return "<script>
+                        alert('$message');
+                            parent.location.href='/AdmMaster/_room/list';
+                        </script>";
             }
 
             return $this->response
@@ -231,6 +231,67 @@ class AdminRoomController extends BaseController
 
     public function del()
     {
-        //
+        try {
+            if (!isset($_POST['idx'])) {
+                $data = [
+                    'status' => 'error',
+                    'error' => '데이터가 설정되지 않았습니다!!'
+                ];
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON($data);
+            }
+
+            $idx = $_POST['idx'];
+
+            if (count($idx) == 0) {
+                $data = [
+                    'status' => 'error',
+                    'error' => '데이터가 비어있습니다!!'
+                ];
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON($data);
+            }
+
+            foreach ($idx as $iValue) {
+                $sql1 = " delete from tbl_room where g_idx = '" . $iValue . "' ";
+                $db1 = $this->connect->query($sql1);
+                if (!$db1) {
+                    $db1 = null;
+                    break;
+                }
+            }
+
+            if (isset($db1) && $db1) {
+                $data = [
+                    'result' => 'success',
+                    'message' => '정상적으로 삭제되었습니다.',
+                    'data' => '',
+                    'code' => 200
+                ];
+
+                return $this->response
+                    ->setStatusCode(200)
+                    ->setJSON($data);
+            }
+            $data = [
+                'result' => 'fail',
+                'message' => '오류가 발생하였습니다!!',
+                'data' => '',
+                'code' => 400
+            ];
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON($data);
+        } catch (\Exception $e) {
+            $data = [
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ];
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON($data);
+        }
     }
 }

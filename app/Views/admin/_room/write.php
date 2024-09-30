@@ -5,7 +5,7 @@
 
 <?php
 
-if ($g_idx) {
+if ($g_idx && $row) {
     foreach ($row as $keys => $vals) {
         //echo $keys . " => " . $vals . "<br/>";
         ${$keys} = $vals;
@@ -28,7 +28,7 @@ $links = "list";
                     <div class="menus">
                         <ul>
 
-                            <li><a href="/AdmMaster/_code/list" class="btn btn-default"><span
+                            <li><a href="/AdmMaster/_room/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
                             <?php if ($idx) { ?>
@@ -128,10 +128,10 @@ $links = "list";
                                                 <input type=checkbox
                                                        name="del_<?= $i ?>"
                                                        value='Y'><a
-                                                        href="/data/product/<?= ${"ufile" . $i} ?>"
+                                                        href="/uploads/rooms/<?= ${"ufile" . $i} ?>"
                                                         class="imgpop"><?= ${"rfile" . $i} ?></a><br><br>
-                                                <?php $imgs = get_img(${"ufile" . $i}, "/data/product/", "200", "200"); ?>
-                                                <img src="<?= $imgs ?>"/>
+                                                <img src="/uploads/rooms/<?= ${"ufile" . $i} ?>" width="200"
+                                                     height="200"/>
                                             <?php } ?>
 
                                         </td>
@@ -148,7 +148,7 @@ $links = "list";
                         <ul>
                             <li class="left"></li>
                             <li class="right_sub">
-                                <a href="/AdmMaster/_code/list" class="btn btn-default"><span
+                                <a href="/AdmMaster/_room/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                                 <?php if ($idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
@@ -193,10 +193,34 @@ $links = "list";
         }
 
         function del_it() {
-            if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-                hiddenFrame22.location.href = "del.php?idx[]=<?=$idx?>&mode=view";
+
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+                return;
             }
+            $("#ajax_loader").removeClass("display-none");
+
+            let url = '<?= route_to('admin.room.del') ?>';
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: "idx[]=" + "<?= $idx ?>",
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    alert_(response.message);
+                    console.log(response)
+                    window.location.href = '<?= route_to('admin.room.list') ?>';
+                }
+            });
 
         }
+
     </script>
 <?= $this->endSection() ?>

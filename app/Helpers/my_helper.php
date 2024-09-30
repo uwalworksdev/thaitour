@@ -570,3 +570,77 @@ function getConImg($con)
     }
     return $img;
 }
+
+function file_check($ok_filename, $ok_file, $path, $ftype)
+{
+    if ($ok_filename == "" || $ok_file == "") {
+        return false;
+    } else {
+        //한글파일 파일명 대체
+
+        $download = $path;
+        $aa = date('YmdHms');
+        //	$check=explode(".",$ok_filename);
+
+        $ext = substr(strrchr($ok_filename, "."), 1);     //확장자앞 .을 제거하기 위하여 substr()함수를 이용
+        $ext = strtolower($ext);             //확장자를 소문자로 변환
+
+        $check1 = $aa;
+        $check2 = strtolower($ext);
+
+        $ok_filename = $check1 . "." . $check2;
+        $attached = $ok_filename;
+        if ($ftype == "I") {
+            if ($check2 != "gif" && $check2 != "jpg" && $check2 != "jpeg" && $check2 != "bmp") {
+                echo "<script>alert('이미지 파일만 업로드할수있습니다.');
+				  history.back(1);</script>";
+                exit;
+            }
+        } else
+            $attached = $ok_filename;
+        $ok_filename = $download . $ok_filename;
+        if (file_exists($ok_filename)) {    // 같은 파일 존재
+            //$file_splited = explode("\.", $attached, 2);
+            $file_splited = explode(".", $attached);
+            $i = 0;
+            do {
+                $tmp_filename = $file_splited[0] . $i . "." . $file_splited[1];
+                $tmp_filelocation = $download . $tmp_filename;
+                $i++;
+            } while (file_exists($tmp_filelocation));
+            $ok_filename = $tmp_filelocation;
+            $attached = $tmp_filename;
+        }
+
+        if ($check2 == "png") {
+            /*
+                           $wfp = fopen($ok_filename, "wb");
+
+                           if ($fp = fopen($ok_file, 'r')) {
+                              $contents = '';
+                              // 전부 읽을때까지 계속 읽음
+                              while ($line = fgets($fp, 1024)) {
+                                 $contents .= $line;
+                              }
+                           }
+
+                           //echo $contents;
+
+                           fwrite($wfp,$contents);
+                           fclose($rfp);
+                           fclose($wfp);
+                           */
+
+            copy($ok_file, $ok_filename);
+        } else {
+            copy($ok_file, $ok_filename);
+        }
+
+
+        //copy($ok_file, $ok_filename[background="255 128 128"]);
+        unlink($ok_file);
+        //GD2_make_thumb(20000,20000,str_replace("img_","thumb_",$path.$attached),$path.$attached);
+
+        return $attached;
+    }
+}
