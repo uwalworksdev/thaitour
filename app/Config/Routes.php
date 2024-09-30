@@ -120,6 +120,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_tourStay", static function ($routes) {
         $routes->get("list", "TourStayController::list");
         $routes->get("write", "TourStayController::write");
+        $routes->post("write_ok", "TourStayController::write_ok", ['as' => "admin.tourStay.write_ok"]);
     });
     $routes->group("_room", static function ($routes) {
         $routes->get("list", "Admin\AdminRoomController::list", ['as' => "admin.room.list"]);

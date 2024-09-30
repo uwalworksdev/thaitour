@@ -77,18 +77,18 @@ $links = "list";
                                         기본정보
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>호텔선택</th>
-                                    <td colspan="3">
-                                        <select id="hotel_code" name="hotel_code" class="input_select">
-                                            <?php
-                                            foreach ($fresult as $frow) {
-                                                ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if (isset($hotel_code) && $hotel_code == $frow["code_no"]) echo "selected"; ?> ><?= $frow["code_name"] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </td>
-                                </tr>
+<!--                                <tr>-->
+<!--                                    <th>호텔선택</th>-->
+<!--                                    <td colspan="3">-->
+<!--                                        <select id="hotel_code" name="hotel_code" class="input_select">-->
+<!--                                            --><?php
+//                                            foreach ($fresult as $frow) {
+//                                                ?>
+<!--                                                <option value="--><?php //= $frow["code_no"] ?><!--" --><?php //if (isset($hotel_code) && $hotel_code == $frow["code_no"]) echo "selected"; ?><!-- >--><?php //= $frow["code_name"] ?><!--</option>-->
+<!--                                            --><?php //} ?>
+<!--                                        </select>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
                                 <tr>
                                     <th>룸 이름</th>
                                     <td colspan="3">

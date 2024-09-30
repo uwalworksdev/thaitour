@@ -30,16 +30,19 @@ class AdminRoomController extends BaseController
             $strSql = $strSql . " and roomName like '%" . str_replace("-", "", $search_name) . "%' ";
         }
         if ($hotel_code) {
-            $strSql = $strSql . " and r.hotel_code = '" . $hotel_code . "' ";
+//            $strSql = $strSql . " and r.hotel_code = '" . $hotel_code . "' ";
         }
 
+//        $total_sql = "
+//					SELECT r.*
+//					      ,c.code_name as hotelName
+//					  FROM tbl_room r
+//					  LEFT OUTER JOIN tbl_code c
+//					    ON r.hotel_code = c.code_no
+//					 WHERE 1=1 $strSql
+//				 ";
         $total_sql = " 
-					SELECT r.* 
-					      ,c.code_name as hotelName
-					  FROM tbl_room r
-					  LEFT OUTER JOIN tbl_code c
-					    ON r.hotel_code = c.code_no
-					 WHERE 1=1 $strSql 
+					SELECT * FROM tbl_room WHERE 1=1 $strSql 
 				 ";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
@@ -53,17 +56,17 @@ class AdminRoomController extends BaseController
         $num = $nTotalCount - $nFrom;
         $result = $result->getResultArray();
 
-        $fsql = "select *
-                    from tbl_code 
-                    where code_gubun = 'fsaf' 
-                    and parent_code_no = '30' 
-                    order by onum desc, code_idx desc";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
+//        $fsql = "select *
+//                    from tbl_code
+//                    where code_gubun = 'fsaf'
+//                    and parent_code_no = '30'
+//                    order by onum desc, code_idx desc";
+//        $fresult = $this->connect->query($fsql);
+//        $fresult = $fresult->getResultArray();
 
         $data = [
             'result' => $result,
-            'fresult' => $fresult,
+            'fresult' => $fresult ?? '',
             'num' => $num,
             'pg' => $pg,
             'g_list_rows' => $g_list_rows,
@@ -90,13 +93,13 @@ class AdminRoomController extends BaseController
             $row = $result->getRowArray();
         }
 
-        $fsql = "select *
-                    from tbl_code 
-                    where code_gubun = 'fsaf' 
-                    and parent_code_no = '30' 
-                    order by onum desc, code_idx desc";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
+//        $fsql = "select *
+//                    from tbl_code
+//                    where code_gubun = 'fsaf'
+//                    and parent_code_no = '30'
+//                    order by onum desc, code_idx desc";
+//        $fresult = $this->connect->query($fsql);
+//        $fresult = $fresult->getResultArray();
 
         $data = [
             'g_idx' => $g_idx,
@@ -106,7 +109,7 @@ class AdminRoomController extends BaseController
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
             'row' => $row ?? '',
-            'fresult' => $fresult,
+            'fresult' => $fresult ?? '',
         ];
         return view('admin/_room/write', $data);
     }
