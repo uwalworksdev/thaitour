@@ -1,5 +1,0 @@
-
-
-2024.08.12 6:23:52(::1) : 
-코드등록: {"code_gubun":"Room facil","code_no":"2543","code_name":"sadf","parent_code_no":"25","depth":"2","status":"Y","init_oil_price":0,"onum":"0"}
-
