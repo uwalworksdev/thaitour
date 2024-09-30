@@ -116,6 +116,12 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "TourStayController::list");
         $routes->get("write", "TourStayController::write");
     });
+    $routes->group("_room", static function ($routes) {
+        $routes->get("list", "Admin\AdminRoomController::list");
+        $routes->get("write", "Admin\AdminRoomController::write");
+        $routes->post("write_ok", "Admin\AdminRoomController::write_ok");
+        $routes->post("write", "Admin\AdminRoomController::del");
+    });
 
     $routes->group("_tourSuggestion", static function ($routes) {
         $routes->get("list", "TourSuggestionSubController::list");
