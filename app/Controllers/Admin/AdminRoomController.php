@@ -1,0 +1,236 @@
+<?php
+
+namespace App\Controllers\Admin;
+
+use App\Controllers\BaseController;
+use CodeIgniter\Database\Config;
+use CodeIgniter\HTTP\ResponseInterface;
+
+class AdminRoomController extends BaseController
+{
+    protected $connect;
+
+    public function __construct()
+    {
+        $this->connect = Config::connect();
+        helper('my_helper');
+        helper('alert_helper');
+    }
+
+    public function list()
+    {
+
+        $g_list_rows = 10;
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $hotel_code = updateSQ($_GET["hotel_code"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $strSql = '';
+
+        if ($search_name) {
+            $strSql = $strSql . " and roomName like '%" . str_replace("-", "", $search_name) . "%' ";
+        }
+        if ($hotel_code) {
+            $strSql = $strSql . " and r.hotel_code = '" . $hotel_code . "' ";
+        }
+
+        $total_sql = " 
+					SELECT r.* 
+					      ,c.code_name as hotelName
+					  FROM tbl_room r
+					  LEFT OUTER JOIN tbl_code c
+					    ON r.hotel_code = c.code_no
+					 WHERE 1=1 $strSql 
+				 ";
+        $result = $this->connect->query($total_sql);
+        $nTotalCount = $result->getNumRows();
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $sql = $total_sql . " order by g_idx desc limit $nFrom, $g_list_rows ";
+        $result = $this->connect->query($sql);
+        $num = $nTotalCount - $nFrom;
+        $result = $result->getResultArray();
+
+        $fsql = "select *
+                    from tbl_code 
+                    where code_gubun = 'fsaf' 
+                    and parent_code_no = '30' 
+                    order by onum desc, code_idx desc";
+        $fresult = $this->connect->query($fsql);
+        $fresult = $fresult->getResultArray();
+
+        $data = [
+            'result' => $result,
+            'fresult' => $fresult,
+            'num' => $num,
+            'pg' => $pg,
+            'g_list_rows' => $g_list_rows,
+            'nTotalCount' => $nTotalCount,
+            'search_name' => $search_name,
+            'hotel_code' => $hotel_code,
+            'nPage' => $nPage
+        ];
+        return view('admin/_room/list', $data);
+    }
+
+    public function write()
+    {
+        $g_idx = updateSQ($_GET["g_idx"] ?? '');
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
+        $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
+
+        if ($g_idx) {
+            $sql = " select * from tbl_room where g_idx = '" . $g_idx . "'";
+            $result = $this->connect->query($sql);
+            $row = $result->getRowArray();
+        }
+
+        $fsql = "select *
+                    from tbl_code 
+                    where code_gubun = 'fsaf' 
+                    and parent_code_no = '30' 
+                    order by onum desc, code_idx desc";
+        $fresult = $this->connect->query($fsql);
+        $fresult = $fresult->getResultArray();
+
+        $data = [
+            'g_idx' => $g_idx,
+            'pg' => $pg,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            's_product_code_1' => $s_product_code_1,
+            's_product_code_2' => $s_product_code_2,
+            'row' => $row ?? '',
+            'fresult' => $fresult,
+        ];
+        return view('admin/_room/write', $data);
+    }
+
+    public function write_ok()
+    {
+
+        try {
+            $upload = "../../data/product/";
+
+
+            $g_idx = updateSQ($_POST["g_idx"]);
+            $hotel_code = updateSQ($_POST["hotel_code"]);
+            $roomName = updateSQ($_POST["roomName"]);
+
+
+            for ($i = 1; $i <= 6; $i++) {
+                if (isset(${"del_" . $i}) && ${"del_" . $i} == "Y") {
+                    $sql = "
+			UPDATE tbl_room SET
+			ufile" . $i . "='',
+			rfile" . $i . "=''
+			WHERE g_idx='$g_idx'
+		";
+                    $this->connect->query($sql);
+
+                } elseif ($_FILES["ufile" . $i]['name']) {
+
+                    $wow = $_FILES["ufile" . $i]['name'];
+                    if (no_file_ext($_FILES["ufile" . $i]['name']) != "Y") {
+                        echo "NF";
+                        exit();
+                    }
+
+                    ${"rfile_" . $i} = $wow;
+                    $wow2 = $_FILES["ufile" . $i]['tmp_name'];//tmp 폴더의 파일
+                    ${"ufile_" . $i} = file_check($wow, $wow2, $upload, "N");
+
+                    if ($g_idx) {
+                        $sql = "
+					UPDATE tbl_room SET
+					ufile" . $i . "='" . ${"ufile_" . $i} . "',
+					rfile" . $i . "='" . ${"rfile_" . $i} . "'
+					WHERE g_idx='$g_idx';
+				";
+                        $this->connect->query($sql);
+                    }
+
+                }
+            }
+
+            if ($g_idx) {
+
+
+                $sql = "
+		update tbl_room SET
+			 hotel_code			= '" . $hotel_code . "'
+			,roomName			= '" . $roomName . "'
+		where g_idx = '" . $g_idx . "'
+	";
+
+                $db = $this->connect->query($sql);
+
+
+            } else {
+
+
+                $sql = "insert into tbl_room SET
+                             hotel_code				= '" . $hotel_code . "'
+                            ,roomName				= '" . $roomName . "'
+                            ,rfile1					= '" . $rfile_1 . "'
+                            ,rfile2					= '" . $rfile_2 . "'
+                            ,rfile3					= '" . $rfile_3 . "'
+                            ,rfile4					= '" . $rfile_4 . "'
+                            ,rfile5					= '" . $rfile_5 . "'
+                            ,rfile6					= '" . $rfile_6 . "'
+                            ,ufile1					= '" . $ufile_1 . "'
+                            ,ufile2					= '" . $ufile_2 . "'
+                            ,ufile3					= '" . $ufile_3 . "'
+                            ,ufile4					= '" . $ufile_4 . "'
+                            ,ufile5					= '" . $ufile_5 . "'
+                            ,ufile6					= '" . $ufile_6 . "'
+                    ";
+                $db = $this->connect->query($sql);
+            }
+
+            if ($g_idx) {
+                $message = "수정되었습니다.";
+            } else {
+                $message = "등록되었습니다.";
+            }
+            if ($db) {
+                return $this->response
+                    ->setStatusCode(200)
+                    ->setJSON(
+                        [
+                            'status' => 'success',
+                            'message' => $message
+                        ]
+                    );
+            }
+
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => '저장 중 오류가 발생했습니다.'
+                    ]
+                );
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function del()
+    {
+        //
+    }
+}

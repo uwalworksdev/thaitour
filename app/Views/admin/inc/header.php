@@ -107,7 +107,7 @@ if ($top_menu == "") {
     } else if (
         strpos($currentPath, "/AdmMaster/_code/") !== false || strpos($currentPath, "/AdmMaster/_tourStay/") !== false ||
         strpos($currentPath, "/AdmMaster/_tourSights/") !== false || strpos($currentPath, "/AdmMaster/_tourCountry/") !== false ||
-        strpos($currentPath, "/AdmMaster/_tourGuide/") !== false
+        strpos($currentPath, "/AdmMaster/_tourGuide/") !== false || strpos($currentPath, "/AdmMaster/_room/") !== false
     ) {
         $top_menu = "regi";
     } else if (strpos($currentPath, "/AdmMaster/_tourRegist/") !== false) {
@@ -481,6 +481,13 @@ if ($top_menu == "") {
                                 <?= strpos($currentPath, '/AdmMaster/_tourStay/list') !== false ? "on" : "" ?>">
                             <?= check_perm('C006', '/AdmMaster/_tourStay/list', '숙박정보관리(공통)'); ?>
                         </li>
+                        <li <?php if (!check_auth('C007')) {
+                            echo "style='display: none;'";
+                        } ?>
+                                class="
+                                <?= strpos($currentPath, '/AdmMaster/_room/list') !== false ? "on" : "" ?>">
+                            <?= check_perm('C007', '/AdmMaster/_room/list', '룸관리'); ?>
+                        </li>
                     </ul>
                 </li>
 
@@ -530,6 +537,7 @@ if ($top_menu == "") {
                                 <?= strpos($currentPath, '/AdmMaster/_tourOption/list') !== false ? "on" : "" ?>">
                             <?= check_perm('D004', '/AdmMaster/_tourOption/list', '상품옵션 관리'); ?>
                         </li>
+
                     </ul>
                 </li>
                 <li <?php if (!check_auth('A')) {
