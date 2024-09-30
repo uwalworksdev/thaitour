@@ -239,7 +239,7 @@ class TourStayController extends BaseController
 
         $pq = $country_code_1 ?? '';
 
-        $fsql = "select * from tbl_code where code_gubun='country' and depth='2' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
