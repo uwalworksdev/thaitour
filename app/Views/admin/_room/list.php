@@ -123,7 +123,7 @@
                                         <td class="images">
                                             <?php if ($row["ufile1"]) {
                                                 ?>
-                                                <img src="/data/product/<?= $row["ufile1"] ?>" alt="제품 이미지">
+                                                <img src="/uploads/rooms/<?= $row["ufile1"] ?>" alt="제품 이미지">
                                             <?php } ?>
                                         </td>
                                         <td class="product_name">
@@ -210,18 +210,20 @@
         }
 
         function SELECT_DELETE() {
-            if ($(".idx").is(":checked") == false) {
+            if ($(".idx").is(":checked") === false) {
                 alert_("삭제할 내용을 선택하셔야 합니다.");
                 return;
             }
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") === false) {
                 return;
             }
 
             $("#ajax_loader").removeClass("display-none");
 
+            let url = '<?= route_to('admin.room.del') ?>';
+
             $.ajax({
-                url: "rdel",
+                url: url,
                 type: "POST",
                 data: $("#frm").serialize(),
                 error: function (request, status, error) {
@@ -233,101 +235,12 @@
 //				$("#ajax_loader").addClass("display-none");
                 }
                 , success: function (response, status, request) {
-                    response = response.trim();
-
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
+                    alert_(response.message);
+                    console.log(response)
+                    location.reload();
                 }
             });
 
-        }
-
-        function del_it(product_idx) {
-
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-            $("#ajax_loader").removeClass("display-none");
-            $.ajax({
-                url: "del",
-                type: "POST",
-                data: "product_idx[]=" + product_idx,
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-
-        }
-
-        function get_code(strs, depth) {
-            $.ajax({
-                type: "GET"
-                , url: "get_code.ajax"
-                , dataType: "html" //전송받을 데이터의 타입
-                , timeout: 30000 //제한시간 지정
-                , cache: false  //true, false
-                , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-                , error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , success: function (json) {
-                    //alert(json);
-                    if (depth <= 3) {
-                        $("#product_code_2").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_2").append("<option value=''>2차분류</option>");
-                    }
-                    if (depth <= 4) {
-                        $("#product_code_3").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_3").append("<option value=''>3차분류</option>");
-                    }
-                    if (depth <= 4) {
-                        $("#product_code_4").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_4").append("<option value=''>4차분류</option>");
-                    }
-                    var list = $.parseJSON(json);
-                    var listLen = list.length;
-                    var contentStr = "";
-                    for (var i = 0; i < listLen; i++) {
-                        contentStr = "";
-                        if (list[i].code_status == "C") {
-                            contentStr = "[마감]";
-                        } else if (list[i].code_status == "N") {
-                            contentStr = "[사용안함]";
-                        }
-                        $("#product_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
-                    }
-                }
-            });
         }
     </script>
 
