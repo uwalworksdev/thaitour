@@ -130,3 +130,7 @@ nb-configuration.xml
 
 #
 composer.lock
+public/dbeditor
+public/data
+public/smarteditor
+public/log
