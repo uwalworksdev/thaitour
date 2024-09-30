@@ -174,7 +174,7 @@
                                                 onchange="javascript:get_code(this.value, 3)" style="width:200px">
                                             <option value="">1차분류</option>
                                             <?php
-                                            foreach ($fresult as $frow) :
+                                            foreach ($fresult1 as $frow) :
                                                 $status_txt = "";
                                                 if ($frow["status"] == "Y") {
                                                     $status_txt = "";
@@ -422,14 +422,7 @@
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>객실 목록</th>
-                                    <td colspan="3">
-                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
-                                            선택하세요
-                                        </button>
-                                    </td>
-                                </tr>
+
                                 <tr>
                                     <th>내용</th>
                                     <td colspan=3>
@@ -484,7 +477,14 @@
                                         <?php } ?>
                                     </td>
                                 </tr>
-
+                                <tr>
+                                    <th>객실 목록</th>
+                                    <td colspan="3">
+                                        <button type="button" class="btn_select_room_list" onclick="showOrHide();">
+                                            선택하세요
+                                        </button>
+                                    </td>
+                                </tr>
 
                                 </tbody>
 

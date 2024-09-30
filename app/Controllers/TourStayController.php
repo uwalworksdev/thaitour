@@ -232,9 +232,13 @@ class TourStayController extends BaseController
 
         $pq = $country_code_1 ?? '';
 
-        $fsql = "select * from tbl_code where code_gubun='country' and depth='2' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='country' and depth='2' order by onum desc, code_idx desc";
+        $fresult1 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult1 = $fresult1->getResultArray();
 
         $fsql = "select * from tbl_code where code_gubun='country' and depth='3' and parent_code_no='" . $pq . "' order by onum desc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -248,18 +252,14 @@ class TourStayController extends BaseController
         $result_f = $this->connect->query($sql_f) or die ($this->connect->error);
         $fresult4 = $result_f->getResultArray();
 
-        $r_sql = " SELECT r.* 
-					      ,c.code_name as hotelName
-					  FROM tbl_room r
-					  LEFT OUTER JOIN tbl_code c
-					    ON r.hotel_code = c.code_no
-					 WHERE 1=1 ";
+        $r_sql = " SELECT * FROM tbl_room";
         $rresult = $this->connect->query($r_sql);
         $rresult = $rresult->getResultArray();
 
         $data = [
             "row" => $row,
             "fresult" => $fresult,
+            "fresult1" => $fresult1,
             "fresult2" => $fresult2,
             "fresult3" => $fresult3,
             "fresult4" => $fresult4,
