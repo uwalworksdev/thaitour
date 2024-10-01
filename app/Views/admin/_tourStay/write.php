@@ -40,11 +40,11 @@
         .popup_area_ {
             height: auto;
             max-height: 50vh;
-            overflow: scroll;
+            overflow: auto;
             background-color: #FFFFFF;
             width: 100%;
             max-width: 800px;
-            padding: 30px 40px;
+            padding: 10px 40px 30px;
             font-size: 14px;
         }
 
@@ -104,6 +104,9 @@
         .btn_select_room_list {
             background-color: #17469E;
             color: #FFFFFF;
+            width: 80px !important;
+            height: 35px !important;
+            margin: 10px 0 !important;
         }
 
         .room_list_render_ .item_ {
@@ -111,7 +114,7 @@
             align-items: center;
             justify-content: start;
             gap: 20px;
-            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .room_list_render_ input {
