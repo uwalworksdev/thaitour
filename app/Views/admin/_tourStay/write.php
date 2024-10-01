@@ -38,13 +38,14 @@
         }
 
         .popup_area_ {
-            height: 100%;
+            height: auto;
             max-height: 50vh;
             overflow: scroll;
             background-color: #FFFFFF;
             width: 100%;
-            max-width: 1000px;
+            max-width: 800px;
             padding: 30px 40px;
+            font-size: 14px;
         }
 
         .popup_top_ {
@@ -77,7 +78,7 @@
         .popup_bottom_ button {
             display: inline-block;
             width: 100px;
-            height: 25px;
+            height: 40px;
             border: 1px solid rgb(204, 204, 204);
         }
 
@@ -122,6 +123,7 @@
             margin: 0 !important;
             background-color: #EA353D;
             color: #FFFFFF;
+            height: 30px;
         }
     </style>
 <?php $back_url = "write"; ?>
@@ -507,7 +509,7 @@
                                     <th>룸목록</th>
                                     <td colspan="3">
                                         <button type="button" class="btn_select_room_list" onclick="showOrHide();">
-                                            추가
+                                            룸추가
                                         </button>
                                         <div class="room_list_render_" id="room_list_render_">
                                             <?php
@@ -627,7 +629,7 @@
                         </div>
                         <div class="popup_bottom_">
                             <button type="button" class="" onclick="showOrHide();">취소</button>
-                            <button type="button" class="" onclick="saveValueRoom();">저장</button>
+                            <button type="button" class="" onclick="saveValueRoom();">확인</button>
                         </div>
                     </div>
                 </div>
