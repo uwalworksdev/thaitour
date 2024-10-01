@@ -19,23 +19,20 @@ class AdminTourStayApi extends BaseController
     public function ajax_change()
     {
         try {
-            $code_idx = $this->request->getPost('code_idx');
+            $stay_idx = $this->request->getPost('stay_idx');
             $onum = $this->request->getPost('onum');
-            $is_view = $this->request->getPost('is_view');
-            $product_best = $this->request->getPost('product_best');
-            $special_price = $this->request->getPost('special_price');
-            $tot = count($code_idx);
-            $result = null;
-            for ($j = 0; $j < $tot; $j++) {
-                $sql = " update tbl_product_stay set is_view = '" . $is_view[$j] . "' , product_best = '" . $product_best[$j] . "' , special_price = '" . $special_price[$j] . "' , onum='" . $onum[$j] . "' where stay_idx='" . $code_idx[$j] . "'";
 
+            $tot = count($stay_idx);
+            for ($j = 0; $j < $tot; $j++) {
+
+                $sql = " update tbl_product_stay set onum='" . $onum[$j] . "' where stay_idx='" . $stay_idx[$j] . "'";
                 $result = $this->connect->query($sql);
             }
 
             if ($result) {
-                $msg = "수정 되었습니다!";
+                $msg = "순위수정 되었습니다";
             } else {
-                $msg = "순위조정 오류!";
+                $msg = "순위조정 오류";
             }
 
             return $this->response->setStatusCode(200)

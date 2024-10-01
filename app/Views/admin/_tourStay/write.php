@@ -53,7 +53,7 @@
             background-color: #FFFFFF;
             display: flex;
             align-items: center;
-            justify-content: start;
+            justify-content: space-between;
             font-size: 18px;
             font-weight: bold;
             border-bottom: 1px solid #dbdbdb;
@@ -67,7 +67,8 @@
             margin-top: 10px;
             display: flex;
             align-items: center;
-            justify-content: end;
+            justify-content: center;
+            gap: 20px;
             padding-top: 20px;
             width: 100%;
             border-top: 1px solid #dbdbdb;
@@ -97,6 +98,30 @@
         .table_border_ td.list_g_idx_ {
             vertical-align: middle;
             text-align: center;
+        }
+
+        .btn_select_room_list {
+            background-color: #17469E;
+            color: #FFFFFF;
+        }
+
+        .room_list_render_ .item_ {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .room_list_render_ input {
+            width: 25%;
+            cursor: not-allowed;
+        }
+
+        .room_list_render_ button {
+            margin: 0 !important;
+            background-color: #EA353D;
+            color: #FFFFFF;
         }
     </style>
 <?php $back_url = "write"; ?>
@@ -133,7 +158,8 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="<?= route_to('admin.tourStay.write_ok') ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="<?= route_to('admin.tourStay.write_ok') ?>" method=post enctype="multipart/form-data"
+                  target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -478,11 +504,37 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>객실 목록</th>
+                                    <th>룸목록</th>
                                     <td colspan="3">
                                         <button type="button" class="btn_select_room_list" onclick="showOrHide();">
-                                            선택하세요
+                                            추가
                                         </button>
+                                        <div class="room_list_render_" id="room_list_render_">
+                                            <?php
+                                            $_arr = explode("|", $room_list);
+                                            foreach ($rresult as $row_r) : ?>
+                                                <?php
+                                                $find = "";
+                                                foreach ($_arr as $iValue) {
+                                                    if ($iValue) {
+                                                        if ($iValue == $row_r['g_idx']) {
+                                                            ?>
+
+                                                            <div class="item_">
+                                                                <input readonly type="text"
+                                                                       value="<?= $row_r['roomName'] ?>">
+                                                                <button onclick="removeRoomSelect(this, '<?= $row_r['g_idx'] ?>')"
+                                                                        type="button">삭제
+                                                                </button>
+                                                            </div>
+
+                                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -523,7 +575,14 @@
                 <div class="popup_">
                     <div class="popup_area_">
                         <div class="popup_top_">
-                            선택
+                            <p>
+                                룸목록 관리
+                            </p>
+                            <p>
+                                <button type="button" class="btn_close_"
+                                        onclick="showOrHide();">X
+                                </button>
+                            </p>
                         </div>
                         <div class="popup_content_">
                             <table class="table_border_">
@@ -533,8 +592,8 @@
                                 </colgroup>
                                 <thead>
                                 <tr>
-                                    <th>선택하다</th>
-                                    <th>객실명</th>
+                                    <th><input type="checkbox" class="check_all_" id="check_all_"></th>
+                                    <th>룸명</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -554,12 +613,12 @@
                                             }
                                             ?>
                                             <input type="checkbox" id="room_list_<?= $row_r['g_idx'] ?>"
-                                                   name="_room_list"
+                                                   name="_room_list" class="check_item_"
                                                    value="<?= $row_r['g_idx'] ?>"
                                                 <?php if ($find === "Y") echo "checked"; ?> />
                                         </td>
                                         <td>
-                                            <label for="room_list_<?= $row_r['g_idx'] ?>"> <?= $row_r['roomName'] ?></label>
+                                            <label for="room_list_<?= $row_r['g_idx'] ?>"><?= $row_r['roomName'] ?></label>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -567,7 +626,8 @@
                             </table>
                         </div>
                         <div class="popup_bottom_">
-                            <button type="button" class="close_popup_" onclick="showOrHide();">닫습니다.</button>
+                            <button type="button" class="" onclick="showOrHide();">취소</button>
+                            <button type="button" class="" onclick="saveValueRoom();">저장</button>
                         </div>
                     </div>
                 </div>
@@ -576,9 +636,52 @@
     </div>
     <!-- // container -->
     <script>
+        $('#check_all_').change(function () {
+            if ($(this).is(":checked")) {
+                $('.check_item_').prop('checked', true);
+            } else {
+                $('.check_item_').prop('checked', false);
+            }
+        })
 
         function showOrHide() {
             $(".popup_").toggleClass('show_');
+        }
+
+        function removeRoomSelect(el, idx) {
+            $("input[name=_room_list][value=" + idx + "]").prop("checked", false);
+            $(el).parent().remove();
+        }
+
+        function saveValueRoom() {
+            showOrHide();
+
+            getRoomSelectAndRender();
+        }
+
+        function getRoomSelectAndRender() {
+            let html = '';
+            let room_list = [];
+
+            $("input[name=_room_list]:checked").each(function () {
+                let idx = $(this).val();
+                let name = $('label[for="room_list_' + idx + '"]').text();
+                let data = {
+                    idx: idx,
+                    name: name
+                }
+                room_list.push(data);
+            })
+
+            for (let i = 0; i < room_list.length; i++) {
+                let data = room_list[i];
+                html += `<div class="item_">
+                            <input readonly type="text" value="${data.name}">
+                            <button onclick="removeRoomSelect(this, ${data.idx})" type="button">삭제</button>
+                        </div>`;
+            }
+
+            $("#room_list_render_").empty().append(html);
         }
 
         function send_it() {

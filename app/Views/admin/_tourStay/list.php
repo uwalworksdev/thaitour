@@ -106,23 +106,18 @@
             </form>
             <script>
                 function change_it() {
+                    let url = "<?= route_to('admin.api.tour_stay.ajax_change') ?>";
+                    let frm = document.frm;
 
-                    var f = document.frm;
-
-                    var stay_data = $(f).serialize();
-                    var save_result = "";
+                    let stay_data = $(frm).serialize();
                     $.ajax({
                         type: "POST",
                         data: stay_data,
-                        url: "ajax_change",
+                        url: url,
                         cache: false,
                         async: false,
                         success: function (data, textStatus) {
-                            save_result = data;
-                            //alert('save_result- '+save_result);
-                            var obj = jQuery.parseJSON(save_result);
-                            var message = obj.message;
-                            alert(message);
+                            alert(data.message);
                             location.reload();
                         },
                         error: function (request, status, error) {
@@ -132,7 +127,7 @@
                 }
 
                 function search_it() {
-                    var frm = document.search;
+                    let frm = document.search;
                     if (frm.search_name.value == "검색어 입력") {
                         frm.search_name.value = "";
                     }
