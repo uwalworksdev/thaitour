@@ -107,7 +107,8 @@ if ($top_menu == "") {
     } else if (
         strpos($currentPath, "/AdmMaster/_code/") !== false || strpos($currentPath, "/AdmMaster/_tourStay/") !== false ||
         strpos($currentPath, "/AdmMaster/_tourSights/") !== false || strpos($currentPath, "/AdmMaster/_tourCountry/") !== false ||
-        strpos($currentPath, "/AdmMaster/_tourGuide/") !== false || strpos($currentPath, "/AdmMaster/_room/") !== false
+        strpos($currentPath, "/AdmMaster/_tourGuide/") !== false || strpos($currentPath, "/AdmMaster/_room/") !== false ||
+        strpos($currentPath, "/AdmMaster/_hotel") !== false
     ) {
         $top_menu = "regi";
     } else if (strpos($currentPath, "/AdmMaster/_tourRegist/") !== false) {
