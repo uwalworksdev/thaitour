@@ -146,45 +146,31 @@ $(document).ready(function () {
     // 카테고리 추가 부분 시작
     $("#btn_reg_cate").click(function () {
 
-        var tmp_code = "";
-        var tmp_code_txt = "";
+        let tmp_code = "";
+        let tmp_code_txt = "";
 
-        var cate_code1 = $("#product_code_1").val();
-        var cate_text1 = $("#product_code_1 option:selected").text();
+        let cate_code1 = $("#product_code_1").val();
+        let cate_text1 = $("#product_code_1 option:selected").text();
 
-        if (cate_code1 != "") {
+        if (cate_code1 !== "") {
             tmp_code = cate_code1;
             tmp_code_txt += cate_text1;
         }
 
-        var cate_code2 = $("#product_code_2").val();
-        var cate_text2 = $("#product_code_2 option:selected").text();
+        let cate_code2 = $("#product_code_2").val();
+        let cate_text2 = $("#product_code_2 option:selected").text();
 
-        if (cate_code2 != "") {
+        if (cate_code2 !== "") {
             tmp_code = cate_code2;
             tmp_code_txt += " > " + cate_text2;
         }
 
-        var cate_code3 = $("#product_code_3").val();
-        var cate_text3 = $("#product_code_3 option:selected").text();
-
-        if (cate_code3 != "") {
-            tmp_code = cate_code3;
-            tmp_code_txt += " > " + cate_text3;
-        }
-
-        var cate_code4 = $("#product_code_4").val();
-        var cate_text4 = $("#product_code_4 option:selected").text();
-
-        if (cate_code4 != "") {
-            tmp_code = cate_code4;
-            tmp_code_txt += " > " + cate_text4;
-        }
-
-        if (tmp_code == "") {
+        if (tmp_code === "") {
             alert("카테고리를 선택해주세요.");
             return false;
         }
+
+        console.log(cate_code1);
         addCategory(tmp_code, tmp_code_txt);
 
     });
@@ -263,7 +249,7 @@ function selectCode() {
     var searchCode = $("#pop_search").val();
 
     $.ajax({
-        url: "search_code.php",
+        url: "/AdmMaster/_hotel/search_code",
         type: "POST",
         data: "codeType=" + codeType + "&searchCode=" + searchCode,
         error: function (request, status, error) {
@@ -275,9 +261,9 @@ function selectCode() {
 
         }
         , success: function (response, status, request) {
-            $("#chk_codeCnt").val(response);
+            $("#chk_codeCnt").val(response.message);
 
-            response = parseInt(response);
+            response = parseInt(response.message);
 
             if (response == 0) {
                 $(".result_text").html("<p class='result_text'>요청하신 <strong>코드</strong>는 사용 <span>가능</span> 합니다.</p>");

@@ -74,11 +74,11 @@ class CodeController extends BaseController
             $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
         } else {
             $row = $this->CodeModel->getDepthAndCodeGubunByNo($parent_code_no);
-            $depth = $row['depth'] + 1;
-            $code_gubun = $row['code_gubun'];
+            $depth = ($row['depth'] ?? 0) + 1;
+            $code_gubun = $row['code_gubun'] ?? '';
 
             $maxCodeNoRow = $this->CodeModel->getMaxCodeNo($parent_code_no, $s_parent_code_no);
-            $code_no = $maxCodeNoRow['code_no'];
+            $code_no = $maxCodeNoRow['code_no'] ?? '';
 
             if ($code_no == "1308") { // 예약된 코드(현지투어)로 사용할 수 없습니다.
                 $maxCodeNoRow = $this->CodeModel->getMaxCodeNoWithReserved($parent_code_no, $s_parent_code_no);
