@@ -134,11 +134,31 @@ function send_it() {
     frm.submit();
 }
 
-function del_it() {
-    if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-        hiddenFrame22.location.href = "del.php?idx[]=<?=$idx?>&mode=view";
+function del_it(url, g_idx) {
+    if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+        return;
     }
+    $("#ajax_loader").removeClass("display-none");
 
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: "g_idx[]=" + g_idx,
+        error: function (request, status, error) {
+            //통신 에러 발생시 처리
+            alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            $("#ajax_loader").addClass("display-none");
+        }
+        , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+        }
+        , success: function (response, status, request) {
+            $("#ajax_loader").addClass("display-none");
+            alert_("정상적으로 삭제되었습니다.");
+            window.location.href = '/AdmMaster/_hotel/list';
+            return;
+        }
+    });
 }
 
 
