@@ -436,8 +436,8 @@ if ($top_menu == "") {
                             echo "style='display: none;'";
                         } ?>
                                 class="
-                                <?= strpos($currentPath, '/AdmMaster/_tourRegist/list_hotel') !== false ? "on" : "" ?>">
-                            <?= check_perm('C002', '/AdmMaster/_tourRegist/list_hotel', '호텔 상품관리'); ?>
+                                <?= strpos($currentPath, '/AdmMaster/_hotel/list') !== false ? "on" : "" ?>">
+                            <?= check_perm('C002', '/AdmMaster/_hotel/list', '호텔 상품관리'); ?>
                         </li>
 <!--                        <li --><?php //if (!check_auth('C007')) {
 //                            echo "style='display: none;'";
