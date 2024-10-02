@@ -97,6 +97,16 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("_tourStay", "TourRegistController::list");
     });
 
+    $routes->group("_hotel", static function ($routes) {
+        $routes->get("list", "Admin\AdminHotelController::list");
+        $routes->get("write", "Admin\AdminHotelController::write");
+        $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
+        $routes->post("change", "Admin\AdminHotelController::change", ['as' => "admin._hotel.change"]);
+        $routes->post("prod_update", "Admin\AdminHotelController::prod_update", ['as' => "admin._hotel.prod_update"]);
+        $routes->post("del", "Admin\AdminHotelController::del", ['as' => "admin._hotel.del"]);
+        $routes->post("search_code", "Admin\AdminHotelController::search_code", ['as' => "admin._hotel.search_code"]);
+    });
+
     $routes->group("api", function ($routes) {
         $routes->get("get_code", "Api\AdminTourApi::get_code");
         $routes->post("ajax_change", "Api\AdminTourApi::ajax_change");

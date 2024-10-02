@@ -41,6 +41,39 @@ function dowYoil($strdate)
     return $dow;
 }
 
+function getCodeSlice($_tmp_code, $char = "UTF-8")
+{
+    $_tmp_code = mb_substr($_tmp_code, 1, mb_strlen($_tmp_code) - 2, $char);
+    return $_tmp_code;
+}
+
+function get_cate_text($code)
+{
+    $fsql = "select * from tbl_code where code_no='" . $code . "' limit 1";
+    $fresult = db_connect()->query($fsql);
+    $frow = $fresult->getRowArray();
+
+    if ($frow) {
+        $now_cnt = $frow['depth'];
+        $out_txt = $frow['code_name'];
+        $parent_code_no = $frow['parent_code_no'];
+
+        while ($now_cnt > 1) {
+            $now_cnt--;
+
+            $fsql2 = "select * from tbl_code where code_no='" . $parent_code_no . "' limit 1";
+            $fresult2 = db_connect()->query($fsql2);
+            $frow2 = $fresult2->getRowArray();
+            $parent_code_no = $frow2['parent_code_no'];
+
+            $out_txt = $frow2['code_name'] . " &gt; " . $out_txt;
+
+        }
+
+    }
+
+    return $out_txt ?? '';
+}
 
 function get_device()
 {
@@ -56,7 +89,6 @@ function get_device()
     }
     return $str;
 }
-
 
 function sql_password($value)
 {
