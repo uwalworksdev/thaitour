@@ -20,10 +20,11 @@ class AdminHotelController extends BaseController
     {
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? '');
-        $orderBy = updateSQ($_GET["orderBy"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $strSql = '';
+        $orderBy = $_GET["orderBy"] ?? "";
+        if ($orderBy == "") $orderBy = 1;
 
         if ($search_name) {
             $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
@@ -37,7 +38,10 @@ class AdminHotelController extends BaseController
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $sql = $total_sql . " order by onum desc, g_idx desc limit $nFrom, $g_list_rows ";
+        if ($orderBy == "1") $order = " onum desc ";
+        if ($orderBy == "2") $order = " reg_date desc ";
+
+        $sql = $total_sql . " order by $order, g_idx desc limit $nFrom, $g_list_rows ";
         $result = $this->connect->query($sql);
         $num = $nTotalCount - $nFrom;
         $result = $result->getResultArray();
@@ -508,15 +512,29 @@ class AdminHotelController extends BaseController
         $data = [];
         $gidx = $_GET['gidx'] ?? '';
 
-        $sql = " SELECT * FROM tbl_room where hotel_code = '" . $gidx . "'  ";
-        $result = $this->connect->query($sql);
-        $result = $result->getResultArray();
-        foreach ($result as $row) {
-            $arr = [
-                'g_idx' => $row['g_idx'],
-                'roomName' => $row['roomName']
-            ];
-            $data[] = $arr;
+        $_sql = "SELECT * FROM tbl_product_stay WHERE code_no = ?";
+        $result = $this->connect->query($_sql, [$gidx]);
+        $result = $result->getRowArray();
+
+        if ($result) {
+            $room_list = $result['room_list'];
+            $room_list = trim($room_list, '|');
+            $room_array = explode('|', $room_list);
+
+            if (!empty($room_array)) {
+                $room_array_str = implode(',', array_map('intval', $room_array));
+
+                $sql = "SELECT * FROM tbl_room WHERE g_idx IN ($room_array_str)";
+                $result = $this->connect->query($sql);
+                $rooms = $result->getResultArray();
+
+                foreach ($rooms as $room) {
+                    $data[] = [
+                        'g_idx' => $room['g_idx'],
+                        'roomName' => $room['roomName']
+                    ];
+                }
+            }
         }
 
         return $this->response->setJSON($data);

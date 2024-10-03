@@ -1,6 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-
+<style>
+</style>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -48,20 +49,10 @@
                         <td class="inbox">
                             <div class="r_box">
                                 <select id="" name="search_category" class="input_select" style="width:180px">
-                                    <option value="product_name" <?php if ($search_category == "product_name") {
+                                    <option value="goods_name_front" <?php if ($search_category == "goods_name_front") {
                                         echo "selected";
                                     } ?> >
                                         상품명
-                                    </option>
-                                    <option value="product_air" <?php if ($search_category == "product_air") {
-                                        echo "selected";
-                                    } ?> >
-                                        이용항공
-                                    </option>
-                                    <option value="phone" <?php if ($search_category == "phone") {
-                                        echo "selected";
-                                    } ?> >
-                                        담당자 전화번호
                                     </option>
                                     <option value="product_code" <?php if ($search_category == "product_code") {
                                         echo "selected";
@@ -211,9 +202,6 @@
                         <button type="button" class="btn_filter" onclick="orderBy_set('2');"><img
                                     src="/images/admin/common/filter.png" alt="">최신순
                         </button>
-                        <button type="button" class="btn_filter" onclick="orderBy_set('3');"><img
-                                    src="/images/admin/common/filter.png" alt="">예약순
-                        </button>
                     </div>
 
                 </div><!-- // listTop -->
@@ -269,12 +257,12 @@
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac">
                                         <a href="#!"
-                                           onclick="go_write('<?= $row["g_idx"] ?>');"><?= $row["goods_code"] ?></a>
+                                           onclick="go_write('<?= $row["g_idx"] ?>');"><?= $row["product_code"] ?></a>
                                         <br>
                                         <a href="#"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
-                                    <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
+                                    <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
                                     <td class="tac">
                                         <?php
                                         if ($row["ufile1"] != "") {
@@ -333,7 +321,7 @@
                                         <?= $row["room_cnt"] ?>
                                     </td>
                                     <td>
-                                        <?= $row["dis_date_s"] ?>
+                                        <?= $row["reg_date"] ?>
                                     </td>
                                     <td>
                                         <a href="#!" onclick="prod_update('<?= $row['g_idx'] ?>');"><img
