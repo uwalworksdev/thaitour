@@ -75,6 +75,76 @@ function get_cate_text($code)
     return $out_txt ?? '';
 }
 
+function getHeaderTab()
+{
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getResultArray();
+
+    $currentUrl = current_url();
+
+    $tabLinks = [
+        1303 => "/product-hotel/1303",
+        1302 => "/product-golf/1302/1",
+        1301 => "/product-tours/1301/1",
+        1325 => "/product-spa/1325/1",
+        1317 => "/show-ticket/1317",
+        1320 => "/product-list/1320/1",
+        1324 => "/vehicle-guide/1324"
+    ];
+
+    $html = "";
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        if (array_key_exists($tab_, $tabLinks)) {
+            $link = $tabLinks[$tab_];
+        } else {
+            $link = "/product-hotel/1303";
+        }
+
+        $activeClass = ($currentUrl === base_url($link)) ? "active_" : "";
+
+        $link = "<a class='$activeClass' href='$link'>" . $frow['code_name'] . "</a>";
+        $html .= "<li>" . $link . "</li>";
+    }
+
+    return $html;
+}
+
+
+
+function getTab($tab_active)
+{
+    $tab_ = $tab_active ?? 0;
+    switch ($tab_) {
+        case 1:
+            $tab_1 = 'on';
+            break;
+        case 2:
+            $tab_2 = 'on';
+            break;
+        case 3:
+            $tab_3 = 'on';
+            break;
+        case 4:
+            $tab_4 = 'on';
+            break;
+        case 5:
+            $tab_5 = 'on';
+            break;
+        case 6:
+            $tab_6 = 'on';
+            break;
+        case 7:
+            $tab_7 = 'on';
+            break;
+        default:
+            $tab_active = 1;
+            break;
+    }
+}
+
 function get_device()
 {
     // 모바일 기종(배열 순서 중요, 대소문자 구분 안함)
