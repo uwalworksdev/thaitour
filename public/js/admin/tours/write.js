@@ -105,6 +105,8 @@ function get_group(strs, depth) {
 
 
 function send_it() {
+    $("#ajax_loader").removeClass("display-none");
+
     var frm = document.frm;
 
     oEditors1.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -731,13 +733,10 @@ function fn_chgRoom(gidx) {
 
     $("#roomIdx").html("");
 
-    if (gidx == "") {
-
-    } else {
-
+    if (gidx !== "") {
         $.ajax({
             type: "GET"
-            , url: "get_room.ajax.php"
+            , url: "/AdmMaster/_hotel/get_room"
             , dataType: "html" //전송받을 데이터의 타입
             , timeout: 30000 //제한시간 지정
             , cache: false  //true, false

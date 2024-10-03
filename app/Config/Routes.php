@@ -100,6 +100,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_hotel", static function ($routes) {
         $routes->get("list", "Admin\AdminHotelController::list");
         $routes->get("write", "Admin\AdminHotelController::write");
+        $routes->get("get_room", "Admin\AdminHotelController::get_room", ['as' => "admin._hotel.get_room"]);
         $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
         $routes->post("change", "Admin\AdminHotelController::change", ['as' => "admin._hotel.change"]);
         $routes->post("prod_update", "Admin\AdminHotelController::prod_update", ['as' => "admin._hotel.prod_update"]);
@@ -140,6 +141,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "TourStayController::write");
         $routes->post("write_ok", "TourStayController::write_ok", ['as' => "admin.tourStay.write_ok"]);
     });
+
     $routes->group("_room", static function ($routes) {
         $routes->get("list", "Admin\AdminRoomController::list", ['as' => "admin.room.list"]);
         $routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);

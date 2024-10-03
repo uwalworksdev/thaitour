@@ -65,13 +65,21 @@ class AdminHotelController extends BaseController
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
-        $fsql = "select * from tbl_code where depth = '1' and code_gubun='hotel'";
+        $fsql = "select * from tbl_code where code_gubun = 'tour' and code_no = '1303'";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where depth = '2' and code_gubun='hotel'";
+        $fsql = "select * from tbl_code where code_gubun = 'tour' and parent_code_no='1303'";
         $fresult2 = $this->connect->query($fsql);
         $fresult2 = $fresult2->getResultArray();
+
+        $fsql = " select *
+						, (select code_name from tbl_code where code_gubun = 'stay' and depth='2' and tbl_code.code_no=tbl_product_stay.stay_code) as stay_gubun
+						, (select code_name from tbl_code where code_gubun = 'country' and depth='2' and tbl_code.code_no=tbl_product_stay.country_code_1) as country_name_1
+						, (select code_name from tbl_code where code_gubun = 'country' and depth='3' and tbl_code.code_no=tbl_product_stay.country_code_2) as country_name_2
+						from tbl_product_stay where 1=1";
+        $fresult3 = $this->connect->query($fsql);
+        $fresult3 = $fresult3->getResultArray();
 
         if ($g_idx) {
             $sql = " select * from tbl_hotel where g_idx = '" . $g_idx . "'";
@@ -89,6 +97,7 @@ class AdminHotelController extends BaseController
             'row' => $row ?? '',
             'fresult' => $fresult,
             'fresult2' => $fresult2,
+            'fresult3' => $fresult3,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -124,7 +133,7 @@ class AdminHotelController extends BaseController
             $days5 = updateSQ($_POST["days5"] ?? '');
             $days6 = updateSQ($_POST["days6"] ?? '');
             $days7 = updateSQ($_POST["days7"] ?? '');
-            $goods_icon = $_POST["goods_icon"] ?? '';
+
             $grade = updateSQ($_POST["grade"] ?? '');
             $addrs = updateSQ($_POST["addrs"] ?? '');
             $locations = updateSQ($_POST["locations"] ?? '');
@@ -133,12 +142,14 @@ class AdminHotelController extends BaseController
             $oneInfo = updateSQ($_POST["oneInfo"] ?? '');
             $goods_icon_txt = "";
 
-//            var_dump($goods_icon);
-//            die();
-//
-//                foreach ($goods_icon as $value) {
-//                    $goods_icon_txt .= "|" . $value . "|";
-//                }
+            $o_idx = $_POST["o_idx"] ?? [];
+            $o_name = $_POST["o_name"] ?? [];
+            $o_price1 = $_POST["o_price1"] ?? [];
+            $o_sdate = $_POST["o_sdate"] ?? [];
+            $o_edate = $_POST["o_edate"] ?? [];
+            $o_room = $_POST["o_room"] ?? [];
+            $option_type = $_POST["option_type"] ?? [];
+            $o_soldout = $_POST["o_soldout"] ?? [];
 
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -175,6 +186,57 @@ class AdminHotelController extends BaseController
 
 
             if ($g_idx) {
+
+                foreach ($o_idx as $key => $val) {
+                    $sql_chk = "
+					select count(*) as cnts
+					  from tbl_hotel_option
+					 where idx	= '" . $val . "'
+					";
+                    $result_chk = $this->connect->query($sql_chk);
+                    $row_chk = $result_chk->getRowArray();
+
+                    if ($row_chk) {
+                        // 이미 등록된 옵션이 아니라면...
+                        $item_name = $o_name[$key] ?? '';
+                        $item_price1 = $o_price1[$key] ?? '';
+                        $item_sdate = $o_sdate[$key] ?? '';
+                        $item_edate = $o_edate[$key] ?? '';
+                        $item_room = $o_room[$key] ?? '';
+                        $item_type = $option_type[$key] ?? '';
+                        $item_soldout = $o_soldout[$key] ?? '';
+
+                        if ($row_chk['cnts'] < 1) {
+                            $sql_su = "insert into tbl_hotel_option SET
+                                         goods_code		= '" . $goods_code . "'
+                                        ,goods_name		= '" . $item_name . "'
+                                        ,goods_price1	= '" . $item_price1 . "'
+                                        ,o_sdate		= '" . $item_sdate . "'
+                                        ,o_edate		= '" . $item_edate . "'
+                                        ,o_room			= '" . $item_room . "'
+                                        ,option_type	= '" . $item_type . "'
+                                        ,o_soldout		= '" . $item_soldout . "'
+                                ";
+
+                            $this->connect->query($sql_su);
+
+
+                        } else {
+                            $sql_su = "update tbl_hotel_option SET 
+                                         goods_name		= '" . $item_name . "'
+                                        ,goods_price1	= '" . $item_price1 . "'
+                                        ,o_sdate		= '" . $item_sdate . "'
+                                        ,o_edate		= '" . $item_edate . "'
+                                        ,o_room			= '" . $item_room . "'
+                                        ,option_type	= '" . $item_type . "'
+                                        ,o_soldout		= '" . $item_soldout . "'
+                                    where idx	= '" . $val . "'
+                                ";
+
+                            $this->connect->query($sql_su);
+                        }
+                    }
+                }
 
                 // 상품 테이블 변경
 
@@ -220,6 +282,30 @@ class AdminHotelController extends BaseController
 
 
             } else {
+                // 옵션 등록
+                foreach ($o_idx as $key => $val) {
+                    $item_name = $o_name[$key] ?? '';
+                    $item_price1 = $o_price1[$key] ?? '';
+                    $item_sdate = $o_sdate[$key] ?? '';
+                    $item_edate = $o_edate[$key] ?? '';
+                    $item_room = $o_room[$key] ?? '';
+                    $item_type = $option_type[$key] ?? '';
+                    $item_soldout = $o_soldout[$key] ?? '';
+
+                    $sql_su = "insert into tbl_hotel_option SET
+                                     goods_code		= '" . $goods_code . "'
+                                    ,goods_name		= '" . $item_name . "'
+                                    ,goods_price1	= '" . $item_price1 . "'
+                                    ,o_sdate		= '" . $item_sdate . "'
+                                    ,o_edate		= '" . $item_edate . "'
+                                    ,o_room			= '" . $item_room . "'
+                                    ,option_type	= '" . $item_type . "'
+                                    ,o_soldout		= '" . $item_soldout . "'
+                            ";
+
+                    $this->connect->query($sql_su);
+
+                }
 
                 $sql = "insert into tbl_hotel SET
                          product_code			= '" . $product_code . "'
@@ -415,6 +501,69 @@ class AdminHotelController extends BaseController
                 'message' => $e->getMessage()
             ], 400);
         }
+    }
+
+    public function get_room()
+    {
+        $data = [];
+        $gidx = $_GET['gidx'] ?? '';
+
+        $sql = " SELECT * FROM tbl_room where hotel_code = '" . $gidx . "'  ";
+        $result = $this->connect->query($sql);
+        $result = $result->getResultArray();
+        foreach ($result as $row) {
+            $arr = [
+                'g_idx' => $row['g_idx'],
+                'roomName' => $row['roomName']
+            ];
+            $data[] = $arr;
+        }
+
+        return $this->response->setJSON($data);
+    }
+
+    public function getListOption($goods_code)
+    {
+        if (!isset($goods_code)) {
+            return [];
+        }
+        $gsql = "SELECT * 
+                 FROM tbl_hotel_option 
+                 WHERE option_type = 'M' 
+                 AND goods_code='" . $goods_code . "' 
+                 GROUP BY o_room
+                 ORDER BY o_room ASC 
+            ";
+
+        return $this->connect->query($gsql)->getResultArray();
+    }
+
+    public function getListOptionRoom($goods_code, $o_room)
+    {
+        if (!isset($goods_code)) {
+            return [];
+        }
+
+        $fsql3 = "SELECT * 
+                  FROM tbl_hotel_option 
+                  WHERE option_type = 'M' 
+                  AND goods_code='" . $goods_code . "' 
+                  AND o_room = '" . $o_room . "'
+                  ORDER BY o_sdate ASC
+            ";
+
+        return $this->connect->query($fsql3)->getResultArray();
+    }
+
+    public function getListOptionType($goods_code)
+    {
+        if (!isset($goods_code)) {
+            return [];
+        }
+
+        $fsql3 = "select * from tbl_hotel_option where option_type = 'S' and  goods_code='" . $goods_code . "' order by idx asc ";
+
+        return $this->connect->query($fsql3)->getResultArray();
     }
 
     public function search_code()
