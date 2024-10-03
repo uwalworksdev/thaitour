@@ -1,5 +1,15 @@
+<?php
+
+use App\Controllers\Admin\AdminHotelController;
+
+?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+    <style>
+        .btn_01 {
+            height: 32px !important;
+        }
+    </style>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
     <script type="text/javascript" src="/js/admin/tours/write.js"></script>
 
@@ -40,7 +50,8 @@ $links = "list";
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li><a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $g_idx ?>`)" class="btn btn-default"><span
+                                <li><a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $g_idx ?>`)"
+                                       class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 </li>
                             <?php } else { ?>
@@ -336,6 +347,204 @@ $links = "list";
                                 </colgroup>
                                 <tbody>
 
+                                <tr height="45">
+                                    <th>호텔선택</th>
+                                    <td>
+                                        <select id="hotel_code" name="hotel_code" class="input_select"
+                                                onchange="fn_chgRoom(this.value)">
+                                            <option value="">선택</option>
+                                            <?php
+                                            foreach ($fresult3 as $frow) {
+                                                ?>
+                                                <option value="<?= $frow["code_no"] ?>"
+                                                    <?php if (isset($hotel_code) && $hotel_code === $frow["code_no"])
+                                                        echo "selected"; ?>>
+                                                    <?= $frow["stay_name_eng"] ?></option>
+                                            <?php } ?>
+                                        </select> <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                    </td>
+                                </tr>
+                                <tr height="45">
+                                    <th>
+                                        객실등록
+                                        <p style="display:block;margin-top:10px;">
+                                            <select name="roomIdx" id="roomIdx" class="input_select">
+
+                                            </select>
+                                            <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                        </p>
+                                    </th>
+                                    <td>
+									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
+										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
+                                        <div id="mainRoom">
+                                            <?php
+
+                                            $gresult = (new AdminHotelController())->getListOption($goods_code ?? null);
+                                            foreach ($gresult as $grow) {
+                                                ?>
+
+
+                                                <table>
+                                                    <colgroup>
+                                                        <col width="*">
+                                                        </col>
+                                                        <col width="25%">
+                                                        </col>
+                                                        <col width="10%">
+                                                        </col>
+                                                        <col width="30%">
+                                                        </col>
+                                                        <col width="10%">
+                                                        </col>
+                                                    </colgroup>
+                                                    <thead>
+                                                    <tr>
+                                                        <th>객실명</th>
+                                                        <th>기간</th>
+                                                        <th>가격</th>
+                                                        <th>마감날짜</th>
+                                                        <th>삭제</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tblroom<?= $grow['o_room'] ?>">
+
+
+                                                    <?php
+                                                    $gresult2 = (new AdminHotelController())->getListOptionRoom($goods_code ?? null, $grow['o_room'] ?? null);
+                                                    foreach ($gresult2 as $frow3) {
+
+                                                        ?>
+
+                                                        <tr>
+
+                                                            <td>
+                                                                <input type='hidden' name='o_idx[]'
+                                                                       value='<?= $frow3['idx'] ?>'/>
+                                                                <input type='hidden' name='option_type[]'
+                                                                       value='<?= $frow3['option_type'] ?>'/>
+                                                                <input type='hidden' name='o_room[]' id=''
+                                                                       value="<?= $frow3['o_room'] ?>" size="70"/>
+                                                                <input type='hidden' name='o_name[]' id=''
+                                                                       value="<?= $frow3['goods_name'] ?>" size="70"/>
+                                                                <?= $frow3['goods_name'] ?>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' readonly class='datepicker '
+                                                                       name='o_sdate[]'
+                                                                       value='<?= $frow3['o_sdate'] ?>'/> ~
+                                                                <input type='text' readonly class='datepicker '
+                                                                       name='o_edate[]'
+                                                                       value='<?= $frow3['o_edate'] ?>'/>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum' name='o_price1[]'
+                                                                       id=''
+                                                                       value="<?= $frow3['goods_price1'] ?>"/>
+                                                            </td>
+
+                                                            <td>
+                                                                <input type='text' class='' name='o_soldout[]' id=''
+                                                                       style='width:100%;'
+                                                                       value="<?= $frow3['o_soldout'] ?>"/>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button"
+                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)">
+                                                                    삭제
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                    </tbody>
+                                                </table>
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                <tr height="45">
+                                    <th>
+                                        추가옵션등록
+                                        <p style="display:block;margin-top:10px;">
+                                            <button type="button" id="btn_add_option2" class="btn_01">추가</button>
+                                        </p>
+                                    </th>
+                                    <td>
+										<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에
+											삭제바랍니다.</span>
+                                        <div>
+                                            <table>
+                                                <colgroup>
+                                                    <col width="*">
+                                                    <col width="25%">
+                                                    <col width="15%">
+                                                </colgroup>
+                                                <thead>
+                                                <tr>
+                                                    <th>옵션명</th>
+                                                    <th>가격</th>
+                                                    <th>삭제</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="settingBody2">
+
+
+                                                <?php
+
+
+                                                // 옵션 조회
+                                                $gresult3 = (new AdminHotelController())->getListOptionType($goods_code ?? null);
+                                                foreach ($gresult3 as $frow3) {
+                                                    ?>
+
+                                                    <tr>
+                                                        <td>
+                                                            <input type='hidden' name='o_idx[]'
+                                                                   value='<?= $frow3['idx'] ?>'/>
+                                                            <input type='hidden' name='option_type[]'
+                                                                   value='<?= $frow3['option_type'] ?>'/>
+                                                            <input type='text' name='o_name[]' id=''
+                                                                   value="<?= $frow3['goods_name'] ?>" size="70"/>
+                                                        </td>
+                                                        <td>
+                                                            <input type='text' class='onlynum' name='o_price1[]' id=''
+                                                                   value="<?= $frow3['goods_price1'] ?>"/>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button"
+                                                                    onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <?php
+                                                }
+                                                ?>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="90%"/>
+                                </colgroup>
+                                <tbody>
+
                                 <tr>
                                     <td colspan="2">
                                         이미지 등록
@@ -353,8 +562,7 @@ $links = "list";
                                                                                                         value='Y'><a
                                                 href="/uploads/hotel/<?= $ufile1 ?>"
                                                 class="imgpop"><?= $rfile1 ?></a><br><br>
-                                            <?php $imgs = get_img($ufile1, "/uploads/hotel/", "200", "200"); ?>
-                                            <img src="<?= $imgs ?>"/>
+                                            <img src="/uploads/hotel/<?= $ufile1 ?>" width="200px"/>
                                         <?php } ?>
 
                                     </td>
@@ -374,8 +582,7 @@ $links = "list";
                                                        value='Y'><a
                                                         href="/uploads/hotel/<?= ${"ufile" . $i} ?>"
                                                         class="imgpop"><?= ${"rfile" . $i} ?></a><br><br>
-                                                <?php $imgs = get_img(${"ufile" . $i}, "/uploads/hotel/", "200", "200"); ?>
-                                                <img src="<?= $imgs ?>"/>
+                                                <img src="/uploads/hotel/<?= ${"ufile" . $i} ?>" width="200px"/>
                                             <?php } ?>
 
                                         </td>
@@ -596,7 +803,8 @@ $links = "list";
                                 <?php } else { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $g_idx ?>`)" class="btn btn-default"><span
+                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $g_idx ?>`)"
+                                       class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 <?php } ?>
                             </li>
