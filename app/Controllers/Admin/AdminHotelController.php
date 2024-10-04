@@ -91,6 +91,32 @@ class AdminHotelController extends BaseController
             $row = $result->getRowArray();
         }
 
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='130301' order by onum desc, code_idx desc";
+        $fresult4 = $this->connect->query($fsql);
+        $fresult4 = $fresult4->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='130302' order by onum desc, code_idx desc";
+        $fresult5 = $this->connect->query($fsql);
+        $fresult5 = $fresult5->getResultArray();
+
+        $fresult5 = array_map(function ($item) {
+            $rs = (array)$item;
+
+            $code_no = $rs['code_no'];
+
+            $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='$code_no' order by onum desc, code_idx desc";
+
+            $rs_child = $this->connect->query($fsql)->getResultArray();
+
+            $rs['child'] = $rs_child;
+
+            return $rs;
+        }, $fresult5);
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='130303' order by onum desc, code_idx desc";
+        $fresult8 = $this->connect->query($fsql);
+        $fresult8 = $fresult8->getResultArray();
+
         $data = [
             'g_idx' => $g_idx,
             'pg' => $pg,
@@ -102,6 +128,9 @@ class AdminHotelController extends BaseController
             'fresult' => $fresult,
             'fresult2' => $fresult2,
             'fresult3' => $fresult3,
+            'fresult4' => $fresult4,
+            'fresult5' => $fresult5,
+            'fresult8' => $fresult8,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -154,6 +183,11 @@ class AdminHotelController extends BaseController
             $o_room = $_POST["o_room"] ?? [];
             $option_type = $_POST["option_type"] ?? [];
             $o_soldout = $_POST["o_soldout"] ?? [];
+
+            $code_utilities = updateSQ($_POST["code_utilities"] ?? '');
+            $code_services = updateSQ($_POST["code_services"] ?? '');
+            $code_best_utilities = updateSQ($_POST["code_best_utilities"] ?? '');
+            $code_populars = updateSQ($_POST["code_populars"] ?? '');
 
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -277,6 +311,10 @@ class AdminHotelController extends BaseController
                         ,room_cnt				= '" . $room_cnt . "'
                         ,chkIn					= '" . $chkIn . "'
                         ,oneInfo				= '" . $oneInfo . "'
+                        ,code_utilities			= '" . $code_utilities . "'
+                        ,code_services			= '" . $code_services . "'
+                        ,code_best_utilities	= '" . $code_best_utilities . "'
+                        ,code_populars	        = '" . $code_populars . "'
                         ,mod_date				= now()
                     where g_idx = '" . $g_idx . "'
                 ";
@@ -357,6 +395,10 @@ class AdminHotelController extends BaseController
                         ,room_cnt				= '" . $room_cnt . "'
                         ,chkIn					= '" . $chkIn . "'
                         ,oneInfo				= '" . $oneInfo . "'
+                        ,code_utilities			= '" . $code_utilities . "'
+                        ,code_services			= '" . $code_services . "'
+                        ,code_best_utilities	= '" . $code_best_utilities . "'
+                        ,code_populars	        = '" . $code_populars . "'
                         ,reg_date				= now()
                 ";
                 write_log("상품수정 : " . $sql);

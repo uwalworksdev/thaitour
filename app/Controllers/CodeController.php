@@ -59,7 +59,8 @@ class CodeController extends BaseController
 
         $titleStr = "생성";
         $parent_code_no = empty($s_parent_code_no) ? "0" : $s_parent_code_no;
-
+        $distance = '';
+        $type = '';
         if ($code_idx) {
             $row = $this->CodeModel->getCodeByIdx($code_idx);
             $code_no = $row['code_no'];
@@ -69,6 +70,9 @@ class CodeController extends BaseController
             $rfile1 = $row['rfile1'];
             $status = $row['status'];
             $onum = $row['onum'];
+            $is_best = $row['is_best'];
+            $distance = $row['distance'];
+            $type = $row['type'];
             $titleStr = "수정";
 
             $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
@@ -86,6 +90,7 @@ class CodeController extends BaseController
             }
 
             $onum = 0;
+            $is_best = false;
         }
         return view("admin/_code/write", [
             "row" => $row,
@@ -104,6 +109,9 @@ class CodeController extends BaseController
             "depth" => $depth,
             "code_gubun" => $code_gubun ?? "",
             "titleStr" => $titleStr,
+            "is_best" => $is_best,
+            "distance" => $distance,
+            "type" => $type,
             'code_idx' => $code_idx
         ]);
     }
@@ -121,6 +129,10 @@ class CodeController extends BaseController
         $onum = $this->request->getPost('onum');
         $product_idx = $this->request->getPost('product_idx');
         $yoil_idx = $this->request->getPost('yoil_idx');
+        $is_best = (bool)$this->request->getPost('is_best');
+        $distance = $this->request->getPost('distance');
+        $type = $this->request->getPost('type');
+        $file = $this->request->getFile('ufile1');
 
         //$upload = WRITEPATH . 'uploads/code/';
         $upload = ROOTPATH . 'public/data/code/';
@@ -132,6 +144,9 @@ class CodeController extends BaseController
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
+                'is_best' => $is_best,
+                'distance' => $distance,
+                'type' => $type,
             ];
             $this->CodeModel->update($code_idx, $data);
             write_log("코드수정: " . json_encode($data));
@@ -153,33 +168,23 @@ class CodeController extends BaseController
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
+                'is_best' => $is_best,
+                'type' => $type,
+                'distance' => $distance,
             ];
             $this->CodeModel->insert($data);
             $code_idx = $this->CodeModel->insertID();
             write_log("코드등록: " . json_encode($data));
         }
 
-        for ($i = 1; $i <= 1; $i++) {
-            if ($this->request->getPost('del_' . $i) == 'Y') {
-                $this->CodeModel->update($code_idx, [
-                    'ufile' . $i => '',
-                    'rfile' . $i => ''
-                ]);
-                write_log("0- Delete file ufile{$i} and rfile{$i}");
-            }
+        if ($file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $file->move($upload, $newName);
 
-            if ($file = $this->request->getFile('ufile' . $i)) {
-                if ($file->isValid() && !$file->hasMoved()) {
-                    $newName = $file->getRandomName();
-                    $file->move($upload, $newName);
-
-                    $this->CodeModel->update($code_idx, [
-                        'ufile' . $i => $newName,
-                        'rfile' . $i => $file->getName()
-                    ]);
-                    write_log("2- Upload file ufile{$i} and rfile{$i}");
-                }
-            }
+            $this->CodeModel->update($code_idx, [
+                'ufile1' => $newName,
+                'rfile1' => $file->getName()
+            ]);
         }
 
         if ($code_idx) {

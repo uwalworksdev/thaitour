@@ -138,22 +138,20 @@
                                     $num = count($hotel_code_name);
                                     ?>
                                     <div class="prd_keywords">
-                                        <span>
-                                            <?php if ($num === 0): ?>
-                                                <span class="prd_keywords_cus_span">
+                                        <?php if ($num === 0): ?>
+                                            <span class="prd_keywords_cus_span">
                                                     호텔
                                                 </span>
-                                            <?php endif; ?>
-                                            <?php $i = 0;
-                                            foreach ($hotel_code_name as $item): ?>
-                                                <span class="prd_keywords_cus_span"> <?= $item ?>
-                                                    <?php if ($i < $num - 1): ?>
-                                                        <img src="/images/ico/arrow_right_icon.png"
-                                                             alt="arrow_right_icon">
-                                                    <?php endif; ?>
+                                        <?php endif; ?>
+                                        <?php $i = 0;
+                                        foreach ($hotel_code_name as $item): ?>
+                                            <span class="prd_keywords_cus_span"> <?= $item ?>
+                                                <?php if ($i < $num - 1): ?>
+                                                    <img src="/images/ico/arrow_right_icon.png"
+                                                         alt="arrow_right_icon">
+                                                <?php endif; ?>
                                                 </span>
-                                                <?php $i++; endforeach; ?>
-                                        </span>
+                                            <?php $i++; endforeach; ?>
                                     </div>
                                     <div class="prd_name">
                                         <?= $hotel['goods_name_front'] ?>

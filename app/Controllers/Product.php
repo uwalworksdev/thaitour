@@ -120,7 +120,7 @@ class Product extends BaseController
 
             $products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' ORDER BY onum DESC")->getResultArray();
 
-            $products = array_map(function ($item) use ($code_no){
+            $products = array_map(function ($item) use ($code_no) {
                 $product = (array)$item;
                 $g_idx = $product['g_idx'];
                 ##############################################
@@ -530,7 +530,7 @@ class Product extends BaseController
         }
     }
 
-    public function index5($code_no)
+    public function listHotel($code_no)
     {
         try {
             $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
@@ -541,7 +541,7 @@ class Product extends BaseController
 
             $products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' ORDER BY onum DESC")->getResultArray();
 
-            $products = array_map(function ($item) use ($code_no){
+            $products = array_map(function ($item) use ($code_no) {
                 $product = (array)$item;
                 $g_idx = $product['g_idx'];
                 ##############################################
@@ -610,74 +610,78 @@ class Product extends BaseController
         }
     }
 
-    public function index6($code_no)
+    public function hotelDetail($idx)
     {
         try {
-            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
-            $perPage = 5;
+            $hotel = $this->db->query('SELECT * FROM tbl_hotel WHERE g_idx = ?', [$idx])->getRowArray();
+            if (!$hotel) {
+                throw new Exception('존재하지 않는 상품입니다.');
+            }
 
-            $banners = $this->bannerModel->getBanners($code_no);
-            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+            $hotel['array_hotel_code'] = $this->explodeAndTrim($hotel['product_code'], '|');
+            $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['goods_code'], ',');
 
-            $products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' ORDER BY onum DESC")->getResultArray();
+            $hotel['array_hotel_code_name'] = $this->getHotelCodeNames($hotel['array_hotel_code']);
 
-            $products = array_map(function ($item) use ($code_no){
-                $product = (array)$item;
-                $g_idx = $product['g_idx'];
-                ##############################################
-                $goods_code = $product['goods_code'];
-                $goods_code = explode(",", $goods_code);
-                ##############################################
-                $hotel_code = $product['product_code'];
-//                $hotel_code = trim('|', $hotel_code);
-                $hotel_code = explode("|", $hotel_code);
-                ##############################################
-                $product['array_hotel_code'] = $hotel_code;
-                $product['array_goods_code'] = $goods_code;
-                ##############################################
-                $hotel_code_name = [];
-                foreach ($hotel_code as $code) {
-                    $item = $this->db->query("SELECT * FROM tbl_code WHERE code_no = '$code'")->getRowArray();
+            list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['g_idx'], $hotel['array_hotel_code'][0] ?? '');
+            $hotel['total_review'] = $totalReview;
+            $hotel['review_average'] = $reviewAverage;
 
-                    if ($item && $item['code_name'] !== '') {
-                        $hotel_code_name[] = $item['code_name'];
-                    }
-                }
-                $product['array_hotel_code_name'] = $hotel_code_name;
-                ##############################################
-                $sql = "SELECT * FROM tbl_travel_review WHERE travel_type = ? AND product_idx = ?";
-                $reviews = $this->db->query($sql, [$code_no, $g_idx])->getResultArray();
-                $total_review = count($reviews);
-                if ($total_review > 0) {
-                    $review_average = 0;
-                    foreach ($reviews as $itemReview) {
-                        $review_average += $itemReview['number_stars'];
-                    }
-                    $review_average /= $total_review;
-                    $review_average = round($review_average, 1);
-                } else {
-                    $review_average = 0;
-                }
+            $suggestHotels = $this->getSuggestedHotels($hotel['g_idx'], $hotel['array_hotel_code'][0] ?? '');
 
-                $product['total_review'] = $total_review;
-                $product['review_average'] = $review_average;
+            $code_utilities = $hotel['code_utilities'];
+            $_arr_utilities = explode("|", $code_utilities);
 
-                return $product;
-            }, $products);
+            $code_services = $hotel['code_services'];
+            $_arr_services = explode("|", $code_services);
 
-            $totalProducts = count($products);
-            $pager = \Config\Services::pager();
+            $code_best_utilities = $hotel['code_best_utilities'];
+            $_arr_best_utilities = explode("|", $code_best_utilities);
+
+            $code_populars = $hotel['code_populars'];
+            $_arr_populars = explode("|", $code_populars);
+
+            $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
+            $list__best_utilities = rtrim(implode(',', $_arr_best_utilities), ',');
+            $list__services = rtrim(implode(',', $_arr_services), ',');
+            $list__populars = rtrim(implode(',', $_arr_populars), ',');
+
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+            $fresult4 = $this->db->query($fsql);
+            $fresult4 = $fresult4->getResultArray();
+
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+            $bresult4 = $this->db->query($fsql);
+            $bresult4 = $bresult4->getResultArray();
+
+            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='130302' ORDER BY onum DESC, code_idx DESC";
+            $fresult5 = $this->db->query($fsql);
+            $fresult5 = $fresult5->getResultArray();
+
+            $fresult5 = array_map(function ($item) use ($list__services){
+                $rs = (array)$item;
+
+                $code_no = $rs['code_no'];
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+
+                $rs_child = $this->db->query($fsql)->getResultArray();
+
+                $rs['child'] = $rs_child;
+
+                return $rs;
+            }, $fresult5);
+
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+            $fresult8 = $this->db->query($fsql);
+            $fresult8 = $fresult8->getResultArray();
 
             $data = [
-                'banners' => $banners,
-                'codeBanners' => $codeBanners,
-                'products' => $products,
-                'code_no' => $code_no,
-                's' => $s,
-                'pager' => $pager,
-                'perPage' => $perPage,
-                'totalProducts' => $totalProducts,
-                'tab_active' => '1',
+                'hotel' => $hotel,
+                'fresult4' => $fresult4,
+                'bresult4' => $bresult4,
+                'fresult5' => $fresult5,
+                'fresult8' => $fresult8,
+                'suggestHotel' => $suggestHotels,
             ];
 
             return $this->renderView('product/hotel/hotel-details', $data);
@@ -825,6 +829,70 @@ class Product extends BaseController
         $data['img_6'] = $this->getImage($data['product']['ufile6']);
 
         return $this->renderView('product/product_view', $data);
+    }
+
+    private function explodeAndTrim($string, $delimiter)
+    {
+        return array_filter(array_map('trim', explode($delimiter, $string)));
+    }
+
+    private function getHotelCodeNames(array $hotelCodes)
+    {
+        if (empty($hotelCodes)) {
+            return [];
+        }
+
+        $list = implode(',', $hotelCodes);
+
+        $sql = "SELECT code_no, code_name FROM tbl_code WHERE code_no IN (?)";
+        $items = $this->db->query($sql, [$list])->getResultArray();
+
+        $hotelCodeNames = [];
+        foreach ($items as $item) {
+            if (!empty($item['code_name'])) {
+                $hotelCodeNames[] = $item['code_name'];
+            }
+        }
+
+        return $hotelCodeNames;
+    }
+
+    private function getReviewSummary($g_idx, $code)
+    {
+        $sql = "SELECT number_stars FROM tbl_travel_review WHERE product_idx = ?";
+        $reviews = $this->db->query($sql, [$g_idx])->getResultArray();
+
+        $totalReview = count($reviews);
+
+        if ($totalReview === 0) {
+            return [0, 0];
+        }
+
+        $reviewAverage = array_sum(array_column($reviews, 'number_stars')) / $totalReview;
+
+        return [$totalReview, round($reviewAverage, 1)];
+    }
+
+    private function getSuggestedHotels($currentHotelId, $currentHotelCode)
+    {
+        $suggestHotels = $this->db->table('tbl_hotel')
+            ->where('item_state !=', 'dele')
+            ->where('g_idx !=', $currentHotelId)
+            ->get()
+            ->getResultArray();
+
+        return array_map(function ($hotel) use ($currentHotelCode) {
+            $hotel['array_hotel_code'] = $this->explodeAndTrim($hotel['product_code'], '|');
+            $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['goods_code'], ',');
+
+            $hotel['array_hotel_code_name'] = $this->getHotelCodeNames($hotel['array_hotel_code']);
+
+            list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['g_idx'], $currentHotelCode);
+            $hotel['total_review'] = $totalReview;
+            $hotel['review_average'] = $reviewAverage;
+
+            return $hotel;
+        }, $suggestHotels);
     }
 
     private function calculateMinAmt($air_info)
