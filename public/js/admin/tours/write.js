@@ -132,6 +132,35 @@ function send_it() {
         return;
     }
 
+    let _code_utilities = '';
+    let _code_services = '';
+    let _code_best_utilities = '';
+    let _code_populars = '';
+
+    $("input[name=_code_utilities]:checked").each(function () {
+        _code_utilities += $(this).val() + '|';
+    })
+
+    $("#code_utilities").val(_code_utilities);
+
+    $("input[name=_code_services]:checked").each(function () {
+        _code_services += $(this).val() + '|';
+    })
+
+    $("#code_services").val(_code_services);
+
+    $("input[name=_code_best_utilities]:checked").each(function () {
+        _code_best_utilities += $(this).val() + '|';
+    })
+
+    $("#code_best_utilities").val(_code_best_utilities);
+
+    $("input[name=_code_populars]:checked").each(function () {
+        _code_populars += $(this).val() + '|';
+    })
+
+    $("#code_populars").val(_code_populars);
+
 
     frm.submit();
 }

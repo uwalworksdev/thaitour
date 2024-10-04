@@ -138,14 +138,14 @@
 					</colgroup>
 					<tbody>
 						
-						<tr height=45>
+						<tr>
 							<th>코드NO</th>
 							<td>
 								<?= $code_no ?>
 							</td>
 						</tr>
 						<?php if ($parent_code_no == "0" && $code_idx == "") { ?>
-                            <tr height=45>
+                            <tr>
 							<th>코드구분</th>
 							<td>
 								<input type="text" id="code_gubun" name="code_gubun" value="<?= $code_gubun ?>"
@@ -156,23 +156,30 @@
                             <input type="hidden" id="code_gubun" name="code_gubun" value="<?= $code_gubun ?>"
                                    class="input_txt" style="width:100px;ime-mode:disabled"/>
                         <?php } ?>
-						<tr height=45>
+						<tr>
 							<th>코드명</th>
 							<td>
 								<input type="text" id="code_name" name="code_name" value="<?= $code_name ?>"
                                        class="input_txt" style="width:90%"/>
 							</td>
 						</tr>
-                        <?php if ($parent_code_no === '130301') : ?>
-                            <tr height=45>
-							<th>뛰어난</th>
-							<td>
-								<input type="checkbox" id="is_best" name="is_best" value="1"
-                                       class="input_txt" <?= $is_best ? 'checked' : '' ?>/>
-							</td>
-						</tr>
+                        <?php if ($parent_code_no === '130303') : ?>
+                            <tr>
+                                <th>거리</th>
+                                <td>
+                                    <input type="text" id="distance" name="distance" value="<?= $distance ?>"
+                                           class="input_txt"/>
+                                </td>
+						    </tr>
+                            <tr>
+                                <th>유형</th>
+                                <td>
+                                    <input type="text" id="type" name="type" value="<?= $type ?>"
+                                           class="input_txt"/>
+                                </td>
+						    </tr>
                         <?php endif; ?>
-						<tr height=45>
+						<tr>
 							<th>이미지</th>
 							<td>
 								<input type="file" id="ufile1" name="ufile1" class="input_txt" style="width:20%"/>
@@ -188,7 +195,7 @@
 						<?php
                         if ($parent_code_no == 14) {
                             ?>
-                            <tr height=45>
+                            <tr>
 								<th>유류할증료</th>
 								<td>
 									<input type="text" id="init_oil_price" name="init_oil_price"
@@ -199,7 +206,7 @@
                             <?php
                         }
                         ?>
-						<tr height=45>
+						<tr>
 							<th>현황</th>
 							<td>
 								<input type="radio" name="status" value="Y" <?php if ($status == "Y" || $status == "") {
@@ -214,7 +221,7 @@
 							</td>
 						</tr>
 						
-						<tr height=45>
+						<tr>
 							<th>우선순위</th>
 							<td>
 								<input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"

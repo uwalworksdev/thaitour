@@ -22,6 +22,9 @@ class Code extends Model
         "status",
         "onum",
         "init_oil_price",
+        "is_best",
+        "distance",
+        "type",
         "ref_product_code_idx"
     ];
 

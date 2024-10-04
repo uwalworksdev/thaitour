@@ -31,7 +31,7 @@ $links = "list";
                     <div class="menus">
                         <ul>
 
-                            <li><a href="/AdmMaster/_goods/hlist.php" class="btn btn-default"><span
+                            <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
                             <?php if ($g_idx) { ?>
@@ -41,7 +41,7 @@ $links = "list";
                                 <script>
                                     function copy_it() {
                                         if (confirm("제품을 복사하시겠습니까?")) {
-                                            location.href = "copy2.php?g_idx=<?= $g_idx ?>";
+                                            location.href = "copy2?g_idx=<?= $g_idx ?>";
                                         }
                                     }
                                 </script>
@@ -79,6 +79,15 @@ $links = "list";
                         <input type="hidden" name="g_idx" id="g_idx" value='<?= $g_idx ?>'/>
                         <!-- 상품 카테고리 -->
                         <input type="hidden" name="product_code" id="product_code" value='<?= $product_code ?? "" ?>'/>
+
+                        <input type="hidden" name="code_utilities" id="code_utilities"
+                               value='<?= $code_utilities ?? "" ?>'/>
+                        <input type="hidden" name="code_services" id="code_services"
+                               value='<?= $code_services ?? "" ?>'/>
+                        <input type="hidden" name="code_best_utilities" id="code_best_utilities"
+                               value='<?= $code_best_utilities ?? "" ?>'/>
+                        <input type="hidden" name="code_populars" id="code_populars"
+                               value='<?= $code_populars ?? "" ?>'/>
 
                         <!-- 상품 옵션 -->
                         <input type="hidden" name="product_option" id="product_option"
@@ -296,6 +305,116 @@ $links = "list";
                                                   style="width:90%;height:100px;"><?= $admin_memo ?? "" ?></textarea>
                                     </td>
                                 </tr>
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        숙소개요
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>추천 포인트</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_utilities);
+                                        foreach ($fresult4 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
+                                                   name="_code_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>추천 포인트</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_best_utilities);
+                                        foreach ($fresult4 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
+                                                   name="_code_best_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>시설 & 서비스</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_services);
+                                        foreach ($fresult5 as $row_r) : ?>
+                                            <div class="">
+                                                <?= $row_r['code_name'] ?>
+                                                <div class="" style="margin-left: 30px">
+                                                    <?php
+                                                    $fresult6 = $row_r['child'];
+                                                    foreach ($fresult6 as $row_r2) :
+                                                        $find2 = "";
+                                                        for ($i = 0; $i < count($_arr); $i++) {
+                                                            if ($_arr[$i]) {
+                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <input type="checkbox"
+                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
+                                                               name="_code_services"
+                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> /><?= $row_r2['code_name'] ?>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>호텔주변 추천명소</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_populars);
+                                        foreach ($fresult8 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_populars<?= $row_r['code_no'] ?>"
+                                                   name="_code_populars"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
                                 </tbody>
                             </table>
 
@@ -654,13 +773,13 @@ $links = "list";
                                 </colgroup>
                                 <tbody>
 
-                                <tr height=45>
+                                <tr>
                                     <td colspan="2">
                                         여행일정
                                     </td>
                                 </tr>
 
-                                <tr height=45>
+                                <tr>
                                     <td colspan="2">
 
 										<textarea name="c_calendar" id="c_calendar" rows="10" cols="100"
@@ -714,13 +833,13 @@ $links = "list";
                                 </colgroup>
                                 <tbody>
 
-                                <tr height=45>
+                                <tr>
                                     <td colspan="2">
                                         취소/환불규정
                                     </td>
                                 </tr>
 
-                                <tr height=45>
+                                <tr>
                                     <td colspan="2">
 
 										<textarea name="caution" id="caution" rows="10" cols="100" class="input_txt"
