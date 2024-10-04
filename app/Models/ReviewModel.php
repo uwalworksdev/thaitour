@@ -6,13 +6,15 @@ class ReviewModel extends Model
 {
     protected $table = 'tbl_travel_review';
     protected $primaryKey = 'idx';
-    protected $allowedFields = ["reg_m_idx", "user_name", "user_email", "travel_type", "travel_type_2", "travel_type_3", "product_idx", "title", "contents", "rfile1", "ufile1", "rfile2", "ufile2", "status", "passwd_yn", "passwd", "r_date", "m_date", "is_best", "onum", "display", "bbs_no", "user_ip"];
+    protected $allowedFields = ["reg_m_idx", "user_name", "user_email", "travel_type", "travel_type_2", "travel_type_3", "product_idx", "title", "contents", "rfile1", "ufile1", "rfile2", "ufile2", "status", "passwd_yn", "passwd", "r_date", "m_date", "is_best", "onum", "display", "bbs_no", "user_ip", "number_stars"];
+
     public function __construct()
     {
         parent::__construct();
         $this->db = \Config\Database::connect();
         $this->db->query("SET SESSION sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
     }
+
     public function getBestReviews($s_txt = null, $search_category = null)
     {
         $private_key = private_key();
@@ -36,6 +38,7 @@ class ReviewModel extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+
     public function getReviews($s_txt = null, $search_category = null, $category = null, $page = 1, $scale = 10)
     {
         $private_key = private_key();
@@ -70,11 +73,11 @@ class ReviewModel extends Model
         $builder->orderBy('A.onum', 'desc')
             ->orderBy('A.r_date', 'desc')
             ->limit($scale, $start);
-            $query = $builder->get();
-            $review_list = $query->getResultArray();
-            
-            $no = $total_cnt - $start;
-            
+        $query = $builder->get();
+        $review_list = $query->getResultArray();
+
+        $no = $total_cnt - $start;
+
         return [
             'review_list' => $review_list,
             'total_cnt' => $total_cnt,
@@ -83,16 +86,17 @@ class ReviewModel extends Model
             'no' => $no,
         ];
     }
+
     public function getReview($idx)
     {
         $builder = $this->db->table($this->table . ' a');
-        
+
         $builder->select('a.*, b.product_name, c.code_name');
         $builder->join('tbl_product_mst b', 'a.product_idx = b.product_idx', 'left');
         $builder->join('tbl_code c', 'a.travel_type = c.code_no', 'left');
-        
+
         $builder->where('a.idx', $idx);
-        
+
         $query = $builder->get();
         $result = $query->getRowArray();
 
