@@ -126,7 +126,7 @@
                     <div class="thailand_hotel_swiper_ swiper">
                         <div class="swiper-wrapper">
                             <?php foreach ($products as $hotel): ?>
-                                <a href="/product-hotel/list-hotel/<?= $hotel['g_idx'] ?>"
+                                <a href="/product-hotel/hotel-detail/<?= $hotel['g_idx'] ?>"
                                    class="thailand_hotel_swiper_item_ swiper-slide">
                                     <div class="img_box img_box_10">
                                         <img src="/uploads/hotel/<?= $hotel['ufile1'] ?>" alt="main"
