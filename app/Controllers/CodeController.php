@@ -69,6 +69,7 @@ class CodeController extends BaseController
             $rfile1 = $row['rfile1'];
             $status = $row['status'];
             $onum = $row['onum'];
+            $is_best = $row['is_best'];
             $titleStr = "수정";
 
             $depth = $this->CodeModel->countByParentCodeNo($row['code_no']);
@@ -86,6 +87,7 @@ class CodeController extends BaseController
             }
 
             $onum = 0;
+            $is_best = false;
         }
         return view("admin/_code/write", [
             "row" => $row,
@@ -104,6 +106,7 @@ class CodeController extends BaseController
             "depth" => $depth,
             "code_gubun" => $code_gubun ?? "",
             "titleStr" => $titleStr,
+            "is_best" => $is_best,
             'code_idx' => $code_idx
         ]);
     }
@@ -121,6 +124,7 @@ class CodeController extends BaseController
         $onum = $this->request->getPost('onum');
         $product_idx = $this->request->getPost('product_idx');
         $yoil_idx = $this->request->getPost('yoil_idx');
+        $is_best = (bool)$this->request->getPost('is_best');
 
         //$upload = WRITEPATH . 'uploads/code/';
         $upload = ROOTPATH . 'public/data/code/';
@@ -132,6 +136,7 @@ class CodeController extends BaseController
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
+                'is_best' => $is_best,
             ];
             $this->CodeModel->update($code_idx, $data);
             write_log("코드수정: " . json_encode($data));
@@ -153,6 +158,7 @@ class CodeController extends BaseController
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
+                'is_best' => $is_best,
             ];
             $this->CodeModel->insert($data);
             $code_idx = $this->CodeModel->insertID();
