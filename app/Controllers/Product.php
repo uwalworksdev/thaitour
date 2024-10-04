@@ -9,6 +9,7 @@ use App\Config\CustomConstants;
 use Config\CustomConstants as ConfigCustomConstants;
 use Exception;
 use http\Client\Request;
+use App\Models\Hotel;
 
 class Product extends BaseController
 {
@@ -16,12 +17,14 @@ class Product extends BaseController
     private $productModel;
     private $bbsListModel;
     private $db;
+    private $hotel;
 
     public function __construct()
     {
         $this->db = db_connect();
         $this->bannerModel = model("Banner_model");
         $this->productModel = model("Product_model");
+        $this->hotel = model(Hotel::class);
         $this->bbsListModel = model("Bbs");
         helper('my_helper');
         $constants = new ConfigCustomConstants();
@@ -115,11 +118,54 @@ class Product extends BaseController
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
 
-            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+            $products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' ORDER BY onum DESC")->getResultArray();
 
-            $products = $this->productModel->getProducts($code_no, $s, $perPage);
+            $products = array_map(function ($item) use ($code_no){
+                $product = (array)$item;
+                $g_idx = $product['g_idx'];
+                ##############################################
+                $goods_code = $product['goods_code'];
+                $goods_code = explode(",", $goods_code);
+                ##############################################
+                $hotel_code = $product['product_code'];
+//                $hotel_code = trim('|', $hotel_code);
+                $hotel_code = explode("|", $hotel_code);
+                ##############################################
+                $product['array_hotel_code'] = $hotel_code;
+                $product['array_goods_code'] = $goods_code;
+                ##############################################
+                $hotel_code_name = [];
+                foreach ($hotel_code as $code) {
+                    $item = $this->db->query("SELECT * FROM tbl_code WHERE code_no = '$code'")->getRowArray();
 
-            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+                    if ($item && $item['code_name'] !== '') {
+                        $hotel_code_name[] = $item['code_name'];
+                    }
+                }
+                $product['array_hotel_code_name'] = $hotel_code_name;
+                ##############################################
+                $sql = "SELECT * FROM tbl_travel_review WHERE travel_type = ? AND product_idx = ?";
+                $reviews = $this->db->query($sql, [$code_no, $g_idx])->getResultArray();
+                $total_review = count($reviews);
+                if ($total_review > 0) {
+                    $review_average = 0;
+                    foreach ($reviews as $itemReview) {
+                        $review_average += $itemReview['number_stars'];
+                    }
+                    $review_average /= $total_review;
+                    $review_average = round($review_average, 1);
+                } else {
+                    $review_average = 0;
+                }
+
+                $product['total_review'] = $total_review;
+                $product['review_average'] = $review_average;
+
+                return $product;
+            }, $products);
+
+
+            $totalProducts = count($products);
 
             $pager = \Config\Services::pager();
 
@@ -148,7 +194,6 @@ class Product extends BaseController
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
-                'suggestedProducts' => $suggestedProducts,
                 'products' => $products,
                 'code_no' => $code_no,
                 's' => $s,
@@ -671,11 +716,6 @@ class Product extends BaseController
         }
 
 
-
-
-
-
-
         $data['start_date_in'] = $start_date_in;
         $data['product_info'] = $product_info;
         $data['air_info'] = $air_info;
@@ -695,10 +735,6 @@ class Product extends BaseController
         $data['sel_date'] = $sel_date;
         $data['sel_price'] = $sel_price;
         $data['first_date'] = $first_date['get_date'] ?? '';
-
-
-
-
 
 
         $data['product_level'] = $this->productModel->getProductLevel($data['product']['product_level']);
