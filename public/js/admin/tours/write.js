@@ -633,7 +633,7 @@ $(document).ready(function () {
         addOption += "		<input type='hidden' name='o_name[]'  value='" + roomName + "' size='70' />		  ";
         addOption += roomName;
         addOption += "	</td>																  ";
-        addOption += "	<td>																  ";
+        addOption += "	<td class='flex_td' style='display: flex; align-items: center'>																  ";
         addOption += "		<input type='text' class='datepicker' readonly name='o_sdate[]'  value='' /> ~ ";
         addOption += "		<input type='text' class='datepicker' readonly name='o_edate[]'  value='' /> ";
         addOption += "	</td>																  ";

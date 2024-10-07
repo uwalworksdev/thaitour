@@ -428,25 +428,29 @@
                                                placeholder="" style="width:90%"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>호텔부대시설</th>
-                                    <td colspan="3">
-                                        <?php
-                                        $_arr = explode("|", $facilities);
-                                        foreach ($fresult4 as $row_f) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_f['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="facilities_<?= $row_f['code_no'] ?>"
-                                                   name="_facilities"
-                                                   value="<?= $row_f['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_f['code_name'] ?><?= $find ?>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
+                                <!--                                <tr>-->
+                                <!--                                    <th>호텔부대시설</th>-->
+                                <!--                                    <td colspan="3">-->
+                                <!--                                        --><?php
+                                //                                        $_arr = explode("|", $facilities);
+                                //                                        foreach ($fresult4 as $row_f) :
+                                //                                            $find = "";
+                                //                                            for ($i = 0; $i < count($_arr); $i++) {
+                                //                                                if ($_arr[$i]) {
+                                //                                                    if ($_arr[$i] == $row_f['code_no']) $find = "Y";
+                                //                                                }
+                                //                                            }
+                                //                                            ?>
+                                <!--                                            <input type="checkbox" id="facilities_-->
+                                <?php //= $row_f['code_no'] ?><!--"-->
+                                <!--                                                   name="_facilities"-->
+                                <!--                                                   value="-->
+                                <?php //= $row_f['code_no'] ?><!--" -->
+                                <?php //if ($find == "Y") echo "checked"; ?><!-- />-->
+                                <?php //= $row_f['code_name'] ?><!----><?php //= $find ?>
+                                <!--                                        --><?php //endforeach; ?>
+                                <!--                                    </td>-->
+                                <!--                                </tr>-->
                                 </tbody>
 
                             </table>
@@ -489,7 +493,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>추천 포인트</th>
+                                    <th>인기 시설 및 서비스</th>
                                     <td colspan="3">
                                         <?php
                                         $_arr = explode("|", $code_best_utilities);
@@ -514,9 +518,10 @@
                                         <?php
                                         $_arr = explode("|", $code_services);
                                         foreach ($fresult5 as $row_r) : ?>
-                                            <div class="">
-                                                <?= $row_r['code_name'] ?>
-                                                <div class="" style="margin-left: 30px">
+                                            <div class="" style="margin-bottom: 20px">
+                                                <span class=""
+                                                      style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
+                                                <div class="" style="margin-left: 30px;margin-top: 8px;">
                                                     <?php
                                                     $fresult6 = $row_r['child'];
                                                     foreach ($fresult6 as $row_r2) :
