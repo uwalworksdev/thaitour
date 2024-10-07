@@ -13,20 +13,6 @@
 <script>
     $(function () {
         $.datepicker.regional['ko'] = {
-            showButtonPanel: true,
-            beforeShow: function (input) {
-                setTimeout(function () {
-                    var buttonPane = $(input)
-                        .datepicker("widget")
-                        .find(".ui-datepicker-buttonpane");
-                    var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                    btn.unbind("click").bind("click", function () {
-                        $.datepicker._clearDate(input);
-                    });
-                    btn.appendTo(buttonPane);
-                }, 1);
-            },
-            closeText: '닫기',
             prevText: '이전',
             nextText: '다음',
             monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -38,7 +24,6 @@
             dateFormat: 'yy-mm-dd',
             firstDay: 0,
             isRTL: false,
-            showMonthAfterYear: true,
             changeMonth: true,
             changeYear: true,
             showMonthAfterYear: true,
@@ -48,67 +33,10 @@
         $.datepicker.setDefaults($.datepicker.regional['ko']);
 
         setTimeout(function () {
-            $(".datepicker").datepicker({
-                showButtonPanel: true
-                , beforeShow: function (input) {
-                    setTimeout(function () {
-                        var buttonPane = $(input)
-                            .datepicker("widget")
-                            .find(".ui-datepicker-buttonpane");
-                        var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                        btn.unbind("click").bind("click", function () {
-                            $.datepicker._clearDate(input);
-                        });
-                        btn.appendTo(buttonPane);
-                    }, 1);
-                }
-                , dateFormat: 'yy-mm-dd'
-                , showOn: "both"
-                , yearRange: "c-100:c+10"
-                , buttonImage: "/AdmMaster/_images/common/date.png"
-                , buttonImageOnly: true
-                , closeText: '닫기'
-                , prevText: '이전'
-                , nextText: '다음'
-
-            });
-            $(".datepicker2").datepicker({
-                showButtonPanel: true
-                , beforeShow: function (input) {
-                    setTimeout(function () {
-                        var buttonPane = $(input)
-                            .datepicker("widget")
-                            .find(".ui-datepicker-buttonpane");
-                        var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                        btn.unbind("click").bind("click", function () {
-                            $.datepicker._clearDate(input);
-                        });
-                        btn.appendTo(buttonPane);
-                    }, 1);
-                }
-                , dateFormat: 'yy-mm-dd'
-                , yearRange: "c-100:c+10"
-                , closeText: '닫기'
-                , prevText: '이전'
-                , nextText: '다음'
-
-            });
+            $(".datepicker").datepicker();
+            $(".datepicker2").datepicker();
             $('img.ui-datepicker-trigger').css({'cursor': 'pointer'});
             $('input.hasDatepicker').css({'cursor': 'pointer'});
-            $(".ui-datepicker-prev").css({
-                "background-image": "url('/images/ico/caret-left-square.png')",
-                "background-repeat": "no-repeat",
-                "background-position": "center center",
-                "background-size": "20px 20px"
-            });
-
-            // Áp dụng cho nút Next
-            $(".ui-datepicker-next").css({
-                "background-image": "url('/images/ico/caret-right-square.png')",
-                "background-repeat": "no-repeat",
-                "background-position": "center center",
-                "background-size": "20px 20px"
-            });
         }, 100);
     });
 

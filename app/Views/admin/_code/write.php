@@ -163,7 +163,7 @@
                                        class="input_txt" style="width:90%"/>
 							</td>
 						</tr>
-                        <?php if ($parent_code_no === '130303') : ?>
+                        <?php if ($parent_code_no === '35') : ?>
                             <tr>
                                 <th>거리</th>
                                 <td>

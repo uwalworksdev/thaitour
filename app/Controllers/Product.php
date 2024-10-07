@@ -646,41 +646,50 @@ class Product extends BaseController
             $list__services = rtrim(implode(',', $_arr_services), ',');
             $list__populars = rtrim(implode(',', $_arr_populars), ',');
 
-            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
-            $fresult4 = $this->db->query($fsql);
-            $fresult4 = $fresult4->getResultArray();
+            if (!empty($list__utilities)) {
+                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
 
-            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
-            $bresult4 = $this->db->query($fsql);
-            $bresult4 = $bresult4->getResultArray();
+                $fresult4 = $this->db->query($fsql);
+                $fresult4 = $fresult4->getResultArray();
+            }
 
-            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='130302' ORDER BY onum DESC, code_idx DESC";
-            $fresult5 = $this->db->query($fsql);
-            $fresult5 = $fresult5->getResultArray();
+            if (!empty($list__best_utilities)) {
+                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+                $bresult4 = $this->db->query($fsql);
+                $bresult4 = $bresult4->getResultArray();
+            }
 
-            $fresult5 = array_map(function ($item) use ($list__services){
-                $rs = (array)$item;
+            if (!empty($list__services)) {
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='34' ORDER BY onum DESC, code_idx DESC";
+                $fresult5 = $this->db->query($fsql);
+                $fresult5 = $fresult5->getResultArray();
 
-                $code_no = $rs['code_no'];
-                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+                $fresult5 = array_map(function ($item) use ($list__services) {
+                    $rs = (array)$item;
 
-                $rs_child = $this->db->query($fsql)->getResultArray();
+                    $code_no = $rs['code_no'];
+                    $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
 
-                $rs['child'] = $rs_child;
+                    $rs_child = $this->db->query($fsql)->getResultArray();
 
-                return $rs;
-            }, $fresult5);
+                    $rs['child'] = $rs_child;
 
-            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
-            $fresult8 = $this->db->query($fsql);
-            $fresult8 = $fresult8->getResultArray();
+                    return $rs;
+                }, $fresult5);
+            }
+
+            if (!empty($list__populars)) {
+                $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+                $fresult8 = $this->db->query($fsql);
+                $fresult8 = $fresult8->getResultArray();
+            }
 
             $data = [
                 'hotel' => $hotel,
-                'fresult4' => $fresult4,
-                'bresult4' => $bresult4,
-                'fresult5' => $fresult5,
-                'fresult8' => $fresult8,
+                'fresult4' => $fresult4 ?? [],
+                'bresult4' => $bresult4 ?? [],
+                'fresult5' => $fresult5 ?? [],
+                'fresult8' => $fresult8 ?? [],
                 'suggestHotel' => $suggestHotels,
             ];
 
