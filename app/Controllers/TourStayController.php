@@ -227,14 +227,15 @@ class TourStayController extends BaseController
             $stay_m_date = $row["stay_m_date"];
             $stay_r_date = $row["stay_r_date"];
 
+            $code_utilities = $row["code_utilities"];
+            $code_services = $row["code_services"];
+            $code_best_utilities = $row["code_best_utilities"];
+            $code_populars = $row["code_populars"];
+
             $titleStr = "숙소정보 수정";
         }
 
         $pq = $country_code_1 ?? '';
-
-        $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
-        $fresult = $this->connect->query($fsql) or die ($this->connect->error);
-        $fresult = $fresult->getResultArray();
 
         $fsql = "select * from tbl_code where code_gubun='country' and depth='2' order by onum desc, code_idx desc";
         $fresult1 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -256,9 +257,34 @@ class TourStayController extends BaseController
         $rresult = $this->connect->query($r_sql);
         $rresult = $rresult->getResultArray();
 
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
+        $fresult6 = $this->connect->query($fsql);
+        $fresult6 = $fresult6->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
+        $fresult5 = $this->connect->query($fsql);
+        $fresult5 = $fresult5->getResultArray();
+
+        $fresult5 = array_map(function ($item) {
+            $rs = (array)$item;
+
+            $code_no = $rs['code_no'];
+
+            $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='$code_no' order by onum desc, code_idx desc";
+
+            $rs_child = $this->connect->query($fsql)->getResultArray();
+
+            $rs['child'] = $rs_child;
+
+            return $rs;
+        }, $fresult5);
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='35' order by onum desc, code_idx desc";
+        $fresult8 = $this->connect->query($fsql);
+        $fresult8 = $fresult8->getResultArray();
+
         $data = [
             "row" => $row,
-            "fresult" => $fresult,
             "fresult1" => $fresult1,
             "fresult2" => $fresult2,
             "fresult3" => $fresult3,
@@ -391,6 +417,13 @@ class TourStayController extends BaseController
             "stay_room" => $stay_room ?? '',
             "stay_homepage" => $stay_homepage ?? '',
             "stay_contents" => $stay_contents ?? '',
+            "code_utilities" => $code_utilities ?? '',
+            "code_services" => $code_services ?? '',
+            "code_best_utilities" => $code_best_utilities ?? '',
+            "code_populars" => $code_populars ?? '',
+            'fresult6' => $fresult6,
+            'fresult5' => $fresult5,
+            'fresult8' => $fresult8,
         ];
 
         return $data;
@@ -440,6 +473,11 @@ class TourStayController extends BaseController
             $tel_no = updateSQ($_POST["tel_no"] ?? '');
             $note = updateSQ($_POST["note"] ?? '');
             $stay_onum = updateSQ($_POST["stay_onum"] ?? '');
+
+            $code_utilities = updateSQ($_POST["code_utilities"] ?? '');
+            $code_services = updateSQ($_POST["code_services"] ?? '');
+            $code_best_utilities = updateSQ($_POST["code_best_utilities"] ?? '');
+            $code_populars = updateSQ($_POST["code_populars"] ?? '');
 
             for ($i = 1; $i <= 5; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -502,6 +540,10 @@ class TourStayController extends BaseController
                             ,tel_no			        = '" . $tel_no . "'
                             ,note			   	 	= '" . $note . "'
                             ,stay_onum				= '" . $stay_onum . "'
+                            ,code_utilities			= '" . $code_utilities . "'
+                            ,code_services			= '" . $code_services . "'
+                            ,code_best_utilities	= '" . $code_best_utilities . "'
+                            ,code_populars			= '" . $code_populars . "'
                             ,stay_m_date			= now()
                         where stay_idx				= '" . $stay_idx . "'
                     ";
@@ -549,6 +591,10 @@ class TourStayController extends BaseController
                             ,ufile3					= '" . $ufile_3 . "'
                             ,ufile4					= '" . $ufile_4 . "'
                             ,ufile5					= '" . $ufile_5 . "'
+                            ,code_utilities			= '" . $code_utilities . "'
+                            ,code_services			= '" . $code_services . "'
+                            ,code_best_utilities	= '" . $code_best_utilities . "'
+                            ,code_populars			= '" . $code_populars . "'
                             ,stay_m_date			= now()
                             ,stay_r_date			= now()
                     ";

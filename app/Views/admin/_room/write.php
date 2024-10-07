@@ -60,6 +60,8 @@ $links = "list";
                           target="hiddenFrame22"> <!--  -->
                         <!-- 상품 고유 번호 -->
                         <input type="hidden" name="g_idx" id="g_idx" value='<?= $g_idx ?>'/>
+                        <input type=hidden name="room_facil" id="room_facil" value='<?= $room_facil ?>'>
+
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">
@@ -77,23 +79,30 @@ $links = "list";
                                         기본정보
                                     </td>
                                 </tr>
-<!--                                <tr>-->
-<!--                                    <th>호텔선택</th>-->
-<!--                                    <td colspan="3">-->
-<!--                                        <select id="hotel_code" name="hotel_code" class="input_select">-->
-<!--                                            --><?php
-//                                            foreach ($fresult as $frow) {
-//                                                ?>
-<!--                                                <option value="--><?php //= $frow["code_no"] ?><!--" --><?php //if (isset($hotel_code) && $hotel_code == $frow["code_no"]) echo "selected"; ?><!-- >--><?php //= $frow["code_name"] ?><!--</option>-->
-<!--                                            --><?php //} ?>
-<!--                                        </select>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
                                 <tr>
                                     <th>룸 이름</th>
                                     <td colspan="3">
                                         <input type="text" name="roomName" value="<?= $roomName ?? '' ?>" class="text"
                                                style="width:300px" maxlength="50"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>객실시설</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $room_facil);
+                                        foreach ($fresult as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
+                                                   name="_room_facil"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -186,8 +195,12 @@ $links = "list";
                 return;
             }
 
+            let room_facil = "";
+            $("input[name=_room_facil]:checked").each(function () {
+                room_facil += $(this).val() + '|';
+            })
 
-            console.log(3423);
+            $("#room_facil").val(room_facil);
 
             frm.submit();
         }

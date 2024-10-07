@@ -93,13 +93,9 @@ class AdminRoomController extends BaseController
             $row = $result->getRowArray();
         }
 
-//        $fsql = "select *
-//                    from tbl_code
-//                    where code_gubun = 'fsaf'
-//                    and parent_code_no = '30'
-//                    order by onum desc, code_idx desc";
-//        $fresult = $this->connect->query($fsql);
-//        $fresult = $fresult->getResultArray();
+        $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
+        $fresult = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult = $fresult->getResultArray();
 
         $data = [
             'g_idx' => $g_idx,
@@ -116,13 +112,12 @@ class AdminRoomController extends BaseController
 
     public function write_ok()
     {
-
         try {
             $files = $this->request->getFiles();
             $g_idx = updateSQ($_POST["g_idx"]);
-            $hotel_code = updateSQ($_POST["hotel_code"]);
-            $roomName = updateSQ($_POST["roomName"]);
-
+            $hotel_code = updateSQ($_POST["hotel_code"] ?? '');
+            $roomName = updateSQ($_POST["roomName"] ?? '');
+            $room_facil = updateSQ($_POST["room_facil"] ?? '');
 
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -164,6 +159,7 @@ class AdminRoomController extends BaseController
 		update tbl_room SET
 			 hotel_code			= '" . $hotel_code . "'
 			,roomName			= '" . $roomName . "'
+			,room_facil			= '" . $room_facil . "'
 		where g_idx = '" . $g_idx . "'
 	";
 
@@ -188,6 +184,7 @@ class AdminRoomController extends BaseController
                             ,ufile4					= '" . $ufile_4 . "'
                             ,ufile5					= '" . $ufile_5 . "'
                             ,ufile6					= '" . $ufile_6 . "'
+                            ,room_facil					= '" . $room_facil . "'
                     ";
                 $db = $this->connect->query($sql);
             }

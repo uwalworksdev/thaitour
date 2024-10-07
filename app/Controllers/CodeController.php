@@ -177,7 +177,7 @@ class CodeController extends BaseController
             write_log("코드등록: " . json_encode($data));
         }
 
-        if ($file->isValid() && !$file->hasMoved()) {
+        if (isset($file) && $file->isValid() && !$file->hasMoved()) {
             $newName = $file->getRandomName();
             $file->move($upload, $newName);
 
