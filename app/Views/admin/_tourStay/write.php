@@ -175,6 +175,14 @@
                 <input type=hidden name="facilities" id="facilities" value='<?= $facilities ?>'>
                 <input type=hidden name="room_facil" id="room_facil" value='<?= $room_facil ?>'>
                 <input type=hidden name="room_list" id="room_list" value='<?= $room_list ?>'>
+                <input type="hidden" name="code_utilities" id="code_utilities"
+                       value='<?= $code_utilities ?? "" ?>'/>
+                <input type="hidden" name="code_services" id="code_services"
+                       value='<?= $code_services ?? "" ?>'/>
+                <input type="hidden" name="code_best_utilities" id="code_best_utilities"
+                       value='<?= $code_best_utilities ?? "" ?>'/>
+                <input type="hidden" name="code_populars" id="code_populars"
+                       value='<?= $code_populars ?? "" ?>'/>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -191,6 +199,11 @@
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        여행
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>도시명</th>
                                     <td colspan="3">
@@ -434,12 +447,33 @@
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
+                                </tbody>
+
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
                                 <tr>
-                                    <th>객실시설</th>
+                                    <td colspan="4">
+                                        숙소개요
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>추천 포인트</th>
                                     <td colspan="3">
                                         <?php
-                                        $_arr = explode("|", $room_facil);
-                                        foreach ($fresult as $row_r) :
+                                        $_arr = explode("|", $code_utilities);
+                                        foreach ($fresult6 as $row_r) :
                                             $find = "";
                                             for ($i = 0; $i < count($_arr); $i++) {
                                                 if ($_arr[$i]) {
@@ -447,10 +481,99 @@
                                                 }
                                             }
                                             ?>
-                                            <input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
-                                                   name="_room_facil"
+                                            <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
+                                                   name="_code_utilities"
                                                    value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
                                         <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>추천 포인트</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_best_utilities);
+                                        foreach ($fresult6 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
+                                                   name="_code_best_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>시설 & 서비스</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_services);
+                                        foreach ($fresult5 as $row_r) : ?>
+                                            <div class="">
+                                                <?= $row_r['code_name'] ?>
+                                                <div class="" style="margin-left: 30px">
+                                                    <?php
+                                                    $fresult6 = $row_r['child'];
+                                                    foreach ($fresult6 as $row_r2) :
+                                                        $find2 = "";
+                                                        for ($i = 0; $i < count($_arr); $i++) {
+                                                            if ($_arr[$i]) {
+                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <input type="checkbox"
+                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
+                                                               name="_code_services"
+                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> /><?= $row_r2['code_name'] ?>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>호텔주변 추천명소</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_populars);
+                                        foreach ($fresult8 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_populars<?= $row_r['code_no'] ?>"
+                                                   name="_code_populars"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        방식
                                     </td>
                                 </tr>
 
@@ -710,21 +833,40 @@
 
             oEditors.getById["stay_contents"].exec("UPDATE_CONTENTS_FIELD", []);
 
-            /*
-            oEditors1.getById["stay_contents"].exec("UPDATE_CONTENTS_FIELD", []);
-            if (frm.stay_city.value == "")
-            {
-                frm.stay_city.focus();
-                alert("도시명을 입력하셔야 합니다.");
-                return;
-            }
-            */
-
             $("input[name=_room_list]:checked").each(function () {
                 room_list += $(this).val() + '|';
             })
 
             $("#room_list").val(room_list);
+
+            let _code_utilities = '';
+            let _code_services = '';
+            let _code_best_utilities = '';
+            let _code_populars = '';
+
+            $("input[name=_code_utilities]:checked").each(function () {
+                _code_utilities += $(this).val() + '|';
+            })
+
+            $("#code_utilities").val(_code_utilities);
+
+            $("input[name=_code_services]:checked").each(function () {
+                _code_services += $(this).val() + '|';
+            })
+
+            $("#code_services").val(_code_services);
+
+            $("input[name=_code_best_utilities]:checked").each(function () {
+                _code_best_utilities += $(this).val() + '|';
+            })
+
+            $("#code_best_utilities").val(_code_best_utilities);
+
+            $("input[name=_code_populars]:checked").each(function () {
+                _code_populars += $(this).val() + '|';
+            })
+
+            $("#code_populars").val(_code_populars);
 
             frm.submit();
         }

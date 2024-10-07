@@ -32,19 +32,6 @@
             <div id="contents">
                 <form name="search" id="search">
                     <header id="headerContents">
-<!--                        <select id="hotel_code" name="hotel_code" class="input_select"-->
-<!--                                onchange="javascript:document.search.submit();">-->
-<!--                            <option value="">전체</option>-->
-<!--                            --><?php
-//                            foreach ($fresult as $frow) {
-//                                ?>
-<!--                                <option value="--><?php //= $frow["code_no"] ?><!--" --><?php //if ($hotel_code == $frow["code_no"]) {
-//                                    echo "selected";
-//                                } ?><!-->--><?php //= $frow["code_name"] ?><!--</option>-->
-<!--                            --><?php //} ?>
-<!---->
-<!--                        </select>-->
-
                         <input type="text" id="" name="search_name" value="<?= $search_name ?>"
                                class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px"/>
 

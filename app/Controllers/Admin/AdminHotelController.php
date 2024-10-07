@@ -91,11 +91,11 @@ class AdminHotelController extends BaseController
             $row = $result->getRowArray();
         }
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='130301' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
         $fresult4 = $this->connect->query($fsql);
         $fresult4 = $fresult4->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='130302' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
         $fresult5 = $this->connect->query($fsql);
         $fresult5 = $fresult5->getResultArray();
 
@@ -113,7 +113,7 @@ class AdminHotelController extends BaseController
             return $rs;
         }, $fresult5);
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='130303' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='35' order by onum desc, code_idx desc";
         $fresult8 = $this->connect->query($fsql);
         $fresult8 = $fresult8->getResultArray();
 
