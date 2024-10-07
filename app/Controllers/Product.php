@@ -629,17 +629,30 @@ class Product extends BaseController
 
             $suggestHotels = $this->getSuggestedHotels($hotel['g_idx'], $hotel['array_hotel_code'][0] ?? '');
 
-            $code_utilities = $hotel['code_utilities'];
-            $_arr_utilities = explode("|", $code_utilities);
+            $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
+            $hotel_options = $this->db->query($fsql, [$hotel['goods_code']])->getResultArray();
+            $_arr_utilities = $_arr_best_utilities = $_arr_services = $_arr_populars = [];
+            if (count($hotel_options) > 0) {
+                $hotel_option = $hotel_options[0];
+                $room_idx = $hotel_option['o_room'];
 
-            $code_services = $hotel['code_services'];
-            $_arr_services = explode("|", $code_services);
+                $rsql = "SELECT * FROM tbl_product_stay WHERE room_list LIKE '%" . $this->db->escapeLikeString($room_idx) . "|%'";
+                $stay_hotel = $this->db->query($rsql)->getRowArray();
 
-            $code_best_utilities = $hotel['code_best_utilities'];
-            $_arr_best_utilities = explode("|", $code_best_utilities);
+                if ($stay_hotel) {
+                    $code_utilities = $stay_hotel['code_utilities'];
+                    $_arr_utilities = explode("|", $code_utilities);
 
-            $code_populars = $hotel['code_populars'];
-            $_arr_populars = explode("|", $code_populars);
+                    $code_services = $stay_hotel['code_services'];
+                    $_arr_services = explode("|", $code_services);
+
+                    $code_best_utilities = $stay_hotel['code_best_utilities'];
+                    $_arr_best_utilities = explode("|", $code_best_utilities);
+
+                    $code_populars = $stay_hotel['code_populars'];
+                    $_arr_populars = explode("|", $code_populars);;
+                }
+            }
 
             $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
             $list__best_utilities = rtrim(implode(',', $_arr_best_utilities), ',');
