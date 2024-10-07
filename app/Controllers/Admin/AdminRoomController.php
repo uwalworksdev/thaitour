@@ -104,6 +104,7 @@ class AdminRoomController extends BaseController
             'search_category' => $search_category,
             's_product_code_1' => $s_product_code_1,
             's_product_code_2' => $s_product_code_2,
+            'room_facil' => '',
             'row' => $row ?? '',
             'fresult' => $fresult ?? '',
         ];
