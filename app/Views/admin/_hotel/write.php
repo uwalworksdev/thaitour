@@ -204,7 +204,19 @@ $links = "list";
                                     <th>등급</th>
                                     <td colspan="3">
                                         <select name="grade">
-                                            <option value="1" <?php if (isset($grade) && $grade === "1")
+                                            <?php
+												foreach ($fresult9 as $frow) 
+												{
+													   if($grade == $frow['code_no']) {
+													      echo "<option value='". $frow['code_no'] ."' selected>".  $frow['code_name'] ."</option>";
+                                                       } else {
+													      echo "<option value='". $frow['code_no'] ."' >".  $frow['code_name'] ."</option>";
+                                                       }
+												} 
+											?>
+                                        </select>
+
+                                            <!--option value="1" <?php if (isset($grade) && $grade === "1")
                                                 echo "selected"; ?>>1
                                             </option>
                                             <option value="2" <?php if (isset($grade) && $grade === "2")
@@ -218,8 +230,7 @@ $links = "list";
                                             </option>
                                             <option value="5" <?php if (isset($grade) && $grade === "5")
                                                 echo "selected"; ?>>5
-                                            </option>
-                                        </select>
+                                            </option-->
                                     </td>
                                 </tr>
                                 <tr>

@@ -62,10 +62,10 @@ class AdminHotelController extends BaseController
 
     public function write()
     {
-        $g_idx = updateSQ($_GET["g_idx"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $g_idx            = updateSQ($_GET["g_idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
@@ -117,6 +117,10 @@ class AdminHotelController extends BaseController
         $fresult8 = $this->connect->query($fsql);
         $fresult8 = $fresult8->getResultArray();
 
+        $fsql9    = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
+        $fresult9 = $this->connect->query($fsql9);
+        $fresult9 = $fresult9->getResultArray();
+
         $data = [
             'g_idx' => $g_idx,
             'pg' => $pg,
@@ -131,6 +135,7 @@ class AdminHotelController extends BaseController
             'fresult4' => $fresult4,
             'fresult5' => $fresult5,
             'fresult8' => $fresult8,
+            'fresult9' => $fresult9,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -318,7 +323,7 @@ class AdminHotelController extends BaseController
                         ,mod_date				= now()
                     where g_idx = '" . $g_idx . "'
                 ";
-                write_log("상품등록 : " . $sql);
+                write_log("호텔상품수정 : " . $sql);
 
                 $db = $this->connect->query($sql);
 
