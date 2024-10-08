@@ -97,6 +97,10 @@ class AdminRoomController extends BaseController
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
+        $fsql = "select * from tbl_code where code_gubun='hotel_cate' and depth='2' order by onum desc, code_idx desc";
+        $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
+        $fresult2 = $fresult2->getResultArray();
+
         $data = [
             'g_idx' => $g_idx,
             'pg' => $pg,
@@ -107,6 +111,7 @@ class AdminRoomController extends BaseController
             'room_facil' => '',
             'row' => $row ?? '',
             'fresult' => $fresult ?? '',
+            'fresult2' => $fresult2 ?? '',
         ];
         return view('admin/_room/write', $data);
     }
@@ -119,6 +124,8 @@ class AdminRoomController extends BaseController
             $hotel_code = updateSQ($_POST["hotel_code"] ?? '');
             $roomName = updateSQ($_POST["roomName"] ?? '');
             $room_facil = updateSQ($_POST["room_facil"] ?? '');
+            $room_category = updateSQ($_POST["room_category"] ?? '');
+            $scenery = updateSQ($_POST["scenery"] ?? '');
 
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -161,6 +168,8 @@ class AdminRoomController extends BaseController
 			 hotel_code			= '" . $hotel_code . "'
 			,roomName			= '" . $roomName . "'
 			,room_facil			= '" . $room_facil . "'
+			,scenery			= '" . $scenery . "'
+			,category			= '" . $room_category . "'
 		where g_idx = '" . $g_idx . "'
 	";
 
@@ -185,7 +194,9 @@ class AdminRoomController extends BaseController
                             ,ufile4					= '" . $ufile_4 . "'
                             ,ufile5					= '" . $ufile_5 . "'
                             ,ufile6					= '" . $ufile_6 . "'
-                            ,room_facil					= '" . $room_facil . "'
+                            ,room_facil				= '" . $room_facil . "'
+                            ,scenery			    = '" . $scenery . "'
+			                ,category			    = '" . $room_category . "'
                     ";
                 $db = $this->connect->query($sql);
             }

@@ -26,26 +26,28 @@
             </div>
             <div class="hotel-image-container">
                 <div class="hotel-image-container-1">
-                    <img src="/uploads/hotel/<?= $hotel['ufile1'] ?>" alt="hotel_details_1">
+                    <img src="/uploads/hotel/<?= $hotel['ufile1'] ?>" alt="<?= $hotel['goods_name_front'] ?>"
+                         onerror="this.src='/images/share/noimg.png'">
                 </div>
                 <div class="grid_2_2">
-                    <?php for ($j = 2; $j < 7; $j++) { ?>
-
+                    <?php for ($j = 2; $j < 5; $j++) { ?>
+                        <img class="grid_2_2_size" src="/uploads/hotel/<?= $hotel['ufile' . $j] ?>"
+                             alt="<?= $hotel['goods_name_front'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
                     <!--                    <img class="grid_2_2_size" src="/uploads/hotel/hotel_details_2.png" alt="hotel_details_2">-->
                     <!--                    <img class="grid_2_2_size" src="/uploads/hotel/hotel_details_3.png" alt="hotel_details_3">-->
                     <!--                    <img class="grid_2_2_size" src="/uploads/hotel/hotel_details_4.png" alt="hotel_details_4">-->
-                    <!--                    <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">-->
-                    <!--                        <img class="custom_button" src="/uploads/sub/hotel_details_5.png" alt="hotel_details_5">-->
-                    <!--                        <div class="button-show-detail-image">-->
-                    <!--                            <img class="only_web" src="/uploads/icons/image_detail_icon.png"-->
-                    <!--                                 alt="image_detail_icon">-->
-                    <!--                            <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"-->
-                    <!--                                 alt="image_detail_icon_m">-->
-                    <!--                            <span>사진 모두 보기</span>-->
-                    <!--                            <span>(125장)</span>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
+                    <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
+                        <img class="custom_button" src="/uploads/sub/hotel_details_5.png" alt="hotel_details_5">
+                        <div class="button-show-detail-image">
+                            <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                 alt="image_detail_icon">
+                            <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                 alt="image_detail_icon_m">
+                            <span>사진 모두 보기</span>
+                            <span>(125장)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="sub-header-hotel-detail">
