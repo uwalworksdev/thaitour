@@ -76,7 +76,7 @@
             <div class="tag-list-icon" style="margin-top: 20px">
                 <?php foreach ($fresult4 as $row) : ?>
                     <div class="item-tag">
-                        <img src="/uploads/icons/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
+                        <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
                         <span><?= $row['code_name'] ?></span>
                     </div>
                 <?php endforeach; ?>
