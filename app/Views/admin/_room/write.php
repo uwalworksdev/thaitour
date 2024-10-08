@@ -61,6 +61,7 @@ $links = "list";
                         <!-- 상품 고유 번호 -->
                         <input type="hidden" name="g_idx" id="g_idx" value='<?= $g_idx ?>'/>
                         <input type=hidden name="room_facil" id="room_facil" value='<?= $room_facil ?>'>
+                        <input type=hidden name="room_category" id="room_category" value='<?= $category ?>'>
 
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -101,6 +102,34 @@ $links = "list";
                                             ?>
                                             <input type="checkbox" id="room_facil_<?= $row_r['code_no'] ?>"
                                                    name="_room_facil"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>장면</th>
+                                    <td colspan="3">
+                                        <input type="text" name="scenery" value="<?= $scenery ?? '' ?>" class="text"
+                                               style="width:300px" maxlength="50"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>범주</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $category);
+                                        foreach ($fresult2 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="room_category_<?= $row_r['code_no'] ?>"
+                                                   name="_room_category"
                                                    value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
                                         <?php endforeach; ?>
                                     </td>
@@ -195,12 +224,19 @@ $links = "list";
                 return;
             }
 
-            let room_facil = "";
+            let room_facil = "", room_category = "";
             $("input[name=_room_facil]:checked").each(function () {
                 room_facil += $(this).val() + '|';
             })
 
             $("#room_facil").val(room_facil);
+
+            $("input[name=_room_category]:checked").each(function () {
+                room_category += $(this).val() + '|';
+            })
+
+            $("#room_category").val(room_category);
+
 
             frm.submit();
         }
