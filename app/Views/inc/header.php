@@ -58,95 +58,97 @@
             break;
     }
     ?>
-    <div class="inner flex_header_top">
-        <div class="flex_header_top">
-            <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
-            <div class="search-container">
-                <div class="main-search-container">
-                    <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
-                    <i class="fa fa-search search-icon"></i>
+    <div id="header_tools">
+        <div class="inner flex_header_top">
+            <div class="flex_header_top">
+                <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
+                <div class="search-container">
+                    <div class="main-search-container">
+                        <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
+                        <i class="fa fa-search search-icon"></i>
+                    </div>
+                    <div class="custom_select_rounded">
+                        <a class="text_custom_" href="#">상세검색</a>
+                        <select class="select_custom_ active_" name="" id="">
+                            <option value="">호텔</option>
+                        </select>
+                        <select class="select_custom_" name="" id="">
+                            <option value="">투어</option>
+                        </select>
+                        <a class="text_custom_v2_" href="/vehicle-guide">차량</a>
+                    </div>
                 </div>
-                <div class="custom_select_rounded">
-                    <a class="text_custom_" href="#">상세검색</a>
-                    <select class="select_custom_ active_" name="" id="">
-                        <option value="">호텔</option>
-                    </select>
-                    <select class="select_custom_" name="" id="">
-                        <option value="">투어</option>
-                    </select>
-                    <a class="text_custom_v2_" href="/vehicle-guide">차량</a>
+            </div>
+
+            <div>
+                <div class="icon-menu">
+                    <a href="#" class="icon-menu-item">
+                        <img src="/images/ico/icon_calen.png" alt="">
+                        <p style="margin-top:5px;">일정표</p>
+                    </a>
+                    <a href="#" class="icon-menu-item">
+                        <img src="/images/ico/icon_note.png" alt="">
+                        <p>매거진</p>
+                    </a>
+                    <a href="<?= (session("member.idx") ? "/mypage/fav_list" : "#!") ?>" class="icon-menu-item">
+                        <img src="/images/ico/icon_heart.png" alt="">
+                        <p>찜</p>
+                    </a>
+                    <a href="/cart/item-list/123" class="icon-menu-item">
+                        <img src="/images/ico/icon_cart.png" alt="">
+                        <p style="margin-top:3px;">장바구니</p>
+                    </a>
                 </div>
             </div>
-        </div>
-
-        <div>
-            <div class="icon-menu">
-                <a href="#" class="icon-menu-item">
-                    <img src="/images/ico/icon_calen.png" alt="">
-                    <p style="margin-top:5px;">일정표</p>
-                </a>
-                <a href="#" class="icon-menu-item">
-                    <img src="/images/ico/icon_note.png" alt="">
-                    <p>매거진</p>
-                </a>
-                <a href="<?= (session("member.idx") ? "/mypage/fav_list" : "#!") ?>" class="icon-menu-item">
-                    <img src="/images/ico/icon_heart.png" alt="">
-                    <p>찜</p>
-                </a>
-                <a href="/cart/item-list/123" class="icon-menu-item">
-                    <img src="/images/ico/icon_cart.png" alt="">
-                    <p style="margin-top:3px;">장바구니</p>
-                </a>
-            </div>
-        </div>
-
-    </div>
-    <div class="">
-        <div class="inner flex_header_top ">
-            <div>
-                <ul class="flex_header_top flex_header_top_content_list">
-                    <!--                    <li><a class="-->
-                    <?php //echo isset($tab_1) ? 'active_' : '' ?><!--" href="/product-hotel/1324">호텔</a></li>-->
-                    <!--                    <li><a class="-->
-                    <?php //echo isset($tab_2) ? 'active_' : '' ?><!--" href="/product-golf/1325/1">골프</a></li>-->
-                    <!--                    <li><a class="-->
-                    <?php //echo isset($tab_3) ? 'active_' : '' ?><!--" href="/product-tours/1325/1">투어</a></li>-->
-                    <!--                    <li><a class="-->
-                    <?php //echo isset($tab_4) ? 'active_' : '' ?><!--" href="/product-spa/1320/1">스파</a></li>-->
-                    <!--                    <li><a class="-->
-                    <?php //echo isset($tab_5) ? 'active_' : '' ?><!--" href="/show-ticket">쇼ㆍ입장권</a></li>-->
-                    <!--                    <li><a class="-->
-                    <?php //echo isset($tab_6) ? 'active_' : '' ?><!--" href="/product-list/1320/1">레스토랑</a></li>-->
-                    <!--                    <li><a class="-->
-                    <?php //echo isset($tab_7) ? 'active_' : '' ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
-                    <?php echo getHeaderTab(); ?>
-                </ul>
-            </div>
-            <div>
-                <ul class="flex_header_top">
-                    <li><a href="/center/insurance">여행자 보험</a></li>
-                    <li><a href="/event/event_list">이벤트</a></li>
-                    <li><a href="/mypage/discount">여행 쿠폰</a></li>
-                    <li><a href="/community/main">태국뉴스</a></li>
-                </ul>
-            </div>
 
         </div>
-        <!-- <div class="inner flex_header_top ">
-            <div>
-                <ul class="flex_header_top flex_header_top_content_list">
-                    <li><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></li>
-                    <li><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></li>
-                    <li><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-list/1324">투어</a></li>
-                    <li><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></li>
-                    <li><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></li>
-                    <li><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-tours/1320/1">레스토랑</a></li>
-                    <li><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide">차량ㆍ가이드</a></li>
-                </ul>
-            </div>
+        <div class="">
+            <div class="inner flex_header_top ">
+                <div>
+                    <ul class="flex_header_top flex_header_top_content_list">
+                        <!--                    <li><a class="-->
+                        <?php //echo isset($tab_1) ? 'active_' : '' ?><!--" href="/product-hotel/1324">호텔</a></li>-->
+                        <!--                    <li><a class="-->
+                        <?php //echo isset($tab_2) ? 'active_' : '' ?><!--" href="/product-golf/1325/1">골프</a></li>-->
+                        <!--                    <li><a class="-->
+                        <?php //echo isset($tab_3) ? 'active_' : '' ?><!--" href="/product-tours/1325/1">투어</a></li>-->
+                        <!--                    <li><a class="-->
+                        <?php //echo isset($tab_4) ? 'active_' : '' ?><!--" href="/product-spa/1320/1">스파</a></li>-->
+                        <!--                    <li><a class="-->
+                        <?php //echo isset($tab_5) ? 'active_' : '' ?><!--" href="/show-ticket">쇼ㆍ입장권</a></li>-->
+                        <!--                    <li><a class="-->
+                        <?php //echo isset($tab_6) ? 'active_' : '' ?><!--" href="/product-list/1320/1">레스토랑</a></li>-->
+                        <!--                    <li><a class="-->
+                        <?php //echo isset($tab_7) ? 'active_' : '' ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
+                        <?php echo getHeaderTab(); ?>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="flex_header_top">
+                        <li><a href="/center/insurance">여행자 보험</a></li>
+                        <li><a href="/event/event_list">이벤트</a></li>
+                        <li><a href="/mypage/discount">여행 쿠폰</a></li>
+                        <li><a href="/community/main">태국뉴스</a></li>
+                    </ul>
+                </div>
 
-            <button class="header_top_btn"></button>
-        </div> -->
+            </div>
+            <!-- <div class="inner flex_header_top ">
+                <div>
+                    <ul class="flex_header_top flex_header_top_content_list">
+                        <li><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></li>
+                        <li><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></li>
+                        <li><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-list/1324">투어</a></li>
+                        <li><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></li>
+                        <li><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></li>
+                        <li><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-tours/1320/1">레스토랑</a></li>
+                        <li><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide">차량ㆍ가이드</a></li>
+                    </ul>
+                </div>
+
+                <button class="header_top_btn"></button>
+            </div> -->
+        </div>
     </div>
 </header>
 <div class="header_replace only_web"></div>
@@ -325,6 +327,38 @@
         burger.addEventListener('click', () => {
             nav.classList.toggle('nav-active');
             burger.classList.toggle('toggle');
+        });
+    });
+    $(document).ready(function() {
+        var lastScrollTop = 0;
+        var topPart = $('#header_tools');
+        
+        $(window).scroll(function(event) {
+            var st = $(this).scrollTop();
+            
+            if (st > lastScrollTop) {
+                if (!topPart.hasClass('hidden_w')) {
+                    topPart.slideUp(300, function() {
+                        topPart.addClass('hidden_w');
+                        $("#header").css("padding-bottom", "0px");
+                    });
+                    $(".header_replace").css({
+                        height: "56px"
+                    });
+                }
+            } else {
+                if (topPart.hasClass('hidden_w')) {
+                    topPart.slideDown(300, function() {
+                        topPart.removeClass('hidden_w');
+                        $("#header").css("padding-bottom", "10px");
+                    });
+                    $(".header_replace").css({
+                        height: "214px"
+                    });
+                }
+            }
+            
+            lastScrollTop = st;
         });
     });
 </script>

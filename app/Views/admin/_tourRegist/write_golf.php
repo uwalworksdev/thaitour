@@ -449,7 +449,7 @@
                                     <th>특가여부</th>
                                     <td colspan="3">
                                         <input type="checkbox" name="special_price" id="special_price"
-                                               value="Y" <? if ($row["special_price"] == "Y") {
+                                               value="Y" <?php if ($row["special_price"] == "Y") {
                                             echo "checked";
                                         } ?> />&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
@@ -963,78 +963,86 @@
                     <caption>
                     </caption>
                     <colgroup>
-                        <col width="*"/>
+                        <col width="10%"/>
+                        <col width="90%"/>
                     </colgroup>
                     <tbody>
 
                     <tr>
                         <th>옵션추가</th>
                         <td>
-                            <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
-                            <button type="button" class="btn_01" onclick="add_moption();">추가</button>
+                            <div class="flex__c">
+                                <select name="moption_hole" id="moption_hole">
+                                    <option value="18">18홀</option>
+                                    <option value="27">27홀</option>
+                                    <option value="36">36홀</option>
+                                    <option value="45">45홀</option>
+                                </select>&nbsp;
+                                <select name="moption_hour" id="moption_hour">
+                                    <option value="06">06시</option>
+                                    <option value="07">07시</option>
+                                    <option value="08">08시</option>
+                                    <option value="09">09시</option>
+                                    <option value="10">10시</option>
+                                    <option value="11">11시</option>
+                                    <option value="12">12시</option>
+                                    <option value="13">13시</option>
+                                    <option value="14">14시</option>
+                                    <option value="15">15시</option>
+                                    <option value="16">16시</option>
+                                    <option value="17">17시</option>
+                                    <option value="18">18시</option>
+                                    <option value="19">19시</option>
+                                </select>&nbsp;
+                                <select name="moption_minute" id="moption_minute">
+                                    <option value="00">00분</option>
+                                    <option value="12">12분</option>
+                                    <option value="24">24분</option>
+                                    <option value="36">36분</option>
+                                    <option value="48">48분</option>
+                                </select>&nbsp;
+                                <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>옵션추가</th>
+                        <td>
+                            <table>
+                                <colgroup>
+                                    <col width="40%"/>
+                                    <col width="30%"/>
+                                    <col width="30%"/>
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>옵션명</th>
+                                        <th>가격</th>
+                                        <th>관리</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="list_option">
+                                    <?php foreach ($options as $m) { ?>
+                                        <tr id="option_<?= $m['idx'] ?>">
+                                            <td>
+                                                <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
+                                            </td>
+                                            <td>
+                                                <div class="flex_c_c"><input type="text" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원</div>
+                                            </td>
+                                            <td>
+                                                &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
+                                                &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-
-            <?php foreach($options as $row_option): ?>
-                <div class="listBottom">
-                    <form name="optionForm_<?= $row_option['code_idx'] ?>" id="optionForm_<?= $row_option['code_idx'] ?>">
-                        <input type="hidden" name="product_idx" value="<?= $product_idx ?>" />
-                        <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>" />
-
-                        <table class="listTable mem_detail">
-                            <tbody>
-                            <tr>
-                                <th>옵션</th>
-                                <td>
-                                    <input type="text" name="moption_name" value="<?= $row_option['moption_name'] ?>" />
-                                    <button type="button" onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정</button>
-                                    <button type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">삭제</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>추가 옵션등록</th>
-                                <td>
-                                    <button type="button" onclick="add_option('<?= $row_option['code_idx'] ?>');">추가</button>
-                                    <button type="button" onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록</button>
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th>옵션명</th>
-                                            <th>가격</th>
-                                            <th>적용</th>
-                                            <th>순서</th>
-                                            <th>삭제</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php foreach($row_option['additional_options'] as $option): ?>
-                                            <tr>
-                                                <td><input type="text" name="o_name[]" value="<?= $option['option_name'] ?>" /></td>
-                                                <td><input type="text" name="o_price[]" value="<?= $option['option_price'] ?>" /></td>
-                                                <td>
-                                                    <select name="use_yn[]">
-                                                        <option value="Y" <?= $option['use_yn'] == 'Y' ? 'selected' : '' ?>>판매중</option>
-                                                        <option value="N" <?= $option['use_yn'] != 'Y' ? 'selected' : '' ?>>중지</option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>" /></td>
-                                                <td><button type="button" onclick="delOption('<?= $option['idx'] ?>');">삭제</button></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-            <?php endforeach; ?>
-
-
             <?php if ($product_idx): ?>
                 <div class="tail_menu">
                     <ul>
@@ -1276,11 +1284,10 @@
                 var message = "";
                 $.ajax({
 
-                    url: "/ajax/ajax.upd_moption.php",
-                    type: "POST",
+                    url: "/AdmMaster/_tourRegist/write_golf/upd_moption/" + code_idx,
+                    type: "PUT",
                     data: {
-                        "code_idx": code_idx,
-                        "moption_name": $("#moption_name_" + code_idx).val()
+                        "option_price": $("#option_price_" + code_idx).val()
                     },
                     dataType: "json",
                     async: false,
@@ -1288,7 +1295,7 @@
                     success: function (data, textStatus) {
                         message = data.message;
                         alert(message);
-                        location.reload();
+                        // location.reload();
                     },
                     error: function (request, status, error) {
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -1299,20 +1306,18 @@
             function add_moption() {
                 var message = "";
                 $.ajax({
-
-                    url: "/ajax/ajax.add_moption.php",
+                    url: "/AdmMaster/_tourRegist/write_golf/add_moption",
                     type: "POST",
                     data: {
                         "product_idx": '<?=$product_idx?>',
-                        "moption_name": $("#moption_name").val()
+                        "moption_hole": $("#moption_hole").val(),
+                        "moption_hour": $("#moption_hour").val(),
+                        "moption_minute": $("#moption_minute").val(),
                     },
-                    dataType: "json",
                     async: false,
                     cache: false,
                     success: function (data, textStatus) {
-                        message = data.message;
-                        alert(message);
-                        location.reload();
+                        $("#list_option").append(data);
                     },
                     error: function (request, status, error) {
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -1327,18 +1332,16 @@
                 var message = "";
                 $.ajax({
 
-                    url: "/ajax/ajax.del_moption.php",
-                    type: "POST",
-                    data: {
-                        "code_idx": code_idx
-                    },
+                    url: "/AdmMaster/_tourRegist/write_golf/del_moption/" + code_idx,
+                    type: "DELETE",
                     dataType: "json",
                     async: false,
                     cache: false,
                     success: function (data, textStatus) {
                         message = data.message;
                         alert(message);
-                        location.reload();
+                        $("#option_" + code_idx).remove();
+                        // location.reload();
                     },
                     error: function (request, status, error) {
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

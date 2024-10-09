@@ -316,7 +316,6 @@ class Product extends BaseController
                     ->getResult();
             }
 
-            // Truyền dữ liệu sang view
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
@@ -331,6 +330,7 @@ class Product extends BaseController
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
                 'tab_active' => '2',
+                'categories' => [],
             ];
 
             return $this->renderView('product/product-golf', $data);

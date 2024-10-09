@@ -26,6 +26,11 @@
     gap: 20px;
 }
 
+.flex_header_top select {
+    height: 1px;
+    width: 1px;
+}
+
 .img-flag {
     margin-top: 3px;
 }
@@ -211,7 +216,7 @@
 }
 
 .header_replace {
-    height: 203px;
+    height: 214px;
     width: 100%;
 }
 

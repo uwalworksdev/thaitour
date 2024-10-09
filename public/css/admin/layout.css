@@ -111,6 +111,7 @@
     border: 1px solid #2b3f4c;
     font-size: 12px;
     font-family: '돋움', 'dotum', Sans-Serif;
+    height: 31px;
 }
 
 .btn_02 {
@@ -122,6 +123,7 @@
     font-size: 12px;
     font-family: '돋움', 'dotum', Sans-Serif;
     cursor: pointer;
+    height: 31px;
 }
 
 
@@ -380,7 +382,7 @@ div.gnb_update > ul > li > a {
     background: url(/images/admin/ico_01.png) no-repeat left center;
 }
 
-#gnb .gnb_menu > li.menu11 a span {
+#gnb .gnb_menu > li.menu2 a span {
     background: url(/images/admin/ico_02.png) no-repeat left center;
 }
 
@@ -392,27 +394,27 @@ div.gnb_update > ul > li > a {
     background: url(/images/admin/ico_04.png) no-repeat left center;
 }
 
-#gnb .gnb_menu > li.menu6 a span {
+#gnb .gnb_menu > li.menu5 a span {
     background: url(/images/admin/ico_05.png) no-repeat left center;
 }
 
-#gnb .gnb_menu > li.menu13 a span {
+#gnb .gnb_menu > li.menu6 a span {
     background: url(/images/admin/ico_06.png) no-repeat left center;
 }
 
-#gnb .gnb_menu > li.menu5 a span {
+#gnb .gnb_menu > li.menu7 a span {
     background: url(/images/admin/ico_07.png) no-repeat left center;
 }
 
-#gnb .gnb_menu > li.menu7 a span {
+#gnb .gnb_menu > li.menu8 a span {
     background: url(/images/admin/ico_08.png) no-repeat left center;
 }
 
-#gnb .gnb_menu > li.menu16 a span {
+#gnb .gnb_menu > li.menu9 a span {
     background: url(/images/admin/ico_09.png) no-repeat left center;
 }
 
-#gnb .gnb_menu > li.menu8 a span {
+#gnb .gnb_menu > li.menu10 a span {
     background: url(/images/admin/ico_10.png) no-repeat left center;
 }
 
@@ -891,7 +893,6 @@ div.listBottom table.listTable tbody td p.color_chart {
 div.listBottom table.listTable tbody td button {
     display: inline-block;
     width: 100px;
-    height: 25px;
     margin: 0 auto;
     border: 1px solid rgb(204, 204, 204);
 }
@@ -1376,6 +1377,7 @@ select {
     margin: 0;
     font-size: 12px;
     vertical-align: middle;
+    height: 31px;
 }
 
 div.listTop_schedule {

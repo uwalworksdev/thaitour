@@ -77,7 +77,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list", "CodeController::list_admin");
         $routes->get("write", "CodeController::write_admin");
         $routes->post("write_ok", "CodeController::write_ok");
-        $routes->post("change", "CodeController::change_ajax");
         $routes->post("del", "CodeController::del");
     });
 
@@ -92,9 +91,20 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_all", "TourRegistController::write_all");
         $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
         $routes->get("write_golf", "TourRegistController::write_golf");
+        $routes->post("write_golf/add_moption", "TourRegistController::add_moption");
+        $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
+        $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
         $routes->get("write_spas", "TourRegistController::write_spas");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("_tourStay", "TourRegistController::list");
+        $routes->group('golf_vehicles', function($routes) {
+            $routes->get('/', 'GolfVehicleController::list');
+            $routes->get('write', 'GolfVehicleController::write');
+            $routes->get('write/(:num)', 'GolfVehicleController::write/$1');
+            $routes->post("write_ok", "GolfVehicleController::write_ok");
+            $routes->post('del', 'GolfVehicleController::del');
+            $routes->post("change", "GolfVehicleController::change_ajax");
+        });
     });
 
     $routes->group("_hotel", static function ($routes) {

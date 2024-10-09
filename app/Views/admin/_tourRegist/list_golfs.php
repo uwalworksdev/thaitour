@@ -390,19 +390,16 @@
                                     <td class="tac">
                                         <?php
                                         if ($row["ufile1"] != "") {
+                                            if(is_file(FCPATH . "/data/product/" . $row["ufile1"])){
+                                                $src = "/data/product/{$row["ufile1"]}";
+                                            } else {
+                                                $src = "/data/product/noimg.png";
+                                            }
                                             ?>
-                                            <a href="/data/product/<?= $row["ufile1"] ?>" class="imgpop">
-                                                <img src="/data/product/<?= $row["ufile1"] ?>"
-                                                     style="max-width:150px;max-height:100px"
-                                                     onerror="this.src='/data/product/noimg.png'"></a>
-                                        <?php } else {
-                                            ?>
-                                            <a href="/data/product/noimg.png" class="imgpop">
-                                                <img src="/data/product/noimg.png"
-                                                     style="max-width:150px;max-height:100px"
-                                                     onerror="this.src='/data/product/noimg.png'"></a>
-                                        <?php }
-                                        ?>
+                                            <a href="<?=$src?>" class="imgpop">
+                                                <img src="<?=$src?>"
+                                                     style="max-width:150px;max-height:100px"/></a>
+                                        <?php } ?>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
                                         <a href="write_golf?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">

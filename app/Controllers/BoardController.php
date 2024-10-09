@@ -47,14 +47,13 @@ class BoardController extends BaseController
         $r_code = $this->request->getGet('r_code') ?? 'notice';
         $page = $this->request->getGet('page') ?? 1;
 
-        // Initialize JkBbs class
         $Bbs = new JkBbs($r_code);
 
         $code_info = $Bbs->get_code_info();
         $category_arr = $Bbs->category_arr;
 
-        $scale = 20; // Number of items per page
-        $page_cnt = 10; // Number of pages to display
+        $scale = 20;
+        $page_cnt = 10;
 
         $total_cnt = $Bbs->get_total_cnt();
         $total_page = ceil($total_cnt / $scale);
@@ -72,7 +71,6 @@ class BoardController extends BaseController
         $list_arr = $Bbs->get_list();
         $list_cnt = count($list_arr);
 
-        // Check user authentication
         $auth = null;
         if ($r_code == 'faq') {
             $auth = 'A003';
@@ -97,7 +95,7 @@ class BoardController extends BaseController
             'num' => $total_cnt - $start
         ];
 
-        return view('admin/_board/list_rcode', $data); // Replace 'board_view' with the appropriate view file
+        return view('admin/_board/list_rcode', $data);
     }
 
     public function form()

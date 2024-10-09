@@ -20,14 +20,14 @@
 }
 
 .swiper-button-next-ticket {
-    z-index: 999;
+    z-index: 1;
     right: 0px;
     position: absolute;
     top: 40%;
 }
 
 .swiper-button-prev-ticket {
-    z-index: 999;
+    z-index: 1;
     position: absolute;
     top: 40%;
     left: 0px;
@@ -39,6 +39,7 @@
         <div class="banner-ticket">
             <div class="swiper-container-ticket">
                 <div class="swiper-wrapper">
+                    <?php foreach ($categories as $row) : ?>
                     <div class="swiper-slide">
                         <a href="/product-golf/list-golf/1">
                             <div class="img_box_re">
@@ -55,59 +56,8 @@
                             </div>
                         </a>
                     </div>
-                    <div class="swiper-slide">
-                        <a href="/product-golf/list-golf/1">
-                            <div class="img_box_re">
-                                <img class="only_web" src="/images/sub/golf_slide_img2.png" alt="golf_slide_img2">
-                                <img class="only_mo img_box_re_img"
-                                    src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
-                                <img class="only_mo tag-red" src="/uploads/icons/tag-p-m.png" alt="">
-                                <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
-                                <p class="text_img_box_re">
-                                    수완 골프 & 컨트리 클럽<br>
-                                    오션뷰 라운딩
-                                </p>
-                                <p class="text_img_box_re_sub">#무제한 라운딩</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/product-golf/list-golf/1">
-                            <div class="img_box_re">
-                                <img class="only_web" src="/images/sub/golf_slide_img3.png" alt="golf_slide_img3">
-                                <img class="only_mo img_box_re_img"
-                                    src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
-                                <img src="/uploads/icons/tag-g.png" alt="" class="tag-red only_web">
-                                <img src="/uploads/icons/tag-g-m.png" alt="" class="tag-red only_mo">
-                                <p class="text_img_box_re">
-                                    알파인 골프 리조트<br>
-                                    치앙마이
-                                </p>
-                                <p class="text_img_box_re_sub">#프리미엄 옵션 무료</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/product-golf/list-golf/1">
-                            <div class="img_box_re">
-                                <img class="only_web" src="/images/sub/golf_slide_img2.png" alt="golf_slide_img1">
-                                <img class="only_mo img_box_re_img"
-                                    src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
-                                <img src="/uploads/icons/tag-p.png" alt="" class="tag-red only_web">
-                                <img src="/uploads/icons/tag-p-m.png" alt="" class="tag-red only_mo">
-                                <p class="text_img_box_re">
-                                    차오프라야 오퓰런스 디너<br>
-                                    크루즈
-                                </p>
-                                <p class="text_img_box_re_sub">#프리미엄 옵션 무료</p>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- Add more slides as needed -->
+                    <?php endforeach; ?>
                 </div>
-                <!-- Add Pagination -->
-                <!-- <div class="swiper-pagination"></div> -->
-                <!-- Add Navigation -->
                 <div class="swiper-button-next-ticket only_web"><img src="/uploads/icons/next_s.png" alt=""></div>
                 <div class="swiper-button-prev-ticket only_web"><img src="/uploads/icons/prev_s.png" alt=""></div>
             </div>
@@ -240,7 +190,7 @@
                         <div class="swiper-wrapper">
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_1.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/golf_popular_1.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span class="prd_keywords_cus_span">방콕
@@ -270,7 +220,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_2.png" alt="main loading=" lazy"">
+                                    <img src="/uploads/sub/golf_popular_2.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span class="prd_keywords_cus_span">방콕
@@ -359,7 +309,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
+                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -386,7 +336,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_6.png" alt="main " loading=" lazy">
+                                    <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span class="prd_keywords_cus_span">방콕
@@ -587,7 +537,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
+                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span class="prd_keywords_cus_span">방콕
@@ -618,7 +568,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_6.png" alt="main" loading=" lazy">
+                                    <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span class="prd_keywords_cus_span">방콕
@@ -707,7 +657,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
+                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -734,7 +684,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
+                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span class="prd_keywords_cus_span">방콕
@@ -821,7 +771,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading=" lazy">
+                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span>방콕></span>
@@ -848,7 +798,7 @@
                             </a>
                             <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading=" lazy">
+                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
                                     <span class="prd_keywords_cus_span">방콕

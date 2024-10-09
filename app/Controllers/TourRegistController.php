@@ -11,7 +11,7 @@ class TourRegistController extends BaseController
     private $Bbs;
     private $tours;
     private $db;
-
+    private $golfOptionModel;
     protected $connect;
 
     public function __construct()
@@ -20,6 +20,7 @@ class TourRegistController extends BaseController
         $this->connect = Config::connect();
         $this->tourRegistModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
+        $this->golfOptionModel = model("GolfOptionModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -294,21 +295,7 @@ class TourRegistController extends BaseController
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
-        $builder = $db->table('tbl_tours_moption');
-        $builder->where('product_idx', $product_idx);
-        $builder->where('use_yn', 'Y');
-        $builder->orderBy('onum', 'desc');
-        $query = $builder->get();
-        $options = $query->getResultArray();
-
-        foreach ($options as &$option) {
-            $optionBuilder = $db->table('tbl_tours_option');
-            $optionBuilder->where('product_idx', $product_idx);
-            $optionBuilder->where('code_idx', $option['code_idx']);
-            $optionBuilder->orderBy('onum', 'desc');
-            $optionQuery = $optionBuilder->get();
-            $option['additional_options'] = $optionQuery->getResultArray();
-        }
+        $options = $this->golfOptionModel->getOptions($product_idx);
 
         $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
         $query = $db->query($sql, [$product_idx]);
@@ -332,6 +319,53 @@ class TourRegistController extends BaseController
         $data = array_merge($data, $new_data);
 
         return view("admin/_tourRegist/write_golf", $data);
+    }
+
+    public function add_moption() {
+        $product_idx = updateSQ($this->request->getPost('product_idx'));
+        $moption_hole = $this->request->getPost('moption_hole');
+        $moption_hour = $this->request->getPost('moption_hour');
+        $moption_minute = $this->request->getPost('moption_minute');
+
+        $optionExist = $this->golfOptionModel->checkOptionExist($product_idx, $moption_hole, $moption_hour, $moption_minute);
+        if ($optionExist) {
+            $html = '<script>alert("이미 등록된 옵션입니다.");</script>';
+            return $this->response->setBody($html);
+        }
+
+        $newData = [
+            'product_idx'  => $product_idx,
+            'hole_cnt'     => $moption_hole,
+            'hour'         => $moption_hour,
+            'minute'       => $moption_minute,
+            'option_price' => 0,
+            'option_cnt'   => 0,
+            'use_yn'       => 'Y',
+            'option_type'  => 'M',
+            'rdate'        => date('Y-m-d H:i:s')
+        ];
+        $this->golfOptionModel->insert($newData);
+        $insertId = $this->db->insertID();
+
+        $html = '<tr id="moption_'.$insertId.'">';
+        $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}시</span>&nbsp;/&nbsp;<span>{$moption_minute}분</span></td>";
+        $html .= '<td><div class="flex_c_c"><input type="text" id="option_price_'.$insertId.'" value="0">원</div></td>';
+        $html .= '<td>&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption('.$insertId.');">수정</button>';
+        $html .= '&nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption('.$insertId.');">삭제</button></td>';
+        $html .= '</tr>';
+
+        return $this->response->setBody($html);
+    }
+
+    public function upd_moption($idx) {
+        $option_price = $this->request->getRawInputVar('option_price') ?? 0;
+        $this->golfOptionModel->update($idx, ['option_price' => $option_price]);
+        return $this->response->setJSON(['message' => '수정되었습니다']);
+    }
+
+    public function del_moption($idx) {
+        $this->golfOptionModel->delete($idx);
+        return $this->response->setJSON(['message' => '삭체되었습니다']);
     }
 
     public function write_spas()
