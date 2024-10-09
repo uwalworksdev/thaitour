@@ -109,18 +109,19 @@
         </div>
     </div>
     <div class="section3" id="section3">
-    <h3 class="title-sec3">
-        객실을 선택하세요
-    </h3>
-    <div class="list-tag-sec3">
-        <?php $i = 0;
-        foreach ($room_categories
+        <h3 class="title-sec3">
+            객실을 선택하세요
+        </h3>
+        <div class="list-tag-sec3">
+            <div class="tag-item-sec3<?= $s_category_room === '' ? '--main' : '' ?>" onclick="go_category_room('')"
+                 style="cursor: pointer">
+                모두
+            </div>
+            <?php
+            foreach ($room_categories
 
-        as $row) : ?>
-
-        <?php if ($i === 0 && $s_category_room === '') : ?>
-        <div class="tag-item-sec3--main">
-            <?php elseif (isset($s_category_room) && $s_category_room === $row['code_no']) : ?>
+                     as $row) : ?>
+        <?php if (isset($s_category_room) && $s_category_room === $row['code_no']) : ?>
             <div class="tag-item-sec3--main">
                 <?php else : ?>
                 <div class="tag-item-sec3" onclick="go_category_room(<?= $row['code_no'] ?>)" style="cursor: pointer">
@@ -128,8 +129,7 @@
 
                     <?= $row['code_name'] ?> (<?= $row['count'] ?>)
                 </div>
-                <?php $i++;
-                endforeach; ?>
+                <?php endforeach; ?>
             </div>
 
             <script>
@@ -139,7 +139,7 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <?php if (!isset($s_category_room)) : ?>
+            <?php if ($s_category_room === '' || !isset($s_category_room)) : ?>
                 <?php foreach ($hotel_options as $item) : ?>
                     <?php $room = $item['room']; ?>
                     <div class="card-item-sec3">
