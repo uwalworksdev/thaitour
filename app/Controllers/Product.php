@@ -619,6 +619,8 @@ class Product extends BaseController
     public function hotelDetail($idx)
     {
         try {
+            $s_category_room = $_GET['s_category_room'] ?? '';
+
             $hotel = $this->db->query('SELECT * FROM tbl_hotel WHERE g_idx = ?', [$idx])->getRowArray();
             if (!$hotel) {
                 throw new Exception('존재하지 않는 상품입니다.');
@@ -703,12 +705,28 @@ class Product extends BaseController
                 $fresult8 = $fresult8->getResultArray();
             }
 
+            $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 ORDER BY onum DESC, code_idx DESC";
+            $room_categories = $this->db->query($sql)->getResultArray();
+
+            $room_categories_convert = [];
+            foreach ($room_categories as $category) {
+                $sql_count = "SELECT * FROM tbl_room WHERE category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "|%'";
+                $count = $this->db->query($sql_count)->getNumRows();
+                $category['count'] = $count;
+                $room_categories_convert[] = $category;
+            }
+
+            /* get options */
+
+
             $data = [
                 'hotel' => $hotel,
+                's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
                 'bresult4' => $bresult4 ?? [],
                 'fresult5' => $fresult5 ?? [],
                 'fresult8' => $fresult8 ?? [],
+                'room_categories' => $room_categories_convert,
                 'suggestHotel' => $suggestHotels,
             ];
 
