@@ -619,6 +619,13 @@ class Product extends BaseController
     public function hotelDetail($idx)
     {
         try {
+            $s_category_room = $_GET['s_category_room'] ?? '';
+            $subSql = '';
+
+            if (isset($s_category_room) && $s_category_room !== '') {
+                $subSql .= " AND r.category LIKE '%" . $s_category_room . "|%'";
+            }
+
             $hotel = $this->db->query('SELECT * FROM tbl_hotel WHERE g_idx = ?', [$idx])->getRowArray();
             if (!$hotel) {
                 throw new Exception('존재하지 않는 상품입니다.');
@@ -703,12 +710,88 @@ class Product extends BaseController
                 $fresult8 = $fresult8->getResultArray();
             }
 
+            /* get options */
+//            $sql = "SELECT * FROM tbl_hotel_option o WHERE o.goods_code = " . $hotel['goods_code'] . " and o.o_room != 0
+//                        JOIN tbl_room r ON r.g_idx = o.o_room ORDER BY o.idx DESC";
+
+//            $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 ORDER BY onum DESC, code_idx DESC";
+//            $room_categories = $this->db->query($sql)->getResultArray();
+//
+//            $room_categories_convert = [];
+//            foreach ($room_categories as $category) {
+//                $sql_count = "SELECT * FROM tbl_room WHERE category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "|%'";
+//                $count = $this->db->query($sql_count)->getNumRows();
+//                $category['count'] = $count;
+//                $room_categories_convert[] = $category;
+//            }
+            $categories = '';
+
+            $sql = "SELECT * 
+                    FROM tbl_hotel_option o
+                    JOIN tbl_room r ON r.g_idx = o.o_room
+                    WHERE o.goods_code = " . $hotel['goods_code'] . " 
+                    AND o.o_room != 0 
+                    ORDER BY o.idx DESC";
+
+            $hotel_options = $this->db->query($sql)->getResultArray();
+
+            $hotel_option_convert = [];
+
+            $list__gix = "";
+            foreach ($hotel_options as $option) {
+                $sql_count = "SELECT * FROM tbl_room WHERE g_idx = " . $option['o_room'];
+
+                $room = $this->db->query($sql_count)->getRowArray();
+
+                $list__gix .= $option['o_room'] . ',';
+                if ($room) {
+                    $categories .= $room['category'];
+                }
+                $option['room'] = $room ?? '';
+                $hotel_option_convert[] = $option;
+            }
+
+            $_arr_categories = explode("|", $categories);
+            $_arr_categories = array_unique($_arr_categories);
+            $list__categories = rtrim(implode(',', $_arr_categories), ',');
+
+            $insql = "";
+            if (count($_arr_categories) > 0) {
+                $insql = " AND code_no IN ($list__categories)";
+            }
+
+            $_arr_gix = explode(",", $list__gix);
+            $list__gix = rtrim(implode(',', $_arr_gix), ',');
+            $insql2 = "";
+            if (count($_arr_gix) > 0) {
+                $insql2 = " AND g_idx IN ($list__gix)";
+            }
+
+            $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum DESC, code_idx DESC";
+            $room_categories = $this->db->query($sql)->getResultArray();
+
+            $room_categories_convert = [];
+            foreach ($room_categories as $category) {
+                $sql_count = "SELECT * FROM tbl_room WHERE category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "|%'" . $insql2;
+                $count = $this->db->query($sql_count)->getNumRows();
+                $category['count'] = $count;
+                $room_categories_convert[] = $category;
+            }
+
+            $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
+            $rresult = $this->db->query($fsql) or die ($this->db->error);
+            $rresult = $rresult->getResultArray();
+
             $data = [
                 'hotel' => $hotel,
+                's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
                 'bresult4' => $bresult4 ?? [],
                 'fresult5' => $fresult5 ?? [],
                 'fresult8' => $fresult8 ?? [],
+                'rresult' => $rresult ?? [],
+                'room_categories' => $room_categories_convert,
+                'hotel_options' => $hotel_option_convert,
                 'suggestHotel' => $suggestHotels,
             ];
 
