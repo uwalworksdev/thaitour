@@ -190,11 +190,17 @@ class Product extends BaseController
                     ->getResult();
             }
 
+            $sql = 'SELECT * FROM tbl_code WHERE parent_code_no = 1303 ORDER BY onum DESC, code_idx DESC';
+            $sub_codes = $this->db->query($sql);
+
+            $sub_codes = $sub_codes->getResultArray();
+
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
                 'products' => $products,
                 'code_no' => $code_no,
+                'sub_codes' => $sub_codes,
                 's' => $s,
                 'codes' => $codes,
                 'code_name' => $code_name,
