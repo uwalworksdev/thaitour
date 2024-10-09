@@ -33,76 +33,20 @@
                 <div style="position: relative;">
                     <div class="swiper sub_swiper2">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_1.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        방콕 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_2.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        파타야 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_3.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        푸켓 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_4.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        치앙마이 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_5.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        끄라비 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_6.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        카오락 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-hotel/list-hotel/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_3.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        카오락 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
+                            <?php foreach ($sub_codes as $code_item) : ?>
+                                <div class="swiper-slide">
+                                    <a href="/product-hotel/list-hotel/<?= $code_item['code_no'] ?>">
+                                        <div class="img_box">
+                                            <img src="/data/code/<?= $code_item['ufile1'] ?>"
+                                                 onerror="this.src='/images/product/noimg.png'" alt="main">
+                                        </div>
+                                        <div class="sub_swiper2__text">
+                                            <?= $code_item['code_name'] ?> <img src="/images/ico/ico_arrow_right_1.svg"
+                                                                                alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <div class="swiper-button-prev-sub-2 swiper-button-sub-2 sub_swiper2_btn_prev">
