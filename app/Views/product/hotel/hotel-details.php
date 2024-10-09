@@ -139,661 +139,414 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <div class="card-item-sec3">
-                <div class="card-title-sec3-container">
-                    <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                    <div class="label">시티 뷰</div>
-                </div>
-                <div class="card-item-container">
-                    <div class="card-item-left">
-                        <div class="only_web">
-                            <div class="grid2_2_1">
-                                <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
-                                <img src="/uploads/sub/hotel_item_1_2.png" alt="hotel_item_1_2">
-                                <div class="" style="position: relative;">
-                                    <img class="custom_button" src="/uploads/sub/hotel_item_1_3.png"
-                                         alt="hotel_item_1_3">
-                                    <div class="button-show-detail-image">
-                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                        <span>22</span>
+            <?php if (!isset($s_category_room)) : ?>
+                <?php foreach ($hotel_options as $item) : ?>
+                    <?php $room = $item['room']; ?>
+                    <div class="card-item-sec3">
+                        <div class="card-title-sec3-container">
+                            <h2><?= $room['roomName'] ?></h2>
+                            <div class="label"><?= $room['scenery'] ?></div>
+                        </div>
+                        <div class="card-item-container">
+                            <div class="card-item-left">
+                                <div class="only_web">
+                                    <div class="grid2_2_1">
+                                        <?php for ($k = 1; $k < 4; $k++) { ?>
+                                            <img src="/uploads/rooms/<?= $room['ufile' . $k] ?>"
+                                                 onerror="this.src='/images/share/noimg.png"
+                                                 alt="<?= $room['roomName'] ?>">
+                                        <?php } ?>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="grid2_2_1_m only_mo">
-                            <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
-                            <div class="">
-                                <img class="img-top" src="/uploads/sub/hotel_item_1_2.png" alt="hotel_item_1_2">
-                                <div class="grid2_2_1_sub" style="position: relative;">
-                                    <img class="custom_button" src="/uploads/sub/hotel_item_1_3.png"
-                                         alt="hotel_item_1_3">
-                                    <div class="button-show-detail-image">
-                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                        <span>125</span>
-                                    </div>
+                                <div class="grid2_2_1_m only_mo">
+                                    <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                                 </div>
+                                <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
+                                <?php $room_facil = $room['room_facil']; ?>
+                                <ul>
+                                    <?php
+                                    $_arr = explode("|", $room_facil);
+                                    foreach ($rresult as $row_r) :
+                                        for ($i = 0; $i < count($_arr); $i++) {
+                                            if ($_arr[$i]) {
+                                                if ($_arr[$i] == $row_r['code_no']) {
+                                                    ?>
+                                                    <li><?= $row_r['code_name'] ?></li>
+                                                    <?php
+                                                }
+                                            }
+                                        }
+                                        ?>
+                                    <?php endforeach; ?>
+                                </ul>
                             </div>
-                        </div>
-                        <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
-                        <ul>
-                            <li>시티 뷰</li>
-                            <li>금연객실</li>
-                            <li>45㎡ / 13-16층</li>
-                            <li>무료 Wi-Fi</li>
-                            <li>발코니</li>
-                        </ul>
-                    </div>
 
-                    <table class="room-table only_web">
-                        <thead>
-                        <tr>
-                            <th>옵션 상세</th>
-                            <th>쿠폰</th>
-                            <th>객실 요금</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="room-details">
-                                    <p class="room-p-cus-1">객실 상세</p>
-                                    <p>초대형 더블침대 1개</p>
-                                    <ul>
-                                        <li class="highlight">조식 2인 포함</li>
-                                        <li>환불 불가</li>
-                                    </ul>
-                                    <p class="room-p-cus-2">투숙객 정원</p>
-                                    <p>성인 2명</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="occupancy">
-                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-details">
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <span class="total">총금액: 5,091,454원</span>
-                                    <span class="details">객실 1개 × 3박 (세금 포함)</span>
-                                    <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
-                                    <p><span class="price">481,290</span>원</p>
-                                    <button class="book-button openPopupBtn">예약하기</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="room-details">
-                                    <p>객실 상세</p>
-                                    <p>싱글침대 2개</p>
-                                    <ul>
-                                        <li>조식 20,895원 (선택 사항)</li>
-                                        <li>환불 불가</li>
-                                    </ul>
-                                    <p class="text-details-2">투숙객 정원</p>
-                                    <p>성인 2명</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="occupancy">
-                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-details">
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">40%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    <p><span class="price">481,290</span>원</p>
-                                    <button class="book-button-sub openPopupBtn">예약하기</button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="only_mo">
-                        <div class="room-table table-price-info-mobile">
-                            <div class="info-price-left">
-                                <span class="label1">객실옵션 상세:</span>
-                                <span class="label1"><strong>킹 침대 1개</strong></span>
-                                <ul>
-                                    <li class="highlight">조식 2인 포함</li>
-                                    <li>환불 불가</li>
-                                    <div class="info-price-left-sub">
-                                        <span class="label1">객실 요금:</span>
+                            <table class="room-table only_web">
+                                <thead>
+                                <tr>
+                                    <th>옵션 상세</th>
+                                    <th>쿠폰</th>
+                                    <th>객실 요금</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="room-details">
+                                            <p class="room-p-cus-1">객실 상세</p>
+                                            <p>초대형 더블침대 1개</p>
+                                            <ul>
+                                                <li class="highlight">조식 2인 포함</li>
+                                                <li>환불 불가</li>
+                                            </ul>
+                                            <p class="room-p-cus-2">투숙객 정원</p>
+                                            <p>성인 2명</p>
+                                        </div>
+                                    </td>
+                                    <td>
                                         <div class="occupancy">
-                                            <img src="/uploads/icons/double_person_icon.png"
-                                                 alt="double_person_icon">
+                                            <span class="occupancy_button openPopupBtn">쿠폰적용</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="price-details">
+                                            <div class="discount">
+                                                <span class="label">특별할인</span>
+                                                <span class="price_content">30%할인</span>
+                                            </div>
+                                            <div class="price-strike-container">
+                                                <span class="price-strike">202,043원</span>
+                                                <span class="price">160,430</span>원
+                                            </div>
+                                            <span class="total">총금액: 5,091,454원</span>
+                                            <span class="details">객실 1개 × 3박 (세금 포함)</span>
+                                            <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
+                                            <p><span class="price">481,290</span>원</p>
+                                            <button class="book-button openPopupBtn">예약하기</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="room-details">
+                                            <p>객실 상세</p>
+                                            <p>싱글침대 2개</p>
+                                            <ul>
+                                                <li>조식 20,895원 (선택 사항)</li>
+                                                <li>환불 불가</li>
+                                            </ul>
+                                            <p class="text-details-2">투숙객 정원</p>
+                                            <p>성인 2명</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="occupancy">
+                                            <span class="occupancy_button openPopupBtn">쿠폰적용</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="price-details">
+                                            <div class="discount">
+                                                <span class="label">특별할인</span>
+                                                <span class="price_content">40%할인</span>
+                                            </div>
+                                            <div class="price-strike-container">
+                                                <span class="price-strike">202,043원</span>
+                                                <span class="price">160,430</span>원
+                                            </div>
+                                            <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                            <p><span class="price">481,290</span>원</p>
+                                            <button class="book-button-sub openPopupBtn">예약하기</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="only_mo">
+                                <div class="room-table table-price-info-mobile">
+                                    <div class="info-price-left">
+                                        <span class="label1">객실옵션 상세:</span>
+                                        <span class="label1"><strong>킹 침대 1개</strong></span>
+                                        <ul>
+                                            <li class="highlight">조식 2인 포함</li>
+                                            <li>환불 불가</li>
+                                            <div class="info-price-left-sub">
+                                                <span class="label1">객실 요금:</span>
+                                                <div class="occupancy">
+                                                    <img src="/uploads/icons/double_person_icon.png"
+                                                         alt="double_person_icon">
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                    <div class="info-price-right">
+                                        <div class="price-details">
+                                            <span class="label1">투숙객 정원:</span>
+                                            <div class="discount">
+                                                <span class="label">특별할인</span>
+                                                <span class="price_content">30%할인</span>
+                                            </div>
+                                            <div class="price-strike-container">
+                                                <span class="price-strike">202,043원</span>
+                                                <span class="price">160,430</span>원
+                                            </div>
+                                            <div class="flex-total">
+                                                <span class="total">총금액: 5,091,454원</span>
+                                                <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                            </div>
+                                            <button class="book-button openPopupBtn">예약하기</button>
                                         </div>
                                     </div>
-                                </ul>
-                            </div>
-                            <div class="info-price-right">
-                                <div class="price-details">
-                                    <span class="label1">투숙객 정원:</span>
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <div class="flex-total">
-                                        <span class="total">총금액: 5,091,454원</span>
-                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    </div>
-                                    <button class="book-button openPopupBtn">예약하기</button>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="room-table table-price-info-mobile">
-                            <div class="info-price-left">
-                                <span class="label1">객실옵션 상세:</span>
-                                <span class="label1"><strong>킹 침대 1개</strong></span>
-                                <ul>
-                                    <li class="">조식 20,895원 (선택 사항)</li>
-                                    <li>환불 불가</li>
-                                    <div class="info-price-left-sub">
-                                        <span class="label1">객실 요금:</span>
-                                        <div class="occupancy">
-                                            <img src="/uploads/icons/double_person_icon.png"
-                                                 alt="double_person_icon">
+                                <div class="room-table table-price-info-mobile">
+                                    <div class="info-price-left">
+                                        <span class="label1">객실옵션 상세:</span>
+                                        <span class="label1"><strong>킹 침대 1개</strong></span>
+                                        <ul>
+                                            <li class="">조식 20,895원 (선택 사항)</li>
+                                            <li>환불 불가</li>
+                                            <div class="info-price-left-sub">
+                                                <span class="label1">객실 요금:</span>
+                                                <div class="occupancy">
+                                                    <img src="/uploads/icons/double_person_icon.png"
+                                                         alt="double_person_icon">
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                    <div class="info-price-right">
+                                        <div class="price-details">
+                                            <span class="label1">투숙객 정원:</span>
+                                            <div class="discount">
+                                                <span class="label">특별할인</span>
+                                                <span class="price_content">40%할인</span>
+                                            </div>
+                                            <div class="price-strike-container">
+                                                <span class="price-strike">202,043원</span>
+                                                <span class="price">100,430</span>원
+                                            </div>
+                                            <div class="flex-total">
+                                                <span class="total">총금액: 5,091,454원</span>
+                                                <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                            </div>
+                                            <button class="book-button openPopupBtn">예약하기</button>
                                         </div>
                                     </div>
-                                </ul>
-                            </div>
-                            <div class="info-price-right">
-                                <div class="price-details">
-                                    <span class="label1">투숙객 정원:</span>
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">40%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">100,430</span>원
-                                    </div>
-                                    <div class="flex-total">
-                                        <span class="total">총금액: 5,091,454원</span>
-                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    </div>
-                                    <button class="book-button openPopupBtn">예약하기</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="card-item-sec3">
-                <div class="card-title-sec3-container">
-                    <h2>디럭스룸 (침실 1개, 킹 침대 )</h2>
-                </div>
-                <div class="card-item-container">
-                    <div class="card-item-left">
-                        <div class="only_web">
-                            <div class="grid2_2_1">
-                                <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
-                                <img src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
-                                <div class="" style="position: relative;">
-                                    <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png"
-                                         alt="hotel_item_1_3">
-                                    <div class="button-show-detail-image">
-                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                        <span>22</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid2_2_1_m only_mo">
-                            <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
-                            <div class="">
-                                <img class="img-top" src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
-                                <div class="grid2_2_1_sub" style="position: relative;">
-                                    <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png"
-                                         alt="hotel_item_1_3">
-                                    <div class="button-show-detail-image">
-                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                        <span>22</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="subtitle">킹 침대 1개</h2>
-                        <ul>
-                            <li>시티 뷰</li>
-                            <li>금연객실</li>
-                            <li>45㎡ / 13-16층</li>
-                            <li>무료 Wi-Fi</li>
-                            <li>발코니</li>
-                        </ul>
-                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <?php foreach ($hotel_options as $item) : ?>
+                    <?php $room = $item['room']; ?>
+                    <?php
+                    $_arr = explode("|", $room['category']);
 
-                    <table class="room-table only_web">
-                        <thead>
-                        <tr>
-                            <th>옵션 상세</th>
-                            <th>쿠폰</th>
-                            <th>객실 요금</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="room-details">
-                                    <p class="room-p-cus-1">객실 상세</p>
-                                    <p>초대형 더블침대 1개</p>
-                                    <ul>
-                                        <li class="highlight">조식 2인 포함</li>
-                                        <li>환불 불가</li>
-                                    </ul>
-                                    <p class="room-p-cus-2">투숙객 정원</p>
-                                    <p>성인 2명</p>
+                    for ($j = 0; $j < count($_arr); $j++) {
+                        if ($_arr[$j] === $s_category_room) {
+                            ?>
+                            <div class="card-item-sec3">
+                                <div class="card-title-sec3-container">
+                                    <h2><?= $room['roomName'] ?></h2>
+                                    <div class="label"><?= $room['scenery'] ?></div>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="occupancy">
-                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-details">
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <span class="total">총금액: 5,091,454원</span>
-                                    <span class="details">객실 1개 × 3박 (세금 포함)</span>
-                                    <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
-                                    <p><span class="price">481,290</span>원</p>
-                                    <button class="book-button-sub openPopupBtn">예약하기</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="room-details">
-                                    <p>객실 상세</p>
-                                    <p>싱글침대 2개</p>
-                                    <ul>
-                                        <li>조식 20,895원 (선택 사항)</li>
-                                        <li>환불 불가</li>
-                                    </ul>
-                                    <p class="text-details-2">투숙객 정원</p>
-                                    <p>성인 2명</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="occupancy">
-                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-details">
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    <p><span class="price">481,290</span>원</p>
-                                    <button class="book-button-sub openPopupBtn">예약하기</button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div class="only_mo">
-                        <div class="room-table table-price-info-mobile">
-                            <div class="info-price-left">
-                                <span class="label1">객실옵션 상세:</span>
-                                <span class="label1"><strong>킹 침대 1개</strong></span>
-                                <ul>
-                                    <li class="highlight">조식 2인 포함</li>
-                                    <li>환불 불가</li>
-                                    <div class="info-price-left-sub">
-                                        <span class="label1">객실 요금:</span>
-                                        <div class="occupancy">
-                                            <img src="/uploads/icons/double_person_icon.png"
-                                                 alt="double_person_icon">
+                                <div class="card-item-container">
+                                    <div class="card-item-left">
+                                        <div class="only_web">
+                                            <div class="grid2_2_1">
+                                                <?php for ($k = 1; $k < 4; $k++) { ?>
+                                                    <img src="/uploads/rooms/<?= $room['ufile' . $k] ?>"
+                                                         onerror="this.src='/images/share/noimg.png"
+                                                         alt="<?= $room['roomName'] ?>">
+                                                <?php } ?>
+                                            </div>
                                         </div>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div class="info-price-right">
-                                <div class="price-details">
-                                    <span class="label1">투숙객 정원:</span>
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <div class="flex-total">
-                                        <span class="total">총금액: 5,091,454원</span>
-                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    </div>
-                                    <button class="book-button openPopupBtn">예약하기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="room-table table-price-info-mobile">
-                            <div class="info-price-left">
-                                <span class="label1">객실옵션 상세:</span>
-                                <span class="label1"><strong>킹 침대 1개</strong></span>
-                                <ul>
-                                    <li class="">조식 20,895원 (선택 사항)</li>
-                                    <li>환불 불가</li>
-                                    <div class="info-price-left-sub">
-                                        <span class="label1">객실 요금:</span>
-                                        <div class="occupancy">
-                                            <img src="/uploads/icons/double_person_icon.png"
-                                                 alt="double_person_icon">
+                                        <div class="grid2_2_1_m only_mo">
+                                            <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                                         </div>
+                                        <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
+                                        <?php $room_facil = $room['room_facil']; ?>
+                                        <ul>
+                                            <?php
+                                            $_arr = explode("|", $room_facil);
+                                            foreach ($rresult as $row_r) :
+                                                for ($i = 0; $i < count($_arr); $i++) {
+                                                    if ($_arr[$i]) {
+                                                        if ($_arr[$i] == $row_r['code_no']) {
+                                                            ?>
+                                                            <li><?= $row_r['code_name'] ?></li>
+                                                            <?php
+                                                        }
+                                                    }
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </div>
-                                </ul>
-                            </div>
-                            <div class="info-price-right">
-                                <div class="price-details">
-                                    <span class="label1">투숙객 정원:</span>
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">40%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">100,430</span>원
-                                    </div>
-                                    <div class="flex-total">
-                                        <span class="total">총금액: 5,091,454원</span>
-                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    </div>
-                                    <button class="book-button openPopupBtn">예약하기</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-item-sec3">
-                <div class="card-title-sec3-container">
-                    <h2>그랜드 디럭스 1-베드룸 트윈</h2>
-                </div>
-                <div class="card-item-container">
-                    <div class="card-item-left">
-                        <div class="only_web">
-                            <div class="grid2_2_1">
-                                <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
-                                <img src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
-                                <div class="" style="position: relative;">
-                                    <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png"
-                                         alt="hotel_item_1_3">
-                                    <div class="button-show-detail-image">
-                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                        <span>22</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid2_2_1_m only_mo">
-                            <img src="/uploads/sub/hotel_item_2_1.png" alt="hotel_item_1_1">
-                            <div class="">
-                                <img class="img-top" src="/uploads/sub/hotel_item_2_2.png" alt="hotel_item_1_2">
-                                <div class="grid2_2_1_sub" style="position: relative;">
-                                    <img class="custom_button" src="/uploads/sub/hotel_item_2_3.png"
-                                         alt="hotel_item_1_3">
-                                    <div class="button-show-detail-image">
-                                        <img src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                        <span>22</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <h2 class="subtitle">싱글 침대 2개</h2>
-                        <ul>
-                            <li>시티 뷰</li>
-                            <li>금연객실</li>
-                            <li>45㎡ / 13-16층</li>
-                            <li>무료 Wi-Fi</li>
-                            <li>발코니</li>
-                        </ul>
-                    </div>
 
-                    <table class="room-table only_web">
-                        <thead>
-                        <tr>
-                            <th>옵션 상세</th>
-                            <th>쿠폰</th>
-                            <th>객실 요금</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="room-details">
-                                    <p class="room-p-cus-1">객실 상세</p>
-                                    <p>초대형 더블침대 1개</p>
-                                    <ul>
-                                        <li class="highlight">조식 2인 포함</li>
-                                        <li>환불 불가</li>
-                                    </ul>
-                                    <p class="room-p-cus-2">투숙객 정원</p>
-                                    <p>성인 2명</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="occupancy">
-                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-details">
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <span class="total">총금액: 5,091,454원</span>
-                                    <span class="details">객실 1개 × 3박 (세금 포함)</span>
-                                    <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
-                                    <p><span class="price">481,290</span>원</p>
-                                    <button class="book-button-sub openPopupBtn">예약하기</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="room-details">
-                                    <p>객실 상세</p>
-                                    <p>싱글침대 2개</p>
-                                    <ul>
-                                        <li>조식 20,895원 (선택 사항)</li>
-                                        <li>환불 불가</li>
-                                    </ul>
-                                    <p class="text-details-2">투숙객 정원</p>
-                                    <p>성인 2명</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="occupancy">
-                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price-details">
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    <p><span class="price">481,290</span>원</p>
-                                    <button class="book-button-sub openPopupBtn">예약하기</button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <div id="popup" class="popup">
-                        <div class="popup-content">
-                            <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
-                            <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
-                            <div class="order-popup">
-                                <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
-                                <div class="description-above">
-                                    <div class="item-price-popup">
-                                        <div class="img-container">
-                                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                                    <table class="room-table only_web">
+                                        <thead>
+                                        <tr>
+                                            <th>옵션 상세</th>
+                                            <th>쿠폰</th>
+                                            <th>객실 요금</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="room-details">
+                                                    <p class="room-p-cus-1">객실 상세</p>
+                                                    <p>초대형 더블침대 1개</p>
+                                                    <ul>
+                                                        <li class="highlight">조식 2인 포함</li>
+                                                        <li>환불 불가</li>
+                                                    </ul>
+                                                    <p class="room-p-cus-2">투숙객 정원</p>
+                                                    <p>성인 2명</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="occupancy">
+                                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="price-details">
+                                                    <div class="discount">
+                                                        <span class="label">특별할인</span>
+                                                        <span class="price_content">30%할인</span>
+                                                    </div>
+                                                    <div class="price-strike-container">
+                                                        <span class="price-strike">202,043원</span>
+                                                        <span class="price">160,430</span>원
+                                                    </div>
+                                                    <span class="total">총금액: 5,091,454원</span>
+                                                    <span class="details">객실 1개 × 3박 (세금 포함)</span>
+                                                    <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
+                                                    <p><span class="price">481,290</span>원</p>
+                                                    <button class="book-button openPopupBtn">예약하기</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="room-details">
+                                                    <p>객실 상세</p>
+                                                    <p>싱글침대 2개</p>
+                                                    <ul>
+                                                        <li>조식 20,895원 (선택 사항)</li>
+                                                        <li>환불 불가</li>
+                                                    </ul>
+                                                    <p class="text-details-2">투숙객 정원</p>
+                                                    <p>성인 2명</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="occupancy">
+                                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="price-details">
+                                                    <div class="discount">
+                                                        <span class="label">특별할인</span>
+                                                        <span class="price_content">40%할인</span>
+                                                    </div>
+                                                    <div class="price-strike-container">
+                                                        <span class="price-strike">202,043원</span>
+                                                        <span class="price">160,430</span>원
+                                                    </div>
+                                                    <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                                    <p><span class="price">481,290</span>원</p>
+                                                    <button class="book-button-sub openPopupBtn">예약하기</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="only_mo">
+                                        <div class="room-table table-price-info-mobile">
+                                            <div class="info-price-left">
+                                                <span class="label1">객실옵션 상세:</span>
+                                                <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                <ul>
+                                                    <li class="highlight">조식 2인 포함</li>
+                                                    <li>환불 불가</li>
+                                                    <div class="info-price-left-sub">
+                                                        <span class="label1">객실 요금:</span>
+                                                        <div class="occupancy">
+                                                            <img src="/uploads/icons/double_person_icon.png"
+                                                                 alt="double_person_icon">
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                            <div class="info-price-right">
+                                                <div class="price-details">
+                                                    <span class="label1">투숙객 정원:</span>
+                                                    <div class="discount">
+                                                        <span class="label">특별할인</span>
+                                                        <span class="price_content">30%할인</span>
+                                                    </div>
+                                                    <div class="price-strike-container">
+                                                        <span class="price-strike">202,043원</span>
+                                                        <span class="price">160,430</span>원
+                                                    </div>
+                                                    <div class="flex-total">
+                                                        <span class="total">총금액: 5,091,454원</span>
+                                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                                    </div>
+                                                    <button class="book-button openPopupBtn">예약하기</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="text-con">
-                                            <span>신규회원가입 웰컴 쿠폰</span>
-                                            <span class="text-gray">10% 할인쿠폰</span>
-                                        </div>
-                                        <span class="date-sub">~2024.10.05</span>
-                                    </div>
-                                    <div class="item-price-popup">
-                                        <div class="img-container">
-                                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
-                                        </div>
-                                        <div class="text-con">
-                                            <span>추가 즉시할인쿠폰</span>
-                                            <span class="text-gray">5,000원 할인쿠폰</span>
-                                        </div>
-                                        <span class="date-sub">~2024.10.05</span>
-                                    </div>
-                                    <div class="item-price-popup item-price-popup--button">
-                                        <span>적용안함</span>
-                                    </div>
-                                </div>
-                                <div class="line-gray"></div>
-                                <div class="footer-popup">
-                                    <div class="des-above">
-                                        <div class="item">
-                                            <span class="text-gray">총 주문금액</span>
-                                            <span class="text-gray">160,430원</span>
-                                        </div>
-                                        <div class="item">
-                                            <span class="text-gray">할인금액</span>
-                                            <span class="text-gray">16,040원</span>
-                                        </div>
-                                    </div>
-                                    <div class="des-below">
-                                        <div class="price-below">
-                                            <span>최종결제금액</span>
-                                            <p class="price-popup">144,000<span class="text-gray">원</span></p>
+                                        <div class="room-table table-price-info-mobile">
+                                            <div class="info-price-left">
+                                                <span class="label1">객실옵션 상세:</span>
+                                                <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                <ul>
+                                                    <li class="">조식 20,895원 (선택 사항)</li>
+                                                    <li>환불 불가</li>
+                                                    <div class="info-price-left-sub">
+                                                        <span class="label1">객실 요금:</span>
+                                                        <div class="occupancy">
+                                                            <img src="/uploads/icons/double_person_icon.png"
+                                                                 alt="double_person_icon">
+                                                        </div>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                            <div class="info-price-right">
+                                                <div class="price-details">
+                                                    <span class="label1">투숙객 정원:</span>
+                                                    <div class="discount">
+                                                        <span class="label">특별할인</span>
+                                                        <span class="price_content">40%할인</span>
+                                                    </div>
+                                                    <div class="price-strike-container">
+                                                        <span class="price-strike">202,043원</span>
+                                                        <span class="price">100,430</span>원
+                                                    </div>
+                                                    <div class="flex-total">
+                                                        <span class="total">총금액: 5,091,454원</span>
+                                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                                    </div>
+                                                    <button class="book-button openPopupBtn">예약하기</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <button class="btn_accept_popup"
-                                            onclick="location.href='/product-hotel/customer-form'">
-                                        쿠폰적용
-                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="only_mo">
-                        <div class="room-table table-price-info-mobile">
-                            <div class="info-price-left">
-                                <span class="label1">객실옵션 상세:</span>
-                                <span class="label1"><strong>킹 침대 1개</strong></span>
-                                <ul>
-                                    <li class="highlight">조식 2인 포함</li>
-                                    <li>환불 불가</li>
-                                    <div class="info-price-left-sub">
-                                        <span class="label1">객실 요금:</span>
-                                        <div class="occupancy">
-                                            <img src="/uploads/icons/double_person_icon.png"
-                                                 alt="double_person_icon">
-                                        </div>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div class="info-price-right">
-                                <div class="price-details">
-                                    <span class="label1">투숙객 정원:</span>
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">30%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">160,430</span>원
-                                    </div>
-                                    <div class="flex-total">
-                                        <span class="total">총금액: 5,091,454원</span>
-                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    </div>
-                                    <button class="book-button openPopupBtn">예약하기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="room-table table-price-info-mobile">
-                            <div class="info-price-left">
-                                <span class="label1">객실옵션 상세:</span>
-                                <span class="label1"><strong>킹 침대 1개</strong></span>
-                                <ul>
-                                    <li class="">조식 20,895원 (선택 사항)</li>
-                                    <li>환불 불가</li>
-                                    <div class="info-price-left-sub">
-                                        <span class="label1">객실 요금:</span>
-                                        <div class="occupancy">
-                                            <img src="/uploads/icons/double_person_icon.png"
-                                                 alt="double_person_icon">
-                                        </div>
-                                    </div>
-                                </ul>
-                            </div>
-                            <div class="info-price-right">
-                                <div class="price-details">
-                                    <span class="label1">투숙객 정원:</span>
-                                    <div class="discount">
-                                        <span class="label">특별할인</span>
-                                        <span class="price_content">40%할인</span>
-                                    </div>
-                                    <div class="price-strike-container">
-                                        <span class="price-strike">202,043원</span>
-                                        <span class="price">100,430</span>원
-                                    </div>
-                                    <div class="flex-total">
-                                        <span class="total">총금액: 5,091,454원</span>
-                                        <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                    </div>
-                                    <button class="book-button openPopupBtn">예약하기</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <?php
+                        }
+                    }
+                    ?>
+
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
