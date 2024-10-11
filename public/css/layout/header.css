@@ -424,6 +424,7 @@
 
     #header_mobile {
         position: fixed;
+        top: 0;
         z-index: 100;
         background-color: white;
         margin-top: 0;
@@ -638,6 +639,7 @@
         width: 100%;
         gap: 8rem;
         padding: 0 4rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     }
 
     .quick-header-footer .nav-item {
@@ -672,6 +674,11 @@
         width: 9.4rem;
         text-align: center;
         padding: 2rem 0;
+        box-shadow: 0rem 1rem 1.6rem 0rem var(--bs-point);
+    }
+
+    .header_replace {
+        height: 19rem !important;
     }
 }
 
