@@ -146,52 +146,25 @@
                 </div>
                 <div class="sub_tour_section7_product_list swiper swiper_product_list_">
                     <div class="swiper-wrapper">
-                        <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="/uploads/sub/tour_special_1.png" alt="">
+                        <?php foreach ($theme_products as $theme_product): ?>
+                            <div class="sub_tour_section7_product_item swiper-slide">
+                                <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
+                                <div class="img_box img_box_12">
+                                    <img src="<?= $theme_product['ufile1'] ?>" alt="">
+                                </div>
+                                <div class="sub_tour_section7_product_item__name"><?= $theme_product['goods_name_front'] ?></div>
+                                <?php
+                                $goods_keyword = $theme_product['goods_keyword'];
+                                $arr_keyword = explode(",", $goods_keyword);
+
+                                ?>
+                                <div class="sub_tour_section7_product_item__keywords">
+                                    <?php foreach ($arr_keyword as $keyword): ?>
+                                        <span>#<?= $keyword ?></span>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
-                            <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                                <span>#인피니티풀</span>
-                                <span>#호텔수영장</span>
-                                <span>#뷰맛집</span>
-                            </div>
-                        </div>
-                        <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="/uploads/sub/tour_special_2.png" alt="">
-                            </div>
-                            <div class="sub_tour_section7_product_item__name">반려견과 함께 할 수 있는 호텔</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                                <span>#펫프렌들리호텔</span>
-                                <span>#내새끼랑여행</span>
-                            </div>
-                        </div>
-                        <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="/uploads/sub/tour_special_3.png" alt="">
-                            </div>
-                            <div class="sub_tour_section7_product_item__name">쇼핑몰과 연결되어 있는 호텔</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                                <span>#쇼핑몰</span>
-                                <span>#럭셔리여행은쇼핑이완성</span>
-                            </div>
-                        </div>
-                        <div class="sub_tour_section7_product_item swiper-slide">
-                            <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="/uploads/sub/tour_special_2.png" alt="">
-                            </div>
-                            <div class="sub_tour_section7_product_item__name">인피니티풀이 있는 호텔</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                                <span>#인피니티풀</span>
-                                <span>#호텔수영장</span>
-                                <span>#뷰맛집</span>
-                            </div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

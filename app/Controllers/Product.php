@@ -195,9 +195,12 @@ class Product extends BaseController
 
             $sub_codes = $sub_codes->getResultArray();
 
+            $theme_products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' AND goods_dis4 = 'Y' ORDER BY onum DESC")->getResultArray();
+
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
+                'theme_products' => $theme_products,
                 'products' => $products,
                 'code_no' => $code_no,
                 'sub_codes' => $sub_codes,
@@ -597,10 +600,13 @@ class Product extends BaseController
             $totalProducts = count($products);
             $pager = \Config\Services::pager();
 
+            $theme_products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' AND goods_dis4 = 'Y' ORDER BY onum DESC")->getResultArray();
+
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
                 'products' => $products,
+                'theme_products' => $theme_products,
                 'code_no' => $code_no,
                 's' => $s,
                 'pager' => $pager,
