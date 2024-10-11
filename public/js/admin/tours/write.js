@@ -109,9 +109,9 @@ function send_it() {
 
     var frm = document.frm;
 
-    oEditors1.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-    oEditors2.getById["caution"].exec("UPDATE_CONTENTS_FIELD", []);
-    oEditors3.getById["c_calendar"].exec("UPDATE_CONTENTS_FIELD", []);
+    // oEditors1.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+    // oEditors2.getById["caution"].exec("UPDATE_CONTENTS_FIELD", []);
+    // oEditors3.getById["c_calendar"].exec("UPDATE_CONTENTS_FIELD", []);
 
     if (frm.product_code.value == "") {
         alert("카테고리를 등록해주세요.");
