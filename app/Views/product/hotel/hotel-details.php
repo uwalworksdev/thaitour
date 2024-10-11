@@ -328,9 +328,11 @@
                                         <div class="only_web">
                                             <div class="grid2_2_1">
                                                 <?php for ($k = 1; $k < 4; $k++) { ?>
-                                                    <img src="/uploads/rooms/<?= $room['ufile' . $k] ?>"
-                                                         onerror="this.src='/images/share/noimg.png"
-                                                         alt="<?= $room['roomName'] ?>">
+                                                    <?php if ($room['ufile' . $k]) { ?>
+                                                        <img src="/uploads/rooms/<?= $room['ufile' . $k] ?>"
+                                                             onerror="this.src='/images/share/noimg.png"
+                                                             alt="<?= $room['roomName'] ?>">
+                                                    <?php } ?>
                                                 <?php } ?>
                                             </div>
                                         </div>
