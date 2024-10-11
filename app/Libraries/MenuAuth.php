@@ -13,6 +13,22 @@ class MenuAuth
         $this->request = \Config\Services::request();
     }
 
+    private function compareParams($params, $current_params) {
+        $result = true;
+        foreach ($params as $key => $param) {
+            if (!array_key_exists($key, $current_params)) {
+                $result = false;
+                break;
+            }
+
+            if ($current_params[$key] != $param) {
+                $result = false;
+                break;
+            }
+        }
+        return $result;
+    }
+
     public function getUserMenus($userPermissions)
     {
         $router = service('router');
@@ -31,8 +47,6 @@ class MenuAuth
                 return in_array(trim($submenu['code']), $permissions) || session('member.id') == 'admin';
             });
 
-
-
             if (!empty($allowedSubMenus)) {
                 $is_menu_active = "";
 
@@ -42,29 +56,36 @@ class MenuAuth
 
                     if (in_array($alias, $aliasList)) {
                         $parsedUrl = parse_url($submenu['url']);
-                        if (
-                            ($alias == "AdminBbsController::boardList"
-                                || $alias == "AdminBbsController::boardView"
-                                || $alias == "AdminBbsController::boardWrite")
-                            && isset($parsedUrl['query'])
-                        ) {
+                        if (($controller == "AdminBbsController" 
+                                || $controller == "AdminMemberBoardController" 
+                                || $controller == "AdminBbsBannerController"
+                                || $controller == "BoardController"
+                                || $controller == "Member") 
+                            && isset($parsedUrl['query']) ) {
                             parse_str($parsedUrl['query'], $params);
 
-                            $scategory = $params['scategory'] ?? '';
-                            $code = $params['code'] ?? '';
+                            $result = $this->compareParams($params, $current_params);
 
-                            $current_code = $current_params['code'] ?? '';
-                            $current_scategory = $current_params['scategory'] ?? '';
-
-                            if ($scategory) {
-                                if ($scategory == $current_scategory && $code == $current_code) {
-                                    $is_menu_active = "on";
-                                    $submenu['active'] = "on";
-                                }
-                            } elseif ($code == $current_code) {
+                            if($result) {
                                 $is_menu_active = "on";
                                 $submenu['active'] = "on";
                             }
+
+                            // $scategory = $params['scategory'] ?? '';
+                            // $code = $params['code'] ?? '';
+
+                            // $current_code = $current_params['code'] ?? '';
+                            // $current_scategory = $current_params['scategory'] ?? '';
+
+                            // if ($scategory) {
+                            //     if ($scategory == $current_scategory && $code == $current_code) {
+                            //         $is_menu_active = "on";
+                            //         $submenu['active'] = "on";
+                            //     }
+                            // } elseif ($code == $current_code) {
+                            //     $is_menu_active = "on";
+                            //     $submenu['active'] = "on";
+                            // }
 
                         } else {
                             $is_menu_active = "on";

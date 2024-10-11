@@ -188,25 +188,25 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '일반회원관리',
                     'code' => 'F1',
-                    'url' => 'href="/AdmMaster/_member/list?s_status=Y',
+                    'url' => '/AdmMaster/_member/list?s_status=Y',
                     'alias' => ['Member::list_member']
                 ],
                 [
                     'name' => '탈퇴회원관리',
                     'code' => 'F2',
-                    'url' => 'href="/AdmMaster/_member/list?s_status=N',
+                    'url' => '/AdmMaster/_member/list?s_status=N',
                     'alias' => ['Member::list_member']
                 ],
                 [
                     'name' => '이메일 관리',
                     'code' => 'F3',
-                    'url' => 'href="/AdmMaster/_member/email',
+                    'url' => '/AdmMaster/_member/email',
                     'alias' => ['AutoMailController::index', 'AutoMailController::email_view']
                 ],
                 [
                     'name' => 'SMS 관리',
                     'code' => 'F4',
-                    'url' => 'href="/AdmMaster/_member/sms',
+                    'url' => '/AdmMaster/_member/sms',
                     'alias' => ['SmsSettings::index', 'SmsSettings::sms_view']
                 ],
             ]
@@ -243,7 +243,7 @@ class AdminMenus extends BaseConfig
                     'name' => '인증수상내역',
                     'code' => 'H1',
                     'url' => '/AdmMaster/_bbs/board_list?code=awards',
-                    'alias' => ['AdminMemberBoardController::board_list', 'AdminMemberBoardController::board_write']
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '메인/서브비주얼관리',
@@ -255,13 +255,13 @@ class AdminMenus extends BaseConfig
                     'name' => '메인이벤트 관리',
                     'code' => 'H3',
                     'url' => '/AdmMaster/_bbs/board_list?code=main_event',
-                    'alias' => ['AdminMemberBoardController::board_list', 'AdminMemberBoardController::board_write']
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '키워드 링크',
                     'code' => 'H4',
                     'url' => '/AdmMaster/_bbs/board_list?code=hashtag',
-                    'alias' => ['AdminMemberBoardController::board_list', 'AdminMemberBoardController::board_write']
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '서브배너관리',
