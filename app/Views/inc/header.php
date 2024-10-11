@@ -30,7 +30,7 @@
     </div>
     <hr>
     <?php
-    $tab_ = $tab_active ?? 0;
+    $tab_ = $tab_active ?? 8;
     switch ($tab_) {
         case 1:
             $tab_1 = 'on';
@@ -53,7 +53,11 @@
         case 7:
             $tab_7 = 'on';
             break;
+        case 8:
+            $tab_8 = 'on';
+            break;
         default:
+            $tab_8 = 'on';
             $tab_active = 1;
             break;
     }
@@ -107,19 +111,26 @@
                 <div>
                     <ul class="flex_header_top flex_header_top_content_list">
                         <!--                    <li><a class="-->
-                        <?php //echo isset($tab_1) ? 'active_' : '' ?><!--" href="/product-hotel/1324">호텔</a></li>-->
+                        <?php //echo isset($tab_1) ? 'active_' : '' 
+                        ?><!--" href="/product-hotel/1324">호텔</a></li>-->
                         <!--                    <li><a class="-->
-                        <?php //echo isset($tab_2) ? 'active_' : '' ?><!--" href="/product-golf/1325/1">골프</a></li>-->
+                        <?php //echo isset($tab_2) ? 'active_' : '' 
+                        ?><!--" href="/product-golf/1325/1">골프</a></li>-->
                         <!--                    <li><a class="-->
-                        <?php //echo isset($tab_3) ? 'active_' : '' ?><!--" href="/product-tours/1325/1">투어</a></li>-->
+                        <?php //echo isset($tab_3) ? 'active_' : '' 
+                        ?><!--" href="/product-tours/1325/1">투어</a></li>-->
                         <!--                    <li><a class="-->
-                        <?php //echo isset($tab_4) ? 'active_' : '' ?><!--" href="/product-spa/1320/1">스파</a></li>-->
+                        <?php //echo isset($tab_4) ? 'active_' : '' 
+                        ?><!--" href="/product-spa/1320/1">스파</a></li>-->
                         <!--                    <li><a class="-->
-                        <?php //echo isset($tab_5) ? 'active_' : '' ?><!--" href="/show-ticket">쇼ㆍ입장권</a></li>-->
+                        <?php //echo isset($tab_5) ? 'active_' : '' 
+                        ?><!--" href="/show-ticket">쇼ㆍ입장권</a></li>-->
                         <!--                    <li><a class="-->
-                        <?php //echo isset($tab_6) ? 'active_' : '' ?><!--" href="/product-list/1320/1">레스토랑</a></li>-->
+                        <?php //echo isset($tab_6) ? 'active_' : '' 
+                        ?><!--" href="/product-list/1320/1">레스토랑</a></li>-->
                         <!--                    <li><a class="-->
-                        <?php //echo isset($tab_7) ? 'active_' : '' ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
+                        <?php //echo isset($tab_7) ? 'active_' : '' 
+                        ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
                     </ul>
                 </div>
@@ -151,33 +162,25 @@
         </div>
     </div>
 </header>
-<div class="header_replace only_web"></div>
+<div class="header_replace"></div>
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top pb-24">
-            <div class="flex_header_top_item">
-                <div class="custom-select-lang">
-                    <select id="language-select2">
-                        <option value="kr">KR 한국어</option>
-                        <option value="en">English</option>
-                    </select>
-                </div>
-            </div>
             <div class="flex_header_top_item">
                 <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt="">
             </div>
             <div class="flex_header_top flex_header_top_item">
                 <div class="burger">
-                    <img src="<?= base_url('/uploads/icons/icon-user-m.png') ?>" alt="">
-                </div>
-                <div class="burger">
                     <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
                 </div>
-                <div class="hamburger" id="hamburger">
+                <div class="burger" id="search-mobile">
+                    <img src="<?= base_url('/uploads/icons/search-icon-m.png') ?>" alt="">
+                </div>
+                <!-- <div class="hamburger" id="hamburger">
                     <div class="bar bar1"></div>
                     <div class="bar bar2"></div>
                     <div class="bar bar3"></div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="menu_mobile" id="menu_mobile">
@@ -233,8 +236,129 @@
                 </ul>
             </div>
         </div>
+        <div class="popup_search_mo" id="popup_search_mo">
+            <div class="header_ps">
+                <h3 class="title-ps">검색</h3>
+                <img id="icon-close-ps" src="/uploads/icons/icon-close-ps.png" alt="icon-close-ps">
+            </div>
+            <div class="input-form-ps">
+                <input type="text" class="search-input-m search-input-ps">
+                <img src="<?= base_url('/uploads/icons/search-icon-m.png') ?>" alt="">
+            </div>
+            <div class="text-c-ps">
+                <label for="인기검색어">인기검색어</label>
+                <span>골프여행, </span><span>호캉스, </span><span>알뜰여행, </span><span>땡처리여행</span>
+            </div>
+            <section class="main_hot">
+                <div class="body_inner">
+                    <div class="main_hot__head">
+                        <div class="main_hot__head__left">
+                            <div class="main_hot__head_ttl">
+                                지금 가장 많이 찾는 상품
+                            </div>
+                            <div class="main_hot__head__place only_web_flex">
+                                <div class="place_item">방콕</div>
+                                <div class="place_item">파타야</div>
+                                <div class="place_item">푸켓</div>
+                                <div class="place_item active">치앙마이</div>
+                            </div>
+                        </div>
+                        <div class="main_hot__head__right">
+                            <div class="hot_product_menu_swiper_pagination"></div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="hot_product_list hot_product_menu_swiper swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="hot_product_list__item">
+                                        <div class="img_box img_box_2">
+                                            <img src="/uploads/main/main_hot_5.png" alt="main">
+                                        </div>
+                                        <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
+                                        <div class="prd_price_ko">236,100 <span>원</span></div>
+                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="hot_product_list__item">
+                                        <div class="img_box img_box_2">
+                                            <img src="/uploads/main/main_hot_6.png" alt="main">
+                                        </div>
+                                        <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
+                                        <div class="prd_price_ko">236,100 <span>원</span></div>
+                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="hot_product_list__item">
+                                        <div class="img_box img_box_2">
+                                            <img src="/uploads/main/main_hot_7.png" alt="main">
+                                        </div>
+                                        <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
+                                        <div class="prd_price_ko">236,100 <span>원</span></div>
+                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="hot_product_list__item">
+                                        <div class="img_box img_box_2">
+                                            <img src="/uploads/main/main_hot_8.png" alt="main">
+                                        </div>
+                                        <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
+                                        <div class="prd_price_ko">236,100 <span>원</span></div>
+                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="hot_product_list__item">
+                                        <div class="img_box img_box_2">
+                                            <img src="/uploads/main/main_hot_6.png" alt="main">
+                                        </div>
+                                        <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
+                                        <div class="prd_price_ko">236,100 <span>원</span></div>
+                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="hot_product_list__item">
+                                        <div class="img_box img_box_2">
+                                            <img src="/uploads/main/main_hot_7.png" alt="main">
+                                        </div>
+                                        <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
+                                        <div class="prd_price_ko">236,100 <span>원</span></div>
+                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-button-prev-main-2 swiper-button-main-2 hot_product_list_swiper_2_btn_prev">
+                            <img src="/images/ico/ico_prev_slide.svg" alt="">
+                        </div>
+                        <div class="swiper-button-next-main-2 swiper-button-main-2 hot_product_list_swiper_2_btn_next">
+                            <img src="/images/ico/ico_next_slide.svg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-    <hr>
+    <div class="nav-container">
+        <div class="scroll-con">
+            <span class="nav-item"><a class="<?php echo isset($tab_8) ? 'active_' : '' ?>" href="/">홈</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-tours/1325/1">투어</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-list/1320/1">레스토랑</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide">차량ㆍ가이드</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_9) ? 'active_' : '' ?>" href="/center/insurance">여행자 보험</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_10) ? 'active_' : '' ?>" href="/event/event_list">이벤트</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_11) ? 'active_' : '' ?>" href="/mypage/discount">여행 쿠폰</a></span>
+            <span class="nav-item"><a class="<?php echo isset($tab_12) ? 'active_' : '' ?>" href="/community/main">태국뉴스</a></span>
+        </div>
+    </div>
     <div class="search_m_header only_web">
         <div class="search-container-m">
             <input type="text" class="search-input-m" placeholder="검색어를 입력해 주세요">
@@ -266,17 +390,51 @@
         <a href="">태국뉴스</a>
     </div>
 </header>
+<div class="only_mo">
+    <div class="quick-header-footer">
+        <div class="nav-item">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_1.png" alt="quick-header-footer_1">
+            <span class="nav-text text-grey">전체메뉴</span>
+        </div>
+        <div class="nav-item">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_2.png" alt="quick-header-footer_2">
+            <span class="nav-text text-grey">전체메뉴</span>
+        </div>
+        <div class="nav-item">
+            <div class="nav-con-cus">
+                <img class="nav-pic-cus" src="/images/ico/quick-header-footer_3.png" alt="quick-header-footer_3">
+            </div>
+            <span class="nav-text text-grey">실시간문의</span>
+        </div>
+        <div class="nav-item">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">
+            <span class="nav-text text-grey">일정표</span>
+        </div>
+        <div class="nav-item">
+            <img class="nav-pic" src="/images/ico/quick-header-footer_5.png" alt="quick-header-footer_5">
+            <span class="nav-text text-grey">찜</span>
+        </div>
+    </div>
+</div>
 
 <script>
-    $("#hamburger").click(function () {
-        $(this).toggleClass("change");
-        if ($(this).hasClass("change")) {
-            $("#menu_mobile").show();
-        } else {
-            $("#menu_mobile").hide();
-        }
+    // $("#hamburger").click(function() {
+    //     $(this).toggleClass("change");
+    //     if ($(this).hasClass("change")) {
+    //         $("#menu_mobile").show();
+    //     } else {
+    //         $("#menu_mobile").hide();
+    //     }
+    // });
+    $("#search-mobile").click(function() {
+        $("#popup_search_mo").show();
     });
-    $(document).ready(function () {
+
+    $("#icon-close-ps").click(function() {
+        $("#popup_search_mo").hide();
+    });
+
+    $(document).ready(function() {
         $('#language-select').select2({
             templateResult: formatState,
             templateSelection: formatState,
@@ -298,7 +456,7 @@
             return $state;
         };
     });
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#language-select2').select2({
             templateResult: formatState,
             templateSelection: formatState,
@@ -332,10 +490,10 @@
     $(document).ready(function() {
         var lastScrollTop = 0;
         var topPart = $('#header_tools');
-        
+
         $(window).scroll(function(event) {
             var st = $(this).scrollTop();
-            
+
             if (st > lastScrollTop) {
                 if (!topPart.hasClass('hidden_w')) {
                     topPart.slideUp(300, function() {
@@ -357,8 +515,22 @@
                     });
                 }
             }
-            
+
             lastScrollTop = st;
         });
+    });
+
+    const swiperHeaderMenu = new Swiper(".hot_product_menu_swiper", {
+        loop: true,
+        breakpoints: {
+            851: {
+                slidesPerView: 4,
+            },
+        },
+        slidesPerView: 2,
+        spaceBetween: 20,
+        pagination: {
+            el: ".hot_product_menu_swiper_pagination",
+        },
     });
 </script>

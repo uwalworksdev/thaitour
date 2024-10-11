@@ -10,7 +10,17 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.carousel.min.css">
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.theme.default.min.css">
 <script src="/lib/owl-carousel2/owl.carousel.min.js"></script>
+<style>
+    @media screen and (max-width: 850px) {
+        .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet {
+            scale: 1;
+        }
 
+        .magazine_swiper__pagination .swiper-pagination-bullet {
+            scale: 1;
+        }
+    }
+</style>
 <div class="body_container main_body_container">
     <section class="main_visual">
         <div class="body_inner">
@@ -333,7 +343,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </a>
                 </div>
                 <div class="best_list best_list_2 hidden">
-                <a href="#!" class="best_list_item">
+                    <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_5.png" alt="main">
                         </div>
@@ -873,9 +883,9 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                         연박 프로모션 "3박 이상시 룸 업그레이드...
                                     </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
-                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">                                      
-                                      <li class="breadcrumb_item">방콕</li>
+                                        <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                        <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
+                                        <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
                                     <div class="prd_price_ko">236,100<span>원</span></div>
@@ -896,8 +906,9 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                         2박 이상시 레이트 체크아웃 (보장) | 16시...
                                     </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
-                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">                                        <li class="breadcrumb_item">방콕</li>
+                                        <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                        <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
+                                        <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
                                     <div class="prd_price_ko">236,100<span>원</span></div>
@@ -929,8 +940,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                         3박 했습니다. 조식은 거의
                                         동일하고 과일 이랑 쌀국수 ... </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
-                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
+                                        <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                        <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
@@ -951,8 +962,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                     <div class="prd_description">
                                         로얄 방파인 골프 클럽에 관한 짧은 설명이... </div>
                                     <ul class="breadcrumb breadcrumb_location">
-                                    <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
-                                    <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
+                                        <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                        <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
