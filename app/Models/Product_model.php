@@ -9,40 +9,22 @@ class Product_model extends Model
     protected $primaryKey = 'product_idx';
 
     protected $allowedFields = [
-        'tour_period',
-        'product_code',
-        'product_code_1',
-        'product_code_2',
-        'product_code_3',
-        'product_code_4',
-        'product_code_name_1',
-        'product_code_name_2',
-        'product_code_name_3',
-        'product_code_name_4',
-        'ufile1',
-        'rfile1',
-        'ufile2',
-        'rfile2',
-        'ufile3',
-        'rfile3',
-        'ufile4',
-        'rfile4',
-        'ufile5',
-        'rfile5',
-        'ufile6',
-        'rfile6',
-        'ufile7',
-        'rfile7',
-        'jetlag',
-        'exchange',
-        'capital_city',
-        'information',
-        'product_level',
-        'product_option',
-        'cancel_policy',
-        'adult_text',
-        'kids_text',
-        'baby_text'
+        "product_code", "product_code_1", "product_code_2", "product_code_3", "product_code_4", 
+        "product_code_name_1", "product_code_name_2", "product_code_name_3", "product_code_name_4", "ufile1", 
+        "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "rfile5", "ufile5", "rfile6", "ufile6", 
+        "rfile7", "ufile7", "product_name", "product_air", "product_info", "product_schedule", "product_country", 
+        "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price", 
+        "max_price", "keyword", "product_price", "product_best", "special_price", "product_option", "product_level", 
+        "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable", 
+        "mobile_able", "mobile_unable", "special_benefit", "special_benefit_m", "notice_comment", "notice_comment_m", 
+        "etc_comment", "etc_comment_m", "benefit", "local_info", "phone", "email", "phone_2", "email_2", "product_route", 
+        "minium_people_cnt", "total_people_cnt", "stay_list", "shopping_list", "sight_list", "country_list", "active_list", 
+        "tour_period", "tour_info", "tour_detail", "guide_s_date", "guide_e_date", "guide_yoil_0", "guide_yoil_1", "guide_yoil_2", 
+        "guide_yoil_3", "guide_yoil_4", "guide_yoil_5", "guide_yoil_6", "money_info", "taffic", "guide_unit", "product_price_kids", 
+        "product_price_baby", "guide_type", "guide_hour", "product_mileage", "exchange", "jetlag", "main_top_best", "main_theme_best", 
+        "tour_time", "capital_city", "m_date", "r_date", "user_id", "user_level", "information", "meeting_guide", "meeting_place", 
+        "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt", 
+        "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "best_value"
     ];
 
     protected function initialize()
@@ -390,5 +372,11 @@ class Product_model extends Model
                         ->orderBy('b.onum', 'ASC')
                         ->get()
                         ->getResultArray();
+    }
+    public function getBestProducts()
+    {
+        return $this
+                ->where('is_view', 'Y')
+                ->where('product_best', 'Y')->findAll();
     }
 }

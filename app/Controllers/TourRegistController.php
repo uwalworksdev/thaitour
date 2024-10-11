@@ -13,6 +13,7 @@ class TourRegistController extends BaseController
     private $db;
     private $golfOptionModel;
     protected $connect;
+    protected $productModel;
 
     public function __construct()
     {
@@ -21,6 +22,7 @@ class TourRegistController extends BaseController
         $this->tourRegistModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
         $this->golfOptionModel = model("GolfOptionModel");
+        $this->productModel = model("Product_model");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -287,7 +289,7 @@ class TourRegistController extends BaseController
     public function write_golf()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite();
+        $data = $this->getWrite("1302");
 
         $db = $this->connect;
 
@@ -319,6 +321,15 @@ class TourRegistController extends BaseController
         $data = array_merge($data, $new_data);
 
         return view("admin/_tourRegist/write_golf", $data);
+    }
+
+    public function write_golf_ok($product_idx) {
+        $data = $this->request->getPost();
+        $this->productModel->update($product_idx, $data);
+        $html = '<script>alert("수정되었습니다.");</script>';
+        // $html .= '<script>location.history.back();</script>';
+        $html .= '<div>'.var_dump($data).'</div>';
+        return $this->response->setBody($html);
     }
 
     public function add_moption() {
@@ -468,13 +479,12 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_tours", $data);
     }
 
-    private function getWrite()
+    private function getWrite($product_code_1 = "1324")
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
-        $product_code_1 = "1324";
         $product_code_2 = updateSQ($_GET["product_code_2"] ?? "");
         $product_code = updateSQ($_GET["product_code"] ?? "");
         $product_code_3 = updateSQ($_GET["product_code_3"] ?? "");
@@ -485,7 +495,7 @@ class TourRegistController extends BaseController
         $orderBy = $_GET["orderBy"] ?? "";
         if ($orderBy == "") $orderBy = 1;
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '1324' and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '$product_code_1' and status='Y' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
