@@ -296,6 +296,8 @@ class Product extends BaseController
 
             $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
 
+            $bestProducts = $this->productModel->getBestProducts();
+
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
 
             $pager = \Config\Services::pager();
@@ -337,6 +339,7 @@ class Product extends BaseController
                 'totalProducts' => $totalProducts,
                 'tab_active' => '2',
                 'categories' => [],
+                'bestProducts' => $bestProducts
             ];
 
             return $this->renderView('product/product-golf', $data);

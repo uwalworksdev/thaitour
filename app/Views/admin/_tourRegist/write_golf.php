@@ -1,7 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
     <style>
         .tab_title {
             font-size: 16px;
@@ -74,11 +73,10 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_golf_ok.php" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="write_golf_ok/<?= $product_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
-                <input type=hidden name="product_idx" id="product_idx" value='<?= $product_idx ?>'>
                 <input type=hidden name="s_product_code_1" value='<?= $s_product_code_1 ?>'>
                 <input type=hidden name="s_product_code_2" value='<?= $s_product_code_2 ?>'>
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
@@ -89,13 +87,13 @@
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="table-layout:fixed">
                                 <caption>
                                 </caption>
                                 <colgroup>
-                                    <col width="10%"/>
+                                    <col width="140px"/>
                                     <col width="40%"/>
-                                    <col width="10%"/>
+                                    <col width="140px"/>
                                     <col width="40%"/>
                                 </colgroup>
                                 <tbody>
@@ -446,12 +444,18 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>특가여부</th>
+                                    <th></th>
                                     <td colspan="3">
-                                        <input type="checkbox" name="special_price" id="special_price"
-                                               value="Y" <?php if ($row["special_price"] == "Y") {
-                                            echo "checked";
-                                        } ?> />&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label for="best_value">
+                                            <input type="checkbox" name="best_value" id="best_value" value="Y" 
+                                            <?php if ($row["best_value"] == "Y") { echo "checked"; } ?> />
+                                            가성비추천
+                                        </label>
+                                        <label for="special_price">
+                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
+                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
+                                            특가여부
+                                        </label>
                                     </td>
                                 </tr>
 
@@ -511,7 +515,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors14,
                                                 elPlaceHolder: "tour_info",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -548,7 +552,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors12,
                                                 elPlaceHolder: "product_confirm",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -580,7 +584,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors13,
                                                 elPlaceHolder: "product_confirm_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -615,7 +619,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors2,
                                                 elPlaceHolder: "product_able",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -647,7 +651,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors5,
                                                 elPlaceHolder: "product_unable",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -681,7 +685,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors3,
                                                 elPlaceHolder: "mobile_able",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -714,7 +718,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors4,
                                                 elPlaceHolder: "mobile_unable",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -748,7 +752,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors6,
                                                 elPlaceHolder: "special_benefit",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -779,7 +783,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors7,
                                                 elPlaceHolder: "special_benefit_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -813,7 +817,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors8,
                                                 elPlaceHolder: "notice_comment",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -844,7 +848,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors9,
                                                 elPlaceHolder: "notice_comment_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -879,7 +883,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors10,
                                                 elPlaceHolder: "etc_comment",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -910,7 +914,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors11,
                                                 elPlaceHolder: "etc_comment_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -1573,7 +1577,7 @@
             function get_code(strs, depth) {
                 $.ajax({
                     type: "GET"
-                    , url: "get_code.ajax.php"
+                    , url: "/ajax/get_code"
                     , dataType: "html" //전송받을 데이터의 타입
                     , timeout: 30000 //제한시간 지정
                     , cache: false  //true, false

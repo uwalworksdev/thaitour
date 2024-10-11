@@ -20,6 +20,7 @@ class AdminController extends BaseController
     {
         $search_name = $_GET['search_name'] ?? '';
         $search_category = $_GET['search_category'] ?? '';
+        $s_status = $_GET['s_status'] ?? '';
         $private_key = private_key();
         $pg = $_GET['pg'] ?? '';
         $strSql = '';
@@ -53,6 +54,8 @@ class AdminController extends BaseController
             'nTotalCount' => $nTotalCount,
             'search_category' => $search_category,
             'private_key' => $private_key,
+            'g_list_rows' => $g_list_rows,
+            's_status' => $s_status,
         ];
         return view('admin/_home/store_config_admin', $data);
     }

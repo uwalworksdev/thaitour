@@ -39,18 +39,17 @@
         <div class="banner-ticket">
             <div class="swiper-container-ticket">
                 <div class="swiper-wrapper">
-                    <?php foreach ($categories as $row) : ?>
+                    <?php foreach ($bestProducts as $product) : ?>
                     <div class="swiper-slide">
                         <a href="/product-golf/list-golf/1">
                             <div class="img_box_re">
-                                <img class="only_web" src="/images/sub/golf_slide_img1.png" alt="golf_slide_img1">
+                                <img class="only_web" src="/uploads/products/<?=$product['ufile1']?>" alt="golf_slide_img1">
                                 <img class="only_mo img_box_re_img"
                                     src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
                                 <img class="only_web tag-red" src="/uploads/icons/tag-red.png" alt="">
                                 <img class="only_mo tag-red" src="/uploads/icons/tag-red-m.png" alt="">
                                 <p class="text_img_box_re">
-                                    치앙마이 하이랜드 골프<br>
-                                    & 스파 리조트
+                                    <?=viewSQ($product['product_name'])?>
                                 </p>
                                 <p class="text_img_box_re_sub">#무제한 라운딩 #오션뷰</p>
                             </div>

@@ -105,6 +105,13 @@ if (session('member.level') > 2 || session('member.level') == "") {
             margin-top: 5px;
             margin-bottom: 10px;
         }
+        #debug-bar {
+            z-index: 999999999 !important;
+        }
+        .show-view .debug-view-path {
+            position: relative;
+            z-index: 999999999 !important;
+        }
     </style>
 
     <link rel="stylesheet" href="/css/admin/pop.css" type="text/css"/>
