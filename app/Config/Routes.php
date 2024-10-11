@@ -97,7 +97,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_spas", "TourRegistController::write_spas");
         $routes->get("write_tours", "TourRegistController::write_tours");
         $routes->get("_tourStay", "TourRegistController::list");
-        $routes->group('golf_vehicles', function($routes) {
+        $routes->group('golf_vehicles', function ($routes) {
             $routes->get('/', 'GolfVehicleController::list');
             $routes->get('write', 'GolfVehicleController::write');
             $routes->get('write/(:num)', 'GolfVehicleController::write/$1');
@@ -116,6 +116,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("prod_update", "Admin\AdminHotelController::prod_update", ['as' => "admin._hotel.prod_update"]);
         $routes->post("del", "Admin\AdminHotelController::del", ['as' => "admin._hotel.del"]);
         $routes->post("search_code", "Admin\AdminHotelController::search_code", ['as' => "admin._hotel.search_code"]);
+        $routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);
+        $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
     });
 
     $routes->group("api", function ($routes) {

@@ -37,7 +37,7 @@
                                 <div class="swiper-slide">
                                     <a href="/product-hotel/list-hotel/<?= $code_item['code_no'] ?>">
                                         <div class="img_box">
-                                            <img src="/data/code/<?= $code_item['ufile1'] ?>"
+                                            <img src="/data/code/<?= $code_item['ufile1'] ?>" loading="lazy"
                                                  onerror="this.src='/images/product/noimg.png'" alt="main">
                                         </div>
                                         <div class="sub_swiper2__text">
