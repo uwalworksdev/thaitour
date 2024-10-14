@@ -866,7 +866,7 @@ class Product extends BaseController
         return $this->renderView('tours/order-form');
     }
 
-    public function vehicleGuide()
+    public function vehicleGuide($code_no)
     {
         try {
             $data = [
