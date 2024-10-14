@@ -1084,4 +1084,50 @@
   .customer-form-page .main-section {
     margin-top: -17.5rem;
   }
+
+  .banner-ticket {
+    margin-top: 3rem;
+    position: relative;
+  }
+
+  .golf-custom-page .text_img_box_re_sub {
+    color: white;
+    z-index: 2;
+    position: absolute;
+    font-size: 2.6rem;
+    bottom: 8.5rem;
+    left: 5.5rem;
+  }
+
+  .golf-custom-page .text_img_box_re {
+    bottom: 14rem;
+  }
+
+  .golf-custom-page .sub_tour_section2 {
+    padding-top: 11rem;
+  }
+
+  .golf-custom-page .banner-middle-tour {
+    background-image: url(/images/sub/golf_img_mo.png);
+    height: 24rem;
+    margin-top: 10rem;
+  }
+
+  .golf-custom-page .container-middle-tour .son-title {
+    font-size: 3.6rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+
+  .golf-custom-page .container-middle-tour {
+    left: 4%;
+  }
+
+  .golf-custom-page .container-middle-tour .son-des {
+    font-size: 2.8rem;
+  }
+
+  .golf-custom-page .sub_tour_section5 {
+    padding-top: 3rem !important;
+  }
 }

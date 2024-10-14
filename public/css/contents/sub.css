@@ -3659,10 +3659,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   font-size: 16px;
   bottom: 40px;
   left: 30px;
+  text-shadow: 2px 2px #000000;
 }
 
 .golf-custom-page .text_img_box_re {
   bottom: 70px;
+  text-shadow: 2px 2px #000000;
 }
 
 .customer-form-page .navigation-section {

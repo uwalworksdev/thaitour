@@ -550,6 +550,10 @@
   margin-bottom: 180px;
 }
 
+.golf-custom-page .sub_tour_section7_product_list {
+  margin-bottom: 0;
+}
+
 .sub_tour_section7_product_item {
   width: calc((100% - 40px) / 3);
   position: relative;
