@@ -176,816 +176,812 @@
             </div>
         </section>
         <section class="sub_section3 thailand_hotel_">
-            <div class="body_inner">
-                <div class="sub_section3__head">
-                    <div class="sub_section3__head__ttl">
-                        지금이 제일 저렴해요
+            <div class="sub_section3__head">
+                <div class="sub_section3__head__ttl">
+                    지금이 제일 저렴해요
+                </div>
+            </div>
+            <div>
+                <div class="thailand_hotel_swiper_ swiper">
+                    <div class="swiper-wrapper">
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_1.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                윈저 파크 앤 골프 클럽
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원 </span>
+                                <span class="prd_price_ko_sub">6,000바트</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_2.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 기타</span>
+                            </div>
+                            <div class="prd_name">
+                                카스카타 골프 클럽
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                81,785<span>원</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_3.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 시암</span>
+                            </div>
+                            <div class="prd_name">
+                                더 로얄 젬스 골프 클럽 (랑싯)
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                176,940<span>원 </span>
+                                <span class="prd_price_ko_sub ">4,500바트</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_4.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 스쿰빛(야속-프로퐁)</span>
+                            </div>
+                            <div class="prd_name">
+                                알파인 골프 앤 스포츠 클럽
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                169,076<span>원</span>
+                                <span class="prd_price_ko_sub">1,550바트</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span>방콕></span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                무앙 깨우 골프 코스
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span>방콕></span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                무앙 깨우 골프 코스
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+
+                                <span> 시암</span>
+                            </div>
+                            <div class="prd_name">
+                                무앙 깨우 골프 코스
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                                <span class="prd_price_ko_sub">6,000바트</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 짜오프라야강가</span>
+                            </div>
+                            <div class="prd_name">
+                                방푸 골프 앤 스포츠
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                166,057<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 시암</span>
+                            </div>
+                            <div class="prd_name">
+                                더 로얄 젬스 골프 앤 컨트리 클럽(살라야)
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                113,999<span>원</span>
+                                <span class="prd_price_ko_sub">6,500바트</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                로얄 레이크사이드 골프 클럽
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                60,992<span>원 </span>
+                                <span class="prd_price_ko_sub">1,550바트</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span>방콕></span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span>방콕></span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
+                        <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
+                            <div class="img_box img_box_10">
+                                <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
+                            </div>
+                            <div class="prd_keywords">
+                                <span class="prd_keywords_cus_span">방콕
+                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                </span>
+                                <span> 사뭇 쁘라칸</span>
+                            </div>
+                            <div class="prd_name">
+                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            </div>
+                            <div class="prd_info">
+                                <div class="prd_info__left">
+                                    <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                    <span class="star_avg">4.7</span>
+                                    <span class="star_review_cnt"></span>
+                                </div>
+                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                <div class="prd_info__right">
+                                    <span class="prd_info__right__ttl">생생리뷰</span>
+                                    <span class="new_review_cnt">(0)</span>
+                                </div>
+                            </div>
+                            <div class="prd_price_ko">
+                                236,100<span>원~</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div>
-                    <div class="thailand_hotel_swiper_ swiper">
-                        <div class="swiper-wrapper">
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_1.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    윈저 파크 앤 골프 클럽
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원 </span>
-                                    <span class="prd_price_ko_sub">6,000바트</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_2.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 기타</span>
-                                </div>
-                                <div class="prd_name">
-                                    카스카타 골프 클럽
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    81,785<span>원</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_3.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 시암</span>
-                                </div>
-                                <div class="prd_name">
-                                    더 로얄 젬스 골프 클럽 (랑싯)
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    176,940<span>원 </span>
-                                    <span class="prd_price_ko_sub ">4,500바트</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_4.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 스쿰빛(야속-프로퐁)</span>
-                                </div>
-                                <div class="prd_name">
-                                    알파인 골프 앤 스포츠 클럽
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    169,076<span>원</span>
-                                    <span class="prd_price_ko_sub">1,550바트</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    무앙 깨우 골프 코스
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    무앙 깨우 골프 코스
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-
-                                    <span> 시암</span>
-                                </div>
-                                <div class="prd_name">
-                                    무앙 깨우 골프 코스
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                    <span class="prd_price_ko_sub">6,000바트</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_6.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 짜오프라야강가</span>
-                                </div>
-                                <div class="prd_name">
-                                    방푸 골프 앤 스포츠
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    166,057<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_7.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 시암</span>
-                                </div>
-                                <div class="prd_name">
-                                    더 로얄 젬스 골프 앤 컨트리 클럽(살라야)
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    113,999<span>원</span>
-                                    <span class="prd_price_ko_sub">6,500바트</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_8.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    로얄 레이크사이드 골프 클럽
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    60,992<span>원 </span>
-                                    <span class="prd_price_ko_sub">1,550바트</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/golf_popular_5.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>방콕></span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_3.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                            <a href="/product-golf/list-golf/1324" class="thailand_hotel_swiper_item_ swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main" loading="lazy">
-                                </div>
-                                <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">방콕
-                                        <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                    </span>
-                                    <span> 사뭇 쁘라칸</span>
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt"></span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100<span>원~</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="thailand_hotel_swiper_pagination_next_"></div>
-                    <div class="thailand_hotel_swiper_pagination_prev_"></div>
-                    <div class="custom_pagination_ w_100">
-                        <div class="pagination_show_">
-                            <img src="/images/ico/reloadicon.png" alt="">
-                            <p>다음상품</p>
-                            <div class="thailand_hotel_swiper_pagination_"></div>
-                        </div>
+                <div class="thailand_hotel_swiper_pagination_next_"></div>
+                <div class="thailand_hotel_swiper_pagination_prev_"></div>
+                <div class="custom_pagination_ w_100">
+                    <div class="pagination_show_">
+                        <img src="/images/ico/reloadicon.png" alt="">
+                        <p>다음상품</p>
+                        <div class="thailand_hotel_swiper_pagination_"></div>
                     </div>
                 </div>
             </div>
         </section>
         <section class="sub_tour_section5">
-            <div class="body_inner">
-                <div class="sub_tour_section5__head">
-                    <div class="sub_tour_section5__head_ttl">
-                        지역별 추천 상품
-                    </div>
-                    <div class="sub_tour_section5__head__tabs2 golf_custom_section5__head__tabs2">
-                        <div class="tour__head__tabs2__tabs">
-                            <a href="#!" class="tour__head__tabs2__tab active">
-                                방콕
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                파타야
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                푸켓
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                치앙마이
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                치앙라이
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                후아힌
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                카오야이
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                칸차나부리
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                기타지역
-                            </a>
-                        </div>
+            <div class="sub_tour_section5__head">
+                <div class="sub_tour_section5__head_ttl">
+                    지역별 추천 상품
+                </div>
+                <div class="sub_tour_section5__head__tabs2 golf_custom_section5__head__tabs2">
+                    <div class="tour__head__tabs2__tabs">
+                        <a href="#!" class="tour__head__tabs2__tab active">
+                            방콕
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            파타야
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            푸켓
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            치앙마이
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            치앙라이
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            후아힌
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            카오야이
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            칸차나부리
+                        </a>
+                        <a href="#!" class="tour__head__tabs2__tab">
+                            기타지역
+                        </a>
                     </div>
                 </div>
-                <div class="sub_tour_section5__prd_list">
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/golf_popular_1.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            몽키트래블 골프 대회 54홀 골프팩 (3박4 일)
-                        </div>
+            </div>
+            <div class="sub_tour_section5__prd_list">
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/golf_popular_1.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        몽키트래블 골프 대회 54홀 골프팩 (3박4 일)
+                    </div>
 
 
-                        <div class="prd_price_ko">
-                            199,424 <span>원</span> <span class="prd_price_thai">2,700바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/golf_popular_2.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            로얄 방파인 골프 클럽
-                        </div>
+                    <div class="prd_price_ko">
+                        199,424 <span>원</span> <span class="prd_price_thai">2,700바트</span>
+                    </div>
+                </a>
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/golf_popular_2.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        로얄 방파인 골프 클럽
+                    </div>
 
 
-                        <div class="prd_price_ko">
-                            199,424 <span>원</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/golf_popular_3.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            니칸티 골프 클럽
-                        </div>
+                    <div class="prd_price_ko">
+                        199,424 <span>원</span>
+                    </div>
+                </a>
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/golf_popular_3.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        니칸티 골프 클럽
+                    </div>
 
 
-                        <div class="prd_price_ko">
-                            199,424 <span>원</span> <span class="prd_price_thai">2,800바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/golf_popular_4.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            피닉스 골드 골프 방콕 (구. 수완나품 컨트리 클럽)
-                        </div>
+                    <div class="prd_price_ko">
+                        199,424 <span>원</span> <span class="prd_price_thai">2,800바트</span>
+                    </div>
+                </a>
+                <a href="#!" class="sub_tour_section5_item">
+                    <div class="img_box img_box_10">
+                        <img src="/uploads/sub/golf_popular_4.png" alt="main">
+                    </div>
+                    <div class="prd_name">
+                        피닉스 골드 골프 방콕 (구. 수완나품 컨트리 클럽)
+                    </div>
 
 
-                        <div class="prd_price_ko">
-                            199,424원 <span>원</span> <span class="prd_price_thai">2,800바트</span>
-                        </div>
-                    </a>
-                </div>
+                    <div class="prd_price_ko">
+                        199,424원 <span>원</span> <span class="prd_price_thai">2,800바트</span>
+                    </div>
+                </a>
             </div>
         </section>
         <section class="sub_tour_section7">
