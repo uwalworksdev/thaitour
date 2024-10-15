@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use Cassandra\Date;
 use CodeIgniter\Database\Config;
 
 class AdminHotelController extends BaseController
@@ -62,10 +63,10 @@ class AdminHotelController extends BaseController
 
     public function write()
     {
-        $g_idx            = updateSQ($_GET["g_idx"] ?? '');
-        $pg               = updateSQ($_GET["pg"] ?? '');
-        $search_name      = updateSQ($_GET["search_name"] ?? '');
-        $search_category  = updateSQ($_GET["search_category"] ?? '');
+        $g_idx = updateSQ($_GET["g_idx"] ?? '');
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_category = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
@@ -117,9 +118,13 @@ class AdminHotelController extends BaseController
         $fresult8 = $this->connect->query($fsql);
         $fresult8 = $fresult8->getResultArray();
 
-        $fsql9    = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
+        $fsql9 = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
         $fresult9 = $this->connect->query($fsql9);
         $fresult9 = $fresult9->getResultArray();
+
+        $fsql = "select * from tbl_room_options where h_idx='" . $g_idx . "' order by rop_idx desc";
+        $roresult = $this->connect->query($fsql);
+        $roresult = $roresult->getResultArray();
 
         $data = [
             'g_idx' => $g_idx,
@@ -136,6 +141,7 @@ class AdminHotelController extends BaseController
             'fresult5' => $fresult5,
             'fresult8' => $fresult8,
             'fresult9' => $fresult9,
+            'roresult' => $roresult,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -193,6 +199,14 @@ class AdminHotelController extends BaseController
             $code_services = updateSQ($_POST["code_services"] ?? '');
             $code_best_utilities = updateSQ($_POST["code_best_utilities"] ?? '');
             $code_populars = updateSQ($_POST["code_populars"] ?? '');
+
+            $rop_idx = $_POST["rop_idx"] ?? [];
+            $sup_room__idx = $_POST["sup_room__idx"] ?? [];
+            $sup_room__name = $_POST["sup_room__name"] ?? [];
+            $sup__key = $_POST["sup__key"] ?? [];
+            $sup__name = $_POST["sup__name"] ?? [];
+            $sup__price = $_POST["sup__price"] ?? [];
+            $sup__price_sale = $_POST["sup__price_sale"] ?? [];
 
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -280,6 +294,58 @@ class AdminHotelController extends BaseController
                         }
                     }
                 }
+
+                foreach ($rop_idx as $key => $val) {
+                    $sql_chk = "
+					select count(*) as cnts
+					  from tbl_room_options
+					 where rop_idx	= '" . $val . "'
+					";
+                    $result_chk = $this->connect->query($sql_chk);
+                    $row_chk = $result_chk->getRowArray();
+
+                    if ($row_chk) {
+                        // 이미 등록된 옵션이 아니라면...
+                        $r_key = $sup__key[$key] ?? '';
+                        $r_name = $sup_room__name[$key] ?? '';
+                        $r_val = $sup__name[$key] ?? '';
+                        $r_price = $sup__price[$key] ?? '';
+                        $r_sale_price = $sup__price_sale[$key] ?? '';
+
+                        $r_idx = $sup_room__idx[$key] ?? '';
+
+                        if ($row_chk['cnts'] < 1) {
+                            $sql_su = "insert into tbl_room_options SET
+                                         r_key		= '" . $r_key . "'
+                                        ,r_val		= '" . $r_val . "'
+                                        ,r_price	= '" . $r_price . "'
+                                        ,r_sale_price		= '" . $r_sale_price . "'
+                                        ,r_created_at		= '" . date('Y-m-d H:i:s') . "'
+                                        ,h_idx			= '" . $g_idx . "'
+                                        ,r_idx	= '" . $r_idx . "'
+                                        ,r_name		= '" . $r_name . "'
+                                ";
+
+                            $this->connect->query($sql_su);
+
+
+                        } else {
+                            $sql_su = "update tbl_room_options SET 
+                                         r_key		= '" . $r_key . "'
+                                        ,r_val	= '" . $r_val . "'
+                                        ,r_price		= '" . $r_price . "'
+                                        ,r_sale_price		= '" . $r_sale_price . "'
+                                        ,h_idx			= '" . $g_idx . "'
+                                        ,r_idx	= '" . $r_idx . "'
+                                        ,r_name		= '" . $r_name . "'
+                                    where rop_idx	= '" . $val . "'
+                                ";
+
+                            $this->connect->query($sql_su);
+                        }
+                    }
+                }
+
 
                 // 상품 테이블 변경
 
@@ -408,8 +474,34 @@ class AdminHotelController extends BaseController
                 ";
                 write_log("상품수정 : " . $sql);
                 $db = $this->connect->query($sql);
-            }
 
+                $sql = 'SELECT g_idx FROM tbl_hotel WHERE goods_code = ' . $goods_code;
+                $hotel = $this->connect->query($sql)->getRowArray();
+                $new_g_idx = $hotel['g_idx'];
+
+                foreach ($o_idx as $key => $val) {
+                    $r_key = $sup__key[$key] ?? '';
+                    $r_name = $sup_room__name[$key] ?? '';
+                    $r_val = $sup__name[$key] ?? '';
+                    $r_price = $sup__price[$key] ?? '';
+                    $r_sale_price = $sup__price_sale[$key] ?? '';
+
+                    $r_idx = $sup_room__idx[$key] ?? '';
+
+                    $sql_su = "insert into tbl_room_options SET
+                                         r_key		= '" . $r_key . "'
+                                        ,r_val		= '" . $r_val . "'
+                                        ,r_price	= '" . $r_price . "'
+                                        ,r_sale_price		= '" . $r_sale_price . "'
+                                        ,r_created_at		= '" . date('Y-m-d H:i:s') . "'
+                                        ,h_idx			= '" . $new_g_idx . "'
+                                        ,r_idx	= '" . $r_idx . "'
+                                        ,r_name		= '" . $r_name . "'
+                                ";
+
+                    $this->connect->query($sql_su);
+                }
+            }
 
             if ($g_idx) {
                 $message = "수정되었습니다.";
@@ -651,6 +743,58 @@ class AdminHotelController extends BaseController
             return $this->response->setJSON([
                 'status' => 'success',
                 'message' => $row_c2['cnts']
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_hotel_option()
+    {
+        try {
+            $idx = $_POST['idx'] ?? '';
+            if (!isset($idx)) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'idx가 없습니다.'
+                ], 400);
+            }
+
+            $sql = "DELETE FROM tbl_hotel_option WHERE idx = " . $idx;
+            $this->connect->query($sql);
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => '삭제되었습니다.'
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function del_room_option()
+    {
+        try {
+            $idx = $_POST['idx'] ?? '';
+            if (!isset($idx)) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'idx가 없습니다.'
+                ], 400);
+            }
+
+            $sql = "DELETE FROM tbl_room_options WHERE rop_idx = " . $idx;
+            $this->connect->query($sql);
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => '삭제되었습니다.'
             ], 200);
         } catch (\Exception $e) {
             return $this->response->setJSON([

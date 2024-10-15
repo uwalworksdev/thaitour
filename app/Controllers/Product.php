@@ -197,9 +197,12 @@ class Product extends BaseController
 
             $sub_codes = $sub_codes->getResultArray();
 
+            $theme_products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' AND goods_dis4 = 'Y' ORDER BY onum DESC")->getResultArray();
+
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
+                'theme_products' => $theme_products,
                 'products' => $products,
                 'code_no' => $code_no,
                 'sub_codes' => $sub_codes,
@@ -599,10 +602,13 @@ class Product extends BaseController
             $totalProducts = count($products);
             $pager = \Config\Services::pager();
 
+            $theme_products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' AND goods_dis4 = 'Y' ORDER BY onum DESC")->getResultArray();
+
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
                 'products' => $products,
+                'theme_products' => $theme_products,
                 'code_no' => $code_no,
                 's' => $s,
                 'pager' => $pager,
@@ -749,9 +755,15 @@ class Product extends BaseController
                 $room = $this->db->query($sql_count)->getRowArray();
 
                 $list__gix .= $option['o_room'] . ',';
+                $room_option = [];
                 if ($room) {
                     $categories .= $room['category'];
+
+                    $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['g_idx'];
+                    $room_option = $this->db->query($sql)->getResultArray();
                 }
+
+                $room['room_option'] = $room_option;
                 $option['room'] = $room ?? '';
                 $hotel_option_convert[] = $option;
             }
@@ -761,18 +773,19 @@ class Product extends BaseController
             $list__categories = rtrim(implode(',', $_arr_categories), ',');
 
             $insql = "";
-            if (count($_arr_categories) > 0) {
+            if (count($_arr_categories) > 0 && $list__categories !== '') {
                 $insql = " AND code_no IN ($list__categories)";
             }
 
             $_arr_gix = explode(",", $list__gix);
             $list__gix = rtrim(implode(',', $_arr_gix), ',');
             $insql2 = "";
-            if (count($_arr_gix) > 0) {
+            if (count($_arr_gix) > 0 && $list__gix !== '') {
                 $insql2 = " AND g_idx IN ($list__gix)";
             }
 
             $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum DESC, code_idx DESC";
+
             $room_categories = $this->db->query($sql)->getResultArray();
 
             $room_categories_convert = [];
@@ -855,7 +868,7 @@ class Product extends BaseController
         return $this->renderView('tours/order-form');
     }
 
-    public function vehicleGuide()
+    public function vehicleGuide($code_no)
     {
         try {
             $data = [

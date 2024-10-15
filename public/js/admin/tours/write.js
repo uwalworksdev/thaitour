@@ -109,9 +109,9 @@ function send_it() {
 
     var frm = document.frm;
 
-    oEditors1.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-    oEditors2.getById["caution"].exec("UPDATE_CONTENTS_FIELD", []);
-    oEditors3.getById["c_calendar"].exec("UPDATE_CONTENTS_FIELD", []);
+    // oEditors1.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+    // oEditors2.getById["caution"].exec("UPDATE_CONTENTS_FIELD", []);
+    // oEditors3.getById["c_calendar"].exec("UPDATE_CONTENTS_FIELD", []);
 
     if (frm.product_code.value == "") {
         alert("카테고리를 등록해주세요.");
@@ -161,6 +161,24 @@ function send_it() {
 
     $("#code_populars").val(_code_populars);
 
+    let list__room_name = $('.list__room_name');
+    list__room_name.each(function () {
+        let item = $(this);
+
+        let sup__name_child = item.find('input.sup__name_child');
+
+        let data = [];
+        sup__name_child.each(function () {
+            let item2 = $(this);
+            let sup__name = item2.val();
+
+            data.push(sup__name);
+        })
+
+        let data_convert = data.join('|');
+        let nextInp = item.next();
+        nextInp.val(data_convert);
+    })
 
     frm.submit();
 }
@@ -519,12 +537,12 @@ function chkOption(chkcode) {
 }
 
 // 재고 삭제 함수
-function delOption(idx, obj) {
+async function delOption(idx, obj) {
     if (confirm("정말 삭제하시겠습니까?")) {
 
         if (idx != "") {
-            $.ajax({
-                url: "del_hoption.php",
+            await $.ajax({
+                url: "del_hotel_option",
                 type: "POST",
                 data: "idx=" + idx,
                 error: function (request, status, error) {
@@ -536,25 +554,44 @@ function delOption(idx, obj) {
 
                 }
                 , success: function (response, status, request) {
-
-
-                    response = response.trim();
-
-                    if (response == "OK") {
-                        alert("삭제되었습니다.");
-                    } else {
-                        alert("오류!");
-                        location.reload();
-                    }
-
-
+                    alert_(response.message);
+                    console.log(response)
+                    $(obj).closest("tr").remove();
                 }
             });
 
         }
-        $(obj).closest("tr").remove();
     }
 
+}
+
+async function delOption2(idx, el) {
+    if (idx && idx !== "") {
+        if (confirm("정말 삭제하시겠습니까?")) {
+            await $.ajax({
+                url: "del_room_option",
+                type: "POST",
+                data: "idx=" + idx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+
+                }
+                , success: function (response, status, request) {
+                    alert_(response.message);
+                    console.log(response)
+                    let parent = $(el).parent().parent();
+                    parent.remove();
+                }
+            });
+        }
+    } else {
+        let parent = $(el).parent().parent();
+        parent.remove();
+    }
 }
 
 $(document).ready(function () {
@@ -631,7 +668,7 @@ $(document).ready(function () {
         addOption += "		<input type='hidden' name='option_type[]'  value='M' />			  ";
         addOption += "		<input type='hidden' name='o_room[]'  value='" + g_idx + "' size='70' />		  ";
         addOption += "		<input type='hidden' name='o_name[]'  value='" + roomName + "' size='70' />		  ";
-        addOption += roomName;
+        addOption += "  <span class='room_option_' data-id='" + g_idx + "'>" + roomName + "</span>";
         addOption += "	</td>																  ";
         addOption += "	<td class='flex_td' style='display: flex; align-items: center'>																  ";
         addOption += "		<input type='text' class='datepicker' readonly name='o_sdate[]'  value='' /> ~ ";
@@ -653,8 +690,8 @@ $(document).ready(function () {
 
         $(".datepicker").datepicker();
 
+        renderRoom();
     });
-
 
     $("#btn_add_option2").click(function () {
 
@@ -677,9 +714,109 @@ $(document).ready(function () {
 
     });
 
+    $('#btn_add_option3').click(function () {
+        let roomIdx2 = $("#roomIdx2 option:selected");
+        let g_idx = roomIdx2.val();
+        if (g_idx === undefined) {
+            alert("룸을 선택해주세요.");
+            return false;
+        }
 
+        let roomName = roomIdx2.text();
+
+        let html = ` <tr> <td>
+                                                        <input type='hidden' name='rop_idx[]' id='' value=""/>
+                                                        <input type='hidden' name='sup_room__idx[]' id='' value="${g_idx}"/>
+                                                        
+                                                        <input type='hidden' name='sup_room__name[]' id=''
+                                                               value="${roomName}"/>
+                                                               ${roomName}
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' name='sup__key[]' id=''
+                                                               value="" size="70"/>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" id="btn_add_name" onclick="addName(this);"
+                                                                class="btn_01">추가
+                                                        </button>
+                                                        <div class="list_name list__room_name" style="margin-top: 10px;">
+                                                            <div class="input_item"
+                                                                 style="display: flex;margin-top: 5px;">
+                                                                <input type='text' class='sup__name_child' name='sup__name_child' id=''
+                                                                       value=""/>
+                                                            </div>
+                                                        </div>
+                                                        <input type='hidden' class='' name='sup__name[]' id=''
+                                                                       value=""/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' class='onlynum' name='sup__price[]' id=''
+                                                               value=""/>
+                                                    </td>
+                                                    <td>
+                                                        <input type='text' class='onlynum' name='sup__price_sale[]'
+                                                               id=''
+                                                               value=""/>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" id="btn_del_option3"
+                                                                onclick="delOption2('', this);"
+                                                                class="btn_02">삭제
+                                                        </button>
+                                                    </td>
+                                                </tr>`;
+
+        $("#settingBody3").append(html);
+    });
+
+    renderRoom();
 });
 
+function renderRoom() {
+    let room_option_ = $(".room_option_");
+
+    let data = [];
+
+    room_option_.each(function () {
+        let op = $(this);
+        let op_id = op.data('id');
+        let op_name = op.text();
+        let item = {
+            op_id: op_id,
+            op_name: op_name
+        }
+
+        data.push(item);
+    })
+
+    let options = '';
+
+    for (const datum of data) {
+        options += `<option value="${datum.op_id}">${datum.op_name}</option>`
+    }
+
+    $("#roomIdx2").empty().append(options);
+}
+
+let addNameHtml = ` <div class="input_item" style="display: flex;margin-top: 5px;">
+                                                                <input type='text' class='sup__name_child' name='sup__name_child' id=''
+                                                                       value=""/>
+                                                                <button type="button" id="btn_del_name"
+                                                                        onclick="delName(this);"
+                                                                        class="btn_02">삭제
+                                                                </button>
+                                                            </div>`;
+
+function addName(el) {
+    let inp = $(el).next();
+    $(inp).append(addNameHtml);
+}
+
+function delName(el) {
+    let inp = $(el).parent();
+    inp.remove();
+}
 
 function seoson_setting(mon_array) {
 
