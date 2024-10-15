@@ -6,10 +6,13 @@
         <div class="section1">
             <div class="title-container">
                 <h2>피닉스 골드 골프 방콕 (구. 수완나품 컨트리클럽)</h2>
-                <div class="list-icon only_web">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
-                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
-                    <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                <div class="list-icon">
+                    <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                    <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
+                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
+                    <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
+                    <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                 </div>
             </div>
             <div class="location-container">
@@ -20,11 +23,6 @@
                 <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                 <span><strong> 4.7</strong></span>
                 <span>생생리뷰 <strong>(124)</strong></span>
-            </div>
-            <div class="list-icon only_mo">
-                <img src="/uploads/icons/print_icon.png" alt="print_icon">
-                <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
-                <img src="/uploads/icons/share_icon.png" alt="share_icon">
             </div>
             <div class="hotel-image-container">
                 <div class="hotel-image-container-1">
@@ -61,7 +59,7 @@
                 </div>
             </div>
             <h3 class="title-size-24">상품 정보</h3>
-            <table class="golf-table">
+            <table class="golf-table only_web">
                 <thead>
                     <tr>
                         <th>더투어랩 평가 등급</th>
@@ -106,6 +104,56 @@
                         <td colspan="5">수</td>
                     </tr>
                 </tbody>
+            </table>
+            <table class="golf_table only_mo">
+                <tr>
+                    <td>더투어랩 평가 등급</td>
+                    <td>
+                        <div class="rating-list">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>총홀수</td>
+                    <td>18홀</td>
+                </tr>
+                <tr>
+                    <td>휴무일</td>
+                    <td>없음</td>
+                </tr>
+                <tr>
+                    <td>시내에서 거리<br>및 이동기간</td>
+                    <td>60km / 50분</td>
+                </tr>
+                <tr>
+                    <td>공항에서 거리<br>및 이동시간</td>
+                    <td>80km / 65분</td>
+                </tr>
+                <tr>
+                    <td>팀당 라운딩 인원</td>
+                    <td>주중 : 5명 /  주말 : 4명</td>
+                </tr>
+                <tr>
+                    <td>전동카트</td>
+                    <td>의무사용/사용가능 인원 1명/ 페어웨이<br>진입가능</td>
+                </tr>
+                <tr>
+                    <td>갤러리피</td>
+                    <td>1,500바트(캐디,카트 포함/캐디팁 불포함) </td>
+                </tr>
+                <tr>
+                    <td>장비렌탈</td>
+                    <td>클럽세트 렌탈 : 1700바트<br>골프화 : 300바트<br>우산 : 100바트</td>
+                </tr>
+                <tr>
+                    <td>스포츠데이</td>
+                    <td>수</td>
+                </tr>
             </table>
             <h3 class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
             <div class="calendar">
@@ -608,12 +656,12 @@
         </div>
     </div>
     <script>
-        $('.tag-list .tag-js').on('click', function () {
+        $('.tag-list .tag-js').on('click', function() {
             $('.tag-list .tag-js').removeClass('active');
             $(this).addClass('active');
         });
 
-        $('.tag-list .tag-js2').on('click', function () {
+        $('.tag-list .tag-js2').on('click', function() {
             $('.tag-list .tag-js2').removeClass('active');
             $(this).addClass('active');
         });
@@ -641,11 +689,11 @@
         const $closePopupBtn2 = $('#closePopupBtn');
 
         // Show popup when the "Open Popup" button is clicked
-        $openPopupBtns.on('click', function () {
+        $openPopupBtns.on('click', function() {
             $popup.css('display', 'flex');
         });
 
-        $('.list-icon img[alt="heart_icon"]').click(function () {
+        $('.list-icon img[alt="heart_icon"]').click(function() {
             if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
                 $(this).attr('src', '/uploads/icons/heart_on_icon.png');
             } else {
@@ -654,16 +702,16 @@
         });
 
         // Close the popup when the "Close" button or the "x" is clicked
-        $closePopupBtn.on('click', function () {
+        $closePopupBtn.on('click', function() {
             $popup.css('display', 'none');
         });
 
-        $closePopupBtn2.on('click', function () {
+        $closePopupBtn2.on('click', function() {
             $popup.css('display', 'none');
         });
 
         // Close popup if clicked outside of content area
-        $(window).on('click', function (event) {
+        $(window).on('click', function(event) {
             if ($(event.target).is($popup)) {
                 $popup.css('display', 'none');
             }
@@ -785,7 +833,16 @@
                 },
                 observer: true,
                 observeParents: true,
-
+                breakpoints: {
+                    850: {
+                        slidesPerView: 22,
+                        spaceBetween: 2,
+                    },
+                    350: {
+                        slidesPerView: 5,
+                        spaceBetween: 2,
+                    }
+                },
             });
             var today = new Date();
 
@@ -841,8 +898,8 @@
         $("#prev_icon_mo").on("click", prevMonth)
         $("#next_icon_mo").on("click", nextMonth)
 
-        $(function () {
-            $('.calendar .dates .day a').on('click', function () {
+        $(function() {
+            $('.calendar .dates .day a').on('click', function() {
                 $('.day a').removeClass("on");
                 $(this).addClass("on");
             });

@@ -1047,7 +1047,7 @@
   }
 
   .content-sub-hotel-detail .btn-container button {
-    height: 6.2rem;
+    height: 8rem;
     font-size: 2.8rem;
     padding-left: 7rem;
     padding-right: 7rem;
@@ -1064,8 +1064,8 @@
     width: 130%;
     border-radius: 1.6rem;
     position: absolute;
-    bottom: -98%;
-    left: -11px;
+    bottom: -115%;
+    left: -0.9rem;
     background-color: var(--bs-point);
   }
 
@@ -1318,9 +1318,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 6rem;
-    padding-bottom: 2rem;
-    border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
+    margin-top: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 0.2rem solid rgba(204, 204, 204, 0.3);
   }
 
   .content-sub-product-hotel .pagination {
@@ -1653,7 +1653,7 @@
     display: flex;
     align-items: center;
     font-weight: 500;
-    font-size: 2.7rem;
+    font-size: 2.1rem;
   }
 
   .content-sub-hotel-detail .main a.active {
@@ -1865,5 +1865,108 @@
 
   .thailand_hotel_ .sub_section3__head {
     padding-top: 10rem;
+  }
+
+  .custom-product-golf .category-mo-cus {
+    margin-top: 6rem;
+  }
+
+  .content-sub-product-hotel .product-card-item-right .sub-title {
+    margin-top: 1.6rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .custom-product-golf .product-card-item-right .sub-title {
+    padding-bottom: 1.6rem;
+  }
+
+  .content-sub-product-hotel .filter-container {
+    display: none;
+  }
+
+  .content-sub-product-hotel .tab_box_area_ .tab_box_element_ {
+    padding: 1.8rem 2.2rem;
+    font-size: 2.6rem;
+    min-width: 11.8rem;
+    height: 7.2rem;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 9.9rem;
+    letter-spacing: unset;
+    line-height: unset;
+  }
+
+  .content-sub-product-hotel .category-left-item {
+    padding-bottom: 3rem;
+    border-bottom: 0.2rem solid rgba(204, 204, 204, 0.5);
+  }
+
+  .custom-product-golf .category-left-item .form-cus-mb {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1.8rem;
+    column-gap: 10rem;
+  }
+
+  .custom-product-golf .form-group input:checked+label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0.8rem;
+    left: 1.7rem;
+    width: 1.5rem;
+    height: 2.8rem;
+    border: solid white;
+    border-width: 0 0.4rem 0.4rem 0;
+    transform: rotate(45deg);
+  }
+
+  .custom-product-golf .form-group input:checked+label {
+    font-weight: bold;
+  }
+
+  .custom-product-golf .form-group label:before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0.2rem solid #ccc;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.05), inset 0rem -1.5rem 1rem -1.2rem rgba(0, 0, 0, 0.05);
+    padding: 2.3rem;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .content-sub-product-hotel .product-card-item-right .star-container .star-left img {
+    width: 2.3rem;
+    height: 2.2rem;
+  }
+
+  .content-sub-product-hotel .product-card-item-right .star-content span {
+    border-left: solid 0.2rem #ccc;
+    padding-left: 0.8rem;
+  }
+
+  .content-sub-product-hotel .product-card-item-right .title-container .star-container {
+    gap: 1.6rem;
+  }
+
+  .content-sub-hotel-detail .section1 button {
+    border-radius: 0.5rem;
+    padding: 1.2rem 5rem;
+  }
+
+  .custom-golf-detail .title-size-24 {
+    font-size: 3.4rem;
+    margin-top: 6rem;
+    margin-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .custom-golf-detail .text-parent span {
+    font-size: 2.6rem;
   }
 }
