@@ -183,7 +183,7 @@ class CodeController extends BaseController
 
             $this->CodeModel->update($code_idx, [
                 'ufile1' => $newName,
-                'rfile1' => $file->getName()
+                'rfile1' => $file->getClientName()
             ]);
         }
 
