@@ -12,6 +12,7 @@ class TourSuggestionSubController extends BaseController
     private $Bbs;
     private $tours;
     private $db;
+    private $mainDispModel;
 
     protected $connect;
 
@@ -21,6 +22,7 @@ class TourSuggestionSubController extends BaseController
         $this->connect = Config::connect();
         $this->tourRegistModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
+        $this->mainDispModel = model("MainDispModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -116,5 +118,40 @@ class TourSuggestionSubController extends BaseController
         $data = [];
 
         return view('admin/_tourSuggestionSub/write', $data);
+    }
+
+    public function prd_list() {
+        $code = $this->request->getVar('code');
+        $parent_code = $this->request->getVar('parent_code');
+        if ($code != '0' && isset($code)) {
+            $replace_code = $code;
+        } else {
+            $replace_code = $parent_code;
+        }
+        $sql = "select  a.product_name, 
+                        a.product_idx, 
+                        a.product_code, 
+                        a.is_view,
+                        b.onum,
+                        b.code_idx
+                        from tbl_product_mst a, tbl_main_disp b
+                        where a.product_idx    =  b.product_idx
+                        and b.code_no    = '$replace_code' 
+                        order by b.onum desc, b.code_idx desc";
+
+        $result3 = $this->connect->query($sql);
+        $result3 = $result3->getResultArray();
+        return view('admin/_tourSuggestionSub/prd_list', ['result3' => $result3]);
+    }
+
+    public function goods_find() {
+        $code_no = $_GET['code_no'];
+        $inq_sw = $_GET['inq_sw'];
+        if($inq_sw != "fst") {
+            $list = $this->mainDispModel->goods_find($code_no);
+        } else {
+            $list = [];
+        }
+        return view('admin/_tourSuggestionSub/goods_find', ['list' => $list]);
     }
 }

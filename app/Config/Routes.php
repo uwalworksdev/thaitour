@@ -168,6 +168,8 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_tourSuggestionSub", static function ($routes) {
         $routes->get("list", "TourSuggestionSubController::list");
         $routes->get("write", "TourSuggestionSubController::write");
+        $routes->get("prd_list", "TourSuggestionSubController::prd_list");
+        $routes->get("goods_find", "TourSuggestionSubController::goods_find");
     });
 
     $routes->group("_tourLevel", static function ($routes) {

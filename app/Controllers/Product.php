@@ -18,6 +18,7 @@ class Product extends BaseController
     private $bbsListModel;
     private $db;
     private $hotel;
+    private $codeModel;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class Product extends BaseController
         $this->productModel = model("Product_model");
         $this->hotel = model(Hotel::class);
         $this->bbsListModel = model("Bbs");
+        $this->codeModel = model("Code");
         helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
@@ -338,7 +340,7 @@ class Product extends BaseController
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
                 'tab_active' => '2',
-                'categories' => [],
+                'categories' => $this->codeModel->getByParentAndDepth(1302, 3)->getResultArray(),
                 'bestProducts' => $bestProducts
             ];
 

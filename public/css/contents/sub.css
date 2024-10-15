@@ -4763,6 +4763,37 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   padding-right: 0;
 }
 
+.swiper-container-ticket {
+  position: relative;
+  overflow: hidden;
+}
+
+.swiper-container-ticket .swiper-button-next,
+.swiper-container-ticket .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.swiper-container-ticket .swiper-button-next-ticket {
+  z-index: 1;
+  right: 0px;
+  position: absolute;
+  top: 40%;
+}
+
+.swiper-container-ticket .swiper-button-prev-ticket {
+  z-index: 1;
+  position: absolute;
+  top: 40%;
+  left: 0px;
+}
+
 @media screen and (max-width: 1200px) {
   .only_tb {
     display: none !important;

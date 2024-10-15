@@ -26,6 +26,7 @@ class TourRegistController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
+        error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
     }
 
     public function list_hotel()
@@ -324,10 +325,14 @@ class TourRegistController extends BaseController
     }
 
     public function write_golf_ok($product_idx) {
+
         $data = $this->request->getPost();
+        $data['best_value']     = $data['best_value'] ?? "N";
+        $data['special_price']  = $data['special_price'] ?? "N";
+
         $this->productModel->update($product_idx, $data);
         $html = '<script>alert("수정되었습니다.");</script>';
-        // $html .= '<script>location.history.back();</script>';
+        $html .= '<script>parent.location.reload();</script>';
         $html .= '<div>'.var_dump($data).'</div>';
         return $this->response->setBody($html);
     }

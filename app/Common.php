@@ -783,3 +783,9 @@ function sqlSecretConver($value, $way)
 
     return $outText;
 }
+
+function getImage($path)
+{
+    if(!is_file($_SERVER["DOCUMENT_ROOT"]."/{$path}")) return "/images/product/noimg.png";
+    return $path;
+}

@@ -1,38 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<style>
-.swiper-container-ticket {
-    position: relative;
-    overflow: hidden;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 10px;
-    border-radius: 50%;
-}
-
-.swiper-button-next-ticket {
-    z-index: 1;
-    right: 0px;
-    position: absolute;
-    top: 40%;
-}
-
-.swiper-button-prev-ticket {
-    z-index: 1;
-    position: absolute;
-    top: 40%;
-    left: 0px;
-}
-</style>
 
 <section>
     <div class="body_inner golf-custom-page">
@@ -43,15 +11,23 @@
                     <div class="swiper-slide">
                         <a href="/product-golf/list-golf/1">
                             <div class="img_box_re">
-                                <img class="only_web" src="/uploads/products/<?=$product['ufile1']?>" alt="golf_slide_img1">
+                                <img class="only_web" src="<?=getImage("/uploads/products/{$product['ufile1']}")?>" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
                                 <img class="only_mo img_box_re_img"
-                                    src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
-                                <img class="only_web tag-red" src="/uploads/icons/tag-red.png" alt="">
-                                <img class="only_mo tag-red" src="/uploads/icons/tag-red-m.png" alt="">
+                                    src="<?=getImage("/uploads/products/{$product['ufile1']}")?>" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
+                                <?php if($product['best_value']): ?>
+                                    <img class="only_web tag-red" src="/uploads/icons/tag-red.png" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
+                                    <img class="only_mo tag-red" src="/uploads/icons/tag-red-m.png" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
+                                <?php endif; ?>
                                 <p class="text_img_box_re">
                                     <?=viewSQ($product['product_name'])?>
                                 </p>
-                                <p class="text_img_box_re_sub">#무제한 라운딩 #오션뷰</p>
+                                <p class="text_img_box_re_sub">
+                                    <?php
+                                    $arr_keyword = explode(',', $product['keyword']);
+                                    foreach ($arr_keyword as $key => $value) {
+                                        echo "#$value ";
+                                    } ?>
+                                </p>
                             </div>
                         </a>
                     </div>
@@ -87,76 +63,18 @@
                 <div style="position: relative;">
                     <div class="swiper sub_swiper2">
                         <div class="swiper-wrapper">
+                            <?php foreach ($categories as $category) : ?>
                             <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/1324">
+                                <a href="/product-golf/list-golf/<?=$category['code_no']?>">
                                     <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_1.png" alt="main">
+                                        <img src="<?=getImage("/data/code/{$category['ufile1']}")?>" alt="main">
                                     </div>
                                     <div class="sub_swiper2__text">
-                                        방콕 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
+                                        <?=viewSQ($category['code_name'])?> <img src="/images/ico/ico_arrow_right_1.svg" alt="">
                                     </div>
                                 </a>
                             </div>
-                            <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_2.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        파타야 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_3.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        푸켓 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_4.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        치앙마이 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_5.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        끄라비 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_6.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        카오락 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/1324">
-                                    <div class="img_box">
-                                        <img src="/uploads/sub/tour_slide_3.png" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        카오락 <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <div class="swiper-button-prev-sub-2 swiper-button-sub-2 sub_swiper2_btn_prev">

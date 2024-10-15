@@ -68,7 +68,7 @@
 
           <div class="slick-counter">
             <span class="prevBtn slider_btn">prev</span>
-            <span class="current">01</span> / <span class="total"></span>
+            <span class="current">0</span> / <span class="total">0</span>
             <span class="nextBtn slider_btn">next</span>
           </div>
         </div>

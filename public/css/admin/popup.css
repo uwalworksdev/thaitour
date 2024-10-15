@@ -1,0 +1,135 @@
+
+@charset "utf-8";
+
+.list_up {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pick_item_pop02 h2 {
+    padding: 0 20px;
+    width: 100%;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Nanum Gothic', sans-serif;
+    color: #fff;
+    background: #4f728a;
+    box-sizing: border-box;
+}
+
+.pick_item_pop02 > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 562px;
+    background: #fff;
+}
+
+.pick_item_pop02 .table_box {
+    height: calc(100% - 218px);
+    overflow-y: auto;
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+.pick_item_pop02 .search_box select {
+    width: 120px;
+    height: 31px;
+}
+
+.pick_item_pop02 .search_box {
+    padding: 20px 0;
+    border-bottom: 1px solid #bbbbbb;
+    background: #f5f5f5;
+    text-align: center;
+}
+
+.pick_item_pop02 .table_box form {
+    padding: 20px;
+}
+
+.pick_item_pop02 .table_box table th {
+    height: 32px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #7d7d7d;
+    background: #fafafa;
+    vertical-align: middle;
+}
+
+.pick_item_pop02 .table_box table tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.pick_item_pop02 .table_box table {
+    border-top: 1px solid #ddd;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pick_item_pop02 .sel_box {
+    padding: 22px 0;
+    height: 86px;
+    text-align: center;
+    background: #f5f5f5;
+    font-size: 0;
+    box-sizing: border-box;
+}
+
+.pick_item_pop02 .sel_box button.close {
+    border: 1px solid #d7d7d7;
+    color: #464646;
+    background: #fff;
+}
+
+.pick_item_pop02 .sel_box button.select_all {
+    color: #fff;
+    background-color: #449d44;
+    margin-left: 10px;
+    border: 1px solid #449d44;
+}
+
+.pick_item_pop02 .sel_box button.search {
+    margin-left: 10px;
+    border: 1px solid #286090;
+    color: #fff;
+    background: #286090;
+}
+
+.pick_item_pop02 .sel_box button {
+    display: inline-block;
+    width: 162px;
+    height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.pick_item_pop02 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+    z-index: 999999999;
+}
+
+.pick_item_pop02 .table_box table td {
+    padding: 0 10px;
+    height: 52px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #7d7d7d;
+    text-align: left;
+    vertical-align: middle;
+}

@@ -1,7 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
-<link rel="stylesheet" href="/AdmMaster/_common/css/popup.css" type="text/css"/>
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
 
 <div id="container" class="item_manage">
     <div id="print_this">
@@ -16,7 +16,7 @@
 
         <div id="contents" class="">
             <div class="listWrap_noline">
-                <form name="frm" id="frm" action="./list.php" method="post">
+                <form name="frm" id="frm" action="./list" method="get">
                     <input type="hidden" name="code" id="code" value="<?= $code ?>">
                     <input type="hidden" name="table" id="table" value="tbl_goods">
                     <div class="listBottom">
@@ -32,8 +32,8 @@
                                 <td>
                                     <div class="sel_wrap">
                                         <div class="sel_box">
-                                            <select name="parent_code" id="parent_code" class="main_category"
-                                                    onchange="getChildCode(this.value)">
+                                            <select name="child_code_1" id="child_code_1" class="main_category"
+                                                    onchange="getChildCode(this.value, 2)">
                                                 <option value="">카테고리 선택</option>
                                                 <?php
                                                 foreach ($result as $row) {
@@ -43,8 +43,8 @@
                                                 }
                                                 ?>
                                             </select>
-                                            <select name="code" id="child_code" class="main_category"
-                                                    onchange="area_sel(this.value);">
+                                            <select name="code" id="child_code_2" class="main_category"
+                                                    onchange="area_sel(this.value, 3);">
                                                 <option value="">카테고리 선택</option>
                                                 <?php
                                                 foreach ($result2 as $row) {
@@ -58,7 +58,6 @@
                                     </div>
                                 </td>
                             </tr>
-
                             <tr>
                                 <th> 상품 등록</th>
                                 <td colspan="3">
@@ -97,11 +96,11 @@
                                             <th>삭제</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="prd_list">
                                         <?php
                                         foreach ($result3 as $row) {
                                             ?>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>
                                                     <input type="checkbox" class="select_idx" name="idx[]"
                                                            value="<?= $row['code_idx'] ?>">
@@ -124,7 +123,7 @@
                                                         삭제
                                                     </button>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <?php
                                         }
                                         ?>
@@ -136,29 +135,67 @@
 
                             <script>
 
-                                function getChildCode(code) {
+                                function getChildCode(parent_code_no, depth) {
                                     $.ajax({
-                                        url: "./get_child.ajax.php",
-                                        type: "POST",
+                                        url: "/ajax/get_code",
+                                        type: "GET",
+                                        dataType: "html",
                                         data: {
-                                            "code": code,
+                                            "parent_code_no": parent_code_no,
+                                            "depth": depth
                                         },
-                                        async: false,
-                                        cache: false,
-                                        success: function (data, textStatus) {
-                                            $("#child_code").html(data);
+                                        success: function (json, textStatus) {
+                                            if (depth <= 2) {
+                                                $("#child_code_2").find('option').each(function () {
+                                                    $(this).remove();
+                                                });
+                                                $("#child_code_2").append("<option value=''>2차분류</option>");
+                                            }
+                                            var list = $.parseJSON(json);
+                                            var listLen = list.length;
+                                            var contentStr = "";
+                                            for (var i = 0; i < listLen; i++) {
+                                                contentStr = "";
+                                                if (list[i].code_status == "C") {
+                                                    contentStr = "[마감]";
+                                                } else if (list[i].code_status == "N") {
+                                                    contentStr = "[사용안함]";
+                                                }
+                                                $("#child_code_" + (parseInt(depth))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                                            }
+                                            get_prd_list(parent_code_no);
                                         },
                                         error: function (request, status, error) {
                                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                                         }
                                     });
-                                    area_sel(code);
                                 }
 
-                                function area_sel(area) {
-                                    $("#area").val(area);
-                                    $("#frm").submit();
+                                // function area_sel(area) {
+                                //     $("#area").val(area);
+                                //     $("#frm").submit();
+                                // }
+                                function get_prd_list(code, parent_code) {
+                                    $("#code").val(code);
+                                    $.ajax({
+                                        url: "/AdmMaster/_tourSuggestionSub/prd_list",
+                                        type: "GET",
+                                        dataType: "html",
+                                        data: {
+                                            parent_code,
+                                            code
+                                        },
+                                        async: false,
+                                        cache: false,
+                                        success: function (json, textStatus) {
+                                            $("#prd_list").html(json);
+                                        },
+                                        error: function (request, status, error) {
+                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                        }
+                                    });
                                 }
+                                get_prd_list('<?= $code ?>');
                             </script>
 
                             <script>
@@ -512,7 +549,7 @@
     function get_code(strs, depth) {
         $.ajax({
             type: "GET"
-            , url: "/AdmMaster/_tourRegist/get_code.ajax.php"
+            , url: "/ajax/get_code"
             , dataType: "html" //전송받을 데이터의 타입
             , timeout: 30000 //제한시간 지정
             , cache: false  //true, false
@@ -571,8 +608,8 @@
 
             $.ajax({
 
-                url: "./goods_find.php",
-                type: "POST",
+                url: "./goods_find",
+                type: "GET",
                 data: {
                     "code_no": code,
                     "inq_sw": inq_sw
