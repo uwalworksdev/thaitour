@@ -312,14 +312,16 @@
   .tour__head__tabs2__tabs {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
+    overflow: scroll;
+    padding-bottom: 3rem;
   }
 
   .tour__head__tabs2__tab {
     height: 6rem;
     font-size: 2.6rem;
     border-radius: 3rem;
-    min-width: 10rem;
+    min-width: 13rem;
     padding: 0 2.3rem;
     border-width: 0.2rem;
   }
@@ -330,12 +332,22 @@
   }
 
   .sub_tour_section5__prd_list {
-    margin-top: 4.5rem;
+    margin-top: 2rem;
     gap: 5rem 2rem;
+  }
+
+  .golf-custom-page .golf_custom_section5__head__tabs2 {
+    margin-top: 3rem;
+    padding-top: 5rem;
+    border-top: 0.2rem solid #000;
   }
 
   .sub_tour_section5_item {
     width: calc((100% - 2rem) / 2);
+  }
+
+  .golf-custom-page .sub_section3.sub_section5_ {
+    margin-bottom: 14rem;
   }
 
   /* prd_list_pagination */
@@ -1365,10 +1377,11 @@
       background: white;
       color: black;
       position: relative;
-      top: 50%;
+      top: 33.5%;
       left: 50%;
       transform: translate(-50%, -40%);
       box-sizing: border-box;
+      z-index: 101;
     }
 
     .popup_inner {
@@ -1813,5 +1826,44 @@
   .content-sub-hotel-detail .section4 .list-tag-sec4 .tag-item-list li::before {
     width: 2.6rem;
     height: 2.6rem;
+  }
+
+  .golf-custom-page .swiper-main-tools {
+    position: absolute;
+    right: 5%;
+    bottom: 4%;
+    z-index: 1;
+  }
+
+  .golf-custom-page .img_box_re {
+    width: unset;
+    height: unset;
+  }
+
+  .golf-custom-page .scroll-con-sec7 {
+    overflow: scroll;
+  }
+
+  .golf-custom-page .banner-ticket .tag-red {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .golf-custom-page .sub_tour_section7_product_item .ico_special_prd {
+    width: 5.4rem;
+    height: 7.4rem;
+  }
+
+  .sub_tour_section7_product_list {
+    display: flex;
+    gap: 4rem;
+    flex-wrap: nowrap;
+    margin-top: 2.9rem;
+    width: 168rem;
+    margin-bottom: 2rem;
+  }
+
+  .thailand_hotel_ .sub_section3__head {
+    padding-top: 10rem;
   }
 }

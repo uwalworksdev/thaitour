@@ -372,6 +372,10 @@
     object-fit: contain;
   }
 
+  .main_body_container .img_box_1_m img {
+    object-fit: cover;
+  }
+
   .main_visual_slider .owl-item:not(.active) .img_box::before {
     background-color: transparent;
   }
@@ -476,7 +480,7 @@ padding-top: 0 !important; */
   }
 
   .body_container.main_body_container {
-    margin-top: -8rem;
+    margin-top: 0;
     padding-top: 0;
   }
 
@@ -499,6 +503,10 @@ padding-top: 0 !important; */
   .swiper-main-tools {
     gap: 0.9rem !important;
     padding-top: 3rem !important;
+  }
+
+  .main_body_container .img_box_1_m {
+    padding-top: 60%;
   }
 
 }
