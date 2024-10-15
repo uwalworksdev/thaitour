@@ -23,7 +23,6 @@
         <nav class="snb">
         </nav>
         <?php $tab1 = "on"; ?>
-        <!-- Hiển thị banner -->
         <section class="list_mid_banner">
             <div class="list_box_slider">
                 <div class="slick-container-mid2 visual_slider half_slider">
@@ -44,7 +43,6 @@
         <div class="sub_sec_ttl flex_b_c">
             <h2 class="ttl">하이호주 에서만 즐기는 <b class="color_point">단독투어</b></h2>
         </div>
-        <!-- Hiển thị danh sách sản phẩm -->
         <section class="one_txt_slider_sec item_list">
             <div class="one_txt_slider one_slider slick-slidero">
                 <?php foreach ($products as $product): ?>
