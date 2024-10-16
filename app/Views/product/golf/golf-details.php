@@ -138,7 +138,7 @@
                 </tr>
                 <tr>
                     <td>팀당 라운딩 인원</td>
-                    <td>주중 : 5명 /  주말 : 4명</td>
+                    <td>주중 : 5명 / 주말 : 4명</td>
                 </tr>
                 <tr>
                     <td>전동카트</td>
@@ -494,7 +494,8 @@
                 <p class="text-">약속대로 인하더라도 라운딩 불가할 경우 추후 이용이 가능한 레인저 체계 쿠폰을 발급해드립니다.</p>
             </div>
             <h3 class="title-size-24">위치정보</h3>
-            <img class="topic-immg" src="/uploads/sub/map-golf-detail.png" alt=""></img>
+            <img class="topic-immg only_web" src="/uploads/sub/map-golf-detail.png" alt=""></img>
+            <img class="topic-immg only_mo" src="/uploads/sub/map-golf-detail_mo.png" alt=""></img>
             <div class="location-container">
                 <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
                 <span class="text-gray">19 Moo.14, Bang Krasan, Bangpain,Phra Nakhon Si Ayutthaya 13160</span>
@@ -510,28 +511,32 @@
                 </div>
                 <div class="list-label-tag">
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_1.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_1.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_1_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>페어웨이/그린</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
                         </div>
                     </div>
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_2.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_2.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_2_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>플레이속도</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
                         </div>
                     </div>
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_3.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_3.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_3_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>캐디</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
                         </div>
                     </div>
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_4.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_4.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_4_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>부대시설</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
@@ -604,41 +609,56 @@
                             <div class="qa-question">
                                 <span class="qa-number">124</span>
                                 <span class="qa-tag normal-style">답변대기중</span>
-                                <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">123</span>
                                 <span class="qa-tag">답변대기중</span>
-                                <p class="qa-text">결제 시점은 언제인가요?</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">결제 시점은 언제인가요?</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">122</span>
                                 <span class="qa-tag normal-style">답변대기중</span>
-                                <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">121</span>
                                 <span class="qa-tag normal-style">답변대기중</span>
-                                <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">120</span>
                                 <span class="qa-tag">답변대기중</span>
-                                <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                     </ul>
                     <div class="additional-info">
@@ -650,19 +670,23 @@
                 </div>
                 <div class="pagination">
                     <a href="#" class="page-link">
-                        <img src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                        <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
                     </a>
-                    <a href="#" class="page-link" style="margin-right: 24px;">
-                        <img src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                    <a href="#" class="page-link cus-padding mr">
+                        <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                        <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
                     </a>
                     <a href="#" class="page-link active">1</a>
                     <a href="#" class="page-link">2</a>
                     <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link" style="margin-left: 24px;">
-                        <img src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                    <a href="#" class="page-link cus-padding ml">
+                        <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
                     </a>
                     <a href="#" class="page-link">
-                        <img src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                        <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
                     </a>
                 </div>
             </div>

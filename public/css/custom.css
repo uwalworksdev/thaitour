@@ -116,8 +116,7 @@
     background: #17469E;
 }
 
-.thailand_hotel_ {
-}
+.thailand_hotel_ {}
 
 .thailand_hotel_ .sub_section3__head {
     justify-content: start;
@@ -472,8 +471,7 @@
 }
 
 /* Update css for: w_sub_8고객센터_4고객의소리.psd */
-.form_notify_ {
-}
+.form_notify_ {}
 
 .form_notify_ .icon_star_5 {
     background-image: url("/images/ico/ico_star.svg");
@@ -602,8 +600,7 @@
 }
 
 /* Update css for: w_sub_8고객센터_3일대일게시판.psd */
-.form_table_notify_ {
-}
+.form_table_notify_ {}
 
 .form_table_notify_ .form_el {
     margin-bottom: 25px;
@@ -639,8 +636,7 @@
     padding: 10px;
 }
 
-.form_table_notify_ .form_upload_info {
-}
+.form_table_notify_ .form_upload_info {}
 
 .form_table_notify_ .form_upload_button {
     width: 110px;
@@ -657,8 +653,7 @@
     text-align: center;
 }
 
-.form_table_notify_ .form_uploaded_file_list {
-}
+.form_table_notify_ .form_uploaded_file_list {}
 
 .form_table_notify_ .form_upload_container {
     display: flex;
@@ -726,8 +721,8 @@
     gap: 10px;
 }
 
-.form_table_notify_ .form_radio input[type="radio"]:checked + label,
-.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label {
+.form_table_notify_ .form_radio input[type="radio"]:checked+label,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked)+label {
     position: relative;
     padding-left: 1.75rem;
     cursor: pointer;
@@ -736,8 +731,8 @@
     color: #252525;
 }
 
-.form_table_notify_ .form_radio input[type="radio"]:checked + label:before,
-.form_table_notify_ .form_radio input[type="radio"]:not(:checked) + label:before {
+.form_table_notify_ .form_radio input[type="radio"]:checked+label:before,
+.form_table_notify_ .form_radio input[type="radio"]:not(:checked)+label:before {
     content: '';
     position: absolute;
     left: 0;
@@ -748,7 +743,7 @@
     border-radius: 100%;
 }
 
-.form_table_notify_ .form_radio input[type="radio"]:checked + label:before {
+.form_table_notify_ .form_radio input[type="radio"]:checked+label:before {
     background: url("/images/ico/icon_radio_selected.png") no-repeat center;
 }
 
@@ -843,14 +838,11 @@
 }
 
 /**/
-.main_page_product_result_ {
-}
+.main_page_product_result_ {}
 
-.main_page_product_result_ {
-}
+.main_page_product_result_ {}
 
-.main_page_product_result_ {
-}
+.main_page_product_result_ {}
 
 @media screen and (max-width: 850px) {
     .page_product_list_.main_page_01 .main_visual_content_ {
@@ -1312,5 +1304,39 @@
 
     .main_page_01 .sub_tour_section7_product_list {
         margin-bottom: 0;
+    }
+
+    .sub_tour_section6 .custom_pagination_ .pagination_show_,
+    .thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_,
+    .thailand_hotel_ .custom_pagination_ .pagination_show_ {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 28.2rem;
+        height: 6.4rem;
+        background-color: #ffffff;
+        border: 0.21rem solid #dbdbdb;
+        border-radius: 3.1rem;
+        cursor: pointer;
+    }
+
+    .thailand_hotel_ .custom_pagination_ .pagination_show_ img {
+        width: 1.8rem;
+        height: 2rem;
+    }
+
+    .sub_tour_section6 .custom_pagination_ .sub_tour_section6_swiper_pagination_,
+    .thailand_hotel_ .custom_pagination_ .thailand_hotel_swiper_pagination_ {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: unset;
+        font-size: 2.8rem;
+        letter-spacing: -1px;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        color: #aaaaaa;
+        font-weight: 500;
+        font-family: "Pretendard";
     }
 }
