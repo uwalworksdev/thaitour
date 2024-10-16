@@ -4092,7 +4092,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .completed-order-page .title-main-o {
-  font-size: 32px;
+  font-size: 12px;
   font-weight: 600;
   text-align: center;
   line-height: 2.5rem;
