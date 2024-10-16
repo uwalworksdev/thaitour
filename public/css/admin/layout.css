@@ -1427,7 +1427,7 @@ div#headerContainer.type {
 }
 
 div#headerContainer div.inner {
-    width: 96%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -1448,7 +1448,7 @@ div#headerContainer h2 {
 div#headerContainer div.menus {
     float: right;
     margin-right: -23px;
-    margin-top: -25px;
+    /* margin-top: -25px; */
 }
 
 div#headerContainer div div.menus {

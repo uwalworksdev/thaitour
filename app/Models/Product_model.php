@@ -379,4 +379,29 @@ class Product_model extends Model
                 ->where('is_view', 'Y')
                 ->where('product_best', 'Y')->findAll();
     }
+    public function findProduct($where = [])
+    {
+        $builder = $this->builder();
+        if($where['product_code_1'] != "") {
+            $builder->where('product_code_1', $where['product_code_1']);
+        }
+        if($where['product_code_2'] != "") {
+            $builder->where('product_code_2', $where['product_code_2']);
+        }
+        if($where['product_code_3'] != "") {
+            $builder->where('product_code_3', $where['product_code_3']);
+        }
+        if($where['search_txt'] != "") {
+            if($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            }
+        }
+        if($where['is_view'] != "") {
+            $builder->where("is_view", $where['is_view']);
+        }
+        $builder->orderBy('product_price', 'desc');
+        $builder->orderBy('onum', 'desc');
+        $builder->orderBy('product_idx', 'desc');
+        return $builder->get()->getResultArray();
+    }
 }

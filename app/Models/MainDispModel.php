@@ -25,4 +25,10 @@ class MainDispModel extends Model
                     ->orderBy('tbl_main_disp.onum', 'DESC')
                     ->findAll();
     }
+    public function itemCntByProductAndCode(int $product_idx, int $code_no)
+    {
+        return $this->where('product_idx', $product_idx)
+                    ->where('code_no', $code_no)
+                    ->countAllResults();
+    }
 }
