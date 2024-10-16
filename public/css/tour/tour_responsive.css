@@ -537,7 +537,61 @@
 
   .content-sub-hotel-detail .section2 .title-sec2 {
     font-size: 3.4rem;
+    margin-bottom : 4rem;
   }
+
+  .tours-detail .section2 .sec2-date-main {
+    font-size: 3.4rem;
+    margin-bottom: 2rem;
+}
+
+.tours-detail .section2 .sec2-date-sub {
+  font-size: 2.6rem;
+  margin-bottom: 3.8rem;
+}
+
+.tours-detail .section2 .sec2-item-card {
+  padding: 3.6rem 2.6rem 3.6rem 3rem;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 0.6rem;
+  margin-bottom: 3rem;
+  box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
+}
+
+.tours-detail .section2 .text-content-1 {
+  align-items: end;
+}
+
+.tours-detail .section2 .text-content-1 h3 {
+  font-size: 3.2rem;
+}
+
+.tours-detail .section2 .text-content-1 .text-grey {
+  font-size: 2.5rem;
+}
+
+.tours-detail .section2 .text-content-2 {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tours-detail .section2 .text-content-2 .ps-right {
+  font-weight: bold;
+  font-size: 3.4rem;
+  margin-left: 1.2rem;
+}
+
+.tours-detail .text-content-3-last button {
+  padding: 12px 40px;
+  border-radius: 6px;
+  border: 1px solid #d8d8d8;
+  width: 120px;
+  color: black;
+  font-weight: 500;
+}
+
 
   .content-sub-hotel-detail .section2 .sub-title-sec2 {
     font-size: 2.8rem;

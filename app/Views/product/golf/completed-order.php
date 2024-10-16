@@ -1,6 +1,12 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+
+<style>
+    @media screen and (max-width : 850px) {
+        
+    }
+</style>
 <div class="completed-order-page">
     <div class="body_inner">
         <div class="container-card">
