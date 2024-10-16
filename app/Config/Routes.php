@@ -417,7 +417,7 @@ $routes->group("custom_travel", static function ($routes) {
 // });
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
-$routes->get('show-ticket', 'Product::showTicket');
+$routes->get('show-ticket/(:any)', 'Product::showTicket');
 $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
 $routes->get('product-list/(:any)', 'Product::index3/$1');
 $routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');

@@ -1969,4 +1969,162 @@
   .custom-golf-detail .text-parent span {
     font-size: 2.6rem;
   }
+
+  .custom-golf-detail .section1 .golf_table {
+    display: flex;
+    align-items: center;
+    width: 66rem;
+  }
+
+  .custom-golf-detail .section1 .golf_table td {
+    padding: 4rem 2rem;
+    border: 0.2rem solid rgb(219, 219, 219);
+    text-align: left;
+  }
+
+  .custom-golf-detail .section1 .golf_table td:first-child {
+    width: 23rem;
+    background-color: rgb(247, 247, 247);
+  }
+
+  .custom-golf-detail .section1 .golf_table td:last-child {
+    color: #454545;
+  }
+
+  .custom-golf-detail .section1 .golf_table .rating-list img {
+    width: 1.9rem;
+    height: 1.8rem;
+  }
+
+  .custom-golf-detail .section1 .golf_table .border-top-table {
+    border-top: 0.2rem solid rgb(153, 153, 153);
+  }
+
+  .custom-golf-detail .calendar span {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+
+  .custom-golf-detail .year {
+    gap: 4rem;
+  }
+
+  .custom-golf-detail .calendar {
+    height: 24rem;
+    padding: 0 3rem;
+    max-width: 100%;
+    border-bottom: 2px solid rgb(238, 238, 238);
+  }
+
+  .custom-golf-detail .calendar .swiper-button {
+    opacity: 0.902;
+    width: 4.8rem;
+    height: 8.3rem;
+    border-radius: 1rem;
+    filter: drop-shadow(0rem 0.5rem 0.3rem rgba(0, 0, 0, 0.05));
+    background-color: rgba(255, 255, 255, 0.9019607843137255);
+    border: 0.2rem solid #dbdbdb;
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  .custom-golf-detail .calendar .dates .day a.on::before {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .custom-golf-detail .calendar .swiper-slide {
+    gap: 4rem;
+  }
+
+  .custom-golf-detail .tag-con-below-calendar .item-tag span.label {
+    font-size: 2.7rem;
+    width: 10rem;
+  }
+
+  .custom-golf-detail .tag-list span.tag {
+    border-radius: 9.9rem;
+    border: 2px solid rgb(219, 219, 219);
+    padding: 1.2rem 0;
+    height: 6.2rem;
+    width: 10.3rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .custom-golf-detail .item-tag select {
+    width: 55.5rem !important;
+    padding-left: 2rem !important;
+    height: 9rem;
+    background: #fff url(/images/ico/select_ico_mo.png) right 2rem center no-repeat;
+    background-size: 2.4rem 1.4rem;
+  }
+
+  .custom-golf-detail .tag-con-below-calendar .item-tag {
+    margin-bottom: 3rem;
+  }
+
+  .custom-golf-detail .tag-list {
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 60rem;
+  }
+
+  .custom-golf-detail .item-tag-mo-cus {
+    align-items: flex-start !important;
+  }
+
+  .custom-golf-detail .tag-con-below-calendar {
+    padding: 4rem 0 0 0;
+    border-bottom: 2px solid rgb(238, 238, 238);
+    margin-bottom: 4rem;
+  }
+
+  .custom-golf-detail .date-text-2 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .custom-golf-detail .date-text-2 p:last-child {
+    font-size: 2.6rem;
+  }
+
+  .custom-golf-detail .card-content .card-item.active_2 .cus-text_div {
+    display: unset;
+  }
+
+  .custom-golf-detail .card-content .card-item.active_2 p.cus-text {
+    margin-bottom: 1rem;
+    opacity: 0.5;
+    display: inline-block;
+  }
+
+  .custom-golf-detail .card-content .card-item {
+    padding: 3rem;
+    border-radius: 0.6rem;
+    border: 2px solid rgb(219, 219, 219);
+    width: 32rem;
+    height: 25.3rem;
+  }
+
+  .custom-golf-detail .card-content p.text-gray {
+    margin-bottom: 1rem;
+  }
+
+  .custom-golf-detail .card-content .header-con {
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .custom-golf-detail .card-content {
+    gap: 2rem;
+    padding-bottom: 4rem;
+    border-width: 0.21rem;
+  }
 }
