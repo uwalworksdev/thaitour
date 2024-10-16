@@ -1,7 +1,7 @@
 <?php
 foreach ($result3 as $row) {
     ?>
-    <tr>
+    <tr id="tr_<?= $row['code_idx'] ?>">
         <td>
             <input type="checkbox" class="select_idx" name="idx[]" value="<?= $row['code_idx'] ?>">
         </td>

@@ -8,10 +8,12 @@ use CodeIgniter\Database\Config;
 class AdminCodeApi extends BaseController
 {
     protected $connect;
+    protected $codeModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
+        $this->codeModel = model("Code");
         helper('my_helper');
         helper('alert_helper');
     }
@@ -119,13 +121,10 @@ class AdminCodeApi extends BaseController
         try {
             $code_idx = $_POST['code_idx'];
 
-			$total_sql = "SELECT * FROM tbl_code WHERE code_idx = '$code_idx' ";
-			$result = $this->connect->query($total_sql, [$jValue]);
+            $childCnt = $this->codeModel->getTotalCount($code_idx);
 
-			if ($row = $result->getRowArray()) {
-
-				$sql = "DELETE FROM tbl_code WHERE code_idx = '$code_idx' ";
-				$this->connect->query($sql, [$jValue]);
+			if ($childCnt == 0) {
+                $this->codeModel->delete($code_idx);
 			}
 
             return $this->response
