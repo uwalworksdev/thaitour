@@ -107,8 +107,8 @@
             </table>
             <table class="golf_table only_mo">
                 <tr>
-                    <td>더투어랩 평가 등급</td>
-                    <td>
+                    <td class="border-top-table">더투어랩 평가 등급</td>
+                    <td class="border-top-table">
                         <div class="rating-list">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -160,20 +160,26 @@
                 <div class="year">
                     <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
                         class="only_web">
-                    <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                    <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
                         class="only_mo">
                     <span><span id="year"></span>년 <span id="month"></span>월</span>
                     <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
                         class="only_web">
-                    <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
+                    <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
                         class="only_mo">
                 </div>
                 <div class="dates">
                     <div class="swiper-button-next swiper-button swiper-button-custom">
-                        <img src="/uploads/icons/next_day_icon.png" alt="year_next_icon">
+                        <img src="/uploads/icons/next_day_icon.png" alt="year_next_icon" class="only_web">
                     </div>
                     <div class="swiper-button-prev swiper-button swiper-button-custom">
-                        <img src="/uploads/icons/prev_day_icon.png" alt="prev_day_icon">
+                        <img src="/uploads/icons/prev_day_icon.png" alt="prev_day_icon" class="only_web">
+                    </div>
+                    <div class="swiper-button-prev swiper-button swiper-button-custom only_mo">
+                        <img src="/uploads/icons/prev_day_icon_mo.png" alt="prev_day_icon">
+                    </div>
+                    <div class="swiper-button-next swiper-button swiper-button-custom only_mo">
+                        <img src="/uploads/icons/next_day_icon_mo.png" alt="next_day_icon">
                     </div>
                     <div class="calendar-swiper-container swiper-container">
                         <div class="calendar-swiper-wrapper swiper-wrapper"></div>
@@ -197,7 +203,7 @@
                         <option value="">선택해주세요.</option>
                     </select>
                 </div>
-                <div class="item-tag">
+                <div class="item-tag item-tag-mo-cus">
                     <span class="label">시간대</span>
                     <div class="tag-list">
                         <span class="tag tag-js2 active">
@@ -254,7 +260,8 @@
                 <div class="card-item">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
                             <p>06:00</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
@@ -265,7 +272,8 @@
                 <div class="card-item active_1">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_blue_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_blue_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_blue_icon_mo.png" alt="timer_gray_icon">
                             <p>06:12</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
@@ -276,7 +284,8 @@
                 <div class="card-item active_2">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
                             <p>06:24</p>
                         </div>
                         <p class="cus-text">캐디피 : 그린피에 포함</p>
@@ -289,7 +298,8 @@
                 <div class="card-item">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_white_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon">
                             <p>06:36</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
@@ -300,7 +310,8 @@
                 <div class="card-item">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
                             <p>06:48</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
