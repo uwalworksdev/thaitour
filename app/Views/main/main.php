@@ -566,7 +566,9 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                     </div>
                     <i class="community_item_bread"></i>
                 </a>
-                <a href="#!" class="community_item">
+
+                <!-- remove 매거진 -->
+                <!-- <a href="#!" class="community_item">
                     <div class="community_item_img">
                         <img src="/images/main/community_ico_4.png" alt="" class="only_web">
                         <img src="/uploads/main/community_ico_4_m.png" alt="" class="only_mo">
@@ -576,7 +578,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         매거진
                     </div>
                     <i class="community_item_bread"></i>
-                </a>
+                </a> -->
                 <a href="#!" class="community_item">
                     <div class="community_item_img">
                         <img src="/images/main/community_ico_5.png" alt="" class="only_web">
