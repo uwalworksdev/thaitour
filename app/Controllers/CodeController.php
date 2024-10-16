@@ -36,7 +36,7 @@ class CodeController extends BaseController
         $result = $this->CodeModel->getPagedData($s_parent_code_no, $nFrom, $g_list_rows);
         $num = $nTotalCount - $nFrom;
 
-        $grandParentCode = $this->CodeModel->getParentCodeNoByCodeNo($s_parent_code_no)['code_no'] ?? null;
+        $grandParentCode = $this->CodeModel->getParentCodeNoByCodeNo($s_parent_code_no)['code_no'] ?? "";
 
         return view("admin/_code/list", [
             "result" => $result,

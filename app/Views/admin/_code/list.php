@@ -17,9 +17,7 @@
 						</ul>
 
 						<ul class="last">
-							<?php if($grandParentCode){ ?>
-								<li><a href="list?s_parent_code_no=<?=$grandParentCode?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
-							<?php } ?>
+							<li><a href="list?s_parent_code_no=<?=$grandParentCode?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
 							<li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
 							<li><a href="write?s_parent_code_no=<?=$s_parent_code_no?>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> <span class="txt">신규등록</span></a></li>
 						</ul>
@@ -146,9 +144,7 @@
 								</ul>
 
 								<ul class="last">
-									<?php if($grandParentCode){ ?>
-										<li><a href="list?s_parent_code_no=<?=$grandParentCode?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
-									<?php } ?>
+									<li><a href="list?s_parent_code_no=<?=$grandParentCode?>" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a></li>
 									<li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
 									<li><a href="write?s_parent_code_no=<?=$s_parent_code_no?>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> <span class="txt">신규 등록</span></a></li>
 								</ul>
