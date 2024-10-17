@@ -62,6 +62,8 @@ abstract class BaseController extends Controller
         $model = new Bbs();
         $this->data['notice_list_footer'] = $model->List('b2b_notice')->get()->getResultArray();
 
+        error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+
     }
 
     protected function renderView($view, $additionalData = [])

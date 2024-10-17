@@ -286,7 +286,7 @@ class BoardController extends BaseController
         $data['list_code2_exclude'] = $this->codeModel->getCodesByGubunDepthAndStatusExclude('tour', '2', ['1308', '1309']);
         $data['list_code3'] = $this->codeModel->getByParentAndDepth($data['product_code_1'], '3')->getResultArray();
         $data['list_code4'] = $this->codeModel->getByParentAndDepth($data['product_code_2'], '4')->getResultArray();
-        $data['event_list'] = $this->Product_model->getProductsByEvent($bbs_idx);
+        $data['event_list'] = $this->ProductModel->getProductsByEvent($bbs_idx);
         $data['reply'] = $reply ?? "";
         $data['list_comment'] = $this->bbsCommentModel->getCommentsWithMemberDetails($bbs_idx, $code, private_key());
         $data['product_code_no'] = "";

@@ -23,7 +23,7 @@ class TourSuggestionSubController extends BaseController
         $this->tourRegistModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
         $this->mainDispModel = model("MainDispModel");
-        $this->productModel = model("Product_model");
+        $this->productModel = model("ProductModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -36,9 +36,7 @@ class TourSuggestionSubController extends BaseController
 
         $product_code_no = '';
         $product_code_name = '';
-        if ($code == "") {
-            $code = "0";
-        } else {
+        if ($code != "") {
             $sql1 = "select t1.*, t2.code_no as product_code_no from tbl_code t1
                 left join tbl_code t2 on t1.ref_product_code_idx = t2.code_no
                 where t1.code_no = '$code' ";
@@ -59,7 +57,7 @@ class TourSuggestionSubController extends BaseController
         $result2 = $this->connect->query($sql);
         $result2 = $result2->getResultArray();
 
-        if ($code != '0' && isset($code)) {
+        if ($code != '' && isset($code)) {
             $replace_code = $code;
         } else {
             $replace_code = $parent_code;
@@ -161,7 +159,7 @@ class TourSuggestionSubController extends BaseController
         $whereArr               = $this->request->getVar();
         $whereArr['is_view']    = "Y";
 
-        $list = $this->productModel->findProduct($whereArr);
+        $list = $this->productModel->findProductPaging($whereArr)['items'];
 
         foreach ($list as $key => $value) {
             $list[$key]['cnt'] = $this->mainDispModel->itemCntByProductAndCode($value['product_idx'], $code_no);

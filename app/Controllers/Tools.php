@@ -9,7 +9,7 @@ class Tools extends BaseController
 {
     protected $Code;
     protected $WishModel;
-    protected $Product_model;
+    protected $ProductModel;
     protected $sessionLib;
     protected $sessionChk;
     public function __construct()
@@ -17,7 +17,7 @@ class Tools extends BaseController
         helper(['html']);
         $this->Code = model("Code");
         $this->WishModel = model("WishModel");
-        $this->Product_model = model("Product_model");
+        $this->ProductModel = model("ProductModel");
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
@@ -48,7 +48,7 @@ class Tools extends BaseController
     {
         $product_code = $_POST['product_code'];
 
-        $result = $this->Product_model->where('product_code_3', $product_code)->findAll();
+        $result = $this->ProductModel->where('product_code_3', $product_code)->findAll();
         $cnt = count($result);
         $data = "";
         if ($cnt == 0) {

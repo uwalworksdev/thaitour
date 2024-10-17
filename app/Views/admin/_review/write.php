@@ -254,7 +254,7 @@ if ($row) {
 											<option value="">선택</option>
 											<?php
                                             $codeModel = model("Code");
-                                            $productModel = model("Product_model");
+                                            $productModel = model("ProductModel");
                                             $result0 = $codeModel->getByParentAndDepth(13, 2)->getResultArray();
 
 

@@ -14,7 +14,7 @@ use App\Controllers\Admin\AdminHotelController;
     <script type="text/javascript" src="/js/admin/tours/write.js"></script>
 
 <?php
-if (isset($g_idx) && isset($row)) {
+if (isset($product_idx) && isset($row)) {
     foreach ($row as $keys => $vals) {
         ${$keys} = $vals;
     }
@@ -34,23 +34,23 @@ $links = "list";
                             <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
-                            <?php if ($g_idx) { ?>
+                            <?php if ($product_idx) { ?>
                                 <li><a href="javascript:copy_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
                                 </li>
                                 <script>
                                     function copy_it() {
                                         if (confirm("제품을 복사하시겠습니까?")) {
-                                            location.href = "copy2?g_idx=<?= $g_idx ?>";
+                                            location.href = "copy2?product_idx=<?= $product_idx ?>";
                                         }
                                     }
                                 </script>
                             <?php } ?>
-                            <?php if ($g_idx) { ?>
+                            <?php if ($product_idx) { ?>
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li><a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $g_idx ?>`)"
+                                <li><a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
                                        class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 </li>
@@ -76,9 +76,7 @@ $links = "list";
                           enctype="multipart/form-data"
                           target="hiddenFrame22"> <!--  -->
                         <!-- 상품 고유 번호 -->
-                        <input type="hidden" name="g_idx" id="g_idx" value='<?= $g_idx ?>'/>
-                        <!-- 상품 카테고리 -->
-                        <input type="hidden" name="product_code" id="product_code" value='<?= $product_code ?? "" ?>'/>
+                        <input type="hidden" name="product_idx" id="product_idx" value='<?= $product_idx ?>'/>
 
                         <input type="hidden" name="code_utilities" id="code_utilities"
                                value='<?= $code_utilities ?? "" ?>'/>
@@ -182,7 +180,7 @@ $links = "list";
                                         <input type="text" name="goods_code" id="goods_code"
                                                value="<?= $goods_code ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
-                                        <?php if (empty($g_idx) || empty($goods_code)) { ?>
+                                        <?php if (empty($product_idx) || empty($goods_code)) { ?>
                                             <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button>
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
@@ -300,13 +298,6 @@ $links = "list";
                                             } ?>>등록예정
                                             </option>
                                         </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>관리자메모</th>
-                                    <td colspan="3">
-										<textarea name="admin_memo" id="admin_memo"
-                                                  style="width:90%;height:100px;"><?= $admin_memo ?? "" ?></textarea>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -705,179 +696,6 @@ $links = "list";
                                 <?php } ?>
                                 </tbody>
                             </table>
-
-<!--                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"-->
-<!--                                   style="margin-top:50px;">-->
-<!--                                <caption>-->
-<!--                                </caption>-->
-<!--                                <colgroup>-->
-<!--                                    <col width="10%"/>-->
-<!--                                    <col width="90%"/>-->
-<!--                                </colgroup>-->
-<!--                                <tbody>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <td colspan="2">-->
-<!--                                        상품 상세설명-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <td colspan="2">-->
-<!---->
-<!--										<textarea name="content" id="content" rows="10" cols="100" class="input_txt"-->
-<!--                                                  style="width:100%; height:1200px; display:none;">--><?php //= viewSQ($content ?? '') ?><!--</textarea>-->
-<!---->
-<!--                                        <script type="text/javascript">-->
-<!--                                            var oEditors1 = [];-->
-<!---->
-<!--                                            // 추가 글꼴 목록-->
-<!--                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];-->
-<!---->
-<!--                                            nhn.husky.EZCreator.createInIFrame({-->
-<!--                                                oAppRef: oEditors1,-->
-<!--                                                elPlaceHolder: "content",-->
-<!--                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",-->
-<!--                                                htParams: {-->
-<!--                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록-->
-<!--                                                    fOnBeforeUnload: function () {-->
-<!--                                                        //alert("완료!");-->
-<!--                                                    }-->
-<!--                                                }, //boolean-->
-<!--                                                fOnAppLoad: function () {-->
-<!--                                                    //예제 코드-->
-<!--                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);-->
-<!---->
-<!--                                                },-->
-<!--                                                fCreator: "createSEditor2"-->
-<!--                                            });-->
-<!--                                        </script>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                                </tbody>-->
-<!--                            </table>-->
-<!--                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"-->
-<!--                                   style="margin-top:50px;">-->
-<!--                                <caption>-->
-<!--                                </caption>-->
-<!--                                <colgroup>-->
-<!--                                    <col width="10%"/>-->
-<!--                                    <col width="90%"/>-->
-<!--                                </colgroup>-->
-<!--                                <tbody>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <td colspan="2">-->
-<!--                                        여행일정-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <td colspan="2">-->
-<!---->
-<!--										<textarea name="c_calendar" id="c_calendar" rows="10" cols="100"-->
-<!--                                                  class="input_txt"-->
-<!--                                                  style="width:100%; height:1200px; display:none;">--><?php //= viewSQ($c_calendar ?? '') ?><!--</textarea>-->
-<!---->
-<!--                                        <script type="text/javascript">-->
-<!--                                            var oEditors3 = [];-->
-<!---->
-<!--                                            // 추가 글꼴 목록-->
-<!--                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];-->
-<!---->
-<!--                                            nhn.husky.EZCreator.createInIFrame({-->
-<!--                                                oAppRef: oEditors3,-->
-<!--                                                elPlaceHolder: "c_calendar",-->
-<!--                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",-->
-<!--                                                htParams: {-->
-<!--                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록-->
-<!--                                                    fOnBeforeUnload: function () {-->
-<!--                                                        //alert("완료!");-->
-<!--                                                    }-->
-<!--                                                }, //boolean-->
-<!--                                                fOnAppLoad: function () {-->
-<!--                                                    //예제 코드-->
-<!--                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);-->
-<!---->
-<!--                                                },-->
-<!--                                                fCreator: "createSEditor2"-->
-<!--                                            });-->
-<!---->
-<!---->
-<!--                                        </script>-->
-<!---->
-<!---->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!---->
-<!---->
-<!--                                </tbody>-->
-<!--                            </table>-->
-<!--                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"-->
-<!--                                   style="margin-top:50px;">-->
-<!--                                <caption>-->
-<!--                                </caption>-->
-<!--                                <colgroup>-->
-<!--                                    <col width="10%"/>-->
-<!--                                    <col width="90%"/>-->
-<!--                                </colgroup>-->
-<!--                                <tbody>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <td colspan="2">-->
-<!--                                        취소/환불규정-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <td colspan="2">-->
-<!---->
-<!--										<textarea name="caution" id="caution" rows="10" cols="100" class="input_txt"-->
-<!--                                                  style="width:100%; height:400px; display:none;">--><?php //= viewSQ($caution ?? '') ?><!--</textarea>-->
-<!---->
-<!--                                        <script type="text/javascript">-->
-<!--                                            var oEditors2 = [];-->
-<!---->
-<!--                                            // 추가 글꼴 목록-->
-<!--                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];-->
-<!---->
-<!--                                            nhn.husky.EZCreator.createInIFrame({-->
-<!--                                                oAppRef: oEditors2,-->
-<!--                                                elPlaceHolder: "caution",-->
-<!--                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",-->
-<!--                                                htParams: {-->
-<!--                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)-->
-<!--                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록-->
-<!--                                                    fOnBeforeUnload: function () {-->
-<!--                                                        //alert("완료!");-->
-<!--                                                    }-->
-<!--                                                }, //boolean-->
-<!--                                                fOnAppLoad: function () {-->
-<!--                                                    //예제 코드-->
-<!--                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);-->
-<!---->
-<!--                                                },-->
-<!--                                                fCreator: "createSEditor2"-->
-<!--                                            });-->
-<!---->
-<!---->
-<!--                                        </script>-->
-<!---->
-<!---->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!---->
-<!---->
-<!--                                </tbody>-->
-<!--                            </table>-->
                         </div>
                     </form>
 
@@ -912,13 +730,13 @@ $links = "list";
                             <li class="right_sub">
                                 <a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                                <?php if ($g_idx === "") { ?>
+                                <?php if ($product_idx === "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $g_idx ?>`)"
+                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
                                        class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 <?php } ?>

@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Product_model extends Model
+class ProductModel extends Model
 {
     protected $table = 'tbl_product_mst';
 
@@ -379,7 +379,7 @@ class Product_model extends Model
                 ->where('is_view', 'Y')
                 ->where('product_best', 'Y')->findAll();
     }
-    public function findProduct($where = [])
+    public function findProductPaging($where = [], $g_list_rows = 1000, $pg = 1)
     {
         $builder = $this->builder();
         if($where['product_code_1'] != "") {
@@ -399,9 +399,28 @@ class Product_model extends Model
         if($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
         $builder->orderBy('product_price', 'desc');
         $builder->orderBy('onum', 'desc');
         $builder->orderBy('product_idx', 'desc');
-        return $builder->get()->getResultArray();
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => $pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'is_view' => $where['is_view'],
+            'product_code_1' => $where['product_code_1'],
+            'product_code_2' => $where['product_code_2'],
+            'product_code_3' => $where['product_code_3'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
     }
 }

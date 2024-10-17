@@ -194,15 +194,7 @@
                                         success: function (data, textStatus) {
                                             message = data.message;
                                             if (message == "OK") {
-                                                const el1 = $("#tr_" + id);
-                                                const el2 = el1.next();
-                                                el1.fadeOut(300, function() {
-                                                    el2.fadeOut(300, function() {
-                                                        el1.insertAfter(el2);
-                                                        el1.fadeIn(300);
-                                                        el2.fadeIn(300);
-                                                    });
-                                                });
+                                                location.reload();
                                             } else {
                                                 alert(data);
                                             }
@@ -378,7 +370,7 @@
                     </div>
                     <div class="table_box">
                         <form method="post" name="select_pick_frm" id="select_pick_frm">
-                            <input type="hidden" name="isrt_code" id="isrt_code" value="<?= $code ?>">
+                            <input type="hidden" name="isrt_code" id="isrt_code" value="<?= $replace_code ?>">
                             <table>
                                 <caption>상품찾기</caption>
                                 <colgroup>
@@ -507,13 +499,11 @@
             type: "POST",
             data: pick_data,
             url: "./main_update",
+            dataType: "json",
             cache: false,
             async: false,
             success: function (data, textStatus) {
-                save_result = data;
-                //alert('save_result- '+save_result);
-                var obj = jQuery.parseJSON(save_result);
-                var message = obj.message;
+                var message = data.message;
                 alert(message);
                 location.reload();
             },
@@ -542,7 +532,7 @@
             url: "./item_allfind",
             type: "GET",
             data: {
-                "code": code,
+                "code": code || parent_code,
                 "product_code_1": product_code_1,
                 "product_code_2": product_code_2,
                 "product_code_3": product_code_3,
