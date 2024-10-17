@@ -3964,7 +3964,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   justify-content: space-between;
   margin-top: 28px;
   margin-bottom: 10px;
-  width: 480px;
+  width: 485px;
 }
 
 .customer-form-page [type="radio"]:checked,
@@ -4068,6 +4068,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .card-left2 .cus-select-group select {
   width: 280px;
+}
+
+.customer-form-page .mo-cus-in-3 {
+  width: 130px;
 }
 
 .completed-order-page {

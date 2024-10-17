@@ -2484,4 +2484,9 @@
   .custom-golf-detail .page-link.cus-padding.mr {
     margin-right: 4rem;
   }
+
+  .custom-golf-detail .calendar img {
+    width: 1.6rem;
+    height: 2.6rem;
+  }
 }

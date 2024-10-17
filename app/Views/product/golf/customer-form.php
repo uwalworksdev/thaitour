@@ -142,7 +142,7 @@
                                 <input type="radio" id="test1" name="radio-group" checked>
                                 <label for="test1">한국번호*</label>
                             </p>
-                            <p>
+                            <p class="only_web">
                                 <input type="radio" id="test2" name="radio-group">
                                 <label for="test2">태국번호 *</label>
                             </p>
@@ -152,10 +152,15 @@
                             <span> - </span>
                             <input type="text" id="" />
                             <span> - </span>
-                            <input type="text" id="" />
-                            <input type="text" id="" />
+                            <input class="mo-cus-in-3" type="text" id="" />
+                            <input class="only_web" type="text" id="" />
                         </div>
-                        <div class="form-group">
+                        <p class="only_mo radio-gr-mo-cus">
+                            <input type="radio" id="test_mo" name="radio-group">
+                            <label for="test_mo">태국번호 *</label>
+                        </p>
+                        <input class="only_mo" type="text" id="" />
+                        <div class="form-group mo_mt-30">
                             <label for="passport-name2">여행시 현지 연락처</label>
                             <div class="form-group-flex">
                                 <select id="car-time-hour" class="select-width">
@@ -226,7 +231,8 @@
                             주시면 확정 처리됩니다.
                         </p>
                         <div class="below-title-image">
-                            <img src="/uploads/icons/block_icon.png" alt="block_icon">
+                            <img class="only_web" src="/uploads/icons/block_icon.png" alt="block_icon">
+                            <img class="only_mo" src="/uploads/icons/block_icon_mo.png" alt="block_icon">
                             <span>취소규정</span>
                         </div>
                         <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간) 이전
@@ -260,7 +266,7 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             function formatDate(date) {
                 var d = new Date(date),
                     month = '' + (d.getMonth() + 1),
@@ -275,7 +281,7 @@
 
             $("#checkin, #checkout").datepicker({
                 dateFormat: 'yy/mm/dd',
-                onSelect: function (dateText, inst) {
+                onSelect: function(dateText, inst) {
                     var date = $(this).datepicker('getDate');
                     $(this).val(formatDate(date));
                 }
@@ -285,7 +291,7 @@
             $('#checkout').val(formatDate('2024/07/10'));
 
 
-            $('.tab_box_element_').on('click', function () {
+            $('.tab_box_element_').on('click', function() {
 
                 $('.tab_box_element_').removeClass('tab_active_');
 
