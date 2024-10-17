@@ -53,7 +53,7 @@
                     <a href="">상품 Q&A</a>
                 </div>
                 <div class="btn-container">
-                    <a href="/product-golf/customer-form/1324">
+                    <a class="w-100" href="/product-golf/customer-form/1324">
                         <button>
                             상품예약
                         </button>
