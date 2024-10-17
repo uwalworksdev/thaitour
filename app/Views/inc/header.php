@@ -171,7 +171,9 @@
             </div>
             <div class="flex_header_top flex_header_top_item">
                 <div class="burger">
-                    <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
+                    <a href="/cart/item-list/123">
+                        <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
+                    </a>
                 </div>
                 <div class="burger" id="search-mobile">
                     <img src="<?= base_url('/uploads/icons/search-icon-m.png') ?>" alt="">

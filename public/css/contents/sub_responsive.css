@@ -1519,4 +1519,179 @@
     margin-top: 3rem;
   }
 
+  .customer-form-page .navigation-container-prev .cus-size-home {
+    width: 2.2rem;
+    height: 2rem;
+  }
+
+  .cart-item-list .navigation-container-prev .cus-size-arrow {
+    width: 1rem;
+    height: 1.8rem;
+  }
+
+  .cart-item-list .title-cart {
+    font-size: 3.8rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    font-weight: bold;
+  }
+
+  .cart-item-list .cart-item-list-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cart-item-list .form-group input:checked+label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0.2rem;
+    left: 1.2rem;
+    width: 1.8rem;
+    height: 2.8rem;
+    border: solid white;
+    border-width: 0 0.4rem 0.4rem 0;
+    transform: rotate(45deg);
+  }
+
+  .cart-item-list .form-group label:before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 0.2rem solid #ccc;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.05), inset 0rem -1.5rem 1rem -1.2rem rgba(0, 0, 0, 0.05);
+    padding: 0.8rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 1.5rem;
+  }
+
+  .cart-item-list .cart-left .header-cart {
+    margin-bottom: 2rem;
+    border-bottom: 0.21rem solid rgb(6, 20, 6);
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .cart-item-list .cus-size-home {
+    width: 2.2rem;
+    height: 2rem;
+  }
+
+  .cart-item-list .cus-size-arrow {
+    width: 1rem;
+    height: 1.8rem;
+  }
+
+  .cart-item-list .cart-left .header-cart {
+    width: 66rem;
+  }
+
+  .cart-item-list .header-cart span {
+    font-size: 2.5rem;
+    border-radius: 0.3rem;
+    width: 12rem;
+    height: 5.2rem;
+    border: 0.21rem solid rgb(219, 219, 219);
+    text-align: center;
+    padding: 1rem 0;
+    color: #757575;
+  }
+
+  .cart-item-list .table-container.custom-mo .con-up {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    padding: 0 20px;
+  }
+
+  .cart-item-list .table-container.custom-mo .picture-con {
+    position: relative;
+    width: 220px;
+    height: 200px;
+  }
+
+  .cart-item-list .table-container.custom-mo .picture-con .form-group {
+    position: absolute;
+    top: -2.7rem;
+    left: -2rem;
+  }
+
+  .cart-item-list .form-group input:checked+label::before {
+    border: 0.21rem solid #ccc;
+  }
+
+  .cart-item-list .form-group.form-table input:checked+label::before {
+    background-color: white;
+  }
+
+  .cart-item-list .form-group.form-table input:checked+label:after {
+    border-color: black;
+  }
+
+  .cart-item-list .table-container.custom-mo .title-p {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 34.5rem;  
+  }
+
+  .cart-item-list .table-container.custom-mo .text-right-p {
+    width: 34.5rem;
+  }
+
+  .cart-item-list .table-container.custom-mo .time-date-p {
+    color: #2a459f;
+    margin-bottom: 2rem;
+  }
+
+  .cart-item-list .table-container.custom-mo .des-p {
+    color: #757575;
+  }
+
+  .cart-item-list .cart-item-list-container .cart-left {
+    width: unset;
+  }
+
+  .cart-item-list .table-container {
+    border: unset;
+  }
+
+  .cart-item-list .table-container.custom-mo .des-space-p {
+    margin-top: 2rem;
+    padding: 0 2rem;
+  }
+
+  .cart-item-list .table-container.custom-mo .item {
+    padding: 2rem 0 5rem 0;
+    border-bottom: 2.1px solid rgb(219, 219, 219);
+  }
+
+  .cart-item-list .table-container.custom-mo .des-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .cart-item-list .table-container.custom-mo .des-item span:nth-child(2) {
+    font-size: 2.8rem;
+    font-weight: 600;
+  }
+
+  .cart-item-list .table-container.custom-mo .cus-header {
+    background-color: rgb(249, 250, 251);
+    padding: 2rem;
+    margin: 0;
+    border: 0.21rem solid rgb(238, 238, 238);
+    margin-bottom: 3rem;
+  }
 }
