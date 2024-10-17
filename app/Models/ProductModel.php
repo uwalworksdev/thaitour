@@ -445,7 +445,7 @@ class ProductModel extends Model
         $builder = $this->builder();
         $builder->where('is_view', 'Y');
         $builder->where('product_code_1', $code_no);
-        $builder->like('keyword', $keyword);
+        if($keyword) $builder->like('keyword', $keyword);
         $builder->orderBy('onum', 'desc');
         $builder->orderBy('product_idx', 'desc');
         $nTotalCount = $builder->countAllResults(false);
