@@ -581,8 +581,10 @@
   color: rgba(37, 37, 37, 0.6);
   line-height: 2;
   display: flex;
-  gap: 10px;
+  gap: 5px 10px;
   flex-wrap: wrap;
+  line-height: 1;
+  margin-top: 10px;
 }
 
 /* sub_tour_section8 */

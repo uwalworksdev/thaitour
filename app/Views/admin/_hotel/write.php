@@ -2,6 +2,8 @@
 
 use App\Controllers\Admin\AdminHotelController;
 
+$formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
+
 ?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
@@ -72,11 +74,10 @@ $links = "list";
             <div id="contents">
                 <div class="listWrap_noline">
                     <!--  target="hiddenFrame22"  -->
-                    <form name="frm" id="frm" action="<?= route_to('admin._hotel.write_ok') ?>" method="post"
+                    <form name="frm" id="frm" action="<?= $formAction ?>" method="post"
                           enctype="multipart/form-data"
                           target="hiddenFrame22"> <!--  -->
                         <!-- 상품 고유 번호 -->
-                        <input type="hidden" name="product_idx" id="product_idx" value='<?= $product_idx ?>'/>
                         <input type="hidden" name="code_populars" id="code_populars"
                                value='<?= $code_populars ?? "" ?>'/>
 
@@ -237,9 +238,9 @@ $links = "list";
                                 <tr>
                                     <th>노출</th>
                                     <td colspan="3">
-                                        <input type="checkbox" name="goods_dis3" id="goods_dis3" value="Y"
-                                            <?php if (isset($goods_dis3) && $goods_dis3 === "Y")
-                                                echo "checked=checked"; ?>> <label for="goods_dis3"
+                                        <input type="checkbox" name="product_best" id="product_best" value="Y"
+                                            <?php if (isset($product_best) && $product_best === "Y")
+                                                echo "checked=checked"; ?>> <label for="product_best"
                                                                                    style="max-height:200px;margin-right:20px;">BEST
                                             인기호텔</label>
                                     </td>
@@ -247,9 +248,9 @@ $links = "list";
                                 <tr>
                                     <th>핫한 특가</th>
                                     <td colspan="3">
-                                        <input type="checkbox" name="goods_dis4" id="goods_dis4" value="Y"
-                                            <?php if (isset($goods_dis4) && $goods_dis4 === "Y")
-                                                echo "checked=checked"; ?>> <label for="goods_dis4"
+                                        <input type="checkbox" name="special_price" id="special_price" value="Y"
+                                            <?php if (isset($special_price) && $special_price === "Y")
+                                                echo "checked=checked"; ?>> <label for="special_price"
                                                                                    style="max-height:200px;margin-right:20px;">매력적인
                                             제안</label>
                                     </td>
@@ -703,7 +704,7 @@ $links = "list";
                             <li class="right_sub">
                                 <a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                                <?php if ($product_idx === "") { ?>
+                                <?php if ($product_idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>

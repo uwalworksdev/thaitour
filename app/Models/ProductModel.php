@@ -400,6 +400,7 @@ class ProductModel extends Model
         if($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
+        $builder->where("product_status !=", "D");
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;

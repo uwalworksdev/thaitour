@@ -74,14 +74,13 @@
                     <div class="thailand_hotel_swiper_ swiper">
                         <div class="swiper-wrapper">
                             <?php foreach ($products as $hotel):
-                                    if(is_file(ROOTPATH . "/public/uploads/hotel/" . $hotel['ufile1'])) {
-                                        $src = "/uploads/hotel/" . $hotel['ufile1'];
+                                    if(is_file(ROOTPATH . "/public/data/hotel/" . $hotel['ufile1'])) {
+                                        $src = "/data/hotel/" . $hotel['ufile1'];
                                     } else {
                                         $src = "/images/product/noimg.png";
                                     }
                                 ?>
-                                <a href="/product-hotel/hotel-detail/<?= $hotel['g_idx'] ?>"
-                                   class="thailand_hotel_swiper_item_ swiper-slide">
+                                <a href="/product-hotel/hotel-detail/<?= $hotel['g_idx'] ?>" class="thailand_hotel_swiper_item_ swiper-slide">
                                     <div class="img_box img_box_10">
                                         <img src="<?=$src?>" alt="main" loading="lazy">
                                     </div>
@@ -107,7 +106,7 @@
                                             <?php $i++; endforeach; ?>
                                     </div>
                                     <div class="prd_name">
-                                        <?= $hotel['goods_name_front'] ?>
+                                        <?= $hotel['product_name'] ?>
                                     </div>
                                     <div class="prd_info">
                                         <div class="prd_info__left">
@@ -156,8 +155,8 @@
                 <div class="sub_tour_section7_product_list swiper swiper_product_list_">
                     <div class="swiper-wrapper">
                         <?php foreach ($theme_products as $theme_product):
-                            if(is_file(ROOTPATH . "/public/uploads/hotel/" . $theme_product['ufile1'])) {
-                                $src = "/uploads/hotel/" . $theme_product['ufile1'];
+                            if(is_file(ROOTPATH . "/public/data/hotel/" . $theme_product['ufile1'])) {
+                                $src = "/data/hotel/" . $theme_product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
                             }
@@ -167,11 +166,10 @@
                                 <div class="img_box img_box_12">
                                     <img src="<?= $src ?>" alt="">
                                 </div>
-                                <div class="sub_tour_section7_product_item__name"><?= $theme_product['goods_name_front'] ?></div>
+                                <div class="sub_tour_section7_product_item__name"><?= $theme_product['product_name'] ?></div>
                                 <?php
-                                $goods_keyword = $theme_product['goods_keyword'];
-                                $arr_keyword = explode(",", $goods_keyword);
-
+                                $arr_keyword = explode(",", $theme_product['keyword']);
+                                $arr_keyword = array_filter($arr_keyword);
                                 ?>
                                 <div class="sub_tour_section7_product_item__keywords">
                                     <?php foreach ($arr_keyword as $keyword): ?>
@@ -204,8 +202,8 @@
                 <div class="best_tour_section5_ swiper">
                     <div class="swiper-wrapper">
                         <?php foreach ($bestValueProduct as $product):
-                            if(is_file(ROOTPATH . "/public/uploads/hotel/" . $product['ufile1'])) {
-                                $src = "/uploads/hotel/" . $product['ufile1'];
+                            if(is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
+                                $src = "/data/hotel/" . $product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
                             }
@@ -462,8 +460,8 @@
                         <div class="most_searched_tab_2 smart_slider_">
                             <div class="swiper-wrapper">
                                 <?php foreach ($productByKeyword['items'] as $item) {
-                                    if(is_file(ROOTPATH . "/public/uploads/hotel/" . $product['ufile1'])) {
-                                        $src = "/uploads/hotel/" . $product['ufile1'];
+                                    if(is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
+                                        $src = "/data/hotel/" . $product['ufile1'];
                                     } else {
                                         $src = "/images/product/noimg.png";
                                     }

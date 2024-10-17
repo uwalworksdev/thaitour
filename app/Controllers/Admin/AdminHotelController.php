@@ -135,71 +135,55 @@ class AdminHotelController extends BaseController
         return view("admin/_hotel/write", $data);
     }
 
-    public function write_ok()
+    public function write_ok($product_idx = null)
     {
         try {
             $files = $this->request->getFiles();
-            $product_idx = updateSQ($_POST["product_idx"] ?? '');
-            $product_code_list = updateSQ($_POST["product_code_list"] ?? '');
-            $product_code = updateSQ($_POST["product_code"] ?? '');
-            $product_name = updateSQ($_POST["product_name"] ?? '');
-            $keyword = updateSQ($_POST["keyword"] ?? '');
-            $product_status = updateSQ($_POST["product_status"] ?? '');
-            $original_price = updateSQ($_POST["original_price"] ?? '');
-            $product_price = updateSQ($_POST["product_price"] ?? '');
+            $data['product_code_list']  = updateSQ($_POST["product_code_list"] ?? '');
+            $data['product_code']       = updateSQ($_POST["product_code"] ?? '');
+            $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
+            $data['keyword']            = updateSQ($_POST["keyword"] ?? '');
+            $data['product_status']     = updateSQ($_POST["product_status"] ?? '');
+            $data['original_price']     = updateSQ($_POST["original_price"] ?? '');
+            $data['product_price']      = updateSQ($_POST["product_price"] ?? '');
 
-            $product_level = updateSQ($_POST["product_level"] ?? '');
-            $addrs = updateSQ($_POST["addrs"] ?? '');
-            $room_cnt = updateSQ($_POST["room_cnt"] ?? '');
-            $product_info = updateSQ($_POST["product_info"] ?? '');
+            $data['product_level']      = updateSQ($_POST["product_level"] ?? '');
+            $data['addrs']              = updateSQ($_POST["addrs"] ?? '');
+            $data['room_cnt']           = updateSQ($_POST["room_cnt"] ?? '');
+            $data['product_info']       = updateSQ($_POST["product_info"] ?? '');
+            $data['product_best']       = updateSQ($_POST["product_best"] ?? 'N');
+            $data['special_price']      = updateSQ($_POST["special_price"] ?? 'N');
+            $data['is_view']            = "Y";
 
-            $o_idx = $_POST["o_idx"] ?? [];
-            $o_name = $_POST["o_name"] ?? [];
-            $o_price1 = $_POST["o_price1"] ?? [];
-            $o_sdate = $_POST["o_sdate"] ?? [];
-            $o_edate = $_POST["o_edate"] ?? [];
-            $o_room = $_POST["o_room"] ?? [];
-            $option_type = $_POST["option_type"] ?? [];
-            $o_soldout = $_POST["o_soldout"] ?? [];
+            $o_idx          = $_POST["o_idx"] ?? [];
+            $o_name         = $_POST["o_name"] ?? [];
+            $o_price1       = $_POST["o_price1"] ?? [];
+            $o_sdate        = $_POST["o_sdate"] ?? [];
+            $o_edate        = $_POST["o_edate"] ?? [];
+            $o_room         = $_POST["o_room"] ?? [];
+            $option_type    = $_POST["option_type"] ?? [];
+            $o_soldout      = $_POST["o_soldout"] ?? [];
 
-            $rop_idx = $_POST["rop_idx"] ?? [];
-            $sup_room__idx = $_POST["sup_room__idx"] ?? [];
-            $sup_room__name = $_POST["sup_room__name"] ?? [];
-            $sup__key = $_POST["sup__key"] ?? [];
-            $sup__name = $_POST["sup__name"] ?? [];
-            $sup__price = $_POST["sup__price"] ?? [];
-            $sup__price_sale = $_POST["sup__price_sale"] ?? [];
+            $rop_idx            = $_POST["rop_idx"] ?? [];
+            $sup_room__idx      = $_POST["sup_room__idx"] ?? [];
+            $sup_room__name     = $_POST["sup_room__name"] ?? [];
+            $sup__key           = $_POST["sup__key"] ?? [];
+            $sup__name          = $_POST["sup__name"] ?? [];
+            $sup__price         = $_POST["sup__price"] ?? [];
+            $sup__price_sale    = $_POST["sup__price_sale"] ?? [];
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
                 if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
-                    $sql = " UPDATE tbl_product_mst SET
-                            ufile" . $i . "='',
-                            rfile" . $i . "=''
-                            WHERE product_idx='$product_idx'
-                        ";
-
-                    $this->connect->query($sql);
-
-                } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
-                    ${"rfile_" . $i} = $file->getName();
-                    ${"ufile_" . $i} = $file->getRandomName();
+                    $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                }
+                
+                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    $data["rfile$i"] = $file->getClientName();
+                    $data["ufile$i"] = $file->getRandomName();
                     $publicPath = ROOTPATH . '/public/data/hotel/';
-                    $file->move($publicPath, ${"ufile_" . $i});
-
-                    if ($product_idx) {
-                        $sql = "UPDATE tbl_product_mst SET
-                                ufile" . $i . "='" . ${"ufile_" . $i} . "',
-                                rfile" . $i . "='" . ${"rfile_" . $i} . "'
-                                WHERE product_idx='$product_idx';
-                            ";
-                        $this->connect->query($sql);
-                    }
-
-                } else {
-                    ${"rfile_" . $i} = '';
-                    ${"ufile_" . $i} = '';
+                    $file->move($publicPath, $data["ufile$i"]);
                 }
             }
 
@@ -227,7 +211,7 @@ class AdminHotelController extends BaseController
 
                         if ($row_chk['cnts'] < 1) {
                             $sql_su = "insert into tbl_hotel_option SET
-                                         goods_code		= '" . $product_code . "'
+                                         goods_code		= '" . $data['product_code'] . "'
                                         ,goods_name		= '" . $item_name . "'
                                         ,goods_price1	= '" . $item_price1 . "'
                                         ,o_sdate		= '" . $item_sdate . "'
@@ -259,8 +243,8 @@ class AdminHotelController extends BaseController
                 foreach ($rop_idx as $key => $val) {
                     $sql_chk = "
 					select count(*) as cnts
-					  from tbl_room_options
-					 where rop_idx	= '" . $val . "'
+					    from tbl_room_options
+					    where rop_idx	= '" . $val . "'
 					";
                     $result_chk = $this->connect->query($sql_chk);
                     $row_chk = $result_chk->getRowArray();
@@ -292,14 +276,14 @@ class AdminHotelController extends BaseController
 
                         } else {
                             $sql_su = "update tbl_room_options SET 
-                                         r_key		= '" . $r_key . "'
-                                        ,r_val	= '" . $r_val . "'
+                                         r_key		    = '" . $r_key . "'
+                                        ,r_val	        = '" . $r_val . "'
                                         ,r_price		= '" . $r_price . "'
-                                        ,r_sale_price		= '" . $r_sale_price . "'
+                                        ,r_sale_price	= '" . $r_sale_price . "'
                                         ,h_idx			= '" . $product_idx . "'
-                                        ,r_idx	= '" . $r_idx . "'
-                                        ,r_name		= '" . $r_name . "'
-                                    where rop_idx	= '" . $val . "'
+                                        ,r_idx	        = '" . $r_idx . "'
+                                        ,r_name		    = '" . $r_name . "'
+                                    where rop_idx	    = '" . $val . "'
                                 ";
 
                             $this->connect->query($sql_su);
@@ -309,24 +293,10 @@ class AdminHotelController extends BaseController
 
 
                 // 상품 테이블 변경
+                $this->productModel->update($product_idx, $data);
+                // write_log("호텔상품수정 : " . $sql);
 
-                $sql = " update tbl_product_mst SET
-                         product_code_list			= '" . $product_code_list . "'
-                        ,product_code				= '" . $product_code . "'
-                        ,product_name		        = '" . $product_name . "'
-                        ,keyword			        = '" . $keyword . "'
-                        ,product_status				= '" . $product_status . "'
-                        ,original_price				= '" . $original_price . "'
-                        ,product_price				= '" . $product_price . "'
-                        ,product_level				= '" . $product_level . "'
-                        ,addrs					    = '" . $addrs . "'
-                        ,room_cnt				    = '" . $room_cnt . "'
-                        ,product_info				= '" . $product_info . "'
-                    where product_idx = '" . $product_idx . "'
-                ";
-                write_log("호텔상품수정 : " . $sql);
-
-                $db = $this->connect->query($sql);
+                // $db = $this->connect->query($sql);
 
 
             } else {
@@ -341,7 +311,7 @@ class AdminHotelController extends BaseController
                     $item_soldout = $o_soldout[$key] ?? '';
 
                     $sql_su = "insert into tbl_hotel_option SET
-                                     goods_code		= '" . $product_code . "'
+                                     goods_code		= '" . $data['product_code'] . "'
                                     ,goods_name		= '" . $item_name . "'
                                     ,goods_price1	= '" . $item_price1 . "'
                                     ,o_sdate		= '" . $item_sdate . "'
@@ -355,37 +325,11 @@ class AdminHotelController extends BaseController
 
                 }
 
-                $sql = "insert into tbl_product_mst SET
-                         product_code_list		= '" . $product_code_list . "'
-                        ,product_code			= '" . $product_code . "'
-                        ,product_code_1		    = '1303'
-                        ,product_name		    = '" . $product_name . "'
-                        ,keyword			    = '" . $keyword . "'
-                        ,product_status			= '" . $product_status . "'
-                        ,original_price			= '" . $original_price . "'
-                        ,product_price			= '" . $product_price . "'
-                        ,rfile1					= '" . $rfile_1 . "'
-                        ,rfile2					= '" . $rfile_2 . "'
-                        ,rfile3					= '" . $rfile_3 . "'
-                        ,rfile4					= '" . $rfile_4 . "'
-                        ,rfile5					= '" . $rfile_5 . "'
-                        ,rfile6					= '" . $rfile_6 . "'
-                        ,ufile1					= '" . $ufile_1 . "'
-                        ,ufile2					= '" . $ufile_2 . "'
-                        ,ufile3					= '" . $ufile_3 . "'
-                        ,ufile4					= '" . $ufile_4 . "'
-                        ,ufile5					= '" . $ufile_5 . "'
-                        ,ufile6					= '" . $ufile_6 . "'
-                        ,ufile7					= '" . $ufile_7 . "'
-                        ,product_level			= '" . $product_level . "'
-                        ,addrs					= '" . $addrs . "'
-                        ,room_cnt				= '" . $room_cnt . "'
-                        ,product_info			= '" . $product_info . "'
-                ";
-                write_log("상품수정 : " . $sql);
-                $db = $this->connect->query($sql);
+                $data['product_code_1'] = '1303';
 
-                $sql = 'SELECT product_idx FROM tbl_product_mst WHERE product_code = "' . $product_code . '"';
+                $this->productModel->insert($data);
+
+                $sql = 'SELECT product_idx FROM tbl_product_mst WHERE product_code = "' . $data['product_code'] . '"';
                 $hotel = $this->connect->query($sql)->getRowArray();
                 $new_product_idx = $hotel['product_idx'];
 
@@ -415,24 +359,19 @@ class AdminHotelController extends BaseController
 
             if ($product_idx) {
                 $message = "수정되었습니다.";
+                return "<script>
+                    alert('$message');
+                        parent.location.reload();
+                    </script>";
             } else {
                 $message = "등록되었습니다.";
-            }
-
-            if (isset($db) && $db) {
                 return "<script>
-                        alert('$message');
-                            parent.location.href='/AdmMaster/_hotel/list';
-                        </script>";
+                    alert('$message');
+                        parent.location.href='/AdmMaster/_hotel/list';
+                    </script>";
             }
 
-            return $this->response
-                ->setStatusCode(400)
-                ->setBody("
-                    <script>
-                        alert('저장 중 오류가 발생했습니다.');
-                    </script>
-                ");
+            
 
         } catch (\Exception $e) {
             return $this->response->setJSON([
@@ -531,7 +470,7 @@ class AdminHotelController extends BaseController
             }
 
             foreach ($idx as $iValue) {
-                $sql1 = " update tbl_product_mst set product_status = 'dele' where product_idx = '" . $iValue . "' ";
+                $sql1 = " update tbl_product_mst set product_status = 'D' where product_idx = '" . $iValue . "' ";
                 $db1 = $this->connect->query($sql1);
                 if (!$db1) {
                     $data = [
@@ -597,7 +536,6 @@ class AdminHotelController extends BaseController
                  FROM tbl_hotel_option 
                  WHERE option_type = 'M' 
                  AND goods_code='" . $goods_code . "' 
-                 GROUP BY o_room
                  ORDER BY o_room ASC 
             ";
 

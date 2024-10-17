@@ -1,3 +1,9 @@
+$(function () {
+    $("#hiddenFrame").on('load', function() {
+        $("#ajax_loader").addClass("display-none");
+    });
+})
+
 function get_code(strs, depth) {
     $.ajax({
         type: "GET"
@@ -105,7 +111,6 @@ function get_group(strs, depth) {
 
 
 function send_it() {
-    $("#ajax_loader").removeClass("display-none");
 
     var frm = document.frm;
 
@@ -178,7 +183,7 @@ function send_it() {
         let nextInp = item.next();
         nextInp.val(data_convert);
     })
-
+    $("#ajax_loader").removeClass("display-none");
     frm.submit();
 }
 

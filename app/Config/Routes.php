@@ -113,6 +113,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminHotelController::write");
         $routes->get("get_room", "Admin\AdminHotelController::get_room", ['as' => "admin._hotel.get_room"]);
         $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
+        $routes->post("write_ok/(:segment)", "Admin\AdminHotelController::write_ok/$1", ['as' => "admin._hotel.write_ok.id"]);
         $routes->post("change", "Admin\AdminHotelController::change", ['as' => "admin._hotel.change"]);
         $routes->post("prod_update", "Admin\AdminHotelController::prod_update", ['as' => "admin._hotel.prod_update"]);
         $routes->post("del", "Admin\AdminHotelController::del", ['as' => "admin._hotel.del"]);
