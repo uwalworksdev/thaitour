@@ -583,11 +583,26 @@
   margin-left: 1.2rem;
 }
 
-.tours-detail .text-content-3-last button {
-  padding: 12px 40px;
+.tours-detail .section2 .text-content-3 {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.4rem;
+}
+
+
+.tours-detail .section2 .text-content-3 .btn-ct-3 {
+  padding: 1.8rem 7.5rem;
   border-radius: 6px;
   border: 1px solid #d8d8d8;
-  width: 120px;
+  width: unset;
+  color: var(--bs-point);
+  font-weight: 500;
+}
+.tours-detail .text-content-3-last button {
+  padding: 1.8rem 7.5rem;
+  border-radius: 6px;
+  border: 1px solid #d8d8d8;
+  width: unset;
   color: black;
   font-weight: 500;
 }
