@@ -15,7 +15,7 @@ class BoardController extends BaseController
     private $bbsModel;
     private $bbsCategoryModel;
     private $codeModel;
-    private $Product_model;
+    private $ProductModel;
     private $bbsCommentModel;
     private $uploadPath = WRITEPATH . "uploads/bbs/";
 
@@ -25,7 +25,7 @@ class BoardController extends BaseController
         $this->bbsModel = model("Bbs");
         $this->bbsCategoryModel = model("BbsCategoryModel");
         $this->codeModel = model("Code");
-        $this->Product_model = model("Product_model");
+        $this->ProductModel = model("ProductModel");
         $this->bbsCommentModel = model("BbsCommentModel");
         error_reporting(1);
     }
@@ -474,7 +474,7 @@ class BoardController extends BaseController
         $data['list_code2_exclude'] = $this->codeModel->getCodesByGubunDepthAndStatusExclude('tour', '2', ['1308', '1309']);
         $data['list_code3'] = $this->codeModel->getByParentAndDepth($data['product_code_1'], '3')->getResultArray();
         $data['list_code4'] = $this->codeModel->getByParentAndDepth($data['product_code_2'], '4')->getResultArray();
-        $data['event_list'] = $this->Product_model->getProductsByEvent($bbs_idx);
+        $data['event_list'] = $this->ProductModel->getProductsByEvent($bbs_idx);
         $data['reply'] = $reply ?? "";
         $data['list_comment'] = $this->bbsCommentModel->getCommentsWithMemberDetails($bbs_idx, $code, private_key());
         $data['product_code_no'] = "";

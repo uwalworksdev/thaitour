@@ -18,7 +18,7 @@
             <div class="listWrap_noline">
                 <form name="frm" id="frm" action="./list" method="get">
                     <input type="hidden" name="code" id="code" value="<?= $code ?>">
-                    <input type="hidden" name="table" id="table" value="tbl_goods">
+                    <input type="hidden" name="parent_code" id="parent_code" value="<?= $parent_code ?>">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption></caption>
@@ -44,7 +44,7 @@
                                                 ?>
                                             </select>
                                             <select name="code" id="child_code_2" class="main_category"
-                                                    onchange="area_sel(this.value, 3);">
+                                                    onchange="getChildCode(this.value, 3);">
                                                 <option value="">카테고리 선택</option>
                                                 <?php
                                                 foreach ($result2 as $row) {
@@ -97,36 +97,6 @@
                                         </tr>
                                         </thead>
                                         <tbody id="prd_list">
-                                        <?php
-                                        foreach ($result3 as $row) {
-                                            ?>
-                                            <!-- <tr>
-                                                <td>
-                                                    <input type="checkbox" class="select_idx" name="idx[]"
-                                                           value="<?= $row['code_idx'] ?>">
-                                                </td>
-                                                <td>
-                                                    <?= $row['product_name'] ?>
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <?= $row['product_code'] ?>
-                                                </td>
-                                                <td style="text-align:center;">
-                                                    <a href="#!" class="order_btn"
-                                                       onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','U')">▲</a>
-                                                    <a href="#!" class="order_btn"
-                                                       onclick="return positionUP('<?= $replace_code ?>','<?= $row['code_idx']; ?>','D')">▼</a>
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-danger"
-                                                            onclick="javascript:goods_del('<?= $row['code_idx'] ?>');">
-                                                        삭제
-                                                    </button>
-                                                </td>
-                                            </tr> -->
-                                            <?php
-                                        }
-                                        ?>
                                         </tbody>
                                     </table>
 
@@ -145,11 +115,18 @@
                                             "depth": depth
                                         },
                                         success: function (json, textStatus) {
+                                            $("#isrt_code").val(parent_code_no);
+
                                             if (depth <= 2) {
                                                 $("#child_code_2").find('option').each(function () {
                                                     $(this).remove();
                                                 });
                                                 $("#child_code_2").append("<option value=''>2차분류</option>");
+                                                $("#parent_code").val(parent_code_no);
+                                                updateQueryParam("parent_code", parent_code_no);
+                                            } else {
+                                                $("#code").val(parent_code_no);
+                                                updateQueryParam("code", parent_code_no);
                                             }
                                             var list = $.parseJSON(json);
                                             var listLen = list.length;
@@ -171,14 +148,9 @@
                                     });
                                 }
 
-                                // function area_sel(area) {
-                                //     $("#area").val(area);
-                                //     $("#frm").submit();
-                                // }
                                 function get_prd_list(code, parent_code) {
-                                    $("#code").val(code);
                                     $.ajax({
-                                        url: "/AdmMaster/_tourSuggestionSub/prd_list",
+                                        url: "./prd_list",
                                         type: "GET",
                                         dataType: "html",
                                         data: {
@@ -195,7 +167,7 @@
                                         }
                                     });
                                 }
-                                get_prd_list('<?= $code ?>');
+                                get_prd_list('<?= $replace_code ?>');
                             </script>
 
                             <script>
@@ -209,7 +181,7 @@
                                     var message = "";
                                     $.ajax({
 
-                                        url: "./ajax.seq_upd1.php",
+                                        url: "./seq_upd1",
                                         type: "POST",
                                         data: {
                                             "code": code,
@@ -234,48 +206,6 @@
                                     });
                                 }
 
-                                function select_del() {
-                                    if (!confirm("선택한 상품을 정말 삭제하시겠습니까?"))
-                                        return false;
-
-                                    var chkIdx = "";
-                                    $(".select_idx").each(function () {
-
-                                        if ($(this).prop("checked")) {
-                                            chkIdx += "|" + $(this).val() + "|";
-                                        }
-
-                                    });
-
-                                    if (chkIdx == "") {
-                                        alert('삭제할 상품을 선택하세요.');
-                                        return false;
-                                    }
-
-
-                                    var message = "";
-                                    $.ajax({
-
-                                        url: "ajax.goods_alldel.php",
-                                        type: "POST",
-                                        data: {
-                                            "chkIdx": chkIdx
-                                        },
-                                        dataType: "json",
-                                        async: false,
-                                        cache: false,
-                                        success: function (data, textStatus) {
-                                            message = data.message;
-                                            alert(message);
-                                            location.reload();
-                                        },
-                                        error: function (request, status, error) {
-                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                        }
-
-                                    });
-                                }
-
                                 function goods_del(idx) {
                                     if (!confirm("선택한 상품을 정말 삭제하시겠습니까?"))
                                         return false;
@@ -283,10 +213,10 @@
                                     var message = "";
                                     $.ajax({
 
-                                        url: "./ajax.product_del.php",
+                                        url: "./goods_alldel",
                                         type: "POST",
                                         data: {
-                                            "idx": idx
+                                            "idx_val": idx
                                         },
                                         dataType: "json",
                                         async: false,
@@ -334,7 +264,7 @@
                                     var message = "";
                                     $.ajax({
 
-                                        url: "ajax.goods_alldel.php",
+                                        url: "./goods_alldel",
                                         type: "POST",
                                         data: {
                                             "idx_val": idx_val
@@ -353,58 +283,6 @@
 
                                     });
                                 }
-
-
-                                function item_layer_onum_update() {
-
-                                    var main_category = $("#main_category").val();
-                                    var goods_category = $("#goods_category").val();
-
-                                    var idx_val = "";
-                                    var idx = "";
-                                    var onum = "";
-                                    $(".select_idx").each(function () {
-                                        idx = $(this).val();
-                                        onum = $("#onum_" + idx).val();
-                                        idx_val += idx + ',' + onum + '|';
-                                    });
-
-                                    //alert('idx_val- '+idx_val);
-                                    if (!confirm("선택한 상품의 순위를 변경하시겠습니까?"))
-                                        return false;
-
-                                    var message = "";
-                                    $.ajax({
-
-                                        url: "ajax.goods_onum_update.php",
-                                        type: "POST",
-                                        data: {
-                                            "idx_val": idx_val
-                                        },
-                                        dataType: "json",
-                                        async: false,
-                                        cache: false,
-                                        success: function (data, textStatus) {
-                                            message = data.message;
-                                            alert(message);
-                                            //$("#main_category").val(main_category).prop("selected", true);
-                                            //$("#goods_category").val(goods_category).prop("selected", true);
-                                            sub_sel();
-                                        },
-                                        error: function (request, status, error) {
-                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                                        }
-
-                                    });
-
-
-                                }
-
-                                function item_layer_del(g_idx) {
-                                    $("#item_" + g_idx).prop("checked", false);
-                                    $("#pick_select_onum_" + g_idx).attr("disabled", true);
-                                    $("#item_layer_" + g_idx).hide();
-                                }
                             </script>
 
                             </tbody>
@@ -419,7 +297,6 @@
                     <div class="search_box">
 
                         <form name="pick_item_search" id="pick_item_search" onsubmit="return false">
-                            <input type="hidden" name="upd_code" id="upd_code" value="<?= $code ?>">
                             <select id="product_code_1" name="product_code_1" class="input_select"
                                     onchange="javascript:get_code(this.value, 3)">
                                 <option value="">1차분류</option>
@@ -493,9 +370,7 @@
                     </div>
                     <div class="table_box">
                         <form method="post" name="select_pick_frm" id="select_pick_frm">
-                            <input type="hidden" name="isrt_code" id="isrt_code" value="<?= $code ?>">
-                            <input type="hidden" name="isrt_parent_code" id="isrt_parent_code"
-                                   value="<?= $parent_code ?>">
+                            <input type="hidden" name="isrt_code" id="isrt_code" value="<?= $replace_code ?>">
                             <table>
                                 <caption>상품찾기</caption>
                                 <colgroup>
@@ -598,45 +473,13 @@
     $(function () {
 
         $('.list_up .btn-default').on('click', function () {
-            //$("#pick_select_layer tbody").html('');
-
-            let code = $("#code").val();
-            var inq_sw = "fst";
             const product_code_no = '<?=$product_code_no?>';
-
-            // console.log(code);
-
-            $.ajax({
-
-                url: "./goods_find",
-                type: "GET",
-                data: {
-                    "code_no": code,
-                    "inq_sw": inq_sw
-                },
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-
-                }
-                , success: function (response, status, request) {
-                    if (product_code_no) {
-                        $("#pick_item_search").html(`
-							<h1><?=$product_code_name?></h1>
-						`);
-                    }
-                    $("#id_contents").empty();
-                    $("#id_contents").append(response);
-                    $('.pick_item_pop02').show();
-
-
-                }
-            });
-
-
+            if (product_code_no) {
+                $("#pick_item_search").html(`
+                    <h1><?=$product_code_name?></h1>
+                `);
+            }
+            $('.pick_item_pop02').show();
         })
 
 
@@ -655,14 +498,12 @@
         $.ajax({
             type: "POST",
             data: pick_data,
-            url: "./main_update.ajax.php",
+            url: "./main_update",
+            dataType: "json",
             cache: false,
             async: false,
             success: function (data, textStatus) {
-                save_result = data;
-                //alert('save_result- '+save_result);
-                var obj = jQuery.parseJSON(save_result);
-                var message = obj.message;
+                var message = data.message;
                 alert(message);
                 location.reload();
             },
@@ -671,39 +512,6 @@
             }
         });
     }
-
-    function fn_pick_select() {
-        if ($(".idx").is(":checked") == false) {
-            alert("상품을 선택해 주세요.");
-            return;
-        }
-
-
-        $.ajax({
-
-            url: "./pick_select.ajax.php",
-            type: "POST",
-            dataType: "html",
-            data: $("#select_pick_frm").serialize(),
-            error: function (request, status, error) {
-                //통신 에러 발생시 처리
-                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                $("#ajax_loader").addClass("display-none");
-            }
-            , complete: function (request, status, error) {
-                $("#ajax_loader").addClass("display-none");
-            }
-            , success: function (response, status, request) {
-                let tmpHtml = $("#pick_select_layer tbody").html();
-                tmpHtml += response;
-                $("#pick_select_layer tbody").html(tmpHtml);
-                $("#item_pop").hide();
-
-            }
-        });
-
-    }
-
     function press_it() {
         if (event.keyCode == 13) {
             search_it();
@@ -712,8 +520,8 @@
 
     function search_it() {
 
-
-        let code = $("#code_").val();
+        let code = $("#code").val();
+        let parent_code = $("#parent_code").val();
         let product_code_1 = $("#product_code_1").val();
         let product_code_2 = $("#product_code_2").val();
         let product_code_3 = $("#product_code_3").val();
@@ -721,11 +529,10 @@
         let search_txt = $("#search_txt").val();
 
         $.ajax({
-
-            url: "./item_allfind.php",
-            type: "POST",
+            url: "./item_allfind",
+            type: "GET",
             data: {
-                "code": code,
+                "code": code || parent_code,
                 "product_code_1": product_code_1,
                 "product_code_2": product_code_2,
                 "product_code_3": product_code_3,

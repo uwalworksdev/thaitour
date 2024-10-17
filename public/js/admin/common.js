@@ -1188,3 +1188,11 @@ $(document).ready(function(){
 function PopCloseBtn(selector) {
 	$(selector).hide();
 }
+
+function updateQueryParam(param, value) {
+    let url = new URL(window.location);
+
+    url.searchParams.set(param, value); 
+
+    window.history.pushState({}, '', url);
+}

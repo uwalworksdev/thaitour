@@ -53,9 +53,11 @@
                     <a href="">상품 Q&A</a>
                 </div>
                 <div class="btn-container">
-                    <button>
-                        상품예약
-                    </button>
+                    <a href="/product-golf/customer-form/1324">
+                        <button>
+                            상품예약
+                        </button>
+                    </a>
                 </div>
             </div>
             <h3 class="title-size-24">상품 정보</h3>
@@ -107,8 +109,8 @@
             </table>
             <table class="golf_table only_mo">
                 <tr>
-                    <td>더투어랩 평가 등급</td>
-                    <td>
+                    <td class="border-top-table">더투어랩 평가 등급</td>
+                    <td class="border-top-table">
                         <div class="rating-list">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon">
                             <img src="/uploads/icons/star_icon.png" alt="star_icon">
@@ -136,7 +138,7 @@
                 </tr>
                 <tr>
                     <td>팀당 라운딩 인원</td>
-                    <td>주중 : 5명 /  주말 : 4명</td>
+                    <td>주중 : 5명 / 주말 : 4명</td>
                 </tr>
                 <tr>
                     <td>전동카트</td>
@@ -160,20 +162,26 @@
                 <div class="year">
                     <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
                         class="only_web">
-                    <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
+                    <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
                         class="only_mo">
                     <span><span id="year"></span>년 <span id="month"></span>월</span>
                     <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
                         class="only_web">
-                    <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
+                    <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
                         class="only_mo">
                 </div>
                 <div class="dates">
                     <div class="swiper-button-next swiper-button swiper-button-custom">
-                        <img src="/uploads/icons/next_day_icon.png" alt="year_next_icon">
+                        <img src="/uploads/icons/next_day_icon.png" alt="year_next_icon" class="only_web">
                     </div>
                     <div class="swiper-button-prev swiper-button swiper-button-custom">
-                        <img src="/uploads/icons/prev_day_icon.png" alt="prev_day_icon">
+                        <img src="/uploads/icons/prev_day_icon.png" alt="prev_day_icon" class="only_web">
+                    </div>
+                    <div class="swiper-button-prev swiper-button swiper-button-custom only_mo">
+                        <img src="/uploads/icons/prev_day_icon_mo.png" alt="prev_day_icon">
+                    </div>
+                    <div class="swiper-button-next swiper-button swiper-button-custom only_mo">
+                        <img src="/uploads/icons/next_day_icon_mo.png" alt="next_day_icon">
                     </div>
                     <div class="calendar-swiper-container swiper-container">
                         <div class="calendar-swiper-wrapper swiper-wrapper"></div>
@@ -197,7 +205,7 @@
                         <option value="">선택해주세요.</option>
                     </select>
                 </div>
-                <div class="item-tag">
+                <div class="item-tag item-tag-mo-cus">
                     <span class="label">시간대</span>
                     <div class="tag-list">
                         <span class="tag tag-js2 active">
@@ -254,7 +262,8 @@
                 <div class="card-item">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
                             <p>06:00</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
@@ -265,7 +274,8 @@
                 <div class="card-item active_1">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_blue_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_blue_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_blue_icon_mo.png" alt="timer_gray_icon">
                             <p>06:12</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
@@ -276,7 +286,8 @@
                 <div class="card-item active_2">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
                             <p>06:24</p>
                         </div>
                         <p class="cus-text">캐디피 : 그린피에 포함</p>
@@ -289,7 +300,8 @@
                 <div class="card-item">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_white_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon">
                             <p>06:36</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
@@ -300,7 +312,8 @@
                 <div class="card-item">
                     <div class="header">
                         <div class="header-con">
-                            <img src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_web" src="/uploads/icons/timer_gray_icon.png" alt="timer_gray_icon">
+                            <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
                             <p>06:48</p>
                         </div>
                         <p class="text-gray">캐디피 : 그린피에 포함</p>
@@ -481,7 +494,8 @@
                 <p class="text-">약속대로 인하더라도 라운딩 불가할 경우 추후 이용이 가능한 레인저 체계 쿠폰을 발급해드립니다.</p>
             </div>
             <h3 class="title-size-24">위치정보</h3>
-            <img class="topic-immg" src="/uploads/sub/map-golf-detail.png" alt=""></img>
+            <img class="topic-immg only_web" src="/uploads/sub/map-golf-detail.png" alt=""></img>
+            <img class="topic-immg only_mo" src="/uploads/sub/map-golf-detail_mo.png" alt=""></img>
             <div class="location-container">
                 <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
                 <span class="text-gray">19 Moo.14, Bang Krasan, Bangpain,Phra Nakhon Si Ayutthaya 13160</span>
@@ -497,28 +511,32 @@
                 </div>
                 <div class="list-label-tag">
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_1.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_1.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_1_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>페어웨이/그린</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
                         </div>
                     </div>
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_2.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_2.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_2_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>플레이속도</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
                         </div>
                     </div>
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_3.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_3.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_3_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>캐디</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
                         </div>
                     </div>
                     <div class="label-tag-item">
-                        <img class="square" src="/uploads/sub/golf_item_rated_4.png" alt="golf_item_rated_1">
+                        <img class="square only_web" src="/uploads/sub/golf_item_rated_4.png" alt="golf_item_rated_1">
+                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_4_mo.png" alt="golf_item_rated_1">
                         <div class="label-tag-item-text">
                             <strong>부대시설</strong>
                             <p><strong>4.2</strong> 최고좋음</p>
@@ -591,41 +609,56 @@
                             <div class="qa-question">
                                 <span class="qa-number">124</span>
                                 <span class="qa-tag normal-style">답변대기중</span>
-                                <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">123</span>
                                 <span class="qa-tag">답변대기중</span>
-                                <p class="qa-text">결제 시점은 언제인가요?</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">결제 시점은 언제인가요?</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">122</span>
                                 <span class="qa-tag normal-style">답변대기중</span>
-                                <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">121</span>
                                 <span class="qa-tag normal-style">답변대기중</span>
-                                <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                         <li class="qa-item">
                             <div class="qa-question">
                                 <span class="qa-number">120</span>
                                 <span class="qa-tag">답변대기중</span>
-                                <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                                <div class="con-cus-mo-qa">
+                                    <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                </div>
                             </div>
-                            <div class="qa-meta text-gray">2024.07.24 09:39</div>
+                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                         </li>
                     </ul>
                     <div class="additional-info">
@@ -637,19 +670,23 @@
                 </div>
                 <div class="pagination">
                     <a href="#" class="page-link">
-                        <img src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                        <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
                     </a>
-                    <a href="#" class="page-link" style="margin-right: 24px;">
-                        <img src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                    <a href="#" class="page-link cus-padding mr">
+                        <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                        <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
                     </a>
                     <a href="#" class="page-link active">1</a>
                     <a href="#" class="page-link">2</a>
                     <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link" style="margin-left: 24px;">
-                        <img src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                    <a href="#" class="page-link cus-padding ml">
+                        <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
                     </a>
                     <a href="#" class="page-link">
-                        <img src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                        <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                        <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
                     </a>
                 </div>
             </div>

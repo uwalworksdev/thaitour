@@ -3369,3 +3369,8 @@
   max-height: 26px;
   max-width: 26px;
 }
+
+.custom-golf-detail .golf-table .rating-list img {
+  width: 13px;
+  height: 12px;
+}

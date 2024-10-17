@@ -2,13 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\Banner_model;
-use App\Models\Product_model;
-use CodeIgniter\Controller;
-use App\Config\CustomConstants;
 use Config\CustomConstants as ConfigCustomConstants;
 use Exception;
-use http\Client\Request;
 use App\Models\Hotel;
 
 class Product extends BaseController
@@ -19,15 +14,18 @@ class Product extends BaseController
     private $db;
     private $hotel;
     private $codeModel;
+    private $reviewModel;
+    private $mainDispModel;
 
     public function __construct()
     {
         $this->db = db_connect();
         $this->bannerModel = model("Banner_model");
-        $this->productModel = model("Product_model");
-        $this->hotel = model(Hotel::class);
+        $this->productModel = model("ProductModel");
         $this->bbsListModel = model("Bbs");
         $this->codeModel = model("Code");
+        $this->reviewModel = model("ReviewModel");
+        $this->mainDispModel = model("MainDispModel");
         helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
@@ -114,40 +112,33 @@ class Product extends BaseController
     public function indexHotel($code_no)
     {
         try {
+            $keyword = $this->request->getVar('keyword') ?? '';
             $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
             $perPage = 5;
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
 
-            $products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' ORDER BY onum DESC")->getResultArray();
+            $products = $this->productModel->where('product_code_1', 1303)->orderBy("onum", " DESC")->findAll();
 
             $products = array_map(function ($item) use ($code_no) {
                 $product = (array)$item;
-                $g_idx = $product['g_idx'];
-                ##############################################
+                $product_idx = $product['product_idx'];
                 $goods_code = $product['goods_code'];
                 $goods_code = explode(",", $goods_code);
-                ##############################################
                 $hotel_code = $product['product_code'];
-//                $hotel_code = trim('|', $hotel_code);
                 $hotel_code = explode("|", $hotel_code);
-                ##############################################
                 $product['array_hotel_code'] = $hotel_code;
                 $product['array_goods_code'] = $goods_code;
-                ##############################################
                 $hotel_code_name = [];
                 foreach ($hotel_code as $code) {
-                    $item = $this->db->query("SELECT * FROM tbl_code WHERE code_no = '$code'")->getRowArray();
-
+                    $item = $this->codeModel->where('code_no', $code)->first();
                     if ($item && $item['code_name'] !== '') {
                         $hotel_code_name[] = $item['code_name'];
                     }
                 }
                 $product['array_hotel_code_name'] = $hotel_code_name;
-                ##############################################
-                $sql = "SELECT * FROM tbl_travel_review WHERE travel_type = ? AND product_idx = ?";
-                $reviews = $this->db->query($sql, [$code_no, $g_idx])->getResultArray();
+                $reviews = $this->reviewModel->where("travel_type", $code_no)->where("product_idx", $product_idx)->findAll();
                 $total_review = count($reviews);
                 if ($total_review > 0) {
                     $review_average = 0;
@@ -192,12 +183,17 @@ class Product extends BaseController
                     ->getResult();
             }
 
-            $sql = 'SELECT * FROM tbl_code WHERE parent_code_no = 1303 ORDER BY onum DESC, code_idx DESC';
-            $sub_codes = $this->db->query($sql);
+            $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
 
-            $sub_codes = $sub_codes->getResultArray();
+            $theme_products = $this->productModel->where('product_code_1', 1303)->orderBy("onum", " DESC")->findAll();
 
-            $theme_products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' AND goods_dis4 = 'Y' ORDER BY onum DESC")->getResultArray();
+            $bestValueProduct = $this->mainDispModel->goods_find(2334);
+
+            $keyWordAll = $this->productModel->getKeyWordAll(1303);
+
+            $keyWordActive = array_search($keyword, $keyWordAll) ?? 0;
+
+            $productByKeyword = $this->productModel->getProductByKeyword($keyWordAll[$keyWordActive], 1303, 10, 1);
 
             $data = [
                 'banners' => $banners,
@@ -213,6 +209,11 @@ class Product extends BaseController
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
                 'tab_active' => '1',
+                'bestValueProduct' => $bestValueProduct,
+                'keyWordAll' => $keyWordAll,
+                'keyword' => $keyword,
+                'keyWordActive' => $keyWordActive,
+                'productByKeyword' => $productByKeyword
             ];
 
             return $this->renderView('product/product-hotel', $data);
@@ -223,6 +224,15 @@ class Product extends BaseController
                 'message' => $e->getMessage()
             ]);
         }
+    }
+
+    public function getProductByKeyword()
+    {
+        $keyword = $this->request->getVar('keyword');
+        $code_no = $this->request->getVar('code_no');
+        $pg = $this->request->getVar('pg');
+        $productByKeyword = $this->productModel->getProductByKeyword($keyword, $code_no);
+        return $this->response->setJSON($productByKeyword);
     }
 
     public function indexResult($code_no)
@@ -553,11 +563,11 @@ class Product extends BaseController
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
 
-            $products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' ORDER BY onum DESC")->getResultArray();
+            $products = $this->productModel->findProductPaging([]);
 
             $products = array_map(function ($item) use ($code_no) {
                 $product = (array)$item;
-                $g_idx = $product['g_idx'];
+                $product_idx = $product['product_idx'];
                 ##############################################
                 $goods_code = $product['goods_code'];
                 $goods_code = explode(",", $goods_code);
@@ -580,7 +590,7 @@ class Product extends BaseController
                 $product['array_hotel_code_name'] = $hotel_code_name;
                 ##############################################
                 $sql = "SELECT * FROM tbl_travel_review WHERE travel_type = ? AND product_idx = ?";
-                $reviews = $this->db->query($sql, [$code_no, $g_idx])->getResultArray();
+                $reviews = $this->db->query($sql, [$code_no, $product_idx])->getResultArray();
                 $total_review = count($reviews);
                 if ($total_review > 0) {
                     $review_average = 0;
@@ -602,7 +612,7 @@ class Product extends BaseController
             $totalProducts = count($products);
             $pager = \Config\Services::pager();
 
-            $theme_products = $this->db->query("SELECT * FROM tbl_hotel WHERE item_state != 'dele' AND goods_dis4 = 'Y' ORDER BY onum DESC")->getResultArray();
+            $theme_products = $this->productModel->findProductPaging([], $perPage, 1);
 
             $data = [
                 'banners' => $banners,
@@ -637,7 +647,7 @@ class Product extends BaseController
                 $subSql .= " AND r.category LIKE '%" . $s_category_room . "|%'";
             }
 
-            $hotel = $this->db->query('SELECT * FROM tbl_hotel WHERE g_idx = ?', [$idx])->getRowArray();
+            $hotel = $this->productModel->find($idx);
             if (!$hotel) {
                 throw new Exception('존재하지 않는 상품입니다.');
             }
@@ -647,11 +657,11 @@ class Product extends BaseController
 
             $hotel['array_hotel_code_name'] = $this->getHotelCodeNames($hotel['array_hotel_code']);
 
-            list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['g_idx'], $hotel['array_hotel_code'][0] ?? '');
+            list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '');
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
 
-            $suggestHotels = $this->getSuggestedHotels($hotel['g_idx'], $hotel['array_hotel_code'][0] ?? '');
+            $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '');
 
             $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
             $hotel_options = $this->db->query($fsql, [$hotel['goods_code']])->getResultArray();
@@ -723,7 +733,7 @@ class Product extends BaseController
 
             /* get options */
 //            $sql = "SELECT * FROM tbl_hotel_option o WHERE o.goods_code = " . $hotel['goods_code'] . " and o.o_room != 0
-//                        JOIN tbl_room r ON r.g_idx = o.o_room ORDER BY o.idx DESC";
+//                        JOIN tbl_room r ON r.product_idx = o.o_room ORDER BY o.idx DESC";
 
 //            $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 ORDER BY onum DESC, code_idx DESC";
 //            $room_categories = $this->db->query($sql)->getResultArray();
@@ -739,7 +749,7 @@ class Product extends BaseController
 
             $sql = "SELECT * 
                     FROM tbl_hotel_option o
-                    JOIN tbl_room r ON r.g_idx = o.o_room
+                    JOIN tbl_room r ON r.product_idx = o.o_room
                     WHERE o.goods_code = " . $hotel['goods_code'] . " 
                     AND o.o_room != 0 
                     ORDER BY o.idx DESC";
@@ -750,7 +760,7 @@ class Product extends BaseController
 
             $list__gix = "";
             foreach ($hotel_options as $option) {
-                $sql_count = "SELECT * FROM tbl_room WHERE g_idx = " . $option['o_room'];
+                $sql_count = "SELECT * FROM tbl_room WHERE product_idx = " . $option['o_room'];
 
                 $room = $this->db->query($sql_count)->getRowArray();
 
@@ -759,7 +769,7 @@ class Product extends BaseController
                 if ($room) {
                     $categories .= $room['category'];
 
-                    $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['g_idx'];
+                    $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['product_idx'];
                     $room_option = $this->db->query($sql)->getResultArray();
                 }
 
@@ -781,7 +791,7 @@ class Product extends BaseController
             $list__gix = rtrim(implode(',', $_arr_gix), ',');
             $insql2 = "";
             if (count($_arr_gix) > 0 && $list__gix !== '') {
-                $insql2 = " AND g_idx IN ($list__gix)";
+                $insql2 = " AND product_idx IN ($list__gix)";
             }
 
             $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum DESC, code_idx DESC";
@@ -986,10 +996,10 @@ class Product extends BaseController
         return $hotelCodeNames;
     }
 
-    private function getReviewSummary($g_idx, $code)
+    private function getReviewSummary($product_idx, $code)
     {
         $sql = "SELECT number_stars FROM tbl_travel_review WHERE product_idx = ?";
-        $reviews = $this->db->query($sql, [$g_idx])->getResultArray();
+        $reviews = $this->db->query($sql, [$product_idx])->getResultArray();
 
         $totalReview = count($reviews);
 
@@ -1004,9 +1014,8 @@ class Product extends BaseController
 
     private function getSuggestedHotels($currentHotelId, $currentHotelCode)
     {
-        $suggestHotels = $this->db->table('tbl_hotel')
-            ->where('item_state !=', 'dele')
-            ->where('g_idx !=', $currentHotelId)
+        $suggestHotels = $this->productModel
+            ->where('product_idx !=', $currentHotelId)
             ->get()
             ->getResultArray();
 
@@ -1016,7 +1025,7 @@ class Product extends BaseController
 
             $hotel['array_hotel_code_name'] = $this->getHotelCodeNames($hotel['array_hotel_code']);
 
-            list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['g_idx'], $currentHotelCode);
+            list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['product_idx'], $currentHotelCode);
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
 

@@ -136,4 +136,9 @@ class Code extends Model
                     ->orderBy('code_idx', 'DESC')
                     ->findAll();
     }
+    public function getParentCodeNoByCodeNo($code_no)
+    {
+        $parent_code_no = $this->select('parent_code_no')->where('code_no', $code_no)->first()['parent_code_no'] ?? 0;
+        return $this->where('code_no', $parent_code_no)->first();
+    }
 }

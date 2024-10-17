@@ -33,12 +33,17 @@
                 <div style="position: relative;">
                     <div class="swiper sub_swiper2">
                         <div class="swiper-wrapper">
-                            <?php foreach ($sub_codes as $code_item) : ?>
+                            <?php foreach ($sub_codes as $code_item) :
+                                if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/data/code/" . $code_item['ufile1'])) {
+                                    $src = "/data/code/" . $code_item['ufile1'];
+                                } else {
+                                    $src = "/images/product/noimg.png";
+                                }
+                                ?>
                                 <div class="swiper-slide">
                                     <a href="/product-hotel/list-hotel/<?= $code_item['code_no'] ?>">
                                         <div class="img_box">
-                                            <img src="/data/code/<?= $code_item['ufile1'] ?>" loading="lazy"
-                                                 onerror="this.src='/images/product/noimg.png'" alt="main">
+                                            <img src="<?=$src?>" loading="lazy" alt="main">
                                         </div>
                                         <div class="sub_swiper2__text">
                                             <?= $code_item['code_name'] ?> <img src="/images/ico/ico_arrow_right_1.svg"
@@ -69,12 +74,17 @@
                 <div>
                     <div class="thailand_hotel_swiper_ swiper">
                         <div class="swiper-wrapper">
-                            <?php foreach ($products as $hotel): ?>
+                            <?php foreach ($products as $hotel):
+                                    if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $hotel['ufile1'])) {
+                                        $src = "/uploads/hotel/" . $hotel['ufile1'];
+                                    } else {
+                                        $src = "/images/product/noimg.png";
+                                    }
+                                ?>
                                 <a href="/product-hotel/hotel-detail/<?= $hotel['g_idx'] ?>"
                                    class="thailand_hotel_swiper_item_ swiper-slide">
                                     <div class="img_box img_box_10">
-                                        <img src="/uploads/hotel/<?= $hotel['ufile1'] ?>" alt="main"
-                                             onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                        <img src="<?=$src?>" alt="main" loading="lazy">
                                     </div>
                                     <?php
                                     $hotel_code_name = $hotel['array_hotel_code_name'];
@@ -146,11 +156,17 @@
                 </div>
                 <div class="sub_tour_section7_product_list swiper swiper_product_list_">
                     <div class="swiper-wrapper">
-                        <?php foreach ($theme_products as $theme_product): ?>
+                        <?php foreach ($theme_products as $theme_product):
+                            if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $theme_product['ufile1'])) {
+                                $src = "/uploads/hotel/" . $theme_product['ufile1'];
+                            } else {
+                                $src = "/images/product/noimg.png";
+                            }
+                            ?>
                             <div class="sub_tour_section7_product_item swiper-slide">
                                 <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
                                 <div class="img_box img_box_12">
-                                    <img src="<?= $theme_product['ufile1'] ?>" alt="">
+                                    <img src="<?= $src ?>" alt="">
                                 </div>
                                 <div class="sub_tour_section7_product_item__name"><?= $theme_product['goods_name_front'] ?></div>
                                 <?php
@@ -188,34 +204,42 @@
                 </div>
                 <div class="best_tour_section5_ swiper">
                     <div class="swiper-wrapper">
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_1.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
+                        <?php foreach ($bestValueProduct as $product):
+                            if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $product['ufile1'])) {
+                                $src = "/uploads/hotel/" . $product['ufile1'];
+                            } else {
+                                $src = "/images/product/noimg.png";
+                            }
+                            ?>
+                            <a href="/product-hotel/hotel-detail/<?= $product['product_idx'] ?>" class="sub_tour_section5_item swiper-slide">
+                                <div class="img_box img_box_10">
+                                    <img src="<?=$src?>" alt="main" loading="lazy">
                                 </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
+                                <div class="prd_keywords">
+                                    <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                                    <span> 한국거 기이드</span>
                                 </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
+                                <div class="prd_name">
+                                    <?= $product['product_name']?>
+                                </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                        <span class="star_avg">4.7</span>
+                                        <span class="star_review_cnt">(954)</span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    <?=number_format($product['product_price'])?> <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                        <!-- <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
                             <div class="img_box img_box_10">
                                 <img src="/uploads/sub/tour_suggest_2.png" alt="main" loading="lazy">
                             </div>
@@ -403,7 +427,7 @@
                             <div class="prd_price_ko">
                                 236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
                 <div class="custom_pagination_ w_100">
@@ -421,11 +445,14 @@
                 </div>
                 <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
                     <ul class="tab_box_show_ d_flex justify_content_center align_items_center">
-                        <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">#5성급</li>
+                        <?php foreach ($keyWordAll as $key => $item) { ?>
+                            <li class="tab_box_element_ p--20 border <?=$key == $keyWordActive ? 'tab_active_' : ''?>" rel="<?= $item ?>">#<?= $item ?></li>
+                        <?php } ?>
+                        <!-- <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">#5성급</li>
                         <li class="tab_box_element_ p--20 border " rel="tab2">#풀빌라</li>
                         <li class="tab_box_element_ p--20 border " rel="tab3">#얼리버드 할인</li>
                         <li class="tab_box_element_ p--20 border " rel="tab4">#인피니티 풀</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab5">#공항픽업</li>
+                        <li class="tab_box_element_ p--20 border " rel="tab5">#공항픽업</li> -->
                     </ul>
                 </div>
             </div>
@@ -435,16 +462,24 @@
                     <div class="content_tab_show_ tab_active_" id="tab1">
                         <div class="most_searched_tab_2 smart_slider_">
                             <div class="swiper-wrapper">
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_last_section_slide_1.png" alt="">
+                                <?php foreach ($productByKeyword['items'] as $item) {
+                                    if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $product['ufile1'])) {
+                                        $src = "/uploads/hotel/" . $product['ufile1'];
+                                    } else {
+                                        $src = "/images/product/noimg.png";
+                                    }
+                                    ?>
+                                    <div class="sub_tour_section7_product_item swiper-slide">
+                                        <div class="img_box img_box_12">
+                                            <img src="<?=$src?>" alt="">
+                                        </div>
+                                        <div class="sub_tour_section7_product_item__name"><?= $item['product_name'] ?></div>
+                                        <div class="prd_price_ko">
+                                            <?= number_format($item['product_price'])?> <span>원~</span> <span
+                                                    class="prd_price_thai">6,000 <span>바트~</span></span>
+                                        </div>
                                     </div>
-                                    <div class="sub_tour_section7_product_item__name">아카라 호텔 파타야</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">6,000 <span>바트~</span></span>
-                                    </div>
-                                </div>
+                                <?php } ?>
                                 <div class="sub_tour_section7_product_item swiper-slide">
                                     <div class="img_box img_box_12">
                                         <img src="/uploads/sub/tour_last_section_slide_2.png" alt="">
@@ -474,7 +509,7 @@
                                                 class="prd_price_thai">2,800 <span>바트~</span></span>
                                     </div>
                                 </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
+                                <!-- <div class="sub_tour_section7_product_item swiper-slide">
                                     <div class="img_box img_box_12">
                                         <img src="/uploads/sub/tour_special_2.png" alt="">
                                     </div>
@@ -523,7 +558,7 @@
                                         199,424 <span>원~</span> <span
                                                 class="prd_price_thai">2,800 <span>바트~</span></span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="most_searched_tab_2_pagination_next_"></div>
                             <div class="most_searched_tab_2_pagination_prev_"></div>

@@ -2,12 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Banner_model;
-use App\Models\Product_model;
-use CodeIgniter\Controller;
-use App\Config\CustomConstants;
 use Config\CustomConstants as ConfigCustomConstants;
-use Exception;
 
 class Orders extends BaseController
 {

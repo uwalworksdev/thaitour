@@ -22,7 +22,7 @@ class TourRegistController extends BaseController
         $this->tourRegistModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
         $this->golfOptionModel = model("GolfOptionModel");
-        $this->productModel = model("Product_model");
+        $this->productModel = model("ProductModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -196,83 +196,6 @@ class TourRegistController extends BaseController
         ];
 
         return $data;
-    }
-
-    public function write()
-    {
-        $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
-        $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
-        $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
-
-        if ($product_idx) {
-            $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-            $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
-        }
-
-        $titleStr = "호텔정보 수정";
-        $links = "list";
-//
-        $fsql = "select * from tbl_hotel_code where status = 'Y' order by code_idx desc";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
-//
-//
-//        $gsql = "
-//												SELECT *
-//												  FROM tbl_hotel_option
-//												 WHERE option_type = 'M'
-//												   AND goods_code='" . $goods_code . "'
-//												 GROUP BY o_room
-//												 ORDER BY o_room ASC
-//											";
-//
-//        $gresult = mysqli_query($connect, $gsql) or die(mysqli_error($connect));
-//
-//
-//        $fsql3 = "
-//														SELECT *
-//														  FROM tbl_hotel_option
-//														 WHERE option_type = 'M'
-//														   AND goods_code='" . $goods_code . "'
-//														   AND o_room = '" . $grow['o_room'] . "'
-//														   ORDER BY o_sdate ASC
-//													";
-//
-//        $fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
-//
-//        $fsql3 = "select * from tbl_hotel_option where option_type = 'S' and  goods_code='" . $goods_code . "' order by idx asc ";
-//        $fresult3 = mysqli_query($connect, $fsql3) or die(mysqli_error($connect));
-//
-//
-        $fsql = "select * from tbl_code where depth='1' and code_no = '3' and status='Y' order by onum desc, code_idx desc";
-//        $fresult = mysqli_query($connect, $fsql) or die(mysqli_error($connect));
-        $fresult2 = $this->connect->query($fsql);
-        $fresult2 = $fresult2->getResultArray();
-        $data = [
-            "titleStr" => $titleStr,
-            "fresult" => $fresult,
-            "fresult2" => $fresult2,
-            "fresult3" => $fresult3 ?? [],
-            "fresult_l" => $fresult_l ?? [],
-            "links" => $links,
-            "is_category" => $is_category ?? '',
-            "code" => $code ?? '',
-            "mode" => $mode ?? '',
-            "bbs_idx" => $bbs_idx ?? '',
-            "scategory" => $scategory ?? '',
-            "product_idx" => $product_idx,
-            "pg" => $pg,
-            "search_name" => $search_name,
-            "search_category" => $search_category,
-            "s_product_code_1" => $s_product_code_1,
-            "s_product_code_2" => $s_product_code_2,
-            "row" => $row ?? null
-        ];
-        return view("admin/_tourRegist/write", $data);
     }
 
     public function write_all()

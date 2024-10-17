@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class Product_model extends Model
+class ProductModel extends Model
 {
     protected $table = 'tbl_product_mst';
 
@@ -378,5 +378,90 @@ class Product_model extends Model
         return $this
                 ->where('is_view', 'Y')
                 ->where('product_best', 'Y')->findAll();
+    }
+    public function findProductPaging($where = [], $g_list_rows = 1000, $pg = 1)
+    {
+        $builder = $this->builder();
+        if($where['product_code_1'] != "") {
+            $builder->where('product_code_1', $where['product_code_1']);
+        }
+        if($where['product_code_2'] != "") {
+            $builder->where('product_code_2', $where['product_code_2']);
+        }
+        if($where['product_code_3'] != "") {
+            $builder->where('product_code_3', $where['product_code_3']);
+        }
+        if($where['search_txt'] != "") {
+            if($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            }
+        }
+        if($where['is_view'] != "") {
+            $builder->where("is_view", $where['is_view']);
+        }
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+        $builder->orderBy('product_price', 'desc');
+        $builder->orderBy('onum', 'desc');
+        $builder->orderBy('product_idx', 'desc');
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => $pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'is_view' => $where['is_view'],
+            'product_code_1' => $where['product_code_1'],
+            'product_code_2' => $where['product_code_2'],
+            'product_code_3' => $where['product_code_3'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
+    }
+    public function getKeyWordAll($code_no)
+    {
+        $keyWords = $this->select("keyword")->where("product_code_1", $code_no)->get()->getResultArray();
+        $keyWordsArray = [];
+        foreach ($keyWords as $keyWord) {
+            $keyWordStr = $keyWord['keyword'];
+            $keyWordArray = explode(",", $keyWordStr);
+            foreach ($keyWordArray as $keyWord) {
+                $keyWord = trim($keyWord);
+                if ($keyWord != "") {
+                    $keyWordsArray[] = $keyWord;
+                }
+            }
+        }
+        return $keyWordsArray;
+    }
+    public function getProductByKeyword($keyword, $code_no, $g_list_rows = 1000, $pg = 1)
+    {
+
+        $builder = $this->builder();
+        $builder->where('is_view', 'Y');
+        $builder->where('product_code_1', $code_no);
+        if($keyword) $builder->like('keyword', $keyword);
+        $builder->orderBy('onum', 'desc');
+        $builder->orderBy('product_idx', 'desc');
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => $pg,
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
+
     }
 }

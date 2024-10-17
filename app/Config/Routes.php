@@ -172,6 +172,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "TourSuggestionSubController::write");
         $routes->get("prd_list", "TourSuggestionSubController::prd_list");
         $routes->get("goods_find", "TourSuggestionSubController::goods_find");
+        $routes->get("item_allfind", "TourSuggestionSubController::item_allfind");
+        $routes->post("main_update", "TourSuggestionSubController::main_update");
+        $routes->post("seq_upd1", "TourSuggestionSubController::seq_upd1");
+        $routes->post("goods_alldel", "TourSuggestionSubController::goods_alldel");
     });
 
     $routes->group("_tourLevel", static function ($routes) {
@@ -417,7 +421,7 @@ $routes->group("custom_travel", static function ($routes) {
 // });
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
-$routes->get('show-ticket', 'Product::showTicket');
+$routes->get('show-ticket/(:any)', 'Product::showTicket');
 $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
 $routes->get('product-list/(:any)', 'Product::index3/$1');
 $routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');

@@ -13,7 +13,7 @@ class TourSuggestionSubController extends BaseController
     private $tours;
     private $db;
     private $mainDispModel;
-
+    private $productModel;
     protected $connect;
 
     public function __construct()
@@ -23,6 +23,7 @@ class TourSuggestionSubController extends BaseController
         $this->tourRegistModel = model("ReviewModel");
         $this->Bbs = model("Bbs");
         $this->mainDispModel = model("MainDispModel");
+        $this->productModel = model("ProductModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -30,14 +31,12 @@ class TourSuggestionSubController extends BaseController
 
     public function list()
     {
-        $code = $_POST['code'] ?? "";
-        $parent_code = $_POST["parent_code"] ?? '';
+        $code = $_GET['code'] ?? "";
+        $parent_code = $_GET["parent_code"] ?? '';
 
         $product_code_no = '';
         $product_code_name = '';
-        if ($code == "") {
-            $code = "0";
-        } else {
+        if ($code != "") {
             $sql1 = "select t1.*, t2.code_no as product_code_no from tbl_code t1
                 left join tbl_code t2 on t1.ref_product_code_idx = t2.code_no
                 where t1.code_no = '$code' ";
@@ -58,7 +57,7 @@ class TourSuggestionSubController extends BaseController
         $result2 = $this->connect->query($sql);
         $result2 = $result2->getResultArray();
 
-        if ($code != '0' && isset($code)) {
+        if ($code != '' && isset($code)) {
             $replace_code = $code;
         } else {
             $replace_code = $parent_code;
@@ -141,7 +140,7 @@ class TourSuggestionSubController extends BaseController
 
         $result3 = $this->connect->query($sql);
         $result3 = $result3->getResultArray();
-        return view('admin/_tourSuggestionSub/prd_list', ['result3' => $result3]);
+        return view('admin/_tourSuggestionSub/prd_list', ['result3' => $result3, 'replace_code' => $replace_code]);
     }
 
     public function goods_find() {
@@ -153,5 +152,61 @@ class TourSuggestionSubController extends BaseController
             $list = [];
         }
         return view('admin/_tourSuggestionSub/goods_find', ['list' => $list]);
+    }
+
+    public function item_allfind() {
+        $code_no                = $this->request->getVar('code');
+        $whereArr               = $this->request->getVar();
+        $whereArr['is_view']    = "Y";
+
+        $list = $this->productModel->findProductPaging($whereArr)['items'];
+
+        foreach ($list as $key => $value) {
+            $list[$key]['cnt'] = $this->mainDispModel->itemCntByProductAndCode($value['product_idx'], $code_no);
+        }
+
+        return view('admin/_tourSuggestionSub/item_allfind', ['list' => $list]);
+    }
+    public function main_update() {
+        $idx = $this->request->getVar('idx');
+        $isrt_code = $this->request->getVar('isrt_code');
+
+        foreach ($idx as $value) {
+            $this->mainDispModel->insert(['product_idx' => $value, 'code_no' => $isrt_code, 'status' => 'Y']);
+        }
+
+        return $this->response->setJSON(['result' => 'OK', 'message' => '등록완료.']);
+    }
+    public function goods_alldel() {
+        $idx_val = $this->request->getVar('idx_val');
+        $idx_val = explode(',', $idx_val);
+        $this->mainDispModel->whereIn('code_idx', $idx_val)->delete();
+        return $this->response->setJSON(['result' => 'OK', 'message' => '정상적으로 제외되었습니다.']);
+    }
+    public function seq_upd1() {
+        $code      = $_POST['code'];
+        $id        = $_POST['id'];
+        $flag      = $_POST['flag'];
+
+        if ($flag == "U") {
+            $data = ['onum' => 'onum + 1.5'];
+            $this->mainDispModel->update($id, $data);
+            // write_log("UPDATE tbl_main_disp SET onum = onum + 1.5 WHERE code_idx = " . $id);
+        } else if ($flag == "D") {
+            $data = ['onum' => 'onum - 1.5'];
+            $this->mainDispModel->update($id, $data);
+            // write_log("UPDATE tbl_main_disp SET onum = onum - 1.5 WHERE code_idx = " . $id);
+        }
+
+        $mainDispList = $this->mainDispModel->where('code_no', $code)->orderBy('onum', 'ASC')->findAll();
+
+        $num = 0;
+        foreach ($mainDispList as $item) {
+            $num++;
+            $dataUpdate = ['onum' => $num];
+            $this->mainDispModel->update($item['code_idx'], $dataUpdate);
+            // write_log("UPDATE tbl_main_disp SET onum = '" . $num . "' WHERE code_no = '$code' and code_idx = '" . $item['code_idx'] . "'");
+        }
+        return $this->response->setJSON(['result' => 'OK', 'message' => 'OK']);
     }
 }

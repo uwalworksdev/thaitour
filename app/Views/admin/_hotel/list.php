@@ -30,7 +30,7 @@
             <form name="search" id="search">
                 <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
                 <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
-                <input type="hidden" name="g_idx" id="g_idx" value="">
+                <input type="hidden" name="product_idx" id="product_idx" value="">
 
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable01" style="table-layout:fixed;">
                     <colgroup>
@@ -253,35 +253,29 @@
                             }
                             foreach ($result as $row) :
                                 ?>
-                                <tr style="height:50px" data-idx="<?= $row['g_idx']; ?>">
+                                <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac">
-                                        <a href="#!"
-                                           onclick="go_write('<?= $row["g_idx"] ?>');"><?= $row["product_code"] ?></a>
+                                        <a href="./write?product_idx=<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a>
                                         <br>
-                                        <a href="#"
+                                        <a href="./write?product_idx=<?= $row["product_idx"] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
                                     <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
                                     <td class="tac">
                                         <?php
-                                        if ($row["ufile1"] != "") {
+                                        if ($row["ufile1"] != "" && is_file($_SERVER["DOCUMENT_ROOT"] . "/public/data/product/" . $row["ufile1"])) {
+                                            $src = "/data/product/" . $row["ufile1"];
+                                        } else {
+                                            $src = "/data/product/noimg.png";
+                                        }
                                             ?>
-                                            <a href="/uploads/hotel/<?= $row["ufile1"] ?>" class="imgpop">
-                                                <img src="/uploads/hotel/<?= $row["ufile1"] ?>"
-                                                     style="max-width:150px;max-height:100px"
-                                                     onerror="this.src='/data/product/noimg.png'"></a>
-                                        <?php } else {
-                                            ?>
-                                            <a href="/data/product/noimg.png" class="imgpop">
-                                                <img src="/data/product/noimg.png"
-                                                     style="max-width:150px;max-height:100px"
-                                                     onerror="this.src='/data/product/noimg.png'"></a>
-                                        <?php }
-                                        ?>
+                                            <a href="<?=$src?>" class="imgpop">
+                                                <img src="<?=$src?>"
+                                                    style="max-width:150px;max-height:100px"></a>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
-                                        <a href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&g_idx=<?= $row["g_idx"] ?>">
+                                        <a href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
                                             <?= viewSQ($row["goods_name_front"]) ?>
                                         </a><br>최초가격(정찰가) : <?= number_format($row['price_mk']) ?>원
                                         <br>판매가격 : <?= number_format($row['price_se']) ?>원
@@ -307,14 +301,14 @@
                                         <input name="product_best_best" class="type_chker"
                                             <?php if (isset($row["goods_dis3"]) && $row["goods_dis3"] === "Y")
                                                 echo "checked=checked"; ?>
-                                               id="product_best_best_<?= $row["g_idx"] ?>" type="checkbox"
-                                               onchange="check_best(<?= $row['g_idx'] ?>)"
+                                               id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
+                                               onchange="check_best(<?= $row['product_idx'] ?>)"
                                                value="Y">
                                     </td>
                                     <td>
-                                        <input type="text" name="onum[]" id="onum_<?= $row["g_idx"] ?>"
+                                        <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
                                                value="<?= $row['onum'] ?>" style="width:66px;">
-                                        <input type="hidden" name="code_idx[]" value="<?= $row["g_idx"] ?>"
+                                        <input type="hidden" name="code_idx[]" value="<?= $row["product_idx"] ?>"
                                                class="input_txt"/>
                                     </td>
                                     <td>
@@ -324,9 +318,9 @@
                                         <?= $row["reg_date"] ?>
                                     </td>
                                     <td>
-                                        <a href="#!" onclick="prod_update('<?= $row['g_idx'] ?>');"><img
+                                        <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>&nbsp;
-                                        <a href="javascript:del_it('<?= $row['g_idx'] ?>');"><img
+                                        <a href="javascript:del_it('<?= $row['product_idx'] ?>');"><img
                                                     src="/images/admin/common/ico_error.png" alt="삭제"/></a>
                                     </td>
                                 </tr>
@@ -415,7 +409,7 @@
             url: url,
             type: "POST",
             data: {
-                "g_idx": idx,
+                "product_idx": idx,
                 "product_best": product_best,
                 "onum": onum
             },
@@ -435,7 +429,7 @@
     }
 
     function go_write(idx) {
-        $("#g_idx").val(idx);
+        $("#product_idx").val(idx);
         $("#search").attr("action", "./write").submit();
     }
 
@@ -457,7 +451,7 @@
     }
 
     function SELECT_DELETE() {
-        if ($(".g_idx").is(":checked") == false) {
+        if ($(".product_idx").is(":checked") == false) {
             alert_("삭제할 내용을 선택하셔야 합니다.");
             return;
         }
@@ -490,7 +484,7 @@
 
     }
 
-    function del_it(g_idx) {
+    function del_it(product_idx) {
 
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;
@@ -502,7 +496,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: "g_idx[]=" + g_idx,
+            data: "product_idx[]=" + product_idx,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
