@@ -5,8 +5,10 @@
     <div class="body_inner">
         <div class="sub-hotel-navigation-container">
             <div class="navigation-container-prev">
-                <img src="/uploads/icons/icon_home.png" alt="icon_home">
-                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                <img class="only_web" src="/uploads/icons/icon_home.png" alt="icon_home">
+                <img class="only_mo cus-size-home" src="/uploads/icons/icon_home_mo.png" alt="icon_home">
+                <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                <img class="only_mo cus-size-arrow" src="/uploads/icons/arrow_right_mo.png" alt="arrow_right">
                 <span>장바구니</span>
             </div>
         </div>
@@ -26,7 +28,7 @@
                         <label class="font-bold" for="cart2">골프 :<span class="text-red"> 3</span>
                         </label>
                     </div>
-                    <table class="table-container">
+                    <table class="table-container only_web">
                         <thead>
                             <tr class="table-header">
                                 <th>
@@ -50,7 +52,7 @@
                                             <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
                                             <div class="product-date">2024.08.10(토)</div>
                                             <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
-                                            성인 4 / 아동 2</p>
+                                                성인 4 / 아동 2</p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="table-checkbox1_">
@@ -70,8 +72,8 @@
                                             <div class="product-name">아난타라 시암 방콕 호텔</div>
                                             <div class="product-date">2024.08.10(토)</div>
                                             <div class="product-desc text-gray">54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12<br>
-2인 1실 + 전일차량<br>
-성인 4 / 아동 2</div>
+                                                2인 1실 + 전일차량<br>
+                                                성인 4 / 아동 2</div>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="table-checkbox2">
@@ -85,6 +87,84 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="table-container custom-mo only_mo">
+                        <div class="checkbox-group-2 form-group cus-header form-table">
+                            <input type="checkbox" id="cart3_m">
+                            <label class="font-bold" for="cart3_m"></label>
+                        </div>
+                        <div class="item">
+                            <div class="con-up">
+                                <div class="picture-con">
+                                    <img src="/uploads/sub/cart_test_img_01_mo.png" alt="">
+                                    <div class="checkbox-group-2 form-group form-table">
+                                        <input type="checkbox" id="cart4_m" checked>
+                                        <label class="font-bold" for="cart4_m"></label>
+                                    </div>
+                                </div>
+                                <div class="text-right-p">
+                                    <h3 class="title-p">
+                                        샹그릴라 호텔 방콕 (차오프라야 강)
+                                    </h3>
+                                    <div class="time-date-p">
+                                        2024.08.10(토)
+                                    </div>
+                                    <p class="des-p">
+                                        디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="des-space-p">
+                                <div class="des-item">
+                                    <span class="space-left">금액</span>
+                                    <span>1,467,360 원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">할인금액</span>
+                                    <span>0원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">결제예정금액</span>
+                                    <span>1,230,000 원</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="con-up">
+                                <div class="picture-con">
+                                    <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
+                                    <div class="checkbox-group-2 form-group form-table">
+                                        <input type="checkbox" id="cart4_m" checked>
+                                        <label class="font-bold" for="cart4_m"></label>
+                                    </div>
+                                </div>
+                                <div class="text-right-p">
+                                    <h3 class="title-p">
+                                        아난타라 시암 방콕 호텔
+                                    </h3>
+                                    <div class="time-date-p">
+                                        2024.08.10(토)
+                                    </div>
+                                    <p class="des-p">
+                                        54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12 2인 1실 + 전일차량 성인 4 / 아동 2
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="des-space-p">
+                                <div class="des-item">
+                                    <span class="space-left">금액</span>
+                                    <span>1,467,360 원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">할인금액</span>
+                                    <span>0원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">결제예정금액</span>
+                                    <span>1,230,000 원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="cart-right">
@@ -112,7 +192,7 @@
                 <button class="btn-cart">예약하기</button>
             </div>
         </div>
-        <div class="cart-item-list-container mt-40">
+        <div class="cart-item-list-container mt-40 only_web">
             <div class="cart-left">
                 <div class="header-cart">
                     <div class="checkbox-group form-group">
@@ -151,7 +231,7 @@
                                             <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
                                             <div class="product-date">2024.08.10(토)</div>
                                             <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
-                                            성인 4 / 아동 2</p>
+                                                성인 4 / 아동 2</p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="table-checkbox1">
