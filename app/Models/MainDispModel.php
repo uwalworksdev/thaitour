@@ -19,7 +19,7 @@ class MainDispModel extends Model
     public function goods_find(int $code_no): array
     {
         return $this->select('tbl_main_disp.*, tbl_product_mst.*')
-                    ->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'left')
+                    ->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner')
                     ->where('tbl_main_disp.code_no', $code_no)
                     ->where('tbl_product_mst.is_view', 'Y')
                     ->orderBy('tbl_main_disp.onum', 'DESC')

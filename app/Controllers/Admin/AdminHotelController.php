@@ -193,7 +193,7 @@ class AdminHotelController extends BaseController
                 } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     ${"rfile_" . $i} = $file->getName();
                     ${"ufile_" . $i} = $file->getRandomName();
-                    $publicPath = WRITEPATH . '../public/uploads/hotel/';
+                    $publicPath = $_SERVER['DOCUMENT_ROOT'] . '/public/uploads/hotel/';
                     $file->move($publicPath, ${"ufile_" . $i});
 
                     if ($product_idx) {
