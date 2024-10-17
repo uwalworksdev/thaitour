@@ -112,22 +112,22 @@ function send_it() {
     // oEditors1.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
     // oEditors2.getById["caution"].exec("UPDATE_CONTENTS_FIELD", []);
 
-    if (frm.product_code.value == "") {
+    if (frm.product_code_list.value == "") {
         alert("카테고리를 등록해주세요.");
         frm.product_code_1.focus();
         return;
     }
 
-    if (frm.goods_code.value == "") {
+    if (frm.product_code.value == "") {
         alert("상품코드를 입력해주세요.");
-        frm.goods_code.focus();
+        frm.product_code.focus();
         return;
     }
 
 
-    if (frm.goods_name_front.value == "") {
+    if (frm.product_name.value == "") {
         alert("상품명을 입력해주세요.");
-        frm.goods_name_front.focus();
+        frm.product_name.focus();
         return;
     }
 
@@ -281,7 +281,7 @@ $(document).ready(function () {
         if (chk_codeCnt == "0") {
 
             if (chk_codeType == "code") {
-                $("#goods_code").val(pop_search);
+                $("#product_code").val(pop_search);
             } else if (chk_codeType == "erp") {
                 $("#goods_erp").val(pop_search);
             }
@@ -352,9 +352,9 @@ function addCategory(code, cateText) {
         alert("이미 등록된 카테고리입니다.");
         return false;
     }
-    var tmp_product_code = $("#product_code").val();
+    var tmp_product_code = $("#product_code_list").val();;
     tmp_product_code = tmp_product_code + "|" + code + "|";
-    $("#product_code").val(tmp_product_code);
+    $("#product_code_list").val(tmp_product_code);
 
     var newList = "<li>[" + code + "] " + cateText + " <span onclick=\"delCategory('" + code + "', this);\" >삭제</span></li>";
     $("#reg_cate").append(newList);
@@ -365,7 +365,7 @@ function delCategory(code, obj) {
 
     if (chkCategory(code) > -1) {
 
-        var tmp_product_code = $("#product_code").val();
+        var tmp_product_code = $("#product_code_list").val();
         var re_tmp_product_code = tmp_product_code.substr(1, tmp_product_code.length - 2);
 
         var code_array = re_tmp_product_code.split('||');
@@ -378,7 +378,7 @@ function delCategory(code, obj) {
             }
         });
 
-        $("#product_code").val(tmp_product_code_re);
+        $("#product_code_list").val(tmp_product_code_re);
         obj.closest("li").remove();
 
     }
@@ -386,7 +386,7 @@ function delCategory(code, obj) {
 
 // 카테고리 중복확인
 function chkCategory(chkcode) {
-    var tmp_product_code = $("#product_code").val();
+    var tmp_product_code = $("#product_code_list").val();
     var re_tmp_product_code = tmp_product_code.substr(1, tmp_product_code.length - 2);
 
     var code_array = re_tmp_product_code.split('||');

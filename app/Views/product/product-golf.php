@@ -14,7 +14,7 @@
                                 <img class="only_web" src="<?=getImage("/uploads/products/{$product['ufile1']}")?>" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
                                 <img class="only_mo img_box_re_img"
                                     src="<?=getImage("/uploads/products/{$product['ufile1']}")?>" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
-                                <?php if($product['best_value']): ?>
+                                <?php if($product['is_best_value']): ?>
                                     <img class="only_web tag-red" src="/uploads/icons/tag-red.png" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
                                     <img class="only_mo tag-red" src="/uploads/icons/tag-red-m.png" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
                                 <?php endif; ?>

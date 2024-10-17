@@ -250,7 +250,7 @@ class TourRegistController extends BaseController
     public function write_golf_ok($product_idx) {
 
         $data = $this->request->getPost();
-        $data['best_value']     = $data['best_value'] ?? "N";
+        $data['is_best_value']     = $data['is_best_value'] ?? "N";
         $data['special_price']  = $data['special_price'] ?? "N";
 
         $this->productModel->update($product_idx, $data);

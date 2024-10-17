@@ -17,7 +17,7 @@
         </div>
         <div class="location-container">
             <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-            <span class="text-gray"> <?= $hotel['locations'] ?> </span>
+            <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
         </div>
         <div class="rating-container">
             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
@@ -75,7 +75,7 @@
             추천 포인트
         </h3>
         <p class="description-sec2" style="letter-spacing: 1px">
-            <?= viewSQ($hotel['oneInfo']) ?>
+            <?= viewSQ($hotel['product_info']) ?>
         </p>
         <div class="tag-list-icon" style="margin-top: 20px">
             <?php foreach ($fresult4 as $row) : ?>
@@ -222,7 +222,7 @@
                                                     <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                     <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                 </div>
-                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['price_se']) ?>원</span>
+                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
                                                 <span class="details">객실 1개 × 3박 (세금 포함)</span>
                                                 <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
                                                 <p><span class="price">481,290</span>원</p>
@@ -399,7 +399,7 @@
                                                             <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                             <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                         </div>
-                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['price_se']) ?>원</span>
+                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
                                                         <span class="details">객실 1개 × 3박 (세금 포함)</span>
                                                         <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
                                                         <p><span class="price">481,290</span>원</p>
@@ -771,7 +771,7 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item['price_se']) ?> <span>원~</span> <span
+                                <?= number_format($item['product_price']) ?> <span>원~</span> <span
                                         class="prd_price_thai">6,000 <span>바트~</span></span>
                             </div>
                         </a>

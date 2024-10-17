@@ -446,9 +446,9 @@
                                 <tr>
                                     <th></th>
                                     <td colspan="3">
-                                        <label for="best_value">
-                                            <input type="checkbox" name="best_value" id="best_value" value="Y" 
-                                            <?php if ($row["best_value"] == "Y") { echo "checked"; } ?> />
+                                        <label for="is_best_value">
+                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
+                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
                                             가성비추천
                                         </label>
                                         <label for="special_price">

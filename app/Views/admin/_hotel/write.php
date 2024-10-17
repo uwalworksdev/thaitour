@@ -77,23 +77,12 @@ $links = "list";
                           target="hiddenFrame22"> <!--  -->
                         <!-- 상품 고유 번호 -->
                         <input type="hidden" name="product_idx" id="product_idx" value='<?= $product_idx ?>'/>
-
-                        <input type="hidden" name="code_utilities" id="code_utilities"
-                               value='<?= $code_utilities ?? "" ?>'/>
-                        <input type="hidden" name="code_services" id="code_services"
-                               value='<?= $code_services ?? "" ?>'/>
-                        <input type="hidden" name="code_best_utilities" id="code_best_utilities"
-                               value='<?= $code_best_utilities ?? "" ?>'/>
                         <input type="hidden" name="code_populars" id="code_populars"
                                value='<?= $code_populars ?? "" ?>'/>
 
-                        <!-- 상품 옵션 -->
-                        <input type="hidden" name="product_option" id="product_option"
-                               value='<?= $product_option ?? "" ?>'
-                               style="width:500px;">
-
-                        <!-- db에 있는 goods_code -->
-                        <input type="hidden" name="old_goods_code" id="old_goods_code" value='<?= $goods_code ?? "" ?>'>
+                        <!-- db에 있는 product_code -->
+                        <input type="hidden" name="old_goods_code" id="old_goods_code" value='<?= $product_code ?? "" ?>'>
+                        <input type="hidden" name="product_code_list" id="product_code_list" value='<?= $product_code_list ?? "" ?>'>
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">
@@ -152,14 +141,14 @@ $links = "list";
                                     </td>
                                 </tr>
                                 <?php
-                                $_product_code_arr = explode("||", getCodeSlice($product_code ?? ""));
+                                $_product_code_arr = explode("|", $product_code_list);
+                                $_product_code_arr = array_filter($_product_code_arr);
                                 ?>
                                 <tr>
                                     <th>등록된 카테고리</th>
                                     <td colspan="3">
                                         <ul id="reg_cate">
                                             <?php
-                                            if (!empty($product_code)) {
                                                 foreach ($_product_code_arr as $_tmp_code) {
                                                     ?>
 
@@ -168,7 +157,6 @@ $links = "list";
                                                     </li>
                                                     <?php
                                                 }
-                                            }
                                             ?>
                                         </ul>
                                     </td>
@@ -177,10 +165,10 @@ $links = "list";
                                 <tr>
                                     <th>상품코드</th>
                                     <td colspan="3">
-                                        <input type="text" name="goods_code" id="goods_code"
-                                               value="<?= $goods_code ?? "" ?>"
+                                        <input type="text" name="product_code" id="product_code"
+                                               value="<?= $product_code ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
-                                        <?php if (empty($product_idx) || empty($goods_code)) { ?>
+                                        <?php if (empty($product_idx) || empty($product_code)) { ?>
                                             <button type="button" class="btn_01" onclick="fn_pop('code');">코드입력</button>
                                         <?php } else { ?>
                                             <span style="color:red;">상품코드는 수정이 불가능합니다.</span>
@@ -192,8 +180,8 @@ $links = "list";
                                 <tr>
                                     <th>상품명</th>
                                     <td colspan="3">
-                                        <input type="text" name="goods_name_front"
-                                               value="<?= $goods_name_front ?? "" ?>"
+                                        <input type="text" name="product_name"
+                                               value="<?= $product_name ?? "" ?>"
                                                class="text" style="width:300px" maxlength="50"/>
                                     </td>
                                 </tr>
@@ -201,10 +189,10 @@ $links = "list";
                                 <tr>
                                     <th>등급</th>
                                     <td colspan="3">
-                                        <select name="grade">
+                                        <select name="product_level">
                                             <?php
                                             foreach ($fresult9 as $frow) {
-                                                if (isset($grade) && $grade == $frow['code_no']) {
+                                                if (isset($product_level) && $product_level == $frow['code_no']) {
                                                     echo "<option value='" . $frow['code_no'] . "' selected>" . $frow['code_name'] . "</option>";
                                                 } else {
                                                     echo "<option value='" . $frow['code_no'] . "' >" . $frow['code_name'] . "</option>";
@@ -222,13 +210,6 @@ $links = "list";
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>위치</th>
-                                    <td colspan="3">
-                                        <input type="text" name="locations" value="<?= $locations ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="50"/>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>객실수</th>
                                     <td colspan="3">
                                         <input type="text" name="room_cnt" value="<?= $room_cnt ?? "" ?>" class="text"
@@ -237,26 +218,18 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>체크인/아웃</th>
-                                    <td colspan="3">
-                                        <input type="text" name="chkIn" value="<?= $chkIn ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="50"/>
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>간략소개</th>
                                     <td colspan="3">
-										<textarea name="oneInfo" id="oneInfo"
-                                                  style="width:90%;height:100px;"><?= $oneInfo ?? "" ?></textarea>
+										<textarea name="product_info" id="product_info"
+                                                  style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>검색키워드</th>
                                     <td colspan="3">
-                                        <input type="text" name="goods_keyword" id="goods_keyword"
-                                               value="<?= $goods_keyword ?? "" ?>" class="text" style="width:90%;"
+                                        <input type="text" name="keyword" id="keyword"
+                                               value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
                                                maxlength="100"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
@@ -284,16 +257,16 @@ $links = "list";
                                 <tr>
                                     <th>판매상태결정</th>
                                     <td colspan="3">
-                                        <select name="item_state" id="item_state">
-                                            <option value="sale" <?php if (isset($item_state) && $item_state === "sale") {
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
                                                 echo "selected";
                                             } ?>>판매중
                                             </option>
-                                            <option value="stop" <?php if (isset($item_state) && $item_state === "stop") {
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
                                                 echo "selected";
                                             } ?>>판매중지
                                             </option>
-                                            <option value="plan" <?php if (isset($item_state) && $item_state === "plan") {
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
                                                 echo "selected";
                                             } ?>>등록예정
                                             </option>
@@ -323,8 +296,8 @@ $links = "list";
                                 <tr>
                                     <th>최초가격(정찰가)</th>
                                     <td colspan="3">
-                                        <input type="text" name="price_mk" id="price_mk" class="onlynum"
-                                               style="text-align:right;width: 200px;" value="<?= $price_mk ?? "" ?>"/> 원
+                                        <input type="text" name="original_price" id="original_price" class="onlynum"
+                                               style="text-align:right;width: 200px;" value="<?= $original_price ?? "" ?>"/> 원
                                     </td>
 
                                 </tr>
@@ -332,8 +305,8 @@ $links = "list";
                                 <tr>
                                     <th>판매가격</th>
                                     <td colspan="3">
-                                        <input type="text" name="price_se" id="price_se" class="onlynum"
-                                               style="text-align:right;width: 200px;" value="<?= $price_se ?? "" ?>"/> 원
+                                        <input type="text" name="product_price" id="product_price" class="onlynum"
+                                               style="text-align:right;width: 200px;" value="<?= $product_price ?? "" ?>"/> 원
                                     </td>
 
                                 </tr>
@@ -386,7 +359,7 @@ $links = "list";
                                         <div id="mainRoom">
                                             <?php
 
-                                            $gresult = (new AdminHotelController())->getListOption($goods_code ?? null);
+                                            $gresult = (new AdminHotelController())->getListOption($product_code ?? null);
                                             foreach ($gresult as $grow) {
                                                 ?>
 
@@ -416,7 +389,7 @@ $links = "list";
 
 
                                                     <?php
-                                                    $gresult2 = (new AdminHotelController())->getListOptionRoom($goods_code ?? null, $grow['o_room'] ?? null);
+                                                    $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
                                                     foreach ($gresult2 as $frow3) {
 
                                                         ?>
@@ -502,7 +475,7 @@ $links = "list";
                                                 <tbody id="settingBody2">
                                                 <?php
                                                 // 옵션 조회
-                                                $gresult3 = (new AdminHotelController())->getListOptionType($goods_code ?? null);
+                                                $gresult3 = (new AdminHotelController())->getListOptionType($product_code ?? null);
                                                 foreach ($gresult3 as $frow3) {
                                                     ?>
 
@@ -666,16 +639,16 @@ $links = "list";
                                         <?php if (isset($ufile1) && $ufile1 !== "") { ?><br>파일삭제:<input type=checkbox
                                                                                                         name="del_1"
                                                                                                         value='Y'><a
-                                                href="/uploads/hotel/<?= $ufile1 ?>"
+                                                href="/data/hotel/<?= $ufile1 ?>"
                                                 class="imgpop"><?= $rfile1 ?></a><br><br>
-                                            <img src="/uploads/hotel/<?= $ufile1 ?>" width="200px"/>
+                                            <img src="/data/hotel/<?= $ufile1 ?>" width="200px"/>
                                         <?php } ?>
 
                                     </td>
                                 </tr>
 
 
-                                <?php for ($i = 2; $i <= 6; $i++) { ?>
+                                <?php for ($i = 2; $i <= 7; $i++) { ?>
                                     <tr>
                                         <th>서브이미지<?= $i - 1 ?>(600X400)</th>
                                         <td colspan="3">
@@ -686,9 +659,9 @@ $links = "list";
                                                 <input type=checkbox
                                                        name="del_<?= $i ?>"
                                                        value='Y'><a
-                                                        href="/uploads/hotel/<?= ${"ufile" . $i} ?>"
+                                                        href="/data/hotel/<?= ${"ufile" . $i} ?>"
                                                         class="imgpop"><?= ${"rfile" . $i} ?></a><br><br>
-                                                <img src="/uploads/hotel/<?= ${"ufile" . $i} ?>" width="200px"/>
+                                                <img src="/data/hotel/<?= ${"ufile" . $i} ?>" width="200px"/>
                                             <?php } ?>
 
                                         </td>

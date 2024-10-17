@@ -264,8 +264,8 @@
                                     <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
                                     <td class="tac">
                                         <?php
-                                        if ($row["ufile1"] != "" && is_file($_SERVER["DOCUMENT_ROOT"] . "/public/data/product/" . $row["ufile1"])) {
-                                            $src = "/data/product/" . $row["ufile1"];
+                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/hotel/" . $row["ufile1"])) {
+                                            $src = "/data/hotel/" . $row["ufile1"];
                                         } else {
                                             $src = "/data/product/noimg.png";
                                         }
@@ -277,21 +277,21 @@
                                     <td class="tal" style="font-weight:bold">
                                         <a href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
                                             <?= viewSQ($row["goods_name_front"]) ?>
-                                        </a><br>최초가격(정찰가) : <?= number_format($row['price_mk']) ?>원
-                                        <br>판매가격 : <?= number_format($row['price_se']) ?>원
+                                        </a><br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>원
+                                        <br>판매가격 : <?= number_format($row['product_price']) ?>원
 
                                     </td>
                                     <td class="tac">
-                                        <select name="item_state" id="item_state">
-                                            <option value="sale" <?php if (isset($row['item_state']) && $row['item_state'] === "sale") {
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($row['product_status']) && $row['product_status'] === "sale") {
                                                 echo "selected";
                                             } ?>>판매중
                                             </option>
-                                            <option value="stop" <?php if (isset($row['item_state']) && $row['item_state'] === "stop") {
+                                            <option value="stop" <?php if (isset($row['product_status']) && $row['product_status'] === "stop") {
                                                 echo "selected";
                                             } ?>>판매중지
                                             </option>
-                                            <option value="plan" <?php if (isset($row['item_state']) && $row['item_state'] === "plan") {
+                                            <option value="plan" <?php if (isset($row['product_status']) && $row['product_status'] === "plan") {
                                                 echo "selected";
                                             } ?>>등록예정
                                             </option>

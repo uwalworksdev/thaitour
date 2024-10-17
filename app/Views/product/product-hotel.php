@@ -34,7 +34,7 @@
                     <div class="swiper sub_swiper2">
                         <div class="swiper-wrapper">
                             <?php foreach ($sub_codes as $code_item) :
-                                if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/data/code/" . $code_item['ufile1'])) {
+                                if(is_file(ROOTPATH . "/public/data/code/" . $code_item['ufile1'])) {
                                     $src = "/data/code/" . $code_item['ufile1'];
                                 } else {
                                     $src = "/images/product/noimg.png";
@@ -46,8 +46,7 @@
                                             <img src="<?=$src?>" loading="lazy" alt="main">
                                         </div>
                                         <div class="sub_swiper2__text">
-                                            <?= $code_item['code_name'] ?> <img src="/images/ico/ico_arrow_right_1.svg"
-                                                                                alt="">
+                                            <?= $code_item['code_name'] ?> <img src="/images/ico/ico_arrow_right_1.svg" loading="lazy" alt="">
                                         </div>
                                     </a>
                                 </div>
@@ -75,7 +74,7 @@
                     <div class="thailand_hotel_swiper_ swiper">
                         <div class="swiper-wrapper">
                             <?php foreach ($products as $hotel):
-                                    if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $hotel['ufile1'])) {
+                                    if(is_file(ROOTPATH . "/public/uploads/hotel/" . $hotel['ufile1'])) {
                                         $src = "/uploads/hotel/" . $hotel['ufile1'];
                                     } else {
                                         $src = "/images/product/noimg.png";
@@ -123,7 +122,7 @@
                                         </div>
                                     </div>
                                     <div class="prd_price_ko">
-                                        <?= number_format($hotel['price_se']) ?> <span>원~</span> <span
+                                        <?= number_format($hotel['product_price']) ?> <span>원~</span> <span
                                                 class="prd_price_thai">6,000 <span>바트~</span></span>
                                     </div>
                                 </a>
@@ -157,7 +156,7 @@
                 <div class="sub_tour_section7_product_list swiper swiper_product_list_">
                     <div class="swiper-wrapper">
                         <?php foreach ($theme_products as $theme_product):
-                            if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $theme_product['ufile1'])) {
+                            if(is_file(ROOTPATH . "/public/uploads/hotel/" . $theme_product['ufile1'])) {
                                 $src = "/uploads/hotel/" . $theme_product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
@@ -205,7 +204,7 @@
                 <div class="best_tour_section5_ swiper">
                     <div class="swiper-wrapper">
                         <?php foreach ($bestValueProduct as $product):
-                            if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $product['ufile1'])) {
+                            if(is_file(ROOTPATH . "/public/uploads/hotel/" . $product['ufile1'])) {
                                 $src = "/uploads/hotel/" . $product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
@@ -463,7 +462,7 @@
                         <div class="most_searched_tab_2 smart_slider_">
                             <div class="swiper-wrapper">
                                 <?php foreach ($productByKeyword['items'] as $item) {
-                                    if(is_file($_SERVER['DOCUMENT_ROOT'] . "/public/uploads/hotel/" . $product['ufile1'])) {
+                                    if(is_file(ROOTPATH . "/public/uploads/hotel/" . $product['ufile1'])) {
                                         $src = "/uploads/hotel/" . $product['ufile1'];
                                     } else {
                                         $src = "/images/product/noimg.png";

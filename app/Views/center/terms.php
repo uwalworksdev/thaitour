@@ -124,8 +124,7 @@
 					드립니다. </p>
 				<p>&nbsp;</p>
 				<p>
-					<a href="https://www.swisswatchessite.com/" style="display:none;" target="_blank">replica watches
-						sale</a>
+					<a href="https://www.swisswatchessite.com/" style="display:none;" target="_blank">replica watches sale</a>
 				</p>
 			</div>
 		</div>
