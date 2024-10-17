@@ -80,13 +80,12 @@
                                         $src = "/images/product/noimg.png";
                                     }
                                 ?>
-                                <a href="/product-hotel/hotel-detail/<?= $hotel['g_idx'] ?>" class="thailand_hotel_swiper_item_ swiper-slide">
+                                <a href="/product-hotel/hotel-detail/<?= $hotel['product_idx'] ?>" class="thailand_hotel_swiper_item_ swiper-slide">
                                     <div class="img_box img_box_10">
                                         <img src="<?=$src?>" alt="main" loading="lazy">
                                     </div>
                                     <?php
                                     $hotel_code_name = $hotel['array_hotel_code_name'];
-
                                     $num = count($hotel_code_name);
                                     ?>
                                     <div class="prd_keywords">
@@ -199,8 +198,7 @@
                         더투어랩에서 만나는 <span class="text_active_17469E">역대급 호텔 초특가</span>
                     </div>
                 </div>
-                <div class="best_tour_section5_ swiper">
-                    <div class="swiper-wrapper">
+                <div class="best_tour_section5_ best_tour_section5__hotel">
                         <?php foreach ($bestValueProduct as $product):
                             if(is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
                                 $src = "/data/hotel/" . $product['ufile1'];
@@ -208,7 +206,7 @@
                                 $src = "/images/product/noimg.png";
                             }
                             ?>
-                            <a href="/product-hotel/hotel-detail/<?= $product['product_idx'] ?>" class="sub_tour_section5_item swiper-slide">
+                            <a href="/product-hotel/hotel-detail/<?= $product['product_idx'] ?>" class="sub_tour_section5_item">
                                 <div class="img_box img_box_10">
                                     <img src="<?=$src?>" alt="main" loading="lazy">
                                 </div>
@@ -236,196 +234,6 @@
                                 </div>
                             </a>
                         <?php endforeach; ?>
-                        <!-- <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_2.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_3.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_4.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_5.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_6.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_7.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a>
-                        <a href="/product-hotel/list-hotel/1324" class="sub_tour_section5_item swiper-slide">
-                            <div class="img_box img_box_10">
-                                <img src="/uploads/sub/tour_suggest_8.png" alt="main" loading="lazy">
-                            </div>
-                            <div class="prd_keywords">
-                                <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                <span> 한국거 기이드</span>
-                            </div>
-                            <div class="prd_name">
-                                쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                            </div>
-                            <div class="prd_info">
-                                <div class="prd_info__left">
-                                    <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                    <span class="star_avg">4.7</span>
-                                    <span class="star_review_cnt">(954)</span>
-                                </div>
-                                <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                <div class="prd_info__right">
-                                    <span class="prd_info__right__ttl">생생리뷰</span>
-                                    <span class="new_review_cnt">(0)</span>
-                                </div>
-                            </div>
-                            <div class="prd_price_ko">
-                                236,100 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                            </div>
-                        </a> -->
-                    </div>
                 </div>
                 <div class="custom_pagination_ w_100">
                     <div class="s_item_show_">
@@ -441,504 +249,26 @@
                     가장 많이 검색되는 #키워드
                 </div>
                 <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
-                    <ul class="tab_box_show_ d_flex justify_content_center align_items_center">
+                    <ul class="tab_box_show_ tab_box_show__hotel d_flex justify_content_center align_items_center">
                         <?php foreach ($keyWordAll as $key => $item) { ?>
-                            <li class="tab_box_element_ p--20 border <?=$key == $keyWordActive ? 'tab_active_' : ''?>" rel="<?= $item ?>">#<?= $item ?></li>
+                            <li class="tab_box_element_ p--20 border <?=$key == $keyWordActive ? 'tab_active_' : ''?>" data-keyword="<?=$item?>">#<?= $item ?></li>
                         <?php } ?>
-                        <!-- <li class="tab_box_element_ p--20 border tab_active_" rel="tab1">#5성급</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab2">#풀빌라</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab3">#얼리버드 할인</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab4">#인피니티 풀</li>
-                        <li class="tab_box_element_ p--20 border " rel="tab5">#공항픽업</li> -->
                     </ul>
                 </div>
             </div>
             <!-- tab1 last slide section -->
             <div class="body_inner">
-                <div class="sub_tour_section6_product_list tab_box_content_">
-                    <div class="content_tab_show_ tab_active_" id="tab1">
-                        <div class="most_searched_tab_2 smart_slider_">
-                            <div class="swiper-wrapper">
-                                <?php foreach ($productByKeyword['items'] as $item) {
-                                    if(is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
-                                        $src = "/data/hotel/" . $product['ufile1'];
-                                    } else {
-                                        $src = "/images/product/noimg.png";
-                                    }
-                                    ?>
-                                    <div class="sub_tour_section7_product_item swiper-slide">
-                                        <div class="img_box img_box_12">
-                                            <img src="<?=$src?>" alt="">
-                                        </div>
-                                        <div class="sub_tour_section7_product_item__name"><?= $item['product_name'] ?></div>
-                                        <div class="prd_price_ko">
-                                            <?= number_format($item['product_price'])?> <span>원~</span> <span
-                                                    class="prd_price_thai">6,000 <span>바트~</span></span>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_last_section_slide_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">호텔 제이 파타야</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_last_section_slide_3.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_last_section_slide_4.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">홀리데이 인 파타야</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <!-- <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div> -->
-                            </div>
-                            <div class="most_searched_tab_2_pagination_next_"></div>
-                            <div class="most_searched_tab_2_pagination_prev_"></div>
-                            <div class="custom_pagination_ w_100">
-                                <div class="pagination_show_">
-                                    <img src="/images/ico/reloadicon.png" alt="">
-                                    <p>다음상품</p>
-                                    <div class="most_searched_tab_2_pagination_ sub_tour_section6_swiper_pagination_"></div>
-                                </div>
-                            </div>
-
-                        </div>
+                <div class="sub_hotel_section6_product_list tab_box_content_">
+                    <div class="most_searched_tab_2__prd_list" id="product_list_keyword">
+                        <?php foreach ($productByKeyword['items'] as $item) {
+                            echo view('product/hotel/product_item_by_keyword', ['item' => $item]);
+                        } ?>
                     </div>
-                    <div class="content_tab_show_" id="tab2">
-                        <div class="most_searched_tab_2 smart_slider_">
-                            <div class="swiper-wrapper">
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="most_searched_tab_2_pagination_next_"></div>
-                            <div class="most_searched_tab_2_pagination_prev_"></div>
-                            <div class="custom_pagination_ w_100">
-                                <div class="pagination_show_">
-                                    <img src="/images/ico/reloadicon.png" alt="">
-                                    <p>다음상품</p>
-                                    <div class="most_searched_tab_2_pagination_ sub_tour_section6_swiper_pagination_"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_tab_show_" id="tab3">
-                        <div class="most_searched_tab_3 smart_slider_">
-                            <div class="swiper-wrapper">
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="most_searched_tab_3_pagination_next_"></div>
-                            <div class="most_searched_tab_3_pagination_prev_"></div>
-                            <div class="custom_pagination_ w_100">
-                                <div class="pagination_show_">
-                                    <img src="/images/ico/reloadicon.png" alt="">
-                                    <p>다음상품</p>
-                                    <div class="most_searched_tab_3_pagination_ sub_tour_section6_swiper_pagination_"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_tab_show_" id="tab4">
-                        <div class="most_searched_tab_4 smart_slider_">
-                            <div class="swiper-wrapper">
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="most_searched_tab_4_pagination_next_"></div>
-                            <div class="most_searched_tab_4_pagination_prev_"></div>
-                            <div class="custom_pagination_ w_100">
-                                <div class="pagination_show_">
-                                    <img src="/images/ico/reloadicon.png" alt="">
-                                    <p>다음상품</p>
-                                    <div class="most_searched_tab_4_pagination_ sub_tour_section6_swiper_pagination_"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content_tab_show_" id="tab5">
-                        <div class="most_searched_tab_5 smart_slider_">
-                            <div class="swiper-wrapper">
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_1.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_2.png" alt="">
-                                    </div>
-                                    <div class="sub_tour_section7_product_item__name">아바니 파타야 리조트</div>
-                                    <div class="prd_price_ko">
-                                        199,424 <span>원~</span> <span
-                                                class="prd_price_thai">2,800 <span>바트~</span></span>
-                                    </div>
-                                </div>
-                                <div class="sub_tour_section7_product_item swiper-slide">
-                                    <div class="img_box img_box_12">
-                                        <img src="/uploads/sub/tour_special_3.png" alt="">
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="most_searched_tab_5_pagination_next_"></div>
-                            <div class="most_searched_tab_5_pagination_prev_"></div>
-                            <div class="custom_pagination_ w_100">
-                                <div class="pagination_show_">
-                                    <img src="/images/ico/reloadicon.png" alt="">
-                                    <p>다음상품</p>
-                                    <div class="most_searched_tab_5_pagination_ sub_tour_section6_swiper_pagination_"></div>
-                                </div>
-                            </div>
+                    <div class="custom_pagination_ w_100">
+                        <div class="pagination_show_">
+                            <img src="/images/ico/reloadicon.png" alt="">
+                            <p>다음상품</p>
+                            <div class="most_searched_tab_2_pagination_ sub_tour_section6_swiper_pagination_"></div>
                         </div>
                     </div>
                 </div>
@@ -964,6 +294,7 @@
     </div>
 
     <script>
+        let page = 1;
         $(document).ready(function () {
             $('.pagination_show_').on('click', function () {
                 let pagination = $(this).parent().prev().prev();
@@ -975,9 +306,19 @@
             $('.tab_box_element_').on('click', function () {
                 $('.tab_box_element_').removeClass('tab_active_');
                 $(this).addClass('tab_active_');
-                $('.content_tab_show_').removeClass('tab_active_');
-                let tabID = $(this).attr('rel');
-                $('#' + tabID).addClass('tab_active_');
+                $.ajax({
+                    type: "GET",
+                    url: "/product/get-by-keyword",
+                    data: {
+                        keyword: $(this).data('keyword'),
+                        page: page,
+                        code_no: 1303
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        $("#product_list_keyword").html(data.html);
+                    }
+                })
             })
         });
 
@@ -1039,50 +380,6 @@
 
         // Initial load
         loadMultipleSlider();
-
-        // let most_searched_tab_2 = new Swiper(".most_searched_tab_2", {
-        //     slidesPerView: 4,
-        //     spaceBetween: 20,
-        //     loop: true,
-        //     pagination: {
-        //         el: ".most_searched_tab_2_pagination_",
-        //         clickable: true,
-        //         type: "fraction",
-        //     },
-        // });
-        //
-        // let most_searched_tab_3 = new Swiper(".most_searched_tab_3", {
-        //     slidesPerView: 4,
-        //     spaceBetween: 20,
-        //     loop: true,
-        //     pagination: {
-        //         el: ".most_searched_tab_3_pagination_",
-        //         clickable: true,
-        //         type: "fraction",
-        //     },
-        // });
-        //
-        // let most_searched_tab_4 = new Swiper(".most_searched_tab_4", {
-        //     slidesPerView: 4,
-        //     spaceBetween: 20,
-        //     loop: true,
-        //     pagination: {
-        //         el: ".most_searched_tab_4_pagination_",
-        //         clickable: true,
-        //         type: "fraction",
-        //     },
-        // });
-        //
-        // let most_searched_tab_5 = new Swiper(".most_searched_tab_5", {
-        //     slidesPerView: 4,
-        //     spaceBetween: 20,
-        //     loop: true,
-        //     pagination: {
-        //         el: ".most_searched_tab_5_pagination_",
-        //         clickable: true,
-        //         type: "fraction",
-        //     },
-        // });
 
     </script>
     <script>

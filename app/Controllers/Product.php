@@ -231,7 +231,13 @@ class Product extends BaseController
         $keyword = $this->request->getVar('keyword');
         $code_no = $this->request->getVar('code_no');
         $pg = $this->request->getVar('pg');
-        $productByKeyword = $this->productModel->getProductByKeyword($keyword, $code_no);
+        $productByKeyword = $this->productModel->getProductByKeyword($keyword, $code_no, 8, $pg);
+        
+        $html = '';
+        foreach ($productByKeyword['items'] as $item) {
+            $html .= view('product/hotel/product_item_by_keyword', ['item' => $item]);
+        }
+        $productByKeyword['html'] = $html;
         return $this->response->setJSON($productByKeyword);
     }
 

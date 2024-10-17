@@ -3376,3 +3376,27 @@
   width: 13px;
   height: 12px;
 }
+
+.most_searched_tab_2__prd_list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.sub_hotel_section7_product_item {
+  width: calc((100% - 60px) / 4);
+  position: relative;
+}
+
+.sub_hotel_section7_product_item__name {
+  font-size: 24px;
+  font-family: "Pretendard";
+  color: rgb(37, 37, 37);
+  font-weight: normal;
+  margin-top: 25px;
+}
+
+.sub_hotel_section6_product_list {
+
+}

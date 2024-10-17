@@ -4796,6 +4796,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   left: 0px;
 }
 
+.best_tour_section5__hotel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 @media screen and (max-width: 1200px) {
   .only_tb {
     display: none !important;
