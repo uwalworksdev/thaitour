@@ -115,6 +115,22 @@ class AdminHotelController extends BaseController
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
+        $sql = "select * from tbl_code where parent_code_no='38' order by onum desc, code_idx desc";
+        $product_themes = $this->connect->query($sql);
+        $product_themes = $product_themes->getResultArray();
+
+        $sql = "select * from tbl_code where parent_code_no='39' order by onum desc, code_idx desc";
+        $product_bedrooms = $this->connect->query($sql);
+        $product_bedrooms = $product_bedrooms->getResultArray();
+
+        $sql = "select * from tbl_code where parent_code_no='40' order by onum desc, code_idx desc";
+        $product_types = $this->connect->query($sql);
+        $product_types = $product_types->getResultArray();
+
+        $sql = "select * from tbl_code where parent_code_no='41' order by onum desc, code_idx desc";
+        $product_promotions = $this->connect->query($sql);
+        $product_promotions = $product_promotions->getResultArray();
+
         $data = [
             'product_idx' => $product_idx,
             'pg' => $pg,
@@ -130,7 +146,11 @@ class AdminHotelController extends BaseController
             'fresult5' => $fresult5,
             'fresult8' => $fresult8,
             'fresult9' => $fresult9,
-            'roresult' => $roresult
+            'roresult' => $roresult,
+            'pthemes' => $product_themes,
+            'pbedrooms' => $product_bedrooms,
+            'ptypes' => $product_types,
+            'ppromotions' => $product_promotions,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -139,38 +159,43 @@ class AdminHotelController extends BaseController
     {
         try {
             $files = $this->request->getFiles();
-            $data['product_code_list']  = updateSQ($_POST["product_code_list"] ?? '');
-            $data['product_code']       = updateSQ($_POST["product_code"] ?? '');
-            $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
-            $data['keyword']            = updateSQ($_POST["keyword"] ?? '');
-            $data['product_status']     = updateSQ($_POST["product_status"] ?? '');
-            $data['original_price']     = updateSQ($_POST["original_price"] ?? '');
-            $data['product_price']      = updateSQ($_POST["product_price"] ?? '');
+            $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
+            $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
+            $data['product_name'] = updateSQ($_POST["product_name"] ?? '');
+            $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
+            $data['product_status'] = updateSQ($_POST["product_status"] ?? '');
+            $data['original_price'] = updateSQ($_POST["original_price"] ?? '');
+            $data['product_price'] = updateSQ($_POST["product_price"] ?? '');
 
-            $data['product_level']      = updateSQ($_POST["product_level"] ?? '');
-            $data['addrs']              = updateSQ($_POST["addrs"] ?? '');
-            $data['room_cnt']           = updateSQ($_POST["room_cnt"] ?? '');
-            $data['product_info']       = updateSQ($_POST["product_info"] ?? '');
-            $data['product_best']       = updateSQ($_POST["product_best"] ?? 'N');
-            $data['special_price']      = updateSQ($_POST["special_price"] ?? 'N');
-            $data['is_view']            = "Y";
+            $data['product_level'] = updateSQ($_POST["product_level"] ?? '');
+            $data['addrs'] = updateSQ($_POST["addrs"] ?? '');
+            $data['room_cnt'] = updateSQ($_POST["room_cnt"] ?? '');
+            $data['product_info'] = updateSQ($_POST["product_info"] ?? '');
+            $data['product_best'] = updateSQ($_POST["product_best"] ?? 'N');
+            $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');
+            $data['is_view'] = "Y";
 
-            $o_idx          = $_POST["o_idx"] ?? [];
-            $o_name         = $_POST["o_name"] ?? [];
-            $o_price1       = $_POST["o_price1"] ?? [];
-            $o_sdate        = $_POST["o_sdate"] ?? [];
-            $o_edate        = $_POST["o_edate"] ?? [];
-            $o_room         = $_POST["o_room"] ?? [];
-            $option_type    = $_POST["option_type"] ?? [];
-            $o_soldout      = $_POST["o_soldout"] ?? [];
+            $data['product_theme'] = updateSQ($_POST["product_theme"] ?? ''); // code=38 호텔 테마
+            $data['product_bedrooms'] = updateSQ($_POST["product_bedrooms"] ?? ''); // code=39 호텔 침실수
+            $data['product_type'] = updateSQ($_POST["product_type"] ?? ''); // code=40 호텔타입
+            $data['product_promotions'] = updateSQ($_POST["product_promotions"] ?? '');// code=41 호텔 프로모션
 
-            $rop_idx            = $_POST["rop_idx"] ?? [];
-            $sup_room__idx      = $_POST["sup_room__idx"] ?? [];
-            $sup_room__name     = $_POST["sup_room__name"] ?? [];
-            $sup__key           = $_POST["sup__key"] ?? [];
-            $sup__name          = $_POST["sup__name"] ?? [];
-            $sup__price         = $_POST["sup__price"] ?? [];
-            $sup__price_sale    = $_POST["sup__price_sale"] ?? [];
+            $o_idx = $_POST["o_idx"] ?? [];
+            $o_name = $_POST["o_name"] ?? [];
+            $o_price1 = $_POST["o_price1"] ?? [];
+            $o_sdate = $_POST["o_sdate"] ?? [];
+            $o_edate = $_POST["o_edate"] ?? [];
+            $o_room = $_POST["o_room"] ?? [];
+            $option_type = $_POST["option_type"] ?? [];
+            $o_soldout = $_POST["o_soldout"] ?? [];
+
+            $rop_idx = $_POST["rop_idx"] ?? [];
+            $sup_room__idx = $_POST["sup_room__idx"] ?? [];
+            $sup_room__name = $_POST["sup_room__name"] ?? [];
+            $sup__key = $_POST["sup__key"] ?? [];
+            $sup__name = $_POST["sup__name"] ?? [];
+            $sup__price = $_POST["sup__price"] ?? [];
+            $sup__price_sale = $_POST["sup__price_sale"] ?? [];
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -178,7 +203,7 @@ class AdminHotelController extends BaseController
                 if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
                     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
-                
+
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();
                     $data["ufile$i"] = $file->getRandomName();
@@ -371,7 +396,6 @@ class AdminHotelController extends BaseController
                     </script>";
             }
 
-            
 
         } catch (\Exception $e) {
             return $this->response->setJSON([
