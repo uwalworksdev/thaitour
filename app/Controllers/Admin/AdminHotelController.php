@@ -23,18 +23,26 @@ class AdminHotelController extends BaseController
     {
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_txt = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $orderBy = $_GET["orderBy"] ?? "";
 
         $where = [
-            'search_name' => $search_name,
+            'search_txt' => $search_txt,
             'search_category' => $search_category,
             'orderBy' => $orderBy,
             'product_code_1' => 1303,
         ];
 
-        $result = $this->productModel->findProductPaging($where, $g_list_rows, $pg);
+        $orderByArr = [];
+
+        if($orderBy == 1) {
+            $orderByArr['onum'] = "DESC";
+        } elseif ($orderBy == 2) {
+            $orderByArr['r_date'] = "DESC";
+        }
+
+        $result = $this->productModel->findProductPaging($where, $g_list_rows, $pg, $orderByArr);
 
         $data = [
             'result' => $result['items'],
@@ -43,7 +51,7 @@ class AdminHotelController extends BaseController
             'nTotalCount' => $result['nTotalCount'],
             'nPage' => $result['nPage'],
             'pg' => $pg,
-            'search_name' => $search_name,
+            'search_txt' => $search_txt,
             'search_category' => $search_category,
             'g_list_rows' => $g_list_rows,
         ];
@@ -63,10 +71,6 @@ class AdminHotelController extends BaseController
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun = 'tour' and parent_code_no='1303'";
-        $fresult2 = $this->connect->query($fsql);
-        $fresult2 = $fresult2->getResultArray();
-
         $fsql = " select *
 						, (select code_name from tbl_code where code_gubun = 'stay' and depth='2' and tbl_code.code_no=tbl_product_stay.stay_code) as stay_gubun
 						, (select code_name from tbl_code where code_gubun = 'country' and depth='2' and tbl_code.code_no=tbl_product_stay.country_code_1) as country_name_1
@@ -76,36 +80,8 @@ class AdminHotelController extends BaseController
         $fresult3 = $fresult3->getResultArray();
 
         if ($product_idx) {
-            $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-            $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
+            $row = $this->productModel->find($product_idx);
         }
-
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
-        $fresult4 = $this->connect->query($fsql);
-        $fresult4 = $fresult4->getResultArray();
-
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
-        $fresult5 = $this->connect->query($fsql);
-        $fresult5 = $fresult5->getResultArray();
-
-        $fresult5 = array_map(function ($item) {
-            $rs = (array)$item;
-
-            $code_no = $rs['code_no'];
-
-            $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='$code_no' order by onum desc, code_idx desc";
-
-            $rs_child = $this->connect->query($fsql)->getResultArray();
-
-            $rs['child'] = $rs_child;
-
-            return $rs;
-        }, $fresult5);
-
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='35' order by onum desc, code_idx desc";
-        $fresult8 = $this->connect->query($fsql);
-        $fresult8 = $fresult8->getResultArray();
 
         $fsql9 = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
         $fresult9 = $this->connect->query($fsql9);
@@ -124,11 +100,7 @@ class AdminHotelController extends BaseController
             's_product_code_2' => $s_product_code_2,
             'row' => $row ?? '',
             'fresult' => $fresult,
-            'fresult2' => $fresult2,
             'fresult3' => $fresult3,
-            'fresult4' => $fresult4,
-            'fresult5' => $fresult5,
-            'fresult8' => $fresult8,
             'fresult9' => $fresult9,
             'roresult' => $roresult
         ];
@@ -425,11 +397,15 @@ class AdminHotelController extends BaseController
         try {
             $product_idx = $_POST['product_idx'] ?? '';
             $onum = $_POST['onum'] ?? '';
-            $goods_dis3 = $_POST['product_best'] ?? '';
+            $product_best = $_POST['product_best'] ?? '';
+            $product_status = $this->request->getPost("product_status");
 
-            $sql = " update tbl_product_mst set onum='" . $onum . "', goods_dis3='" . $goods_dis3 . "' where product_idx='" . $product_idx . "'";
+            $db = $this->productModel->update($product_idx, [
+                "onum" => $onum,
+                "product_best" => $product_best,
+                "product_status" => $product_status
+            ]);
 
-            $db = $this->connect->query($sql);
             if (!$db) {
                 return $this->response
                     ->setStatusCode(400)

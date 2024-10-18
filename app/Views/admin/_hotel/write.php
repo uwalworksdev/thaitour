@@ -104,7 +104,7 @@ $links = "list";
                                 <tr>
                                     <th>카테고리선택</th>
                                     <td colspan="3">
-                                        <select id="product_code_1" name="product_code_1" class="input_select">
+                                        <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult as $frow) {
@@ -121,22 +121,11 @@ $links = "list";
                                                     <?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select">
+                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
-                                            <?php
-                                            foreach ($fresult2 as $frow) {
-                                                $status_txt = "";
-                                                if ($frow["status"] == "Y") {
-                                                    $status_txt = "";
-                                                } elseif ($frow["status"] == "N") {
-                                                    $status_txt = "[삭제]";
-                                                } elseif ($frow["status"] == "C") {
-                                                    $status_txt = "[마감]";
-                                                }
-                                                ?>
-                                                <option value="<?= $frow["code_no"] ?>"><?= $frow["code_name"] ?>
-                                                    <?= $status_txt ?></option>
-                                            <?php } ?>
+                                        </select>
+                                        <select id="product_code_3" name="product_code_3" class="input_select">
+                                            <option value="">3차분류</option>
                                         </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
                                     </td>

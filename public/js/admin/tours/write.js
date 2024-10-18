@@ -7,7 +7,7 @@ $(function () {
 function get_code(strs, depth) {
     $.ajax({
         type: "GET"
-        , url: "get_code.ajax.php"
+        , url: "/ajax/get_code"
         , dataType: "html" //전송받을 데이터의 타입
         , timeout: 30000 //제한시간 지정
         , cache: false  //true, false
@@ -18,21 +18,21 @@ function get_code(strs, depth) {
         }
         , success: function (json) {
             //alert(json);
-            if (depth <= 2) {
+            if (depth <= 3) {
                 $("#product_code_2").find('option').each(function () {
                     $(this).remove();
                 });
                 $("#product_code_2").append("<option value=''>2차분류</option>");
             }
 
-            if (depth <= 3) {
+            if (depth <= 4) {
                 $("#product_code_3").find('option').each(function () {
                     $(this).remove();
                 });
                 $("#product_code_3").append("<option value=''>3차분류</option>");
             }
 
-            if (depth <= 4) {
+            if (depth <= 5) {
                 $("#product_code_4").find('option').each(function () {
                     $(this).remove();
                 });
@@ -49,7 +49,7 @@ function get_code(strs, depth) {
                 } else if (list[i].code_status == "N") {
                     contentStr = "[사용안함]";
                 }
-                $("#product_code_" + (parseInt(depth))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                $("#product_code_" + (parseInt(depth - 1))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
             }
         }
     });
@@ -236,6 +236,14 @@ $(document).ready(function () {
         if (cate_code2 !== "") {
             tmp_code = cate_code2;
             tmp_code_txt += " > " + cate_text2;
+        }
+
+        let cate_code3 = $("#product_code_3").val();
+        let cate_text3 = $("#product_code_3 option:selected").text();
+
+        if (cate_code3 !== "") {
+            tmp_code = cate_code3;
+            tmp_code_txt += " > " + cate_text3;
         }
 
         if (tmp_code === "") {

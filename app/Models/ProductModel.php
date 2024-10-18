@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Models;
 use CodeIgniter\Model;
 
 class ProductModel extends Model
@@ -402,6 +403,15 @@ class ProductModel extends Model
         if($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
+
+        if($where['special_price'] != "") {
+            $builder->where("special_price", $where['special_price']);
+        }
+
+        if($where['product_status'] != "") {
+            $builder->where("product_status", $where['product_status']);
+        }
+
         $builder->where("product_status !=", "D");
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
