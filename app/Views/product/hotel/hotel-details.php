@@ -5,7 +5,7 @@
     <div class="body_inner">
     <div class="section1">
         <div class="title-container">
-            <h2><?= $hotel['goods_name_front'] ?> </h2>
+            <h2><?= $hotel['product_name'] ?> </h2>
             <div class="list-icon">
                 <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                 <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
@@ -26,20 +26,17 @@
         </div>
         <div class="hotel-image-container">
             <div class="hotel-image-container-1">
-                <img src="/uploads/hotel/<?= $hotel['ufile1'] ?>" alt="<?= $hotel['goods_name_front'] ?>"
+                <img src="/uploads/hotel/<?= $hotel['ufile1'] ?>" alt="<?= $hotel['product_name'] ?>"
                      onerror="this.src='/images/share/noimg.png'">
             </div>
             <div class="grid_2_2">
                 <?php for ($j = 2; $j < 5; $j++) { ?>
                     <img class="grid_2_2_size" src="/uploads/hotel/<?= $hotel['ufile' . $j] ?>"
-                         alt="<?= $hotel['goods_name_front'] ?>" onerror="this.src='/images/share/noimg.png'">
+                         alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                 <?php } ?>
-                <!--                    <img class="grid_2_2_size" src="/uploads/hotel/hotel_details_2.png" alt="hotel_details_2">-->
-                <!--                    <img class="grid_2_2_size" src="/uploads/hotel/hotel_details_3.png" alt="hotel_details_3">-->
-                <!--                    <img class="grid_2_2_size" src="/uploads/hotel/hotel_details_4.png" alt="hotel_details_4">-->
                 <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
                     <img class="custom_button" src="/uploads/hotel/<?= $hotel['ufile5'] ?>"
-                         alt="<?= $hotel['goods_name_front'] ?>"
+                         alt="<?= $hotel['product_name'] ?>"
                          onerror="this.src='/images/share/noimg.png'">
                     <div class="button-show-detail-image">
                         <img class="only_web" src="/uploads/icons/image_detail_icon.png"
@@ -152,11 +149,30 @@
                             <div class="card-item-left">
                                 <div class="only_web">
                                     <div class="grid2_2_1">
-                                        <?php for ($k = 1; $k < 4; $k++) { ?>
-                                            <img src="/uploads/rooms/<?= $room['ufile' . $k] ?>"
-                                                 onerror="this.src='/images/share/noimg.png"
-                                                 alt="<?= $room['roomName'] ?>">
-                                        <?php } ?>
+                                        <!--                                        --><?php //for ($k = 1; $k < 4; $k++) { ?>
+                                        <!--                                            <img src="/uploads/rooms/-->
+                                        <?php //= $room['ufile' . $k] ?><!--"-->
+                                        <!--                                                 onerror="this.src='/images/share/noimg.png"-->
+                                        <!--                                                 alt="-->
+                                        <?php //= $room['roomName'] ?><!--">-->
+                                        <!--                                        --><?php //} ?>
+                                        <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
+                                             onerror="this.src='/images/share/noimg.png"
+                                             alt="<?= $room['roomName'] ?>">
+                                        <div class=""
+                                             style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
+                                            <?php if ($room['ufile2']) { ?>
+                                                <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile2'] ?>"
+                                                     onerror="this.src='/images/share/noimg.png"
+                                                     alt="<?= $room['roomName'] ?>">
+                                            <?php } ?>
+
+                                            <?php if ($room['ufile3']) { ?>
+                                                <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile3'] ?>"
+                                                     onerror="this.src='/images/share/noimg.png"
+                                                     alt="<?= $room['roomName'] ?>">
+                                            <?php } ?>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="grid2_2_1_m only_mo">
@@ -327,13 +343,30 @@
                                     <div class="card-item-left">
                                         <div class="only_web">
                                             <div class="grid2_2_1">
-                                                <?php for ($k = 1; $k < 4; $k++) { ?>
-                                                    <?php if ($room['ufile' . $k]) { ?>
-                                                        <img src="/uploads/rooms/<?= $room['ufile' . $k] ?>"
+<!--                                                --><?php //for ($k = 1; $k < 4; $k++) { ?>
+<!--                                                    --><?php //if ($room['ufile' . $k]) { ?>
+<!--                                                        <img src="/uploads/rooms/--><?php //= $room['ufile' . $k] ?><!--"-->
+<!--                                                             onerror="this.src='/images/share/noimg.png"-->
+<!--                                                             alt="--><?php //= $room['roomName'] ?><!--">-->
+<!--                                                    --><?php //} ?>
+<!--                                                --><?php //} ?>
+                                                <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
+                                                     onerror="this.src='/images/share/noimg.png"
+                                                     alt="<?= $room['roomName'] ?>">
+                                                <div class=""
+                                                     style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
+                                                    <?php if ($room['ufile2']) { ?>
+                                                        <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile2'] ?>"
                                                              onerror="this.src='/images/share/noimg.png"
                                                              alt="<?= $room['roomName'] ?>">
                                                     <?php } ?>
-                                                <?php } ?>
+
+                                                    <?php if ($room['ufile3']) { ?>
+                                                        <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile3'] ?>"
+                                                             onerror="this.src='/images/share/noimg.png"
+                                                             alt="<?= $room['roomName'] ?>">
+                                                    <?php } ?>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="grid2_2_1_m only_mo">
@@ -757,7 +790,7 @@
                                     <?php $i++; endforeach; ?>
                             </div>
                             <div class="prd_name">
-                                <?= $item['goods_name_front'] ?>
+                                <?= $item['product_name'] ?>
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">
