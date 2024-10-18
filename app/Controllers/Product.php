@@ -247,8 +247,8 @@ class Product extends BaseController
         $code_no = $this->request->getVar('code_no');
         $page = $this->request->getVar('page');
         $productByKeyword = $this->productModel->findProductPaging([
-            'special_price' => 'Y',
-            'product_code_1' => $code_no
+            'product_code_1' => $code_no,
+            'product_status' => 'sale'
         ], 8, $page, ['onum' => 'DESC']);
 
         $html = '';
