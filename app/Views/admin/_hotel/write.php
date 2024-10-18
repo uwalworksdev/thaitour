@@ -290,19 +290,20 @@ $links = "list";
 
                                 .list_value_ .item_ {
                                     position: relative;
-                                    padding: 5px;
+                                    padding: 10px;
+                                    border: 1px solid #dbdbdb;
                                 }
 
                                 .list_value_ .item_ .remove {
                                     position: absolute;
-                                    color: rgba(255, 0, 0, 0.8);
+                                    color: #FFFFFF;
                                     cursor: pointer;
                                     padding: 0 5px;
-                                    top: 0;
-                                    background-color: #FFFFFF;
+                                    top: -10px;
+                                    background-color: rgba(255, 0, 0, 0.8);
                                     border-radius: 50%;
-                                    right: 0;
-                                    border: 1px solid #dbdbdb;
+                                    right: -5px;
+                                    border: 1px solid rgba(255, 0, 0, 0.8);
                                 }
                             </style>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
