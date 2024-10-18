@@ -212,7 +212,7 @@ class Product extends BaseController
                 'bestValueProduct' => $bestValueProduct,
                 'keyWordAll' => $keyWordAll,
                 'keyword' => $keyword,
-                'keyWordActive' => $keyWordActive,
+                'keyWordActive' => $keyWordAll[$keyWordActive],
                 'productByKeyword' => $productByKeyword
             ];
 
@@ -736,27 +736,12 @@ class Product extends BaseController
                 $fresult8 = $this->db->query($fsql);
                 $fresult8 = $fresult8->getResultArray();
             }
-
-            /* get options */
-//            $sql = "SELECT * FROM tbl_hotel_option o WHERE o.goods_code = " . $hotel['goods_code'] . " and o.o_room != 0
-//                        JOIN tbl_room r ON r.product_idx = o.o_room ORDER BY o.idx DESC";
-
-//            $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 ORDER BY onum DESC, code_idx DESC";
-//            $room_categories = $this->db->query($sql)->getResultArray();
-//
-//            $room_categories_convert = [];
-//            foreach ($room_categories as $category) {
-//                $sql_count = "SELECT * FROM tbl_room WHERE category LIKE '%" . $this->db->escapeLikeString($category['code_no']) . "|%'";
-//                $count = $this->db->query($sql_count)->getNumRows();
-//                $category['count'] = $count;
-//                $room_categories_convert[] = $category;
-//            }
             $categories = '';
 
             $sql = "SELECT * 
                     FROM tbl_hotel_option o
-                    JOIN tbl_room r ON r.product_idx = o.o_room
-                    WHERE o.goods_code = " . $hotel['goods_code'] . " 
+                    JOIN tbl_room r ON r.g_idx = o.o_room
+                    WHERE o.goods_code = '" . $hotel['product_code'] . "'
                     AND o.o_room != 0 
                     ORDER BY o.idx DESC";
 
@@ -766,7 +751,7 @@ class Product extends BaseController
 
             $list__gix = "";
             foreach ($hotel_options as $option) {
-                $sql_count = "SELECT * FROM tbl_room WHERE product_idx = " . $option['o_room'];
+                $sql_count = "SELECT * FROM tbl_room WHERE g_idx = " . $option['o_room'];
 
                 $room = $this->db->query($sql_count)->getRowArray();
 
@@ -775,7 +760,7 @@ class Product extends BaseController
                 if ($room) {
                     $categories .= $room['category'];
 
-                    $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['product_idx'];
+                    $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['g_idx'];
                     $room_option = $this->db->query($sql)->getResultArray();
                 }
 
@@ -797,7 +782,7 @@ class Product extends BaseController
             $list__gix = rtrim(implode(',', $_arr_gix), ',');
             $insql2 = "";
             if (count($_arr_gix) > 0 && $list__gix !== '') {
-                $insql2 = " AND product_idx IN ($list__gix)";
+                $insql2 = " AND g_idx IN ($list__gix)";
             }
 
             $sql = "SELECT * FROM tbl_code WHERE code_gubun = 'hotel_cate' and parent_code_no = 36 " . $insql . " ORDER BY onum DESC, code_idx DESC";
@@ -1022,6 +1007,7 @@ class Product extends BaseController
     {
         $suggestHotels = $this->productModel
             ->where('product_idx !=', $currentHotelId)
+            ->limit(10)
             ->get()
             ->getResultArray();
 

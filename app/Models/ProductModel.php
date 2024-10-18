@@ -439,7 +439,14 @@ class ProductModel extends Model
                 }
             }
         }
-        return $keyWordsArray;
+
+
+        $countedArray = array_count_values($keyWordsArray);
+        arsort($countedArray);
+        $uniqueArray = array_keys($countedArray);
+
+
+        return array_slice($uniqueArray, 0, 20);
     }
     public function getProductByKeyword($keyword, $code_no, $g_list_rows = 1000, $pg = 1)
     {

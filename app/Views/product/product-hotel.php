@@ -251,7 +251,7 @@
                 <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
                     <ul class="tab_box_show_ tab_box_show__hotel d_flex justify_content_center align_items_center">
                         <?php foreach ($keyWordAll as $key => $item) { ?>
-                            <li class="tab_box_element_ p--20 border <?=$key == $keyWordActive ? 'tab_active_' : ''?>" data-keyword="<?=$item?>">#<?= $item ?></li>
+                            <li class="tab_box_element_ p--20 border <?=$item == $keyWordActive ? 'tab_active_' : ''?>" data-keyword="<?=$item?>">#<?= $item ?></li>
                         <?php } ?>
                     </ul>
                 </div>
@@ -264,8 +264,8 @@
                             echo view('product/hotel/product_item_by_keyword', ['item' => $item]);
                         } ?>
                     </div>
-                    <div class="custom_pagination_ w_100">
-                        <div class="pagination_show_">
+                    <div class="custom_pagination_ w_100" style="<?= $productByKeyword['pg'] >= $productByKeyword['nPage'] ? 'display: none;' : '' ?>" id="custom_pagination_keyword">
+                        <div class="pagination_show_" onclick="handleClickPagination()">
                             <img src="/images/ico/reloadicon.png" alt="">
                             <p>다음상품</p>
                             <div class="most_searched_tab_2_pagination_ sub_tour_section6_swiper_pagination_"></div>
@@ -295,6 +295,32 @@
 
     <script>
         let page = 1;
+        let totalPage = Number('<?=$productByKeyword['nPage']?>');
+        let keywordCurrent = '<?=$keyWordActive?>';
+        function handleClickPagination(keyword) {
+            if(page >= totalPage && !keyword) return;
+            if(keyword) keywordCurrent = keyword;
+            $.ajax({
+                type: "GET",
+                url: "/product/get-by-keyword",
+                data: {
+                    keyword: keywordCurrent,
+                    page: page,
+                    code_no: 1303
+                },
+                dataType: "json",
+                success: function (data) {
+                    page += 1;
+                    $("#product_list_keyword").html(data.html);
+                    if(page >= totalPage) {
+                        $('#custom_pagination_keyword').hide();
+                    } else {
+                        $('#custom_pagination_keyword').show();
+                    }
+                    totalPage = Number(data.nPage);
+                }
+            })
+        }
         $(document).ready(function () {
             $('.pagination_show_').on('click', function () {
                 let pagination = $(this).parent().prev().prev();
@@ -306,19 +332,8 @@
             $('.tab_box_element_').on('click', function () {
                 $('.tab_box_element_').removeClass('tab_active_');
                 $(this).addClass('tab_active_');
-                $.ajax({
-                    type: "GET",
-                    url: "/product/get-by-keyword",
-                    data: {
-                        keyword: $(this).data('keyword'),
-                        page: page,
-                        code_no: 1303
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        $("#product_list_keyword").html(data.html);
-                    }
-                })
+                page = 1;
+                handleClickPagination($(this).data('keyword'));
             })
         });
 
