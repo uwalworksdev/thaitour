@@ -490,10 +490,10 @@
                         </table>
                     </form>
                     <div class="section_vehicle_2_7__btn_wrap">
-                        <button class="btn_add_cart">
+                        <button class="btn_add_cart" onclick="window.location.href='/cart/item-list/123'">
                             장바구니담기
                         </button>
-                        <button class="btn_submit">
+                        <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
                             상품 예약하기
                         </button>
                     </div>

@@ -1,5 +1,5 @@
 $(function () {
-    $("#hiddenFrame").on('load', function() {
+    $("#hiddenFrame").on('load', function () {
         $("#ajax_loader").addClass("display-none");
     });
 })
@@ -183,6 +183,36 @@ function send_it() {
         let nextInp = item.next();
         nextInp.val(data_convert);
     })
+
+    let _product_theme = '';
+    let _product_bedrooms = '';
+    let _product_type = '';
+    let _product_promotions = '';
+
+    let product_theme_ = $('input[name="product_theme_"]');
+    product_theme_.each(function () {
+        _product_theme += $(this).val() + '|';
+    })
+    $("#product_theme").val(_product_theme);
+
+    let product_bedroom_ = $('input[name="product_bedroom_"]');
+    product_bedroom_.each(function () {
+        _product_bedrooms += $(this).val() + '|';
+    })
+    $("#product_bedrooms").val(_product_bedrooms);
+
+    let product_type_ = $('input[name="product_type_"]');
+    product_type_.each(function () {
+        _product_type += $(this).val() + '|';
+    })
+    $("#product_type").val(_product_type);
+
+    let product_promotion_ = $('input[name="product_promotion_"]');
+    product_promotion_.each(function () {
+        _product_promotions += $(this).val() + '|';
+    })
+    $("#product_promotions").val(_product_promotions);
+
     $("#ajax_loader").removeClass("display-none");
     frm.submit();
 }
@@ -365,7 +395,8 @@ function addCategory(code, cateText) {
         alert("이미 등록된 카테고리입니다.");
         return false;
     }
-    var tmp_product_code = $("#product_code_list").val();;
+    var tmp_product_code = $("#product_code_list").val();
+    ;
     tmp_product_code = tmp_product_code + "|" + code + "|";
     $("#product_code_list").val(tmp_product_code);
 
@@ -753,10 +784,13 @@ $(document).ready(function () {
                                                                 class="btn_01">추가
                                                         </button>
                                                         <div class="list_name list__room_name" style="margin-top: 10px;">
-                                                            <div class="input_item"
-                                                                 style="display: flex;margin-top: 5px;">
+                                                            <div class="input_item" style="display: flex;margin-top: 5px;">
                                                                 <input type='text' class='sup__name_child' name='sup__name_child' id=''
                                                                        value=""/>
+                                                                <button type="button" id="btn_del_name"
+                                                                        onclick="delName(this);"
+                                                                        class="btn_02">삭제
+                                                                </button>
                                                             </div>
                                                         </div>
                                                         <input type='hidden' class='' name='sup__name[]' id=''

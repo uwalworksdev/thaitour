@@ -604,7 +604,7 @@ class Product extends BaseController
                 $product = (array)$item;
                 $product_idx = $product['product_idx'];
                 ##############################################
-                $goods_code = $product['goods_code'];
+                $goods_code = $product['product_code'];
                 $goods_code = explode(",", $goods_code);
                 ##############################################
                 $hotel_code = $product['product_code'];
@@ -688,7 +688,7 @@ class Product extends BaseController
             }
 
             $hotel['array_hotel_code'] = $this->explodeAndTrim($hotel['product_code'], '|');
-            $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['goods_code'], ',');
+            $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['product_code'], ',');
 
             $hotel['array_hotel_code_name'] = $this->getHotelCodeNames($hotel['array_hotel_code']);
 
@@ -699,7 +699,7 @@ class Product extends BaseController
             $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '');
 
             $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
-            $hotel_options = $this->db->query($fsql, [$hotel['goods_code']])->getResultArray();
+            $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
             $_arr_utilities = $_arr_best_utilities = $_arr_services = $_arr_populars = [];
             if (count($hotel_options) > 0) {
                 $hotel_option = $hotel_options[0];
@@ -858,9 +858,9 @@ class Product extends BaseController
         return $this->renderView('product/hotel/customer-form');
     }
 
-    public function completedOrder($code_no)
+    public function completedOrder()
     {
-        return $this->renderView('product/golf/completed-order');
+        return $this->renderView('product/completed-order');
     }
 
     public function golfList($code_no)
@@ -1042,7 +1042,7 @@ class Product extends BaseController
 
         return array_map(function ($hotel) use ($currentHotelCode) {
             $hotel['array_hotel_code'] = $this->explodeAndTrim($hotel['product_code'], '|');
-            $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['goods_code'], ',');
+            $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['product_code'], ',');
 
             $hotel['array_hotel_code_name'] = $this->getHotelCodeNames($hotel['array_hotel_code']);
 

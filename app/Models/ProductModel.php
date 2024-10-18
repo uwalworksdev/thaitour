@@ -10,23 +10,23 @@ class ProductModel extends Model
     protected $primaryKey = 'product_idx';
 
     protected $allowedFields = [
-        "product_code", "product_code_1", "product_code_2", "product_code_3", "product_code_4", 
-        "product_code_name_1", "product_code_name_2", "product_code_name_3", "product_code_name_4", "ufile1", 
-        "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "rfile5", "ufile5", "rfile6", "ufile6", 
-        "rfile7", "ufile7", "product_name", "product_air", "product_info", "product_schedule", "product_country", 
-        "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price", 
-        "max_price", "keyword", "product_price", "product_best", "special_price", "product_option", "product_level", 
-        "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable", 
-        "mobile_able", "mobile_unable", "special_benefit", "special_benefit_m", "notice_comment", "notice_comment_m", 
-        "etc_comment", "etc_comment_m", "benefit", "local_info", "phone", "email", "phone_2", "email_2", "product_route", 
-        "minium_people_cnt", "total_people_cnt", "stay_list", "shopping_list", "sight_list", "country_list", "active_list", 
-        "tour_period", "tour_info", "tour_detail", "guide_s_date", "guide_e_date", "guide_yoil_0", "guide_yoil_1", "guide_yoil_2", 
-        "guide_yoil_3", "guide_yoil_4", "guide_yoil_5", "guide_yoil_6", "money_info", "taffic", "guide_unit", "product_price_kids", 
-        "product_price_baby", "guide_type", "guide_hour", "product_mileage", "exchange", "jetlag", "main_top_best", "main_theme_best", 
-        "tour_time", "capital_city", "m_date", "r_date", "user_id", "user_level", "information", "meeting_guide", "meeting_place", 
-        "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt", 
+        "product_code", "product_code_1", "product_code_2", "product_code_3", "product_code_4",
+        "product_code_name_1", "product_code_name_2", "product_code_name_3", "product_code_name_4", "ufile1",
+        "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "rfile5", "ufile5", "rfile6", "ufile6",
+        "rfile7", "ufile7", "product_name", "product_air", "product_info", "product_schedule", "product_country",
+        "is_view", "product_period", "product_manager", "product_manager_2", "original_price", "min_price",
+        "max_price", "keyword", "product_price", "product_best", "special_price", "product_option", "product_level",
+        "onum", "product_contents", "product_confirm", "product_confirm_m", "product_able", "product_unable",
+        "mobile_able", "mobile_unable", "special_benefit", "special_benefit_m", "notice_comment", "notice_comment_m",
+        "etc_comment", "etc_comment_m", "benefit", "local_info", "phone", "email", "phone_2", "email_2", "product_route",
+        "minium_people_cnt", "total_people_cnt", "stay_list", "shopping_list", "sight_list", "country_list", "active_list",
+        "tour_period", "tour_info", "tour_detail", "guide_s_date", "guide_e_date", "guide_yoil_0", "guide_yoil_1", "guide_yoil_2",
+        "guide_yoil_3", "guide_yoil_4", "guide_yoil_5", "guide_yoil_6", "money_info", "taffic", "guide_unit", "product_price_kids",
+        "product_price_baby", "guide_type", "guide_hour", "product_mileage", "exchange", "jetlag", "main_top_best", "main_theme_best",
+        "tour_time", "capital_city", "m_date", "r_date", "user_id", "user_level", "information", "meeting_guide", "meeting_place",
+        "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
         "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value",
-        "product_code_list", "product_status", "room_cnt", "addrs"
+        "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', 'product_type', 'product_promotions'
     ];
 
     protected function initialize()
@@ -365,42 +365,45 @@ class ProductModel extends Model
             ->get()
             ->getRowArray();
     }
+
     public function getProductsByEvent($bbs_idx)
     {
         return $this->db->table('tbl_product_mst a')
-                        ->select('a.product_name, a.product_idx, a.product_code, a.is_view, b.onum, b.code_idx')
-                        ->join('tbl_event_disp b', 'a.product_idx = b.product_idx')
-                        ->where('b.code_no', $bbs_idx)
-                        ->orderBy('b.onum', 'ASC')
-                        ->get()
-                        ->getResultArray();
+            ->select('a.product_name, a.product_idx, a.product_code, a.is_view, b.onum, b.code_idx')
+            ->join('tbl_event_disp b', 'a.product_idx = b.product_idx')
+            ->where('b.code_no', $bbs_idx)
+            ->orderBy('b.onum', 'ASC')
+            ->get()
+            ->getResultArray();
     }
+
     public function getBestProducts()
     {
         return $this
-                ->where('is_view', 'Y')
-                ->where('product_best', 'Y')->findAll();
+            ->where('is_view', 'Y')
+            ->where('product_best', 'Y')->findAll();
     }
+
     public function findProductPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->builder();
-        if($where['product_code_1'] != "") {
+        if ($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
         }
-        if($where['product_code_2'] != "") {
+        if ($where['product_code_2'] != "") {
             $builder->where('product_code_2', $where['product_code_2']);
         }
-        if($where['product_code_3'] != "") {
+        if ($where['product_code_3'] != "") {
             $builder->where('product_code_3', $where['product_code_3']);
         }
-        if($where['search_txt'] != "") {
-            if($where['search_category'] != "") {
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
                 $builder->like($where['search_category'], $where['search_txt']);
             }
         }
-        if($where['is_view'] != "") {
+        if ($where['is_view'] != "") {
             $builder->where("is_view", $where['is_view']);
         }
 
@@ -418,7 +421,7 @@ class ProductModel extends Model
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        if($orderBy == []) {
+        if ($orderBy == []) {
             $orderBy = ['product_idx' => 'DESC'];
         }
 
@@ -428,8 +431,8 @@ class ProductModel extends Model
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 
         foreach ($items as $key => $value) {
-            $product_price = (float) $value['product_price'];
-            $baht_thai = (float) ($setting['baht_thai'] ?? 0);
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_baht = $product_price / $baht_thai;
             $items[$key]['product_price_baht'] = $product_price_baht;
         }
@@ -437,7 +440,7 @@ class ProductModel extends Model
             'items' => $items,
             'nTotalCount' => $nTotalCount,
             'nPage' => $nPage,
-            'pg' => (int) $pg,
+            'pg' => (int)$pg,
             'search_txt' => $where['search_txt'],
             'search_category' => $where['search_category'],
             'is_view' => $where['is_view'],
@@ -449,6 +452,7 @@ class ProductModel extends Model
         ];
         return $data;
     }
+
     public function getKeyWordAll($code_no)
     {
         $keyWords = $this->select("keyword")->where("product_code_1", $code_no)->get()->getResultArray();
