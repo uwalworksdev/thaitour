@@ -3397,6 +3397,17 @@
   margin-top: 25px;
 }
 
-.sub_hotel_section6_product_list {
+.hotel_category_list .swiper-slide {
+  max-width: calc((100% - 100px) / 6);
+}
 
+.thailand_hotel_list_top_ {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 29px;
+}
+
+.thailand_hotel_top_item_ {
+  width: calc((100% - 60px) / 4);
 }

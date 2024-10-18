@@ -49,7 +49,7 @@
                         <td class="inbox">
                             <div class="r_box">
                                 <select id="" name="search_category" class="input_select" style="width:180px">
-                                    <option value="goods_name_front" <?php if ($search_category == "goods_name_front") {
+                                    <option value="product_name" <?php if ($search_category == "product_name") {
                                         echo "selected";
                                     } ?> >
                                         상품명
@@ -256,9 +256,9 @@
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac">
-                                        <a href="./write?product_idx=<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a>
+                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a>
                                         <br>
-                                        <a href="./write?product_idx=<?= $row["product_idx"] ?>"
+                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
                                     <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
@@ -276,7 +276,7 @@
                                     </td>
                                     <td class="tal" style="font-weight:bold">
                                         <a href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
-                                            <?= viewSQ($row["goods_name_front"]) ?>
+                                            <?= viewSQ($row["product_name"]) ?>
                                         </a><br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>원
                                         <br>판매가격 : <?= number_format($row['product_price']) ?>원
 

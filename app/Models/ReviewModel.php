@@ -102,4 +102,25 @@ class ReviewModel extends Model
 
         return $result;
     }
+    public function getProductReview($product_idx) {
+        $builder = $this->builder();
+        $builder->where('product_idx', $product_idx);
+        $total_review = $builder->countAllResults(false);
+        $avg = 0;
+
+        if ($total_review > 0) {
+            $result =$builder->get()->getResultArray();
+
+            $sum = 0;
+            foreach ($result as $key => $value) {
+                $sum += $value['star'];
+            }
+            $avg = $sum / $total_review;
+            $avg = round($avg, 1);
+        }
+        return [
+            'total_review' => $total_review,
+            'avg' => $avg
+        ];
+    }
 }

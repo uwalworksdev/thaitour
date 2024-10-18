@@ -5,7 +5,7 @@ if (is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
     $src = "/images/product/noimg.png";
 }
 ?>
-<div class="sub_hotel_section7_product_item swiper-slide">
+<a href="/product-hotel/hotel-detail/<?= $item['product_idx'] ?>" class="sub_hotel_section7_product_item swiper-slide">
     <div class="img_box img_box_12">
         <img src="<?= $src ?>" alt="">
     </div>
@@ -14,4 +14,4 @@ if (is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
         <?= number_format($item['product_price']) ?> <span>원~</span> <span class="prd_price_thai">6,000
             <span>바트~</span></span>
     </div>
-</div>
+</a>

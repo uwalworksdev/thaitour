@@ -16,14 +16,37 @@ class MainDispModel extends Model
         'onum', 
         'p_idx'
     ];
-    public function goods_find(int $code_no): array
+    public function goods_find(int $code_no, $g_list_rows = 1000, $pg = 1): array
     {
-        return $this->select('tbl_main_disp.*, tbl_product_mst.*')
-                    ->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner')
-                    ->where('tbl_main_disp.code_no', $code_no)
-                    ->where('tbl_product_mst.is_view', 'Y')
-                    ->orderBy('tbl_main_disp.onum', 'DESC')
-                    ->findAll();
+        // return $this->select('tbl_main_disp.*, tbl_product_mst.*')
+        //             ->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner')
+        //             ->where('tbl_main_disp.code_no', $code_no)
+        //             ->where('tbl_product_mst.is_view', 'Y')
+        //             ->orderBy('tbl_main_disp.onum', 'DESC')
+        //             ->findAll();
+        $builder = $this->db->table($this->table);
+        $builder->select('tbl_main_disp.*, tbl_product_mst.*');
+        $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'inner');
+        $builder->where('tbl_main_disp.code_no', $code_no);
+        $builder->where('tbl_product_mst.is_view', 'Y');
+
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $builder->orderBy('tbl_main_disp.onum', 'DESC');
+        $builder->limit($g_list_rows, ($pg - 1) * $g_list_rows);
+        // return $builder->get()->getResultArray();
+        $data = [
+            'items' => $builder->get()->getResultArray(),
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => $pg,
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
     }
     public function itemCntByProductAndCode(int $product_idx, int $code_no)
     {
