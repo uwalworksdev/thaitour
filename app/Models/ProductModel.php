@@ -382,6 +382,8 @@ class ProductModel extends Model
     }
     public function findProductPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
+        helper(['setting']);
+        $setting = homeSetInfo();
         $builder = $this->builder();
         if($where['product_code_1'] != "") {
             $builder->where('product_code_1', $where['product_code_1']);
@@ -414,6 +416,13 @@ class ProductModel extends Model
             $builder->orderBy($key, $value);
         }
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        foreach ($items as $key => $value) {
+            $product_price = (float) $value['product_price'];
+            $baht_thai = (float) ($setting['baht_thai'] ?? 0);
+            $product_price_baht = $product_price / $baht_thai;
+            $items[$key]['product_price_baht'] = $product_price_baht;
+        }
         $data = [
             'items' => $items,
             'nTotalCount' => $nTotalCount,

@@ -24,7 +24,7 @@ class Setting extends Model{
             "bank_owner", "bank_name", "bank_no", "paymethod", "us_dollar", "aud_dollar", "search_word",
             "custom_service_phone_seoul", "custom_service_phone_sydney", "custom_service_phone_sydney_call_from_australia",
             "bank_no1", "bank_owner_australia", "bank_name_australia", "bank_no_australia", "bank_no_australia1", "favico", 
-            "admin_mobile_list", "admin_email_list"
+            "admin_mobile_list", "admin_email_list", "baht_thai"
         ];
     }
 
