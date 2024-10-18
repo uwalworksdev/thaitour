@@ -29,7 +29,15 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">전체</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all">전체</li>
+                                <?php
+                                    foreach($codes as $code){
+                                ?>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>"><?=$code["code_no"]?></li>
+                                <?php
+                                    }
+                                ?>
+                                <!-- <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">전체</li>
                                 <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
                                 <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">짜오프라야강가</li>
                                 <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">실롬/사톤</li>
@@ -44,7 +52,7 @@
                                 <li class="tab_box_element_ tab_box_js p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
                                 <li class="tab_box_element_ tab_box_js p--20 border " rel="tab14">논타부리</li>
                                 <li class="tab_box_element_ tab_box_js p--20 border " rel="tab15">빠뚜남/펫부리</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li>
+                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li> -->
                             </ul>
                         </div>
                     </div>

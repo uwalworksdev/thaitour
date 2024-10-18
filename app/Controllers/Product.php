@@ -597,7 +597,7 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-            $codes = $this->bannerModel->getCodeBanners($code_no);
+            $codes = $this->codeModel->getByParentAndDepth($code_no, 3)->getResultArray();
             $products = $this->productModel->findProductPaging([], 10);
 
             $products = array_map(function ($item) use ($code_no) {
@@ -652,6 +652,7 @@ class Product extends BaseController
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
+                'codes' => $codes,
                 'products' => $products,
                 'theme_products' => $theme_products,
                 'code_no' => $code_no,
