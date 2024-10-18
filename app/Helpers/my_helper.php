@@ -54,7 +54,7 @@ function get_cate_text($code)
     $frow = $fresult->getRowArray();
 
     if ($frow) {
-        $now_cnt = $frow['depth'];
+        $now_cnt = $frow['depth'] - 1;
         $out_txt = $frow['code_name'];
         $parent_code_no = $frow['parent_code_no'];
 
