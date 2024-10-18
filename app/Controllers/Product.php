@@ -597,54 +597,35 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-            $codes = $this->codeModel->getByParentAndDepth($code_no, 3)->getResultArray();
-            $products = $this->productModel->findProductPaging([], 10);
+            $codes = $this->codeModel->getByParentAndDepth($code_no, 4)->getResultArray();
+            $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
+            $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
+            $promotions = $this->codeModel->getByParentAndDepth(33, 2)->getResultArray();
+            $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
+            $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
 
-            $products = array_map(function ($item) use ($code_no) {
-                $product = (array)$item;
-                $product_idx = $product['product_idx'];
-                ##############################################
-                $goods_code = $product['goods_code'];
-                $goods_code = explode(",", $goods_code);
-                ##############################################
-                $hotel_code = $product['product_code'];
-                // $hotel_code = trim('|', $hotel_code);
-                $hotel_code = explode("|", $hotel_code);
-                ##############################################
-                $product['array_hotel_code'] = $hotel_code;
-                $product['array_goods_code'] = $goods_code;
-                ##############################################
-                $hotel_code_name = [];
-                foreach ($hotel_code as $code) {
-                    $item = $this->db->query("SELECT * FROM tbl_code WHERE code_no = '$code'")->getRowArray();
+            $products = $this->productModel->findProductPaging([
+                'product_code_1' => 1303,
+                'product_code_list' => $code_no,
+                'product_status' => 'sale'
+            ], 10, 1, ['onum' => 'DESC']);
 
-                    if ($item && $item['code_name'] !== '') {
-                        $hotel_code_name[] = $item['code_name'];
-                    }
-                }
-                $product['array_hotel_code_name'] = $hotel_code_name;
-                ##############################################
-                $sql = "SELECT * FROM tbl_travel_review WHERE travel_type = ? AND product_idx = ?";
-                $reviews = $this->db->query($sql, [$code_no, $product_idx])->getResultArray();
-                $total_review = count($reviews);
-                if ($total_review > 0) {
-                    $review_average = 0;
-                    foreach ($reviews as $itemReview) {
-                        $review_average += $itemReview['number_stars'];
-                    }
-                    $review_average /= $total_review;
-                    $review_average = round($review_average, 1);
-                } else {
-                    $review_average = 0;
-                }
+            foreach($products['items'] as $key => $product) {
 
-                $product['total_review'] = $total_review;
-                $product['review_average'] = $review_average;
+                $hotel_codes = explode("|", $product['product_code_list']);
+                $hotel_codes = array_values(array_filter($hotel_codes));
 
-                return $product;
-            }, $products);
+                $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
 
-            $totalProducts = count($products);
+                $products['items'][$key]['codeTree'] = $codeTree;
+
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+                $products['items'][$key]['total_review'] = $productReview['total_review'];
+                $products['items'][$key]['review_average'] = $productReview['avg'];
+            }
+
+            $totalProducts = count($products['items']);
             $pager = \Config\Services::pager();
 
             $theme_products = $this->productModel->findProductPaging([], $perPage, 1);
@@ -653,7 +634,12 @@ class Product extends BaseController
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
                 'codes' => $codes,
-                'products' => $products,
+                'types_hotel' => $types_hotel,
+                'ratings' => $ratings,
+                'promotions' => $promotions,
+                'topics' => $topics,
+                'bedrooms' => $bedrooms,
+                'products' => $products['items'],
                 'theme_products' => $theme_products,
                 'code_no' => $code_no,
                 's' => $s,

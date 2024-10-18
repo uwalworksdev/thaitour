@@ -19,142 +19,158 @@
             </div>
         </div>
         <div class="sub-hotel-container">
-            <div class="category-left only_web">
-                <h1 class="title">방콕</h1>
-                <div class="category-left-list">
-                    <div class="category-left-item">
-                        <div class="subtitle">
-                            <span>세부지역</span>
-                            <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
-                        </div>
-                        <div class="tab_box_area_">
-                            <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all">전체</li>
-                                <?php
-                                    foreach($codes as $code){
-                                ?>
-                                    <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>"><?=$code["code_no"]?></li>
-                                <?php
-                                    }
-                                ?>
-                                <!-- <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">짜오프라야강가</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">실롬/사톤</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">시암</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab7">랑수언/위타유</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab10">라차다</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab11">수완나품 공항주변</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab12">람캄행</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab14">논타부리</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab15">빠뚜남/펫부리</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li> -->
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="category-left-item">
-                        <div class="subtitle">
-                            <span>호텔타입</span>
-                            <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
-                        </div>
-                        <div class="tab_box_area_">
-                            <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">오전</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">레지던스</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">리조트</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">풀빌라</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="category-left-item">
-                        <div class="subtitle">
-                            <span>호텔등급</span>
-                            <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
-                        </div>
-                        <div class="tab_box_area_">
-                            <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">18홀</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">5성급</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">4성급</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">3성급</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">2성급</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="category-left-item">
-                        <div class="subtitle">
-                            <span>1박 평균가격</span>
-                            <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
-                        </div>
-                        <p class="tab-currency">
-                            <span class="currency active">원 · </span><span class="currency">바트</span>
-                        </p>
+            <form action="" name="fillFrm" id="fillFrm">
+                <input type="hidden" name="search_category" id="search_category">
+                <input type="hidden" name="search_hotel" id="search_hotel">
+                <input type="hidden" name="search_rating" id="search_rating">
+                <input type="hidden" name="search_promotion" id="search_promotion">
+                <input type="hidden" name="search_topic" id="search_topic">
+                <input type="hidden" name="search_bedroom" id="search_bedroom">
 
-                        <div class="slider-container only_web">
-                            <div class="slider-background"></div>
-                            <div class="slider-track" id="slider-track"></div>
-                            <input type="range" min="0" max="100" value="25" class="slider" id="slider-min">
-                            <input type="range" min="0" max="100" value="75" class="slider" id="slider-max">
+                <div class="category-left only_web">
+                    <h1 class="title">방콕</h1>
+                    <div class="category-left-list">
+                        <div class="category-left-item">
+                            <div class="subtitle">
+                                <span>세부지역</span>
+                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                            </div>
+                            <div class="tab_box_area_">
+                                <ul class="tab_box_show_">
+                                    <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all" data-type="category">전체</li>
+                                    <?php
+                                        foreach($codes as $code){
+                                    ?>
+                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="category"><?=$code["code_name"]?></li>
+                                    <?php
+                                        }
+                                    ?>
+                                    <!-- <li class="tab_box_element_ tab_box_js p--20 border tab_active_" rel="tab1">전체</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">짜오프라야강가</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">실롬/사톤</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">시암</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab7">랑수언/위타유</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab10">라차다</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab11">수완나품 공항주변</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab12">람캄행</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab14">논타부리</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab15">빠뚜남/펫부리</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li> -->
+                                </ul>
+                            </div>
                         </div>
-                        <span>10,000원 ~ 500,000원 이상</span>
-                    </div>
-                    <div class="category-left-item">
-                        <div class="subtitle">
-                            <span>프로모션</span>
-                            <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                        <div class="category-left-item">
+                            <div class="subtitle">
+                                <span>호텔타입</span>
+                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                            </div>
+                            <div class="tab_box_area_">
+                                <ul class="tab_box_show_">
+                                    <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all" data-type="hotel">전체</li>
+                                    <?php
+                                        foreach($types_hotel as $code){
+                                    ?>
+                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="hotel"><?=$code["code_name"]?></li>
+                                    <?php
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="tab_box_area_">
-                            <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab1">무료숙박(1+1,2+1등)</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">특별패키지</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">룸업그레이드</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">공항픽업 무료</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">레이트 체크아웃 무료</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">얼리버드 할인</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">엑스트라베드 무료</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">아동 엑스트라베드 무료</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">아동조식 무료</li>
-                            </ul>
+                        <div class="category-left-item">
+                            <div class="subtitle">
+                                <span>호텔등급</span>
+                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                            </div>
+                            <div class="tab_box_area_">
+                                <ul class="tab_box_show_">
+                                    <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all" data-type="rating">전체</li>
+                                    <?php
+                                        foreach($ratings as $code){
+                                    ?>
+                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="rating"><?=$code["code_name"]?></li>
+                                    <?php
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="category-left-item">
-                        <div class="subtitle">
-                            <span>테마</span>
-                            <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                        <div class="category-left-item">
+                            <div class="subtitle">
+                                <span>1박 평균가격</span>
+                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                            </div>
+                            <p class="tab-currency">
+                                <span class="currency active">원 · </span><span class="currency">바트</span>
+                            </p>
+    
+                            <div class="slider-container only_web">
+                                <div class="slider-background"></div>
+                                <div class="slider-track" id="slider-track"></div>
+                                <input type="range" min="0" max="100" value="25" class="slider" id="slider-min">
+                                <input type="range" min="0" max="100" value="75" class="slider" id="slider-max">
+                            </div>
+                            <span>10,000원 ~ 500,000원 이상</span>
                         </div>
-                        <div class="tab_box_area_">
-                            <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab1">체크인 후 24시간 이용 가능</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">가성비 5성급 호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab5">펫프렌들리 호텔</li>
-                            </ul>
+                        <div class="category-left-item">
+                            <div class="subtitle">
+                                <span>프로모션</span>
+                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                            </div>
+                            <div class="tab_box_area_">
+                                <ul class="tab_box_show_">
+                                    <?php
+                                        foreach($promotions as $code){
+                                    ?>
+                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="promotion"><?=$code["code_name"]?></li>
+                                    <?php
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="category-left-item">
-                        <div class="subtitle">
-                            <span>침실수</span>
-                            <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                        <div class="category-left-item">
+                            <div class="subtitle">
+                                <span>테마</span>
+                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                            </div>
+                            <div class="tab_box_area_">
+                                <ul class="tab_box_show_">
+                                    <?php
+                                        foreach($topics as $code){
+                                    ?>
+                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="topic"><?=$code["code_name"]?></li>
+                                    <?php
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="tab_box_area_">
-                            <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab1">2 베드룸(성인 4~5인)</li>
-                                <li class="tab_box_element_ tab_box_js p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
-                            </ul>
+                        <div class="category-left-item">
+                            <div class="subtitle">
+                                <span>침실수</span>
+                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                            </div>
+                            <div class="tab_box_area_">
+                                <ul class="tab_box_show_">
+                                    <?php
+                                        foreach($bedrooms as $code){
+                                    ?>
+                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="bedroom"><?=$code["code_name"]?></li>
+                                    <?php
+                                        }
+                                    ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="content-right">
                 <div class="form_element_">
                     <div class="date-container">
@@ -193,12 +209,14 @@
                         <div class="list-tag">
                         </div>
                     </div>
-                    <button id="filter_product">검색</button>
-                    <button id="delete_all">전체삭제</button>
+                    <div>
+                        <button id="filter_product">검색</button>
+                        <button id="delete_all">전체삭제</button>
+                    </div>
                 </div>
                 <div class="below-filter-content">
                     <div class="total_number">
-                        <p>총 상품 <span>70</span></p>
+                        <p>총 상품 <span><?=$totalProducts?></span></p>
                     </div>
                     <div class="two-way-arrow-content">
                         <a href="#" class="">
@@ -207,7 +225,93 @@
                         </a>
                     </div>
                 </div>
-                <div class="product-card-item-container">
+                <?php
+                    foreach($products as $product){
+                        if(is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
+                            $src = "/data/hotel/" . $product['ufile1'];
+                        } else {
+                            $src = "/images/product/noimg.png";
+                        }
+                ?>
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
+                            <a href="/product-hotel/hotel-detail/<?=$product["product_idx"]?>">
+                                <img src="<?=$src?>" alt="sub_hotel_1">
+                            </a>
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/<?=$product["product_idx"]?>">
+                                    <h2><?=$product['product_name']?></h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span><?=$product["review_average"]?></span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span class="text-primary">생생리뷰 <strong>(<?=$product["total_review"]?>)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <?php
+                                    $num = count($product['codeTree']);
+                                    foreach ($product['codeTree'] as $key => $code):
+                                ?>
+                                    <span><?= $code['code_name'] ?></span>
+                                        <?php if ($key < $num - 1): ?>
+                                            <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                            <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                                alt="arrow_right_mo">
+                                        <?php endif; ?>               
+                                <?php endforeach; ?>
+                            </div>
+                            <div class="only_mo">
+                                <div class="star-container">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                        <span><?=$product["review_average"]?></span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span class="text-primary">생생리뷰 <strong>(<?=$product["total_review"]?>)</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
+                                </div>
+                                <div class="item-info">
+                                    <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
+                                    <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                </div>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    </div>
+                                </div>
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main"><?= number_format($product['product_price']) ?> </span><span class="text-gray">원
+                                            ~</span> <span class="sub text-gray">6,000바트~</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                    }
+                ?>
+                <!-- <div class="product-card-item-container">
                     <div class="product-card-item-left">
                         <a href="/product-hotel/hotel-detail/1324">
                             <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
@@ -881,7 +985,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="pagination">
                     <a href="#" class="page-link">
                         <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
@@ -1076,6 +1180,39 @@
     });
 
     $(document).ready(function() {
+        var category = [];
+        var hotel = [];
+        var rating = [];
+        var promotion = [];
+        var topic = [];
+        var bedroom = [];
+
+        function filter_product() {
+            $(".tab_box_js.tab_active_").each(function () {
+                if($(this).data("type") == "category") {
+                    category.push($(this).data("code"));
+                }else if($(this).data("type") == "hotel") {
+                    hotel.push($(this).data("code"));
+                }else if($(this).data("type") == "rating") {
+                    rating.push($(this).data("code"));
+                }else if($(this).data("type") == "promotion") {
+                    promotion.push($(this).data("code"));
+                }else if($(this).data("type") == "topic") {
+                    topic.push($(this).data("code"));
+                }else if($(this).data("type") == "bedroom") {
+                    bedroom.push($(this).data("code"));
+                }
+            });
+            $("#search_category").val(category.join(","));
+            $("#search_hotel").val(hotel.join(","));
+            $("#search_rating").val(rating.join(","));
+            $("#search_promotion").val(promotion.join(","));
+            $("#search_topic").val(topic.join(","));
+            $("#search_bedroom").val(bedroom.join(","));
+        }
+
+        filter_product();
+
         $('.tab_box_js.tab_active_').each(function() {
             var tabText = $(this).text();
             $('.list-tag').append(
@@ -1123,6 +1260,9 @@
                     '</div>'
                 );
             }
+
+            filter_product();
+
             // $group.find('.tab_box_js').removeClass('tab_active_');
             // $(this).addClass('tab_active_');
         });
@@ -1134,17 +1274,55 @@
             // Remove the active class from the corresponding tab
             $('.tab_box_js').each(function() {
                 if ($(this).text() === tagText) {
+                    let el = $(this);
                     $(this).removeClass('tab_active_');
+
+                    if($(this).data("type") == "category") {
+                        category.filter(function(number) {
+                            return el.data("code") == number;
+                        });
+                    }else if($(this).data("type") == "hotel") {
+                        hotel.filter(function(number) {
+                            return el.data("code") == number;
+                        });
+                    }else if($(this).data("type") == "rating") {
+                        rating.filter(function(number) {
+                            return el.data("code") == number;
+                        });
+                    }else if($(this).data("type") == "promotion") {
+                        promotion.filter(function(number) {
+                            return el.data("code") == number;
+                        });
+                    }else if($(this).data("type") == "topic") {
+                        topic.filter(function(number) {
+                            return el.data("code") == number;
+                        });
+                    }else if($(this).data("type") == "bedroom") {
+                        bedroom.filter(function(number) {
+                            return el.data("code") == number;
+                        });
+                    }
                 }
             });
 
             // Remove the tag item
             $tagItem.remove();
+
+            filter_product();
+
         });
 
         $('#delete_all').click(function() {
             $('.list-tag .tag-item').remove();
             $('.tab_box_js').removeClass('tab_active_');
+            category = [];
+            hotel = [];
+            rating = [];
+            promotion = [];
+            topic = [];
+            bedroom = [];
+
+            filter_product();
         });
 
         $('.tab_box_mo_js').click(function() {
