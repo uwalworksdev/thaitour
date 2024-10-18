@@ -122,7 +122,7 @@ class Product extends BaseController
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
                 'product_status' => 'sale',
-            ], 8, 1, ['onum', 'DESC']);
+            ], 8, 1, ['onum' => 'DESC']);
 
             foreach($products['items'] as $key => $product) {
 
@@ -249,7 +249,7 @@ class Product extends BaseController
         $productByKeyword = $this->productModel->findProductPaging([
             'special_price' => 'Y', 
             'product_code_1' => $code_no
-        ], 8, $page, ['onum', 'DESC']);
+        ], 8, $page, ['onum' => 'DESC']);
         
         $html = '';
         foreach ($productByKeyword['items'] as $item) {
@@ -597,8 +597,8 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-
-            $products = $this->productModel->findProductPaging([]);
+            $codes = $this->bannerModel->getCodeBanners($code_no);
+            $products = $this->productModel->findProductPaging([], 10);
 
             $products = array_map(function ($item) use ($code_no) {
                 $product = (array)$item;
@@ -608,7 +608,7 @@ class Product extends BaseController
                 $goods_code = explode(",", $goods_code);
                 ##############################################
                 $hotel_code = $product['product_code'];
-//                $hotel_code = trim('|', $hotel_code);
+                // $hotel_code = trim('|', $hotel_code);
                 $hotel_code = explode("|", $hotel_code);
                 ##############################################
                 $product['array_hotel_code'] = $hotel_code;

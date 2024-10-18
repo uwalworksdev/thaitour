@@ -405,6 +405,11 @@ class ProductModel extends Model
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
+
+        if($orderBy == []) {
+            $orderBy = ['product_idx' => 'DESC'];
+        }
+
         foreach ($orderBy as $key => $value) {
             $builder->orderBy($key, $value);
         }
@@ -447,30 +452,5 @@ class ProductModel extends Model
 
 
         return array_slice($uniqueArray, 0, 20);
-    }
-    public function getProductByKeyword($keyword, $code_no, $g_list_rows = 1000, $pg = 1)
-    {
-
-        $builder = $this->builder();
-        $builder->where('is_view', 'Y');
-        $builder->where('product_code_1', $code_no);
-        if($keyword) $builder->like('keyword', $keyword);
-        $builder->orderBy('onum', 'desc');
-        $builder->orderBy('product_idx', 'desc');
-        $nTotalCount = $builder->countAllResults(false);
-        $nPage = ceil($nTotalCount / $g_list_rows);
-        if ($pg == "") $pg = 1;
-        $nFrom = ($pg - 1) * $g_list_rows;
-        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
-        $data = [
-            'items' => $items,
-            'nTotalCount' => $nTotalCount,
-            'nPage' => $nPage,
-            'pg' => (int) $pg,
-            'g_list_rows' => $g_list_rows,
-            'num' => $nTotalCount - $nFrom
-        ];
-        return $data;
-
     }
 }
