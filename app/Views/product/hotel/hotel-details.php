@@ -26,16 +26,16 @@
         </div>
         <div class="hotel-image-container">
             <div class="hotel-image-container-1">
-                <img src="/uploads/hotel/<?= $hotel['ufile1'] ?>" alt="<?= $hotel['product_name'] ?>"
+                <img src="/data/hotel/<?= $hotel['ufile1'] ?>" alt="<?= $hotel['product_name'] ?>"
                      onerror="this.src='/images/share/noimg.png'">
             </div>
             <div class="grid_2_2">
                 <?php for ($j = 2; $j < 5; $j++) { ?>
-                    <img class="grid_2_2_size" src="/uploads/hotel/<?= $hotel['ufile' . $j] ?>"
+                    <img class="grid_2_2_size" src="/data/hotel/<?= $hotel['ufile' . $j] ?>"
                          alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                 <?php } ?>
                 <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                    <img class="custom_button" src="/uploads/hotel/<?= $hotel['ufile5'] ?>"
+                    <img class="custom_button" src="/data/hotel/<?= $hotel['ufile5'] ?>"
                          alt="<?= $hotel['product_name'] ?>"
                          onerror="this.src='/images/share/noimg.png'">
                     <div class="button-show-detail-image">
@@ -765,7 +765,7 @@
                            style="width: 393.333px; margin-right: 10px;">
 
                             <div class="img_box img_box_12">
-                                <img src="/uploads/hotel/<?= $item['ufile1'] ?>" alt="main"
+                                <img src="/data/hotel/<?= $item['ufile1'] ?>" alt="main"
                                      onerror="this.src='/images/product/noimg.png'" loading="lazy">
                             </div>
                             <?php
