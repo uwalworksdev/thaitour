@@ -124,7 +124,7 @@ class Product extends BaseController
                 'product_status' => 'sale',
             ], 8, 1, ['onum' => 'DESC']);
 
-            foreach($products['items'] as $key => $product) {
+            foreach ($products['items'] as $key => $product) {
 
                 $hotel_codes = explode("|", $product['product_code_list']);
                 $hotel_codes = array_values(array_filter($hotel_codes));
@@ -173,7 +173,7 @@ class Product extends BaseController
 
             $bestValueProduct = $this->mainDispModel->goods_find(2334)['items'];
 
-            foreach($bestValueProduct as $key => $product) {
+            foreach ($bestValueProduct as $key => $product) {
 
                 $hotel_codes = explode("|", $product['product_code_list']);
                 $hotel_codes = array_values(array_filter($hotel_codes));
@@ -233,7 +233,7 @@ class Product extends BaseController
             'search_txt' => $keyword,
             'search_category' => 'keyword'
         ], 8, $page);
-        
+
         $html = '';
         foreach ($productByKeyword['items'] as $item) {
             $html .= view('product/hotel/product_item_by_keyword', ['item' => $item]);
@@ -247,10 +247,10 @@ class Product extends BaseController
         $code_no = $this->request->getVar('code_no');
         $page = $this->request->getVar('page');
         $productByKeyword = $this->productModel->findProductPaging([
-            'special_price' => 'Y', 
+            'special_price' => 'Y',
             'product_code_1' => $code_no
         ], 8, $page, ['onum' => 'DESC']);
-        
+
         $html = '';
         foreach ($productByKeyword['items'] as $item) {
             $hotel_codes = explode("|", $item['product_code_list']);
@@ -696,7 +696,7 @@ class Product extends BaseController
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
 
-            $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '');
+            $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '', '1303');
 
             $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
             $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
@@ -1032,10 +1032,14 @@ class Product extends BaseController
         return [$totalReview, round($reviewAverage, 1)];
     }
 
-    private function getSuggestedHotels($currentHotelId, $currentHotelCode)
+    private function getSuggestedHotels($currentHotelId, $currentHotelCode, $productCode1 = null)
     {
+        if (!$productCode1) {
+            $productCode1 = 1303;
+        }
         $suggestHotels = $this->productModel
             ->where('product_idx !=', $currentHotelId)
+            ->where('product_code_1', $productCode1)
             ->limit(10)
             ->get()
             ->getResultArray();
