@@ -745,10 +745,13 @@ $(document).ready(function () {
                                                                 class="btn_01">추가
                                                         </button>
                                                         <div class="list_name list__room_name" style="margin-top: 10px;">
-                                                            <div class="input_item"
-                                                                 style="display: flex;margin-top: 5px;">
+                                                            <div class="input_item" style="display: flex;margin-top: 5px;">
                                                                 <input type='text' class='sup__name_child' name='sup__name_child' id=''
                                                                        value=""/>
+                                                                <button type="button" id="btn_del_name"
+                                                                        onclick="delName(this);"
+                                                                        class="btn_02">삭제
+                                                                </button>
                                                             </div>
                                                         </div>
                                                         <input type='hidden' class='' name='sup__name[]' id=''

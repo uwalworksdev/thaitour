@@ -52,7 +52,8 @@ $links = "list";
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
-                                <li><a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
+                                <li>
+                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
                                        class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 </li>
@@ -82,8 +83,10 @@ $links = "list";
                                value='<?= $code_populars ?? "" ?>'/>
 
                         <!-- db에 있는 product_code -->
-                        <input type="hidden" name="old_goods_code" id="old_goods_code" value='<?= $product_code ?? "" ?>'>
-                        <input type="hidden" name="product_code_list" id="product_code_list" value='<?= $product_code_list ?? "" ?>'>
+                        <input type="hidden" name="old_goods_code" id="old_goods_code"
+                               value='<?= $product_code ?? "" ?>'>
+                        <input type="hidden" name="product_code_list" id="product_code_list"
+                               value='<?= $product_code_list ?? "" ?>'>
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">
@@ -150,14 +153,14 @@ $links = "list";
                                     <td colspan="3">
                                         <ul id="reg_cate">
                                             <?php
-                                                foreach ($_product_code_arr as $_tmp_code) {
-                                                    ?>
+                                            foreach ($_product_code_arr as $_tmp_code) {
+                                                ?>
 
-                                                    <li>[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?> <span
-                                                                onclick="delCategory('<?= $_tmp_code ?>', this);">삭제</span>
-                                                    </li>
-                                                    <?php
-                                                }
+                                                <li>[<?= $_tmp_code ?>] <?= get_cate_text($_tmp_code) ?> <span
+                                                            onclick="delCategory('<?= $_tmp_code ?>', this);">삭제</span>
+                                                </li>
+                                                <?php
+                                            }
                                             ?>
                                         </ul>
                                     </td>
@@ -298,7 +301,8 @@ $links = "list";
                                     <th>최초가격(정찰가)</th>
                                     <td colspan="3">
                                         <input type="text" name="original_price" id="original_price" class="onlynum"
-                                               style="text-align:right;width: 200px;" value="<?= $original_price ?? "" ?>"/> 원
+                                               style="text-align:right;width: 200px;"
+                                               value="<?= $original_price ?? "" ?>"/> 원
                                     </td>
 
                                 </tr>
@@ -307,7 +311,8 @@ $links = "list";
                                     <th>판매가격</th>
                                     <td colspan="3">
                                         <input type="text" name="product_price" id="product_price" class="onlynum"
-                                               style="text-align:right;width: 200px;" value="<?= $product_price ?? "" ?>"/> 원
+                                               style="text-align:right;width: 200px;"
+                                               value="<?= $product_price ?? "" ?>"/> 원
                                     </td>
 
                                 </tr>
@@ -575,12 +580,10 @@ $links = "list";
                                                                         <input type='text' class='sup__name_child'
                                                                                name='sup__name_child[]' id=''
                                                                                value="<?= $val ?>"/>
-                                                                        <?php if ($i != 0) { ?>
-                                                                            <button type="button" id="btn_del_name"
-                                                                                    onclick="delName(this);"
-                                                                                    class="btn_02">삭제
-                                                                            </button>
-                                                                        <?php } ?>
+                                                                        <button type="button" id="btn_del_name"
+                                                                                onclick="delName(this);"
+                                                                                class="btn_02">삭제
+                                                                        </button>
                                                                     </div>
                                                                     <?php
                                                                     $i++;
