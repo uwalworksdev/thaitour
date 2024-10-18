@@ -298,7 +298,7 @@ $links = "list";
                                     position: absolute;
                                     color: #FFFFFF;
                                     cursor: pointer;
-                                    padding: 0 5px;
+                                    padding: 0 6px 2px 6px;
                                     top: -10px;
                                     background-color: rgba(255, 0, 0, 0.8);
                                     border-radius: 50%;
