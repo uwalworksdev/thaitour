@@ -167,6 +167,138 @@
                     </div>
                 </div>
             </div>
+            <div class="cart-left only_mo">
+                <div class="header-cart">
+                    <div class="checkbox-group form-group">
+                        <input type="checkbox" id="cart1_sub">
+                        <label class="text-gray" for="cart1_sub">전체선택</label>
+                    </div>
+                    <span>삭제</span>
+                </div>
+                <div class="main-cart">
+                    <div class="checkbox-group-2 form-group">
+                        <input type="checkbox" id="cart2" checked>
+                        <label class="font-bold" for="cart2">골프 :<span class="text-red"> 3</span>
+                        </label>
+                    </div>
+                    <table class="table-container only_web">
+                        <thead>
+                            <tr class="table-header">
+                                <th>
+                                    <div class="form-group-2 cus-checkbox-th">
+                                        <input type="checkbox" id="table-checkbox">
+                                        <label for="table-checkbox"></label>
+                                    </div>
+                                    <span>상품</span>
+                                </th>
+                                <th>금액</th>
+                                <th>할인금액</th>
+                                <th>결제예정금액</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="custom-td-product-info">
+                                    <div class="product-info">
+                                        <img src="/uploads/sub/cart_test_img_03.png" alt="cart_test_img_01">
+                                        <div class="product-details">
+                                            <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
+                                            <div class="product-date">2024.08.10(토)</div>
+                                            <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
+                                                성인 4 / 아동 2</p>
+                                        </div>
+                                        <div class="form-group-2 cus-checkbox-td">
+                                            <input type="checkbox" id="table-checkbox1_">
+                                            <label for="table-checkbox1_"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price">1,467,360 원</td>
+                                <td class="discount">0 원</td>
+                                <td class="total">1,230,000 원</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-container custom-mo only_mo">
+                        <div class="checkbox-group-2 form-group cus-header form-table">
+                            <input type="checkbox" id="cart3_m">
+                            <label class="font-bold" for="cart3_m"></label>
+                        </div>
+                        <div class="item">
+                            <div class="con-up">
+                                <div class="picture-con">
+                                    <img src="/uploads/sub/cart_test_img_01_mo.png" alt="">
+                                    <div class="checkbox-group-2 form-group form-table">
+                                        <input type="checkbox" id="cart4_m" checked>
+                                        <label class="font-bold" for="cart4_m"></label>
+                                    </div>
+                                </div>
+                                <div class="text-right-p">
+                                    <h3 class="title-p">
+                                        샹그릴라 호텔 방콕 (차오프라야 강)
+                                    </h3>
+                                    <div class="time-date-p">
+                                        2024.08.10(토)
+                                    </div>
+                                    <p class="des-p">
+                                        디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="des-space-p">
+                                <div class="des-item">
+                                    <span class="space-left">금액</span>
+                                    <span>1,467,360 원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">할인금액</span>
+                                    <span>0원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">결제예정금액</span>
+                                    <span>1,230,000 원</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="con-up">
+                                <div class="picture-con">
+                                    <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
+                                    <div class="checkbox-group-2 form-group form-table">
+                                        <input type="checkbox" id="cart4_m" checked>
+                                        <label class="font-bold" for="cart4_m"></label>
+                                    </div>
+                                </div>
+                                <div class="text-right-p">
+                                    <h3 class="title-p">
+                                        아난타라 시암 방콕 호텔
+                                    </h3>
+                                    <div class="time-date-p">
+                                        2024.08.10(토)
+                                    </div>
+                                    <p class="des-p">
+                                        54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12 2인 1실 + 전일차량 성인 4 / 아동 2
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="des-space-p">
+                                <div class="des-item">
+                                    <span class="space-left">금액</span>
+                                    <span>1,467,360 원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">할인금액</span>
+                                    <span>0원</span>
+                                </div>
+                                <div class="des-item">
+                                    <span class="space-left">결제예정금액</span>
+                                    <span>1,230,000 원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="cart-right">
                 <h3 class="title-cr">선택상품 : 3건</h3>
                 <div class="item-info-cr">
@@ -248,5 +380,6 @@
                 </div>
             </div>
         </div>
+
     </div>
     <?php $this->endSection(); ?>
