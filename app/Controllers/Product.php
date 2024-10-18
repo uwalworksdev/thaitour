@@ -249,7 +249,7 @@ class Product extends BaseController
         $productByKeyword = $this->productModel->findProductPaging([
             'special_price' => 'Y', 
             'product_code_1' => $code_no
-        ], 8, $page, ['onum', 'DESC']);
+        ], 8, $page, ['onum' => 'DESC']);
         
         $html = '';
         foreach ($productByKeyword['items'] as $item) {
