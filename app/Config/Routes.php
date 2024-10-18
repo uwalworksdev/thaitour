@@ -445,5 +445,6 @@ $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 
 $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
+$routes->get('product/get-by-top', 'Product::getProductByTop');
 
 ?>
