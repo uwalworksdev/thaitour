@@ -183,7 +183,7 @@ $links = "list";
                                     <td colspan="3">
                                         <input type="text" name="product_name"
                                                value="<?= $product_name ?? "" ?>"
-                                               class="text" style="width:300px" maxlength="50"/>
+                                               class="text" style="width:300px" maxlength="100"/>
                                     </td>
                                 </tr>
 
@@ -207,7 +207,7 @@ $links = "list";
                                     <th>주소</th>
                                     <td colspan="3">
                                         <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="50"/>
+                                               style="width:300px" maxlength="1000"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -231,7 +231,7 @@ $links = "list";
                                     <td colspan="3">
                                         <input type="text" name="keyword" id="keyword"
                                                value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
-                                               maxlength="100"/><br/>
+                                               maxlength="1000"/><br/>
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
                                 </tr>

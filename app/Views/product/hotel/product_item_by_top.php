@@ -37,7 +37,8 @@ if(is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
         </div>
     </div>
     <div class="prd_price_ko">
-        <?= number_format($item['product_price']) ?> <span>원~</span> <span class="prd_price_thai">6,000
+        <?= number_format($item['product_price']) ?> <span>원~</span> <span class="prd_price_thai">
+            <?=number_format($item['product_price_baht'])?>
             <span>바트~</span></span>
     </div>
 </a>

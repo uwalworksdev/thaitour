@@ -164,6 +164,10 @@
   justify-content: center;
 }
 
+.sub_swiper2_pagination.swiper-pagination-lock {
+  display: none;
+}
+
 .sub_swiper2_pagination .swiper-pagination-bullet-active {
   background-color: #17469E;
 }
@@ -3395,10 +3399,6 @@
   color: rgb(37, 37, 37);
   font-weight: normal;
   margin-top: 25px;
-}
-
-.hotel_category_list .swiper-slide {
-  max-width: calc((100% - 100px) / 6);
 }
 
 .thailand_hotel_list_top_ {
