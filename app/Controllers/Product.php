@@ -122,7 +122,7 @@ class Product extends BaseController
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
                 'product_status' => 'sale',
-            ], 8, 1, ['onum', 'DESC']);
+            ], 8, 1, ['onum' => 'DESC']);
 
             foreach($products['items'] as $key => $product) {
 
