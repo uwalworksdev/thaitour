@@ -858,9 +858,9 @@ class Product extends BaseController
         return $this->renderView('product/hotel/customer-form');
     }
 
-    public function completedOrder($code_no)
+    public function completedOrder()
     {
-        return $this->renderView('product/golf/completed-order');
+        return $this->renderView('product/completed-order');
     }
 
     public function golfList($code_no)

@@ -430,7 +430,7 @@ $routes->get('product-hotel/hotel-detail/(:any)', 'Product::hotelDetail/$1');
 $routes->get('product-hotel/customer-form', 'Product::index7/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
-$routes->get('product-golf/completed-order/(:any)', 'Product::completedOrder/$1');
+$routes->get('product/completed-order', 'Product::completedOrder/$1');
 $routes->get('product-golf/customer-form/(:any)', 'Product::customerForm/$1');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
