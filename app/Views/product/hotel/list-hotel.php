@@ -185,6 +185,7 @@
                         <div class="list-tag">
                         </div>
                     </div>
+                    <button id="filter_product">검색</button>
                     <button id="delete_all">전체삭제</button>
                 </div>
                 <div class="below-filter-content">
@@ -1082,14 +1083,31 @@
             var tabText = $(this).text();
             var activeTab = $group.find('.tab_box_js.tab_active_').text();
 
-            if (activeTab) {
+            // if (activeTab) {
+            //     $('.list-tag .tag-item span').each(function() {
+            //         if ($(this).text() === activeTab) {
+            //             $(this).text(tabText);
+            //             return false;
+            //         }
+            //     });
+            // } else {
+            //     $('.list-tag').append(
+            //         '<div class="tag-item">' +
+            //         '<span>' + tabText + '</span>' +
+            //         '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+            //         '</div>'
+            //     );
+            // }
+
+            if($(this).hasClass('tab_active_')){
+                $(this).removeClass('tab_active_');
                 $('.list-tag .tag-item span').each(function() {
-                    if ($(this).text() === activeTab) {
-                        $(this).text(tabText);
-                        return false;
+                    if ($(this).text() === tabText) {
+                        $(this).closest(".tag-item").remove();
                     }
                 });
-            } else {
+            }else{
+                $(this).addClass('tab_active_');
                 $('.list-tag').append(
                     '<div class="tag-item">' +
                     '<span>' + tabText + '</span>' +
@@ -1097,9 +1115,8 @@
                     '</div>'
                 );
             }
-
-            $group.find('.tab_box_js').removeClass('tab_active_');
-            $(this).addClass('tab_active_');
+            // $group.find('.tab_box_js').removeClass('tab_active_');
+            // $(this).addClass('tab_active_');
         });
 
         $(document).on('click', '.close_icon', function() {
