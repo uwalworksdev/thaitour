@@ -229,7 +229,9 @@
                                     </div>
                                 </div>
                                 <div class="prd_price_ko">
-                                    <?=number_format($product['product_price'])?> <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                    <?=number_format($product['product_price'])?> <span>원~</span> <span class="prd_price_thai">
+                                    <?=number_format($product['product_price_baht'])?>    
+                                    <span>바트~</span></span>
                                 </div>
                             </a>
                         <?php endforeach; ?>
@@ -242,16 +244,18 @@
             </div>
         </section>
         <section class="sub_tour_section6 most_searched_">
-            <div class="sub_tour_section6__head">
-                <div class="sub_tour_section6__head_ttl ttl text_center">
-                    가장 많이 검색되는 #키워드
-                </div>
-                <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
-                    <ul class="tab_box_show_ tab_box_show__hotel d_flex justify_content_center align_items_center">
-                        <?php foreach ($keyWordAll as $key => $item) { ?>
-                            <li class="tab_box_element_ p--20 border <?=$item == $keyWordActive ? 'tab_active_' : ''?>" data-keyword="<?=$item?>">#<?= $item ?></li>
-                        <?php } ?>
-                    </ul>
+            <div class="body_inner">
+                <div class="sub_tour_section6__head">
+                    <div class="sub_tour_section6__head_ttl ttl text_center">
+                        가장 많이 검색되는 #키워드
+                    </div>
+                    <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
+                        <ul class="tab_box_show_ tab_box_show__hotel d_flex justify_content_center align_items_center">
+                            <?php foreach ($keyWordAll as $key => $item) { ?>
+                                <li class="tab_box_element_ p--20 border <?=$item == $keyWordActive ? 'tab_active_' : ''?>" data-keyword="<?=$item?>">#<?= $item ?></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- tab1 last slide section -->

@@ -74,9 +74,9 @@
                                                value="<?= $row['site_name'] ?>" class="input_txt placeHolder" rel=""
                                                style="width:250px" /></td>
                                     <th>달러환율</th>
-                                    <td><input type="text" id="us_dollar" name="us_dollar"
-                                               value="<?= $row['us_dollar'] ?>" class="input_txt placeHolder" rel=""
-                                               style="width:100px" />(원)_US_DOLLAR</td>
+                                    <td><input type="text" id="baht_thai" name="baht_thai"
+                                               value="<?= $row['baht_thai'] ?>" class="input_txt placeHolder" rel=""
+                                               style="width:100px" />(원)_BAHT</td>
                                 </tr>
 
                                 <tr>
