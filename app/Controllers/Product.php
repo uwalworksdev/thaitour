@@ -568,8 +568,8 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-
-            $products = $this->productModel->findProductPaging([]);
+            $codes = $this->bannerModel->getCodeBanners($code_no);
+            $products = $this->productModel->findProductPaging([], 10);
 
             $products = array_map(function ($item) use ($code_no) {
                 $product = (array)$item;
@@ -579,7 +579,7 @@ class Product extends BaseController
                 $goods_code = explode(",", $goods_code);
                 ##############################################
                 $hotel_code = $product['product_code'];
-//                $hotel_code = trim('|', $hotel_code);
+                // $hotel_code = trim('|', $hotel_code);
                 $hotel_code = explode("|", $hotel_code);
                 ##############################################
                 $product['array_hotel_code'] = $hotel_code;
