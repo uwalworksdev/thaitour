@@ -416,47 +416,6 @@ class AdminHotelController extends BaseController
         }
     }
 
-    public function prod_update()
-    {
-        try {
-            $product_idx = $_POST['product_idx'] ?? '';
-            $onum = $_POST['onum'] ?? '';
-            $product_best = $_POST['product_best'] ?? '';
-            $product_status = $this->request->getPost("product_status");
-
-            $db = $this->productModel->update($product_idx, [
-                "onum" => $onum,
-                "product_best" => $product_best,
-                "product_status" => $product_status
-            ]);
-
-            if (!$db) {
-                return $this->response
-                    ->setStatusCode(400)
-                    ->setJSON(
-                        [
-                            'status' => 'error',
-                            'message' => '수정 중 오류가 발생했습니다!!'
-                        ]
-                    );
-            }
-
-            return $this->response
-                ->setStatusCode(200)
-                ->setJSON(
-                    [
-                        'status' => 'success',
-                        'message' => '수정 했습니다.'
-                    ]
-                );
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ], 400);
-        }
-    }
-
     public function del()
     {
         try {

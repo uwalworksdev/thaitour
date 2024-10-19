@@ -181,14 +181,14 @@
                                 <tr>
                                     <th rowspan=8>썸네일<br>(600 * 450)</th>
                                     <td rowspan=8>
-                                        <?php for ($i = 1; $i <= 6; $i++) { ?>
+                                        <?php for ($i = 1; $i <= 7; $i++) { ?>
                                             <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
                                                    style="width:500px;margin-bottom:10px"/>
-                                            <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox
-                                                                                                 name="del_<?= $i ?>"
-                                                                                                 value='Y'><a
+                                            <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox name="del_<?= $i ?>" value='Y'><a
                                                     href="/data/product/<?= ${"ufile" . $i} ?>"
-                                                    class="imgpop"><?= ${"rfile" . $i} ?></a><br><br><?php } ?>
+                                                    class="imgpop"><?= ${"rfile" . $i} ?><br>
+                                                    <img style="max-width: 200px" src="/data/product/<?= ${"ufile" . $i} ?>" alt="">
+                                                </a><?php } ?>
                                         <?php } ?>
                                     </td>
                                     <th>상품명</th>
@@ -940,114 +940,93 @@
                         </div>
                     </div>
             </form>
-            <!-- // listBottom -->
-            <div class="tail_menu">
-                <ul>
-                    <li class="left"></li>
-                    <li class="right_sub">
 
-                        <a href="list_golf?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
-                           class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                        <?php if ($product_idx == "") { ?>
-                            <a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                        <?php } else { ?>
-                            <a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                            <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
-                        <?php } ?>
-                    </li>
-                </ul>
-            </div>
-
-
-            <div class="listBottom">
-                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                    <caption>
-                    </caption>
-                    <colgroup>
-                        <col width="10%"/>
-                        <col width="90%"/>
-                    </colgroup>
-                    <tbody>
-
-                    <tr>
-                        <th>옵션추가</th>
-                        <td>
-                            <div class="flex__c">
-                                <select name="moption_hole" id="moption_hole">
-                                    <option value="18">18홀</option>
-                                    <option value="27">27홀</option>
-                                    <option value="36">36홀</option>
-                                    <option value="45">45홀</option>
-                                </select>&nbsp;
-                                <select name="moption_hour" id="moption_hour">
-                                    <option value="06">06시</option>
-                                    <option value="07">07시</option>
-                                    <option value="08">08시</option>
-                                    <option value="09">09시</option>
-                                    <option value="10">10시</option>
-                                    <option value="11">11시</option>
-                                    <option value="12">12시</option>
-                                    <option value="13">13시</option>
-                                    <option value="14">14시</option>
-                                    <option value="15">15시</option>
-                                    <option value="16">16시</option>
-                                    <option value="17">17시</option>
-                                    <option value="18">18시</option>
-                                    <option value="19">19시</option>
-                                </select>&nbsp;
-                                <select name="moption_minute" id="moption_minute">
-                                    <option value="00">00분</option>
-                                    <option value="12">12분</option>
-                                    <option value="24">24분</option>
-                                    <option value="36">36분</option>
-                                    <option value="48">48분</option>
-                                </select>&nbsp;
-                                <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>옵션추가</th>
-                        <td>
-                            <table>
-                                <colgroup>
-                                    <col width="40%"/>
-                                    <col width="30%"/>
-                                    <col width="30%"/>
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th>옵션명</th>
-                                        <th>가격</th>
-                                        <th>관리</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="list_option">
-                                    <?php foreach ($options as $m) { ?>
-                                        <tr id="option_<?= $m['idx'] ?>">
-                                            <td>
-                                                <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
-                                            </td>
-                                            <td>
-                                                <div class="flex_c_c"><input type="text" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원</div>
-                                            </td>
-                                            <td>
-                                                &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
-                                                &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
             <?php if ($product_idx): ?>
+                <div class="listBottom">
+                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="10%"/>
+                            <col width="90%"/>
+                        </colgroup>
+                        <tbody>
+
+                        <tr>
+                            <th>옵션추가</th>
+                            <td>
+                                <div class="flex__c">
+                                    <select name="moption_hole" id="moption_hole">
+                                        <option value="18">18홀</option>
+                                        <option value="27">27홀</option>
+                                        <option value="36">36홀</option>
+                                        <option value="45">45홀</option>
+                                    </select>&nbsp;
+                                    <select name="moption_hour" id="moption_hour">
+                                        <option value="06">06시</option>
+                                        <option value="07">07시</option>
+                                        <option value="08">08시</option>
+                                        <option value="09">09시</option>
+                                        <option value="10">10시</option>
+                                        <option value="11">11시</option>
+                                        <option value="12">12시</option>
+                                        <option value="13">13시</option>
+                                        <option value="14">14시</option>
+                                        <option value="15">15시</option>
+                                        <option value="16">16시</option>
+                                        <option value="17">17시</option>
+                                        <option value="18">18시</option>
+                                        <option value="19">19시</option>
+                                    </select>&nbsp;
+                                    <select name="moption_minute" id="moption_minute">
+                                        <option value="00">00분</option>
+                                        <option value="12">12분</option>
+                                        <option value="24">24분</option>
+                                        <option value="36">36분</option>
+                                        <option value="48">48분</option>
+                                    </select>&nbsp;
+                                    <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>옵션추가</th>
+                            <td>
+                                <table>
+                                    <colgroup>
+                                        <col width="40%"/>
+                                        <col width="30%"/>
+                                        <col width="30%"/>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>옵션명</th>
+                                            <th>가격</th>
+                                            <th>관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list_option">
+                                        <?php foreach ($options as $m) { ?>
+                                            <tr id="option_<?= $m['idx'] ?>">
+                                                <td>
+                                                    <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
+                                                </td>
+                                                <td>
+                                                    <div class="flex_c_c"><input type="text" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원</div>
+                                                </td>
+                                                <td>
+                                                    &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
+                                                    &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="tail_menu">
                     <ul>
                         <li class="left">■ 가격리스트</li>
@@ -1147,6 +1126,27 @@
                     </table>
                 </div>
             <?php endif; ?>
+
+            <!-- // listBottom -->
+            <div class="tail_menu">
+                <ul>
+                    <li class="left"></li>
+                    <li class="right_sub">
+
+                        <a href="list_golf?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                           class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                        <?php if ($product_idx == "") { ?>
+                            <a href="javascript:send_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                        <?php } else { ?>
+                            <a href="javascript:send_it()" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                            <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                        class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
+                        <?php } ?>
+                    </li>
+                </ul>
+            </div>
 
         </div>
         <!-- // listWrap -->
@@ -1541,7 +1541,7 @@
                 option += '|';
                 $("#tours_cate").val(tours_cate);
 
-                formSubmitted = true;
+                // formSubmitted = true;
 
                 frm.submit();
             }

@@ -12,6 +12,8 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->post("login", "AdminLogin::LoginCheckAjax");
     $routes->get("logout", "AdminLogin::Logout");
 
+    $routes->post("prod_update/(:segment)", "TourRegistController::prod_update/$1", ['as' => "admin._tour.prod_update"]);
+
     $routes->get("main", "StatisticsController::main");
 
     $routes->group("_review", static function ($routes) {
@@ -91,6 +93,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_all", "TourRegistController::write_all");
         $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
         $routes->get("write_golf", "TourRegistController::write_golf");
+        $routes->post("write_golf_ok", "TourRegistController::write_golf_ok");
         $routes->post("write_golf_ok/(:segment)", "TourRegistController::write_golf_ok/$1");
         $routes->post("write_golf/add_moption", "TourRegistController::add_moption");
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
@@ -115,7 +118,6 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminHotelController::write_ok/$1", ['as' => "admin._hotel.write_ok.id"]);
         $routes->post("change", "Admin\AdminHotelController::change", ['as' => "admin._hotel.change"]);
-        $routes->post("prod_update", "Admin\AdminHotelController::prod_update", ['as' => "admin._hotel.prod_update"]);
         $routes->post("del", "Admin\AdminHotelController::del", ['as' => "admin._hotel.del"]);
         $routes->post("search_code", "Admin\AdminHotelController::search_code", ['as' => "admin._hotel.search_code"]);
         $routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);

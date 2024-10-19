@@ -3418,3 +3418,14 @@
 .thailand_hotel_top_item_ {
     width: calc((100% - 60px) / 4);
 }
+
+.thailand_golf_list_ {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 29px;
+}
+
+.thailand_golf_list_item_ {
+    width: calc((100% - 60px) / 4);
+}
