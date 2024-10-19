@@ -398,8 +398,13 @@ class ProductModel extends Model
         if ($where['product_code_3'] != "") {
             $builder->where('product_code_3', $where['product_code_3']);
         }
-        if ($where['search_txt'] != "") {
-            if ($where['search_category'] != "") {
+
+        if($where['product_code_list']) {
+            $builder->like('product_code_list', $where['product_code_list']);
+        }
+
+        if($where['search_txt'] != "") {
+            if($where['search_category'] != "") {
                 $builder->like($where['search_category'], $where['search_txt']);
             }
         }
