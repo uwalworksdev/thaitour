@@ -626,6 +626,10 @@ $links = "list";
                             <?php
                             $productMoreData = json_decode($product_more, true);
 
+                            if (json_last_error() !== JSON_ERROR_NONE) {
+                                die("Lỗi giải mã JSON: " . json_last_error_msg());
+                            }
+                            $breakfast_data = '';
                             if ($productMoreData) {
                                 $meet_out_time = $productMoreData['meet_out_time'];
                                 $children_policy = $productMoreData['children_policy'];
@@ -634,8 +638,12 @@ $links = "list";
                                 $pets = $productMoreData['pets'];
                                 $age_restriction = $productMoreData['age_restriction'];
                                 $smoking_policy = $productMoreData['smoking_policy'];
+                                $breakfast = $productMoreData['breakfast'];
+                                $breakfast_data = $productMoreData['breakfast_data'];
                             }
 
+                            $breakfast_data_arr = explode('||||', $breakfast_data);
+                            $breakfast_data_arr = array_filter($breakfast_data_arr);
                             ?>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
@@ -682,7 +690,26 @@ $links = "list";
                                         </div>
                                         <table style="width:90%">
                                             <tbody id="tBodyTblBreakfast">
-
+                                            <?php foreach ($breakfast_data_arr as $dataBreakfast) { ?>
+                                                <?php
+                                                $dataBreakfastArr = explode('::::', $dataBreakfast);
+                                                ?>
+                                                <tr>
+                                                    <th style="width: 30%">
+                                                        <input type="text" name="breakfast_item_name_[]"
+                                                               value="<?= $dataBreakfastArr[0] ?? "" ?>">
+                                                    </th>
+                                                    <td style="width: 60%">
+                                                        <input type="text" name="breakfast_item_value_[]"
+                                                               value="<?= $dataBreakfastArr[1] ?? "" ?>">
+                                                    </td>
+                                                    <td style="width: 10%">
+                                                        <button type="button" class="btnDeleteBreakfast"
+                                                                onclick="removeBreakfast(this);">수정
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
                                             </tbody>
                                         </table>
                                     </td>
@@ -719,10 +746,10 @@ $links = "list";
                             <script>
                                 let tr = ` <tr>
                                                 <th style="width: 30%">
-                                                    <input type="text" name="breakfast_item_name_">
+                                                    <input type="text" name="breakfast_item_name_[]">
                                                 </th>
                                                 <td style="width: 60%">
-                                                    <input type="text" name="breakfast_item_value_">
+                                                    <input type="text" name="breakfast_item_value_[]">
                                                 </td>
                                                 <td style="width: 10%">
                                                     <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">수정</button>
