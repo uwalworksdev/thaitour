@@ -1269,6 +1269,9 @@
 
 .content-sub-hotel-detail .post-list-sec2 div img {
     margin-bottom: 12px;
+    width: 150px;
+    height: 112px;
+    object-fit: cover;
 }
 
 .content-sub-hotel-detail .room-table {
