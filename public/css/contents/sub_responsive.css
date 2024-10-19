@@ -1608,13 +1608,19 @@
     display: flex;
     gap: 3rem;
     align-items: flex-start;
-    padding: 0 20px;
+    padding: 0 2rem;
   }
 
   .cart-item-list .table-container.custom-mo .picture-con {
     position: relative;
-    width: 220px;
-    height: 200px;
+    width: 21.9999rem;
+    height: 20rem;
+    overflow: hidden;
+  }
+
+  .cart-item-list .checkbox-group-2 {
+    margin: 3rem 0;
+    margin-left: 2rem;
   }
 
   .cart-item-list .table-container.custom-mo .picture-con .form-group {
