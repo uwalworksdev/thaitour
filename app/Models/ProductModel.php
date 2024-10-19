@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use CodeIgniter\Model;
 
 class ProductModel extends Model
@@ -26,7 +27,7 @@ class ProductModel extends Model
         "tour_time", "capital_city", "m_date", "r_date", "user_id", "user_level", "information", "meeting_guide", "meeting_place",
         "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
         "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value",
-        "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', 'product_type', 'product_promotions'
+        "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', 'product_type', 'product_promotions', 'product_more'
     ];
 
     protected function initialize()
@@ -409,6 +410,11 @@ class ProductModel extends Model
         if ($where['product_code_3'] != "") {
             $builder->where('product_code_3', $where['product_code_3']);
         }
+
+        if ($where['product_code_list']) {
+            $builder->like('product_code_list', $where['product_code_list']);
+        }
+
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {
                 $builder->like($where['search_category'], $where['search_txt']);
@@ -418,11 +424,11 @@ class ProductModel extends Model
             $builder->where("is_view", $where['is_view']);
         }
 
-        if($where['special_price'] != "") {
+        if ($where['special_price'] != "") {
             $builder->where("special_price", $where['special_price']);
         }
 
-        if($where['product_status'] != "") {
+        if ($where['product_status'] != "") {
             $builder->where("product_status", $where['product_status']);
         }
 

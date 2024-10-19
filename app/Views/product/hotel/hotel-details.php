@@ -51,14 +51,14 @@
         </div>
         <div class="sub-header-hotel-detail">
             <div class="main nav-list">
-                <a class="nav-item active" href="#section2">숙소개요</a>
-                <a class="nav-item" href="#section3">객실</a>
-                <a class="nav-item" href="#section4">시설&서비스</a>
-                <a class="nav-item" href="#section5">호텔 정책</a>
-                <a class="nav-item" href="#section6">생생리뷰(159개)</a>
+                <p class="nav-item" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
+                <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">객실</p>
+                <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">시설&서비스</p>
+                <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
+                <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(159개)</p>
             </div>
             <div class="btn-container">
-                <button>
+                <button type="button" onclick="scrollToEl('section3')">
                     객실선택
                 </button>
             </div>
@@ -136,26 +136,54 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
+            <style>
+                .room_option_ {
+                    padding-bottom: 30px !important;
+                }
+
+                .room_option_long {
+                    height: 620px;
+                    overflow: hidden;
+                    margin-top: 30px;
+                }
+
+                .btnReadLess {
+                    display: none;
+                }
+
+                .btnReadLess,
+                .btnReadMore {
+                    border: 1px solid #dbdbdb;
+                    border-radius: 3px;
+                    padding: 5px 10px;
+                }
+            </style>
             <?php if ($s_category_room === '' || !isset($s_category_room)) : ?>
                 <?php foreach ($hotel_options as $item) : ?>
                     <?php $room = $item['room']; ?>
                     <?php $room_options = $room['room_option']; ?>
-                    <div class="card-item-sec3">
+                    <?php $room_facil = $room['room_facil']; ?>
+                    <?php
+                    $_arr = explode("|", $room_facil);
+                    $count_facil = count($_arr);
+                    $isValid = false;
+                    $room_op = '';
+                    $room_option_ = '';
+                    if ($count_facil > 12) {
+                        $isValid = true;
+                        $room_op = 'room_option_long';
+                        $room_option_ = 'room_option_';
+                    }
+                    ?>
+                    <div class="card-item-sec3 <?= $room_option_ ?>">
                         <div class="card-title-sec3-container">
                             <h2><?= $room['roomName'] ?></h2>
                             <div class="label"><?= $room['scenery'] ?></div>
                         </div>
-                        <div class="card-item-container">
+                        <div class="card-item-container <?= $room_op ?>">
                             <div class="card-item-left">
                                 <div class="only_web">
                                     <div class="grid2_2_1">
-                                        <!--                                        --><?php //for ($k = 1; $k < 4; $k++) { ?>
-                                        <!--                                            <img src="/uploads/rooms/-->
-                                        <?php //= $room['ufile' . $k] ?><!--"-->
-                                        <!--                                                 onerror="this.src='/images/share/noimg.png"-->
-                                        <!--                                                 alt="-->
-                                        <?php //= $room['roomName'] ?><!--">-->
-                                        <!--                                        --><?php //} ?>
                                         <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
                                              onerror="this.src='/images/share/noimg.png"
                                              alt="<?= $room['roomName'] ?>">
@@ -228,12 +256,24 @@
                                                 <span class="occupancy_button openPopupBtn">쿠폰적용</span>
                                             </div>
                                         </td>
+                                        <?php
+                                        $isSale = true;
+                                        if ($room_op['r_sale_price'] == $room_op['r_price']) {
+                                            $isSale = false;
+                                        }
+                                        if ($isSale) {
+                                            $percent = $room_op['r_sale_price'] / $room_op['r_price'] * 100;
+                                            $percent = 100 - $percent;
+                                        }
+                                        ?>
                                         <td>
                                             <div class="price-details">
-                                                <div class="discount">
-                                                    <span class="label">특별할인</span>
-                                                    <span class="price_content">30%할인</span>
-                                                </div>
+                                                <?php if ($isSale) { ?>
+                                                    <div class="discount">
+                                                        <span class="label">특별할인</span>
+                                                        <span class="price_content"><?= $percent ?>%할인</span>
+                                                    </div>
+                                                <?php } ?>
                                                 <div class="price-strike-container">
                                                     <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                     <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
@@ -322,47 +362,61 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if ($isValid) : ?>
+                            <div class="d-flex" style="margin-top: 30px; gap: 10px;">
+                                <button class="btnReadMore">자세히 보기</button>
+                                <button class="btnReadLess">덜 숨기기</button>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
                 <?php foreach ($hotel_options as $item) : ?>
                     <?php $room = $item['room']; ?>
                     <?php $room_options = $room['room_option']; ?>
+                    <?php $room_facil = $room['room_facil']; ?>
+                    <?php
+                    $_arr = explode("|", $room_facil);
+                    $count_facil = count($_arr);
+                    $isValid = false;
+                    $room_op = '';
+                    $room_option_ = '';
+                    if ($count_facil > 25) {
+                        $isValid = true;
+                        $room_op = 'room_option_long';
+                        $room_option_ = 'room_option_';
+                    }
+                    ?>
                     <?php
                     $_arr = explode("|", $room['category']);
 
                     for ($j = 0; $j < count($_arr); $j++) {
                         if ($_arr[$j] === $s_category_room) {
                             ?>
-                            <div class="card-item-sec3">
+                            <div class="card-item-sec3 <?= $room_option_ ?>">
                                 <div class="card-title-sec3-container">
                                     <h2><?= $room['roomName'] ?></h2>
                                     <div class="label"><?= $room['scenery'] ?></div>
                                 </div>
-                                <div class="card-item-container">
+                                <div class="card-item-container <?= $room_op ?>">
                                     <div class="card-item-left">
                                         <div class="only_web">
                                             <div class="grid2_2_1">
-<!--                                                --><?php //for ($k = 1; $k < 4; $k++) { ?>
-<!--                                                    --><?php //if ($room['ufile' . $k]) { ?>
-<!--                                                        <img src="/uploads/rooms/--><?php //= $room['ufile' . $k] ?><!--"-->
-<!--                                                             onerror="this.src='/images/share/noimg.png"-->
-<!--                                                             alt="--><?php //= $room['roomName'] ?><!--">-->
-<!--                                                    --><?php //} ?>
-<!--                                                --><?php //} ?>
                                                 <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
                                                      onerror="this.src='/images/share/noimg.png"
                                                      alt="<?= $room['roomName'] ?>">
                                                 <div class=""
                                                      style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
                                                     <?php if ($room['ufile2']) { ?>
-                                                        <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile2'] ?>"
+                                                        <img style="width: 50%"
+                                                             src="/uploads/rooms/<?= $room['ufile2'] ?>"
                                                              onerror="this.src='/images/share/noimg.png"
                                                              alt="<?= $room['roomName'] ?>">
                                                     <?php } ?>
 
                                                     <?php if ($room['ufile3']) { ?>
-                                                        <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile3'] ?>"
+                                                        <img style="width: 50%"
+                                                             src="/uploads/rooms/<?= $room['ufile3'] ?>"
                                                              onerror="this.src='/images/share/noimg.png"
                                                              alt="<?= $room['roomName'] ?>">
                                                     <?php } ?>
@@ -373,7 +427,6 @@
                                             <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                                         </div>
                                         <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
-                                        <?php $room_facil = $room['room_facil']; ?>
                                         <ul>
                                             <?php
                                             $_arr = explode("|", $room_facil);
@@ -422,12 +475,24 @@
                                                         <span class="occupancy_button openPopupBtn">쿠폰적용</span>
                                                     </div>
                                                 </td>
+                                                <?php
+                                                $isSale = true;
+                                                if ($room_op['r_sale_price'] == $room_op['r_price']) {
+                                                    $isSale = false;
+                                                }
+                                                if ($isSale) {
+                                                    $percent = $room_op['r_sale_price'] / $room_op['r_price'] * 100;
+                                                    $percent = 100 - $percent;
+                                                }
+                                                ?>
                                                 <td>
                                                     <div class="price-details">
-                                                        <div class="discount">
-                                                            <span class="label">특별할인</span>
-                                                            <span class="price_content">30%할인</span>
-                                                        </div>
+                                                        <?php if ($isSale) { ?>
+                                                            <div class="discount">
+                                                                <span class="label">특별할인</span>
+                                                                <span class="price_content"><?= $percent ?>%할인</span>
+                                                            </div>
+                                                        <?php } ?>
                                                         <div class="price-strike-container">
                                                             <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                             <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
@@ -516,6 +581,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <?php if ($isValid) : ?>
+                                    <div class="d-flex" style="margin-top: 30px; gap: 10px;">
+                                        <button class="btnReadMore">자세히 보기</button>
+                                        <button class="btnReadLess">덜 숨기기</button>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                             <?php
                         }
@@ -813,6 +885,21 @@
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
         </div>
+        <script>
+            $('.btnReadMore').click(function () {
+                let room_option_ = $(this).parent().prev();
+                room_option_.css('height', 'auto');
+                $(this).css('display', 'none');
+                $(this).parent().find('.btnReadLess').css('display', 'inline');
+            });
+
+            $('.btnReadLess').click(function () {
+                let room_option_ = $(this).parent().prev();
+                room_option_.css('height', '620px');
+                $(this).css('display', 'none');
+                $(this).parent().find('.btnReadMore').css('display', 'inline');
+            });
+        </script>
     </div>
     <script>
         let swiper = new Swiper(".swiper_product_list_", {
@@ -885,6 +972,12 @@
             $('.nav-item').removeClass('active');
             $(this).addClass('active');
         });
+
+        function scrollToEl(elID) {
+            $('html, body').animate({
+                scrollTop: $('#' + elID).offset().top - 250
+            }, 'slow');
+        }
     </script>
 
 <?php $this->endSection(); ?>

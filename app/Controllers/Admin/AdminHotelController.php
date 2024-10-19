@@ -36,7 +36,7 @@ class AdminHotelController extends BaseController
 
         $orderByArr = [];
 
-        if($orderBy == 1) {
+        if ($orderBy == 1) {
             $orderByArr['onum'] = "DESC";
         } elseif ($orderBy == 2) {
             $orderByArr['r_date'] = "DESC";
@@ -151,6 +151,12 @@ class AdminHotelController extends BaseController
             $data['product_bedrooms'] = updateSQ($_POST["product_bedrooms"] ?? ''); // code=39 호텔 침실수
             $data['product_type'] = updateSQ($_POST["product_type"] ?? ''); // code=40 호텔타입
             $data['product_promotions'] = updateSQ($_POST["product_promotions"] ?? '');// code=41 호텔 프로모션
+
+            $dataProductMore = null;
+
+
+
+            $data['product_more'] = updateSQ($dataProductMore ?? '');
 
             $o_idx = $_POST["o_idx"] ?? [];
             $o_name = $_POST["o_name"] ?? [];

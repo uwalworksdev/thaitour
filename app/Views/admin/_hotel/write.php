@@ -97,6 +97,9 @@ $links = "list";
                         <input type="hidden" name="product_promotions" id="product_promotions"
                                value='<?= $product_promotions ?? "" ?>'>
 
+                        <input type="hidden" name="product_more" id="product_more"
+                               value='<?= $product_more ?? "" ?>'>
+
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="table-layout:fixed;">
@@ -117,7 +120,8 @@ $links = "list";
                                 <tr>
                                     <th>카테고리선택</th>
                                     <td colspan="3">
-                                        <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
+                                        <select id="product_code_1" name="product_code_1" class="input_select"
+                                                onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult as $frow) {
@@ -134,7 +138,8 @@ $links = "list";
                                                     <?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
+                                        <select id="product_code_2" name="product_code_2" class="input_select"
+                                                onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                         </select>
                                         <select id="product_code_3" name="product_code_3" class="input_select">
@@ -167,7 +172,7 @@ $links = "list";
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
@@ -178,20 +183,35 @@ $links = "list";
                                         <?php } ?>
 
                                     </td>
-
+                                    <th>노출</th>
+                                    <td>
+                                        <input type="checkbox" name="product_best" id="product_best" value="Y"
+                                            <?php if (isset($product_best) && $product_best === "Y")
+                                                echo "checked=checked"; ?>> <label for="product_best"
+                                                                                   style="max-height:200px;margin-right:20px;">BEST
+                                            인기호텔</label>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>상품명</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="product_name"
                                                value="<?= $product_name ?? "" ?>"
                                                class="text" style="width:300px" maxlength="100"/>
+                                    </td>
+                                    <th>핫한 특가</th>
+                                    <td>
+                                        <input type="checkbox" name="special_price" id="special_price" value="Y"
+                                            <?php if (isset($special_price) && $special_price === "Y")
+                                                echo "checked=checked"; ?>> <label for="special_price"
+                                                                                   style="max-height:200px;margin-right:20px;">매력적인
+                                            제안</label>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>등급</th>
-                                    <td colspan="3">
+                                    <td>
                                         <select name="product_level">
                                             <?php
                                             foreach ($fresult9 as $frow) {
@@ -204,12 +224,36 @@ $links = "list";
                                             ?>
                                         </select>
                                     </td>
+                                    <th>검색키워드</th>
+                                    <td>
+                                        <input type="text" name="keyword" id="keyword"
+                                               value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
+                                               maxlength="1000"/><br/>
+                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>주소</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
                                                style="width:300px" maxlength="1000"/>
+                                    </td>
+                                    <th>판매상태결정</th>
+                                    <td>
+                                        <select name="product_status" id="product_status">
+                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
+                                                echo "selected";
+                                            } ?>>판매중
+                                            </option>
+                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
+                                                echo "selected";
+                                            } ?>>판매중지
+                                            </option>
+                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
+                                                echo "selected";
+                                            } ?>>등록예정
+                                            </option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -225,55 +269,6 @@ $links = "list";
                                     <td colspan="3">
 										<textarea name="product_info" id="product_info"
                                                   style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>검색키워드</th>
-                                    <td colspan="3">
-                                        <input type="text" name="keyword" id="keyword"
-                                               value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
-                                               maxlength="1000"/><br/>
-                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>노출</th>
-                                    <td colspan="3">
-                                        <input type="checkbox" name="product_best" id="product_best" value="Y"
-                                            <?php if (isset($product_best) && $product_best === "Y")
-                                                echo "checked=checked"; ?>> <label for="product_best"
-                                                                                   style="max-height:200px;margin-right:20px;">BEST
-                                            인기호텔</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>핫한 특가</th>
-                                    <td colspan="3">
-                                        <input type="checkbox" name="special_price" id="special_price" value="Y"
-                                            <?php if (isset($special_price) && $special_price === "Y")
-                                                echo "checked=checked"; ?>> <label for="special_price"
-                                                                                   style="max-height:200px;margin-right:20px;">매력적인
-                                            제안</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>판매상태결정</th>
-                                    <td colspan="3">
-                                        <select name="product_status" id="product_status">
-                                            <option value="sale" <?php if (isset($product_status) && $product_status === "sale") {
-                                                echo "selected";
-                                            } ?>>판매중
-                                            </option>
-                                            <option value="stop" <?php if (isset($product_status) && $product_status === "stop") {
-                                                echo "selected";
-                                            } ?>>판매중지
-                                            </option>
-                                            <option value="plan" <?php if (isset($product_status) && $product_status === "plan") {
-                                                echo "selected";
-                                            } ?>>등록예정
-                                            </option>
-                                        </select>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -612,6 +607,136 @@ $links = "list";
 
                                 </tbody>
                             </table>
+
+                            <style>
+                                .btnAddBreakfast {
+                                    padding: 5px 7px;
+                                    color: #fff;
+                                    background: #4F728A;
+                                    border: 1px solid #2b3f4c;
+                                }
+
+                                .btnDeleteBreakfast {
+                                    padding: 5px 7px;
+                                    color: #fff;
+                                    background: #d03a3e;
+                                    border: 1px solid #ba1212;
+                                }
+                            </style>
+                            <?php
+                            $productMoreData = json_decode($product_more, true);
+
+                            if ($productMoreData) {
+                                $meet_out_time = $productMoreData['meet_out_time'];
+                                $children_policy = $productMoreData['children_policy'];
+                                $baby_beds = $productMoreData['baby_beds'];
+                                $deposit_regulations = $productMoreData['deposit_regulations'];
+                                $pets = $productMoreData['pets'];
+                                $age_restriction = $productMoreData['age_restriction'];
+                                $smoking_policy = $productMoreData['smoking_policy'];
+                            }
+
+                            ?>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        자세한 정보
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>체크인 & 체크아웃 시간</th>
+                                    <td>
+                                        <textarea name="meet_out_time" id="meet_out_time"
+                                                  style="width:90%;height:100px;"><?= $meet_out_time ?? "" ?></textarea>
+                                    </td>
+                                    <th>어린이 정책</th>
+                                    <td>
+                                        <textarea name="children_policy" id="children_policy"
+                                                  style="width:90%;height:100px;"><?= $children_policy ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>유아용 침대 및 엑스트라 베드</th>
+                                    <td>
+                                        <textarea name="baby_beds" id="baby_beds"
+                                                  style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
+                                    </td>
+                                    <th>조식</th>
+                                    <td>
+                                        <textarea name="breakfast" id="breakfast"
+                                                  style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
+                                        <div class="" style="margin-top: 10px">
+                                            <button type="button" class="btnAddBreakfast">수정</button>
+                                        </div>
+                                        <table style="width:90%">
+                                            <tbody id="tBodyTblBreakfast">
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>보증금 규정</th>
+                                    <td>
+                                        <textarea name="deposit_regulations" id="deposit_regulations"
+                                                  style="width:90%;height:100px;"><?= $deposit_regulations ?? "" ?></textarea>
+                                    </td>
+                                    <th>반려동물</th>
+                                    <td>
+                                        <textarea name="pets" id="pets"
+                                                  style="width:90%;height:100px;"><?= $pets ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>연령 제한</th>
+                                    <td>
+                                        <textarea name="age_restriction" id="age_restriction"
+                                                  style="width:90%;height:100px;"><?= $age_restriction ?? "" ?></textarea>
+                                    </td>
+                                    <th>흡연 정책</th>
+                                    <td>
+                                        <textarea name="smoking_policy" id="smoking_policy"
+                                                  style="width:90%;height:100px;"><?= $smoking_policy ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                let tr = ` <tr>
+                                                <th style="width: 30%">
+                                                    <input type="text" name="breakfast_item_name_">
+                                                </th>
+                                                <td style="width: 60%">
+                                                    <input type="text" name="breakfast_item_value_">
+                                                </td>
+                                                <td style="width: 10%">
+                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">수정</button>
+                                                </td>
+                                            </tr>`;
+
+                                $('.btnAddBreakfast').click(function () {
+                                    $('#tBodyTblBreakfast').append(tr);
+                                });
+
+                                function removeBreakfast(el) {
+                                    $(el).parent().parent().remove();
+                                }
+                            </script>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
