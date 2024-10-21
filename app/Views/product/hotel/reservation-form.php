@@ -53,11 +53,13 @@
 
                                 <div class="button-action-con">
                                     <div class="conn-icon add-item" data-group="group1">
-                                        <img src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
+                                        <img class="only_web" src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
+                                        <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png" alt="add_item_icon">
                                         <span>투숙객 추가</span>
                                     </div>
                                     <div class="conn-icon remove-item" data-group="group1">
-                                        <img src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
+                                        <img class="only_web" src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
+                                        <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png" alt="add_item_icon">
                                         <span>투숙객 삭제</span>
                                     </div>
                                 </div>
@@ -80,11 +82,13 @@
 
                                 <div class="button-action-con">
                                     <div class="conn-icon add-item" data-group="group2">
-                                        <img src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
+                                        <img class="only_web" src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
+                                        <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png" alt="add_item_icon">
                                         <span>투숙객 추가</span>
                                     </div>
                                     <div class="conn-icon remove-item" data-group="group2">
-                                        <img src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
+                                        <img class="only_web" src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
+                                        <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png" alt="remove_item_icon">
                                         <span>투숙객 삭제</span>
                                     </div>
                                 </div>
@@ -93,7 +97,7 @@
                             <h3 class="form-title title-sub-c">상세정보 입력</h3>
                             <div class="form-group form-cus-select mb-30">
                                 <label for="passport-name2">이메일 주소*</label>
-                                <div class="cus-select-group">
+                                <div class="cus-select-group cus-width-mo">
                                     <input type="text" id="" placeholder="이메일">
                                     <span>@</span>
                                     <select id="" class="select-width">

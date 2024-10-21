@@ -1507,9 +1507,10 @@ div#headerContainer div.menus ul li .input_select {
 
 .popup_con {
     position: absolute;
-    top: 45px;
+    top: 50%;
     left: 38%;
     width: 360px;
+    transform: translateY(-50%);
     height: 220px;
     background-color: #eee;
     z-index: 1000;
