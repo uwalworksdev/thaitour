@@ -172,7 +172,7 @@ $links = "list";
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
@@ -183,14 +183,14 @@ $links = "list";
                                         <?php } ?>
 
                                     </td>
-                                    <th>노출</th>
-                                    <td>
-                                        <input type="checkbox" name="product_best" id="product_best" value="Y"
-                                            <?php if (isset($product_best) && $product_best === "Y")
-                                                echo "checked=checked"; ?>> <label for="product_best"
-                                                                                   style="max-height:200px;margin-right:20px;">BEST
-                                            인기호텔</label>
-                                    </td>
+<!--                                    <th>노출</th>-->
+<!--                                    <td>-->
+<!--                                        <input type="checkbox" name="product_best" id="product_best" value="Y"-->
+<!--                                            --><?php //if (isset($product_best) && $product_best === "Y")
+//                                                echo "checked=checked"; ?><!--> <label for="product_best"-->
+<!--                                                                                   style="max-height:200px;margin-right:20px;">BEST-->
+<!--                                            인기호텔</label>-->
+<!--                                    </td>-->
                                 </tr>
                                 <tr>
                                     <th>상품명</th>
@@ -624,18 +624,28 @@ $links = "list";
                                 }
                             </style>
                             <?php
-                            $productMoreData = json_decode($product_more, true);
+                            if ($product_more) {
+                                $productMoreData = json_decode($product_more, true);
 
-                            if ($productMoreData) {
-                                $meet_out_time = $productMoreData['meet_out_time'];
-                                $children_policy = $productMoreData['children_policy'];
-                                $baby_beds = $productMoreData['baby_beds'];
-                                $deposit_regulations = $productMoreData['deposit_regulations'];
-                                $pets = $productMoreData['pets'];
-                                $age_restriction = $productMoreData['age_restriction'];
-                                $smoking_policy = $productMoreData['smoking_policy'];
+                                if (json_last_error() !== JSON_ERROR_NONE) {
+                                    die("Lỗi giải mã JSON: " . json_last_error_msg());
+                                }
+                                $breakfast_data = '';
+                                if ($productMoreData) {
+                                    $meet_out_time = $productMoreData['meet_out_time'];
+                                    $children_policy = $productMoreData['children_policy'];
+                                    $baby_beds = $productMoreData['baby_beds'];
+                                    $deposit_regulations = $productMoreData['deposit_regulations'];
+                                    $pets = $productMoreData['pets'];
+                                    $age_restriction = $productMoreData['age_restriction'];
+                                    $smoking_policy = $productMoreData['smoking_policy'];
+                                    $breakfast = $productMoreData['breakfast'];
+                                    $breakfast_data = $productMoreData['breakfast_data'];
+                                }
                             }
 
+                            $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
+                            $breakfast_data_arr = array_filter($breakfast_data_arr);
                             ?>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
@@ -682,7 +692,26 @@ $links = "list";
                                         </div>
                                         <table style="width:90%">
                                             <tbody id="tBodyTblBreakfast">
-
+                                            <?php foreach ($breakfast_data_arr as $dataBreakfast) { ?>
+                                                <?php
+                                                $dataBreakfastArr = explode('::::', $dataBreakfast);
+                                                ?>
+                                                <tr>
+                                                    <th style="width: 30%">
+                                                        <input type="text" name="breakfast_item_name_[]"
+                                                               value="<?= $dataBreakfastArr[0] ?? "" ?>">
+                                                    </th>
+                                                    <td style="width: 60%">
+                                                        <input type="text" name="breakfast_item_value_[]"
+                                                               value="<?= $dataBreakfastArr[1] ?? "" ?>">
+                                                    </td>
+                                                    <td style="width: 10%">
+                                                        <button type="button" class="btnDeleteBreakfast"
+                                                                onclick="removeBreakfast(this);">삭제
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
                                             </tbody>
                                         </table>
                                     </td>
@@ -719,13 +748,13 @@ $links = "list";
                             <script>
                                 let tr = ` <tr>
                                                 <th style="width: 30%">
-                                                    <input type="text" name="breakfast_item_name_">
+                                                    <input type="text" name="breakfast_item_name_[]">
                                                 </th>
                                                 <td style="width: 60%">
-                                                    <input type="text" name="breakfast_item_value_">
+                                                    <input type="text" name="breakfast_item_value_[]">
                                                 </td>
                                                 <td style="width: 10%">
-                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">수정</button>
+                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
                                                 </td>
                                             </tr>`;
 
@@ -867,68 +896,6 @@ $links = "list";
                                                 <?php
                                             }
                                             ?>
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                                <tr height="45">
-                                    <th>
-                                        추가옵션등록
-                                        <p style="display:block;margin-top:10px;">
-                                            <button type="button" id="btn_add_option2" class="btn_01">추가</button>
-                                        </p>
-                                    </th>
-                                    <td>
-										<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에
-											삭제바랍니다.</span>
-                                        <div>
-                                            <table>
-                                                <colgroup>
-                                                    <col width="*">
-                                                    <col width="25%">
-                                                    <col width="15%">
-                                                </colgroup>
-                                                <thead>
-                                                <tr>
-                                                    <th>옵션명</th>
-                                                    <th>가격</th>
-                                                    <th>삭제</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody id="settingBody2">
-                                                <?php
-                                                // 옵션 조회
-                                                $gresult3 = (new AdminHotelController())->getListOptionType($product_code ?? null);
-                                                foreach ($gresult3 as $frow3) {
-                                                    ?>
-
-                                                    <tr>
-                                                        <td>
-                                                            <input type='hidden' name='o_idx[]'
-                                                                   value='<?= $frow3['idx'] ?>'/>
-                                                            <input type='hidden' name='option_type[]'
-                                                                   value='<?= $frow3['option_type'] ?>'/>
-                                                            <input type='text' name='o_name[]' id=''
-                                                                   value="<?= $frow3['goods_name'] ?>" size="70"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type='text' class='onlynum' name='o_price1[]' id=''
-                                                                   value="<?= $frow3['goods_price1'] ?>"/>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button"
-                                                                    onclick="delOption('<?= $frow3['idx'] ?>',this)">삭제
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-
-                                                    <?php
-                                                }
-                                                ?>
-
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </td>
                                 </tr>

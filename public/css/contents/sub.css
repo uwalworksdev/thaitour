@@ -8,18 +8,18 @@
   width: 100%;
   /* max-width: 600px;  */
   margin: 20px auto;
-  
+
 }
 
 
 .skeleton {
   width: 100%;
   height: 25px;
-  
+
   margin-bottom: 10px;
-  
+
   background-color: #f0f0f0;
-  
+
 }
 
 /* Animation */
@@ -3729,7 +3729,6 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .card-left2 {
   width: 820px;
-  height: 750px;
   padding: 40px 30px;
   background-color: white;
   border-radius: 6px;
@@ -3741,7 +3740,6 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .card-right {
   width: 360px;
-  height: 610px;
   background-color: white;
   border-radius: 6px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -3869,11 +3867,14 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .customer-form-page .container-card .title-r {
   font-size: 18px;
   margin-bottom: 20px;
+  line-height: 1.5rem;
+  font-weight: 600;
 }
 
 .customer-form-page .container-card .title-sub-r {
   margin-bottom: 32px;
-  line-height: 1.2rem;
+  line-height: 1.5rem;
+  font-size: 17px;
 }
 
 .customer-form-page .container-card .item-info {
@@ -3893,6 +3894,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .customer-form-page .container-card .below-des-price {
   line-height: 1.3rem;
   margin-bottom: 30px;
+  color: #999999;
 }
 
 .customer-form-page .container-card .below-title-image {
@@ -4561,17 +4563,25 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   border: 1px solid #ddd;
 }
 
-.cart-item-list .table-container th,
+.cart-item-list .table-container th:not(:last-child),
 .cart-item-list .table-container td {
-  padding: 25px;
+  padding: 19px;
   text-align: left;
   vertical-align: top;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
 }
 
+.cart-item-list .table-container th:last-child {
+  border-bottom: 1px solid #ddd;
+}
+
 .cart-item-list .table-container td:last-child {
   border-right: none;
+}
+
+.cart-item-list .table-container {
+  border-bottom: none;
 }
 
 .cart-item-list .cus-checkbox-td {
@@ -4586,12 +4596,14 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .table-header th:nth-child(1) {
-  width: 426px;
+  width: 451px;
+  text-align: center;
 }
 
 .cart-item-list .table-header th:nth-child(2),
 .cart-item-list .table-header th:nth-child(3) {
-  width: 137px;
+  width: 130px;
+  text-align: center;
 }
 
 .cart-item-list .table-container th {
@@ -4809,6 +4821,89 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   flex-wrap: wrap;
   gap: 20px;
 }
+
+.customer-form-page .card-left .cus-select-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.customer-form-page .title-sub-below {
+  font-size: 15px;
+  color: #757575;
+  margin-bottom: 20px;
+}
+
+.reservation-form-cus .title-main-c {
+  margin-bottom: 16px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.reservation-form-cus .button-action-con {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.reservation-form-cus .conn-icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.reservation-form-cus .conn-icon span {
+  color: #004ce7;
+}
+
+.reservation-form-cus .con-form {
+  flex-wrap: wrap;
+}
+
+.reservation-form-cus .parent-form-group {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.reservation-form-cus #remove-item {
+  display: none;
+}
+
+.reservation-form-cus .w-375 {
+  width: 375px;
+}
+
+.tour-main-page .banner_section_main_page .banner_section_image {
+  background: url(/uploads/sub/banner_tour_1.png) no-repeat center;
+  background-size: cover;
+  height: 150px;
+  margin-top: 100px;
+}
+
+.tour-main-page .banner_section_main_page .box-text {
+  position: absolute;
+  top: 45px;
+  left: 120px;
+}
+
+.tour-main-page .banner_section_main_page .box-text .title-box {
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.tour-main-page .banner_section_main_page .box-text .des-box {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
 
 @media screen and (max-width: 1200px) {
   .only_tb {

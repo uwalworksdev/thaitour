@@ -1570,6 +1570,7 @@
     vertical-align: middle;
     cursor: pointer;
     margin-right: 1.5rem;
+    background-color: white;
   }
 
   .cart-item-list .cart-left .header-cart {
@@ -1648,7 +1649,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
-    max-width: 34.5rem;  
+    max-width: 34.5rem;
   }
 
   .cart-item-list .table-container.custom-mo .text-right-p {
@@ -1680,6 +1681,7 @@
   .cart-item-list .table-container.custom-mo .item {
     padding: 2rem 0 5rem 0;
     border-bottom: 2.1px solid rgb(219, 219, 219);
+    width: 66rem;
   }
 
   .cart-item-list .table-container.custom-mo .des-item {
@@ -1707,6 +1709,7 @@
     padding: 2.8rem 2.4rem;
     border-radius: 0.6rem;
     padding-bottom: 6rem;
+    margin-top: 8rem;
   }
 
   .cart-item-list .cart-item-list-container .title-cr {
@@ -1745,5 +1748,75 @@
     width: 100%;
     font-weight: bold;
     height: 11rem;
+  }
+
+  .customer-form-page .title-sub-below {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+    color: #757575;
+    margin-bottom: 2rem;
+  }
+
+  .reservation-form-cus .parent-form-group {
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  .reservation-form-cus .conn-icon {
+    gap: 1rem;
+  }
+
+  .reservation-form-cus .cus-width-mo input:first-child {
+    width: 33.5rem;
+  }
+
+  .reservation-form-cus .conn-icon img {
+    width: 3.7rem;
+    height: 3.7rem;
+  }
+
+  .reservation-form-cus .w-375 {
+    width: 100%;
+  }
+
+
+  .customer-form-page .container-card .title-r {
+    line-height: 4rem;
+  }
+
+  .customer-form-page .container-card .title-sub-r {
+    font-size: 2.7rem;
+  }
+
+  .mt-30 {
+    margin-top: 3rem;
+  }
+
+  .tour-main-page .banner_section_main_page .banner_section_image {
+    height: 24rem;
+    background: url(/uploads/sub/banner_tour_1_m.png) no-repeat center;
+    background-size: cover;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text {
+    position: absolute;
+    top: 8rem;
+    left: 3rem;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text .title-box {
+    font-size: 3.6rem;
+    color: #ffffff;
+    margin-bottom: 1.6rem;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text .des-box {
+    font-size: 2.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+  }
+
+  .tour-main-page .sub_tour_section7_product_list {
+    margin-bottom: 0;
   }
 }

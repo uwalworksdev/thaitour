@@ -166,7 +166,7 @@
 }
 
 .sub_swiper2_pagination.swiper-pagination-lock {
-  display: none;
+    display: none;
 }
 
 .sub_swiper2_pagination .swiper-pagination-bullet-active {
@@ -899,6 +899,8 @@
 
 .content-sub-product-hotel .list-tag {
     display: flex;
+    flex-wrap: wrap;
+    max-width: 650px;
     gap: 6px;
 }
 
@@ -918,6 +920,13 @@
     font-weight: bold;
     border: 1px solid #ccc;
     padding: 8px;
+}
+
+.content-sub-product-hotel .filter-container button.btn_search_ {
+    padding: 8px 12px;
+    color: #fff;
+    background-color: #17469E;
+    font-weight: 400;
 }
 
 .content-sub-product-hotel .below-filter-content {
@@ -1283,6 +1292,49 @@
     background-color: #fff;
 }
 
+.content-sub-hotel-detail .room-table .room_qty,
+.content-sub-hotel-detail .room-table .day_qty {
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    margin-top: 20px;
+}
+
+.content-sub-hotel-detail .room-table .room_qty p,
+.content-sub-hotel-detail .room-table .day_qty p {
+    margin-bottom: 5px;
+    text-wrap: nowrap;
+}
+
+.content-sub-hotel-detail .room-table .day_activity,
+.content-sub-hotel-detail .room-table .room_activity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-sub-hotel-detail .room-table .btnMinus,
+.content-sub-hotel-detail .room-table .btnPlus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dbdbdb;
+    height: 40px;
+    width: 40px;
+}
+
+.content-sub-hotel-detail .room-table .input_room_qty,
+.content-sub-hotel-detail .room-table .input_day_qty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    height: 40px;
+    width: 60px;
+    border-left: hidden;
+    border-right: hidden;
+}
+
 .content-sub-hotel-detail .room-table th,
 .room-table td {
     padding: 20px;
@@ -1406,10 +1458,10 @@
 }
 
 .content-sub-hotel-detail .book-button {
-    background-color: var(--bs-point);
-    color: #fff;
+    background-color: white;
+    color: black;
+    border: 1px solid #dbdbdb;
     padding: 16px 20px;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 80%;
@@ -1429,7 +1481,9 @@
 
 
 .content-sub-hotel-detail .book-button:hover {
-    opacity: 0.7;
+    background-color: var(--bs-point);
+    color: #fff;
+    border: 1px solid var(--bs-point);
 }
 
 .content-sub-hotel-detail .title-sec3 {

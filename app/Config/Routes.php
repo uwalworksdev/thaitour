@@ -199,8 +199,13 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_operator", static function ($routes) {
         $routes->get("coupon_setting", "Admin\AdminOperatorController::coupon_setting");
         $routes->get("coupon_setting_write", "Admin\AdminOperatorController::coupon_setting_write");
+        $routes->post("coupon_setting_write_ok", "Admin\AdminOperatorController::coupon_setting_write_ok", ['as' => "admin.operator.coupon_setting_write_ok"]);
+        $routes->post("coupon_setting_del", "Admin\AdminOperatorController::coupon_setting_del", ['as' => "admin.operator.coupon_setting_del"]);
         $routes->get("coupon_list", "Admin\AdminOperatorController::coupon_list");
         $routes->get("coupon_write", "Admin\AdminOperatorController::coupon_write");
+        $routes->post("coupon_write_ok", "Admin\AdminOperatorController::coupon_write_ok", ['as' => "admin.operator.coupon_write_ok"]);
+        $routes->post("coupon_del", "Admin\AdminOperatorController::coupon_del", ['as' => "admin.operator.coupon_del"]);
+        $routes->get("find_user", "Admin\AdminOperatorController::find_user");
     });
 
     $routes->group("_mileage", static function ($routes) {
@@ -429,7 +434,8 @@ $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
 $routes->get('product-list/(:any)', 'Product::index3/$1');
 $routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::hotelDetail/$1');
-$routes->get('product-hotel/customer-form', 'Product::index7/$1');
+$routes->get('product-hotel/customer-form/(:any)', 'Product::index7/$1');
+$routes->get('product-hotel/reservation-form/(:any)', 'Product::reservationForm/$1');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product/completed-order', 'Product::completedOrder/$1');

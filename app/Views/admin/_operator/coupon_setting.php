@@ -233,6 +233,41 @@
     }
 
     function del_it(code_idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+            handleDel(code_idx);
+        }
+    }
+
+    async function handleDel(code_idx) {
+        console.log(code_idx)
+        let uri = `<?= route_to('admin.operator.coupon_setting_del') ?>`;
+
+        $("#ajax_loader").removeClass("display-none");
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: "idx[]=" + code_idx,
+            async: false,
+            cache: false,
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                $("#ajax_loader").addClass("display-none");
+                alert_("정상적으로 삭제되었습니다.");
+                window.location.href = '/AdmMaster/_operator/coupon_setting';
+                return;
+            }
+        });
+    }
+
+    function del_it2(code_idx) {
 
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
             return;

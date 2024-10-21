@@ -18,6 +18,9 @@ if ($idx) {
     <script type="text/javascript">
 
         function send_it() {
+
+            $("#ajax_loader").removeClass("display-none");
+
             var frm = document.frm;
 
             if (frm.coupon_name.value == "") {
@@ -93,7 +96,8 @@ if ($idx) {
             </header>
             <!-- // headerContainer -->
 
-            <form name="frm" action="coupon_setting_write_ok.php" method="post" enctype="multipart/form-data"
+            <form name="frm" action="<?= route_to('admin.operator.coupon_setting_write_ok') ?>" method="post"
+                  enctype="multipart/form-data"
                   target="hiddenFrame">
                 <input type="hidden" name="idx" value='<?= $idx ?>'>
                 <input type="hidden" name="publish_type" value='N'> <!-- 일반 쿠폰만 사용 -->
@@ -230,10 +234,37 @@ if ($idx) {
     <script>
 
         function del_it() {
-            if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-                hiddenFrame.location.href = "coupon_setting_del.php?idx[]=<?=$idx?>";
+            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
+                handleDel();
             }
+        }
 
+        function handleDel() {
+            let uri = `<?= route_to('admin.operator.coupon_setting_del') ?>`;
+
+            $("#ajax_loader").removeClass("display-none");
+
+            $.ajax({
+                url: uri,
+                type: "POST",
+                data: "idx[]=" + `<?= $idx ?? ''?>`,
+                async: false,
+                cache: false,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+//				$("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    $("#ajax_loader").addClass("display-none");
+                    alert_("정상적으로 삭제되었습니다.");
+                    window.location.href = '/AdmMaster/_operator/coupon_setting';
+                    return;
+                }
+            });
         }
 
     </script>
