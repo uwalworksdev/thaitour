@@ -1649,7 +1649,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
-    max-width: 34.5rem;  
+    max-width: 34.5rem;
   }
 
   .cart-item-list .table-container.custom-mo .text-right-p {
@@ -1748,5 +1748,29 @@
     width: 100%;
     font-weight: bold;
     height: 11rem;
+  }
+
+  .customer-form-page .title-sub-below {
+    font-size: 2.5rem;
+    color: #757575;
+    margin-bottom: 2rem;
+  }
+
+  .reservation-form-cus .parent-form-group {
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  .reservation-form-cus .conn-icon {
+    gap: 1rem;
+  }
+
+  .reservation-form-cus .cus-width-mo input:first-child {
+    width: 27.5rem;
+  }
+
+
+  .mt-30 {
+    margin-top: 3rem;
   }
 }
