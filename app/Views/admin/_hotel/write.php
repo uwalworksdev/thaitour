@@ -707,7 +707,7 @@ $links = "list";
                                                     </td>
                                                     <td style="width: 10%">
                                                         <button type="button" class="btnDeleteBreakfast"
-                                                                onclick="removeBreakfast(this);">수정
+                                                                onclick="removeBreakfast(this);">삭제
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -754,7 +754,7 @@ $links = "list";
                                                     <input type="text" name="breakfast_item_value_[]">
                                                 </td>
                                                 <td style="width: 10%">
-                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">수정</button>
+                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
                                                 </td>
                                             </tr>`;
 
