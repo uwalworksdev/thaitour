@@ -86,7 +86,7 @@
                                 </tr>
                                 <?php
                             }
-                           foreach ($result as $row) {
+                            foreach ($result as $row) {
                                 $today = date('Y-m-d');
                                 ?>
                                 <tr>

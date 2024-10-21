@@ -1284,15 +1284,15 @@
 
 .content-sub-hotel-detail .room-table .room_qty,
 .content-sub-hotel-detail .room-table .day_qty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    margin-top: 20px;
 }
 
 .content-sub-hotel-detail .room-table .room_qty p,
 .content-sub-hotel-detail .room-table .day_qty p {
-    margin-right: 10px;
+    margin-bottom: 5px;
     text-wrap: nowrap;
 }
 

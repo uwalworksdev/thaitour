@@ -73,6 +73,113 @@ class AdminOperatorController extends BaseController
         return view('admin/_operator/coupon_setting_write', $data);
     }
 
+    public function coupon_setting_write_ok()
+    {
+        try {
+            $idx = updateSQ($_POST["idx"]);
+            $coupon_name = updateSQ($_POST["coupon_name"] ?? '');
+            $publish_type = updateSQ($_POST["publish_type"] ?? '');
+            $dc_type = updateSQ($_POST["dc_type"] ?? '');
+            $coupon_pe = updateSQ($_POST["coupon_pe"] ?? '');
+            $coupon_price = updateSQ($_POST["coupon_price"] ?? '');
+            $dex_price_pe = updateSQ($_POST["dex_price_pe"] ?? '');
+            $exp_days = updateSQ($_POST["exp_days"] ?? '');
+            $etc_memo = updateSQ($_POST["etc_memo"] ?? '');
+            $state = updateSQ($_POST["state"] ?? '');
+            $nobrand = updateSQ($_POST["nobrand"] ?? '');
+            $coupon_type = updateSQ($_POST["coupon_type"] ?? '');
+
+            if ($idx) {
+                $sql = "
+                    update tbl_coupon_setting SET 
+                        coupon_name			= '" . $coupon_name . "'	
+                        ,publish_type		= '" . $publish_type . "'
+                        ,dc_type			= '" . $dc_type . "'
+                        ,coupon_pe			= '" . $coupon_pe . "'
+                        ,coupon_price		= '" . $coupon_price . "'
+                        ,dex_price_pe		= '" . $dex_price_pe . "'
+                        ,exp_days			= '" . $exp_days . "'
+                        ,etc_memo			= '" . $etc_memo . "'
+                        ,state				= '" . $state . "'
+                        ,nobrand			= '" . $nobrand . "'
+                        ,coupon_type        = '" . $coupon_type . "'
+                    where idx = '" . $idx . "'
+                ";
+
+            } else {
+
+                $sql = "
+                    insert into tbl_coupon_setting SET 
+                         coupon_name		= '" . $coupon_name . "'	
+                        ,publish_type		= '" . $publish_type . "'	
+                        ,dc_type			= '" . $dc_type . "'
+                        ,coupon_pe			= '" . $coupon_pe . "'
+                        ,coupon_price		= '" . $coupon_price . "'
+                        ,dex_price_pe		= '" . $dex_price_pe . "'
+                        ,exp_days			= '" . $exp_days . "'
+                        ,etc_memo			= '" . $etc_memo . "'
+                        ,state				= '" . $state . "'
+                        ,nobrand			= '" . $nobrand . "'
+                        ,coupon_type		= '" . $coupon_type . "'
+                        ,regdate			= now()
+                ";
+            }
+
+            $this->connect->query($sql);
+
+            if ($idx) {
+                $message = "수정되었습니다.";
+                return "<script>
+                    alert('$message');
+                        parent.location.reload();
+                    </script>";
+            }
+
+            $message = "등록되었습니다.";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_operator/coupon_setting';
+                </script>";
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function coupon_setting_del()
+    {
+        try {
+            if (!isset($_POST['idx'])) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => 'idx is not set'
+                ], 400);
+            }
+
+            $idx = $_POST['idx'];
+
+            for ($i = 0; $i < count($idx); $i++) {
+                $sql1 = " update tbl_coupon_setting set state = 'C' where idx = '" . $idx[$i] . "' ";
+                $this->connect->query($sql1);
+
+            }
+
+            $message = "삭제 성공.";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_operator/coupon_setting';
+                </script>";
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     public function coupon_list()
     {
         $g_list_rows = 100;
@@ -127,6 +234,33 @@ class AdminOperatorController extends BaseController
             'ca_idx' => $ca_idx,
             'result_c' => $result_c
         ];
+
         return view('admin/_operator/coupon_write', $data);
+    }
+
+    public function coupon_write_ok()
+    {
+        $types = updateSQ($_POST["types"]);
+        $coupon_type = updateSQ($_POST["coupon_type"]);
+        $coupon_cnt = updateSQ($_POST["coupon_cnt"]);
+
+        echo $coupon_type . " / " . $coupon_cnt;
+
+
+        $ok_cnt = 0;
+        $er_cnt = 0;
+
+        for ($i = 1; $i <= $coupon_cnt; $i++) {
+
+            $new_coupon = createCoupon($coupon_type);
+
+            if ($new_coupon == "Error") {
+                $er_cnt++;
+            } else {
+                $ok_cnt++;
+            }
+
+
+        }
     }
 }
