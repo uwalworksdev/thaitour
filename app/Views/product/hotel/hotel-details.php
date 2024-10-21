@@ -281,6 +281,7 @@
                                         if ($isSale) {
                                             $percent = $room_op['r_sale_price'] / $room_op['r_price'] * 100;
                                             $percent = 100 - $percent;
+                                            $percent = round($percent, 2);
                                         }
                                         ?>
                                         <td>
@@ -502,6 +503,7 @@
                                                 if ($isSale) {
                                                     $percent = $room_op['r_sale_price'] / $room_op['r_price'] * 100;
                                                     $percent = 100 - $percent;
+                                                    $percent = round($percent, 2);
                                                 }
                                                 ?>
                                                 <td>
