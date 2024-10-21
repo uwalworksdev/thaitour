@@ -17,7 +17,7 @@ class Product extends BaseController
     private $reviewModel;
     private $mainDispModel;
 
-    private $scale = 1;
+    private $scale = 8;
 
     public function __construct()
     {
