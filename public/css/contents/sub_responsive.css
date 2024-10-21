@@ -1778,7 +1778,7 @@
   .reservation-form-cus .w-375 {
     width: 100%;
   }
-   
+
 
   .customer-form-page .container-card .title-r {
     line-height: 4rem;
@@ -1790,5 +1790,33 @@
 
   .mt-30 {
     margin-top: 3rem;
+  }
+
+  .tour-main-page .banner_section_main_page .banner_section_image {
+    height: 24rem;
+    background: url(/uploads/sub/banner_tour_1_m.png) no-repeat center;
+    background-size: cover;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text {
+    position: absolute;
+    top: 8rem;
+    left: 3rem;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text .title-box {
+    font-size: 3.6rem;
+    color: #ffffff;
+    margin-bottom: 1.6rem;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text .des-box {
+    font-size: 2.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+  }
+
+  .tour-main-page .sub_tour_section7_product_list {
+    margin-bottom: 0;
   }
 }
