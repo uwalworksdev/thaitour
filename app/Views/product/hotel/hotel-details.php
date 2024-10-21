@@ -278,7 +278,7 @@
                                         </td>
                                         <td>
                                             <div class="room_qty">
-                                                <p>객실 수: </p>
+                                                <p>객실 수 </p>
                                                 <div class="room_activity">
                                                     <button class="btnMinus">
                                                         -
@@ -292,7 +292,7 @@
                                                 </div>
                                             </div>
                                             <div class="day_qty">
-                                                <p>객실 수: </p>
+                                                <p>숙박일 </p>
                                                 <div class="day_activity">
                                                     <button class="btnMinus">
                                                         -
@@ -531,7 +531,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="room_qty">
-                                                        <p>객실 수: </p>
+                                                        <p>객실 수 </p>
                                                         <div class="room_activity">
                                                             <button class="btnMinus">
                                                                 -
@@ -545,7 +545,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="day_qty">
-                                                        <p>객실 수: </p>
+                                                        <p>숙박일 </p>
                                                         <div class="day_activity">
                                                             <button class="btnMinus">
                                                                 -

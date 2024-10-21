@@ -1303,6 +1303,8 @@
 .content-sub-hotel-detail .room-table .day_qty p {
     margin-bottom: 5px;
     text-wrap: nowrap;
+    text-align: center;
+    font-weight: 600;
 }
 
 .content-sub-hotel-detail .room-table .day_activity,
