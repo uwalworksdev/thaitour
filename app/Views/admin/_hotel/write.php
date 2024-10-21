@@ -624,25 +624,27 @@ $links = "list";
                                 }
                             </style>
                             <?php
-                            $productMoreData = json_decode($product_more, true);
+                            if ($product_more) {
+                                $productMoreData = json_decode($product_more, true);
 
-                            if (json_last_error() !== JSON_ERROR_NONE) {
-                                die("Lỗi giải mã JSON: " . json_last_error_msg());
-                            }
-                            $breakfast_data = '';
-                            if ($productMoreData) {
-                                $meet_out_time = $productMoreData['meet_out_time'];
-                                $children_policy = $productMoreData['children_policy'];
-                                $baby_beds = $productMoreData['baby_beds'];
-                                $deposit_regulations = $productMoreData['deposit_regulations'];
-                                $pets = $productMoreData['pets'];
-                                $age_restriction = $productMoreData['age_restriction'];
-                                $smoking_policy = $productMoreData['smoking_policy'];
-                                $breakfast = $productMoreData['breakfast'];
-                                $breakfast_data = $productMoreData['breakfast_data'];
+                                if (json_last_error() !== JSON_ERROR_NONE) {
+                                    die("Lỗi giải mã JSON: " . json_last_error_msg());
+                                }
+                                $breakfast_data = '';
+                                if ($productMoreData) {
+                                    $meet_out_time = $productMoreData['meet_out_time'];
+                                    $children_policy = $productMoreData['children_policy'];
+                                    $baby_beds = $productMoreData['baby_beds'];
+                                    $deposit_regulations = $productMoreData['deposit_regulations'];
+                                    $pets = $productMoreData['pets'];
+                                    $age_restriction = $productMoreData['age_restriction'];
+                                    $smoking_policy = $productMoreData['smoking_policy'];
+                                    $breakfast = $productMoreData['breakfast'];
+                                    $breakfast_data = $productMoreData['breakfast_data'];
+                                }
                             }
 
-                            $breakfast_data_arr = explode('||||', $breakfast_data);
+                            $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
                             $breakfast_data_arr = array_filter($breakfast_data_arr);
                             ?>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
