@@ -166,7 +166,7 @@
                 }
 
                 .cus_scroll::-webkit-scrollbar {
-                    width: 4px;
+                    width: 2px;
                     background-color: #F5F5F5;
                     display: block;
                 }
@@ -886,7 +886,7 @@
             <div class="sub_tour_section7_product_list swiper swiper_product_list_ swiper-initialized swiper-horizontal swiper-backface-hidden">
                 <div class="swiper-wrapper" id="swiper-wrapper-c2d811557361007f3" aria-live="polite">
                     <?php foreach ($suggestHotel as $item) : ?>
-                        <a href="/product-hotel/hotel-detail/<?= $item['g_idx'] ?>"
+                        <a href="/product-hotel/hotel-detail/<?= $item['product_idx'] ?>"
                            class="sub_tour_section7_product_item swiper-slide swiper-slide-active" role="group"
                            aria-label="1 / 9" data-swiper-slide-index="0"
                            style="width: 393.333px; margin-right: 10px;">
