@@ -175,23 +175,24 @@
                     background-color: #cccccc;
                 }
             </style>
-            <?php if ($s_category_room === '' || !isset($s_category_room)) : ?>
-                <?php foreach ($hotel_options as $item) : ?>
-                    <?php $room = $item['room']; ?>
-                    <?php $room_options = $room['room_option']; ?>
-                    <?php $room_facil = $room['room_facil']; ?>
-                    <?php
-                    $_arr = explode("|", $room_facil);
-                    $count_facil = count($_arr);
-                    $isValid = false;
-                    $room_op = '';
-                    $room_option_ = '';
+            <?php foreach ($hotel_options as $item) : ?>
+                <?php $room = $item['room']; ?>
+                <?php $room_options = $room['room_option']; ?>
+                <?php $room_facil = $room['room_facil']; ?>
+                <?php
+                $_arr = explode("|", $room_facil);
+                $count_facil = count($_arr);
+                $isValid = false;
+                $room_op = '';
+                $room_option_ = '';
 //                    if ($count_facil > 12) {
 //                        $isValid = true;
 //                        $room_op = 'room_option_long';
 //                        $room_option_ = 'room_option_';
 //                    }
-                    ?>
+                ?>
+
+                <?php if ($s_category_room === '' || !isset($s_category_room)) : ?>
                     <div class="card-item-sec3 <?= $room_option_ ?>">
                         <div class="card-title-sec3-container">
                             <h2><?= $room['roomName'] ?></h2>
@@ -244,9 +245,16 @@
                             </div>
 
                             <table class="room-table only_web">
+                                <colgroup>
+                                    <col width="35%">
+                                    <col width="20%">
+                                    <col width="10%">
+                                    <col width="35%">
+                                </colgroup>
                                 <thead>
                                 <tr>
                                     <th>옵션 상세</th>
+                                    <th>수량</th>
                                     <th>쿠폰</th>
                                     <th>객실 요금</th>
                                 </tr>
@@ -266,6 +274,32 @@
                                                         <li><?= $room_op_arr[$i] ?></li>
                                                     <?php } ?>
                                                 </ul>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="room_qty">
+                                                <p>객실 수</p>
+                                                <div class="room_activity">
+                                                    <button class="btnMinus">
+                                                        -
+                                                    </button>
+                                                    <input type="text" class="input_room_qty onlynum" value="1">
+                                                    <button class="btnPlus">
+                                                        +
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="day_qty">
+                                                <p>객실 수</p>
+                                                <div class="day_activity">
+                                                    <button class="btnMinus">
+                                                        -
+                                                    </button>
+                                                    <input type="text" class="input_day_qty onlynum" value="1">
+                                                    <button class="btnPlus">
+                                                        +
+                                                    </button>
+                                                </div>
                                             </div>
                                         </td>
                                         <td>
@@ -296,11 +330,11 @@
                                                     <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                     <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                 </div>
-                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
+                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
                                                 <span class="details">객실 1개 × 1박 (세금 포함)</span>
                                                 <!--                                                <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
                                                 <p>
-                                                    <span class="price"><?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?></span>원
+                                                    <span class="price"><?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?></span>원
                                                 </p>
                                                 <button class="book-button openPopupBtn">예약하기</button>
                                             </div>
@@ -389,24 +423,7 @@
                             </div>
                         <?php endif; ?>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <?php foreach ($hotel_options as $item) : ?>
-                    <?php $room = $item['room']; ?>
-                    <?php $room_options = $room['room_option']; ?>
-                    <?php $room_facil = $room['room_facil']; ?>
-                    <?php
-                    $_arr = explode("|", $room_facil);
-                    $count_facil = count($_arr);
-                    $isValid = false;
-                    $room_op = '';
-                    $room_option_ = '';
-//                    if ($count_facil > 25) {
-//                        $isValid = true;
-//                        $room_op = 'room_option_long';
-//                        $room_option_ = 'room_option_';
-//                    }
-                    ?>
+                <?php else: ?>
                     <?php
                     $_arr = explode("|", $room['category']);
 
@@ -466,9 +483,16 @@
                                     </div>
 
                                     <table class="room-table only_web">
+                                        <colgroup>
+                                            <col width="35%">
+                                            <col width="20%">
+                                            <col width="10%">
+                                            <col width="35%">
+                                        </colgroup>
                                         <thead>
                                         <tr>
                                             <th>옵션 상세</th>
+                                            <th>수량</th>
                                             <th>쿠폰</th>
                                             <th>객실 요금</th>
                                         </tr>
@@ -488,6 +512,32 @@
                                                                 <li><?= $room_op_arr[$i] ?></li>
                                                             <?php } ?>
                                                         </ul>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="room_qty">
+                                                        <p>객실 수</p>
+                                                        <div class="room_activity">
+                                                            <button class="btnMinus">
+                                                                -
+                                                            </button>
+                                                            <input type="text" class="input_room_qty onlynum" value="1">
+                                                            <button class="btnPlus">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="day_qty">
+                                                        <p>객실 수</p>
+                                                        <div class="day_activity">
+                                                            <button class="btnMinus">
+                                                                -
+                                                            </button>
+                                                            <input type="text" class="input_day_qty onlynum" value="1">
+                                                            <button class="btnPlus">
+                                                                +
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -518,11 +568,11 @@
                                                             <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                             <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                         </div>
-                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
+                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
                                                         <span class="details">객실 1개 × 1박 (세금 포함)</span>
                                                         <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
                                                         <p>
-                                                            <span class="price"><?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?></span>원
+                                                            <span class="price"><?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?></span>원
                                                         </p>
                                                         <button class="book-button openPopupBtn">예약하기</button>
                                                     </div>
@@ -616,9 +666,9 @@
                         }
                     }
                     ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
 
-                <?php endforeach; ?>
-            <?php endif; ?>
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
@@ -1033,6 +1083,10 @@
                 scrollTop: $('#' + elID).offset().top - 250
             }, 'slow');
         }
+
+        $(".onlynum").keyup(function () {
+            $(this).val($(this).val().replace(/[^0-9]/g, ""));
+        });
     </script>
 
 <?php $this->endSection(); ?>
