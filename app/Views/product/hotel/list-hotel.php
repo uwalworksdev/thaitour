@@ -18,15 +18,15 @@
                 <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
             </div>
         </div>
-        <div class="sub-hotel-container">
-            <form action="" name="fillFrm" id="fillFrm">
+        <form name="frmSearch" id="frmSearch">
+            <div class="sub-hotel-container">
                 <input type="hidden" name="search_category" id="search_category">
                 <input type="hidden" name="search_hotel" id="search_hotel">
                 <input type="hidden" name="search_rating" id="search_rating">
                 <input type="hidden" name="search_promotion" id="search_promotion">
                 <input type="hidden" name="search_topic" id="search_topic">
                 <input type="hidden" name="search_bedroom" id="search_bedroom">
-
+    
                 <div class="category-left only_web">
                     <h1 class="title">방콕</h1>
                     <div class="category-left-list">
@@ -170,84 +170,111 @@
                         </div>
                     </div>
                 </div>
-            </form>
-            <div class="content-right">
-                <div class="form_element_">
-                    <div class="date-container">
-                        <label for="checkin" class="label text-gray pt-2">체크인/아웃</label>
-                        <div class="date-sub-container">
-                            <div class="date-wrapper">
-                                <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
-                                <span class="suffix">(화)</span>
+                
+                <div class="content-right">
+                    <input type="hidden" name="pg" id="pg" value="<?=$products["pg"]?>">
+                    <div class="form_element_">
+                        <div class="date-container">
+                            <label for="checkin" class="label text-gray pt-2">체크인/아웃</label>
+                            <div class="date-sub-container">
+                                <div class="date-wrapper">
+                                    <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
+                                    <span class="suffix">(화)</span>
+                                </div>
+                                <span class="arrow">→</span>
+                                <div class="date-wrapper">
+                                    <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
+                                    <span class="suffix">(수)</span>
+                                </div>
                             </div>
-                            <span class="arrow">→</span>
-                            <div class="date-wrapper">
-                                <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
-                                <span class="suffix">(수)</span>
+                        </div>
+                        <div class="form_input_">
+                            <input type="text" id="input_hotel" name="search_product_name" class="input_custom_" value="<?=$products["search_product_name"]?>" placeholder="호텔명(미입력시 전체)">
+                        </div>
+                        <button type="button" onclick="search_it()" class="btn_search_">
+                            검색
+                        </button>
+                        <div class="only_mo category-mo-cus">
+                            <span class="title-cate">방콕</span>
+                            <div class="img-div">
+                                <img src="/uploads/icons/hotel_filter_icon.png" alt="hotel_filter_icon">
                             </div>
                         </div>
                     </div>
-                    <div class="form_input_">
-                        <input type="text" id="input_hotel" class="input_custom_" placeholder="호텔명(미입력시 전체)">
-                    </div>
-                    <button class="btn_search_">
-                        검색
-                    </button>
-                    <div class="only_mo category-mo-cus">
-                        <span class="title-cate">방콕</span>
-                        <div class="img-div">
-                            <img src="/uploads/icons/hotel_filter_icon.png" alt="hotel_filter_icon">
+    
+                    <div class="filter-container">
+                        <div class="">
+                            <div class="filter-content">
+                                <img class="filter_icon" src="/uploads/icons/filter_icon.png" alt="filter_icon">
+                                <span>필터</span>
+                            </div>
+                            <div class="list-tag">
+                            </div>
+                        </div>
+                        <div>
+                            <button type="button" id="filter_product">검색</button>
+                            <button type="button" id="delete_all">전체삭제</button>
                         </div>
                     </div>
-                </div>
-                <div class="filter-container">
-                    <div class="">
-                        <div class="filter-content">
-                            <img class="filter_icon" src="/uploads/icons/filter_icon.png" alt="filter_icon">
-                            <span>필터</span>
+                    <div class="below-filter-content">
+                        <div class="total_number">
+                            <p>총 상품 <span><?=$totalProducts?></span></p>
                         </div>
-                        <div class="list-tag">
-                        </div>
-                    </div>
-                    <div>
-                        <button id="filter_product">검색</button>
-                        <button id="delete_all">전체삭제</button>
-                    </div>
-                </div>
-                <div class="below-filter-content">
-                    <div class="total_number">
-                        <p>총 상품 <span><?=$totalProducts?></span></p>
-                    </div>
-                    <div class="two-way-arrow-content">
-                        <a href="#" class="">
-                            <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">
-                            <span class="text-primary">추천순</span>
-                        </a>
-                    </div>
-                </div>
-                <?php
-                    foreach($products as $product){
-                        if(is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
-                            $src = "/data/hotel/" . $product['ufile1'];
-                        } else {
-                            $src = "/images/product/noimg.png";
-                        }
-                ?>
-                    <div class="product-card-item-container">
-                        <div class="product-card-item-left">
-                            <a href="/product-hotel/hotel-detail/<?=$product["product_idx"]?>">
-                                <img src="<?=$src?>" alt="sub_hotel_1">
+                        <div class="two-way-arrow-content">
+                            <a href="#" class="">
+                                <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">
+                                <span class="text-primary">추천순</span>
                             </a>
                         </div>
-                        <div class="product-card-item-right">
-                            <div class="title-container">
+                    </div>
+                    <?php
+                        foreach($products["items"] as $product){
+                            if(is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
+                                $src = "/data/hotel/" . $product['ufile1'];
+                            } else {
+                                $src = "/images/product/noimg.png";
+                            }
+                    ?>
+                        <div class="product-card-item-container">
+                            <div class="product-card-item-left">
                                 <a href="/product-hotel/hotel-detail/<?=$product["product_idx"]?>">
-                                    <h2><?=$product['product_name']?></h2>
+                                    <img src="<?=$src?>" alt="sub_hotel_1">
                                 </a>
-                                <div class="only_web">
+                            </div>
+                            <div class="product-card-item-right">
+                                <div class="title-container">
+                                    <a href="/product-hotel/hotel-detail/<?=$product["product_idx"]?>">
+                                        <h2><?=$product['product_name']?></h2>
+                                    </a>
+                                    <div class="only_web">
+                                        <div class="star-container">
+                                            <div class="">
+                                                <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                                <span><?=$product["review_average"]?></span>
+                                            </div>
+                                            <div class="star-content">
+                                                <span class="text-primary">생생리뷰 <strong>(<?=$product["total_review"]?>)</strong></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sub-title">
+                                    <?php
+                                        $num = count($product['codeTree']);
+                                        foreach ($product['codeTree'] as $key => $code):
+                                    ?>
+                                        <span><?= $code['code_name'] ?></span>
+                                            <?php if ($key < $num - 1): ?>
+                                                <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                                <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                                    alt="arrow_right_mo">
+                                            <?php endif; ?>               
+                                    <?php endforeach; ?>
+                                </div>
+                                <div class="only_mo">
                                     <div class="star-container">
-                                        <div class="">
-                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                        <div class="star-left">
+                                            <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                             <span><?=$product["review_average"]?></span>
                                         </div>
                                         <div class="star-content">
@@ -255,28 +282,74 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="list-item-info">
+                                    <div class="item-info">
+                                        <h2>추천 포인트</h2>
+                                        <div class="tab_box_area_">
+                                            <ul class="tab_box_show_">
+                                                <?php foreach ($product['utilities'] as $row): ?>
+                                                    <li class="tab_box_element_ p--20 border"><?=$row["code_name"]?></li>
+                                                <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                    <div class="item-info">
+                                        <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
+                                        <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                    </div>
+                                    <div class="item-info">
+                                        <h2>프로모션</h2>
+                                        <div class="item-info-label">
+                                            <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                        </div>
+                                    </div>
+                                    <div class="item-info">
+                                        <div class="item-price-info"><span class="main"><?= number_format($product['product_price']) ?> </span><span class="text-gray">원
+                                                ~</span> <span class="sub text-gray">6,000바트~</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                        }
+                    ?>
+                    <!-- <div class="product-card-item-container">
+                        <div class="product-card-item-left">
+                            <a href="/product-hotel/hotel-detail/1324">
+                                <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
+                            </a>
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>아난타라 시암 방콕 호텔</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="sub-title">
-                                <?php
-                                    $num = count($product['codeTree']);
-                                    foreach ($product['codeTree'] as $key => $code):
-                                ?>
-                                    <span><?= $code['code_name'] ?></span>
-                                        <?php if ($key < $num - 1): ?>
-                                            <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                                            <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                                alt="arrow_right_mo">
-                                        <?php endif; ?>               
-                                <?php endforeach; ?>
+                                <span>방콕</span>
+                                <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                    alt="arrow_right_mo">
+                                <span>스쿰빛(야속-프로퐁)</span>
                             </div>
                             <div class="only_mo">
                                 <div class="star-container">
                                     <div class="star-left">
                                         <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                        <span><?=$product["review_average"]?></span>
+                                        <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span class="text-primary">생생리뷰 <strong>(<?=$product["total_review"]?>)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -302,30 +375,44 @@
                                     </div>
                                 </div>
                                 <div class="item-info">
-                                    <div class="item-price-info"><span class="main"><?= number_format($product['product_price']) ?> </span><span class="text-gray">원
+                                    <div class="item-price-info"><span class="main">236,100</span><span class="text-gray">원
                                             ~</span> <span class="sub text-gray">6,000바트~</span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                <?php
-                    }
-                ?>
-                <!-- <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_1.png" alt="sub_hotel_1">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>아난타라 시암 방콕 호텔</h2>
+                                <img src="/uploads/sub/sub_hotel_2.png" alt="sub_hotel_2">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>아난타라 시암 방콕 호텔</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>시암</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
@@ -333,682 +420,606 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                alt="arrow_right_mo">
-                            <span>스쿰빛(야속-프로퐁)</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>트윈룸 : 도시전망</h2>
+                                    <p>싱글침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span><span class="text-gray">원
-                                        ~</span> <span class="sub text-gray">6,000바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_2.png" alt="sub_hotel_2">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>아난타라 시암 방콕 호텔</h2>
+                                <img src="/uploads/sub/sub_hotel_3.png" alt="sub_hotel_3">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>두앙따완 호텔 치앙마이</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>시암</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>시암</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>수페리어룸 : 마운틴뷰</h2>
+                                    <p>더블 침대 1개 또는 싱글 침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
+                                        <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>트윈룸 : 도시전망</h2>
-                                <p>싱글침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_3.png" alt="sub_hotel_3">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>두앙따완 호텔 치앙마이</h2>
+                                <img src="/uploads/sub/sub_hotel_4.png" alt="sub_hotel_4">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>애스콧 엠바시 사톤</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>시암</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>시암</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>수페리어룸 : 마운틴뷰</h2>
+                                    <p>더블 침대 1개 또는 싱글 침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <span>연박 프로모션</span> "2박 이상시 레이트 체크아웃 (보장) / 18시 / 단독 프로모션"
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>수페리어룸 : 마운틴뷰</h2>
-                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
-                                    <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_4.png" alt="sub_hotel_4">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>애스콧 엠바시 사톤</h2>
+                                <img src="/uploads/sub/sub_hotel_5.png" alt="sub_hotel_5">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>더 살릴 호텔 리버사이드 방콕</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>짜오프라야강가</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>시암</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>수페리어 트윈룸</h2>
+                                    <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>수페리어룸 : 마운틴뷰</h2>
-                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> "2박 이상시 레이트 체크아웃 (보장) / 18시 / 단독 프로모션"
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
+                                            class="sub">6,000바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_5.png" alt="sub_hotel_5">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>더 살릴 호텔 리버사이드 방콕</h2>
+                                <img src="/uploads/sub/sub_hotel_6.png" alt="sub_hotel_6">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>킴튼 말라이 방콕</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>랑수언/위타유</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>짜오프라야강가</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>트윈룸 : 도시전망</h2>
+                                    <p>싱글침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>수페리어 트윈룸</h2>
-                                <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">236,100</span>원 ~ <span
-                                        class="sub">6,000바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_6.png" alt="sub_hotel_6">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>킴튼 말라이 방콕</h2>
+                                <img src="/uploads/sub/sub_hotel_7.png" alt="sub_hotel_7">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>힐튼 방콕 그랑데 아속 (구-풀만 방콕 그랑데 스쿰빗)</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>스쿰빗(아속-프롬퐁)</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>랑수언/위타유</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>수페리어룸 : 마운틴뷰</h2>
+                                    <p>더블 침대 1개 또는 싱글 침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
+                                        <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>트윈룸 : 도시전망</h2>
-                                <p>싱글침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_7.png" alt="sub_hotel_7">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>힐튼 방콕 그랑데 아속 (구-풀만 방콕 그랑데 스쿰빗)</h2>
+                                <img src="/uploads/sub/sub_hotel_8.png" alt="sub_hotel_8">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>신돈 켐핀스키 호텔 방콕</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>랑수언/위타유</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빗(아속-프롬퐁)</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>수페리어룸 : 마운틴뷰</h2>
+                                    <p>더블 침대 1개 또는 싱글 침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>수페리어룸 : 마운틴뷰</h2>
-                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
-                                    <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_8.png" alt="sub_hotel_8">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>신돈 켐핀스키 호텔 방콕</h2>
+                                <img src="/uploads/sub/sub_hotel_9.png" alt="sub_hotel_8">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>하얏트 리젠시 방콕 스쿰빗</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>스쿰빗(나나-플런칫)</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>랑수언/위타유</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>수페리어룸 : 마운틴뷰</h2>
+                                    <p>더블 침대 1개 또는 싱글 침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
+                                        <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>수페리어룸 : 마운틴뷰</h2>
-                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_9.png" alt="sub_hotel_8">
-                        </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
+                    <div class="product-card-item-container">
+                        <div class="product-card-item-left">
                             <a href="/product-hotel/hotel-detail/1324">
-                                <h2>하얏트 리젠시 방콕 스쿰빗</h2>
+                                <img src="/uploads/sub/sub_hotel_10.png" alt="sub_hotel_8">
                             </a>
-                            <div class="only_web">
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <a href="/product-hotel/hotel-detail/1324">
+                                    <h2>비 호텔 방콕 엠 갤러리</h2>
+                                </a>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span>생생리뷰 <strong>(0)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sub-title">
+                                <span>방콕</span>
+                                <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                                <span>빠뚜남/펫부리</span>
+                            </div>
+                            <div class="only_mo">
                                 <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
                                         <span>4.7</span>
                                     </div>
                                     <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
+                                        <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>스쿰빗(나나-플런칫)</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <h2>추천 포인트</h2>
+                                    <div class="tab_box_area_">
+                                        <ul class="tab_box_show_">
+                                            <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
+                                            <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                    </div>
                                 </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
+                                <div class="item-info">
+                                    <h2>수페리어룸 : 마운틴뷰</h2>
+                                    <p>더블 침대 1개 또는 싱글 침대 2개</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
+                                <div class="item-info">
+                                    <h2>프로모션</h2>
+                                    <div class="item-info-label">
+                                        <span>연박 프로모션</span> 2박 이상시 레이트 체크아웃 (보장) / 18시 / 단독 프로모션"
+                                    </div>
+                                </div>
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
+                                            class="sub">6,400바트~</span></div>
                                 </div>
                             </div>
-                            <div class="item-info">
-                                <h2>수페리어룸 : 마운틴뷰</h2>
-                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <p><span>연박 프로모션</span> "아동조식 무료 / 아동 엑스트라베드 제공 (보장 / 2박 이상시 무료 바우처
-                                    <p class="item-pd">"2박 이상시 아동조식 무료 / 2박 이상시 아동 엑스트라베드 제공 (가능 여...</p>
-                                </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
-                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="product-card-item-container">
-                    <div class="product-card-item-left">
-                        <a href="/product-hotel/hotel-detail/1324">
-                            <img src="/uploads/sub/sub_hotel_10.png" alt="sub_hotel_8">
+                    </div> -->
+                    <!-- <div class="pagination">
+                        <a href="#" class="page-link">
+                            <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                            <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
                         </a>
-                    </div>
-                    <div class="product-card-item-right">
-                        <div class="title-container">
-                            <a href="/product-hotel/hotel-detail/1324">
-                                <h2>비 호텔 방콕 엠 갤러리</h2>
-                            </a>
-                            <div class="only_web">
-                                <div class="star-container">
-                                    <div class="">
-                                        <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                        <span>4.7</span>
-                                    </div>
-                                    <div class="star-content">
-                                        <span>생생리뷰 <strong>(0)</strong></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="sub-title">
-                            <span>방콕</span>
-                            <img src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                            <span>빠뚜남/펫부리</span>
-                        </div>
-                        <div class="only_mo">
-                            <div class="star-container">
-                                <div class="star-left">
-                                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
-                                    <span>4.7</span>
-                                </div>
-                                <div class="star-content">
-                                    <span class="text-primary">생생리뷰 <strong>(0)</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="list-item-info">
-                            <div class="item-info">
-                                <h2>추천 포인트</h2>
-                                <div class="tab_box_area_">
-                                    <ul class="tab_box_show_">
-                                        <li class="tab_box_element_ p--20 border" rel="tab1">조식</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab2">피트니스 센터</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab3">주차</li>
-                                        <li class="tab_box_element_ p--20 border" rel="tab4">무료 WI-FI</li>
-                                </div>
-                            </div>
-                            <div class="item-info">
-                                <h2>수페리어룸 : 마운틴뷰</h2>
-                                <p>더블 침대 1개 또는 싱글 침대 2개</p>
-                            </div>
-                            <div class="item-info">
-                                <h2>프로모션</h2>
-                                <div class="item-info-label">
-                                    <span>연박 프로모션</span> 2박 이상시 레이트 체크아웃 (보장) / 18시 / 단독 프로모션"
-                                </div>
-                            </div>
-                            <div class="item-info">
-                                <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                        class="sub">6,400바트~</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="pagination">
-                    <a href="#" class="page-link">
-                        <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
-                        <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
-                    </a>
-                    <a href="#" class="page-link cus-padding mr">
-                        <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
-                        <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
-                    </a>
-                    <a href="#" class="page-link active">1</a>
-                    <a href="#" class="page-link">2</a>
-                    <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link cus-padding ml">
-                        <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
-                        <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
-                    </a>
-                    <a href="#" class="page-link">
-                        <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
-                        <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
-                    </a>
+                        <a href="#" class="page-link cus-padding mr">
+                            <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                            <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
+                        </a>
+                        <a href="#" class="page-link active">1</a>
+                        <a href="#" class="page-link">2</a>
+                        <a href="#" class="page-link">3</a>
+                        <a href="#" class="page-link cus-padding ml">
+                            <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                            <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
+                        </a>
+                        <a href="#" class="page-link">
+                            <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                            <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
+                        </a>
+                    </div> -->
+                    <?php 
+                        echo ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . "?code_no=". $code_no ."&pg=")
+                    ?>
                 </div>
             </div>
-        </div>
+        </form>
+        <script>
+            function search_it() {
+                var frm = document.frmSearch;
+                frm.submit();
+            }
+        </script>
     </div>
     <section class="popup" style="display: none;">
         <div class="popup__content">
@@ -1188,6 +1199,13 @@
         var bedroom = [];
 
         function filter_product() {
+            category = [];
+            hotel = [];
+            rating = [];
+            promotion = [];
+            topic = [];
+            bedroom = [];
+
             $(".tab_box_js.tab_active_").each(function () {
                 if($(this).data("type") == "category") {
                     category.push($(this).data("code"));
@@ -1274,34 +1292,7 @@
             // Remove the active class from the corresponding tab
             $('.tab_box_js').each(function() {
                 if ($(this).text() === tagText) {
-                    let el = $(this);
                     $(this).removeClass('tab_active_');
-
-                    if($(this).data("type") == "category") {
-                        category.filter(function(number) {
-                            return el.data("code") == number;
-                        });
-                    }else if($(this).data("type") == "hotel") {
-                        hotel.filter(function(number) {
-                            return el.data("code") == number;
-                        });
-                    }else if($(this).data("type") == "rating") {
-                        rating.filter(function(number) {
-                            return el.data("code") == number;
-                        });
-                    }else if($(this).data("type") == "promotion") {
-                        promotion.filter(function(number) {
-                            return el.data("code") == number;
-                        });
-                    }else if($(this).data("type") == "topic") {
-                        topic.filter(function(number) {
-                            return el.data("code") == number;
-                        });
-                    }else if($(this).data("type") == "bedroom") {
-                        bedroom.filter(function(number) {
-                            return el.data("code") == number;
-                        });
-                    }
                 }
             });
 
@@ -1315,12 +1306,6 @@
         $('#delete_all').click(function() {
             $('.list-tag .tag-item').remove();
             $('.tab_box_js').removeClass('tab_active_');
-            category = [];
-            hotel = [];
-            rating = [];
-            promotion = [];
-            topic = [];
-            bedroom = [];
 
             filter_product();
         });

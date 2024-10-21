@@ -403,6 +403,10 @@ class ProductModel extends Model
             $builder->like('product_code_list', $where['product_code_list']);
         }
 
+        if($where['search_product_name']) {
+            $builder->like('product_name', $where['search_product_name']);
+        }
+
         if($where['search_txt'] != "") {
             if($where['search_category'] != "") {
                 $builder->like($where['search_category'], $where['search_txt']);
@@ -448,6 +452,7 @@ class ProductModel extends Model
             'pg' => (int)$pg,
             'search_txt' => $where['search_txt'],
             'search_category' => $where['search_category'],
+            'search_product_name' => $where['search_product_name'],
             'is_view' => $where['is_view'],
             'product_code_1' => $where['product_code_1'],
             'product_code_2' => $where['product_code_2'],

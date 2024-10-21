@@ -592,7 +592,8 @@ class Product extends BaseController
     public function listHotel($code_no)
     {
         try {
-            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
+            $pg = $this->request->getVar('pg') ?? 1;
+            $search_product_name = $this->request->getVar('search_product_name') ?? "";
             $perPage = 5;
 
             $banners = $this->bannerModel->getBanners($code_no);
@@ -607,8 +608,9 @@ class Product extends BaseController
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
                 'product_code_list' => $code_no,
+                'search_product_name' => $search_product_name,
                 'product_status' => 'sale'
-            ], 10, 1, ['onum' => 'DESC']);
+            ], 10, $pg, ['onum' => 'DESC']);
 
             foreach($products['items'] as $key => $product) {
 
@@ -620,15 +622,39 @@ class Product extends BaseController
                 $products['items'][$key]['codeTree'] = $codeTree;
 
                 $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+                $hotel = $this->productModel->find($product['product_idx']);
+                
+                $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
+                $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
+                $_arr_utilities = $_arr_best_utilities = $_arr_services = $_arr_populars = [];
+                if (count($hotel_options) > 0) {
+                    $hotel_option = $hotel_options[0];
+                    $room_idx = $hotel_option['o_room'];
+
+                    $rsql = "SELECT * FROM tbl_product_stay WHERE room_list LIKE '%" . $this->db->escapeLikeString($room_idx) . "|%'";
+                    $stay_hotel = $this->db->query($rsql)->getRowArray();
+
+                    if ($stay_hotel) {
+                        $code_utilities = $stay_hotel['code_utilities'];
+                        $_arr_utilities = explode("|", $code_utilities);
+                    }
+                }
+
+                $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
+
+                if (!empty($list__utilities)) {
+                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+
+                    $fresult4 = $this->db->query($fsql);
+                    $fresult4 = $fresult4->getResultArray();
+                    $products['items'][$key]['utilities'] = $fresult4;
+                }
 
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
             }
 
             $totalProducts = count($products['items']);
-            $pager = \Config\Services::pager();
-
-            $theme_products = $this->productModel->findProductPaging([], $perPage, 1);
 
             $data = [
                 'banners' => $banners,
@@ -639,11 +665,8 @@ class Product extends BaseController
                 'promotions' => $promotions,
                 'topics' => $topics,
                 'bedrooms' => $bedrooms,
-                'products' => $products['items'],
-                'theme_products' => $theme_products,
+                'products' => $products,
                 'code_no' => $code_no,
-                's' => $s,
-                'pager' => $pager,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
                 'tab_active' => '1',
