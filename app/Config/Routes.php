@@ -203,6 +203,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("coupon_setting_del", "Admin\AdminOperatorController::coupon_setting_del", ['as' => "admin.operator.coupon_setting_del"]);
         $routes->get("coupon_list", "Admin\AdminOperatorController::coupon_list");
         $routes->get("coupon_write", "Admin\AdminOperatorController::coupon_write");
+        $routes->post("coupon_write_ok", "Admin\AdminOperatorController::coupon_write_ok", ['as' => "admin.operator.coupon_write_ok"]);
+        $routes->post("coupon_del", "Admin\AdminOperatorController::coupon_del", ['as' => "admin.operator.coupon_del"]);
+        $routes->get("find_user", "Admin\AdminOperatorController::find_user");
     });
 
     $routes->group("_mileage", static function ($routes) {

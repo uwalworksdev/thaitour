@@ -284,6 +284,7 @@
                                                         -
                                                     </button>
                                                     <input type="text" class="input_room_qty onlynum" value="1"
+                                                           style="text-align: center"
                                                            data-id="<?= $room_op['rop_idx'] ?>">
                                                     <button class="btnPlus">
                                                         +
@@ -297,6 +298,7 @@
                                                         -
                                                     </button>
                                                     <input type="text" class="input_day_qty onlynum" value="1"
+                                                           style="text-align: center"
                                                            data-id="<?= $room_op['rop_idx'] ?>">
                                                     <button class="btnPlus">
                                                         +
@@ -346,7 +348,10 @@
                                                                 <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
                                                             </span>원
                                                 </p>
-                                                <button class="book-button openPopupBtn" onclick="window.location.href='/product-hotel/reservation-form/2'">예약하기</button>
+                                                <button class="book-button openPopupBtn"
+                                                        onclick="window.location.href='/product-hotel/reservation-form/2'">
+                                                    예약하기
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -532,6 +537,7 @@
                                                                 -
                                                             </button>
                                                             <input type="text" class="input_room_qty onlynum" value="1"
+                                                                   style="text-align: center"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
@@ -545,6 +551,7 @@
                                                                 -
                                                             </button>
                                                             <input type="text" class="input_day_qty onlynum" value="1"
+                                                                   style="text-align: center"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
