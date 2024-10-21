@@ -615,6 +615,15 @@ class Product extends BaseController
         try {
             $pg = $this->request->getVar('pg') ?? 1;
             $search_product_name = $this->request->getVar('search_product_name') ?? "";
+            $search_product_category = $this->request->getVar('search_product_category') ?? "";
+            $search_product_hotel = $this->request->getVar('search_product_hotel') ?? "";
+            $search_product_rating = $this->request->getVar('search_product_rating') ?? "";
+            $search_product_promotion = $this->request->getVar('search_product_promotion') ?? "";
+            $search_product_topic = $this->request->getVar('search_product_topic') ?? "";
+            $search_product_bedroom = $this->request->getVar('search_product_bedroom') ?? "";
+            $price_min = $this->request->getVar('price_min') ?? 0;
+            $price_max = $this->request->getVar('price_max') ?? 0;
+
             $perPage = 5;
 
             $banners = $this->bannerModel->getBanners($code_no);
@@ -622,14 +631,29 @@ class Product extends BaseController
             $codes = $this->codeModel->getByParentAndDepth($code_no, 4)->getResultArray();
             $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
             $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
-            $promotions = $this->codeModel->getByParentAndDepth(33, 2)->getResultArray();
+            $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
             $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
             $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
+            
+            $arr_code_list = [];
+            foreach($codes as $code){
+                array_push($arr_code_list, $code["code_no"]);
+            }
+
+            $product_code_list = implode(",", $arr_code_list);
 
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
-                'product_code_list' => $code_no,
+                'product_code_list' => $product_code_list,
                 'search_product_name' => $search_product_name,
+                'search_product_category' => $search_product_category,
+                'search_product_hotel' => $search_product_hotel,
+                'search_product_rating' => $search_product_rating,
+                'search_product_promotion' => $search_product_promotion,
+                'search_product_topic' => $search_product_topic,
+                'search_product_bedroom' => $search_product_bedroom,
+                'price_min' => $price_min,
+                'price_max' => $price_max,
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
 
@@ -647,13 +671,30 @@ class Product extends BaseController
                 
                 $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
                 $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
-                $_arr_utilities = $_arr_best_utilities = $_arr_services = $_arr_populars = [];
+                $_arr_utilities = [];
                 if (count($hotel_options) > 0) {
                     $hotel_option = $hotel_options[0];
                     $room_idx = $hotel_option['o_room'];
 
-                    $rsql = "SELECT * FROM tbl_product_stay WHERE room_list LIKE '%" . $this->db->escapeLikeString($room_idx) . "|%'";
-                    $stay_hotel = $this->db->query($rsql)->getRowArray();
+                    $hsql = "SELECT * FROM tbl_product_stay WHERE room_list LIKE '%" . $this->db->escapeLikeString($room_idx) . "|%'";
+                    $stay_hotel = $this->db->query($hsql)->getRowArray();
+
+                    $rsql = "SELECT * FROM tbl_room WHERE g_idx = '$room_idx'";
+                    $room = $this->db->query($rsql)->getRowArray();
+
+                    $products['items'][$key]['room_name'] = $room["roomName"];
+
+                    $roomCat = explode("|", $room["category"]);
+                    $arr_room_category = [];
+
+                    foreach($roomCat as $cat) {
+                        $code_name = $this->codeModel->getCodeName($cat);
+                        array_push($arr_room_category, $code_name);
+                    }
+
+                    $room_category = implode(", ", $arr_room_category);
+
+                    $products['items'][$key]['room_category'] = $room_category;
 
                     if ($stay_hotel) {
                         $code_utilities = $stay_hotel['code_utilities'];

@@ -412,11 +412,102 @@ class ProductModel extends Model
         }
 
         if ($where['product_code_list']) {
-            $builder->like('product_code_list', $where['product_code_list']);
+            $product_code_list = explode(",", $where['product_code_list']);
+            $cnt_code = 1;
+                $builder->groupStart();
+                foreach($product_code_list as $code){
+                    if($cnt_code > 1){
+                        $builder->orLike('product_code_list', $code);
+                    }else{
+                        $builder->like('product_code_list', $code);
+                    }
+                    $cnt_code++;
+                }
+                $builder->groupEnd();
         }
 
-        if($where['search_product_name']) {
-            $builder->like('product_name', $where['search_product_name']);
+        if ($where['search_product_category']) {
+            if(strpos($where['search_product_category'], 'all') === false) {
+                $search_product_category = explode(",", $where['search_product_category']);
+                $cnt_cat = 1;
+                $builder->groupStart();
+                foreach($search_product_category as $category){
+                    if($cnt_cat > 1){
+                        $builder->orLike('product_code_list', $category);
+                    }else{
+                        $builder->like('product_code_list', $category);
+                    }
+                    $cnt_cat++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if ($where['search_product_hotel']) {
+            if(strpos($where['search_product_hotel'], 'all') === false) {
+                $search_product_hotel = explode(",", $where['search_product_hotel']);
+                $cnt_type = 1;
+                $builder->groupStart();
+                foreach($search_product_hotel as $type){
+                    if($cnt_type > 1){
+                        $builder->orLike('product_type', $type);
+                    }else{
+                        $builder->like('product_type', $type);
+                    }
+                    $cnt_type++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if(!empty($where['price_min']) && !empty($where['price_max'])){
+            $builder->where('product_price > ', $where['price_min']);
+            $builder->where('product_price < ', $where['price_max']);
+        }
+
+        if ($where['search_product_promotion']) {
+            $search_product_promotion = explode(",", $where['search_product_promotion']);
+            $cnt_promotion = 1;
+            $builder->groupStart();
+            foreach($search_product_promotion as $promotion){
+                if($cnt_promotion > 1){
+                    $builder->orLike('product_promotions', $promotion);
+                }else{
+                    $builder->like('product_promotions', $promotion);
+                }
+                $cnt_promotion++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_topic']) {
+            $search_product_topic = explode(",", $where['search_product_topic']);
+            $cnt_theme = 1;
+            $builder->groupStart();
+            foreach($search_product_topic as $theme){
+                if($cnt_theme > 1){
+                    $builder->orLike('product_theme', $theme);
+                }else{
+                    $builder->like('product_theme', $theme);
+                }
+                $cnt_theme++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_bedroom']) {
+            $search_product_bedroom = explode(",", $where['search_product_bedroom']);
+            $cnt_bedroom = 1;
+            $builder->groupStart();
+            foreach($search_product_bedroom as $bedroom){
+                if($cnt_bedroom > 1){
+                    $builder->orLike('product_bedrooms', $bedroom);
+                }else{
+                    $builder->like('product_bedrooms', $bedroom);
+                }
+                $cnt_bedroom++;
+            }
+            $builder->groupEnd();
         }
 
         if($where['search_product_name']) {
@@ -469,6 +560,14 @@ class ProductModel extends Model
             'search_txt' => $where['search_txt'],
             'search_category' => $where['search_category'],
             'search_product_name' => $where['search_product_name'],
+            'search_product_category' => $where['search_product_category'],
+            'search_product_hotel' => $where['search_product_hotel'],
+            'search_product_rating' => $where['search_product_rating'],
+            'search_product_promotion' => $where['search_product_promotion'],
+            'search_product_topic' => $where['search_product_topic'],
+            'search_product_bedroom' => $where['search_product_bedroom'],
+            'price_min' => $where['price_min'],
+            'price_max' => $where['price_max'],
             'is_view' => $where['is_view'],
             'product_code_1' => $where['product_code_1'],
             'product_code_2' => $where['product_code_2'],

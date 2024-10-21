@@ -898,6 +898,8 @@
 
 .content-sub-product-hotel .list-tag {
     display: flex;
+    flex-wrap: wrap;
+    max-width: 650px;
     gap: 6px;
 }
 
@@ -917,6 +919,13 @@
     font-weight: bold;
     border: 1px solid #ccc;
     padding: 8px;
+}
+
+.content-sub-product-hotel .filter-container button.btn_search_ {
+    padding: 8px 12px;
+    color: #fff;
+    background-color: #17469E;
+    font-weight: 400;
 }
 
 .content-sub-product-hotel .below-filter-content {

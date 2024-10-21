@@ -20,12 +20,13 @@
         </div>
         <form name="frmSearch" id="frmSearch">
             <div class="sub-hotel-container">
-                <input type="hidden" name="search_category" id="search_category">
-                <input type="hidden" name="search_hotel" id="search_hotel">
-                <input type="hidden" name="search_rating" id="search_rating">
-                <input type="hidden" name="search_promotion" id="search_promotion">
-                <input type="hidden" name="search_topic" id="search_topic">
-                <input type="hidden" name="search_bedroom" id="search_bedroom">
+                <input type="hidden" name="search_product_category" id="search_product_category" value="<?=$products["search_product_category"]?>">
+                <input type="hidden" name="search_product_hotel" id="search_product_hotel" value="<?=$products["search_product_hotel"]?>">
+                <input type="hidden" name="search_product_rating" id="search_product_rating" value="<?=$products["search_product_rating"]?>">
+                <input type="hidden" name="search_product_promotion" id="search_product_promotion" value="<?=$products["search_product_promotion"]?>">
+                <input type="hidden" name="search_product_topic" id="search_product_topic" value="<?=$products["search_product_topic"]?>">
+                <input type="hidden" name="search_product_bedroom" id="search_product_bedroom" value="<?=$products["search_product_bedroom"]?>">
+                <input type="hidden" name="pg" id="pg" value="<?=$products["pg"]?>">
     
                 <div class="category-left only_web">
                     <h1 class="title">방콕</h1>
@@ -33,15 +34,20 @@
                         <div class="category-left-item">
                             <div class="subtitle">
                                 <span>세부지역</span>
-                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all" data-type="category">전체</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border 
+                                        <?php if(strpos($products["search_product_category"], "all") !== false
+                                                || empty($products["search_product_category"])){ echo "tab_active_"; } ?>" 
+                                        data-code="all" data-type="category">전체</li>
                                     <?php
                                         foreach($codes as $code){
                                     ?>
-                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="category"><?=$code["code_name"]?></li>
+                                        <li class="tab_box_element_ tab_box_js p--20 border 
+                                            <?php if(strpos($products["search_product_category"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                                data-code="<?=$code["code_no"]?>" data-type="category"><?=$code["code_name"]?></li>
                                     <?php
                                         }
                                     ?>
@@ -67,15 +73,20 @@
                         <div class="category-left-item">
                             <div class="subtitle">
                                 <span>호텔타입</span>
-                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all" data-type="hotel">전체</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border
+                                        <?php if(strpos($products["search_product_hotel"], "all") !== false
+                                                || empty($products["search_product_hotel"])){ echo "tab_active_"; } ?>" 
+                                                data-code="all" data-type="hotel">전체</li>
                                     <?php
                                         foreach($types_hotel as $code){
                                     ?>
-                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="hotel"><?=$code["code_name"]?></li>
+                                        <li class="tab_box_element_ tab_box_js p--20 border 
+                                            <?php if(strpos($products["search_product_hotel"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                            data-code="<?=$code["code_no"]?>" data-type="hotel"><?=$code["code_name"]?></li>
                                     <?php
                                         }
                                     ?>
@@ -85,7 +96,7 @@
                         <div class="category-left-item">
                             <div class="subtitle">
                                 <span>호텔등급</span>
-                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
@@ -103,7 +114,7 @@
                         <div class="category-left-item">
                             <div class="subtitle">
                                 <span>1박 평균가격</span>
-                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
                             <p class="tab-currency">
                                 <span class="currency active">원 · </span><span class="currency">바트</span>
@@ -112,22 +123,25 @@
                             <div class="slider-container only_web">
                                 <div class="slider-background"></div>
                                 <div class="slider-track" id="slider-track"></div>
-                                <input type="range" min="0" max="100" value="25" class="slider" id="slider-min">
-                                <input type="range" min="0" max="100" value="75" class="slider" id="slider-max">
+                                <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" name="price_min" class="slider" id="slider-min">
+                                <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" name="price_max" class="slider" id="slider-max">
                             </div>
                             <span>10,000원 ~ 500,000원 이상</span>
                         </div>
                         <div class="category-left-item">
                             <div class="subtitle">
                                 <span>프로모션</span>
-                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
                                     <?php
                                         foreach($promotions as $code){
                                     ?>
-                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="promotion"><?=$code["code_name"]?></li>
+                                        <li class="tab_box_element_ tab_box_js p--20 border 
+                                            <?php if(strpos($products["search_product_promotion"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                            data-code="<?=$code["code_no"]?>" data-type="promotion"><?=$code["code_name"]?>
+                                        </li>
                                     <?php
                                         }
                                     ?>
@@ -137,14 +151,17 @@
                         <div class="category-left-item">
                             <div class="subtitle">
                                 <span>테마</span>
-                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
                                     <?php
                                         foreach($topics as $code){
                                     ?>
-                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="topic"><?=$code["code_name"]?></li>
+                                        <li class="tab_box_element_ tab_box_js p--20 border 
+                                            <?php if(strpos($products["search_product_topic"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                            data-code="<?=$code["code_no"]?>" data-type="topic"><?=$code["code_name"]?>
+                                        </li>
                                     <?php
                                         }
                                     ?>
@@ -154,14 +171,17 @@
                         <div class="category-left-item">
                             <div class="subtitle">
                                 <span>침실수</span>
-                                <img src="/uploads/icons/arrow_up_icon.png" alt="arrow_up">
+                                <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
                                     <?php
                                         foreach($bedrooms as $code){
                                     ?>
-                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="bedroom"><?=$code["code_name"]?></li>
+                                        <li class="tab_box_element_ tab_box_js p--20 border 
+                                            <?php if(strpos($products["search_product_bedroom"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                            data-code="<?=$code["code_no"]?>" data-type="bedroom"><?=$code["code_name"]?>
+                                        </li>
                                     <?php
                                         }
                                     ?>
@@ -172,7 +192,6 @@
                 </div>
                 
                 <div class="content-right">
-                    <input type="hidden" name="pg" id="pg" value="<?=$products["pg"]?>">
                     <div class="form_element_">
                         <div class="date-container">
                             <label for="checkin" class="label text-gray pt-2">체크인/아웃</label>
@@ -212,7 +231,7 @@
                             </div>
                         </div>
                         <div>
-                            <button type="button" id="filter_product">검색</button>
+                            <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">검색</button>
                             <button type="button" id="delete_all">전체삭제</button>
                         </div>
                     </div>
@@ -293,8 +312,8 @@
                                         </div>
                                     </div>
                                     <div class="item-info">
-                                        <h2>그랜드 디럭스 스튜디오 - 트윈침대</h2>
-                                        <p>침대: 더블침대 1개 또는 싱글침대 2개</p>
+                                        <h2><?=$product['room_name']?></h2>
+                                        <p>침대: <?=$product['room_category']?></p>
                                     </div>
                                     <div class="item-info">
                                         <h2>프로모션</h2>
@@ -1093,8 +1112,8 @@
                         <div class="slider-container only_mo">
                             <div class="slider-background"></div>
                             <div class="slider-track" id="slider-track" style="left: 25%; width: 50%;"></div>
-                            <input type="range" min="0" max="100" value="25" class="slider" id="slider-min">
-                            <input type="range" min="0" max="100" value="75" class="slider" id="slider-max">
+                            <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" class="slider" id="slider-min">
+                            <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" class="slider" id="slider-max">
                         </div>
                         <div class="value-container">
                             <span>10,000원</span>
@@ -1165,6 +1184,18 @@
     </section>
 </div>
 <script>
+    $(".arrow_menu").click(function () {
+        let tab_box_area = $(this).closest(".category-left-item").find(".tab_box_area_");
+        
+        if (tab_box_area.css('display') !== 'none') {
+            $(this).css('transform', 'rotate(180deg)');
+            tab_box_area.css("display", "none");
+        }else{
+            $(this).css('transform', 'rotate(0)');
+            tab_box_area.css("display", "block");
+        }
+    });
+
     $(document).ready(function() {
         function formatDate(date) {
             var d = new Date(date),
@@ -1221,30 +1252,32 @@
                     bedroom.push($(this).data("code"));
                 }
             });
-            $("#search_category").val(category.join(","));
-            $("#search_hotel").val(hotel.join(","));
-            $("#search_rating").val(rating.join(","));
-            $("#search_promotion").val(promotion.join(","));
-            $("#search_topic").val(topic.join(","));
-            $("#search_bedroom").val(bedroom.join(","));
+            $("#search_product_category").val(category.join(","));
+            $("#search_product_hotel").val(hotel.join(","));
+            $("#search_product_rating").val(rating.join(","));
+            $("#search_product_promotion").val(promotion.join(","));
+            $("#search_product_topic").val(topic.join(","));
+            $("#search_product_bedroom").val(bedroom.join(","));
         }
 
         filter_product();
 
         $('.tab_box_js.tab_active_').each(function() {
-            var tabText = $(this).text();
+            let tabText = $(this).text();
+            let type = $(this).data("type");
             $('.list-tag').append(
                 '<div class="tag-item">' +
-                '<span>' + tabText + '</span>' +
+                '<span data-type='+ type +'>' + tabText + '</span>' +
                 '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
                 '</div>'
             );
         });
 
         $('.tab_box_js').click(function() {
-            var $group = $(this).closest('.tab_box_area_');
-            var tabText = $(this).text();
-            var activeTab = $group.find('.tab_box_js.tab_active_').text();
+            let group = $(this).closest('.tab_box_area_');
+            let tabText = $(this).text();
+            let type = $(this).data("type");
+            let activeTab = group.find('.tab_box_js.tab_active_').text();
 
             // if (activeTab) {
             //     $('.list-tag .tag-item span').each(function() {
@@ -1265,7 +1298,7 @@
             if($(this).hasClass('tab_active_')){
                 $(this).removeClass('tab_active_');
                 $('.list-tag .tag-item span').each(function() {
-                    if ($(this).text() === tabText) {
+                    if ($(this).text() === tabText && type == $(this).data("type")) {
                         $(this).closest(".tag-item").remove();
                     }
                 });
@@ -1273,7 +1306,7 @@
                 $(this).addClass('tab_active_');
                 $('.list-tag').append(
                     '<div class="tag-item">' +
-                    '<span>' + tabText + '</span>' +
+                    '<span data-type='+ type +'>' + tabText + '</span>' +
                     '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
                     '</div>'
                 );
@@ -1281,23 +1314,23 @@
 
             filter_product();
 
-            // $group.find('.tab_box_js').removeClass('tab_active_');
+            // group.find('.tab_box_js').removeClass('tab_active_');
             // $(this).addClass('tab_active_');
         });
 
         $(document).on('click', '.close_icon', function() {
-            var $tagItem = $(this).parent('.tag-item');
-            var tagText = $tagItem.find('span').text();
-
+            let tagItem = $(this).parent('.tag-item');
+            let tagText = tagItem.find('span').text();
+            let type = tagItem.find('span').data("type");
             // Remove the active class from the corresponding tab
             $('.tab_box_js').each(function() {
-                if ($(this).text() === tagText) {
+                if ($(this).text() === tagText && type === $(this).data("type")) {
                     $(this).removeClass('tab_active_');
                 }
             });
 
             // Remove the tag item
-            $tagItem.remove();
+            tagItem.remove();
 
             filter_product();
 
@@ -1331,7 +1364,8 @@
         function updateSliderTrack() {
             const min = parseFloat(sliderMin.value);
             const max = parseFloat(sliderMax.value);
-
+            console.log(min + "---" + max);
+            
             if (min > max) {
                 [sliderMin.value, sliderMax.value] = [sliderMax.value, sliderMin.value];
             }
