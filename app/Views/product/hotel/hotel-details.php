@@ -157,24 +157,42 @@
                     border-radius: 3px;
                     padding: 5px 10px;
                 }
+
+                .cus_scroll {
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    height: 400px;
+                    padding-left: 20px;
+                }
+
+                .cus_scroll::-webkit-scrollbar {
+                    width: 2px;
+                    background-color: #F5F5F5;
+                    display: block;
+                }
+
+                .cus_scroll::-webkit-scrollbar-thumb {
+                    background-color: #cccccc;
+                }
             </style>
-            <?php if ($s_category_room === '' || !isset($s_category_room)) : ?>
-                <?php foreach ($hotel_options as $item) : ?>
-                    <?php $room = $item['room']; ?>
-                    <?php $room_options = $room['room_option']; ?>
-                    <?php $room_facil = $room['room_facil']; ?>
-                    <?php
-                    $_arr = explode("|", $room_facil);
-                    $count_facil = count($_arr);
-                    $isValid = false;
-                    $room_op = '';
-                    $room_option_ = '';
-                    if ($count_facil > 12) {
-                        $isValid = true;
-                        $room_op = 'room_option_long';
-                        $room_option_ = 'room_option_';
-                    }
-                    ?>
+            <?php foreach ($hotel_options as $item) : ?>
+                <?php $room = $item['room']; ?>
+                <?php $room_options = $room['room_option']; ?>
+                <?php $room_facil = $room['room_facil']; ?>
+                <?php
+                $_arr = explode("|", $room_facil);
+                $count_facil = count($_arr);
+                $isValid = false;
+                $room_op = '';
+                $room_option_ = '';
+//                    if ($count_facil > 12) {
+//                        $isValid = true;
+//                        $room_op = 'room_option_long';
+//                        $room_option_ = 'room_option_';
+//                    }
+                ?>
+
+                <?php if ($s_category_room === '' || !isset($s_category_room)) : ?>
                     <div class="card-item-sec3 <?= $room_option_ ?>">
                         <div class="card-title-sec3-container">
                             <h2><?= $room['roomName'] ?></h2>
@@ -208,7 +226,7 @@
                                 </div>
                                 <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
                                 <?php $room_facil = $room['room_facil']; ?>
-                                <ul>
+                                <ul class="cus_scroll">
                                     <?php
                                     $_arr = explode("|", $room_facil);
                                     foreach ($rresult as $row_r) :
@@ -227,9 +245,16 @@
                             </div>
 
                             <table class="room-table only_web">
+                                <colgroup>
+                                    <col width="35%">
+                                    <col width="20%">
+                                    <col width="10%">
+                                    <col width="35%">
+                                </colgroup>
                                 <thead>
                                 <tr>
                                     <th>옵션 상세</th>
+                                    <th>수량</th>
                                     <th>쿠폰</th>
                                     <th>객실 요금</th>
                                 </tr>
@@ -252,6 +277,34 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <div class="room_qty">
+                                                <p>객실 수</p>
+                                                <div class="room_activity">
+                                                    <button class="btnMinus">
+                                                        -
+                                                    </button>
+                                                    <input type="text" class="input_room_qty onlynum" value="1"
+                                                           data-id="<?= $room_op['rop_idx'] ?>">
+                                                    <button class="btnPlus">
+                                                        +
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="day_qty">
+                                                <p>객실 수</p>
+                                                <div class="day_activity">
+                                                    <button class="btnMinus">
+                                                        -
+                                                    </button>
+                                                    <input type="text" class="input_day_qty onlynum" value="1"
+                                                           data-id="<?= $room_op['rop_idx'] ?>">
+                                                    <button class="btnPlus">
+                                                        +
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
                                             <div class="occupancy">
                                                 <span class="occupancy_button openPopupBtn">쿠폰적용</span>
                                             </div>
@@ -264,6 +317,7 @@
                                         if ($isSale) {
                                             $percent = $room_op['r_sale_price'] / $room_op['r_price'] * 100;
                                             $percent = 100 - $percent;
+                                            $percent = round($percent, 2);
                                         }
                                         ?>
                                         <td>
@@ -278,10 +332,20 @@
                                                     <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                     <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                 </div>
-                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
-                                                <span class="details">객실 1개 × 3박 (세금 포함)</span>
-                                                <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
-                                                <p><span class="price">481,290</span>원</p>
+                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
+                                                <span class="details">객실 <span
+                                                            class="count_room"
+                                                            id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
+                                                            class="count_day"
+                                                            id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
+                                                <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
+                                                <p>
+                                                            <span class="price totalPrice"
+                                                                  id="<?= $room_op['rop_idx'] ?>"
+                                                                  data-price="<?= $room_op['r_sale_price'] + $item['goods_price1'] ?>">
+                                                                <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
+                                                            </span>원
+                                                </p>
                                                 <button class="book-button openPopupBtn">예약하기</button>
                                             </div>
                                         </td>
@@ -369,24 +433,7 @@
                             </div>
                         <?php endif; ?>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <?php foreach ($hotel_options as $item) : ?>
-                    <?php $room = $item['room']; ?>
-                    <?php $room_options = $room['room_option']; ?>
-                    <?php $room_facil = $room['room_facil']; ?>
-                    <?php
-                    $_arr = explode("|", $room_facil);
-                    $count_facil = count($_arr);
-                    $isValid = false;
-                    $room_op = '';
-                    $room_option_ = '';
-                    if ($count_facil > 25) {
-                        $isValid = true;
-                        $room_op = 'room_option_long';
-                        $room_option_ = 'room_option_';
-                    }
-                    ?>
+                <?php else: ?>
                     <?php
                     $_arr = explode("|", $room['category']);
 
@@ -427,7 +474,7 @@
                                             <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                                         </div>
                                         <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
-                                        <ul>
+                                        <ul class="cus_scroll">
                                             <?php
                                             $_arr = explode("|", $room_facil);
                                             foreach ($rresult as $row_r) :
@@ -446,9 +493,16 @@
                                     </div>
 
                                     <table class="room-table only_web">
+                                        <colgroup>
+                                            <col width="35%">
+                                            <col width="20%">
+                                            <col width="10%">
+                                            <col width="35%">
+                                        </colgroup>
                                         <thead>
                                         <tr>
                                             <th>옵션 상세</th>
+                                            <th>수량</th>
                                             <th>쿠폰</th>
                                             <th>객실 요금</th>
                                         </tr>
@@ -471,6 +525,34 @@
                                                     </div>
                                                 </td>
                                                 <td>
+                                                    <div class="room_qty">
+                                                        <p>객실 수</p>
+                                                        <div class="room_activity">
+                                                            <button class="btnMinus">
+                                                                -
+                                                            </button>
+                                                            <input type="text" class="input_room_qty onlynum" value="1"
+                                                                   data-id="<?= $room_op['rop_idx'] ?>">
+                                                            <button class="btnPlus">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="day_qty">
+                                                        <p>객실 수</p>
+                                                        <div class="day_activity">
+                                                            <button class="btnMinus">
+                                                                -
+                                                            </button>
+                                                            <input type="text" class="input_day_qty onlynum" value="1"
+                                                                   data-id="<?= $room_op['rop_idx'] ?>">
+                                                            <button class="btnPlus">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
                                                     <div class="occupancy">
                                                         <span class="occupancy_button openPopupBtn">쿠폰적용</span>
                                                     </div>
@@ -483,6 +565,7 @@
                                                 if ($isSale) {
                                                     $percent = $room_op['r_sale_price'] / $room_op['r_price'] * 100;
                                                     $percent = 100 - $percent;
+                                                    $percent = round($percent, 2);
                                                 }
                                                 ?>
                                                 <td>
@@ -497,10 +580,20 @@
                                                             <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                             <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                         </div>
-                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
-                                                        <span class="details">객실 1개 × 3박 (세금 포함)</span>
-                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
-                                                        <p><span class="price">481,290</span>원</p>
+                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
+                                                        <span class="details">객실 <span
+                                                                    class="count_room"
+                                                                    id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
+                                                                    class="count_day"
+                                                                    id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
+                                                        <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
+                                                        <p>
+                                                            <span class="price totalPrice"
+                                                                  id="<?= $room_op['rop_idx'] ?>"
+                                                                  data-price="<?= $room_op['r_sale_price'] + $item['goods_price1'] ?>">
+                                                                <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
+                                                            </span>원
+                                                        </p>
                                                         <button class="book-button openPopupBtn">예약하기</button>
                                                     </div>
                                                 </td>
@@ -593,15 +686,15 @@
                         }
                     }
                     ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
 
-                <?php endforeach; ?>
-            <?php endif; ?>
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
-            <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 100px">
+            <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">
                 <?php foreach ($fresult5 as $row2): ?>
-                    <div class="tag-container-item-sec4" style="width: calc((100% - 400px)/4)">
+                    <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
                         <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
                         <ul class="tag-item-list">
                             <?php $child = $row2['child'];
@@ -613,6 +706,38 @@
                 <?php endforeach; ?>
             </div>
         </div>
+        <?php
+        $product_more = $hotel['product_more'];
+        $breakfast_data_arr2 = [];
+        if ($product_more) {
+            $productMoreData = json_decode($product_more, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                die("Lỗi giải mã JSON: " . json_last_error_msg());
+            }
+            $breakfast_data = '';
+            if ($productMoreData) {
+                $meet_out_time = $productMoreData['meet_out_time'];
+                $children_policy = $productMoreData['children_policy'];
+                $baby_beds = $productMoreData['baby_beds'];
+                $deposit_regulations = $productMoreData['deposit_regulations'];
+                $pets = $productMoreData['pets'];
+                $age_restriction = $productMoreData['age_restriction'];
+                $smoking_policy = $productMoreData['smoking_policy'];
+                $breakfast = $productMoreData['breakfast'];
+                $breakfast_data = $productMoreData['breakfast_data'];
+            }
+
+            $breakfast_data_arr = explode('||||', $breakfast_data);
+            $breakfast_data_arr = array_filter($breakfast_data_arr);
+
+
+            foreach ($breakfast_data_arr as $dataBreakfast) {
+                $dataBreakfastArr = explode('::::', $dataBreakfast);
+                $breakfast_data_arr2[$dataBreakfastArr[0]] = $dataBreakfastArr[1];
+            }
+        }
+        ?>
         <div class="section5" id="section5">
             <h1 class="title-sec5">호텔정책</h1>
             <div class="content-container-sec5">
@@ -621,9 +746,7 @@
                         체크아웃 시간
                     </span>
                     <div class="description">
-                        <p>체크인 : <strong>14:00</strong> 이전 <br>체크아웃 : <strong>12:00</strong> 이후<br>프런트 데스크 운영시간 :
-                            연중무휴
-                            24시간</p>
+                        <p><?= nl2br($meet_out_time ?? '') ?></p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -631,7 +754,7 @@
                         어린이 정책
                     </span>
                     <div class="description">
-                        <p>본 객실 유행은 어린이 투숙이 불가합니다.</p>
+                        <p><?= nl2br($children_policy ?? '') ?></p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -639,7 +762,7 @@
                         유아용 침대 및 엑스트라 베드
                     </span>
                     <div class="description">
-                        <p>객실 유형에 따라 침대 추가 및 유아용 침대 추가 정책이 다를 수 있습니다. 자세한 사항은 객실유형 정보를 참조하세요.</p>
+                        <p><?= nl2br($baby_beds ?? '') ?></p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -647,19 +770,21 @@
                         조식
                     </span>
                     <div class="description">
-                        <p>제공방식 : 뷔페<br>운영시간 : [월요일-금요일] 06:00~10:00 운영(토요일 ~일요일) 06:00~11:00</p>
+                        <p><?= nl2br($breakfast ?? '') ?></p>
                         <div class="table-container">
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>나이</th>
-                                    <th>요금</th>
+                                    <?php foreach ($breakfast_data_arr2 as $key => $value) : ?>
+                                        <th><?= $key ?></th>
+                                    <?php endforeach; ?>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>성인</td>
-                                    <td>1인당 THB 550.00(약 20,950원)</td>
+                                    <?php foreach ($breakfast_data_arr2 as $key => $value) : ?>
+                                        <td><?= $value ?></td>
+                                    <?php endforeach; ?>
                                 </tr>
                                 </tbody>
                             </table>
@@ -671,7 +796,7 @@
                         보증금 규정
                     </span>
                     <div class="description">
-                        <p>숙소 부과 보증금 없음</p>
+                        <p> <?= nl2br($deposit_regulations ?? '') ?> </p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -679,7 +804,7 @@
                         반려동물
                     </span>
                     <div class="description">
-                        <p>반려동물 동반 불가</p>
+                        <p> <?= nl2br($pets ?? '') ?> </p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -687,7 +812,7 @@
                         연령 제한
                     </span>
                     <div class="description">
-                        <p>체크인하는 대표 투숙객의연령은 반드시 18세 이상이어야 합니다.</p>
+                        <p> <?= nl2br($age_restriction ?? '') ?>  </p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -695,7 +820,7 @@
                         흡연 정책
                     </span>
                     <div class="description">
-                        <p>숙소에서 흡연이 불가능합니다.</p>
+                        <p> <?= nl2br($smoking_policy ?? '') ?> </p>
                     </div>
                 </div>
             </div>
@@ -831,7 +956,7 @@
             <div class="sub_tour_section7_product_list swiper swiper_product_list_ swiper-initialized swiper-horizontal swiper-backface-hidden">
                 <div class="swiper-wrapper" id="swiper-wrapper-c2d811557361007f3" aria-live="polite">
                     <?php foreach ($suggestHotel as $item) : ?>
-                        <a href="/product-hotel/hotel-detail/<?= $item['g_idx'] ?>"
+                        <a href="/product-hotel/hotel-detail/<?= $item['product_idx'] ?>"
                            class="sub_tour_section7_product_item swiper-slide swiper-slide-active" role="group"
                            aria-label="1 / 9" data-swiper-slide-index="0"
                            style="width: 393.333px; margin-right: 10px;">
@@ -977,6 +1102,47 @@
             $('html, body').animate({
                 scrollTop: $('#' + elID).offset().top - 250
             }, 'slow');
+        }
+
+        $(".onlynum").keyup(function () {
+            $(this).val($(this).val().replace(/[^0-9]/g, ""));
+        });
+
+        $('.btnMinus').click(function () {
+            let inp = $(this).next();
+
+            let qty = inp.val();
+            qty = parseInt(qty);
+            if (qty > 1) {
+                qty--;
+            }
+            inp.val(qty);
+
+            changeDataOptionPrice(inp);
+        });
+
+        $('.btnPlus').click(function () {
+            let inp = $(this).prev();
+            let qty = inp.val();
+            qty = parseInt(qty);
+            qty++;
+            inp.val(qty);
+            changeDataOptionPrice(inp);
+        });
+
+
+        function changeDataOptionPrice(input) {
+            let item = $(input).closest('tr');
+
+            let qty_room = item.find('input.input_room_qty').val();
+            let qty_day = item.find('input.input_day_qty').val();
+
+            item.find('span.count_room').text(qty_room);
+            item.find('span.count_day').text(qty_day);
+            let main_price = item.find('span.totalPrice').data('price');
+            let total_price = qty_room * qty_day * parseInt(main_price);
+            let formattedNumber = total_price.toLocaleString('en-US');
+            item.find('span.totalPrice').text(formattedNumber);
         }
     </script>
 

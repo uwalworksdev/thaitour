@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use Cassandra\Date;
 use CodeIgniter\Database\Config;
+use stdClass;
 
 class AdminHotelController extends BaseController
 {
@@ -152,11 +153,39 @@ class AdminHotelController extends BaseController
             $data['product_type'] = updateSQ($_POST["product_type"] ?? ''); // code=40 호텔타입
             $data['product_promotions'] = updateSQ($_POST["product_promotions"] ?? '');// code=41 호텔 프로모션
 
-            $dataProductMore = null;
+            $dataProductMore = new stdClass();
 
+            $meet_out_time = $_POST['meet_out_time'] ?? '';
+            $children_policy = $_POST['children_policy'] ?? '';
+            $baby_beds = $_POST['baby_beds'] ?? '';
+            $deposit_regulations = $_POST['deposit_regulations'] ?? '';
+            $pets = $_POST['pets'] ?? '';
+            $age_restriction = $_POST['age_restriction'] ?? '';
+            $smoking_policy = $_POST['smoking_policy'] ?? '';
+            $breakfast = $_POST['breakfast'] ?? '';
 
+            $breakfast_item_name_arr = $_POST['breakfast_item_name_'];
+            $breakfast_item_value_arr = $_POST['breakfast_item_value_'];
 
-            $data['product_more'] = updateSQ($dataProductMore ?? '');
+            $dataBreakfast = "";
+            foreach ($breakfast_item_name_arr as $key => $value) {
+                $txt = $breakfast_item_name_arr[$key] . "::::" . $breakfast_item_value_arr[$key];
+                $dataBreakfast .= $txt . "||||";
+            }
+
+            $dataProductMore->meet_out_time = $meet_out_time;
+            $dataProductMore->children_policy = $children_policy;
+            $dataProductMore->baby_beds = $baby_beds;
+            $dataProductMore->deposit_regulations = $deposit_regulations;
+            $dataProductMore->pets = $pets;
+            $dataProductMore->age_restriction = $age_restriction;
+            $dataProductMore->smoking_policy = $smoking_policy;
+            $dataProductMore->breakfast = $breakfast;
+            $dataProductMore->breakfast_data = $dataBreakfast;
+
+            $dataProductMore = json_encode($dataProductMore);
+
+            $data['product_more'] = $dataProductMore;
 
             $o_idx = $_POST["o_idx"] ?? [];
             $o_name = $_POST["o_name"] ?? [];
