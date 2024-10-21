@@ -330,11 +330,11 @@
                                                     <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                     <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                 </div>
-                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
+                                                <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
                                                 <span class="details">객실 1개 × 1박 (세금 포함)</span>
                                                 <!--                                                <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
                                                 <p>
-                                                    <span class="price"><?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?></span>원
+                                                    <span class="price"><?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?></span>원
                                                 </p>
                                                 <button class="book-button openPopupBtn">예약하기</button>
                                             </div>
@@ -568,11 +568,11 @@
                                                             <span class="price-strike"><?= number_format($room_op['r_price']) ?>원</span>
                                                             <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                         </div>
-                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
+                                                        <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
                                                         <span class="details">객실 1개 × 1박 (세금 포함)</span>
                                                         <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
                                                         <p>
-                                                            <span class="price"><?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?></span>원
+                                                            <span class="price"><?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?></span>원
                                                         </p>
                                                         <button class="book-button openPopupBtn">예약하기</button>
                                                     </div>
