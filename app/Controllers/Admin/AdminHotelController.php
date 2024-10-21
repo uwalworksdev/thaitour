@@ -36,7 +36,7 @@ class AdminHotelController extends BaseController
 
         $orderByArr = [];
 
-        if($orderBy == 1) {
+        if ($orderBy == 1) {
             $orderByArr['onum'] = "DESC";
         } elseif ($orderBy == 2) {
             $orderByArr['r_date'] = "DESC";
@@ -151,6 +151,12 @@ class AdminHotelController extends BaseController
             $data['product_bedrooms'] = updateSQ($_POST["product_bedrooms"] ?? ''); // code=39 호텔 침실수
             $data['product_type'] = updateSQ($_POST["product_type"] ?? ''); // code=40 호텔타입
             $data['product_promotions'] = updateSQ($_POST["product_promotions"] ?? '');// code=41 호텔 프로모션
+
+            $dataProductMore = null;
+
+
+
+            $data['product_more'] = updateSQ($dataProductMore ?? '');
 
             $o_idx = $_POST["o_idx"] ?? [];
             $o_name = $_POST["o_name"] ?? [];
@@ -408,47 +414,6 @@ class AdminHotelController extends BaseController
                     ]
                 );
 
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ], 400);
-        }
-    }
-
-    public function prod_update()
-    {
-        try {
-            $product_idx = $_POST['product_idx'] ?? '';
-            $onum = $_POST['onum'] ?? '';
-            $product_best = $_POST['product_best'] ?? '';
-            $product_status = $this->request->getPost("product_status");
-
-            $db = $this->productModel->update($product_idx, [
-                "onum" => $onum,
-                "product_best" => $product_best,
-                "product_status" => $product_status
-            ]);
-
-            if (!$db) {
-                return $this->response
-                    ->setStatusCode(400)
-                    ->setJSON(
-                        [
-                            'status' => 'error',
-                            'message' => '수정 중 오류가 발생했습니다!!'
-                        ]
-                    );
-            }
-
-            return $this->response
-                ->setStatusCode(200)
-                ->setJSON(
-                    [
-                        'status' => 'success',
-                        'message' => '수정 했습니다.'
-                    ]
-                );
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

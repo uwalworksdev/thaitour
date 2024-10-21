@@ -213,6 +213,59 @@ function send_it() {
     })
     $("#product_promotions").val(_product_promotions);
 
+    // let meet_out_time = $("#meet_out_time").val();
+    // let children_policy = $("#children_policy").val();
+    // let baby_beds = $("#baby_beds").val();
+    // let deposit_regulations = $("#deposit_regulations").val();
+    // let pets = $("#pets").val();
+    // let age_restriction = $("#age_restriction").val();
+    // let smoking_policy = $("#smoking_policy").val();
+    //
+    // let breakfast = $("#breakfast").val();
+    // let breakfasts_ = $('#tBodyTblBreakfast tr');
+    // let data_temp = [];
+    // breakfasts_.each(function () {
+    //     let item = $(this);
+    //     let name = item.find('input[name="breakfast_item_name_"]').val();
+    //     let val = item.find('input[name="breakfast_item_value_"]').val();
+    //
+    //     let temp = {
+    //         'name': name,
+    //         'val': val
+    //     };
+    //
+    //     data_temp.push(temp);
+    // })
+    //
+    // let data_breakfast = {
+    //     'breakfast': breakfast,
+    //     'data': data_temp
+    // };
+    //
+    // let product_more2 = {
+    //     'meet_out_time': meet_out_time,
+    //     'children_policy': children_policy,
+    //     'baby_beds': baby_beds,
+    //     'deposit_regulations': deposit_regulations,
+    //     'pets': pets,
+    //     'age_restriction': age_restriction,
+    //     'smoking_policy': smoking_policy,
+    //     'data_breakfast': data_breakfast,
+    //     // 'data_breakfast': JSON.stringify(data_breakfast)
+    // }
+    //
+    // let product_more = [];
+    // product_more['meet_out_time'] = meet_out_time;
+    // product_more['children_policy'] = children_policy;
+    // product_more['baby_beds'] = baby_beds;
+    // product_more['deposit_regulations'] = deposit_regulations;
+    // product_more['pets'] = pets;
+    // product_more['age_restriction'] = age_restriction;
+    // product_more['smoking_policy'] = smoking_policy;
+    // product_more['data_breakfast'] = data_breakfast;
+    //
+    // $("#product_more").val(product_more);
+
     $("#ajax_loader").removeClass("display-none");
     frm.submit();
 }
