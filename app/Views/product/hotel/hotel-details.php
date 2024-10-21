@@ -1087,6 +1087,25 @@
         $(".onlynum").keyup(function () {
             $(this).val($(this).val().replace(/[^0-9]/g, ""));
         });
+
+        $('.btnMinus').click(function () {
+            let inp = $(this).next();
+
+            let qty = inp.val();
+            qty = parseInt(qty);
+            if (qty > 1) {
+                qty--;
+            }
+            inp.val(qty);
+        });
+
+        $('.btnPlus').click(function () {
+            let inp = $(this).prev();
+            let qty = inp.val();
+            qty = parseInt(qty);
+            qty++;
+            inp.val(qty);
+        });
     </script>
 
 <?php $this->endSection(); ?>
