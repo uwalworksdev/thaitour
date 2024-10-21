@@ -900,68 +900,6 @@ $links = "list";
                                     </td>
                                 </tr>
 
-
-<!--                                <tr height="45">-->
-<!--                                    <th>-->
-<!--                                        추가옵션등록-->
-<!--                                        <p style="display:block;margin-top:10px;">-->
-<!--                                            <button type="button" id="btn_add_option2" class="btn_01">추가</button>-->
-<!--                                        </p>-->
-<!--                                    </th>-->
-<!--                                    <td>-->
-<!--										<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에-->
-<!--											삭제바랍니다.</span>-->
-<!--                                        <div>-->
-<!--                                            <table>-->
-<!--                                                <colgroup>-->
-<!--                                                    <col width="*">-->
-<!--                                                    <col width="25%">-->
-<!--                                                    <col width="15%">-->
-<!--                                                </colgroup>-->
-<!--                                                <thead>-->
-<!--                                                <tr>-->
-<!--                                                    <th>옵션명</th>-->
-<!--                                                    <th>가격</th>-->
-<!--                                                    <th>삭제</th>-->
-<!--                                                </tr>-->
-<!--                                                </thead>-->
-<!--                                                <tbody id="settingBody2">-->
-<!--                                                --><?php
-//                                                // 옵션 조회
-//                                                $gresult3 = (new AdminHotelController())->getListOptionType($product_code ?? null);
-//                                                foreach ($gresult3 as $frow3) {
-//                                                    ?>
-<!---->
-<!--                                                    <tr>-->
-<!--                                                        <td>-->
-<!--                                                            <input type='hidden' name='o_idx[]'-->
-<!--                                                                   value='--><?php //= $frow3['idx'] ?><!--'/>-->
-<!--                                                            <input type='hidden' name='option_type[]'-->
-<!--                                                                   value='--><?php //= $frow3['option_type'] ?><!--'/>-->
-<!--                                                            <input type='text' name='o_name[]' id=''-->
-<!--                                                                   value="--><?php //= $frow3['goods_name'] ?><!--" size="70"/>-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            <input type='text' class='onlynum' name='o_price1[]' id=''-->
-<!--                                                                   value="--><?php //= $frow3['goods_price1'] ?><!--"/>-->
-<!--                                                        </td>-->
-<!--                                                        <td>-->
-<!--                                                            <button type="button"-->
-<!--                                                                    onclick="delOption('--><?php //= $frow3['idx'] ?>//',this)">삭제
-//                                                            </button>
-//                                                        </td>
-//                                                    </tr>
-//
-//                                                    <?php
-//                                                }
-//                                                ?>
-<!---->
-<!--                                                </tbody>-->
-<!--                                            </table>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-
                                 <tr height="45">
                                     <th>
                                         객실 옵션 추가

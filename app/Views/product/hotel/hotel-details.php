@@ -283,7 +283,8 @@
                                                     <button class="btnMinus">
                                                         -
                                                     </button>
-                                                    <input type="text" class="input_room_qty onlynum" value="1">
+                                                    <input type="text" class="input_room_qty onlynum" value="1"
+                                                           data-id="<?= $room_op['rop_idx'] ?>">
                                                     <button class="btnPlus">
                                                         +
                                                     </button>
@@ -295,7 +296,8 @@
                                                     <button class="btnMinus">
                                                         -
                                                     </button>
-                                                    <input type="text" class="input_day_qty onlynum" value="1">
+                                                    <input type="text" class="input_day_qty onlynum" value="1"
+                                                           data-id="<?= $room_op['rop_idx'] ?>">
                                                     <button class="btnPlus">
                                                         +
                                                     </button>
@@ -331,10 +333,18 @@
                                                     <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                 </div>
                                                 <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
-                                                <span class="details">객실 1개 × 1박 (세금 포함)</span>
-                                                <!--                                                <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
+                                                <span class="details">객실 <span
+                                                            class="count_room"
+                                                            id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
+                                                            class="count_day"
+                                                            id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
+                                                <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
                                                 <p>
-                                                    <span class="price"><?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?></span>원
+                                                            <span class="price totalPrice"
+                                                                  id="<?= $room_op['rop_idx'] ?>"
+                                                                  data-price="<?= $room_op['r_sale_price'] + $item['goods_price1'] ?>">
+                                                                <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
+                                                            </span>원
                                                 </p>
                                                 <button class="book-button openPopupBtn">예약하기</button>
                                             </div>
@@ -521,7 +531,8 @@
                                                             <button class="btnMinus">
                                                                 -
                                                             </button>
-                                                            <input type="text" class="input_room_qty onlynum" value="1">
+                                                            <input type="text" class="input_room_qty onlynum" value="1"
+                                                                   data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
                                                             </button>
@@ -533,7 +544,8 @@
                                                             <button class="btnMinus">
                                                                 -
                                                             </button>
-                                                            <input type="text" class="input_day_qty onlynum" value="1">
+                                                            <input type="text" class="input_day_qty onlynum" value="1"
+                                                                   data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
                                                             </button>
@@ -569,10 +581,18 @@
                                                             <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                         </div>
                                                         <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>원</span>
-                                                        <span class="details">객실 1개 × 1박 (세금 포함)</span>
+                                                        <span class="details">객실 <span
+                                                                    class="count_room"
+                                                                    id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
+                                                                    class="count_day"
+                                                                    id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
                                                         <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
                                                         <p>
-                                                            <span class="price"><?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?></span>원
+                                                            <span class="price totalPrice"
+                                                                  id="<?= $room_op['rop_idx'] ?>"
+                                                                  data-price="<?= $room_op['r_sale_price'] + $item['goods_price1'] ?>">
+                                                                <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
+                                                            </span>원
                                                         </p>
                                                         <button class="book-button openPopupBtn">예약하기</button>
                                                     </div>
@@ -1097,6 +1117,8 @@
                 qty--;
             }
             inp.val(qty);
+
+            changeDataOptionPrice(inp);
         });
 
         $('.btnPlus').click(function () {
@@ -1105,7 +1127,23 @@
             qty = parseInt(qty);
             qty++;
             inp.val(qty);
+            changeDataOptionPrice(inp);
         });
+
+
+        function changeDataOptionPrice(input) {
+            let item = $(input).closest('tr');
+
+            let qty_room = item.find('input.input_room_qty').val();
+            let qty_day = item.find('input.input_day_qty').val();
+
+            item.find('span.count_room').text(qty_room);
+            item.find('span.count_day').text(qty_day);
+            let main_price = item.find('span.totalPrice').data('price');
+            let total_price = qty_room * qty_day * parseInt(main_price);
+            let formattedNumber = total_price.toLocaleString('en-US');
+            item.find('span.totalPrice').text(formattedNumber);
+        }
     </script>
 
 <?php $this->endSection(); ?>
