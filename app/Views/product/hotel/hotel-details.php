@@ -615,6 +615,7 @@
         </div>
         <?php
         $product_more = $hotel['product_more'];
+        $breakfast_data_arr2 = [];
         if ($product_more) {
             $productMoreData = json_decode($product_more, true);
 
@@ -638,7 +639,6 @@
             $breakfast_data_arr = array_filter($breakfast_data_arr);
 
 
-            $breakfast_data_arr2 = [];
             foreach ($breakfast_data_arr as $dataBreakfast) {
                 $dataBreakfastArr = explode('::::', $dataBreakfast);
                 $breakfast_data_arr2[$dataBreakfastArr[0]] = $dataBreakfastArr[1];
