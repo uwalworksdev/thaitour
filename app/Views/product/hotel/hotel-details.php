@@ -157,6 +157,23 @@
                     border-radius: 3px;
                     padding: 5px 10px;
                 }
+
+                .cus_scroll {
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    height: 400px;
+                    padding-left: 20px;
+                }
+
+                .cus_scroll::-webkit-scrollbar {
+                    width: 4px;
+                    background-color: #F5F5F5;
+                    display: block;
+                }
+
+                .cus_scroll::-webkit-scrollbar-thumb {
+                    background-color: #cccccc;
+                }
             </style>
             <?php if ($s_category_room === '' || !isset($s_category_room)) : ?>
                 <?php foreach ($hotel_options as $item) : ?>
@@ -169,11 +186,11 @@
                     $isValid = false;
                     $room_op = '';
                     $room_option_ = '';
-                    if ($count_facil > 12) {
-                        $isValid = true;
-                        $room_op = 'room_option_long';
-                        $room_option_ = 'room_option_';
-                    }
+//                    if ($count_facil > 12) {
+//                        $isValid = true;
+//                        $room_op = 'room_option_long';
+//                        $room_option_ = 'room_option_';
+//                    }
                     ?>
                     <div class="card-item-sec3 <?= $room_option_ ?>">
                         <div class="card-title-sec3-container">
@@ -208,7 +225,7 @@
                                 </div>
                                 <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
                                 <?php $room_facil = $room['room_facil']; ?>
-                                <ul>
+                                <ul class="cus_scroll">
                                     <?php
                                     $_arr = explode("|", $room_facil);
                                     foreach ($rresult as $row_r) :
@@ -279,9 +296,11 @@
                                                     <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                 </div>
                                                 <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
-                                                <span class="details">객실 1개 × 3박 (세금 포함)</span>
-                                                <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
-                                                <p><span class="price">481,290</span>원</p>
+                                                <span class="details">객실 1개 × 1박 (세금 포함)</span>
+                                                <!--                                                <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
+                                                <p>
+                                                    <span class="price"><?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?></span>원
+                                                </p>
                                                 <button class="book-button openPopupBtn">예약하기</button>
                                             </div>
                                         </td>
@@ -381,11 +400,11 @@
                     $isValid = false;
                     $room_op = '';
                     $room_option_ = '';
-                    if ($count_facil > 25) {
-                        $isValid = true;
-                        $room_op = 'room_option_long';
-                        $room_option_ = 'room_option_';
-                    }
+//                    if ($count_facil > 25) {
+//                        $isValid = true;
+//                        $room_op = 'room_option_long';
+//                        $room_option_ = 'room_option_';
+//                    }
                     ?>
                     <?php
                     $_arr = explode("|", $room['category']);
@@ -427,7 +446,7 @@
                                             <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                                         </div>
                                         <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
-                                        <ul>
+                                        <ul class="cus_scroll">
                                             <?php
                                             $_arr = explode("|", $room_facil);
                                             foreach ($rresult as $row_r) :
@@ -498,9 +517,11 @@
                                                             <span class="price"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                         </div>
                                                         <span class="total">총금액: <?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?>원</span>
-                                                        <span class="details">객실 1개 × 3박 (세금 포함)</span>
-                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>
-                                                        <p><span class="price">481,290</span>원</p>
+                                                        <span class="details">객실 1개 × 1박 (세금 포함)</span>
+                                                        <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
+                                                        <p>
+                                                            <span class="price"><?= number_format($room_op['r_sale_price'] + $hotel['product_price']) ?></span>원
+                                                        </p>
                                                         <button class="book-button openPopupBtn">예약하기</button>
                                                     </div>
                                                 </td>
@@ -599,9 +620,9 @@
         </div>
         <div class="section4" id="section4">
             <h2 class="title-sec4">시설 & 서비스</h2>
-            <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 100px">
+            <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">
                 <?php foreach ($fresult5 as $row2): ?>
-                    <div class="tag-container-item-sec4" style="width: calc((100% - 400px)/4)">
+                    <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
                         <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
                         <ul class="tag-item-list">
                             <?php $child = $row2['child'];
