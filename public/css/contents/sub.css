@@ -4879,6 +4879,32 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   width: 375px;
 }
 
+.tour-main-page .banner_section_main_page .banner_section_image {
+  background: url(/uploads/sub/banner_tour_1.png) no-repeat center;
+  background-size: cover;
+  height: 150px;
+  margin-top: 100px;
+}
+
+.tour-main-page .banner_section_main_page .box-text {
+  position: absolute;
+  top: 45px;
+  left: 120px;
+}
+
+.tour-main-page .banner_section_main_page .box-text .title-box {
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.tour-main-page .banner_section_main_page .box-text .des-box {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+}
+
+
 @media screen and (max-width: 1200px) {
   .only_tb {
     display: none !important;
