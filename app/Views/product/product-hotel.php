@@ -205,7 +205,7 @@
                                     <!-- <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
                                     <span> 한국거 기이드</span> -->
                                     <?php foreach ($product['codeTree'] as $key => $code): ?>
-                                        <span>
+                                        <span class="prd_keywords_cus_span">
                                             <?= $code['code_name'] ?>
                                             <?php if ($key < count($product['codeTree']) - 1): ?>
                                                 <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
@@ -219,19 +219,18 @@
                                 <div class="prd_info">
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_avg"><?= $product['review_average'] ?></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
                                         <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
+                                        <span class="new_review_cnt">(<?= $product['total_review'] ?>)</span>
                                     </div>
                                 </div>
                                 <div class="prd_price_ko">
-                                    <?=number_format($product['product_price'])?> <span>원~</span> <span class="prd_price_thai">
+                                    <?=number_format($product['product_price'])?> <span>원 ~</span> <span class="prd_price_thai">
                                     <?=number_format($product['product_price_baht'])?>    
-                                    <span>바트~</span></span>
+                                    <span>바트</span></span>
                                 </div>
                             </a>
                         <?php endforeach; ?>
