@@ -615,32 +615,34 @@
         </div>
         <?php
         $product_more = $hotel['product_more'];
-        $productMoreData = json_decode($product_more, true);
+        if ($product_more) {
+            $productMoreData = json_decode($product_more, true);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            die("Lỗi giải mã JSON: " . json_last_error_msg());
-        }
-        $breakfast_data = '';
-        if ($productMoreData) {
-            $meet_out_time = $productMoreData['meet_out_time'];
-            $children_policy = $productMoreData['children_policy'];
-            $baby_beds = $productMoreData['baby_beds'];
-            $deposit_regulations = $productMoreData['deposit_regulations'];
-            $pets = $productMoreData['pets'];
-            $age_restriction = $productMoreData['age_restriction'];
-            $smoking_policy = $productMoreData['smoking_policy'];
-            $breakfast = $productMoreData['breakfast'];
-            $breakfast_data = $productMoreData['breakfast_data'];
-        }
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                die("Lỗi giải mã JSON: " . json_last_error_msg());
+            }
+            $breakfast_data = '';
+            if ($productMoreData) {
+                $meet_out_time = $productMoreData['meet_out_time'];
+                $children_policy = $productMoreData['children_policy'];
+                $baby_beds = $productMoreData['baby_beds'];
+                $deposit_regulations = $productMoreData['deposit_regulations'];
+                $pets = $productMoreData['pets'];
+                $age_restriction = $productMoreData['age_restriction'];
+                $smoking_policy = $productMoreData['smoking_policy'];
+                $breakfast = $productMoreData['breakfast'];
+                $breakfast_data = $productMoreData['breakfast_data'];
+            }
 
-        $breakfast_data_arr = explode('||||', $breakfast_data);
-        $breakfast_data_arr = array_filter($breakfast_data_arr);
+            $breakfast_data_arr = explode('||||', $breakfast_data);
+            $breakfast_data_arr = array_filter($breakfast_data_arr);
 
 
-        $breakfast_data_arr2 = [];
-        foreach ($breakfast_data_arr as $dataBreakfast) {
-            $dataBreakfastArr = explode('::::', $dataBreakfast);
-            $breakfast_data_arr2[$dataBreakfastArr[0]] = $dataBreakfastArr[1];
+            $breakfast_data_arr2 = [];
+            foreach ($breakfast_data_arr as $dataBreakfast) {
+                $dataBreakfastArr = explode('::::', $dataBreakfast);
+                $breakfast_data_arr2[$dataBreakfastArr[0]] = $dataBreakfastArr[1];
+            }
         }
         ?>
         <div class="section5" id="section5">
