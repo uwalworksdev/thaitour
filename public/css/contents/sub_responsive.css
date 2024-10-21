@@ -1570,6 +1570,7 @@
     vertical-align: middle;
     cursor: pointer;
     margin-right: 1.5rem;
+    background-color: white;
   }
 
   .cart-item-list .cart-left .header-cart {
@@ -1648,7 +1649,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
-    max-width: 34.5rem;  
+    max-width: 34.5rem;
   }
 
   .cart-item-list .table-container.custom-mo .text-right-p {
@@ -1680,6 +1681,7 @@
   .cart-item-list .table-container.custom-mo .item {
     padding: 2rem 0 5rem 0;
     border-bottom: 2.1px solid rgb(219, 219, 219);
+    width: 66rem;
   }
 
   .cart-item-list .table-container.custom-mo .des-item {
@@ -1707,6 +1709,7 @@
     padding: 2.8rem 2.4rem;
     border-radius: 0.6rem;
     padding-bottom: 6rem;
+    margin-top: 8rem;
   }
 
   .cart-item-list .cart-item-list-container .title-cr {
@@ -1745,5 +1748,29 @@
     width: 100%;
     font-weight: bold;
     height: 11rem;
+  }
+
+  .customer-form-page .title-sub-below {
+    font-size: 2.5rem;
+    color: #757575;
+    margin-bottom: 2rem;
+  }
+
+  .reservation-form-cus .parent-form-group {
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  .reservation-form-cus .conn-icon {
+    gap: 1rem;
+  }
+
+  .reservation-form-cus .cus-width-mo input:first-child {
+    width: 27.5rem;
+  }
+
+
+  .mt-30 {
+    margin-top: 3rem;
   }
 }

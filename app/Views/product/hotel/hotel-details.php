@@ -346,7 +346,7 @@
                                                                 <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
                                                             </span>원
                                                 </p>
-                                                <button class="book-button openPopupBtn">예약하기</button>
+                                                <button class="book-button openPopupBtn" onclick="window.location.href='/product-hotel/reservation-form/2'">예약하기</button>
                                             </div>
                                         </td>
                                     </tr>
