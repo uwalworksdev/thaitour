@@ -62,7 +62,7 @@ $titleStr = "생성";
                         <tbody>
 
 
-                        <form name="frm" action="coupon_write_ok.php" method="post" enctype="multipart/form-data">
+                        <form name="frm" action="coupon_write_ok" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="idx" value='<?= $idx ?>'>
                             <tr>
                                 <th>쿠폰타입</th>
@@ -184,6 +184,7 @@ $titleStr = "생성";
     }
 
     function send_excel() {
+        $("#ajax_loader").removeClass("display-none");
 
         if ($("#coupon_type").val() == "") {
             alert("쿠폰타입을 선탁하세요!");
@@ -217,13 +218,6 @@ $titleStr = "생성";
             location.href = '/AdmMaster/_operator/coupon_list.php';
         });
 
-
-    }
-
-    function del_it() {
-        if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-            hiddenFrame.location.href = "coupon_setting_del.php?idx[]=<?=$idx?>&mode=view&s_ca_idx=<?=$ca_idx?>";
-        }
 
     }
 
