@@ -172,7 +172,7 @@ $links = "list";
 
                                 <tr>
                                     <th>상품코드</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="product_code" id="product_code"
                                                value="<?= $product_code ?? "" ?>"
                                                readonly="readonly" class="text" style="width:200px">
@@ -183,14 +183,14 @@ $links = "list";
                                         <?php } ?>
 
                                     </td>
-                                    <th>노출</th>
-                                    <td>
-                                        <input type="checkbox" name="product_best" id="product_best" value="Y"
-                                            <?php if (isset($product_best) && $product_best === "Y")
-                                                echo "checked=checked"; ?>> <label for="product_best"
-                                                                                   style="max-height:200px;margin-right:20px;">BEST
-                                            인기호텔</label>
-                                    </td>
+<!--                                    <th>노출</th>-->
+<!--                                    <td>-->
+<!--                                        <input type="checkbox" name="product_best" id="product_best" value="Y"-->
+<!--                                            --><?php //if (isset($product_best) && $product_best === "Y")
+//                                                echo "checked=checked"; ?><!--> <label for="product_best"-->
+<!--                                                                                   style="max-height:200px;margin-right:20px;">BEST-->
+<!--                                            인기호텔</label>-->
+<!--                                    </td>-->
                                 </tr>
                                 <tr>
                                     <th>상품명</th>

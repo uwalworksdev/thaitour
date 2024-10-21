@@ -247,9 +247,9 @@
                             <table class="room-table only_web">
                                 <colgroup>
                                     <col width="35%">
-                                    <col width="20%">
                                     <col width="10%">
-                                    <col width="35%">
+                                    <col width="10%">
+                                    <col width="45%">
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -278,12 +278,13 @@
                                         </td>
                                         <td>
                                             <div class="room_qty">
-                                                <p>객실 수</p>
+                                                <p>객실 수: </p>
                                                 <div class="room_activity">
                                                     <button class="btnMinus">
                                                         -
                                                     </button>
                                                     <input type="text" class="input_room_qty onlynum" value="1"
+                                                           style="text-align: center"
                                                            data-id="<?= $room_op['rop_idx'] ?>">
                                                     <button class="btnPlus">
                                                         +
@@ -291,12 +292,13 @@
                                                 </div>
                                             </div>
                                             <div class="day_qty">
-                                                <p>객실 수</p>
+                                                <p>객실 수: </p>
                                                 <div class="day_activity">
                                                     <button class="btnMinus">
                                                         -
                                                     </button>
                                                     <input type="text" class="input_day_qty onlynum" value="1"
+                                                           style="text-align: center"
                                                            data-id="<?= $room_op['rop_idx'] ?>">
                                                     <button class="btnPlus">
                                                         +
@@ -346,7 +348,10 @@
                                                                 <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
                                                             </span>원
                                                 </p>
-                                                <button class="book-button openPopupBtn">예약하기</button>
+                                                <button class="book-button openPopupBtn"
+                                                        onclick="window.location.href='/product-hotel/reservation-form/2'">
+                                                    예약하기
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>
@@ -526,12 +531,13 @@
                                                 </td>
                                                 <td>
                                                     <div class="room_qty">
-                                                        <p>객실 수</p>
+                                                        <p>객실 수: </p>
                                                         <div class="room_activity">
                                                             <button class="btnMinus">
                                                                 -
                                                             </button>
                                                             <input type="text" class="input_room_qty onlynum" value="1"
+                                                                   style="text-align: center"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
@@ -539,12 +545,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="day_qty">
-                                                        <p>객실 수</p>
+                                                        <p>객실 수: </p>
                                                         <div class="day_activity">
                                                             <button class="btnMinus">
                                                                 -
                                                             </button>
                                                             <input type="text" class="input_day_qty onlynum" value="1"
+                                                                   style="text-align: center"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
@@ -1025,6 +1032,64 @@
                 $(this).parent().find('.btnReadMore').css('display', 'inline');
             });
         </script>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
+                <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
+                <div class="order-popup">
+                    <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
+                    <div class="description-above">
+                        <div class="item-price-popup">
+                            <div class="img-container">
+                                <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                            </div>
+                            <div class="text-con">
+                                <span>신규회원가입 웰컴 쿠폰</span>
+                                <span class="text-gray">10% 할인쿠폰</span>
+                            </div>
+                            <span class="date-sub">~2024.10.05</span>
+                        </div>
+                        <div class="item-price-popup">
+                            <div class="img-container">
+                                <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                            </div>
+                            <div class="text-con">
+                                <span>추가 즉시할인쿠폰</span>
+                                <span class="text-gray">5,000원 할인쿠폰</span>
+                            </div>
+                            <span class="date-sub">~2024.10.05</span>
+                        </div>
+                        <div class="item-price-popup item-price-popup--button">
+                            <span>적용안함</span>
+                        </div>
+                    </div>
+                    <div class="line-gray"></div>
+                    <div class="footer-popup">
+                        <div class="des-above">
+                            <div class="item">
+                                <span class="text-gray">총 주문금액</span>
+                                <span class="text-gray">160,430원</span>
+                            </div>
+                            <div class="item">
+                                <span class="text-gray">할인금액</span>
+                                <span class="text-gray">16,040원</span>
+                            </div>
+                        </div>
+                        <div class="des-below">
+                            <div class="price-below">
+                                <span>최종결제금액</span>
+                                <p class="price-popup">144,000<span class="text-gray">원</span></p>
+                            </div>
+                        </div>
+                        <button class="btn_accept_popup"
+                                onclick="location.href='/product-hotel/customer-form'">
+                            쿠폰적용
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         let swiper = new Swiper(".swiper_product_list_", {

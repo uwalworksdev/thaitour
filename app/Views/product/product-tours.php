@@ -2,7 +2,7 @@
 
 <?php $this->section('content'); ?>
 
-<div class="body_container">
+<div class="body_container tour-main-page">
     <section class="sub_top_visual">
         <div class="body_inner">
             <div class="sub_tour">
@@ -252,32 +252,12 @@
             </div>
         </div>
     </section>
-    <section class="sub_tour_section4">
+    <section class="banner_section_main_page">
         <div class="body_inner">
-            <div class="sub_tour_section4_banner">
-                <div class="only_mo">
-                    <div class="sub_tour_section4_banner__des">
-                        <p class="ico_block">
-                            <img src="/images/ico/ico_block_1.svg" alt="">
-                        </p>
-                        <div class="sub_tour_section4_banner__des__text">
-                            <div class="sub_tour_section4_banner__des__ttl">
-                                여름휴가쿠폰대잔치
-                            </div>
-                            <p class="sub_tour_section4_banner__des__bottom">
-                                다운로드 기간 : 2024. 05. 22 ~ 07. 31
-                            </p>
-                        </div>
-                        <p class="ico_block">
-                            <img src="/images/ico/ico_block_1.svg" alt="">
-                        </p>
-                    </div>
-                </div>
-                <div class="img_box img_box_11">
-                    <picture>
-                        <source media="(max-width: 850px)" srcset="/uploads/sub/banner_tour_1_m.png">
-                        <img class="img_box__img" src="/uploads/sub/banner_tour_1.png" alt="main">
-                    </picture>
+            <div class="banner_section_image" style="position: relative;">
+                <div class="box-text">
+                    <h3 class="title-box">여름휴가쿠폰대잔치</h3>
+                    <p class="des-box">다운로드 기간 : 2024. 05. 22 ~ 07. 31</p>
                 </div>
             </div>
         </div>
@@ -778,125 +758,125 @@
 </div>
 
 <script>
-$(document).ready(function() {
-    const swiper1 = new Swiper(".sub_swiper1", {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 20,
-        autoplay: true,
-        navigation: {
-            nextEl: ".sub_tour__slide__paging__next",
-            prevEl: ".sub_tour__slide__paging__prev",
-        },
-        scrollbar: {
-            el: '.sub_tour__slide__scroll',
-            draggable: true,
-        },
-    });
-    const swiper12 = new Swiper(".sub_swiper2", {
-        loop: false,
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-        spaceBetween: 20,
-        grid: {
-            rows: 2,
-            fill: 'row'
-        },
-        navigation: {
-            nextEl: ".sub_swiper2_btn_next",
-            prevEl: ".sub_swiper2_btn_prev",
-        },
-        pagination: {
-            el: ".sub_swiper2_pagination",
-        },
-        breakpoints: {
-            851: {
-                loop: true,
-                slidesPerView: 6,
-                slidesPerGroup: 1,
-                grid: {
-                    rows: 1,
-                    fill: 'column'
-                },
-            },
-        },
-        on: {
-            beforeResize: function() {
-                this.update();
-                if (this.pagination && this.pagination.render && this.pagination.init) {
-                    this.pagination.render();
-                    this.pagination.init();
-                }
-                if (this.navigation && this.navigation.update) {
-                    this.navigation.update();
-                }
-            },
-        },
-    });
-    let swiper13 = undefined;
-
-    function initSwiper13() {
-        swiper13 = new Swiper(".sub_section3_swiper", {
+    $(document).ready(function() {
+        const swiper1 = new Swiper(".sub_swiper1", {
             loop: true,
             slidesPerView: 1,
-            spaceBetween: 10,
-            breakpoints: {
-                851: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                },
-            },
+            spaceBetween: 20,
+            autoplay: true,
             navigation: {
-                nextEl: ".sub_section3_swiper_btn_next",
-                prevEl: ".sub_section3_swiper_btn_prev",
+                nextEl: ".sub_tour__slide__paging__next",
+                prevEl: ".sub_tour__slide__paging__prev",
             },
-            pagination: {
-                el: ".sub_section3_swiper_pagination",
+            scrollbar: {
+                el: '.sub_tour__slide__scroll',
+                draggable: true,
             },
         });
-    }
-    initSwiper13();
-    $(window).resize(function() {
-        if (swiper1.navigation && swiper1.navigation.update) {
-            swiper1.navigation.update();
+        const swiper12 = new Swiper(".sub_swiper2", {
+            loop: false,
+            slidesPerView: 3,
+            slidesPerGroup: 3,
+            spaceBetween: 20,
+            grid: {
+                rows: 2,
+                fill: 'row'
+            },
+            navigation: {
+                nextEl: ".sub_swiper2_btn_next",
+                prevEl: ".sub_swiper2_btn_prev",
+            },
+            pagination: {
+                el: ".sub_swiper2_pagination",
+            },
+            breakpoints: {
+                851: {
+                    loop: true,
+                    slidesPerView: 6,
+                    slidesPerGroup: 1,
+                    grid: {
+                        rows: 1,
+                        fill: 'column'
+                    },
+                },
+            },
+            on: {
+                beforeResize: function() {
+                    this.update();
+                    if (this.pagination && this.pagination.render && this.pagination.init) {
+                        this.pagination.render();
+                        this.pagination.init();
+                    }
+                    if (this.navigation && this.navigation.update) {
+                        this.navigation.update();
+                    }
+                },
+            },
+        });
+        let swiper13 = undefined;
+
+        function initSwiper13() {
+            swiper13 = new Swiper(".sub_section3_swiper", {
+                loop: true,
+                slidesPerView: 1,
+                spaceBetween: 10,
+                breakpoints: {
+                    851: {
+                        slidesPerView: 3,
+                        spaceBetween: 20,
+                    },
+                },
+                navigation: {
+                    nextEl: ".sub_section3_swiper_btn_next",
+                    prevEl: ".sub_section3_swiper_btn_prev",
+                },
+                pagination: {
+                    el: ".sub_section3_swiper_pagination",
+                },
+            });
         }
-        if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
-            swiper1.scrollbar.updateSize();
-        }
+        initSwiper13();
+        $(window).resize(function() {
+            if (swiper1.navigation && swiper1.navigation.update) {
+                swiper1.navigation.update();
+            }
+            if (swiper1.scrollbar && swiper1.scrollbar.updateSize) {
+                swiper1.scrollbar.updateSize();
+            }
+        });
+        $('.tour__head__tabs1__tab').click(function(event) {
+            event.preventDefault();
+
+            $('.tour__head__tabs1__tab').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('.tour__head__tabs2__tab').on('click', function(event) {
+            event.preventDefault();
+
+
+            $('.tour__head__tabs2__tab').removeClass('active');
+
+
+            $(this).addClass('active');
+        });
+
+        $('.sub_tour_section6__head__tabs__tab').click(function(e) {
+            e.preventDefault();
+
+            $('.sub_tour_section6__head__tabs__tab').removeClass('active');
+
+            $(this).addClass('active');
+        });
+
     });
-    $('.tour__head__tabs1__tab').click(function(event) {
-        event.preventDefault();
-
-        $('.tour__head__tabs1__tab').removeClass('active');
-        $(this).addClass('active');
-    });
-
-    $('.tour__head__tabs2__tab').on('click', function(event) {
-        event.preventDefault();
-
-
-        $('.tour__head__tabs2__tab').removeClass('active');
-
-
-        $(this).addClass('active');
-    });
-
-    $('.sub_tour_section6__head__tabs__tab').click(function(e) {
-        e.preventDefault();
-
-        $('.sub_tour_section6__head__tabs__tab').removeClass('active');
-
-        $(this).addClass('active');
-    });
-
-});
 </script>
 
 <script>
-// $(document).ready(function () {
-//     setTimeout(() => {
-//         location.reload();
-//     }, 2000);
-// });
+    // $(document).ready(function () {
+    //     setTimeout(() => {
+    //         location.reload();
+    //     }, 2000);
+    // });
 </script>
 <?php $this->endSection(); ?>

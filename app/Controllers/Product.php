@@ -940,6 +940,11 @@ class Product extends BaseController
         return $this->renderView('product/hotel/customer-form');
     }
 
+    public function reservationForm($code_no) 
+    {
+        return $this->renderView('product/hotel/reservation-form');
+    }
+
     public function completedOrder()
     {
         return $this->renderView('product/completed-order');
