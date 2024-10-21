@@ -1752,6 +1752,7 @@
 
   .customer-form-page .title-sub-below {
     font-size: 2.5rem;
+    line-height: 3.5rem;
     color: #757575;
     margin-bottom: 2rem;
   }
@@ -1766,9 +1767,26 @@
   }
 
   .reservation-form-cus .cus-width-mo input:first-child {
-    width: 27.5rem;
+    width: 33.5rem;
   }
 
+  .reservation-form-cus .conn-icon img {
+    width: 3.7rem;
+    height: 3.7rem;
+  }
+
+  .reservation-form-cus .w-375 {
+    width: 100%;
+  }
+   
+
+  .customer-form-page .container-card .title-r {
+    line-height: 4rem;
+  }
+
+  .customer-form-page .container-card .title-sub-r {
+    font-size: 2.7rem;
+  }
 
   .mt-30 {
     margin-top: 3rem;
