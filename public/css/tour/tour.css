@@ -675,6 +675,10 @@
     font-weight: 600;
 }
 
+.content-sub-product-hotel .subtitle .arrow_menu {
+    cursor: pointer;
+}
+
 .content-sub-product-hotel .tab_box_area_ .tab_box_element_ {
     border-radius: 30px;
     height: auto;
@@ -926,6 +930,18 @@
     color: #fff;
     background-color: #17469E;
     font-weight: 400;
+}
+
+.sub-hotel-container .category-left button.btn_search_ {
+    width: 100%;
+    padding: 10px 0;
+    color: #fff;
+    background-color: #17469E;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .content-sub-product-hotel .below-filter-content {

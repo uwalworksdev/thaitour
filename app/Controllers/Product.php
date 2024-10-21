@@ -614,6 +614,8 @@ class Product extends BaseController
     {
         try {
             $pg = $this->request->getVar('pg') ?? 1;
+            $checkin = $this->request->getVar('checkin') ?? "";
+            $checkout = $this->request->getVar('checkout') ?? "";
             $search_product_name = $this->request->getVar('search_product_name') ?? "";
             $search_product_category = $this->request->getVar('search_product_category') ?? "";
             $search_product_hotel = $this->request->getVar('search_product_hotel') ?? "";
@@ -623,6 +625,7 @@ class Product extends BaseController
             $search_product_bedroom = $this->request->getVar('search_product_bedroom') ?? "";
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
+            
 
             $perPage = 5;
 
@@ -642,9 +645,11 @@ class Product extends BaseController
 
             $product_code_list = implode(",", $arr_code_list);
 
-            $products = $this->productModel->findProductPaging([
+            $products = $this->productModel->findProductHotelPaging([
                 'product_code_1' => 1303,
                 'product_code_list' => $product_code_list,
+                'checkin' => $checkin,
+                'checkout' => $checkout,
                 'search_product_name' => $search_product_name,
                 'search_product_category' => $search_product_category,
                 'search_product_hotel' => $search_product_hotel,
@@ -660,9 +665,14 @@ class Product extends BaseController
             foreach($products['items'] as $key => $product) {
 
                 $hotel_codes = explode("|", $product['product_code_list']);
-                $hotel_codes = array_values(array_filter($hotel_codes));
+                foreach($hotel_codes as $h_code){
+                    if(in_array($h_code, $arr_code_list, true)){
+                        $hotel_code = $h_code;
+                        break;
+                    }
+                }
 
-                $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+                $codeTree = $this->codeModel->getCodeTree($hotel_code);
 
                 $products['items'][$key]['codeTree'] = $codeTree;
 

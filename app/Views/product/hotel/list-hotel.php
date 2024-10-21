@@ -100,11 +100,15 @@
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all" data-type="rating">전체</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border 
+                                        <?php if(strpos($products["search_product_rating"], "all") !== false
+                                            || empty($products["search_product_rating"])){ echo "tab_active_"; } ?>" data-code="all" data-type="rating">전체</li>
                                     <?php
                                         foreach($ratings as $code){
                                     ?>
-                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="rating"><?=$code["code_name"]?></li>
+                                        <li class="tab_box_element_ tab_box_js p--20 border 
+                                            <?php if(strpos($products["search_product_rating"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                            data-code="<?=$code["code_no"]?>" data-type="rating"><?=$code["code_name"]?></li>
                                     <?php
                                         }
                                     ?>
@@ -189,6 +193,7 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="btn_search_" onclick="search_it()">검색</button>
                 </div>
                 
                 <div class="content-right">
@@ -197,12 +202,12 @@
                             <label for="checkin" class="label text-gray pt-2">체크인/아웃</label>
                             <div class="date-sub-container">
                                 <div class="date-wrapper">
-                                    <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
+                                    <input type="text" id="checkin" name="checkin" class="date" value="<?=$products["checkin"]?>">
                                     <span class="suffix">(화)</span>
                                 </div>
                                 <span class="arrow">→</span>
                                 <div class="date-wrapper">
-                                    <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
+                                    <input type="text" id="checkout" name="checkout" class="date" value="<?=$products["checkout"]?>">
                                     <span class="suffix">(수)</span>
                                 </div>
                             </div>
@@ -323,7 +328,7 @@
                                     </div>
                                     <div class="item-info">
                                         <div class="item-price-info"><span class="main"><?= number_format($product['product_price']) ?> </span><span class="text-gray">원
-                                                ~</span> <span class="sub text-gray">6,000바트~</span></div>
+                                                ~</span> <span class="sub text-gray"><?= number_format($product['product_price_baht']) ?>바트~</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -1294,6 +1299,23 @@
             //         '</div>'
             //     );
             // }
+
+            if($(this).data("code") === "all"){
+                $(this).siblings('[data-code]:not([data-code="all"])').removeClass('tab_active_');
+                $('.list-tag .tag-item span').each(function() {
+                    if ($(this).text() !== tabText && type == $(this).data("type")) {
+                        $(this).closest(".tag-item").remove();
+                    }
+                });
+            }else{
+                let allBtn = $(this).siblings('[data-code="all"]');
+                allBtn.removeClass('tab_active_');
+                $('.list-tag .tag-item span').each(function() {
+                    if ($(this).text() === allBtn.text() && type == $(this).data("type")) {
+                        $(this).closest(".tag-item").remove();
+                    }
+                });
+            }
 
             if($(this).hasClass('tab_active_')){
                 $(this).removeClass('tab_active_');

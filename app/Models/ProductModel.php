@@ -460,6 +460,23 @@ class ProductModel extends Model
             }
         }
 
+        if ($where['search_product_rating']) {
+            if(strpos($where['search_product_rating'], 'all') === false) {
+                $search_product_rating = explode(",", $where['search_product_rating']);
+                $cnt_rating = 1;
+                $builder->groupStart();
+                foreach($search_product_rating as $rating){
+                    if($cnt_rating > 1){
+                        $builder->orWhere('product_level', $rating);
+                    }else{
+                        $builder->where('product_level', $rating);
+                    }
+                    $cnt_rating++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
         if(!empty($where['price_min']) && !empty($where['price_max'])){
             $builder->where('product_price > ', $where['price_min']);
             $builder->where('product_price < ', $where['price_max']);
@@ -559,6 +576,224 @@ class ProductModel extends Model
             'pg' => (int)$pg,
             'search_txt' => $where['search_txt'],
             'search_category' => $where['search_category'],
+            'checkin' => $where['checkin'],
+            'checkout' => $where['checkout'],
+            'search_product_name' => $where['search_product_name'],
+            'search_product_category' => $where['search_product_category'],
+            'search_product_hotel' => $where['search_product_hotel'],
+            'search_product_rating' => $where['search_product_rating'],
+            'search_product_promotion' => $where['search_product_promotion'],
+            'search_product_topic' => $where['search_product_topic'],
+            'search_product_bedroom' => $where['search_product_bedroom'],
+            'price_min' => $where['price_min'],
+            'price_max' => $where['price_max'],
+            'is_view' => $where['is_view'],
+            'product_code_1' => $where['product_code_1'],
+            'product_code_2' => $where['product_code_2'],
+            'product_code_3' => $where['product_code_3'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
+    }
+
+    public function findProductHotelPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->db->table('tbl_product_mst AS p');
+        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%d/%m/%Y")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%d/%m/%Y")) AS latest_date');
+        $builder->join('tbl_hotel_option AS h', 'p.product_code = h.goods_code', 'left');
+
+        $builder->where('o_sdate IS NOT NULL');
+        $builder->where('o_edate IS NOT NULL');
+        $builder->where('o_sdate <>', '');
+        $builder->where('o_edate <>', '');
+        $builder->where('h.option_type', 'M');
+        
+        if ($where['product_code_1'] != "") {
+            $builder->where('product_code_1', $where['product_code_1']);
+        }
+        if ($where['product_code_2'] != "") {
+            $builder->where('product_code_2', $where['product_code_2']);
+        }
+        if ($where['product_code_3'] != "") {
+            $builder->where('product_code_3', $where['product_code_3']);
+        }
+
+        if ($where['product_code_list']) {
+            $product_code_list = explode(",", $where['product_code_list']);
+            $cnt_code = 1;
+                $builder->groupStart();
+                foreach($product_code_list as $code){
+                    if($cnt_code > 1){
+                        $builder->orLike('product_code_list', $code);
+                    }else{
+                        $builder->like('product_code_list', $code);
+                    }
+                    $cnt_code++;
+                }
+                $builder->groupEnd();
+        }
+
+        if ($where['search_product_category']) {
+            if(strpos($where['search_product_category'], 'all') === false) {
+                $search_product_category = explode(",", $where['search_product_category']);
+                $cnt_cat = 1;
+                $builder->groupStart();
+                foreach($search_product_category as $category){
+                    if($cnt_cat > 1){
+                        $builder->orLike('product_code_list', $category);
+                    }else{
+                        $builder->like('product_code_list', $category);
+                    }
+                    $cnt_cat++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if ($where['search_product_hotel']) {
+            if(strpos($where['search_product_hotel'], 'all') === false) {
+                $search_product_hotel = explode(",", $where['search_product_hotel']);
+                $cnt_type = 1;
+                $builder->groupStart();
+                foreach($search_product_hotel as $type){
+                    if($cnt_type > 1){
+                        $builder->orLike('product_type', $type);
+                    }else{
+                        $builder->like('product_type', $type);
+                    }
+                    $cnt_type++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if ($where['search_product_rating']) {
+            if(strpos($where['search_product_rating'], 'all') === false) {
+                $search_product_rating = explode(",", $where['search_product_rating']);
+                $cnt_rating = 1;
+                $builder->groupStart();
+                foreach($search_product_rating as $rating){
+                    if($cnt_rating > 1){
+                        $builder->orWhere('product_level', $rating);
+                    }else{
+                        $builder->where('product_level', $rating);
+                    }
+                    $cnt_rating++;
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        if(!empty($where['price_min']) && !empty($where['price_max'])){
+            $builder->where('product_price > ', $where['price_min']);
+            $builder->where('product_price < ', $where['price_max']);
+        }
+
+        if ($where['search_product_promotion']) {
+            $search_product_promotion = explode(",", $where['search_product_promotion']);
+            $cnt_promotion = 1;
+            $builder->groupStart();
+            foreach($search_product_promotion as $promotion){
+                if($cnt_promotion > 1){
+                    $builder->orLike('product_promotions', $promotion);
+                }else{
+                    $builder->like('product_promotions', $promotion);
+                }
+                $cnt_promotion++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_topic']) {
+            $search_product_topic = explode(",", $where['search_product_topic']);
+            $cnt_theme = 1;
+            $builder->groupStart();
+            foreach($search_product_topic as $theme){
+                if($cnt_theme > 1){
+                    $builder->orLike('product_theme', $theme);
+                }else{
+                    $builder->like('product_theme', $theme);
+                }
+                $cnt_theme++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_bedroom']) {
+            $search_product_bedroom = explode(",", $where['search_product_bedroom']);
+            $cnt_bedroom = 1;
+            $builder->groupStart();
+            foreach($search_product_bedroom as $bedroom){
+                if($cnt_bedroom > 1){
+                    $builder->orLike('product_bedrooms', $bedroom);
+                }else{
+                    $builder->like('product_bedrooms', $bedroom);
+                }
+                $cnt_bedroom++;
+            }
+            $builder->groupEnd();
+        }
+
+        if(!empty($where['checkin']) && !empty($where['checkout'])) {
+            
+            $builder->where('STR_TO_DATE(o_sdate, "%d/%m/%Y") >=', $where['checkin']);
+            $builder->where('STR_TO_DATE(o_edate, "%d/%m/%Y") <=', $where['checkout']);
+        }
+
+        if($where['search_product_name']) {
+            $builder->like('product_name', $where['search_product_name']);
+        }
+
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            }
+        }
+        if ($where['is_view'] != "") {
+            $builder->where("is_view", $where['is_view']);
+        }
+
+        if ($where['special_price'] != "") {
+            $builder->where("special_price", $where['special_price']);
+        }
+
+        if ($where['product_status'] != "") {
+            $builder->where("product_status", $where['product_status']);
+        }
+
+        $builder->where("product_status !=", "D");
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = ['product_idx' => 'DESC'];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        foreach ($items as $key => $value) {
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $product_price_baht = $product_price / $baht_thai;
+            $items[$key]['product_price_baht'] = $product_price_baht;
+        }
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'checkin' => $where['checkin'],
+            'checkout' => $where['checkout'],
             'search_product_name' => $where['search_product_name'],
             'search_product_category' => $where['search_product_category'],
             'search_product_hotel' => $where['search_product_hotel'],
