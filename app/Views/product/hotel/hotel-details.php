@@ -613,6 +613,36 @@
                 <?php endforeach; ?>
             </div>
         </div>
+        <?php
+        $product_more = $hotel['product_more'];
+        $productMoreData = json_decode($product_more, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            die("Lỗi giải mã JSON: " . json_last_error_msg());
+        }
+        $breakfast_data = '';
+        if ($productMoreData) {
+            $meet_out_time = $productMoreData['meet_out_time'];
+            $children_policy = $productMoreData['children_policy'];
+            $baby_beds = $productMoreData['baby_beds'];
+            $deposit_regulations = $productMoreData['deposit_regulations'];
+            $pets = $productMoreData['pets'];
+            $age_restriction = $productMoreData['age_restriction'];
+            $smoking_policy = $productMoreData['smoking_policy'];
+            $breakfast = $productMoreData['breakfast'];
+            $breakfast_data = $productMoreData['breakfast_data'];
+        }
+
+        $breakfast_data_arr = explode('||||', $breakfast_data);
+        $breakfast_data_arr = array_filter($breakfast_data_arr);
+
+
+        $breakfast_data_arr2 = [];
+        foreach ($breakfast_data_arr as $dataBreakfast) {
+            $dataBreakfastArr = explode('::::', $dataBreakfast);
+            $breakfast_data_arr2[$dataBreakfastArr[0]] = $dataBreakfastArr[1];
+        }
+        ?>
         <div class="section5" id="section5">
             <h1 class="title-sec5">호텔정책</h1>
             <div class="content-container-sec5">
@@ -621,9 +651,7 @@
                         체크아웃 시간
                     </span>
                     <div class="description">
-                        <p>체크인 : <strong>14:00</strong> 이전 <br>체크아웃 : <strong>12:00</strong> 이후<br>프런트 데스크 운영시간 :
-                            연중무휴
-                            24시간</p>
+                        <p><?= nl2br($meet_out_time ?? '') ?></p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -631,7 +659,7 @@
                         어린이 정책
                     </span>
                     <div class="description">
-                        <p>본 객실 유행은 어린이 투숙이 불가합니다.</p>
+                        <p><?= nl2br($children_policy ?? '') ?></p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -639,7 +667,7 @@
                         유아용 침대 및 엑스트라 베드
                     </span>
                     <div class="description">
-                        <p>객실 유형에 따라 침대 추가 및 유아용 침대 추가 정책이 다를 수 있습니다. 자세한 사항은 객실유형 정보를 참조하세요.</p>
+                        <p><?= nl2br($baby_beds ?? '') ?></p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -647,19 +675,21 @@
                         조식
                     </span>
                     <div class="description">
-                        <p>제공방식 : 뷔페<br>운영시간 : [월요일-금요일] 06:00~10:00 운영(토요일 ~일요일) 06:00~11:00</p>
+                        <p><?= nl2br($breakfast ?? '') ?></p>
                         <div class="table-container">
                             <table>
                                 <thead>
                                 <tr>
-                                    <th>나이</th>
-                                    <th>요금</th>
+                                    <?php foreach ($breakfast_data_arr2 as $key => $value) : ?>
+                                        <th><?= $key ?></th>
+                                    <?php endforeach; ?>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>성인</td>
-                                    <td>1인당 THB 550.00(약 20,950원)</td>
+                                    <?php foreach ($breakfast_data_arr2 as $key => $value) : ?>
+                                        <td><?= $value ?></td>
+                                    <?php endforeach; ?>
                                 </tr>
                                 </tbody>
                             </table>
@@ -671,7 +701,7 @@
                         보증금 규정
                     </span>
                     <div class="description">
-                        <p>숙소 부과 보증금 없음</p>
+                        <p> <?= nl2br($deposit_regulations ?? '') ?> </p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -679,7 +709,7 @@
                         반려동물
                     </span>
                     <div class="description">
-                        <p>반려동물 동반 불가</p>
+                        <p> <?= nl2br($pets ?? '') ?> </p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -687,7 +717,7 @@
                         연령 제한
                     </span>
                     <div class="description">
-                        <p>체크인하는 대표 투숙객의연령은 반드시 18세 이상이어야 합니다.</p>
+                        <p> <?= nl2br($age_restriction ?? '') ?>  </p>
                     </div>
                 </div>
                 <div class="content-item">
@@ -695,7 +725,7 @@
                         흡연 정책
                     </span>
                     <div class="description">
-                        <p>숙소에서 흡연이 불가능합니다.</p>
+                        <p> <?= nl2br($smoking_policy ?? '') ?> </p>
                     </div>
                 </div>
             </div>
