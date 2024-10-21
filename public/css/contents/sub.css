@@ -4561,17 +4561,25 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   border: 1px solid #ddd;
 }
 
-.cart-item-list .table-container th,
+.cart-item-list .table-container th:not(:last-child),
 .cart-item-list .table-container td {
-  padding: 25px;
+  padding: 19px;
   text-align: left;
   vertical-align: top;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
 }
 
+.cart-item-list .table-container th:last-child {
+  border-bottom: 1px solid #ddd;
+}
+
 .cart-item-list .table-container td:last-child {
   border-right: none;
+}
+
+.cart-item-list .table-container {
+  border-bottom: none;
 }
 
 .cart-item-list .cus-checkbox-td {
@@ -4586,12 +4594,14 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .table-header th:nth-child(1) {
-  width: 426px;
+  width: 451px;
+  text-align: center;
 }
 
 .cart-item-list .table-header th:nth-child(2),
 .cart-item-list .table-header th:nth-child(3) {
-  width: 137px;
+  width: 130px;
+  text-align: center;
 }
 
 .cart-item-list .table-container th {
