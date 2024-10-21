@@ -394,7 +394,7 @@
 
         let product_status = $("#product_status_" + idx).val();
 
-        let url = '<?= route_to("admin._hotel.prod_update") ?>';
+        let url = '/AdmMaster/prod_update/' + idx;
 
         let product_best;
         if ($("#product_best_best_" + idx).is(":checked")) {
@@ -410,12 +410,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: {
-                "product_idx": idx,
-                "product_best": product_best,
-                "onum": onum,
-                product_status
-            },
+            data: { product_best, onum, product_status },
             dataType: "json",
             async: false,
             cache: false,

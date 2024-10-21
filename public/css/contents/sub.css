@@ -8,18 +8,18 @@
   width: 100%;
   /* max-width: 600px;  */
   margin: 20px auto;
-  /* Canh giữa */
+  
 }
 
 
 .skeleton {
   width: 100%;
   height: 25px;
-  /* Chiều cao của mỗi phần tử skeleton */
+  
   margin-bottom: 10px;
-  /* Khoảng cách giữa các phần tử skeleton */
+  
   background-color: #f0f0f0;
-  /* Màu nền của skeleton */
+  
 }
 
 /* Animation */
@@ -4568,6 +4568,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   vertical-align: top;
   border-bottom: 1px solid #ddd;
   border-right: 1px solid #ddd;
+}
+
+.cart-item-list .table-container td:last-child {
+  border-right: none;
 }
 
 .cart-item-list .cus-checkbox-td {

@@ -340,15 +340,35 @@ class Product extends BaseController
             $perPage = 16;
 
             $banners = $this->bannerModel->getBanners($code_no);
+
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
 
             $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
 
             $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
 
-            $bestProducts = $this->productModel->getBestProducts();
+            $bestProducts = $this->productModel->getBestProducts(1302);
 
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+
+            $cheepProducts = $this->productModel->findProductPaging([
+                'product_code_1' => 1302,
+            ], 8, 1, ['product_price' => 'ASC', 'onum' => 'DESC']);
+
+            foreach ($cheepProducts['items'] as $key => $product) {
+
+                $hotel_codes = explode("|", $product['product_code_list']);
+                $hotel_codes = array_values(array_filter($hotel_codes));
+
+                $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+                $cheepProducts[$key]['codeTree'] = $codeTree;
+
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+                $cheepProducts['items'][$key]['total_review'] = $productReview['total_review'];
+                $cheepProducts['items'][$key]['review_average'] = $productReview['avg'];
+            }
 
             $pager = \Config\Services::pager();
 
@@ -389,7 +409,8 @@ class Product extends BaseController
                 'totalProducts' => $totalProducts,
                 'tab_active' => '2',
                 'categories' => $this->codeModel->getByParentAndDepth(1302, 3)->getResultArray(),
-                'bestProducts' => $bestProducts
+                'bestProducts' => $bestProducts,
+                'cheepProducts' => $cheepProducts
             ];
 
             return $this->renderView('product/product-golf', $data);

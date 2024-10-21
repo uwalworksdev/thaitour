@@ -397,8 +397,8 @@
                                             }
                                             ?>
                                             <a href="<?=$src?>" class="imgpop">
-                                                <img src="<?=$src?>"
-                                                     style="max-width:150px;max-height:100px"/></a>
+                                                <img src="<?=$src?>" style="max-width:150px;max-height:100px"/>
+                                            </a>
                                         <?php } ?>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
@@ -518,43 +518,37 @@
     }
 
     function prod_update(idx) {
-        var is_view = $("#is_view_" + idx).val();
-        var onum = $("#onum_" + idx).val();
+        let onum = $("#onum_" + idx).val();
+
+        let is_view = $("#is_view_" + idx).val();
+
+        let url = '/AdmMaster/prod_update/' + idx;
+
+        let product_best;
 
         if ($("#product_best_best_" + idx).is(":checked")) {
-            var product_best = "Y";
+            product_best = "Y";
         } else {
-            var product_best = "N";
+            product_best = "N";
         }
 
-        if ($("#special_price_price_" + idx).is(":checked")) {
-            var special_price = "Y";
-        } else {
-            var special_price = "N";
-        }
+        let special_price = $("#special_price_price_" + idx).is(":checked") ? "Y" : "N";
 
         if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
             return false;
 
-        var message = "";
+        let message = "";
         $.ajax({
-
-            url: "/ajax/ajax.prod_update.php",
+            url: url,
             type: "POST",
-            data: {
-                "product_idx": idx,
-                "product_best": product_best,
-                "special_price": special_price,
-                "is_view": is_view,
-                "onum": onum
-            },
+            data: { product_best, onum, is_view, special_price },
             dataType: "json",
             async: false,
             cache: false,
             success: function (data, textStatus) {
                 message = data.message;
                 alert(message);
-                // location.href='/AdmMaster/_tourRegist/list_golf.php?pg='+$("#pg").val();
+                // location.href='/AdmMaster/_tourRegist/list.php?pg='+$("#pg").val();
                 location.reload();
             },
             error: function (request, status, error) {
@@ -562,6 +556,7 @@
             }
         });
     }
+    
 </script>
 
 <script>

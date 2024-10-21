@@ -378,11 +378,22 @@ class ProductModel extends Model
             ->getResultArray();
     }
 
-    public function getBestProducts()
+    public function getBestProducts($code_1 = "", $code_2 = "", $code_3 = "")
     {
-        return $this
-            ->where('is_view', 'Y')
-            ->where('product_best', 'Y')->findAll();
+        $result = $this->where("is_view", "Y")->where("product_best", "Y");
+
+        if ($code_1 != "") {
+            $result->where("product_code_1", $code_1);
+        }
+
+        if ($code_2 != "") {
+            $result->where("product_code_2", $code_2);
+        }
+
+        if ($code_3 != "") {
+            $result->where("product_code_3", $code_3);
+        }
+        return $result->findAll();
     }
 
     public function findProductPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])

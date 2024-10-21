@@ -61,7 +61,7 @@ class TourRegistController extends BaseController
 
     public function list_golfs()
     {
-        $data = $this->get_list_('1325');
+        $data = $this->get_list_('1302');
         return view("admin/_tourRegist/list_golfs", $data);
     }
 
@@ -247,13 +247,30 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_golf", $data);
     }
 
-    public function write_golf_ok($product_idx) {
+    public function write_golf_ok($product_idx = null) {
 
         $data = $this->request->getPost();
         $data['is_best_value']     = $data['is_best_value'] ?? "N";
-        $data['special_price']  = $data['special_price'] ?? "N";
+        $data['special_price']      = $data['special_price'] ?? "N";
 
-        $this->productModel->update($product_idx, $data);
+        $files = $this->request->getFiles();
+        for($i = 1; $i <= 7; $i++) {
+            $file = $files['ufile' . $i];
+            if ($file->isValid() && !$file->hasMoved()) {
+                $name = $file->getClientName();
+                $newName = $file->getRandomName();
+                $file->move(ROOTPATH . 'public/data/product', $newName);
+                $data['ufile' . $i] = $newName;
+                $data['rfile' . $i] = $name;
+            }
+        }
+        if($product_idx) {
+            $data['m_date'] = date("Y-m-d H:i:s");
+            $this->productModel->update($product_idx, $data);
+        } else {
+            $data['r_date'] = date("Y-m-d H:i:s");
+            $this->productModel->insert($data);
+        }
         $html = '<script>alert("수정되었습니다.");</script>';
         $html .= '<script>parent.location.reload();</script>';
         $html .= '<div>'.var_dump($data).'</div>';
@@ -800,5 +817,37 @@ class TourRegistController extends BaseController
         if ($frow["yoil_5"] == "Y") $yoilStr .= "금, ";
         if ($frow["yoil_6"] == "Y") $yoilStr .= "토, ";
         return rtrim($yoilStr, ", ");
+    }
+
+    public function prod_update($product_idx)
+    {
+        try {
+            $db = $this->productModel->update($product_idx, $_POST);
+
+            if (!$db) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON(
+                        [
+                            'status' => 'error',
+                            'message' => '수정 중 오류가 발생했습니다!!'
+                        ]
+                    );
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'status' => 'success',
+                        'message' => '수정 했습니다.'
+                    ]
+                );
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 }
