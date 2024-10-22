@@ -994,7 +994,7 @@
                                     <?php $i++; endforeach; ?>
                             </div>
                             <div class="prd_name">
-                                <?= $item['product_name'] ?>
+                                <?= viewSQ($item['product_name']) ?>
                             </div>
                             <div class="prd_info">
                                 <div class="prd_info__left">

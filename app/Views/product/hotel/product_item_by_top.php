@@ -22,7 +22,7 @@ if(is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
         <?php endforeach; ?>
     </div>
     <div class="prd_name">
-        <?= $item['product_name'] ?>
+        <?= viewSQ($item['product_name']) ?>
     </div>
     <div class="prd_info">
         <div class="prd_info__left">
