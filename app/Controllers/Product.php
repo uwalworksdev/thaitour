@@ -17,6 +17,8 @@ class Product extends BaseController
     private $reviewModel;
     private $mainDispModel;
 
+    private $scale = 8;
+
     public function __construct()
     {
         $this->db = db_connect();
@@ -122,7 +124,7 @@ class Product extends BaseController
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
                 'product_status' => 'sale',
-            ], 8, 1, ['onum' => 'DESC']);
+            ], $this->scale, 1, ['onum' => 'DESC']);
 
             foreach ($products['items'] as $key => $product) {
 
@@ -169,7 +171,7 @@ class Product extends BaseController
                 'product_code_1' => 1303,
                 'product_status' => 'sale',
                 'special_price' => 'Y',
-            ], 8, 1, ['onum' => 'DESC']);
+            ], $this->scale, 1, ['onum' => 'DESC']);
 
             $bestValueProduct = $this->mainDispModel->goods_find(2334)['items'];
 
@@ -181,6 +183,11 @@ class Product extends BaseController
                 $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
 
                 $bestValueProduct[$key]['codeTree'] = $codeTree;
+
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+                $bestValueProduct[$key]['total_review'] = $productReview['total_review'];
+                $bestValueProduct[$key]['review_average'] = $productReview['avg'];
             }
 
             $keyWordAll = $this->productModel->getKeyWordAll(1303);
@@ -191,7 +198,7 @@ class Product extends BaseController
                 'product_code_1' => 1303,
                 'search_txt' => $keyWordAll[$keyWordActive] ?? "",
                 'search_category' => 'keyword'
-            ], 8, 1);
+            ], $this->scale, 1);
 
             $data = [
                 'banners' => $banners,
@@ -232,7 +239,7 @@ class Product extends BaseController
             'product_code_1' => $code_no,
             'search_txt' => $keyword,
             'search_category' => 'keyword'
-        ], 8, $page);
+        ], $this->scale, $page);
 
         $html = '';
         foreach ($productByKeyword['items'] as $item) {
@@ -249,7 +256,7 @@ class Product extends BaseController
         $productByKeyword = $this->productModel->findProductPaging([
             'product_code_1' => $code_no,
             'product_status' => 'sale'
-        ], 8, $page, ['onum' => 'DESC']);
+        ], $this->scale, $page, ['onum' => 'DESC']);
 
         $html = '';
         foreach ($productByKeyword['items'] as $item) {
@@ -265,6 +272,29 @@ class Product extends BaseController
             $item['total_review'] = $productReview['total_review'];
             $item['review_average'] = $productReview['avg'];
             $html .= view('product/hotel/product_item_by_top', ['item' => $item]);
+        }
+        $productByKeyword['html'] = $html;
+        return $this->response->setJSON($productByKeyword);
+    }
+
+    public function getProductByCheep()
+    {
+        $code_no = $this->request->getVar('code_no');
+        $page = $this->request->getVar('page');
+        $productByKeyword = $this->productModel->findProductPaging([
+            'product_code_1' => $code_no,
+            'is_view' => 'Y'
+        ], $this->scale, $page, ['product_price' => 'ASC']);
+
+        $html = '';
+        foreach ($productByKeyword['items'] as $item) {
+            $hotel_codes = explode("|", $item['product_code_list']);
+            $hotel_codes = array_values(array_filter($hotel_codes));
+
+            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+            $item['codeTree'] = $codeTree;
+            $html .= view('product/golf/product_item_by_cheep', ['item' => $item]);
         }
         $productByKeyword['html'] = $html;
         return $this->response->setJSON($productByKeyword);
@@ -345,15 +375,14 @@ class Product extends BaseController
 
             $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
 
-            $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
-
             $bestProducts = $this->productModel->getBestProducts(1302);
 
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
 
             $cheepProducts = $this->productModel->findProductPaging([
                 'product_code_1' => 1302,
-            ], 8, 1, ['product_price' => 'ASC', 'onum' => 'DESC']);
+                'is_view' => 'Y'
+            ], $this->scale, 1, ['product_price' => 'ASC', 'onum' => 'DESC']);
 
             foreach ($cheepProducts['items'] as $key => $product) {
 
@@ -362,7 +391,7 @@ class Product extends BaseController
 
                 $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
 
-                $cheepProducts[$key]['codeTree'] = $codeTree;
+                $cheepProducts['items'][$key]['codeTree'] = $codeTree;
 
                 $productReview = $this->reviewModel->getProductReview($product['product_idx']);
 
@@ -398,7 +427,6 @@ class Product extends BaseController
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
                 'suggestedProducts' => $suggestedProducts,
-                'products' => $products,
                 'code_no' => $code_no,
                 's' => $s,
                 'codes' => $codes,

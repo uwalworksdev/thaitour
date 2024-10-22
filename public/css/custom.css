@@ -816,6 +816,17 @@
     height: 14px;
 }
 
+.prd_keywords .prd_keywords_cus_span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.prd_keywords .prd_keywords_cus_span img {
+    width: 7px;
+    height: 14px;
+}
+
 .main_page_01 .banner_section_main_page {
     height: 150px;
     margin-top: 100px;

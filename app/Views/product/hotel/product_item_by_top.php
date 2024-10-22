@@ -4,7 +4,6 @@ if(is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
 } else {
     $src = "/images/product/noimg.png";
 }
-// var_dump($item['review_average']);die()
 ?>
 <a href="/product-hotel/hotel-detail/<?= $item['product_idx'] ?>" class="thailand_hotel_top_item_">
     <div class="img_box img_box_10">
@@ -37,8 +36,8 @@ if(is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
         </div>
     </div>
     <div class="prd_price_ko">
-        <?= number_format($item['product_price']) ?> <span>원~</span> <span class="prd_price_thai">
+        <?= number_format($item['product_price']) ?> <span>원 ~</span> <span class="prd_price_thai">
             <?=number_format($item['product_price_baht'])?>
-            <span>바트~</span></span>
+            <span>바트</span></span>
     </div>
 </a>

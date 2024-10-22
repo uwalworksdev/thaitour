@@ -100,18 +100,21 @@
                 </div>
             </div>
             <div>
-                <div class="thailand_hotel_swiper_ thailand_golf_list_">
+                <div class="thailand_golf_list_" id="product_list_cheep">
                     <?php foreach ($cheepProducts['items'] as $item) {
                         echo view("product/golf/product_item_by_cheep", ["item" => $item]);
                     } ?>
                 </div>
-                <div class="thailand_hotel_swiper_pagination_next_"></div>
-                <div class="thailand_hotel_swiper_pagination_prev_"></div>
-                <div class="custom_pagination_ w_100">
-                    <div class="pagination_show_">
+                <!-- <div class="thailand_hotel_swiper_pagination_next_"></div>
+                <div class="thailand_hotel_swiper_pagination_prev_"></div> -->
+                <div class="custom_pagination_ w_100" style="<?= $cheepProducts['pg'] >= $cheepProducts['nPage'] ? 'display: none;' : '' ?>" id="product_list_cheep_pagination">
+                    <div class="pagination_show_" onclick="handleClickPaginationCheep()">
                         <img src="/images/ico/reloadicon.png" alt="">
                         <p>다음상품</p>
-                        <div class="thailand_hotel_swiper_pagination_"></div>
+                        <div class="thailand_hotel_swiper_pagination_">
+                            <span class="swiper-pagination-current" id="product_list_cheep_pagination_current">1</span> / 
+                            <span><?= $cheepProducts['nPage'] ?></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -648,6 +651,31 @@
             pauseButton.style.display = 'block';
         }
     });
+
+    let pageCheep = 1;
+    let totalPageCheep = Number('<?=$products['nPage']?>');
+    function handleClickPaginationCheep() {
+        pageCheep += 1;
+        $.ajax({
+            type: "GET",
+            url: "/product/get-by-cheep",
+            data: {
+                page: pageCheep,
+                code_no: 1302
+            },
+            dataType: "json",
+            success: function (data) {
+                totalPageCheep = Number(data.nPage);
+                $("#product_list_cheep").append(data.html);
+                $("#product_list_cheep_pagination_current").text(pageCheep);
+                if(pageCheep >= totalPageCheep) {
+                    $('#product_list_cheep_pagination').hide();
+                } else {
+                    $('#product_list_cheep_pagination').show();
+                }
+            }
+        })
+    }
 </script>
 
 
