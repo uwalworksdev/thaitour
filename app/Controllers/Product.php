@@ -750,6 +750,18 @@ class Product extends BaseController
                     $products['items'][$key]['utilities'] = $fresult4;
                 }
 
+                $_arr_promotions = explode('|', $product['product_promotions']);
+
+                $list__promotions = rtrim(implode(',', $_arr_promotions), ',');
+
+                if (!empty($list__promotions)) {
+                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__promotions) ORDER BY onum DESC, code_idx DESC";
+
+                    $fresult5 = $this->db->query($fsql);
+                    $fresult5 = $fresult5->getResultArray();
+                    $products['items'][$key]['promotions'] = $fresult5;
+                }
+
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
             }

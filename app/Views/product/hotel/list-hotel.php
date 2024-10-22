@@ -323,7 +323,18 @@
                                     <div class="item-info">
                                         <h2>프로모션</h2>
                                         <div class="item-info-label">
-                                            <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                            <span>연박 프로모션</span>
+                                            <?php 
+                                                $cnt_promotions = count($product['promotions']); 
+                                                $count = 1;
+                                            ?>
+                                            "<?php foreach ($product['promotions'] as $row): ?>
+                                                <?=$row["code_name"]?>
+                                                <?php if($count < $cnt_promotions){ echo ", "; }?> 
+                                                <?php $count++; ?>
+                                            <?php
+                                                endforeach; 
+                                            ?>"
                                         </div>
                                     </div>
                                     <div class="item-info">
@@ -1215,15 +1226,15 @@
         }
 
         $("#checkin, #checkout").datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             onSelect: function(dateText, inst) {
                 var date = $(this).datepicker('getDate');
                 $(this).val(formatDate(date));
             }
         });
 
-        $('#checkin').val(formatDate('2024/07/09'));
-        $('#checkout').val(formatDate('2024/07/10'));
+        $('#checkin').val(formatDate('<?=$products["checkin"]?>'));
+        $('#checkout').val(formatDate('<?=$products["checkout"]?>'));
     });
 
     $(document).ready(function() {

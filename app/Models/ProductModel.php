@@ -602,7 +602,7 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->db->table('tbl_product_mst AS p');
-        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%d/%m/%Y")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%d/%m/%Y")) AS latest_date');
+        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(o_edate, "%Y-%m-%d")) AS latest_date');
         $builder->join('tbl_hotel_option AS h', 'p.product_code = h.goods_code', 'left');
 
         $builder->where('o_sdate IS NOT NULL');
@@ -738,9 +738,10 @@ class ProductModel extends Model
         }
 
         if(!empty($where['checkin']) && !empty($where['checkout'])) {
-            
-            $builder->where('STR_TO_DATE(o_sdate, "%d/%m/%Y") >=', $where['checkin']);
-            $builder->where('STR_TO_DATE(o_edate, "%d/%m/%Y") <=', $where['checkout']);
+            $builder->groupStart();
+            $builder->where('STR_TO_DATE(o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])));
+            $builder->orWhere('STR_TO_DATE(o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
+            $builder->groupEnd();
         }
 
         if($where['search_product_name']) {
@@ -765,6 +766,7 @@ class ProductModel extends Model
         }
 
         $builder->where("product_status !=", "D");
+        $builder->groupBy('product_idx');
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
