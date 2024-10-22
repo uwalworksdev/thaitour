@@ -503,37 +503,44 @@ class AdminOperatorController extends BaseController
 
     public function find_user()
     {
-        $user_id = $this->Unescape($_GET['user_id']);
+        try {
+            $user_id = $this->Unescape($_GET['user_id']);
 
-        $sql = "SELECT * FROM tbl_member 
+            $sql = "SELECT * FROM tbl_member 
             WHERE user_level > '1' 
             AND status = '1' 
             AND (user_id LIKE '%" . $user_id . "%' OR user_name LIKE '%" . $user_id . "%') 
             ORDER BY user_id ASC";
 
-        $result = $this->connect->query($sql);
-        $nTotalCount = $result->getNumRows();
+            $result = $this->connect->query($sql);
+            $nTotalCount = $result->getNumRows();
 
-        if ($nTotalCount < 1) {
-            return '<tr>
+            if ($nTotalCount < 1) {
+                return '<tr>
                     <th colspan="2">일치하는 회원이 없습니다.</th>
                 </tr>';
-        }
+            }
 
-        $html = '';
-        foreach ($result->getResultArray() as $row) {
-            $html .= '<tr onclick="sel_user_id(\'' . $row['user_id'] . '\');">
+            $html = '';
+            foreach ($result->getResultArray() as $row) {
+                $html .= '<tr onclick="sel_user_id(\'' . $row['user_id'] . '\');">
                       <th>' . $row['user_name'] . '</th>
                       <td>' . $row['user_id'] . '</td>
                   </tr>';
-        }
+            }
 
-        return $html;
+            return $html;
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
-    private function Unescape($str) // UnescapeFunc는 아래에 정의되어 있음
+    private function Unescape($str)
     {
-        return urldecode(preg_replace_callback('/%u([[:alnum:]]{4})/', 'UnescapeFunc', $str));
+        return urldecode(preg_replace_callback('/%u([[:alnum:]]{4})/', [$this, 'UnescapeFunc'], $str));
     }
 
     private function UnescapeFunc($str)
