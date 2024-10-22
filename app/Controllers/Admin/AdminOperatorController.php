@@ -504,13 +504,14 @@ class AdminOperatorController extends BaseController
     public function find_user()
     {
         try {
+            $private_key = private_key();
             $user_id = $this->Unescape($_GET['user_id']);
 
-            $sql = "SELECT * FROM tbl_member 
-            WHERE user_level > '1' 
-            AND status = '1' 
-            AND (user_id LIKE '%" . $user_id . "%' OR user_name LIKE '%" . $user_id . "%') 
-            ORDER BY user_id ASC";
+            $sql = "SELECT *, CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) as user_name_convert FROM tbl_member 
+                            WHERE user_level > '1' 
+                            AND status = '1' 
+                            AND (user_id LIKE '%" . $user_id . "%' OR AND CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) LIKE '%" . $user_id . "%') 
+                            ORDER BY user_id ASC";
 
             $result = $this->connect->query($sql);
             $nTotalCount = $result->getNumRows();
@@ -524,7 +525,7 @@ class AdminOperatorController extends BaseController
             $html = '';
             foreach ($result->getResultArray() as $row) {
                 $html .= '<tr onclick="sel_user_id(\'' . $row['user_id'] . '\');">
-                      <th>' . $row['user_name'] . '</th>
+                      <th>' . $row['user_name_convert'] . '</th>
                       <td>' . $row['user_id'] . '</td>
                   </tr>';
             }

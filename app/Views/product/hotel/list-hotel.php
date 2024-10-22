@@ -29,7 +29,7 @@
                 <input type="hidden" name="pg" id="pg" value="<?=$products["pg"]?>">
     
                 <div class="category-left only_web">
-                    <h1 class="title">방콕</h1>
+                    <h1 class="title"><?=$code_name?></h1>
                     <div class="category-left-list">
                         <div class="category-left-item">
                             <div class="subtitle">

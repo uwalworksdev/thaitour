@@ -666,6 +666,8 @@ class Product extends BaseController
             $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
             $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
             
+            $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
+
             $arr_code_list = [];
             foreach($codes as $code){
                 array_push($arr_code_list, $code["code_no"]);
@@ -779,6 +781,7 @@ class Product extends BaseController
                 'bedrooms' => $bedrooms,
                 'products' => $products,
                 'code_no' => $code_no,
+                'code_name' => $parent_code_name,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
                 'tab_active' => '1',
