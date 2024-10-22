@@ -506,10 +506,10 @@ class AdminOperatorController extends BaseController
         $user_id = $this->Unescape($_GET['user_id']);
 
         $sql = "SELECT * FROM tbl_member 
-            WHERE user_level > '1' 
-            AND status = '1' 
-            AND (user_id LIKE '%" . $user_id . "%' OR user_name LIKE '%" . $user_id . "%') 
-            ORDER BY user_id ASC";
+                    WHERE user_level > 1
+                    AND status = '1' 
+                    AND (user_id LIKE '%" . $user_id . "%' OR user_name LIKE '%" . $user_id . "%') 
+                    ORDER BY user_id ASC";
 
         $result = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();

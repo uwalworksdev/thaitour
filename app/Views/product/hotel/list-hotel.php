@@ -120,17 +120,19 @@
                                 <span>1박 평균가격</span>
                                 <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
-                            <p class="tab-currency">
-                                <span class="currency active">원 · </span><span class="currency">바트</span>
-                            </p>
-    
-                            <div class="slider-container only_web">
-                                <div class="slider-background"></div>
-                                <div class="slider-track" id="slider-track"></div>
-                                <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" name="price_min" class="slider" id="slider-min">
-                                <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" name="price_max" class="slider" id="slider-max">
+                            <div class="tab_box_area_">
+                                <p class="tab-currency">
+                                    <span class="currency active">원 · </span><span class="currency">바트</span>
+                                </p>
+        
+                                <div class="slider-container only_web">
+                                    <div class="slider-background"></div>
+                                    <div class="slider-track" id="slider-track"></div>
+                                    <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" name="price_min" class="slider" id="slider-min">
+                                    <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" name="price_max" class="slider" id="slider-max">
+                                </div>
+                                <span>10,000원 ~ 500,000원 이상</span>
                             </div>
-                            <span>10,000원 ~ 500,000원 이상</span>
                         </div>
                         <div class="category-left-item">
                             <div class="subtitle">
@@ -1214,10 +1216,15 @@
 
     $(document).ready(function() {
         function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
+            var d;
+            if(date){
+                d = new Date(date);
+            }else{
+                d = new Date();
+            }
+            var month = '' + (d.getMonth() + 1);
+            var day = '' + d.getDate();
+            var year = d.getFullYear();
 
             if (month.length < 2) month = '0' + month;
             if (day.length < 2) day = '0' + day;
