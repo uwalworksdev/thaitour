@@ -9,7 +9,7 @@ if (is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
     <div class="img_box img_box_12">
         <img src="<?= $src ?>" alt="">
     </div>
-    <div class="sub_hotel_section7_product_item__name"><?= $item['product_name'] ?></div>
+    <div class="sub_hotel_section7_product_item__name"><?= viewSQ($item['product_name']) ?></div>
     <div class="prd_price_ko">
         <?= number_format($item['product_price']) ?> <span>원 ~</span> <span class="prd_price_thai">
         <?=number_format($item['product_price_baht'])?>

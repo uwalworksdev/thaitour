@@ -270,7 +270,7 @@
                             <div class="product-card-item-right">
                                 <div class="title-container">
                                     <a href="/product-hotel/hotel-detail/<?=$product["product_idx"]?>">
-                                        <h2><?=$product['product_name']?></h2>
+                                        <h2><?=viewSQ($product['product_name'])?></h2>
                                     </a>
                                     <div class="only_web">
                                         <div class="star-container">

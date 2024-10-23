@@ -214,7 +214,7 @@
                                     <?php endforeach; ?>
                                 </div>
                                 <div class="prd_name">
-                                    <?= $product['product_name']?>
+                                    <?= viewSQ($product['product_name']) ?>
                                 </div>
                                 <div class="prd_info">
                                     <div class="prd_info__left">

@@ -300,6 +300,35 @@ class Product extends BaseController
         return $this->response->setJSON($productByKeyword);
     }
 
+    public function getProductBySubCode()
+    {
+        $code_no = $this->request->getVar('code_no');
+        $page = $this->request->getVar('page');
+        $productBySubCode = $this->mainDispModel->goods_find($code_no, $this->scale, $page);
+
+        $html = '';
+        foreach ($productBySubCode['items'] as $key => $item) {
+
+            if ($item['product_code_1'] == 1303) {
+                $hotel_codes = explode("|", $item['product_code_list']);
+                $hotel_codes = array_values(array_filter($hotel_codes));
+                $code = $hotel_codes['0'];
+            } else {
+                $code = $item['product_code_1'];
+                if ($item['product_code_2']) $code = $item['product_code_2'];
+                if ($item['product_code_3']) $code = $item['product_code_3'];
+            }
+
+
+            $codeTree = $this->codeModel->getCodeTree($code);
+
+            $item['codeTree'] = $codeTree;
+            $html .= view('product/golf/product_item_by_md_recommended', ['item' => $item]);
+        }
+        $productBySubCode['html'] = $html;
+        return $this->response->setJSON($productBySubCode);
+    }
+
     public function indexResult($code_no)
     {
         try {
@@ -399,28 +428,33 @@ class Product extends BaseController
                 $cheepProducts['items'][$key]['review_average'] = $productReview['avg'];
             }
 
-            $pager = \Config\Services::pager();
+            $codes = $this->codeModel->getByParentAndDepth(2333, 3)->getResultArray();
 
-            $code_name = $this->db->table('tbl_code')
-                ->select('code_name')
-                ->where('code_gubun', 'tour')
-                ->where('code_no', $code_no)
-                ->get()
-                ->getRow()
-                ->code_name;
+            $codeRecommendedActive = $codes[0]['code_no'];
 
-            if (strlen($code_no) == 4) {
-                $codes = $this->db->table('tbl_code')
-                    ->where('parent_code_no', $code_no)
-                    ->get()
-                    ->getResult();
-            } else {
-                $codes = $this->db->table('tbl_code')
-                    ->where('code_gubun', 'tour')
-                    ->where('parent_code_no', substr($code_no, 0, 6))
-                    ->orderBy('onum', 'DESC')
-                    ->get()
-                    ->getResult();
+            $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
+
+            $productSpecialPrice = $this->productModel->findProductPaging([
+                'product_code_1' => 1302,
+                'is_view' => 'Y',
+                'special_price' => 'Y'
+            ], $this->scale, 1, ['onum' => 'DESC']);
+
+            $productMDRecommended = $this->mainDispModel->goods_find(2335, $this->scale, 1);
+            $productMDRecommended["code_no"] = 2335;
+
+            foreach ($productMDRecommended['items'] as $key => $product) {
+                $code = $product['product_code_1'];
+                if ($product['product_code_2']) $code = $product['product_code_2'];
+                if ($product['product_code_3']) $code = $product['product_code_3'];
+                $codeTree = $this->codeModel->getCodeTree($code);
+
+                $productMDRecommended['items'][$key]['codeTree'] = $codeTree;
+
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+                $productMDRecommended['items'][$key]['total_review'] = $productReview['total_review'];
+                $productMDRecommended['items'][$key]['review_average'] = $productReview['avg'];
             }
 
             $data = [
@@ -430,15 +464,17 @@ class Product extends BaseController
                 'code_no' => $code_no,
                 's' => $s,
                 'codes' => $codes,
-                'code_name' => $code_name,
-                'pager' => $pager,
                 'page' => $page,
                 'perPage' => $perPage,
                 'totalProducts' => $totalProducts,
                 'tab_active' => '2',
                 'categories' => $this->codeModel->getByParentAndDepth(1302, 3)->getResultArray(),
                 'bestProducts' => $bestProducts,
-                'cheepProducts' => $cheepProducts
+                'cheepProducts' => $cheepProducts,
+                'productByRecommended' => $productByRecommended,
+                'codeRecommendedActive' => $codeRecommendedActive,
+                'productSpecialPrice' => $productSpecialPrice,
+                'productMDRecommended' => $productMDRecommended
             ];
 
             return $this->renderView('product/product-golf', $data);
