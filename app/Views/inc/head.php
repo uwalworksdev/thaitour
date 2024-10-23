@@ -24,10 +24,11 @@
     <link rel="stylesheet" href="/lib/swiper-11.1.4/package/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/lib/summernote/summernote-lite.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="/lib/jquery/jquery-ui.min.js"></script>
     <script src="/js/script.js"></script>
     <script src="/lib/swiper-11.1.4/package/swiper-bundle.min.js"></script>
-    <script src="/lib/slick/slick.js"></script>
-    <script src="/lib/jquery/jquery-ui.min.js"></script>
+    <!--    <script src="/lib/slick/slick.js"></script>-->
+    <script src="/lib/slick/slick.min.js"></script>
     <script src="/lib/summernote/summernote-lite.js"></script>
     <script src="/lib/summernote/lang/summernote-ko-KR.js"></script>
     <title><?= $setting['site_name'] ?></title>

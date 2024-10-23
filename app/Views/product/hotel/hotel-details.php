@@ -26,16 +26,19 @@
         </div>
         <div class="hotel-image-container">
             <div class="hotel-image-container-1">
-                <img src="/data/hotel/<?= $hotel['ufile1'] ?>" alt="<?= $hotel['product_name'] ?>"
+                <img onclick="img_pops('<?= $hotel['product_idx'] ?>')" src="/data/hotel/<?= $hotel['ufile1'] ?>"
+                     alt="<?= $hotel['product_name'] ?>"
                      onerror="this.src='/images/share/noimg.png'">
             </div>
             <div class="grid_2_2">
                 <?php for ($j = 2; $j < 5; $j++) { ?>
-                    <img class="grid_2_2_size" src="/data/hotel/<?= $hotel['ufile' . $j] ?>"
+                    <img onclick="img_pops('<?= $hotel['product_idx'] ?>')" class="grid_2_2_size"
+                         src="/data/hotel/<?= $hotel['ufile' . $j] ?>"
                          alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                 <?php } ?>
                 <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                    <img class="custom_button" src="/data/hotel/<?= $hotel['ufile5'] ?>"
+                    <img onclick="img_pops('<?= $hotel['product_idx'] ?>')" class="custom_button"
+                         src="/data/hotel/<?= $hotel['ufile5'] ?>"
                          alt="<?= $hotel['product_name'] ?>"
                          onerror="this.src='/images/share/noimg.png'">
                     <div class="button-show-detail-image">
@@ -44,7 +47,7 @@
                         <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
                              alt="image_detail_icon_m">
                         <span>사진 모두 보기</span>
-                        <span>(6장)</span>
+                        <span>(2장)</span>
                     </div>
                 </div>
             </div>
@@ -137,6 +140,10 @@
                 }
             </script>
             <style>
+                .content-sub-hotel-detail .section3 .card-item-left {
+                    max-width: 285px;
+                }
+
                 .room_option_ {
                     padding-bottom: 30px !important;
                 }
@@ -163,6 +170,15 @@
                     overflow-x: hidden;
                     height: 400px;
                     padding-left: 20px;
+                    display: flex;
+                    align-items: start;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                }
+
+                .cus_scroll li {
+                    width: 100%;
+                    max-width: calc(50% - 10px);
                 }
 
                 .cus_scroll::-webkit-scrollbar {
@@ -203,18 +219,21 @@
                                 <div class="only_web">
                                     <div class="grid2_2_1">
                                         <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
+                                             onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                              onerror="this.src='/images/share/noimg.png"
                                              alt="<?= $room['roomName'] ?>">
                                         <div class=""
                                              style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
                                             <?php if ($room['ufile2']) { ?>
                                                 <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile2'] ?>"
+                                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                                      onerror="this.src='/images/share/noimg.png"
                                                      alt="<?= $room['roomName'] ?>">
                                             <?php } ?>
 
                                             <?php if ($room['ufile3']) { ?>
                                                 <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile3'] ?>"
+                                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                                      onerror="this.src='/images/share/noimg.png"
                                                      alt="<?= $room['roomName'] ?>">
                                             <?php } ?>
@@ -456,6 +475,7 @@
                                             <div class="grid2_2_1">
                                                 <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
                                                      onerror="this.src='/images/share/noimg.png"
+                                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                                      alt="<?= $room['roomName'] ?>">
                                                 <div class=""
                                                      style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
@@ -463,6 +483,7 @@
                                                         <img style="width: 50%"
                                                              src="/uploads/rooms/<?= $room['ufile2'] ?>"
                                                              onerror="this.src='/images/share/noimg.png"
+                                                             onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                                              alt="<?= $room['roomName'] ?>">
                                                     <?php } ?>
 
@@ -470,6 +491,7 @@
                                                         <img style="width: 50%"
                                                              src="/uploads/rooms/<?= $room['ufile3'] ?>"
                                                              onerror="this.src='/images/share/noimg.png"
+                                                             onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                                              alt="<?= $room['roomName'] ?>">
                                                     <?php } ?>
                                                 </div>
@@ -1211,4 +1233,121 @@
         }
     </script>
 
+    <div id="dim"></div>
+    <div id="popupRoom" class="on">
+        <strong id="pop_roomName"></strong>
+        <div>
+            <ul class="multiple-items">
+            </ul>
+        </div>
+        <a class="closed_btn" href=""><img src="/images/ico/close_icon_popup.png" alt="close" /></a>
+    </div>
+
+    <div id="popup_img" class="on">
+        <strong id="pop_roomName"></strong>
+        <div>
+            <ul class="multiple-items">
+            </ul>
+        </div>
+        <a class="closed_btn" href=""><img src="/images/ico/close_icon_popup.png" alt="close"/></a>
+    </div>
+
+    <script>
+        /* hotel_view popup */
+        jQuery(document).ready(function () {
+            var dim = $('#dim');
+            var popup = $('#popupRoom');
+            var closedBtn = $('#popupRoom .closed_btn');
+
+            var popup2 = $('#popup_img');
+            var closedBtn2 = $('#popup_img .closed_btn');
+
+            /* closed btn*/
+            closedBtn.click(function () {
+                popup.hide();
+                dim.fadeOut();
+                $('.multiple-items').slick('unslick'); // slick 삭제
+                return false;
+            });
+
+            closedBtn2.click(function () {
+                popup2.hide();
+                dim.fadeOut();
+                $('.multiple-items').slick('unslick'); // slick 삭제
+                return false;
+            });
+        });
+
+        function fn_pops(ridx, roomName) {
+            var dim = $('#dim');
+            var popup = $('#popupRoom');
+
+            $("#pop_roomName").text(roomName);
+
+            $.ajax({
+                url: "/api/products/roomPhoto",
+                type: "POST",
+                data: 'ridx=' + ridx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+
+                    $(".multiple-items").html(response.data);
+
+                    popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+
+                    return false;
+
+                }
+            });
+        }
+
+        function img_pops(idx) {
+            var dim = $('#dim');
+            var popup = $('#popup_img');
+
+            $.ajax({
+                url: "/api/products/hotelPhoto",
+                type: "POST",
+                data: 'idx=' + idx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+
+                    $(".multiple-items").html(response.data);
+
+                    popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+
+                    return false;
+
+                }
+            });
+        }
+    </script>
 <?php $this->endSection(); ?>
