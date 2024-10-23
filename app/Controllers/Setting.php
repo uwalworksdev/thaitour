@@ -9,7 +9,7 @@ class Setting extends BaseController {
 
     private $db;
     private $Setting;
-    private $uploadPath = WRITEPATH."uploads/setting/";
+    private $uploadPath = ROOTPATH . "public/uploads/setting/";
     /**
      * 고정된 식별번호 IDX
      */
@@ -141,7 +141,7 @@ class Setting extends BaseController {
                         $ext = explode(".", strtolower($fileName));
                         $newName = $date . $timestamp . '.' . $ext[1];
                         $file->move($uploadPath, $newName);
-                        $this->Setting->update(1, ['logo_footer' => $newName]);
+                        $this->Setting->update(1, ['favico' => $newName]);
                     }
                 }
             }
