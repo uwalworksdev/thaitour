@@ -1240,7 +1240,7 @@
             <ul class="multiple-items">
             </ul>
         </div>
-        <a class="closed_btn" href=""><img src="/images/ico/close_icon_popup.png" alt="close" /></a>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close" /></a>
     </div>
 
     <div id="popup_img" class="on">
@@ -1249,7 +1249,7 @@
             <ul class="multiple-items">
             </ul>
         </div>
-        <a class="closed_btn" href=""><img src="/images/ico/close_icon_popup.png" alt="close"/></a>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close"/></a>
     </div>
 
     <script>
