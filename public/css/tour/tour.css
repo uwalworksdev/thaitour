@@ -1201,11 +1201,11 @@
     font-size: 20px;
 }
 
-.content-sub-hotel-detail .main a.active {
+.content-sub-hotel-detail .main p.active {
     color: var(--bs-point);
 }
 
-.content-sub-hotel-detail .main a:hover {
+.content-sub-hotel-detail .main p:hover {
     color: var(--bs-point);
 }
 
