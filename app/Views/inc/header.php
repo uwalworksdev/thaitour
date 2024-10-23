@@ -166,9 +166,9 @@
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top pb-24">
-            <div class="flex_header_top_item">
+            <a class="flex_header_top_item" href="/">
                 <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt="">
-            </div>
+            </a>
             <div class="flex_header_top flex_header_top_item">
                 <div class="burger" onclick="window.location.href='/cart/item-list/123'">
                     <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">

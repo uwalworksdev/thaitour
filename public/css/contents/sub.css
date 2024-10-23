@@ -4904,6 +4904,14 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   font-weight: 300;
 }
 
+.thailand_hotel_custom_margin .prd_name {
+  margin-top: 14px;
+}
+
+.sub_tour_section7_product_list_custom {
+  margin-bottom: 0 !important;
+}
+
 
 @media screen and (max-width: 1200px) {
   .only_tb {
