@@ -139,58 +139,6 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <style>
-                .content-sub-hotel-detail .section3 .card-item-left {
-                    max-width: 285px;
-                }
-
-                .room_option_ {
-                    padding-bottom: 30px !important;
-                }
-
-                .room_option_long {
-                    height: 620px;
-                    overflow: hidden;
-                    margin-top: 30px;
-                }
-
-                .btnReadLess {
-                    display: none;
-                }
-
-                .btnReadLess,
-                .btnReadMore {
-                    border: 1px solid #dbdbdb;
-                    border-radius: 3px;
-                    padding: 5px 10px;
-                }
-
-                .cus_scroll {
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    height: 400px;
-                    padding-left: 20px;
-                    display: flex;
-                    align-items: start;
-                    justify-content: space-between;
-                    flex-wrap: wrap;
-                }
-
-                .cus_scroll li {
-                    width: 100%;
-                    max-width: calc(50% - 10px);
-                }
-
-                .cus_scroll::-webkit-scrollbar {
-                    width: 2px;
-                    background-color: #F5F5F5;
-                    display: block;
-                }
-
-                .cus_scroll::-webkit-scrollbar-thumb {
-                    background-color: #cccccc;
-                }
-            </style>
             <?php foreach ($hotel_options as $item) : ?>
                 <?php $room = $item['room']; ?>
                 <?php $room_options = $room['room_option']; ?>
@@ -224,19 +172,14 @@
                                              alt="<?= $room['roomName'] ?>">
                                         <div class=""
                                              style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                                            <?php if ($room['ufile2']) { ?>
-                                                <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile2'] ?>"
-                                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                     onerror="this.src='/images/share/noimg.png"
-                                                     alt="<?= $room['roomName'] ?>">
-                                            <?php } ?>
-
-                                            <?php if ($room['ufile3']) { ?>
-                                                <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile3'] ?>"
-                                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                     onerror="this.src='/images/share/noimg.png"
-                                                     alt="<?= $room['roomName'] ?>">
-                                            <?php } ?>
+                                            <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile2'] ?>"
+                                                 onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                 onerror="this.src='/images/share/noimg.png"
+                                                 alt="<?= $room['roomName'] ?>">
+                                            <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile3'] ?>"
+                                                 onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                 onerror="this.src='/images/share/noimg.png"
+                                                 alt="<?= $room['roomName'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -245,22 +188,24 @@
                                 </div>
                                 <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
                                 <?php $room_facil = $room['room_facil']; ?>
-                                <ul class="cus_scroll">
-                                    <?php
-                                    $_arr = explode("|", $room_facil);
-                                    foreach ($rresult as $row_r) :
-                                        for ($i = 0; $i < count($_arr); $i++) {
-                                            if ($_arr[$i]) {
-                                                if ($_arr[$i] == $row_r['code_no']) {
-                                                    ?>
-                                                    <li><?= $row_r['code_name'] ?></li>
-                                                    <?php
+                                <div class="cus_scroll">
+                                    <ul class="cus_scroll_li">
+                                        <?php
+                                        $_arr = explode("|", $room_facil);
+                                        foreach ($rresult as $row_r) :
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) {
+                                                        ?>
+                                                        <li><?= $row_r['code_name'] ?></li>
+                                                        <?php
+                                                    }
                                                 }
                                             }
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
-                                </ul>
+                                            ?>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
                             </div>
 
                             <table class="room-table only_web">
@@ -479,21 +424,16 @@
                                                      alt="<?= $room['roomName'] ?>">
                                                 <div class=""
                                                      style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                                                    <?php if ($room['ufile2']) { ?>
-                                                        <img style="width: 50%"
-                                                             src="/uploads/rooms/<?= $room['ufile2'] ?>"
-                                                             onerror="this.src='/images/share/noimg.png"
-                                                             onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                             alt="<?= $room['roomName'] ?>">
-                                                    <?php } ?>
-
-                                                    <?php if ($room['ufile3']) { ?>
-                                                        <img style="width: 50%"
-                                                             src="/uploads/rooms/<?= $room['ufile3'] ?>"
-                                                             onerror="this.src='/images/share/noimg.png"
-                                                             onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                             alt="<?= $room['roomName'] ?>">
-                                                    <?php } ?>
+                                                    <img style="width: 50%"
+                                                         src="/uploads/rooms/<?= $room['ufile2'] ?>"
+                                                         onerror="this.src='/images/share/noimg.png"
+                                                         onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                         alt="<?= $room['roomName'] ?>">
+                                                    <img style="width: 50%"
+                                                         src="/uploads/rooms/<?= $room['ufile3'] ?>"
+                                                         onerror="this.src='/images/share/noimg.png"
+                                                         onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                         alt="<?= $room['roomName'] ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -501,22 +441,24 @@
                                             <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                                         </div>
                                         <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
-                                        <ul class="cus_scroll">
-                                            <?php
-                                            $_arr = explode("|", $room_facil);
-                                            foreach ($rresult as $row_r) :
-                                                for ($i = 0; $i < count($_arr); $i++) {
-                                                    if ($_arr[$i]) {
-                                                        if ($_arr[$i] == $row_r['code_no']) {
-                                                            ?>
-                                                            <li><?= $row_r['code_name'] ?></li>
-                                                            <?php
+                                        <div class="cus_scroll">
+                                            <ul class="cus_scroll_li">
+                                                <?php
+                                                $_arr = explode("|", $room_facil);
+                                                foreach ($rresult as $row_r) :
+                                                    for ($i = 0; $i < count($_arr); $i++) {
+                                                        if ($_arr[$i]) {
+                                                            if ($_arr[$i] == $row_r['code_no']) {
+                                                                ?>
+                                                                <li><?= $row_r['code_name'] ?></li>
+                                                                <?php
+                                                            }
                                                         }
                                                     }
-                                                }
-                                                ?>
-                                            <?php endforeach; ?>
-                                        </ul>
+                                                    ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     <table class="room-table only_web">
@@ -1240,7 +1182,7 @@
             <ul class="multiple-items">
             </ul>
         </div>
-        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close" /></a>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close"/></a>
     </div>
 
     <div id="popup_img" class="on">
