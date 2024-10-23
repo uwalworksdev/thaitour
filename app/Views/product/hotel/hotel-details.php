@@ -54,7 +54,7 @@
         </div>
         <div class="sub-header-hotel-detail">
             <div class="main nav-list">
-                <p class="nav-item active_" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
+                <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
                 <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">객실</p>
                 <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">시설&서비스</p>
                 <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
