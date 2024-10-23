@@ -376,6 +376,7 @@ class ReviewController extends BaseController
         $user_phone = updateSQ($_POST["user_phone"] ?? '');
         $number_stars = updateSQ($_POST["number_stars"] ?? '');
         $review_type = updateSQ($_POST["review_type"] ?? '');
+        $user_id = $_SESSION['member']['idx'];
 
         if ($role == "admin") {
             $user_email = updateSQ($_POST["user_email"] ?? '');
@@ -425,6 +426,7 @@ class ReviewController extends BaseController
                 'user_name' => sqlSecretConver($user_name, 'encode'),
                 'user_email' => sqlSecretConver($user_email, 'encode'),
                 'title' => $title,
+                'user_id' => $user_id,
                 'number_stars' => $number_stars,
                 'review_type' => $review_type,
                 'contents' => $contents
@@ -471,6 +473,7 @@ class ReviewController extends BaseController
                 'contents' => $contents,
                 'r_date' => $r_date ?? date("Y-m-d H:i:s"),
                 'passwd' => $pass,
+                'user_id' => $user_id,
                 'user_ip' => $_SERVER['REMOTE_ADDR']
             ];
 

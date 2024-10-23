@@ -812,101 +812,53 @@
             <div class="rating-content">
                 <div class="rating-left">
                     <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
-                    <strong>4.5/5</strong>
+                    <strong><?= $hotel['review_average'] ?>/5</strong>
                 </div>
-                <span class="rating-right text-gray">928개 고객기준</span>
+                <span class="rating-right text-gray"><?= $reviewCount ?>개 고객기준</span>
             </div>
             <div class="list-label-tag">
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_1.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>청결</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
+                <?php foreach ($reviewCategories as $reviewCategory) : ?>
+                    <div class="label-tag-item">
+                        <img class="square" src="/data/code/<?= $reviewCategory['ufile1'] ?>"
+                             alt="<?= $reviewCategory['code_name'] ?>">
+                        <div class="label-tag-item-text">
+                            <strong><?= $reviewCategory['code_name'] ?></strong>
+                            <p><strong><?= $reviewCategory['average'] ?></strong> 최고좋음</p>
+                        </div>
                     </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_2.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>시설</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_3.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>위치</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_4.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>직원친절도</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_5.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>가성비</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_6.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>편안함</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <h2 class="sub-title-sec6">BEST 생생리뷰</h2>
             <div class="card-list-flex">
                 <div class="card-list-recommemded">
-                    <div class="recommemded-item">
-                        <div class="container-head">
-                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
-                            <div class="name">
-                                <span>woras******</span>
-                                <p>2024.08.09</p>
+                    <?php $i = 0;
+                    function maskString($str)
+                    {
+                        $start = substr($str, 0, 3);
+                        $masked = str_repeat('*', 6);
+                        return $start . $masked;
+                    }
+
+                    foreach ($reviews as $review) : ?>
+                        <?php if ($i < 3) : ?>
+                            <div class="recommemded-item">
+                                <div class="container-head">
+                                    <img src="<?= isset($review['avt']) && $review['avt'] ? '/data/user/' . $review['avt'] : '/uploads/icons/avatar_user_1.png' ?>"
+                                         alt="avatar_user_1">
+                                    <div class="name">
+                                        <span><?= maskString(sqlSecretConver($review['user_name'] ?? '', 'decode')); ?></span>
+                                        <p><?= $formattedDate = (new DateTime($review['r_date']))->format('Y.m.d'); ?></p>
+                                    </div>
+                                </div>
+                                <h2><?= $review['title']; ?></h2>
+                                <div class="custom_paragraph">
+                                    <?= viewSQ($review['contents']); ?>
+                                </div>
+                                <button>더보기</button>
                             </div>
-                        </div>
-                        <h2>깨끗하고 편안하며 BTS chidlom과 가깝습니다.</h2>
-                        <p class="custom_paragraph">아침조식.. 가짓수는 좀 있으나 모든음식과 음료의 수준은 수준이하, 과일쥬스는 과일향 첨가한 물같고, 일본김밥은
-                            밥이
-                            떡같고 빵도
-                            질감이 너무 떨어지고. 무엇보다 모든 돼지 고기요리에서 냄새가 심하게 나서 3일머무는동안 힘들었음</p>
-                        <button>더보기</button>
-                    </div>
-                    <div class="recommemded-item">
-                        <div class="container-head">
-                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
-                            <div class="name">
-                                <span>craz******</span>
-                                <p>2024.08.09</p>
-                            </div>
-                        </div>
-                        <h2>역시 신상호텔 답네요!</h2>
-                        <p class="custom_paragraph">역시 신상호텔 답네요! 공항과 접근성이 가장 좋은 이점이고요 부대시설도 아주 마음에 들었어요! 호캉스하기에 정말
-                            좋습니
-                            다!
-                            단점이라고 굳이 말하자면 호텔 주변이 조금 심심한거랑 조 식이 아주 조금 아쉬웠습니다! 그래도 다시 온다면 여기서</p>
-                        <button>더보기</button>
-                    </div>
-                    <div class="recommemded-item">
-                        <div class="container-head">
-                            <img src="/uploads/icons/avatar_user_1.png" alt="avatar_user_1">
-                            <div class="name">
-                                <span>mh8******</span>
-                                <p>2024.08.09</p>
-                            </div>
-                        </div>
-                        <h2>I'M SO DAMN SLEEPY</h2>
-                        <p class="custom_paragraph">직원분들도 모두 친절하고, 숙소 위생상태도 합격이었습니다~ 위치는 지하철역과도 가깝고 주변에 마사지샵이나 스타벅스
-                            세븐일레븐도
-                            있어서 너무 좋았어요</p>
-                        <button>더보기</button>
-                    </div>
+                        <?php endif;
+                        $i++; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
@@ -1007,61 +959,60 @@
                 $(this).parent().find('.btnReadMore').css('display', 'inline');
             });
         </script>
-
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
-                <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
-                <div class="order-popup">
-                    <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
-                    <div class="description-above">
-                        <div class="item-price-popup">
-                            <div class="img-container">
-                                <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
-                            </div>
-                            <div class="text-con">
-                                <span>신규회원가입 웰컴 쿠폰</span>
-                                <span class="text-gray">10% 할인쿠폰</span>
-                            </div>
-                            <span class="date-sub">~2024.10.05</span>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
+            <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
+            <div class="order-popup">
+                <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
+                <div class="description-above">
+                    <div class="item-price-popup">
+                        <div class="img-container">
+                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
-                        <div class="item-price-popup">
-                            <div class="img-container">
-                                <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
-                            </div>
-                            <div class="text-con">
-                                <span>추가 즉시할인쿠폰</span>
-                                <span class="text-gray">5,000원 할인쿠폰</span>
-                            </div>
-                            <span class="date-sub">~2024.10.05</span>
+                        <div class="text-con">
+                            <span>신규회원가입 웰컴 쿠폰</span>
+                            <span class="text-gray">10% 할인쿠폰</span>
                         </div>
-                        <div class="item-price-popup item-price-popup--button">
-                            <span>적용안함</span>
+                        <span class="date-sub">~2024.10.05</span>
+                    </div>
+                    <div class="item-price-popup">
+                        <div class="img-container">
+                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                        </div>
+                        <div class="text-con">
+                            <span>추가 즉시할인쿠폰</span>
+                            <span class="text-gray">5,000원 할인쿠폰</span>
+                        </div>
+                        <span class="date-sub">~2024.10.05</span>
+                    </div>
+                    <div class="item-price-popup item-price-popup--button">
+                        <span>적용안함</span>
+                    </div>
+                </div>
+                <div class="line-gray"></div>
+                <div class="footer-popup">
+                    <div class="des-above">
+                        <div class="item">
+                            <span class="text-gray">총 주문금액</span>
+                            <span class="text-gray">160,430원</span>
+                        </div>
+                        <div class="item">
+                            <span class="text-gray">할인금액</span>
+                            <span class="text-gray">16,040원</span>
                         </div>
                     </div>
-                    <div class="line-gray"></div>
-                    <div class="footer-popup">
-                        <div class="des-above">
-                            <div class="item">
-                                <span class="text-gray">총 주문금액</span>
-                                <span class="text-gray">160,430원</span>
-                            </div>
-                            <div class="item">
-                                <span class="text-gray">할인금액</span>
-                                <span class="text-gray">16,040원</span>
-                            </div>
+                    <div class="des-below">
+                        <div class="price-below">
+                            <span>최종결제금액</span>
+                            <p class="price-popup">144,000<span class="text-gray">원</span></p>
                         </div>
-                        <div class="des-below">
-                            <div class="price-below">
-                                <span>최종결제금액</span>
-                                <p class="price-popup">144,000<span class="text-gray">원</span></p>
-                            </div>
-                        </div>
-                        <button class="btn_accept_popup"
-                                onclick="location.href='/product-hotel/customer-form'">
-                            쿠폰적용
-                        </button>
                     </div>
+                    <button class="btn_accept_popup"
+                            onclick="location.href='/product-hotel/customer-form'">
+                        쿠폰적용
+                    </button>
                 </div>
             </div>
         </div>
