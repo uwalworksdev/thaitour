@@ -10,7 +10,7 @@ class ReviewModel extends Model
         "travel_type_2", "travel_type_3", "product_idx", "title", "contents",
         "rfile1", "ufile1", "rfile2", "ufile2", "status", "passwd_yn", "passwd",
         "r_date", "m_date", "is_best", "onum", "display", "bbs_no", "user_ip",
-        "number_stars", "review_type"];
+        "number_stars", "review_type", "user_id"];
 
     public function __construct()
     {

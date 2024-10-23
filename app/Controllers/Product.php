@@ -689,7 +689,7 @@ class Product extends BaseController
             $search_product_bedroom = $this->request->getVar('search_product_bedroom') ?? "";
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
-            
+
 
             $perPage = 5;
 
@@ -701,11 +701,11 @@ class Product extends BaseController
             $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
             $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
             $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
-            
+
             $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
 
             $arr_code_list = [];
-            foreach($codes as $code){
+            foreach ($codes as $code) {
                 array_push($arr_code_list, $code["code_no"]);
             }
 
@@ -728,11 +728,11 @@ class Product extends BaseController
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
 
-            foreach($products['items'] as $key => $product) {
+            foreach ($products['items'] as $key => $product) {
 
                 $hotel_codes = explode("|", $product['product_code_list']);
-                foreach($hotel_codes as $h_code){
-                    if(in_array($h_code, $arr_code_list, true)){
+                foreach ($hotel_codes as $h_code) {
+                    if (in_array($h_code, $arr_code_list, true)) {
                         $hotel_code = $h_code;
                         break;
                     }
@@ -744,7 +744,7 @@ class Product extends BaseController
 
                 $productReview = $this->reviewModel->getProductReview($product['product_idx']);
                 $hotel = $this->productModel->find($product['product_idx']);
-                
+
                 $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
                 $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
                 $_arr_utilities = [];
@@ -763,7 +763,7 @@ class Product extends BaseController
                     $roomCat = explode("|", $room["category"]);
                     $arr_room_category = [];
 
-                    foreach($roomCat as $cat) {
+                    foreach ($roomCat as $cat) {
                         $code_name = $this->codeModel->getCodeName($cat);
                         array_push($arr_room_category, $code_name);
                     }
@@ -991,6 +991,45 @@ class Product extends BaseController
             $rresult = $this->db->query($fsql) or die ($this->db->error);
             $rresult = $rresult->getResultArray();
 
+            $sql = "SELECT a.*, b.ufile1 as avt
+                    FROM tbl_travel_review a 
+                    INNER JOIN tbl_member b ON a.user_id = b.m_idx 
+                    WHERE a.product_idx = " . $idx ." AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+
+            $reviews = $this->db->query($sql) or die ($this->db->error);
+            $reviewCount = $reviews->getNumRows();
+            $reviews = $reviews->getResultArray();
+
+            $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
+            $reviewCategories = $this->db->query($sql) or die ($this->db->error);
+            $reviewCategories = $reviewCategories->getResultArray();
+
+            $reviewCategories = array_map(function ($item) use ($idx){
+                $reviewCategory = (array)$item;
+
+                $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($idx) .
+                        " AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
+                $results = $this->db->query($sql);
+                $count = $results->getNumRows();
+                $results = $results->getResultArray();
+
+                if ($count == 0) {
+                    $average = 0;
+                } else {
+                    $total = 0;
+                    foreach ($results as $item2) {
+                        $total += (int)$item2['number_stars'];
+                    }
+
+                    $average = number_format($total / $count, 1);
+                }
+
+                $reviewCategory['average'] = $average;
+                $reviewCategory['total'] = $count;
+
+                return $reviewCategory;
+            }, $reviewCategories);
+
             $data = [
                 'hotel' => $hotel,
                 's_category_room' => $s_category_room,
@@ -999,6 +1038,9 @@ class Product extends BaseController
                 'fresult5' => $fresult5 ?? [],
                 'fresult8' => $fresult8 ?? [],
                 'rresult' => $rresult ?? [],
+                'reviewCategories' => $reviewCategories ?? [],
+                'reviews' => $reviews ?? [],
+                'reviewCount' => $reviewCount,
                 'room_categories' => $room_categories_convert,
                 'hotel_options' => $hotel_option_convert,
                 'suggestHotel' => $suggestHotels,
@@ -1019,7 +1061,7 @@ class Product extends BaseController
         return $this->renderView('product/hotel/customer-form');
     }
 
-    public function reservationForm($code_no) 
+    public function reservationForm($code_no)
     {
         return $this->renderView('product/hotel/reservation-form');
     }

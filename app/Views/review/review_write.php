@@ -131,7 +131,7 @@
                         <td class="input_box">
                             <div class="rating">
                                 <input id="ratingValue" type="number" name="number_stars" value='' hidden>
-                                <input id="review_type" type="text" name="review_type" value='' hidden>
+                                <input id="review_type" type="text" name="review_type" value="" hidden>
                                 <i class='bx bx-star star' style="--i: 0;"></i>
                                 <i class='bx bx-star star' style="--i: 1;"></i>
                                 <i class='bx bx-star star' style="--i: 2;"></i>
@@ -511,8 +511,6 @@
             }
             $("#ajax_loader").removeClass("display-none");
 
-            const formData = new FormData($('#frm')[0]);
-
             let arr = [];
             $('.input_checkbox').each(function () {
                 if ($(this).is(':checked')) {
@@ -525,11 +523,12 @@
                 return;
             }
 
-            let review_type = arr.join('|');
+            let review_type_ = arr.join('|');
 
-            console.log(review_type)
-            $('#review_type').val(review_type)
-            // formData.append('review_type', review_type)
+            console.log(review_type_)
+            $('#review_type').val(review_type_)
+
+            const formData = new FormData($('#frm')[0]);
 
             $.ajax({
                 url: "./review_write_ok",
@@ -538,13 +537,14 @@
                 contentType: false,
                 processData: false,
                 success: function (response) {
+                    console.log(response)
                     $(window).off('beforeunload', handleUnload);
                     if ($("#idx").val()) {
                         alert("정상적으로 수정되었습니다!");
                         location.href = `/review/review_detail?idx=${$("#idx").val()}`;
                     } else {
                         alert("정상적으로 등록되었습니다!");
-                        location.href = '/review/review_list';
+                        // location.href = '/review/review_list';
                     }
                 }
             })
