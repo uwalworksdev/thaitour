@@ -89,14 +89,14 @@
 
 #popupRoom .slick-prev,
 #popup_img .slick-prev {
-    background: url("/images/icon/btn_prev.png") no-repeat 0 0;
+    background: url("/images/ico/btn_prev.png") no-repeat 0 0;
     width: 60px;
     height: 60px;
 }
 
 #popupRoom .slick-next,
 #popup_img .slick-next {
-    background: url("/images/icon/btn_next.png") no-repeat 0 0;
+    background: url("/images/ico/btn_next.png") no-repeat 0 0;
     width: 60px;
     height: 60px;
 }
@@ -108,6 +108,7 @@
 
 .slick-dots {
     bottom: 25px !important;
+    justify-content: center;
 }
 
 .slick-dots li button:before {

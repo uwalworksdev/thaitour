@@ -3505,3 +3505,58 @@
 .thailand_golf_list_item_ {
     width: calc((100% - 60px) / 4);
 }
+
+.content-sub-hotel-detail .section3 .card-item-left {
+    max-width: 285px;
+}
+
+.room_option_ {
+    padding-bottom: 30px !important;
+}
+
+.room_option_long {
+    height: 620px;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.btnReadLess {
+    display: none;
+}
+
+.btnReadLess,
+.btnReadMore {
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+.cus_scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 400px;
+    padding-left: 20px;
+}
+
+.cus_scroll_li {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cus_scroll li {
+    width: 100%;
+    max-width: calc(50% - 10px);
+}
+
+.cus_scroll::-webkit-scrollbar {
+    width: 2px;
+    background-color: #F5F5F5;
+    display: block;
+}
+
+.cus_scroll::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+}
