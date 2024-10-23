@@ -659,7 +659,7 @@ class Product extends BaseController
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-            $codes = $this->codeModel->getByParentAndDepth($code_no, 4)->getResultArray();
+            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
             $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
             $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
             $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
@@ -694,12 +694,24 @@ class Product extends BaseController
 
             foreach($products['items'] as $key => $product) {
 
-                $hotel_codes = explode("|", $product['product_code_list']);
-                foreach($hotel_codes as $h_code){
-                    if(in_array($h_code, $arr_code_list, true)){
-                        $hotel_code = $h_code;
-                        break;
+                if(empty($search_product_category) || strpos($search_product_category, 'all') !== false){
+                    foreach($arr_code_list as $h_code){
+
+                        if(strpos($product['product_code_list'], $h_code) !== false){
+                            $hotel_code = $h_code;
+                            break;
+                        }
                     }
+
+                }else{
+                    $hotel_codes = explode(",", $search_product_category);
+                    foreach($hotel_codes as $h_code){
+                        if(strpos($product['product_code_list'], $h_code) !== false){
+                            $hotel_code = $h_code;
+                            break;
+                        }
+                    }
+
                 }
 
                 $codeTree = $this->codeModel->getCodeTree($hotel_code);
@@ -768,8 +780,6 @@ class Product extends BaseController
                 $products['items'][$key]['review_average'] = $productReview['avg'];
             }
 
-            $totalProducts = count($products['items']);
-
             $data = [
                 'banners' => $banners,
                 'codeBanners' => $codeBanners,
@@ -783,7 +793,6 @@ class Product extends BaseController
                 'code_no' => $code_no,
                 'code_name' => $parent_code_name,
                 'perPage' => $perPage,
-                'totalProducts' => $totalProducts,
                 'tab_active' => '1',
             ];
 

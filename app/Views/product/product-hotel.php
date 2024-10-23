@@ -18,9 +18,9 @@
                         </div>
                         <div class="form_input_">
                             <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                            <input type="text" id="input_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
+                            <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                         </div>
-                        <button class="btn_search_">
+                        <button type="button" onclick="search_list();" class="btn_search_">
                             검색
                         </button>
                     </div>
@@ -297,6 +297,14 @@
     </div>
 
     <script>
+        function search_list() {
+            let dates = $("#input_day").val().split(' -> ') ?? [];
+            const checkin = dates[0] ? dates[0].trim() : '';
+            const checkout = dates[1] ? dates[1].trim() : '';
+            let hotel_name = $("#input_hotel").val();
+            window.location.href = '/product-hotel/list-hotel/<?=$code_no?>?checkin='+ checkin +'&checkout='+ checkout +'&search_product_name='+ hotel_name;
+        }
+
         let page = 1;
         let totalPage = Number('<?=$productByKeyword['nPage']?>');
         let keywordCurrent = '<?=$keyWordActive?>';

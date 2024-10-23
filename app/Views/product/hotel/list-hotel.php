@@ -244,7 +244,7 @@
                     </div>
                     <div class="below-filter-content">
                         <div class="total_number">
-                            <p>총 상품 <span><?=$totalProducts?></span></p>
+                            <p>총 상품 <span><?=$products["nTotalCount"]?></span></p>
                         </div>
                         <div class="two-way-arrow-content">
                             <a href="#" class="">
@@ -1216,20 +1216,21 @@
 
     $(document).ready(function() {
         function formatDate(date) {
-            var d;
             if(date){
-                d = new Date(date);
+                var d = new Date(date);
+
+                var month = '' + (d.getMonth() + 1);
+                var day = '' + d.getDate();
+                var year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('/');
             }else{
-                d = new Date();
+                return "";
             }
-            var month = '' + (d.getMonth() + 1);
-            var day = '' + d.getDate();
-            var year = d.getFullYear();
-
-            if (month.length < 2) month = '0' + month;
-            if (day.length < 2) day = '0' + day;
-
-            return [year, month, day].join('/');
+            
         }
 
         $("#checkin, #checkout").datepicker({

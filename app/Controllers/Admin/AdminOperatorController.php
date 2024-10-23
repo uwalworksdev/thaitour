@@ -510,7 +510,7 @@ class AdminOperatorController extends BaseController
             $sql = "SELECT *, CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) as user_name_convert FROM tbl_member 
                             WHERE user_level > '1' 
                             AND status = '1' 
-                            AND (user_id LIKE '%" . $user_id . "%' OR AND CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) LIKE '%" . $user_id . "%') 
+                            AND (user_id LIKE '%" . $user_id . "%' OR CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) LIKE '%" . $user_id . "%') 
                             ORDER BY user_id ASC";
 
             $result = $this->connect->query($sql);

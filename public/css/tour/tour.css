@@ -983,6 +983,10 @@
 
 .content-sub-product-hotel .product-card-item-right .title-container h2 {
     font-size: 20px;
+    max-width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .content-sub-product-hotel .product-card-item-right .title-container .star-container {

@@ -36,6 +36,15 @@ class Code extends Model
             ->orderBy('onum', 'DESC')
             ->get();
     }
+
+    public function getByParentCode($parent_code_no)
+    {
+        return $this->select('*')
+            ->where('parent_code_no', $parent_code_no)
+            ->orderBy('onum', 'DESC')
+            ->get();
+    }
+
     public function getByCodeNo($code_no) {
         return $this->where('code_no', $code_no)->first();
     }
