@@ -99,7 +99,7 @@
     background: url("/images/ico/btn_next.png") no-repeat 0 0;
     width: 60px;
     height: 60px;
-    transform: unset;
+    transform: translateY(-50%);
 }
 
 .slick-prev:before,
@@ -108,8 +108,11 @@
 }
 
 .slick-dots {
-    bottom: 25px !important;
+    bottom: 15px !important;
     justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
 }
 
 .slick-dots li button:before {
