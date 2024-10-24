@@ -1731,6 +1731,10 @@
     font-size: 24px;
 }
 
+.mt-20 {
+    margin-top: 20px;
+}
+
 .content-sub-hotel-detail .section6 .list-label-tag {
     display: flex;
     gap: 80px;
