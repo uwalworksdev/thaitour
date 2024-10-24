@@ -356,7 +356,6 @@
 
         if (confirm("해당 회원에게 쿠폰을 발급하시겠습니까?")) {
 
-
             var coupon_nums = $("#coupon_nums").val();
 
             if (coupon_nums.trim() == "") {
@@ -364,11 +363,10 @@
                 return false;
             }
 
-
             $.ajax({
                 type: "GET"
-                , url: "set_user.ajax.php"
-                , dataType: "html" //전송받을 데이터의 타입
+                , url: "/AdmMaster/_operator/send_coupon"
+                // , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
                 , data: "user_id=" + user_id + "&coupon_nums=" + coupon_nums //서버에 보낼 파라메터
@@ -377,14 +375,13 @@
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 }
                 , success: function (data) {
-                    if (data.trim() == "ok") {
+                    if (data.result == true) {
                         alert("처리되었습니다.");
                     } else {
-                        alert(data);
+                        alert(data.message);
                     }
 
                     location.reload();
-
 
                 }
             });

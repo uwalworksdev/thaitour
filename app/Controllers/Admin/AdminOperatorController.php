@@ -274,17 +274,90 @@ class AdminOperatorController extends BaseController
         }
     }
 
+    public function send_coupon() {
+        $user_id    = $_GET['user_id'];
+	    $coupon_num	= $_GET['coupon_nums'];
+
+        try {
+            if( $this->createCouponChk($coupon_num) < 1 ){	// 존재하지 않는 쿠폰 타입일 경우
+                $message = "존재하지 않는 쿠폰입니다:" . $coupon_num;
+        
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $message
+                ], 400);
+        
+            }else{
+                // 쿠폰 내역 조회
+                $fresult = $this->connect->table('tbl_coupon')
+                         ->where('coupon_num', $coupon_num)
+                         ->get();
+                $frow    = $fresult->getResultArray();
+        
+                if( $frow[0]['status'] != "D" ){
+                    $message = "이미 발급되었거나 사용된 쿠폰입니다";
+        
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+                if( $frow[0]['user_id'] != "" ){
+                    $message = "이미 발급된 쿠폰입니다";
+
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+                if( $frow[0]['enddate'] <= date('Y-m-d') ){
+                    $message = "사용기한이 지난 쿠폰입니다";
+
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+        
+                $fsql = " update tbl_coupon set
+                                    user_id	= '".$user_id."'
+                                    ,status	= 'N'
+                                    where coupon_num = '".$coupon_num."'
+                        ";
+        
+                $message = "쿠폰발급(유저) : " . $fsql;
+        
+                $fresult    = $this->connect->query($fsql);
+
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => $fsql
+                ], 200);
+        
+            }
+
+        }catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+        
+    }
+
     private function createCoupon($coupon_type)
     {
         $fsql = "select * from tbl_coupon_setting where idx='" . $coupon_type . "' ";
         $fresult = $this->connect->query($fsql);
         $nTotalCount = $fresult->getNumRows();
 
-        $frow_type = $fresult->getResultArray();
+        $frow_type = $fresult->getRowArray();
 
         if ($nTotalCount == 0) {    // 존재하지 않는 쿠폰 타입일 경우
             $message = "존재하지 않는 쿠폰 타입니다 : " . $fsql;
-            goUrl("", $message);
             $this->write_log_dir($message, $_SERVER['DOCUMENT_ROOT'] . "/AdmMaster/_coupon/log/");
 
             return "Error";
