@@ -1,4 +1,4 @@
-<a href="/product-golf/list-golf/1324" class="thailand_golf_list_item_">
+<a href="/product-golf/golf-detail/<?= $item['product_idx'] ?>" class="thailand_golf_list_item_">
     <div class="img_box img_box_10">
         <img src="/data/product/<?= $item['ufile1'] ?>" alt="<?= $item['rfile1'] ?>" loading="lazy">
     </div>
