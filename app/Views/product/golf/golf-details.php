@@ -6,13 +6,15 @@
         <div class="section1">
             <div class="title-container">
                 <h2>피닉스 골드 골프 방콕 (구. 수완나품 컨트리클럽)</h2>
-                <div class="list-icon">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
-                    <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
-                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
-                    <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
-                    <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
-                    <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
+                <div class="only_web">
+                    <div class="list-icon">
+                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                        <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
+                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
+                        <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
+                        <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
+                    </div>
                 </div>
             </div>
             <div class="location-container">

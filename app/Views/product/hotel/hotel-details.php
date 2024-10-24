@@ -20,7 +20,7 @@
             <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
         </div>
         <div class="rating-container">
-            <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
+            <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
             <span><strong> <?= $hotel['review_average'] ?></strong></span>
             <span class="text-gray">생생리뷰 <strong style="color: #000;">(0)</strong></span>
         </div>
