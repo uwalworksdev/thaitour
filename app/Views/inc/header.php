@@ -166,9 +166,9 @@
 <header id="header_mobile" class="only_mo inner_header_m">
     <div class="header_mobile__wrap">
         <div class="body_inner flex_header_top pb-24">
-            <div class="flex_header_top_item">
+            <a class="flex_header_top_item" href="/">
                 <img class="header_logo_m" src="<?= base_url('/images/sub/logo_header_m.png') ?>" alt="">
-            </div>
+            </a>
             <div class="flex_header_top flex_header_top_item">
                 <div class="burger" onclick="window.location.href='/cart/item-list/123'">
                     <img src="<?= base_url('/uploads/icons/icon-cart-m.png') ?>" alt="">
@@ -226,7 +226,7 @@
                     </li>
                 </ul>
                 <ul class="menu_mobile__list">
-                    <li><a href="/product-hotel/1324">호텔</a></li>
+                        <li><a href="/product-hotel/1324">호텔</a></li>
                     <li><a href="/product-golf/1325/1">골프</a></li>
                     <li><a href="/product-tours/1324/1">투어</a></li>
                     <li><a href="/product-spa/1320/1">스파</a></li>

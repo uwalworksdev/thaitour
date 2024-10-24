@@ -305,6 +305,13 @@ $routes->group("ajax", static function ($routes) {
     $routes->get("get_code", "CodeController::ajaxGet");
 });
 
+$routes->group("api", static function ($routes) {
+    $routes->group("products", static function ($routes) {
+        $routes->post("roomPhoto", "Api\ProductApi::roomPhoto");
+        $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
+    });
+});
+
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
 
 $routes->get('/', 'Home::index');

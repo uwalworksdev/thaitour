@@ -104,7 +104,7 @@
                 },
             });
         </script>
-        <section class="sub_section3 thailand_hotel_">
+        <section class="sub_section3 thailand_hotel_ thailand_hotel_custom_margin">
             <div class="body_inner">
                 <div class="sub_section3__head">
                     <div class="sub_section3__head__ttl">
@@ -142,7 +142,7 @@
                 <div class="d_flex justify_content_end">
                     <div class="swiper_product_list_pagination_"></div>
                 </div>
-                <div class="sub_tour_section7_product_list swiper swiper_product_list_">
+                <div class="sub_tour_section7_product_list sub_tour_section7_product_list_custom swiper swiper_product_list_">
                     <div class="swiper-wrapper">
                         <?php foreach ($theme_products['items'] as $theme_product):
                             if(is_file(ROOTPATH . "/public/data/hotel/" . $theme_product['ufile1'])) {
