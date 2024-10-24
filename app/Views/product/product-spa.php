@@ -128,7 +128,7 @@
         <div class="ticket-list">
             <div class="ticket-tool">
                 <div class="ticket-tool-l">
-                    <p><span>더</span>투어랩 쇼ㆍ입장권</p>
+                    <p><span>더</span>투어랩 스파</p>
                 </div>
                 <div class="ticket-tool-r">
                     <input type="text">
