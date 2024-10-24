@@ -32,6 +32,7 @@
     color: #ffffff;
     font-weight: bold;
     font-family: "NanumSquare";
+    text-shadow: 2px 2px #000;
 }
 
 .main_page_01 .main_visual_content_ .form_element_ {
@@ -140,12 +141,6 @@
 
 .thailand_hotel_ .thailand_hotel_swiper_ .thailand_hotel_swiper_item_ {
     /*margin: 0 !important;*/
-}
-
-.best_tour_section5_ .sub_tour_section5_item,
-.sub_tour_section6 .custom_pagination_,
-.thailand_hotel_ .thailand_hotel_swiper_ .thailand_hotel_swiper_item_ {
-    margin-top: 36px !important;
 }
 
 .sub_tour_section6 .custom_pagination_,
@@ -857,12 +852,9 @@
     font-weight: 300;
 }
 
-/**/
-.main_page_product_result_ {}
-
-.main_page_product_result_ {}
-
-.main_page_product_result_ {}
+.main_page_01 .main_visual_content_ button:hover {
+    opacity: 0.8;
+}
 
 @media screen and (max-width: 850px) {
     .page_product_list_.main_page_01 .main_visual_content_ {
@@ -942,6 +934,8 @@
 
     .page_product_list_ .sub_section3__head__ttl {
         font-size: 3.8rem;
+        width: 100%;
+        margin-bottom: 3.6rem;
     }
 
     .best_tour_section5_ .prd_name,
@@ -1230,8 +1224,9 @@
     .main_page_01 .sub_tour_section6 .custom_pagination_ .pagination_show_,
     .main_page_01 .thailand_hotel_.sub_section5_ .custom_pagination_ .s_item_show_,
     .main_page_01 .thailand_hotel_ .custom_pagination_ .pagination_show_ {
-        width: 28.2rem;
-        height: 6.4rem;
+        width: 32.6rem;
+        height: 8rem;
+        border-radius: 9.9rem;
     }
 
     .main_page_01 .thailand_hotel_ .custom_pagination_ .pagination_show_ img {
@@ -1263,7 +1258,8 @@
 
     .main_page_01 .most_searched_ .tab_box_area_ .tab_box_show_ {
         flex-wrap: unset;
-        padding-left: 3rem;
+        padding-left: 0;
+        gap: 2rem;
     }
 
     .main_page_01 .sub_tour_section4_banner .img_box__img {
@@ -1274,7 +1270,7 @@
 
     .prd_info__left {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         gap: 0.4rem;
     }
 

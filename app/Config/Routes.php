@@ -206,6 +206,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("coupon_write_ok", "Admin\AdminOperatorController::coupon_write_ok", ['as' => "admin.operator.coupon_write_ok"]);
         $routes->post("coupon_del", "Admin\AdminOperatorController::coupon_del", ['as' => "admin.operator.coupon_del"]);
         $routes->get("find_user", "Admin\AdminOperatorController::find_user");
+        $routes->get("send_coupon", "Admin\AdminOperatorController::send_coupon");
+
     });
 
     $routes->group("_mileage", static function ($routes) {
@@ -301,6 +303,13 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
     $routes->post("get_travel_types", "AjaxController::get_travel_types");
     $routes->get("get_code", "CodeController::ajaxGet");
+});
+
+$routes->group("api", static function ($routes) {
+    $routes->group("products", static function ($routes) {
+        $routes->post("roomPhoto", "Api\ProductApi::roomPhoto");
+        $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
+    });
 });
 
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');

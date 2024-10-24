@@ -97,7 +97,7 @@ class ReviewController extends BaseController
 
             $user_name = sqlSecretConver($row["user_name"], 'decode');
 
-            if (isset($row["user_phone"])){
+            if (isset($row["user_phone"])) {
                 $user_phone = sqlSecretConver($row["user_phone"], 'decode');
             }
 
@@ -240,7 +240,7 @@ class ReviewController extends BaseController
             return "
             <script>
                 alert('로그인 필요합니다.');
-                location.href = '/member/login.php';
+                location.href = '/member/login';
             </script>
         ";
         }
@@ -250,8 +250,11 @@ class ReviewController extends BaseController
         $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'third_paties'";
         $third_paties = $this->db->query($sql)->getRowArray();
 
-        $sql0 = "SELECT * FROM tbl_code WHERE code_no IN('1300', '1320', '1324', '1317', '1325', '1326') AND depth = '2' ORDER BY onum ";
+        $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no=13 AND depth = '2' ORDER BY onum ";
         $list_code = $this->db->query($sql0)->getResultArray();
+
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
+        $list_code_type = $this->db->query($sql)->getResultArray();
 
         $sql_m = "SELECT     birthday
                         , AES_DECRYPT(UNHEX(user_name),   '$private_key') AS user_name
@@ -345,7 +348,8 @@ class ReviewController extends BaseController
             "contents" => $contents,
             "privacy" => $privacy,
             "third_paties" => $third_paties,
-            "list_code" => $list_code
+            "list_code" => $list_code,
+            "list_code_type" => $list_code_type,
         ];
 
         return view("review/review_write", $data);
@@ -370,6 +374,9 @@ class ReviewController extends BaseController
         $contents = updateSQ($data['contents'] ?? '');
         $product_idx = updateSQText($data['product_idx'] ?? 0);
         $user_phone = updateSQ($_POST["user_phone"] ?? '');
+        $number_stars = updateSQ($_POST["number_stars"] ?? '');
+        $review_type = updateSQ($_POST["review_type"] ?? '');
+        $user_id = $_SESSION['member']['idx'];
 
         if ($role == "admin") {
             $user_email = updateSQ($_POST["user_email"] ?? '');
@@ -419,6 +426,9 @@ class ReviewController extends BaseController
                 'user_name' => sqlSecretConver($user_name, 'encode'),
                 'user_email' => sqlSecretConver($user_email, 'encode'),
                 'title' => $title,
+                'user_id' => $user_id,
+                'number_stars' => $number_stars,
+                'review_type' => $review_type,
                 'contents' => $contents
             ];
 
@@ -441,6 +451,8 @@ class ReviewController extends BaseController
             }
 
             $this->ReviewModel->update($idx, $dataToUpdate);
+
+            $this->calcReview($product_idx);
             return alert_msg("정상적으로 수정되었습니다.", "/review/review_list");
         } else {
             $dataToInsert = [
@@ -450,6 +462,8 @@ class ReviewController extends BaseController
                 'rfile1' => $r_file_name1,
                 'ufile1' => $r_file_code1,
                 'rfile2' => $r_file_name2,
+                'number_stars' => $number_stars,
+                'review_type' => $review_type,
                 'ufile2' => $r_file_code2,
                 'product_idx' => $product_idx ?? 0,
                 'travel_type' => $travel_type,
@@ -459,6 +473,7 @@ class ReviewController extends BaseController
                 'contents' => $contents,
                 'r_date' => $r_date ?? date("Y-m-d H:i:s"),
                 'passwd' => $pass,
+                'user_id' => $user_id,
                 'user_ip' => $_SERVER['REMOTE_ADDR']
             ];
 
@@ -470,6 +485,7 @@ class ReviewController extends BaseController
             }
 
             $this->ReviewModel->insert($dataToInsert);
+            $this->calcReview($product_idx);
             return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
         }
     }
@@ -484,4 +500,27 @@ class ReviewController extends BaseController
         }
         return "OK";
     }
+
+    private function calcReview($product_idx)
+    {
+        $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($product_idx);
+        $results = $this->db->query($sql);
+        $count = $results->getNumRows();
+        $results = $results->getResultArray();
+
+        if ($count == 0) {
+            $average = 0;
+        } else {
+            $total = 0;
+            foreach ($results as $item) {
+                $total += (int)$item['number_stars'];
+            }
+
+            $average = number_format($total / $count, 1);
+        }
+
+        $updateSql = "UPDATE tbl_product_mst SET review_average = " . $this->db->escape($average) . " WHERE product_idx = " . $this->db->escape($product_idx);
+        $this->db->query($updateSql);
+    }
+
 }

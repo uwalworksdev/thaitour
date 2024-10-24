@@ -274,17 +274,90 @@ class AdminOperatorController extends BaseController
         }
     }
 
+    public function send_coupon() {
+        $user_id    = $_GET['user_id'];
+	    $coupon_num	= $_GET['coupon_nums'];
+
+        try {
+            if( $this->createCouponChk($coupon_num) < 1 ){	// 존재하지 않는 쿠폰 타입일 경우
+                $message = "존재하지 않는 쿠폰입니다:" . $coupon_num;
+        
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $message
+                ], 400);
+        
+            }else{
+                // 쿠폰 내역 조회
+                $fresult = $this->connect->table('tbl_coupon')
+                         ->where('coupon_num', $coupon_num)
+                         ->get();
+                $frow    = $fresult->getResultArray();
+        
+                if( $frow[0]['status'] != "D" ){
+                    $message = "이미 발급되었거나 사용된 쿠폰입니다";
+        
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+                if( $frow[0]['user_id'] != "" ){
+                    $message = "이미 발급된 쿠폰입니다";
+
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+                if( $frow[0]['enddate'] <= date('Y-m-d') ){
+                    $message = "사용기한이 지난 쿠폰입니다";
+
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => $message
+                    ], 400);
+                }
+        
+        
+                $fsql = " update tbl_coupon set
+                                    user_id	= '".$user_id."'
+                                    ,status	= 'N'
+                                    where coupon_num = '".$coupon_num."'
+                        ";
+        
+                $message = "쿠폰발급(유저) : " . $fsql;
+        
+                $fresult    = $this->connect->query($fsql);
+
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => $fsql
+                ], 200);
+        
+            }
+
+        }catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+        
+    }
+
     private function createCoupon($coupon_type)
     {
         $fsql = "select * from tbl_coupon_setting where idx='" . $coupon_type . "' ";
         $fresult = $this->connect->query($fsql);
         $nTotalCount = $fresult->getNumRows();
 
-        $frow_type = $fresult->getResultArray();
+        $frow_type = $fresult->getRowArray();
 
         if ($nTotalCount == 0) {    // 존재하지 않는 쿠폰 타입일 경우
             $message = "존재하지 않는 쿠폰 타입니다 : " . $fsql;
-            goUrl("", $message);
             $this->write_log_dir($message, $_SERVER['DOCUMENT_ROOT'] . "/AdmMaster/_coupon/log/");
 
             return "Error";
@@ -503,37 +576,45 @@ class AdminOperatorController extends BaseController
 
     public function find_user()
     {
-        $user_id = $this->Unescape($_GET['user_id']);
+        try {
+            $private_key = private_key();
+            $user_id = $this->Unescape($_GET['user_id']);
 
-        $sql = "SELECT * FROM tbl_member 
-            WHERE user_level > '1' 
-            AND status = '1' 
-            AND (user_id LIKE '%" . $user_id . "%' OR user_name LIKE '%" . $user_id . "%') 
-            ORDER BY user_id ASC";
+            $sql = "SELECT *, CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) as user_name_convert FROM tbl_member 
+                            WHERE user_level > '1' 
+                            AND status = '1' 
+                            AND (user_id LIKE '%" . $user_id . "%' OR CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) LIKE '%" . $user_id . "%') 
+                            ORDER BY user_id ASC";
 
-        $result = $this->connect->query($sql);
-        $nTotalCount = $result->getNumRows();
+            $result = $this->connect->query($sql);
+            $nTotalCount = $result->getNumRows();
 
-        if ($nTotalCount < 1) {
-            return '<tr>
+            if ($nTotalCount < 1) {
+                return '<tr>
                     <th colspan="2">일치하는 회원이 없습니다.</th>
                 </tr>';
-        }
+            }
 
-        $html = '';
-        foreach ($result->getResultArray() as $row) {
-            $html .= '<tr onclick="sel_user_id(\'' . $row['user_id'] . '\');">
-                      <th>' . $row['user_name'] . '</th>
+            $html = '';
+            foreach ($result->getResultArray() as $row) {
+                $html .= '<tr onclick="sel_user_id(\'' . $row['user_id'] . '\');">
+                      <th>' . $row['user_name_convert'] . '</th>
                       <td>' . $row['user_id'] . '</td>
                   </tr>';
-        }
+            }
 
-        return $html;
+            return $html;
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
-    private function Unescape($str) // UnescapeFunc는 아래에 정의되어 있음
+    private function Unescape($str)
     {
-        return urldecode(preg_replace_callback('/%u([[:alnum:]]{4})/', 'UnescapeFunc', $str));
+        return urldecode(preg_replace_callback('/%u([[:alnum:]]{4})/', [$this, 'UnescapeFunc'], $str));
     }
 
     private function UnescapeFunc($str)

@@ -26,16 +26,23 @@
         </div>
         <div class="hotel-image-container">
             <div class="hotel-image-container-1">
-                <img src="/data/hotel/<?= $hotel['ufile1'] ?>" alt="<?= $hotel['product_name'] ?>"
+                <img style="width: 600px; border: 1px solid #dbdbdb; height: 442px;"
+                     onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                     src="/data/hotel/<?= $hotel['ufile1'] ?>"
+                     alt="<?= $hotel['product_name'] ?>"
                      onerror="this.src='/images/share/noimg.png'">
             </div>
             <div class="grid_2_2">
                 <?php for ($j = 2; $j < 5; $j++) { ?>
-                    <img class="grid_2_2_size" src="/data/hotel/<?= $hotel['ufile' . $j] ?>"
+                    <img style="width: 290px; border: 1px solid #dbdbdb; height: 216px"
+                         onclick="img_pops('<?= $hotel['product_idx'] ?>')" class="grid_2_2_size"
+                         src="/data/hotel/<?= $hotel['ufile' . $j] ?>"
                          alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                 <?php } ?>
                 <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                    <img class="custom_button" src="/data/hotel/<?= $hotel['ufile5'] ?>"
+                    <img style="width: 290px; border: 1px solid #dbdbdb; height: 216px"
+                         onclick="img_pops('<?= $hotel['product_idx'] ?>')" class="custom_button"
+                         src="/data/hotel/<?= $hotel['ufile5'] ?>"
                          alt="<?= $hotel['product_name'] ?>"
                          onerror="this.src='/images/share/noimg.png'">
                     <div class="button-show-detail-image">
@@ -44,14 +51,14 @@
                         <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
                              alt="image_detail_icon_m">
                         <span>사진 모두 보기</span>
-                        <span>(6장)</span>
+                        <span>(2장)</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="sub-header-hotel-detail">
             <div class="main nav-list">
-                <p class="nav-item" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
+                <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
                 <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">객실</p>
                 <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">시설&서비스</p>
                 <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
@@ -136,45 +143,6 @@
                     window.location.href = currentUrl.toString();
                 }
             </script>
-            <style>
-                .room_option_ {
-                    padding-bottom: 30px !important;
-                }
-
-                .room_option_long {
-                    height: 620px;
-                    overflow: hidden;
-                    margin-top: 30px;
-                }
-
-                .btnReadLess {
-                    display: none;
-                }
-
-                .btnReadLess,
-                .btnReadMore {
-                    border: 1px solid #dbdbdb;
-                    border-radius: 3px;
-                    padding: 5px 10px;
-                }
-
-                .cus_scroll {
-                    overflow-y: auto;
-                    overflow-x: hidden;
-                    height: 400px;
-                    padding-left: 20px;
-                }
-
-                .cus_scroll::-webkit-scrollbar {
-                    width: 2px;
-                    background-color: #F5F5F5;
-                    display: block;
-                }
-
-                .cus_scroll::-webkit-scrollbar-thumb {
-                    background-color: #cccccc;
-                }
-            </style>
             <?php foreach ($hotel_options as $item) : ?>
                 <?php $room = $item['room']; ?>
                 <?php $room_options = $room['room_option']; ?>
@@ -203,21 +171,23 @@
                                 <div class="only_web">
                                     <div class="grid2_2_1">
                                         <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
+                                             style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
+                                             onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                              onerror="this.src='/images/share/noimg.png"
                                              alt="<?= $room['roomName'] ?>">
                                         <div class=""
-                                             style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                                            <?php if ($room['ufile2']) { ?>
-                                                <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile2'] ?>"
-                                                     onerror="this.src='/images/share/noimg.png"
-                                                     alt="<?= $room['roomName'] ?>">
-                                            <?php } ?>
+                                             style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
+                                            <img style="width: calc(50% - 5px); border: 1px solid #dbdbdb; height: 95px"
+                                                 src="<?= isset($room['ufile2']) && $room['ufile2'] ? '/uploads/rooms/' . $room['ufile2'] : '/images/share/noimg.png' ?>"
+                                                 onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                 onerror="this.src='/images/share/noimg.png"
+                                                 alt="<?= $room['roomName'] ?>">
 
-                                            <?php if ($room['ufile3']) { ?>
-                                                <img style="width: 50%" src="/uploads/rooms/<?= $room['ufile3'] ?>"
-                                                     onerror="this.src='/images/share/noimg.png"
-                                                     alt="<?= $room['roomName'] ?>">
-                                            <?php } ?>
+                                            <img style="width: calc(50% - 5px); border: 1px solid #dbdbdb; height: 95px"
+                                                 src="<?= isset($room['ufile3']) && $room['ufile3'] ? '/uploads/rooms/' . $room['ufile3'] : '/images/share/noimg.png' ?>"
+                                                 onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                 onerror="this.src='/images/share/noimg.png"
+                                                 alt="<?= $room['roomName'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -226,22 +196,24 @@
                                 </div>
                                 <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
                                 <?php $room_facil = $room['room_facil']; ?>
-                                <ul class="cus_scroll">
-                                    <?php
-                                    $_arr = explode("|", $room_facil);
-                                    foreach ($rresult as $row_r) :
-                                        for ($i = 0; $i < count($_arr); $i++) {
-                                            if ($_arr[$i]) {
-                                                if ($_arr[$i] == $row_r['code_no']) {
-                                                    ?>
-                                                    <li><?= $row_r['code_name'] ?></li>
-                                                    <?php
+                                <div class="cus_scroll">
+                                    <ul class="cus_scroll_li">
+                                        <?php
+                                        $_arr = explode("|", $room_facil);
+                                        foreach ($rresult as $row_r) :
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) {
+                                                        ?>
+                                                        <li><?= $row_r['code_name'] ?></li>
+                                                        <?php
+                                                    }
                                                 }
                                             }
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
-                                </ul>
+                                            ?>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
                             </div>
 
                             <table class="room-table only_web">
@@ -278,7 +250,7 @@
                                         </td>
                                         <td>
                                             <div class="room_qty">
-                                                <p>객실 수: </p>
+                                                <p>객실 수 </p>
                                                 <div class="room_activity">
                                                     <button class="btnMinus">
                                                         -
@@ -292,7 +264,7 @@
                                                 </div>
                                             </div>
                                             <div class="day_qty">
-                                                <p>객실 수: </p>
+                                                <p>숙박일 </p>
                                                 <div class="day_activity">
                                                     <button class="btnMinus">
                                                         -
@@ -456,22 +428,23 @@
                                             <div class="grid2_2_1">
                                                 <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
                                                      onerror="this.src='/images/share/noimg.png"
+                                                     style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
+                                                     onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                                      alt="<?= $room['roomName'] ?>">
                                                 <div class=""
-                                                     style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%">
-                                                    <?php if ($room['ufile2']) { ?>
-                                                        <img style="width: 50%"
-                                                             src="/uploads/rooms/<?= $room['ufile2'] ?>"
-                                                             onerror="this.src='/images/share/noimg.png"
-                                                             alt="<?= $room['roomName'] ?>">
-                                                    <?php } ?>
+                                                     style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
 
-                                                    <?php if ($room['ufile3']) { ?>
-                                                        <img style="width: 50%"
-                                                             src="/uploads/rooms/<?= $room['ufile3'] ?>"
-                                                             onerror="this.src='/images/share/noimg.png"
-                                                             alt="<?= $room['roomName'] ?>">
-                                                    <?php } ?>
+                                                    <img style="width: calc(50% - 5px); border: 1px solid #dbdbdb; height: 95px"
+                                                         src="<?= isset($room['ufile2']) && $room['ufile2'] ? '/uploads/rooms/' . $room['ufile2'] : '/images/share/noimg.png' ?>"
+                                                         onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                         onerror="this.src='/images/share/noimg.png"
+                                                         alt="<?= $room['roomName'] ?>">
+
+                                                    <img style="width: calc(50% - 5px); border: 1px solid #dbdbdb; height: 95px"
+                                                         src="<?= isset($room['ufile3']) && $room['ufile3'] ? '/uploads/rooms/' . $room['ufile3'] : '/images/share/noimg.png' ?>"
+                                                         onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
+                                                         onerror="this.src='/images/share/noimg.png"
+                                                         alt="<?= $room['roomName'] ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -479,22 +452,24 @@
                                             <img src="/uploads/sub/hotel_item_1_1.png" alt="hotel_item_1_1">
                                         </div>
                                         <h2 class="subtitle">초대형 더블침대 1개 또는 싱글침대 2개</h2>
-                                        <ul class="cus_scroll">
-                                            <?php
-                                            $_arr = explode("|", $room_facil);
-                                            foreach ($rresult as $row_r) :
-                                                for ($i = 0; $i < count($_arr); $i++) {
-                                                    if ($_arr[$i]) {
-                                                        if ($_arr[$i] == $row_r['code_no']) {
-                                                            ?>
-                                                            <li><?= $row_r['code_name'] ?></li>
-                                                            <?php
+                                        <div class="cus_scroll">
+                                            <ul class="cus_scroll_li">
+                                                <?php
+                                                $_arr = explode("|", $room_facil);
+                                                foreach ($rresult as $row_r) :
+                                                    for ($i = 0; $i < count($_arr); $i++) {
+                                                        if ($_arr[$i]) {
+                                                            if ($_arr[$i] == $row_r['code_no']) {
+                                                                ?>
+                                                                <li><?= $row_r['code_name'] ?></li>
+                                                                <?php
+                                                            }
                                                         }
                                                     }
-                                                }
-                                                ?>
-                                            <?php endforeach; ?>
-                                        </ul>
+                                                    ?>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
                                     </div>
 
                                     <table class="room-table only_web">
@@ -531,7 +506,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="room_qty">
-                                                        <p>객실 수: </p>
+                                                        <p>객실 수 </p>
                                                         <div class="room_activity">
                                                             <button class="btnMinus">
                                                                 -
@@ -545,7 +520,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="day_qty">
-                                                        <p>객실 수: </p>
+                                                        <p>숙박일 </p>
                                                         <div class="day_activity">
                                                             <button class="btnMinus">
                                                                 -
@@ -837,101 +812,53 @@
             <div class="rating-content">
                 <div class="rating-left">
                     <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
-                    <strong>4.5/5</strong>
+                    <strong><?= $hotel['review_average'] ?>/5</strong>
                 </div>
-                <span class="rating-right text-gray">928개 고객기준</span>
+                <span class="rating-right text-gray"><?= $reviewCount ?>개 고객기준</span>
             </div>
             <div class="list-label-tag">
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_1.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>청결</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
+                <?php foreach ($reviewCategories as $reviewCategory) : ?>
+                    <div class="label-tag-item">
+                        <img class="square" src="/data/code/<?= $reviewCategory['ufile1'] ?>"
+                             alt="<?= $reviewCategory['code_name'] ?>">
+                        <div class="label-tag-item-text">
+                            <strong><?= $reviewCategory['code_name'] ?></strong>
+                            <p><strong><?= $reviewCategory['average'] ?></strong> 최고좋음</p>
+                        </div>
                     </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_2.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>시설</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_3.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>위치</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_4.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>직원친절도</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_5.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>가성비</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/uploads/sub/hotel_item_rated_6.png" alt="hotel_item_rated_1">
-                    <div class="label-tag-item-text">
-                        <strong>편안함</strong>
-                        <p><strong>4.2</strong> 최고좋음</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
             <h2 class="sub-title-sec6">BEST 생생리뷰</h2>
             <div class="card-list-flex">
                 <div class="card-list-recommemded">
-                    <div class="recommemded-item">
-                        <div class="container-head">
-                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
-                            <div class="name">
-                                <span>woras******</span>
-                                <p>2024.08.09</p>
+                    <?php $i = 0;
+                    function maskString($str)
+                    {
+                        $start = substr($str, 0, 3);
+                        $masked = str_repeat('*', 6);
+                        return $start . $masked;
+                    }
+
+                    foreach ($reviews as $review) : ?>
+                        <?php if ($i < 3) : ?>
+                            <div class="recommemded-item">
+                                <div class="container-head">
+                                    <img src="<?= isset($review['avt']) && $review['avt'] ? '/data/user/' . $review['avt'] : '/uploads/icons/avatar_user_1.png' ?>"
+                                         alt="avatar_user_1">
+                                    <div class="name">
+                                        <span><?= maskString(sqlSecretConver($review['user_name'] ?? '', 'decode')); ?></span>
+                                        <p><?= $formattedDate = (new DateTime($review['r_date']))->format('Y.m.d'); ?></p>
+                                    </div>
+                                </div>
+                                <h2><?= $review['title']; ?></h2>
+                                <div class="custom_paragraph">
+                                    <?= viewSQ($review['contents']); ?>
+                                </div>
+                                <button>더보기</button>
                             </div>
-                        </div>
-                        <h2>깨끗하고 편안하며 BTS chidlom과 가깝습니다.</h2>
-                        <p class="custom_paragraph">아침조식.. 가짓수는 좀 있으나 모든음식과 음료의 수준은 수준이하, 과일쥬스는 과일향 첨가한 물같고, 일본김밥은
-                            밥이
-                            떡같고 빵도
-                            질감이 너무 떨어지고. 무엇보다 모든 돼지 고기요리에서 냄새가 심하게 나서 3일머무는동안 힘들었음</p>
-                        <button>더보기</button>
-                    </div>
-                    <div class="recommemded-item">
-                        <div class="container-head">
-                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
-                            <div class="name">
-                                <span>craz******</span>
-                                <p>2024.08.09</p>
-                            </div>
-                        </div>
-                        <h2>역시 신상호텔 답네요!</h2>
-                        <p class="custom_paragraph">역시 신상호텔 답네요! 공항과 접근성이 가장 좋은 이점이고요 부대시설도 아주 마음에 들었어요! 호캉스하기에 정말
-                            좋습니
-                            다!
-                            단점이라고 굳이 말하자면 호텔 주변이 조금 심심한거랑 조 식이 아주 조금 아쉬웠습니다! 그래도 다시 온다면 여기서</p>
-                        <button>더보기</button>
-                    </div>
-                    <div class="recommemded-item">
-                        <div class="container-head">
-                            <img src="/uploads/icons/avatar_user_1.png" alt="avatar_user_1">
-                            <div class="name">
-                                <span>mh8******</span>
-                                <p>2024.08.09</p>
-                            </div>
-                        </div>
-                        <h2>I'M SO DAMN SLEEPY</h2>
-                        <p class="custom_paragraph">직원분들도 모두 친절하고, 숙소 위생상태도 합격이었습니다~ 위치는 지하철역과도 가깝고 주변에 마사지샵이나 스타벅스
-                            세븐일레븐도
-                            있어서 너무 좋았어요</p>
-                        <button>더보기</button>
-                    </div>
+                        <?php endif;
+                        $i++; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
 
@@ -1032,61 +959,60 @@
                 $(this).parent().find('.btnReadMore').css('display', 'inline');
             });
         </script>
-
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
-                <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
-                <div class="order-popup">
-                    <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
-                    <div class="description-above">
-                        <div class="item-price-popup">
-                            <div class="img-container">
-                                <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
-                            </div>
-                            <div class="text-con">
-                                <span>신규회원가입 웰컴 쿠폰</span>
-                                <span class="text-gray">10% 할인쿠폰</span>
-                            </div>
-                            <span class="date-sub">~2024.10.05</span>
+    </div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
+            <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
+            <div class="order-popup">
+                <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
+                <div class="description-above">
+                    <div class="item-price-popup">
+                        <div class="img-container">
+                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
-                        <div class="item-price-popup">
-                            <div class="img-container">
-                                <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
-                            </div>
-                            <div class="text-con">
-                                <span>추가 즉시할인쿠폰</span>
-                                <span class="text-gray">5,000원 할인쿠폰</span>
-                            </div>
-                            <span class="date-sub">~2024.10.05</span>
+                        <div class="text-con">
+                            <span>신규회원가입 웰컴 쿠폰</span>
+                            <span class="text-gray">10% 할인쿠폰</span>
                         </div>
-                        <div class="item-price-popup item-price-popup--button">
-                            <span>적용안함</span>
+                        <span class="date-sub">~2024.10.05</span>
+                    </div>
+                    <div class="item-price-popup">
+                        <div class="img-container">
+                            <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                        </div>
+                        <div class="text-con">
+                            <span>추가 즉시할인쿠폰</span>
+                            <span class="text-gray">5,000원 할인쿠폰</span>
+                        </div>
+                        <span class="date-sub">~2024.10.05</span>
+                    </div>
+                    <div class="item-price-popup item-price-popup--button">
+                        <span>적용안함</span>
+                    </div>
+                </div>
+                <div class="line-gray"></div>
+                <div class="footer-popup">
+                    <div class="des-above">
+                        <div class="item">
+                            <span class="text-gray">총 주문금액</span>
+                            <span class="text-gray">160,430원</span>
+                        </div>
+                        <div class="item">
+                            <span class="text-gray">할인금액</span>
+                            <span class="text-gray">16,040원</span>
                         </div>
                     </div>
-                    <div class="line-gray"></div>
-                    <div class="footer-popup">
-                        <div class="des-above">
-                            <div class="item">
-                                <span class="text-gray">총 주문금액</span>
-                                <span class="text-gray">160,430원</span>
-                            </div>
-                            <div class="item">
-                                <span class="text-gray">할인금액</span>
-                                <span class="text-gray">16,040원</span>
-                            </div>
+                    <div class="des-below">
+                        <div class="price-below">
+                            <span>최종결제금액</span>
+                            <p class="price-popup">144,000<span class="text-gray">원</span></p>
                         </div>
-                        <div class="des-below">
-                            <div class="price-below">
-                                <span>최종결제금액</span>
-                                <p class="price-popup">144,000<span class="text-gray">원</span></p>
-                            </div>
-                        </div>
-                        <button class="btn_accept_popup"
-                                onclick="location.href='/product-hotel/customer-form'">
-                            쿠폰적용
-                        </button>
                     </div>
+                    <button class="btn_accept_popup"
+                            onclick="location.href='/product-hotel/customer-form'">
+                        쿠폰적용
+                    </button>
                 </div>
             </div>
         </div>
@@ -1211,4 +1137,121 @@
         }
     </script>
 
+    <div id="dim"></div>
+    <div id="popupRoom" class="on">
+        <strong id="pop_roomName"></strong>
+        <div>
+            <ul class="multiple-items">
+            </ul>
+        </div>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close"/></a>
+    </div>
+
+    <div id="popup_img" class="on">
+        <strong id="pop_roomName"></strong>
+        <div>
+            <ul class="multiple-items">
+            </ul>
+        </div>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close"/></a>
+    </div>
+
+    <script>
+        /* hotel_view popup */
+        jQuery(document).ready(function () {
+            var dim = $('#dim');
+            var popup = $('#popupRoom');
+            var closedBtn = $('#popupRoom .closed_btn');
+
+            var popup2 = $('#popup_img');
+            var closedBtn2 = $('#popup_img .closed_btn');
+
+            /* closed btn*/
+            closedBtn.click(function () {
+                popup.hide();
+                dim.fadeOut();
+                $('.multiple-items').slick('unslick'); // slick 삭제
+                return false;
+            });
+
+            closedBtn2.click(function () {
+                popup2.hide();
+                dim.fadeOut();
+                $('.multiple-items').slick('unslick'); // slick 삭제
+                return false;
+            });
+        });
+
+        function fn_pops(ridx, roomName) {
+            var dim = $('#dim');
+            var popup = $('#popupRoom');
+
+            $("#pop_roomName").text(roomName);
+
+            $.ajax({
+                url: "/api/products/roomPhoto",
+                type: "POST",
+                data: 'ridx=' + ridx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+
+                    $(".multiple-items").html(response.data);
+
+                    popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+
+                    return false;
+
+                }
+            });
+        }
+
+        function img_pops(idx) {
+            var dim = $('#dim');
+            var popup = $('#popup_img');
+
+            $.ajax({
+                url: "/api/products/hotelPhoto",
+                type: "POST",
+                data: 'idx=' + idx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                }
+                , success: function (response, status, request) {
+
+                    $(".multiple-items").html(response.data);
+
+                    popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+
+                    return false;
+
+                }
+            });
+        }
+    </script>
 <?php $this->endSection(); ?>

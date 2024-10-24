@@ -678,6 +678,8 @@ class Product extends BaseController
     {
         try {
             $pg = $this->request->getVar('pg') ?? 1;
+            $checkin = $this->request->getVar('checkin') ?? "";
+            $checkout = $this->request->getVar('checkout') ?? "";
             $search_product_name = $this->request->getVar('search_product_name') ?? "";
             $search_product_category = $this->request->getVar('search_product_category') ?? "";
             $search_product_hotel = $this->request->getVar('search_product_hotel') ?? "";
@@ -688,27 +690,32 @@ class Product extends BaseController
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
 
+
             $perPage = 5;
 
             $banners = $this->bannerModel->getBanners($code_no);
             $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-            $codes = $this->codeModel->getByParentAndDepth($code_no, 4)->getResultArray();
+            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
             $types_hotel = $this->codeModel->getByParentAndDepth(40, 2)->getResultArray();
             $ratings = $this->codeModel->getByParentAndDepth(30, 2)->getResultArray();
             $promotions = $this->codeModel->getByParentAndDepth(41, 2)->getResultArray();
             $topics = $this->codeModel->getByParentAndDepth(38, 2)->getResultArray();
             $bedrooms = $this->codeModel->getByParentAndDepth(39, 2)->getResultArray();
-            
+
+            $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
+
             $arr_code_list = [];
-            foreach($codes as $code){
+            foreach ($codes as $code) {
                 array_push($arr_code_list, $code["code_no"]);
             }
 
             $product_code_list = implode(",", $arr_code_list);
 
-            $products = $this->productModel->findProductPaging([
+            $products = $this->productModel->findProductHotelPaging([
                 'product_code_1' => 1303,
                 'product_code_list' => $product_code_list,
+                'checkin' => $checkin,
+                'checkout' => $checkout,
                 'search_product_name' => $search_product_name,
                 'search_product_category' => $search_product_category,
                 'search_product_hotel' => $search_product_hotel,
@@ -721,18 +728,35 @@ class Product extends BaseController
                 'product_status' => 'sale'
             ], 10, $pg, ['onum' => 'DESC']);
 
-            foreach($products['items'] as $key => $product) {
+            foreach ($products['items'] as $key => $product) {
 
-                $hotel_codes = explode("|", $product['product_code_list']);
-                $hotel_codes = array_values(array_filter($hotel_codes));
+                if(empty($search_product_category) || strpos($search_product_category, 'all') !== false){
+                    foreach($arr_code_list as $h_code){
 
-                $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+                        if(strpos($product['product_code_list'], $h_code) !== false){
+                            $hotel_code = $h_code;
+                            break;
+                        }
+                    }
+
+                }else{
+                    $hotel_codes = explode(",", $search_product_category);
+                    foreach($hotel_codes as $h_code){
+                        if(strpos($product['product_code_list'], $h_code) !== false){
+                            $hotel_code = $h_code;
+                            break;
+                        }
+                    }
+
+                }
+
+                $codeTree = $this->codeModel->getCodeTree($hotel_code);
 
                 $products['items'][$key]['codeTree'] = $codeTree;
 
                 $productReview = $this->reviewModel->getProductReview($product['product_idx']);
                 $hotel = $this->productModel->find($product['product_idx']);
-                
+
                 $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
                 $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
                 $_arr_utilities = [];
@@ -751,7 +775,7 @@ class Product extends BaseController
                     $roomCat = explode("|", $room["category"]);
                     $arr_room_category = [];
 
-                    foreach($roomCat as $cat) {
+                    foreach ($roomCat as $cat) {
                         $code_name = $this->codeModel->getCodeName($cat);
                         array_push($arr_room_category, $code_name);
                     }
@@ -776,11 +800,21 @@ class Product extends BaseController
                     $products['items'][$key]['utilities'] = $fresult4;
                 }
 
+                $_arr_promotions = explode('|', $product['product_promotions']);
+
+                $list__promotions = rtrim(implode(',', $_arr_promotions), ',');
+
+                if (!empty($list__promotions)) {
+                    $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__promotions) ORDER BY onum DESC, code_idx DESC";
+
+                    $fresult5 = $this->db->query($fsql);
+                    $fresult5 = $fresult5->getResultArray();
+                    $products['items'][$key]['promotions'] = $fresult5;
+                }
+
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
             }
-
-            $totalProducts = count($products['items']);
 
             $data = [
                 'banners' => $banners,
@@ -793,8 +827,8 @@ class Product extends BaseController
                 'bedrooms' => $bedrooms,
                 'products' => $products,
                 'code_no' => $code_no,
+                'code_name' => $parent_code_name,
                 'perPage' => $perPage,
-                'totalProducts' => $totalProducts,
                 'tab_active' => '1',
             ];
 
@@ -966,6 +1000,45 @@ class Product extends BaseController
             $rresult = $this->db->query($fsql) or die ($this->db->error);
             $rresult = $rresult->getResultArray();
 
+            $sql = "SELECT a.*, b.ufile1 as avt
+                    FROM tbl_travel_review a 
+                    INNER JOIN tbl_member b ON a.user_id = b.m_idx 
+                    WHERE a.product_idx = " . $idx ." AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+
+            $reviews = $this->db->query($sql) or die ($this->db->error);
+            $reviewCount = $reviews->getNumRows();
+            $reviews = $reviews->getResultArray();
+
+            $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
+            $reviewCategories = $this->db->query($sql) or die ($this->db->error);
+            $reviewCategories = $reviewCategories->getResultArray();
+
+            $reviewCategories = array_map(function ($item) use ($idx){
+                $reviewCategory = (array)$item;
+
+                $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($idx) .
+                        " AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
+                $results = $this->db->query($sql);
+                $count = $results->getNumRows();
+                $results = $results->getResultArray();
+
+                if ($count == 0) {
+                    $average = 0;
+                } else {
+                    $total = 0;
+                    foreach ($results as $item2) {
+                        $total += (int)$item2['number_stars'];
+                    }
+
+                    $average = number_format($total / $count, 1);
+                }
+
+                $reviewCategory['average'] = $average;
+                $reviewCategory['total'] = $count;
+
+                return $reviewCategory;
+            }, $reviewCategories);
+
             $data = [
                 'hotel' => $hotel,
                 's_category_room' => $s_category_room,
@@ -974,6 +1047,9 @@ class Product extends BaseController
                 'fresult5' => $fresult5 ?? [],
                 'fresult8' => $fresult8 ?? [],
                 'rresult' => $rresult ?? [],
+                'reviewCategories' => $reviewCategories ?? [],
+                'reviews' => $reviews ?? [],
+                'reviewCount' => $reviewCount,
                 'room_categories' => $room_categories_convert,
                 'hotel_options' => $hotel_option_convert,
                 'suggestHotel' => $suggestHotels,
@@ -994,7 +1070,7 @@ class Product extends BaseController
         return $this->renderView('product/hotel/customer-form');
     }
 
-    public function reservationForm($code_no) 
+    public function reservationForm($code_no)
     {
         return $this->renderView('product/hotel/reservation-form');
     }

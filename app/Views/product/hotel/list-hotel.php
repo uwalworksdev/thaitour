@@ -29,7 +29,7 @@
                 <input type="hidden" name="pg" id="pg" value="<?=$products["pg"]?>">
     
                 <div class="category-left only_web">
-                    <h1 class="title">방콕</h1>
+                    <h1 class="title"><?=$code_name?></h1>
                     <div class="category-left-list">
                         <div class="category-left-item">
                             <div class="subtitle">
@@ -100,11 +100,15 @@
                             </div>
                             <div class="tab_box_area_">
                                 <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_js p--20 border tab_active_" data-code="all" data-type="rating">전체</li>
+                                    <li class="tab_box_element_ tab_box_js p--20 border 
+                                        <?php if(strpos($products["search_product_rating"], "all") !== false
+                                            || empty($products["search_product_rating"])){ echo "tab_active_"; } ?>" data-code="all" data-type="rating">전체</li>
                                     <?php
                                         foreach($ratings as $code){
                                     ?>
-                                        <li class="tab_box_element_ tab_box_js p--20 border " data-code="<?=$code["code_no"]?>" data-type="rating"><?=$code["code_name"]?></li>
+                                        <li class="tab_box_element_ tab_box_js p--20 border 
+                                            <?php if(strpos($products["search_product_rating"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                            data-code="<?=$code["code_no"]?>" data-type="rating"><?=$code["code_name"]?></li>
                                     <?php
                                         }
                                     ?>
@@ -116,17 +120,19 @@
                                 <span>1박 평균가격</span>
                                 <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                             </div>
-                            <p class="tab-currency">
-                                <span class="currency active">원 · </span><span class="currency">바트</span>
-                            </p>
-    
-                            <div class="slider-container only_web">
-                                <div class="slider-background"></div>
-                                <div class="slider-track" id="slider-track"></div>
-                                <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" name="price_min" class="slider" id="slider-min">
-                                <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" name="price_max" class="slider" id="slider-max">
+                            <div class="tab_box_area_">
+                                <p class="tab-currency">
+                                    <span class="currency active">원 · </span><span class="currency">바트</span>
+                                </p>
+        
+                                <div class="slider-container only_web">
+                                    <div class="slider-background"></div>
+                                    <div class="slider-track" id="slider-track"></div>
+                                    <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" name="price_min" class="slider" id="slider-min">
+                                    <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" name="price_max" class="slider" id="slider-max">
+                                </div>
+                                <span>10,000원 ~ 500,000원 이상</span>
                             </div>
-                            <span>10,000원 ~ 500,000원 이상</span>
                         </div>
                         <div class="category-left-item">
                             <div class="subtitle">
@@ -189,6 +195,7 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="btn_search_" onclick="search_it()">검색</button>
                 </div>
                 
                 <div class="content-right">
@@ -197,12 +204,12 @@
                             <label for="checkin" class="label text-gray pt-2">체크인/아웃</label>
                             <div class="date-sub-container">
                                 <div class="date-wrapper">
-                                    <input type="text" id="checkin" name="checkin" class="date" value="2024/07/09">
+                                    <input type="text" id="checkin" name="checkin" class="date" value="<?=$products["checkin"]?>">
                                     <span class="suffix">(화)</span>
                                 </div>
                                 <span class="arrow">→</span>
                                 <div class="date-wrapper">
-                                    <input type="text" id="checkout" name="checkout" class="date" value="2024/07/10">
+                                    <input type="text" id="checkout" name="checkout" class="date" value="<?=$products["checkout"]?>">
                                     <span class="suffix">(수)</span>
                                 </div>
                             </div>
@@ -237,7 +244,7 @@
                     </div>
                     <div class="below-filter-content">
                         <div class="total_number">
-                            <p>총 상품 <span><?=$totalProducts?></span></p>
+                            <p>총 상품 <span><?=$products["nTotalCount"]?></span></p>
                         </div>
                         <div class="two-way-arrow-content">
                             <a href="#" class="">
@@ -318,12 +325,23 @@
                                     <div class="item-info">
                                         <h2>프로모션</h2>
                                         <div class="item-info-label">
-                                            <span>연박 프로모션</span> "3박 이상시 룸 업그레이드 (가능 여부에 따라)"
+                                            <span>연박 프로모션</span>
+                                            <?php 
+                                                $cnt_promotions = count($product['promotions']); 
+                                                $count = 1;
+                                            ?>
+                                            "<?php foreach ($product['promotions'] as $row): ?>
+                                                <?=$row["code_name"]?>
+                                                <?php if($count < $cnt_promotions){ echo ", "; }?> 
+                                                <?php $count++; ?>
+                                            <?php
+                                                endforeach; 
+                                            ?>"
                                         </div>
                                     </div>
                                     <div class="item-info">
                                         <div class="item-price-info"><span class="main"><?= number_format($product['product_price']) ?> </span><span class="text-gray">원
-                                                ~</span> <span class="sub text-gray">6,000바트~</span></div>
+                                                ~</span> <span class="sub text-gray"><?= number_format($product['product_price_baht']) ?>바트~</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -1198,27 +1216,33 @@
 
     $(document).ready(function() {
         function formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
+            if(date){
+                var d = new Date(date);
 
-            if (month.length < 2) month = '0' + month;
-            if (day.length < 2) day = '0' + day;
+                var month = '' + (d.getMonth() + 1);
+                var day = '' + d.getDate();
+                var year = d.getFullYear();
 
-            return [year, month, day].join('/');
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('/');
+            }else{
+                return "";
+            }
+            
         }
 
         $("#checkin, #checkout").datepicker({
-            dateFormat: 'yy/mm/dd',
+            dateFormat: 'yy-mm-dd',
             onSelect: function(dateText, inst) {
                 var date = $(this).datepicker('getDate');
                 $(this).val(formatDate(date));
             }
         });
 
-        $('#checkin').val(formatDate('2024/07/09'));
-        $('#checkout').val(formatDate('2024/07/10'));
+        $('#checkin').val(formatDate('<?=$products["checkin"]?>'));
+        $('#checkout').val(formatDate('<?=$products["checkout"]?>'));
     });
 
     $(document).ready(function() {
@@ -1294,6 +1318,23 @@
             //         '</div>'
             //     );
             // }
+
+            if($(this).data("code") === "all"){
+                $(this).siblings('[data-code]:not([data-code="all"])').removeClass('tab_active_');
+                $('.list-tag .tag-item span').each(function() {
+                    if ($(this).text() !== tabText && type == $(this).data("type")) {
+                        $(this).closest(".tag-item").remove();
+                    }
+                });
+            }else{
+                let allBtn = $(this).siblings('[data-code="all"]');
+                allBtn.removeClass('tab_active_');
+                $('.list-tag .tag-item span').each(function() {
+                    if ($(this).text() === allBtn.text() && type == $(this).data("type")) {
+                        $(this).closest(".tag-item").remove();
+                    }
+                });
+            }
 
             if($(this).hasClass('tab_active_')){
                 $(this).removeClass('tab_active_');

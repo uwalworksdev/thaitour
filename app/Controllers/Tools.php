@@ -48,7 +48,11 @@ class Tools extends BaseController
     {
         $product_code = $_POST['product_code'];
 
-        $result = $this->ProductModel->where('product_code_3', $product_code)->findAll();
+        $result = $this->ProductModel
+            ->where('product_code_3', $product_code)
+            ->orLike('product_code_list', "|$product_code|")
+            ->findAll();
+
         $cnt = count($result);
         $data = "";
         if ($cnt == 0) {
