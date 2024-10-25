@@ -124,6 +124,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
     });
 
+    $routes->group("_tours", static function ($routes) {
+        $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
+    });
+
     $routes->group("api", function ($routes) {
         $routes->get("get_code", "Api\AdminTourApi::get_code");
         $routes->post("ajax_change", "Api\AdminTourApi::ajax_change");
@@ -456,7 +460,7 @@ $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
 $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
-$routes->get('product-tours/(:any)', 'Product::index/$1');
+$routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
