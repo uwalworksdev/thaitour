@@ -74,7 +74,7 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_golf_ok/<?= $product_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="write_golf_ok<?= $product_idx ? "/$product_idx" : "" ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -225,14 +225,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>최소출발인원(성인)</th>
-                                    <td>
-                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
-                                               type="text"
-                                               value="<?= $minium_people_cnt ?>" style="width:100%"/>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>시내에서 거리 및 이동기간	</th>
                                     <td>
                                         <input id="distance_from_center" name="distance_from_center" class="input_txt" type="text" value="<?= $golf_info['distance_from_center'] ?>" style="width:100%"/>
@@ -242,6 +234,12 @@
                                     <th>공항에서 거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_airport" name="distance_from_airport" class="input_txt" type="text" value="<?= $golf_info['distance_from_airport'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>전동카트</th>
+                                    <td>
+                                        <input id="electric_car" name="electric_car" class="input_txt" type="text" value="<?= $golf_info['electric_car'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -258,9 +256,9 @@
                                             특가여부
                                         </label>
                                     </td>
-                                    <th>전동카트</th>
+                                    <th>갤러리피</th>
                                     <td>
-                                        <input id="electric_car" name="electric_car" class="input_txt" type="text" value="<?= $golf_info['electric_car'] ?>" style="width:100%"/>
+                                        <input id="caddy" name="caddy" class="input_txt" type="text" value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -288,9 +286,9 @@
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td>
-                                    <th>갤러리피</th>
+                                    <th>장비렌탈</th>
                                     <td>
-                                        <input id="caddy" name="caddy" class="input_txt" type="text" value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text" value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -300,9 +298,9 @@
                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
                                                style="width:20%"/><br/>
                                     </td>
-                                    <th>장비렌탈</th>
+                                    <th>스포츠데이</th>
                                     <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text" value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
+                                        <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -319,9 +317,11 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <th>스포츠데이</th>
+                                    <th>최소출발인원(성인)</th>
                                     <td>
-                                        <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
+                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
+                                               type="text"
+                                               value="<?= $minium_people_cnt ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>

@@ -20,7 +20,7 @@
             <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
         </div>
         <div class="rating-container">
-            <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
+            <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
             <span><strong> <?= $hotel['review_average'] ?></strong></span>
             <span class="text-gray">생생리뷰 <strong style="color: #000;">(0)</strong></span>
         </div>
@@ -64,12 +64,17 @@
                 <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
                 <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(159개)</p>
             </div>
-            <div class="btn-container">
+            <div class="btn-container only_web">
                 <button type="button" onclick="scrollToEl('section3')">
                     객실선택
                 </button>
             </div>
         </div>
+        <div class="btn-container cus-mb only_mo">
+                <button type="button" onclick="scrollToEl('section3')">
+                    객실선택
+                </button>
+            </div>
     </div>
     <div class="section2" id="section2">
         <h2 class="title-sec2">
@@ -81,7 +86,7 @@
         <p class="description-sec2" style="letter-spacing: 1px">
             <?= viewSQ($hotel['product_info']) ?>
         </p>
-        <div class="tag-list-icon" style="margin-top: 20px">
+        <div class="tag-list-icon mt-20">
             <?php foreach ($fresult4 as $row) : ?>
                 <div class="item-tag">
                     <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
@@ -233,7 +238,7 @@
                                 </thead>
                                 <tbody>
                                 <?php foreach ($room_options as $room_op) : ?>
-                                    <tr>
+                                    <tr class="room_op_" data-room="<?=$room_op["rop_idx"]?>">
                                         <td>
                                             <div class="room-details">
                                                 <p class="room-p-cus-1">객실 상세</p>
@@ -318,10 +323,9 @@
                                                                   id="<?= $room_op['rop_idx'] ?>"
                                                                   data-price="<?= $room_op['r_sale_price'] + $item['goods_price1'] ?>">
                                                                 <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
-                                                            </span>원
+                                                            </span> 원
                                                 </p>
-                                                <button class="book-button openPopupBtn"
-                                                        onclick="window.location.href='/product-hotel/reservation-form/2'">
+                                                <button type="button" class="book-button">
                                                     예약하기
                                                 </button>
                                             </div>
@@ -489,7 +493,7 @@
                                         </thead>
                                         <tbody>
                                         <?php foreach ($room_options as $room_op) : ?>
-                                            <tr>
+                                            <tr class="room_op_" data-room="<?=$room_op["rop_idx"]?>">
                                                 <td>
                                                     <div class="room-details">
                                                         <p class="room-p-cus-1">객실 상세</p>
@@ -574,9 +578,9 @@
                                                                   id="<?= $room_op['rop_idx'] ?>"
                                                                   data-price="<?= $room_op['r_sale_price'] + $item['goods_price1'] ?>">
                                                                 <?= number_format($room_op['r_sale_price'] + $item['goods_price1']) ?>
-                                                            </span>원
+                                                            </span> 원
                                                         </p>
-                                                        <button class="book-button openPopupBtn">예약하기</button>
+                                                        <button type="button" class="book-button">예약하기</button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -960,24 +964,52 @@
             });
         </script>
     </div>
-    <div id="popup" class="popup">
-        <div class="popup-content">
+    <input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
+    <input type="hidden" name="total_last_price" id="total_last_price">
+    <input type="hidden" name="use_coupon_room" id="use_coupon_room">
+    <input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
+    <input type="hidden" name="number_room" id="number_room">
+    <input type="hidden" name="number_day" id="number_day">
+    <input type="hidden" name="product_idx" id="product_idx" value="<?=$hotel['product_idx']?>">
+
+    <div id="popup" class="popup" data-roop="" data-price="">
+        <div class="popup-content" >
             <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
             <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
             <div class="order-popup">
-                <p class="count-info">사용 가능 쿠폰 <span>2장</span></p>
+                <?php 
+                    $nums_coupon = count($coupons);
+                ?>
+                <p class="count-info">사용 가능 쿠폰 <span><?=$nums_coupon?>장</span></p>
                 <div class="description-above">
-                    <div class="item-price-popup">
+                    <?php
+                        foreach($coupons as $coupon){
+                            if ($coupon["dc_type"] == "P") {
+                                $discount = $coupon["coupon_pe"] . "%";
+                                $dis = $coupon["coupon_pe"];
+                            } else if ($coupon["dc_type"] == "D") {
+                                $discount = number_format($coupon["coupon_price"]) . "원";
+                                $dis = $coupon["coupon_price"];
+                            } else {
+                                $discount = "회원등급에 따름";
+                                $dis = 0;
+                            }
+                    ?>
+                    <div class="item-price-popup" style="cursor: pointer;" 
+                        data-idx="<?=$coupon["c_idx"]?>" data-type="<?=$coupon["dc_type"]?>" data-discount="<?=$dis?>">
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
                         <div class="text-con">
-                            <span>신규회원가입 웰컴 쿠폰</span>
-                            <span class="text-gray">10% 할인쿠폰</span>
+                            <span class="item_coupon_name"><?=$coupon["coupon_name"]?></span>
+                            <span class="text-gray"><?=$discount?> 할인쿠폰</span>
                         </div>
-                        <span class="date-sub">~2024.10.05</span>
+                        <span class="date-sub">~<?=date("Y.m.d", strtotime($coupon["enddate"]))?></span>
                     </div>
-                    <div class="item-price-popup">
+                    <?php
+                        }
+                    ?>
+                    <!-- <div class="item-price-popup">
                         <div class="img-container">
                             <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                         </div>
@@ -986,8 +1018,9 @@
                             <span class="text-gray">5,000원 할인쿠폰</span>
                         </div>
                         <span class="date-sub">~2024.10.05</span>
-                    </div>
-                    <div class="item-price-popup item-price-popup--button">
+                    </div> -->
+                    <div class="item-price-popup item-price-popup--button active" 
+                        data-idx="" data-type="" data-discount="0">
                         <span>적용안함</span>
                     </div>
                 </div>
@@ -996,21 +1029,20 @@
                     <div class="des-above">
                         <div class="item">
                             <span class="text-gray">총 주문금액</span>
-                            <span class="text-gray">160,430원</span>
+                            <span class="text-gray total_price" data-price="">160,430원</span>
                         </div>
                         <div class="item">
                             <span class="text-gray">할인금액</span>
-                            <span class="text-gray">16,040원</span>
+                            <span class="text-gray discount" data-price="">16,040원</span>
                         </div>
                     </div>
                     <div class="des-below">
                         <div class="price-below">
                             <span>최종결제금액</span>
-                            <p class="price-popup">144,000<span class="text-gray">원</span></p>
+                            <p class="price-popup"><span class="last_price" data-price="">144,000</span><span class="text-gray">원</span></p>
                         </div>
                     </div>
-                    <button class="btn_accept_popup"
-                            onclick="location.href='/product-hotel/customer-form'">
+                    <button type="button" class="btn_accept_popup">
                         쿠폰적용
                     </button>
                 </div>
@@ -1049,8 +1081,83 @@
 
         // Show popup when the "Open Popup" button is clicked
         $openPopupBtns.on('click', function () {
+            let room_op_idx = $(this).closest("tr.room_op_").attr("data-room");
+            let total_price = Number($(this).closest("tr.room_op_").find(".totalPrice").attr("data-price"));
+            let price = $(this).closest("tr.room_op_").find(".totalPrice").attr("data-price");
+
+            $("#popup").find(".total_price").text(total_price.toLocaleString('ko-KR') + "원");
+            $("#popup").find(".total_price").attr("data-price", total_price);
+            $("#popup").attr("data-price", price);
+            $("#popup").attr("data-roop", room_op_idx);
+            
+            popup_coupon();
+
             $popup.css('display', 'flex');
         });
+
+        $(".item-price-popup").click(function() {
+            $(this).addClass("active").siblings().removeClass("active");
+            popup_coupon();
+        });
+
+        $(".btn_accept_popup").click(function () {
+            let room_op_idx = $("#popup").attr("data-roop");
+
+            let coupon_discount = Number($("#popup").find(".item-price-popup.active").attr("data-discount"));
+            let coupon_idx = Number($("#popup").find(".item-price-popup.active").attr("data-idx"));
+            $("#coupon_discount").val(coupon_discount);
+            $("#use_coupon_idx").val(coupon_idx);
+            $("#popup").hide();
+
+            if(room_op_idx){
+                let price = Number($('.room_op_[data-room="' + room_op_idx + '"]').find(".totalPrice").attr("data-price"));
+                let room_qty = $('.room_op_[data-room="' + room_op_idx + '"]').find(".room_qty .input_room_qty").val();
+                let day_qty = $('.room_op_[data-room="' + room_op_idx + '"]').find(".day_qty .input_day_qty").val();
+                let total_price = price * parseInt(room_qty) * parseInt(day_qty) - coupon_discount;
+                
+                $('.room_op_[data-room="' + room_op_idx + '"]').find(".totalPrice").text(total_price.toLocaleString('ko-KR'));
+                $("#total_last_price").val(total_price);
+                $("#use_coupon_room").val(room_op_idx);
+
+                let rooms = $('.room_op_[data-room!="' + room_op_idx + '"]');
+
+                rooms.each(function() {
+                    let price = Number($(this).find(".totalPrice").attr("data-price"));
+                    let room_qty = $(this).find(".room_qty .input_room_qty").val();
+                    let day_qty = $(this).find(".day_qty .input_day_qty").val();
+                    let total_price = price * parseInt(room_qty) * parseInt(day_qty);
+
+                    $(this).find(".totalPrice").text(total_price.toLocaleString('ko-KR'));
+
+                });
+            }
+        });
+
+        function popup_coupon() {
+            let total_price = Number($("#popup").find(".total_price").attr("data-price"));
+            
+            let price_discount = 0;
+            let last_price = total_price;
+
+            let type = $("#popup").find(".item-price-popup.active").attr("data-type");
+            let discount = $("#popup").find(".item-price-popup.active").attr("data-discount");
+    
+            if(type && discount){
+                if(type == "P"){
+                    price_discount = Math.round(total_price * Number(discount) / 100);
+                    last_price = total_price - price_discount;
+                }else{
+                    price_discount = discount;
+                    last_price = total_price - price_discount;
+                }   
+            }
+
+            $("#popup").find(".discount").text(price_discount.toLocaleString('ko-KR') + "원");
+            $("#popup").find(".last_price").text(last_price.toLocaleString('ko-KR'));
+            $("#popup").find(".discount").attr("data-price", price_discount);
+            $("#popup").find(".last_price").attr("data-price", last_price);
+
+        }
 
         $('.list-icon img[alt="heart_icon"], .list-icon img[alt="heart_icon_mo"]').click(function () {
             if ($(this).attr('src').includes('_mo')) {
@@ -1066,6 +1173,29 @@
                     $(this).attr('src', '/uploads/icons/heart_icon.png');
                 }
             }
+        });
+
+        $(".book-button").click(function() {
+            let coupon_discount = $("#coupon_discount").val();
+            let use_coupon_room = $("#use_coupon_room").val();
+            let use_coupon_idx = $("#use_coupon_idx").val();
+            let room_op_idx = $(this).closest(".room_op_").data("room");
+            let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty");
+            let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty");
+            let product_idx = $("#product_idx").val();
+
+            let cart = {
+                product_idx: product_idx,
+                room_op_idx: room_op_idx,
+                use_coupon_idx: use_coupon_idx,
+                use_coupon_room: use_coupon_room,
+                coupon_discount: coupon_discount,
+                number_room: number_room,
+                number_day: number_day
+            };
+
+            setCookie("cart", JSON.stringify(cart), 1);
+            // window.location.href='/product-hotel/reservation-form/2';
         });
 
         // Close the popup when the "Close" button or the "x" is clicked
@@ -1127,13 +1257,15 @@
 
             let qty_room = item.find('input.input_room_qty').val();
             let qty_day = item.find('input.input_day_qty').val();
-
+            let coupon_discount = Number($("#coupon_discount").val());
             item.find('span.count_room').text(qty_room);
             item.find('span.count_day').text(qty_day);
-            let main_price = item.find('span.totalPrice').data('price');
-            let total_price = qty_room * qty_day * parseInt(main_price);
+            let main_price = item.find('span.totalPrice').attr('data-price');
+            let total_price = qty_room * qty_day * parseInt(main_price) - coupon_discount;
             let formattedNumber = total_price.toLocaleString('en-US');
             item.find('span.totalPrice').text(formattedNumber);
+
+            $("#total_last_price").val(total_price);
         }
     </script>
 

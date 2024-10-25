@@ -1731,6 +1731,10 @@
     font-size: 24px;
 }
 
+.mt-20 {
+    margin-top: 20px;
+}
+
 .content-sub-hotel-detail .section6 .list-label-tag {
     display: flex;
     gap: 80px;
@@ -2623,16 +2627,22 @@
     color: #999999;
 }
 
+.content-sub-hotel-detail .popup-content .item-price-popup.active {
+    border-color: #0c80e4 !important;
+}
+
+.content-sub-hotel-detail .popup-content .item-price-popup.active span {
+    color: #0c80e4 !important;
+}
+
 .content-sub-hotel-detail .popup-content .item-price-popup.item-price-popup--button {
     padding: 32px;
-    border-color: #0c80e4;
     margin-bottom: 135px;
     cursor: pointer;
 }
 
 .content-sub-hotel-detail .popup-content .item-price-popup.item-price-popup--button span {
     font-size: 20px;
-    color: #0c80e4;
 }
 
 .content-sub-hotel-detail .footer-popup .des-above .item {

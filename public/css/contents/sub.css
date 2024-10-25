@@ -4820,6 +4820,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  margin-top: 29px;
 }
 
 .customer-form-page .card-left .cus-select-group {
@@ -4912,6 +4913,15 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   margin-bottom: 0 !important;
 }
 
+.content-sub-hotel-detail .location-container img {
+  width: 14px;
+  height: 18px;
+}
+
+.content-sub-hotel-detail .rating-container img {
+  width: 18px;
+  height: 18px;
+}
 
 @media screen and (max-width: 1200px) {
   .only_tb {

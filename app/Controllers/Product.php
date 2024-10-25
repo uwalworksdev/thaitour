@@ -848,6 +848,8 @@ class Product extends BaseController
             $s_category_room = $_GET['s_category_room'] ?? '';
             $subSql = '';
 
+            $session = session();
+
             if (isset($s_category_room) && $s_category_room !== '') {
                 $subSql .= " AND r.category LIKE '%" . $s_category_room . "|%'";
             }
@@ -1039,6 +1041,18 @@ class Product extends BaseController
                 return $reviewCategory;
             }, $reviewCategories);
 
+            if(!empty($session->get("member")["id"])){
+                $user_id = $session->get("member")["id"];
+                $c_sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                                , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                    FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id. "' 
+                                    AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+                $c_result = $this->db->query($c_sql);
+                $c_row = $c_result->getResultArray();
+            }else{
+                $c_row = [];
+            }
+
             $data = [
                 'hotel' => $hotel,
                 's_category_room' => $s_category_room,
@@ -1052,6 +1066,7 @@ class Product extends BaseController
                 'reviewCount' => $reviewCount,
                 'room_categories' => $room_categories_convert,
                 'hotel_options' => $hotel_option_convert,
+                'coupons' => $c_row,
                 'suggestHotel' => $suggestHotels,
             ];
 

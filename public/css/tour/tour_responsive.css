@@ -430,6 +430,7 @@
   .main_page_01 .main_visual_content_ .form_element_ {
     flex-direction: column;
     gap: 1.6rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0.5rem 1.5rem;
   }
 
   .main_page_01 .main_visual_content_ .form_element_ .form_input_ {
@@ -537,7 +538,8 @@
   }
 
   .content-sub-hotel-detail .section1 .location-container img {
-    width: 2rem;
+    width: 2.2rem;
+    height: 2.7rem;
     margin-right: .6rem;
   }
 
@@ -998,15 +1000,18 @@
   }
 
   .content-sub-hotel-detail .post-list-sec2 div {
-    width: 49%;
-  }
-
-  .content-sub-hotel-detail .post-list-sec2 div {
     margin-bottom: 0;
   }
 
   .content-sub-hotel-detail .post-list-sec2 div span {
     font-size: 2.4rem;
+  }
+
+  .content-sub-hotel-detail .post-list-sec2 div {
+    display: flex;
+    flex-direction: column;
+    width: 28rem;
+    margin: 3.2rem 0;
   }
 
   .content-sub-hotel-detail .title-sec3 {
@@ -1042,6 +1047,8 @@
   .content-sub-hotel-detail .post-list-sec2 {
     flex-wrap: wrap;
     margin-bottom: 8rem;
+    gap: 3rem;
+    margin-top: -3.2rem;
   }
 
   .content-sub-hotel-detail .section2 .sub-title-sec2 {
@@ -1507,7 +1514,8 @@
   }
 
   .content-sub-hotel-detail .rating-container img:first-child {
-    width: 2rem;
+    width: 2.3rem;
+    height: 2.2rem;
     margin-right: 0.6rem;
   }
 
@@ -1549,6 +1557,9 @@
 
   .content-sub-hotel-detail .post-list-sec2 div img {
     margin-bottom: 2rem;
+    width: 28rem;
+    height: 17.6rem;
+    object-fit: cover;
   }
 
   .content-sub-hotel-detail .list-tag-sec3 {
@@ -2083,18 +2094,22 @@
     justify-content: space-between;
     padding: 0 0;
     border: none;
-    margin-bottom: 6.4rem;
+    margin-bottom: 3.2rem;
     overflow-x: scroll;
     overflow-y: hidden;
   }
 
   .content-sub-hotel-detail .main {
-    gap: 4.6rem;
+    gap: 5.6rem;
     display: flex;
     align-items: center;
     font-weight: 500;
     font-size: 2.1rem;
     width: 120rem;
+  }
+
+  .content-sub-hotel-detail .btn-container.cus-mb {
+    margin-bottom: 8rem;
   }
 
   .content-sub-hotel-detail .main a.active {
@@ -2300,7 +2315,6 @@
     gap: 4rem;
     flex-wrap: nowrap;
     margin-top: 2.9rem;
-    width: 168rem;
     margin-bottom: 2rem;
   }
 
@@ -2952,5 +2966,21 @@
 
   .content-sub-hotel-detail .main .nav-item {
     font-size: 3rem;
+    position: relative;
+  }
+
+  .content-sub-hotel-detail .main .nav-item.active::after {
+    height: 0.4rem;
+    content: "";
+    width: 130%;
+    border-radius: 1.6rem;
+    position: absolute;
+    bottom: -113%;
+    left: -0.9rem;
+    background-color: var(--bs-point);
+  }
+
+  .mt-20 {
+    margin-top: 2rem;
   }
 }
