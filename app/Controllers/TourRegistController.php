@@ -281,13 +281,15 @@ class TourRegistController extends BaseController
             }
 
             $html = '<script>alert("수정되었습니다.");</script>';
+            $html .= '<script>parent.location.reload();</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
+            $data['m_date'] = date("Y-m-d H:i:s");
             $this->productModel->insertData($data);
             $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
             $html = '<script>alert("등록되었습니다.");</script>';
+            $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
-        $html .= '<script>parent.location.reload();</script>';
         return $this->response->setBody($html);
     }
 
