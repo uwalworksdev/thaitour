@@ -1107,7 +1107,7 @@
         $(".btn_accept_popup").click(function () {
             let room_op_idx = $("#popup").attr("data-roop");
 
-            let coupon_discount = Number($("#popup").find(".item-price-popup.active").attr("data-discount"));
+            let coupon_discount = Number($("#popup").find(".discount").attr("data-price"));
             let coupon_idx = Number($("#popup").find(".item-price-popup.active").attr("data-idx"));
             $("#coupon_discount").val(coupon_discount);
             $("#use_coupon_idx").val(coupon_idx);
