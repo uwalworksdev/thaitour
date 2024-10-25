@@ -24,7 +24,7 @@
                     <span><strong> 4.7</strong></span>
                     <span>생생리뷰 <strong>(124)</strong></span>
                 </div>
-                <div class="list-icon">
+                <div class="list-icon only_mo">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
                     <img src="/uploads/icons/share_icon.png" alt="share_icon">

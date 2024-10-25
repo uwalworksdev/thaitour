@@ -20,7 +20,7 @@
             <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
         </div>
         <div class="rating-container">
-            <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
+            <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
             <span><strong> <?= $hotel['review_average'] ?></strong></span>
             <span class="text-gray">생생리뷰 <strong style="color: #000;">(0)</strong></span>
         </div>
@@ -64,12 +64,17 @@
                 <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
                 <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(159개)</p>
             </div>
-            <div class="btn-container">
+            <div class="btn-container only_web">
                 <button type="button" onclick="scrollToEl('section3')">
                     객실선택
                 </button>
             </div>
         </div>
+        <div class="btn-container cus-mb only_mo">
+                <button type="button" onclick="scrollToEl('section3')">
+                    객실선택
+                </button>
+            </div>
     </div>
     <div class="section2" id="section2">
         <h2 class="title-sec2">
@@ -81,7 +86,7 @@
         <p class="description-sec2" style="letter-spacing: 1px">
             <?= viewSQ($hotel['product_info']) ?>
         </p>
-        <div class="tag-list-icon" style="margin-top: 20px">
+        <div class="tag-list-icon mt-20">
             <?php foreach ($fresult4 as $row) : ?>
                 <div class="item-tag">
                     <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
