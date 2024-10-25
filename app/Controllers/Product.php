@@ -37,6 +37,7 @@ class Product extends BaseController
         $this->orderModel = model("OrdersModel");
         $this->orderSubModel = model("OrderSubModel");
         $this->coupon = model("Coupon");
+        $this->golfInfoModel = model("GolfInfoModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
