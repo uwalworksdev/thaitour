@@ -74,7 +74,8 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_tours_ok.php" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="<?= route_to('admin._tours.write_ok') ?>" method=post enctype="multipart/form-data"
+                  target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -430,11 +431,11 @@
                                     <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
-                                                <input type="checkbox" name="product_best"
-                                                       id="product_best"
-                                                       value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
-                                                    echo "checked";
-                                                } ?>/>
+                                            <input type="checkbox" name="product_best"
+                                                   id="product_best"
+                                                   value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
+                                                echo "checked";
+                                            } ?>/>
                                         <?php endforeach; ?>
                                     </td>
                                     <th>우선순위</th>
@@ -1601,7 +1602,7 @@
         function get_code(strs, depth) {
             $.ajax({
                 type: "GET"
-                , url: "get_code.ajax.php"
+                , url: "/AdmMaster/api/get_code"
                 , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
