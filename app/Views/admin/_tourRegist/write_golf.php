@@ -166,17 +166,11 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
-                                    <th>일자</th>
+                                    <th>상품명</th>
                                     <td>
-                                        <select id="tour_period" name="tour_period" class="input_select">
-                                            <option value="">일자선택</option>
-                                            <?php for ($i = 1; $i <= 40; $i++) { ?>
-                                                <option value="<?= $i ?>" <?php if ($tour_period == $i) {
-                                                    echo "selected";
-                                                } ?>><?= $i ?>일
-                                                </option>
-                                            <?php } ?>
-                                        </select>
+                                        <input type="text" id="product_name" name="product_name"
+                                               value="<?= $product_name ?>"
+                                               class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -192,22 +186,6 @@
                                                 </a><?php } ?>
                                         <?php } ?>
                                     </td>
-                                    <th>상품명</th>
-                                    <td>
-                                        <input type="text" id="product_name" name="product_name"
-                                               value="<?= $product_name ?>"
-                                               class="input_txt" style="width:90%"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>이용항공</th>
-                                    <td>
-                                        <input type="text" id="product_air" name="product_air"
-                                               value="<?= $product_air ?>"
-                                               class="input_txt" style="width:90%"/>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>간단소개</th>
                                     <td>
                                         <input type="text" id="product_info" name="product_info"
@@ -216,17 +194,34 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>간단일정(사용안함)</th>
+                                    <th>더투어랩 평가 등급</th>
                                     <td>
-                                        <input type="text" id="product_schedule" name="product_schedule"
-                                               value="<?= $product_schedule ?>" class="input_txt" style="width:90%"/>
+                                        <select id="star_level" name="star_level" class="input_select">
+                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                <option value="<?= $i ?>" <?php if ($golf_info['star_level'] == $i) {
+                                                    echo "selected";
+                                                } ?>><?= $i ?>&#9733;
+                                                </option>
+                                            <?php } ?>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>여행국가(사용안함)</th>
+                                    <th>총홀수</th>
                                     <td>
-                                        <input id="product_country" name="product_country" class="input_txt" type="text"
-                                               value="<?= $product_country ?>" style="width:90%"/>
+                                        <input id="holes_number" name="holes_number" class="input_txt" type="text" value="<?= $golf_info['holes_number'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>휴무일</th>
+                                    <td>
+                                        <input id="holidays" name="holidays" class="input_txt" type="text" value="<?= $golf_info['holidays'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>팀당 라운딩 인원</th>
+                                    <td>
+                                        <input id="num_of_players" name="num_of_players" class="input_txt" type="text" value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -234,39 +229,40 @@
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="text"
-                                               value="<?= $minium_people_cnt ?>" style="width:500px"/>
+                                               value="<?= $minium_people_cnt ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>마일리지</th>
+                                    <th>시내에서 거리 및 이동기간	</th>
                                     <td>
-                                        <input id="product_mileage" name="product_mileage" class="input_txt" type="text"
-                                               value="<?= $product_mileage ?>" style="width:50px" maxlength="2"/>% (총
-                                        결제비용 %)
+                                        <input id="distance_from_center" name="distance_from_center" class="input_txt" type="text" value="<?= $golf_info['distance_from_center'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>이동방법</th>
+                                    <th>공항에서 거리 및 이동시간</th>
                                     <td>
-                                        <input id="tour_transport" name="tour_transport" class="input_txt" type="text"
-                                               value="<?= isset($tour_transport) ? $tour_transport : "" ?>"
-                                               style="width:90%"/>
+                                        <input id="distance_from_airport" name="distance_from_airport" class="input_txt" type="text" value="<?= $golf_info['distance_from_airport'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>여행혜택</th>
+                                    <th>구분</th>
                                     <td>
-                                        <input id="benefit" name="benefit" class="input_txt" type="text"
-                                               value="<?= $benefit ?>"
-                                               style="width:90%"/><br/>
+                                        <label for="is_best_value">
+                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
+                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
+                                            가성비추천
+                                        </label>
+                                        <label for="special_price">
+                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
+                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
+                                            특가여부
+                                        </label>
                                     </td>
-                                    <th>대표도시</th>
+                                    <th>전동카트</th>
                                     <td>
-                                        <input id="capital_city" name="capital_city" class="input_txt" type="text"
-                                               value="<?= $capital_city ?>" style="width:200px"/>
+                                        <input id="electric_car" name="electric_car" class="input_txt" type="text" value="<?= $golf_info['electric_car'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <th>출발요일</th>
                                     <td>
@@ -292,30 +288,23 @@
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td>
+                                    <th>갤러리피</th>
+                                    <td>
+                                        <input id="caddy" name="caddy" class="input_txt" type="text" value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>가이드/언어</th>
                                     <td>
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
                                                style="width:20%"/><br/>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>주소</th>
-                                    <td colspan="3">
-                                        <input type="text" name="addrs" id="addrs" value="<?= $addrs ?>" class="text" style="width:70%"/>
-										<button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
-										<div style="margin-top: 10px;">
-											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
-											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
-										</div>
+                                    <th>장비렌탈</th>
+                                    <td>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text" value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>메모</th>
-                                    <td colspan="3"><textarea name="information" cols="100" rows="5"
-                                                              style="width: 100%"><?= $information ?></textarea></td>
-                                </tr>
-
                                 <tr>
                                     <th>사용여부</th>
                                     <td>
@@ -330,11 +319,20 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <th>여행기간</th>
+                                    <th>스포츠데이</th>
                                     <td>
-                                        <input id="product_period" name="product_period" class="input_txt" type="text"
-                                               value="<?= $product_period ?>" style="width:90%"/><br/>
-                                        <span style="color: gray;">* ex) 3박 5일</span>
+                                        <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>주소</th>
+                                    <td colspan="3">
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs" value="<?= $addrs ?>" class="text" style="width:70%"/>
+										<button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
+										<div style="margin-top: 10px;">
+											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
+											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
+										</div>
                                     </td>
                                 </tr>
 
@@ -455,65 +453,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th></th>
-                                    <td colspan="3">
-                                        <label for="is_best_value">
-                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
-                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
-                                            가성비추천
-                                        </label>
-                                        <label for="special_price">
-                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
-                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
-                                            특가여부
-                                        </label>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>투어구분</th>
-                                    <td>
-                                        <?php foreach ($codes as $code): ?>
-                                            <?php
-                                            $chk = (strpos($tours_cate, $code['code_no']) !== false) ? "checked" : "";
-                                            ?>
-                                            <input type="checkbox" name="_tours_cate" class="product_option"
-                                                   value="<?= esc($code['code_no']) ?>" <?= $chk ?> /><?= esc($code['code_name']) ?> &nbsp;&nbsp;
-                                        <?php endforeach; ?>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>성인/소아/유아 구분</th>
-                                    <td colspan="3">
-                                        <input type="text" name="adult_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
-                                               value="<?= isset($row) ? $row["adult_text"] : '' ?>"/>
-                                        <span style="margin-right:20px;"></span>
-                                        <input type="text" name="kids_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
-                                               value="<?= isset($row) ? $row["kids_text"] : '' ?>"/>
-                                        <span style="margin-right:20px;"></span>
-                                        <input type="text" name="baby_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
-                                               value="<?= isset($row) ? $row["baby_text"] : '' ?>"/>
-                                        <span style="margin-right:20px;"></span>
-                                    </td>
-                                </tr>
-
-                                <tr style="display:none">
-                                    <th>상품내용</th>
-                                    <td colspan="3">
-								<textarea name="product_contents" id="product_contents" rows="10" cols="100"
-                                          style="width:100%; height:412px; display:none;"><?= $product_contents ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
                                     <th>상품정보</th>
                                     <td colspan="3">
-
 
 								<textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
                                           style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
@@ -636,104 +577,6 @@
                                 </table>
                             </td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 가격리스트</li>
-                        <li class="right_sub" style="padding-bottom:10px">
-                            <a href="../_tourPrice/write<?= ($product_code_1 == "1301") ? "_package" : "" ?>.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_3=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&back_url=<?= $back_url ?>"
-                               class="btn btn-default">
-                                <span class="glyphicon glyphicon-cog"></span>
-                                <span class="txt">가격등록</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <caption></caption>
-                        <colgroup>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="*"/>
-                            <col width="8%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>시작일</th>
-                            <th>종료일</th>
-                            <th>항공사별 가격</th>
-                            <th>선택요일</th>
-                            <th>등록일</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <?php echo $yoil_html ?>
-                    </table>
-                </div>
-
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 상세내역</li>
-                        <li class="right_sub" style="padding-bottom:10px"></li>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <colgroup>
-                            <col width="70px"/>
-                            <col width="*"/>
-                            <col width="260px"/>
-                            <col width="260px"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>항공사</th>
-                            <th>일차</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php if ($fTotalresult4 > 0): ?>
-                            <?php $i = 1; ?>
-                            <?php foreach ($fresult4 as $frow): ?>
-                                <tr style="height:50px">
-                                    <td><?= $i++ ?></td>
-                                    <td class="tac"><?= $frow["code_name"] ?></td>
-                                    <td class="tac"><?= $frow["cnt"] ?>일차</td>
-                                    <td>
-                                        <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
-                                           class="btn btn-default">상세내역관리</a>
-                                        <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                            <input type="file" hidden name="fileInput"
-                                                   data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput" accept=".json">
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr style="height:50px">
-                                <td><?= $i++ ?></td>
-                                <td class="tac">미등록</td>
-                                <td class="tac">미등록</td>
-                                <td>
-                                    <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
-                                       class="btn btn-default">상세내역관리</a>
-                                    <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                        <!-- <button type="button">Tải lên lịch trình</button> -->
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -1093,21 +936,6 @@
 
             function send_it() {
                 var frm = document.frm;
-                /*
-                oEditors1.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
-                */
-                oEditors4.getById["mobile_unable"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors3.getById["mobile_able"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors2.getById["product_able"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors5.getById["product_unable"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors6.getById["special_benefit"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors7.getById["special_benefit_m"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors8.getById["notice_comment"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors9.getById["notice_comment_m"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors10.getById["etc_comment"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors11.getById["etc_comment_m"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors12.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
                 oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
 
@@ -1115,11 +943,11 @@
                     return;
                 }
 
-                if (frm.tour_period.value == "") {
-                    alert("일자를 선택하셔야 합니다.");
-                    frm.tour_period.focus();
-                    return;
-                }
+                // if (frm.tour_period.value == "") {
+                //     alert("일자를 선택하셔야 합니다.");
+                //     frm.tour_period.focus();
+                //     return;
+                // }
                 if (frm.product_code_1.value == "") {
                     alert("1차분류를 선택하셔야 합니다.");
                     //frm.product_code_1.focus();
