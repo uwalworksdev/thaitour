@@ -1141,9 +1141,10 @@ class Product extends BaseController
         return $this->renderView('product/golf/list-golf');
     }
 
-    public function golfDetail($code_no)
+    public function golfDetail($product_idx)
     {
-        return $this->renderView('product/golf/golf-details');
+        $data['product'] = $this->productModel->getProductDetails($product_idx);
+        return $this->renderView('product/golf/golf-details', $data);
     }
 
     public function customerForm($code_no)

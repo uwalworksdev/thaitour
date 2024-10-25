@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class GolfInfoModel extends Model
+{
+    protected $table = 'tbl_golf_info';
+
+    protected $primaryKey = 'info_idx';
+
+    protected $allowedFields = [
+        "product_idx",
+        "star_level",
+        "holes_number",
+        "holidays",
+        "distance_from_center",
+        "distance_from_airport",
+        "num_of_players",
+        "electric_car",
+        "caddy",
+        "equipment_rent",
+        "sports_day"
+    ];
+
+    public function getGolfInfo($product_idx)
+    {
+        return $this->where("product_idx", $product_idx)->first();
+    }
+    public function insertData($data)
+    {
+        $allowedFields = $this->allowedFields;
+        
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields) {
+                return in_array($key, $allowedFields);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->insert($filteredData);
+    }
+    public function updateData($id, $data)
+    {
+        $allowedFields = $this->allowedFields; 
+        
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields) {
+                return in_array($key, $allowedFields);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->where("product_idx", $id)->set($filteredData)->update();
+    }
+}

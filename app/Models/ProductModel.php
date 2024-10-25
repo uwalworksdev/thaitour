@@ -27,13 +27,43 @@ class ProductModel extends Model
         "tour_time", "capital_city", "m_date", "r_date", "user_id", "user_level", "information", "meeting_guide", "meeting_place",
         "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
         "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value",
-        "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', 'product_type', 'product_promotions', 'product_more'
+        "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', 'product_type', 'product_promotions', 'product_more',
+        "latitude", "longitude"
     ];
 
     protected function initialize()
     {
     }
 
+    public function insertData($data)
+    {
+        $allowedFields = $this->allowedFields;
+        
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields) {
+                return in_array($key, $allowedFields);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->insert($filteredData);
+    }
+
+    public function updateData($id, $data)
+    {
+        $allowedFields = $this->allowedFields; 
+        
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields) {
+                return in_array($key, $allowedFields);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->update($id, $filteredData);
+    }
 
     public function getSuggestedProducts($code_no)
     {

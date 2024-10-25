@@ -430,6 +430,7 @@
   .main_page_01 .main_visual_content_ .form_element_ {
     flex-direction: column;
     gap: 1.6rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 0.5rem 1.5rem;
   }
 
   .main_page_01 .main_visual_content_ .form_element_ .form_input_ {
@@ -2314,7 +2315,6 @@
     gap: 4rem;
     flex-wrap: nowrap;
     margin-top: 2.9rem;
-    width: 168rem;
     margin-bottom: 2rem;
   }
 

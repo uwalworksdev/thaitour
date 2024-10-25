@@ -1,4 +1,4 @@
-<a href="/product-golf/list-golf/1324" class="sub_tour_section5_item swiper-slide">
+<a href="/product-golf/golf-detail/1324" class="sub_tour_section5_item swiper-slide">
     <div class="img_box img_box_10">
         <img src="<?= getImage("/data/product/{$item['ufile1']}") ?>" alt="<?= $item['rfile1'] ?>" loading="lazy">
     </div>
@@ -10,10 +10,6 @@
                 <?php } ?>
             </span>
         <?php } ?>
-        <!-- <span class="prd_keywords_cus_span">방콕
-                                    <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
-                                </span>
-                                <span> 사뭇 쁘라칸</span> -->
     </div>
     <div class="prd_name">
         <?= viewSQ($item['product_name']) ?>
