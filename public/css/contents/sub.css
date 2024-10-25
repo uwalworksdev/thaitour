@@ -3916,6 +3916,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   display: inline-block;
 }
 
+.customer-form-page .container-card .item-info-check-first.click{
+  background-color: #686868;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
 .customer-form-page .container-card .item-info-check-first {
   display: flex;
   justify-content: space-between;

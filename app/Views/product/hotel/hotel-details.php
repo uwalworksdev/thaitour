@@ -1196,7 +1196,7 @@
             let room_op_idx = $(this).closest(".room_op_").data("room");
             let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
             let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
-            let last_price = $("#total_last_price").val();
+            let last_price = $(this).closest(".room_op_").find(".totalPrice").text().trim().replace(/,/g, '');
             let product_idx = $("#product_idx").val();
             let inital_price = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
             let cart = {
