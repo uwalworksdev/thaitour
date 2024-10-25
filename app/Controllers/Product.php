@@ -16,6 +16,7 @@ class Product extends BaseController
     private $codeModel;
     private $reviewModel;
     private $mainDispModel;
+    protected $golfInfoModel;
 
     private $scale = 8;
 
@@ -28,7 +29,8 @@ class Product extends BaseController
         $this->codeModel = model("Code");
         $this->reviewModel = model("ReviewModel");
         $this->mainDispModel = model("MainDispModel");
-        helper(['my_helper']);
+        $this->golfInfoModel = model("GolfInfoModel");
+        helper('my_helper');
         $constants = new ConfigCustomConstants();
     }
 
@@ -1131,6 +1133,22 @@ class Product extends BaseController
     public function golfDetail($product_idx)
     {
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
+        $productReview = $this->reviewModel->getProductReview($product_idx);
+        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['review_average'] = $productReview['avg'];
+
+        $data['imgs'] = [];
+        $data['img_names'] = [];
+
+        for ($i = 2; $i <= 7; $i++) {
+            $file = "ufile" . $i;
+            if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
+                $data['imgs'][] = "/data/product/" . $data['product'][$file];
+                $data['img_names'][] = $data['product']["rfile" . $i];
+            }
+        }
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 
