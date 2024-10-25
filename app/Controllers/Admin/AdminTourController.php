@@ -134,6 +134,25 @@ class AdminTourController extends BaseController
             }
 
             if ($product_idx) {
+                $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
+                $row = $this->connect->query("$sql")->getRowArray();
+
+                $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
+                $data["ufile2"] = $data["ufile2"] ?? $row['ufile2'];
+                $data["ufile3"] = $data["ufile3"] ?? $row['ufile3'];
+                $data["ufile4"] = $data["ufile4"] ?? $row['ufile4'];
+                $data["ufile5"] = $data["ufile5"] ?? $row['ufile5'];
+                $data["ufile6"] = $data["ufile6"] ?? $row['ufile6'];
+                $data["ufile7"] = $data["ufile7"] ?? $row['ufile7'];
+
+                $data["rfile1"] = $data["rfile1"] ?? $row['rfile1'];
+                $data["rfile2"] = $data["rfile2"] ?? $row['rfile2'];
+                $data["rfile3"] = $data["rfile3"] ?? $row['rfile3'];
+                $data["rfile4"] = $data["rfile4"] ?? $row['rfile4'];
+                $data["rfile5"] = $data["rfile5"] ?? $row['rfile5'];
+                $data["rfile6"] = $data["rfile6"] ?? $row['rfile6'];
+                $data["rfile7"] = $data["rfile7"] ?? $row['rfile7'];
+
 //                $data = [
 //                    'product_code_1' => $product_code_1,
 //                    'product_code_2' => $product_code_2,
@@ -280,6 +299,22 @@ class AdminTourController extends BaseController
                             ,country_list			= '" . $country_list . "'
                             ,active_list			= '" . $active_list . "'
                             ,sight_list				= '" . $sight_list . "'
+                            
+                            ,ufile1				    = '" . $data["ufile1"] . "'
+                            ,ufile2			        = '" . $data["ufile2"] . "'
+                            ,ufile3			        = '" . $data["ufile3"] . "'
+                            ,ufile4				    = '" . $data["ufile4"] . "'
+                            ,ufile5				    = '" . $data["ufile5"] . "'
+                            ,ufile6				    = '" . $data["ufile6"] . "'
+                            ,ufile7				    = '" . $data["ufile7"] . "'
+                            
+                            ,rfile1				    = '" . $data["rfile1"] . "'
+                            ,rfile2			        = '" . $data["rfile2"] . "'
+                            ,rfile3			        = '" . $data["rfile3"] . "'
+                            ,rfile4				    = '" . $data["rfile4"] . "'
+                            ,rfile5				    = '" . $data["rfile5"] . "'
+                            ,rfile6				    = '" . $data["rfile6"] . "'
+                            ,rfile7				    = '" . $data["rfile7"] . "'
                 
                             ,benefit				= '" . $benefit . "'
                             ,local_info				= '" . $local_info . "'
@@ -491,19 +526,23 @@ class AdminTourController extends BaseController
                             ,product_info			= '" . $product_info . "'
                             ,product_schedule		= '" . $product_schedule . "'
                             ,product_country		= '" . $product_country . "'
-                            ,rfile1					= '" . $rfile_1 . "'
-                            ,rfile2					= '" . $rfile_2 . "'
-                            ,rfile3					= '" . $rfile_3 . "'
-                            ,rfile4					= '" . $rfile_4 . "'
-                            ,rfile5					= '" . $rfile_5 . "'
-                            ,rfile6					= '" . $rfile_6 . "'
-                            ,ufile1					= '" . $ufile_1 . "'
-                            ,ufile2					= '" . $ufile_2 . "'
-                            ,ufile3					= '" . $ufile_3 . "'
-                            ,ufile4					= '" . $ufile_4 . "'
-                            ,ufile5					= '" . $ufile_5 . "'
-                            ,ufile6					= '" . $ufile_6 . "'
-                            ,ufile7					= '" . $ufile_7 . "'
+                            
+                            ,ufile1				    = '" . $data["ufile1"] . "'
+                            ,ufile2			        = '" . $data["ufile2"] . "'
+                            ,ufile3			        = '" . $data["ufile3"] . "'
+                            ,ufile4				    = '" . $data["ufile4"] . "'
+                            ,ufile5				    = '" . $data["ufile5"] . "'
+                            ,ufile6				    = '" . $data["ufile6"] . "'
+                            ,ufile7				    = '" . $data["ufile7"] . "'
+                            
+                            ,rfile1				    = '" . $data["rfile1"] . "'
+                            ,rfile2			        = '" . $data["rfile2"] . "'
+                            ,rfile3			        = '" . $data["rfile3"] . "'
+                            ,rfile4				    = '" . $data["rfile4"] . "'
+                            ,rfile5				    = '" . $data["rfile5"] . "'
+                            ,rfile6				    = '" . $data["rfile6"] . "'
+                            ,rfile7				    = '" . $data["rfile7"] . "'
+                            
                             ,is_view				= '" . $is_view . "'
                             ,product_period			= '" . $product_period . "'
                             ,product_manager		= '" . $product_manager . "'
@@ -514,6 +553,7 @@ class AdminTourController extends BaseController
                             ,product_best			= '" . $product_best . "'
                             ,special_price			= '" . $special_price . "'
                             ,onum					= '" . $onum . "'
+                            ,product_mileage		= '" . $product_mileage . "'
                             ,product_contents		= '" . $product_contents . "'
                             ,product_confirm		= '" . $product_confirm . "'
                             ,product_confirm_m		= '" . $product_confirm_m . "'
