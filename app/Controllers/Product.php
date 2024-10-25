@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Config\CustomConstants as ConfigCustomConstants;
+use CodeIgniter\I18n\Time;
 use Exception;
 use App\Models\Hotel;
 
@@ -11,6 +12,10 @@ class Product extends BaseController
     private $bannerModel;
     private $productModel;
     private $bbsListModel;
+    private $orderModel;
+    private $orderSubModel;
+    private $coupon;
+
     private $db;
     private $hotel;
     private $codeModel;
@@ -28,6 +33,9 @@ class Product extends BaseController
         $this->codeModel = model("Code");
         $this->reviewModel = model("ReviewModel");
         $this->mainDispModel = model("MainDispModel");
+        $this->orderModel = model("OrdersModel");
+        $this->orderSubModel = model("OrderSubModel");
+        $this->coupon = model("Coupon");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -1129,6 +1137,96 @@ class Product extends BaseController
         }
 
         return $this->renderView('product/hotel/reservation-form', $data);
+    }
+
+    public function reservationFormInsert() {
+
+        try {
+
+            $product_idx = $this->request->getPost('product_idx') ?? 0;
+            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0; 
+            $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0; 
+            $last_price = $this->request->getPost('last_price') ?? 0; 
+            $order_price = $this->request->getPost('order_price') ?? 0; 
+            $number_room = $this->request->getPost('number_room') ?? 0; 
+            $number_day = $this->request->getPost('number_day') ?? 0; 
+            $order_memo = $this->request->getPost('order_memo') ?? ""; 
+    
+            $hotel = $this->productModel->find($product_idx);
+            $m_idx = session()->get("member")["idx"];
+            $order_status = "W";
+            $ipAddress = $this->request->getIPAddress();
+
+            $data = [
+                "m_idx" => $m_idx,
+                "product_idx" => $product_idx,
+                "product_code_1" => $hotel["product_code_1"],
+                "product_code_2" => $hotel["product_code_2"],
+                "product_code_3" => $hotel["product_code_3"],
+                "product_code_4" => $hotel["product_code_4"],
+                "product_code_list" => $hotel["product_code_list"],
+                "product_name" => $hotel["product_name"],
+                "order_gubun" => "hotel",
+                "order_memo" => $order_memo,
+                "order_price" => $order_price,
+                "order_date" => Time::now('Asia/Seoul', 'en_US'),
+                "used_coupon_idx" => $use_coupon_idx,
+                "room_op_idx" => $room_op_idx,
+                "room_cnt" => $number_room,
+                "day_cnt" => $number_day,
+                "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                "order_status" => $order_status,
+                "encode" => "Y",
+                "ip" => $ipAddress
+            ];
+
+            $order_idx = $this->orderModel->insert($data);
+            if($order_idx){
+                $order_no	= "S".substr(date("Ymd"),2,8).str_pad($order_idx, 3, "0", STR_PAD_LEFT);
+                $this->orderModel->update($order_idx, ["order_no" => $order_no]);
+    
+                if(!empty($use_coupon_idx)){
+                    $this->coupon->update($use_coupon_idx, ["status" => "E"]);
+                }
+
+                $order_num_room = $this->request->getPost('order_num_room');
+                $order_first_name = $this->request->getPost('order_first_name');
+                $order_last_name = $this->request->getPost('order_last_name');
+                foreach ($order_num_room as $key => $value) {
+                    $first_name = sqlSecretConver($order_first_name[$key], "encode");
+                    $last_name = sqlSecretConver($order_last_name[$key], "encode");
+                    $data_sub = [
+                        "m_idx" => $m_idx,
+                        "order_idx" => $order_idx,
+                        "product_idx" => $product_idx,
+                        "number_room" => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
+                        "order_first_name" => $first_name,
+                        "order_last_name" => $last_name,
+                        "encode" => "Y"
+                    ];
+                    $this->orderSubModel->insert($data_sub);
+                }
+                
+                $this->response->deleteCookie('cart');
+
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "Ok"
+                ], 200);
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "Error"
+                ], 400);
+            }
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+
     }
 
     public function completedOrder()
