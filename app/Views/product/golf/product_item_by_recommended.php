@@ -1,4 +1,4 @@
-<a href="javascript:" class="sub_tour_section5_item">
+<a href="/product-golf/golf-detail/<?= $item['product_idx'] ?>" class="sub_tour_section5_item">
     <div class="img_box img_box_10">
         <img src="<?= getImage("/data/product/{$item['ufile1']}") ?>" alt="<?= $item['rfile1'] ?>">
     </div>

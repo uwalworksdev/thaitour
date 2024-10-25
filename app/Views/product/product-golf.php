@@ -153,7 +153,7 @@
                             <img class="ico_special_prd only_web" src="/images/ico/ico_special_prd.png" alt="">
                             <img class="ico_special_prd only_mo" src="/images/ico/ico_special_prd_mo.png" alt="">
                             <div class="img_box img_box_12">
-                                <img src="/uploads/sub/golf_special_1.png" alt="">
+                                <img src="<?=getImage("/data/product/{$item['ufile1']}")?>" alt="<?=$item['rfile1']?>">
                             </div>
                             <div class="sub_tour_section7_product_item__name">캐디없이 자유롭게 골프치고 싶다면</div>
                             <div class="sub_tour_section7_product_item__keywords">

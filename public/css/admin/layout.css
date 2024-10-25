@@ -5013,3 +5013,15 @@ table.comment tr td:nth-last-child(1) {
     font-size: 15px;
     color: #757575;
 }
+
+#list_location li {
+    list-style: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#list_location li:hover {
+    background-color: #7499b2;
+    color: #fff;
+}

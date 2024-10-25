@@ -14,6 +14,7 @@ class TourRegistController extends BaseController
     private $golfOptionModel;
     protected $connect;
     protected $productModel;
+    protected $golfInfoModel;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class TourRegistController extends BaseController
         $this->Bbs = model("Bbs");
         $this->golfOptionModel = model("GolfOptionModel");
         $this->productModel = model("ProductModel");
+        $this->golfInfoModel = model("GolfInfoModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -241,6 +243,7 @@ class TourRegistController extends BaseController
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
+            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
         ];
 
         $data = array_merge($data, $new_data);
@@ -267,14 +270,22 @@ class TourRegistController extends BaseController
         }
         if($product_idx) {
             $data['m_date'] = date("Y-m-d H:i:s");
-            $this->productModel->update($product_idx, $data);
+            $this->productModel->updateData($product_idx, $data);
+
+            if(!$this->golfInfoModel->getGolfInfo($product_idx)) {
+                $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
+            } else {
+                $this->golfInfoModel->updateData($product_idx, $data);
+            }
+
+            $html = '<script>alert("수정되었습니다.");</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
-            $this->productModel->insert($data);
+            $this->productModel->insertData($data);
+            $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
+            $html = '<script>alert("등록되었습니다.");</script>';
         }
-        $html = '<script>alert("수정되었습니다.");</script>';
         $html .= '<script>parent.location.reload();</script>';
-        $html .= '<div>'.var_dump($data).'</div>';
         return $this->response->setBody($html);
     }
 
@@ -550,6 +561,10 @@ class TourRegistController extends BaseController
             $yoil_5 = $row["yoil_5"];
             $yoil_6 = $row["yoil_6"];
             $guide_lang = $row["guide_lang"];
+
+            $addrs = $row["addrs"];
+            $latitude = $row["latitude"];
+            $longitude = $row["longitude"];
         }
 
 
@@ -694,6 +709,9 @@ class TourRegistController extends BaseController
             "yoil_5" => $yoil_5 ?? '',
             "yoil_6" => $yoil_6 ?? '',
             "guide_lang" => $guide_lang ?? '',
+            "addrs" => $addrs ?? '',
+            "latitude" => $latitude ?? '',
+            "longitude" => $longitude ?? '',
         ];
 
         return $data;
