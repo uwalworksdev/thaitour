@@ -200,7 +200,7 @@ if (session('member.level') > 2 || session('member.level') == "") {
             <div class="top_box">
                 <!-- <a href="" class="logo"><img src="<?php //=_IT_LOGOS_ADM ?>" alt="로고"></a> -->
                 <a href="/" class="txt_admin" target="_blank"></a>
-                <a href="/AdmMaster/_main/main" class="logo">
+                <a href="/" class="logo">
                     <!--                    <img src="/uploads/setting/--><?php //= $setting['logos'] ?><!--" alt="">-->
                     <img src="/images/sub/logo_w.png" alt="" style="height: 30px;">
                 </a>

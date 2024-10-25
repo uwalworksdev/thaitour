@@ -47,22 +47,15 @@ class Product extends BaseController
         }
     }
 
-    public function index($code_no)
+    public function indexTour($code_no)
     {
         try {
-            $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
-            $perPage = 5;
+            $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'DESC')->findAll();
 
-            $banners = $this->bannerModel->getBanners($code_no);
-            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-
-            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
-
-            $products = $this->productModel->getProducts($code_no, $s, $perPage);
-
-            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
-
-            $pager = \Config\Services::pager();
+            $products = $this->productModel->findProductPaging([
+                'product_code_1' => 1301,
+                'product_status' => 'sale',
+            ], $this->scale, 1, ['product_price' => 'ASC']);
 
             $code_name = $this->db->table('tbl_code')
                 ->select('code_name')
@@ -87,17 +80,11 @@ class Product extends BaseController
             }
 
             $data = [
-                'banners' => $banners,
-                'codeBanners' => $codeBanners,
-                'suggestedProducts' => $suggestedProducts,
-                'products' => $products,
                 'code_no' => $code_no,
-                's' => $s,
+                'products' => $products,
                 'codes' => $codes,
                 'code_name' => $code_name,
-                'pager' => $pager,
-                'perPage' => $perPage,
-                'totalProducts' => $totalProducts,
+                'sub_codes' => $sub_codes,
                 'tab_active' => '3',
             ];
 

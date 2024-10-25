@@ -366,7 +366,7 @@
                         $.ajax({
                             type: "POST",
                             data: prod_data,
-                            url: "ajax_change.php",
+                            url: "/AdmMaster/api/ajax_change",
                             cache: false,
                             async: false,
                             success: function (data, textStatus) {
@@ -620,7 +620,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.prod_update.php",
+                url: "/AdmMaster/api/prod_update",
                 type: "POST",
                 data: {
                     "product_idx": idx,
