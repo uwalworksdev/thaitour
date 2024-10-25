@@ -204,12 +204,12 @@
                             <label for="checkin" class="label text-gray pt-2">체크인/아웃</label>
                             <div class="date-sub-container">
                                 <div class="date-wrapper">
-                                    <input type="text" id="checkin" name="checkin" class="date" value="<?=$products["checkin"]?>">
+                                    <input type="text" id="checkin" name="checkin" placeholder="<?=date("Y/m/d")?>" class="date" value="<?=$products["checkin"]?>">
                                     <span class="suffix">(화)</span>
                                 </div>
                                 <span class="arrow">→</span>
                                 <div class="date-wrapper">
-                                    <input type="text" id="checkout" name="checkout" class="date" value="<?=$products["checkout"]?>">
+                                    <input type="text" id="checkout" name="checkout" placeholder="<?=date("Y/m/d")?>" class="date" value="<?=$products["checkout"]?>">
                                     <span class="suffix">(수)</span>
                                 </div>
                             </div>

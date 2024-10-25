@@ -37,82 +37,41 @@
                             투숙객 정보
                         </h3>
                         <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>
-                        <h3 class="title-sub-c mt-30">인원1</h3>
-                        <div class="form-container" data-group="group1">
-                            <div class="con-form mb-40">
-                                <div class="parent-form-group">
-                                    <div class="form-group">
-                                        <label for="first-name-1">영문 이름(First Name) *</label>
-                                        <input type="text" id="first-name-1" placeholder="영어로 작성해주세요." />
+                        <?php
+                            $number_room = intval($number_room);
+                            for($i = 1; $i <= $number_room; $i++){
+                        ?>
+                            <h3 class="title-sub-c mt-30">객실<?=$i?></h3>
+                            <div class="form-container" data-group="group<?=$i?>">
+                                <div class="con-form mb-40">
+                                    <div class="parent-form-group">
+                                        <div class="form-group">
+                                            <label for="first-name-1">영문 이름(First Name) *</label>
+                                            <input type="text" id="first-name-1" placeholder="영어로 작성해주세요." />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last-name-1">영문 성(Last Name) *</label>
+                                            <input type="text" id="last-name-1" placeholder="영어로 작성해주세요." />
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="last-name-1">영문 성(Last Name) *</label>
-                                        <input type="text" id="last-name-1" placeholder="영어로 작성해주세요." />
-                                    </div>
-                                </div>
 
-                                <div class="button-action-con">
-                                    <div class="conn-icon add-item" data-group="group1">
-                                        <img class="only_web" src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
-                                        <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png" alt="add_item_icon">
-                                        <span>투숙객 추가</span>
-                                    </div>
-                                    <div class="conn-icon remove-item" data-group="group1">
-                                        <img class="only_web" src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
-                                        <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png" alt="add_item_icon">
-                                        <span>투숙객 삭제</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h3 class="title-sub-c">인원2</h3>
-                        <div class="form-container" data-group="group2">
-                            <div class="con-form cus-border-bottom">
-                                <div class="parent-form-group">
-                                    <div class="form-group">
-                                        <label for="first-name-2">영문 이름(First Name) *</label>
-                                        <input type="text" id="first-name-2" placeholder="영어로 작성해주세요." />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="last-name-2">영문 성(Last Name) *</label>
-                                        <input type="text" id="last-name-2" placeholder="영어로 작성해주세요." />
-                                    </div>
-                                </div>
-
-                                <div class="button-action-con">
-                                    <div class="conn-icon add-item" data-group="group2">
-                                        <img class="only_web" src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
-                                        <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png" alt="add_item_icon">
-                                        <span>투숙객 추가</span>
-                                    </div>
-                                    <div class="conn-icon remove-item" data-group="group2">
-                                        <img class="only_web" src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
-                                        <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png" alt="remove_item_icon">
-                                        <span>투숙객 삭제</span>
+                                    <div class="button-action-con">
+                                        <div class="conn-icon add-item" data-group="group<?=$i?>">
+                                            <img class="only_web" src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
+                                            <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png" alt="add_item_icon">
+                                            <span>투숙객 추가</span>
+                                        </div>
+                                        <div class="conn-icon remove-item" data-group="group<?=$i?>">
+                                            <img class="only_web" src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
+                                            <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png" alt="add_item_icon">
+                                            <span>투숙객 삭제</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <h3 class="form-title title-sub-c">상세정보 입력</h3>
-                            <div class="form-group form-cus-select mb-30">
-                                <label for="passport-name2">이메일 주소*</label>
-                                <div class="cus-select-group cus-width-mo">
-                                    <input type="text" id="" placeholder="이메일">
-                                    <span>@</span>
-                                    <select id="" class="select-width">
-                                        <option value="01">선택해주세요.</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group mb-30">
-                                <label for="pickup-location">휴대폰번호</label>
-                                <input class="mb-10 w-375" type="text" id="pickup-location"
-                                    placeholder="번호를 입력해주세요." />
-                            </div>
-                        </div>
+                        <?php
+                            }
+                        ?>
 
                     </div>
                     <div class="card-left2">
@@ -127,27 +86,37 @@
                 </div>
                 <div class="">
                     <div class="card-right">
-                        <img src="/uploads/sub/reservation-form.png" alt="reservation-form.png">
+                        <?php
+                            if(!empty($hotel['ufile1'])){
+                                $img = "/data/hotel/" . $hotel['ufile1'];
+                            }else{
+                                $img = "";
+                            }
+                        ?>
+                        <img src="<?=$img?>" alt="<?=$hotel['rfile1']?>">
                         <div class="below-right">
-                            <h3 class="title-r">더 콰르티어 호텔 프롬퐁 / 통로 방콕 바이컴패스 호스피탈리티</h3>
-                            <p class="title-sub-r text-gray">413 Soi Sukhumvit 49, Watthana 10110,방콕, 태국</p>
+                            <h3 class="title-r"><?=$hotel["product_name"]?></h3>
+                            <p class="title-sub-r text-gray"><?=$hotel["addrs"]?></p>
                         </div>
                     </div>
                     <div class="card-right2">
                         <h3 class="title-r">
                             요금정보
                         </h3>
+                        <?php
+                            $total_price = intval($last_price) + intval($extra_cost);
+                        ?>
                         <div class="item-info-r">
-                            <span>객실 9개 X 1박</span>
-                            <span class="font-bold">1,085400원</span>
+                            <span>객실 <?=$number_room?>개 X <?=$number_day?>박</span>
+                            <span class="font-bold"><?=number_format($last_price)?>원</span>
                         </div>
                         <div class="item-info-r item-info-r-border-b">
                             <span>세금&서비스비용</span>
-                            <span class="font-bold">102,600원</span>
+                            <span class="font-bold"><?=number_format($extra_cost)?>원</span>
                         </div>
                         <div class="item-info-r font-bold-cus">
                             <span>합계</span>
-                            <span>1,085400원</span>
+                            <span><?=number_format($total_price)?>원</span>
                         </div>
                         <p class="below-des-price">
                             · 체크인하시려면 3일 전에 숙소로 연락해 주세요<br>· 선택하신 객실 유형의 체크인 시간은 14:00~24:00 사이,
@@ -218,10 +187,16 @@
 
             // add, remove element
 
-            var guestCounter = {
-                group1: 1,
-                group2: 1
-            };
+            // var guestCounter = {
+            //     group1: 1,
+            //     group2: 1
+            // };
+            var guestCounter = {};
+
+            $(".form-container").each(function(){
+                let group = $(this).data("group");
+                guestCounter[group] = 1;
+            });
 
             // Function to update the visibility of the remove-item button
             function updateRemoveButtonVisibility(group) {
@@ -242,17 +217,17 @@
 
                 // Create a new parent-form-group for the specific group
                 var newFormGroup = `
-            <div class="parent-form-group mt-30">
-                <div class="form-group">
-                    <label for="first-name-${group}-${guestCounter[group]}">영문 이름(First Name) *</label>
-                    <input type="text" id="first-name-${group}-${guestCounter[group]}" placeholder="영어로 작성해주세요." />
-                </div>
-                <div class="form-group">
-                    <label for="last-name-${group}-${guestCounter[group]}">영문 성(Last Name) *</label>
-                    <input type="text" id="last-name-${group}-${guestCounter[group]}" placeholder="영어로 작성해주세요." />
-                </div>
-            </div>
-        `;
+                    <div class="parent-form-group mt-30">
+                        <div class="form-group">
+                            <label for="first-name-${group}-${guestCounter[group]}">영문 이름(First Name) *</label>
+                            <input type="text" id="first-name-${group}-${guestCounter[group]}" placeholder="영어로 작성해주세요." />
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name-${group}-${guestCounter[group]}">영문 성(Last Name) *</label>
+                            <input type="text" id="last-name-${group}-${guestCounter[group]}" placeholder="영어로 작성해주세요." />
+                        </div>
+                    </div>
+                `;
 
                 // Append the new form group right after the first parent-form-group in the correct group
                 $(`.form-container[data-group="${group}"] .parent-form-group:first`).after(newFormGroup);
