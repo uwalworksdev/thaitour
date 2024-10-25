@@ -33,7 +33,7 @@ class TourRegistController extends BaseController
 
     public function list_hotel()
     {
-        $data = $this->get_list_('1324');
+        $data = $this->get_list_('1303');
         return view("admin/_tourRegist/list", $data);
     }
 
@@ -57,7 +57,7 @@ class TourRegistController extends BaseController
 
     public function list_tours()
     {
-        $data = $this->get_list_('1317');
+        $data = $this->get_list_('1301');
         return view("admin/_tourRegist/list_tours", $data);
     }
 
@@ -69,6 +69,7 @@ class TourRegistController extends BaseController
 
     private function get_list_($product_code_1)
     {
+
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? "");
         if ($pg == "") $pg = 1;
@@ -253,8 +254,10 @@ class TourRegistController extends BaseController
     public function write_golf_ok($product_idx = null) {
 
         $data = $this->request->getPost();
-        $data['is_best_value']     = $data['is_best_value'] ?? "N";
+        $data['is_best_value']      = $data['is_best_value'] ?? "N";
         $data['special_price']      = $data['special_price'] ?? "N";
+        $data['original_price']     = str_replace(",", "", $data['original_price']);
+        $data['product_price']      = str_replace(",", "", $data['product_price']);
 
         $files = $this->request->getFiles();
         for($i = 1; $i <= 7; $i++) {
@@ -388,7 +391,7 @@ class TourRegistController extends BaseController
     public function write_tours()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite();
+        $data = $this->getWrite('1301');
 
         $db = $this->connect;
 
@@ -435,7 +438,7 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_tours", $data);
     }
 
-    private function getWrite($product_code_1 = "1324")
+    private function getWrite($product_code_1)
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');

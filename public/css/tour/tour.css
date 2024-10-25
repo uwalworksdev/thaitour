@@ -3577,3 +3577,21 @@
 .cus_scroll::-webkit-scrollbar-thumb {
     background-color: #cccccc;
 }
+
+.imageDetailMain_ {
+    width: 600px;
+    border: 1px solid #dbdbdb;
+    height: 442px;
+}
+
+.imageDetailSup_ {
+    width: 290px;
+    border: 1px solid #dbdbdb;
+    height: 216px
+}
+
+.imageDetailOption_ {
+    width: calc(50% - 5px);
+    border: 1px solid #dbdbdb;
+    height: 95px
+}

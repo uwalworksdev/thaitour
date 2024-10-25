@@ -470,7 +470,7 @@
                     </div><!-- // listBottom -->
                 </form>
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_all') . $search_val . "&pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_golf') . $search_val . "&pg=") ?>
 
 
                 <div id="headerContainer">
