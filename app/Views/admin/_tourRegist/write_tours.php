@@ -430,13 +430,11 @@
                                 <tr>
                                     <th>베스트여부</th>
                                     <td>
-                                        <?php foreach ($mresult2 as $row_m) : ?>
-                                            <input type="checkbox" name="product_best"
-                                                   id="product_best"
-                                                   value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
-                                                echo "checked";
-                                            } ?>/>
-                                        <?php endforeach; ?>
+                                        <input type="checkbox" name="product_best"
+                                               id="product_best"
+                                               value="Y" <?php if (isset($product_best) && $product_best == "Y") {
+                                            echo "checked";
+                                        } ?>/>
                                     </td>
                                     <th>우선순위</th>
                                     <td>
@@ -1014,7 +1012,7 @@
                                             <th>삭제</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="settingBody_<?= $row_option['code_idx'] ?>">
                                         <?php foreach ($row_option['additional_options'] as $option): ?>
                                             <tr>
                                                 <td><input type="text" name="o_name[]"
@@ -1165,7 +1163,7 @@
                 $("#email").val("booking@hihojoo.com");
             } else {
                 $.ajax({
-                    url: "../../ajax/ajax.change_manager.php",
+                    url: "<?= route_to('admin.api.product_.change_manager') ?>",
                     type: "POST",
                     data: {
                         "user_id": user_id
@@ -1197,7 +1195,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_tours.php",
+                url: "/AdmMaster/api/del",
                 type: "POST",
                 data: {
                     "tours_idx": idx
@@ -1275,10 +1273,6 @@
             addOption += "	<td>																  ";
             addOption += "		<input type='text' class='onlynum' name='o_num[]'  value='' />	  ";
             addOption += "	</td>																  ";
-//		addOption += "	<td>																  ";
-//		addOption += "		<input type='text' class='onlynum' name='o_jaego[]'  value='' />	  ";
-//		addOption += "	</td>																  ";
-
 
             addOption += "	<td>																  ";
             addOption += '		<button type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
@@ -1292,7 +1286,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_moption.php",
+                url: "<?= route_to('admin.api.product_.upd_moption') ?>",
                 type: "POST",
                 data: {
                     "code_idx": code_idx,
@@ -1316,7 +1310,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.add_moption.php",
+                url: "<?= route_to('admin.api.product_.add_moption') ?>",
                 type: "POST",
                 data: {
                     "product_idx": '<?= $product_idx ?>',
@@ -1343,7 +1337,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_moption.php",
+                url: "<?= route_to('admin.api.product_.del_moption') ?>",
                 type: "POST",
                 data: {
                     "code_idx": code_idx
@@ -1370,14 +1364,11 @@
             $.ajax({
                 type: "POST",
                 data: option_data,
-                url: "/ajax/ajax.add_option.php",
+                url: "<?= route_to('admin.api.product_.add_option') ?>",
                 cache: false,
                 async: false,
                 success: function (data, textStatus) {
-                    save_result = data;
-                    //alert('save_result- '+save_result);
-                    var obj = jQuery.parseJSON(save_result);
-                    var message = obj.message;
+                    let message = data.message;
                     alert(message);
                     location.reload();
                 },
@@ -1396,7 +1387,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_option.php",
+                url: "<?= route_to('admin.api.product_.del_option') ?>",
                 type: "POST",
                 data: {
                     "idx": idx
@@ -1416,7 +1407,6 @@
 
         }
 
-
         // 옵션 수정 함수
         function updOption(idx) {
 
@@ -1426,7 +1416,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_option.php",
+                url: "<?= route_to('admin.api.product_.upd_option') ?>",
                 type: "POST",
                 data: {
                     "idx": idx,
@@ -1449,9 +1439,7 @@
             });
 
         }
-    </script>
 
-    <script>
         function img_remove(img) {
             //alert('img- '+img);
             if (!confirm("선택한 이미지를 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다\n\n."))
@@ -1460,7 +1448,7 @@
             var message = "";
             $.ajax({
 
-                url: "ajax.img_remove.php",
+                url: "<?= route_to('admin.api.product_.img_remove') ?>",
                 type: "POST",
                 data: {
                     "product_idx": $("#product_idx").val(),
@@ -1482,21 +1470,6 @@
         }
     </script>
 
-    <script type="text/javascript">
-        function del_yoil(yoil_idx) {
-            if (confirm("삭제하시겠습니까?\n삭제후에는 복구가 불가합니다.")) {
-                hiddenFrame.location.href = "/AdmMaster/_tourRegist/yoil_del.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&yoil_idx=" + yoil_idx;
-            }
-        }
-
-        function del_detail(air_code) {
-            if (confirm("삭제하시겠습니까?\n삭제후에는 복구가 불가합니다.")) {
-                hiddenFrame.location.href = "/AdmMaster/_tourRegist/detail_del.php?product_idx=<?= $product_idx ?>&air_code=" + air_code;
-            }
-        }
-
-
-    </script>
     <script>
         function send_it() {
             var frm = document.frm;
@@ -1571,34 +1544,6 @@
             frm.submit();
         }
 
-        function del_it(idx) {
-
-
-            if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
-                return false;
-
-            var message = "";
-            $.ajax({
-
-                url: "./ajax.prod_del.php",
-                type: "POST",
-                data: {
-                    "product_idx": idx
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
-                    $("#listForm").submit();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-        }
-
         function get_code(strs, depth) {
             $.ajax({
                 type: "GET"
@@ -1642,36 +1587,6 @@
                             contentStr = "[사용안함]";
                         }
                         $("#product_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
-                    }
-                }
-            });
-        }
-
-        function get_code_2(strs, depth) {
-            $.ajax({
-                type: "GET",
-                url: "get_code.ajax.php",
-                dataType: "html",
-                timeout: 30000,
-                cache: false,
-                data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth,
-                error: function (request, status, error) {
-                    alert("code : " + request.status + "\r\nmessage : " + request.responseText);
-                },
-                success: function (json) {
-                    var list = $.parseJSON(json);
-                    var listLen = list.length;
-
-                    $("#text").empty();
-
-                    for (var i = 0; i < listLen; i++) {
-                        var contentStr = "";
-                        if (list[i].code_status == "C") {
-                            contentStr = "[마감]";
-                        } else if (list[i].code_status == "N") {
-                            contentStr = "[사용안함]";
-                        }
-                        $("#text").append("<input type='checkbox' name='_tours_cate' class='product_option' value='" + list[i].code_no + "' /> " + list[i].code_name + " " + contentStr + "<br>");
                     }
                 }
             });
