@@ -28,7 +28,7 @@ class Product extends BaseController
         $this->codeModel = model("Code");
         $this->reviewModel = model("ReviewModel");
         $this->mainDispModel = model("MainDispModel");
-        helper('my_helper');
+        helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
 
@@ -1085,9 +1085,50 @@ class Product extends BaseController
         return $this->renderView('product/hotel/customer-form');
     }
 
-    public function reservationForm($code_no)
+    public function reservationForm()
     {
-        return $this->renderView('product/hotel/reservation-form');
+        $cart = $this->request->getCookie('cart');
+
+        if($cart){
+            $cart_arr = json_decode($cart, true);
+            $product_idx = $cart_arr["product_idx"] ?? 0;
+            $room_op_idx = $cart_arr["room_op_idx"] ?? 0;
+            $use_coupon_idx = $cart_arr["use_coupon_idx"] ?? 0;
+            $use_coupon_room = $cart_arr["use_coupon_room"] ?? 0;
+            $coupon_discount = $cart_arr["coupon_discount"] ?? 0;
+            $inital_price = $cart_arr["inital_price"] ?? 0;
+            $last_price = $cart_arr["last_price"] ?? 0;
+            $number_room = $cart_arr["number_room"] ?? 0;
+            $number_day = $cart_arr["number_day"] ?? 0;
+
+            $setting = homeSetInfo();
+            $extra_cost = 0;
+
+            $type_extra_cost = $setting["type_extra_cost"];
+            if(!empty($setting["extra_cost"])){
+                if($type_extra_cost == "P"){
+                    $extra_cost = round(intval($last_price) * floatval($setting["extra_cost"]) / 100);
+                }else {
+                    $extra_cost = $setting["extra_cost"];
+                }
+            }
+
+            $hotel = $this->productModel->find($product_idx);
+
+            $data = [
+                'hotel' => $hotel,
+                'inital_price' => $inital_price,
+                'number_room' => $number_room,
+                'number_day' => $number_day,
+                'use_coupon_idx' => $use_coupon_idx,
+                'room_op_idx' => $room_op_idx,
+                'coupon_discount' => $coupon_discount,
+                'extra_cost' => $extra_cost,
+                'last_price' => $last_price
+            ];
+        }
+
+        return $this->renderView('product/hotel/reservation-form', $data);
     }
 
     public function completedOrder()

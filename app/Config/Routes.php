@@ -444,7 +444,7 @@ $routes->get('product-list/(:any)', 'Product::index3/$1');
 $routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::hotelDetail/$1');
 $routes->get('product-hotel/customer-form/(:any)', 'Product::index7/$1');
-$routes->get('product-hotel/reservation-form/(:any)', 'Product::reservationForm/$1');
+$routes->get('product-hotel/reservation-form', 'Product::reservationForm');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product/completed-order', 'Product::completedOrder/$1');

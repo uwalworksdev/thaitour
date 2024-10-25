@@ -1082,8 +1082,12 @@
         // Show popup when the "Open Popup" button is clicked
         $openPopupBtns.on('click', function () {
             let room_op_idx = $(this).closest("tr.room_op_").attr("data-room");
+            let room_qty = $(this).closest("tr.room_op_").find(".room_qty .input_room_qty").val();
+            let day_qty = $(this).closest("tr.room_op_").find(".day_qty .input_day_qty").val();
             let total_price = Number($(this).closest("tr.room_op_").find(".totalPrice").attr("data-price"));
             let price = $(this).closest("tr.room_op_").find(".totalPrice").attr("data-price");
+
+            total_price = total_price * parseInt(room_qty) * parseInt(day_qty);
 
             $("#popup").find(".total_price").text(total_price.toLocaleString('ko-KR') + "원");
             $("#popup").find(".total_price").attr("data-price", total_price);
@@ -1140,7 +1144,7 @@
             let last_price = total_price;
 
             let type = $("#popup").find(".item-price-popup.active").attr("data-type");
-            let discount = $("#popup").find(".item-price-popup.active").attr("data-discount");
+            let discount = Number($("#popup").find(".item-price-popup.active").attr("data-discount"));
     
             if(type && discount){
                 if(type == "P"){
@@ -1176,26 +1180,38 @@
         });
 
         $(".book-button").click(function() {
+            <?php
+                if(empty(session()->get("member")["id"])){
+            ?>
+                alert("주문하시려면 로그인해주세요");
+                return false;
+            <?php
+                }
+            ?>
+
             let coupon_discount = $("#coupon_discount").val();
             let use_coupon_room = $("#use_coupon_room").val();
             let use_coupon_idx = $("#use_coupon_idx").val();
             let room_op_idx = $(this).closest(".room_op_").data("room");
-            let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty");
-            let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty");
+            let number_room = $(this).closest(".room_op_").find(".room_qty .input_room_qty").val();
+            let number_day = $(this).closest(".room_op_").find(".day_qty .input_day_qty").val();
+            let last_price = $("#total_last_price").val();
             let product_idx = $("#product_idx").val();
-
+            let inital_price = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
             let cart = {
                 product_idx: product_idx,
                 room_op_idx: room_op_idx,
                 use_coupon_idx: use_coupon_idx,
                 use_coupon_room: use_coupon_room,
+                inital_price: inital_price,
                 coupon_discount: coupon_discount,
+                last_price: last_price,
                 number_room: number_room,
                 number_day: number_day
             };
 
             setCookie("cart", JSON.stringify(cart), 1);
-            // window.location.href='/product-hotel/reservation-form/2';
+            window.location.href='/product-hotel/reservation-form';
         });
 
         // Close the popup when the "Close" button or the "x" is clicked
@@ -1253,15 +1269,21 @@
 
 
         function changeDataOptionPrice(input) {
-            let item = $(input).closest('tr');
+            let item = $(input).closest('tr.room_op_');
 
+            let room_op_idx = item.attr('data-room');
             let qty_room = item.find('input.input_room_qty').val();
             let qty_day = item.find('input.input_day_qty').val();
             let coupon_discount = Number($("#coupon_discount").val());
+            let use_coupon_room = Number($("#use_coupon_room").val());
+
             item.find('span.count_room').text(qty_room);
             item.find('span.count_day').text(qty_day);
             let main_price = item.find('span.totalPrice').attr('data-price');
-            let total_price = qty_room * qty_day * parseInt(main_price) - coupon_discount;
+            let total_price = qty_room * qty_day * parseInt(main_price)
+            if(use_coupon_room == room_op_idx){
+                total_price = total_price - coupon_discount;
+            }
             let formattedNumber = total_price.toLocaleString('en-US');
             item.find('span.totalPrice').text(formattedNumber);
 
