@@ -2049,7 +2049,7 @@
   .content-sub-hotel-detail .grid_2_2 {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.9rem;
+    gap: 0.999rem;
   }
 
   .content-sub-hotel-detail .hotel-image-container-1 img {
