@@ -1,7 +1,8 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+    <script type="text/javascript" src="/lib/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
     <style>
         .tab_title {
             font-size: 16px;
@@ -306,6 +307,18 @@
                                 </tr>
 
                                 <tr>
+                                    <th>주소</th>
+                                    <td colspan="3">
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs" value="<?= $addrs ?>" class="text" style="width:70%"/>
+										<button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
+										<div style="margin-top: 10px;">
+											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
+											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
+										</div>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
@@ -510,7 +523,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors14,
                                                 elPlaceHolder: "tour_info",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -545,7 +558,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors12,
                                                 elPlaceHolder: "product_confirm",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -577,7 +590,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors13,
                                                 elPlaceHolder: "product_confirm_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -612,7 +625,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors2,
                                                 elPlaceHolder: "product_able",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -644,7 +657,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors5,
                                                 elPlaceHolder: "product_unable",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -678,7 +691,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors3,
                                                 elPlaceHolder: "mobile_able",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -711,7 +724,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors4,
                                                 elPlaceHolder: "mobile_unable",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -745,7 +758,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors6,
                                                 elPlaceHolder: "special_benefit",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -776,7 +789,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors7,
                                                 elPlaceHolder: "special_benefit_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -810,7 +823,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors8,
                                                 elPlaceHolder: "notice_comment",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -841,7 +854,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors9,
                                                 elPlaceHolder: "notice_comment_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -876,7 +889,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors10,
                                                 elPlaceHolder: "etc_comment",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -907,7 +920,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors11,
                                                 elPlaceHolder: "etc_comment_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -957,26 +970,27 @@
                 </ul>
             </div>
 
+            <?php if ($product_idx): ?>
+                <div class="listBottom" style="padding: 15px;">
+                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="*"/>
+                        </colgroup>
+                        <tbody>
 
-            <div class="listBottom" style="padding: 15px;">
-                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                    <caption>
-                    </caption>
-                    <colgroup>
-                        <col width="*"/>
-                    </colgroup>
-                    <tbody>
-
-                    <tr>
-                        <th>옵션추가</th>
-                        <td>
-                            <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
-                            <button type="button" class="btn_01" onclick="add_moption();">추가</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <tr>
+                            <th>옵션추가</th>
+                            <td>
+                                <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
+                                <button type="button" class="btn_01" onclick="add_moption();">추가</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif;?>
 
             <?php foreach ($options as $row_option): ?>
                 <div class="listBottom">
@@ -985,62 +999,72 @@
                         <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
                         <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
 
-                        <table class="listTable mem_detail">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+                            <colgroup>
+                                <col width="10%">
+                                <col width="90%">
+                            </colgroup>
                             <tbody>
-                            <tr>
-                                <th>옵션</th>
+                            <tr height="45">
+                                <th colspan="5">
+                                    옵션 <input type='text' name='moption_name' id='moption_name_<?=$row_option['code_idx']?>' value="<?=$row_option['moption_name']?>" style="width:550px" />
+                                    <button type="button" class="btn_01" onclick="upd_moption('<?=$row_option['code_idx']?>');">수정</button>
+                                    <button type="button" class="btn_01" onclick="del_moption('<?=$row_option['code_idx']?>');">삭제</button>
+                                </th>
+                            </tr> 
+                            <tr height="45">
+                                <th>
+                                    추가 옵션등록
+                                    <p style="display:block;margin-top:10px;">
+                                        <button type="button" id="btn_add_option" onclick="add_option('<?=$row_option['code_idx']?>');" class="btn_01">추가</button>
+                                        <button type="button" id="btn_upd_option" onclick="upd_option('<?=$row_option['code_idx']?>');" class="btn_01">등록</button>
+                                    </p>
+                                </th>
                                 <td>
-                                    <input type="text" name="moption_name" value="<?= $row_option['moption_name'] ?>"/>
-                                    <button type="button" onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
-                                    </button>
-                                    <button type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">삭제
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>추가 옵션등록</th>
-                                <td>
-                                    <button type="button" onclick="add_option('<?= $row_option['code_idx'] ?>');">추가
-                                    </button>
-                                    <button type="button" onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록
-                                    </button>
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th>옵션명</th>
-                                            <th>가격</th>
-                                            <th>적용</th>
-                                            <th>순서</th>
-                                            <th>삭제</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php foreach ($row_option['additional_options'] as $option): ?>
-                                            <tr>
-                                                <td><input type="text" name="o_name[]"
-                                                           value="<?= $option['option_name'] ?>"/></td>
-                                                <td><input type="text" name="o_price[]"
-                                                           value="<?= $option['option_price'] ?>"/></td>
-                                                <td>
-                                                    <select name="use_yn[]">
-                                                        <option value="Y" <?= $option['use_yn'] == 'Y' ? 'selected' : '' ?>>
-                                                            판매중
-                                                        </option>
-                                                        <option value="N" <?= $option['use_yn'] != 'Y' ? 'selected' : '' ?>>
-                                                            중지
-                                                        </option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>"/>
-                                                </td>
-                                                <td>
-                                                    <button type="button" onclick="delOption('<?= $option['idx'] ?>');">
-                                                        삭제
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
+                                    <span  style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+                                        <div>
+                                            <table>
+                                                <colgroup>
+                                                    <col width="*"></col>
+                                                    <col width="25%"></col>
+                                                    <col width="5%"></col>
+                                                    <col width="5%"></col>
+                                                    <col width="12%"></col>
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>옵션명</th>
+                                                        <th>가격(호주 달러: AUD)</th>
+                                                        <th>적용</th>
+                                                        <th>순서</th>
+                                                        <th>삭제</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="settingBody_<?=$row_option['code_idx']?>">
+                                                    <?php foreach ($row_option['additional_options'] as $option): ?>
+                                                        <tr >
+                                                            <td>
+                                                                <input type='text'   name='o_name[]' id='o_name_<?=$option['idx']?>' value="<?=$option['option_name']?>" size="70" />
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum' style="text-align:right;" name='o_price[]' id='o_price_<?=$option['idx']?>' value="<?=$option['option_price']?>" />
+                                                            </td>
+                                                            <td>
+                                                                <select name="use_yn[]" id="use_yn_<?=$option['idx']?>">
+                                                                <option value="Y" <?php if($option['use_yn'] == "Y") echo "selected";?> >판매중</option>
+                                                                <option value="N" <?php if($option['use_yn'] != "Y") echo "selected";?> >중지</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum' name='o_num[]' id='o_num_<?=$option['idx']?>' value="<?=$option['onum']?>" />
+                                                            </td>
+                                                            <td align="center">
+                                                                <button type="button" onclick="updOption('<?=$option['idx']?>')" >수정</button>
+                                                                <button type="button" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    </tbody>
                                     </table>
                                 </td>
                             </tr>
@@ -1056,7 +1080,7 @@
                     <ul>
                         <li class="left">■ 가격리스트</li>
                         <li class="right_sub" style="padding-bottom:10px">
-                            <a href="../_tourPrice/write<?= ($product_code_1 == "1301") ? "_package" : "" ?>.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_3=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&back_url=<?= $back_url ?>"
+                            <a href="/AdmMaster/_tourRegist/write_tour_info?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_3=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>"
                                class="btn btn-default">
                                 <span class="glyphicon glyphicon-cog"></span>
                                 <span class="txt">가격등록</span>
@@ -1066,6 +1090,35 @@
                 </div>
 
                 <div class="listBottom">
+						<table cellpadding="0" cellspacing="0" summary="" class="listTable">
+						<caption></caption>
+						<colgroup>
+						<col width="5%" />
+						<col width="*" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="10%" />
+						<col width="5%" />
+						<col width="10%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>번호</th>
+								<th>상품명</th>
+								<th>성인가격</th>
+								<th>소아가격</th>	
+								<th>유아가격</th>	
+								<th>등록일</th>
+								<th>판매상태</th>
+								<th>관리</th>
+							</tr>
+						</thead>	
+						
+						</table>
+					</div>
+
+                <!-- <div class="listBottom">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                         <caption></caption>
                         <colgroup>
@@ -1090,7 +1143,7 @@
                         </thead>
                         <?php echo $yoil_html ?>
                     </table>
-                </div>
+                </div> -->
 
                 <div class="tail_menu">
                     <ul>
@@ -1155,6 +1208,19 @@
 
         </div>
     </div>
+    <div class="pick_item_pop02" id="popup_location">
+            <div>
+                <h2>메인노출상품 등록</h2>
+                <div class="table_box" style="height: calc(100% - 146px);">
+                    <ul id="list_location">
+                        
+                    </ul>
+                </div>
+                <div class="sel_box">
+                    <button type="button" class="close">닫기</button>
+                </div>
+            </div>
+        </div>
 
     <script>
         function change_manager(user_id) {
@@ -1216,6 +1282,59 @@
             });
 
         }
+
+        function getCoordinates() {
+		
+        let address = $("#addrs").val();
+        if(!address){
+            alert("주소를 입력해주세요");
+            return false;
+        }
+        const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+            }
+        };
+
+        fetch(apiUrl, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data:', data);
+                let html = '';
+                if(data.results.length > 0){
+                    data.results.forEach(element => {
+                        let address = element.formatted_address;
+                        let lat = element.geometry.location.lat;
+                        let lon = element.geometry.location.lng;
+                        html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                    });
+                }else{
+                    html = `<li>No data</li>`;
+                }
+
+                $("#popup_location #list_location").html(html);
+                $("#popup_location").show();
+                $("#popup_location #list_location li").click(function () {
+                    let latitude = $(this).data("lat");
+                    let longitude = $(this).data("lon");
+                    $("#latitude").val(latitude);
+                    $("#longitude").val(longitude);
+                    $("#popup_location").hide();
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
     </script>
 
     <script>
@@ -1292,7 +1411,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_moption.php",
+                url: "/AdmMaster/_tourRegist/write_tours/updMoption",
                 type: "POST",
                 data: {
                     "code_idx": code_idx,
@@ -1316,10 +1435,10 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.add_moption.php",
+                url: "/AdmMaster/_tourRegist/write_tours/addMoption",
                 type: "POST",
                 data: {
-                    "product_idx": '<?= $product_idx ?>',
+                    "product_idx": $("#product_idx").val(),
                     "moption_name": $("#moption_name").val()
                 },
                 dataType: "json",
@@ -1343,7 +1462,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_moption.php",
+                url: "/AdmMaster/_tourRegist/write_tours/delMoption",
                 type: "POST",
                 data: {
                     "code_idx": code_idx
@@ -1367,24 +1486,20 @@
             var option_data = jQuery("#optionForm_" + code_idx).serialize();
             var save_result = "";
 
-            $.ajax({
-                type: "POST",
-                data: option_data,
-                url: "/ajax/ajax.add_option.php",
-                cache: false,
-                async: false,
-                success: function (data, textStatus) {
-                    save_result = data;
-                    //alert('save_result- '+save_result);
-                    var obj = jQuery.parseJSON(save_result);
-                    var message = obj.message;
-                    alert(message);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
+                $.ajax({
+                    type: "POST",
+                    data: option_data,
+                    url: "/AdmMaster/_tourRegist/write_tours/addOption",
+                    cache: false,
+                    success: function (data) {
+                        var message = data.message;
+                        alert(message);
+                        location.reload();
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                    }
+                });
         }
 
         // 옵션 삭제 함수
@@ -1396,21 +1511,22 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_option.php",
+                url: "/AdmMaster/_tourRegist/write_tours/delOption",
                 type: "POST",
                 data: {
                     "idx": idx
                 },
                 dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
+                success: function(data) {
+                    if (data && data.message) {
+                        alert(data.message);
+                    } else {
+                        alert("삭제 오류. 다시 시도해주세요."); 
+                    }
                     location.reload();
                 },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                error: function(request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });
 
@@ -1426,7 +1542,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_option.php",
+                url: "/AdmMaster/_tourRegist/write_tours/updOption",
                 type: "POST",
                 data: {
                     "idx": idx,
