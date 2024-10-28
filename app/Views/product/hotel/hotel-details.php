@@ -1215,10 +1215,22 @@
             let last_price = $(this).closest(".room_op_").find(".totalPrice").text().trim().replace(/,/g, '');
             let product_idx = $("#product_idx").val();
             let inital_price = $(this).closest(".room_op_").find(".totalPrice").attr("data-price");
+
+            let used_coupon_money = 0;
+            let total_price = parseInt(number_room) * parseInt(number_day) * parseInt(inital_price);
+            if(coupon_type && coupon_discount){
+                if(coupon_type == "P"){
+                    used_coupon_money = Math.round(total_price * Number(coupon_discount) / 100);
+                }else{
+                    used_coupon_money = coupon_discount;
+                }
+            }
+
             let cart = {
                 product_idx: product_idx,
                 room_op_idx: room_op_idx,
                 use_coupon_idx: use_coupon_idx,
+                used_coupon_money: used_coupon_money,
                 use_coupon_room: use_coupon_room,
                 inital_price: inital_price,
                 coupon_discount: coupon_discount,
