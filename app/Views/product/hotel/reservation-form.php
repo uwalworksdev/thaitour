@@ -261,13 +261,13 @@
                     $(this).removeClass("click");
                     $('.item-clause-item').each(function() {
                         $(this).removeClass("acti");
-                        $(this).find("img").attr("src", "../img/hotel_list/clause-check-grey.png");
+                        $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
                     })
                 } else {
                     $(this).addClass("click");
                     $('.item-clause-item').each(function() {
                         $(this).addClass("acti");
-                        $(this).find("img").attr("src", "../img/hotel_list/clause-check-black.png");
+                        $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
                     })
                 }
             });
@@ -275,10 +275,10 @@
             $(".item-clause-item").click(function() {
                 if ($(this).hasClass("acti")) {
                     $(this).removeClass("acti");
-                    $(this).find("img").attr("src", "../img/hotel_list/clause-check-grey.png");
+                    $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
                 } else {
                     $(this).addClass("acti");
-                    $(this).find("img").attr("src", "../img/hotel_list/clause-check-black.png");
+                    $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
                 }
 
                 var allHaveActi = true;
