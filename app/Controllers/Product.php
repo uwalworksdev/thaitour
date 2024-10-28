@@ -1197,7 +1197,7 @@ class Product extends BaseController
                         "m_idx" => $m_idx
                     ];
 
-                    $this->coupon->insert($cou_his);
+                    $this->couponHistory->insert($cou_his);
                 }
 
                 $order_num_room = $this->request->getPost('order_num_room');
