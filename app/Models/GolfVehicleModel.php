@@ -17,6 +17,8 @@ class GolfVehicleModel extends Model
         'ufile1',
         'rfile1',
         'code_url',
+        'min_cnt',
+        'max_cnt',
         'price',
         'parent_code_no',
         'depth',

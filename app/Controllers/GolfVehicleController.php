@@ -61,6 +61,8 @@ class GolfVehicleController extends Controller
             $rfile1 = $row['rfile1'];
             $status = $row['status'];
             $price = $row['price'];
+            $min_cnt = $row['min_cnt'];
+            $max_cnt = $row['max_cnt'];
             $onum = $row['onum'];
             $is_best = $row['is_best'];
             $distance = $row['distance'];
@@ -96,6 +98,8 @@ class GolfVehicleController extends Controller
             "ufile1" => $ufile1 ?? "",
             "rfile1" => $rfile1 ?? "",
             "status" => $status ?? "",
+            "min_cnt" => $min_cnt ?? "",
+            "max_cnt" => $max_cnt ?? "",
             'price' => $price ?? '',
             "onum" => $onum,
             "depth" => $depth,
@@ -126,6 +130,8 @@ class GolfVehicleController extends Controller
         $type = $this->request->getPost('type');
         $file = $this->request->getFile('ufile1');
         $price = str_replace(',', '', $this->request->getPost('price'));
+        $min_cnt = $this->request->getPost('min_cnt');
+        $max_cnt = $this->request->getPost('max_cnt');
 
         $upload = WRITEPATH . '../public/data/code/';
         $uploadpload = ROOTPATH . 'public/data/code/';
@@ -138,6 +144,8 @@ class GolfVehicleController extends Controller
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
                 'price' => $price,
+                'min_cnt' => $min_cnt,
+                'max_cnt' => $max_cnt,
                 'is_best' => $is_best,
                 'distance' => $distance,
                 'type' => $type,
@@ -163,6 +171,8 @@ class GolfVehicleController extends Controller
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
                 'price' => $price,
+                'min_cnt' => $min_cnt,
+                'max_cnt' => $max_cnt,
                 'is_best' => $is_best,
                 'type' => $type,
                 'distance' => $distance,
