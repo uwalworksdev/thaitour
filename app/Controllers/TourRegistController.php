@@ -161,15 +161,15 @@ class TourRegistController extends BaseController
         $result = $this->connect->query($total_sql) or die ($this->connect->error);
         $nTotalCount = $result->getNumRows();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '" . $s_product_code_1 . "' and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='2' and code_no = '" . $s_product_code_1 . "' and status='Y' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='3' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_3 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_3 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
 
@@ -232,8 +232,7 @@ class TourRegistController extends BaseController
     public function write_golf()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite("1302");
-
+        $data = $this->getWrite('', '', '', '1302', '');
         $db = $this->connect;
 
         $sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
@@ -396,7 +395,8 @@ class TourRegistController extends BaseController
     public function write_spas()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite("");
+
+        $data = $this->getWrite('', '1317', '1320', '1324', '');
 
         $db = $this->connect;
 
@@ -433,11 +433,11 @@ class TourRegistController extends BaseController
         $query = $db->query($sql, [$product_idx]);
         $data['dayDetails'] = $query->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4402' order by onum desc, code_idx desc";
         $fresult6 = $this->connect->query($fsql);
         $fresult6 = $fresult6->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4404' order by onum desc, code_idx desc";
         $fresult5 = $this->connect->query($fsql);
         $fresult5 = $fresult5->getResultArray();
 
@@ -446,7 +446,7 @@ class TourRegistController extends BaseController
 
             $code_no = $rs['code_no'];
 
-            $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='$code_no' order by onum desc, code_idx desc";
+            $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='$code_no' order by onum desc, code_idx desc";
 
             $rs_child = $this->connect->query($fsql)->getResultArray();
 
@@ -455,7 +455,7 @@ class TourRegistController extends BaseController
             return $rs;
         }, $fresult5);
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='35' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4403' order by onum desc, code_idx desc";
         $fresult8 = $this->connect->query($fsql);
         $fresult8 = $fresult8->getResultArray();
 
@@ -478,7 +478,7 @@ class TourRegistController extends BaseController
     public function write_tours()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite('1301');
+        $data = $this->getWrite('', '', '1301', '', '');
 
         $db = $this->connect;
 
@@ -530,7 +530,7 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_tours", $data);
     }
 
-    private function getWrite($product_code_1)
+    private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code)
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');
@@ -546,19 +546,35 @@ class TourRegistController extends BaseController
         $orderBy = $_GET["orderBy"] ?? "";
         if ($orderBy == "") $orderBy = 1;
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '$product_code_1' and status='Y' order by onum desc, code_idx desc";
+        $fsql = "SELECT * FROM tbl_code 
+                 WHERE depth='2' 
+                 AND (code_no = '$hotel_code' 
+                      OR code_no = '$spa_code' 
+                      OR code_no = '$tour_code' 
+                      OR code_no = '$golf_code' 
+                      OR code_no = '$stay_code') 
+                 AND status='Y' 
+                 ORDER BY onum DESC, code_idx DESC";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='3'  
+                        AND (parent_code_no = '$hotel_code' 
+                        OR parent_code_no = '$spa_code' 
+                        OR parent_code_no = '$tour_code' 
+                        OR parent_code_no = '$golf_code' 
+                        OR parent_code_no = '$stay_code') 
+                        AND status='Y'  order by onum desc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
+
         $row = null;
 
+        $product_code_1 = '';
         if ($product_idx) {
             $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
             $row = $this->connect->query("$sql")->getResultArray()[0];
@@ -660,6 +676,10 @@ class TourRegistController extends BaseController
             $latitude = $row["latitude"];
             $longitude = $row["longitude"];
             $product_points = $row["product_points"];
+
+            $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+            $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
+            $fresult3 = $fresult3->getResultArray();
         }
 
         $private_key = '';

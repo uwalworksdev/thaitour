@@ -23,8 +23,8 @@
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
         function checkForNumber(str) {
-            var key = event.keyCode;
-            var frm = document.frm1;
+            let key = event.keyCode;
+            let frm = document.frm1;
             if (!(key == 8 || key == 9 || key == 13 || key == 46 || key == 144 ||
                 (key >= 48 && key <= 57) || (key >= 96 && key <= 105) || key == 110 || key == 190)) {
                 event.returnValue = false;
@@ -95,6 +95,11 @@
                 <input type="hidden" name="code_populars" id="code_populars"
                        value='<?= $code_populars ?? "" ?>'/>
 
+                <input type="hidden" name="available_period" id="available_period"
+                       value='<?= $available_period ?? "" ?>'/>
+                <input type="hidden" name="deadline_time" id="deadline_time"
+                       value='<?= $deadline_time ?? "" ?>'/>
+
                 <div id="contents">
                     <div class="listWrap_noline">
                         <div class="listBottom">
@@ -118,11 +123,11 @@
                                             <?php
                                             foreach ($fresult as $frow):
                                                 $status_txt = "";
-                                                if ($frow["status"] == "Y") {
+                                                if ($frow["code_no"] == $product_code_1) {
                                                     $status_txt = "";
-                                                } elseif ($frow["status"] == "N") {
+                                                } elseif ($frow["code_no"] == $product_code_1) {
                                                     $status_txt = "[삭제]";
-                                                } elseif ($frow["status"] == "C") {
+                                                } elseif ($frow["code_no"] == $product_code_1) {
                                                     $status_txt = "[마감]";
                                                 }
 
@@ -140,11 +145,11 @@
                                             <?php
                                             foreach ($fresult2 as $frow):
                                                 $status_txt = "";
-                                                if ($frow["status"] == "Y") {
+                                                if ($frow["code_no"] == $product_code_2) {
                                                     $status_txt = "";
-                                                } elseif ($frow["status"] == "N") {
+                                                } elseif ($frow["code_no"] == $product_code_2) {
                                                     $status_txt = "[삭제]";
-                                                } elseif ($frow["status"] == "C") {
+                                                } elseif ($frow["code_no"] == $product_code_2) {
                                                     $status_txt = "[마감]";
                                                 }
 
@@ -160,11 +165,11 @@
                                             <?php
                                             foreach ($fresult3 as $frow):
                                                 $status_txt = "";
-                                                if ($frow["status"] == "Y") {
+                                                if ($frow["code_no"] == $product_code_3) {
                                                     $status_txt = "";
-                                                } elseif ($frow["status"] == "N") {
+                                                } elseif ($frow["code_no"] == $product_code_3) {
                                                     $status_txt = "[삭제]";
-                                                } elseif ($frow["status"] == "C") {
+                                                } elseif ($frow["code_no"] == $product_code_3) {
                                                     $status_txt = "[마감]";
                                                 }
 
@@ -520,22 +525,106 @@
                                     </td>
                                 </tr>
 
+                                <style>
+                                    .al {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: start;
+                                        margin: 30px 0;
+                                        gap: 20px;
+                                    }
+
+                                    .al input {
+                                        width: 15%
+                                    }
+                                </style>
+
                                 <tr>
                                     <th>사용 가능 기간</th>
                                     <td colspan="3">
-
+                                        <div class="al">
+                                            <input type="text" class="input_txt _available_period_ datepicker"
+                                                   name="available_period_start"
+                                                   id="available_period_start">
+                                            <span> ~ </span>
+                                            <input type="text" class="input_txt _available_period_ datepicker"
+                                                   name="available_period_end"
+                                                   id="available_period_end">
+                                        </div>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>마감 시간</th>
                                     <td colspan="3">
+                                        <div class="al_list_" id="al_list_">
+                                            <div class="al">
+                                                <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                       name="deadline_start"
+                                                       id="deadline_start">
+                                                <span> ~ </span>
+                                                <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                       name="deadline_end"
+                                                       id="deadline_end">
 
+                                                <button onclick="removeEl(this);" style="margin: 0"
+                                                        class="btn_al_plus_ btn_02" type="button">
+                                                    -
+                                                </button>
+                                                <button onclick="plusEl(this);" style="margin: 0"
+                                                        class="btn_al_plus_ btn_01" type="button">
+                                                    +
+                                                </button>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
 
                                 </tbody>
                             </table>
+
+                            <script>
+                                let num = sessionStorage.getItem('num') ?? 0;
+
+                                function plusEl(el) {
+                                    num = parseInt(num) + 1;
+
+                                    let html_ = ` <div class="al">
+                                                <input type="text" class="input_txt _deadline_time_ datepicker" name="deadline_start"
+                                                       id="deadline_start_${num}">
+                                                <span> ~ </span>
+                                                <input type="text" class="input_txt _deadline_time_ datepicker" name="deadline_end"
+                                                       id="deadline_end_${num}">
+
+                                                <button onclick="removeEl(this);" style="margin: 0"
+                                                        class="btn_al_plus_ btn_02" type="button">
+                                                    -
+                                                </button>
+                                                <button onclick="plusEl(this);" style="margin: 0"
+                                                        class="btn_al_plus_ btn_01" type="button">
+                                                    +
+                                                </button> </div>`;
+
+                                    let pa = $(el).closest('.al_list_');
+                                    pa.append(html_)
+
+                                    sessionStorage.setItem('num', num);
+
+                                    openDatepicker();
+                                }
+
+                                function removeEl(el) {
+                                    let pa = $(el).closest('.al');
+                                    pa.remove();
+                                }
+
+                                function openDatepicker() {
+                                    $(".datepicker").datepicker();
+                                    $(".datepicker2").datepicker();
+                                    $('img.ui-datepicker-trigger').css({'cursor': 'pointer'});
+                                    $('input.hasDatepicker').css({'cursor': 'pointer'});
+                                }
+                            </script>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
@@ -543,7 +632,7 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="40%"/>
+                                    <col width="5%"/>
                                     <col width="10%"/>
                                     <col width="40%"/>
                                 </colgroup>
@@ -556,7 +645,14 @@
 
                                 <tr>
                                     <th>추천 포인트</th>
-                                    <td colspan="3">
+                                    <th>
+                                        <input type="checkbox" id="all_code_utility" class="all_input"
+                                               name="_code_utility" value=""/>
+                                        <label for="all_code_utility">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_utilities);
                                         foreach ($fresult6 as $row_r) :
@@ -568,15 +664,23 @@
                                             }
                                             ?>
                                             <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
-                                                   name="_code_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                                   name="_code_utilities" class="code_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_utilitie<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>인기 시설 및 서비스</th>
-                                    <td colspan="3">
+                                    <th>
+                                        <input type="checkbox" id="all_code_best_utilities" class="all_input"
+                                               name="_code_best_utilities" value=""/>
+                                        <label for="all_code_best_utilities">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_best_utilities);
                                         foreach ($fresult6 as $row_r) :
@@ -588,15 +692,25 @@
                                             }
                                             ?>
                                             <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
-                                                   name="_code_best_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                                   name="_code_best_utilities" class="code_best_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_best_utilities<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>시설 & 서비스</th>
-                                    <td colspan="3">
+                                    <th>
+                                        <input type="checkbox" id="all_code_service" class="all_input"
+                                               name="_code_service" value=""/>
+                                        <label for="all_code_service">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_services);
                                         foreach ($fresult5 as $row_r) : ?>
@@ -614,10 +728,13 @@
                                                             }
                                                         }
                                                         ?>
-                                                        <input type="checkbox"
+                                                        <input type="checkbox" class="code_service"
                                                                id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
                                                                name="_code_services"
-                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> /><?= $row_r2['code_name'] ?>
+                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
+                                                        <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
+                                                            <?= $row_r2['code_name'] ?>
+                                                        </label>
                                                     <?php endforeach; ?>
                                                 </div>
                                             </div>
@@ -627,7 +744,14 @@
 
                                 <tr>
                                     <th>호텔주변 추천명소</th>
-                                    <td colspan="3">
+                                    <th style="width: 20px">
+                                        <input type="checkbox" id="all_code_populars" class="all_input"
+                                               name="_code_populars" value="Y"/>
+                                        <label for="all_code_populars">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_populars);
                                         foreach ($fresult8 as $row_r) :
@@ -639,8 +763,11 @@
                                             }
                                             ?>
                                             <input type="checkbox" id="code_populars<?= $row_r['code_no'] ?>"
-                                                   name="_code_populars"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                                   name="_code_populars" class="code_populars"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_populars<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
@@ -1745,6 +1872,28 @@
             })
             $("#code_populars").val(_code_populars);
 
+            let _available_period = '';
+            let _deadline_time = '';
+
+            let available_period_start = $('#available_period_start').val();
+            let available_period_end = $('#available_period_end').val();
+
+            _available_period = available_period_start + '||' + available_period_end;
+
+            let al_list_ = $('#al_list_');
+            let al_list_item_ = al_list_.find('.al')
+
+            al_list_item_.each(function () {
+                let el = $(this);
+
+                let deadline_start = el.find('input[name="deadline_start"]').val();
+                let deadline_end = el.find('input[name="deadline_end"]').val();
+
+                let deadline_ = deadline_start + '||' + deadline_end;
+
+                _deadline_time = _deadline_time + '||||' + deadline_;
+            })
+
             frm.submit();
         }
 
@@ -1853,6 +2002,40 @@
                 }
             });
         }
+    </script>
+    <script>
+        $('#all_code_populars').change(function () {
+            if ($('#all_code_populars').is(':checked')) {
+                $('.code_populars').prop('checked', true)
+            } else {
+                $('.code_populars').prop('checked', false)
+            }
+        });
+
+        $('#all_code_service').change(function () {
+            if ($('#all_code_service').is(':checked')) {
+                $('.code_service').prop('checked', true)
+            } else {
+                $('.code_service').prop('checked', false)
+            }
+        });
+
+        $('#all_code_best_utilities').change(function () {
+            if ($('#all_code_best_utilities').is(':checked')) {
+                $('.code_best_utilities').prop('checked', true)
+            } else {
+                $('.code_best_utilities').prop('checked', false)
+            }
+        });
+
+        $('#all_code_utility').change(function () {
+            if ($('#all_code_utility').is(':checked')) {
+                $('.code_utilities').prop('checked', true)
+            } else {
+                $('.code_utilities').prop('checked', false)
+            }
+        })
+
     </script>
     <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
