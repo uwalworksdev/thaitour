@@ -77,8 +77,8 @@
                 </div>
                 <div class="bot_content">
                     <div class="slide_tab flex">
-                        <a class="slide_tab_btn" href="../mypage/point.php">포인트 사용내역</a>
-                        <a class="slide_tab_btn active" href="../mypage/coupon.php">쿠폰 사용내역</a>
+                        <a class="slide_tab_btn" href="/mypage/point">포인트 사용내역</a>
+                        <a class="slide_tab_btn active" href="/mypage/coupon">쿠폰 사용내역</a>
                         <div></div>
                     </div>
                     <div class="filter flex_b_c">

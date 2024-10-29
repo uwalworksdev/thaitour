@@ -5,36 +5,34 @@
     $is_allow_payment = $_SERVER['REMOTE_ADDR'] == "220.86.61.165" || $_SERVER['REMOTE_ADDR'] == "113.160.96.156" || $_SERVER['REMOTE_ADDR'] == "58.150.52.107" || $_SERVER['REMOTE_ADDR'] == "14.137.74.11";
 ?>
 <?php
-if ($_SESSION["member"]["mIdx"] == "") {
-    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-    exit();
-}
+    if(empty(session()->get("member")["mIdx"])){
+        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+        exit();         
+    }
 
-$search_word = trim($_GET['search_word']);
-$g_list_rows = 10;
+    $search_word = trim($_GET['search_word']);
+    $g_list_rows = 10;
 
-if ($search_word) {
-    $strSql = $strSql . " and product_name like '%" . $search_word . "%' ";
-}
+    if ($search_word) {
+        $strSql = $strSql . " and product_name like '%" . $search_word . "%' ";
+    }
 
-if ($s_status) {
-    $strSql = $strSql . " and order_status = '" . $s_status . "' ";
-}
-$strSql = $strSql . " and order_gubun='tour' ";
-$strSql = $strSql . " and m_idx='" . $_SESSION["member"]["mIdx"] . "' ";
-$strSql = $strSql . " and order_status != 'D' ";
-$total_sql = "	select *
-					, (select ufile1 from tbl_product_mst where tbl_product_mst.product_idx=tbl_order_mst.product_idx) as ufile1
-					, (select ifnull(count(*),0) from tbl_order_list where tbl_order_mst.order_idx= tbl_order_list.order_idx) as cnt
-					from tbl_order_mst where 1=1 $strSql ";
-$nTotalCount = $connect->query($total_sql)->getNumRows();
+    if ($s_status) {
+        $strSql = $strSql . " and order_status = '" . $s_status . "' ";
+    }
+    $strSql = $strSql . " and order_gubun='hotel' ";
+    $strSql = $strSql . " and m_idx='" . $_SESSION["member"]["mIdx"] . "' ";
+    $strSql = $strSql . " and order_status != 'D' ";
+    $total_sql = "	select *
+                        , (select ufile1 from tbl_product_mst where tbl_product_mst.product_idx=tbl_order_mst.product_idx) as ufile1
+                        , (select ifnull(count(*),0) from tbl_order_list where tbl_order_mst.order_idx= tbl_order_list.order_idx) as cnt
+                        from tbl_order_mst where 1=1 $strSql ";
+    $nTotalCount = $connect->query($total_sql)->getNumRows();
 
-$nPage = ceil($nTotalCount / $g_list_rows);
-if ($pg == "")
-    $pg = 1;
-$nFrom = ($pg - 1) * $g_list_rows;
-
-
+    $nPage = ceil($nTotalCount / $g_list_rows);
+    if ($pg == "")
+        $pg = 1;
+    $nFrom = ($pg - 1) * $g_list_rows;
 ?>
 
 

@@ -8,6 +8,12 @@ use TravelContactModel;
 
 class MyPage extends BaseController
 {
+    private $db;
+    private $member;
+    private $travel_contact;
+    private $travel_qna;
+    private $sessionLib;
+    private $sessionChk;
     public function __construct()
     {
         helper(['html']);
@@ -22,6 +28,38 @@ class MyPage extends BaseController
     }
     public function details()
     {
+        $clientIP = $this->request->getIPAddress();
+        $is_allow_payment = $clientIP == "220.86.61.165" || $clientIP == "113.160.96.156" || $clientIP == "58.150.52.107" || $clientIP == "14.137.74.11";
+        $pg = "";
+        $search_word = trim($this->request->getVar('search_word'));
+        $s_status = $this->request->getVar('s_status');
+        $g_list_rows = 10;
+        $strSql = "";
+        if ($search_word) {
+            $strSql = $strSql . " and product_name like '%" . $search_word . "%' ";
+        }
+
+        if ($s_status) {
+            $strSql = $strSql . " and order_status = '" . $s_status . "' ";
+        }
+        $strSql = $strSql . " and order_gubun='hotel' ";
+        $strSql = $strSql . " and m_idx='" . $_SESSION["member"]["mIdx"] . "' ";
+        $strSql = $strSql . " and order_status != 'D' ";
+        $total_sql = "	SELECT tbl_order_mst.*, tbl_product_mst.ufile1, IFNULL(COUNT(tbl_order_list.order_idx), 0) AS cnt
+                                FROM tbl_order_mst
+                                LEFT JOIN tbl_product_mst 
+                                    ON tbl_product_mst.product_idx = tbl_order_mst.product_idx
+                                LEFT JOIN tbl_order_list 
+                                    ON tbl_order_list.order_idx = tbl_order_mst.order_idx WHERE 1 = 1 $strSql 
+                                    GROUP BY tbl_order_mst.order_idx ";
+        $nTotalCount = $this->db->query($total_sql)->getNumRows();
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == ""){
+            $pg = 1;
+        }
+        $nFrom = ($pg - 1) * $g_list_rows;
+
         return view('mypage/details');
     }
     public function custom_travel()
