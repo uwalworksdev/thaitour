@@ -86,7 +86,7 @@
                                 </tr>
                                 <?php
                             }
-                           foreach ($result as $row) {
+                            foreach ($result as $row) {
                                 $today = date('Y-m-d');
                                 ?>
                                 <tr>
@@ -183,7 +183,7 @@
 
 <div class="coupon_pop">
     <div>
-        <form action="find_user.php" onsubmit="return fn_chk_coupon();">
+        <form action="find_user" onsubmit="return fn_chk_coupon();">
             <input type="hidden" name="coupon_nums" id="coupon_nums" value=""/>
 
             <div class="search_box">
@@ -195,12 +195,6 @@
                 <table>
                     <caption>아이디찾기</caption>
                     <tbody id="id_contents">
-                    <!--
-                    <tr>
-                        <th>박지애</th>
-                        <td>crazy830727</td>
-                    </tr>
-                    -->
 
                     </tbody>
                 </table>
@@ -239,20 +233,24 @@
     }
 
     function SELECT_DELETE() {
-        if ($(".code_idx").is(":checked") == false) {
+        if ($(".code_idx").is(":checked") === false) {
             alert_("삭제할 내용을 선택하셔야 합니다.");
             return;
         }
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") === false) {
             return;
         }
 
         $("#ajax_loader").removeClass("display-none");
 
+        let uri = `<?= route_to('admin.operator.coupon_del') ?>`;
+
         $.ajax({
-            url: "coupon_del.php",
+            url: uri,
             type: "POST",
             data: $("#frm").serialize(),
+            async: false,
+            cache: false,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
@@ -262,30 +260,28 @@
 //				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 삭제되었습니다.");
-                    location.reload();
-                    return;
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                    return;
-                }
+                $("#ajax_loader").addClass("display-none");
+                alert_("정상적으로 삭제되었습니다.");
+                window.location.href = '/AdmMaster/_operator/coupon_list';
             }
         });
-
     }
 
     function del_it(code_idx) {
-
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") === false) {
             return;
         }
+
+
         $("#ajax_loader").removeClass("display-none");
+        let uri = `<?= route_to('admin.operator.coupon_del') ?>`;
+
         $.ajax({
-            url: "coupon_del.php",
+            url: uri,
             type: "POST",
             data: "idx[]=" + code_idx,
+            async: false,
+            cache: false,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
@@ -295,18 +291,11 @@
 //				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 삭제되었습니다.");
-                    location.reload();
-                    return;
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                    return;
-                }
+                $("#ajax_loader").addClass("display-none");
+                alert_("정상적으로 삭제되었습니다.");
+                window.location.href = '/AdmMaster/_operator/coupon_list';
             }
         });
-
     }
 
     function press_it() {
@@ -345,7 +334,7 @@
 
         $.ajax({
             type: "GET"
-            , url: "find_user.ajax.php"
+            , url: "find_user"
             , dataType: "html" //전송받을 데이터의 타입
             , timeout: 30000 //제한시간 지정
             , cache: false  //true, false
@@ -367,7 +356,6 @@
 
         if (confirm("해당 회원에게 쿠폰을 발급하시겠습니까?")) {
 
-
             var coupon_nums = $("#coupon_nums").val();
 
             if (coupon_nums.trim() == "") {
@@ -375,11 +363,10 @@
                 return false;
             }
 
-
             $.ajax({
                 type: "GET"
-                , url: "set_user.ajax.php"
-                , dataType: "html" //전송받을 데이터의 타입
+                , url: "/AdmMaster/_operator/send_coupon"
+                // , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
                 , data: "user_id=" + user_id + "&coupon_nums=" + coupon_nums //서버에 보낼 파라메터
@@ -388,14 +375,13 @@
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 }
                 , success: function (data) {
-                    if (data.trim() == "ok") {
+                    if (data.result == true) {
                         alert("처리되었습니다.");
                     } else {
-                        alert(data);
+                        alert(data.message);
                     }
 
                     location.reload();
-
 
                 }
             });

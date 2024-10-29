@@ -13,9 +13,8 @@
     <meta property="og:image" content="/uploads/setting/<?= $setting['og_img'] ?>">
     <meta property="og:url" content="https://happythaitour.com/">
     <meta property="al:web:url" content="https://happythaitour.com/">
-    <meta name="robots" content="index,follow">
     <meta name="naver-site-verification" content="466ef04fc98ddc84f2dc2f63451ef03d71efa5d7">
-    <link href="/uploads/setting/<?= $setting['logos'] ?>" rel="icon" type="image/x-icon">
+    <link href="/uploads/setting/<?= $setting['favico'] ?>" rel="icon" type="image/x-icon">
     <link rel="canonical" href="https://happythaitour.com/">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="/lib/jquery/jquery-2.1.4.min.js"></script>
@@ -24,10 +23,11 @@
     <link rel="stylesheet" href="/lib/swiper-11.1.4/package/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/lib/summernote/summernote-lite.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <script src="/lib/jquery/jquery-ui.min.js"></script>
     <script src="/js/script.js"></script>
     <script src="/lib/swiper-11.1.4/package/swiper-bundle.min.js"></script>
-    <script src="/lib/slick/slick.js"></script>
-    <script src="/lib/jquery/jquery-ui.min.js"></script>
+    <!--    <script src="/lib/slick/slick.js"></script>-->
+    <script src="/lib/slick/slick.min.js"></script>
     <script src="/lib/summernote/summernote-lite.js"></script>
     <script src="/lib/summernote/lang/summernote-ko-KR.js"></script>
     <title><?= $setting['site_name'] ?></title>

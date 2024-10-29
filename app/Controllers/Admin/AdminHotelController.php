@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use Cassandra\Date;
 use CodeIgniter\Database\Config;
+use stdClass;
 
 class AdminHotelController extends BaseController
 {
@@ -23,18 +24,26 @@ class AdminHotelController extends BaseController
     {
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_txt = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $orderBy = $_GET["orderBy"] ?? "";
 
         $where = [
-            'search_name' => $search_name,
+            'search_txt' => $search_txt,
             'search_category' => $search_category,
             'orderBy' => $orderBy,
             'product_code_1' => 1303,
         ];
 
-        $result = $this->productModel->findProductPaging($where, $g_list_rows, $pg);
+        $orderByArr = [];
+
+        if ($orderBy == 1) {
+            $orderByArr['onum'] = "DESC";
+        } elseif ($orderBy == 2) {
+            $orderByArr['r_date'] = "DESC";
+        }
+
+        $result = $this->productModel->findProductPaging($where, $g_list_rows, $pg, $orderByArr);
 
         $data = [
             'result' => $result['items'],
@@ -43,7 +52,7 @@ class AdminHotelController extends BaseController
             'nTotalCount' => $result['nTotalCount'],
             'nPage' => $result['nPage'],
             'pg' => $pg,
-            'search_name' => $search_name,
+            'search_txt' => $search_txt,
             'search_category' => $search_category,
             'g_list_rows' => $g_list_rows,
         ];
@@ -63,10 +72,6 @@ class AdminHotelController extends BaseController
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun = 'tour' and parent_code_no='1303'";
-        $fresult2 = $this->connect->query($fsql);
-        $fresult2 = $fresult2->getResultArray();
-
         $fsql = " select *
 						, (select code_name from tbl_code where code_gubun = 'stay' and depth='2' and tbl_code.code_no=tbl_product_stay.stay_code) as stay_gubun
 						, (select code_name from tbl_code where code_gubun = 'country' and depth='2' and tbl_code.code_no=tbl_product_stay.country_code_1) as country_name_1
@@ -76,36 +81,8 @@ class AdminHotelController extends BaseController
         $fresult3 = $fresult3->getResultArray();
 
         if ($product_idx) {
-            $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-            $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
+            $row = $this->productModel->find($product_idx);
         }
-
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
-        $fresult4 = $this->connect->query($fsql);
-        $fresult4 = $fresult4->getResultArray();
-
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
-        $fresult5 = $this->connect->query($fsql);
-        $fresult5 = $fresult5->getResultArray();
-
-        $fresult5 = array_map(function ($item) {
-            $rs = (array)$item;
-
-            $code_no = $rs['code_no'];
-
-            $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='$code_no' order by onum desc, code_idx desc";
-
-            $rs_child = $this->connect->query($fsql)->getResultArray();
-
-            $rs['child'] = $rs_child;
-
-            return $rs;
-        }, $fresult5);
-
-        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='35' order by onum desc, code_idx desc";
-        $fresult8 = $this->connect->query($fsql);
-        $fresult8 = $fresult8->getResultArray();
 
         $fsql9 = "select * from tbl_code where parent_code_no='30' order by onum desc, code_idx desc";
         $fresult9 = $this->connect->query($fsql9);
@@ -114,6 +91,22 @@ class AdminHotelController extends BaseController
         $fsql = "select * from tbl_room_options where h_idx='" . $product_idx . "' order by rop_idx desc";
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
+
+        $sql = "select * from tbl_code where parent_code_no='38' order by onum desc, code_idx desc";
+        $product_themes = $this->connect->query($sql);
+        $product_themes = $product_themes->getResultArray();
+
+        $sql = "select * from tbl_code where parent_code_no='39' order by onum desc, code_idx desc";
+        $product_bedrooms = $this->connect->query($sql);
+        $product_bedrooms = $product_bedrooms->getResultArray();
+
+        $sql = "select * from tbl_code where parent_code_no='40' order by onum desc, code_idx desc";
+        $product_types = $this->connect->query($sql);
+        $product_types = $product_types->getResultArray();
+
+        $sql = "select * from tbl_code where parent_code_no='41' order by onum desc, code_idx desc";
+        $product_promotions = $this->connect->query($sql);
+        $product_promotions = $product_promotions->getResultArray();
 
         $data = [
             'product_idx' => $product_idx,
@@ -124,13 +117,13 @@ class AdminHotelController extends BaseController
             's_product_code_2' => $s_product_code_2,
             'row' => $row ?? '',
             'fresult' => $fresult,
-            'fresult2' => $fresult2,
             'fresult3' => $fresult3,
-            'fresult4' => $fresult4,
-            'fresult5' => $fresult5,
-            'fresult8' => $fresult8,
             'fresult9' => $fresult9,
-            'roresult' => $roresult
+            'roresult' => $roresult,
+            'pthemes' => $product_themes,
+            'pbedrooms' => $product_bedrooms,
+            'ptypes' => $product_types,
+            'ppromotions' => $product_promotions,
         ];
         return view("admin/_hotel/write", $data);
     }
@@ -139,38 +132,77 @@ class AdminHotelController extends BaseController
     {
         try {
             $files = $this->request->getFiles();
-            $data['product_code_list']  = updateSQ($_POST["product_code_list"] ?? '');
-            $data['product_code']       = updateSQ($_POST["product_code"] ?? '');
-            $data['product_name']       = updateSQ($_POST["product_name"] ?? '');
-            $data['keyword']            = updateSQ($_POST["keyword"] ?? '');
-            $data['product_status']     = updateSQ($_POST["product_status"] ?? '');
-            $data['original_price']     = updateSQ($_POST["original_price"] ?? '');
-            $data['product_price']      = updateSQ($_POST["product_price"] ?? '');
+            $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
+            $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
+            $data['product_name'] = updateSQ($_POST["product_name"] ?? '');
+            $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
+            $data['product_status'] = updateSQ($_POST["product_status"] ?? '');
+            $data['original_price'] = updateSQ($_POST["original_price"] ?? '');
+            $data['product_price'] = updateSQ($_POST["product_price"] ?? '');
 
-            $data['product_level']      = updateSQ($_POST["product_level"] ?? '');
-            $data['addrs']              = updateSQ($_POST["addrs"] ?? '');
-            $data['room_cnt']           = updateSQ($_POST["room_cnt"] ?? '');
-            $data['product_info']       = updateSQ($_POST["product_info"] ?? '');
-            $data['product_best']       = updateSQ($_POST["product_best"] ?? 'N');
-            $data['special_price']      = updateSQ($_POST["special_price"] ?? 'N');
-            $data['is_view']            = "Y";
+            $data['product_level'] = updateSQ($_POST["product_level"] ?? '');
+            $data['addrs'] = updateSQ($_POST["addrs"] ?? '');
+            $data['room_cnt'] = updateSQ($_POST["room_cnt"] ?? '');
+            $data['product_info'] = updateSQ($_POST["product_info"] ?? '');
+            $data['product_best'] = updateSQ($_POST["product_best"] ?? 'N');
+            $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');
+            $data['is_view'] = "Y";
 
-            $o_idx          = $_POST["o_idx"] ?? [];
-            $o_name         = $_POST["o_name"] ?? [];
-            $o_price1       = $_POST["o_price1"] ?? [];
-            $o_sdate        = $_POST["o_sdate"] ?? [];
-            $o_edate        = $_POST["o_edate"] ?? [];
-            $o_room         = $_POST["o_room"] ?? [];
-            $option_type    = $_POST["option_type"] ?? [];
-            $o_soldout      = $_POST["o_soldout"] ?? [];
+            $data['product_theme'] = updateSQ($_POST["product_theme"] ?? ''); // code=38 호텔 테마
+            $data['product_bedrooms'] = updateSQ($_POST["product_bedrooms"] ?? ''); // code=39 호텔 침실수
+            $data['product_type'] = updateSQ($_POST["product_type"] ?? ''); // code=40 호텔타입
+            $data['product_promotions'] = updateSQ($_POST["product_promotions"] ?? '');// code=41 호텔 프로모션
 
-            $rop_idx            = $_POST["rop_idx"] ?? [];
-            $sup_room__idx      = $_POST["sup_room__idx"] ?? [];
-            $sup_room__name     = $_POST["sup_room__name"] ?? [];
-            $sup__key           = $_POST["sup__key"] ?? [];
-            $sup__name          = $_POST["sup__name"] ?? [];
-            $sup__price         = $_POST["sup__price"] ?? [];
-            $sup__price_sale    = $_POST["sup__price_sale"] ?? [];
+            $dataProductMore = new stdClass();
+
+            $meet_out_time = $_POST['meet_out_time'] ?? '';
+            $children_policy = $_POST['children_policy'] ?? '';
+            $baby_beds = $_POST['baby_beds'] ?? '';
+            $deposit_regulations = $_POST['deposit_regulations'] ?? '';
+            $pets = $_POST['pets'] ?? '';
+            $age_restriction = $_POST['age_restriction'] ?? '';
+            $smoking_policy = $_POST['smoking_policy'] ?? '';
+            $breakfast = $_POST['breakfast'] ?? '';
+
+            $breakfast_item_name_arr = $_POST['breakfast_item_name_'];
+            $breakfast_item_value_arr = $_POST['breakfast_item_value_'];
+
+            $dataBreakfast = "";
+            foreach ($breakfast_item_name_arr as $key => $value) {
+                $txt = $breakfast_item_name_arr[$key] . "::::" . $breakfast_item_value_arr[$key];
+                $dataBreakfast .= $txt . "||||";
+            }
+
+            $dataProductMore->meet_out_time = $meet_out_time;
+            $dataProductMore->children_policy = $children_policy;
+            $dataProductMore->baby_beds = $baby_beds;
+            $dataProductMore->deposit_regulations = $deposit_regulations;
+            $dataProductMore->pets = $pets;
+            $dataProductMore->age_restriction = $age_restriction;
+            $dataProductMore->smoking_policy = $smoking_policy;
+            $dataProductMore->breakfast = $breakfast;
+            $dataProductMore->breakfast_data = $dataBreakfast;
+
+            $dataProductMore = json_encode($dataProductMore);
+
+            $data['product_more'] = $dataProductMore;
+
+            $o_idx = $_POST["o_idx"] ?? [];
+            $o_name = $_POST["o_name"] ?? [];
+            $o_price1 = $_POST["o_price1"] ?? [];
+            $o_sdate = $_POST["o_sdate"] ?? [];
+            $o_edate = $_POST["o_edate"] ?? [];
+            $o_room = $_POST["o_room"] ?? [];
+            $option_type = $_POST["option_type"] ?? [];
+            $o_soldout = $_POST["o_soldout"] ?? [];
+
+            $rop_idx = $_POST["rop_idx"] ?? [];
+            $sup_room__idx = $_POST["sup_room__idx"] ?? [];
+            $sup_room__name = $_POST["sup_room__name"] ?? [];
+            $sup__key = $_POST["sup__key"] ?? [];
+            $sup__name = $_POST["sup__name"] ?? [];
+            $sup__price = $_POST["sup__price"] ?? [];
+            $sup__price_sale = $_POST["sup__price_sale"] ?? [];
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -178,7 +210,7 @@ class AdminHotelController extends BaseController
                 if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
                     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
-                
+
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();
                     $data["ufile$i"] = $file->getRandomName();
@@ -371,7 +403,6 @@ class AdminHotelController extends BaseController
                     </script>";
             }
 
-            
 
         } catch (\Exception $e) {
             return $this->response->setJSON([
@@ -412,43 +443,6 @@ class AdminHotelController extends BaseController
                     ]
                 );
 
-        } catch (\Exception $e) {
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => $e->getMessage()
-            ], 400);
-        }
-    }
-
-    public function prod_update()
-    {
-        try {
-            $product_idx = $_POST['product_idx'] ?? '';
-            $onum = $_POST['onum'] ?? '';
-            $goods_dis3 = $_POST['product_best'] ?? '';
-
-            $sql = " update tbl_product_mst set onum='" . $onum . "', goods_dis3='" . $goods_dis3 . "' where product_idx='" . $product_idx . "'";
-
-            $db = $this->connect->query($sql);
-            if (!$db) {
-                return $this->response
-                    ->setStatusCode(400)
-                    ->setJSON(
-                        [
-                            'status' => 'error',
-                            'message' => '수정 중 오류가 발생했습니다!!'
-                        ]
-                    );
-            }
-
-            return $this->response
-                ->setStatusCode(200)
-                ->setJSON(
-                    [
-                        'status' => 'success',
-                        'message' => '수정 했습니다.'
-                    ]
-                );
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

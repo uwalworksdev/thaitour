@@ -109,7 +109,7 @@
 
       <div class="detail_txt_info">
         <p class="item_num">상품번호 <strong><?= $product['product_code'] ?></strong></p>
-        <h2 class="item_ttl"><?= htmlspecialchars_decode($product['product_name']) ?></h2>
+        <h2 class="item_ttl"><?= htmlspecialchars_decode(viewSQ($product['product_name'])) ?></h2>
         <span class="item_desc"><?= htmlspecialchars_decode($product['product_info']) ?></span>
         <div class="hash_box">
           <?php foreach (explode(',', $product['keyword']) as $keyword): ?>

@@ -18,20 +18,19 @@
                         </div>
                         <div class="form_input_">
                             <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                            <input type="text" id="input_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
+                            <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                         </div>
-                        <button class="btn_search_">
+                        <button type="button" onclick="search_list();" class="btn_search_">
                             검색
                         </button>
                     </div>
                 </div>
             </div>
         </section>
-
         <section class="sub_tour_section2">
             <div class="body_inner">
                 <div style="position: relative;">
-                    <div class="swiper sub_swiper2">
+                    <div class="swiper sub_swiper2 hotel_category_list">
                         <div class="swiper-wrapper">
                             <?php foreach ($sub_codes as $code_item) :
                                 if(is_file(ROOTPATH . "/public/data/code/" . $code_item['ufile1'])) {
@@ -63,7 +62,49 @@
                 </div>
             </div>
         </section>
-        <section class="sub_section3 thailand_hotel_">
+        <script>
+            const swiper12 = new Swiper(".sub_swiper2", {
+                loop: false,
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                spaceBetween: 20,
+                grid: {
+                    rows: 2,
+                    fill: 'row'
+                },
+                navigation: {
+                    nextEl: ".sub_swiper2_btn_next",
+                    prevEl: ".sub_swiper2_btn_prev",
+                },
+                pagination: {
+                    el: ".sub_swiper2_pagination",
+                },
+                breakpoints: {
+                    851: {
+                        loop: true,
+                        slidesPerView: 6,
+                        slidesPerGroup: 1,
+                        grid: {
+                            rows: 1,
+                            fill: 'column'
+                        },
+                    },
+                },
+                on: {
+                    beforeResize: function () {
+                        this.update();
+                        if (this.pagination && this.pagination.render && this.pagination.init) {
+                            this.pagination.render();
+                            this.pagination.init();
+                        }
+                        if (this.navigation && this.navigation.update) {
+                            this.navigation.update();
+                        }
+                    },
+                },
+            });
+        </script>
+        <section class="sub_section3 thailand_hotel_ thailand_hotel_custom_margin">
             <div class="body_inner">
                 <div class="sub_section3__head">
                     <div class="sub_section3__head__ttl">
@@ -71,70 +112,20 @@
                     </div>
                 </div>
                 <div>
-                    <div class="thailand_hotel_swiper_ swiper">
-                        <div class="swiper-wrapper">
-                            <?php foreach ($products as $hotel):
-                                    if(is_file(ROOTPATH . "/public/data/hotel/" . $hotel['ufile1'])) {
-                                        $src = "/data/hotel/" . $hotel['ufile1'];
-                                    } else {
-                                        $src = "/images/product/noimg.png";
-                                    }
-                                ?>
-                                <a href="/product-hotel/hotel-detail/<?= $hotel['product_idx'] ?>" class="thailand_hotel_swiper_item_ swiper-slide">
-                                    <div class="img_box img_box_10">
-                                        <img src="<?=$src?>" alt="main" loading="lazy">
-                                    </div>
-                                    <?php
-                                    $hotel_code_name = $hotel['array_hotel_code_name'];
-                                    $num = count($hotel_code_name);
-                                    ?>
-                                    <div class="prd_keywords">
-                                        <?php if ($num === 0): ?>
-                                            <span class="prd_keywords_cus_span">
-                                                    호텔
-                                                </span>
-                                        <?php endif; ?>
-                                        <?php $i = 0;
-                                        foreach ($hotel_code_name as $item): ?>
-                                            <span class="prd_keywords_cus_span"> <?= $item ?>
-                                                <?php if ($i < $num - 1): ?>
-                                                    <img src="/images/ico/arrow_right_icon.png"
-                                                         alt="arrow_right_icon">
-                                                <?php endif; ?>
-                                                </span>
-                                            <?php $i++; endforeach; ?>
-                                    </div>
-                                    <div class="prd_name">
-                                        <?= $hotel['product_name'] ?>
-                                    </div>
-                                    <div class="prd_info">
-                                        <div class="prd_info__left">
-                                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                            <span class="star_avg"><?= $hotel['review_average'] ?> </span>
-                                            <span class="star_review_cnt">( <?= $hotel['total_review'] ?> )</span>
-                                        </div>
-                                        <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                        <div class="prd_info__right">
-                                            <span class="prd_info__right__ttl">생생리뷰</span>
-                                            <span class="new_review_cnt">(0)</span>
-                                        </div>
-                                    </div>
-                                    <div class="prd_price_ko">
-                                        <?= number_format($hotel['product_price']) ?> <span>원~</span> <span
-                                                class="prd_price_thai">6,000 <span>바트~</span></span>
-                                    </div>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
+                    <div class="thailand_hotel_list_top_" id="product_list_top">
+                        <?php foreach ($products['items'] as $item):
+                            echo view('product/hotel/product_item_by_top', ['item' => $item]);
+                        endforeach; ?>
                     </div>
-                    <div class="thailand_hotel_swiper_pagination_next_"></div>
-                    <div class="thailand_hotel_swiper_pagination_prev_"></div>
-                    <div class="only_web">
-                        <div class="custom_pagination_ w_100">
-                            <div class="pagination_show_">
-                                <img src="/images/ico/reloadicon.png" alt="">
-                                <p>다음상품</p>
-                                <div class="thailand_hotel_swiper_pagination_"></div>
+                    <!-- <div class="thailand_hotel_swiper_pagination_next_"></div>
+                    <div class="thailand_hotel_swiper_pagination_prev_"></div> -->
+                    <div class="custom_pagination_ w_100" style="<?= $products['pg'] >= $products['nPage'] ? 'display: none;' : '' ?>" id="product_list_top_pagination">
+                        <div class="pagination_show_" onclick="handleClickPaginationTop()">
+                            <img src="/images/ico/reloadicon.png" alt="">
+                            <p>다음상품</p>
+                            <div class="thailand_hotel_swiper_pagination_">
+                                <span class="swiper-pagination-current" id="product_list_top_pagination_current">1</span> / 
+                                <span><?= $products['nPage'] ?></span>
                             </div>
                         </div>
                     </div>
@@ -151,16 +142,16 @@
                 <div class="d_flex justify_content_end">
                     <div class="swiper_product_list_pagination_"></div>
                 </div>
-                <div class="sub_tour_section7_product_list swiper swiper_product_list_">
+                <div class="sub_tour_section7_product_list sub_tour_section7_product_list_custom swiper swiper_product_list_">
                     <div class="swiper-wrapper">
-                        <?php foreach ($theme_products as $theme_product):
+                        <?php foreach ($theme_products['items'] as $theme_product):
                             if(is_file(ROOTPATH . "/public/data/hotel/" . $theme_product['ufile1'])) {
                                 $src = "/data/hotel/" . $theme_product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
                             }
                             ?>
-                            <div class="sub_tour_section7_product_item swiper-slide">
+                            <a href="/product-hotel/hotel-detail/<?= $theme_product['product_idx'] ?>" class="sub_tour_section7_product_item swiper-slide">
                                 <img class="ico_special_prd" src="/images/ico/ico_special_prd_success.png" alt="">
                                 <div class="img_box img_box_12">
                                     <img src="<?= $src ?>" alt="">
@@ -175,7 +166,7 @@
                                         <span>#<?= $keyword ?></span>
                                     <?php endforeach; ?>
                                 </div>
-                            </div>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -211,26 +202,35 @@
                                     <img src="<?=$src?>" alt="main" loading="lazy">
                                 </div>
                                 <div class="prd_keywords">
-                                    <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
-                                    <span> 한국거 기이드</span>
+                                    <!-- <span>조인<img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon"></span>
+                                    <span> 한국거 기이드</span> -->
+                                    <?php foreach ($product['codeTree'] as $key => $code): ?>
+                                        <span class="prd_keywords_cus_span">
+                                            <?= $code['code_name'] ?>
+                                            <?php if ($key < count($product['codeTree']) - 1): ?>
+                                                <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                            <?php endif; ?>
+                                        </span>
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="prd_name">
-                                    <?= $product['product_name']?>
+                                    <?= viewSQ($product['product_name']) ?>
                                 </div>
                                 <div class="prd_info">
                                     <div class="prd_info__left">
                                         <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
+                                        <span class="star_avg"><?= $product['review_average'] ?></span>
                                     </div>
                                     <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
                                     <div class="prd_info__right">
                                         <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
+                                        <span class="new_review_cnt">(<?= $product['total_review'] ?>)</span>
                                     </div>
                                 </div>
                                 <div class="prd_price_ko">
-                                    <?=number_format($product['product_price'])?> <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                    <?=number_format($product['product_price'])?> <span>원 ~</span> <span class="prd_price_thai">
+                                    <?=number_format($product['product_price_baht'])?>    
+                                    <span>바트</span></span>
                                 </div>
                             </a>
                         <?php endforeach; ?>
@@ -242,18 +242,19 @@
                 </div>
             </div>
         </section>
-
         <section class="sub_tour_section6 most_searched_">
-            <div class="sub_tour_section6__head">
-                <div class="sub_tour_section6__head_ttl ttl text_center">
-                    가장 많이 검색되는 #키워드
-                </div>
-                <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
-                    <ul class="tab_box_show_ tab_box_show__hotel d_flex justify_content_center align_items_center">
-                        <?php foreach ($keyWordAll as $key => $item) { ?>
-                            <li class="tab_box_element_ p--20 border <?=$key == $keyWordActive ? 'tab_active_' : ''?>" data-keyword="<?=$item?>">#<?= $item ?></li>
-                        <?php } ?>
-                    </ul>
+            <div class="body_inner">
+                <div class="sub_tour_section6__head">
+                    <div class="sub_tour_section6__head_ttl ttl text_center">
+                        가장 많이 검색되는 #키워드
+                    </div>
+                    <div class="tab_box_area_ w_100 d_flex justify_content_center align_items_center">
+                        <ul class="tab_box_show_ tab_box_show__hotel d_flex justify_content_center align_items_center">
+                            <?php foreach ($keyWordAll as $key => $item) { ?>
+                                <li class="tab_box_element_ p--20 border <?=$item == $keyWordActive ? 'tab_active_' : ''?>" data-keyword="<?=$item?>">#<?= $item ?></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- tab1 last slide section -->
@@ -264,17 +265,19 @@
                             echo view('product/hotel/product_item_by_keyword', ['item' => $item]);
                         } ?>
                     </div>
-                    <div class="custom_pagination_ w_100">
-                        <div class="pagination_show_">
+                    <div class="custom_pagination_ w_100" style="<?= $productByKeyword['pg'] >= $productByKeyword['nPage'] ? 'display: none;' : '' ?>" id="custom_pagination_keyword">
+                        <div class="pagination_show_" onclick="handleClickPaginationKeyword()">
                             <img src="/images/ico/reloadicon.png" alt="">
                             <p>다음상품</p>
-                            <div class="most_searched_tab_2_pagination_ sub_tour_section6_swiper_pagination_"></div>
+                            <div class="most_searched_tab_2_pagination_ sub_tour_section6_swiper_pagination_">
+                                <span class="swiper-pagination-current" id="product_list_keyword_current">1</span> / 
+                                <span><?= $productByKeyword['nPage'] ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
         <section class="sub_tour_section8">
             <div class="body_inner">
                 <div class="sub_tour_section8__banners">
@@ -294,7 +297,70 @@
     </div>
 
     <script>
+        function search_list() {
+            let dates = $("#input_day").val().split(' -> ') ?? [];
+            const checkin = dates[0] ? dates[0].trim() : '';
+            const checkout = dates[1] ? dates[1].trim() : '';
+            let hotel_name = $("#input_hotel").val();
+            window.location.href = '/product-hotel/list-hotel/<?=$code_no?>?checkin='+ checkin +'&checkout='+ checkout +'&search_product_name='+ hotel_name;
+        }
+
         let page = 1;
+        let totalPage = Number('<?=$productByKeyword['nPage']?>');
+        let keywordCurrent = '<?=$keyWordActive?>';
+        function handleClickPaginationKeyword(keyword) {
+            if(page >= totalPage && !keyword) return;
+            if(keyword) keywordCurrent = keyword;
+            if(!keyword) page += 1;
+            $.ajax({
+                type: "GET",
+                url: "/product/get-by-keyword",
+                data: {
+                    keyword: keywordCurrent,
+                    page: page,
+                    code_no: 1303
+                },
+                dataType: "json",
+                success: function (data) {
+                    totalPage = Number(data.nPage);
+                    if(keyword) {
+                        $("#product_list_keyword").html(data.html);
+                    } else {
+                        $("#product_list_keyword").append(data.html);
+                    }
+                    $("#product_list_keyword_current").text(page);
+                    if(page >= totalPage) {
+                        $('#custom_pagination_keyword').hide();
+                    } else {
+                        $('#custom_pagination_keyword').show();
+                    }
+                }
+            })
+        }
+        let pageTop = 1;
+        let totalPageTop = Number('<?=$products['nPage']?>');
+        function handleClickPaginationTop() {
+            pageTop += 1;
+            $.ajax({
+                type: "GET",
+                url: "/product/get-by-top",
+                data: {
+                    page: pageTop,
+                    code_no: 1303
+                },
+                dataType: "json",
+                success: function (data) {
+                    totalPageTop = Number(data.nPage);
+                    $("#product_list_top").append(data.html);
+                    $("#product_list_top_pagination_current").text(pageTop);
+                    if(pageTop >= totalPageTop) {
+                        $('#product_list_top_pagination').hide();
+                    } else {
+                        $('#product_list_top_pagination').show();
+                    }
+                }
+            })
+        }
         $(document).ready(function () {
             $('.pagination_show_').on('click', function () {
                 let pagination = $(this).parent().prev().prev();
@@ -306,19 +372,8 @@
             $('.tab_box_element_').on('click', function () {
                 $('.tab_box_element_').removeClass('tab_active_');
                 $(this).addClass('tab_active_');
-                $.ajax({
-                    type: "GET",
-                    url: "/product/get-by-keyword",
-                    data: {
-                        keyword: $(this).data('keyword'),
-                        page: page,
-                        code_no: 1303
-                    },
-                    dataType: "json",
-                    success: function (data) {
-                        $("#product_list_keyword").html(data.html);
-                    }
-                })
+                page = 1;
+                handleClickPaginationKeyword($(this).data('keyword'));
             })
         });
 
@@ -398,46 +453,7 @@
                     draggable: true,
                 },
             });
-            const swiper12 = new Swiper(".sub_swiper2", {
-                loop: false,
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-                spaceBetween: 20,
-                grid: {
-                    rows: 2,
-                    fill: 'row'
-                },
-                navigation: {
-                    nextEl: ".sub_swiper2_btn_next",
-                    prevEl: ".sub_swiper2_btn_prev",
-                },
-                pagination: {
-                    el: ".sub_swiper2_pagination",
-                },
-                breakpoints: {
-                    851: {
-                        loop: true,
-                        slidesPerView: 6,
-                        slidesPerGroup: 1,
-                        grid: {
-                            rows: 1,
-                            fill: 'column'
-                        },
-                    },
-                },
-                on: {
-                    beforeResize: function () {
-                        this.update();
-                        if (this.pagination && this.pagination.render && this.pagination.init) {
-                            this.pagination.render();
-                            this.pagination.init();
-                        }
-                        if (this.navigation && this.navigation.update) {
-                            this.navigation.update();
-                        }
-                    },
-                },
-            });
+            
             let swiper13 = undefined;
 
             function initSwiper13() {

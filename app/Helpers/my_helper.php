@@ -54,7 +54,7 @@ function get_cate_text($code)
     $frow = $fresult->getRowArray();
 
     if ($frow) {
-        $now_cnt = $frow['depth'];
+        $now_cnt = $frow['depth'] - 1;
         $out_txt = $frow['code_name'];
         $parent_code_no = $frow['parent_code_no'];
 
@@ -86,7 +86,7 @@ function getHeaderTab()
     $tabLinks = [
         1303 => "/product-hotel/1303",
         1302 => "/product-golf/1302/1",
-        1301 => "/product-tours/1301/1",
+        1301 => "/product-tours/1301",
         1325 => "/product-spa/1325/1",
         1317 => "/show-ticket/1317",
         1320 => "/product-list/1320/1",
@@ -111,7 +111,6 @@ function getHeaderTab()
 
     return $html;
 }
-
 
 
 function getTab($tab_active)

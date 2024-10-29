@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="list_prd_info">
-                                <strong class="prd_tit"><?= $product['product_name'] ?></strong>
+                                <strong class="prd_tit"><?= viewSQ($product['product_name']) ?></strong>
                                 <div class="amount flex__e">
                                     <p class="discount">
                                         <strong><?= 100 - ((int) ($product['product_price'] / $product['original_price'] * 100)) ?></strong>%
@@ -167,7 +167,7 @@
                                     </div>
                                 </div>
                                 <div class="list_prd_info">
-                                    <strong class="prd_tit"><?= $product['product_name'] ?></strong>
+                                    <strong class="prd_tit"><?= viewSQ($product['product_name']) ?></strong>
                                     <span class="prd_desc only_web"><?= $product['product_info'] ?></span>
                                     <div class="only_web">
                                         <div class="detail_box">

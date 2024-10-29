@@ -9,7 +9,7 @@ class Setting extends BaseController {
 
     private $db;
     private $Setting;
-    private $uploadPath = WRITEPATH."uploads/setting/";
+    private $uploadPath = ROOTPATH . "public/uploads/setting/";
     /**
      * 고정된 식별번호 IDX
      */
@@ -47,78 +47,11 @@ class Setting extends BaseController {
     public function writeUpdate(){
         {
             $uploadPath = $this->uploadPath;
-
-            $site_name = $this->request->getPost('site_name');
-            $domain_url = $this->request->getPost('domain_url');
-            $admin_name = $this->request->getPost('admin_name');
-            $admin_email = $this->request->getPost('admin_email');
-            $browser_title = $this->request->getPost('browser_title');
-            $meta_tag = $this->request->getPost('meta_tag');
-            $meta_keyword = $this->request->getPost('meta_keyword');
-
-            $og_title = $this->request->getPost('og_title');
-            $og_des = $this->request->getPost('og_des');
-            $og_url = $this->request->getPost('og_url');
-            $og_site = $this->request->getPost('og_site');
-
-            $buytext = $this->request->getPost('buytext');
-            $trantext = $this->request->getPost('trantext');
-
-            $home_name = $this->request->getPost('home_name');
-            $home_name_en = $this->request->getPost('home_name_en');
-            $store_service01 = $this->request->getPost('store_service01');
-            $store_service02 = $this->request->getPost('store_service02');
-            $zip = $this->request->getPost('zip');
-            $addr1 = $this->request->getPost('addr1');
-            $addr2 = $this->request->getPost('addr2');
-
-            $comnum = $this->request->getPost('comnum');
-            $mall_order = $this->request->getPost('mall_order');
-            $com_owner = $this->request->getPost('com_owner');
-            $info_owner = $this->request->getPost('info_owner');
-            $custom_phone = $this->request->getPost('custom_phone');
-            $fax = $this->request->getPost('fax');
-
-            $allim_apikey = $this->request->getPost('allim_apikey');
-            $allim_userid = $this->request->getPost('allim_userid');
-            $allim_senderkey = $this->request->getPost('allim_senderkey');
-
-            $sms_phone = $this->request->getPost('sms_phone');
-            $email = $this->request->getPost('email');
-            $munnote_code = $this->request->getPost('munnote_code');
             $dels = $this->request->getPost('dels');
             $dels_f = $this->request->getPost('dels_f');
-            $main_country = $this->request->getPost('main_country');
-            $main_member = $this->request->getPost('main_member');
-            $banks = $this->request->getPost('banks');
-            $bank_account = $this->request->getPost('bank_account');
-            $bank_user = $this->request->getPost('bank_user');
-            $ssl_chk = $this->request->getPost('ssl_chk');
 
-            $naver_verfct = $this->request->getPost('naver_verfct');
-            $google_verfct = $this->request->getPost('google_verfct');
+            $data = $this->request->getPost();
 
-            $allatpay_shop_id = $this->request->getPost('allatpay_shop_id');
-            $allatpay_cross_key = $this->request->getPost('allatpay_cross_key');
-
-            $sms_id = $this->request->getPost('sms_id');
-            $sms_key = $this->request->getPost('sms_key');
-            $npay_but_key = $this->request->getPost('npay_but_key');
-            $npay_shop_id = $this->request->getPost('npay_shop_id');
-            $npay_certikey = $this->request->getPost('npay_certikey');
-
-            $counsel1 = $this->request->getPost('counsel1');
-            $counsel2 = $this->request->getPost('counsel2');
-
-            $purchase_limit_0 = $this->request->getPost('purchase_limit_0');
-            $purchase_limit_1 = $this->request->getPost('purchase_limit_1');
-            $smtp_host = $this->request->getPost('smtp_host');
-            $smtp_id = $this->request->getPost('smtp_id');
-            $smtp_pass = $this->request->getPost('smtp_pass');
-            $admin_email_list = $this->request->getPost('admin_email_list');
-            $paymethod = $this->request->getPost('paymethod');
-
-            $language = $this->request->getPost('language') ? implode('||', $this->request->getPost('language')) : '';
             $row = $this->Setting->find(1);
 
             if ($dels === 'y') {
@@ -208,106 +141,13 @@ class Setting extends BaseController {
                         $ext = explode(".", strtolower($fileName));
                         $newName = $date . $timestamp . '.' . $ext[1];
                         $file->move($uploadPath, $newName);
-                        $this->Setting->update(1, ['logo_footer' => $newName]);
+                        $this->Setting->update(1, ['favico' => $newName]);
                     }
                 }
             }
-
-
-            $dataToUpdate = [
-                'site_name' => $site_name,
-                'domain_url' => $domain_url,
-                'admin_name' => $admin_name,
-                'admin_email' => $admin_email,
-                'browser_title' => $browser_title,
-                'meta_tag' => $meta_tag,
-                'meta_keyword' => $meta_keyword,
-                'og_title' => $og_title,
-                'og_des' => $og_des,
-                'og_url' => $og_url,
-                'og_site' => $og_site,
-                'buytext' => $buytext,
-                'trantext' => $trantext,
-                'home_name' => $home_name,
-                'home_name_en' => $home_name_en,
-                'store_service01' => $store_service01,
-                'store_service02' => $store_service02,
-                'zip' => $zip,
-                'addr1' => $addr1,
-                'addr2' => $addr2,
-                'comnum' => $comnum,
-                'mall_order' => $mall_order,
-                'com_owner' => $com_owner,
-                'info_owner' => $info_owner,
-                'custom_phone' => $custom_phone,
-                'fax' => $fax,
-                'sms_phone' => $sms_phone,
-                'allim_apikey' => $allim_apikey,
-                'allim_userid' => $allim_userid,
-                'allim_senderkey' => $allim_senderkey,
-                'email' => $email,
-                'munnote_code' => $munnote_code,
-                'language' => $language,
-                'ssl_chk' => $ssl_chk,
-                'bank_user' => $bank_user,
-                'banks' => $banks,
-                'bank_account' => $bank_account,
-                'allatpay_shop_id' => $allatpay_shop_id,
-                'allatpay_cross_key' => $allatpay_cross_key,
-                'naver_verfct' => $naver_verfct,
-                'google_verfct' => $google_verfct,
-                'sms_id' => $sms_id,
-                'sms_key' => $sms_key,
-                'npay_but_key' => $npay_but_key,
-                'npay_shop_id' => $npay_shop_id,
-                'npay_certikey' => $npay_certikey,
-                'counsel1' => $counsel1,
-                'counsel2' => $counsel2,
-                'purchase_limit_0' => $purchase_limit_0,
-                'purchase_limit_1' => $purchase_limit_1,
-                'smtp_host' => $smtp_host,
-                'smtp_id' => $smtp_id,
-                'smtp_pass' => $smtp_pass,
-                'admin_email_list' => $admin_email_list,
-                'paymethod' => $paymethod,
-            ];
-            $this->Setting->infoUpdate(1, $dataToUpdate);
+            
+            $this->Setting->infoUpdate(1, $data);
             return redirect()->to('AdmMaster/_adminrator/setting');
         }
     }
 }
-// us_dollar
-// admin_pass
-// admin_pass_r
-// admin_mobile_list
-// ufile2
-// oversea_purchase
-// qna_email
-// service_item
-// brand_name
-// sydney_addr
-// custom_service_phone_seoul
-// custom_service_phone_sydney
-// custom_service_phone_sydney_call_from_australia
-// tournum
-// mallOrder
-// copyright
-// ufile1
-// ufile3
-// nicepay_pass
-// nicepay_mid
-// nicepay_key
-// nicepay_mid_m
-// nicepay_key_m
-// nicepay_mid_b
-// nicepay_key_b
-// mileage_min
-// mileage_max
-// bank_owner
-// bank_owner_australia
-// bank_name
-// bank_name_australia
-// bank_no
-// bank_no1
-// bank_no_australia
-// bank_no_australia1

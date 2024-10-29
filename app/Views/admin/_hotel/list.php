@@ -49,7 +49,7 @@
                         <td class="inbox">
                             <div class="r_box">
                                 <select id="" name="search_category" class="input_select" style="width:180px">
-                                    <option value="goods_name_front" <?php if ($search_category == "goods_name_front") {
+                                    <option value="product_name" <?php if ($search_category == "product_name") {
                                         echo "selected";
                                     } ?> >
                                         상품명
@@ -60,8 +60,8 @@
                                         상품코드
                                     </option>
                                 </select>
-                                <input type="text" id="search_name" name="search_name"
-                                       value="<?= $search_name ?>" class="input_txt placeHolder"
+                                <input type="text" id="search_txt" name="search_txt"
+                                       value="<?= $search_txt ?>" class="input_txt placeHolder"
                                        placeholder="검색어 입력" style="width:240px"
                                        onkeydown="if(event.keyCode==13)search_it();">
                                 <a href="javascript:search_it()" class="btn btn-default"><span
@@ -77,8 +77,8 @@
             <script>
                 function search_it() {
                     var frm = document.search;
-                    if (frm.search_name.value == "검색어 입력") {
-                        frm.search_name.value = "";
+                    if (frm.search_txt.value == "검색어 입력") {
+                        frm.search_txt.value = "";
                     }
                     frm.submit();
                 }
@@ -256,9 +256,9 @@
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac">
-                                        <a href="./write?product_idx=<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a>
+                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a>
                                         <br>
-                                        <a href="./write?product_idx=<?= $row["product_idx"] ?>"
+                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
                                     <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
@@ -275,14 +275,14 @@
                                                     style="max-width:150px;max-height:100px"></a>
                                     </td>
                                     <td class="tal" style="font-weight:bold">
-                                        <a href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
-                                            <?= viewSQ($row["goods_name_front"]) ?>
+                                        <a href="write?search_category=<?= $search_category ?>&search_txt=<?= $search_txt ?>&pg=<?= $pg ?>&product_idx=<?= $row["product_idx"] ?>">
+                                            <?= viewSQ($row["product_name"]) ?>
                                         </a><br>최초가격(정찰가) : <?= number_format($row['original_price']) ?>원
                                         <br>판매가격 : <?= number_format($row['product_price']) ?>원
 
                                     </td>
                                     <td class="tac">
-                                        <select name="product_status" id="product_status">
+                                        <select name="product_status" id="product_status_<?= $row["product_idx"] ?>">
                                             <option value="sale" <?php if (isset($row['product_status']) && $row['product_status'] === "sale") {
                                                 echo "selected";
                                             } ?>>판매중
@@ -299,7 +299,7 @@
                                     </td>
                                     <td class="tac">
                                         <input name="product_best_best" class="type_chker"
-                                            <?php if (isset($row["goods_dis3"]) && $row["goods_dis3"] === "Y")
+                                            <?php if (isset($row["product_best"]) && $row["product_best"] === "Y")
                                                 echo "checked=checked"; ?>
                                                id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
                                                onchange="check_best(<?= $row['product_idx'] ?>)"
@@ -392,7 +392,9 @@
     function prod_update(idx) {
         let onum = $("#onum_" + idx).val();
 
-        let url = '<?= route_to("admin._hotel.prod_update") ?>';
+        let product_status = $("#product_status_" + idx).val();
+
+        let url = '/AdmMaster/prod_update/' + idx;
 
         let product_best;
         if ($("#product_best_best_" + idx).is(":checked")) {
@@ -408,11 +410,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: {
-                "product_idx": idx,
-                "product_best": product_best,
-                "onum": onum
-            },
+            data: { product_best, onum, product_status },
             dataType: "json",
             async: false,
             cache: false,

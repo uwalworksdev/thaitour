@@ -74,7 +74,8 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_tours_ok.php" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="<?= route_to('admin.api.spa_.write_ok') ?>" method=post enctype="multipart/form-data"
+                  target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -84,6 +85,15 @@
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate" value='<?= $tours_cate ?>'>
+
+                <input type="hidden" name="code_utilities" id="code_utilities"
+                       value='<?= $code_utilities ?? "" ?>'/>
+                <input type="hidden" name="code_services" id="code_services"
+                       value='<?= $code_services ?? "" ?>'/>
+                <input type="hidden" name="code_best_utilities" id="code_best_utilities"
+                       value='<?= $code_best_utilities ?? "" ?>'/>
+                <input type="hidden" name="code_populars" id="code_populars"
+                       value='<?= $code_populars ?? "" ?>'/>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -179,6 +189,7 @@
                                         </select>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th rowspan=8>썸네일<br>(600 * 450)</th>
                                     <td rowspan=8>
@@ -199,6 +210,7 @@
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>이용항공</th>
                                     <td>
@@ -207,6 +219,7 @@
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>간단소개</th>
                                     <td>
@@ -215,6 +228,7 @@
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>간단일정(사용안함)</th>
                                     <td>
@@ -222,6 +236,7 @@
                                                value="<?= $product_schedule ?>" class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>여행국가(사용안함)</th>
                                     <td>
@@ -229,6 +244,7 @@
                                                value="<?= $product_country ?>" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>최소출발인원(성인)</th>
                                     <td>
@@ -237,6 +253,7 @@
                                                value="<?= $minium_people_cnt ?>" style="width:500px"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>마일리지</th>
                                     <td>
@@ -245,6 +262,7 @@
                                         결제비용 %)
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>이동방법</th>
                                     <td>
@@ -252,6 +270,7 @@
                                                value="<?= $tour_transport ?>" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>여행혜택</th>
                                     <td>
@@ -361,7 +380,6 @@
                                     </td>
                                 </tr>
 
-
                                 <tr>
                                     <th>기존상품가(단위: AUD)</th>
                                     <td>
@@ -377,7 +395,6 @@
                                         <span style="color: gray;">* ex) 상품페이지에 보여질 상품가격(할인가)</span>
                                     </td>
                                 </tr>
-
 
                                 <script>
                                     function prod_copy(idx) {
@@ -407,7 +424,6 @@
                                     }
                                 </script>
 
-
                                 <script>
                                     function select_add_it() {
                                         popOpen('1024', '600', '../_tourStay/popup.php?strs=' + $("#stay_list").val(), 'stay');
@@ -430,11 +446,11 @@
                                     <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
-                                                <input type="checkbox" name="product_best"
-                                                       id="product_best"
-                                                       value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
-                                                    echo "checked";
-                                                } ?>/>
+                                            <input type="checkbox" name="product_best"
+                                                   id="product_best"
+                                                   value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
+                                                echo "checked";
+                                            } ?>/>
                                         <?php endforeach; ?>
                                     </td>
                                     <th>우선순위</th>
@@ -484,7 +500,164 @@
                                         <span style="margin-right:20px;"></span>
                                     </td>
                                 </tr>
+                                </tbody>
+                            </table>
 
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        숙소개요
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>사용 가능 기간</th>
+                                    <td colspan="3">
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>마감 시간</th>
+                                    <td colspan="3">
+
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        숙소개요
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>추천 포인트</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_utilities);
+                                        foreach ($fresult6 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
+                                                   name="_code_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>인기 시설 및 서비스</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_best_utilities);
+                                        foreach ($fresult6 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
+                                                   name="_code_best_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>시설 & 서비스</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_services);
+                                        foreach ($fresult5 as $row_r) : ?>
+                                            <div class="" style="margin-bottom: 20px">
+                                                <span class=""
+                                                      style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
+                                                <div class="" style="margin-left: 30px;margin-top: 8px;">
+                                                    <?php
+                                                    $fresult6 = $row_r['child'];
+                                                    foreach ($fresult6 as $row_r2) :
+                                                        $find2 = "";
+                                                        for ($i = 0; $i < count($_arr); $i++) {
+                                                            if ($_arr[$i]) {
+                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
+                                                            }
+                                                        }
+                                                        ?>
+                                                        <input type="checkbox"
+                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
+                                                               name="_code_services"
+                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> /><?= $row_r2['code_name'] ?>
+                                                    <?php endforeach; ?>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>호텔주변 추천명소</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_arr = explode("|", $code_populars);
+                                        foreach ($fresult8 as $row_r) :
+                                            $find = "";
+                                            for ($i = 0; $i < count($_arr); $i++) {
+                                                if ($_arr[$i]) {
+                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                                                }
+                                            }
+                                            ?>
+                                            <input type="checkbox" id="code_populars<?= $row_r['code_no'] ?>"
+                                                   name="_code_populars"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
                                 <tr style="display:none">
                                     <th>상품내용</th>
                                     <td colspan="3">
@@ -529,6 +702,7 @@
 
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>예약전 확인사항(PC)</th>
                                     <td>
@@ -859,7 +1033,6 @@
                                         </script>
                                     </td>
                                 </tr>
-
 
                                 <tr>
                                     <th>기타사항</th>
@@ -1498,7 +1671,7 @@
     </script>
     <script>
         function send_it() {
-            var frm = document.frm;
+            let frm = document.frm;
             /*
             oEditors1.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
             */
@@ -1516,7 +1689,6 @@
             oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
-
             if (frm.tour_period.value == "") {
                 alert("일자를 선택하셔야 합니다.");
                 frm.tour_period.focus();
@@ -1527,45 +1699,51 @@
                 //frm.product_code_1.focus();
                 return;
             }
-            /*
-            if (frm.product_code_2.value == "")
-            {
-                alert("2차분류를 선택하셔야 합니다.");
-                frm.product_code_2.focus();
-                return;
-            }
-            if (frm.product_code_3.value == "")
-            {
-                alert("3차분류를 선택하셔야 합니다.");
-                frm.product_code_3.focus();
-                return;
-            }
-            if (frm.product_code_4.value == "")
-            {
-                alert("4차분류를 선택하셔야 합니다.");
-                frm.product_code_4.focus();
-                return;
-            }
-            */
+
             if (frm.product_name.value == "") {
                 alert("상품명을 입력하셔야 합니다.");
                 frm.product_name.focus();
                 return;
             }
 
-            var option = "";
+            let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {
                 option += '|' + $(this).val();
             });
             option += '|';
             $("#product_option").val(option);
 
-            var tours_cate = "";
+            let tours_cate = "";
             $("input:checkbox[name='_tours_cate']:checked").each(function () {
                 tours_cate += '|' + $(this).val();
             });
             option += '|';
             $("#tours_cate").val(tours_cate);
+
+            let _code_utilities = '';
+            let _code_services = '';
+            let _code_best_utilities = '';
+            let _code_populars = '';
+
+            $("input[name=_code_utilities]:checked").each(function () {
+                _code_utilities += $(this).val() + '|';
+            })
+            $("#code_utilities").val(_code_utilities);
+
+            $("input[name=_code_services]:checked").each(function () {
+                _code_services += $(this).val() + '|';
+            })
+            $("#code_services").val(_code_services);
+
+            $("input[name=_code_best_utilities]:checked").each(function () {
+                _code_best_utilities += $(this).val() + '|';
+            })
+            $("#code_best_utilities").val(_code_best_utilities);
+
+            $("input[name=_code_populars]:checked").each(function () {
+                _code_populars += $(this).val() + '|';
+            })
+            $("#code_populars").val(_code_populars);
 
             frm.submit();
         }
@@ -1576,7 +1754,7 @@
             if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
                 return false;
 
-            var message = "";
+            let message = "";
             $.ajax({
 
                 url: "./ajax.prod_del.php",

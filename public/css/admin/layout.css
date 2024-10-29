@@ -613,7 +613,7 @@ div#contents {
     margin: 0 auto;
     width: 100%;
     /* float: left; */
-    padding: 15px;
+    padding: 15px 15px 50px 15px;
     box-sizing: border-box;
 }
 
@@ -1507,9 +1507,10 @@ div#headerContainer div.menus ul li .input_select {
 
 .popup_con {
     position: absolute;
-    top: 45px;
+    top: 50%;
     left: 38%;
     width: 360px;
+    transform: translateY(-50%);
     height: 220px;
     background-color: #eee;
     z-index: 1000;
@@ -5011,4 +5012,16 @@ table.comment tr td:nth-last-child(1) {
     border-radius: 4px;
     font-size: 15px;
     color: #757575;
+}
+
+#list_location li {
+    list-style: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#list_location li:hover {
+    background-color: #7499b2;
+    color: #fff;
 }

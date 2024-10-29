@@ -158,7 +158,7 @@ class ReservationController extends BaseController
 		$result['manager_email']     = $row_d['manager_email'];
 */
         $_pg_Method = getPgMethods();
-        $_deli_type = [];
+        $_deli_type = get_deli_type();
         $s_time = '';
         $e_time = '';
         $s_status = '';
@@ -187,6 +187,7 @@ class ReservationController extends BaseController
             'nFrom'           => $nFrom,
             '_pg_Method'      => $_pg_Method,
             '_deli_type'      => $_deli_type,
+            'state_chker'     => $state_chker,
             's_time'          => $s_time,
             'e_time'          => $e_time,
             'payment_chker'   => $payment_chker,
@@ -200,7 +201,7 @@ class ReservationController extends BaseController
     {
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
-        $private_key = updateSQ($_GET["private_key"] ?? '');
+        $private_key = private_key();
         $pg = updateSQ($_GET["pg"] ?? '');
         $order_idx = updateSQ($_GET["order_idx"] ?? '');
         $titleStr = "주문 생성";
@@ -209,7 +210,7 @@ class ReservationController extends BaseController
             $result = $this->connect->query($total_sql);
             $row = $result->getRowArray();
 
-            $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') order_user_name
+            $sql_d = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') order_user_name
 						    , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'), '$private_key') order_user_mobile
 						    , AES_DECRYPT(UNHEX('{$row['order_user_phone']}'),  '$private_key') order_user_phone
 						    , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),  '$private_key') order_user_email
@@ -302,19 +303,19 @@ class ReservationController extends BaseController
         $row_cou = $result_cou->getRowArray();
 
         $fsql = " SELECT order_gubun
-							                    , AES_DECRYPT(UNHEX(order_name_kor),   '$private_key') AS order_name_kor
-							                    , AES_DECRYPT(UNHEX(order_first_name), '$private_key') AS order_first_name
-							                    , AES_DECRYPT(UNHEX(order_last_name),  '$private_key') AS order_last_name
-							                    , AES_DECRYPT(UNHEX(order_mobile),     '$private_key') AS order_mobile
-												, AES_DECRYPT(UNHEX(passport_num),     '$private_key') AS passport_num
-												, AES_DECRYPT(UNHEX(order_email),     '$private_key') AS order_email
-												, order_birthday
-												, passport_date
-												, order_sex
-												, gl_idx
-												, ufile
-												, rfile
-							                      FROM tbl_order_list WHERE order_idx = '" . $order_idx . "' ORDER BY gl_idx asc";
+                                    , AES_DECRYPT(UNHEX(order_name_kor),   '$private_key') AS order_name_kor
+                                    , AES_DECRYPT(UNHEX(order_first_name), '$private_key') AS order_first_name
+                                    , AES_DECRYPT(UNHEX(order_last_name),  '$private_key') AS order_last_name
+                                    , AES_DECRYPT(UNHEX(order_mobile),     '$private_key') AS order_mobile
+                                    , AES_DECRYPT(UNHEX(passport_num),     '$private_key') AS passport_num
+                                    , AES_DECRYPT(UNHEX(order_email),      '$private_key') AS order_email
+                                    , order_birthday
+                                    , passport_date
+                                    , order_sex
+                                    , gl_idx
+                                    , ufile
+                                    , rfile
+                                        FROM tbl_order_list WHERE order_idx = '" . $order_idx . "' ORDER BY gl_idx asc";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 

@@ -36,6 +36,15 @@ class Code extends Model
             ->orderBy('onum', 'DESC')
             ->get();
     }
+
+    public function getByParentCode($parent_code_no)
+    {
+        return $this->select('*')
+            ->where('parent_code_no', $parent_code_no)
+            ->orderBy('onum', 'DESC')
+            ->get();
+    }
+
     public function getByCodeNo($code_no) {
         return $this->where('code_no', $code_no)->first();
     }
@@ -140,5 +149,15 @@ class Code extends Model
     {
         $parent_code_no = $this->select('parent_code_no')->where('code_no', $code_no)->first()['parent_code_no'] ?? 0;
         return $this->where('code_no', $parent_code_no)->first();
+    }
+    public function getCodeTree($code_no) {
+        $code_arr = [];
+        $code_info = $this->where('code_no', $code_no)->first();
+        while($code_info) {
+            $code_arr[] = $code_info;
+            $code_info = $this->where('code_no', $code_info['parent_code_no'])->first();
+        }
+        array_pop($code_arr);
+        return array_reverse($code_arr);
     }
 }

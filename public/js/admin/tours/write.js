@@ -1,5 +1,5 @@
 $(function () {
-    $("#hiddenFrame").on('load', function() {
+    $("#hiddenFrame").on('load', function () {
         $("#ajax_loader").addClass("display-none");
     });
 })
@@ -7,7 +7,7 @@ $(function () {
 function get_code(strs, depth) {
     $.ajax({
         type: "GET"
-        , url: "get_code.ajax.php"
+        , url: "/ajax/get_code"
         , dataType: "html" //전송받을 데이터의 타입
         , timeout: 30000 //제한시간 지정
         , cache: false  //true, false
@@ -18,21 +18,21 @@ function get_code(strs, depth) {
         }
         , success: function (json) {
             //alert(json);
-            if (depth <= 2) {
+            if (depth <= 3) {
                 $("#product_code_2").find('option').each(function () {
                     $(this).remove();
                 });
                 $("#product_code_2").append("<option value=''>2차분류</option>");
             }
 
-            if (depth <= 3) {
+            if (depth <= 4) {
                 $("#product_code_3").find('option').each(function () {
                     $(this).remove();
                 });
                 $("#product_code_3").append("<option value=''>3차분류</option>");
             }
 
-            if (depth <= 4) {
+            if (depth <= 5) {
                 $("#product_code_4").find('option').each(function () {
                     $(this).remove();
                 });
@@ -49,7 +49,7 @@ function get_code(strs, depth) {
                 } else if (list[i].code_status == "N") {
                     contentStr = "[사용안함]";
                 }
-                $("#product_code_" + (parseInt(depth))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                $("#product_code_" + (parseInt(depth - 1))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
             }
         }
     });
@@ -183,6 +183,89 @@ function send_it() {
         let nextInp = item.next();
         nextInp.val(data_convert);
     })
+
+    let _product_theme = '';
+    let _product_bedrooms = '';
+    let _product_type = '';
+    let _product_promotions = '';
+
+    let product_theme_ = $('input[name="product_theme_"]');
+    product_theme_.each(function () {
+        _product_theme += $(this).val() + '|';
+    })
+    $("#product_theme").val(_product_theme);
+
+    let product_bedroom_ = $('input[name="product_bedroom_"]');
+    product_bedroom_.each(function () {
+        _product_bedrooms += $(this).val() + '|';
+    })
+    $("#product_bedrooms").val(_product_bedrooms);
+
+    let product_type_ = $('input[name="product_type_"]');
+    product_type_.each(function () {
+        _product_type += $(this).val() + '|';
+    })
+    $("#product_type").val(_product_type);
+
+    let product_promotion_ = $('input[name="product_promotion_"]');
+    product_promotion_.each(function () {
+        _product_promotions += $(this).val() + '|';
+    })
+    $("#product_promotions").val(_product_promotions);
+
+    // let meet_out_time = $("#meet_out_time").val();
+    // let children_policy = $("#children_policy").val();
+    // let baby_beds = $("#baby_beds").val();
+    // let deposit_regulations = $("#deposit_regulations").val();
+    // let pets = $("#pets").val();
+    // let age_restriction = $("#age_restriction").val();
+    // let smoking_policy = $("#smoking_policy").val();
+    //
+    // let breakfast = $("#breakfast").val();
+    // let breakfasts_ = $('#tBodyTblBreakfast tr');
+    // let data_temp = [];
+    // breakfasts_.each(function () {
+    //     let item = $(this);
+    //     let name = item.find('input[name="breakfast_item_name_"]').val();
+    //     let val = item.find('input[name="breakfast_item_value_"]').val();
+    //
+    //     let temp = {
+    //         'name': name,
+    //         'val': val
+    //     };
+    //
+    //     data_temp.push(temp);
+    // })
+    //
+    // let data_breakfast = {
+    //     'breakfast': breakfast,
+    //     'data': data_temp
+    // };
+    //
+    // let product_more2 = {
+    //     'meet_out_time': meet_out_time,
+    //     'children_policy': children_policy,
+    //     'baby_beds': baby_beds,
+    //     'deposit_regulations': deposit_regulations,
+    //     'pets': pets,
+    //     'age_restriction': age_restriction,
+    //     'smoking_policy': smoking_policy,
+    //     'data_breakfast': data_breakfast,
+    //     // 'data_breakfast': JSON.stringify(data_breakfast)
+    // }
+    //
+    // let product_more = [];
+    // product_more['meet_out_time'] = meet_out_time;
+    // product_more['children_policy'] = children_policy;
+    // product_more['baby_beds'] = baby_beds;
+    // product_more['deposit_regulations'] = deposit_regulations;
+    // product_more['pets'] = pets;
+    // product_more['age_restriction'] = age_restriction;
+    // product_more['smoking_policy'] = smoking_policy;
+    // product_more['data_breakfast'] = data_breakfast;
+    //
+    // $("#product_more").val(product_more);
+
     $("#ajax_loader").removeClass("display-none");
     frm.submit();
 }
@@ -236,6 +319,14 @@ $(document).ready(function () {
         if (cate_code2 !== "") {
             tmp_code = cate_code2;
             tmp_code_txt += " > " + cate_text2;
+        }
+
+        let cate_code3 = $("#product_code_3").val();
+        let cate_text3 = $("#product_code_3 option:selected").text();
+
+        if (cate_code3 !== "") {
+            tmp_code = cate_code3;
+            tmp_code_txt += " > " + cate_text3;
         }
 
         if (tmp_code === "") {
@@ -357,7 +448,8 @@ function addCategory(code, cateText) {
         alert("이미 등록된 카테고리입니다.");
         return false;
     }
-    var tmp_product_code = $("#product_code_list").val();;
+    var tmp_product_code = $("#product_code_list").val();
+    ;
     tmp_product_code = tmp_product_code + "|" + code + "|";
     $("#product_code_list").val(tmp_product_code);
 
@@ -745,10 +837,13 @@ $(document).ready(function () {
                                                                 class="btn_01">추가
                                                         </button>
                                                         <div class="list_name list__room_name" style="margin-top: 10px;">
-                                                            <div class="input_item"
-                                                                 style="display: flex;margin-top: 5px;">
+                                                            <div class="input_item" style="display: flex;margin-top: 5px;">
                                                                 <input type='text' class='sup__name_child' name='sup__name_child' id=''
                                                                        value=""/>
+                                                                <button type="button" id="btn_del_name"
+                                                                        onclick="delName(this);"
+                                                                        class="btn_02">삭제
+                                                                </button>
                                                             </div>
                                                         </div>
                                                         <input type='hidden' class='' name='sup__name[]' id=''

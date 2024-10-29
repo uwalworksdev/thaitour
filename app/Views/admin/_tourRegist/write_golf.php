@@ -1,5 +1,6 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
     <style>
         .tab_title {
@@ -73,7 +74,7 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_golf_ok/<?= $product_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="write_golf_ok<?= $product_idx ? "/$product_idx" : "" ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -165,32 +166,6 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
-                                    <th>일자</th>
-                                    <td>
-                                        <select id="tour_period" name="tour_period" class="input_select">
-                                            <option value="">일자선택</option>
-                                            <?php for ($i = 1; $i <= 40; $i++) { ?>
-                                                <option value="<?= $i ?>" <?php if ($tour_period == $i) {
-                                                    echo "selected";
-                                                } ?>><?= $i ?>일
-                                                </option>
-                                            <?php } ?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th rowspan=8>썸네일<br>(600 * 450)</th>
-                                    <td rowspan=8>
-                                        <?php for ($i = 1; $i <= 6; $i++) { ?>
-                                            <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
-                                                   style="width:500px;margin-bottom:10px"/>
-                                            <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox
-                                                                                                 name="del_<?= $i ?>"
-                                                                                                 value='Y'><a
-                                                    href="/data/product/<?= ${"ufile" . $i} ?>"
-                                                    class="imgpop"><?= ${"rfile" . $i} ?></a><br><br><?php } ?>
-                                        <?php } ?>
-                                    </td>
                                     <th>상품명</th>
                                     <td>
                                         <input type="text" id="product_name" name="product_name"
@@ -199,14 +174,18 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>이용항공</th>
-                                    <td>
-                                        <input type="text" id="product_air" name="product_air"
-                                               value="<?= $product_air ?>"
-                                               class="input_txt" style="width:90%"/>
+                                    <th rowspan=8>썸네일<br>(600 * 450)</th>
+                                    <td rowspan=8>
+                                        <?php for ($i = 1; $i <= 7; $i++) { ?>
+                                            <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
+                                                   style="width:500px;margin-bottom:10px"/>
+                                            <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox name="del_<?= $i ?>" value='Y'><a
+                                                    href="/data/product/<?= ${"ufile" . $i} ?>"
+                                                    class="imgpop"><?= ${"rfile" . $i} ?><br>
+                                                    <img style="max-width: 200px" src="/data/product/<?= ${"ufile" . $i} ?>" alt="">
+                                                </a><?php } ?>
+                                        <?php } ?>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>간단소개</th>
                                     <td>
                                         <input type="text" id="product_info" name="product_info"
@@ -215,17 +194,52 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>간단일정(사용안함)</th>
+                                    <th>더투어랩 평가 등급</th>
                                     <td>
-                                        <input type="text" id="product_schedule" name="product_schedule"
-                                               value="<?= $product_schedule ?>" class="input_txt" style="width:90%"/>
+                                        <select id="star_level" name="star_level" class="input_select">
+                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                <option value="<?= $i ?>" <?php if ($golf_info['star_level'] == $i) {
+                                                    echo "selected";
+                                                } ?>><?= $i ?>&#9733;
+                                                </option>
+                                            <?php } ?>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>여행국가(사용안함)</th>
+                                    <th>총홀수</th>
                                     <td>
-                                        <input id="product_country" name="product_country" class="input_txt" type="text"
-                                               value="<?= $product_country ?>" style="width:90%"/>
+                                        <input id="holes_number" name="holes_number" class="input_txt" type="text" value="<?= $golf_info['holes_number'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>휴무일</th>
+                                    <td>
+                                        <input id="holidays" name="holidays" class="input_txt" type="text" value="<?= $golf_info['holidays'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>팀당 라운딩 인원</th>
+                                    <td>
+                                        <input id="num_of_players" name="num_of_players" class="input_txt" type="text" value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>시내에서 거리 및 이동기간	</th>
+                                    <td>
+                                        <input id="distance_from_center" name="distance_from_center" class="input_txt" type="text" value="<?= $golf_info['distance_from_center'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>공항에서 거리 및 이동시간</th>
+                                    <td>
+                                        <input id="distance_from_airport" name="distance_from_airport" class="input_txt" type="text" value="<?= $golf_info['distance_from_airport'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>전동카트</th>
+                                    <td>
+                                        <input id="electric_car" name="electric_car" class="input_txt" type="text" value="<?= $golf_info['electric_car'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -233,39 +247,25 @@
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
                                                type="text"
-                                               value="<?= $minium_people_cnt ?>" style="width:500px"/>
+                                               value="<?= $minium_people_cnt ?>" style="width:100%"/>
+                                    </td>
+                                    <th>갤러리피</th>
+                                    <td>
+                                        <input id="caddy" name="caddy" class="input_txt" type="text" value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>마일리지</th>
+                                    <th>최대인원(성인)</th>
                                     <td>
-                                        <input id="product_mileage" name="product_mileage" class="input_txt" type="text"
-                                               value="<?= $product_mileage ?>" style="width:50px" maxlength="2"/>% (총
-                                        결제비용 %)
+                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
+                                               type="text"
+                                               value="<?= $total_people_cnt ?>" style="width:100%"/>
+                                    </td>
+                                    <th>장비렌탈</th>
+                                    <td>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text" value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>이동방법</th>
-                                    <td>
-                                        <input id="tour_transport" name="tour_transport" class="input_txt" type="text"
-                                               value="<?= isset($tour_transport) ? $tour_transport : "" ?>"
-                                               style="width:90%"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>여행혜택</th>
-                                    <td>
-                                        <input id="benefit" name="benefit" class="input_txt" type="text"
-                                               value="<?= $benefit ?>"
-                                               style="width:90%"/><br/>
-                                    </td>
-                                    <th>대표도시</th>
-                                    <td>
-                                        <input id="capital_city" name="capital_city" class="input_txt" type="text"
-                                               value="<?= $capital_city ?>" style="width:200px"/>
-                                    </td>
-                                </tr>
-
                                 <tr>
                                     <th>출발요일</th>
                                     <td>
@@ -291,21 +291,18 @@
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td>
+                                    <th>스포츠데이</th>
+                                    <td>
+                                        <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>가이드/언어</th>
                                     <td>
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
-                                               style="width:20%"/><br/>
+                                               style="width:50%"/><br/>
                                     </td>
-                                </tr>
-
-                                <tr>
-                                    <th>메모</th>
-                                    <td colspan="3"><textarea name="information" cols="100" rows="5"
-                                                              style="width: 100%"><?= $information ?></textarea></td>
-                                </tr>
-
-                                <tr>
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
@@ -319,11 +316,31 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <th>여행기간</th>
-                                    <td>
-                                        <input id="product_period" name="product_period" class="input_txt" type="text"
-                                               value="<?= $product_period ?>" style="width:90%"/><br/>
-                                        <span style="color: gray;">* ex) 3박 5일</span>
+                                </tr>
+                                <tr>
+                                    <th>구분</th>
+                                    <td colspan="3">
+                                        <label for="is_best_value">
+                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
+                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
+                                            가성비추천
+                                        </label>
+                                        <label for="special_price">
+                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
+                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
+                                            특가여부
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>주소</th>
+                                    <td colspan="3">
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs" value="<?= $addrs ?>" class="text" style="width:70%"/>
+										<button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
+										<div style="margin-top: 10px;">
+											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
+											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
+										</div>
                                     </td>
                                 </tr>
 
@@ -444,65 +461,22 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th></th>
+                                    <th>픽업차량</th>
                                     <td colspan="3">
-                                        <label for="is_best_value">
-                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
-                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
-                                            가성비추천
-                                        </label>
-                                        <label for="special_price">
-                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
-                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
-                                            특가여부
-                                        </label>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>투어구분</th>
-                                    <td>
-                                        <?php foreach ($codes as $code): ?>
-                                            <?php
-                                            $chk = (strpos($tours_cate, $code['code_no']) !== false) ? "checked" : "";
+                                        <?php foreach ($vehicles as $vehicle) :
+                                            $checked = strpos("|{$vehicle["code_no"]}|", $golf_info['golf_vehicle']) !== false ? "checked" : "";
                                             ?>
-                                            <input type="checkbox" name="_tours_cate" class="product_option"
-                                                   value="<?= esc($code['code_no']) ?>" <?= $chk ?> /><?= esc($code['code_name']) ?> &nbsp;&nbsp;
+                                            <span>
+                                                <input type="checkbox" name="vehicle_arr[]" id="vehicle_<?= $vehicle["code_idx"] ?>"
+                                                       value="<?= $vehicle["code_no"] ?>" <?=$checked?>/>
+                                                <label for="vehicle_<?= $vehicle["code_idx"] ?>"><?= $vehicle["code_name"] ?></label>
+                                            </span>
                                         <?php endforeach; ?>
-
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <th>성인/소아/유아 구분</th>
-                                    <td colspan="3">
-                                        <input type="text" name="adult_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
-                                               value="<?= isset($row) ? $row["adult_text"] : '' ?>"/>
-                                        <span style="margin-right:20px;"></span>
-                                        <input type="text" name="kids_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
-                                               value="<?= isset($row) ? $row["kids_text"] : '' ?>"/>
-                                        <span style="margin-right:20px;"></span>
-                                        <input type="text" name="baby_text" class="bbs_inputbox_pixel"
-                                               style="width:300px"
-                                               value="<?= isset($row) ? $row["baby_text"] : '' ?>"/>
-                                        <span style="margin-right:20px;"></span>
-                                    </td>
-                                </tr>
-
-                                <tr style="display:none">
-                                    <th>상품내용</th>
-                                    <td colspan="3">
-								<textarea name="product_contents" id="product_contents" rows="10" cols="100"
-                                          style="width:100%; height:412px; display:none;"><?= $product_contents ?></textarea>
-                                    </td>
-                                </tr>
-
                                 <tr>
                                     <th>상품정보</th>
                                     <td colspan="3">
-
 
 								<textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
                                           style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
@@ -535,411 +509,99 @@
 
                                     </td>
                                 </tr>
-
-                                <!-- 에디터 파일삭제 -->
-                                <tr>
-                                    <th>예약전 확인사항(PC)</th>
-                                    <td>
-
-								<textarea name="product_confirm" id="product_confirm" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors12 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors12,
-                                                elPlaceHolder: "product_confirm",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-                                    </td>
-                                    <th>예약전 확인사항(모바일)</th>
-                                    <td>
-								<textarea name="product_confirm_m" id="product_confirm_m" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm_m); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors13 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors13,
-                                                elPlaceHolder: "product_confirm_m",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors5.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>포함사항</th>
-                                    <td>
-
-								<textarea name="product_able" id="product_able" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_able); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors2 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors2,
-                                                elPlaceHolder: "product_able",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors2.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-                                    </td>
-                                    <th>불포함사항</th>
-                                    <td>
-								<textarea name="product_unable" id="product_unable" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($product_unable); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors5 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors5,
-                                                elPlaceHolder: "product_unable",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors5.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>모바일용<br>포함사항</th>
-                                    <td>
-								<textarea name="mobile_able" id="mobile_able" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($mobile_able); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors3 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors3,
-                                                elPlaceHolder: "mobile_able",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-
-                                    </td>
-                                    <th>모바일용<br>불포함사항</th>
-                                    <td>
-
-								<textarea name="mobile_unable" id="mobile_unable" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($mobile_unable); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors4 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors4,
-                                                elPlaceHolder: "mobile_unable",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors4.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>스페셜 혜택</th>
-                                    <td>
-								<textarea name="special_benefit" id="special_benefit" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($special_benefit); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors6 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors6,
-                                                elPlaceHolder: "special_benefit",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                    <th>모바일용<br>스페셜 혜택</th>
-                                    <td>
-								<textarea name="special_benefit_m" id="special_benefit_m" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($special_benefit_m); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors7 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors7,
-                                                elPlaceHolder: "special_benefit_m",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>유의사항</th>
-                                    <td>
-								<textarea name="notice_comment" id="notice_comment" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($notice_comment); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors8 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors8,
-                                                elPlaceHolder: "notice_comment",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                    <th>모바일용<br>유의사항</th>
-                                    <td>
-								<textarea name="notice_comment_m" id="notice_comment_m" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($notice_comment_m); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors9 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors9,
-                                                elPlaceHolder: "notice_comment_m",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <th>기타사항</th>
-                                    <td>
-								<textarea name="etc_comment" id="etc_comment" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($etc_comment); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors10 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors10,
-                                                elPlaceHolder: "etc_comment",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                    <th>모바일용<br>기타사항</th>
-                                    <td>
-								<textarea name="etc_comment_m" id="etc_comment_m" class="input_txt"
-                                          style="width:100%; height:200px; display:none;"><?= viewSQ($etc_comment_m); ?></textarea>
-                                        <script type="text/javascript">
-                                            var oEditors11 = [];
-
-                                            // 추가 글꼴 목록
-                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
-
-                                            nhn.husky.EZCreator.createInIFrame({
-                                                oAppRef: oEditors11,
-                                                elPlaceHolder: "etc_comment_m",
-                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
-                                                htParams: {
-                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
-                                                    fOnBeforeUnload: function () {
-                                                        //alert("완료!");
-                                                    }
-                                                }, //boolean
-                                                fOnAppLoad: function () {
-                                                    //예제 코드
-                                                    //oEditors3.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-                                                },
-                                                fCreator: "createSEditor2"
-                                            });
-                                        </script>
-                                    </td>
-                                </tr>
-
                                 </tbody>
 
                             </table>
                         </div>
                     </div>
+                    <?php if ($product_idx): ?>
+                    <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+
+                            <tr>
+                                <th>옵션추가</th>
+                                <td>
+                                    <div class="flex__c">
+                                        <select name="moption_hole" id="moption_hole">
+                                            <?php foreach(GOLF_HOLES as $hole) : ?>
+                                                <option value="<?=$hole?>"><?=$hole?>홀</option>
+                                            <?php endforeach; ?>
+                                        </select>&nbsp;
+                                        <select name="moption_hour" id="moption_hour">
+                                            <?php foreach(GOLF_HOURS as $hour) : ?>
+                                                <option value="<?=$hour?>"><?=$hour?>시</option>
+                                            <?php endforeach; ?>
+                                        </select>&nbsp;
+                                        <select name="moption_minute" id="moption_minute">
+                                            <?php foreach(GOLF_MIN as $minute) : ?>
+                                                <option value="<?=$minute?>"><?=$minute?>분</option>
+                                            <?php endforeach; ?>
+                                        </select>&nbsp;
+                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>옵션추가</th>
+                                <td>
+                                    <table>
+                                        <colgroup>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>옵션명</th>
+                                                <th>가격</th>
+                                                <th>캐디피</th>
+                                                <th>카트피</th>
+                                                <th>관리</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="list_option">
+                                            <?php foreach ($options as $m) { ?>
+                                                <tr id="option_<?= $m['idx'] ?>">
+                                                    <td>
+                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
+                                                            <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
+                                                            <input type="text" name="option_price[]" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c"><input type="text" name="caddy_fee[]" value='<?= $m['caddy_fee'] ?>'></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c"><input type="text" name="cart_pie_fee[]" value='<?= $m['cart_pie_fee'] ?>'></div>
+                                                    </td>
+                                                    <td class="tac">
+                                                        &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
+                                                        &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
             </form>
+
             <!-- // listBottom -->
             <div class="tail_menu">
                 <ul>
@@ -961,196 +623,21 @@
                 </ul>
             </div>
 
-
-            <div class="listBottom">
-                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                    <caption>
-                    </caption>
-                    <colgroup>
-                        <col width="10%"/>
-                        <col width="90%"/>
-                    </colgroup>
-                    <tbody>
-
-                    <tr>
-                        <th>옵션추가</th>
-                        <td>
-                            <div class="flex__c">
-                                <select name="moption_hole" id="moption_hole">
-                                    <option value="18">18홀</option>
-                                    <option value="27">27홀</option>
-                                    <option value="36">36홀</option>
-                                    <option value="45">45홀</option>
-                                </select>&nbsp;
-                                <select name="moption_hour" id="moption_hour">
-                                    <option value="06">06시</option>
-                                    <option value="07">07시</option>
-                                    <option value="08">08시</option>
-                                    <option value="09">09시</option>
-                                    <option value="10">10시</option>
-                                    <option value="11">11시</option>
-                                    <option value="12">12시</option>
-                                    <option value="13">13시</option>
-                                    <option value="14">14시</option>
-                                    <option value="15">15시</option>
-                                    <option value="16">16시</option>
-                                    <option value="17">17시</option>
-                                    <option value="18">18시</option>
-                                    <option value="19">19시</option>
-                                </select>&nbsp;
-                                <select name="moption_minute" id="moption_minute">
-                                    <option value="00">00분</option>
-                                    <option value="12">12분</option>
-                                    <option value="24">24분</option>
-                                    <option value="36">36분</option>
-                                    <option value="48">48분</option>
-                                </select>&nbsp;
-                                <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>옵션추가</th>
-                        <td>
-                            <table>
-                                <colgroup>
-                                    <col width="40%"/>
-                                    <col width="30%"/>
-                                    <col width="30%"/>
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <th>옵션명</th>
-                                        <th>가격</th>
-                                        <th>관리</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="list_option">
-                                    <?php foreach ($options as $m) { ?>
-                                        <tr id="option_<?= $m['idx'] ?>">
-                                            <td>
-                                                <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
-                                            </td>
-                                            <td>
-                                                <div class="flex_c_c"><input type="text" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원</div>
-                                            </td>
-                                            <td>
-                                                &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
-                                                &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <?php if ($product_idx): ?>
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 가격리스트</li>
-                        <li class="right_sub" style="padding-bottom:10px">
-                            <a href="../_tourPrice/write<?= ($product_code_1 == "1301") ? "_package" : "" ?>.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_3=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&back_url=<?= $back_url ?>"
-                               class="btn btn-default">
-                                <span class="glyphicon glyphicon-cog"></span>
-                                <span class="txt">가격등록</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <caption></caption>
-                        <colgroup>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="*"/>
-                            <col width="8%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>시작일</th>
-                            <th>종료일</th>
-                            <th>항공사별 가격</th>
-                            <th>선택요일</th>
-                            <th>등록일</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <?php echo $yoil_html ?>
-                    </table>
-                </div>
-
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 상세내역</li>
-                        <li class="right_sub" style="padding-bottom:10px"></li>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <colgroup>
-                            <col width="70px"/>
-                            <col width="*"/>
-                            <col width="260px"/>
-                            <col width="260px"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>항공사</th>
-                            <th>일차</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php if ($fTotalresult4 > 0): ?>
-                            <?php $i = 1; ?>
-                            <?php foreach ($fresult4 as $frow): ?>
-                                <tr style="height:50px">
-                                    <td><?= $i++ ?></td>
-                                    <td class="tac"><?= $frow["code_name"] ?></td>
-                                    <td class="tac"><?= $frow["cnt"] ?>일차</td>
-                                    <td>
-                                        <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
-                                           class="btn btn-default">상세내역관리</a>
-                                        <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                            <input type="file" hidden name="fileInput"
-                                                   data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput" accept=".json">
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr style="height:50px">
-                                <td><?= $i++ ?></td>
-                                <td class="tac">미등록</td>
-                                <td class="tac">미등록</td>
-                                <td>
-                                    <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
-                                       class="btn btn-default">상세내역관리</a>
-                                    <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                        <!-- <button type="button">Tải lên lịch trình</button> -->
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
-
         </div>
         <!-- // listWrap -->
-
+        <div class="pick_item_pop02" id="popup_location">
+            <div>
+                <h2>메인노출상품 등록</h2>
+                <div class="table_box" style="height: calc(100% - 146px);">
+                    <ul id="list_location">
+                        
+                    </ul>
+                </div>
+                <div class="sel_box">
+                    <button type="button" class="close">닫기</button>
+                </div>
+            </div>
+        </div>
         <script>
             function del_tours(idx) {
                 if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
@@ -1469,21 +956,6 @@
 
             function send_it() {
                 var frm = document.frm;
-                /*
-                oEditors1.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
-                */
-                oEditors4.getById["mobile_unable"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors3.getById["mobile_able"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors2.getById["product_able"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors5.getById["product_unable"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors6.getById["special_benefit"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors7.getById["special_benefit_m"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors8.getById["notice_comment"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors9.getById["notice_comment_m"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors10.getById["etc_comment"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors11.getById["etc_comment_m"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors12.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);
-                oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
                 oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
 
@@ -1491,11 +963,11 @@
                     return;
                 }
 
-                if (frm.tour_period.value == "") {
-                    alert("일자를 선택하셔야 합니다.");
-                    frm.tour_period.focus();
-                    return;
-                }
+                // if (frm.tour_period.value == "") {
+                //     alert("일자를 선택하셔야 합니다.");
+                //     frm.tour_period.focus();
+                //     return;
+                // }
                 if (frm.product_code_1.value == "") {
                     alert("1차분류를 선택하셔야 합니다.");
                     //frm.product_code_1.focus();
@@ -1541,7 +1013,7 @@
                 option += '|';
                 $("#tours_cate").val(tours_cate);
 
-                formSubmitted = true;
+                // formSubmitted = true;
 
                 frm.submit();
             }
@@ -1621,6 +1093,63 @@
                     }
                 });
             }
+
+            $('.pick_item_pop02 .sel_box .close').on('click', function () {
+                $('.pick_item_pop02').hide()
+            })
+
+            function getCoordinates() {
+		
+            let address = $("#addrs").val();
+            if(!address){
+                alert("주소를 입력해주세요");
+                return false;
+            }
+            const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                    'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+                }
+            };
+
+            fetch(apiUrl, options)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Data:', data);
+                    let html = '';
+                    if(data.results.length > 0){
+                        data.results.forEach(element => {
+                            let address = element.formatted_address;
+                            let lat = element.geometry.location.lat;
+                            let lon = element.geometry.location.lng;
+                            html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                        });
+                    }else{
+                        html = `<li>No data</li>`;
+                    }
+
+                    $("#popup_location #list_location").html(html);
+                    $("#popup_location").show();
+                    $("#popup_location #list_location li").click(function () {
+                        let latitude = $(this).data("lat");
+                        let longitude = $(this).data("lon");
+                        $("#latitude").val(latitude);
+                        $("#longitude").val(longitude);
+                        $("#popup_location").hide();
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
         </script>
         <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 

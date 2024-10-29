@@ -147,7 +147,7 @@ class TourSuggestionSubController extends BaseController
         $code_no = $_GET['code_no'];
         $inq_sw = $_GET['inq_sw'];
         if($inq_sw != "fst") {
-            $list = $this->mainDispModel->goods_find($code_no);
+            $list = $this->mainDispModel->goods_find($code_no)['items'];
         } else {
             $list = [];
         }

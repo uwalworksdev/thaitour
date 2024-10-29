@@ -33,7 +33,7 @@
                                     <div class="sel_wrap">
                                         <div class="sel_box">
                                             <select name="child_code_1" id="child_code_1" class="main_category"
-                                                    onchange="getChildCode(this.value, 2)">
+                                                    onchange="getChildCode(this.value, 3)">
                                                 <option value="">카테고리 선택</option>
                                                 <?php
                                                 foreach ($result as $row) {
@@ -44,7 +44,7 @@
                                                 ?>
                                             </select>
                                             <select name="code" id="child_code_2" class="main_category"
-                                                    onchange="getChildCode(this.value, 3);">
+                                                    onchange="getChildCode(this.value, 4);">
                                                 <option value="">카테고리 선택</option>
                                                 <?php
                                                 foreach ($result2 as $row) {
@@ -116,8 +116,7 @@
                                         },
                                         success: function (json, textStatus) {
                                             $("#isrt_code").val(parent_code_no);
-
-                                            if (depth <= 2) {
+                                            if (depth <= 3) {
                                                 $("#child_code_2").find('option').each(function () {
                                                     $(this).remove();
                                                 });
@@ -138,7 +137,7 @@
                                                 } else if (list[i].code_status == "N") {
                                                     contentStr = "[사용안함]";
                                                 }
-                                                $("#child_code_" + (parseInt(depth))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                                                $("#child_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
                                             }
                                             get_prd_list(parent_code_no);
                                         },

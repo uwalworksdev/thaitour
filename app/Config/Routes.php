@@ -12,6 +12,8 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->post("login", "AdminLogin::LoginCheckAjax");
     $routes->get("logout", "AdminLogin::Logout");
 
+    $routes->post("prod_update/(:segment)", "TourRegistController::prod_update/$1", ['as' => "admin._tour.prod_update"]);
+
     $routes->get("main", "StatisticsController::main");
 
     $routes->group("_review", static function ($routes) {
@@ -91,12 +93,20 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write_all", "TourRegistController::write_all");
         $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
         $routes->get("write_golf", "TourRegistController::write_golf");
+        $routes->post("write_golf_ok", "TourRegistController::write_golf_ok");
         $routes->post("write_golf_ok/(:segment)", "TourRegistController::write_golf_ok/$1");
         $routes->post("write_golf/add_moption", "TourRegistController::add_moption");
         $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
         $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
         $routes->get("write_spas", "TourRegistController::write_spas");
         $routes->get("write_tours", "TourRegistController::write_tours");
+        $routes->get("write_tour_info", "TourRegistController::write_tour_info");
+        $routes->post("write_tours/addMoption", "TourRegistController::addMoption");
+        $routes->post("write_tours/updMoption", "TourRegistController::updMoption");
+        $routes->post("write_tours/delMoption", "TourRegistController::delMoption");
+        $routes->post("write_tours/addOption", "TourRegistController::addOption");
+        $routes->post("write_tours/updOption", "TourRegistController::updOption");
+        $routes->post("write_tours/delOption", "TourRegistController::delOption");
         $routes->get("_tourStay", "TourRegistController::list");
         $routes->group('golf_vehicles', function ($routes) {
             $routes->get('/', 'GolfVehicleController::list');
@@ -115,11 +125,14 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminHotelController::write_ok/$1", ['as' => "admin._hotel.write_ok.id"]);
         $routes->post("change", "Admin\AdminHotelController::change", ['as' => "admin._hotel.change"]);
-        $routes->post("prod_update", "Admin\AdminHotelController::prod_update", ['as' => "admin._hotel.prod_update"]);
         $routes->post("del", "Admin\AdminHotelController::del", ['as' => "admin._hotel.del"]);
         $routes->post("search_code", "Admin\AdminHotelController::search_code", ['as' => "admin._hotel.search_code"]);
         $routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);
         $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
+    });
+
+    $routes->group("_tours", static function ($routes) {
+        $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
     });
 
     $routes->group("api", function ($routes) {
@@ -147,6 +160,26 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'code_'
         $routes->group("code_", function ($routes) {
             $routes->post("code_del", "Api\AdminCodeApi::code_del", ['as' => "admin.api.code.code_del"]);
+        });
+
+        $routes->group("product_", function ($routes) {
+            $routes->post("change_manager", "Api\AdminTourApi::change_manager", ['as' => "admin.api.product_.change_manager"]);
+            $routes->post("add_moption", "Api\AdminTourApi::add_moption", ['as' => "admin.api.product_.add_moption"]);
+            $routes->post("upd_moption", "Api\AdminTourApi::upd_moption", ['as' => "admin.api.product_.upd_moption"]);
+            $routes->post("del_moption", "Api\AdminTourApi::del_moption", ['as' => "admin.api.product_.del_moption"]);
+            $routes->post("add_option", "Api\AdminTourApi::add_option", ['as' => "admin.api.product_.add_option"]);
+            $routes->post("upd_option", "Api\AdminTourApi::upd_option", ['as' => "admin.api.product_.upd_option"]);
+            $routes->post("del_option", "Api\AdminTourApi::del_option", ['as' => "admin.api.product_.del_option"]);
+            $routes->post("img_remove", "Api\AdminTourApi::img_remove", ['as' => "admin.api.product_.img_remove"]);
+        });
+
+        // Nested group for 'spa_'
+        $routes->group("spa_", function ($routes) {
+            $routes->post("write_ok", "Admin\AdminSpaController::write_ok", ['as' => "admin.api.spa_.write_ok"]);
+            $routes->post("prod_update", "Admin\AdminSpaController::prod_update", ['as' => "admin.api.spa_.prod_update"]);
+            $routes->post("ajax_change", "Admin\AdminSpaController::ajax_change", ['as' => "admin.api.spa_.ajax_change"]);
+            $routes->post("del", "Admin\AdminSpaController::del", ['as' => "admin.api.spa_.del"]);
+            $routes->get("get_code", "Admin\AdminTourStayApi::get_code", ['as' => "admin.api.spa_.get_code"]);
         });
     });
 
@@ -197,8 +230,15 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_operator", static function ($routes) {
         $routes->get("coupon_setting", "Admin\AdminOperatorController::coupon_setting");
         $routes->get("coupon_setting_write", "Admin\AdminOperatorController::coupon_setting_write");
+        $routes->post("coupon_setting_write_ok", "Admin\AdminOperatorController::coupon_setting_write_ok", ['as' => "admin.operator.coupon_setting_write_ok"]);
+        $routes->post("coupon_setting_del", "Admin\AdminOperatorController::coupon_setting_del", ['as' => "admin.operator.coupon_setting_del"]);
         $routes->get("coupon_list", "Admin\AdminOperatorController::coupon_list");
         $routes->get("coupon_write", "Admin\AdminOperatorController::coupon_write");
+        $routes->post("coupon_write_ok", "Admin\AdminOperatorController::coupon_write_ok", ['as' => "admin.operator.coupon_write_ok"]);
+        $routes->post("coupon_del", "Admin\AdminOperatorController::coupon_del", ['as' => "admin.operator.coupon_del"]);
+        $routes->get("find_user", "Admin\AdminOperatorController::find_user");
+        $routes->get("send_coupon", "Admin\AdminOperatorController::send_coupon");
+
     });
 
     $routes->group("_mileage", static function ($routes) {
@@ -294,6 +334,13 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
     $routes->post("get_travel_types", "AjaxController::get_travel_types");
     $routes->get("get_code", "CodeController::ajaxGet");
+});
+
+$routes->group("api", static function ($routes) {
+    $routes->group("products", static function ($routes) {
+        $routes->post("roomPhoto", "Api\ProductApi::roomPhoto");
+        $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
+    });
 });
 
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
@@ -427,23 +474,29 @@ $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
 $routes->get('product-list/(:any)', 'Product::index3/$1');
 $routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::hotelDetail/$1');
-$routes->get('product-hotel/customer-form', 'Product::index7/$1');
+$routes->get('product-hotel/customer-form/(:any)', 'Product::index7/$1');
+$routes->get('product-hotel/reservation-form', 'Product::reservationForm');
+$routes->post('product-hotel/reservation-form-insert', 'Product::reservationFormInsert');
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
-$routes->get('product-golf/completed-order/(:any)', 'Product::completedOrder/$1');
-$routes->get('product-golf/customer-form/(:any)', 'Product::customerForm/$1');
+$routes->get('product/completed-order', 'Product::completedOrder/$1');
+$routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
+$routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
 $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
-$routes->get('product-tours/(:any)', 'Product::index/$1');
+$routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 
 $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
-
+$routes->get('product/get-by-top', 'Product::getProductByTop');
+$routes->get('product/get-by-cheep', 'Product::getProductByCheep');
+$routes->get('product/get-by-sub-code', 'Product::getProductBySubCode');
+$routes->get('/product-booking', 'ProductBooking::index');
 ?>

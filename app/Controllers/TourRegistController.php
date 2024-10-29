@@ -14,6 +14,14 @@ class TourRegistController extends BaseController
     private $golfOptionModel;
     protected $connect;
     protected $productModel;
+    protected $golfInfoModel;
+    protected $golfVehicleModel;
+
+    protected $moptionModel;
+    protected $optionTourModel;
+
+    protected $tourProducts;
+
 
     public function __construct()
     {
@@ -23,6 +31,11 @@ class TourRegistController extends BaseController
         $this->Bbs = model("Bbs");
         $this->golfOptionModel = model("GolfOptionModel");
         $this->productModel = model("ProductModel");
+        $this->golfInfoModel = model("GolfInfoModel");
+        $this->golfVehicleModel = model("GolfVehicleModel");
+        $this->moptionModel = model("MoptionModel");
+        $this->optionTourModel = model("OptionTourModel");
+        $this->tourProducts = model("ProductTourModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -31,7 +44,7 @@ class TourRegistController extends BaseController
 
     public function list_hotel()
     {
-        $data = $this->get_list_('1324');
+        $data = $this->get_list_('1303');
         return view("admin/_tourRegist/list", $data);
     }
 
@@ -50,23 +63,29 @@ class TourRegistController extends BaseController
     public function list_spas()
     {
         $data = $this->get_list_('1317');
+        $data2 = $this->get_list_('1320');
+        $data3 = $this->get_list_('1324');
+
+        $data = array_merge($data, $data2);
+        $data = array_merge($data, $data3);
         return view("admin/_tourRegist/list_spas", $data);
     }
 
     public function list_tours()
     {
-        $data = $this->get_list_('1317');
+        $data = $this->get_list_('1301');
         return view("admin/_tourRegist/list_tours", $data);
     }
 
     public function list_golfs()
     {
-        $data = $this->get_list_('1325');
+        $data = $this->get_list_('1302');
         return view("admin/_tourRegist/list_golfs", $data);
     }
 
     private function get_list_($product_code_1)
     {
+
         $g_list_rows = 10;
         $pg = updateSQ($_GET["pg"] ?? "");
         if ($pg == "") $pg = 1;
@@ -223,6 +242,8 @@ class TourRegistController extends BaseController
 
         $options = $this->golfOptionModel->getOptions($product_idx);
 
+        $vehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
+
         $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
         $query = $db->query($sql, [$product_idx]);
         $result = $query->getRowArray();
@@ -240,6 +261,8 @@ class TourRegistController extends BaseController
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
+            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles' => $vehicles
         ];
 
         $data = array_merge($data, $new_data);
@@ -247,20 +270,64 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_golf", $data);
     }
 
-    public function write_golf_ok($product_idx) {
+    public function write_golf_ok($product_idx = null)
+    {
 
         $data = $this->request->getPost();
-        $data['is_best_value']     = $data['is_best_value'] ?? "N";
-        $data['special_price']  = $data['special_price'] ?? "N";
+        $data['is_best_value'] = $data['is_best_value'] ?? "N";
+        $data['special_price'] = $data['special_price'] ?? "N";
+        $data['original_price'] = str_replace(",", "", $data['original_price']);
+        $data['product_price'] = str_replace(",", "", $data['product_price']);
+        $data['golf_vehicle'] = "|" . implode("|", $data['vehicle_arr']) . "|";
 
-        $this->productModel->update($product_idx, $data);
-        $html = '<script>alert("수정되었습니다.");</script>';
-        $html .= '<script>parent.location.reload();</script>';
-        $html .= '<div>'.var_dump($data).'</div>';
+        $files = $this->request->getFiles();
+        for ($i = 1; $i <= 7; $i++) {
+            $file = $files['ufile' . $i];
+            if ($file->isValid() && !$file->hasMoved()) {
+                $name = $file->getClientName();
+                $newName = $file->getRandomName();
+                $file->move(ROOTPATH . 'public/data/product', $newName);
+                $data['ufile' . $i] = $newName;
+                $data['rfile' . $i] = $name;
+            }
+        }
+        if ($product_idx) {
+            $data['m_date'] = date("Y-m-d H:i:s");
+            $this->productModel->updateData($product_idx, $data);
+
+            if (!$this->golfInfoModel->getGolfInfo($product_idx)) {
+                $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
+            } else {
+                $this->golfInfoModel->updateData($product_idx, $data);
+            }
+
+            $html = '<script>alert("수정되었습니다.");</script>';
+            $html .= '<script>parent.location.reload();</script>';
+        } else {
+            $data['r_date'] = date("Y-m-d H:i:s");
+            $data['m_date'] = date("Y-m-d H:i:s");
+            $this->productModel->insertData($data);
+            $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
+            $html = '<script>alert("등록되었습니다.");</script>';
+            $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
+        }
+
+        if ($data['option_idx']) {
+            foreach ($data['option_idx'] as $key => $value) {
+                $this->golfOptionModel->update($value, [
+                    'option_price' => $data['option_price'][$key],
+                    'caddy_fee' => $data['caddy_fee'][$key],
+                    'cart_pie_fee' => $data['cart_pie_fee'][$key],
+                ]);
+            }
+        }
+
+
         return $this->response->setBody($html);
     }
 
-    public function add_moption() {
+    public function add_moption()
+    {
         $product_idx = updateSQ($this->request->getPost('product_idx'));
         $moption_hole = $this->request->getPost('moption_hole');
         $moption_hour = $this->request->getPost('moption_hour');
@@ -273,36 +340,55 @@ class TourRegistController extends BaseController
         }
 
         $newData = [
-            'product_idx'  => $product_idx,
-            'hole_cnt'     => $moption_hole,
-            'hour'         => $moption_hour,
-            'minute'       => $moption_minute,
+            'product_idx' => $product_idx,
+            'hole_cnt' => $moption_hole,
+            'hour' => $moption_hour,
+            'minute' => $moption_minute,
             'option_price' => 0,
-            'option_cnt'   => 0,
-            'use_yn'       => 'Y',
-            'option_type'  => 'M',
-            'rdate'        => date('Y-m-d H:i:s')
+            'option_cnt' => 0,
+            'use_yn' => 'Y',
+            'option_type' => 'M',
+            'caddy_fee' => '그린피에 포함',
+            'cart_pie_fee' => '피지에 포함',
+            'rdate' => date('Y-m-d H:i:s')
         ];
         $this->golfOptionModel->insert($newData);
         $insertId = $this->db->insertID();
 
-        $html = '<tr id="moption_'.$insertId.'">';
+        $html = '<tr id="moption_' . $insertId . '">';
         $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}시</span>&nbsp;/&nbsp;<span>{$moption_minute}분</span></td>";
-        $html .= '<td><div class="flex_c_c"><input type="text" id="option_price_'.$insertId.'" value="0">원</div></td>';
-        $html .= '<td>&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption('.$insertId.');">수정</button>';
-        $html .= '&nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption('.$insertId.');">삭제</button></td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
+                        <input type="text" name="option_price[]" id="option_price_' . $insertId . '" value="0">원
+                    </div>
+                </td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="text" name="caddy_fee[]" id="caddy_fee_' . $insertId . '" value="그린피에 포함">
+                    </div>
+                </td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="text" name="cart_pie_fee[]" id="cart_pie_fee_' . $insertId . '" value="그린피에 포함">
+                    </div>
+                </td>';
+        $html .= '<td class="tac">&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(' . $insertId . ');">수정</button>';
+        $html .= '&nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(' . $insertId . ');">삭제</button></td>';
         $html .= '</tr>';
 
         return $this->response->setBody($html);
     }
 
-    public function upd_moption($idx) {
+    public function upd_moption($idx)
+    {
         $option_price = $this->request->getRawInputVar('option_price') ?? 0;
         $this->golfOptionModel->update($idx, ['option_price' => $option_price]);
         return $this->response->setJSON(['message' => '수정되었습니다']);
     }
 
-    public function del_moption($idx) {
+    public function del_moption($idx)
+    {
         $this->golfOptionModel->delete($idx);
         return $this->response->setJSON(['message' => '삭체되었습니다']);
     }
@@ -310,7 +396,7 @@ class TourRegistController extends BaseController
     public function write_spas()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite();
+        $data = $this->getWrite("");
 
         $db = $this->connect;
 
@@ -346,6 +432,38 @@ class TourRegistController extends BaseController
         $sql = "SELECT IFNULL(total_day, 0) as cnt FROM tbl_product_day_detail WHERE air_code = '0000' AND product_idx = ?";
         $query = $db->query($sql, [$product_idx]);
         $data['dayDetails'] = $query->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
+        $fresult6 = $this->connect->query($fsql);
+        $fresult6 = $fresult6->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
+        $fresult5 = $this->connect->query($fsql);
+        $fresult5 = $fresult5->getResultArray();
+
+        $fresult5 = array_map(function ($item) {
+            $rs = (array)$item;
+
+            $code_no = $rs['code_no'];
+
+            $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='$code_no' order by onum desc, code_idx desc";
+
+            $rs_child = $this->connect->query($fsql)->getResultArray();
+
+            $rs['child'] = $rs_child;
+
+            return $rs;
+        }, $fresult5);
+
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='35' order by onum desc, code_idx desc";
+        $fresult8 = $this->connect->query($fsql);
+        $fresult8 = $fresult8->getResultArray();
+
+        $data['fresult6'] = $fresult6;
+
+        $data['fresult5'] = $fresult5;
+
+        $data['fresult8'] = $fresult8;
 
         $new_data = [
             'product_idx' => $product_idx,
@@ -360,13 +478,17 @@ class TourRegistController extends BaseController
     public function write_tours()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite();
+        $data = $this->getWrite('1301');
 
         $db = $this->connect;
 
         $sql_c = "SELECT * FROM tbl_code WHERE code_gubun='tour' AND parent_code_no='" . $data["product_code_3"] . "' AND depth = '5' AND status != 'N' ORDER BY onum DESC";
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
+
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = 43 ORDER BY onum DESC";
+        $cresult = $db->query($sql) or die ($db->error);
+        $cresult = $cresult->getResultArray();
 
         $builder = $db->table('tbl_tours_moption');
         $builder->where('product_idx', $product_idx);
@@ -401,13 +523,14 @@ class TourRegistController extends BaseController
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
+            'cresult' => $cresult,
         ];
 
         $data = array_merge($data, $new_data);
         return view("admin/_tourRegist/write_tours", $data);
     }
 
-    private function getWrite($product_code_1 = "1324")
+    private function getWrite($product_code_1)
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');
@@ -532,8 +655,12 @@ class TourRegistController extends BaseController
             $yoil_5 = $row["yoil_5"];
             $yoil_6 = $row["yoil_6"];
             $guide_lang = $row["guide_lang"];
-        }
 
+            $addrs = $row["addrs"];
+            $latitude = $row["latitude"];
+            $longitude = $row["longitude"];
+            $product_points = $row["product_points"];
+        }
 
         $private_key = '';
         $sql = "select user_id, AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name from tbl_member where user_level = '2'";
@@ -676,6 +803,10 @@ class TourRegistController extends BaseController
             "yoil_5" => $yoil_5 ?? '',
             "yoil_6" => $yoil_6 ?? '',
             "guide_lang" => $guide_lang ?? '',
+            "addrs" => $addrs ?? '',
+            "latitude" => $latitude ?? '',
+            "longitude" => $longitude ?? '',
+            "product_points" => $product_points ?? '',
         ];
 
         return $data;
@@ -800,5 +931,182 @@ class TourRegistController extends BaseController
         if ($frow["yoil_5"] == "Y") $yoilStr .= "금, ";
         if ($frow["yoil_6"] == "Y") $yoilStr .= "토, ";
         return rtrim($yoilStr, ", ");
+    }
+
+    public function prod_update($product_idx)
+    {
+        try {
+            $db = $this->productModel->update($product_idx, $_POST);
+
+            if (!$db) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON(
+                        [
+                            'status' => 'error',
+                            'message' => '수정 중 오류가 발생했습니다!!'
+                        ]
+                    );
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'status' => 'success',
+                        'message' => '수정 했습니다.'
+                    ]
+                );
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function addMoption()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+        $moption_name = $this->request->getPost('moption_name');
+
+        $data = [
+            'product_idx' => $product_idx,
+            'moption_name' => $moption_name,
+            'use_yn' => 'Y',
+            'rdate' => date('Y-m-d H:i:s')
+        ];
+
+        if ($this->moptionModel->insert($data)) {
+            $response = ['message' => '등록 완료'];
+        } else {
+            $response = ['message' => '등록 오류'];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    public function updMoption()
+    {
+        $code_idx = $this->request->getPost('code_idx');
+        $moption_name = $this->request->getPost('moption_name');
+
+
+        if ($code_idx && $moption_name) {
+            $data = [
+                'moption_name' => $moption_name
+            ];
+
+            if ($this->moptionModel->update($code_idx, $data)) {
+                $response = ['message' => '수정 완료'];
+            } else {
+                $response = ['message' => '수정 오류'];
+            }
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    public function delMoption()
+    {
+        $idx = $this->request->getPost('idx');
+
+        try {
+            if ($this->moptionModel->where('idx', $idx)->delete()) {
+                $msg = "삭제 완료";
+            } else {
+                $msg = "삭제 오류";
+            }
+        } catch (\Exception $e) {
+            $msg = "삭제 오류: " . $e->getMessage();
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function addOption()
+    {
+        $code_idx = $this->request->getPost('code_idx');
+        $product_idx = $this->request->getPost('product_idx');
+        $options = $this->request->getPost('o_name');
+
+        $this->optionTourModel->where('code_idx', $code_idx)
+            ->where('product_idx', $product_idx)
+            ->delete();
+
+        $result = true;
+        foreach ($options as $i => $option_name) {
+            if ($option_name && isset($_POST['o_price'][$i])) {
+                $data = [
+                    'code_idx' => $code_idx,
+                    'product_idx' => $product_idx,
+                    'option_name' => $option_name,
+                    'option_price' => $_POST['o_price'][$i],
+                    'use_yn' => isset($_POST['use_yn'][$i]) ? $_POST['use_yn'][$i] : 'N',
+                    'onum' => $_POST['o_num'][$i],
+                    'rdate' => date('Y-m-d H:i:s')
+                ];
+
+                if (!$this->optionTourModel->insert($data)) {
+                    $result = false;
+                }
+            }
+        }
+        if ($result) {
+            $msg = "등록 완료";
+        } else {
+            $msg = "등록 오류";
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function updOption()
+    {
+        $idx = $this->request->getPost('idx');
+        $option_name = $this->request->getPost('option_name');
+        $option_price = $this->request->getPost('option_price');
+        $use_yn = $this->request->getPost('use_yn');
+        $onum = $this->request->getPost('onum');
+
+        $data = [
+            'option_name' => $option_name,
+            'option_price' => $option_price,
+            'use_yn' => $use_yn,
+            'onum' => $onum,
+        ];
+
+        $result = $this->optionTourModel->update($idx, $data);
+
+        $msg = $result ? "수정 완료" : "수정 오류";
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function delOption()
+    {
+        $idx = $this->request->getPost('idx');
+
+        try {
+            if ($this->optionTourModel->where('idx', $idx)->delete()) {
+                $msg = "삭제 완료";
+            } else {
+                $msg = "삭제 오류";
+            }
+        } catch (\Exception $e) {
+            $msg = "삭제 오류: " . $e->getMessage();
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function write_tour_info()
+    {
+        $tours_idx = $this->request->getPost('tours_idx');
+        $tour = $this->tourProducts->getTourById($tours_idx);
+        $data = [
+            'tour' => $tour,
+            'tours_idx' => $tours_idx,
+        ];
+        return view('admin/_tourRegist/write_tour_info', $data);
     }
 }

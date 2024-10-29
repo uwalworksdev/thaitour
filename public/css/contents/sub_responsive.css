@@ -1570,6 +1570,7 @@
     vertical-align: middle;
     cursor: pointer;
     margin-right: 1.5rem;
+    background-color: white;
   }
 
   .cart-item-list .cart-left .header-cart {
@@ -1608,18 +1609,24 @@
     display: flex;
     gap: 3rem;
     align-items: flex-start;
-    padding: 0 20px;
+    padding: 0 2rem;
   }
 
   .cart-item-list .table-container.custom-mo .picture-con {
     position: relative;
-    width: 220px;
-    height: 200px;
+    width: 21.9999rem;
+    height: 20rem;
+    overflow: hidden;
+  }
+
+  .cart-item-list .checkbox-group-2 {
+    margin: 3rem 0;
+    margin-left: 2rem;
   }
 
   .cart-item-list .table-container.custom-mo .picture-con .form-group {
     position: absolute;
-    top: -2.7rem;
+    top: -3rem;
     left: -2rem;
   }
 
@@ -1642,7 +1649,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     display: inline-block;
-    max-width: 34.5rem;  
+    max-width: 34.5rem;
   }
 
   .cart-item-list .table-container.custom-mo .text-right-p {
@@ -1674,6 +1681,7 @@
   .cart-item-list .table-container.custom-mo .item {
     padding: 2rem 0 5rem 0;
     border-bottom: 2.1px solid rgb(219, 219, 219);
+    width: 66rem;
   }
 
   .cart-item-list .table-container.custom-mo .des-item {
@@ -1694,4 +1702,122 @@
     border: 0.21rem solid rgb(238, 238, 238);
     margin-bottom: 3rem;
   }
+
+  .cart-item-list .cart-item-list-container .cart-right {
+    width: 66rem;
+    border: 0.21rem solid rgb(219, 219, 219);
+    padding: 2.8rem 2.4rem;
+    border-radius: 0.6rem;
+    padding-bottom: 6rem;
+    margin-top: 8rem;
+  }
+
+  .cart-item-list .cart-item-list-container .title-cr {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+
+  .cart-item-list .cart-item-list-container .item-info-cr:nth-child(3) {
+    padding-bottom: 3rem;
+    margin-top: 1.6rem;
+    border-bottom: 0.21rem dashed rgb(219, 219, 219);
+    margin-bottom: 2.4rem;
+  }
+
+  .cart-item-list .cart-right .item-info-total-cr {
+    font-size: 2.7rem;
+    font-weight: bold;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.4rem;
+  }
+
+  .cart-item-list .cart-right .info-description-p {
+    line-height: 3rem;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+  }
+
+  .cart-item-list .btn-cart {
+    font-size: 3.2rem;
+    background-color: var(--bs-point);
+    color: white;
+    border-radius: 0.6rem;
+    padding: 2.2rem 5rem;
+    width: 100%;
+    font-weight: bold;
+    height: 11rem;
+  }
+
+  .customer-form-page .title-sub-below {
+    font-size: 2.5rem;
+    line-height: 3.5rem;
+    color: #757575;
+    margin-bottom: 2rem;
+  }
+
+  .reservation-form-cus .parent-form-group {
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  .reservation-form-cus .conn-icon {
+    gap: 1rem;
+  }
+
+  .reservation-form-cus .cus-width-mo input:first-child {
+    width: 33.5rem;
+  }
+
+  .reservation-form-cus .conn-icon img {
+    width: 3.7rem;
+    height: 3.7rem;
+  }
+
+  .reservation-form-cus .w-375 {
+    width: 100%;
+  }
+
+
+  .customer-form-page .container-card .title-r {
+    line-height: 4rem;
+  }
+
+  .customer-form-page .container-card .title-sub-r {
+    font-size: 2.7rem;
+  }
+
+  .mt-30 {
+    margin-top: 3rem;
+  }
+
+  .tour-main-page .banner_section_main_page .banner_section_image {
+    height: 24rem;
+    background: url(/uploads/sub/banner_tour_1_m.png) no-repeat center;
+    background-size: cover;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text {
+    position: absolute;
+    top: 8rem;
+    left: 3rem;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text .title-box {
+    font-size: 3.6rem;
+    color: #ffffff;
+    margin-bottom: 1.6rem;
+  }
+
+  .tour-main-page .banner_section_main_page .box-text .des-box {
+    font-size: 2.6rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+  }
+
+  .tour-main-page .sub_tour_section7_product_list {
+    margin-bottom: 0;
+  }
+
 }

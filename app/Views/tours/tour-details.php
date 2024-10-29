@@ -6,25 +6,29 @@
         <div class="section1">
             <div class="title-container">
                 <h2>(아속출발) 아유타야 선셋 리버크루즈 반일 투어</h2>
-                <div class="list-icon only_web">
-                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
-                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
-                    <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                <div class="only_web">
+                    <div class="list-icon">
+                        <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                        <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                    </div>
                 </div>
             </div>
             <div class="location-container">
                 <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
                 <span>413 Soi Sukhumvit 49, Watthana 10110,방콕,태국</span>
             </div>
-            <div class="rating-container">
-                <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
-                <span><strong> 4.7</strong></span>
-                <span>생생리뷰 <strong>(124)</strong></span>
-            </div>
-            <div class="list-icon only_mo">
-                <img src="/uploads/icons/print_icon.png" alt="print_icon">
-                <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
-                <img src="/uploads/icons/share_icon.png" alt="share_icon">
+            <div class="above-cus-content">
+                <div class="rating-container">
+                    <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
+                    <span><strong> 4.7</strong></span>
+                    <span>생생리뷰 <strong>(124)</strong></span>
+                </div>
+                <div class="list-icon only_mo">
+                    <img src="/uploads/icons/print_icon.png" alt="print_icon">
+                    <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
+                    <img src="/uploads/icons/share_icon.png" alt="share_icon">
+                </div>
             </div>
             <div class="hotel-image-container">
                 <div class="">
@@ -45,6 +49,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="sub-header-hotel-detail">
                 <div class="main">
                     <a class="active" href="">상품예약</a>
@@ -55,6 +60,7 @@
                     <a href="">상품Q&A</a>
                 </div>
             </div>
+
         </div>
         <div class="section2">
             <h2 class="title-sec2">
@@ -559,7 +565,7 @@
                 }
             });
 
-            $('.list-icon img[alt="heart_icon"]').click(function () {
+            $('.list-icon img[alt="heart_icon"]').click(function() {
                 if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
                     $(this).attr('src', '/uploads/icons/heart_on_icon.png');
                 } else {
@@ -567,20 +573,20 @@
                 }
             });
 
-            $('.quantity-container').each(function () {
+            $('.quantity-container').each(function() {
                 var $container = $(this);
                 var $quantityDisplay = $container.find('.quantity');
                 var $increaseBtn = $container.find('.increase');
                 var $decreaseBtn = $container.find('.decrease');
                 var quantity = 0;
 
-                $increaseBtn.click(function () {
+                $increaseBtn.click(function() {
                     quantity++;
                     $quantityDisplay.text(quantity);
                     $decreaseBtn.removeAttr('disabled');
                 });
 
-                $decreaseBtn.click(function () {
+                $decreaseBtn.click(function() {
                     if (quantity > 0) {
                         quantity--;
                         $quantityDisplay.text(quantity);
@@ -600,7 +606,7 @@
                 },
             });
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 const $calendarDays = $('.calendar-days');
                 const $monthYear = $('#month-year');
                 const $prevMonthBtn = $('#prev-month');
@@ -635,9 +641,9 @@
                         const date = new Date(year, month, day);
 
                         // Change color based on the day of the week (일: red, 토: blue)
-                        if (date.getDay() === 0) {  // Sunday (일)
+                        if (date.getDay() === 0) { // Sunday (일)
                             $dayDiv.addClass('text-red-cus');
-                        } else if (date.getDay() === 6) {  // Saturday (토)
+                        } else if (date.getDay() === 6) { // Saturday (토)
                             $dayDiv.addClass('text-blue-cus');
                         }
 
@@ -696,7 +702,6 @@
                 // Initial render
                 renderCalendar();
             });
-
         </script>
 
         <?php $this->endSection(); ?>
