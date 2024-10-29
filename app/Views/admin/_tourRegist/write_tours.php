@@ -85,6 +85,7 @@
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate" value='<?= $tours_cate ?>'>
+                <input type=hidden name="product_points" id="product_points" value='<?= $product_points ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -441,6 +442,25 @@
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>상품 포인트</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_product_points_arr = explode("|", $product_points);
+                                        $_product_points_arr = array_filter($_product_points_arr);
+
+                                        ?>
+                                        <?php foreach ($cresult as $row) : ?>
+                                            <input type="checkbox" name="_product_points"
+                                                   class="_product_points"
+                                                <?php if (in_array($row['code_no'], $_product_points_arr)) { ?> checked <?php } ?>
+                                                   id="_product_points<?= $row['code_no'] ?>"
+                                                   value="<?= $row['code_no'] ?>"/>
+                                            <label for="_product_points<?= $row['code_no'] ?>"><?= $row['code_name'] ?></label>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
 
@@ -1501,45 +1521,33 @@
                 //frm.product_code_1.focus();
                 return;
             }
-            /*
-            if (frm.product_code_2.value == "")
-            {
-                alert("2차분류를 선택하셔야 합니다.");
-                frm.product_code_2.focus();
-                return;
-            }
-            if (frm.product_code_3.value == "")
-            {
-                alert("3차분류를 선택하셔야 합니다.");
-                frm.product_code_3.focus();
-                return;
-            }
-            if (frm.product_code_4.value == "")
-            {
-                alert("4차분류를 선택하셔야 합니다.");
-                frm.product_code_4.focus();
-                return;
-            }
-            */
+
             if (frm.product_name.value == "") {
                 alert("상품명을 입력하셔야 합니다.");
                 frm.product_name.focus();
                 return;
             }
 
-            var option = "";
+            let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {
                 option += '|' + $(this).val();
             });
             option += '|';
             $("#product_option").val(option);
 
-            var tours_cate = "";
+            let tours_cate = "";
             $("input:checkbox[name='_tours_cate']:checked").each(function () {
                 tours_cate += '|' + $(this).val();
             });
             option += '|';
             $("#tours_cate").val(tours_cate);
+
+            let product_points = "";
+            $("input:checkbox[name='_product_points']:checked").each(function () {
+                product_points += '|' + $(this).val();
+            });
+            product_points += '|';
+            $("#product_points").val(product_points);
 
             frm.submit();
         }

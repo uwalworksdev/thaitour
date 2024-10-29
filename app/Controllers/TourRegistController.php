@@ -397,6 +397,10 @@ class TourRegistController extends BaseController
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = 43 ORDER BY onum DESC";
+        $cresult = $db->query($sql) or die ($db->error);
+        $cresult = $cresult->getResultArray();
+
         $builder = $db->table('tbl_tours_moption');
         $builder->where('product_idx', $product_idx);
         $builder->where('use_yn', 'Y');
@@ -430,6 +434,7 @@ class TourRegistController extends BaseController
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
+            'cresult' => $cresult,
         ];
 
         $data = array_merge($data, $new_data);
@@ -565,8 +570,8 @@ class TourRegistController extends BaseController
             $addrs = $row["addrs"];
             $latitude = $row["latitude"];
             $longitude = $row["longitude"];
+            $product_points = $row["product_points"];
         }
-
 
         $private_key = '';
         $sql = "select user_id, AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name from tbl_member where user_level = '2'";
@@ -712,6 +717,7 @@ class TourRegistController extends BaseController
             "addrs" => $addrs ?? '',
             "latitude" => $latitude ?? '',
             "longitude" => $longitude ?? '',
+            "product_points" => $product_points ?? '',
         ];
 
         return $data;

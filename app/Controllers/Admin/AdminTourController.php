@@ -110,7 +110,8 @@ class AdminTourController extends BaseController
 
             $adult_text = updateSQ($_POST["adult_text" ?? '']);
             $kids_text = updateSQ($_POST["kids_text" ?? '']);
-            $baby_text = updateSQ($_POST["baby_text" ?? '']);
+
+            $product_points = updateSQ($_POST["product_points" ?? '']);
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -252,6 +253,7 @@ class AdminTourController extends BaseController
                             ,adult_text             = '" . $adult_text . "'
                             ,kids_text              = '" . $kids_text . "'
                             ,baby_text              = '" . $baby_text . "'
+                            ,product_points         = '" . $product_points . "'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -355,7 +357,7 @@ class AdminTourController extends BaseController
                             ,adult_text             = '" . $adult_text . "'
                             ,kids_text              = '" . $kids_text . "'
                             ,baby_text              = '" . $baby_text . "'
-                
+                            ,product_points         = '" . $product_points . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";
