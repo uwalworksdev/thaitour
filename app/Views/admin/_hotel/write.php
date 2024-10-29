@@ -71,7 +71,6 @@ $links = "list";
             </header>
             <!-- // headerContainer -->
 
-
             <div id="contents">
                 <div class="listWrap_noline">
                     <!--  target="hiddenFrame22"  -->
@@ -183,14 +182,6 @@ $links = "list";
                                         <?php } ?>
 
                                     </td>
-<!--                                    <th>노출</th>-->
-<!--                                    <td>-->
-<!--                                        <input type="checkbox" name="product_best" id="product_best" value="Y"-->
-<!--                                            --><?php //if (isset($product_best) && $product_best === "Y")
-//                                                echo "checked=checked"; ?><!--> <label for="product_best"-->
-<!--                                                                                   style="max-height:200px;margin-right:20px;">BEST-->
-<!--                                            인기호텔</label>-->
-<!--                                    </td>-->
                                 </tr>
                                 <tr>
                                     <th>상품명</th>
@@ -332,6 +323,7 @@ $links = "list";
                                             <?php
                                             $_product_theme_arr = explode("|", $product_theme);
                                             $_product_theme_arr = array_filter($_product_theme_arr);
+
                                             ?>
                                             <?php foreach ($pthemes as $item) { ?>
                                                 <?php if (in_array($item['code_no'], $_product_theme_arr)) { ?>

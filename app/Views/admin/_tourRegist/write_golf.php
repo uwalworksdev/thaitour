@@ -243,22 +243,27 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>구분</th>
+                                    <th>최소출발인원(성인)</th>
                                     <td>
-                                        <label for="is_best_value">
-                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
-                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
-                                            가성비추천
-                                        </label>
-                                        <label for="special_price">
-                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
-                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
-                                            특가여부
-                                        </label>
+                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
+                                               type="text"
+                                               value="<?= $minium_people_cnt ?>" style="width:100%"/>
                                     </td>
                                     <th>갤러리피</th>
                                     <td>
                                         <input id="caddy" name="caddy" class="input_txt" type="text" value="<?= $golf_info['caddy'] ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>최대인원(성인)</th>
+                                    <td>
+                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
+                                               type="text"
+                                               value="<?= $total_people_cnt ?>" style="width:100%"/>
+                                    </td>
+                                    <th>장비렌탈</th>
+                                    <td>
+                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text" value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -286,9 +291,9 @@
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td>
-                                    <th>장비렌탈</th>
+                                    <th>스포츠데이</th>
                                     <td>
-                                        <input id="equipment_rent" name="equipment_rent" class="input_txt" type="text" value="<?= $golf_info['equipment_rent'] ?>" style="width:100%"/>
+                                        <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -296,14 +301,8 @@
                                     <td>
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
-                                               style="width:20%"/><br/>
+                                               style="width:50%"/><br/>
                                     </td>
-                                    <th>스포츠데이</th>
-                                    <td>
-                                        <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
-                                    </td>
-                                </tr>
-                                <tr>
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
@@ -317,11 +316,20 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <th>최소출발인원(성인)</th>
-                                    <td>
-                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
-                                               type="text"
-                                               value="<?= $minium_people_cnt ?>" style="width:100%"/>
+                                </tr>
+                                <tr>
+                                    <th>구분</th>
+                                    <td colspan="3">
+                                        <label for="is_best_value">
+                                            <input type="checkbox" name="is_best_value" id="is_best_value" value="Y" 
+                                            <?php if ($row["is_best_value"] == "Y") { echo "checked"; } ?> />
+                                            가성비추천
+                                        </label>
+                                        <label for="special_price">
+                                            <input type="checkbox" name="special_price" id="special_price" value="Y" 
+                                            <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
+                                            특가여부
+                                        </label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -453,6 +461,20 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>픽업차량</th>
+                                    <td colspan="3">
+                                        <?php foreach ($vehicles as $vehicle) :
+                                            $checked = strpos("|{$vehicle["code_no"]}|", $golf_info['golf_vehicle']) !== false ? "checked" : "";
+                                            ?>
+                                            <span>
+                                                <input type="checkbox" name="vehicle_arr[]" id="vehicle_<?= $vehicle["code_idx"] ?>"
+                                                       value="<?= $vehicle["code_no"] ?>" <?=$checked?>/>
+                                                <label for="vehicle_<?= $vehicle["code_idx"] ?>"><?= $vehicle["code_name"] ?></label>
+                                            </span>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>상품정보</th>
                                     <td colspan="3">
 
@@ -492,95 +514,93 @@
                             </table>
                         </div>
                     </div>
-            </form>
+                    <?php if ($product_idx): ?>
+                    <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
 
-            <?php if ($product_idx): ?>
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                        <caption>
-                        </caption>
-                        <colgroup>
-                            <col width="10%"/>
-                            <col width="90%"/>
-                        </colgroup>
-                        <tbody>
-
-                        <tr>
-                            <th>옵션추가</th>
-                            <td>
-                                <div class="flex__c">
-                                    <select name="moption_hole" id="moption_hole">
-                                        <option value="18">18홀</option>
-                                        <option value="27">27홀</option>
-                                        <option value="36">36홀</option>
-                                        <option value="45">45홀</option>
-                                    </select>&nbsp;
-                                    <select name="moption_hour" id="moption_hour">
-                                        <option value="06">06시</option>
-                                        <option value="07">07시</option>
-                                        <option value="08">08시</option>
-                                        <option value="09">09시</option>
-                                        <option value="10">10시</option>
-                                        <option value="11">11시</option>
-                                        <option value="12">12시</option>
-                                        <option value="13">13시</option>
-                                        <option value="14">14시</option>
-                                        <option value="15">15시</option>
-                                        <option value="16">16시</option>
-                                        <option value="17">17시</option>
-                                        <option value="18">18시</option>
-                                        <option value="19">19시</option>
-                                    </select>&nbsp;
-                                    <select name="moption_minute" id="moption_minute">
-                                        <option value="00">00분</option>
-                                        <option value="12">12분</option>
-                                        <option value="24">24분</option>
-                                        <option value="36">36분</option>
-                                        <option value="48">48분</option>
-                                    </select>&nbsp;
-                                    <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>옵션추가</th>
-                            <td>
-                                <table>
-                                    <colgroup>
-                                        <col width="40%"/>
-                                        <col width="30%"/>
-                                        <col width="30%"/>
-                                    </colgroup>
-                                    <thead>
-                                        <tr>
-                                            <th>옵션명</th>
-                                            <th>가격</th>
-                                            <th>관리</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="list_option">
-                                        <?php foreach ($options as $m) { ?>
-                                            <tr id="option_<?= $m['idx'] ?>">
-                                                <td>
-                                                    <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
-                                                </td>
-                                                <td>
-                                                    <div class="flex_c_c"><input type="text" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원</div>
-                                                </td>
-                                                <td>
-                                                    &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
-                                                    &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
-                                                </td>
+                            <tr>
+                                <th>옵션추가</th>
+                                <td>
+                                    <div class="flex__c">
+                                        <select name="moption_hole" id="moption_hole">
+                                            <?php foreach(GOLF_HOLES as $hole) : ?>
+                                                <option value="<?=$hole?>"><?=$hole?>홀</option>
+                                            <?php endforeach; ?>
+                                        </select>&nbsp;
+                                        <select name="moption_hour" id="moption_hour">
+                                            <?php foreach(GOLF_HOURS as $hour) : ?>
+                                                <option value="<?=$hour?>"><?=$hour?>시</option>
+                                            <?php endforeach; ?>
+                                        </select>&nbsp;
+                                        <select name="moption_minute" id="moption_minute">
+                                            <?php foreach(GOLF_MIN as $minute) : ?>
+                                                <option value="<?=$minute?>"><?=$minute?>분</option>
+                                            <?php endforeach; ?>
+                                        </select>&nbsp;
+                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>옵션추가</th>
+                                <td>
+                                    <table>
+                                        <colgroup>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                            <col width="20%"/>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>옵션명</th>
+                                                <th>가격</th>
+                                                <th>캐디피</th>
+                                                <th>카트피</th>
+                                                <th>관리</th>
                                             </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
+                                        </thead>
+                                        <tbody id="list_option">
+                                            <?php foreach ($options as $m) { ?>
+                                                <tr id="option_<?= $m['idx'] ?>">
+                                                    <td>
+                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
+                                                            <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
+                                                            <input type="text" name="option_price[]" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c"><input type="text" name="caddy_fee[]" value='<?= $m['caddy_fee'] ?>'></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c"><input type="text" name="cart_pie_fee[]" value='<?= $m['cart_pie_fee'] ?>'></div>
+                                                    </td>
+                                                    <td class="tac">
+                                                        &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
+                                                        &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+            </form>
 
             <!-- // listBottom -->
             <div class="tail_menu">

@@ -22,84 +22,7 @@
                 </div><!-- // inner -->
 
             </header><!-- // headerContainer -->
-            <!-- <style>
-                .listTable01 tr td:first-child {
-                    font-size: 14px;
-                    font-weight: 800;
-                    background: #fafafa;
-                    border-right: solid 1px #ddd;
-                }
-                .listTable01 td {
-                    padding: 10px;
-                    font-size: 12px;
-                    border: 1px solid #dddddd !important;
-                }
-                .listTable01 td p {
-                    /* display: inline-block; */
-                    float: left;
-                    width: 150px;
-                }
-                .listTable01 select {
-                    width: 146px;
-                    height: 30px;
-                    line-height: 27px;
-                    padding: 1px;
-                    border: 1px solid #ccc;
-                    font-size: 12px;
-                    color: #000;
-                    margin: 0;
-                    vertical-align: middle;
-                }
-                .listTable01 .contact_btn_box {
-                    margin: 0;
-                    padding: 0;
-                    background: 0 none;
-                }
-                .listTable01 .contact_btn_box > div {
-                    padding: 0;
-                    margin-left: 4px;
-                    float: left;
-                }
-                .listTable01 .contact_btn_box .contact_btn:first-child {
-                    margin-left: 0;
-                }
-                .contact_btn_box .contact_btn {
-                    display: inline-block;
-                    float: left;
-                    margin-right: 10px;
-                    width: 60px;
-                    height: 30px;
-                    border: solid 1px #cdcdcd;
-                    background-color: #ffffff;
-                    outline: none;
-                    line-height: 30px;
-                    color: #555555;
-                    font-size: 13px;
-                }
-                .contact_btn_box:after {
-                    content: "";
-                    display: block;
-                    clear: both;
-                }
-                .contact_btn_box input[type="text"] {
-                    float: left;
-                    padding: 0 10px;
-                    width: 116px;
-                    margin: 0 5px;
-                    background-color: #fff;
-                    box-sizing: border-box;
-                }
-                .contact_btn_box span {
-                    float: left;
-                    line-height: 30px;
-                }
-                .listTable01 input[type=text] {
-                    border-radius: 0;
-                }
-                .ui-datepicker-trigger {
-                    display: none;
-                }
-            </style> -->
+
             <div id="contents">
                 <form name="search" id="search">
                     <input type="hidden" name="orderBy" id="orderBy" value="<?= $orderBy ?>">
@@ -310,6 +233,7 @@
 
                         });
                     });
+
                     $(".contact_btn_box .contact_btn").click(function () {
                         resetClass();
                         $(this).addClass("active");
@@ -332,52 +256,26 @@
 
                 <script>
                     function change_it() {
-                        /*
-                           $.ajax({
-                                url: "change.php",
-                                type: "POST",
-                                data: $("#frm").serialize(),
-                                error : function(request, status, error) {
-                                 //통신 에러 발생시 처리
-                                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                                    $("#ajax_loader").addClass("display-none");
-                                }
-                                ,complete: function(request, status, error) {
-                    //				$("#ajax_loader").addClass("display-none");
-                                }
-                                , success : function(response, status, request) {
-                                    if (response == "OK")
-                                    {
-                                        alert_("정상적으로 변경되었습니다.");
-                                            location.reload();
-                                        return;
-                                    } else {
-                                        alert(response);
-                                        alert_("오류가 발생하였습니다!!");
-                                        return;
-                                    }
-                                }
-                            });
-                        */
-                        var f = document.frm;
+                        $("#ajax_loader").removeClass("display-none");
+                        let f = document.frm;
 
-                        var prod_data = $(f).serialize();
-                        var save_result = "";
+                        let prod_data = $(f).serialize();
+                        let url = "<?= route_to('admin.api.spa_.ajax_change') ?>";
+
                         $.ajax({
                             type: "POST",
                             data: prod_data,
-                            url: "ajax_change.php",
+                            url: url,
                             cache: false,
                             async: false,
                             success: function (data, textStatus) {
-                                save_result = data;
-                                //alert('save_result- '+save_result);
-                                var obj = jQuery.parseJSON(save_result);
-                                var message = obj.message;
+                                let message = data.message;
                                 alert(message);
+                                $("#ajax_loader").addClass("display-none");
                             },
                             error: function (request, status, error) {
                                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                $("#ajax_loader").addClass("display-none");
                             }
                         });
                     }
@@ -472,13 +370,13 @@
                                                 <a href="/data/product/<?= $row["ufile1"] ?>" class="imgpop">
                                                     <img src="/data/product/<?= $row["ufile1"] ?>"
                                                          style="max-width:150px;max-height:100px" loading="lazy"
-                                                         ></a>
+                                                    ></a>
                                             <?php } else {
                                                 ?>
                                                 <a href="/data/product/noimg.png" class="imgpop">
                                                     <img src="/data/product/noimg.png"
                                                          style="max-width:150px;max-height:100px" loading="lazy"
-                                                         ></a>
+                                                    ></a>
                                             <?php }
                                             ?>
                                         </td>
@@ -551,7 +449,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_all') . $search_val . "&pg=") ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_spas') . $search_val . "&pg=") ?>
 
                     <div id="headerContainer">
 
@@ -599,43 +497,47 @@
         }
 
         function prod_update(idx) {
-            var is_view = $("#is_view_" + idx).val();
-            var onum = $("#onum_" + idx).val();
+            let is_view = $("#is_view_" + idx).val();
+            let onum = $("#onum_" + idx).val();
 
+            let product_best;
             if ($("#product_best_best_" + idx).is(":checked")) {
-                var product_best = "Y";
+                product_best = "Y";
             } else {
-                var product_best = "N";
+                product_best = "N";
             }
 
+            let special_price;
             if ($("#special_price_price_" + idx).is(":checked")) {
-                var special_price = "Y";
+                special_price = "Y";
             } else {
-                var special_price = "N";
+                special_price = "N";
             }
 
             if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
                 return false;
 
-            var message = "";
+            let message = "";
+
+            let data = {
+                "product_idx": idx,
+                "product_best": product_best,
+                "special_price": special_price,
+                "is_view": is_view,
+                "onum": onum
+            };
+
             $.ajax({
 
-                url: "/ajax/ajax.prod_update.php",
+                url: "<?= route_to('admin.api.spa_.prod_update') ?>",
                 type: "POST",
-                data: {
-                    "product_idx": idx,
-                    "product_best": product_best,
-                    "special_price": special_price,
-                    "is_view": is_view,
-                    "onum": onum
-                },
+                data: data,
                 dataType: "json",
                 async: false,
                 cache: false,
                 success: function (data, textStatus) {
                     message = data.message;
                     alert(message);
-                    // location.href='/AdmMaster/_tourRegist/list_tours.php?pg='+$("#pg").val();
                     location.reload();
                 },
                 error: function (request, status, error) {
@@ -648,7 +550,7 @@
     <script>
         function go_write(idx) {
             $("#product_idx").val(idx);
-            $("#search").attr("action", "/write_spas").submit();
+            $("#search").attr("action", "write_spas").submit();
         }
     </script>
 
@@ -673,6 +575,8 @@
         }
 
         function SELECT_DELETE() {
+            let url = "<?= route_to('admin.api.spa_.del') ?>";
+
             if ($(".product_idx").is(":checked") == false) {
                 alert_("삭제할 내용을 선택하셔야 합니다.");
                 return;
@@ -684,7 +588,7 @@
             $("#ajax_loader").removeClass("display-none");
 
             $.ajax({
-                url: "del.php",
+                url: url,
                 type: "POST",
                 data: $("#frm").serialize(),
                 error: function (request, status, error) {
@@ -696,28 +600,22 @@
 //				$("#ajax_loader").addClass("display-none");
                 }
                 , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
+                    alert_("정상적으로 삭제되었습니다.");
+                    window.location.reload();
                 }
             });
 
         }
 
         function del_it(product_idx) {
+            let url = "<?= route_to('admin.api.spa_.del') ?>";
 
             if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
                 return;
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "del.php",
+                url: url,
                 type: "POST",
                 data: "product_idx[]=" + product_idx,
                 error: function (request, status, error) {
@@ -729,24 +627,19 @@
 //				$("#ajax_loader").addClass("display-none");
                 }
                 , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
+                    alert_("정상적으로 삭제되었습니다.");
+                    window.location.reload();
                 }
             });
 
         }
 
         function get_code(strs, depth) {
+            let url = "<?= route_to('admin.api.spa_.get_code') ?>";
+
             $.ajax({
                 type: "GET"
-                , url: "get_code.ajax.php"
+                , url: url
                 , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
@@ -775,9 +668,9 @@
                         });
                         $("#product_code_4").append("<option value=''>4차분류</option>");
                     }
-                    var list = $.parseJSON(json);
-                    var listLen = list.length;
-                    var contentStr = "";
+                    let list = $.parseJSON(json);
+                    let listLen = list.length;
+                    let contentStr = "";
                     for (var i = 0; i < listLen; i++) {
                         contentStr = "";
                         if (list[i].code_status == "C") {

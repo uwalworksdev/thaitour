@@ -28,7 +28,7 @@ class ProductModel extends Model
         "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
         "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value",
         "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms', 'product_type', 'product_promotions', 'product_more',
-        "latitude", "longitude"
+        "latitude", "longitude", "product_points"
     ];
 
     protected function initialize()

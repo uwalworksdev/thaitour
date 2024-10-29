@@ -60,6 +60,7 @@
 	<input type=hidden name="parent_code_no" value='<?= $parent_code_no ?>'>
 	<input type=hidden name="product_idx" value='<?= $product_idx ?>'>
 	<input type=hidden name="yoil_idx" value='<?= $yoil_idx ?>'>
+    <input type=hidden name="code_gubun" value="vehicle">
 	<div id="contents">
 		<div class="listWrap_noline">
 			<div class="listBottom">
@@ -78,18 +79,6 @@
 								<?= $code_no ?>
 							</td>
 						</tr>
-						<?php if ($parent_code_no == "0" && $code_idx == "") { ?>
-                            <tr>
-							<th>코드구분</th>
-							<td>
-								<input type="text" id="code_gubun" name="code_gubun" value="<?= $code_gubun ?>"
-                                       class="input_txt" style="width:100px;ime-mode:disabled"/> (영문으로만)
-							</td>
-						</tr>
-                        <?php } else { ?>
-                            <input type="hidden" id="code_gubun" name="code_gubun" value="<?= $code_gubun ?>"
-                                   class="input_txt" style="width:100px;ime-mode:disabled"/>
-                        <?php } ?>
 						<tr>
 							<th>코드명</th>
 							<td>
@@ -97,21 +86,14 @@
                                        class="input_txt" style="width:90%"/>
 							</td>
 						</tr>
-                        <?php if ($parent_code_no === '35') : ?>
-                            <tr>
-                                <th>거리</th>
-                                <td>
-                                    <input type="text" id="distance" name="distance" value="<?= $distance ?>"
-                                           class="input_txt"/>
-                                </td>
-						    </tr>
-                            <tr>
-                                <th>유형</th>
-                                <td>
-                                    <input type="text" id="type" name="type" value="<?= $type ?>"
-                                           class="input_txt"/>
-                                </td>
-						    </tr>
+                        <?php if($depth > 1): ?>
+						<tr>
+							<th>상품가</th>
+							<td>
+								<input type="text" maxlength="12" oninput="this.value = number_format(Number(this.value.replace(/[^0-9]/g, '')));" id="price" name="price" value="<?= number_format((int) $price) ?>"
+                                    class="input_txt" style="width:90%"/>
+							</td>
+						</tr>
                         <?php endif; ?>
 						<tr>
 							<th>이미지</th>
@@ -126,20 +108,6 @@
 
 							</td>
 						</tr>
-						<?php
-                        if ($parent_code_no == 14) {
-                            ?>
-                            <tr>
-								<th>유류할증료</th>
-								<td>
-									<input type="text" id="init_oil_price" name="init_oil_price"
-                                           value="<?= $init_oil_price ?>" class="input_txt" style="width:100px"
-                                           numberOnly=true/>
-								</td>
-							</tr>
-                            <?php
-                        }
-                        ?>
 						<tr>
 							<th>현황</th>
 							<td>
@@ -154,7 +122,6 @@
                                 } ?>> 삭제-->
 							</td>
 						</tr>
-						
 						<tr>
 							<th>우선순위</th>
 							<td>
