@@ -670,7 +670,7 @@
                         <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                     </div>
                     <div class="nav_btn_wrap">
-                        <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
+                        <a href="/product-spa/product-booking/8386"><button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button></a>
                         <div class="flex">
                             <button type="button" class="btn-default" onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
                             </button>
