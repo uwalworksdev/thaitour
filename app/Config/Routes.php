@@ -172,6 +172,15 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("del_option", "Api\AdminTourApi::del_option", ['as' => "admin.api.product_.del_option"]);
             $routes->post("img_remove", "Api\AdminTourApi::img_remove", ['as' => "admin.api.product_.img_remove"]);
         });
+
+        // Nested group for 'spa_'
+        $routes->group("spa_", function ($routes) {
+            $routes->post("write_ok", "Admin\AdminSpaController::write_ok", ['as' => "admin.api.spa_.write_ok"]);
+            $routes->post("prod_update", "Admin\AdminSpaController::prod_update", ['as' => "admin.api.spa_.prod_update"]);
+            $routes->post("ajax_change", "Admin\AdminSpaController::ajax_change", ['as' => "admin.api.spa_.ajax_change"]);
+            $routes->post("del", "Admin\AdminSpaController::del", ['as' => "admin.api.spa_.del"]);
+            $routes->get("get_code", "Admin\AdminTourStayApi::get_code", ['as' => "admin.api.spa_.get_code"]);
+        });
     });
 
     $routes->group("_tourStay", static function ($routes) {
