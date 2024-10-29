@@ -6,6 +6,7 @@ foreach ($options as $option) { ?>
         data-minute="<?=$option['minute']?>"
         data-idx="<?=$option['idx']?>"
         data-option_price="<?=$option['option_price']?>"
+        data-option_price_baht="<?=$option['option_price_baht']?>"
         onclick="selectOption(this)">
         <div class="header">
             <div class="header-con">

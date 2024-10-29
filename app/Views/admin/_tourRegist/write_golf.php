@@ -464,7 +464,7 @@
                                     <th>픽업차량</th>
                                     <td colspan="3">
                                         <?php foreach ($vehicles as $vehicle) :
-                                            $checked = strpos("|{$vehicle["code_no"]}|", $golf_info['golf_vehicle']) !== false ? "checked" : "";
+                                            $checked = in_array($vehicle['code_no'], explode("|", $golf_info['golf_vehicle'])) ? "checked" : "";
                                             ?>
                                             <span>
                                                 <input type="checkbox" name="vehicle_arr[]" id="vehicle_<?= $vehicle["code_idx"] ?>"

@@ -69,10 +69,12 @@ function getCookie(name) {
 }
 
 function number_format(n) {
-	var reg = /(^[+-]?\d+)(\d{3})/;   // 정규식
-	n += '';                          // 숫자를 문자열로 변환
 
-	while (reg.test(n))
-	n = n.replace(reg, '$1' + ',' + '$2');
-	return n;
+  if (isNaN(n)) return '0';
+
+  let [integerPart, decimalPart] = String(n).split('.');
+
+  integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  return decimalPart ? integerPart + '.' + decimalPart : integerPart;
 }
