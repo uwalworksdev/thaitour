@@ -493,6 +493,7 @@ $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
+$routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
 $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
