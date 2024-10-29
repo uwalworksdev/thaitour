@@ -3053,6 +3053,7 @@
     border: 1px solid rgb(219, 219, 219);
     width: 380px;
     height: 160px;
+    cursor: pointer;
 }
 
 .custom-golf-detail .card-content .card-item.active_1 {
@@ -3086,9 +3087,12 @@
     margin-bottom: 10px;
 }
 
+.custom-golf-detail .card-content .card-item p.cus-text {
+    margin-bottom: 10px;
+}
+
 .custom-golf-detail .card-content .card-item.active_2 p.cus-text {
     margin-bottom: 10px;
-    opacity: 0.5;
 }
 
 .custom-golf-detail .card-content .card-item.active_2 .cus-text_div {

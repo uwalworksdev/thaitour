@@ -86,7 +86,6 @@
                                        class="input_txt" style="width:90%"/>
 							</td>
 						</tr>
-                        <?php if($depth > 1): ?>
 						<tr>
 							<th>상품가</th>
 							<td>
@@ -94,7 +93,20 @@
                                     class="input_txt" style="width:90%"/>
 							</td>
 						</tr>
-                        <?php endif; ?>
+						<tr>
+							<th>최소 수량</th>
+							<td>
+								<input type="text" maxlength="5" oninput="this.value = number_format(Number(this.value.replace(/[^0-9]/g, '')));" id="min_cnt" name="min_cnt" value="<?= number_format((int) $min_cnt) ?>"
+                                    class="input_txt" style="width:90%"/>
+							</td>
+						</tr>
+						<tr>
+							<th>최대 수량</th>
+							<td>
+								<input type="text" maxlength="5" oninput="this.value = number_format(Number(this.value.replace(/[^0-9]/g, '')));" id="max_cnt" name="max_cnt" value="<?= number_format((int) $max_cnt) ?>"
+                                    class="input_txt" style="width:90%"/>
+							</td>
+						</tr>
 						<tr>
 							<th>이미지</th>
 							<td>

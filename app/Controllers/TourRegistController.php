@@ -272,7 +272,7 @@ class TourRegistController extends BaseController
         $data['special_price']      = $data['special_price'] ?? "N";
         $data['original_price']     = str_replace(",", "", $data['original_price']);
         $data['product_price']      = str_replace(",", "", $data['product_price']);
-        $data['golf_vehicle']       = "|".implode("|", $data['vehicle_arr'])."|";
+        $data['golf_vehicle']       = "|".implode("|", $data['vehicle_arr'] ?? [])."|";
 
         $files = $this->request->getFiles();
         for($i = 1; $i <= 7; $i++) {

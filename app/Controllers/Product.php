@@ -1277,6 +1277,12 @@ class Product extends BaseController
 
         foreach ($data['golfVehicles'] as $key => $value) {
             $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
+
+            $price = (float) $value['price'];
+            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+            $price_baht = round($price / $baht_thai, 2);
+            $data['golfVehicles'][$key]['price_baht'] = $price_baht;
+
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
         }
 
@@ -1324,7 +1330,7 @@ class Product extends BaseController
         foreach ($options as $key => $value) {
             $option_price = (float) $value['option_price'];
             $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
-            $option_price_baht = $option_price / $baht_thai;
+            $option_price_baht = round($option_price / $baht_thai, 2);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
 
