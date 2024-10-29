@@ -1353,6 +1353,11 @@ class Product extends BaseController
         return $this->renderView('tours/list-tour');
     }
 
+    public function spaDetail($code_no)
+    {
+        return $this->renderView('/product/spa/spa-details');
+    }
+
     public function tourLocationInfo($code_no)
     {
         return $this->renderView('tours/location-info');
