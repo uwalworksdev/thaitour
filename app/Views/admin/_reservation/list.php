@@ -248,26 +248,24 @@
 
                 <script>
                     // 엑셀 다운(상품예약)
-                    function get_excel() {
-                        var frm = document.search;
-                        frm.action = "./excel_down.php";
-                        frm.submit();
-                    }
+                    // function get_excel() {
+                    //     var frm = document.search;
+                    //     frm.action = "./excel_down.php";
+                    //     frm.submit();
+                    // }
 
                     function get_code(strs, depth) {
                         $.ajax({
-                            type: "GET"
-                            , url: "/AdmMaster/_tourRegist/get_code.ajax.php"
-                            , dataType: "html" //전송받을 데이터의 타입
-                            , timeout: 30000 //제한시간 지정
-                            , cache: false  //true, false
-                            , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-                            , error: function (request, status, error) {
+                            url: "get_code",
+                            type: "GET",
+                            dataType: 'json',
+                            data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth, //서버에 보낼 파라메터
+                            error: function (request, status, error) {
                                 //통신 에러 발생시 처리
                                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                             }
                             , success: function (json) {
-                                //alert(json);
+                                
                                 if (depth <= 3) {
                                     $("#product_code_2").find('option').each(function () {
                                         $(this).remove();
@@ -286,7 +284,7 @@
                                     });
                                     $("#product_code_4").append("<option value=''>4차분류</option>");
                                 }
-                                var list = $.parseJSON(json);
+                                var list = json;
                                 var listLen = list.length;
                                 var contentStr = "";
                                 for (var i = 0; i < listLen; i++) {
@@ -501,33 +499,9 @@
                                                         src="/images/admin/common/ico_error.png" alt="에러"/></a>
                                         </td>
                                     </tr>
-                                    <?php
-//                                    $fsql = " select *
-//										, (select ifnull(count(*),0) from tbl_order_list where tbl_order_mst.order_idx= tbl_order_list.order_idx) as cnt
-//										from tbl_order_mst where order_no = '" . $row["order_no"] . "' order by order_idx desc ";
-//                                    $fresult = mysqli_query($connect, $fsql) or die (mysqli_error($connect));
-//                                    while ($frow = mysqli_fetch_array($fresult)) {
-//
-//                                        $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$frow['order_user_name']}'),   '$private_key') order_user_name
-//									                      , AES_DECRYPT(UNHEX('{$frow['order_user_mobile']}'), '$private_key') order_user_mobile
-//									                      , AES_DECRYPT(UNHEX('{$frow['manager_name']}'),      '$private_key') manager_name
-//									                      , AES_DECRYPT(UNHEX('{$frow['manager_phone']}'),     '$private_key') manager_phone
-//									                      , AES_DECRYPT(UNHEX('{$frow['manager_email']}'),     '$private_key') manager_email ";
-//                                        $res_d = mysqli_query($connect, $sql_d) or die(mysqli_error($connect));
-//                                        $row_d = mysqli_fetch_array($res_d);
-//
-//                                        $frow['order_user_name'] = $row_d['order_user_name'];
-//                                        $frow['order_user_mobile'] = $row_d['order_user_mobile'];
-//                                        $frow['manager_name'] = $row_d['manager_name'];
-//                                        $frow['manager_phone'] = $row_d['manager_phone'];
-//                                        $frow['manager_email'] = $row_d['manager_email'];
 
-                                        ?>
-                                        <?php
-//                                    }
-                                    ?>
-                                    <?php
-                                }
+                                <?php
+                                    }
                                 ?>
                                 </tbody>
                             </table>
@@ -574,44 +548,6 @@
 
         }
 
-        function SELECT_DELETE() {
-            if ($(".order_idx").is(":checked") == false) {
-                alert_("삭제할 내용을 선택하셔야 합니다.");
-                return;
-            }
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-
-            $("#ajax_loader").removeClass("display-none");
-
-            $.ajax({
-                url: "del.php",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-
-        }
-
         function del_it(order_idx) {
 
             if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
@@ -619,7 +555,7 @@
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "del.php",
+                url: "delete",
                 type: "POST",
                 data: "order_idx[]=" + order_idx,
                 error: function (request, status, error) {
@@ -627,17 +563,13 @@
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
                 , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
+                    if (response.result == true) {
+                        alert("정상적으로 삭제되었습니다.");
+                        location.href = "list";
                         return;
                     } else {
                         alert(response);
-                        alert_("오류가 발생하였습니다!!");
                         return;
                     }
                 }

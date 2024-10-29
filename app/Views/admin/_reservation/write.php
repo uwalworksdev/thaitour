@@ -4,7 +4,7 @@
         function checkForNumber(str) {
             var key = event.keyCode;
             var frm = document.frm1;
-            send_it_mess
+            send_it_mess();
             if (!(key == 8 || key == 9 || key == 13 || key == 46 || key == 144 ||
                 (key >= 48 && key <= 57) || (key >= 96 && key <= 105) || key == 110 || key == 190)) {
                 event.returnValue = false;
@@ -36,21 +36,15 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="list.php?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
+                                <a href="list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
-                            <? if ($order_idx) { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                </li>
-                                <li><a href="javascript:del_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
-                                </li>
-                            <? } else { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                                </li>
-                            <? } ?>
+                            <li><a href="javascript:send_it()" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                            </li>
+                            <li><a href="javascript:del_it()" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
+                            </li>
 
                         </ul>
                     </div>
@@ -59,7 +53,7 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="write_ok.php" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="write_ok" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
@@ -80,11 +74,7 @@
                 <input type=hidden name="people_baby_price" value='<?= $people_baby_price ?>'>
 
                 <input type=hidden name="oil_price" value='<?= $oil_price ?>'>
-                <?php
-                if ($product_idx != "537") {
-                    ?>
-                    <input type=hidden name="order_price" value='<?= $order_price ?>'>
-                <?php } ?>
+                <input type=hidden name="order_price" value='<?= $order_price ?>'>
                 <input type=hidden name="used_coupon_no" value='<?= $used_coupon_no ?>'>
                 <input type=hidden name="used_coupon_point" value='<?= $used_coupon_point ?>'>
                 <input type=hidden name="used_coupon_idx" value='<?= $used_coupon_idx ?>'>
@@ -200,6 +190,16 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>객실 수</th>
+                                    <td>
+                                        <?= $order_room_cnt ?>
+                                    </td>
+                                    <th>숙박일</th>
+                                    <td>
+                                        <?= $order_day_cnt ?>     
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>유아신청</th>
                                     <td>
                                         <?php if ($people_baby_price > 0) { ?>
@@ -241,21 +241,34 @@
                                 <tr>
                                     <th>총 결제금액</th>
                                     <td>
-                                        <?= number_format($people_adult_price * $people_adult_cnt) ?>원(성인)
-                                        +
-                                        <?= number_format($people_kids_price * $people_kids_cnt) ?>원(아동)
-                                        +
-                                        <?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
-                                        +
-                                        <?= number_format((($people_adult_cnt + $people_kids_cnt) * $oil_price)) ?>
-                                        원(유류비)
+                                        <?php
+                                            $total_price = 0;
+                                            if($order_gubun == "hotel"){
+                                                $total_price = $inital_price * $order_room_cnt * $order_day_cnt;
+                                        ?>   
+                                            <?= number_format($inital_price * $order_room_cnt * $order_day_cnt) ?>원(성인)     
+                                        <?php
+                                            }else{
+                                                $total_price = ($people_adult_price * $people_adult_cnt) +
+                                                                ($people_kids_price * $people_kids_cnt) +
+                                                                ($people_baby_price * $people_baby_cnt) + ((($people_adult_cnt + $people_kids_cnt) * $oil_price));
+                                        ?>
+                                            <?= number_format($people_adult_price * $people_adult_cnt) ?>원(성인)
+                                            +
+                                            <?= number_format($people_kids_price * $people_kids_cnt) ?>원(아동)
+                                            +
+                                            <?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
+                                            +
+                                            <?= number_format((($people_adult_cnt + $people_kids_cnt) * $oil_price)) ?>
+                                            원(유류비)
+                                        <?php   
+                                            }
+                                        ?>
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                        = <?= number_format(($people_adult_price * $people_adult_cnt) +
-                                            ($people_kids_price * $people_kids_cnt) +
-                                            ($people_baby_price * $people_baby_cnt) + ((($people_adult_cnt + $people_kids_cnt) * $oil_price)) - $used_coupon_money - $used_mileage_money) ?>
+                                        = <?= number_format( $total_price- $used_coupon_money - $used_mileage_money) ?>
                                         원
 
                                     </td>
@@ -340,32 +353,11 @@
 
                                 </tr>
 
-
-                                <?php
-                                if ($product_idx == "537") {
-                                    ?>
-                                    <tr>
-                                        <th>상품금액</th>
-                                        <td>
-                                            <input type="text" id="order_price" name="order_price"
-                                                   value="<?= $order_price ?>" class="input_txt price"
-                                                   style="width:100px"/>원
-                                        </td>
-                                    </tr>
-                                    <?php
-                                } else {
-                                    ?>
-
-                                    <?php
-                                }
-                                ?>
-
                                 <script>
                                     function payment_send(type) {
                                         var arr = type.split(":");
                                         var order_idx = arr[0];
                                         var type = arr[1];
-                                        //alert(order_idx+' - '+type);
 
                                         var amt_type = "";
                                         if (type == "1") amt_type = "선금";
@@ -485,13 +477,17 @@
                                             <input type="hidden" name="order_gubun[]"
                                                    value="<?= $frow["order_gubun"] ?>">
                                             <?php
-                                            if ($frow["order_gubun"] == "adult") {
-                                                echo "성인";
-                                            } elseif ($frow["order_gubun"] == "kids") {
-                                                echo "아동";
-                                            } elseif ($frow["order_gubun"] == "baby") {
-                                                echo "유아";
-                                            }
+                                                if ($frow["order_gubun"] == "adult") {
+                                                    echo "성인";
+                                                } elseif ($frow["order_gubun"] == "kids") {
+                                                    echo "아동";
+                                                } elseif ($frow["order_gubun"] == "baby") {
+                                                    echo "유아";
+                                                }
+
+                                                if(!empty($frow["number_room"])){
+                                                    echo "객실" . $frow["number_room"];
+                                                }
                                             ?>
                                         </td>
                                         <td style="text-align:center"><input type="text" name="order_name_kor[]"
@@ -560,7 +556,7 @@
                                 <li class="left"></li>
                                 <li class="right_sub">
 
-                                    <a href="list.php?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
+                                    <a href="list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                        class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                                 class="txt">리스트</span></a>
                                     <?php if ($order_idx == "") { ?>
@@ -624,7 +620,6 @@
             $(".img_pop").show();
         }
 
-
     </script>
 
     <script>
@@ -666,29 +661,23 @@
             var depositPrice = document.getElementById('deposit_price').value;
             var confirmPrice = document.getElementById('order_confirm_price').value;
 
-            // Loại bỏ dấu phân cách trong số, chuyển đổi sang số thực
             depositPrice = parseFloat(depositPrice.replace(/,/g, '')) || 0;
             confirmPrice = parseFloat(confirmPrice.replace(/,/g, '')) || 0;
 
-            // Chỉ tính toán khi cả hai trường 선금 và 잔금 đều có giá trị
             if (depositPrice > 0 || confirmPrice > 0) {
                 var totalPrice = depositPrice + confirmPrice;
 
-                // Định dạng lại số thành chuỗi có dấu phân cách hàng nghìn
                 document.getElementById('total_price').value = totalPrice.toLocaleString();
             } else {
-                // Nếu một trong hai trường không có giá trị, xóa trường tổng giá trị
                 document.getElementById('total_price').value = '';
             }
         }
 
-        // Gắn sự kiện 'keyup' và 'change' để cập nhật tổng giá trị mỗi khi giá trị của trường 선금 hoặc 잔금 thay đổi
         document.getElementById('deposit_price').addEventListener('keyup', calculateTotal);
         document.getElementById('deposit_price').addEventListener('change', calculateTotal);
         document.getElementById('order_confirm_price').addEventListener('keyup', calculateTotal);
         document.getElementById('order_confirm_price').addEventListener('change', calculateTotal);
 
-        // Gọi hàm một lần khi trang tải xong để cập nhật giá trị ban đầu
         document.addEventListener('DOMContentLoaded', calculateTotal);
 
 
@@ -699,7 +688,7 @@
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "del.php",
+                url: "delete",
                 type: "POST",
                 data: "order_idx[]=<?=$order_idx?>",
                 error: function (request, status, error) {
@@ -707,17 +696,13 @@
                     alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
                 }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
                 , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.href = "list.php";
+                    if (response.result == true) {
+                        alert("정상적으로 삭제되었습니다.");
+                        location.href = "list";
                         return;
                     } else {
                         alert(response);
-                        alert_("오류가 발생하였습니다!!");
                         return;
                     }
                 }
@@ -726,7 +711,7 @@
 
         function fn_comment() {
 
-            <? if ($_SESSION[member][id] != "") { ?>
+            <? if ($_SESSION["member"]["id"] != "") { ?>
             if ($("#comment").val() == "") {
                 alert("댓글을 입력해주세요.");
                 return;
@@ -832,16 +817,13 @@
                 nextText: '다음'
                 // ,minDate: 1
                 <?php if ($str_guide != "") { ?>,
-                beforeShowDay: function (date) {
-
-                    var day = date.getDay();
-                    return [(<?= $str_guide ?>)];
-
-                }
+                    beforeShowDay: function (date) {
+                        var day = date.getDay();
+                        return [(<?= $str_guide ?>)];
+                    }
                 <?php } ?>
-
-
             });
+
             $('img.ui-datepicker-trigger').css({
                 'display': 'none'
             });

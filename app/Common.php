@@ -794,6 +794,31 @@ function sqlSecretConver($value, $way)
     return $outText;
 }
 
+function encryptField($value, $way)
+{
+    $connect = db_connect();
+    $private_key = private_key();
+
+    if ($way == "encode") {
+
+        $query = $connect->query("SELECT HEX(AES_ENCRYPT(?, ?)) AS encrypted_name", [$value, $private_key]);
+        $result = $query->getRow();
+
+        $outText =  $result->encrypted_name;
+
+    } else if ($way == "decode") {
+
+        $query = $connect->query("SELECT HEX(AES_ENCRYPT(?, ?)) AS encrypted_name", [$value, $private_key]);
+        $result = $query->getRow();
+
+        $outText =  $result->encrypted_name;
+    }
+
+
+    return $outText ?? null;
+
+}
+
 function getImage($path)
 {
     if(!is_file($_SERVER["DOCUMENT_ROOT"]."/{$path}")) return "/images/product/noimg.png";

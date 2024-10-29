@@ -59,6 +59,9 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_reservation", static function ($routes) {
         $routes->get("list", "Admin\ReservationController::list");
         $routes->get("write", "Admin\ReservationController::write");
+        $routes->post("write_ok", "Admin\ReservationController::write_ok");
+        $routes->post("delete", "Admin\ReservationController::delete");
+        $routes->get("get_code", "Admin\ReservationController::get_code");
     });
 
     $routes->group("_qna", static function ($routes) {
