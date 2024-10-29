@@ -18,9 +18,8 @@ class TourRegistController extends BaseController
 
     protected $moptionModel;
     protected $optionTourModel;
-
     protected $tourProducts;
-
+    protected $infoProducts;
 
     public function __construct()
     {
@@ -34,6 +33,7 @@ class TourRegistController extends BaseController
         $this->moptionModel = model("MoptionModel");
         $this->optionTourModel = model("OptionTourModel");
         $this->tourProducts = model("ProductTourModel");
+        $this->infoProducts = model("TourInfoModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -410,10 +410,6 @@ class TourRegistController extends BaseController
         $result_c = $db->query($sql_c) or die ($db->error);
         $fresult_c = $result_c->getResultArray();
 
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = 43 ORDER BY onum DESC";
-        $cresult = $db->query($sql) or die ($db->error);
-        $cresult = $cresult->getResultArray();
-
         $builder = $db->table('tbl_tours_moption');
         $builder->where('product_idx', $product_idx);
         $builder->where('use_yn', 'Y');
@@ -443,11 +439,21 @@ class TourRegistController extends BaseController
         $query = $db->query($sql, [$product_idx]);
         $data['dayDetails'] = $query->getResultArray();
 
+        $sql_info = "
+            SELECT pt.*, pti.*
+            FROM tbl_product_tours pt
+            LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
+            WHERE pt.product_idx = ? ORDER BY pt.tours_idx ASC
+        ";
+
+        $query_info = $db->query($sql_info, [$product_idx]);
+        $data['productTourInfo'] = $query_info->getResultArray();
+
         $new_data = [
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
-            'cresult' => $cresult,
+            'productTourInfo' => $data['productTourInfo'],
         ];
 
         $data = array_merge($data, $new_data);
@@ -583,8 +589,8 @@ class TourRegistController extends BaseController
             $addrs = $row["addrs"];
             $latitude = $row["latitude"];
             $longitude = $row["longitude"];
-            $product_points = $row["product_points"];
         }
+
 
         $private_key = '';
         $sql = "select user_id, AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name from tbl_member where user_level = '2'";
@@ -730,7 +736,6 @@ class TourRegistController extends BaseController
             "addrs" => $addrs ?? '',
             "latitude" => $latitude ?? '',
             "longitude" => $longitude ?? '',
-            "product_points" => $product_points ?? '',
         ];
 
         return $data;
@@ -1025,11 +1030,49 @@ class TourRegistController extends BaseController
 
     public function write_tour_info() {
         $tours_idx = $this->request->getPost('tours_idx');
-        $tour = $this->tourProducts->getTourById($tours_idx);
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $info_idx = updateSQ($_GET["info_idx"] ?? '');
+        $db = $this->connect;
+
+        $sql_info = "
+            SELECT pt.*, pti.* 
+            FROM tbl_product_tours pt 
+            LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx 
+            WHERE pt.product_idx = ? ORDER BY pt.tours_idx ASC
+        ";
+
+        $query_info = $db->query($sql_info, [$product_idx]);
+        $results = $query_info->getResultArray();
+
+        $groupedData = [];
+        foreach ($results as $row) {
+            $infoIndex = $row['info_idx'];
+
+            if (!isset($groupedData[$infoIndex])) {
+                $groupedData[$infoIndex] = [
+                    'info' => $row,
+                    'tours' => [] 
+                ];
+            }
+
+            $groupedData[$infoIndex]['tours'][] = [
+                'tours_idx' => $row['tours_idx'],
+                'tours_subject' => $row['tours_subject'],
+                'tour_price' => $row['tour_price'],
+                'tour_price_kids' => $row['tour_price_kids'],
+                'tour_price_baby' => $row['tour_price_baby'],
+                'status' => $row['status'],
+            ];
+        }
+
         $data = [
-            'tour' => $tour,
             'tours_idx' => $tours_idx,
+            'product_idx' => $product_idx,
+            'info_idx' => $info_idx,
+            'productTourInfo' => $groupedData,
         ];
+    
         return view('admin/_tourRegist/write_tour_info', $data);
     }
+    
 }

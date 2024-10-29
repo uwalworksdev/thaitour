@@ -133,6 +133,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_tours", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
+        $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
     });
 
     $routes->group("api", function ($routes) {
@@ -160,17 +161,6 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'code_'
         $routes->group("code_", function ($routes) {
             $routes->post("code_del", "Api\AdminCodeApi::code_del", ['as' => "admin.api.code.code_del"]);
-        });
-
-        $routes->group("product_", function ($routes) {
-            $routes->post("change_manager", "Api\AdminTourApi::change_manager", ['as' => "admin.api.product_.change_manager"]);
-            $routes->post("add_moption", "Api\AdminTourApi::add_moption", ['as' => "admin.api.product_.add_moption"]);
-            $routes->post("upd_moption", "Api\AdminTourApi::upd_moption", ['as' => "admin.api.product_.upd_moption"]);
-            $routes->post("del_moption", "Api\AdminTourApi::del_moption", ['as' => "admin.api.product_.del_moption"]);
-            $routes->post("add_option", "Api\AdminTourApi::add_option", ['as' => "admin.api.product_.add_option"]);
-            $routes->post("upd_option", "Api\AdminTourApi::upd_option", ['as' => "admin.api.product_.upd_option"]);
-            $routes->post("del_option", "Api\AdminTourApi::del_option", ['as' => "admin.api.product_.del_option"]);
-            $routes->post("img_remove", "Api\AdminTourApi::img_remove", ['as' => "admin.api.product_.img_remove"]);
         });
     });
 
