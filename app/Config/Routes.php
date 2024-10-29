@@ -453,9 +453,10 @@ $routes->post('product-hotel/reservation-form-insert', 'Product::reservationForm
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product/completed-order', 'Product::completedOrder/$1');
-$routes->get('product-golf/customer-form/(:any)', 'Product::customerForm/$1');
+$routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
+$routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
 $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');

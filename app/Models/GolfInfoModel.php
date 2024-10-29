@@ -21,7 +21,8 @@ class GolfInfoModel extends Model
         "electric_car",
         "caddy",
         "equipment_rent",
-        "sports_day"
+        "sports_day",
+        "golf_vehicle"
     ];
 
     public function getGolfInfo($product_idx)

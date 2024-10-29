@@ -15,6 +15,7 @@ class TourRegistController extends BaseController
     protected $connect;
     protected $productModel;
     protected $golfInfoModel;
+    protected $golfVehicleModel;
 
     public function __construct()
     {
@@ -25,6 +26,7 @@ class TourRegistController extends BaseController
         $this->golfOptionModel = model("GolfOptionModel");
         $this->productModel = model("ProductModel");
         $this->golfInfoModel = model("GolfInfoModel");
+        $this->golfVehicleModel = model("GolfVehicleModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -225,6 +227,8 @@ class TourRegistController extends BaseController
         $fresult_c = $result_c->getResultArray();
 
         $options = $this->golfOptionModel->getOptions($product_idx);
+        
+        $vehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
 
         $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
         $query = $db->query($sql, [$product_idx]);
@@ -244,6 +248,7 @@ class TourRegistController extends BaseController
             'codes' => $fresult_c,
             'options' => $options,
             "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles' => $vehicles
         ];
 
         $data = array_merge($data, $new_data);
@@ -258,6 +263,7 @@ class TourRegistController extends BaseController
         $data['special_price']      = $data['special_price'] ?? "N";
         $data['original_price']     = str_replace(",", "", $data['original_price']);
         $data['product_price']      = str_replace(",", "", $data['product_price']);
+        $data['golf_vehicle']       = "|".implode("|", $data['vehicle_arr'])."|";
 
         $files = $this->request->getFiles();
         for($i = 1; $i <= 7; $i++) {
@@ -290,6 +296,18 @@ class TourRegistController extends BaseController
             $html = '<script>alert("등록되었습니다.");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
+
+        if($data['option_idx']) {
+            foreach ($data['option_idx'] as $key => $value) {
+                $this->golfOptionModel->update($value, [
+                    'option_price' => $data['option_price'][$key],
+                    'caddy_fee' => $data['caddy_fee'][$key],
+                    'cart_pie_fee' => $data['cart_pie_fee'][$key],
+                ]);
+            }
+        }
+
+
         return $this->response->setBody($html);
     }
 
@@ -314,6 +332,8 @@ class TourRegistController extends BaseController
             'option_cnt'   => 0,
             'use_yn'       => 'Y',
             'option_type'  => 'M',
+            'caddy_fee'    => '그린피에 포함',
+            'cart_pie_fee' => '피지에 포함',
             'rdate'        => date('Y-m-d H:i:s')
         ];
         $this->golfOptionModel->insert($newData);
@@ -321,8 +341,23 @@ class TourRegistController extends BaseController
 
         $html = '<tr id="moption_'.$insertId.'">';
         $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}시</span>&nbsp;/&nbsp;<span>{$moption_minute}분</span></td>";
-        $html .= '<td><div class="flex_c_c"><input type="text" id="option_price_'.$insertId.'" value="0">원</div></td>';
-        $html .= '<td>&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption('.$insertId.');">수정</button>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="hidden" name="option_idx[]" id="option_idx_'.$insertId.'" value='.$insertId.'>
+                        <input type="text" name="option_price[]" id="option_price_'.$insertId.'" value="0">원
+                    </div>
+                </td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="text" name="caddy_fee[]" id="caddy_fee_'.$insertId.'" value="그린피에 포함">
+                    </div>
+                </td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="text" name="cart_pie_fee[]" id="cart_pie_fee_'.$insertId.'" value="그린피에 포함">
+                    </div>
+                </td>';
+        $html .= '<td class="tac">&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption('.$insertId.');">수정</button>';
         $html .= '&nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption('.$insertId.');">삭제</button></td>';
         $html .= '</tr>';
 

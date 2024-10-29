@@ -21,7 +21,9 @@ class GolfOptionModel extends Model
         'bfile',
         'option_type',
         'onum',
-        'rdate'
+        'rdate',
+        'caddy_fee',
+        'cart_pie_fee'
     ];
 
     protected $returnType = 'array';
@@ -30,9 +32,19 @@ class GolfOptionModel extends Model
 
     protected $useSoftDeletes = false;
 
-    public function getOptions($product_idx)
+    public function getOptions($product_idx, $hole_cnt = null, $hour = null, $minute = null)
     {
-        return $this->where("product_idx", $product_idx)->findAll();
+        $options = $this->where("product_idx", $product_idx);
+        if ($hole_cnt) {
+            $options = $options->where("hole_cnt", $hole_cnt);
+        }
+        if ($hour) {
+            $options = $options->where("hour", $hour);
+        }
+        if ($minute) {
+            $options = $options->where("minute", $minute);
+        }
+        return $options->findAll();
     }
     public function checkOptionExist($product_idx, $hole_cnt, $hour, $minute)
     {

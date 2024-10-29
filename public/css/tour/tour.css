@@ -1848,6 +1848,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .content-sub-product-hotel .two-way-arrow-content span {
@@ -2554,6 +2555,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 1111111;
 }
 
 .content-sub-hotel-detail .popup-content {
@@ -3023,6 +3025,11 @@
 
 }
 
+.custom-golf-detail .result_select {
+    display: flex;
+    gap: 5px;
+}
+
 .custom-golf-detail .date-text-2 span {
     color: #999999;
 }
@@ -3052,6 +3059,11 @@
     color: var(--bs-point);
     border-color: var(--bs-point);
     border-width: 2px;
+}
+
+.custom-golf-detail .card-content .card-item:hover {
+    color: var(--bs-point);
+    border-color: var(--bs-point);
 }
 
 .custom-golf-detail .card-content .card-item.active_2 {
@@ -3102,7 +3114,11 @@
 }
 
 .custom-golf-detail .list-select-element .item-select .select_custom_ {
-    width: 280px;
+    width: 230px;
+}
+
+.custom-golf-detail .list-select-element .item-select .vehicle_number {
+    width: 50px;
 }
 
 .custom-golf-detail .section2-sub {
@@ -3152,6 +3168,10 @@
 }
 
 .custom-golf-detail .section2-sub .right-main .item-right:not(:last-child) {
+    border-bottom: 1px dashed #ccc;
+}
+
+.vehicle_list_result {
     border-bottom: 1px dashed #ccc;
 }
 

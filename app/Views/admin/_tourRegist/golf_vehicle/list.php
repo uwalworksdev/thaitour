@@ -119,7 +119,7 @@
                                             <a href="/AdmMaster/_tourRegist/golf_vehicles/write?s_parent_code_no=<?= $row["code_no"] ?>"
                                                 class="btn btn-default">추가등록</a>
                                             &nbsp;&nbsp;
-                                            <a href="list?s_parent_code_no=<?= $row["code_no"] ?>"
+                                            <a href="/AdmMaster/_tourRegist/golf_vehicles?s_parent_code_no=<?= $row["code_no"] ?>"
                                                 class="btn btn-default">하위리스트</a>
                                         </td>
                                     </tr>

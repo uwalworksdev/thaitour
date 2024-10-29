@@ -134,6 +134,14 @@
     gap: 20px;
 }
 
+.best_golf_section5_ .swiper-wrapper {
+    align-items: normal;
+}
+
+.best_golf_section5_ {
+    margin-top: 29px;
+}
+
 .thailand_hotel_ .thailand_hotel_swiper_ .swiper-wrapper {
     justify-content: start;
     align-items: start;
