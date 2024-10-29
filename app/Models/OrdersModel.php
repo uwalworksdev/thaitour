@@ -22,8 +22,8 @@ class OrdersModel extends Model
     , "VbankBankName_2", "VbankNum_2", "VbankExpDate_2", "VbankExpTime_2", "depositor_1", "bank_1", "depositor_2"
     , "bank_2", "isDelete", "delDate", "encode", "custom_req", "local_phone", "order_zip", "order_addr1", "order_addr2"
     , "deposit_price_change", "price_confirm_change", "total_price_change", "bbs_no", "transfer_date", "user_id"
-    , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type"
-    , "room_op_idx", "room_cnt", "day_cnt"];
+    , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
+    , "room_op_idx", "order_room_cnt", "order_day_cnt"];
     public function getOrders($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10)
     {
         $private_key = private_key();

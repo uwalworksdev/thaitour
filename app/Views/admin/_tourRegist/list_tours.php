@@ -471,14 +471,14 @@
                                                 ?>
                                                 <a href="/data/product/<?= $row["ufile1"] ?>" class="imgpop">
                                                     <img src="/data/product/<?= $row["ufile1"] ?>"
-                                                         style="max-width:150px;max-height:100px"
-                                                         onerror="this.src='/data/product/noimg.png'"></a>
+                                                         style="max-width:150px;max-height:100px">
+                                                </a>
                                             <?php } else {
                                                 ?>
                                                 <a href="/data/product/noimg.png" class="imgpop">
                                                     <img src="/data/product/noimg.png"
-                                                         style="max-width:150px;max-height:100px"
-                                                         onerror="this.src='/data/product/noimg.png'"></a>
+                                                         style="max-width:150px;max-height:100px">
+                                                        </a>
                                             <?php }
                                             ?>
                                         </td>
@@ -644,11 +644,10 @@
             });
         }
     </script>
-
     <script>
         function go_write(idx) {
             $("#product_idx").val(idx);
-            $("#search").attr("action", "/write_tours").submit();
+            $("#search").attr("action", "./write_tours").submit();
         }
     </script>
 

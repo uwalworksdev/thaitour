@@ -123,20 +123,8 @@
                                 <tr>
                                     <th>상품명</th>
                                     <td>
-                                        <?php
-                                        if ($product_idx == "537") {
-                                            ?>
-                                            <input name="product_name" type="text" value="<?= $product_name ?>"
-                                                   style="width: 90%;">
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <?= $product_name ?><br><?= $tours_subject ?>
-                                            <input type=hidden name="product_name" value='<?= $product_name ?>'>
-                                            <?php
-                                        }
-                                        ?>
-
+                                        <?= $product_name ?><br><?= $tours_subject ?>
+                                        <input type=hidden name="product_name" value='<?= $product_name ?>'>
                                     </td>
                                     <th>주문번호</th>
                                     <td>
@@ -146,25 +134,23 @@
                                 <tr>
                                     <th>일정</th>
                                     <td>
-                                        <?php
-                                        if ($product_idx == "537") {
-                                            ?>
-                                            <input type="text" name="start_date" value="<?= $start_date ?>">
-                                            ~
-                                            <input type="text" name="end_date" value="<?= $end_date ?>">
-                                            <?php
-                                        } else {
-                                            ?>
+                                        <?php 
+                                            if(!empty($start_date) && !empty($end_date)){
+                                        ?>
                                             <?= str_replace("-", ".", $start_date) ?>
                                             ~
                                             <?= str_replace("-", ".", $end_date) ?>
                                             <input type=hidden name="start_date" value='<?= $start_date ?>'>
                                             <input type=hidden name="end_date" value='<?= $end_date ?>'>
-                                            <?php
-                                        }
+                                        <?php 
+                                            }
                                         ?>
-                                        (한국출발 <?= $home_depart_date ?> ~ <?= $away_arrive_date ?>
-                                        현지출발 <?= $away_depart_date ?> ~ <?= $home_arrive_date ?> )
+                                        <?php
+                                            if(!empty($home_depart_date) && !empty($away_arrive_date) && !empty($away_depart_date) && !empty($home_arrive_date)){
+                                        ?>
+                                            (한국출발 <?= $home_depart_date ?> ~ <?= $away_arrive_date ?>
+                                            현지출발 <?= $away_depart_date ?> ~ <?= $home_arrive_date ?>)
+                                        <?php } ?>
                                     </td>
                                     <th>기간</th>
                                     <td>
@@ -491,8 +477,8 @@
                                     <th style="text-align:center">성별</th>
                                 </tr>
                                 <?php
-                                foreach ($fresult as $frow) {
-                                    ?>
+                                    foreach ($fresult as $frow) {
+                                ?>
                                     <tr>
                                         <td style="text-align:center">
                                             <input type="hidden" name="gl_idx[]" value="<?= $frow["gl_idx"] ?>">

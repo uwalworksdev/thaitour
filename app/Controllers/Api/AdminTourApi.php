@@ -167,6 +167,288 @@ class AdminTourApi extends BaseController
 
     public function ajax_del()
     {
+        try {
+            $msg = '';
 
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function change_manager()
+    {
+        try {
+            $msg = '';
+
+            $private_key = private_key();
+
+            $user_id = $_POST['user_id'];
+
+            $sql = " SELECT AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name
+                    ,AES_DECRYPT(UNHEX(user_phone), '$private_key') AS user_phone
+                    ,AES_DECRYPT(UNHEX(user_email), '$private_key') AS user_email
+            FROM tbl_member WHERE user_id = '$user_id'";
+
+            $result = $this->connect->query($sql);
+
+            $row = $result->getRowArray();
+
+            $resultArr['user_name'] = $row["user_name"];
+            $resultArr['user_phone'] = $row["user_phone"];
+            $resultArr['user_email'] = $row["user_email"];
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'data' => $row,
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function add_moption()
+    {
+        try {
+            $product_idx = $_POST['product_idx'];
+            $moption_name = $_POST['moption_name'];
+
+            $sql = "INSERT INTO tbl_tours_moption SET  product_idx  = '$product_idx'
+                                        	 , moption_name = '$moption_name'
+                                        	 , use_yn       = 'Y' 
+											 , rdate        =  now() ";
+
+            $this->connect->query($sql);
+
+            $msg = "등록 완료.";
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function upd_moption()
+    {
+        try {
+            $code_idx = $_POST['code_idx'];
+            $moption_name = $_POST['moption_name'];
+
+            $sql = "UPDATE tbl_tours_moption SET moption_name = '$moption_name' WHERE code_idx = '$code_idx' ";
+
+            $this->connect->query($sql);
+
+            $msg = "등록 완료.";
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function del_moption()
+    {
+        try {
+            $code_idx = $_POST['code_idx'];
+
+            $sql = "DELETE FROM tbl_tours_moption WHERE code_idx = '$code_idx' ";
+
+            $this->connect->query($sql);
+
+            $msg = "등록 완료.";
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function add_option()
+    {
+        try {
+            $code_idx = $_POST['code_idx'];
+            $product_idx = $_POST['product_idx'];
+            $option_cnt = count($_POST['o_name']);
+
+            $sql = "delete from tbl_tours_option where code_idx = '" . $code_idx . "'  and product_idx = '" . $product_idx . "' ";
+
+            $this->connect->query($sql);
+
+            for ($i = 0; $i < $option_cnt; $i++) {
+                $option_name = $_POST['o_name'][$i];
+                $option_price = $_POST['o_price'][$i];
+                $use_yn = $_POST['use_yn'][$i];
+                $onum = $_POST['o_num'][$i];
+
+                if ($option_name && $option_price) {
+                    $sql = "insert into tbl_tours_option set   code_idx     = '$code_idx'  
+													 , product_idx  = '$product_idx' 
+													 , option_name  = '$option_name'
+													 , option_price = '$option_price'
+													 , use_yn       = '$use_yn'
+													 , onum         = '$onum'
+													 , rdate        =  now()		  
+				   ";
+
+                    $this->connect->query($sql);
+                }
+            }
+
+            $msg = "등록 완료.";
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function del_option()
+    {
+        try {
+            $msg = "등록 완료.";
+
+            $idx = $_POST['idx'];
+
+            $sql = "DELETE FROM tbl_tours_option  WHERE idx = '$idx' ";
+
+            $this->connect->query($sql);
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function upd_option()
+    {
+        try {
+            $msg = "등록 완료.";
+
+            $idx = $_POST['idx'];
+            $option_name = $_POST['option_name'];
+            $option_price = $_POST['option_price'];
+            $use_yn = $_POST['use_yn'];
+            $onum = $_POST['onum'];
+
+            $sql = "UPDATE tbl_tours_option SET   option_name  = '$option_name'
+										, option_price = '$option_price'
+										, use_yn       = '$use_yn'
+	                                    , onum         = '$onum'
+	                                    WHERE      idx = '$idx' ";
+
+            $this->connect->query($sql);
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function img_remove()
+    {
+        try {
+            $msg = '';
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
     }
 }

@@ -149,6 +149,7 @@
                 <input type="hidden" name="product_idx" id="product_idx" value="<?=$hotel["product_idx"]?>">
                 <input type="hidden" name="room_op_idx" id="room_op_idx" value="<?=$room_op_idx?>">
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?=$use_coupon_idx?>">
+                <input type="hidden" name="used_coupon_money" id="used_coupon_money" value="<?=$used_coupon_money?>">
                 <input type="hidden" name="last_price" id="last_price" value="<?=$last_price?>">
                 <input type="hidden" name="order_price" id="order_price" value="<?=$order_price?>">
                 <input type="hidden" name="number_room" id="number_room" value="<?=$number_room?>">
@@ -261,13 +262,13 @@
                     $(this).removeClass("click");
                     $('.item-clause-item').each(function() {
                         $(this).removeClass("acti");
-                        $(this).find("img").attr("src", "../img/hotel_list/clause-check-grey.png");
+                        $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
                     })
                 } else {
                     $(this).addClass("click");
                     $('.item-clause-item').each(function() {
                         $(this).addClass("acti");
-                        $(this).find("img").attr("src", "../img/hotel_list/clause-check-black.png");
+                        $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
                     })
                 }
             });
@@ -275,10 +276,10 @@
             $(".item-clause-item").click(function() {
                 if ($(this).hasClass("acti")) {
                     $(this).removeClass("acti");
-                    $(this).find("img").attr("src", "../img/hotel_list/clause-check-grey.png");
+                    $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
                 } else {
                     $(this).addClass("acti");
-                    $(this).find("img").attr("src", "../img/hotel_list/clause-check-black.png");
+                    $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
                 }
 
                 var allHaveActi = true;

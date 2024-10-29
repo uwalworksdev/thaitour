@@ -1,7 +1,8 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+    <script type="text/javascript" src="/lib/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
     <style>
         .tab_title {
             font-size: 16px;
@@ -85,6 +86,7 @@
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate" value='<?= $tours_cate ?>'>
+                <input type=hidden name="product_points" id="product_points" value='<?= $product_points ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -430,19 +432,36 @@
                                 <tr>
                                     <th>베스트여부</th>
                                     <td>
-                                        <?php foreach ($mresult2 as $row_m) : ?>
-                                            <input type="checkbox" name="product_best"
-                                                   id="product_best"
-                                                   value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
-                                                echo "checked";
-                                            } ?>/>
-                                        <?php endforeach; ?>
+                                        <input type="checkbox" name="product_best"
+                                               id="product_best"
+                                               value="Y" <?php if (isset($product_best) && $product_best == "Y") {
+                                            echo "checked";
+                                        } ?>/>
                                     </td>
                                     <th>우선순위</th>
                                     <td>
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>상품 포인트</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $_product_points_arr = explode("|", $product_points);
+                                        $_product_points_arr = array_filter($_product_points_arr);
+
+                                        ?>
+                                        <?php foreach ($cresult as $row) : ?>
+                                            <input type="checkbox" name="_product_points"
+                                                   class="_product_points"
+                                                <?php if (in_array($row['code_no'], $_product_points_arr)) { ?> checked <?php } ?>
+                                                   id="_product_points<?= $row['code_no'] ?>"
+                                                   value="<?= $row['code_no'] ?>"/>
+                                            <label for="_product_points<?= $row['code_no'] ?>"><?= $row['code_name'] ?></label>
+                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
 
@@ -1000,47 +1019,50 @@
                             <tr>
                                 <th>추가 옵션등록</th>
                                 <td>
-                                    <button type="button" onclick="add_option('<?= $row_option['code_idx'] ?>');">추가
-                                    </button>
-                                    <button type="button" onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록
-                                    </button>
-                                    <table>
-                                        <thead>
-                                        <tr>
-                                            <th>옵션명</th>
-                                            <th>가격</th>
-                                            <th>적용</th>
-                                            <th>순서</th>
-                                            <th>삭제</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php foreach ($row_option['additional_options'] as $option): ?>
-                                            <tr>
-                                                <td><input type="text" name="o_name[]"
-                                                           value="<?= $option['option_name'] ?>"/></td>
-                                                <td><input type="text" name="o_price[]"
-                                                           value="<?= $option['option_price'] ?>"/></td>
-                                                <td>
-                                                    <select name="use_yn[]">
-                                                        <option value="Y" <?= $option['use_yn'] == 'Y' ? 'selected' : '' ?>>
-                                                            판매중
-                                                        </option>
-                                                        <option value="N" <?= $option['use_yn'] != 'Y' ? 'selected' : '' ?>>
-                                                            중지
-                                                        </option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>"/>
-                                                </td>
-                                                <td>
-                                                    <button type="button" onclick="delOption('<?= $option['idx'] ?>');">
-                                                        삭제
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
+                                    <span  style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+                                        <div>
+                                            <table>
+                                                <colgroup>
+                                                    <col width="*"></col>
+                                                    <col width="25%"></col>
+                                                    <col width="5%"></col>
+                                                    <col width="5%"></col>
+                                                    <col width="12%"></col>
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>옵션명</th>
+                                                        <th>가격(호주 달러: AUD)</th>
+                                                        <th>적용</th>
+                                                        <th>순서</th>
+                                                        <th>삭제</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="settingBody_<?=$row_option['code_idx']?>">
+                                                    <?php foreach ($row_option['additional_options'] as $option): ?>
+                                                        <tr >
+                                                            <td>
+                                                                <input type='text'   name='o_name[]' id='o_name_<?=$option['idx']?>' value="<?=$option['option_name']?>" size="70" />
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum' style="text-align:right;" name='o_price[]' id='o_price_<?=$option['idx']?>' value="<?=$option['option_price']?>" />
+                                                            </td>
+                                                            <td>
+                                                                <select name="use_yn[]" id="use_yn_<?=$option['idx']?>">
+                                                                <option value="Y" <?php if($option['use_yn'] == "Y") echo "selected";?> >판매중</option>
+                                                                <option value="N" <?php if($option['use_yn'] != "Y") echo "selected";?> >중지</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type='text' class='onlynum' name='o_num[]' id='o_num_<?=$option['idx']?>' value="<?=$option['onum']?>" />
+                                                            </td>
+                                                            <td align="center">
+                                                                <button type="button" onclick="updOption('<?=$option['idx']?>')" >수정</button>
+                                                                <button type="button" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                    </tbody>
                                     </table>
                                 </td>
                             </tr>
@@ -1155,6 +1177,19 @@
 
         </div>
     </div>
+    <div class="pick_item_pop02" id="popup_location">
+            <div>
+                <h2>메인노출상품 등록</h2>
+                <div class="table_box" style="height: calc(100% - 146px);">
+                    <ul id="list_location">
+
+                    </ul>
+                </div>
+                <div class="sel_box">
+                    <button type="button" class="close">닫기</button>
+                </div>
+            </div>
+        </div>
 
     <script>
         function change_manager(user_id) {
@@ -1197,7 +1232,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_tours.php",
+                url: "/AdmMaster/api/del",
                 type: "POST",
                 data: {
                     "tours_idx": idx
@@ -1216,6 +1251,59 @@
             });
 
         }
+
+        function getCoordinates() {
+
+        let address = $("#addrs").val();
+        if(!address){
+            alert("주소를 입력해주세요");
+            return false;
+        }
+        const apiUrl = `https://google-map-places.p.rapidapi.com/maps/api/place/textsearch/json?query=${encodeURIComponent(address)}&radius=1000&opennow=true&location=40%2C-110&language=en&region=en`;
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-host': 'google-map-places.p.rapidapi.com',
+                'x-rapidapi-key': '79b4b17bc4msh2cb9dbaadc30462p1f029ajsn6d21b28fc4af'
+            }
+        };
+
+        fetch(apiUrl, options)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data:', data);
+                let html = '';
+                if(data.results.length > 0){
+                    data.results.forEach(element => {
+                        let address = element.formatted_address;
+                        let lat = element.geometry.location.lat;
+                        let lon = element.geometry.location.lng;
+                        html += `<li data-lat="${lat}" data-lon="${lon}">${address}</li>`;
+                    });
+                }else{
+                    html = `<li>No data</li>`;
+                }
+
+                $("#popup_location #list_location").html(html);
+                $("#popup_location").show();
+                $("#popup_location #list_location li").click(function () {
+                    let latitude = $(this).data("lat");
+                    let longitude = $(this).data("lon");
+                    $("#latitude").val(latitude);
+                    $("#longitude").val(longitude);
+                    $("#popup_location").hide();
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
     </script>
 
     <script>
@@ -1292,7 +1380,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_moption.php",
+                url: "/AdmMaster/_tourRegist/write_tours/updMoption",
                 type: "POST",
                 data: {
                     "code_idx": code_idx,
@@ -1316,10 +1404,10 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.add_moption.php",
+                url: "/AdmMaster/_tourRegist/write_tours/addMoption",
                 type: "POST",
                 data: {
-                    "product_idx": '<?= $product_idx ?>',
+                    "product_idx": $("#product_idx").val(),
                     "moption_name": $("#moption_name").val()
                 },
                 dataType: "json",
@@ -1343,7 +1431,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_moption.php",
+                url: "/AdmMaster/_tourRegist/write_tours/delMoption",
                 type: "POST",
                 data: {
                     "code_idx": code_idx
@@ -1367,24 +1455,20 @@
             var option_data = jQuery("#optionForm_" + code_idx).serialize();
             var save_result = "";
 
-            $.ajax({
-                type: "POST",
-                data: option_data,
-                url: "/ajax/ajax.add_option.php",
-                cache: false,
-                async: false,
-                success: function (data, textStatus) {
-                    save_result = data;
-                    //alert('save_result- '+save_result);
-                    var obj = jQuery.parseJSON(save_result);
-                    var message = obj.message;
-                    alert(message);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
+                $.ajax({
+                    type: "POST",
+                    data: option_data,
+                    url: "/AdmMaster/_tourRegist/write_tours/addOption",
+                    cache: false,
+                    success: function (data) {
+                        var message = data.message;
+                        alert(message);
+                        location.reload();
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
+                    }
+                });
         }
 
         // 옵션 삭제 함수
@@ -1396,21 +1480,22 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_option.php",
+                url: "/AdmMaster/_tourRegist/write_tours/delOption",
                 type: "POST",
                 data: {
                     "idx": idx
                 },
                 dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
+                success: function(data) {
+                    if (data && data.message) {
+                        alert(data.message);
+                    } else {
+                        alert("삭제 오류. 다시 시도해주세요.");
+                    }
                     location.reload();
                 },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                error: function(request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });
 
@@ -1426,7 +1511,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_option.php",
+                url: "/AdmMaster/_tourRegist/write_tours/updOption",
                 type: "POST",
                 data: {
                     "idx": idx,
@@ -1567,6 +1652,13 @@
             });
             option += '|';
             $("#tours_cate").val(tours_cate);
+
+            let product_points = "";
+            $("input:checkbox[name='_product_points']:checked").each(function () {
+                product_points += '|' + $(this).val();
+            });
+            product_points += '|';
+            $("#product_points").val(product_points);
 
             frm.submit();
         }
