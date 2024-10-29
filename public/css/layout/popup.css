@@ -113,6 +113,7 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, 50%);
+    gap: 10px;
 }
 
 .slick-dots li button:before {
