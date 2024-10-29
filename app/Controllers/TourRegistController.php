@@ -16,6 +16,12 @@ class TourRegistController extends BaseController
     protected $productModel;
     protected $golfInfoModel;
 
+    protected $moptionModel;
+    protected $optionTourModel;
+
+    protected $tourProducts;
+
+
     public function __construct()
     {
         $this->db = db_connect();
@@ -25,6 +31,9 @@ class TourRegistController extends BaseController
         $this->golfOptionModel = model("GolfOptionModel");
         $this->productModel = model("ProductModel");
         $this->golfInfoModel = model("GolfInfoModel");
+        $this->moptionModel = model("MoptionModel");
+        $this->optionTourModel = model("OptionTourModel");
+        $this->tourProducts = model("ProductTourModel");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -254,8 +263,10 @@ class TourRegistController extends BaseController
     public function write_golf_ok($product_idx = null) {
 
         $data = $this->request->getPost();
-        $data['is_best_value']     = $data['is_best_value'] ?? "N";
+        $data['is_best_value']      = $data['is_best_value'] ?? "N";
         $data['special_price']      = $data['special_price'] ?? "N";
+        $data['original_price']     = str_replace(",", "", $data['original_price']);
+        $data['product_price']      = str_replace(",", "", $data['product_price']);
 
         $files = $this->request->getFiles();
         for($i = 1; $i <= 7; $i++) {
@@ -279,13 +290,15 @@ class TourRegistController extends BaseController
             }
 
             $html = '<script>alert("수정되었습니다.");</script>';
+            $html .= '<script>parent.location.reload();</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
+            $data['m_date'] = date("Y-m-d H:i:s");
             $this->productModel->insertData($data);
             $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
             $html = '<script>alert("등록되었습니다.");</script>';
+            $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
-        $html .= '<script>parent.location.reload();</script>';
         return $this->response->setBody($html);
     }
 
@@ -874,5 +887,149 @@ class TourRegistController extends BaseController
                 'message' => $e->getMessage()
             ], 400);
         }
+    }
+
+    public function addMoption()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+        $moption_name = $this->request->getPost('moption_name');
+
+        $data = [
+            'product_idx' => $product_idx,
+            'moption_name' => $moption_name,
+            'use_yn' => 'Y',
+            'rdate' => date('Y-m-d H:i:s')
+        ];
+
+        if ($this->moptionModel->insert($data)) {
+            $response = ['message' => '등록 완료'];
+        } else {
+            $response = ['message' => '등록 오류'];
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    public function updMoption()
+    {
+        $code_idx = $this->request->getPost('code_idx');
+        $moption_name = $this->request->getPost('moption_name');
+
+
+        if ($code_idx && $moption_name) {
+            $data = [
+                'moption_name' => $moption_name
+            ];
+
+            if ($this->moptionModel->update($code_idx, $data)) {
+                $response = ['message' => '수정 완료'];
+            } else {
+                $response = ['message' => '수정 오류'];
+            }
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+    public function delMoption()
+    {
+        $idx = $this->request->getPost('idx');
+
+        try {
+            if ($this->moptionModel->where('idx', $idx)->delete()) {
+                $msg = "삭제 완료";
+            } else {
+                $msg = "삭제 오류";
+            }
+        } catch (\Exception $e) {
+            $msg = "삭제 오류: " . $e->getMessage();
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function addOption()
+    {
+        $code_idx = $this->request->getPost('code_idx');
+        $product_idx = $this->request->getPost('product_idx');
+        $options = $this->request->getPost('o_name');
+        
+         $this->optionTourModel->where('code_idx', $code_idx)
+              ->where('product_idx', $product_idx)
+              ->delete();
+
+        $result = true; 
+        foreach ($options as $i => $option_name) {
+            if ($option_name && isset($_POST['o_price'][$i])) {
+                $data = [
+                    'code_idx' => $code_idx,
+                    'product_idx' => $product_idx,
+                    'option_name' => $option_name,
+                    'option_price' => $_POST['o_price'][$i],
+                    'use_yn' => isset($_POST['use_yn'][$i]) ? $_POST['use_yn'][$i] : 'N',
+                    'onum' => $_POST['o_num'][$i],
+                    'rdate' => date('Y-m-d H:i:s')
+                ];
+                
+                if (! $this->optionTourModel->insert($data)) {
+                    $result = false; 
+                }
+            }
+        }
+        if ($result) {
+            $msg = "등록 완료";
+        } else {
+            $msg = "등록 오류";
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function updOption()
+    {
+        $idx = $this->request->getPost('idx');
+        $option_name = $this->request->getPost('option_name');
+        $option_price = $this->request->getPost('option_price');
+        $use_yn = $this->request->getPost('use_yn');
+        $onum = $this->request->getPost('onum');
+
+        $data = [
+            'option_name' => $option_name,
+            'option_price' => $option_price,
+            'use_yn' => $use_yn,
+            'onum' => $onum,
+        ];
+
+        $result = $this->optionTourModel->update($idx, $data);
+
+        $msg = $result ? "수정 완료" : "수정 오류";
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function delOption()
+    {
+        $idx = $this->request->getPost('idx');
+
+        try {
+            if ($this->optionTourModel->where('idx', $idx)->delete()) {
+                $msg = "삭제 완료";
+            } else {
+                $msg = "삭제 오류";
+            }
+        } catch (\Exception $e) {
+            $msg = "삭제 오류: " . $e->getMessage();
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function write_tour_info() {
+        $tours_idx = $this->request->getPost('tours_idx');
+        $tour = $this->tourProducts->getTourById($tours_idx);
+        $data = [
+            'tour' => $tour,
+            'tours_idx' => $tours_idx,
+        ];
+        return view('admin/_tourRegist/write_tour_info', $data);
     }
 }

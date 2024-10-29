@@ -80,14 +80,14 @@
                                 </tr>
 
                                 <tr>
-                                    <th>Tax</th>
+                                    <th>세금및 서비스</th>
                                     <td colspan="3">
                                         <input type="radio" name="type_extra_cost" id="extra_cost_1" value="P" 
                                             <?php if($row['type_extra_cost'] == "P" || empty($row['type_extra_cost'])) echo "checked" ; ?>>
-                                        <label for="extra_cost_1"><span>할인율</span></label>
+                                        <label for="extra_cost_1"><span>세금율</span></label>
                                         <input type="radio" name="type_extra_cost" id="extra_cost_2" value="D" 
                                             <?php if($row['type_extra_cost'] == "D" ) echo "checked" ; ?>>
-                                        <label for="extra_cost_2"><span>가격할인</span></label>
+                                        <label for="extra_cost_2"><span>가격</span></label>
                                         <input type="text" id="extra_cost" name="extra_cost" oninput="this.value = this.value.replace(/[^0-9.,]/g, '')" maxlength="11"
                                                 value="<?= $row['extra_cost'] ?>" class="input_txt placeHolder" rel=""
                                                 style="width:250px; margin-left: 10px;" />

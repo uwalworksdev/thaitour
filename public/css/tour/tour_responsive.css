@@ -2049,7 +2049,7 @@
   .content-sub-hotel-detail .grid_2_2 {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.9rem;
+    gap: 0.999rem;
   }
 
   .content-sub-hotel-detail .hotel-image-container-1 img {
@@ -2426,6 +2426,50 @@
     font-size: 2.6rem;
   }
 
+  .custom-golf-detail .golf-table {
+    border: 0.21rem solid rgb(219, 219, 219);
+  }
+
+  .custom-golf-detail .golf-table,
+  .custom-golf-detail .golf-table thead,
+  .custom-golf-detail .golf-table tbody,
+  .custom-golf-detail .golf-table th,
+  .custom-golf-detail .golf-table td,
+  .custom-golf-detail .golf-table tr {
+    display: block;
+  }
+
+  .custom-golf-detail .golf-table tr {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .custom-golf-detail .golf-table tr th,
+  .custom-golf-detail .golf-table tr td {
+    white-space: normal;
+    border: none;
+  }
+
+  .custom-golf-detail .golf-table tr th:nth-child(2n -1),
+  .custom-golf-detail .golf-table tr td:nth-child(2n -1) {
+    background-color: rgb(247, 247, 247);
+    width: 23rem;
+    border-bottom: 0.21rem solid rgb(219, 219, 219);
+    border-right: 0.21rem solid rgb(219, 219, 219);
+    padding: 4rem 2rem;
+    text-align: left;
+    font-weight: normal !important;
+  }
+
+  .custom-golf-detail .golf-table tr th:nth-child(2n),
+  .custom-golf-detail .golf-table tr td:nth-child(2n) {
+    background-color: #fff;
+    width: calc(100% - 23rem);
+    border-bottom: 0.21rem solid rgb(219, 219, 219);
+    padding: 4rem 2rem;
+    font-weight: normal !important;
+  }
+
   .custom-golf-detail .section1 .golf_table {
     display: flex;
     align-items: center;
@@ -2455,6 +2499,9 @@
   .custom-golf-detail .section1 .golf_table .border-top-table {
     border-top: 0.21rem solid rgb(153, 153, 153);
   }
+
+
+
 
   .custom-golf-detail .calendar span {
     font-size: 3rem;

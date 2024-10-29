@@ -452,35 +452,11 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=16 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=18 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
                                 foreach ($result as $row) {
-
-//                                    $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') order_user_name
-//									                      , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'), '$private_key') order_user_mobile
-//									                      , AES_DECRYPT(UNHEX('{$row['manager_name']}'),      '$private_key') manager_name
-//									                      , AES_DECRYPT(UNHEX('{$row['manager_phone']}'),     '$private_key') manager_phone
-//									                      , AES_DECRYPT(UNHEX('{$row['manager_email']}'),     '$private_key') manager_email ";
-//                                    $res_d = mysqli_query($connect, $sql_d) or die(mysqli_error($connect));
-//                                    $row_d = mysqli_fetch_array($res_d);
-//
-//                                    $row['order_user_name'] = $row_d['order_user_name'];
-//                                    $row['order_user_mobile'] = $row_d['order_user_mobile'];
-//                                    $row['manager_name'] = $row_d['manager_name'];
-//                                    $row['manager_phone'] = $row_d['manager_phone'];
-//                                    $row['manager_email'] = $row_d['manager_email'];
-//
-//                                    if ($row["isDelete"] == "Y") {
-//                                        $_isDelete = "<br><span style='color:red;'>[예약자 삭제]</span>";
-//                                    } else {
-//                                        $_isDelete = "";
-//                                    }
-//
-//                                    $sql_c = "select * from tbl_code where code_gubun = 'tour' and code_no = '{$row['product_code_1']}' ";
-//                                    $result_c = mysqli_query($connect, $sql_c) or die (mysqli_error($connect));
-//                                    $row_c = mysqli_fetch_array($result_c)
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
@@ -497,7 +473,7 @@
                                             <?php if ($row["is_modify"] == "Y") { ?>
                                                 <font color="red">예약수정</font>
                                             <?php } else { ?>
-                                                <font color="blue"><?= $row["order_status"] ?></font>
+                                                <font color="blue"><?= $_deli_type[$row["order_status"]] ?></font>
                                             <?php } ?>
                                             <?= $_isDelete ?><br>(<?= $row['code_name'] ?>)
                                         </td>

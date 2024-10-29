@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Config\CustomConstants as ConfigCustomConstants;
+use CodeIgniter\I18n\Time;
 use Exception;
 use App\Models\Hotel;
 
@@ -11,11 +12,17 @@ class Product extends BaseController
     private $bannerModel;
     private $productModel;
     private $bbsListModel;
+    private $orderModel;
+    private $orderSubModel;
+    private $coupon;
+    private $couponHistory;
     private $db;
     private $hotel;
     private $codeModel;
+
     private $reviewModel;
     private $mainDispModel;
+    protected $golfInfoModel;
 
     private $scale = 8;
 
@@ -28,6 +35,11 @@ class Product extends BaseController
         $this->codeModel = model("Code");
         $this->reviewModel = model("ReviewModel");
         $this->mainDispModel = model("MainDispModel");
+        $this->orderModel = model("OrdersModel");
+        $this->orderSubModel = model("OrderSubModel");
+        $this->coupon = model("Coupon");
+        $this->couponHistory = model("CouponHistory");
+        $this->golfInfoModel = model("GolfInfoModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -1081,7 +1093,7 @@ class Product extends BaseController
             $product_idx = $cart_arr["product_idx"] ?? 0;
             $room_op_idx = $cart_arr["room_op_idx"] ?? 0;
             $use_coupon_idx = $cart_arr["use_coupon_idx"] ?? 0;
-            $use_coupon_room = $cart_arr["use_coupon_room"] ?? 0;
+            $used_coupon_money = $cart_arr["used_coupon_money"] ?? 0;
             $coupon_discount = $cart_arr["coupon_discount"] ?? 0;
             $inital_price = $cart_arr["inital_price"] ?? 0;
             $last_price = $cart_arr["last_price"] ?? 0;
@@ -1110,12 +1122,122 @@ class Product extends BaseController
                 'use_coupon_idx' => $use_coupon_idx,
                 'room_op_idx' => $room_op_idx,
                 'coupon_discount' => $coupon_discount,
+                'used_coupon_money' => $used_coupon_money,
                 'extra_cost' => $extra_cost,
                 'last_price' => $last_price
             ];
         }
 
         return $this->renderView('product/hotel/reservation-form', $data);
+    }
+
+    public function reservationFormInsert() {
+
+        try {
+
+            $product_idx = $this->request->getPost('product_idx') ?? 0;
+            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0; 
+            $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
+            $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0; 
+            $order_price = $this->request->getPost('order_price') ?? 0; 
+            $number_room = $this->request->getPost('number_room') ?? 0; 
+            $number_day = $this->request->getPost('number_day') ?? 0; 
+            $order_memo = $this->request->getPost('order_memo') ?? ""; 
+    
+            $hotel = $this->productModel->find($product_idx);
+            $m_idx = session()->get("member")["idx"];
+            $order_status = "W";
+            $ipAddress = $this->request->getIPAddress();
+            $device_type = get_device();
+
+            if(!empty($use_coupon_idx)){
+                $coupon = $this->coupon->find($use_coupon_idx);
+            }
+
+            $data = [
+                "m_idx" => $m_idx,
+                "device_type" => $device_type,
+                "product_idx" => $product_idx,
+                "product_code_1" => $hotel["product_code_1"],
+                "product_code_2" => $hotel["product_code_2"],
+                "product_code_3" => $hotel["product_code_3"],
+                "product_code_4" => $hotel["product_code_4"],
+                "product_code_list" => $hotel["product_code_list"],
+                "product_name" => $hotel["product_name"],
+                "order_gubun" => "hotel",
+                "order_memo" => $order_memo,
+                "order_price" => $order_price,
+                "order_date" => Time::now('Asia/Seoul', 'en_US'),
+                "used_coupon_idx" => $use_coupon_idx,
+                "used_coupon_money" => $used_coupon_money,
+                "room_op_idx" => $room_op_idx,
+                "order_room_cnt" => $number_room,
+                "order_day_cnt" => $number_day,
+                "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                "order_status" => $order_status,
+                "encode" => "Y",
+                "ip" => $ipAddress
+            ];
+
+            $order_idx = $this->orderModel->insert($data);
+            if($order_idx){
+                $order_no	= "S".substr(date("Ymd"),2,8).str_pad($order_idx, 3, "0", STR_PAD_LEFT);
+                $this->orderModel->update($order_idx, ["order_no" => $order_no]);
+    
+                if(!empty($use_coupon_idx)){
+                    $this->coupon->update($use_coupon_idx, ["status" => "E"]);
+
+                    $cou_his = [
+                        "order_idx" => $order_idx,
+                        "product_idx" => $product_idx,
+                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx" => $use_coupon_idx,
+                        "used_coupon_money" => $used_coupon_money,
+                        "ch_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                        "m_idx" => $m_idx
+                    ];
+
+                    $this->couponHistory->insert($cou_his);
+                }
+
+                $order_num_room = $this->request->getPost('order_num_room');
+                $order_first_name = $this->request->getPost('order_first_name');
+                $order_last_name = $this->request->getPost('order_last_name');
+                foreach ($order_num_room as $key => $value) {
+                    $first_name = sqlSecretConver($order_first_name[$key], "encode");
+                    $last_name = sqlSecretConver($order_last_name[$key], "encode");
+                    $data_sub = [
+                        "m_idx" => $m_idx,
+                        "order_idx" => $order_idx,
+                        "product_idx" => $product_idx,
+                        "number_room" => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
+                        "order_first_name" => $first_name,
+                        "order_last_name" => $last_name,
+                        "encode" => "Y"
+                    ];
+                    $this->orderSubModel->insert($data_sub);
+                }
+                
+                $this->response->deleteCookie('cart');
+
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "Ok"
+                ], 200);
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "Error"
+                ], 400);
+            }
+
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+
     }
 
     public function completedOrder()
@@ -1131,6 +1253,22 @@ class Product extends BaseController
     public function golfDetail($product_idx)
     {
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
+        $productReview = $this->reviewModel->getProductReview($product_idx);
+        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['review_average'] = $productReview['avg'];
+
+        $data['imgs'] = [];
+        $data['img_names'] = [];
+
+        for ($i = 2; $i <= 7; $i++) {
+            $file = "ufile" . $i;
+            if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
+                $data['imgs'][] = "/data/product/" . $data['product'][$file];
+                $data['img_names'][] = $data['product']["rfile" . $i];
+            }
+        }
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 

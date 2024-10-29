@@ -54,6 +54,10 @@ class GolfInfoModel extends Model
             ARRAY_FILTER_USE_KEY
         );
 
+        foreach ($filteredData as $key => $value) {
+            $filteredData[$key] = updateSQ($value);
+        }
+
         return $this->where("product_idx", $id)->set($filteredData)->update();
     }
 }
