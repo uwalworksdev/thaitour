@@ -60,13 +60,14 @@ class GolfVehicleController extends Controller
             $ufile1 = $row['ufile1'];
             $rfile1 = $row['rfile1'];
             $status = $row['status'];
+            $price = $row['price'];
             $onum = $row['onum'];
             $is_best = $row['is_best'];
             $distance = $row['distance'];
             $type = $row['type'];
             $titleStr = "수정";
 
-            $depth = $this->golfVehicleModel->countByParentCodeNo($row['code_no']);
+            $depth = $row['depth'];
         } else {
             $row = $this->golfVehicleModel->getDepthAndCodeGubunByNo($parent_code_no);
             $depth = ($row['depth'] ?? 0) + 1;
@@ -95,6 +96,7 @@ class GolfVehicleController extends Controller
             "ufile1" => $ufile1 ?? "",
             "rfile1" => $rfile1 ?? "",
             "status" => $status ?? "",
+            'price' => $price ?? '',
             "onum" => $onum,
             "depth" => $depth,
             "code_gubun" => $code_gubun ?? "",
@@ -123,6 +125,7 @@ class GolfVehicleController extends Controller
         $distance = $this->request->getPost('distance');
         $type = $this->request->getPost('type');
         $file = $this->request->getFile('ufile1');
+        $price = str_replace(',', '', $this->request->getPost('price'));
 
         $upload = WRITEPATH . '../public/data/code/';
         $uploadpload = ROOTPATH . 'public/data/code/';
@@ -134,6 +137,7 @@ class GolfVehicleController extends Controller
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
+                'price' => $price,
                 'is_best' => $is_best,
                 'distance' => $distance,
                 'type' => $type,
@@ -141,13 +145,13 @@ class GolfVehicleController extends Controller
             $this->golfVehicleModel->update($code_idx, $data);
             write_log("코드수정: " . json_encode($data));
         } else {
-            if ($parent_code_no == "0") {
-                $existingCode = $this->golfVehicleModel->where('code_gubun', $code_gubun)->first();
-                if ($existingCode) {
-                    echo "<script>alert('중복된 코드값입니다.');</script>";
-                    return;
-                }
-            }
+            // if ($parent_code_no == "0") {
+            //     $existingCode = $this->golfVehicleModel->where('code_gubun', $code_gubun)->first();
+            //     if ($existingCode) {
+            //         echo "<script>alert('중복된 코드값입니다.');</script>";
+            //         return;
+            //     }
+            // }
 
             $data = [
                 'code_gubun' => $code_gubun,
@@ -158,6 +162,7 @@ class GolfVehicleController extends Controller
                 'status' => $status,
                 'init_oil_price' => $init_oil_price,
                 'onum' => $onum,
+                'price' => $price,
                 'is_best' => $is_best,
                 'type' => $type,
                 'distance' => $distance,

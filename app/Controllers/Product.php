@@ -23,6 +23,8 @@ class Product extends BaseController
     private $reviewModel;
     private $mainDispModel;
     protected $golfInfoModel;
+    protected $golfOptionModel;
+    protected $golfVehicleModel;
 
     private $scale = 8;
 
@@ -40,6 +42,8 @@ class Product extends BaseController
         $this->coupon = model("Coupon");
         $this->couponHistory = model("CouponHistory");
         $this->golfInfoModel = model("GolfInfoModel");
+        $this->golfOptionModel = model("GolfOptionModel");
+        $this->golfVehicleModel = model("GolfVehicleModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -1261,18 +1265,73 @@ class Product extends BaseController
         $data['imgs'] = [];
         $data['img_names'] = [];
 
-        for ($i = 2; $i <= 7; $i++) {
+        $golf_vehicle = $data['info']['golf_vehicle'];
+
+        $golfVehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
+
+        $data['golfVehicles'] = array_filter($golfVehicles, function ($vehicle) use ($golf_vehicle) {
+            return in_array($vehicle['code_no'], explode("|", $golf_vehicle));
+        });
+
+        $golfVehiclesChildren = [];
+
+        foreach ($data['golfVehicles'] as $key => $value) {
+            $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
+            $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
+        }
+
+        foreach ($golfVehiclesChildren as $key => $value) {
+            $price = (float) $value['price'];
+            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+            $price_baht = round($price / $baht_thai, 2);
+            $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
+        }
+
+        $data['golfVehiclesChildren'] = $golfVehiclesChildren;
+
+        for ($i = 1; $i <= 7; $i++) {
             $file = "ufile" . $i;
             if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
                 $data['imgs'][] = "/data/product/" . $data['product'][$file];
                 $data['img_names'][] = $data['product']["rfile" . $i];
+            } else {
+                $data['imgs'][] = "/images/product/noimg.png";
+                $data['img_names'][] = "";
             }
+        }
+
+        if(!empty(session()->get("member")["id"])){
+            $user_id = session()->get("member")["id"];
+            $c_sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                            , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id. "' 
+                                AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+            $c_result = $this->db->query($c_sql);
+            $data['coupons'] = $c_result->getResultArray();
+        }else{
+            $data['coupons'] = [];
         }
 
         return $this->renderView('product/golf/golf-details', $data);
     }
 
-    public function customerForm($code_no)
+    public function optionList($product_idx)
+    {
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
+        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+
+        foreach ($options as $key => $value) {
+            $option_price = (float) $value['option_price'];
+            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+            $option_price_baht = $option_price / $baht_thai;
+            $options[$key]['option_price_baht'] = $option_price_baht;
+        }
+
+        return view('product/golf/option_list', ['options' => $options]);
+    }
+
+    public function customerForm()
     {
         return $this->renderView('product/golf/customer-form');
     }

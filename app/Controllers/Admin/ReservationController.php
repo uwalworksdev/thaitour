@@ -303,19 +303,19 @@ class ReservationController extends BaseController
         $row_cou = $result_cou->getRowArray();
 
         $fsql = " SELECT order_gubun
-							                    , AES_DECRYPT(UNHEX(order_name_kor),   '$private_key') AS order_name_kor
-							                    , AES_DECRYPT(UNHEX(order_first_name), '$private_key') AS order_first_name
-							                    , AES_DECRYPT(UNHEX(order_last_name),  '$private_key') AS order_last_name
-							                    , AES_DECRYPT(UNHEX(order_mobile),     '$private_key') AS order_mobile
-												, AES_DECRYPT(UNHEX(passport_num),     '$private_key') AS passport_num
-												, AES_DECRYPT(UNHEX(order_email),     '$private_key') AS order_email
-												, order_birthday
-												, passport_date
-												, order_sex
-												, gl_idx
-												, ufile
-												, rfile
-							                      FROM tbl_order_list WHERE order_idx = '" . $order_idx . "' ORDER BY gl_idx asc";
+                                    , AES_DECRYPT(UNHEX(order_name_kor),   '$private_key') AS order_name_kor
+                                    , AES_DECRYPT(UNHEX(order_first_name), '$private_key') AS order_first_name
+                                    , AES_DECRYPT(UNHEX(order_last_name),  '$private_key') AS order_last_name
+                                    , AES_DECRYPT(UNHEX(order_mobile),     '$private_key') AS order_mobile
+                                    , AES_DECRYPT(UNHEX(passport_num),     '$private_key') AS passport_num
+                                    , AES_DECRYPT(UNHEX(order_email),      '$private_key') AS order_email
+                                    , order_birthday
+                                    , passport_date
+                                    , order_sex
+                                    , gl_idx
+                                    , ufile
+                                    , rfile
+                                        FROM tbl_order_list WHERE order_idx = '" . $order_idx . "' ORDER BY gl_idx asc";
         $fresult = $this->connect->query($fsql);
         $fresult = $fresult->getResultArray();
 
