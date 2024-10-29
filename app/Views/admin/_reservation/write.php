@@ -477,8 +477,8 @@
                                     <th style="text-align:center">성별</th>
                                 </tr>
                                 <?php
-                                foreach ($fresult as $frow) {
-                                    ?>
+                                    foreach ($fresult as $frow) {
+                                ?>
                                     <tr>
                                         <td style="text-align:center">
                                             <input type="hidden" name="gl_idx[]" value="<?= $frow["gl_idx"] ?>">
