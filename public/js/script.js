@@ -67,3 +67,14 @@ function getCookie(name) {
   }
   return null;
 }
+
+function number_format(n) {
+
+  if (isNaN(n)) return '0';
+
+  let [integerPart, decimalPart] = String(n).split('.');
+
+  integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  return decimalPart ? integerPart + '.' + decimalPart : integerPart;
+}

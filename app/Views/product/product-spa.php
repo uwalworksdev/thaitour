@@ -32,14 +32,18 @@
         top: 40%;
         left: 0px;
     }
+
+    .cursor-pointer-con img {
+        cursor: pointer;
+    }
 </style>
 
 <section>
     <div class="body_inner">
         <div class="banner-ticket">
             <div class="swiper-container-ticket">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                <div class="swiper-wrapper cursor-pointer-con">
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/8386'">
                         <div class="img_box_re">
                         <img class="only_web" src="<?= base_url('/uploads/products/spa-banner1.png') ?>" alt="">
                         <img class="only_mo img_box_re_img" src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
@@ -51,7 +55,7 @@
                         </p>
                         </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/8386'">
                         <div class="img_box_re">
                         <img class="only_web" src="<?= base_url('/uploads/products/spa-banner2.png') ?>" alt="">
                         <img class="only_mo img_box_re_img" src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
@@ -63,7 +67,7 @@
                         </p>
                         </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/8386'">
                         <div class="img_box_re">
                         <img class="only_web" src="<?= base_url('/uploads/products/spa-banner3.png') ?>" alt="">
                          <img class="only_mo img_box_re_img" src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
@@ -75,7 +79,7 @@
                         </p>
                         </div>
                     </div>
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" onclick="location.href='/product-spa/spa-details/8386'">
                         <div class="img_box_re">
                         <img class="only_web" src="<?= base_url('/uploads/products/spa-banner3.png') ?>" alt="">
                          <img class="only_mo img_box_re_img" src="<?= base_url('/uploads/products/spa-banner3_m.png') ?>" alt="">
@@ -156,7 +160,7 @@
 
             <div class="">
             <div class="list-ticket-grid">
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img1.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img1-m.png" alt="main" class="only_mo">
@@ -185,7 +189,7 @@
                        <span class="prd_price">236,100</span>  <span class="ko_m_price y_price">원</span> <span class="prd_price_thai ko_m_price">(6,000 <span class="ko_m_price">바트)</span></span>
                     </div>
                 </a>
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img2.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img2-m.png" alt="main" class="only_mo">
@@ -214,7 +218,7 @@
                        <span class="prd_price">236,100</span>  <span class="ko_m_price y_price">원</span> <span class="prd_price_thai ko_m_price">(6,000 <span class="ko_m_price">바트)</span></span>
                     </div>
                 </a>
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img3.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img3-m.png" alt="main" class="only_mo">
@@ -243,7 +247,7 @@
                        <span class="prd_price">236,100</span>  <span class="ko_m_price y_price">원</span> <span class="prd_price_thai ko_m_price">(6,000 <span class="ko_m_price">바트)</span></span>
                     </div>
                 </a>
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img4.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img4-m.png" alt="main" class="only_mo">
@@ -272,7 +276,7 @@
                        <span class="prd_price">236,100</span>  <span class="ko_m_price y_price">원</span> <span class="prd_price_thai ko_m_price">(6,000 <span class="ko_m_price">바트)</span></span>
                     </div>
                 </a>
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img1.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img1-m.png" alt="main" class="only_mo">
@@ -301,7 +305,7 @@
                        <span class="prd_price">236,100</span>  <span class="ko_m_price y_price">원</span> <span class="prd_price_thai ko_m_price">(6,000 <span class="ko_m_price">바트)</span></span>
                     </div>
                 </a>
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img2.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img2-m.png" alt="main" class="only_mo">
@@ -330,7 +334,7 @@
                        <span class="prd_price">236,100</span>  <span class="ko_m_price y_price">원</span> <span class="prd_price_thai ko_m_price">(6,000 <span class="ko_m_price">바트)</span></span>
                     </div>
                 </a>
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img3.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img3-m.png" alt="main" class="only_mo">
@@ -359,7 +363,7 @@
                        <span class="prd_price">236,100</span>  <span class="ko_m_price y_price">원</span> <span class="prd_price_thai ko_m_price">(6,000 <span class="ko_m_price">바트)</span></span>
                     </div>
                 </a>
-            <a href="#!" class="list-ticket-item">
+            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img4.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img4-m.png" alt="main" class="only_mo">

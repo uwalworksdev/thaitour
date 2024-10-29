@@ -45,6 +45,7 @@ abstract class BaseController extends Controller
      */
     // protected $session;
     protected $data = [];
+    protected $setting;
 
     /**
      * @return void
@@ -60,8 +61,9 @@ abstract class BaseController extends Controller
         $this->session = \Config\Services::session();
 
         $model = new Bbs();
+        $settingModel = new \App\Models\Setting();
         $this->data['notice_list_footer'] = $model->List('b2b_notice')->get()->getResultArray();
-
+        $this->setting = $settingModel->info(1);
         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 
     }
@@ -70,5 +72,10 @@ abstract class BaseController extends Controller
     {
         $data = array_merge($this->data, $additionalData);
         return view($view, $data);
+    }
+
+    public function getData($key)
+    {
+        return $this->data[$key];
     }
 }

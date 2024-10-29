@@ -175,7 +175,7 @@
                     MD추천 골프투어
                 </div>
             </div>
-            <div class="best_tour_section5_ swiper">
+            <div class="best_tour_section5_ swiper best_golf_section5_">
                 <div class="swiper-wrapper" id="product_list_md_recommended">
                     <?php foreach ($productMDRecommended['items'] as $item) :
                         echo view("product/golf/product_item_by_md_recommended", ["item" => $item]);

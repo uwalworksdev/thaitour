@@ -15,6 +15,7 @@ class TourRegistController extends BaseController
     protected $connect;
     protected $productModel;
     protected $golfInfoModel;
+    protected $golfVehicleModel;
 
     protected $moptionModel;
     protected $optionTourModel;
@@ -30,6 +31,7 @@ class TourRegistController extends BaseController
         $this->golfOptionModel = model("GolfOptionModel");
         $this->productModel = model("ProductModel");
         $this->golfInfoModel = model("GolfInfoModel");
+        $this->golfVehicleModel = model("GolfVehicleModel");
         $this->moptionModel = model("MoptionModel");
         $this->optionTourModel = model("OptionTourModel");
         $this->tourProducts = model("ProductTourModel");
@@ -61,6 +63,11 @@ class TourRegistController extends BaseController
     public function list_spas()
     {
         $data = $this->get_list_('1317');
+        $data2 = $this->get_list_('1320');
+        $data3 = $this->get_list_('1324');
+
+        $data = array_merge($data, $data2);
+        $data = array_merge($data, $data3);
         return view("admin/_tourRegist/list_spas", $data);
     }
 
@@ -154,15 +161,15 @@ class TourRegistController extends BaseController
         $result = $this->connect->query($total_sql) or die ($this->connect->error);
         $nTotalCount = $result->getNumRows();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '" . $s_product_code_1 . "' and status='Y' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='2' and code_no = '" . $s_product_code_1 . "' and status='Y' order by onum desc, code_idx desc";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='3' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_3 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_3 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
 
@@ -225,8 +232,7 @@ class TourRegistController extends BaseController
     public function write_golf()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite("1302");
-
+        $data = $this->getWrite('', '', '', '1302', '');
         $db = $this->connect;
 
         $sql_c = " select * from tbl_code where parent_code_no = '26' and depth = '2' and status != 'N' order by onum desc ";
@@ -234,6 +240,8 @@ class TourRegistController extends BaseController
         $fresult_c = $result_c->getResultArray();
 
         $options = $this->golfOptionModel->getOptions($product_idx);
+
+        $vehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
 
         $sql = "SELECT COUNT(*) as cnt FROM tbl_product_tours WHERE product_idx = ?";
         $query = $db->query($sql, [$product_idx]);
@@ -253,6 +261,7 @@ class TourRegistController extends BaseController
             'codes' => $fresult_c,
             'options' => $options,
             "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles' => $vehicles
         ];
 
         $data = array_merge($data, $new_data);
@@ -260,16 +269,18 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_golf", $data);
     }
 
-    public function write_golf_ok($product_idx = null) {
+    public function write_golf_ok($product_idx = null)
+    {
 
         $data = $this->request->getPost();
-        $data['is_best_value']      = $data['is_best_value'] ?? "N";
-        $data['special_price']      = $data['special_price'] ?? "N";
-        $data['original_price']     = str_replace(",", "", $data['original_price']);
-        $data['product_price']      = str_replace(",", "", $data['product_price']);
+        $data['is_best_value'] = $data['is_best_value'] ?? "N";
+        $data['special_price'] = $data['special_price'] ?? "N";
+        $data['original_price'] = str_replace(",", "", $data['original_price']);
+        $data['product_price'] = str_replace(",", "", $data['product_price']);
+        $data['golf_vehicle'] = "|" . implode("|", $data['vehicle_arr']) . "|";
 
         $files = $this->request->getFiles();
-        for($i = 1; $i <= 7; $i++) {
+        for ($i = 1; $i <= 7; $i++) {
             $file = $files['ufile' . $i];
             if ($file->isValid() && !$file->hasMoved()) {
                 $name = $file->getClientName();
@@ -279,11 +290,11 @@ class TourRegistController extends BaseController
                 $data['rfile' . $i] = $name;
             }
         }
-        if($product_idx) {
+        if ($product_idx) {
             $data['m_date'] = date("Y-m-d H:i:s");
             $this->productModel->updateData($product_idx, $data);
 
-            if(!$this->golfInfoModel->getGolfInfo($product_idx)) {
+            if (!$this->golfInfoModel->getGolfInfo($product_idx)) {
                 $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
             } else {
                 $this->golfInfoModel->updateData($product_idx, $data);
@@ -299,10 +310,23 @@ class TourRegistController extends BaseController
             $html = '<script>alert("등록되었습니다.");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
+
+        if ($data['option_idx']) {
+            foreach ($data['option_idx'] as $key => $value) {
+                $this->golfOptionModel->update($value, [
+                    'option_price' => $data['option_price'][$key],
+                    'caddy_fee' => $data['caddy_fee'][$key],
+                    'cart_pie_fee' => $data['cart_pie_fee'][$key],
+                ]);
+            }
+        }
+
+
         return $this->response->setBody($html);
     }
 
-    public function add_moption() {
+    public function add_moption()
+    {
         $product_idx = updateSQ($this->request->getPost('product_idx'));
         $moption_hole = $this->request->getPost('moption_hole');
         $moption_hour = $this->request->getPost('moption_hour');
@@ -315,36 +339,55 @@ class TourRegistController extends BaseController
         }
 
         $newData = [
-            'product_idx'  => $product_idx,
-            'hole_cnt'     => $moption_hole,
-            'hour'         => $moption_hour,
-            'minute'       => $moption_minute,
+            'product_idx' => $product_idx,
+            'hole_cnt' => $moption_hole,
+            'hour' => $moption_hour,
+            'minute' => $moption_minute,
             'option_price' => 0,
-            'option_cnt'   => 0,
-            'use_yn'       => 'Y',
-            'option_type'  => 'M',
-            'rdate'        => date('Y-m-d H:i:s')
+            'option_cnt' => 0,
+            'use_yn' => 'Y',
+            'option_type' => 'M',
+            'caddy_fee' => '그린피에 포함',
+            'cart_pie_fee' => '피지에 포함',
+            'rdate' => date('Y-m-d H:i:s')
         ];
         $this->golfOptionModel->insert($newData);
         $insertId = $this->db->insertID();
 
-        $html = '<tr id="moption_'.$insertId.'">';
+        $html = '<tr id="moption_' . $insertId . '">';
         $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}시</span>&nbsp;/&nbsp;<span>{$moption_minute}분</span></td>";
-        $html .= '<td><div class="flex_c_c"><input type="text" id="option_price_'.$insertId.'" value="0">원</div></td>';
-        $html .= '<td>&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption('.$insertId.');">수정</button>';
-        $html .= '&nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption('.$insertId.');">삭제</button></td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
+                        <input type="text" name="option_price[]" id="option_price_' . $insertId . '" value="0">원
+                    </div>
+                </td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="text" name="caddy_fee[]" id="caddy_fee_' . $insertId . '" value="그린피에 포함">
+                    </div>
+                </td>';
+        $html .= '<td>
+                    <div class="flex_c_c">
+                        <input type="text" name="cart_pie_fee[]" id="cart_pie_fee_' . $insertId . '" value="그린피에 포함">
+                    </div>
+                </td>';
+        $html .= '<td class="tac">&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(' . $insertId . ');">수정</button>';
+        $html .= '&nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(' . $insertId . ');">삭제</button></td>';
         $html .= '</tr>';
 
         return $this->response->setBody($html);
     }
 
-    public function upd_moption($idx) {
+    public function upd_moption($idx)
+    {
         $option_price = $this->request->getRawInputVar('option_price') ?? 0;
         $this->golfOptionModel->update($idx, ['option_price' => $option_price]);
         return $this->response->setJSON(['message' => '수정되었습니다']);
     }
 
-    public function del_moption($idx) {
+    public function del_moption($idx)
+    {
         $this->golfOptionModel->delete($idx);
         return $this->response->setJSON(['message' => '삭체되었습니다']);
     }
@@ -352,7 +395,8 @@ class TourRegistController extends BaseController
     public function write_spas()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite();
+
+        $data = $this->getWrite('', '1317', '1320', '1324', '');
 
         $db = $this->connect;
 
@@ -389,6 +433,38 @@ class TourRegistController extends BaseController
         $query = $db->query($sql, [$product_idx]);
         $data['dayDetails'] = $query->getResultArray();
 
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4402' order by onum desc, code_idx desc";
+        $fresult6 = $this->connect->query($fsql);
+        $fresult6 = $fresult6->getResultArray();
+
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4404' order by onum desc, code_idx desc";
+        $fresult5 = $this->connect->query($fsql);
+        $fresult5 = $fresult5->getResultArray();
+
+        $fresult5 = array_map(function ($item) {
+            $rs = (array)$item;
+
+            $code_no = $rs['code_no'];
+
+            $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='$code_no' order by onum desc, code_idx desc";
+
+            $rs_child = $this->connect->query($fsql)->getResultArray();
+
+            $rs['child'] = $rs_child;
+
+            return $rs;
+        }, $fresult5);
+
+        $fsql = "select * from tbl_code where code_gubun='spa_' and parent_code_no='4403' order by onum desc, code_idx desc";
+        $fresult8 = $this->connect->query($fsql);
+        $fresult8 = $fresult8->getResultArray();
+
+        $data['fresult6'] = $fresult6;
+
+        $data['fresult5'] = $fresult5;
+
+        $data['fresult8'] = $fresult8;
+
         $new_data = [
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
@@ -402,7 +478,7 @@ class TourRegistController extends BaseController
     public function write_tours()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $data = $this->getWrite('1301');
+        $data = $this->getWrite('', '', '1301', '', '');
 
         $db = $this->connect;
 
@@ -460,7 +536,7 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_tours", $data);
     }
 
-    private function getWrite($product_code_1)
+    private function getWrite($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code)
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $pg = updateSQ($_GET["pg"] ?? '');
@@ -476,19 +552,35 @@ class TourRegistController extends BaseController
         $orderBy = $_GET["orderBy"] ?? "";
         if ($orderBy == "") $orderBy = 1;
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='2' and code_no = '$product_code_1' and status='Y' order by onum desc, code_idx desc";
+        $fsql = "SELECT * FROM tbl_code 
+                 WHERE depth='2' 
+                 AND (code_no = '$hotel_code' 
+                      OR code_no = '$spa_code' 
+                      OR code_no = '$tour_code' 
+                      OR code_no = '$golf_code' 
+                      OR code_no = '$stay_code') 
+                 AND status='Y' 
+                 ORDER BY onum DESC, code_idx DESC";
         $fresult = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult = $fresult->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $product_code_1 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='3'  
+                        AND (parent_code_no = '$hotel_code' 
+                        OR parent_code_no = '$spa_code' 
+                        OR parent_code_no = '$tour_code' 
+                        OR parent_code_no = '$golf_code' 
+                        OR parent_code_no = '$stay_code') 
+                        AND status='Y'  order by onum desc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
+
         $row = null;
 
+        $product_code_1 = '';
         if ($product_idx) {
             $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
             $row = $this->connect->query("$sql")->getResultArray()[0];
@@ -589,6 +681,11 @@ class TourRegistController extends BaseController
             $addrs = $row["addrs"];
             $latitude = $row["latitude"];
             $longitude = $row["longitude"];
+            $product_points = $row["product_points"];
+
+            $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
+            $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
+            $fresult3 = $fresult3->getResultArray();
         }
 
 
@@ -958,12 +1055,12 @@ class TourRegistController extends BaseController
         $code_idx = $this->request->getPost('code_idx');
         $product_idx = $this->request->getPost('product_idx');
         $options = $this->request->getPost('o_name');
-        
-         $this->optionTourModel->where('code_idx', $code_idx)
-              ->where('product_idx', $product_idx)
-              ->delete();
 
-        $result = true; 
+        $this->optionTourModel->where('code_idx', $code_idx)
+            ->where('product_idx', $product_idx)
+            ->delete();
+
+        $result = true;
         foreach ($options as $i => $option_name) {
             if ($option_name && isset($_POST['o_price'][$i])) {
                 $data = [
@@ -975,9 +1072,9 @@ class TourRegistController extends BaseController
                     'onum' => $_POST['o_num'][$i],
                     'rdate' => date('Y-m-d H:i:s')
                 ];
-                
-                if (! $this->optionTourModel->insert($data)) {
-                    $result = false; 
+
+                if (!$this->optionTourModel->insert($data)) {
+                    $result = false;
                 }
             }
         }
@@ -1028,7 +1125,8 @@ class TourRegistController extends BaseController
         return $this->response->setJSON(['message' => $msg]);
     }
 
-    public function write_tour_info() {
+    public function write_tour_info()
+    {
         $tours_idx = $this->request->getPost('tours_idx');
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $info_idx = updateSQ($_GET["info_idx"] ?? '');

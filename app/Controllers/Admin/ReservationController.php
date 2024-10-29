@@ -5,16 +5,25 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
 use Config\CustomConstants as ConfigCustomConstants;
+use CodeIgniter\I18n\Time;
+use Exception;
 
 class ReservationController extends BaseController
 {
     private $db;
 
     protected $connect;
+    private $orderModel;
+    private $orderSubModel;
+    private $codeModel;
+
 
     public function __construct()
     {
         $this->db = db_connect();
+        $this->orderModel = model("OrdersModel");
+        $this->orderSubModel = model("OrderSubModel");
+        $this->codeModel = model("Code");
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
@@ -27,9 +36,6 @@ class ReservationController extends BaseController
         $product_code_1  = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
         $product_code_2  = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
         $product_code_3  = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
-        $product_code_4  = !empty($_GET["product_code_4"]) ? $_GET['product_code_4'] : "";
-        $search_text     = !empty($_GET["search_text"]) ? $_GET['search_text'] : "";
-        $search_type     = !empty($_GET["search_type"]) ? $_GET['search_type'] : "";
         $pg              = !empty($_GET["pg"]) ? $_GET['pg'] : "";
         $isDelete        = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
         $s_date          = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
@@ -80,8 +86,8 @@ class ReservationController extends BaseController
         }
 
         if ($product_code_1) $strSql = $strSql . " and b.product_code_1 = '$product_code_1' ";
-        if ($product_code_2) $strSql = $strSql . " and b.product_code_2 = '$product_code_2' ";
-        if ($product_code_3) $strSql = $strSql . " and b.product_code_3 = '$product_code_3' ";
+        if ($product_code_2) $strSql = $strSql . " and b.product_code_list like %|'$product_code_2'%";
+        if ($product_code_3) $strSql = $strSql . " and b.product_code_list like %|'$product_code_3'%";
 
         if ($isDelete == "Y") $strSql = $strSql . " and a.isDelete = 'Y' ";
 
@@ -256,7 +262,10 @@ class ReservationController extends BaseController
             $people_kids_price = $row["people_kids_price"];
             $people_baby_cnt = $row["people_baby_cnt"];
             $people_baby_price = $row["people_baby_price"];
+            $inital_price = $row["inital_price"];
             $order_price = $row["order_price"];
+            $order_room_cnt = $row["order_room_cnt"];
+            $order_day_cnt = $row["order_day_cnt"];
             $order_confirm_price = $row["order_confirm_price"];
             $order_method = $row["order_method"];
             $used_coupon_idx = $row["used_coupon_idx"];
@@ -302,7 +311,7 @@ class ReservationController extends BaseController
         $result_cou = $this->connect->query($sql_cou);
         $row_cou = $result_cou->getRowArray();
 
-        $fsql = " SELECT order_gubun
+        $fsql = " SELECT order_gubun, number_room
                                     , AES_DECRYPT(UNHEX(order_name_kor),   '$private_key') AS order_name_kor
                                     , AES_DECRYPT(UNHEX(order_first_name), '$private_key') AS order_first_name
                                     , AES_DECRYPT(UNHEX(order_last_name),  '$private_key') AS order_last_name
@@ -354,6 +363,9 @@ class ReservationController extends BaseController
             "people_baby_cnt" => $people_baby_cnt ?? '',
             "people_baby_price" => $people_baby_price ?? '',
             "order_price" => $order_price ?? '',
+            "inital_price" => $inital_price ?? '',
+            "order_room_cnt" => $order_room_cnt ?? '',
+            "order_day_cnt" => $order_day_cnt ?? '',
             "order_confirm_price" => $order_confirm_price ?? '',
             "order_method" => $order_method ?? '',
             "used_coupon_idx" => $used_coupon_idx ?? '',
@@ -388,7 +400,6 @@ class ReservationController extends BaseController
             "away_arrive_date" => $away_arrive_date ?? '',
             "away_depart_date" => $away_depart_date ?? '',
             "home_arrive_date" => $home_arrive_date ?? '',
-            /**/
             "str_guide" => $str_guide,
             "row" => $row  ?? '',
             "row_cou" => $row_cou ?? [
@@ -400,5 +411,147 @@ class ReservationController extends BaseController
         ];
 
         return view('admin/_reservation/write', $data);
+    }
+
+    public function write_ok() {
+        try{
+            $product_name			= updateSQ($_POST["product_name"]);
+            $order_idx				= updateSQ($_POST["order_idx"]);	
+            $deposit_price_change	= number_format($_POST["deposit_price_change"]);	
+            $price_confirm_change	= updateSQ($_POST["price_confirm_change"]);	
+            $total_price_change		= updateSQ($_POST["total_price_change"]);	
+            $order_user_name		= updateSQ($_POST["order_user_name"]);	
+            $order_user_email		= updateSQ($_POST["order_user_email"]);	
+            $order_user_mobile		= updateSQ($_POST["order_user_mobile"]);	
+            $order_user_phone		= updateSQ($_POST["order_user_phone"]);	
+            $order_status			= updateSQ($_POST["order_status"]);	
+            $manager_name			= updateSQ($_POST["manager_name"]);	
+            $manager_phone			= updateSQ($_POST["manager_phone"]);	
+            $manager_email			= updateSQ($_POST["manager_email"]);	
+            $order_method			= updateSQ($_POST["order_method"]);	
+            $order_confirm_price	= str_replace(",","",updateSQ($_POST["order_confirm_price"]));	
+            $custom_req				= updateSQ($_POST["custom_req"]);	
+            $local_phone			= updateSQ($_POST["local_phone"]);	
+            $admin_memo				= updateSQ($_POST["admin_memo"]);	
+            $deposit_price			= str_replace(",","",updateSQ($_POST["deposit_price"]));	
+                
+            $start_date				= updateSQ($_POST['start_date']);  
+            $end_date				= updateSQ($_POST['end_date']);  
+            $order_price			= str_replace(",","",updateSQ($_POST["order_price"]));	
+    
+            if($order_idx){
+                $data = [
+                    "product_name" => $product_name,
+                    "order_user_name" => encryptField($order_user_name, "encode"),
+                    "order_user_email" => encryptField($order_user_email, "encode"),
+                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                    "order_user_phone" => encryptField($order_user_phone, "encode"),
+                    "local_phone" => encryptField($local_phone, "encode"),
+                    "order_status" => $order_status,
+                    "order_method" => $order_method,
+                    "deposit_price_change" => $deposit_price_change,
+                    "price_confirm_change" => $price_confirm_change,
+                    "total_price_change" => $total_price_change,
+                    "order_confirm_price" => $order_confirm_price,
+                    "custom_req" => $custom_req,
+                    "admin_memo" => $admin_memo,
+                    "manager_name" => encryptField($manager_name, "encode"),
+                    "manager_phone" => encryptField($manager_phone, "encode"),
+                    "manager_email" => encryptField($manager_email, "encode"),
+                    "start_date" => $start_date,
+                    "end_date" => $end_date,
+                    "order_price" => $order_price,
+                    "deposit_price" => $deposit_price,
+                    "order_m_date" => Time::now('Asia/Seoul', 'en_US') 
+                ];
+    
+                if($order_status == "R") {
+                    $data["order_confirm_date"] = Time::now('Asia/Seoul', 'en_US');
+                } else if($order_status == "Y") {
+                    $data["order_c_date"] = Time::now('Asia/Seoul', 'en_US');
+                }
+    
+                $this->orderModel->update($order_idx, $data);
+    
+                $gl_idx = $this->request->getPost('gl_idx');
+                $order_name_kor = $this->request->getPost('order_name_kor');
+                $order_first_name = $this->request->getPost('order_first_name');
+                $order_last_name = $this->request->getPost('order_last_name');
+                $passport_num = $this->request->getPost('passport_num');
+                $order_email = $this->request->getPost('order_email');
+                $order_birthday = $this->request->getPost('order_birthday');
+                $order_mobile = $this->request->getPost('order_mobile');
+                $passport_date = $this->request->getPost('passport_date');
+                $order_sex = $this->request->getPost('order_sex');
+    
+                for ($i = 0; $i < count($gl_idx) ; $i++)
+                {
+                    $data_sub = [
+                        "order_name_kor" => encryptField($order_name_kor[$i], "encode"),
+                        "order_first_name" => encryptField($order_first_name[$i], "encode"),
+                        "order_last_name" => encryptField($order_last_name[$i], "encode"),
+                        "passport_num" => encryptField($passport_num[$i], "encode"),
+                        "order_email" => encryptField($order_email[$i], "encode"),
+                        "order_birthday" => $order_birthday[$i],
+                        "order_mobile" => encryptField($order_mobile[$i], "encode"),
+                        "passport_date" => $passport_date[$i],
+                        "order_sex" => $order_sex[$i]
+                    ];
+    
+                    $this->orderSubModel->update($gl_idx[$i], $data_sub);
+                }
+            }
+        }catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }   
+    }
+
+    public function delete() {
+
+        try {
+            $order_idx = $this->request->getPost('order_idx');
+            if(is_array($order_idx)){
+                $this->db->transBegin();
+
+                foreach ($order_idx as $idx) {
+                    $this->orderModel->update($idx, [
+                        "order_status" => "D",
+                        "order_d_date" => Time::now('Asia/Seoul', 'en_US')
+                    ]);
+                }
+
+                $this->db->transCommit();
+                $resultArr['result'] = true;
+                $resultArr['message'] = "정상적으로 삭제되었습니다.";
+            }
+        } catch (Exception $err) {
+            $this->db->transRollback();
+            $resultArr['result'] = false;
+            $resultArr['message'] = $err->getMessage();
+        } finally {
+            return $this->response->setJSON($resultArr);
+        } 
+    }
+
+    function get_code() {
+        $parent_code_no = $this->request->getVar('parent_code_no');
+        $depth = $this->request->getVar('depth');
+
+        $data = [];
+        $codes = $this->codeModel->getByParentCode($parent_code_no)->getResultArray();
+        foreach($codes as $code){
+            $arr = array(
+                "code_no" => $code["code_no"],
+                "code_name" => $code["code_name"],
+                "status" => $code["status"],
+            );
+
+            array_push($data, $arr);
+        }
+
+        return $this->response->setJSON($data);
     }
 }

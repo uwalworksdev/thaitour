@@ -1561,6 +1561,8 @@
   font-weight: 500;
   line-height: 60px;
   border-radius: 4px;
+  color: var(--bs-point);
+  border-color: var(--bs-point) !important;
 }
 
 .view_nav .nav_btn_wrap .flex {
@@ -1615,8 +1617,16 @@
   width: 14px;
   height: 14px;
   background: no-repeat center;
-  background-image: url(../img/ico/date_ico_gray.png);
+  background-image: url(/uploads/icons/date_ico_gray.png);
   margin-right: 6px;
+}
+
+.opt_count_box .minus_btn {
+  background-image: url(/uploads/icons/minus_btn.png);
+}
+
+.opt_count_box .plus_btn {
+  background-image: url(/uploads/icons/plus_btn.png);
 }
 
 .view_nav .cho_nav .date_label.on {
@@ -3714,6 +3724,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   width: 25px;
 }
 
+.customer-form-page .title-sub-c.con-border-top {
+  border-top: 1px solid #eeeeee;
+  padding-top: 40px;
+}
+
 .customer-form-page .container-card {
   display: flex;
 }
@@ -3916,7 +3931,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   display: inline-block;
 }
 
-.customer-form-page .container-card .item-info-check-first.click{
+.customer-form-page .container-card .item-info-check-first.click {
   background-color: #686868;
   margin-bottom: 16px;
   color: #fff;
@@ -4927,6 +4942,14 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 .content-sub-hotel-detail .rating-container img {
   width: 18px;
   height: 18px;
+}
+
+.view_nav .nav_btn_wrap .btn-point:hover {
+  opacity: 0.8;
+}
+
+.view_nav .nav_btn_wrap button:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 1200px) {

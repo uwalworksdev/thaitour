@@ -23,6 +23,8 @@ class Product extends BaseController
     private $reviewModel;
     private $mainDispModel;
     protected $golfInfoModel;
+    protected $golfOptionModel;
+    protected $golfVehicleModel;
 
     private $scale = 8;
 
@@ -40,6 +42,8 @@ class Product extends BaseController
         $this->coupon = model("Coupon");
         $this->couponHistory = model("CouponHistory");
         $this->golfInfoModel = model("GolfInfoModel");
+        $this->golfOptionModel = model("GolfOptionModel");
+        $this->golfVehicleModel = model("GolfVehicleModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -101,7 +105,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/product-tours', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -220,7 +223,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/product-hotel', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -382,7 +384,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/product-result', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -477,7 +478,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/product-golf', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -598,7 +598,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/product-list', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -664,7 +663,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/product-spa', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -729,24 +727,22 @@ class Product extends BaseController
 
             foreach ($products['items'] as $key => $product) {
 
-                if(empty($search_product_category) || strpos($search_product_category, 'all') !== false){
-                    foreach($arr_code_list as $h_code){
+                if (empty($search_product_category) || strpos($search_product_category, 'all') !== false) {
+                    foreach ($arr_code_list as $h_code) {
 
-                        if(strpos($product['product_code_list'], $h_code) !== false){
+                        if (strpos($product['product_code_list'], $h_code) !== false) {
                             $hotel_code = $h_code;
                             break;
                         }
                     }
-
-                }else{
+                } else {
                     $hotel_codes = explode(",", $search_product_category);
-                    foreach($hotel_codes as $h_code){
-                        if(strpos($product['product_code_list'], $h_code) !== false){
+                    foreach ($hotel_codes as $h_code) {
+                        if (strpos($product['product_code_list'], $h_code) !== false) {
                             $hotel_code = $h_code;
                             break;
                         }
                     }
-
                 }
 
                 $codeTree = $this->codeModel->getCodeTree($hotel_code);
@@ -832,7 +828,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/hotel/list-hotel', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -998,27 +993,27 @@ class Product extends BaseController
             }
 
             $fsql = "select * from tbl_code where code_gubun='Room facil' and depth='2' order by onum desc, code_idx desc";
-            $rresult = $this->db->query($fsql) or die ($this->db->error);
+            $rresult = $this->db->query($fsql) or die($this->db->error);
             $rresult = $rresult->getResultArray();
 
             $sql = "SELECT a.*, b.ufile1 as avt
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
-                    WHERE a.product_idx = " . $idx ." AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+                    WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
 
-            $reviews = $this->db->query($sql) or die ($this->db->error);
+            $reviews = $this->db->query($sql) or die($this->db->error);
             $reviewCount = $reviews->getNumRows();
             $reviews = $reviews->getResultArray();
 
             $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
-            $reviewCategories = $this->db->query($sql) or die ($this->db->error);
+            $reviewCategories = $this->db->query($sql) or die($this->db->error);
             $reviewCategories = $reviewCategories->getResultArray();
 
-            $reviewCategories = array_map(function ($item) use ($idx){
+            $reviewCategories = array_map(function ($item) use ($idx) {
                 $reviewCategory = (array)$item;
 
                 $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($idx) .
-                        " AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
+                    " AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
                 $results = $this->db->query($sql);
                 $count = $results->getNumRows();
                 $results = $results->getResultArray();
@@ -1040,15 +1035,15 @@ class Product extends BaseController
                 return $reviewCategory;
             }, $reviewCategories);
 
-            if(!empty($session->get("member")["id"])){
+            if (!empty($session->get("member")["id"])) {
                 $user_id = $session->get("member")["id"];
                 $c_sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
                                 , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
-                                    FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id. "' 
+                                    FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id . "' 
                                     AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
                 $c_result = $this->db->query($c_sql);
                 $c_row = $c_result->getResultArray();
-            }else{
+            } else {
                 $c_row = [];
             }
 
@@ -1070,7 +1065,6 @@ class Product extends BaseController
             ];
 
             return $this->renderView('product/hotel/hotel-details', $data);
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -1088,7 +1082,7 @@ class Product extends BaseController
     {
         $cart = $this->request->getCookie('cart');
 
-        if($cart){
+        if ($cart) {
             $cart_arr = json_decode($cart, true);
             $product_idx = $cart_arr["product_idx"] ?? 0;
             $room_op_idx = $cart_arr["room_op_idx"] ?? 0;
@@ -1104,10 +1098,10 @@ class Product extends BaseController
             $extra_cost = 0;
 
             $type_extra_cost = $setting["type_extra_cost"];
-            if(!empty($setting["extra_cost"])){
-                if($type_extra_cost == "P"){
+            if (!empty($setting["extra_cost"])) {
+                if ($type_extra_cost == "P") {
                     $extra_cost = round(intval($last_price) * floatval($setting["extra_cost"]) / 100);
-                }else {
+                } else {
                     $extra_cost = $setting["extra_cost"];
                 }
             }
@@ -1131,26 +1125,31 @@ class Product extends BaseController
         return $this->renderView('product/hotel/reservation-form', $data);
     }
 
-    public function reservationFormInsert() {
+    public function reservationFormInsert()
+    {
 
         try {
 
             $product_idx = $this->request->getPost('product_idx') ?? 0;
-            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0; 
+            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
-            $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0; 
-            $order_price = $this->request->getPost('order_price') ?? 0; 
-            $number_room = $this->request->getPost('number_room') ?? 0; 
-            $number_day = $this->request->getPost('number_day') ?? 0; 
-            $order_memo = $this->request->getPost('order_memo') ?? ""; 
-    
+            $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
+            $inital_price = $this->request->getPost('inital_price') ?? 0;
+            $order_price = $this->request->getPost('order_price') ?? 0;
+            $number_room = $this->request->getPost('number_room') ?? 0;
+            $number_day = $this->request->getPost('number_day') ?? 0;
+            $order_memo = $this->request->getPost('order_memo') ?? "";
+            $email_name = $this->request->getPost('email_name') ?? "";
+            $email_host = $this->request->getPost('email_host') ?? "";
+            $order_user_mobile = $this->request->getPost('order_user_mobile') ?? "";
+            $order_user_email = $email_name . "@" . $email_host;
             $hotel = $this->productModel->find($product_idx);
             $m_idx = session()->get("member")["idx"];
             $order_status = "W";
             $ipAddress = $this->request->getIPAddress();
             $device_type = get_device();
 
-            if(!empty($use_coupon_idx)){
+            if (!empty($use_coupon_idx)) {
                 $coupon = $this->coupon->find($use_coupon_idx);
             }
 
@@ -1165,7 +1164,10 @@ class Product extends BaseController
                 "product_code_list" => $hotel["product_code_list"],
                 "product_name" => $hotel["product_name"],
                 "order_gubun" => "hotel",
+                "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                "order_user_email" => encryptField($order_user_email, "encode"),
                 "order_memo" => $order_memo,
+                "inital_price" => $inital_price,
                 "order_price" => $order_price,
                 "order_date" => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx" => $use_coupon_idx,
@@ -1180,11 +1182,11 @@ class Product extends BaseController
             ];
 
             $order_idx = $this->orderModel->insert($data);
-            if($order_idx){
-                $order_no	= "S".substr(date("Ymd"),2,8).str_pad($order_idx, 3, "0", STR_PAD_LEFT);
+            if ($order_idx) {
+                $order_no    = "S" . substr(date("Ymd"), 2, 8) . str_pad($order_idx, 3, "0", STR_PAD_LEFT);
                 $this->orderModel->update($order_idx, ["order_no" => $order_no]);
-    
-                if(!empty($use_coupon_idx)){
+
+                if (!empty($use_coupon_idx)) {
                     $this->coupon->update($use_coupon_idx, ["status" => "E"]);
 
                     $cou_his = [
@@ -1204,8 +1206,8 @@ class Product extends BaseController
                 $order_first_name = $this->request->getPost('order_first_name');
                 $order_last_name = $this->request->getPost('order_last_name');
                 foreach ($order_num_room as $key => $value) {
-                    $first_name = sqlSecretConver($order_first_name[$key], "encode");
-                    $last_name = sqlSecretConver($order_last_name[$key], "encode");
+                    $first_name = encryptField($order_first_name[$key], "encode");
+                    $last_name = encryptField($order_last_name[$key], "encode");
                     $data_sub = [
                         "m_idx" => $m_idx,
                         "order_idx" => $order_idx,
@@ -1217,27 +1219,25 @@ class Product extends BaseController
                     ];
                     $this->orderSubModel->insert($data_sub);
                 }
-                
+
                 $this->response->deleteCookie('cart');
 
                 return $this->response->setJSON([
                     'result' => true,
                     'message' => "Ok"
                 ], 200);
-            }else{
+            } else {
                 return $this->response->setJSON([
                     'result' => false,
                     'message' => "Error"
                 ], 400);
             }
-
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
             ]);
         }
-
     }
 
     public function completedOrder()
@@ -1261,18 +1261,79 @@ class Product extends BaseController
         $data['imgs'] = [];
         $data['img_names'] = [];
 
-        for ($i = 2; $i <= 7; $i++) {
+        $golf_vehicle = $data['info']['golf_vehicle'];
+
+        $golfVehicles = $this->golfVehicleModel->getByParentAndDepth(0, 1)->getResultArray();
+
+        $data['golfVehicles'] = array_filter($golfVehicles, function ($vehicle) use ($golf_vehicle) {
+            return in_array($vehicle['code_no'], explode("|", $golf_vehicle));
+        });
+
+        $golfVehiclesChildren = [];
+
+        foreach ($data['golfVehicles'] as $key => $value) {
+            $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
+
+            $price = (float) $value['price'];
+            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+            $price_baht = round($price / $baht_thai, 2);
+            $data['golfVehicles'][$key]['price_baht'] = $price_baht;
+
+            $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
+        }
+
+        foreach ($golfVehiclesChildren as $key => $value) {
+            $price = (float) $value['price'];
+            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+            $price_baht = round($price / $baht_thai, 2);
+            $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
+        }
+
+        $data['golfVehiclesChildren'] = $golfVehiclesChildren;
+
+        for ($i = 1; $i <= 7; $i++) {
             $file = "ufile" . $i;
             if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
                 $data['imgs'][] = "/data/product/" . $data['product'][$file];
                 $data['img_names'][] = $data['product']["rfile" . $i];
+            } else {
+                $data['imgs'][] = "/images/product/noimg.png";
+                $data['img_names'][] = "";
             }
+        }
+
+        if (!empty(session()->get("member")["id"])) {
+            $user_id = session()->get("member")["id"];
+            $c_sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                            , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id . "' 
+                                AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+            $c_result = $this->db->query($c_sql);
+            $data['coupons'] = $c_result->getResultArray();
+        } else {
+            $data['coupons'] = [];
         }
 
         return $this->renderView('product/golf/golf-details', $data);
     }
 
-    public function customerForm($code_no)
+    public function optionList($product_idx)
+    {
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
+        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+
+        foreach ($options as $key => $value) {
+            $option_price = (float) $value['option_price'];
+            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+            $option_price_baht = round($option_price / $baht_thai, 2);
+            $options[$key]['option_price_baht'] = $option_price_baht;
+        }
+
+        return view('product/golf/option_list', ['options' => $options]);
+    }
+
+    public function customerForm()
     {
         return $this->renderView('product/golf/customer-form');
     }
@@ -1285,6 +1346,20 @@ class Product extends BaseController
     public function index9($code_no)
     {
         return $this->renderView('tours/list-tour');
+    }
+
+    public function spaDetail($code_no)
+    {
+        return $this->renderView('/product/spa/spa-details');
+    }
+
+    public function productBooking($code_no)
+    {
+        return $this->renderView('/product/spa/product-booking');
+    }
+    public function spaCompletedOrder()
+    {
+        return $this->renderView('/product/spa/completed-order');
     }
 
     public function tourLocationInfo($code_no)

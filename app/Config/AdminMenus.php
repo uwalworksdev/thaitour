@@ -66,7 +66,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['AdminRoomController::list', 'AdminRoomController::write']
                 ],
                 [
-                    'name' => '픽업 차량',
+                    'name' => '골프 픽업차량',
                     'code' => 'B8',
                     'url' => '/AdmMaster/_tourRegist/golf_vehicles',
                     'alias' => ['GolfVehicleController::list', 'GolfVehicleController::write']

@@ -59,6 +59,9 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_reservation", static function ($routes) {
         $routes->get("list", "Admin\ReservationController::list");
         $routes->get("write", "Admin\ReservationController::write");
+        $routes->post("write_ok", "Admin\ReservationController::write_ok");
+        $routes->post("delete", "Admin\ReservationController::delete");
+        $routes->get("get_code", "Admin\ReservationController::get_code");
     });
 
     $routes->group("_qna", static function ($routes) {
@@ -161,6 +164,26 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'code_'
         $routes->group("code_", function ($routes) {
             $routes->post("code_del", "Api\AdminCodeApi::code_del", ['as' => "admin.api.code.code_del"]);
+        });
+
+        $routes->group("product_", function ($routes) {
+            $routes->post("change_manager", "Api\AdminTourApi::change_manager", ['as' => "admin.api.product_.change_manager"]);
+            $routes->post("add_moption", "Api\AdminTourApi::add_moption", ['as' => "admin.api.product_.add_moption"]);
+            $routes->post("upd_moption", "Api\AdminTourApi::upd_moption", ['as' => "admin.api.product_.upd_moption"]);
+            $routes->post("del_moption", "Api\AdminTourApi::del_moption", ['as' => "admin.api.product_.del_moption"]);
+            $routes->post("add_option", "Api\AdminTourApi::add_option", ['as' => "admin.api.product_.add_option"]);
+            $routes->post("upd_option", "Api\AdminTourApi::upd_option", ['as' => "admin.api.product_.upd_option"]);
+            $routes->post("del_option", "Api\AdminTourApi::del_option", ['as' => "admin.api.product_.del_option"]);
+            $routes->post("img_remove", "Api\AdminTourApi::img_remove", ['as' => "admin.api.product_.img_remove"]);
+        });
+
+        // Nested group for 'spa_'
+        $routes->group("spa_", function ($routes) {
+            $routes->post("write_ok", "Admin\AdminSpaController::write_ok", ['as' => "admin.api.spa_.write_ok"]);
+            $routes->post("prod_update", "Admin\AdminSpaController::prod_update", ['as' => "admin.api.spa_.prod_update"]);
+            $routes->post("ajax_change", "Admin\AdminSpaController::ajax_change", ['as' => "admin.api.spa_.ajax_change"]);
+            $routes->post("del", "Admin\AdminSpaController::del", ['as' => "admin.api.spa_.del"]);
+            $routes->get("get_code", "Admin\AdminTourStayApi::get_code", ['as' => "admin.api.spa_.get_code"]);
         });
     });
 
@@ -461,16 +484,19 @@ $routes->post('product-hotel/reservation-form-insert', 'Product::reservationForm
 $routes->get('product-hotel/(:any)', 'Product::indexHotel/$1');
 $routes->get('product-result/(:any)', 'Product::indexResult/$1');
 $routes->get('product/completed-order', 'Product::completedOrder/$1');
-$routes->get('product-golf/customer-form/(:any)', 'Product::customerForm/$1');
+$routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
+$routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
 $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
-
+$routes->get('product-spa/product-booking/(:any)', 'Product::productBooking/$1');
+$routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
+$routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 
@@ -478,5 +504,5 @@ $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
 $routes->get('product/get-by-top', 'Product::getProductByTop');
 $routes->get('product/get-by-cheep', 'Product::getProductByCheep');
 $routes->get('product/get-by-sub-code', 'Product::getProductBySubCode');
-
+$routes->get('/product-booking', 'ProductBooking::index');
 ?>
