@@ -3714,6 +3714,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   width: 25px;
 }
 
+.customer-form-page .title-sub-c.con-border-top {
+  border-top: 1px solid #eeeeee;
+  padding-top: 40px;
+}
+
 .customer-form-page .container-card {
   display: flex;
 }

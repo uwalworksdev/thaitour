@@ -1143,11 +1143,15 @@ class Product extends BaseController
             $room_op_idx = $this->request->getPost('room_op_idx') ?? 0; 
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
             $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0; 
+            $inital_price = $this->request->getPost('inital_price') ?? 0; 
             $order_price = $this->request->getPost('order_price') ?? 0; 
             $number_room = $this->request->getPost('number_room') ?? 0; 
             $number_day = $this->request->getPost('number_day') ?? 0; 
             $order_memo = $this->request->getPost('order_memo') ?? ""; 
-    
+            $email_name = $this->request->getPost('email_name') ?? ""; 
+            $email_host = $this->request->getPost('email_host') ?? ""; 
+            $order_user_mobile = $this->request->getPost('order_user_mobile') ?? ""; 
+            $order_user_email = $email_name . "@" . $email_host;
             $hotel = $this->productModel->find($product_idx);
             $m_idx = session()->get("member")["idx"];
             $order_status = "W";
@@ -1169,7 +1173,10 @@ class Product extends BaseController
                 "product_code_list" => $hotel["product_code_list"],
                 "product_name" => $hotel["product_name"],
                 "order_gubun" => "hotel",
+                "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                "order_user_email" => encryptField($order_user_email, "encode"),
                 "order_memo" => $order_memo,
+                "inital_price" => $inital_price,
                 "order_price" => $order_price,
                 "order_date" => Time::now('Asia/Seoul', 'en_US'),
                 "used_coupon_idx" => $use_coupon_idx,
@@ -1208,8 +1215,8 @@ class Product extends BaseController
                 $order_first_name = $this->request->getPost('order_first_name');
                 $order_last_name = $this->request->getPost('order_last_name');
                 foreach ($order_num_room as $key => $value) {
-                    $first_name = sqlSecretConver($order_first_name[$key], "encode");
-                    $last_name = sqlSecretConver($order_last_name[$key], "encode");
+                    $first_name = encryptField($order_first_name[$key], "encode");
+                    $last_name = encryptField($order_last_name[$key], "encode");
                     $data_sub = [
                         "m_idx" => $m_idx,
                         "order_idx" => $order_idx,
