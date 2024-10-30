@@ -2,6 +2,20 @@
 
 <?php $this->section('content'); ?>
 
+<style>
+    @media screen and (max-width : 850px) {
+        .thailand_golf_list_item_ {
+            width: calc((100% - 3.7rem) / 2);
+        }
+        .sub_tour_section5_item {
+        width: calc((100% - 2rem) / 2);
+    }
+    .sub_tour_section5_item {
+        width: calc((100% - 4rem) / 2);
+    }
+
+    }
+</style>
 <section>
     <div class="body_inner golf-custom-page">
         <div class="banner-ticket">
