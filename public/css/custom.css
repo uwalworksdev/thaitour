@@ -824,6 +824,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    white-space: nowrap;
 }
 
 .prd_keywords .prd_keywords_cus_span img {
@@ -862,6 +863,11 @@
 
 .main_page_01 .main_visual_content_ button:hover {
     opacity: 0.8;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
 }
 
 @media screen and (max-width: 850px) {
@@ -967,6 +973,7 @@
         color: #757575;
         font-family: "Pretendard";
         margin-top: 2.5rem;
+        flex-wrap: wrap;
     }
 
     .swiper_product_list_pagination_ {
@@ -1362,5 +1369,10 @@
         color: #aaaaaa;
         font-weight: 500;
         font-family: "Pretendard";
+    }
+
+    .prd_keywords .prd_keywords_cus_span img {
+        width: 1.1rem;
+        height: 2rem;
     }
 }

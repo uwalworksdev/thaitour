@@ -8,29 +8,29 @@
             <div class="swiper-container-ticket">
                 <div class="swiper-wrapper">
                     <?php foreach ($bestProducts as $product) : ?>
-                    <div class="swiper-slide">
-                        <a href="/product-golf/golf-detail/<?=$product['product_idx']?>">
-                            <div class="img_box_re">
-                                <img class="only_web" src="<?=getImage("/data/product/{$product['ufile1']}")?>" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
-                                <img class="only_mo img_box_re_img"
-                                    src="<?=getImage("/data/product/{$product['ufile1']}")?>" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
-                                <?php if($product['is_best_value']): ?>
-                                    <img class="only_web tag-red" src="/uploads/icons/tag-red.png" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
-                                    <img class="only_mo tag-red" src="/uploads/icons/tag-red-m.png" alt="<?=strip_tags(viewSQ($product['product_name']))?>">
-                                <?php endif; ?>
-                                <p class="text_img_box_re">
-                                    <?=viewSQ($product['product_name'])?>
-                                </p>
-                                <p class="text_img_box_re_sub">
-                                    <?php
-                                    $arr_keyword = explode(',', $product['keyword']);
-                                    foreach ($arr_keyword as $key => $value) {
-                                        echo "#$value ";
-                                    } ?>
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+                        <div class="swiper-slide">
+                            <a href="/product-golf/golf-detail/<?= $product['product_idx'] ?>">
+                                <div class="img_box_re">
+                                    <img class="only_web" src="<?= getImage("/data/product/{$product['ufile1']}") ?>" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
+                                    <img class="only_mo img_box_re_img"
+                                        src="<?= getImage("/data/product/{$product['ufile1']}") ?>" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
+                                    <?php if ($product['is_best_value']): ?>
+                                        <img class="only_web tag-red" src="/uploads/icons/tag-red.png" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
+                                        <img class="only_mo tag-red" src="/uploads/icons/tag-red-m.png" alt="<?= strip_tags(viewSQ($product['product_name'])) ?>">
+                                    <?php endif; ?>
+                                    <p class="text_img_box_re">
+                                        <?= viewSQ($product['product_name']) ?>
+                                    </p>
+                                    <p class="text_img_box_re_sub">
+                                        <?php
+                                        $arr_keyword = explode(',', $product['keyword']);
+                                        foreach ($arr_keyword as $key => $value) {
+                                            echo "#$value ";
+                                        } ?>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
                     <?php endforeach; ?>
                 </div>
                 <div class="swiper-button-next-ticket only_web"><img src="/uploads/icons/next_s.png" alt=""></div>
@@ -62,16 +62,16 @@
                     <div class="swiper sub_swiper2">
                         <div class="swiper-wrapper">
                             <?php foreach ($categories as $category) : ?>
-                            <div class="swiper-slide">
-                                <a href="/product-golf/list-golf/<?=$category['code_no']?>">
-                                    <div class="img_box">
-                                        <img src="<?=getImage("/data/code/{$category['ufile1']}")?>" alt="main">
-                                    </div>
-                                    <div class="sub_swiper2__text">
-                                        <?=viewSQ($category['code_name'])?> <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
+                                <div class="swiper-slide">
+                                    <a href="/product-golf/list-golf/<?= $category['code_no'] ?>">
+                                        <div class="img_box">
+                                            <img src="<?= getImage("/data/code/{$category['ufile1']}") ?>" alt="main">
+                                        </div>
+                                        <div class="sub_swiper2__text">
+                                            <?= viewSQ($category['code_name']) ?> <img src="/images/ico/ico_arrow_right_1.svg" alt="">
+                                        </div>
+                                    </a>
+                                </div>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                         <img src="/images/ico/reloadicon.png" alt="">
                         <p>다음상품</p>
                         <div class="thailand_hotel_swiper_pagination_">
-                            <span class="swiper-pagination-current" id="product_list_cheep_pagination_current">1</span> / 
+                            <span class="swiper-pagination-current" id="product_list_cheep_pagination_current">1</span> /
                             <span><?= $cheepProducts['nPage'] ?></span>
                         </div>
                     </div>
@@ -127,15 +127,15 @@
                 <div class="sub_tour_section5__head__tabs2 golf_custom_section5__head__tabs2">
                     <div class="tour__head__tabs2__tabs">
                         <?php foreach ($codes as $code) : ?>
-                        <a href="javascript:void(0);" onclick="handleLoadRecommendedProduct(<?=$code['code_no']?>);" class="tour__head__tabs2__tab <?=$codeRecommendedActive == $code['code_no'] ? 'active' : ''?>">
-                            <?=viewSQ($code['code_name'])?>
-                        </a>
+                            <a href="javascript:void(0);" onclick="handleLoadRecommendedProduct(<?= $code['code_no'] ?>);" class="tour__head__tabs2__tab <?= $codeRecommendedActive == $code['code_no'] ? 'active' : '' ?>">
+                                <?= viewSQ($code['code_name']) ?>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>
             </div>
             <div class="sub_tour_section5__prd_list" id="product_list_recommended">
-                <?php foreach ($productByRecommended['items'] as $item) : 
+                <?php foreach ($productByRecommended['items'] as $item) :
                     echo view("product/golf/product_item_by_recommended", ["item" => $item]);
                 endforeach; ?>
             </div>
@@ -149,22 +149,24 @@
             <div class="scroll-con-sec7">
                 <div class="sub_tour_section7_product_list">
                     <?php foreach ($productSpecialPrice['items'] as $item) : ?>
-                        <a href="/product-golf/golf-detail/<?=$item['product_idx']?>" class="sub_tour_section7_product_item">
-                            <img class="ico_special_prd only_web" src="/images/ico/ico_special_prd.png" alt="">
-                            <img class="ico_special_prd only_mo" src="/images/ico/ico_special_prd_mo.png" alt="">
-                            <div class="img_box img_box_12">
-                                <img src="<?=getImage("/data/product/{$item['ufile1']}")?>" alt="<?=$item['rfile1']?>">
-                            </div>
-                            <div class="sub_tour_section7_product_item__name">캐디없이 자유롭게 골프치고 싶다면</div>
-                            <div class="sub_tour_section7_product_item__keywords">
-                            <?php
-                                $keywords = explode(',', $item['keyword']);
-                                $keywords = array_filter($keywords);
-                                foreach ($keywords as $item) : ?>
-                                    <span>#<?=viewSQ($item)?></span>
-                                <?php endforeach; ?>
-                            </div>
-                        </a>
+                        <div class="">
+                            <a href="/product-golf/golf-detail/<?= $item['product_idx'] ?>" class="sub_tour_section7_product_item">
+                                <img class="ico_special_prd only_web" src="/images/ico/ico_special_prd.png" alt="">
+                                <img class="ico_special_prd only_mo" src="/images/ico/ico_special_prd_mo.png" alt="">
+                                <div class="img_box img_box_12">
+                                    <img src="<?= getImage("/data/product/{$item['ufile1']}") ?>" alt="<?= $item['rfile1'] ?>">
+                                </div>
+                                <div class="sub_tour_section7_product_item__name">캐디없이 자유롭게 골프치고 싶다면</div>
+                                <div class="sub_tour_section7_product_item__keywords">
+                                    <?php
+                                    $keywords = explode(',', $item['keyword']);
+                                    $keywords = array_filter($keywords);
+                                    foreach ($keywords as $item) : ?>
+                                        <span>#<?= viewSQ($item) ?></span>
+                                    <?php endforeach; ?>
+                                </div>
+                            </a>
+                        </div>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -184,7 +186,7 @@
             </div>
             <?php if ($productMDRecommended['nPage'] > 1) : ?>
                 <div class="custom_pagination_ w_100" id="product_list_md_recommended_pagination">
-                    <div class="s_item_show_" onclick="handleClickPaginationMD('<?=$productMDRecommended['code_no']?>')">
+                    <div class="s_item_show_" onclick="handleClickPaginationMD('<?= $productMDRecommended['code_no'] ?>')">
                         <p>더보기 +</p>
                     </div>
                 </div>
@@ -329,7 +331,8 @@
     });
 
     let pageCheep = 1;
-    let totalPageCheep = Number('<?=$products['nPage']?>');
+    let totalPageCheep = Number('<?= $products['nPage'] ?>');
+
     function handleClickPaginationCheep() {
         pageCheep += 1;
         $.ajax({
@@ -340,11 +343,11 @@
                 code_no: 1302
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 totalPageCheep = Number(data.nPage);
                 $("#product_list_cheep").append(data.html);
                 $("#product_list_cheep_pagination_current").text(pageCheep);
-                if(pageCheep >= totalPageCheep) {
+                if (pageCheep >= totalPageCheep) {
                     $('#product_list_cheep_pagination').hide();
                 } else {
                     $('#product_list_cheep_pagination').show();
@@ -352,9 +355,10 @@
             }
         })
     }
+
     function handleLoadRecommendedProduct(code_no) {
         console.log(code_no);
-        
+
         $.ajax({
             type: "GET",
             url: "/product/get-by-sub-code",
@@ -362,7 +366,7 @@
                 code_no: code_no
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 $("#product_list_recommended").html(data.html);
             }
         })
@@ -370,6 +374,7 @@
 
     let pageMD = 1;
     let totalPageMD = 1;
+
     function handleClickPaginationMD(code_no) {
         pageMD += 1;
         $.ajax({
@@ -380,11 +385,11 @@
                 code_no: code_no
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 totalPageMD = Number(data.nPage);
                 $("#product_list_md_recommended").append(data.html);
                 $("#product_list_md_recommended_pagination_current").text(pageMD);
-                if(pageMD >= totalPageMD) {
+                if (pageMD >= totalPageMD) {
                     $('#product_list_md_recommended_pagination').hide();
                 } else {
                     $('#product_list_md_recommended_pagination').show();
