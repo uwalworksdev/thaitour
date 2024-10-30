@@ -1256,6 +1256,8 @@ class Product extends BaseController
 
     public function golfDetail($product_idx)
     {
+        $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+
         $data['product'] = $this->productModel->getProductDetails($product_idx);
         $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
@@ -1279,8 +1281,7 @@ class Product extends BaseController
             $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
 
             $price = (float) $value['price'];
-            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
-            $price_baht = round($price / $baht_thai, 2);
+            $price_baht = round($price / $baht_thai);
             $data['golfVehicles'][$key]['price_baht'] = $price_baht;
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
@@ -1288,8 +1289,7 @@ class Product extends BaseController
 
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float) $value['price'];
-            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
-            $price_baht = round($price / $baht_thai, 2);
+            $price_baht = round($price / $baht_thai);
             $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
         }
 
@@ -1318,6 +1318,12 @@ class Product extends BaseController
             $data['coupons'] = [];
         }
 
+        foreach ($data['coupons'] as $key => $coupon) {
+            $coupon_price = (float) $coupon['coupon_price'];
+            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $data['coupons'][$key] = $coupon;
+        }
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 
@@ -1330,7 +1336,7 @@ class Product extends BaseController
         foreach ($options as $key => $value) {
             $option_price = (float) $value['option_price'];
             $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
-            $option_price_baht = round($option_price / $baht_thai, 2);
+            $option_price_baht = round($option_price / $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
 
