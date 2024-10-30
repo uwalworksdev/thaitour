@@ -1073,22 +1073,17 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">스쿰빗(아속-프롬퐁)</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">짜오프라야강가</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">실롬/사톤</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">시암</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab6">스쿰빗(통로-에까미이)</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab7">랑수언/위타유</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab8">스쿰빗(나나-플런칫)</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab9">카오산/왕궁/차이나타운</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab10">라차다</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab11">수완나품 공항주변</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab12">람캄행</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab13">스쿰빛(프라카농-온눗)</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab14">논타부리</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab15">빠뚜남/펫부리</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab16">아눗싸와리-짜뚜짝</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border 
+                                 <?php if(strpos($products["search_product_category"], "all") !== false
+                                    || empty($products["search_product_category"])){ echo "tab_active_"; } ?>" data-code="all" data-type="category">전체</li>
+                                <?php
+                                    foreach($codes as $code){
+                                ?>
+                                    <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if(strpos($products["search_product_category"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>"
+                                    data-code="<?=$code["code_no"]?>" data-type="category"><?=$code["code_name"]?></li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -1099,11 +1094,18 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">레지던스</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">리조트</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">풀빌라</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border 
+                                <?php if(strpos($products["search_product_hotel"], "all") !== false
+                                                || empty($products["search_product_hotel"])){ echo "tab_active_"; } ?>" data-code="all" data-type="hotel">전체</li>
+                                <?php
+                                    foreach($types_hotel as $code){
+                                ?>
+                                    <li class="tab_box_element_ tab_box_mo_js p--20 border 
+                                    <?php if(strpos($products["search_product_hotel"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" data-code="<?=$code["code_no"]?>" 
+                                    data-type="hotel"><?=$code["code_name"]?></li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -1114,11 +1116,17 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">전체</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">5성급</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">4성급</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">3성급</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">2성급</li>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border 
+                                <?php if(strpos($products["search_product_rating"], "all") !== false
+                                            || empty($products["search_product_rating"])){ echo "tab_active_"; } ?>" data-code="all" data-type="rating">전체</li>
+                                <?php
+                                    foreach($ratings as $code){
+                                ?>
+                                <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if(strpos($products["search_product_rating"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                data-code="<?=$code["code_no"]?>" data-type="rating"><?=$code["code_name"]?></li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -1130,8 +1138,8 @@
                         <div class="slider-container only_mo">
                             <div class="slider-background"></div>
                             <div class="slider-track" id="slider-track" style="left: 25%; width: 50%;"></div>
-                            <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" class="slider" id="slider-min">
-                            <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" class="slider" id="slider-max">
+                            <input type="range" min="0" max="500000" value="<?=$products["price_min"]?>" name="price_min" class="slider" id="slider-min">
+                            <input type="range" min="0" max="500000" value="<?=$products["price_max"]?>" name="price_max" class="slider" id="slider-max">
                         </div>
                         <div class="value-container">
                             <span>10,000원</span>
@@ -1149,16 +1157,15 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">
-                                    무료숙박(1+1,2+1등)</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">특별패키지</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">룸업그레이드</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">공항픽업 무료</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">레이트 체크아웃 무료</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">얼리버드 할인</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">엑스트라베드 무료</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">아동 엑스트라베드 무료</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">아동조식 무료</li>
+                                <?php
+                                    foreach($promotions as $code){
+                                ?>
+                                    <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if(strpos($products["search_product_promotion"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                    data-code="<?=$code["code_no"]?>" data-type="promotion"><?=$code["code_name"]?></li>
+                                <?php
+                                    }
+                                ?>
+                            
                             </ul>
                         </div>
                     </div>
@@ -1169,17 +1176,14 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">체크인 후
-                                    24시간 이용 가능</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">인피니티 풀이 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab3">쇼핑몰과 연결 되어있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab4">풀억세스룸이 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">워터 슬라이드가 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">루프탑바가 있는 호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">가성비 5성급 호텔</li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">BTS(지상철)과 연결된 호텔
-                                </li>
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab5">펫프렌들리 호텔</li>
+                                <?php
+                                    foreach($topics as $code){
+                                ?>
+                                    <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if(strpos($products["search_product_topic"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                    data-code="<?=$code["code_no"]?>" data-type="topic"><?=$code["code_name"]?></li>
+                                <?php
+                                    }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -1190,8 +1194,14 @@
                         </div>
                         <div class="tab_box_area_">
                             <ul class="tab_box_show_">
-                                <li class="tab_box_element_ tab_box_mo_js p--20 border tab_active_" rel="tab1">2 베드룸(성인
-                                    4~5인)</li>
+                                <?php
+                                    foreach($bedrooms as $code){
+                                ?>
+                                    <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if(strpos($products["search_product_bedroom"], $code["code_no"]) !== false){ echo "tab_active_"; } ?>" 
+                                        data-code="<?=$code["code_no"]?>" data-type="bedroom"><?=$code["code_name"]?></li>
+                                <?php
+                                    }
+                                ?>
                                 <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">3 베드룸~(성인6인~)</li>
                             </ul>
                         </div>
@@ -1245,22 +1255,22 @@
         $('#checkout').val(formatDate('<?=$products["checkout"]?>'));
     });
 
-    $(document).ready(function() {
-        var category = [];
-        var hotel = [];
-        var rating = [];
-        var promotion = [];
-        var topic = [];
-        var bedroom = [];
+    var category = [];
+    var hotel = [];
+    var rating = [];
+    var promotion = [];
+    var topic = [];
+    var bedroom = [];
 
-        function filter_product() {
-            category = [];
-            hotel = [];
-            rating = [];
-            promotion = [];
-            topic = [];
-            bedroom = [];
+    function filter_product() {
+        category = [];
+        hotel = [];
+        rating = [];
+        promotion = [];
+        topic = [];
+        bedroom = [];
 
+        if($(window).width() > 850) {
             $(".tab_box_js.tab_active_").each(function () {
                 if($(this).data("type") == "category") {
                     category.push($(this).data("code"));
@@ -1276,15 +1286,37 @@
                     bedroom.push($(this).data("code"));
                 }
             });
-            $("#search_product_category").val(category.join(","));
-            $("#search_product_hotel").val(hotel.join(","));
-            $("#search_product_rating").val(rating.join(","));
-            $("#search_product_promotion").val(promotion.join(","));
-            $("#search_product_topic").val(topic.join(","));
-            $("#search_product_bedroom").val(bedroom.join(","));
+        }else{
+            $(".tab_box_mo_js.tab_active_").each(function () {
+                if($(this).data("type") == "category") {
+                    category.push($(this).data("code"));
+                }else if($(this).data("type") == "hotel") {
+                    hotel.push($(this).data("code"));
+                }else if($(this).data("type") == "rating") {
+                    rating.push($(this).data("code"));
+                }else if($(this).data("type") == "promotion") {
+                    promotion.push($(this).data("code"));
+                }else if($(this).data("type") == "topic") {
+                    topic.push($(this).data("code"));
+                }else if($(this).data("type") == "bedroom") {
+                    bedroom.push($(this).data("code"));
+                }
+            });
         }
 
+        $("#search_product_category").val(category.join(","));
+        $("#search_product_hotel").val(hotel.join(","));
+        $("#search_product_rating").val(rating.join(","));
+        $("#search_product_promotion").val(promotion.join(","));
+        $("#search_product_topic").val(topic.join(","));
+        $("#search_product_bedroom").val(bedroom.join(","));
+    }
+
+    filter_product();
+
+    $(window).resize(function() {
         filter_product();
+        $('.list-tag').empty();
 
         $('.tab_box_js.tab_active_').each(function() {
             let tabText = $(this).text();
@@ -1296,105 +1328,118 @@
                 '</div>'
             );
         });
+    });
 
-        $('.tab_box_js').click(function() {
-            let group = $(this).closest('.tab_box_area_');
-            let tabText = $(this).text();
-            let type = $(this).data("type");
-            let activeTab = group.find('.tab_box_js.tab_active_').text();
+    $('.tab_box_js.tab_active_').each(function() {
+        let tabText = $(this).text();
+        let type = $(this).data("type");
+        $('.list-tag').append(
+            '<div class="tag-item">' +
+            '<span data-type='+ type +'>' + tabText + '</span>' +
+            '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+            '</div>'
+        );
+    });
 
-            // if (activeTab) {
-            //     $('.list-tag .tag-item span').each(function() {
-            //         if ($(this).text() === activeTab) {
-            //             $(this).text(tabText);
-            //             return false;
-            //         }
-            //     });
-            // } else {
-            //     $('.list-tag').append(
-            //         '<div class="tag-item">' +
-            //         '<span>' + tabText + '</span>' +
-            //         '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
-            //         '</div>'
-            //     );
-            // }
+    $('.tab_box_js, .tab_box_mo_js').click(function() {
+        let group = $(this).closest('.tab_box_area_');
+        let tabText = $(this).text();
+        let type = $(this).data("type");
+        let activeTab = group.find('.tab_box_js.tab_active_').text();
 
-            if($(this).data("code") === "all"){
-                $(this).siblings('[data-code]:not([data-code="all"])').removeClass('tab_active_');
-                $('.list-tag .tag-item span').each(function() {
-                    if ($(this).text() !== tabText && type == $(this).data("type")) {
-                        $(this).closest(".tag-item").remove();
-                    }
-                });
-            }else{
-                let allBtn = $(this).siblings('[data-code="all"]');
-                allBtn.removeClass('tab_active_');
-                $('.list-tag .tag-item span').each(function() {
-                    if ($(this).text() === allBtn.text() && type == $(this).data("type")) {
-                        $(this).closest(".tag-item").remove();
-                    }
-                });
-            }
+        // if (activeTab) {
+        //     $('.list-tag .tag-item span').each(function() {
+        //         if ($(this).text() === activeTab) {
+        //             $(this).text(tabText);
+        //             return false;
+        //         }
+        //     });
+        // } else {
+        //     $('.list-tag').append(
+        //         '<div class="tag-item">' +
+        //         '<span>' + tabText + '</span>' +
+        //         '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+        //         '</div>'
+        //     );
+        // }
 
-            if($(this).hasClass('tab_active_')){
-                $(this).removeClass('tab_active_');
-                $('.list-tag .tag-item span').each(function() {
-                    if ($(this).text() === tabText && type == $(this).data("type")) {
-                        $(this).closest(".tag-item").remove();
-                    }
-                });
-            }else{
-                $(this).addClass('tab_active_');
-                $('.list-tag').append(
-                    '<div class="tag-item">' +
-                    '<span data-type='+ type +'>' + tabText + '</span>' +
-                    '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
-                    '</div>'
-                );
-            }
-
-            filter_product();
-
-            // group.find('.tab_box_js').removeClass('tab_active_');
-            // $(this).addClass('tab_active_');
-        });
-
-        $(document).on('click', '.close_icon', function() {
-            let tagItem = $(this).parent('.tag-item');
-            let tagText = tagItem.find('span').text();
-            let type = tagItem.find('span').data("type");
-            // Remove the active class from the corresponding tab
-            $('.tab_box_js').each(function() {
-                if ($(this).text() === tagText && type === $(this).data("type")) {
-                    $(this).removeClass('tab_active_');
+        if($(this).data("code") === "all"){
+            $(this).siblings('[data-code]:not([data-code="all"])').removeClass('tab_active_');
+            $('.list-tag .tag-item span').each(function() {
+                if ($(this).text() !== tabText && type == $(this).data("type")) {
+                    $(this).closest(".tag-item").remove();
                 }
             });
+        }else{
+            let allBtn = $(this).siblings('[data-code="all"]');
+            allBtn.removeClass('tab_active_');
+            $('.list-tag .tag-item span').each(function() {
+                if ($(this).text() === allBtn.text() && type == $(this).data("type")) {
+                    $(this).closest(".tag-item").remove();
+                }
+            });
+        }
 
-            // Remove the tag item
-            tagItem.remove();
+        if($(this).hasClass('tab_active_')){
+            $(this).removeClass('tab_active_');
+            $('.list-tag .tag-item span').each(function() {
+                if ($(this).text() === tabText && type == $(this).data("type")) {
+                    $(this).closest(".tag-item").remove();
+                }
+            });
+        }else{
+            $(this).addClass('tab_active_');
+            $('.list-tag').append(
+                '<div class="tag-item">' +
+                '<span data-type='+ type +'>' + tabText + '</span>' +
+                '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
+                '</div>'
+            );
+        }
 
-            filter_product();
+        filter_product();
 
-        });
-
-        $('#delete_all').click(function() {
-            $('.list-tag .tag-item').remove();
-            $('.tab_box_js').removeClass('tab_active_');
-
-            filter_product();
-        });
-
-        $('.tab_box_mo_js').click(function() {
-            var $this = $(this); // The clicked tab element
-            var $group = $this.closest('.category-left-item'); // Find the parent group
-
-            // Remove 'tab_active_' class from all tabs in this group
-            $group.find('.tab_box_mo_js').removeClass('tab_active_');
-
-            // Add 'tab_active_' class to the clicked tab
-            $this.addClass('tab_active_');
-        });
+        // group.find('.tab_box_js').removeClass('tab_active_');
+        // $(this).addClass('tab_active_');
     });
+
+    $(document).on('click', '.close_icon', function() {
+        let tagItem = $(this).parent('.tag-item');
+        let tagText = tagItem.find('span').text();
+        let type = tagItem.find('span').data("type");
+        // Remove the active class from the corresponding tab
+        $('.tab_box_js, .tab_box_mo_js').each(function() {
+            if ($(this).text() === tagText && type === $(this).data("type")) {
+                $(this).removeClass('tab_active_');
+            }
+        });
+
+        // Remove the tag item
+        tagItem.remove();
+
+        filter_product();
+
+    });
+
+    $('#delete_all').click(function() {
+        $('.list-tag .tag-item').remove();
+        $('.tab_box_js, .tab_box_mo_js').removeClass('tab_active_');
+
+        filter_product();
+    });
+
+    // $('.tab_box_mo_js').click(function() {
+    //     var $this = $(this); // The clicked tab element
+    //     var $group = $this.closest('.category-left-item'); // Find the parent group
+
+    //     // Remove 'tab_active_' class from all tabs in this group
+    //     $group.find('.tab_box_mo_js').removeClass('tab_active_');
+
+    //     // Add 'tab_active_' class to the clicked tab
+    //     $this.addClass('tab_active_');
+    // });
+    // $(document).ready(function() {
+    // });
 
     const sliders = document.querySelectorAll('.slider-container');
     sliders.forEach(slider => {

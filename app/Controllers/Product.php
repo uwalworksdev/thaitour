@@ -1226,7 +1226,7 @@ class Product extends BaseController
 
                 return $this->response->setJSON([
                     'result' => true,
-                    'message' => "Ok"
+                    'message' => "주문되었습니다."
                 ], 200);
             } else {
                 return $this->response->setJSON([

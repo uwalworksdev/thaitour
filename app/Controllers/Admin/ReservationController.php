@@ -115,11 +115,12 @@ class ReservationController extends BaseController
 						     , AES_DECRYPT(UNHEX(a.manager_phone),     '$private_key') AS man_phone
 						     , AES_DECRYPT(UNHEX(a.manager_email),     '$private_key') AS man_email 
                              , a.*
-							 , b.* 
+							 , b.*
+                             , count(c.order_idx) as cnt_number_person
 						from tbl_order_mst a 
 						left join tbl_product_mst b on a.product_idx = b.product_idx
-						where a.is_modify='N' $strSql ";
-
+                        left join tbl_order_list c on c.order_idx = a.order_idx
+						where a.is_modify='N' $strSql group by a.order_idx";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
 
@@ -147,7 +148,7 @@ class ReservationController extends BaseController
         $result = $result->getResultArray();
         $num    = $nTotalCount - $nFrom;
 
-/*
+        /*
 		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name
 						 , AES_DECRYPT(UNHEX('{$result['order_user_mobile']}'), '$private_key') order_user_mobile
 						 , AES_DECRYPT(UNHEX('{$result['manager_name']}'),      '$private_key') manager_name
@@ -162,7 +163,7 @@ class ReservationController extends BaseController
 		$result['manager_name']      = $row_d['manager_name'];
 		$result['manager_phone']     = $row_d['manager_phone'];
 		$result['manager_email']     = $row_d['manager_email'];
-*/
+        */
         $_pg_Method = getPgMethods();
         $_deli_type = get_deli_type();
         $s_time = '';
@@ -203,7 +204,7 @@ class ReservationController extends BaseController
         return view('admin/_reservation/list', $data);
     }
 
-    public function write()
+    public function write($gubun = null)
     {
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
@@ -410,8 +411,9 @@ class ReservationController extends BaseController
             "deposit_date" => $deposit_date ?? '',
         ];
 
-        return view('admin/_reservation/write', $data);
+        return view("admin/_reservation/{$gubun}/write", $data);
     }
+
 
     public function write_ok() {
         try{

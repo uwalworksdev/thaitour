@@ -416,7 +416,6 @@
                                     <col width="80px"/>
                                     <col width="100px"/>
                                     <col width="120px"/>
-                                    <col width="160px"/>
                                     <col width="80px"/>
                                     <col width="90px"/>
                                     <col width="80px"/>
@@ -435,7 +434,6 @@
                                     <th>예약자</th>
                                     <th>담당자</th>
                                     <th>연락처</th>
-                                    <th>일정</th>
                                     <th>인원(명)</th>
                                     <th>예약금액(원)</th>
                                     <th>계약금(원)</th>
@@ -476,24 +474,21 @@
                                             <?= $_isDelete ?><br>(<?= $row['code_name'] ?>)
                                         </td>
                                         <td class="tal"><a
-                                                    href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
+                                                    href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><?= viewSQ($row["product_name_new"]) ?>
                                                 / <?= $row["tours_subject"] ?></a></td>
                                         <td class="tac"><?= $row["order_r_date"] ?></td>
                                         <td class="tac"><?= $row['user_name'] ?></td>
                                         <td class="tac"><?= $row["man_name"] ?><br><?= $row["man_phone"] ?>
                                             <br><?= $row["man_email"] ?></td>
                                         <td class="tac"><?= $row["user_mobile"] ?></td>
-                                        <td class="tac"><?= str_replace("-", ".", $row["start_date"]) ?>
-                                            ~<?= str_replace("-", ".", $row["end_date"]) ?>
-                                        </td>
-                                        <td class="tac"><?= $row["people_adult_cnt"] + $row["people_kids_cnt"] + $row["people_baby_cnt"] ?></td>
+                                        <td class="tac"><?= $row["cnt_number_person"] ?></td>
                                         <td class="tac"><?= number_format($row["order_price"], 0) ?></td>
                                         <td class="tac"><?= number_format($row["deposit_price"], 0) ?></td>
                                         <td class="tac"><?= number_format($row["order_confirm_price"], 0) ?></td>
                                         <td class="tac"><?= $row["deposit_method"] ?></td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
                                         <td>
-                                            <a href="write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
+                                            <a href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
                                             <a href="javascript:del_it('<?= $row['order_idx'] ?>');"><img
                                                         src="/images/admin/common/ico_error.png" alt="에러"/></a>

@@ -121,33 +121,7 @@
                                         <?= $order_no ?>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>일정</th>
-                                    <td>
-                                        <?php 
-                                            if(!empty($start_date) && !empty($end_date)){
-                                        ?>
-                                            <?= str_replace("-", ".", $start_date) ?>
-                                            ~
-                                            <?= str_replace("-", ".", $end_date) ?>
-                                            <input type=hidden name="start_date" value='<?= $start_date ?>'>
-                                            <input type=hidden name="end_date" value='<?= $end_date ?>'>
-                                        <?php 
-                                            }
-                                        ?>
-                                        <?php
-                                            if(!empty($home_depart_date) && !empty($away_arrive_date) && !empty($away_depart_date) && !empty($home_arrive_date)){
-                                        ?>
-                                            (한국출발 <?= $home_depart_date ?> ~ <?= $away_arrive_date ?>
-                                            현지출발 <?= $away_depart_date ?> ~ <?= $home_arrive_date ?>)
-                                        <?php } ?>
-                                    </td>
-                                    <th>기간</th>
-                                    <td>
-                                        <?= $product_period ?>
-                                        (<?= $tour_period ?>일)
-                                    </td>
-                                </tr>
+                                
                                 <tr>
                                     <th>주문자명</th>
                                     <td>
@@ -172,23 +146,7 @@
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>성인신청</th>
-                                    <td>
-                                        <?= $people_adult_cnt ?>명
-                                        X
-                                        <?= number_format($people_adult_price) ?>원
-                                        = <?= number_format($people_adult_price * $people_adult_cnt) ?>원
-                                    </td>
-                                    <th>아동신청</th>
-                                    <td>
-                                        <?php if ($people_kids_price > 0) { ?>
-                                            <?= $people_kids_cnt ?>명    X <?= number_format($people_kids_price) ?>원 = <?= number_format($people_kids_price * $people_kids_cnt) ?>원
-                                        <?php } else { ?>
-                                            0원
-                                        <?php } ?>
-                                    </td>
-                                </tr>
+                                
                                 <tr>
                                     <th>객실 수</th>
                                     <td>
@@ -197,21 +155,6 @@
                                     <th>숙박일</th>
                                     <td>
                                         <?= $order_day_cnt ?>     
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>유아신청</th>
-                                    <td>
-                                        <?php if ($people_baby_price > 0) { ?>
-                                            <?= $people_baby_cnt ?>명    X <?= number_format($people_baby_price) ?>원 = <?= number_format($people_baby_price * $people_baby_cnt) ?>원
-                                        <?php } else { ?>
-                                            0원
-                                        <?php } ?>
-                                    </td>
-                                    <th>유류비</th>
-                                    <td>
-                                        <?= $people_adult_cnt + $people_kids_cnt ?>명 X <?= number_format($oil_price) ?>원
-                                        = <?= number_format(($people_adult_cnt + $people_kids_cnt) * $oil_price) ?>원
                                     </td>
                                 </tr>
 
@@ -243,27 +186,9 @@
                                     <td>
                                         <?php
                                             $total_price = 0;
-                                            if($order_gubun == "hotel"){
-                                                $total_price = $inital_price * $order_room_cnt * $order_day_cnt;
+                                            $total_price = $inital_price * $order_room_cnt * $order_day_cnt;
                                         ?>   
-                                            <?= number_format($inital_price * $order_room_cnt * $order_day_cnt) ?>원(성인)     
-                                        <?php
-                                            }else{
-                                                $total_price = ($people_adult_price * $people_adult_cnt) +
-                                                                ($people_kids_price * $people_kids_cnt) +
-                                                                ($people_baby_price * $people_baby_cnt) + ((($people_adult_cnt + $people_kids_cnt) * $oil_price));
-                                        ?>
-                                            <?= number_format($people_adult_price * $people_adult_cnt) ?>원(성인)
-                                            +
-                                            <?= number_format($people_kids_price * $people_kids_cnt) ?>원(아동)
-                                            +
-                                            <?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
-                                            +
-                                            <?= number_format((($people_adult_cnt + $people_kids_cnt) * $oil_price)) ?>
-                                            원(유류비)
-                                        <?php   
-                                            }
-                                        ?>
+                                        <?= number_format($inital_price * $order_room_cnt * $order_day_cnt) ?>원    
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -

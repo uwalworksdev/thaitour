@@ -189,16 +189,7 @@
                                         <?php } ?>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th>객실 수</th>
-                                    <td>
-                                        <?= $order_room_cnt ?>
-                                    </td>
-                                    <th>숙박일</th>
-                                    <td>
-                                        <?= $order_day_cnt ?>     
-                                    </td>
-                                </tr>
+                                
                                 <tr>
                                     <th>유아신청</th>
                                     <td>
@@ -241,34 +232,23 @@
                                 <tr>
                                     <th>총 결제금액</th>
                                     <td>
-                                        <?php
-                                            $total_price = 0;
-                                            if($order_gubun == "hotel"){
-                                                $total_price = $inital_price * $order_room_cnt * $order_day_cnt;
-                                        ?>   
-                                            <?= number_format($inital_price * $order_room_cnt * $order_day_cnt) ?>원(성인)     
-                                        <?php
-                                            }else{
-                                                $total_price = ($people_adult_price * $people_adult_cnt) +
-                                                                ($people_kids_price * $people_kids_cnt) +
-                                                                ($people_baby_price * $people_baby_cnt) + ((($people_adult_cnt + $people_kids_cnt) * $oil_price));
-                                        ?>
-                                            <?= number_format($people_adult_price * $people_adult_cnt) ?>원(성인)
-                                            +
-                                            <?= number_format($people_kids_price * $people_kids_cnt) ?>원(아동)
-                                            +
-                                            <?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
-                                            +
-                                            <?= number_format((($people_adult_cnt + $people_kids_cnt) * $oil_price)) ?>
-                                            원(유류비)
-                                        <?php   
-                                            }
-                                        ?>
+
+                                        <?= number_format($people_adult_price * $people_adult_cnt) ?>원(성인)
+                                        +
+                                        <?= number_format($people_kids_price * $people_kids_cnt) ?>원(아동)
+                                        +
+                                        <?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
+                                        +
+                                        <?= number_format((($people_adult_cnt + $people_kids_cnt) * $oil_price)) ?>
+                                        원(유류비)
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                        = <?= number_format( $total_price- $used_coupon_money - $used_mileage_money) ?>
+                                        = <?= number_format( ($people_adult_price * $people_adult_cnt) +
+                                                                ($people_kids_price * $people_kids_cnt) +
+                                                                ($people_baby_price * $people_baby_cnt) + ((($people_adult_cnt + $people_kids_cnt) * $oil_price)) 
+                                                                - $used_coupon_money - $used_mileage_money) ?>
                                         원
 
                                     </td>
