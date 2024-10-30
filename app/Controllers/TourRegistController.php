@@ -608,6 +608,12 @@ class TourRegistController extends BaseController
             $rfile6 = $row["rfile6"];
             $ufile7 = $row["ufile7"];
             $rfile7 = $row["rfile7"];
+            $tours_ufile1 = $row["tours_ufile1"];
+            $tours_ufile2 = $row["tours_ufile2"];
+            $tours_ufile3 = $row["tours_ufile3"];
+            $tours_ufile4 = $row["tours_ufile4"];
+            $tours_ufile5 = $row["tours_ufile5"];
+            $tours_ufile6 = $row["tours_ufile6"];
             $product_name = $row["product_name"];
             $product_air = $row["product_air"];
             $product_info = $row["product_info"];
@@ -682,6 +688,12 @@ class TourRegistController extends BaseController
             $latitude = $row["latitude"];
             $longitude = $row["longitude"];
             $product_points = $row["product_points"];
+            $tours_guide = $row["tours_guide"];
+            $tours_ko = $row["tours_ko"];
+            $tours_join = $row["tours_join"];
+            $tours_hour = $row["tours_hour"];
+            $tours_total_hour = $row["tours_total_hour"];
+            
 
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -765,6 +777,12 @@ class TourRegistController extends BaseController
             "rfile6" => $rfile6 ?? '',
             "ufile7" => $ufile7 ?? '',
             "rfile7" => $rfile7 ?? '',
+            "tours_ufile1" => $tours_ufile1 ?? '',
+            "tours_ufile2" => $tours_ufile2 ?? '',
+            "tours_ufile3" => $tours_ufile3 ?? '',
+            "tours_ufile4" => $tours_ufile4 ?? '',
+            "tours_ufile5" => $tours_ufile5 ?? '',
+            "tours_ufile6" => $tours_ufile6 ?? '',
             "product_name" => $product_name ?? '',
             "product_air" => $product_air ?? '',
             "product_info" => $product_info ?? '',
@@ -833,6 +851,11 @@ class TourRegistController extends BaseController
             "addrs" => $addrs ?? '',
             "latitude" => $latitude ?? '',
             "longitude" => $longitude ?? '',
+            "tours_guide" => $tours_guide ?? '',
+            "tours_ko" => $tours_ko ?? '',
+            "tours_join" => $tours_join ?? '',
+            "tours_hour" => $tours_hour ?? '',
+            "tours_total_hour" => $tours_total_hour ?? '',
         ];
 
         return $data;
@@ -1035,10 +1058,10 @@ class TourRegistController extends BaseController
 
     public function delMoption()
     {
-        $idx = $this->request->getPost('idx');
+        $code_idx = $this->request->getPost('code_idx');
 
         try {
-            if ($this->moptionModel->where('idx', $idx)->delete()) {
+            if ($this->moptionModel->where('code_idx', $code_idx)->delete()) {
                 $msg = "삭제 완료";
             } else {
                 $msg = "삭제 오류";

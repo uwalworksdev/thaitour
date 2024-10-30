@@ -20,6 +20,47 @@
             display: inline-block;
             width: 500px;
         }
+
+        .img_add #input_file_ko {
+            display: none;
+        }
+
+        .img_add .file_input {
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #dbdbdb;
+            box-sizing: border-box;
+            background: #f5f6f8 url(/images/ico/img_add_basic.png) center no-repeat;
+        }
+
+        .img_add .file_input input[type="file"] {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        .img_add .file_input input[type="file"]+label {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .img_add .file_input .remove_btn {
+            display: none;
+        }
+
+        .img_add .file_input .img_txt {
+            display: block;
+            font-size: 12px;
+            margin-top: 8px;
+            line-height: 1.3;
+            text-align: center;
+        }
     </style>
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
@@ -480,6 +521,27 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>투어메인</th>
+                                    <td>
+                                            <input type="checkbox" name="tours_guide" value="Y"
+                                               class="yoil" <?php if (isset($tours_guide) && $tours_guide == "Y") echo "checked"; ?> >
+                                               가이드 유&nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="tours_ko" value="Y"
+                                                class="yoil" <?php if (isset($tours_ko) && $tours_ko == "Y") echo "checked"; ?> >
+                                                한국어&nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="tours_join" value="Y"
+                                                class="yoil" <?php if (isset($tours_join) && $tours_join == "Y") echo "checked"; ?> >
+                                                조인투어&nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="tours_total_hour" value="Y"
+                                                class="yoil" <?php if (isset($tours_total_hour) && $tours_total_hour == "Y") echo "checked"; ?> >
+                                                총 시간&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    <th>총 시간</th>
+                                    <td>
+                                        <input id="tours_hour" name="tours_hour" class="input_txt" type="text" value="<?= $tours_hour?>" style="width:20%">
+                                    </td>
+                                </tr>
 
                                 <tr>
                                     <th>성인/소아/유아 구분</th>
@@ -498,6 +560,26 @@
                                         <span style="margin-right:20px;"></span>
                                     </td>
                                 </tr>
+                                <tr>
+									<th>투어 사진</th>
+									<td colspan="3">
+										<div class="img_add" style="font-size: 0; margin-top: 10px;">
+										<?php 
+											for($i = 1; $i <= 6; $i++) : 
+												$img = get_img(${"tours_ufile" . $i}, "/data/product/", "100", "100");
+										?>
+											<div class="file_input <?=empty(${"tours_ufile" . $i}) ? "" : "applied"?>">
+												<input type="file" name='tours_ufile<?=$i?>' id="tours_ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+												<label for="tours_ufile<?=$i?>" <?=!empty(${"tours_ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+												<input type="hidden" name="checkImg_<?=$i?>">
+												<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+											</div>
+										<?php 
+											endfor; 
+										?>
+										</div>
+									</td>
+								</tr>
 
                                 <tr style="display:none">
                                     <th>상품내용</th>
@@ -1129,15 +1211,28 @@
 								<th>관리</th>
 							</tr>
 						</thead>	
-                            <tbody>
+                        <tbody>
                                 <?php 
                                     $i = 1;
                                     $infoIdxCounts = [];
+                                    $toursIdxMap = [];
+
                                     foreach ($productTourInfo as $row) {
                                         $info_idx = $row['info_idx'];
+                                        $tours_idx = $row['tours_idx'];
+
                                         if (!isset($infoIdxCounts[$info_idx])) {
                                             $infoIdxCounts[$info_idx] = 0;
                                         }
+
+                                        if (!isset($toursIdxMap[$info_idx])) {
+                                            $toursIdxMap[$info_idx] = [];
+                                        }
+
+                                        if ($tours_idx !== null && !in_array($tours_idx, $toursIdxMap[$info_idx])) {
+                                            $toursIdxMap[$info_idx][] = $tours_idx;
+                                        }
+
                                         $infoIdxCounts[$info_idx]++;
                                     }
 
@@ -1148,6 +1243,9 @@
 
                                         $info_idx = $row['info_idx'];
                                         $printRowspan = false;
+
+                                        $tours_idx_array = isset($toursIdxMap[$info_idx]) ? $toursIdxMap[$info_idx] : [];
+                                        $tours_idx_json = htmlspecialchars(json_encode($tours_idx_array), ENT_QUOTES, 'UTF-8'); 
 
                                         if (!in_array($info_idx, $printedInfoIdx)) {
                                             $printRowspan = true;
@@ -1169,14 +1267,16 @@
                                         <td><?=number_format($row["tour_price_baby"], 0)?></td>
                                         <td class="tac"><?=substr($row["r_date"], 0, 10)?></td>
                                         <td class="tac"><?=$status?></td>
+
                                         <?php if ($printRowspan): ?>
                                             <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
-                                                <a href="javascript:del_tours('<?=$row["info_idx"]?>');" class="btn btn-default">삭제하기</a>
+                                                <a href="javascript:del_tours('<?=$row["info_idx"]?>', <?=$tours_idx_json?>);" class="btn btn-default">삭제하기</a>
                                             </td>
                                         <?php endif; ?>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
+
 
 						</table>
 					</div>
@@ -1319,32 +1419,31 @@
 
         }
 
-        function del_tours(idx) {
-            if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
+        function del_tours(info_idx, tours_idx_array) {
+            if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다.")) {
                 return false;
+            }
 
-            var message = "";
             $.ajax({
-
-                url: "/ajax/ajax.del_tours.php",
+                url: "/AdmMaster/_tours/del_tours",
                 type: "POST",
                 data: {
-                    "tours_idx": idx
+                    "info_idx": info_idx,
+                    "tours_idx": tours_idx_array
                 },
                 dataType: "json",
                 async: false,
                 cache: false,
                 success: function (data, textStatus) {
-                    message = data.message;
-                    alert(message);
+                    alert(data.message);
                     location.reload();
                 },
                 error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
                 }
             });
-
         }
+
 
         function getCoordinates() {
 		
@@ -1659,6 +1758,63 @@
 
             });
         }
+    </script>
+
+    <script>
+        function productImagePreview(inputFile, onum) {
+		if(sizeAndExtCheck(inputFile) == false) {
+			inputFile.value = "";
+			return false;
+		}
+
+		let imageTag = document.querySelector('label[for="tours_ufile'+onum+'"]');
+
+		if(inputFile.files.length > 0) {
+			let imageReader     = new FileReader();
+
+			imageReader.onload = function() {
+				imageTag.style = "background-image:url("+imageReader.result+")";
+				inputFile.closest('.file_input').classList.add('applied');
+				inputFile.closest('.file_input').children[2].value = 'Y';
+			}
+			return imageReader.readAsDataURL(inputFile.files[0]);
+		}
+	}
+
+    function productImagePreviewRemove(element) {
+		let inputFile = element.parentNode.children[0];
+		let labelImg = element.parentNode.children[1];
+
+		inputFile.value = "";
+		labelImg.style = "";
+		element.closest('.file_input').classList.remove('applied');
+		element.closest('.file_input').children[2].value = 'N';
+	}
+
+	function sizeAndExtCheck(input) {
+		let fileSize        = input.files[0].size;
+		let fileName        = input.files[0].name;
+
+		// 20MB
+		let megaBite        = 20;
+		let maxSize         = 1024 * 1024 * megaBite;
+
+		if(fileSize > maxSize) {
+			alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+			return false;
+		}
+		
+		let fileNameLength  = fileName.length;
+		let findExtension   = fileName.lastIndexOf('.');
+		let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+		if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+			alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+			return false;
+		}
+
+		return true;
+	}
     </script>
 
     <script type="text/javascript">

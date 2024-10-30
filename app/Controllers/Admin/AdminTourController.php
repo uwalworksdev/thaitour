@@ -117,6 +117,14 @@ class AdminTourController extends BaseController
             $kids_text = updateSQ($_POST["kids_text" ?? '']);
 
             $product_points = updateSQ($_POST["product_points" ?? '']);
+            $addrs = updateSQ($_POST["addrs" ?? '']);
+            $latitude = updateSQ($_POST["latitude" ?? '']);
+            $longitude = updateSQ($_POST["longitude" ?? '']);
+            $tours_guide = updateSQ($_POST["tours_guide" ?? '']);
+            $tours_ko = updateSQ($_POST["tours_ko" ?? '']);
+            $tours_join = updateSQ($_POST["tours_join" ?? '']);
+            $tours_hour = updateSQ($_POST["tours_hour" ?? '']);
+            $tours_total_hour = updateSQ($_POST["tours_total_hour" ?? '']);
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -139,6 +147,25 @@ class AdminTourController extends BaseController
                 }
             }
 
+            for ($i = 1; $i <= 6; $i++) {
+                $file = isset($files["tours_ufile" . $i]) ? $files["tours_ufile" . $i] : null;
+
+                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                    $sql = "UPDATE tbl_product_mst SET 
+                            tours_ufile" . $i . "=''
+                            WHERE product_idx='$product_idx'
+                        ";
+
+                    $connect->query($sql);
+                }
+
+                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    $data["tours_ufile$i"] = $file->getRandomName();
+                    $publicPath = ROOTPATH . '/public/data/product/';
+                    $file->move($publicPath, $data["tours_ufile$i"]);
+                }
+            }
+
             if ($product_idx) {
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
                 $row = $this->connect->query("$sql")->getRowArray();
@@ -158,6 +185,13 @@ class AdminTourController extends BaseController
                 $data["rfile5"] = $data["rfile5"] ?? $row['rfile5'];
                 $data["rfile6"] = $data["rfile6"] ?? $row['rfile6'];
                 $data["rfile7"] = $data["rfile7"] ?? $row['rfile7'];
+
+                $data["tours_ufile1"] = $data["tours_ufile1"] ?? $row['tours_ufile1'];
+                $data["tours_ufile2"] = $data["tours_ufile2"] ?? $row['tours_ufile2'];
+                $data["tours_ufile3"] = $data["tours_ufile3"] ?? $row['tours_ufile3'];
+                $data["tours_ufile4"] = $data["tours_ufile4"] ?? $row['tours_ufile4'];
+                $data["tours_ufile5"] = $data["tours_ufile5"] ?? $row['tours_ufile5'];
+                $data["tours_ufile6"] = $data["tours_ufile6"] ?? $row['tours_ufile6'];
 
                 $sql = "update tbl_product_mst SET 
                             product_idx				= '" . $product_idx . "'
@@ -220,6 +254,14 @@ class AdminTourController extends BaseController
                             ,rfile5				    = '" . $data["rfile5"] . "'
                             ,rfile6				    = '" . $data["rfile6"] . "'
                             ,rfile7				    = '" . $data["rfile7"] . "'
+
+
+                            ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
+                            ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
+                            ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
+                            ,tours_ufile4		    = '" . $data["tours_ufile4"] . "'
+                            ,tours_ufile5		    = '" . $data["tours_ufile5"] . "'
+                            ,tours_ufile6		    = '" . $data["tours_ufile6"] . "'
                 
                             ,benefit				= '" . $benefit . "'
                             ,local_info				= '" . $local_info . "'
@@ -259,6 +301,14 @@ class AdminTourController extends BaseController
                             ,kids_text              = '" . $kids_text . "'
                             ,baby_text              = '" . $baby_text . "'
                             ,product_points         = '" . $product_points . "'
+                            ,addrs                  = '" . $addrs . "'
+                            ,latitude               = '" . $latitude . "'
+                            ,longitude              = '" . $longitude . "'
+                            ,tours_guide            = '" . $tours_guide . "'
+                            ,tours_ko               = '" . $tours_ko . "'
+                            ,tours_join             = '" . $tours_join . "'
+                            ,tours_hour             = '" . $tours_hour . "'
+                            ,tours_total_hour       = '" . $tours_total_hour . "'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -298,6 +348,13 @@ class AdminTourController extends BaseController
                             ,rfile5				    = '" . $data["rfile5"] . "'
                             ,rfile6				    = '" . $data["rfile6"] . "'
                             ,rfile7				    = '" . $data["rfile7"] . "'
+
+                            ,tours_ufile1		    = '" . $data["tours_ufile1"] . "'
+                            ,tours_ufile2			= '" . $data["tours_ufile2"] . "'
+                            ,tours_ufile3			= '" . $data["tours_ufile3"] . "'
+                            ,tours_ufile4		    = '" . $data["tours_ufile4"] . "'
+                            ,tours_ufile5		    = '" . $data["tours_ufile5"] . "'
+                            ,tours_ufile6		    = '" . $data["tours_ufile6"] . "'
                             
                             ,is_view				= '" . $is_view . "'
                             ,product_period			= '" . $product_period . "'
@@ -363,6 +420,14 @@ class AdminTourController extends BaseController
                             ,kids_text              = '" . $kids_text . "'
                             ,baby_text              = '" . $baby_text . "'
                             ,product_points         = '" . $product_points . "'
+                            ,addrs                  = '" . $addrs . "'
+                            ,latitude               = '" . $latitude . "'
+                            ,longitude              = '" . $longitude . "'
+                            ,tours_guide            = '" . $tours_guide . "'
+                            ,tours_ko               = '" . $tours_ko . "'
+                            ,tours_join             = '" . $tours_join . "'
+                            ,tours_hour             = '" . $tours_hour . "'
+                            ,tours_total_hour       = '" . $tours_total_hour . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";
@@ -480,5 +545,33 @@ class AdminTourController extends BaseController
 
     return redirect()->to('AdmMaster/_tourRegist/write_tours?product_idx=' . $productIdx);
       
+    }
+
+    public function del_tours() {
+        $info_idx = $this->request->getPost('info_idx');
+        $tours_idx = $this->request->getPost('tours_idx');
+        $db = $this->connect;
+        $db->transStart();
+        $infoDeleted = $this->infoProducts->where('info_idx', $info_idx)->delete();
+        $tourDeleted = true;
+        foreach ($tours_idx as $tours_idx) {
+            if (!$this->tourProducts->where('tours_idx', $tours_idx)->delete()) {
+                $tourDeleted = false;
+                break;
+            }
+        }
+        $db->transComplete();
+        try {
+
+            if ($db->transStatus() === FALSE || !$infoDeleted || !$tourDeleted) {
+                $msg = "삭제 완료";
+            } else {
+                $msg = "삭제 오류";
+            }
+        } catch (\Exception $e) {
+            $msg = "삭제 오류: " . $e->getMessage();
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
     }
 }

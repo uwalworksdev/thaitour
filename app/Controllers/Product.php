@@ -65,12 +65,14 @@ class Product extends BaseController
 
     public function indexTour($code_no)
     {
+        $code_no = $this->request->getGet('code_no');
+        $code_recommended_active = $this->request->getGet('code_recommended_active');
         try {
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'DESC')->findAll();
 
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
-                'product_status' => 'sale',
+                // 'product_status' => 'sale',
             ], $this->scale, 1, ['product_price' => 'ASC']);
 
             $code_name = $this->db->table('tbl_code')
@@ -95,6 +97,19 @@ class Product extends BaseController
                     ->getResult();
             }
 
+            $code_new = $this->codeModel->getByParentAndDepth(2336, 3)->getResultArray();
+
+            $codeRecommendedActive = $code_new[0]['code_no'];
+
+            $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
+
+
+            $code_step2 = $this->codeModel->getByParentAndDepth($codeRecommendedActive, 4)->getResultArray();
+
+            $codeStep2RecommendedActive = $code_step2[0]['code_no'];
+
+            $productStep2ByRecommended = $this->mainDispModel->goods_find($codeStep2RecommendedActive);
+
             $data = [
                 'code_no' => $code_no,
                 'products' => $products,
@@ -102,6 +117,12 @@ class Product extends BaseController
                 'code_name' => $code_name,
                 'sub_codes' => $sub_codes,
                 'tab_active' => '3',
+                'productByRecommended' => $productByRecommended,
+                'codeRecommendedActive' => $codeRecommendedActive,
+                'code_new' => $code_new,
+                'productStep2ByRecommended' => $productStep2ByRecommended,
+                'codeStep2RecommendedActive' => $codeStep2RecommendedActive,
+                'code_step2' => $code_step2,
             ];
 
             return $this->renderView('product/product-tours', $data);
