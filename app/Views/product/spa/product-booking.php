@@ -1,6 +1,187 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+
+<style>
+    .customer-form-page .con-form .form-group .mo-cus-in-3 {
+        width: 120px;
+    }
+
+    .customer-form-page .con-form .form-group select {
+        width: 130px;
+    }
+
+    .customer-form-page .con-form.group-phone {
+        justify-content: flex-start;
+        gap: 20px;
+    }
+
+    .customer-form-page .form-group-cus-4input {
+        margin-bottom: 0;
+    }
+
+    .customer-form-page .form-group-cus-4input input:nth-child(1) {
+        width: 84px;
+    }
+
+    .customer-form-page .form-group.group-payment {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .customer-form-page .form-group.group-payment .payment-item {
+        flex: 1;
+    }
+
+    .customer-form-page .form-group.group-payment .payment-input-wrap {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .customer-form-page .form-group-radio {
+        margin-bottom: 20px;
+    }
+
+    .card-right2 .select-wrap {
+        padding-bottom: 30px;
+        border-bottom: 1px dotted #dbdbdb;
+        margin-bottom: 30px;
+    }
+
+    .card-right2 select {
+        margin-bottom: 10px;
+    }
+
+    .customer-form-page .container-card .btn-cancle {
+        font-size: 22px;
+        background-color: #fff;
+        color: #2a459f;
+        border-radius: 5px;
+        padding: 12px 50px;
+        width: 100%;
+        margin-top: 25px;
+        font-weight: bold;
+        height: 66px;
+        border: 1px solid currentColor;
+    }
+
+    .customer-form-page .container-card .card-left .more {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .customer-form-page .container-card .card-left .more p {
+        color: #004ce7;
+        font-weight: 500;
+    }
+
+    .customer-form-page .container-card .card-right2 {
+        margin-bottom: 190px;
+    }
+
+    .customer-form-page .container-card .card-right2 .schedule {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 22px;
+        border-bottom: 1px solid #dbdbdb;
+        margin-bottom: 54px;
+    }
+
+    .card-right2 .schedule .wrap-text span {
+        color: #ccc;
+        font-size: 16px;
+
+    }
+
+    .card-right2 .schedule .wrap-text p {
+        color: #252525;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+
+    .card-right2 .schedule .wrap-btn {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .card-right2 .schedule .wrap-btn img {
+        width: 32px;
+    }
+
+    @media screen and (max-width : 850px) {
+        .customer-form-page .con-form .form-group .mo-cus-in-3 {
+            width: 18rem;
+        }
+
+        .customer-form-page .form-group-cus-4input input:nth-child(1) {
+            width: 16rem;
+        }
+
+        .customer-form-page .form-group-cus-4input input:nth-child(1) {
+            width: 17.5rem;
+        }
+
+        .customer-form-page .con-form .form-group select {
+            width: 25rem;
+        }
+
+
+        .customer-form-page .cus-select-group input,
+        .customer-form-page .cus-select-group select {
+            width: 0;
+            flex: 1;
+        }
+
+        .form-group.group-payment .payment-item {
+            width: 100%;
+
+        }
+
+        .form-group.group-payment .payment-item input {
+            flex: 1;
+            width: 0;
+        }
+
+        .card-right2 .select-wrap select {
+            width: 100%;
+        }
+
+        .customer-form-page .container-card .btn-cancle {
+            font-size: 3.2rem;
+            border-radius: 0.6rem;
+            padding: 1.2rem 5rem;
+            width: 100%;
+            font-weight: bold;
+            height: 10rem;
+        }
+
+        .mb-40 {
+            margin-bottom: 2.5385rem;
+        }
+
+        .card-right2 .select-wrap {
+            padding-bottom: 1.5385rem;
+            border-bottom: 1px dotted #dbdbdb;
+            margin-bottom: 2.5385rem;
+        }
+
+        .customer-form-page .container-card .card-right2 {
+            margin-bottom: 7.3077rem;
+        }
+
+        .main-section {
+            margin-bottom: 14.6923rem;
+        }
+
+    }
+</style>
 <div class="customer-form-page">
     <div class="navigation-section">
         <div class="body_inner">
@@ -36,7 +217,7 @@
                         <h3 class="title-main-c">
                             여행자 정보 입력
                         </h3>
-                        <h3 class="title-sub-c">인원1</h3>
+                        <h3 class="title-sub-c">예약자 정보</h3>
                         <div class="form-container">
                             <div class="con-form mb-40">
                                 <div class="form-group">
@@ -48,182 +229,120 @@
                                     <input type="text" id="gender1" placeholder="성별(MR/MS)" />
                                 </div>
                             </div>
-
-                            <h3 class="title-sub-c">인원2</h3>
-                            <div class="con-form cus-border-bottom">
+                            <div class="con-form mb-40 group-phone">
                                 <div class="form-group">
-                                    <label for="passport-name2">여권 영문명(성명)</label>
-                                    <input type="text" id="passport-name2" placeholder="영어로 작성해주세요." />
-                                </div>
-                                <div class="form-group">
-                                    <label for="gender2">성별(MR/MS)*</label>
-                                    <input type="text" id="gender2" placeholder="성별(MR/MS)" />
-                                </div>
-                            </div>
-
-
-                            <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: 2대</h3>
-                            <div class="con-form-select form-group mb-30">
-                                <label for="car-time-hour">차량 미팅 시간</label>
-                                <div class="form-group time-group">
-                                    <div class="form-group-second">
-                                        <select id="car-time-hour" class="select-width">
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-
-                                        </select>
-                                        <span>시</span>
-                                    </div>
-                                    <div class="form-group-second">
-                                        <select id="car-time-minute" class="select-width">
-                                            <option value="">선택</option>
-
-                                        </select>
-                                        <span>분</span>
+                                    <label for="passport-name2">한국번호</label>
+                                    <div class="form-group form-group-cus-4input">
+                                        <input type="text" id="passport-name2" placeholder="010" />
+                                        <span> - </span>
+                                        <input type="text" id="" />
+                                        <span> - </span>
+                                        <input class="mo-cus-in-3" type="text" id="" />
                                     </div>
                                 </div>
-                            </div>
-
-
-                            <div class="form-group mb-30">
-                                <label for="pickup-location">출발지(필요호텔)</label>
-                                <input class="mb-10" type="text" id="pickup-location"
-                                    placeholder="호텔명을 영어로 적어주세요(주소불가)" />
-                                <span class="text-gray">※일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨줴요.</span>
-                            </div>
-
-
-                            <div class="form-group mb-30">
-                                <label for="golf-club">목적지(골프장명)</label>
-                                <input type="text" id="golf-club" value="Nikanti Golf Club" readonly />
-                            </div>
-
-
-                            <div class="form-group cus-form-group">
-                                <label for="extra-requests">기타요청</label>
-                                <textarea id="extra-requests" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 
-중요한 요청 및 한글 요청 사항은 1:1게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
+                                <div class="form-group">
+                                    <label for="gender2">성별</label>
+                                    <select name="" id="">
+                                        <option value="">남</option>
+                                        <option value="">남</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-
+                        <div class="form-group form-cus-select">
+                            <label for="passport-name_02">이메일 주소*</label>
+                            <div class="cus-select-group">
+                                <input type="text" id="passport-name_02" placeholder="이메일" />
+                                <span>@</span>
+                                <select id="" class="select-width">
+                                    <option value="01">이메일 주소*</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="more">
+                            <img src="/uploads/sub/plus-ic-blue.png" alt="">
+                            <p>투숙객 추가</p>
+                        </div>
                     </div>
                     <div class="card-left2">
                         <h3 class="title-main-c">
-                            예약확정서 정보 입력
+                            결제방법 선택
                         </h3>
-                        <h3 class="title-sub-c">예약확정서 이름</h3>
-                        <div class="form-group mb-30">
-                            <label for="passport-name2">한국이름</label>
-                            <input type="text" id="" value="박지애" />
-                        </div>
-                        <div class="con-form mb-40">
-                            <div class="form-group">
-                                <label for="passport-name2">영문 이름(First Name) *</label>
-                                <input type="text" id="" placeholder="영어로 작성해주세요." />
-                            </div>
-                            <div class="form-group">
-                                <label for="passport-name2">영문 성(Last Name) *</label>
-                                <input type="text" id="" placeholder="영어로 작성해주세요." />
-                            </div>
-                        </div>
-                        <h3 class="title-sub-c">연락처</h3>
-                        <div class="form-group form-cus-select">
-                            <label for="passport-name2">이메일 주소*</label>
-                            <div class="cus-select-group">
-                                <input type="text" id="" placeholder="이메일" />
-                                <span>@</span>
-                                <select id="" class="select-width">
-                                    <option value="01">선택해주세요.</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group form-group-radio">
+                        <div class="form-group form-group-radio mb-40">
                             <p>
                                 <input type="radio" id="test1" name="radio-group" checked>
-                                <label for="test1">한국번호*</label>
+                                <label for="test1">신용카드/체크카드 결제</label>
                             </p>
-                            <p class="only_web">
+                            <p class="">
                                 <input type="radio" id="test2" name="radio-group">
-                                <label for="test2">태국번호 *</label>
+                                <label for="test2">무통장 입금</label>
                             </p>
                         </div>
-                        <div class="form-group form-group-cus-4input">
-                            <input type="text" id="" placeholder="010" />
-                            <span> - </span>
-                            <input type="text" id="" />
-                            <span> - </span>
-                            <input class="mo-cus-in-3" type="text" id="" />
-                            <input class="only_web" type="text" id="" />
-                        </div>
-                        <p class="only_mo radio-gr-mo-cus">
-                            <input type="radio" id="test_mo" name="radio-group">
-                            <label for="test_mo">태국번호 *</label>
-                        </p>
-                        <input class="only_mo" type="text" id="" />
-                        <div class="form-group mo_mt-30">
-                            <label for="passport-name2">여행시 현지 연락처</label>
-                            <div class="form-group-flex">
-                                <select id="car-time-hour" class="select-width">
-                                    <option value="01">TH</option>
+                        <div class="form-group group-payment">
+                            <div class="payment-item only_web">
+                                <label for="">결제(입금)정보</label>
+                                <select name="" id="">
+                                    <option value="">신용/체크카드 </option>
                                 </select>
-                                <input type="text" id="" placeholder="" />
+                            </div>
+                            <div class="payment-item">
+                                <label for="">결제(입금)정보</label>
+                                <div class="payment-input-wrap">
+                                    <input type="text" placeholder="입금자명">
+                                    <input type="text" placeholder="(주)마인갤러리">
+                                </div>
+                                <div class="payment-input-wrap">
+                                    <input type="text" placeholder="신한은행">
+                                    <input type="text" placeholder="100-036-005729">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="">
                     <div class="card-right">
-                        <img src="/uploads/sub/customer-form.png" alt="customer-form.png">
+                        <img src="/uploads/sub/form-spa-booking.png" alt="customer-form.png">
                         <div class="below-right">
-                            <h3 class="title-r">피닉스 골드 골프 방콕 (구. 수완나품 컨트리클럽)</h3>
-                            <p class="title-sub-r text-gray">19 Moo.14, Bang Krasan, Bangpain,Phra Nak
-                                hon Si Ayutthaya 13160</p>
-                            <h3 class="title-r">18홀 프로모션 오전</h3>
+                            <h3 class="title-r">방콕 막카 스파 & 마사지 (아속점)</h3>
+                            <p class="title-sub-r text-gray">425 Sukhumvit Rd, Khlong Tan Nuea, Watthana 10110,방콕,태국</p>
+                            <h3 class="title-r">예약안내</h3>
                             <div class="item-info">
                                 <span>일정</span>
                                 <span>2024.09.05(목)</span>
-                            </div>
-                            <div class="item-info">
-                                <span>홀수</span>
-                                <span>티오프시간</span>
-                            </div>
-                            <div class="item-info">
-                                <span>티오프시간</span>
-                                <span>06시 30분</span>
-                            </div>
-                            <div class="item-info">
-                                <span>인원</span>
-                                <span>2명</span>
                             </div>
                         </div>
                     </div>
                     <div class="card-right2">
                         <h3 class="title-r">
-                            요금정보
+                            여행인원 및 예약금액
                         </h3>
-                        <div class="item-info-r">
-                            <span>그린피</span>
-                            <span>107,197원 (2,600바트)</span>
+                        <div class="schedule">
+                            <div class="wrap-text">
+                                <span>일정</span>
+                                <p>담당자에게 문의해주세요</p>
+                            </div>
+                            <div class="wrap-btn">
+                                <img src="/uploads/sub/minus-ic.png" alt="">
+                                <span>2</span>
+                                <img src="/uploads/sub/plus-ic.png" alt="">
+                            </div>
                         </div>
-                        <div class="item-info-r">
-                            <span>캐디피</span>
-                            <span>그린피에 포함</span>
+
+                        <h3 class="title-r">
+                            옵션선택
+                        </h3>
+                        <div class="select-wrap">
+                            <select>
+                                <option>선택</option>
+                            </select>
+                            <select>
+                                <option>옵션선택</option>
+                            </select>
                         </div>
-                        <div class="item-info-r item-info-r-border-b">
-                            <span>카트피</span>
-                            <span>그린피에 포함</span>
-                        </div>
-                        <div class="item-info-r item-info-r-border-b">
-                            <span>골프장 왕복 픽업 차량 승용차 x 2대</span>
-                            <span>131,977원 (3,201바트)</span>
-                        </div>
-                        <div class="item-info-r">
-                            <span>할인금액</span>
-                            <span>- 131,977원 (3,201바트)</span>
-                        </div>
+
                         <div class="item-info-r font-bold-cus">
                             <span>합계</span>
-                            <span>1,085400원</span>
+                            <span>0원</span>
                         </div>
                         <p class="below-des-price">
                             · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -260,6 +379,7 @@
                             <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                         </div>
                         <button class="btn-order" onclick="location.href='/product/completed-order'">예약하기</button>
+                        <button class="btn-cancle" onclick="location.href='/product/completed-order'">취소하기</button>
                     </div>
                 </div>
             </div>
