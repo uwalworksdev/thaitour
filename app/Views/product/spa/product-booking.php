@@ -260,7 +260,7 @@
                             </div>
                         </div>
                         <div class="more">
-                            <img src="/uploads/sub/plus-ic-blue.png" alt="">
+                            <img src="/images/sub/plus-ic-blue.png" alt="">
                             <p>투숙객 추가</p>
                         </div>
                     </div>
@@ -301,7 +301,7 @@
                 </div>
                 <div class="">
                     <div class="card-right">
-                        <img src="/uploads/sub/form-spa-booking.png" alt="customer-form.png">
+                        <img src="/images/sub/form-spa-booking.png" alt="customer-form.png">
                         <div class="below-right">
                             <h3 class="title-r">방콕 막카 스파 & 마사지 (아속점)</h3>
                             <p class="title-sub-r text-gray">425 Sukhumvit Rd, Khlong Tan Nuea, Watthana 10110,방콕,태국</p>
@@ -322,9 +322,9 @@
                                 <p>담당자에게 문의해주세요</p>
                             </div>
                             <div class="wrap-btn">
-                                <img src="/uploads/sub/minus-ic.png" alt="">
+                                <img src="/images/sub/minus-ic.png" alt="">
                                 <span>2</span>
-                                <img src="/uploads/sub/plus-ic.png" alt="">
+                                <img src="/images/sub/plus-ic.png" alt="">
                             </div>
                         </div>
 
