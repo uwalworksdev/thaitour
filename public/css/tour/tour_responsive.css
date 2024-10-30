@@ -333,7 +333,7 @@
 
   .sub_tour_section5__prd_list {
     margin-top: 2rem;
-    gap: 5rem 4rem;
+    gap: 5rem 2rem;
   }
 
   .golf-custom-page .golf_custom_section5__head__tabs2 {
@@ -2992,7 +2992,7 @@
   }
 
   .sub_tour_section5_item {
-    width: 31.9rem;
+    width: 33rem;
   }
 
   .best_tour_section5__hotel {
@@ -3064,5 +3064,9 @@
   .sub_tour_section7_product_item {
     width: 50rem;
     display: block;
+  }
+
+  .best_tour_section5_ .swiper-wrapper {
+
   }
 }
