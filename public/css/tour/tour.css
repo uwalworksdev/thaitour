@@ -1510,6 +1510,8 @@
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    overflow: scroll hidden;
+    padding-bottom: 16px;
 }
 
 .content-sub-hotel-detail .list-tag-sec3 .tag-item-sec3--active {
@@ -1523,6 +1525,7 @@
     padding: 10px 14px;
     border-radius: 20px;
     border: 1px solid #ccc;
+    white-space: nowrap;
 }
 
 .content-sub-hotel-detail .list-tag-sec3 .tag-item-sec3--main {
