@@ -1374,6 +1374,16 @@ class Product extends BaseController
         return $this->renderView('tours/order-form');
     }
 
+    public function restaurantIndex($code_no)
+    {
+        return $this->renderView('/product/restaurant/product-restaurant');
+    }
+
+    public function restaurantDetail($code_no)
+    {
+        return $this->renderView('/product/restaurant/spa-details');
+    }
+
     public function vehicleGuide($code_no)
     {
         try {

@@ -1298,7 +1298,7 @@
 
   .customer-form-page .form-group-second .select-width,
   .customer-form-page select {
-    width: 22.5rem;
+    width: 27.5rem;
     height: 9rem;
     border-width: 0.21rem;
     background: #fff url(/images/ico/select_ico_mo.png) right 2rem center no-repeat;
@@ -1773,6 +1773,10 @@
   .reservation-form-cus .conn-icon img {
     width: 3.7rem;
     height: 3.7rem;
+  }
+
+  .customer-form-page .cus-select-group input:first-child {
+    width: 27rem;
   }
 
   .reservation-form-cus .w-375 {
