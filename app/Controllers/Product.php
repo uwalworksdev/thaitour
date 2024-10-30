@@ -864,7 +864,7 @@ class Product extends BaseController
 
             $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '', '1303');
 
-            $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx DESC';
+            $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx ASC';
             $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
             $_arr_utilities = $_arr_best_utilities = $_arr_services = $_arr_populars = [];
             if (count($hotel_options) > 0) {
@@ -938,7 +938,7 @@ class Product extends BaseController
                     JOIN tbl_room r ON r.g_idx = o.o_room
                     WHERE o.goods_code = '" . $hotel['product_code'] . "'
                     AND o.o_room != 0 
-                    ORDER BY o.idx DESC";
+                    ORDER BY o.idx ASC";
 
             $hotel_options = $this->db->query($sql)->getResultArray();
 
