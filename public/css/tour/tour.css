@@ -1510,6 +1510,8 @@
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    overflow: scroll hidden;
+    padding-bottom: 16px;
 }
 
 .content-sub-hotel-detail .list-tag-sec3 .tag-item-sec3--active {
@@ -1523,6 +1525,7 @@
     padding: 10px 14px;
     border-radius: 20px;
     border: 1px solid #ccc;
+    white-space: nowrap;
 }
 
 .content-sub-hotel-detail .list-tag-sec3 .tag-item-sec3--main {
@@ -1619,7 +1622,14 @@
 
 .content-sub-hotel-detail .section4 .list-tag-sec4 {
     display: flex;
-    gap: 150px;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: start;
+}
+
+.content-sub-hotel-detail .section4 .tag-container-item-sec4 {
+    width: calc((100% - 120px)/4); 
+    padding-right: 70px
 }
 
 .content-sub-hotel-detail .section4 .list-tag-sec4 .list-tag-sec4-column {
@@ -1820,6 +1830,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 64px;
+    flex-wrap: wrap;
 }
 
 .content-sub-hotel-detail .section7 .justify_content_end .title-sec7 {

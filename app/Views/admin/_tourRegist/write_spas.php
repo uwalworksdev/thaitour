@@ -467,7 +467,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>특가여부</th>
+                                    <th>단품 메인노출</th>
                                     <td>
                                         <input type="checkbox" name="special_price" id="special_price"
                                                value="Y" <?php if (isset($row["special_price"]) && $row["special_price"] == "Y") {
@@ -521,7 +521,7 @@
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        숙소개요
+                                        상세정보
                                     </td>
                                 </tr>
 
@@ -639,7 +639,7 @@
                                 <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        숙소개요
+                                        상세정보
                                     </td>
                                 </tr>
 
@@ -1235,7 +1235,6 @@
             </form>
             <!-- // listBottom -->
 
-
             <div class="tail_menu">
                 <ul>
                     <li class="left"></li>
@@ -1348,109 +1347,6 @@
                     </form>
                 </div>
             <?php endforeach; ?>
-
-
-            <?php if ($product_idx): ?>
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 가격리스트</li>
-                        <li class="right_sub" style="padding-bottom:10px">
-                            <a href="../_tourPrice/write<?= ($product_code_1 == "1301") ? "_package" : "" ?>.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_3=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&back_url=<?= $back_url ?>"
-                               class="btn btn-default">
-                                <span class="glyphicon glyphicon-cog"></span>
-                                <span class="txt">가격등록</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <caption></caption>
-                        <colgroup>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="*"/>
-                            <col width="8%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>시작일</th>
-                            <th>종료일</th>
-                            <th>항공사별 가격</th>
-                            <th>선택요일</th>
-                            <th>등록일</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <?php echo $yoil_html ?>
-                    </table>
-                </div>
-
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 상세내역</li>
-                        <li class="right_sub" style="padding-bottom:10px"></li>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <colgroup>
-                            <col width="70px"/>
-                            <col width="*"/>
-                            <col width="260px"/>
-                            <col width="260px"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>항공사</th>
-                            <th>일차</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php if ($fTotalresult4 > 0): ?>
-                            <?php $i = 1; ?>
-                            <?php foreach ($fresult4 as $frow): ?>
-                                <tr style="height:50px">
-                                    <td><?= $i++ ?></td>
-                                    <td class="tac"><?= $frow["code_name"] ?></td>
-                                    <td class="tac"><?= $frow["cnt"] ?>일차</td>
-                                    <td>
-                                        <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
-                                           class="btn btn-default">상세내역관리</a>
-                                        <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                            <input type="file" hidden name="fileInput"
-                                                   data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput"
-                                                   accept=".json">
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr style="height:50px">
-                                <td><?= $i++ ?></td>
-                                <td class="tac">미등록</td>
-                                <td class="tac">미등록</td>
-                                <td>
-                                    <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
-                                       class="btn btn-default">상세내역관리</a>
-                                    <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                        <!-- <button type="button">Tải lên lịch trình</button> -->
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
 
         </div>
     </div>
@@ -1591,7 +1487,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_moption.php",
+                url: "<?= route_to('admin.api.spa_.upd_moption') ?>",
                 type: "POST",
                 data: {
                     "code_idx": code_idx,
@@ -1615,7 +1511,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.add_moption.php",
+                url: "<?= route_to('admin.api.spa_.add_moption') ?>",
                 type: "POST",
                 data: {
                     "product_idx": '<?= $product_idx ?>',
@@ -1642,7 +1538,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_moption.php",
+                url: "<?= route_to('admin.api.spa_.del_moption') ?>",
                 type: "POST",
                 data: {
                     "code_idx": code_idx
@@ -1669,7 +1565,7 @@
             $.ajax({
                 type: "POST",
                 data: option_data,
-                url: "/ajax/ajax.add_option.php",
+                url: "<?= route_to('admin.api.spa_.add_option') ?>",
                 cache: false,
                 async: false,
                 success: function (data, textStatus) {
@@ -1695,7 +1591,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.del_option.php",
+                url: "<?= route_to('admin.api.spa_.del_option') ?>",
                 type: "POST",
                 data: {
                     "idx": idx
@@ -1725,7 +1621,7 @@
             var message = "";
             $.ajax({
 
-                url: "/ajax/ajax.upd_option.php",
+                url: "<?= route_to('admin.api.spa_.upd_option') ?>",
                 type: "POST",
                 data: {
                     "idx": idx,
@@ -1759,7 +1655,7 @@
             var message = "";
             $.ajax({
 
-                url: "ajax.img_remove.php",
+                url: "<?= route_to('admin.api.spa_.img_remove') ?>",
                 type: "POST",
                 data: {
                     "product_idx": $("#product_idx").val(),
@@ -1798,6 +1694,8 @@
     </script>
     <script>
         function send_it() {
+            $("#ajax_loader").removeClass("display-none");
+
             let frm = document.frm;
             /*
             oEditors1.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -1894,11 +1792,14 @@
                 _deadline_time = _deadline_time + '||||' + deadline_;
             })
 
+            $('#available_period').val(_available_period)
+            $('#deadline_time').val(_deadline_time)
+
             frm.submit();
         }
 
         function del_it(idx) {
-
+            let uri = `<?= route_to('admin.api.spa_.del') ?>`
 
             if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
                 return false;
@@ -1906,7 +1807,7 @@
             let message = "";
             $.ajax({
 
-                url: "./ajax.prod_del.php",
+                url: uri,
                 type: "POST",
                 data: {
                     "product_idx": idx
@@ -1926,9 +1827,10 @@
         }
 
         function get_code(strs, depth) {
+            let uri = `<?= route_to('admin.api.spa_.get_code') ?>`
             $.ajax({
                 type: "GET"
-                , url: "get_code.ajax.php"
+                , url: uri
                 , dataType: "html" //전송받을 데이터의 타입
                 , timeout: 30000 //제한시간 지정
                 , cache: false  //true, false
@@ -1974,9 +1876,11 @@
         }
 
         function get_code_2(strs, depth) {
+            let uri = `<?= route_to('admin.api.spa_.get_code') ?>`
+
             $.ajax({
                 type: "GET",
-                url: "get_code.ajax.php",
+                url: uri,
                 dataType: "html",
                 timeout: 30000,
                 cache: false,
