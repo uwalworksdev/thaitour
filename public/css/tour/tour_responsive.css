@@ -510,14 +510,14 @@
   }
 
   .content-sub-hotel-detail .hotel-image-container .grid_2_2 img {
-    width: 32.4rem !important;
+    width: 32.502rem !important;
     height: unset !important;
     background-size: cover;
     background-repeat: no-repeat;
   }
 
   .content-sub-hotel-detail .hotel-image-container .grid_2_2 .grid_2_2_sub {
-    width: 49.4%;
+    width: 49.2%;
   }
 
   .content-sub-hotel-detail .hotel-image-container .grid_2_2 .grid_2_2_sub img:first-child {
@@ -1024,8 +1024,8 @@
   .content-sub-hotel-detail .post-list-sec2 div {
     display: flex;
     flex-direction: column;
-    width: 28rem;
     margin: 3.2rem 0;
+    width: calc((100% - 3rem) / 2);
   }
 
   .content-sub-hotel-detail .title-sec3 {
@@ -1093,8 +1093,12 @@
     gap: 0.8rem;
   }
 
+  .content-sub-hotel-detail .section3 .card-item-left {
+    max-width: 100%;
+  }
+
   .content-sub-hotel-detail .grid2_2_1_m img:first-child {
-    width: 70%;
+    width: 100%;
   }
 
   .content-sub-hotel-detail .grid2_2_1_m img.custom_button {
@@ -1121,10 +1125,19 @@
 
   .content-sub-hotel-detail .section3 .card-item-left ul {
     display: flex;
-    flex-direction: column;
+    flex-direction: unset;
     flex-wrap: wrap;
-    height: 11rem;
-    margin-left: 3.2rem;
+    height: unset;
+    margin-left: 1.2rem;
+  }
+
+  .cus_scroll_li {
+    gap: 2rem;
+  }
+
+  .cus_scroll {
+    max-height: 40rem;
+    padding-left: 2rem;
   }
 
   .content-sub-hotel-detail .section4 .title-sec4 {
@@ -1142,6 +1155,11 @@
 
   .content-sub-hotel-detail .section5 .content-item:not(:last-child) {
     border-bottom: 0.21rem dashed #ccc;
+  }
+
+  .cus_scroll li {
+    width: 14.7rem;
+    max-width: unset;
   }
 
   .content-sub-hotel-detail .section4 .list-tag-sec4 {
@@ -1571,18 +1589,21 @@
 
   .content-sub-hotel-detail .post-list-sec2 div img {
     margin-bottom: 2rem;
-    width: 28rem;
-    height: 17.6rem;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
   .content-sub-hotel-detail .list-tag-sec3 {
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.6rem;
   }
 
   .content-sub-hotel-detail .card-item-sec3 .card-title-sec3-container h2 {
     font-size: 3.2rem;
     font-weight: bold;
+    gap: 0.8rem;
+    padding: 1.6rem 0;
   }
 
   .content-sub-hotel-detail .table-price-info-mobile {
@@ -3066,7 +3087,5 @@
     display: block;
   }
 
-  .best_tour_section5_ .swiper-wrapper {
-
-  }
+  .best_tour_section5_ .swiper-wrapper {}
 }
