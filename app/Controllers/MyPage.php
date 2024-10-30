@@ -36,22 +36,22 @@ class MyPage extends BaseController
         $g_list_rows = 10;
         $strSql = "";
         if ($search_word) {
-            $strSql = $strSql . " and product_name like '%" . $search_word . "%' ";
+            $strSql = $strSql . " and a.product_name like '%" . $search_word . "%' ";
         }
 
         if ($s_status) {
-            $strSql = $strSql . " and order_status = '" . $s_status . "' ";
+            $strSql = $strSql . " and a.order_status = '" . $s_status . "' ";
         }
-        $strSql = $strSql . " and order_gubun='hotel' ";
-        $strSql = $strSql . " and m_idx='" . $_SESSION["member"]["mIdx"] . "' ";
-        $strSql = $strSql . " and order_status != 'D' ";
-        $total_sql = "	SELECT tbl_order_mst.*, tbl_product_mst.ufile1, IFNULL(COUNT(tbl_order_list.order_idx), 0) AS cnt
-                                FROM tbl_order_mst
-                                LEFT JOIN tbl_product_mst 
-                                    ON tbl_product_mst.product_idx = tbl_order_mst.product_idx
-                                LEFT JOIN tbl_order_list 
-                                    ON tbl_order_list.order_idx = tbl_order_mst.order_idx WHERE 1 = 1 $strSql 
-                                    GROUP BY tbl_order_mst.order_idx ";
+        // $strSql = $strSql . " and a.order_gubun='hotel' ";
+        $strSql = $strSql . " and a.m_idx='" . $_SESSION["member"]["mIdx"] . "' ";
+        $strSql = $strSql . " and a.order_status != 'D' ";
+        $total_sql = "	SELECT a.*, b.ufile1, IFNULL(COUNT(c.order_idx), 0) AS cnt
+                                FROM tbl_order_mst a
+                                LEFT JOIN tbl_product_mst b
+                                    ON b.product_idx = a.product_idx
+                                LEFT JOIN tbl_order_list c
+                                    ON c.order_idx = a.order_idx WHERE 1 = 1 $strSql 
+                                    GROUP BY a.order_idx ";
         $nTotalCount = $this->db->query($total_sql)->getNumRows();
 
         $nPage = ceil($nTotalCount / $g_list_rows);
@@ -60,7 +60,23 @@ class MyPage extends BaseController
         }
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        return view('mypage/details');
+        $sql = $total_sql . " order by a.order_idx desc limit $nFrom, $g_list_rows ";
+        $result = $this->db->query($sql)->getResultArray();
+        $num = $nTotalCount - $nFrom;
+
+        $data = [
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'g_list_rows' => $g_list_rows,
+            'pg' => $pg,
+            'num' => $num,
+            'result' => $result,
+            'is_allow_payment' => $is_allow_payment,
+            'search_word' => $search_word,
+            's_status' => $s_status,
+        ];
+
+        return view('mypage/details', $data);
     }
     public function custom_travel()
     {

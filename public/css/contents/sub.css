@@ -3742,6 +3742,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   margin-right: 20px;
 }
 
+.customer-form-page .container-card .card-left.card-left-2 {
+  margin-top: 20px;
+}
+
 .customer-form-page .container-card .card-left2 {
   width: 820px;
   padding: 40px 30px;
@@ -3805,6 +3809,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .title-main-c {
   font-size: 22px;
+  margin-bottom: 40px;
+}
+
+.customer-form-page .title-main-c.title-main-2 {
   margin-bottom: 40px;
 }
 

@@ -33,7 +33,63 @@
             <form action="product-hotel/reservation-form-insert" name="order_frm" id="order_frm" method="post">
                 <div class="container-card">
                     <div class="">
-                        <div class="card-left">
+                    <div class="card-left">
+                            <h3 class="title-main-c title-main-2">
+                                예약확정서 정보 입력
+                            </h3>
+                            <h3 class="title-sub-c">예약확정서 이름</h3>
+                            <div class="form-group mb-30">
+                                <label for="order_user_name">이름</label>
+                                <input type="text" id="order_user_name" name="order_user_name"/>
+                            </div>
+                            <h3 class="title-sub-c">연락처</h3>
+                            <div class="form-group form-cus-select mb-30">
+                                <label for="email_name">이메일 주소*</label>
+                                <div class="cus-select-group">
+                                    <input type="text" id="email_name" name="email_name" placeholder="이메일">
+                                    <span>@</span>
+                                    <select id="email_host" name="email_host" class="select-width">
+                                        <option value="">선택해주세요.</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="hanmail.net">hanmail.net</option>
+                                        <option value="hotmail.com">hotmail.com</option>
+                                        <option value="nate.com">nate.com</option>
+                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                        <option value="empas.com">empas.com</option>
+                                        <option value="dreamwiz.com">dreamwiz.com</option>
+                                        <option value="freechal.com">freechal.com</option>
+                                        <option value="lycos.co.kr">lycos.co.kr</option>
+                                        <option value="korea.com">korea.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="hanmir.com">hanmir.com</option>
+                                        <option value="paran.com">paran.com</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="con-form mb-40">
+                                <div class="parent-form-group">
+                                    <div class="form-group">
+                                        <label for="order_user_mobile">휴대폰번호</label>
+                                        <input type="text" id="order_user_mobile" name="order_user_mobile[]" placeholder="번호를 입력해주세요." />
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                document.getElementById('order_user_mobile').addEventListener('input', function (e) {
+                                    let phone = e.target.value.replace(/\D/g, '');
+
+                                    if (phone.length <= 3) {
+                                        e.target.value = phone;
+                                    } else if (phone.length <= 7) {
+                                        e.target.value = `${phone.slice(0, 3)}-${phone.slice(3)}`;
+                                    } else {
+                                        e.target.value = `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7, 11)}`;
+                                    }
+                                });
+                            </script>
+                        </div>
+
+                        <div class="card-left card-left-2">
                             <h3 class="title-main-c">
                                 투숙객 정보
                             </h3>
@@ -74,58 +130,8 @@
                             <?php
                                 }
                             ?>
-                            <h3 class="title-sub-c mt-30 con-border-top">상세정보 입력</h3>
-                            <div class="form-container">
-                                <div class="con-form mb-40">
-                                    <div class="parent-form-group">
-                                        <div class="form-group">
-                                            <label for="first-name-1">이메일 주소*</label>
-                                            <div class="cus-select-group">
-                                                <input type="text" id="email_name" name="email_name" placeholder="이메일">
-                                                <span>@</span>
-                                                <select id="email_host" name="email_host" class="select-width">
-                                                    <option value="">선택해주세요.</option>
-                                                    <option value="naver.com">naver.com</option>
-                                                    <option value="hanmail.net">hanmail.net</option>
-                                                    <option value="hotmail.com">hotmail.com</option>
-                                                    <option value="nate.com">nate.com</option>
-                                                    <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                                    <option value="empas.com">empas.com</option>
-                                                    <option value="dreamwiz.com">dreamwiz.com</option>
-                                                    <option value="freechal.com">freechal.com</option>
-                                                    <option value="lycos.co.kr">lycos.co.kr</option>
-                                                    <option value="korea.com">korea.com</option>
-                                                    <option value="gmail.com">gmail.com</option>
-                                                    <option value="hanmir.com">hanmir.com</option>
-                                                    <option value="paran.com">paran.com</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="con-form mb-40">
-                                    <div class="parent-form-group">
-                                        <div class="form-group">
-                                            <label for="order_user_mobile">휴대폰번호</label>
-                                            <input type="text" id="order_user_mobile" name="order_user_mobile[]" placeholder="번호를 입력해주세요." />
-                                        </div>
-                                    </div>
-                                </div>
-                                <script>
-                                    document.getElementById('order_user_mobile').addEventListener('input', function (e) {
-                                        let phone = e.target.value.replace(/\D/g, '');
-
-                                        if (phone.length <= 3) {
-                                            e.target.value = phone;
-                                        } else if (phone.length <= 7) {
-                                            e.target.value = `${phone.slice(0, 3)}-${phone.slice(3)}`;
-                                        } else {
-                                            e.target.value = `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7, 11)}`;
-                                        }
-                                    });
-                                </script>
-                            </div>
                         </div>
+
                         <div class="card-left2">
                             <h3 class="title-main-c">
                                 별도 요청

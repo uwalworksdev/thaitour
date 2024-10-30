@@ -1,46 +1,20 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
-<?php
-    $connect = db_connect();
-    $is_allow_payment = $_SERVER['REMOTE_ADDR'] == "220.86.61.165" || $_SERVER['REMOTE_ADDR'] == "113.160.96.156" || $_SERVER['REMOTE_ADDR'] == "58.150.52.107" || $_SERVER['REMOTE_ADDR'] == "14.137.74.11";
-?>
+
 <?php
     if(empty(session()->get("member")["mIdx"])){
         alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
         exit();         
     }
-
-    $search_word = trim($_GET['search_word']);
-    $g_list_rows = 10;
-
-    if ($search_word) {
-        $strSql = $strSql . " and product_name like '%" . $search_word . "%' ";
-    }
-
-    if ($s_status) {
-        $strSql = $strSql . " and order_status = '" . $s_status . "' ";
-    }
-    $strSql = $strSql . " and order_gubun='hotel' ";
-    $strSql = $strSql . " and m_idx='" . $_SESSION["member"]["mIdx"] . "' ";
-    $strSql = $strSql . " and order_status != 'D' ";
-    $total_sql = "	select *
-                        , (select ufile1 from tbl_product_mst where tbl_product_mst.product_idx=tbl_order_mst.product_idx) as ufile1
-                        , (select ifnull(count(*),0) from tbl_order_list where tbl_order_mst.order_idx= tbl_order_list.order_idx) as cnt
-                        from tbl_order_mst where 1=1 $strSql ";
-    $nTotalCount = $connect->query($total_sql)->getNumRows();
-
-    $nPage = ceil($nTotalCount / $g_list_rows);
-    if ($pg == "")
-        $pg = 1;
-    $nFrom = ($pg - 1) * $g_list_rows;
 ?>
-
 
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive_new02.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage.css" rel="stylesheet" type="text/css" />
 <link href="/css/mypage/mypage_reponsive.css" rel="stylesheet" type="text/css" />
+<link href="/css/community/community.css" rel="stylesheet" type="text/css" />
+
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
@@ -74,13 +48,15 @@
             <div class="content">
                 <h1 class="ttl_table">예약내역</h1>
                 <form name="search" id="search">
+                    <input type="hidden" name="s_status" value="<?=$s_status?>">
+                    <input type="hidden" name="pg" value="<?=$pg?>">
                     <div class="details_search flex_e_c">
                         <select name="" class="details_filter_selection only_mo">
-                            <option value="전체">전체</option>
-                            <option value="예약 준비중">예약 준비중</option>
-                            <option value="예약금">예약금</option>
-                            <option value="중도금">중도금</option>
-                            <option value="후기쓰기">후기쓰기</option>
+                            <option value="">전체</option>
+                            <option value="W">예약 준비중</option>
+                            <option value="G">예약금</option>
+                            <option value="R">중도금</option>
+                            <option value="Y">후기쓰기</option>
                         </select>
                         <input type="text" name="search_word" value="<?= $search_word ?>">
                         <button class="search_button" type="button" onclick="search_it()">검색</button>
@@ -90,16 +66,20 @@
                     <div class="details_wrap flex_b_c">
                         <p class="count">전체 <span><?= $nTotalCount ?></span>개</p>
                         <div class="details_filter">
-                            <button class="filter_btn flex__c active" type="button"><i></i>전체</button>
-                            <button class="filter_btn flex__c" type="button"><i></i>예약 준비중</button>
-                            <button class="filter_btn flex__c" type="button"><i></i>예약금</button>
-                            <button class="filter_btn flex__c" type="button"><i></i>중도금</button>
-                            <button class="filter_btn flex__c" type="button"><i></i>후기쓰기</button>
+                            <a href="/mypage/details?s_status=&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c 
+                                <?php if(empty($s_status)){ echo "active"; }?>"><i></i>전체</a>
+                            <a href="/mypage/details?s_status=W&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
+                                <?php if($s_status == "W"){ echo "active"; }?>"><i></i>예약 준비중</a>
+                            <a href="/mypage/details?s_status=G&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
+                                <?php if($s_status == "G"){ echo "active"; }?>"><i></i>예약금</a>
+                            <a href="/mypage/details?s_status=R&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
+                                <?php if($s_status == "R"){ echo "active"; }?>"><i></i>중도금</a>
+                            <a href="/mypage/details?s_status=Y&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
+                                <?php if($s_status == "Y"){ echo "active"; }?>"><i></i>후기쓰기</a>
                         </div>
                     </div>
                     <table class="details_table">
                         <colgroup class="only_web">
-                            <col width="110px">
                             <col width="110px">
                             <col width="110px">
                             <col width="*">
@@ -110,7 +90,6 @@
                         <thead>
                             <tr>
                                 <th>예약일</th>
-                                <th>시간</th>
                                 <th>구분</th>
                                 <th>상품</th>
                                 <th>일정</th>
@@ -120,34 +99,24 @@
                         </thead>
                         <tbody>
                             <?php
-                            $sql = $total_sql . " order by order_idx desc limit $nFrom, $g_list_rows ";
-                            // die($sql);
-                            $result = $connect->query($sql)->getResultArray();
-                            $num = $nTotalCount - $nFrom;
                             if ($nTotalCount == 0) {
                             ?>
                                 <tr>
-                                    <td colspan="7" style="text-align: center;">검색된 결과가 없습니다.</td>
+                                    <td colspan="6" style="text-align: center;">검색된 결과가 없습니다.</td>
                                 </tr>
                                 <?php
                             } else {
-
                                 foreach ($result as $row) {
-                                    $sql_c = "select a.*, b.* from tbl_product_mst a
-                                                                    left join tbl_code b on a.product_code_1 = b.code_no
-                                                                    where b.code_gubun = 'tour' and depth = '2' and a.product_idx = '{$row['product_idx']}' ";
-                                    $row_c = $connect->query($sql_c)->getRowArray();
                                 ?>
                                     <tr>
                                         <td class="date date_1">
-                                            <?= date("Y.m.d", strtotime($row["order_r_date"])) ?>
+                                            <?= $row["order_r_date"] ?>
                                         </td>
-                                        <td class="date">
-                                            <?= date("H:s:i", strtotime($row["order_r_date"])) ?>
+                                        <td style="text-align: center;">
+                                            <span>
+                                                <?= $row['code_name'] ?>
+                                            </span>
                                         </td>
-                                        <td class="ttl"><span>
-                                                <?= $row_c['code_name'] ?>
-                                            </span></td>
                                         <td class="des"><span>
                                                 <?= (html_entity_decode($row["product_name"])) ?>
                                             </span></td>
@@ -187,7 +156,11 @@
                             ?>
                         </tbody>
                     </table>
-                    <?php echo ipageListing2($pg, $nPage, $g_list_rows, $_SERVER['PHP_SELF'] . "?search_word=$search_word&pg=") ?>
+                    <div class="customer-center-page">
+                    <?php 
+                        echo ipagelistingSub($pg, $nPage, $g_list_rows, current_url() . "?s_status=$s_status&search_word=$search_word&pg=")
+                    ?>
+                    </div>
                     <div class="popup_wrap agree_pop">
                         <div class="popup">
                             <div class="top">
@@ -242,9 +215,6 @@
     </div>
 </section>
 
-
-
-
 <?php
 
 $_paymod = "nicepay";    // ini  ,  lg
@@ -272,41 +242,10 @@ if ($_paymod == "lg") {
 ?>
 
 <script type="text/javascript">
-    $('.details_filter .filter_btn').on('click', function() {
-        $(this).addClass('active').siblings().removeClass('active')
-        let value = $(this).text();
-
-        // console.log(value);
-
-        $.ajax({
-            url: "filter_details_status.php",
-            type: "POST",
-            data: {
-                'status': value,
-                url: '<?= $_SERVER['PHP_SELF'] ?>'
-            },
-            success: function(data) {
-                $(".section_details").html(data);
-                // alert(data);
-            }
-        })
-    })
 
     $('.details_filter_selection').on('change', function() {
-        let value = $(this).val();
-        console.log(value);
-        $.ajax({
-            url: "filter_details_status.php",
-            type: "POST",
-            data: {
-                'status': value,
-                url: '<?= $_SERVER['PHP_SELF'] ?>'
-            },
-            success: function(data) {
-                $(".section_details").html(data);
-                // alert(data);
-            }
-        })
+        let status = $(this).val();
+        window.location.href = "/mypage/details?s_status="+ status +"&search_word=<?=$search_word?>&pg=<?=$pg?>";
     })
 
     $(document).ready(function() {
@@ -322,9 +261,6 @@ if ($_paymod == "lg") {
                     //통신 에러 발생시 처리
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     $("#ajax_loader").addClass("display-none");
-                },
-                complete: function(request, status, error) {
-                    //				$("#ajax_loader").addClass("display-none");
                 },
                 success: function(response, status, request) {
                     $(".earn_pops").html(response);

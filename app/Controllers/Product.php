@@ -1141,6 +1141,7 @@ class Product extends BaseController
             $order_memo = $this->request->getPost('order_memo') ?? "";
             $email_name = $this->request->getPost('email_name') ?? "";
             $email_host = $this->request->getPost('email_host') ?? "";
+            $order_user_name = $this->request->getPost('order_user_name') ?? "";
             $order_user_mobile = $this->request->getPost('order_user_mobile') ?? "";
             $order_user_email = $email_name . "@" . $email_host;
             $hotel = $this->productModel->find($product_idx);
@@ -1166,6 +1167,7 @@ class Product extends BaseController
                 "product_name" => $hotel["product_name"],
                 "code_name" => $code_name,
                 "order_gubun" => "hotel",
+                "order_user_name" => encryptField($order_user_name, "encode"),
                 "order_user_mobile" => encryptField($order_user_mobile, "encode"),
                 "order_user_email" => encryptField($order_user_email, "encode"),
                 "order_memo" => $order_memo,

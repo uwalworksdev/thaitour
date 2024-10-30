@@ -285,6 +285,7 @@ table-layout: fixed;
 
 .mypage_container .content .details_filter .filter_btn.active {
     color: #454545;
+    font-weight: 700;
 }
 
 .mypage_container .content .details_table tbody tr .pay_btn a {
