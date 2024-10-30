@@ -1148,6 +1148,7 @@ class Product extends BaseController
             $order_status = "W";
             $ipAddress = $this->request->getIPAddress();
             $device_type = get_device();
+            $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
 
             if (!empty($use_coupon_idx)) {
                 $coupon = $this->coupon->find($use_coupon_idx);
@@ -1163,6 +1164,7 @@ class Product extends BaseController
                 "product_code_4" => $hotel["product_code_4"],
                 "product_code_list" => $hotel["product_code_list"],
                 "product_name" => $hotel["product_name"],
+                "code_name" => $code_name,
                 "order_gubun" => "hotel",
                 "order_user_mobile" => encryptField($order_user_mobile, "encode"),
                 "order_user_email" => encryptField($order_user_email, "encode"),
