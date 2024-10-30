@@ -176,10 +176,10 @@
                 </div>
                 <div class="date-text-2">
                     <div class="result_select">
-                        <p id="final_date">2024.10.10 (목)</p> / 
-                        <p id="final_hole">36</p><span>홀수</span> / 
-                        <p id="final_hour">06</p><span>시</span> / 
-                        <p id="final_people">5</p><span>인</span>
+                        <p class="final_date"></p> / 
+                        <p class="final_hole">0</p><span>홀수</span> / 
+                        <p class="final_hour">00</p><span>시</span> / 
+                        <p class="final_people_cnt">0</p><span>인</span>
                     </div>
                     <p>※ 아래 요금은 1인당 가격입니다.</p>
                 </div>
@@ -192,16 +192,17 @@
                     <?php foreach ($golfVehicles as $value) : ?>
                         <div class="item-select">
                             <span class="label"><?= $value['code_name'] ?></span>
-                            <select data-idx="<?= $value['code_idx'] ?>" data-name="<?= $value['code_name'] ?>" class="vehicle_select vehicle_select_<?= $value['code_idx'] ?> select_custom_ active_ cus-width" name="vehicle_select[]">
-                                <option value="">No option</option>
-                                <?php foreach ($value['children'] as $v) : ?>
-                                    <option value="<?= $v['code_idx'] ?>">
-                                        <?= $v['code_name'] ?>
-                                        (+<?= number_format($v['price']) ?>원)
-                                    </option>
-                                <?php endforeach; ?>
+                            <select data-idx="<?= $value['code_idx'] ?>"
+                                data-name="<?= $value['code_name'] ?>" 
+                                data-price="<?= $value['price'] ?>"
+                                data-price_baht="<?= $value['price_baht'] ?>"
+                                class="vehicle_select vehicle_select_<?= $value['code_idx'] ?> select_custom_ active_ cus-width" 
+                                name="vehicle_select[]">
+                                <option value="">선택해주세요.</option>
+                                <?php for($i = $value['min_cnt']; $i <= $value['max_cnt']; $i++) : ?>
+                                    <option value="<?= $i ?>"><?= $i ?>차</option>
+                                <?php endfor; ?>
                             </select>
-                            <input type="number" class="vehicle_number vehicle_number_<?= $value['code_idx'] ?>" name="vehicle_number[]">
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -210,19 +211,19 @@
                         <h3 class="tit-left">피닉스 골드 골프 방콕 (구 · 수완나품 컨트리클럽) </h3>
                         <p>
                             <span class="l-label">일정</span>
-                            <span class="l-label2">2024.09.05(목)</span>
+                            <span class="l-label2 final_date"></span>
                         </p>
                         <p>
                             <span class="l-label">홀수</span>
-                            <span class="l-label2">18홀</span>
+                            <span class="l-label2"><em class="final_hole">0</em>홀</span>
                         </p>
                         <p>
                             <span class="l-label">티오프시간</span>
-                            <span class="l-label2">06시 30분</span>
+                            <span class="l-label2"><em class="final_hour">00</em>시 <em class="final_minute">00</em>분</span>
                         </p>
                         <p>
                             <span class="l-label">인원</span>
-                            <span class="l-label2">2명</span>
+                            <span class="l-label2"><em class="final_people_cnt">0</em>인</span>
                         </p>
                         <button class="btn-price-content-normal" type="button"
                             onclick="showCouponPop()">쿠푼적용</button>
@@ -230,21 +231,22 @@
                     <div class="right-main">
                         <div class="item-right">
                             <div class="list-text">
-                                <p><span class="text-gray">그린피 : </span><em id="final_option_price">268,290</em>원(1인 5,500바트 X 2인)</p>
-                                <p><span class="text-gray">그린피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
-                                <p><span class="text-gray">그린피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
+                                <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em>원
+                                (1인 <em id="final_option_price_baht">0</em>바트 X <em class="final_people_cnt">0</em>인)</p>
+                                <p><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
+                                <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
                             </div>
-                            <span class="price-text text-gray">681,615원 (16,500바트)</span>
+                            <span class="price-text text-gray"><em id="total_final_option_price">0</em>원 (<em id="total_final_option_price_baht">0</em>바트)</span>
                         </div>
                         <div class="vehicle_list_result" id="vehicle_list_result">
                         </div>
                         <div class="item-right cus-border">
                             <p><span class="">쿠폰 적용</span></p>
-                            <span class="price-text">- 11,566원 (280바트)</span>
+                            <span class="price-text">- <em id="final_discount">0</em>원 (<em id="final_discount_baht">0</em>바트)</span>
                         </div>
                         <div class="item-last-right">
                             <p>합계</p>
-                            <p id="last_price" class="price-text">1,012,095<span>원(24,500바트)</span></p>
+                            <p class="price-text"><em id="last_price">0</em><span>원(<em id="last_price_baht">0</em>바트)</span></p>
                         </div>
                         <button class="btn-price-content" type="button"
                             onclick="handleSubmit()">예약하기</button>
@@ -548,9 +550,11 @@
         </div>
     </div>
     <script>
-        const golfVehiclesChildren = JSON.parse(`<?= json_encode($golfVehiclesChildren) ?>`);
-
         function setListVehicle() {
+            let total_vehicle_price = 0;
+
+            let total_vehicle_price_baht = 0;
+
             let html = `<div class="item-right">
                             <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>[name] x [cnt]대</p>
                             <span class="price-text text-gray">[price]원 ([price_baht]바트)</span>
@@ -561,44 +565,62 @@
             }).map(function () {
                 const idx = $(this).data('idx');
                 const p_name = $(this).data('name');
-                const vehicle = golfVehiclesChildren.find(v => v.code_idx === $(this).val());
-                const cnt = $(`.vehicle_number_${idx}`).val() || 0;
-                const price = Math.round(vehicle.price * cnt * 100) / 100;
-                const price_baht = Math.round(vehicle.price_baht * cnt * 100) / 100;
-                return html.replace("[name]", vehicle.code_name)
+                const cnt = $(this).val() || 0;
+                const price = Math.round($(this).data('price') * cnt);
+                const price_baht = Math.round($(this).data('price_baht') * cnt);
+                total_vehicle_price += price;
+                total_vehicle_price_baht += price_baht;
+                return html.replace("[name]", p_name)
                 .replace("[cnt]", cnt)
-                .replace("[price]", price)
-                .replace("[price_baht]", price_baht);
+                .replace("[price]", number_format(price))
+                .replace("[price_baht]", number_format(price_baht));
             }).get().join('');
             $("#vehicle_list_result").html(html2);
+
+            return {
+                total_vehicle_price,
+                total_vehicle_price_baht
+            };
         }
 
         function setOptionArea() {
-            const price = $("#final_option_list .card-item.active_2").data("option_price") || 0;
-            console.log(price);
-            
-            $("#final_option_price").text(price);
+
+            const optionActive = $("#final_option_list .card-item.active_2");
+            const price = optionActive.data("option_price") || 0;
+            const price_baht = optionActive.data("option_price_baht") || 0;
+            const people_cnt = $("#people_adult_cnt").val() || 0;
+            const final_price = Math.round(price * people_cnt);
+            const final_price_baht = Math.round(price_baht * people_cnt);
+            const minute = optionActive.data("minute") || "00";
+
+            $("#option_idx").val(optionActive.data("idx"));
+            $("#final_option_price").text(number_format(price));
+            $("#final_option_price_baht").text(number_format(price_baht));
+            $(".final_people_cnt").text(number_format(people_cnt));
+            $("#total_final_option_price").text(number_format(final_price));
+            $("#total_final_option_price_baht").text(number_format(final_price_baht));
+            $(".final_minute").text(minute);
+
+            return {
+                final_price,
+                final_price_baht
+            }
         }
         
         function calculatePrice() {
-            setListVehicle();
-            setOptionArea();
-            const optionPrice = $('#final_option_list .card-item.active_2').data('option_price');
-            const vehicle_select_arr = $("select[name='vehicle_select[]']").map(function () {
-                return $(this).val();
-            }).get();
-            const vehicle_number_arr = $("input[name='vehicle_number[]']").map(function () {
-                return $(this).val();
-            }).get();
-            const last_price = number_format(123456);
-            const last_price_bath = number_format(12345);
-            $("#last_price").html(`${last_price}<span>원(${last_price_bath}바트)</span>`);
-            $("#last_price_popup").html(`${last_price}<span>원(${last_price_bath}바트)</span>`);
+            const vehiclePrice = setListVehicle();
+            
+            const optionPrice = setOptionArea();
+
+            const last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price;
+            const last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht;
+
+            $("#last_price").text(number_format(last_price));
+            $("#last_price_baht").text(number_format(last_price_baht));
+            $("#last_price_popup").html(`${number_format(last_price)}<span>원(${number_format(last_price_baht)}바트)</span>`);
         }
 
         function selectOption(obj) {
-            const idx = $(obj).data('idx');
-            $("#option_idx").val(idx);
             $('#final_option_list .card-item').removeClass('active_2');
             $(obj).addClass('active_2');
             calculatePrice();
@@ -618,9 +640,17 @@
                 }
             })
         }
+
+        function changePeople() {
+            calculatePrice();
+        }
+
+
         function showCouponPop() {
             $("#popup_coupon").css('display', 'flex');
         }
+
+
         function handleSubmit() {
             $("#frm").submit();
         }
@@ -665,12 +695,14 @@
         });
         $('.tag-list .tag-js').on('click', function() {
             $('.tag-list .tag-js').removeClass('active');
+            $(".final_hole").text($(this).data('tab'));
             $(this).addClass('active');
             getOptions();
         });
 
         $('.tag-list .tag-js2').on('click', function() {
             $('.tag-list .tag-js2').removeClass('active');
+            $(".final_hour").text($(this).data('tab'));
             $(this).addClass('active');
             getOptions();
         });
@@ -744,7 +776,11 @@
             observeParents: true,
         });
 
-        function sel_date(day) {
+        function sel_date(day, date = null) {
+            if (date) {
+                const newDay = new Date(date).getDay();
+                $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
+            }
             $('.day a').removeClass("on");
             $('.day a').eq(day - 1).addClass("on");
         }
@@ -811,7 +847,7 @@
                 <div class="swiper-slide">
                     <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
                     <div class="day day_${e.dayOfMonth}">
-                        <a class="${selDate === to_Day ? 'on' : ''}" style="color:#999999" href='#!' onclick='sel_date(${e.dayOfMonth});'>
+                        <a class="${selDate === to_Day ? 'on' : ''}" style="color:#999999" href='#!' onclick='sel_date(${e.dayOfMonth}, "${selDate}");'>
                         ${e.dayOfMonth}</a>
                     </div>
                 </div>

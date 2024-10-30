@@ -136,6 +136,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
     $routes->group("_tours", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
+        $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
     });
 
     $routes->group("api", function ($routes) {
@@ -493,7 +494,9 @@ $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
-
+$routes->get('product-spa/product-booking/(:any)', 'Product::productBooking/$1');
+$routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
+$routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 
@@ -501,5 +504,5 @@ $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
 $routes->get('product/get-by-top', 'Product::getProductByTop');
 $routes->get('product/get-by-cheep', 'Product::getProductByCheep');
 $routes->get('product/get-by-sub-code', 'Product::getProductBySubCode');
-
+$routes->get('/product-booking', 'ProductBooking::index');
 ?>

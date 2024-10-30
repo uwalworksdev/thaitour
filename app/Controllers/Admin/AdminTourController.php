@@ -8,12 +8,17 @@ use CodeIgniter\Database\Config;
 class AdminTourController extends BaseController
 {
     protected $connect;
+    protected $tourProducts;
+    protected $infoProducts;
+
 
     public function __construct()
     {
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
+        $this->tourProducts = model("ProductTourModel");
+        $this->infoProducts = model("TourInfoModel");
     }
 
     public function write_ok()
@@ -397,5 +402,83 @@ class AdminTourController extends BaseController
                     'message' => $e->getMessage()
                 ]);
         }
+    }
+
+    public function write_info_ok()
+    {
+        $productIdx = $this->request->getPost('product_idx');
+        $o_sdate = $this->request->getPost('o_sdate');
+        $o_edate = $this->request->getPost('o_edate'); 
+        $tours_subject = $this->request->getPost('tours_subject'); 
+        $tour_price = $this->request->getPost('tour_price'); 
+        $tour_price_kids = $this->request->getPost('tour_price_kids'); 
+        $tour_price_baby = $this->request->getPost('tour_price_baby'); 
+        $status = $this->request->getPost('status');
+        
+        $yoil_0 = $this->request->getPost('yoil_0');
+        $yoil_1 = $this->request->getPost('yoil_1');
+        $yoil_2 = $this->request->getPost('yoil_2');
+        $yoil_3 = $this->request->getPost('yoil_3');
+        $yoil_4 = $this->request->getPost('yoil_4');
+        $yoil_5 = $this->request->getPost('yoil_5');
+        $yoil_6 = $this->request->getPost('yoil_6');
+    
+        $info_ids = [];
+        foreach ($o_sdate as $key => $start_date) {
+            $infoIndex = $this->infoProducts->where('product_idx', $productIdx)
+                ->where('o_sdate', $start_date)
+                ->first();
+            
+            $infoData = [
+                'product_idx' => $productIdx,
+                'o_sdate' => $start_date,
+                'o_edate' => $o_edate[$key],
+                'yoil_0' => isset($yoil_0) ? 'Y' : 'N',
+                'yoil_1' => isset($yoil_1) ? 'Y' : 'N',
+                'yoil_2' => isset($yoil_2) ? 'Y' : 'N',
+                'yoil_3' => isset($yoil_3) ? 'Y' : 'N',
+                'yoil_4' => isset($yoil_4) ? 'Y' : 'N',
+                'yoil_5' => isset($yoil_5) ? 'Y' : 'N',
+                'yoil_6' => isset($yoil_6) ? 'Y' : 'N',
+                'r_date' => date('Y-m-d H:i:s')
+            ];
+    
+            if ($infoIndex) {
+                $this->infoProducts->update($infoIndex['info_idx'], $infoData);
+                $info_ids[] = $infoIndex['info_idx'];
+            } else {
+                $this->infoProducts->insert($infoData);
+                $info_ids[] = $this->infoProducts->insertID();
+            }
+        }
+    
+        foreach ($info_ids as $index => $info_idx) {
+            foreach ($tours_subject[$index] as $i => $subject) {
+                $tourIndex = $this->tourProducts->where('info_idx', $info_idx)
+                    ->where('tours_subject', $subject)
+                    ->first();
+    
+                $toursData = [
+                    'product_idx' => $productIdx,
+                    'info_idx' => $info_idx,
+                    'tours_subject' => $subject,
+                    'tour_price' => $tour_price[$index][$i],
+                    'tour_price_kids' => $tour_price_kids[$index][$i],
+                    'tour_price_baby' => $tour_price_baby[$index][$i],
+                    'status' => isset($status[$index][$i]) ? $status[$index][$i] : 'Y', 
+                    'r_date' => date('Y-m-d H:i:s')
+                ];
+    
+                if ($tourIndex) {
+                    $this->tourProducts->update($tourIndex['tour_idx'], $toursData);
+                } else {
+                    $this->tourProducts->insert($toursData);
+                }
+            }
+        }
+
+
+    return redirect()->to('AdmMaster/_tourRegist/write_tours?product_idx=' . $productIdx);
+      
     }
 }

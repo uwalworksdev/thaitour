@@ -105,8 +105,7 @@
     height: 12px;
 }
 
-.sub_tour_right {
-}
+.sub_tour_right {}
 
 .sub_swiper1 {
     width: 660px;
@@ -236,8 +235,7 @@
     gap: 20px;
 }
 
-.ico_block {
-}
+.ico_block {}
 
 .ico_block img {
     height: 100%;
@@ -276,8 +274,7 @@
     padding: 120px 0 0 0;
 }
 
-.sub_tour_section5__head {
-}
+.sub_tour_section5__head {}
 
 .sub_tour_section5__head_ttl {
     font-size: 28px;
@@ -287,8 +284,7 @@
     line-height: 0.929;
 }
 
-.sub_tour_section5__head__tabs1 {
-}
+.sub_tour_section5__head__tabs1 {}
 
 .tour__head__tabs1__tabs {
     border-radius: 6px;
@@ -420,16 +416,14 @@
     color: #353535;
 }
 
-.prd_list_pagination__btn__total {
-}
+.prd_list_pagination__btn__total {}
 
 /* sub_tour_section6 */
 .sub_tour_section6 {
     padding: 20px 0 0 0;
 }
 
-.sub_tour_section6__head {
-}
+.sub_tour_section6__head {}
 
 .sub_tour_section6__head__tabs {
     margin-top: 30px;
@@ -549,11 +543,9 @@
     padding: 120px 0 0 0;
 }
 
-.sub_tour_section7__head {
-}
+.sub_tour_section7__head {}
 
-.sub_tour_section7__head_ttl {
-}
+.sub_tour_section7__head_ttl {}
 
 .sub_tour_section7_product_list {
     display: flex;
@@ -2327,7 +2319,7 @@
     margin-right: 5px;
 }
 
-.tours-detail .form-group input:checked + label:after {
+.tours-detail .form-group input:checked+label:after {
     content: '';
     display: block;
     position: absolute;
@@ -2741,7 +2733,7 @@
     cursor: pointer;
 }
 
-.custom-product-golf .form-group input:checked + label:after {
+.custom-product-golf .form-group input:checked+label:after {
     content: '';
     display: block;
     position: absolute;
@@ -2754,7 +2746,7 @@
     transform: rotate(45deg);
 }
 
-.custom-product-golf .form-group input:checked + label:before {
+.custom-product-golf .form-group input:checked+label:before {
     background-color: var(--bs-point);
     border-color: var(--bs-point);
 }
@@ -3053,6 +3045,7 @@
     border: 1px solid rgb(219, 219, 219);
     width: 380px;
     height: 160px;
+    cursor: pointer;
 }
 
 .custom-golf-detail .card-content .card-item.active_1 {
@@ -3086,9 +3079,12 @@
     margin-bottom: 10px;
 }
 
+.custom-golf-detail .card-content .card-item p.cus-text {
+    margin-bottom: 10px;
+}
+
 .custom-golf-detail .card-content .card-item.active_2 p.cus-text {
     margin-bottom: 10px;
-    opacity: 0.5;
 }
 
 .custom-golf-detail .card-content .card-item.active_2 .cus-text_div {
@@ -3197,7 +3193,8 @@
     width: 100%;
     height: 66px;
     color: var(--bs-point) !important;
-    border: 1px solid var(--bs-point) !important;;
+    border: 1px solid var(--bs-point) !important;
+    ;
     background-color: white !important;
     font-size: 22px !important;
     font-weight: unset;
@@ -3614,4 +3611,10 @@
     width: calc(50% - 5px);
     border: 1px solid #dbdbdb;
     height: 95px
+}
+
+.content-sub-hotel-detail .hotel-image-container .grid_1_1_size {
+    height: 441px;
+    background-size: cover;
+    object-fit: cover;
 }

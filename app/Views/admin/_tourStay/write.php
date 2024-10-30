@@ -461,7 +461,7 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
-                                    <col width="40%"/>
+                                    <col width="5%"/>
                                     <col width="10%"/>
                                     <col width="40%"/>
                                 </colgroup>
@@ -474,7 +474,14 @@
 
                                 <tr>
                                     <th>추천 포인트</th>
-                                    <td colspan="3">
+                                    <th>
+                                        <input type="checkbox" id="all_code_utility" class="all_input"
+                                               name="_code_utility" value=""/>
+                                        <label for="all_code_utility">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_utilities);
                                         foreach ($fresult6 as $row_r) :
@@ -486,15 +493,23 @@
                                             }
                                             ?>
                                             <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
-                                                   name="_code_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                                   name="_code_utilities" class="code_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_utilitie<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>인기 시설 및 서비스</th>
-                                    <td colspan="3">
+                                    <th>
+                                        <input type="checkbox" id="all_code_best_utilities" class="all_input"
+                                               name="_code_best_utilities" value=""/>
+                                        <label for="all_code_best_utilities">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_best_utilities);
                                         foreach ($fresult6 as $row_r) :
@@ -506,15 +521,25 @@
                                             }
                                             ?>
                                             <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
-                                                   name="_code_best_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                                   name="_code_best_utilities" class="code_best_utilities"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_best_utilities<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <th>시설 & 서비스</th>
-                                    <td colspan="3">
+                                    <th>
+                                        <input type="checkbox" id="all_code_service" class="all_input"
+                                               name="_code_service" value=""/>
+                                        <label for="all_code_service">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_services);
                                         foreach ($fresult5 as $row_r) : ?>
@@ -532,10 +557,13 @@
                                                             }
                                                         }
                                                         ?>
-                                                        <input type="checkbox"
+                                                        <input type="checkbox" class="code_service"
                                                                id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
                                                                name="_code_services"
-                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> /><?= $row_r2['code_name'] ?>
+                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
+                                                        <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
+                                                            <?= $row_r2['code_name'] ?>
+                                                        </label>
                                                     <?php endforeach; ?>
                                                 </div>
                                             </div>
@@ -545,7 +573,14 @@
 
                                 <tr>
                                     <th>호텔주변 추천명소</th>
-                                    <td colspan="3">
+                                    <th style="width: 20px">
+                                        <input type="checkbox" id="all_code_populars" class="all_input"
+                                               name="_code_populars" value="Y"/>
+                                        <label for="all_code_populars">
+                                            모두 선택
+                                        </label>
+                                    </th>
+                                    <td colspan="2">
                                         <?php
                                         $_arr = explode("|", $code_populars);
                                         foreach ($fresult8 as $row_r) :
@@ -557,14 +592,51 @@
                                             }
                                             ?>
                                             <input type="checkbox" id="code_populars<?= $row_r['code_no'] ?>"
-                                                   name="_code_populars"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> /><?= $row_r['code_name'] ?>
+                                                   name="_code_populars" class="code_populars"
+                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
+                                            <label for="code_populars<?= $row_r['code_no'] ?>">
+                                                <?= $row_r['code_name'] ?>
+                                            </label>
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
 
                                 </tbody>
                             </table>
+
+                            <script>
+                                $('#all_code_populars').change(function () {
+                                    if ($('#all_code_populars').is(':checked')) {
+                                        $('.code_populars').prop('checked', true)
+                                    } else {
+                                        $('.code_populars').prop('checked', false)
+                                    }
+                                });
+
+                                $('#all_code_service').change(function () {
+                                    if ($('#all_code_service').is(':checked')) {
+                                        $('.code_service').prop('checked', true)
+                                    } else {
+                                        $('.code_service').prop('checked', false)
+                                    }
+                                });
+
+                                $('#all_code_best_utilities').change(function () {
+                                    if ($('#all_code_best_utilities').is(':checked')) {
+                                        $('.code_best_utilities').prop('checked', true)
+                                    } else {
+                                        $('.code_best_utilities').prop('checked', false)
+                                    }
+                                });
+
+                                $('#all_code_utility').change(function () {
+                                    if ($('#all_code_utility').is(':checked')) {
+                                        $('.code_utilities').prop('checked', true)
+                                    } else {
+                                        $('.code_utilities').prop('checked', false)
+                                    }
+                                })
+                            </script>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>

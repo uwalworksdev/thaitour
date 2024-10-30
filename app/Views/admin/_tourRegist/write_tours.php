@@ -86,7 +86,6 @@
                 <input type=hidden name="s_product_code_3" value='<?= $s_product_code_3 ?>'>
                 <input type=hidden name="product_option" id="product_option" value=''>
                 <input type=hidden name="tours_cate" id="tours_cate" value='<?= $tours_cate ?>'>
-                <input type=hidden name="product_points" id="product_points" value='<?= $product_points ?>'>
 
                 <div id="contents">
                     <div class="listWrap_noline">
@@ -308,6 +307,18 @@
                                 </tr>
 
                                 <tr>
+                                    <th>주소</th>
+                                    <td colspan="3">
+                                        <input type="text" autocomplete="off" name="addrs" id="addrs" value="<?= $addrs ?>" class="text" style="width:70%"/>
+										<button type="button" class="btn btn-primary" style="width: unset;" onclick="getCoordinates();">get location</button>
+										<div style="margin-top: 10px;">
+											Latitude : <input type="text" name="latitude" id="latitude" value="<?= $latitude ?>" class="text" style="width: 200px;" readonly/>
+											Longitude : <input type="text" name="longitude" id="longitude" value="<?= $longitude ?>" class="text" style="width: 200px;" readonly/>
+										</div>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>사용여부</th>
                                     <td>
                                         <select id="is_view" name="is_view">
@@ -432,36 +443,19 @@
                                 <tr>
                                     <th>베스트여부</th>
                                     <td>
-                                        <input type="checkbox" name="product_best"
-                                               id="product_best"
-                                               value="Y" <?php if (isset($product_best) && $product_best == "Y") {
-                                            echo "checked";
-                                        } ?>/>
+                                        <?php foreach ($mresult2 as $row_m) : ?>
+                                            <input type="checkbox" name="product_best"
+                                                   id="product_best"
+                                                   value="Y" <?php if (isset($row_m["product_best"]) && $row_m["product_best"] == "Y") {
+                                                echo "checked";
+                                            } ?>/>
+                                        <?php endforeach; ?>
                                     </td>
                                     <th>우선순위</th>
                                     <td>
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>상품 포인트</th>
-                                    <td colspan="3">
-                                        <?php
-                                        $_product_points_arr = explode("|", $product_points);
-                                        $_product_points_arr = array_filter($_product_points_arr);
-
-                                        ?>
-                                        <?php foreach ($cresult as $row) : ?>
-                                            <input type="checkbox" name="_product_points"
-                                                   class="_product_points"
-                                                <?php if (in_array($row['code_no'], $_product_points_arr)) { ?> checked <?php } ?>
-                                                   id="_product_points<?= $row['code_no'] ?>"
-                                                   value="<?= $row['code_no'] ?>"/>
-                                            <label for="_product_points<?= $row['code_no'] ?>"><?= $row['code_name'] ?></label>
-                                        <?php endforeach; ?>
                                     </td>
                                 </tr>
 
@@ -529,7 +523,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors14,
                                                 elPlaceHolder: "tour_info",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -564,7 +558,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors12,
                                                 elPlaceHolder: "product_confirm",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -596,7 +590,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors13,
                                                 elPlaceHolder: "product_confirm_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -631,7 +625,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors2,
                                                 elPlaceHolder: "product_able",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -663,7 +657,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors5,
                                                 elPlaceHolder: "product_unable",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -697,7 +691,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors3,
                                                 elPlaceHolder: "mobile_able",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -730,7 +724,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors4,
                                                 elPlaceHolder: "mobile_unable",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -764,7 +758,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors6,
                                                 elPlaceHolder: "special_benefit",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -795,7 +789,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors7,
                                                 elPlaceHolder: "special_benefit_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -829,7 +823,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors8,
                                                 elPlaceHolder: "notice_comment",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -860,7 +854,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors9,
                                                 elPlaceHolder: "notice_comment_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -895,7 +889,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors10,
                                                 elPlaceHolder: "etc_comment",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -926,7 +920,7 @@
                                             nhn.husky.EZCreator.createInIFrame({
                                                 oAppRef: oEditors11,
                                                 elPlaceHolder: "etc_comment_m",
-                                                sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                 htParams: {
                                                     bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                                                     bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -976,26 +970,27 @@
                 </ul>
             </div>
 
+            <?php if ($product_idx): ?>
+                <div class="listBottom" style="padding: 15px;">
+                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                            <col width="*"/>
+                        </colgroup>
+                        <tbody>
 
-            <div class="listBottom" style="padding: 15px;">
-                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                    <caption>
-                    </caption>
-                    <colgroup>
-                        <col width="*"/>
-                    </colgroup>
-                    <tbody>
-
-                    <tr>
-                        <th>옵션추가</th>
-                        <td>
-                            <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
-                            <button type="button" class="btn_01" onclick="add_moption();">추가</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <tr>
+                            <th>옵션추가</th>
+                            <td>
+                                <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
+                                <button type="button" class="btn_01" onclick="add_moption();">추가</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif;?>
 
             <?php foreach ($options as $row_option): ?>
                 <div class="listBottom">
@@ -1004,20 +999,27 @@
                         <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
                         <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
 
-                        <table class="listTable mem_detail">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+                            <colgroup>
+                                <col width="10%">
+                                <col width="90%">
+                            </colgroup>
                             <tbody>
-                            <tr>
-                                <th>옵션</th>
-                                <td>
-                                    <input type="text" name="moption_name" value="<?= $row_option['moption_name'] ?>"/>
-                                    <button type="button" onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
-                                    </button>
-                                    <button type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">삭제
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>추가 옵션등록</th>
+                            <tr height="45">
+                                <th colspan="5">
+                                    옵션 <input type='text' name='moption_name' id='moption_name_<?=$row_option['code_idx']?>' value="<?=$row_option['moption_name']?>" style="width:550px" />
+                                    <button type="button" class="btn_01" onclick="upd_moption('<?=$row_option['code_idx']?>');">수정</button>
+                                    <button type="button" class="btn_01" onclick="del_moption('<?=$row_option['code_idx']?>');">삭제</button>
+                                </th>
+                            </tr> 
+                            <tr height="45">
+                                <th>
+                                    추가 옵션등록
+                                    <p style="display:block;margin-top:10px;">
+                                        <button type="button" id="btn_add_option" onclick="add_option('<?=$row_option['code_idx']?>');" class="btn_01">추가</button>
+                                        <button type="button" id="btn_upd_option" onclick="upd_option('<?=$row_option['code_idx']?>');" class="btn_01">등록</button>
+                                    </p>
+                                </th>
                                 <td>
                                     <span  style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
                                         <div>
@@ -1077,17 +1079,109 @@
                 <div class="tail_menu">
                     <ul>
                         <li class="left">■ 가격리스트</li>
+                        <?php 
+                               $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null; 
+                               if($info_idx):
+                        ?>
                         <li class="right_sub" style="padding-bottom:10px">
-                            <a href="../_tourPrice/write<?= ($product_code_1 == "1301") ? "_package" : "" ?>.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_3=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&back_url=<?= $back_url ?>"
+                            <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
                                class="btn btn-default">
                                 <span class="glyphicon glyphicon-cog"></span>
-                                <span class="txt">가격등록</span>
+                                <span class="txt">수정하기</span>
                             </a>
                         </li>
+                        <?php else: ?>
+                            <li class="right_sub" style="padding-bottom:10px">
+                                <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
+                                class="btn btn-default">
+                                    <span class="glyphicon glyphicon-cog"></span>
+                                    <span class="txt">가격등록</span>
+                                </a>
+                            </li>
+                        <?php endif ?>
                     </ul>
                 </div>
 
                 <div class="listBottom">
+						<table cellpadding="0" cellspacing="0" summary="" class="listTable">
+						<caption></caption>
+						<colgroup>
+						<col width="5%" />
+						<col width="15%" />
+						<col width="*" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="10%" />
+						<col width="5%" />
+						<col width="10%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>번호</th>
+                                <th>기간</th>
+								<th>상품명</th>
+								<th>성인가격</th>
+								<th>소아가격</th>	
+								<th>유아가격</th>	
+								<th>등록일</th>
+								<th>판매상태</th>
+								<th>관리</th>
+							</tr>
+						</thead>	
+                            <tbody>
+                                <?php 
+                                    $i = 1;
+                                    $infoIdxCounts = [];
+                                    foreach ($productTourInfo as $row) {
+                                        $info_idx = $row['info_idx'];
+                                        if (!isset($infoIdxCounts[$info_idx])) {
+                                            $infoIdxCounts[$info_idx] = 0;
+                                        }
+                                        $infoIdxCounts[$info_idx]++;
+                                    }
+
+                                    $printedInfoIdx = []; 
+
+                                    foreach ($productTourInfo as $row): 
+                                        $status = ($row['status'] == "Y") ? "판매중" : "중지";
+
+                                        $info_idx = $row['info_idx'];
+                                        $printRowspan = false;
+
+                                        if (!in_array($info_idx, $printedInfoIdx)) {
+                                            $printRowspan = true;
+                                            $printedInfoIdx[] = $info_idx;
+                                        }
+                                ?>
+                                    <tr style="height:40px">
+                                        <td><?=$i++?></td>
+
+                                        <?php if ($printRowspan): ?>
+                                            <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
+                                                <?= substr($row['o_sdate'], 0, 10) ?> ~ <?= substr($row['o_edate'], 0, 10) ?>
+                                            </td>
+                                        <?php endif; ?>
+
+                                        <td><?=$row['tours_subject']?></td>
+                                        <td><?=number_format($row["tour_price"], 0)?></td>
+                                        <td><?=number_format($row["tour_price_kids"], 0)?></td>
+                                        <td><?=number_format($row["tour_price_baby"], 0)?></td>
+                                        <td class="tac"><?=substr($row["r_date"], 0, 10)?></td>
+                                        <td class="tac"><?=$status?></td>
+                                        <?php if ($printRowspan): ?>
+                                            <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
+                                                <a href="javascript:del_tours('<?=$row["info_idx"]?>');" class="btn btn-default">삭제하기</a>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+
+						</table>
+					</div>
+
+                <!-- <div class="listBottom">
                     <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                         <caption></caption>
                         <colgroup>
@@ -1112,7 +1206,7 @@
                         </thead>
                         <?php echo $yoil_html ?>
                     </table>
-                </div>
+                </div> -->
 
                 <div class="tail_menu">
                     <ul>
@@ -1182,7 +1276,7 @@
                 <h2>메인노출상품 등록</h2>
                 <div class="table_box" style="height: calc(100% - 146px);">
                     <ul id="list_location">
-
+                        
                     </ul>
                 </div>
                 <div class="sel_box">
@@ -1232,7 +1326,7 @@
             var message = "";
             $.ajax({
 
-                url: "/AdmMaster/api/del",
+                url: "/ajax/ajax.del_tours.php",
                 type: "POST",
                 data: {
                     "tours_idx": idx
@@ -1253,7 +1347,7 @@
         }
 
         function getCoordinates() {
-
+		
         let address = $("#addrs").val();
         if(!address){
             alert("주소를 입력해주세요");
@@ -1490,7 +1584,7 @@
                     if (data && data.message) {
                         alert(data.message);
                     } else {
-                        alert("삭제 오류. 다시 시도해주세요.");
+                        alert("삭제 오류. 다시 시도해주세요."); 
                     }
                     location.reload();
                 },
@@ -1652,13 +1746,6 @@
             });
             option += '|';
             $("#tours_cate").val(tours_cate);
-
-            let product_points = "";
-            $("input:checkbox[name='_product_points']:checked").each(function () {
-                product_points += '|' + $(this).val();
-            });
-            product_points += '|';
-            $("#product_points").val(product_points);
 
             frm.submit();
         }
