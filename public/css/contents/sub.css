@@ -4960,6 +4960,10 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   opacity: 0.8;
 }
 
+.border-dashed {
+  border-bottom: 1px dashed rgb(219, 219, 219);  
+}
+
 @media screen and (max-width: 1200px) {
   .only_tb {
     display: none !important;

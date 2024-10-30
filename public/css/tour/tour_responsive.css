@@ -1610,6 +1610,7 @@
     display: flex !important;
     padding: 4.5rem 0;
     border-top: 0.21rem solid #ccc;
+    flex-direction: column;
   }
 
   .content-sub-hotel-detail .table-price-info-mobile .info-price-left,
@@ -3013,7 +3014,7 @@
   }
 
   .sub_tour_section5_item {
-    width: 33rem;
+    width: 32rem;
   }
 
   .best_tour_section5__hotel {
