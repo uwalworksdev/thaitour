@@ -181,7 +181,7 @@
                     </div>
 
                     <?php
-                    $product_more = $hotel['product_more'];
+                    $product_more = $spa['product_more'];
                     $breakfast_data_arr2 = [];
                     if ($product_more) {
                         $productMoreData = json_decode($product_more, true);
