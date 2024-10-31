@@ -1836,17 +1836,19 @@
   }
 
   .content-sub-hotel-detail .room-table-item .label {
-    margin-right: 10px;
-    font-size: 16px;
+    margin-right: 2rem;
+    font-size: 2.6rem;
+    font-weight: unset;
   }
 
   .content-sub-hotel-detail .room-table-item .number-selector {
     display: flex;
     align-items: center;
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     border-radius: 4px;
     overflow: hidden;
-    width: 50px;
+    width: 10rem;
+    height: 7rem;
     text-align: center;
   }
 
@@ -1854,8 +1856,8 @@
     width: 100%;
     border: none;
     text-align: center;
-    font-size: 16px;
-    padding: 5px;
+    font-size: 2.6rem;
+    padding: 0.5rem;
     -moz-appearance: textfield;
   }
 
@@ -1871,15 +1873,14 @@
   }
 
   .content-sub-hotel-detail .room-table-item .button {
-    width: 20px;
-    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 1.2rem;
     cursor: pointer;
-    background-color: #f1f1f1;
     border: none;
+    width: 1.2rem;
+    height: 0.8rem;
   }
 
   .content-sub-hotel-detail .room-table-item .button:active {
@@ -1887,7 +1888,49 @@
   }
 
   .content-sub-hotel-detail .room-table-item .button.up {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
   }
 
+  .content-sub-hotel-detail .room-table-item .buttons-con-top,
+  .content-sub-hotel-detail .room-table-item .buttons-con-bottom {
+    height: 3.4rem;
+    width: 3.3rem;
+    padding: 1.1rem 0.9rem;
+    border: 2px solid #dbdbdb;
+    border-top: none;
+    border-right: none;
+  }
+
+  .content-sub-hotel-detail .room-table-item .buttons-con-bottom {
+    border-bottom: none;
+  }
+
+  .content-sub-hotel-detail .room-table-item .info-price-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+
+  .content-sub-hotel-detail .room-table-item .label-cus1 {
+    font-weight: 600;
+    font-size: 2.6rem;
+  }
+
+  .m-pt-32 {
+    padding-top: 3.2rem;
+  }
+
+  .content-sub-hotel-detail .book-button {
+    border-width: 2px;
+    padding: 2rem 1.6rem;
+    border-radius: 0.5rem;
+  }
+
+  .content-sub-hotel-detail .btn-book-button {
+    height: 6.5rem;
+    width: 100%;
+    background-color: var(--bs-point);
+    color: white;
+  }
 }
