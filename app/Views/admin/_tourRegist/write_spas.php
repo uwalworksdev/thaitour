@@ -191,7 +191,7 @@
                                             <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox
                                                                                                  name="del_<?= $i ?>"
                                                                                                  value='Y'><a
-                                                    href="/data/product/<?= ${"ufile" . $i} ?>"
+                                                    href="/data/hotel/<?= ${"ufile" . $i} ?>"
                                                     class="imgpop"><?= ${"rfile" . $i} ?></a><br><br><?php } ?>
                                         <?php } ?>
                                     </td>
@@ -392,6 +392,11 @@
                                 });
                             </script>
 
+                            <style>
+                                .btn_al_plus_ {
+                                    width: 50px;
+                                }
+                            </style>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
@@ -498,7 +503,6 @@
 
                                 </tbody>
                             </table>
-
                             <script>
                                 let num = sessionStorage.getItem('num') ?? 0;
 
@@ -711,7 +715,7 @@
                                 $productMoreData = json_decode($product_more, true);
 
                                 if (json_last_error() !== JSON_ERROR_NONE) {
-                                    die("Lỗi giải mã JSON: " . json_last_error_msg());
+                                    echo("Lỗi giải mã JSON: " . json_last_error_msg());
                                 }
                                 $breakfast_data = '';
                                 if ($productMoreData) {
@@ -748,12 +752,12 @@
                                 </tr>
 
                                 <tr>
-                                    <th>체크인 & 체크아웃 시간</th>
+                                    <th>서비스 정책</th>
                                     <td>
                                         <textarea name="meet_out_time" id="meet_out_time"
                                                   style="width:90%;height:100px;"><?= $meet_out_time ?? "" ?></textarea>
                                     </td>
-                                    <th>어린이 정책</th>
+                                    <th>결제 정책</th>
                                     <td>
                                         <textarea name="children_policy" id="children_policy"
                                                   style="width:90%;height:100px;"><?= $children_policy ?? "" ?></textarea>
@@ -761,42 +765,15 @@
                                 </tr>
 
                                 <tr>
-                                    <th>유아용 침대 및 엑스트라 베드</th>
+                                    <th>결제 정책</th>
                                     <td>
                                         <textarea name="baby_beds" id="baby_beds"
                                                   style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
                                     </td>
-                                    <th>조식</th>
+                                    <th>개인청보 보안 정책</th>
                                     <td>
                                         <textarea name="breakfast" id="breakfast"
                                                   style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
-                                        <div class="" style="margin-top: 10px">
-                                            <button type="button" class="btnAddBreakfast">수정</button>
-                                        </div>
-                                        <table style="width:90%">
-                                            <tbody id="tBodyTblBreakfast">
-                                            <?php foreach ($breakfast_data_arr as $dataBreakfast) { ?>
-                                                <?php
-                                                $dataBreakfastArr = explode('::::', $dataBreakfast);
-                                                ?>
-                                                <tr>
-                                                    <th style="width: 30%">
-                                                        <input type="text" name="breakfast_item_name_[]"
-                                                               value="<?= viewSQ($dataBreakfastArr[0]) ?? "" ?>">
-                                                    </th>
-                                                    <td style="width: 60%">
-                                                        <input type="text" name="breakfast_item_value_[]"
-                                                               value="<?= $dataBreakfastArr[1] ?? "" ?>">
-                                                    </td>
-                                                    <td style="width: 10%">
-                                                        <button type="button" class="btnDeleteBreakfast"
-                                                                onclick="removeBreakfast(this);">삭제
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                            </tbody>
-                                        </table>
                                     </td>
                                 </tr>
 
