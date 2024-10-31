@@ -474,6 +474,24 @@
                                                     </div>
                                                 <?php } ?>
                                             <?php } ?>
+                                            <div class="al">
+                                                <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                       name="deadline_start"
+                                                       id="deadline_start_${num}">
+                                                <span> ~ </span>
+                                                <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                       name="deadline_end"
+                                                       id="deadline_end_${num}">
+
+                                                <button onclick="removeEl(this);" style="margin: 0"
+                                                        class="btn_al_plus_ btn_02" type="button">
+                                                    -
+                                                </button>
+                                                <button onclick="plusEl(this);" style="margin: 0"
+                                                        class="btn_al_plus_ btn_01" type="button">
+                                                    +
+                                                </button>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -672,6 +690,165 @@
 
                                 </tbody>
                             </table>
+
+                            <style>
+                                .btnAddBreakfast {
+                                    padding: 5px 7px;
+                                    color: #fff;
+                                    background: #4F728A;
+                                    border: 1px solid #2b3f4c;
+                                }
+
+                                .btnDeleteBreakfast {
+                                    padding: 5px 7px;
+                                    color: #fff;
+                                    background: #d03a3e;
+                                    border: 1px solid #ba1212;
+                                }
+                            </style>
+                            <?php
+                            if ($product_more) {
+                                $productMoreData = json_decode($product_more, true);
+
+                                if (json_last_error() !== JSON_ERROR_NONE) {
+                                    die("Lỗi giải mã JSON: " . json_last_error_msg());
+                                }
+                                $breakfast_data = '';
+                                if ($productMoreData) {
+                                    $meet_out_time = $productMoreData['meet_out_time'];
+                                    $children_policy = $productMoreData['children_policy'];
+                                    $baby_beds = $productMoreData['baby_beds'];
+                                    $deposit_regulations = $productMoreData['deposit_regulations'];
+                                    $pets = $productMoreData['pets'];
+                                    $age_restriction = $productMoreData['age_restriction'];
+                                    $smoking_policy = $productMoreData['smoking_policy'];
+                                    $breakfast = $productMoreData['breakfast'];
+                                    $breakfast_data = $productMoreData['breakfast_data'];
+                                }
+                            }
+
+                            $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
+                            $breakfast_data_arr = array_filter($breakfast_data_arr);
+                            ?>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        자세한 정보
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>체크인 & 체크아웃 시간</th>
+                                    <td>
+                                        <textarea name="meet_out_time" id="meet_out_time"
+                                                  style="width:90%;height:100px;"><?= $meet_out_time ?? "" ?></textarea>
+                                    </td>
+                                    <th>어린이 정책</th>
+                                    <td>
+                                        <textarea name="children_policy" id="children_policy"
+                                                  style="width:90%;height:100px;"><?= $children_policy ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>유아용 침대 및 엑스트라 베드</th>
+                                    <td>
+                                        <textarea name="baby_beds" id="baby_beds"
+                                                  style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
+                                    </td>
+                                    <th>조식</th>
+                                    <td>
+                                        <textarea name="breakfast" id="breakfast"
+                                                  style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
+                                        <div class="" style="margin-top: 10px">
+                                            <button type="button" class="btnAddBreakfast">수정</button>
+                                        </div>
+                                        <table style="width:90%">
+                                            <tbody id="tBodyTblBreakfast">
+                                            <?php foreach ($breakfast_data_arr as $dataBreakfast) { ?>
+                                                <?php
+                                                $dataBreakfastArr = explode('::::', $dataBreakfast);
+                                                ?>
+                                                <tr>
+                                                    <th style="width: 30%">
+                                                        <input type="text" name="breakfast_item_name_[]"
+                                                               value="<?= viewSQ($dataBreakfastArr[0]) ?? "" ?>">
+                                                    </th>
+                                                    <td style="width: 60%">
+                                                        <input type="text" name="breakfast_item_value_[]"
+                                                               value="<?= $dataBreakfastArr[1] ?? "" ?>">
+                                                    </td>
+                                                    <td style="width: 10%">
+                                                        <button type="button" class="btnDeleteBreakfast"
+                                                                onclick="removeBreakfast(this);">삭제
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>보증금 규정</th>
+                                    <td>
+                                        <textarea name="deposit_regulations" id="deposit_regulations"
+                                                  style="width:90%;height:100px;"><?= $deposit_regulations ?? "" ?></textarea>
+                                    </td>
+                                    <th>반려동물</th>
+                                    <td>
+                                        <textarea name="pets" id="pets"
+                                                  style="width:90%;height:100px;"><?= $pets ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>연령 제한</th>
+                                    <td>
+                                        <textarea name="age_restriction" id="age_restriction"
+                                                  style="width:90%;height:100px;"><?= $age_restriction ?? "" ?></textarea>
+                                    </td>
+                                    <th>흡연 정책</th>
+                                    <td>
+                                        <textarea name="smoking_policy" id="smoking_policy"
+                                                  style="width:90%;height:100px;"><?= $smoking_policy ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                let tr = ` <tr>
+                                                <th style="width: 30%">
+                                                    <input type="text" name="breakfast_item_name_[]">
+                                                </th>
+                                                <td style="width: 60%">
+                                                    <input type="text" name="breakfast_item_value_[]">
+                                                </td>
+                                                <td style="width: 10%">
+                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
+                                                </td>
+                                            </tr>`;
+
+                                $('.btnAddBreakfast').click(function () {
+                                    $('#tBodyTblBreakfast').append(tr);
+                                });
+
+                                function removeBreakfast(el) {
+                                    $(el).parent().parent().remove();
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
