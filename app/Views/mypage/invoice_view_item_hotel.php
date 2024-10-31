@@ -94,6 +94,10 @@ $start_date = $row['start_date'];
 						<td class="subject">예약번호</td>
 						<td col width="*%" class="subject">객실 수</td>
 						<td col width="15%" class="subject">숙박일</td>
+						<td col width="15%" class="subject">상품 예약금액</td>
+						<td col width="15%" class="subject">쿠폰</td>
+						<td col width="15%" class="subject">실예약금액</td>
+
 					</tr>
 					<tr>
 
@@ -111,6 +115,29 @@ $start_date = $row['start_date'];
 							<p>
 								<?= $row["order_day_cnt"] ?>
 							</p>
+						</td>
+						<td class="content">
+							<p><strong><span id="price_tot">
+									<?= number_format($row['order_price']) ?>
+								</span></strong> 원</p>
+						</td>
+						<td class="content">
+							<?php if ($row['used_coupon_money'] > 0) { ?>
+								<p><strong style="color:red">쿠폰 <span id="coupon_amt">
+											<?= number_format($row['used_coupon_money']) ?>원
+										</span></strong></p>
+							<?php } ?>
+
+							<?php if ($row['used_mileage_money'] > 0) { ?>
+								<p><strong style="color:red">포인트 <span id="point_amt">
+											<?= number_format($row['used_mileage_money']) ?>원
+										</span></strong></p>
+							<?php } ?>
+						</td>
+						<td class="content">
+							<p><strong><span id="price_tot">
+										<?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
+								</span> 원</p>
 						</td>
 					</tr>
 				</tbody>
@@ -136,107 +163,75 @@ $start_date = $row['start_date'];
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행인원</td>
+						<td class="subject">객실 수</td>
 						<td class="content">
-							<span>성인: <span>
-									<?= $row["people_adult_cnt"] ?>
-								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
-								</span></span>
+							<span><?= $row["order_room_cnt"] ?></span>
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">여행기간</td>
-
+						<td class="subject">숙박일</td>
 
 						<td class="content">
 							<p>
-								<?= $start_date . "(" . dowYoil($start_date) . ") ~ " . DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								<em>
-									<?= $product_period ?>
-								</em>
-								</span>
+								<?= $row["order_day_cnt"] ?>
 							</p>
 						</td>
 					</tr>
 					<tr>
-						<td class="subject">일정</td>
-
+						<td class="subject">상품 예약금액</td>
 
 						<td class="content">
-							<p>
-								<span>한국출발
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $start_date . "(" . dowYoil($start_date) . ")" ?>
-								</span>
-							</p>
-							<p>
-								<span>현지출발
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-								<span>한국도착
-									<?= DateAdd("d", ($tour_period - 1), strtotime($start_date)) . "(" . dowYoil(DateAdd("d", ($tour_period - 1), strtotime($start_date))) . ")"; ?>
-								</span>
-							</p>
+							<p><strong><span id="price_tot">
+										<?= number_format($row['order_price']) ?>
+									</span></strong> 원</p>
 						</td>
 					</tr>
 					<tr>
+						<td class="subject">상품 예약금액</td>
 
+						<td class="content">
+							<p><strong><span id="price_tot">
+										<?= number_format($row['order_price']) ?>
+									</span></strong> 원</p>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">쿠폰</td>
 
+						<td class="content">
+							<?php if ($row['used_coupon_money'] > 0) { ?>
+								<p><strong style="color:red">쿠폰 <span id="coupon_amt">
+											<?= number_format($row['used_coupon_money']) ?>원
+										</span></strong></p>
+							<?php } ?>
+
+							<?php if ($row['used_mileage_money'] > 0) { ?>
+								<p><strong style="color:red">포인트 <span id="point_amt">
+											<?= number_format($row['used_mileage_money']) ?>원
+										</span></strong></p>
+							<?php } ?>
+						</td>
+					</tr>
+					<tr>
+						<td class="subject">실예약금액</td>
+
+						<td class="content">
+							<?php if ($row['used_coupon_money'] > 0) { ?>
+								<p><strong style="color:red">쿠폰 <span id="coupon_amt">
+											<?= number_format($row['used_coupon_money']) ?>원
+										</span></strong></p>
+							<?php } ?>
+
+							<?php if ($row['used_mileage_money'] > 0) { ?>
+								<p><strong><span id="price_tot">
+										<?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
+								</span> 원</p>
+							<?php } ?>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
-
-		<section class="ord_total_sec reservation">
-			<div class="flex_b_c">
-				<div class="left flex">
-					<strong class="label red">상품 예약금액</strong>
-					<div class="detail_money tar flex_e_c">
-						<?php if ($row['used_coupon_money'] > 0) { ?>
-							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-										<?= number_format($row['used_coupon_money']) ?>원
-									</span></strong></p>
-						<?php } ?>
-
-						<?php if ($row['used_mileage_money'] > 0) { ?>
-							<p><strong style="color:red">포인트 <span id="point_amt">
-										<?= number_format($row['used_mileage_money']) ?>원
-									</span></strong></p>
-						<?php } ?>
-
-					</div>
-				</div>
-				<div class="total_money tar">
-					<div class="defen_ttl flex">
-						<p><strong><span id="price_tot">
-									<?= number_format($row['order_price']) ?>
-								</span></strong> 원</p>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="ord_total_sec reservation">
-			<div class="flex_b_c">
-				<div class="left flex">
-					<strong class="label red">실예약금액</strong>
-					<div class="detail_money tar flex_e_c">
-
-
-					</div>
-				</div>
-				<div class="total_money tar">
-					<div class="defen_ttl flex">
-						<p><strong><span id="price_tot">
-									<?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-							</span> 원</p>
-					</div>
-				</div>
-			</div>
-		</section>
 
 		<div class="invoice_table invoice_table_new reservation">
 			<h2>예약금액 결제</h2>
@@ -491,7 +486,6 @@ $start_date = $row['start_date'];
 						<td col width="12%" class="subject">휴대번호</td>
 						<td col width="12%" class="subject">해외 전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
-						<td col width="15%" class="subject">주소</td>
 
 					</tr>
 					<tr>
@@ -509,18 +503,11 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<?= ($row['local_phone']) ?>원
+							<?= ($row['local_phone']) ?>
 						</td>
 
 						<td class="content">
 							<?= $row_d['order_user_email'] ?>
-						</td>
-
-						<td class="content">
-							
-							<?= $row_d['order_zip'] ?>
-							<?= $row_d['order_addr1'] ?>
-							<?= $row_d['order_addr2'] ?>
 						</td>
 
 				</tbody>
@@ -564,15 +551,6 @@ $start_date = $row['start_date'];
 						<td class="subject">이메일</td>
 						<td class="content">
 							<?= $row_d['order_user_email'] ?>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="subject">주소</td>
-						<td class="content">
-							<?= $row_d['order_zip'] ?>
-							<?= $row_d['order_addr1'] ?>
-							<?= $row_d['order_addr2'] ?>
 						</td>
 					</tr>
 				</tbody>
