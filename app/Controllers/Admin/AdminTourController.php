@@ -10,6 +10,7 @@ class AdminTourController extends BaseController
     protected $connect;
     protected $tourProducts;
     protected $infoProducts;
+    protected $productModel;
 
 
     public function __construct()
@@ -19,6 +20,7 @@ class AdminTourController extends BaseController
         helper('alert_helper');
         $this->tourProducts = model("ProductTourModel");
         $this->infoProducts = model("TourInfoModel");
+        $this->productModel = model("ProductModel");
     }
 
     public function write_ok()
@@ -570,6 +572,22 @@ class AdminTourController extends BaseController
             }
         } catch (\Exception $e) {
             $msg = "삭제 오류: " . $e->getMessage();
+        }
+
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function del() {
+        $product_idx = $this->request->getPost('product_idx');
+
+        try {
+            if ($this->productModel->where('product_idx', $product_idx)->delete()) {
+                $msg = "정상적으로 삭제되었습니다.";
+            } else {
+                $msg = "오류가 발생하였습니다!";
+            }
+        } catch (\Exception $e) {
+            $msg = "오류가 발생하였습니다!: " . $e->getMessage();
         }
 
         return $this->response->setJSON(['message' => $msg]);

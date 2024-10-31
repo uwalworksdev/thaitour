@@ -138,6 +138,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
         $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
         $routes->post("del_tours", "Admin\AdminTourController::del_tours", ['as' => "admin._tours.del_tours"]);
+        $routes->post("del", "Admin\AdminTourController::del", ['as' => "admin._tours.del"]);
     });
 
     $routes->group("api", function ($routes) {
@@ -513,5 +514,7 @@ $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
 $routes->get('product/get-by-top', 'Product::getProductByTop');
 $routes->get('product/get-by-cheep', 'Product::getProductByCheep');
 $routes->get('product/get-by-sub-code', 'Product::getProductBySubCode');
+$routes->get('product/get-step2-by-code-no', 'Product::getStep2ByCodeNo');
+$routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour');
 $routes->get('/product-booking', 'ProductBooking::index');
 ?>

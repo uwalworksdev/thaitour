@@ -54,6 +54,17 @@
                                                 }
                                                 ?>
                                             </select>
+                                            <select name="code" id="child_code_3" class="main_category"
+                                                    onchange="getChildCode(this.value, 5);">
+                                                <option value="">카테고리 선택</option>
+                                                <?php
+                                                foreach ($result3 as $row) {
+                                                    ?>
+                                                    <option value="<?= $row['code_no'] ?>" <?php if ($code == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </td>
@@ -121,6 +132,11 @@
                                                     $(this).remove();
                                                 });
                                                 $("#child_code_2").append("<option value=''>2차분류</option>");
+                                                $("#parent_code").val(parent_code_no);
+                                                updateQueryParam("parent_code", parent_code_no);
+                                            } else if (depth == 4) {
+                                                $("#child_code_3").find('option').remove();
+                                                $("#child_code_3").append("<option value=''>3차분류</option>");
                                                 $("#parent_code").val(parent_code_no);
                                                 updateQueryParam("parent_code", parent_code_no);
                                             } else {

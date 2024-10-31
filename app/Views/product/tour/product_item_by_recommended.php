@@ -1,0 +1,32 @@
+<a href="/product-tours/item_view/<?= $item['product_idx'] ?>" class="sub_tour_section5_item">
+    <div class="img_box img_box_10">
+        <img src="<?= getImage("/data/product/{$item['ufile1']}") ?>" alt="<?= $item['rfile1'] ?>">
+    </div>
+    <div class="prd_name">
+        <?= viewSQ($item['product_name']) ?>
+    </div>
+    <div class="prd_keywords">
+    <?php
+            $keywords = explode(',', $item['keyword']);
+            $keywords = array_filter($keywords);
+            foreach ($keywords as $row) : ?>
+                <span>#<?= viewSQ($row) ?></span>
+            <?php endforeach; ?>
+    </div>
+    <div class="prd_info">
+        <div class="prd_info__left">
+            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+            <span class="star_avg">4.7</span>
+            <span class="star_review_cnt">(954)</span>
+        </div>
+        <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+        <div class="prd_info__right">
+            <span class="prd_info__right__ttl">생생리뷰</span>
+            <span class="new_review_cnt">(0)</span>
+        </div>
+    </div>
+    <div class="prd_price_ko">
+        <?= number_format($item['product_price']) ?> <span>원</span>
+        <span class="prd_price_thai"><?= number_format($item['product_price_baht']) ?>바트</span>
+    </div>
+</a>

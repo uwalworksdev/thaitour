@@ -74,7 +74,7 @@
         }
     </script>
 
-    <div id="container">
+    <div id="container" style="overflow: hidden;">
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
                 <div class="inner">
@@ -1031,343 +1031,344 @@
             </form>
             <!-- // listBottom -->
 
-
-            <div class="tail_menu">
-                <ul>
-                    <li class="left"></li>
-                    <li class="right_sub">
-
-                        <a href="list_tours?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
-                           class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                        <?php if ($product_idx == "") { ?>
-                            <a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                        <?php } else { ?>
-                            <a href="javascript:send_it()" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                            <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
-                        <?php } ?>
-                    </li>
-                </ul>
-            </div>
-
-            <?php if ($product_idx): ?>
-                <div class="listBottom" style="padding: 15px;">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                        <caption>
-                        </caption>
-                        <colgroup>
-                            <col width="*"/>
-                        </colgroup>
-                        <tbody>
-
-                        <tr>
-                            <th>옵션추가</th>
-                            <td>
-                                <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
-                                <button type="button" class="btn_01" onclick="add_moption();">추가</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div id="contents">
+                <div class="tail_menu">
+                    <ul>
+                        <li class="left"></li>
+                        <li class="right_sub" style="display: none">
+    
+                            <a href="list_tours?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>"
+                               class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                            <?php if ($product_idx == "") { ?>
+                                <a href="javascript:send_it()" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
+                            <?php } else { ?>
+                                <a href="javascript:send_it()" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                <a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-trash"></span><span class="txt">완전삭제</span></a>
+                            <?php } ?>
+                        </li>
+                    </ul>
                 </div>
-            <?php endif;?>
-
-            <?php foreach ($options as $row_option): ?>
-                <div class="listBottom">
-                    <form name="optionForm_<?= $row_option['code_idx'] ?>"
-                          id="optionForm_<?= $row_option['code_idx'] ?>">
-                        <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
-                        <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
-
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+    
+                <?php if ($product_idx): ?>
+                    <div class="listBottom" style="padding: 15px;">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <caption>
+                            </caption>
                             <colgroup>
-                                <col width="10%">
-                                <col width="90%">
+                                <col width="*"/>
                             </colgroup>
                             <tbody>
-                            <tr height="45">
-                                <th colspan="5">
-                                    옵션 <input type='text' name='moption_name' id='moption_name_<?=$row_option['code_idx']?>' value="<?=$row_option['moption_name']?>" style="width:550px" />
-                                    <button type="button" class="btn_01" onclick="upd_moption('<?=$row_option['code_idx']?>');">수정</button>
-                                    <button type="button" class="btn_01" onclick="del_moption('<?=$row_option['code_idx']?>');">삭제</button>
-                                </th>
-                            </tr> 
-                            <tr height="45">
-                                <th>
-                                    추가 옵션등록
-                                    <p style="display:block;margin-top:10px;">
-                                        <button type="button" id="btn_add_option" onclick="add_option('<?=$row_option['code_idx']?>');" class="btn_01">추가</button>
-                                        <button type="button" id="btn_upd_option" onclick="upd_option('<?=$row_option['code_idx']?>');" class="btn_01">등록</button>
-                                    </p>
-                                </th>
+    
+                            <tr>
+                                <th>옵션추가</th>
                                 <td>
-                                    <span  style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
-                                        <div>
-                                            <table>
-                                                <colgroup>
-                                                    <col width="*"></col>
-                                                    <col width="25%"></col>
-                                                    <col width="5%"></col>
-                                                    <col width="5%"></col>
-                                                    <col width="12%"></col>
-                                                </colgroup>
-                                                <thead>
-                                                    <tr>
-                                                        <th>옵션명</th>
-                                                        <th>가격(호주 달러: AUD)</th>
-                                                        <th>적용</th>
-                                                        <th>순서</th>
-                                                        <th>삭제</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="settingBody_<?=$row_option['code_idx']?>">
-                                                    <?php foreach ($row_option['additional_options'] as $option): ?>
-                                                        <tr >
-                                                            <td>
-                                                                <input type='text'   name='o_name[]' id='o_name_<?=$option['idx']?>' value="<?=$option['option_name']?>" size="70" />
-                                                            </td>
-                                                            <td>
-                                                                <input type='text' class='onlynum' style="text-align:right;" name='o_price[]' id='o_price_<?=$option['idx']?>' value="<?=$option['option_price']?>" />
-                                                            </td>
-                                                            <td>
-                                                                <select name="use_yn[]" id="use_yn_<?=$option['idx']?>">
-                                                                <option value="Y" <?php if($option['use_yn'] == "Y") echo "selected";?> >판매중</option>
-                                                                <option value="N" <?php if($option['use_yn'] != "Y") echo "selected";?> >중지</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <input type='text' class='onlynum' name='o_num[]' id='o_num_<?=$option['idx']?>' value="<?=$option['onum']?>" />
-                                                            </td>
-                                                            <td align="center">
-                                                                <button type="button" onclick="updOption('<?=$option['idx']?>')" >수정</button>
-                                                                <button type="button" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                    </tbody>
-                                    </table>
+                                    <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
+                                    <button type="button" class="btn_01" onclick="add_moption();">추가</button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                    </form>
-                </div>
-            <?php endforeach; ?>
-
-
-            <?php if ($product_idx): ?>
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 가격리스트</li>
-                        <?php 
-                               $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null; 
-                               if($info_idx):
-                        ?>
-                        <li class="right_sub" style="padding-bottom:10px">
-                            <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
-                               class="btn btn-default">
-                                <span class="glyphicon glyphicon-cog"></span>
-                                <span class="txt">수정하기</span>
-                            </a>
-                        </li>
-                        <?php else: ?>
+                    </div>
+                <?php endif;?>
+    
+                <?php foreach ($options as $row_option): ?>
+                    <div class="listBottom">
+                        <form name="optionForm_<?= $row_option['code_idx'] ?>"
+                              id="optionForm_<?= $row_option['code_idx'] ?>">
+                            <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
+                            <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
+    
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="90%">
+                                </colgroup>
+                                <tbody>
+                                <tr height="45">
+                                    <th colspan="5">
+                                        옵션 <input type='text' name='moption_name' id='moption_name_<?=$row_option['code_idx']?>' value="<?=$row_option['moption_name']?>" style="width:550px" />
+                                        <button type="button" class="btn_01" onclick="upd_moption('<?=$row_option['code_idx']?>');">수정</button>
+                                        <button type="button" class="btn_01" onclick="del_moption('<?=$row_option['code_idx']?>');">삭제</button>
+                                    </th>
+                                </tr> 
+                                <tr height="45">
+                                    <th>
+                                        추가 옵션등록
+                                        <p style="display:block;margin-top:10px;">
+                                            <button type="button" id="btn_add_option" onclick="add_option('<?=$row_option['code_idx']?>');" class="btn_01">추가</button>
+                                            <button type="button" id="btn_upd_option" onclick="upd_option('<?=$row_option['code_idx']?>');" class="btn_01">등록</button>
+                                        </p>
+                                    </th>
+                                    <td>
+                                        <span  style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다.</span>
+                                            <div>
+                                                <table>
+                                                    <colgroup>
+                                                        <col width="*"></col>
+                                                        <col width="25%"></col>
+                                                        <col width="5%"></col>
+                                                        <col width="5%"></col>
+                                                        <col width="12%"></col>
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>옵션명</th>
+                                                            <th>가격(호주 달러: AUD)</th>
+                                                            <th>적용</th>
+                                                            <th>순서</th>
+                                                            <th>삭제</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="settingBody_<?=$row_option['code_idx']?>">
+                                                        <?php foreach ($row_option['additional_options'] as $option): ?>
+                                                            <tr >
+                                                                <td>
+                                                                    <input type='text'   name='o_name[]' id='o_name_<?=$option['idx']?>' value="<?=$option['option_name']?>" size="70" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='onlynum' style="text-align:right;" name='o_price[]' id='o_price_<?=$option['idx']?>' value="<?=$option['option_price']?>" />
+                                                                </td>
+                                                                <td>
+                                                                    <select name="use_yn[]" id="use_yn_<?=$option['idx']?>">
+                                                                    <option value="Y" <?php if($option['use_yn'] == "Y") echo "selected";?> >판매중</option>
+                                                                    <option value="N" <?php if($option['use_yn'] != "Y") echo "selected";?> >중지</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input type='text' class='onlynum' name='o_num[]' id='o_num_<?=$option['idx']?>' value="<?=$option['onum']?>" />
+                                                                </td>
+                                                                <td align="center">
+                                                                    <button type="button" onclick="updOption('<?=$option['idx']?>')" >수정</button>
+                                                                    <button type="button" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                        </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                <?php endforeach; ?>
+    
+    
+                <?php if ($product_idx): ?>
+                    <div class="tail_menu">
+                        <ul>
+                            <li class="left">■ 가격리스트</li>
+                            <?php 
+                                   $info_idx = !empty($productTourInfo) ? $productTourInfo[0]['info_idx'] : null; 
+                                   if($info_idx):
+                            ?>
                             <li class="right_sub" style="padding-bottom:10px">
                                 <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
-                                class="btn btn-default">
+                                   class="btn btn-default">
                                     <span class="glyphicon glyphicon-cog"></span>
-                                    <span class="txt">가격등록</span>
+                                    <span class="txt">수정하기</span>
                                 </a>
                             </li>
-                        <?php endif ?>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-						<table cellpadding="0" cellspacing="0" summary="" class="listTable">
-						<caption></caption>
-						<colgroup>
-						<col width="5%" />
-						<col width="15%" />
-						<col width="*" />
-						<col width="15%" />
-						<col width="15%" />
-						<col width="15%" />
-						<col width="10%" />
-						<col width="5%" />
-						<col width="10%" />
-						</colgroup>
-						<thead>
-							<tr>
-								<th>번호</th>
-                                <th>기간</th>
-								<th>상품명</th>
-								<th>성인가격</th>
-								<th>소아가격</th>	
-								<th>유아가격</th>	
-								<th>등록일</th>
-								<th>판매상태</th>
-								<th>관리</th>
-							</tr>
-						</thead>	
-                        <tbody>
-                                <?php 
-                                    $i = 1;
-                                    $infoIdxCounts = [];
-                                    $toursIdxMap = [];
-
-                                    foreach ($productTourInfo as $row) {
-                                        $info_idx = $row['info_idx'];
-                                        $tours_idx = $row['tours_idx'];
-
-                                        if (!isset($infoIdxCounts[$info_idx])) {
-                                            $infoIdxCounts[$info_idx] = 0;
+                            <?php else: ?>
+                                <li class="right_sub" style="padding-bottom:10px">
+                                    <a href="/AdmMaster/_tourRegist/write_tour_info?product_idx=<?= $product_idx ?>"
+                                    class="btn btn-default">
+                                        <span class="glyphicon glyphicon-cog"></span>
+                                        <span class="txt">가격등록</span>
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                        </ul>
+                    </div>
+    
+                    <div class="listBottom">
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable">
+                            <caption></caption>
+                            <colgroup>
+                            <col width="5%" />
+                            <col width="15%" />
+                            <col width="*" />
+                            <col width="15%" />
+                            <col width="15%" />
+                            <col width="15%" />
+                            <col width="10%" />
+                            <col width="5%" />
+                            <col width="10%" />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>기간</th>
+                                    <th>상품명</th>
+                                    <th>성인가격</th>
+                                    <th>소아가격</th>	
+                                    <th>유아가격</th>	
+                                    <th>등록일</th>
+                                    <th>판매상태</th>
+                                    <th>관리</th>
+                                </tr>
+                            </thead>	
+                            <tbody>
+                                    <?php 
+                                        $i = 1;
+                                        $infoIdxCounts = [];
+                                        $toursIdxMap = [];
+    
+                                        foreach ($productTourInfo as $row) {
+                                            $info_idx = $row['info_idx'];
+                                            $tours_idx = $row['tours_idx'];
+    
+                                            if (!isset($infoIdxCounts[$info_idx])) {
+                                                $infoIdxCounts[$info_idx] = 0;
+                                            }
+    
+                                            if (!isset($toursIdxMap[$info_idx])) {
+                                                $toursIdxMap[$info_idx] = [];
+                                            }
+    
+                                            if ($tours_idx !== null && !in_array($tours_idx, $toursIdxMap[$info_idx])) {
+                                                $toursIdxMap[$info_idx][] = $tours_idx;
+                                            }
+    
+                                            $infoIdxCounts[$info_idx]++;
                                         }
-
-                                        if (!isset($toursIdxMap[$info_idx])) {
-                                            $toursIdxMap[$info_idx] = [];
-                                        }
-
-                                        if ($tours_idx !== null && !in_array($tours_idx, $toursIdxMap[$info_idx])) {
-                                            $toursIdxMap[$info_idx][] = $tours_idx;
-                                        }
-
-                                        $infoIdxCounts[$info_idx]++;
-                                    }
-
-                                    $printedInfoIdx = []; 
-
-                                    foreach ($productTourInfo as $row): 
-                                        $status = ($row['status'] == "Y") ? "판매중" : "중지";
-
-                                        $info_idx = $row['info_idx'];
-                                        $printRowspan = false;
-
-                                        $tours_idx_array = isset($toursIdxMap[$info_idx]) ? $toursIdxMap[$info_idx] : [];
-                                        $tours_idx_json = htmlspecialchars(json_encode($tours_idx_array), ENT_QUOTES, 'UTF-8'); 
-
-                                        if (!in_array($info_idx, $printedInfoIdx)) {
-                                            $printRowspan = true;
-                                            $printedInfoIdx[] = $info_idx;
-                                        }
-                                ?>
-                                    <tr style="height:40px">
-                                        <td><?=$i++?></td>
-
-                                        <?php if ($printRowspan): ?>
-                                            <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
-                                                <?= substr($row['o_sdate'], 0, 10) ?> ~ <?= substr($row['o_edate'], 0, 10) ?>
-                                            </td>
-                                        <?php endif; ?>
-
-                                        <td><?=$row['tours_subject']?></td>
-                                        <td><?=number_format($row["tour_price"], 0)?></td>
-                                        <td><?=number_format($row["tour_price_kids"], 0)?></td>
-                                        <td><?=number_format($row["tour_price_baby"], 0)?></td>
-                                        <td class="tac"><?=substr($row["r_date"], 0, 10)?></td>
-                                        <td class="tac"><?=$status?></td>
-
-                                        <?php if ($printRowspan): ?>
-                                            <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
-                                                <a href="javascript:del_tours('<?=$row["info_idx"]?>', <?=$tours_idx_json?>);" class="btn btn-default">삭제하기</a>
-                                            </td>
-                                        <?php endif; ?>
+    
+                                        $printedInfoIdx = []; 
+    
+                                        foreach ($productTourInfo as $row): 
+                                            $status = ($row['status'] == "Y") ? "판매중" : "중지";
+    
+                                            $info_idx = $row['info_idx'];
+                                            $printRowspan = false;
+    
+                                            $tours_idx_array = isset($toursIdxMap[$info_idx]) ? $toursIdxMap[$info_idx] : [];
+                                            $tours_idx_json = htmlspecialchars(json_encode($tours_idx_array), ENT_QUOTES, 'UTF-8'); 
+    
+                                            if (!in_array($info_idx, $printedInfoIdx)) {
+                                                $printRowspan = true;
+                                                $printedInfoIdx[] = $info_idx;
+                                            }
+                                    ?>
+                                        <tr style="height:40px">
+                                            <td><?=$i++?></td>
+    
+                                            <?php if ($printRowspan): ?>
+                                                <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
+                                                    <?= substr($row['o_sdate'], 0, 10) ?> ~ <?= substr($row['o_edate'], 0, 10) ?>
+                                                </td>
+                                            <?php endif; ?>
+    
+                                            <td><?=$row['tours_subject']?></td>
+                                            <td><?=number_format($row["tour_price"], 0)?></td>
+                                            <td><?=number_format($row["tour_price_kids"], 0)?></td>
+                                            <td><?=number_format($row["tour_price_baby"], 0)?></td>
+                                            <td class="tac"><?=substr($row["r_date"], 0, 10)?></td>
+                                            <td class="tac"><?=$status?></td>
+    
+                                            <?php if ($printRowspan): ?>
+                                                <td rowspan="<?= $infoIdxCounts[$info_idx] ?>">
+                                                    <a href="javascript:del_tours('<?=$row["info_idx"]?>', <?=$tours_idx_json?>);" class="btn btn-default">삭제하기</a>
+                                                </td>
+                                            <?php endif; ?>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+    
+    
+                            </table>
+                        </div>
+    
+                    <!-- <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable">
+                            <caption></caption>
+                            <colgroup>
+                                <col width="5%"/>
+                                <col width="5%"/>
+                                <col width="5%"/>
+                                <col width="*"/>
+                                <col width="8%"/>
+                                <col width="5%"/>
+                                <col width="5%"/>
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>시작일</th>
+                                <th>종료일</th>
+                                <th>항공사별 가격</th>
+                                <th>선택요일</th>
+                                <th>등록일</th>
+                                <th>관리</th>
+                            </tr>
+                            </thead>
+                            <?php echo $yoil_html ?>
+                        </table>
+                    </div> -->
+    
+                    <div class="tail_menu">
+                        <ul>
+                            <li class="left">■ 상세내역</li>
+                            <li class="right_sub" style="padding-bottom:10px"></li>
+                        </ul>
+                    </div>
+    
+                    <div class="listBottom">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable">
+                            <colgroup>
+                                <col width="70px"/>
+                                <col width="*"/>
+                                <col width="260px"/>
+                                <col width="260px"/>
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>항공사</th>
+                                <th>일차</th>
+                                <th>관리</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php if ($fTotalresult4 > 0): ?>
+                                <?php $i = 1; ?>
+                                <?php foreach ($fresult4 as $frow): ?>
+                                    <tr style="height:50px">
+                                        <td><?= $i++ ?></td>
+                                        <td class="tac"><?= $frow["code_name"] ?></td>
+                                        <td class="tac"><?= $frow["cnt"] ?>일차</td>
+                                        <td>
+                                            <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
+                                               class="btn btn-default">상세내역관리</a>
+                                            <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
+                                                <input type="file" hidden name="fileInput"
+                                                       data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput"
+                                                       accept=".json">
+                                            <?php endif; ?>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
-                            </tbody>
-
-
-						</table>
-					</div>
-
-                <!-- <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <caption></caption>
-                        <colgroup>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                            <col width="*"/>
-                            <col width="8%"/>
-                            <col width="5%"/>
-                            <col width="5%"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>시작일</th>
-                            <th>종료일</th>
-                            <th>항공사별 가격</th>
-                            <th>선택요일</th>
-                            <th>등록일</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <?php echo $yoil_html ?>
-                    </table>
-                </div> -->
-
-                <div class="tail_menu">
-                    <ul>
-                        <li class="left">■ 상세내역</li>
-                        <li class="right_sub" style="padding-bottom:10px"></li>
-                    </ul>
-                </div>
-
-                <div class="listBottom">
-                    <table cellpadding="0" cellspacing="0" summary="" class="listTable">
-                        <colgroup>
-                            <col width="70px"/>
-                            <col width="*"/>
-                            <col width="260px"/>
-                            <col width="260px"/>
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>항공사</th>
-                            <th>일차</th>
-                            <th>관리</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php if ($fTotalresult4 > 0): ?>
-                            <?php $i = 1; ?>
-                            <?php foreach ($fresult4 as $frow): ?>
+                            <?php else: ?>
                                 <tr style="height:50px">
                                     <td><?= $i++ ?></td>
-                                    <td class="tac"><?= $frow["code_name"] ?></td>
-                                    <td class="tac"><?= $frow["cnt"] ?>일차</td>
+                                    <td class="tac">미등록</td>
+                                    <td class="tac">미등록</td>
                                     <td>
-                                        <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
+                                        <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
                                            class="btn btn-default">상세내역관리</a>
                                         <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                            <input type="file" hidden name="fileInput"
-                                                   data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput"
-                                                   accept=".json">
+                                            <!-- <button type="button">Tải lên lịch trình</button> -->
                                         <?php endif; ?>
                                     </td>
                                 </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr style="height:50px">
-                                <td><?= $i++ ?></td>
-                                <td class="tac">미등록</td>
-                                <td class="tac">미등록</td>
-                                <td>
-                                    <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
-                                       class="btn btn-default">상세내역관리</a>
-                                    <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                        <!-- <button type="button">Tải lên lịch trình</button> -->
-                                    <?php endif; ?>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            <?php endif; ?>
+                            <?php endif; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                <?php endif; ?>
+            </div>
 
         </div>
     </div>
