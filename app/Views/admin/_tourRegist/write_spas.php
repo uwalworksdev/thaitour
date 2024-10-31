@@ -567,7 +567,7 @@
                                     <th>추천 포인트</th>
                                     <th>
                                         <input type="checkbox" id="all_code_utility" class="all_input"
-                                               name="_code_utility" value=""/>
+                                               name="all_code_utility" value=""/>
                                         <label for="all_code_utility">
                                             모두 선택
                                         </label>
@@ -595,7 +595,7 @@
                                     <th>인기 시설 및 서비스</th>
                                     <th>
                                         <input type="checkbox" id="all_code_best_utilities" class="all_input"
-                                               name="_code_best_utilities" value=""/>
+                                               name="all_code_best_utilities" value=""/>
                                         <label for="all_code_best_utilities">
                                             모두 선택
                                         </label>
@@ -625,7 +625,7 @@
                                     <th>시설 & 서비스</th>
                                     <th>
                                         <input type="checkbox" id="all_code_service" class="all_input"
-                                               name="_code_service" value=""/>
+                                               name="all_code_service" value=""/>
                                         <label for="all_code_service">
                                             모두 선택
                                         </label>
@@ -666,7 +666,7 @@
                                     <th>호텔주변 추천명소</th>
                                     <th style="width: 20px">
                                         <input type="checkbox" id="all_code_populars" class="all_input"
-                                               name="_code_populars" value="Y"/>
+                                               name="all_code_populars" value="Y"/>
                                         <label for="all_code_populars">
                                             모두 선택
                                         </label>
