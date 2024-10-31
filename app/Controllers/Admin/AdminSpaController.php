@@ -151,6 +151,7 @@ class AdminSpaController extends BaseController
 
             $dataProductMore = json_encode($dataProductMore);
 
+            $data = [];
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
@@ -311,19 +312,6 @@ class AdminSpaController extends BaseController
                             ,product_info			= '" . $product_info . "'
                             ,product_schedule		= '" . $product_schedule . "'
                             ,product_country		= '" . $product_country . "'
-                            ,rfile1					= '" . $rfile_1 . "'
-                            ,rfile2					= '" . $rfile_2 . "'
-                            ,rfile3					= '" . $rfile_3 . "'
-                            ,rfile4					= '" . $rfile_4 . "'
-                            ,rfile5					= '" . $rfile_5 . "'
-                            ,rfile6					= '" . $rfile_6 . "'
-                            ,ufile1					= '" . $ufile_1 . "'
-                            ,ufile2					= '" . $ufile_2 . "'
-                            ,ufile3					= '" . $ufile_3 . "'
-                            ,ufile4					= '" . $ufile_4 . "'
-                            ,ufile5					= '" . $ufile_5 . "'
-                            ,ufile6					= '" . $ufile_6 . "'
-                            ,ufile7					= '" . $ufile_7 . "'
                             ,is_view				= '" . $is_view . "'
                             ,product_period			= '" . $product_period . "'
                             ,product_manager		= '" . $product_manager . "'
