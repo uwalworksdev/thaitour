@@ -217,8 +217,7 @@
                         <h1 class="title-sec5">호텔정책</h1>
                         <div class="content-container-sec5">
                             <div class="content-item">
-                        <span class="label">체크인 &<br class="only_mo">
-                            체크아웃 시간
+                        <span class="label">서비스 정책
                         </span>
                                 <div class="description">
                                     <p><?= nl2br($meet_out_time ?? '') ?></p>
@@ -226,7 +225,7 @@
                             </div>
                             <div class="content-item">
                         <span class="label">
-                            어린이 정책
+                            결제 정책
                         </span>
                                 <div class="description">
                                     <p><?= nl2br($children_policy ?? '') ?></p>
@@ -234,7 +233,7 @@
                             </div>
                             <div class="content-item">
                         <span class="label">
-                            유아용 침대 및 엑스트라 베드
+                            할인 정책
                         </span>
                                 <div class="description">
                                     <p><?= nl2br($baby_beds ?? '') ?></p>
@@ -242,7 +241,7 @@
                             </div>
                             <div class="content-item">
                         <span class="label">
-                            조식
+                            개인청보 보안 정책
                         </span>
                                 <div class="description">
                                     <p><?= nl2br($breakfast ?? '') ?></p>
