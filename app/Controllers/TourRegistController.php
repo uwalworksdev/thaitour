@@ -50,40 +50,35 @@ class TourRegistController extends BaseController
 
     public function list_all()
     {
-        $data = $this->get_list_('');
+        $data = $this->get_list_('', '', '', '', '');
         return view("admin/_tourRegist/list_all", $data);
     }
 
     public function list_honeymoon()
     {
-        $data = $this->get_list_('1320');
+        $data = $this->get_list_('1320', '', '', '', '');
         return view("admin/_tourRegist/list_honeymoon", $data);
     }
 
     public function list_spas()
     {
-        $data = $this->get_list_('1317');
-        $data2 = $this->get_list_('1320');
-        $data3 = $this->get_list_('1324');
-
-        $data = array_merge($data, $data2);
-        $data = array_merge($data, $data3);
+        $data = $this->get_list_('1317', '1325', '1320', '', '');
         return view("admin/_tourRegist/list_spas", $data);
     }
 
     public function list_tours()
     {
-        $data = $this->get_list_('1301');
+        $data = $this->get_list_('1301', '', '', '', '');
         return view("admin/_tourRegist/list_tours", $data);
     }
 
     public function list_golfs()
     {
-        $data = $this->get_list_('1302');
+        $data = $this->get_list_('1302', '', '', '', '');
         return view("admin/_tourRegist/list_golfs", $data);
     }
 
-    private function get_list_($product_code_1)
+    private function get_list_($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code)
     {
 
         $g_list_rows = 10;
@@ -92,6 +87,7 @@ class TourRegistController extends BaseController
         $search_name = updateSQ($_GET["search_name"] ?? "");
         $search_category = updateSQ($_GET["search_category"] ?? "");
 
+        $product_code_1 = updateSQ($_GET["product_code_1"] ?? "");
         $product_code_2 = updateSQ($_GET["product_code_2"] ?? "");
         $product_code = updateSQ($_GET["product_code"] ?? "");
         $product_code_3 = updateSQ($_GET["product_code_3"] ?? "");
@@ -141,6 +137,12 @@ class TourRegistController extends BaseController
         if ($search_name) {
             $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
         }
+
+        $strSql = $strSql . " and (product_code_1 = '$hotel_code' 
+                      or product_code_1 = '$spa_code' 
+                      or product_code_1 = '$tour_code' 
+                      or product_code_1 = '$golf_code' 
+                      or product_code_1 = '$stay_code') ";
 
         if ($product_code_1) {
             $strSql = $strSql . " and product_code_1 = '" . $product_code_1 . "' ";
@@ -1191,7 +1193,7 @@ class TourRegistController extends BaseController
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
                     'info' => $row,
-                    'tours' => [] 
+                    'tours' => []
                 ];
             }
 
@@ -1211,8 +1213,8 @@ class TourRegistController extends BaseController
             'info_idx' => $info_idx,
             'productTourInfo' => $groupedData,
         ];
-    
+
         return view('admin/_tourRegist/write_tour_info', $data);
     }
-    
+
 }
