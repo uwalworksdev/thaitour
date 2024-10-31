@@ -1370,15 +1370,19 @@ class Product extends BaseController
 
         $code_utilities = $spa['code_utilities'];
         $_arr_utilities = explode("|", $code_utilities);
+        $_arr_utilities = array_filter($_arr_utilities);
 
         $code_services = $spa['code_services'];
         $_arr_services = explode("|", $code_services);
+        $_arr_services = array_filter($_arr_services);
 
         $code_best_utilities = $spa['code_best_utilities'];
         $_arr_best_utilities = explode("|", $code_best_utilities);
+        $_arr_best_utilities = array_filter($_arr_best_utilities);
 
         $code_populars = $spa['code_populars'];
         $_arr_populars = explode("|", $code_populars);;
+        $_arr_populars = array_filter($_arr_populars);
 
         $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
         $list__best_utilities = rtrim(implode(',', $_arr_best_utilities), ',');
