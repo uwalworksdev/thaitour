@@ -310,7 +310,7 @@
                                 <colgroup>
                                     <col width="50px"/>
                                     <col width="200px"/>
-                                    <col width="100px"/>
+<!--                                    <col width="100px"/>-->
                                     <col width="120px"/>
                                     <col width="*"/>
 
@@ -326,7 +326,7 @@
                                 <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>메인/상품분류</th>
+<!--                                    <th>메인/상품분류</th>-->
                                     <th>상품코드/지역</th>
                                     <th>썸네일이미지</th>
                                     <th>타이틀</th>
@@ -362,7 +362,7 @@
                                             <a href="<?php echo '/t-package/item_view?product_idx=' . $row['product_idx'] ?>"
                                                class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                         </td>
-                                        <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
+<!--                                        <td rowspan="2" class="tac">--><?php //= $row["product_code"] ?><!--</td>-->
                                         <td class="tac">
                                             <?php
                                             if ($row["ufile1"] != "") {
