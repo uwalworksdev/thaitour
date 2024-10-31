@@ -65,12 +65,14 @@ class Product extends BaseController
 
     public function indexTour($code_no)
     {
+        $code_no = $this->request->getGet('code_no');
+        $code_recommended_active = $this->request->getGet('code_recommended_active');
         try {
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'DESC')->findAll();
 
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
-                'product_status' => 'sale',
+                // 'product_status' => 'sale',
             ], $this->scale, 1, ['product_price' => 'ASC']);
 
             $code_name = $this->db->table('tbl_code')
@@ -95,6 +97,19 @@ class Product extends BaseController
                     ->getResult();
             }
 
+            $code_new = $this->codeModel->getByParentAndDepth(2336, 3)->getResultArray();
+
+            $codeRecommendedActive = $code_new[0]['code_no'];
+
+            $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
+
+
+            $code_step2 = $this->codeModel->getByParentAndDepth($codeRecommendedActive, 4)->getResultArray();
+
+            $codeStep2RecommendedActive = $code_step2[0]['code_no'];
+
+            $productStep2ByRecommended = $this->mainDispModel->goods_find($codeStep2RecommendedActive);
+
             $data = [
                 'code_no' => $code_no,
                 'products' => $products,
@@ -102,6 +117,12 @@ class Product extends BaseController
                 'code_name' => $code_name,
                 'sub_codes' => $sub_codes,
                 'tab_active' => '3',
+                'productByRecommended' => $productByRecommended,
+                'codeRecommendedActive' => $codeRecommendedActive,
+                'code_new' => $code_new,
+                'productStep2ByRecommended' => $productStep2ByRecommended,
+                'codeStep2RecommendedActive' => $codeStep2RecommendedActive,
+                'code_step2' => $code_step2,
             ];
 
             return $this->renderView('product/product-tours', $data);
@@ -1256,6 +1277,8 @@ class Product extends BaseController
 
     public function golfDetail($product_idx)
     {
+        $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+
         $data['product'] = $this->productModel->getProductDetails($product_idx);
         $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
@@ -1279,8 +1302,7 @@ class Product extends BaseController
             $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
 
             $price = (float) $value['price'];
-            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
-            $price_baht = round($price / $baht_thai, 2);
+            $price_baht = round($price / $baht_thai);
             $data['golfVehicles'][$key]['price_baht'] = $price_baht;
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
@@ -1288,8 +1310,7 @@ class Product extends BaseController
 
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float) $value['price'];
-            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
-            $price_baht = round($price / $baht_thai, 2);
+            $price_baht = round($price / $baht_thai);
             $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
         }
 
@@ -1318,6 +1339,12 @@ class Product extends BaseController
             $data['coupons'] = [];
         }
 
+        foreach ($data['coupons'] as $key => $coupon) {
+            $coupon_price = (float) $coupon['coupon_price'];
+            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $data['coupons'][$key] = $coupon;
+        }
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 
@@ -1330,7 +1357,7 @@ class Product extends BaseController
         foreach ($options as $key => $value) {
             $option_price = (float) $value['option_price'];
             $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
-            $option_price_baht = round($option_price / $baht_thai, 2);
+            $option_price_baht = round($option_price / $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
 

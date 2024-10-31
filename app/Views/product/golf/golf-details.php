@@ -8,6 +8,8 @@
                 <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="">
+                <input type="hidden" id="total_price" value="">
+                <input type="hidden" id="total_price_baht" value="">
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
@@ -264,7 +266,7 @@
             <script>
                 var lat = '<?= $product['latitude'] ?>' || 13.7563;
                 var lng = '<?= $product['longitude'] ?>' || 100.5018;
-                var map = L.map('map').setView([lat, lng], 13);
+                var map = L.map('map').setView([lat, lng], 17);
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: 'The Tour Lab'
                 }).addTo(map);
@@ -503,7 +505,7 @@
                         ?>
                         <div class="item-price-popup" style="cursor: pointer;"
                              data-idx="<?= $coupon["c_idx"] ?>" data-type="<?= $coupon["dc_type"] ?>"
-                             data-discount="<?= $dis ?>">
+                             data-discount="<?= $dis ?>" data-discount_baht="<?= $coupon["coupon_price_baht"] ?>">
                             <div class="img-container">
                                 <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
                             </div>
@@ -517,7 +519,7 @@
                     }
                     ?>
                     <div class="item-price-popup item-price-popup--button active"
-                         data-idx="" data-type="" data-discount="0">
+                         data-idx="" data-type="" data-discount="0" data-discount_baht="0">
                         <span>적용안함</span>
                     </div>
                 </div>
@@ -526,18 +528,18 @@
                     <div class="des-above">
                         <div class="item">
                             <span class="text-gray">총 주문금액</span>
-                            <span class="text-gray total_price" data-price="">160,430원</span>
+                            <span class="text-gray total_price" id="total_price_popup" data-price="">0원</span>
                         </div>
                         <div class="item">
                             <span class="text-gray">할인금액</span>
-                            <span class="text-gray discount" data-price="">16,040원</span>
+                            <span class="text-gray discount" data-price="">0원</span>
                         </div>
                     </div>
                     <div class="des-below">
                         <div class="price-below">
                             <span>최종결제금액</span>
                             <p class="price-popup">
-                                <span id="last_price_popup">144,000</span><span
+                                <span id="last_price_popup">0</span><span
                                         class="text-gray">원</span>
                             </p>
                         </div>
@@ -606,18 +608,59 @@
                 final_price_baht
             }
         }
+
+        function setCouponArea() {
+            const couponActive = $(".item-price-popup.active");
+            let total_price = $("#total_price").val() || 0;
+            let total_price_baht = $("#total_price_baht").val() || 0;
+            const idx = couponActive.data("idx") || 0;
+            const discount = couponActive.data("discount") || 0;
+            let discount_baht = couponActive.data("discount_baht") || 0;
+            const type = couponActive.data("type") || 0;
+
+            let discount_price = 0;
+            let discount_price_baht = 0;
+            if (type === "D") {
+                discount_price = discount;
+                discount_price_baht = discount_baht;
+            } else if (type === "P") {
+                discount_price = Math.round(total_price * discount / 100);
+                discount_price_baht = Math.round(total_price_baht * discount / 100);
+            }
+
+            total_price -= discount_price;
+            total_price_baht -= discount_price_baht;
+
+            $(".discount").text(number_format(discount_price) + "원");
+            $("#last_price_popup").text(number_format(total_price));
+
+            return {
+                discount_price,
+                discount_price_baht
+            };
+        }
         
         function calculatePrice() {
             const vehiclePrice = setListVehicle();
             
             const optionPrice = setOptionArea();
 
-            const last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price;
-            const last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht;
+            let last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price;
+            let last_price_baht = vehiclePrice.total_vehicle_price_baht + optionPrice.final_price_baht;
 
+            $("#total_price_popup").text(number_format(last_price) + "원");
+            $("#total_price").val(last_price);
+            $("#total_price_baht").val(last_price_baht);
+
+            const couponPrice = setCouponArea();
+
+            last_price -= couponPrice.discount_price;
+            last_price_baht -= couponPrice.discount_price_baht;
+
+            $("#final_discount").text(number_format(couponPrice.discount_price));
+            $("#final_discount_baht").text(number_format(couponPrice.discount_price_baht));
             $("#last_price").text(number_format(last_price));
             $("#last_price_baht").text(number_format(last_price_baht));
-            $("#last_price_popup").html(`${number_format(last_price)}<span>원(${number_format(last_price_baht)}바트)</span>`);
         }
 
         function selectOption(obj) {
@@ -644,6 +687,16 @@
         function changePeople() {
             calculatePrice();
         }
+
+        $(".item-price-popup").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+            setCouponArea();
+        })
+
+        $(".btn_accept_popup").click(function () {
+            calculatePrice();
+            $("#popup_coupon").css('display', 'none');
+        })
 
 
         function showCouponPop() {

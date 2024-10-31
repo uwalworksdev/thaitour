@@ -142,17 +142,29 @@
                 <div>
                     <div class="sub_section3_swiper swiper">
                         <div class="swiper-wrapper">
-                            <a href="/product-tours/item_view/item_view/1325/2"
+                            <?php foreach ($products['items'] as $row): 
+                                if(is_file(ROOTPATH . "/public/data/product/" . $row['ufile1'])) {
+                                    $src = "/data/product/" . $row['ufile1'];
+                                } else {
+                                    $src = "/images/product/noimg.png";
+                                }
+                            ?>    
+                            <a href="/product-tours/item_view/<?= $row['product_idx']?>"
                                class="sub_section3_swiper_item swiper-slide">
                                 <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_1.png" alt="main">
+                                    <img src="<?= $src ?>" alt="<?= $row['ufile1']?>">
                                 </div>
                                 <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                                    <?= viewSQ($row["product_name"])?>
                                 </div>
+                                <?php
+                                $arr_keyword = explode(",", $row['keyword']);
+                                $arr_keyword = array_filter($arr_keyword);
+                                ?>
                                 <div class="prd_keywords">
-                                    <span>#조인</span>
-                                    <span>#한국거 기이드</span>
+                                    <?php foreach ($arr_keyword as $keyword): ?>
+                                        <span>#<?= $keyword ?></span>
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="prd_info">
                                     <div class="prd_info__left">
@@ -167,93 +179,10 @@
                                     </div>
                                 </div>
                                 <div class="prd_price_ko">
-                                    236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                                <?=number_format($row['product_price'])?> <span>원</span> <span class="prd_price_thai">(<?=number_format($row['product_price_baht'])?>    <span>바트)</span></span>
                                 </div>
                             </a>
-                            <a href="/product-tours/item_view/item_view/1325/2"
-                               class="sub_section3_swiper_item swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main">
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>#조인</span>
-                                    <span>#한국거 기이드</span>
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
-                                </div>
-                            </a>
-                            <a href="/product-tours/item_view/item_view/1325/2"
-                               class="sub_section3_swiper_item swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_3.png" alt="main">
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>#조인</span>
-                                    <span>#한국거 기이드</span>
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
-                                </div>
-                            </a>
-                            <a href="/product-tours/item_view/item_view/1325/2"
-                               class="sub_section3_swiper_item swiper-slide">
-                                <div class="img_box img_box_10">
-                                    <img src="/uploads/sub/tour_popular_2.png" alt="main">
-                                </div>
-                                <div class="prd_name">
-                                    쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                                </div>
-                                <div class="prd_keywords">
-                                    <span>#조인</span>
-                                    <span>#한국거 기이드</span>
-                                </div>
-                                <div class="prd_info">
-                                    <div class="prd_info__left">
-                                        <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                        <span class="star_avg">4.7</span>
-                                        <span class="star_review_cnt">(954)</span>
-                                    </div>
-                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                    <div class="prd_info__right">
-                                        <span class="prd_info__right__ttl">생생리뷰</span>
-                                        <span class="new_review_cnt">(0)</span>
-                                    </div>
-                                </div>
-                                <div class="prd_price_ko">
-                                    236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
-                                </div>
-                            </a>
+                            <?php endforeach;?>
                         </div>
                     </div>
                     <div class="sub_section3_swiper_pagination"></div>
@@ -278,60 +207,20 @@
                     </div>
                     <div class="sub_tour_section5__head__tabs1">
                         <div class="tour__head__tabs1__tabs">
-                            <a href="#!" class="tour__head__tabs1__tab active">
-                                MD추천
-                            </a>
-                            <span class="tour__head__tabs1__line"></span>
-                            <a href="#!" class="tour__head__tabs1__tab">
-                                최다 리뷰
-                            </a>
-                            <span class="tour__head__tabs1__line"></span>
-                            <a href="#!" class="tour__head__tabs1__tab">
-                                인기 급상승
-                            </a>
+                            <?php foreach ($code_new as $code) : ?>
+                                    <a href="javascript:void(0);" onclick="handleLoadRecommendedProduct(<?=$code['code_no']?>);" class="tour__head__tabs1__tab <?=$codeRecommendedActive == $code['code_no'] ? 'active' : ''?>">
+                                        <?=viewSQ($code['code_name'])?>
+                                    </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <div class="sub_tour_section5__head__tabs2">
-                        <div class="tour__head__tabs2__tabs">
-                            <a href="#!" class="tour__head__tabs2__tab active">
-                                방콕
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                파타야
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                푸켓
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                치앙마이
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                끄라비
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                카오락
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                후아힌
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                칸차나부리
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                꼬창
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                아유타야
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                치앙라이
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                기타지역
-                            </a>
-                            <a href="#!" class="tour__head__tabs2__tab">
-                                투어패키지
-                            </a>
+                        <div class="tour__head__tabs2__tabs" id="tab2-content">
+                        <?php foreach ($code_step2 as $code) : ?>
+                                    <a href="javascript:void(0);" onclick="handleLoadRecommendedProduct(<?=$code['code_no']?>);" class="tour__head__tabs2__tab <?=$codeStep2RecommendedActive == $code['code_no'] ? 'active' : ''?>">
+                                        <?=viewSQ($code['code_name'])?>
+                                    </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -766,6 +655,23 @@
     </div>
 
     <script>
+        function handleLoadRecommendedProduct(code_no) {
+            console.log(code_no);
+            
+            $.ajax({
+                type: "GET",
+                url: "/product/get-by-sub-code",
+                data: {
+                    code_no: code_no,
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#product_list_recommended").html(data.html);
+                }
+            })
+        }
+    </script>
+    <script>
         $(document).ready(function () {
             const swiper1 = new Swiper(".sub_swiper1", {
                 loop: true,
@@ -825,7 +731,7 @@
 
             function initSwiper13() {
                 swiper13 = new Swiper(".sub_section3_swiper", {
-                    loop: true,
+                    // loop: true,
                     slidesPerView: 1,
                     spaceBetween: 10,
                     breakpoints: {
