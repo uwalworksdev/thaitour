@@ -394,7 +394,7 @@
 
                             <style>
                                 .btn_al_plus_ {
-                                    width: 50px;
+                                    width: 50px !important;
                                 }
                             </style>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
@@ -714,9 +714,6 @@
                             if ($product_more) {
                                 $productMoreData = json_decode($product_more, true);
 
-                                if (json_last_error() !== JSON_ERROR_NONE) {
-                                    echo("Lỗi giải mã JSON: " . json_last_error_msg());
-                                }
                                 $breakfast_data = '';
                                 if ($productMoreData) {
                                     $meet_out_time = $productMoreData['meet_out_time'];

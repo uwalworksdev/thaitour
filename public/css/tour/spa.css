@@ -1,0 +1,367 @@
+._wrap-info-payment {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 220px;
+    margin-top: 40px;
+}
+
+._wrap-info-payment ._wrap-info {
+    width: 820px
+}
+
+._wrap-info-payment ._wrap-payment {
+    flex: 1;
+}
+
+.vertical-line {
+    width: 2px;
+    background-color: #f0f0f0;
+}
+
+/* .calendar {
+    height: unset;
+    padding: 0;
+    width: calc(100% - 350px);
+    padding-right: 30px;
+    border-right: 1px solid #eeeeee;
+} */
+
+/* .calendar-con {
+    display: flex;
+    align-items: flex-start;
+} */
+
+.mt-20 {
+    margin-top: 20px !important;
+}
+
+.deadline_date {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background-color: #fff;
+    padding-inline: 5px;
+}
+
+.calendar .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.calendar .header p {
+    font-weight: 600;
+    font-size: 20px;
+    font-family: "Pretendard";
+    color: #252525;
+    padding: 0 16px;
+}
+
+.calendar .canl_tabel {
+    border: 1px solid #aaa;
+}
+
+.calendar .canl_tabel .heading {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+}
+
+.calendar .canl_tabel .heading p {
+    flex: 1;
+    text-align: center;
+}
+
+.calendar .canl_tabel .body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendar .canl_tabel .body .day {
+    position: relative;
+    width: 116.8px;
+    height: 100px;
+    border-top: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.calendar .canl_tabel .body .day:nth-child(7n) {
+    border-right: none;
+}
+
+.calendar .canl_tabel .body .day.on {
+    background-color: rgba(131, 164, 240, 0.1);
+}
+
+.calendar .canl_tabel .body .day.active {
+    background-color: #cd151b !important;
+}
+
+.calendar .canl_tabel .body .day.active span,
+.calendar .canl_tabel .body .day.active p {
+    color: #fff !important;
+}
+
+.calendar .canl_tabel .body .day .weekend {
+    color: #e5001c;
+}
+
+.calendar .canl_tabel .body .day span.label span.label {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    font-size: 14px !important;
+    font-weight: 400;
+    font-family: "Pretendard";
+    color: white !important;
+}
+
+.calendar .date_number {
+    color: black !important;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.calendar .day.deadline {
+    cursor: unset !important;
+    background-color: rgb(237, 237, 237);
+}
+
+.calendar .day.deadline:hover {
+    cursor: unset !important;
+    background-color: unset !important;
+}
+
+.calendar .day.current-day {
+    background-color: rgb(242, 246, 253);
+}
+
+.calendar .week .day:hover {
+    background-color: #FFCB08;
+}
+
+.calendar span {
+    font-size: unset;
+    font-weight: unset;
+}
+
+.calendar .canl_tabel .body .day p {
+    position: absolute;
+    top: 42px;
+    right: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Pretendard";
+    color: #656565;
+}
+
+.calendar .note {
+    margin-top: 21px;
+    color: #e5001c;
+    font-family: "Pretendard";
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.calendar .note span {
+    color: #757575;
+}
+
+.calendar .week {
+    display: flex;
+}
+
+.calendar .canl_tabel .body .day span.price {
+    color: black;
+    margin-top: 20px;
+
+}
+
+
+.spa-detail .allow-text {
+    background-color: var(--bs-point);
+    color: white;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.spa-detail .sold-out-text {
+    background-color: #8C8C8C;
+    color: white;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.spa-detail .accept-text {
+    background-color: #6ABB2E;
+    color: white;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.spa-detail .wait-text {
+    background-color: #B74FFE;
+    color: white;
+    padding: 4px 6px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.spa-detail .label-container,
+.order-travel-page .label-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+
+.order-travel-page .label-container {
+    row-gap: 20px;
+}
+
+.order-travel-page .label-item {
+    align-items: start;
+}
+
+.spa-detail .label-item,
+.order-travel-page .label-item {
+    width: 350px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.spa-detail .label,
+.order-travel-page .label {
+    display: inline-block;
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+
+.spa-detail .label-text,
+.order-travel-page .label-text {
+    line-height: 1.2rem;
+}
+
+.spa-detail .label {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.spa-detail .price-right-c .label {
+    font-size: 18px;
+    padding: 0;
+}
+
+.spa-detail .price-right-c .label.item_label {
+    font-size: 22px;
+}
+
+.spa-detail .cus-count-input {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.spa-detail .opt_select_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.spa-detail .cus-label-r {
+    padding: 8px 12px;
+    border: 1px solid rgb(238, 238, 238);
+    margin-bottom: 30px;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+.spa-detail .item-info-check-first.click {
+    background-color: #686868;
+    margin-bottom: 16px;
+    color: #fff;
+}
+
+.spa-detail .item-info-check-first {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 14px;
+    border-radius: 6px;
+    background-color: #f3f3f3;
+    margin-bottom: 20px;
+}
+
+.spa-detail .item-info-check-first img {
+    width: 25px;
+    height: 17px;
+}
+
+.spa-detail .item-info-check img {
+    width: 25px;
+    height: 17px;
+}
+
+.spa-detail .item-info-check {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 6px;
+    margin: 16px 14px;
+    font-size: 15px;
+}
+
+.spa-detail .below-sub-des {
+    font-size: 15px;
+}
+
+.spa-detail .price-right-c .title-r {
+    margin-top: 20px;
+}
+
+.content-sub-hotel-detail .section6 .list-label-tag {
+    display: flex;
+    gap: 80px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.price-right-c .view_nav {
+    padding-left: 0;
+}
+
+.view_nav .total_paymemt .money {
+    display: flex;
+    justify-content: space-between;
+}
+
+.view_nav .total_paymemt .money span,
+.view_nav .total_paymemt .money strong {
+    font-size: 18px;
+    color: #252525
+}
+
+.view_nav .total_paymemt {
+    background: #fff;
+    padding: 0;
+    border-radius: 0;
+    padding-top: 20px;
+    border-top: 1px dotted #dbdbdb;
+    margin-top: 20px;
+}
+
+.view_nav .scroll_box {
+    max-height: calc(100vh - 340px);
+    overflow: auto;
+    padding-right: 0px;
+}
