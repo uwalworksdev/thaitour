@@ -115,7 +115,7 @@
 
                                 <tr>
                                     <th>상품분류</th>
-                                    <td>
+                                    <td colspan="3">
                                         <select id="product_code_1" name="product_code_1" class="input_select"
                                                 onchange="javascript:get_code(this.value, 3)">
                                             <option value="">1차분류</option>
@@ -178,18 +178,6 @@
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
 
                                             <?php endforeach; ?>
-                                        </select>
-                                    </td>
-                                    <th>일자</th>
-                                    <td>
-                                        <select id="tour_period" name="tour_period" class="input_select">
-                                            <option value="">일자선택</option>
-                                            <?php for ($i = 1; $i <= 40; $i++) { ?>
-                                                <option value="<?= $i ?>" <?php if ($tour_period == $i) {
-                                                    echo "selected";
-                                                } ?>><?= $i ?>일
-                                                </option>
-                                            <?php } ?>
                                         </select>
                                     </td>
                                 </tr>
@@ -277,7 +265,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>기존상품가(단위: AUD)</th>
+                                    <th>기존상품가</th>
                                     <td>
                                         <input id="original_price" name="original_price" class="input_txt price"
                                                type="text"
@@ -375,6 +363,15 @@
                                             echo "checked";
                                         } ?> />
                                         <label for="product_type_03">가성비 추천</label>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>주소</th>
+                                    <td colspan="3">
+                                        <input type="text" id="addrs" name="addrs"
+                                               value="<?= $addrs ?>"
+                                               class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
 
@@ -734,19 +731,28 @@
                             <tr>
                                 <th>옵션</th>
                                 <td>
-                                    <input type="text" name="moption_name" value="<?= $row_option['moption_name'] ?>"/>
-                                    <button type="button" onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
-                                    </button>
-                                    <button type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">삭제
-                                    </button>
+                                    <div class="" style="display: flex; align-items: center; gap: 30px">
+                                        <input type="text" name="moption_name"
+                                               value="<?= $row_option['moption_name'] ?>"/>
+                                        <button style="height: 31px;" type="button"
+                                                onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
+                                        </button>
+                                        <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
+                                                type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">
+                                            삭제
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
                                 <th>추가 옵션등록</th>
                                 <td>
-                                    <button type="button" onclick="add_option('<?= $row_option['code_idx'] ?>');">추가
+                                    <button style="height: 31px; background-color:#4F728A; color: #FFFFFF" type="button"
+                                            onclick="add_option('<?= $row_option['code_idx'] ?>');">추가
                                     </button>
-                                    <button type="button" onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록
+                                    <button style="height: 31px; background-color: rgba(0,128,0,0.79); color: #FFFFFF"
+                                            type="button"
+                                            onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록
                                     </button>
                                     <table>
                                         <thead>
@@ -778,7 +784,8 @@
                                                 <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>"/>
                                                 </td>
                                                 <td>
-                                                    <button type="button" onclick="delOption('<?= $option['idx'] ?>');">
+                                                    <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
+                                                            type="button" onclick="delOption('<?= $option['idx'] ?>');">
                                                         삭제
                                                     </button>
                                                 </td>
@@ -886,7 +893,8 @@
 
 
             addOption += "	<td>																  ";
-            addOption += '		<button type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
+            addOption += '		<button style="height: 31px; background-color:#d03a3e; color: #FFFFFF" ' +
+                'type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
             addOption += "</tr>																	  ";
 
@@ -922,7 +930,8 @@
 
 
             addOption += "	<td>																  ";
-            addOption += '		<button type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
+            addOption += '		<button style="height: 31px; background-color:#d03a3e; color: #FFFFFF" ' +
+                'type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
             addOption += "</tr>																	  ";
 

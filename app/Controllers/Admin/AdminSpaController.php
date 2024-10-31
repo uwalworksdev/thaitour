@@ -107,6 +107,8 @@ class AdminSpaController extends BaseController
             $kids_text = updateSQ($_POST["kids_text"] ?? '');
             $baby_text = updateSQ($_POST["baby_text"] ?? '');
 
+            $addrs = updateSQ($_POST["addrs"] ?? '');
+
             $product_type = updateSQ($_POST["product_type"] ?? '');
 
             $code_utilities = updateSQ($_POST["code_utilities"] ?? '');
@@ -242,6 +244,7 @@ class AdminSpaController extends BaseController
                             ,rfile6				    = '" . $data["rfile6"] . "'
                             ,rfile7				    = '" . $data["rfile7"] . "'
                 
+                            ,addrs                  = '" . $addrs . "'
                             ,product_type           = '" . $product_type . "'
                             
                             ,code_utilities         = '" . $code_utilities . "'
@@ -359,6 +362,7 @@ class AdminSpaController extends BaseController
                             ,rfile6				    = '" . $data["rfile6"] . "'
                             ,rfile7				    = '" . $data["rfile7"] . "'
                             
+                            ,addrs                  = '" . $addrs . "'
                             ,product_type           = '" . $product_type . "'
                             
                             ,code_utilities         = '" . $code_utilities . "'
