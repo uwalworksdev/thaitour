@@ -762,7 +762,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>결제 정책</th>
+                                    <th>할인 정책</th>
                                     <td>
                                         <textarea name="baby_beds" id="baby_beds"
                                                   style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
