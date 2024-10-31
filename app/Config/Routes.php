@@ -505,7 +505,7 @@ $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 $routes->get('product-spa/product-booking/(:any)', 'Product::productBooking/$1');
 $routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
 $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
-$routes->get('product-spa/(:any)/(:any)', 'Product::index4/$1/$2');
+$routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 $routes->get('product-restaurant/spa-details/(:any)', 'Product::restaurantDetail/$1');
 $routes->get('product-restaurant/(:any)/(:any)', 'Product::restaurantIndex/$1/$2');

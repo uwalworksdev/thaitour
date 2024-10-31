@@ -391,13 +391,13 @@ class AdminSpaController extends BaseController
                     alert('$message');
                         parent.location.reload();
                     </script>";
-            } else {
-                $message = "등록되었습니다.";
-                return "<script>
-                    alert('$message');
-                        parent.location.href='/AdmMaster/_tourRegist/list_spas';
-                    </script>";
             }
+
+            $message = "등록되었습니다.";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_tourRegist/list_spas';
+                </script>";
         } catch (\Exception $e) {
             return $this->response
                 ->setStatusCode(400)
