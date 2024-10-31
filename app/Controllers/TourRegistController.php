@@ -396,7 +396,7 @@ class TourRegistController extends BaseController
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
 
-        $data = $this->getWrite('', '1317', '1320', '1324', '');
+        $data = $this->getWrite('', '1317', '1320', '1325', '');
 
         $db = $this->connect;
 
@@ -693,7 +693,15 @@ class TourRegistController extends BaseController
             $tours_join = $row["tours_join"];
             $tours_hour = $row["tours_hour"];
             $tours_total_hour = $row["tours_total_hour"];
-            
+
+            $product_type = $row["product_type"];
+
+            $code_utilities = $row["code_utilities"];
+            $code_services = $row["code_services"];
+            $code_best_utilities = $row["code_best_utilities"];
+            $code_populars = $row["code_populars"];
+            $available_period = $row["available_period"];
+            $deadline_time = $row["deadline_time"];
 
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -856,6 +864,14 @@ class TourRegistController extends BaseController
             "tours_join" => $tours_join ?? '',
             "tours_hour" => $tours_hour ?? '',
             "tours_total_hour" => $tours_total_hour ?? '',
+            "product_points" => $product_points ?? '',
+            "product_type" => $product_type ?? '',
+            "code_utilities" => $code_utilities ?? '',
+            "code_services" => $code_services ?? '',
+            "code_best_utilities" => $code_best_utilities ?? '',
+            "code_populars" => $code_populars ?? '',
+            "available_period" => $available_period ?? '',
+            "deadline_time" => $deadline_time ?? '',
         ];
 
         return $data;
