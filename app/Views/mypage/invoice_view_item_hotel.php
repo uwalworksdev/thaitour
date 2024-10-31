@@ -484,7 +484,7 @@ $start_date = $row['start_date'];
 						<td class="subject">이름</td>
 						<td col width="8%" class="subject">생년월일</td>
 						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">해외 전화번호 </td>
+						<!-- <td col width="12%" class="subject">해외 전화번호 </td> -->
 						<td col width="12%" class="subject">이메일</td>
 
 					</tr>
@@ -502,9 +502,9 @@ $start_date = $row['start_date'];
 							<?= $row_d['order_user_mobile'] ?>
 						</td>
 
-						<td class="content">
+						<!-- <td class="content">
 							<?= ($row['local_phone']) ?>
-						</td>
+						</td> -->
 
 						<td class="content">
 							<?= $row_d['order_user_email'] ?>
@@ -557,64 +557,94 @@ $start_date = $row['start_date'];
 			</table>
 		</div>
 
-		<?php
-		$seq = 0;
-		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
-		$result = $connect->query($sql)->getResultArray();
-		foreach ($result as $row) {
-			$seq++;
+		<div class="invoice_table invoice_table_new only_web">
+			<h2>
+				투숙객 정보
+			</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td width="*%" class="subject">객실</td>
+						<td class="subject">
+							여행자
+						</td>
+					</tr>
+					<?php
+						$room_sql = "select *, count(*) as cnt_per from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' group by number_room";
+						$row_room = $connect->query($room_sql)->getResultArray();
+						foreach ($row_room as $room){
+							$seq = 0;
+							$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $room["m_idx"] . "' and number_room = '" . $room["number_room"] . "'";
+							$result = $connect->query($sql)->getResultArray();
+							foreach ($result as $row) {
+								$seq++;
 
-			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
-
-
-			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
-									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
-									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
-									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
-									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
-									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
-			$row_d = $connect->query($sql_d)->getRowArray();
-
-			$row['order_name_kor'] = $row_d['order_name_kor'];
-			$row['order_first_name'] = $row_d['order_first_name'];
-			$row['order_last_name'] = $row_d['order_last_name'];
-			$row['passport_num'] = $row_d['passport_num'];
-			$row['order_mobile'] = $row_d['order_mobile'];
-			$row['order_email'] = $row_d['order_email'];
-
-			?>
-			<!-- 여행자 2 웹 -->
-			<div class="invoice_table invoice_table_new only_web">
-				<h2>여행자
-					<?= $seq ?>
-				</h2>
-				<table>
-					<colgroup>
-						<col width="15%">
-						<col width="*">
-					</colgroup>
-					<tbody>
+								$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
+				
+								$sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
+														, AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
+														, AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
+														, AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
+														, AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
+														, AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
+								$row_d = $connect->query($sql_d)->getRowArray();
+				
+								$row['order_name_kor'] = $row_d['order_name_kor'];
+								$row['order_first_name'] = $row_d['order_first_name'];
+								$row['order_last_name'] = $row_d['order_last_name'];
+								$row['passport_num'] = $row_d['passport_num'];
+								$row['order_mobile'] = $row_d['order_mobile'];
+								$row['order_email'] = $row_d['order_email'];
+					?>
 						<tr>
-							<td class="subject">여행자
-								<?= $seq ?>
-							</td>
-							<td width="*%" class="subject">객실 수</td>
-						</tr>
-						<tr>
+							<?php if($seq == 1){ ?>
+								<td class="content" style="border-right: 1px solid #dbdbdb;" rowspan="<?= $room["cnt_per"] ?>" >
+									객실<?= $seq ?>
+								</td>
+							<?php } ?>
 							<td class="content">
 								<?= $row['order_first_name'] ?>
 								<?= $row['order_last_name'] ?>
-							</td>
-
-							<td class="content">
-								객실<?= $seq ?>
-							</td>
+							</td>	
 						</tr>
-					</tbody>
-				</table>
-			</div>
+					<?php	
+						} }
+					?>
+				</tbody>
+			</table>
+		</div>
+
+		<?php
+			$seq = 0;
+			$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
+			$result = $connect->query($sql)->getResultArray();
+			foreach ($result as $row) {
+				$seq++;
+
+				$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
 
 
+				$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
+										, AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
+										, AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
+										, AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
+										, AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
+										, AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
+				$row_d = $connect->query($sql_d)->getRowArray();
+
+				$row['order_name_kor'] = $row_d['order_name_kor'];
+				$row['order_first_name'] = $row_d['order_first_name'];
+				$row['order_last_name'] = $row_d['order_last_name'];
+				$row['passport_num'] = $row_d['passport_num'];
+				$row['order_mobile'] = $row_d['order_mobile'];
+				$row['order_email'] = $row_d['order_email'];
+
+		?>
+			<!-- 여행자 2 웹 -->
 
 			<!-- 여행자 2 모바일 -->
 			<div class="invoice_table invoice_table_new only_mo">
@@ -646,8 +676,8 @@ $start_date = $row['start_date'];
 					</tbody>
 				</table>
 			</div>
-			<?php
-		}
+		<?php
+			}
 		?>
 
 		<div class="invoice_table">
