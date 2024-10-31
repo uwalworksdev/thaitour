@@ -9,9 +9,14 @@ if ($_SESSION["member"]["mIdx"] == "") {
 	exit();
 }
 
+$gubun = updateSQ($_GET["gubun"]);
+$order_idx = updateSQ($_GET["order_idx"]);
+$pg = updateSQ($_GET["pg"]);
+
 $sql = "select * from tbl_order_mst a
 	                           left join tbl_member b on a.m_idx = b.m_idx 
 							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
+
 $row = $connect->query($sql)->getRowArray();
 
 $sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
@@ -21,7 +26,7 @@ $row_d = $connect->query($sql_d)->getRowArray();
 $row['local_phone'] = $row_d['local_phone'];
 
 $tour_period = $row["tour_period"];
-$custom_req = $row['custom_req'];
+$order_memo = $row['order_memo'];
 
 $home_depart_date = $row['home_depart_date'];
 $away_arrive_date = $row['away_arrive_date'];
@@ -87,9 +92,8 @@ $start_date = $row['start_date'];
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="15%" class="subject">여행인원</td>
-						<td col width="15%" class="subject">여행기간</td>
-						<td col width="30%" class="subject">항공일정</td>
+						<td col width="*%" class="subject">객실 수</td>
+						<td col width="15%" class="subject">숙박일</td>
 					</tr>
 					<tr>
 
@@ -100,40 +104,12 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<span>성인: <span>
-									<?= $row["people_adult_cnt"] ?>
-								</span></span> <span>소아: <span>
-									<?= $row["people_kids_cnt"] ?>
-								</span></span> <span>유아: <span>
-									<?= $row["people_baby_cnt"] ?>
-								</span></span>
+							<span><?= $row["order_room_cnt"] ?></span>
 						</td>
 
 						<td class="content">
 							<p>
-								<?= $row['start_date'] . "(" . dowYoil($row['start_date']) . ") ~ " . $row['end_date'] . "(" . dowYoil($row['end_date']) . ")"; ?>
-								<em>
-									<?= $product_period ?>
-								</em>
-								</span>
-							</p>
-						</td>
-						<td class="content">
-							<p>
-								<span>한국출발
-									<?= $home_depart_date . "(" . dowYoil($home_depart_date) . ")" ?>
-								</span>
-								<span>현지도착
-									<?= $away_arrive_date . "(" . dowYoil($away_arrive_date) . ")" ?>
-								</span>
-							</p>
-							<p>
-								<span>현지출발
-									<?= $away_depart_date . "(" . dowYoil($away_depart_date) . ")" ?>
-								</span>
-								<span>한국도착
-									<?= $home_arrive_date . "(" . dowYoil($home_arrive_date) . ")" ?>
-								</span>
+								<?= $row["order_day_cnt"] ?>
 							</p>
 						</td>
 					</tr>
@@ -220,34 +196,6 @@ $start_date = $row['start_date'];
 				<div class="left flex">
 					<strong class="label red">상품 예약금액</strong>
 					<div class="detail_money tar flex_e_c">
-						<div class="defen_ttl">
-							<p><strong>성인 <span id="adult_amt">
-										<?= number_format(($row['people_adult_price'] + $row['oil_price']) * $row['people_adult_cnt']) ?>
-									</span></strong> 원</p>
-							<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
-								<span class="text_defen">(유류포함)</span>
-							<?php } ?>
-						</div>
-						<?php if ($row['product_code_1'] != "1320") { ?>
-							<p>/</p>
-							<div class="defen_ttl">
-								<p><strong>소아 <span id="kids_amt">
-											<?= number_format(($row['people_kids_price'] + $row['oil_price']) * $row['people_kids_cnt']) ?>
-										</span></strong> 원</p>
-								<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
-									<span class="text_defen">(유류포함)</span>
-								<?php } ?>
-							</div>
-							<p>/</p>
-							<div class="defen_ttl">
-								<p><strong>유아 <span id="baby_amt">
-											<?= number_format($row['people_baby_price'] * $row['people_baby_cnt']) ?>
-										</span></strong> 원</p>
-								<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
-									<span class="text_defen">(유류미포함)</span>
-								<?php } ?>
-							</div>
-						<?php } ?>
 						<?php if ($row['used_coupon_money'] > 0) { ?>
 							<p><strong style="color:red">쿠폰 <span id="coupon_amt">
 										<?= number_format($row['used_coupon_money']) ?>원
@@ -267,9 +215,6 @@ $start_date = $row['start_date'];
 						<p><strong><span id="price_tot">
 									<?= number_format($row['order_price']) ?>
 								</span></strong> 원</p>
-						<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
-							<span class="text_defen">(유류포함)</span>
-						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -288,9 +233,6 @@ $start_date = $row['start_date'];
 						<p><strong><span id="price_tot">
 									<?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
 							</span> 원</p>
-						<?php if ($row['product_code_1'] != "1325" || $row['product_code_1'] != "1317") { ?>
-							<span class="text_defen">(유류포함)</span>
-						<?php } ?>
 					</div>
 				</div>
 			</div>
@@ -547,7 +489,7 @@ $start_date = $row['start_date'];
 						<td class="subject">이름</td>
 						<td col width="8%" class="subject">생년월일</td>
 						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">호주/해외 전화번호 </td>
+						<td col width="12%" class="subject">해외 전화번호 </td>
 						<td col width="12%" class="subject">이메일</td>
 						<td col width="15%" class="subject">주소</td>
 
@@ -574,25 +516,16 @@ $start_date = $row['start_date'];
 							<?= $row_d['order_user_email'] ?>
 						</td>
 
-
 						<td class="content">
-							[
-							<?= $row_d['order_zip'] ?>]
+							
+							<?= $row_d['order_zip'] ?>
 							<?= $row_d['order_addr1'] ?>
 							<?= $row_d['order_addr2'] ?>
 						</td>
 
-
-
-
 				</tbody>
 			</table>
 		</div>
-
-
-
-
-
 
 		<!-- 예약자 정보 모바일 -->
 
@@ -637,8 +570,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">주소</td>
 						<td class="content">
-							[
-							<?= $row_d['order_zip'] ?>]
+							<?= $row_d['order_zip'] ?>
 							<?= $row_d['order_addr1'] ?>
 							<?= $row_d['order_addr2'] ?>
 						</td>
@@ -646,160 +578,6 @@ $start_date = $row['start_date'];
 				</tbody>
 			</table>
 		</div>
-
-
-		<?php
-		$seq = 0;
-		$sql = "select * from tbl_order_list where order_idx = '$order_idx' and m_idx = '" . $row["m_idx"] . "' ";
-		$result = $connect->query($sql)->getResultArray();
-		foreach ($result as $row) {
-			$seq++;
-
-			$order_birthday = date("Y.m.d", strtotime($row["order_birthday"]));
-
-
-			$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_name_kor']}'),   '$private_key') order_name_kor
-									  , AES_DECRYPT(UNHEX('{$row['order_first_name']}'), '$private_key') order_first_name
-									  , AES_DECRYPT(UNHEX('{$row['order_last_name']}'),  '$private_key') order_last_name
-									  , AES_DECRYPT(UNHEX('{$row['passport_num']}'),     '$private_key') passport_num
-									  , AES_DECRYPT(UNHEX('{$row['order_mobile']}'),     '$private_key') order_mobile 
-									  , AES_DECRYPT(UNHEX('{$row['order_email']}'),      '$private_key') order_email ";
-			$row_d = $connect->query($sql_d)->getRowArray();
-
-			$row['order_name_kor'] = $row_d['order_name_kor'];
-			$row['order_first_name'] = $row_d['order_first_name'];
-			$row['order_last_name'] = $row_d['order_last_name'];
-			$row['passport_num'] = $row_d['passport_num'];
-			$row['order_mobile'] = $row_d['order_mobile'];
-			$row['order_email'] = $row_d['order_email'];
-
-			?>
-			<!-- 여행자 웹 -->
-			<div class="invoice_table invoice_table_new only_web">
-				<h2>여행자
-					<?= $seq ?>
-				</h2>
-				<table>
-					<colgroup>
-						<col width="15%">
-						<col width="*">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="subject">여행자
-								<?= $seq ?>
-							</td>
-							<td width="25%" class="subject">여권파일</td>
-							<!-- <td width="15%" class="subject">여권만료일</td> -->
-							<td width="15%" class="subject">생년월일</td>
-							<td class="subject">이메일</td>
-							<td class="subject">전화번호</td>
-						</tr>
-						<tr>
-							<td class="content">
-								<?= $row['order_name_kor'] ?> /
-								<?= $row['order_first_name'] ?>
-								<?= $row['order_last_name'] ?>
-							</td>
-
-							<td class="content">
-								<?
-								if ($row['ufile']) {
-									?>
-									<a class="btn_download_passport"
-										href="javascript:handlleShowPassport(`/data/tour/<?= $row['ufile'] ?>`)">보기</a>
-									<a class="btn_download_passport btn_del_passport"
-										href="javascript:handlleDelPassport(`<?= $row['gl_idx'] ?>`)">삭제</a>
-									<?
-								}
-								?>
-								<input type="file" hidden data-gl_idx="<?= $row['gl_idx'] ?>" class="change_passport"
-									id="change_passport_<?= $row['gl_idx'] ?>">
-								<label class="btn_upload_passport" for="change_passport_<?= $row['gl_idx'] ?>">첨부파일</label>
-							</td>
-
-							<!-- <td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td> -->
-
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-
-
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-
-							<td class="content">
-								<?= $row['order_mobile'] ?>
-							</td>
-						</tr>
-
-
-					</tbody>
-				</table>
-			</div>
-
-			<!-- 여행자 모바일 -->
-			<div class="invoice_table invoice_table_new only_mo">
-				<h2>여행자
-					<?= $seq ?>
-				</h2>
-				<table>
-					<colgroup>
-						<col width="5%">
-						<col width="*">
-					</colgroup>
-					<tbody>
-						<tr>
-							<td class="subject">여행자
-								<?= $seq ?>
-							</td>
-							<td class="content">
-								<?= $row['order_name_kor'] ?> /
-								<?= $row['order_first_name'] ?>
-								<?= $row['order_last_name'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">여권번호</td>
-							<td class="content">
-								<?= $row['passport_num'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">여권만료일</td>
-							<td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">생년월일</td>
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">이메일</td>
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">전화번호</td>
-							<td class="content">
-								<?= $row['order_mobile'] ?>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
-
-			<?php
-		}
-		?>
 
 		<?php
 		$seq = 0;
@@ -842,42 +620,18 @@ $start_date = $row['start_date'];
 							<td class="subject">여행자
 								<?= $seq ?>
 							</td>
-							<td width="15%" class="subject">여권번호</td>
-							<td width="15%" class="subject">여권만료일</td>
-							<td width="15%" class="subject">생년월일</td>
-							<td class="subject">이메일</td>
-							<td class="subject">전화번호</td>
+							<td width="*%" class="subject">객실 수</td>
 						</tr>
 						<tr>
 							<td class="content">
-								<?= $row['order_name_kor'] ?> /
 								<?= $row['order_first_name'] ?>
 								<?= $row['order_last_name'] ?>
 							</td>
 
 							<td class="content">
-								<?= $row['passport_num'] ?>
-							</td>
-
-							<td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td>
-
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-
-
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-
-							<td class="content">
-								<?= $row['order_mobile'] ?>
+								객실<?= $seq ?>
 							</td>
 						</tr>
-
-
 					</tbody>
 				</table>
 			</div>
@@ -900,44 +654,17 @@ $start_date = $row['start_date'];
 								<?= $seq ?>
 							</td>
 							<td class="content">
-								<?= $row['order_name_kor'] ?> /
 								<?= $row['order_first_name'] ?>
 								<?= $row['order_last_name'] ?>
 							</td>
 						</tr>
 						<tr>
-							<td class="subject">여권번호</td>
+							<td class="subject">객실 수</td>
 
 							<td class="content">
-								<?= $row['passport_num'] ?>
+								객실<?= $seq ?>
 							</td>
 						</tr>
-						<tr>
-							<td class="subject">여권만료일</td>
-							<td class="content">
-								<?= date("Y.m.d", strtotime($row["passport_date"])) ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">생년월일</td>
-
-							<td class="content">
-								<?= $order_birthday . " (" . dowYoil($order_birthday) . ")" ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">이메일</td>
-							<td class="content">
-								<?= $row['order_email'] ?>
-							</td>
-						</tr>
-						<tr>
-							<td class="subject">전화번호</td>
-							<td class="content">
-								<?= $row['order_mobile'] ?>
-							</td>
-						</tr>
-
 					</tbody>
 				</table>
 			</div>
@@ -956,7 +683,7 @@ $start_date = $row['start_date'];
 					<tr>
 						<td class="subject">요청사항</td>
 						<td class="content">
-							<?= $custom_req ?>
+							<?= $order_memo ?>
 						</td>
 					</tr>
 				</tbody>

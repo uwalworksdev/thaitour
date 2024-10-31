@@ -16,6 +16,7 @@ class ReservationController extends BaseController
     private $orderModel;
     private $orderSubModel;
     private $codeModel;
+    private $paymentHistModel;
 
 
     public function __construct()
@@ -24,6 +25,7 @@ class ReservationController extends BaseController
         $this->orderModel = model("OrdersModel");
         $this->orderSubModel = model("OrderSubModel");
         $this->codeModel = model("Code");
+        $this->paymentHistModel = model("PaymentHist");
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
@@ -419,6 +421,7 @@ class ReservationController extends BaseController
         try{
             $product_name			= updateSQ($_POST["product_name"]);
             $order_idx				= updateSQ($_POST["order_idx"]);	
+	        $order_no				= updateSQ($_POST["order_no"]);	
             $deposit_price_change	= number_format($_POST["deposit_price_change"]);	
             $price_confirm_change	= updateSQ($_POST["price_confirm_change"]);	
             $total_price_change		= updateSQ($_POST["total_price_change"]);	
@@ -502,7 +505,36 @@ class ReservationController extends BaseController
     
                     $this->orderSubModel->update($gl_idx[$i], $data_sub);
                 }
+
+                if($order_status == "G" || $order_status == "J") {
+	   
+                    $this->paymentHistModel->where('order_no', $order_no)->delete();
+
+                    $this->paymentHistModel->insert([
+                        "order_no" => $order_no,
+                        "order_gubun" => "1",
+                        "order_price" => $deposit_price,
+                        "regDate" => Time::now('Asia/Seoul', 'en_US')
+                    ]);
+
+                    $this->paymentHistModel->insert([
+                        "order_no" => $order_no,
+                        "order_gubun" => "2",
+                        "order_price" => $order_confirm_price,
+                        "regDate" => Time::now('Asia/Seoul', 'en_US')
+                    ]);
+               
+                } else if($order_status == "R") {
+                    $this->paymentHistModel->where('order_no', $order_no)
+                                            ->where('order_gubun', "1")
+                                            ->update(["order_status" => "Y"]);
+                } else if($order_status == "Y") {
+                    $this->paymentHistModel->where('order_no', $order_no)
+                                            ->where('order_gubun', "2")
+                                            ->update(["order_status" => "Y"]);
+                }       
             }
+
         }catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

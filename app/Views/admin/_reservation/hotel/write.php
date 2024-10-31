@@ -370,15 +370,9 @@
                                 </caption>
                                 <colgroup>
                                     <col width="7%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="12%"/>
-                                    <col width="8%"/>
-                                    <col width="7%"/>
-                                    <col width="11%"/>
-                                    <col width="5%"/>
+                                    <col width="*%"/>
+                                    <col width="30%"/>
+                                    <col width="30%"/>
                                 </colgroup>
                                 <tbody>
                                 <tr>
@@ -386,12 +380,6 @@
                                     <th style="text-align:center">한글명</th>
                                     <th style="text-align:center">영문성</th>
                                     <th style="text-align:center">영문이름</th>
-                                    <th style="text-align:center">여권파일</th>
-                                    <th style="text-align:center">이메일</th>
-                                    <th style="text-align:center">여권만료일</th>
-                                    <th style="text-align:center">생년월일</th>
-                                    <th style="text-align:center">휴대폰번호</th>
-                                    <th style="text-align:center">성별</th>
                                 </tr>
                                 <?php
                                     foreach ($fresult as $frow) {
@@ -427,48 +415,6 @@
                                                                              value="<?= $frow["order_last_name"] ?>"
                                                                              class="order_last_name input_txt"
                                                                              style="width:90%"/></td>
-                                        <td style="text-align:center">
-                                            <div class="flex__c">
-                                                <input type="text" value="<?= $frow["rfile"] ?>"
-                                                       class="passport_num input_txt" style="width:90%"/>
-                                                <?php
-                                                if ($frow['ufile']) {
-                                                    echo '<img width="16px" height="16px" onclick="handleShowImgPop(`/data/tour/' . $frow['ufile'] . '`)" style="cursor: pointer;margin-left: 5px" src="/AdmMaster/_images/content/icon_file.png" alt=""/>';
-                                                } else {
-                                                    echo '<img width="16px" height="16px"  style="visibility:hidden;margin-left: 5px" src="/AdmMaster/_images/content/icon_file.png" alt=""/>';
-                                                }
-                                                ?>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center"><input type="text" name="order_email[]"
-                                                                             value="<?= $frow["order_email"] ?>"
-                                                                             class="order_email input_txt"
-                                                                             style="width:90%"/></td>
-                                        <td style="text-align:center">
-                                            <input type="text" name="passport_date[]"
-                                                   value="<?= $frow["passport_date"] ?>"
-                                                   class="passport_date input_txt datepicker" style="width:110px"/>
-                                        </td>
-                                        <td style="text-align:center"><input type="text" name="order_birthday[]"
-                                                                             value="<?= $frow["order_birthday"] ?>"
-                                                                             class="order_birthday input_txt datepicker"
-                                                                             style="width:110px" maxlength="10"/></td>
-                                        <td style="text-align:center"><input type="text" name="order_mobile[]"
-                                                                             value="<?= $frow["order_mobile"] ?>"
-                                                                             class="order_mobile input_txt"
-                                                                             style="width:90%"/></td>
-                                        <td style="text-align:center">
-                                            <select name="order_sex[]" class="select_txt order_sex" style="width:50px">
-                                                <option value="M" <?php if ($frow["order_sex"] == "M") {
-                                                    echo "selected";
-                                                } ?>>남
-                                                </option>
-                                                <option value="F" <?php if ($frow["order_sex"] == "F") {
-                                                    echo "selected";
-                                                } ?>>여
-                                                </option>
-                                            </select>
-                                        </td>
                                     </tr>
                                 <?php } ?>
                                 </tbody>

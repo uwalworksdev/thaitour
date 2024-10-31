@@ -169,28 +169,7 @@ class MyPage extends BaseController
     }
     public function invoice_view_item()
     {
-        $private_key = private_key();
-
         $gubun = updateSQ($_GET["gubun"]);
-        $order_idx = updateSQ($_GET["order_idx"]);
-        $pg = updateSQ($_GET["pg"]);
-
-        $sql = "select * from tbl_order_mst a
-	                           left join tbl_member b on a.m_idx = b.m_idx 
-							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-
-        $row = $this->db->query($sql)->getRowArray();
-
-        $sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'), '$private_key') local_phone ";
-
-        $row_d = $this->db->query($sql_d)->getRowArray();
-
-        $row['local_phone'] = $row_d['local_phone'];
-        $data = [
-            "row" => $row,
-            "order_idx" => $order_idx,
-            "pg" => $pg
-        ];
 
         if(!empty($gubun)){
             return view("mypage/invoice_view_item_{$gubun}");
