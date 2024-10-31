@@ -185,14 +185,14 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("ajax_change", "Admin\AdminSpaController::ajax_change", ['as' => "admin.api.spa_.ajax_change"]);
             $routes->post("del", "Admin\AdminSpaController::del", ['as' => "admin.api.spa_.del"]);
             $routes->get("get_code", "Admin\AdminSpaController::get_code", ['as' => "admin.api.spa_.get_code"]);
-            $routes->post("change_manager", "Api\AdminSpaController::change_manager", ['as' => "admin.api.spa_.change_manager"]);
-            $routes->post("add_moption", "Api\AdminSpaController::add_moption", ['as' => "admin.api.spa_.add_moption"]);
-            $routes->post("upd_moption", "Api\AdminSpaController::upd_moption", ['as' => "admin.api.spa_.upd_moption"]);
-            $routes->post("del_moption", "Api\AdminSpaController::del_moption", ['as' => "admin.api.spa_.del_moption"]);
-            $routes->post("add_option", "Api\AdminSpaController::add_option", ['as' => "admin.api.spa_.add_option"]);
-            $routes->post("upd_option", "Api\AdminSpaController::upd_option", ['as' => "admin.api.spa_.upd_option"]);
-            $routes->post("del_option", "Api\AdminSpaController::del_option", ['as' => "admin.api.spa_.del_option"]);
-            $routes->post("img_remove", "Api\AdminSpaController::img_remove", ['as' => "admin.api.spa_.img_remove"]);
+            $routes->post("change_manager", "Admin\AdminSpaController::change_manager", ['as' => "admin.api.spa_.change_manager"]);
+            $routes->post("add_moption", "Admin\AdminSpaController::add_moption", ['as' => "admin.api.spa_.add_moption"]);
+            $routes->post("upd_moption", "Admin\AdminSpaController::upd_moption", ['as' => "admin.api.spa_.upd_moption"]);
+            $routes->post("del_moption", "Admin\AdminSpaController::del_moption", ['as' => "admin.api.spa_.del_moption"]);
+            $routes->post("add_option", "Admin\AdminSpaController::add_option", ['as' => "admin.api.spa_.add_option"]);
+            $routes->post("upd_option", "Admin\AdminSpaController::upd_option", ['as' => "admin.api.spa_.upd_option"]);
+            $routes->post("del_option", "Admin\AdminSpaController::del_option", ['as' => "admin.api.spa_.del_option"]);
+            $routes->post("img_remove", "Admin\AdminSpaController::img_remove", ['as' => "admin.api.spa_.img_remove"]);
         });
     });
 
