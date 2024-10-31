@@ -33,16 +33,24 @@
                     </div>
                 </div>
                 <div class="hotel-image-container">
-                    <div class="">
-                        <img class="grid_1_1_size" src="/uploads/sub/spa_details_1.png" alt="spa_details_1">
+                    <div class="hotel-image-container-1">
+                        <img class="imageDetailMain_"
+                             onclick="img_pops('<?= $spa['product_idx'] ?>')"
+                             src="/data/hotel/<?= $spa['ufile1'] ?>"
+                             alt="<?= $spa['product_name'] ?>"
+                             onerror="this.src='/images/share/noimg.png'">
                     </div>
                     <div class="grid_2_2">
-                        <img class="grid_2_2_size" src="/uploads/sub/spa_details_2.png" alt="spa_details_2">
-                        <img class="grid_2_2_size" src="/uploads/sub/spa_details_3.png" alt="spa_details_3">
-                        <img class="grid_2_2_size" src="/uploads/sub/spa_details_4.png" alt="spa_details_4">
+                        <?php for ($j = 2; $j < 5; $j++) { ?>
+                            <img onclick="img_pops('<?= $spa['product_idx'] ?>')" class="grid_2_2_size imageDetailSup_"
+                                 src="/data/hotel/<?= $spa['ufile' . $j] ?>"
+                                 alt="<?= $spa['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
+                        <?php } ?>
                         <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                            <img class="grid_2_2_size custom_button" src="/uploads/sub/spa_details_5.png"
-                                 alt="spa_details_5">
+                            <img onclick="img_pops('<?= $spa['product_idx'] ?>')" class="custom_button imageDetailSup_"
+                                 src="/data/hotel/<?= $spa['ufile5'] ?>"
+                                 alt="<?= $spa['product_name'] ?>"
+                                 onerror="this.src='/images/share/noimg.png'">
                             <div class="button-show-detail-image">
                                 <img class="only_web" src="/uploads/icons/image_detail_icon.png"
                                      alt="image_detail_icon">
@@ -1082,4 +1090,120 @@
         });
     </script>
 
+    <div id="dim"></div>
+    <div id="popupRoom" class="on">
+        <strong id="pop_roomName"></strong>
+        <div>
+            <ul class="multiple-items">
+            </ul>
+        </div>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close"/></a>
+    </div>
+
+    <div id="popup_img" class="on">
+        <strong id="pop_roomName"></strong>
+        <div>
+            <ul class="multiple-items">
+            </ul>
+        </div>
+        <a class="closed_btn" href=""><img src="/images/ico/close_ico_w.png" alt="close"/></a>
+    </div>
+    <script>
+        /* hotel_view popup */
+        jQuery(document).ready(function () {
+            var dim = $('#dim');
+            var popup = $('#popupRoom');
+            var closedBtn = $('#popupRoom .closed_btn');
+
+            var popup2 = $('#popup_img');
+            var closedBtn2 = $('#popup_img .closed_btn');
+
+            /* closed btn*/
+            closedBtn.click(function () {
+                popup.hide();
+                dim.fadeOut();
+                $('.multiple-items').slick('unslick'); // slick 삭제
+                return false;
+            });
+
+            closedBtn2.click(function () {
+                popup2.hide();
+                dim.fadeOut();
+                $('.multiple-items').slick('unslick'); // slick 삭제
+                return false;
+            });
+        });
+
+        function fn_pops(ridx, roomName) {
+            var dim = $('#dim');
+            var popup = $('#popupRoom');
+
+            $("#pop_roomName").text(roomName);
+
+            $.ajax({
+                url: "/api/products/roomPhoto",
+                type: "POST",
+                data: 'ridx=' + ridx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function (response, status, request) {
+
+                    $(".multiple-items").html(response.data);
+
+                    popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+
+                    return false;
+
+                }
+            });
+        }
+
+        function img_pops(idx) {
+            var dim = $('#dim');
+            var popup = $('#popup_img');
+
+            $.ajax({
+                url: "/api/products/hotelPhoto",
+                type: "POST",
+                data: 'idx=' + idx,
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                },
+                success: function (response, status, request) {
+
+                    $(".multiple-items").html(response.data);
+
+                    popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+
+                    return false;
+
+                }
+            });
+        }
+    </script>
 <?php $this->endSection(); ?>
