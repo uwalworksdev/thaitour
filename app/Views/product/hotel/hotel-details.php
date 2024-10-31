@@ -336,73 +336,147 @@
                                         </table>
                                         <div class="only_mo">
                                             <div class="room-table table-price-info-mobile">
-                                                <div class="info-price-left">
-                                                    <span class="label1">객실옵션 상세:</span>
-                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
-                                                    <ul>
-                                                        <li class="highlight">조식 2인 포함</li>
-                                                        <li>환불 불가</li>
-                                                        <div class="info-price-left-sub">
-                                                            <span class="label1">객실 요금:</span>
-                                                            <div class="occupancy">
-                                                                <img src="/uploads/icons/double_person_icon.png"
-                                                                    alt="double_person_icon">
+                                                <div class="room-table-item border-dashed">
+                                                    <div class="info-price-left">
+                                                        <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                        <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                        <ul>
+                                                            <li class="highlight">조식 2인 포함</li>
+                                                            <li>환불 불가</li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <div class="info-price-right">
+                                                        <span class="label-cus1">수량</span>
+                                                        <div class="selector-container">
+                                                            <div class="label">숙박일:</div>
+                                                            <div class="number-selector">
+                                                                <input type="text" id="numberDisplay" class="number-display" value="1" readonly>
+                                                                <div class="buttons">
+                                                                    <div class="buttons-con-top">
+                                                                        <img src="/uploads/icons/up-arrow_ht.png" alt="up_down_icon" class="button up" onclick="increment()"></img>
+                                                                    </div>
+                                                                    <div class="buttons-con-bottom">
+                                                                        <img src="/uploads/icons/down-arrow_ht.png" class="button down" onclick="decrement()"></img>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </ul>
-                                                </div>
-                                                <div class="info-price-right">
-                                                    <div class="price-details">
-                                                        <span class="label1">투숙객 정원:</span>
-                                                        <div class="discount">
-                                                            <span class="label">특별할인</span>
-                                                            <span class="price_content">30%할인</span>
+                                                        <div class="selector-container">
+                                                            <div class="label">객실 수:</div>
+                                                            <div class="number-selector">
+                                                                <input type="text" id="numberDisplay" class="number-display" value="1" readonly>
+                                                                <div class="buttons">
+                                                                    <div class="buttons-con-top">
+                                                                        <img src="/uploads/icons/up-arrow_ht.png" alt="up_down_icon" class="button up" onclick="increment()"></img>
+                                                                    </div>
+                                                                    <div class="buttons-con-bottom">
+                                                                        <img src="/uploads/icons/down-arrow_ht.png" class="button down" onclick="decrement()"></img>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="price-strike-container">
-                                                            <span class="price-strike">202,043원</span>
-                                                            <span class="price">160,430</span>원
-                                                        </div>
-                                                        <div class="flex-total">
-                                                            <span class="total">총금액: 5,091,454원</span>
-                                                            <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                                        </div>
-                                                        <button class="book-button openPopupBtn">예약하기</button>
                                                     </div>
+                                                </div>
+                                                <div class="room-table-item-parent m-pt-32">
+                                                    <div class="room-table-item">
+                                                        <div class="info-price-left">
+                                                            <span class="label-cus1">쿠폰</span>
+                                                            <button class="book-button openPopupBtn">쿠폰적용</button>
+                                                        </div>
+                                                        <div class="info-price-right">
+                                                            <div class="price-details">
+                                                                <span class="label1 label-cus1">투숙객 정원:</span>
+                                                                <div class="discount">
+                                                                    <span class="label">특별할인</span>
+                                                                    <span class="price_content">30%할인</span>
+                                                                </div>
+                                                                <div class="price-strike-container">
+                                                                    <span class="price-strike">202,043원</span>
+                                                                    <span class="price">160,430</span>원
+                                                                </div>
+                                                                <div class="flex-total">
+                                                                    <span class="total">총금액: 5,091,454원</span>
+                                                                    <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn-book-button">
+                                                        예약하기
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div class="room-table table-price-info-mobile">
-                                                <div class="info-price-left">
-                                                    <span class="label1">객실옵션 상세:</span>
-                                                    <span class="label1"><strong>킹 침대 1개</strong></span>
-                                                    <ul>
-                                                        <li class="">조식 20,895원 (선택 사항)</li>
-                                                        <li>환불 불가</li>
-                                                        <div class="info-price-left-sub">
-                                                            <span class="label1">객실 요금:</span>
-                                                            <div class="occupancy">
-                                                                <img src="/uploads/icons/double_person_icon.png"
-                                                                    alt="double_person_icon">
+                                                <div class="room-table-item border-dashed">
+                                                    <div class="info-price-left">
+                                                        <span class="label1 label-cus1">객실옵션 상세:</span>
+                                                        <span class="label1"><strong>킹 침대 1개</strong></span>
+                                                        <ul>
+                                                            <li class="highlight">조식 2인 포함</li>
+                                                            <li>환불 불가</li>
+
+                                                        </ul>
+                                                    </div>
+                                                    <div class="info-price-right">
+                                                        <span class="label-cus1">수량</span>
+                                                        <div class="selector-container">
+                                                            <div class="label">숙박일:</div>
+                                                            <div class="number-selector">
+                                                                <input type="text" id="numberDisplay" class="number-display" value="1" readonly>
+                                                                <div class="buttons">
+                                                                    <div class="buttons-con-top">
+                                                                        <img src="/uploads/icons/up-arrow_ht.png" alt="up_down_icon" class="button up" onclick="increment()"></img>
+                                                                    </div>
+                                                                    <div class="buttons-con-bottom">
+                                                                        <img src="/uploads/icons/down-arrow_ht.png" class="button down" onclick="decrement()"></img>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </ul>
-                                                </div>
-                                                <div class="info-price-right">
-                                                    <div class="price-details">
-                                                        <span class="label1">투숙객 정원:</span>
-                                                        <div class="discount">
-                                                            <span class="label">특별할인</span>
-                                                            <span class="price_content">40%할인</span>
+                                                        <div class="selector-container">
+                                                            <div class="label">객실 수:</div>
+                                                            <div class="number-selector">
+                                                                <input type="text" id="numberDisplay" class="number-display" value="1" readonly>
+                                                                <div class="buttons">
+                                                                    <div class="buttons-con-top">
+                                                                        <img src="/uploads/icons/up-arrow_ht.png" alt="up_down_icon" class="button up" onclick="increment()"></img>
+                                                                    </div>
+                                                                    <div class="buttons-con-bottom">
+                                                                        <img src="/uploads/icons/down-arrow_ht.png" class="button down" onclick="decrement()"></img>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="price-strike-container">
-                                                            <span class="price-strike">202,043원</span>
-                                                            <span class="price">100,430</span>원
-                                                        </div>
-                                                        <div class="flex-total">
-                                                            <span class="total">총금액: 5,091,454원</span>
-                                                            <span class="details">객실 1개 × 36박 (세금 포함)</span>
-                                                        </div>
-                                                        <button class="book-button openPopupBtn">예약하기</button>
                                                     </div>
+                                                </div>
+                                                <div class="room-table-item-parent m-pt-32">
+                                                    <div class="room-table-item">
+                                                        <div class="info-price-left">
+                                                            <span class="label-cus1">쿠폰</span>
+                                                            <button class="book-button openPopupBtn">쿠폰적용</button>
+                                                        </div>
+                                                        <div class="info-price-right">
+                                                            <div class="price-details">
+                                                                <span class="label1 label-cus1">투숙객 정원:</span>
+                                                                <div class="discount">
+                                                                    <span class="label">특별할인</span>
+                                                                    <span class="price_content">30%할인</span>
+                                                                </div>
+                                                                <div class="price-strike-container">
+                                                                    <span class="price-strike">202,043원</span>
+                                                                    <span class="price">160,430</span>원
+                                                                </div>
+                                                                <div class="flex-total">
+                                                                    <span class="total">총금액: 5,091,454원</span>
+                                                                    <span class="details">객실 1개 × 36박 (세금 포함)</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn-book-button">
+                                                        예약하기
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -1313,6 +1387,21 @@
                 item.find('span.totalPrice').text(formattedNumber);
 
                 $("#total_last_price").val(total_price);
+            }
+
+
+            const display = $("#numberDisplay");
+
+            function increment() {
+                let currentValue = parseInt(display.val());
+                display.val(currentValue + 1);
+            }
+
+            function decrement() {
+                let currentValue = parseInt(display.val());
+                if (currentValue > 1) {
+                    display.val(currentValue - 1);
+                }
             }
         </script>
 
