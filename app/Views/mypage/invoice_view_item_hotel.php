@@ -603,7 +603,7 @@ $start_date = $row['start_date'];
 						<tr>
 							<?php if($seq == 1){ ?>
 								<td class="content" style="border-right: 1px solid #dbdbdb;" rowspan="<?= $room["cnt_per"] ?>" >
-									객실<?= $seq ?>
+									객실<?= $room["number_room"] ?>
 								</td>
 							<?php } ?>
 							<td class="content">
