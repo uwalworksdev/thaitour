@@ -876,7 +876,7 @@ class Product extends BaseController
                     $_arr_best_utilities = explode("|", $code_best_utilities);
 
                     $code_populars = $stay_hotel['code_populars'];
-                    $_arr_populars = explode("|", $code_populars);;
+                    $_arr_populars = explode("|", $code_populars);
                 }
             }
 
@@ -1349,9 +1349,89 @@ class Product extends BaseController
         return $this->renderView('tours/list-tour');
     }
 
-    public function spaDetail($code_no)
+    public function spaDetail($product_idx)
     {
-        return $this->renderView('/product/spa/spa-details');
+        $spa = $this->productModel->find($product_idx);
+        if (!$spa) {
+            throw new Exception('존재하지 않는 상품입니다.');
+        }
+
+        $hotel_codes = explode("|", $spa['product_code_list']);
+        $hotel_codes = array_values(array_filter($hotel_codes));
+
+        $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+        $spa['codeTree'] = $codeTree;
+
+        $productReview = $this->reviewModel->getProductReview($spa['product_idx']);
+
+        $spa['total_review'] = $productReview['total_review'];
+        $spa['review_average'] = $productReview['avg'];
+
+        $code_utilities = $spa['code_utilities'];
+        $_arr_utilities = explode("|", $code_utilities);
+
+        $code_services = $spa['code_services'];
+        $_arr_services = explode("|", $code_services);
+
+        $code_best_utilities = $spa['code_best_utilities'];
+        $_arr_best_utilities = explode("|", $code_best_utilities);
+
+        $code_populars = $spa['code_populars'];
+        $_arr_populars = explode("|", $code_populars);;
+
+        $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
+        $list__best_utilities = rtrim(implode(',', $_arr_best_utilities), ',');
+        $list__services = rtrim(implode(',', $_arr_services), ',');
+        $list__populars = rtrim(implode(',', $_arr_populars), ',');
+
+        if (!empty($list__utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+
+            $fresult4 = $this->db->query($fsql);
+            $fresult4 = $fresult4->getResultArray();
+        }
+
+        if (!empty($list__best_utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+            $bresult4 = $this->db->query($fsql);
+            $bresult4 = $bresult4->getResultArray();
+        }
+
+        if (!empty($list__services)) {
+            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='4404' ORDER BY onum DESC, code_idx DESC";
+            $fresult5 = $this->db->query($fsql);
+            $fresult5 = $fresult5->getResultArray();
+
+            $fresult5 = array_map(function ($item) use ($list__services) {
+                $rs = (array)$item;
+
+                $code_no = $rs['code_no'];
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+
+                $rs_child = $this->db->query($fsql)->getResultArray();
+
+                $rs['child'] = $rs_child;
+
+                return $rs;
+            }, $fresult5);
+        }
+
+        if (!empty($list__populars)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+            $fresult8 = $this->db->query($fsql);
+            $fresult8 = $fresult8->getResultArray();
+        }
+
+        $data = [
+            'spa' => $spa,
+            'fresult4' => $fresult4,
+            'bresult4' => $bresult4,
+            'fresult5' => $fresult5,
+            'fresult8' => $fresult8,
+        ];
+
+        return $this->renderView('/product/spa/spa-details', $data);
     }
 
     public function productBooking($code_no)
