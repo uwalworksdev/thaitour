@@ -166,7 +166,7 @@
                                         <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                    <th>호주/해외 전화번호</th>
+                                    <th>해외 전화번호</th>
                                     <td>
                                         <input type="text" id="local_phone" name="local_phone"
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
