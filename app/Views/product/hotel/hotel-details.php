@@ -353,11 +353,11 @@
                                                             <div class="number-selector">
                                                                 <input type="text" id="numberDisplay" class="number-display" value="1" readonly>
                                                                 <div class="buttons">
-                                                                    <div class="buttons-con-top">
-                                                                        <img src="/uploads/icons/up-arrow_ht.png" alt="up_down_icon" class="button up" onclick="increment()"></img>
+                                                                    <div class="buttons-con-top" onclick="increment()">
+                                                                        <img src="/uploads/icons/up-arrow_ht.png" alt="up_down_icon" class="button up"></img>
                                                                     </div>
-                                                                    <div class="buttons-con-bottom">
-                                                                        <img src="/uploads/icons/down-arrow_ht.png" class="button down" onclick="decrement()"></img>
+                                                                    <div class="buttons-con-bottom" onclick="decrement()">
+                                                                        <img src="/uploads/icons/down-arrow_ht.png" class="button down"></img>
                                                                     </div>
                                                                 </div>
                                                             </div>

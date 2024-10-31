@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
+use stdClass;
 
 class AdminSpaController extends BaseController
 {
@@ -107,6 +108,8 @@ class AdminSpaController extends BaseController
             $kids_text = updateSQ($_POST["kids_text"] ?? '');
             $baby_text = updateSQ($_POST["baby_text"] ?? '');
 
+            $addrs = updateSQ($_POST["addrs"] ?? '');
+
             $product_type = updateSQ($_POST["product_type"] ?? '');
 
             $code_utilities = updateSQ($_POST["code_utilities"] ?? '');
@@ -115,6 +118,38 @@ class AdminSpaController extends BaseController
             $code_populars = updateSQ($_POST["code_populars"] ?? '');
             $available_period = updateSQ($_POST["available_period"] ?? '');
             $deadline_time = updateSQ($_POST["deadline_time"] ?? '');
+
+            $dataProductMore = new stdClass();
+
+            $meet_out_time = $_POST['meet_out_time'] ?? '';
+            $children_policy = $_POST['children_policy'] ?? '';
+            $baby_beds = $_POST['baby_beds'] ?? '';
+            $deposit_regulations = $_POST['deposit_regulations'] ?? '';
+            $pets = $_POST['pets'] ?? '';
+            $age_restriction = $_POST['age_restriction'] ?? '';
+            $smoking_policy = $_POST['smoking_policy'] ?? '';
+            $breakfast = $_POST['breakfast'] ?? '';
+
+            $breakfast_item_name_arr = $_POST['breakfast_item_name_'];
+            $breakfast_item_value_arr = $_POST['breakfast_item_value_'];
+
+            $dataBreakfast = "";
+            foreach ($breakfast_item_name_arr as $key => $value) {
+                $txt = $breakfast_item_name_arr[$key] . "::::" . $breakfast_item_value_arr[$key];
+                $dataBreakfast .= $txt . "||||";
+            }
+
+            $dataProductMore->meet_out_time = $meet_out_time;
+            $dataProductMore->children_policy = $children_policy;
+            $dataProductMore->baby_beds = $baby_beds;
+            $dataProductMore->deposit_regulations = $deposit_regulations;
+            $dataProductMore->pets = $pets;
+            $dataProductMore->age_restriction = $age_restriction;
+            $dataProductMore->smoking_policy = $smoking_policy;
+            $dataProductMore->breakfast = $breakfast;
+            $dataProductMore->breakfast_data = $dataBreakfast;
+
+            $dataProductMore = json_encode($dataProductMore);
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -242,6 +277,7 @@ class AdminSpaController extends BaseController
                             ,rfile6				    = '" . $data["rfile6"] . "'
                             ,rfile7				    = '" . $data["rfile7"] . "'
                 
+                            ,addrs                  = '" . $addrs . "'
                             ,product_type           = '" . $product_type . "'
                             
                             ,code_utilities         = '" . $code_utilities . "'
@@ -250,6 +286,8 @@ class AdminSpaController extends BaseController
                             ,code_populars          = '" . $code_populars . "'
                             ,available_period       = '" . $available_period . "'
                             ,deadline_time          = '" . $deadline_time . "'
+                            
+                            ,product_more           = '" . $dataProductMore . "'
                             
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
@@ -359,6 +397,7 @@ class AdminSpaController extends BaseController
                             ,rfile6				    = '" . $data["rfile6"] . "'
                             ,rfile7				    = '" . $data["rfile7"] . "'
                             
+                            ,addrs                  = '" . $addrs . "'
                             ,product_type           = '" . $product_type . "'
                             
                             ,code_utilities         = '" . $code_utilities . "'
@@ -367,6 +406,8 @@ class AdminSpaController extends BaseController
                             ,code_populars          = '" . $code_populars . "'
                             ,available_period       = '" . $available_period . "'
                             ,deadline_time          = '" . $deadline_time . "'
+                            
+                            ,product_more           = '" . $dataProductMore . "'
                             
                             ,m_date					= now()
                             ,r_date					= now()
@@ -391,13 +432,13 @@ class AdminSpaController extends BaseController
                     alert('$message');
                         parent.location.reload();
                     </script>";
-            } else {
-                $message = "등록되었습니다.";
-                return "<script>
-                    alert('$message');
-                        parent.location.href='/AdmMaster/_tourRegist/list_spas';
-                    </script>";
             }
+
+            $message = "등록되었습니다.";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_tourRegist/list_spas';
+                </script>";
         } catch (\Exception $e) {
             return $this->response
                 ->setStatusCode(400)

@@ -703,6 +703,8 @@ class TourRegistController extends BaseController
             $available_period = $row["available_period"];
             $deadline_time = $row["deadline_time"];
 
+            $product_more = $row["product_more"];
+
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
             $fresult3 = $fresult3->getResultArray();
@@ -872,6 +874,7 @@ class TourRegistController extends BaseController
             "code_populars" => $code_populars ?? '',
             "available_period" => $available_period ?? '',
             "deadline_time" => $deadline_time ?? '',
+            "product_more" => $product_more ?? '',
         ];
 
         return $data;
