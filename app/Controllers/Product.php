@@ -627,60 +627,30 @@ class Product extends BaseController
         }
     }
 
-    public function index4($code_no, $s = "1")
+    public function indexSpa($code_no, $s = "1")
     {
         try {
-            $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
-            $perPage = 5;
+            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no;
+            $products = $this->db->query($sql);
+            $products = $products->getResultArray();
 
-            $banners = $this->bannerModel->getBanners($code_no);
-            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
+            foreach ($products as $key => $product) {
 
-            $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
+                $hotel_codes = explode("|", $product['product_code_list']);
+                $hotel_codes = array_values(array_filter($hotel_codes));
 
-            $products = $this->productModel->getProducts($code_no, $s, $perPage, $page);
+                $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
 
-            $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
+                $products[$key]['codeTree'] = $codeTree;
 
-            $pager = \Config\Services::pager();
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
 
-            $code_name = $this->db->table('tbl_code')
-                ->select('code_name')
-                ->where('code_gubun', 'tour')
-                ->where('code_no', $code_no)
-                ->get()
-                ->getRow()
-                ->code_name;
-
-            if (strlen($code_no) == 4) {
-                $codes = $this->db->table('tbl_code')
-                    ->where('parent_code_no', $code_no)
-                    ->get()
-                    ->getResult();
-            } else {
-                $codes = $this->db->table('tbl_code')
-                    ->where('code_gubun', 'tour')
-                    ->where('parent_code_no', substr($code_no, 0, 6))
-                    ->orderBy('onum', 'DESC')
-                    ->get()
-                    ->getResult();
+                $products[$key]['total_review'] = $productReview['total_review'];
+                $products[$key]['review_average'] = $productReview['avg'];
             }
 
-            // Truyền dữ liệu sang view
             $data = [
-                'banners' => $banners,
-                'codeBanners' => $codeBanners,
-                'suggestedProducts' => $suggestedProducts,
-                'products' => $products,
-                'code_no' => $code_no,
-                's' => $s,
-                'codes' => $codes,
-                'code_name' => $code_name,
-                'pager' => $pager,
-                'page' => $page,
-                'perPage' => $perPage,
-                'totalProducts' => $totalProducts,
-                'tab_active' => '4',
+                "products" => $products,
             ];
 
             return $this->renderView('product/product-spa', $data);
@@ -906,7 +876,7 @@ class Product extends BaseController
                     $_arr_best_utilities = explode("|", $code_best_utilities);
 
                     $code_populars = $stay_hotel['code_populars'];
-                    $_arr_populars = explode("|", $code_populars);;
+                    $_arr_populars = explode("|", $code_populars);
                 }
             }
 
@@ -1208,7 +1178,7 @@ class Product extends BaseController
 
             $order_idx = $this->orderModel->insert($data);
             if ($order_idx) {
-                $order_no    = "S" . substr(date("Ymd"), 2, 8) . str_pad($order_idx, 3, "0", STR_PAD_LEFT);
+                $order_no = "S" . substr(date("Ymd"), 2, 8) . str_pad($order_idx, 3, "0", STR_PAD_LEFT);
                 $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 
                 if (!empty($use_coupon_idx)) {
@@ -1251,12 +1221,12 @@ class Product extends BaseController
                     'result' => true,
                     'message' => "주문되었습니다."
                 ], 200);
-            } else {
-                return $this->response->setJSON([
-                    'result' => false,
-                    'message' => "Error"
-                ], 400);
             }
+
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => "Error"
+            ], 400);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -1277,7 +1247,7 @@ class Product extends BaseController
 
     public function golfDetail($product_idx)
     {
-        $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
 
         $data['product'] = $this->productModel->getProductDetails($product_idx);
         $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
@@ -1301,7 +1271,7 @@ class Product extends BaseController
         foreach ($data['golfVehicles'] as $key => $value) {
             $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
 
-            $price = (float) $value['price'];
+            $price = (float)$value['price'];
             $price_baht = round($price / $baht_thai);
             $data['golfVehicles'][$key]['price_baht'] = $price_baht;
 
@@ -1309,7 +1279,7 @@ class Product extends BaseController
         }
 
         foreach ($golfVehiclesChildren as $key => $value) {
-            $price = (float) $value['price'];
+            $price = (float)$value['price'];
             $price_baht = round($price / $baht_thai);
             $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
         }
@@ -1340,7 +1310,7 @@ class Product extends BaseController
         }
 
         foreach ($data['coupons'] as $key => $coupon) {
-            $coupon_price = (float) $coupon['coupon_price'];
+            $coupon_price = (float)$coupon['coupon_price'];
             $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
             $data['coupons'][$key] = $coupon;
         }
@@ -1355,8 +1325,8 @@ class Product extends BaseController
         $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
-            $option_price = (float) $value['option_price'];
-            $baht_thai = (float) ($this->setting['baht_thai'] ?? 0);
+            $option_price = (float)$value['option_price'];
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_baht = round($option_price / $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
@@ -1379,15 +1349,100 @@ class Product extends BaseController
         return $this->renderView('tours/list-tour');
     }
 
-    public function spaDetail($code_no)
+    public function spaDetail($product_idx)
     {
-        return $this->renderView('/product/spa/spa-details');
+        $spa = $this->productModel->find($product_idx);
+        if (!$spa) {
+            throw new Exception('존재하지 않는 상품입니다.');
+        }
+
+        $hotel_codes = explode("|", $spa['product_code_list']);
+        $hotel_codes = array_values(array_filter($hotel_codes));
+
+        $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+        $spa['codeTree'] = $codeTree;
+
+        $productReview = $this->reviewModel->getProductReview($spa['product_idx']);
+
+        $spa['total_review'] = $productReview['total_review'];
+        $spa['review_average'] = $productReview['avg'];
+
+        $code_utilities = $spa['code_utilities'];
+        $_arr_utilities = explode("|", $code_utilities);
+        $_arr_utilities = array_filter($_arr_utilities);
+
+        $code_services = $spa['code_services'];
+        $_arr_services = explode("|", $code_services);
+        $_arr_services = array_filter($_arr_services);
+
+        $code_best_utilities = $spa['code_best_utilities'];
+        $_arr_best_utilities = explode("|", $code_best_utilities);
+        $_arr_best_utilities = array_filter($_arr_best_utilities);
+
+        $code_populars = $spa['code_populars'];
+        $_arr_populars = explode("|", $code_populars);;
+        $_arr_populars = array_filter($_arr_populars);
+
+        $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
+        $list__best_utilities = rtrim(implode(',', $_arr_best_utilities), ',');
+        $list__services = rtrim(implode(',', $_arr_services), ',');
+        $list__populars = rtrim(implode(',', $_arr_populars), ',');
+
+        if (!empty($list__utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+
+            $fresult4 = $this->db->query($fsql);
+            $fresult4 = $fresult4->getResultArray();
+        }
+
+        if (!empty($list__best_utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+            $bresult4 = $this->db->query($fsql);
+            $bresult4 = $bresult4->getResultArray();
+        }
+
+        if (!empty($list__services)) {
+            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='4404' ORDER BY onum DESC, code_idx DESC";
+            $fresult5 = $this->db->query($fsql);
+            $fresult5 = $fresult5->getResultArray();
+
+            $fresult5 = array_map(function ($item) use ($list__services) {
+                $rs = (array)$item;
+
+                $code_no = $rs['code_no'];
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+
+                $rs_child = $this->db->query($fsql)->getResultArray();
+
+                $rs['child'] = $rs_child;
+
+                return $rs;
+            }, $fresult5);
+        }
+
+        if (!empty($list__populars)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+            $fresult8 = $this->db->query($fsql);
+            $fresult8 = $fresult8->getResultArray();
+        }
+
+        $data = [
+            'spa' => $spa,
+            'fresult4' => $fresult4,
+            'bresult4' => $bresult4,
+            'fresult5' => $fresult5,
+            'fresult8' => $fresult8,
+        ];
+
+        return $this->renderView('/product/spa/spa-details', $data);
     }
 
     public function productBooking($code_no)
     {
         return $this->renderView('/product/spa/product-booking');
     }
+
     public function spaCompletedOrder()
     {
         return $this->renderView('/product/spa/completed-order');

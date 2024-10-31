@@ -87,7 +87,7 @@ function getHeaderTab()
         1303 => "/product-hotel/1303",
         1302 => "/product-golf/1302/1",
         1301 => "/product-tours/1301",
-        1325 => "/product-spa/1325/1",
+        1325 => "/product-spa/1325",
         1317 => "/show-ticket/1317",
         1320 => "/product-restaurant/1320/1",
         1324 => "/vehicle-guide/1324"

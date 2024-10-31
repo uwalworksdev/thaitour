@@ -4,21 +4,29 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
+use stdClass;
 
 class AdminSpaController extends BaseController
 {
     protected $connect;
+    protected $productModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
+        $this->productModel = model("ProductModel");
     }
 
     public function write_ok()
     {
+        $connect = $this->connect;
+        $session = session();
+
         try {
+            $files = $this->request->getFiles();
+
             $pg = updateSQ($_POST["pg"] ?? '');
             $search_name = updateSQ($_POST["search_name"] ?? '');
             $search_category = updateSQ($_POST["search_category"] ?? '');
@@ -42,8 +50,8 @@ class AdminSpaController extends BaseController
             $product_manager = updateSQ($_POST["product_manager"] ?? '');
             $product_manager_id = updateSQ($_POST["product_manager_id"] ?? '');
             $original_price = str_replace(",", "", updateSQ($_POST["original_price"]) ?? '');
-            $min_price = str_replace(",", "", updateSQ($_POST["min_price"]) ?? '');
-            $max_price = str_replace(",", "", updateSQ($_POST["max_price"]) ?? '');
+            $min_price = str_replace(",", "", updateSQ($_POST["min_price"]) ?? 0);
+            $max_price = str_replace(",", "", updateSQ($_POST["max_price"]) ?? 0);
             $keyword = $_POST["keyword"];
             $product_price = str_replace(",", "", updateSQ($_POST["product_price"]) ?? '');
             $product_best = updateSQ($_POST["product_best"] ?? '');
@@ -73,8 +81,8 @@ class AdminSpaController extends BaseController
             $email_2 = updateSQ($_POST["email_2"] ?? '');
             $product_route = updateSQ($_POST["product_route"] ?? '');
 
-            $minium_people_cnt = updateSQ($_POST["minium_people_cnt"] ?? '');
-            $total_people_cnt = updateSQ($_POST["total_people_cnt"] ?? '');
+            $minium_people_cnt = 0;
+            $total_people_cnt = 0;
 
             $stay_list = updateSQ($_POST["stay_list"] ?? '');
             $country_list = updateSQ($_POST["country_list"] ?? '');
@@ -86,7 +94,7 @@ class AdminSpaController extends BaseController
             $product_mileage = updateSQ($_POST["product_mileage"] ?? '');
 
             $exchange = updateSQ($_POST["exchange"] ?? '');
-            $jetlag = updateSQ($_POST["jetlag"] ?? '');
+            $jetlag = 0;
             $capital_city = updateSQ($_POST["capital_city"] ?? '');
             $information = updateSQ($_POST["information"] ?? '');
             $meeting_guide = updateSQ($_POST["meeting_guide"] ?? '');
@@ -100,278 +108,310 @@ class AdminSpaController extends BaseController
             $kids_text = updateSQ($_POST["kids_text"] ?? '');
             $baby_text = updateSQ($_POST["baby_text"] ?? '');
 
-            for ($i = 1; $i <= 7; $i++) {
-                if (${"del_" . $i} == "Y") {
-                    $sql = "
-			UPDATE tbl_product_mst SET 
-			ufile" . $i . "='',
-			rfile" . $i . "=''
-			WHERE product_idx='$product_idx'
-		";
-                    mysqli_query($connect, $sql) or die (mysqli_error($connect));
-                } elseif ($_FILES["ufile" . $i]['name']) {
-                    $wow = $_FILES["ufile" . $i]['name'];
-                    if (no_file_ext($_FILES["ufile" . $i]['name']) != "Y") {
-                        echo "NF";
-                        exit();
-                    }
+            $addrs = updateSQ($_POST["addrs"] ?? '');
 
-                    ${"rfile_" . $i} = $wow;
-                    $wow2 = $_FILES["ufile" . $i]['tmp_name'];//tmp 폴더의 파일
-                    ${"ufile_" . $i} = file_check($wow, $wow2, $upload, "N");
-                    if ($product_idx) {
-                        $sql = "
-					UPDATE tbl_product_mst SET 
-					ufile" . $i . "='" . ${"ufile_" . $i} . "',
-					rfile" . $i . "='" . ${"rfile_" . $i} . "'
-					WHERE product_idx='$product_idx';
-				";
-                        mysqli_query($connect, $sql) or die (mysqli_error($connect));
-                    }
+            $product_type = updateSQ($_POST["product_type"] ?? '');
+
+            $code_utilities = updateSQ($_POST["code_utilities"] ?? '');
+            $code_services = updateSQ($_POST["code_services"] ?? '');
+            $code_best_utilities = updateSQ($_POST["code_best_utilities"] ?? '');
+            $code_populars = updateSQ($_POST["code_populars"] ?? '');
+            $available_period = updateSQ($_POST["available_period"] ?? '');
+            $deadline_time = updateSQ($_POST["deadline_time"] ?? '');
+
+            $dataProductMore = new stdClass();
+
+            $meet_out_time = $_POST['meet_out_time'] ?? '';
+            $children_policy = $_POST['children_policy'] ?? '';
+            $baby_beds = $_POST['baby_beds'] ?? '';
+            $deposit_regulations = $_POST['deposit_regulations'] ?? '';
+            $pets = $_POST['pets'] ?? '';
+            $age_restriction = $_POST['age_restriction'] ?? '';
+            $smoking_policy = $_POST['smoking_policy'] ?? '';
+            $breakfast = $_POST['breakfast'] ?? '';
+
+            $breakfast_item_name_arr = $_POST['breakfast_item_name_'];
+            $breakfast_item_value_arr = $_POST['breakfast_item_value_'];
+
+            $dataBreakfast = "";
+            foreach ($breakfast_item_name_arr as $key => $value) {
+                $txt = $breakfast_item_name_arr[$key] . "::::" . $breakfast_item_value_arr[$key];
+                $dataBreakfast .= $txt . "||||";
+            }
+
+            $dataProductMore->meet_out_time = $meet_out_time;
+            $dataProductMore->children_policy = $children_policy;
+            $dataProductMore->baby_beds = $baby_beds;
+            $dataProductMore->deposit_regulations = $deposit_regulations;
+            $dataProductMore->pets = $pets;
+            $dataProductMore->age_restriction = $age_restriction;
+            $dataProductMore->smoking_policy = $smoking_policy;
+            $dataProductMore->breakfast = $breakfast;
+            $dataProductMore->breakfast_data = $dataBreakfast;
+
+            $dataProductMore = json_encode($dataProductMore);
+
+            $data = [];
+            for ($i = 1; $i <= 7; $i++) {
+                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+
+                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                    $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                }
+
+                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    $data["rfile$i"] = $file->getClientName();
+                    $data["ufile$i"] = $file->getRandomName();
+                    $publicPath = ROOTPATH . '/public/data/hotel/';
+                    $file->move($publicPath, $data["ufile$i"]);
                 }
             }
+
             if ($product_idx) {
-                $sql = "
-		update tbl_product_mst SET 
-			product_code_1			= '" . $product_code_1 . "'
-			,product_code_2			= '" . $product_code_2 . "'
-			,product_code_3			= '" . $product_code_3 . "'
-			,product_code_4			= '" . $product_code_4 . "'
-			,product_code_name_1	= '" . $product_code_name_1 . "'
-			,product_code_name_2	= '" . $product_code_name_2 . "'
-			,product_code_name_3	= '" . $product_code_name_3 . "'
-			,product_code_name_4	= '" . $product_code_name_4 . "'
-			,product_name			= '" . $product_name . "'
-			,product_air			= '" . $product_air . "'
-			,product_info			= '" . $product_info . "'
-			,product_schedule		= '" . $product_schedule . "'
-			,product_country		= '" . $product_country . "'
-			,is_view				= '" . $is_view . "'
-			,product_period			= '" . $product_period . "'
-			,product_manager		= '" . $product_manager . "'
-			,product_manager_id		= '" . $product_manager_id . "'		
-			,original_price			= '" . $original_price . "'
-			,min_price				= '" . $min_price . "'
-			,max_price				= '" . $max_price . "'
-			,keyword				= '" . $keyword . "'
-			,product_price			= '" . $product_price . "'
-			,product_best			= '" . $product_best . "'
-			,onum					= '" . $onum . "'
-			,product_contents		= '" . $product_contents . "' 
-			,product_confirm		= '" . $product_confirm . "' 
-			,product_confirm_m		= '" . $product_confirm_m . "' 
-			,product_able			= '" . $product_able . "'
-			,product_unable			= '" . $product_unable . "'
-			,mobile_able			= '" . $mobile_able . "'
-			,mobile_unable			= '" . $mobile_unable . "'
-            ,special_benefit        = '" . $special_benefit . "'
-            ,special_benefit_m      = '" . $special_benefit_m . "'
-            ,notice_comment         = '" . $notice_comment . "'
-            ,notice_comment_m       = '" . $notice_comment_m . "'
-            ,etc_comment            = '" . $etc_comment . "'
-            ,etc_comment_m          = '" . $etc_comment_m . "'
+                $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
+                $row = $this->connect->query("$sql")->getRowArray();
 
-			,stay_list				= '" . $stay_list . "'
-			,country_list			= '" . $country_list . "'
-			,active_list			= '" . $active_list . "'
-			,sight_list				= '" . $sight_list . "'
+                $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
+                $data["ufile2"] = $data["ufile2"] ?? $row['ufile2'];
+                $data["ufile3"] = $data["ufile3"] ?? $row['ufile3'];
+                $data["ufile4"] = $data["ufile4"] ?? $row['ufile4'];
+                $data["ufile5"] = $data["ufile5"] ?? $row['ufile5'];
+                $data["ufile6"] = $data["ufile6"] ?? $row['ufile6'];
+                $data["ufile7"] = $data["ufile7"] ?? $row['ufile7'];
 
-			,benefit				= '" . $benefit . "'
-			,local_info				= '" . $local_info . "'
-			,phone					= '" . $phone . "'
-			,email 					= '" . $email . "'
-			,product_manager_2		= '" . $product_manager_2 . "'	
-			,phone_2				= '" . $phone_2 . "'
-			,email_2				= '" . $email_2 . "'
+                $data["rfile1"] = $data["rfile1"] ?? $row['rfile1'];
+                $data["rfile2"] = $data["rfile2"] ?? $row['rfile2'];
+                $data["rfile3"] = $data["rfile3"] ?? $row['rfile3'];
+                $data["rfile4"] = $data["rfile4"] ?? $row['rfile4'];
+                $data["rfile5"] = $data["rfile5"] ?? $row['rfile5'];
+                $data["rfile6"] = $data["rfile6"] ?? $row['rfile6'];
+                $data["rfile7"] = $data["rfile7"] ?? $row['rfile7'];
 
-			,product_route			= '" . $product_route . "'
-			,minium_people_cnt		= '" . $minium_people_cnt . "'
-			,total_people_cnt		= '" . $total_people_cnt . "'
-			,tour_period			= '" . $tour_period . "'
-			,tour_info				= '" . $tour_info . "'
-			,tour_detail			= '" . $tour_detail . "'
-			,product_mileage		= '" . $product_mileage . "'
-			,exchange				= '" . $exchange . "'
-			,jetlag					= '" . $jetlag . "'
-			,main_top_best			= '" . $main_top_best . "'
-			,main_theme_best		= '" . $main_theme_best . "'
-			,capital_city			= '" . $capital_city . "'
-			,information			= '" . $information . "'
-	        ,meeting_guide          = '" . $meeting_guide . "'
-	        ,meeting_place          = '" . $meeting_place . "'
-			,product_level			= '" . $product_level . "'
-			,product_option         = '" . $product_option . "'
-			,coupon_y               = '" . $coupon_y . "'
-			,special_price			= '" . $special_price . "'
-			,adult_text             = '" . $adult_text . "'
-			,kids_text              = '" . $kids_text . "'
-			,baby_text              = '" . $baby_text . "'
-
-			,m_date					= now()
-		where product_idx = '" . $product_idx . "'
-	";
+                $sql = "update tbl_product_mst SET 
+                            product_code_1			= '" . $product_code_1 . "'
+                            ,product_code_2			= '" . $product_code_2 . "'
+                            ,product_code_3			= '" . $product_code_3 . "'
+                            ,product_code_4			= '" . $product_code_4 . "'
+                            ,product_code_name_1	= '" . $product_code_name_1 . "'
+                            ,product_code_name_2	= '" . $product_code_name_2 . "'
+                            ,product_code_name_3	= '" . $product_code_name_3 . "'
+                            ,product_code_name_4	= '" . $product_code_name_4 . "'
+                            ,product_name			= '" . $product_name . "'
+                            ,product_air			= '" . $product_air . "'
+                            ,product_info			= '" . $product_info . "'
+                            ,product_schedule		= '" . $product_schedule . "'
+                            ,product_country		= '" . $product_country . "'
+                            ,is_view				= '" . $is_view . "'
+                            ,product_period			= '" . $product_period . "'
+                            ,product_manager		= '" . $product_manager . "'
+                            ,product_manager_id		= '" . $product_manager_id . "'		
+                            ,original_price			= '" . $original_price . "'
+                            ,min_price				= '" . $min_price . "'
+                            ,max_price				= '" . $max_price . "'
+                            ,keyword				= '" . $keyword . "'
+                            ,product_price			= '" . $product_price . "'
+                            ,product_best			= '" . $product_best . "'
+                            ,onum					= '" . $onum . "'
+                            ,product_contents		= '" . $product_contents . "' 
+                            ,product_confirm		= '" . $product_confirm . "' 
+                            ,product_confirm_m		= '" . $product_confirm_m . "' 
+                            ,product_able			= '" . $product_able . "'
+                            ,product_unable			= '" . $product_unable . "'
+                            ,mobile_able			= '" . $mobile_able . "'
+                            ,mobile_unable			= '" . $mobile_unable . "'
+                            ,special_benefit        = '" . $special_benefit . "'
+                            ,special_benefit_m      = '" . $special_benefit_m . "'
+                            ,notice_comment         = '" . $notice_comment . "'
+                            ,notice_comment_m       = '" . $notice_comment_m . "'
+                            ,etc_comment            = '" . $etc_comment . "'
+                            ,etc_comment_m          = '" . $etc_comment_m . "'
+                
+                            ,stay_list				= '" . $stay_list . "'
+                            ,country_list			= '" . $country_list . "'
+                            ,active_list			= '" . $active_list . "'
+                            ,sight_list				= '" . $sight_list . "'
+                
+                            ,benefit				= '" . $benefit . "'
+                            ,local_info				= '" . $local_info . "'
+                            ,phone					= '" . $phone . "'
+                            ,email 					= '" . $email . "'
+                            ,product_manager_2		= '" . $product_manager_2 . "'	
+                            ,phone_2				= '" . $phone_2 . "'
+                            ,email_2				= '" . $email_2 . "'
+                
+                            ,product_route			= '" . $product_route . "'
+                            ,minium_people_cnt		= '" . $minium_people_cnt . "'
+                            ,total_people_cnt		= '" . $total_people_cnt . "'
+                            ,tour_period			= '" . $tour_period . "'
+                            ,tour_info				= '" . $tour_info . "'
+                            ,tour_detail			= '" . $tour_detail . "'
+                            ,product_mileage		= '" . $product_mileage . "'
+                            ,exchange				= '" . $exchange . "'
+                            ,jetlag					= '" . $jetlag . "'
+                            ,main_top_best			= '" . $main_top_best . "'
+                            ,main_theme_best		= '" . $main_theme_best . "'
+                            ,capital_city			= '" . $capital_city . "'
+                            ,information			= '" . $information . "'
+                            ,meeting_guide          = '" . $meeting_guide . "'
+                            ,meeting_place          = '" . $meeting_place . "'
+                            ,product_level			= '" . $product_level . "'
+                            ,product_option         = '" . $product_option . "'
+                            ,coupon_y               = '" . $coupon_y . "'
+                            ,special_price			= '" . $special_price . "'
+                            ,adult_text             = '" . $adult_text . "'
+                            ,kids_text              = '" . $kids_text . "'
+                            ,baby_text              = '" . $baby_text . "'
+                            
+                            ,ufile1				    = '" . $data["ufile1"] . "'
+                            ,ufile2			        = '" . $data["ufile2"] . "'
+                            ,ufile3			        = '" . $data["ufile3"] . "'
+                            ,ufile4				    = '" . $data["ufile4"] . "'
+                            ,ufile5				    = '" . $data["ufile5"] . "'
+                            ,ufile6				    = '" . $data["ufile6"] . "'
+                            ,ufile7				    = '" . $data["ufile7"] . "'
+                            
+                            ,rfile1				    = '" . $data["rfile1"] . "'
+                            ,rfile2			        = '" . $data["rfile2"] . "'
+                            ,rfile3			        = '" . $data["rfile3"] . "'
+                            ,rfile4				    = '" . $data["rfile4"] . "'
+                            ,rfile5				    = '" . $data["rfile5"] . "'
+                            ,rfile6				    = '" . $data["rfile6"] . "'
+                            ,rfile7				    = '" . $data["rfile7"] . "'
+                
+                            ,addrs                  = '" . $addrs . "'
+                            ,product_type           = '" . $product_type . "'
+                            
+                            ,code_utilities         = '" . $code_utilities . "'
+                            ,code_services          = '" . $code_services . "'
+                            ,code_best_utilities    = '" . $code_best_utilities . "'
+                            ,code_populars          = '" . $code_populars . "'
+                            ,available_period       = '" . $available_period . "'
+                            ,deadline_time          = '" . $deadline_time . "'
+                            
+                            ,product_more           = '" . $dataProductMore . "'
+                            
+                            ,m_date					= now()
+                        where product_idx = '" . $product_idx . "'
+                    ";
                 write_log("상품정보수정 : " . $sql);
-                mysqli_query($connect, $sql) or die (mysqli_error($connect));
 
-                $city_idx_str = "";
-                for ($i = 0; $i < count($city_idx); $i++) {
-                    if ($city_idx[$i] != "") {
-                        $city_idx_str = $city_idx_str . $city_idx[$i] . ",";
-                    }
-                }
-                if (strlen($city_idx_str) > 0) {
-                    $city_idx_str = substr($city_idx_str, 0, strlen($city_idx_str) - 1);
-                    $sql = "
-			delete from tbl_product_city 
-			where city_idx not in (" . $city_idx_str . ") and product_idx = '" . $product_idx . "'
-		";
-                    //write_log("도시별 좌표정리 : ".$sql);
-                    mysqli_query($connect, $sql) or die (mysqli_error($connect));
-                }
-                for ($i = 0; $i < count($city_idx); $i++) {
-                    if ($city_idx[$i] == "") {
-                        $sql = "
-				insert into tbl_product_city SET 
-					product_idx		= '" . $product_idx . "'
-					,city_name		= '" . $city_name[$i] . "'
-					,city_lat		= '" . $city_lat[$i] . "'
-					,city_lng		= '" . $city_lng[$i] . "'
-					,r_date			= now()
-			";
-                        //write_log("도시별 좌표입력 : ".$sql);
-                        mysqli_query($connect, $sql) or die (mysqli_error($connect));
-                    } else {
-                        $sql = "
-				update tbl_product_city SET 
-					product_idx		= '" . $product_idx . "'
-					,city_name		= '" . $city_name[$i] . "'
-					,city_lat		= '" . $city_lat[$i] . "'
-					,city_lng		= '" . $city_lng[$i] . "'
-					where city_idx	= '" . $city_idx[$i] . "'
-			";
-                        //write_log("도시별 좌표수정 : ".$sql);
-                        mysqli_query($connect, $sql) or die (mysqli_error($connect));
-                    }
-                    echo $sql . "<br>";
-                }
-
-
+                $connect->query($sql);
             } else {
-                $sql = "
-		insert into tbl_product_mst SET 
-			product_idx				= '" . $product_idx . "'
-			,product_code_1			= '" . $product_code_1 . "'
-			,product_code_2			= '" . $product_code_2 . "'
-			,product_code_3			= '" . $product_code_3 . "'
-			,product_code_4			= '" . $product_code_4 . "'
-			,product_code_name_1	= '" . $product_code_name_1 . "'
-			,product_code_name_2	= '" . $product_code_name_2 . "'
-			,product_code_name_3	= '" . $product_code_name_3 . "'
-			,product_code_name_4	= '" . $product_code_name_4 . "'
-			,product_name			= '" . $product_name . "'
-			,product_air			= '" . $product_air . "'
-			,product_info			= '" . $product_info . "'
-			,product_schedule		= '" . $product_schedule . "'
-			,product_country		= '" . $product_country . "'
-			,rfile1					= '" . $rfile_1 . "'
-			,rfile2					= '" . $rfile_2 . "'
-			,rfile3					= '" . $rfile_3 . "'
-			,rfile4					= '" . $rfile_4 . "'
-			,rfile5					= '" . $rfile_5 . "'
-			,rfile6					= '" . $rfile_6 . "'
-			,ufile1					= '" . $ufile_1 . "'
-			,ufile2					= '" . $ufile_2 . "'
-			,ufile3					= '" . $ufile_3 . "'
-			,ufile4					= '" . $ufile_4 . "'
-			,ufile5					= '" . $ufile_5 . "'
-			,ufile6					= '" . $ufile_6 . "'
-			,ufile7					= '" . $ufile_7 . "'
-			,is_view				= '" . $is_view . "'
-			,product_period			= '" . $product_period . "'
-			,product_manager		= '" . $product_manager . "'
-			,product_manager_id		= '" . $product_manager_id . "'		
-			,original_price			= '" . $original_price . "'
-			,keyword				= '" . $keyword . "'
-			,product_price			= '" . $product_price . "'
-			,product_best			= '" . $product_best . "'
-			,onum					= '" . $onum . "'
-			,product_contents		= '" . $product_contents . "'
-			,min_price				= '" . $min_price . "'
-			,max_price				= '" . $max_price . "'
-			,product_able			= '" . $product_able . "'
-			,product_unable			= '" . $product_unable . "'
-			,mobile_able			= '" . $mobile_able . "'
-			,mobile_unable			= '" . $mobile_unable . "'
-            ,notice_comment         = '" . $notice_comment . "'
-            ,notice_comment_m       = '" . $notice_comment_m . "'
-            ,etc_comment            = '" . $etc_comment . "'
-            ,etc_comment_m          = '" . $etc_comment_m . "'
+                $sql = "insert into tbl_product_mst SET 
+                            product_idx				= '" . $product_idx . "'
+                            ,product_code_1			= '" . $product_code_1 . "'
+                            ,product_code_2			= '" . $product_code_2 . "'
+                            ,product_code_3			= '" . $product_code_3 . "'
+                            ,product_code_4			= '" . $product_code_4 . "'
+                            ,product_code_name_1	= '" . $product_code_name_1 . "'
+                            ,product_code_name_2	= '" . $product_code_name_2 . "'
+                            ,product_code_name_3	= '" . $product_code_name_3 . "'
+                            ,product_code_name_4	= '" . $product_code_name_4 . "'
+                            ,product_name			= '" . $product_name . "'
+                            ,product_air			= '" . $product_air . "'
+                            ,product_info			= '" . $product_info . "'
+                            ,product_schedule		= '" . $product_schedule . "'
+                            ,product_country		= '" . $product_country . "'
+                            ,is_view				= '" . $is_view . "'
+                            ,product_period			= '" . $product_period . "'
+                            ,product_manager		= '" . $product_manager . "'
+                            ,product_manager_id		= '" . $product_manager_id . "'		
+                            ,original_price			= '" . $original_price . "'
+                            ,keyword				= '" . $keyword . "'
+                            ,product_price			= '" . $product_price . "'
+                            ,product_best			= '" . $product_best . "'
+                            ,onum					= '" . $onum . "'
+                            ,product_contents		= '" . $product_contents . "'
+                            ,min_price				= '" . $min_price . "'
+                            ,max_price				= '" . $max_price . "'
+                            ,product_able			= '" . $product_able . "'
+                            ,product_unable			= '" . $product_unable . "'
+                            ,mobile_able			= '" . $mobile_able . "'
+                            ,mobile_unable			= '" . $mobile_unable . "'
+                            ,notice_comment         = '" . $notice_comment . "'
+                            ,notice_comment_m       = '" . $notice_comment_m . "'
+                            ,etc_comment            = '" . $etc_comment . "'
+                            ,etc_comment_m          = '" . $etc_comment_m . "'
+                
+                            ,stay_list				= '" . $stay_list . "'
+                            ,country_list			= '" . $country_list . "'
+                            ,active_list			= '" . $active_list . "'
+                            ,sight_list				= '" . $sight_list . "'
+                            ,tour_period			= '" . $tour_period . "'
+                            ,tour_info				= '" . $tour_info . "'
+                            ,tour_detail			= '" . $tour_detail . "'
+                
+                            ,benefit				= '" . $benefit . "'
+                            ,local_info				= '" . $local_info . "'
+                            ,phone					= '" . $phone . "'
+                            ,email 					= '" . $email . "'
+                            ,product_manager_2		= '" . $product_manager_2 . "'	
+                            ,phone_2				= '" . $phone_2 . "'
+                            ,email_2				= '" . $email_2 . "'
+                            ,product_route			= '" . $product_route . "'
+                            ,minium_people_cnt		= '" . $minium_people_cnt . "'
+                            ,total_people_cnt		= '" . $total_people_cnt . "'
+                
+                            ,exchange				= '" . $exchange . "'
+                            ,jetlag					= '" . $jetlag . "'
+                            ,capital_city			= '" . $capital_city . "'
+                
+                            ,user_id				= '" . $_SESSION['member']['id'] . "'
+                            ,user_level				= '" . $_SESSION['member']['level'] . "'
+                            ,information			= '" . $information . "'
+                            ,meeting_guide          = '" . $meeting_guide . "'
+                            ,meeting_place          = '" . $meeting_place . "'
+                            ,product_level			= '" . $product_level . "'
+                            ,product_option         = '" . $product_option . "'
+                            ,coupon_y               = '" . $coupon_y . "'
+                            ,special_price			= '" . $special_price . "'
+                            ,adult_text             = '" . $adult_text . "'
+                            ,kids_text              = '" . $kids_text . "'
+                            ,baby_text              = '" . $baby_text . "'
+                
+                            ,ufile1				    = '" . $data["ufile1"] . "'
+                            ,ufile2			        = '" . $data["ufile2"] . "'
+                            ,ufile3			        = '" . $data["ufile3"] . "'
+                            ,ufile4				    = '" . $data["ufile4"] . "'
+                            ,ufile5				    = '" . $data["ufile5"] . "'
+                            ,ufile6				    = '" . $data["ufile6"] . "'
+                            ,ufile7				    = '" . $data["ufile7"] . "'
+                            
+                            ,rfile1				    = '" . $data["rfile1"] . "'
+                            ,rfile2			        = '" . $data["rfile2"] . "'
+                            ,rfile3			        = '" . $data["rfile3"] . "'
+                            ,rfile4				    = '" . $data["rfile4"] . "'
+                            ,rfile5				    = '" . $data["rfile5"] . "'
+                            ,rfile6				    = '" . $data["rfile6"] . "'
+                            ,rfile7				    = '" . $data["rfile7"] . "'
+                            
+                            ,addrs                  = '" . $addrs . "'
+                            ,product_type           = '" . $product_type . "'
+                            
+                            ,code_utilities         = '" . $code_utilities . "'
+                            ,code_services          = '" . $code_services . "'
+                            ,code_best_utilities    = '" . $code_best_utilities . "'
+                            ,code_populars          = '" . $code_populars . "'
+                            ,available_period       = '" . $available_period . "'
+                            ,deadline_time          = '" . $deadline_time . "'
+                            
+                            ,product_more           = '" . $dataProductMore . "'
+                            
+                            ,m_date					= now()
+                            ,r_date					= now()
+                    ";
 
-			,stay_list				= '" . $stay_list . "'
-			,country_list			= '" . $country_list . "'
-			,active_list			= '" . $active_list . "'
-			,sight_list				= '" . $sight_list . "'
-			,tour_period			= '" . $tour_period . "'
-			,tour_info				= '" . $tour_info . "'
-			,tour_detail			= '" . $tour_detail . "'
+                write_log("상품정보입력 : " . $sql);
+                $connect->query($sql);
 
-			,benefit				= '" . $benefit . "'
-			,local_info				= '" . $local_info . "'
-			,phone					= '" . $phone . "'
-			,email 					= '" . $email . "'
-			,product_manager_2		= '" . $product_manager_2 . "'	
-			,phone_2				= '" . $phone_2 . "'
-			,email_2				= '" . $email_2 . "'
-			,product_route			= '" . $product_route . "'
-			,minium_people_cnt		= '" . $minium_people_cnt . "'
-			,total_people_cnt		= '" . $total_people_cnt . "'
+                $product_idx = $connect->insert_id;
 
-			,exchange				= '" . $exchange . "'
-			,jetlag					= '" . $jetlag . "'
-			,capital_city			= '" . $capital_city . "'
+                $sql = "update tbl_product_mst SET 
+                            product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
+                            where product_idx = '" . $product_idx . "'
+                    ";
 
-			,user_id				= '" . $_SESSION[member][id] . "'
-			,user_level				= '" . $_SESSION[member][level] . "'
-			,information			= '" . $information . "'
-	        ,meeting_guide          = '" . $meeting_guide . "'
-	        ,meeting_place          = '" . $meeting_place . "'
-			,product_level			= '" . $product_level . "'
-			,product_option         = '" . $product_option . "'
-			,coupon_y               = '" . $coupon_y . "'
-			,special_price			= '" . $special_price . "'
-			,adult_text             = '" . $adult_text . "'
-			,kids_text              = '" . $kids_text . "'
-			,baby_text              = '" . $baby_text . "'
-
-			,m_date					= now()
-			,r_date					= now()
-	";
-                //write_log("상품정보입력 : ".$sql);
-                mysqli_query($connect, $sql) or die (mysqli_error($connect));
-
-                $product_idx = mysqli_insert_id($connect);
-
-                $sql = "
-		update tbl_product_mst SET 
-			product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
-			where product_idx = '" . $product_idx . "'
-	";
-                //write_log("여행정보코드입력 : ".$sql);
-                mysqli_query($connect, $sql) or die (mysqli_error($connect));
-
-                for ($i = 0; $i < count($city_name); $i++) {
-                    $sql = "
-			insert into tbl_product_city SET 
-				product_idx		= '" . $product_idx . "'
-				,city_name		= '" . $city_name[$i] . "'
-				,city_lat		= '" . $city_lat[$i] . "'
-				,city_lng		= '" . $city_lng[$i] . "'
-				,r_date			= now()
-		";
-                    //write_log("도시별 좌표입력 : ".$sql);
-                    mysqli_query($connect, $sql) or die (mysqli_error($connect));
-                    //echo $sql;
-                }
+                $connect->query($sql);
             }
 
             if ($product_idx) {
@@ -380,13 +420,13 @@ class AdminSpaController extends BaseController
                     alert('$message');
                         parent.location.reload();
                     </script>";
-            } else {
-                $message = "등록되었습니다.";
-                return "<script>
-                    alert('$message');
-                        parent.location.href='/AdmMaster/_tourRegist/list_spas';
-                    </script>";
             }
+
+            $message = "등록되었습니다.";
+            return "<script>
+                alert('$message');
+                    parent.location.href='/AdmMaster/_tourRegist/list_spas';
+                </script>";
         } catch (\Exception $e) {
             return $this->response
                 ->setStatusCode(400)

@@ -1824,4 +1824,112 @@
     margin-bottom: 0;
   }
 
+  .content-sub-hotel-detail .room-table-item {
+    padding-bottom: 3.6rem;
+    display: flex;
+  }
+
+  .content-sub-hotel-detail .room-table-item .selector-container {
+    display: flex;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+
+  .content-sub-hotel-detail .room-table-item .label {
+    margin-right: 2rem;
+    font-size: 2.6rem;
+    font-weight: unset;
+  }
+
+  .content-sub-hotel-detail .room-table-item .number-selector {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 14rem;
+    height: 9rem;
+    text-align: center;
+  }
+
+  .content-sub-hotel-detail .room-table-item .number-display {
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 2.6rem;
+    padding: 0.5rem;
+    -moz-appearance: textfield;
+  }
+
+  .content-sub-hotel-detail .room-table-item .number-display::-webkit-outer-spin-button,
+  .content-sub-hotel-detail .room-table-item .number-display::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .content-sub-hotel-detail .room-table-item .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content-sub-hotel-detail .room-table-item .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    width: 1.2rem;
+    height: 0.8rem;
+  }
+
+  .content-sub-hotel-detail .room-table-item .button:active {
+    background-color: #ddd;
+  }
+
+  .content-sub-hotel-detail .room-table-item .button.up {
+  }
+
+  .content-sub-hotel-detail .room-table-item .buttons-con-top,
+  .content-sub-hotel-detail .room-table-item .buttons-con-bottom {
+    height: 4.4rem;
+    width: 5.3rem;
+    padding: 1.7rem 1.9rem;
+    border: 2px solid #dbdbdb;
+    border-top: none;
+    border-right: none;
+  }
+
+  .content-sub-hotel-detail .room-table-item .buttons-con-bottom {
+    border-bottom: none;
+  }
+
+  .content-sub-hotel-detail .room-table-item .info-price-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2rem;
+  }
+
+  .content-sub-hotel-detail .room-table-item .label-cus1 {
+    font-weight: 600;
+    font-size: 2.6rem;
+  }
+
+  .m-pt-32 {
+    padding-top: 3.2rem;
+  }
+
+  .content-sub-hotel-detail .book-button {
+    border-width: 2px;
+    padding: 2rem 1.6rem;
+    border-radius: 0.5rem;
+  }
+
+  .content-sub-hotel-detail .btn-book-button {
+    height: 6.5rem;
+    width: 100%;
+    background-color: var(--bs-point);
+    color: white;
+  }
 }

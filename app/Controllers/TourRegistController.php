@@ -50,40 +50,35 @@ class TourRegistController extends BaseController
 
     public function list_all()
     {
-        $data = $this->get_list_('');
+        $data = $this->get_list_('', '', '', '', '');
         return view("admin/_tourRegist/list_all", $data);
     }
 
     public function list_honeymoon()
     {
-        $data = $this->get_list_('1320');
+        $data = $this->get_list_('1320', '', '', '', '');
         return view("admin/_tourRegist/list_honeymoon", $data);
     }
 
     public function list_spas()
     {
-        $data = $this->get_list_('1317');
-        $data2 = $this->get_list_('1320');
-        $data3 = $this->get_list_('1324');
-
-        $data = array_merge($data, $data2);
-        $data = array_merge($data, $data3);
+        $data = $this->get_list_('1317', '1325', '1320', '', '');
         return view("admin/_tourRegist/list_spas", $data);
     }
 
     public function list_tours()
     {
-        $data = $this->get_list_('1301');
+        $data = $this->get_list_('1301', '', '', '', '');
         return view("admin/_tourRegist/list_tours", $data);
     }
 
     public function list_golfs()
     {
-        $data = $this->get_list_('1302');
+        $data = $this->get_list_('1302', '', '', '', '');
         return view("admin/_tourRegist/list_golfs", $data);
     }
 
-    private function get_list_($product_code_1)
+    private function get_list_($hotel_code, $spa_code, $tour_code, $golf_code, $stay_code)
     {
 
         $g_list_rows = 10;
@@ -92,6 +87,7 @@ class TourRegistController extends BaseController
         $search_name = updateSQ($_GET["search_name"] ?? "");
         $search_category = updateSQ($_GET["search_category"] ?? "");
 
+        $product_code_1 = updateSQ($_GET["product_code_1"] ?? "");
         $product_code_2 = updateSQ($_GET["product_code_2"] ?? "");
         $product_code = updateSQ($_GET["product_code"] ?? "");
         $product_code_3 = updateSQ($_GET["product_code_3"] ?? "");
@@ -141,6 +137,12 @@ class TourRegistController extends BaseController
         if ($search_name) {
             $strSql = $strSql . " and replace(" . $search_category . ",'-','') like '%" . str_replace("-", "", $search_name) . "%' ";
         }
+
+        $strSql = $strSql . " and (product_code_1 = '$hotel_code' 
+                      or product_code_1 = '$spa_code' 
+                      or product_code_1 = '$tour_code' 
+                      or product_code_1 = '$golf_code' 
+                      or product_code_1 = '$stay_code') ";
 
         if ($product_code_1) {
             $strSql = $strSql . " and product_code_1 = '" . $product_code_1 . "' ";
@@ -396,7 +398,7 @@ class TourRegistController extends BaseController
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
 
-        $data = $this->getWrite('', '1317', '1320', '1324', '');
+        $data = $this->getWrite('', '1317', '1320', '1325', '');
 
         $db = $this->connect;
 
@@ -693,7 +695,17 @@ class TourRegistController extends BaseController
             $tours_join = $row["tours_join"];
             $tours_hour = $row["tours_hour"];
             $tours_total_hour = $row["tours_total_hour"];
-            
+
+            $product_type = $row["product_type"];
+
+            $code_utilities = $row["code_utilities"];
+            $code_services = $row["code_services"];
+            $code_best_utilities = $row["code_best_utilities"];
+            $code_populars = $row["code_populars"];
+            $available_period = $row["available_period"];
+            $deadline_time = $row["deadline_time"];
+
+            $product_more = $row["product_more"];
 
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -856,6 +868,15 @@ class TourRegistController extends BaseController
             "tours_join" => $tours_join ?? '',
             "tours_hour" => $tours_hour ?? '',
             "tours_total_hour" => $tours_total_hour ?? '',
+            "product_points" => $product_points ?? '',
+            "product_type" => $product_type ?? '',
+            "code_utilities" => $code_utilities ?? '',
+            "code_services" => $code_services ?? '',
+            "code_best_utilities" => $code_best_utilities ?? '',
+            "code_populars" => $code_populars ?? '',
+            "available_period" => $available_period ?? '',
+            "deadline_time" => $deadline_time ?? '',
+            "product_more" => $product_more ?? '',
         ];
 
         return $data;
@@ -1172,7 +1193,7 @@ class TourRegistController extends BaseController
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
                     'info' => $row,
-                    'tours' => [] 
+                    'tours' => []
                 ];
             }
 
@@ -1192,8 +1213,8 @@ class TourRegistController extends BaseController
             'info_idx' => $info_idx,
             'productTourInfo' => $groupedData,
         ];
-    
+
         return view('admin/_tourRegist/write_tour_info', $data);
     }
-    
+
 }

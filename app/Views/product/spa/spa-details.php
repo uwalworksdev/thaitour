@@ -2,18 +2,38 @@
 
 <?php $this->section('content'); ?>
 <style>
-    .calendar {
+    ._wrap-info-payment {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 220px;
+        margin-top: 40px;
+    }
+
+    ._wrap-info-payment ._wrap-info {
+        width: 820px
+    }
+
+    ._wrap-info-payment ._wrap-payment {
+        flex: 1;
+    }
+
+    .vertical-line {
+        width: 2px;
+        background-color: #f0f0f0;
+    }
+
+    /* .calendar {
         height: unset;
         padding: 0;
         width: calc(100% - 350px);
         padding-right: 30px;
         border-right: 1px solid #eeeeee;
-    }
+    } */
 
-    .calendar-con {
+    /* .calendar-con {
         display: flex;
         align-items: flex-start;
-    }
+    } */
 
     .mt-20 {
         margin-top: 20px !important;
@@ -38,7 +58,7 @@
     .calendar .header p {
         font-weight: 600;
         font-size: 20px;
-        font-family: "NotoSansKR";
+        font-family: "Pretendard";
         color: #252525;
         padding: 0 16px;
     }
@@ -100,7 +120,7 @@
         right: 20px;
         font-size: 14px !important;
         font-weight: 400;
-        font-family: "NotoSansKR";
+        font-family: "Pretendard";
         color: white !important;
     }
 
@@ -140,7 +160,7 @@
         right: 20px;
         font-size: 14px;
         font-weight: 400;
-        font-family: "NotoSansKR";
+        font-family: "Pretendard";
         color: #656565;
     }
 
@@ -207,6 +227,8 @@
         margin-bottom: 40px;
     }
 
+
+
     .order-travel-page .label-container {
         row-gap: 20px;
     }
@@ -239,6 +261,15 @@
         font-size: 22px;
         font-weight: 700;
         margin-bottom: 20px;
+    }
+
+    .spa-detail .price-right-c .label {
+        font-size: 18px;
+        padding: 0;
+    }
+
+    .spa-detail .price-right-c .label.item_label {
+        font-size: 22px;
     }
 
     .spa-detail .cus-count-input {
@@ -302,6 +333,44 @@
     .spa-detail .price-right-c .title-r {
         margin-top: 20px;
     }
+
+    .content-sub-hotel-detail .section6 .list-label-tag {
+        display: flex;
+        gap: 80px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+    }
+
+    .price-right-c .view_nav {
+        padding-left: 0;
+    }
+
+    .view_nav .total_paymemt .money {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .view_nav .total_paymemt .money span,
+    .view_nav .total_paymemt .money strong {
+        font-size: 18px;
+        color: #252525
+    }
+
+    .view_nav .total_paymemt {
+    background: #fff;
+    padding: 0;
+    border-radius: 0;
+    margin-top: 0;
+    padding-top: 20px;
+    border-top: 1px dotted #dbdbdb;
+    margin-top: 20px;
+}
+
+.view_nav .scroll_box {
+    max-height: calc(100vh - 340px);
+    overflow: auto;
+    padding-right: 0px;
+}
 </style>
 
 <div class="content-sub-hotel-detail tours-detail spa-detail">
@@ -353,38 +422,45 @@
                 </div>
             </div>
         </div>
-        <div class="calendar-con">
-            <div class="calendar">
-                <div class="header">
-                    <img onclick="fn_click_be();" style="cursor: pointer;" src="/uploads/icons/icon_prev_1.png" alt="icon_prev_1" id="prev_icon" class="btn-pre only_web">
-                    <img onclick="fn_click_be();" style="cursor: pointer;" src="/uploads/icons/icon_prev_1.png" alt="" id="prev_icon_mo" class="btn-pre only_mo">
-                    <p><span id="s_yy"></span>년 <span id="s_mm"></span>월</p>
-                    <img onclick="fn_click_ne();" style="cursor: pointer;" src="/uploads/icons/icon_next_1.png" alt="" id="next_icon" class="btn-next only_web">
-                    <img onclick="fn_click_ne();" style="cursor: pointer;" src="/uploads/icons/icon_next_1.png" alt="" id="next_icon_mo" class="btn-next only_mo">
-                </div>
-                <div class="canl_tabel">
-                    <div class="heading">
-                        <p><span style="color : #e5001c">일</span></p>
-                        <p><span>월</span></p>
-                        <p><span>화</span></p>
-                        <p><span>수</span></p>
-                        <p><span>목</span></p>
-                        <p><span>금</span></p>
-                        <p><span style="color : #e5001c">토</span></p>
-                    </div>
-                    <div class="body" id="option_cal">
+        <div class="_wrap-info-payment">
+            <div class="_wrap-info">
+
+                <div class="calendar-con">
+                    <div class="calendar">
+                        <div class="header">
+                            <img onclick="fn_click_be();" style="cursor: pointer;" src="/uploads/icons/icon_prev_1.png" alt="icon_prev_1" id="prev_icon" class="btn-pre only_web">
+                            <img onclick="fn_click_be();" style="cursor: pointer;" src="/uploads/icons/icon_prev_1.png" alt="" id="prev_icon_mo" class="btn-pre only_mo">
+                            <p><span id="s_yy"></span>년 <span id="s_mm"></span>월</p>
+                            <img onclick="fn_click_ne();" style="cursor: pointer;" src="/uploads/icons/icon_next_1.png" alt="" id="next_icon" class="btn-next only_web">
+                            <img onclick="fn_click_ne();" style="cursor: pointer;" src="/uploads/icons/icon_next_1.png" alt="" id="next_icon_mo" class="btn-next only_mo">
+                        </div>
+                        <div class="canl_tabel">
+                            <div class="heading">
+                                <p><span style="color : #e5001c">일</span></p>
+                                <p><span>월</span></p>
+                                <p><span>화</span></p>
+                                <p><span>수</span></p>
+                                <p><span>목</span></p>
+                                <p><span>금</span></p>
+                                <p><span style="color : #e5001c">토</span></p>
+                            </div>
+                            <div class="body" id="option_cal">
+
+                            </div>
+                        </div>
+                        <div class="label-container mt-20">
+                            <div class="label-item">
+                                <span class="allow-text">예약가능</span>
+                                <span class="label-text">예약이 가능한 일자입니다.</span>
+                            </div>
+                            <div class="label-item">
+                                <span class="sold-out-text">예약마강</span>
+                                <span class="label-text">예약이 마감된 상태로 예약이 불가합니다.</span>
+                            </div>
+                        </div>
 
                     </div>
-                </div>
-                <div class="label-container mt-20">
-                    <div class="label-item">
-                        <span class="allow-text">예약가능</span>
-                        <span class="label-text">예약이 가능한 일자입니다.</span>
-                    </div>
-                    <div class="label-item">
-                        <span class="sold-out-text">예약마강</span>
-                        <span class="label-text">예약이 마감된 상태로 예약이 불가합니다.</span>
-                    </div>
+
                 </div>
                 <div class="sub-header-hotel-detail">
                     <div class="main nav-list">
@@ -508,76 +584,532 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="price-right-c">
-                <div class="view_nav" id="sticky" style="position: sticky; top: 30px;">
-                    <div class="scroll_box">
-
-                        <div class="cho_nav">
-                            <p class="date_label">
-                                <i></i> <span>출발일 <span id="select_date">2024-10-30</span></span>
-                            </p>
-
-                            <p class="label item_label">예약인원을 확인해주세요.</p>
-
-                            <ul class="select_peo">
-                                <li class="flex_b_c cus-count-input">
-                                    <div class="payment">
-                                        <p class="ped_label">성인 </p>
-                                        <p class="money adult">
-                                            <span id="adult_msg">담당자에게 문의해주세요</span> <!-- <strong>0</strong> 원 -->
-                                        </p>
-                                    </div>
-                                    <div class="opt_count_box count_box flex__c">
-                                        <button type="button" class="minus_btn" id="minusAdult"></button>
-                                        <input type="text" class="input-qty" name="qty" id="adultQty" value="2" readonly="">
-                                        <button type="button" class="plus_btn" id="addAdult"></button>
-                                    </div>
-                                </li>
-                                <li class="flex_b_c cus-count-input">
-                                    <div class="payment">
-                                        <p class="ped_label">소아 </p>
-                                        <p class="money child">
-                                            <span id="kids_msg">담당자에게 문의해주세요</span> <!-- <strong>0</strong> 원 -->
-                                        </p>
-                                    </div>
-                                    <div class="opt_count_box count_box flex__c">
-                                        <button type="button" class="minus_btn" id="minusKids"></button>
-                                        <input type="text" class="input-qty" name="qty" id="kidsQty" value="0" readonly="">
-                                        <button type="button" class="plus_btn" id="addKids"></button>
-                                    </div>
-                                </li>
-                                <li class="flex_b_c cus-count-input">
-                                    <div class="payment">
-                                        <p class="ped_label">유아 </p>
-                                        <p class="money baby">
-                                            <span id="baby_msg">담당자에게 문의해주세요</span> <!-- <strong>0</strong> 원 -->
-                                        </p>
-                                    </div>
-                                    <div class="opt_count_box count_box flex__c">
-                                        <button type="button" class="minus_btn" id="minusBaby"></button>
-                                        <input type="text" class="input-qty" name="qty" id="babyQty" value="0" readonly="">
-                                        <button type="button" class="plus_btn" id="addBaby"></button>
-                                    </div>
-                                </li>
+                <div class="section4" id="section4">
+                    <h2 class="title-sec4">시설 &amp; 서비스</h2>
+                    <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> test to </div>
+                            <ul class="tag-item-list">
+                                <li>test con</li>
                             </ul>
                         </div>
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> 보안 </div>
+                            <ul class="tag-item-list">
+                                <li>연기 경보기</li>
+                                <li>보안 [24시간]</li>
+                                <li>안전/보안 기능</li>
+                                <li>프런트데스크 [24시간]</li>
+                                <li>소화기</li>
+                                <li>체크인[24시간]</li>
+                                <li>건물 외부 CCTV</li>
+                                <li>공용 구역 CCTV</li>
+                            </ul>
+                        </div>
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> 서비스 및 편의 시설 </div>
+                            <ul class="tag-item-list">
+                                <li>회의/연회 시설</li>
+                                <li>송장 제공</li>
+                                <li>공공장소 난방</li>
+                                <li>엘리베이터</li>
+                                <li>매일 하우스키핑</li>
+                                <li>공공장소 에어컨</li>
+                            </ul>
+                        </div>
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> 할 일, 휴식 방법 </div>
+                            <ul class="tag-item-list">
+                                <li>수영장 [야외]</li>
+                                <li>전망이 좋은 풀</li>
+                                <li>개인 해변</li>
+                                <li>야외 레크리에이션 기능</li>
+                                <li>미니 골프장</li>
+                                <li>온수 욕조</li>
+                                <li>정원</li>
+                            </ul>
+                        </div>
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> 아이들을 위해 </div>
+                            <ul class="tag-item-list">
+                                <li>수영장 [어린이]</li>
+                                <li>패밀리 룸</li>
+                            </ul>
+                        </div>
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> 식사, 음료 및 간식 </div>
+                            <ul class="tag-item-list">
+                                <li>자판기</li>
+                                <li>풀사이드 바</li>
+                                <li>커피 샵</li>
+                                <li>바베큐 시설</li>
+                            </ul>
+                        </div>
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> 청결과 안전 </div>
+                            <ul class="tag-item-list">
+                                <li>구급 상자</li>
+                            </ul>
+                        </div>
+                        <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
+                            <div class="tag-item-title"> 인터넷 엑세스 </div>
+                            <ul class="tag-item-list">
+                                <li>공공장소에서의 Wi-Fi</li>
+                                <li>인터넷</li>
+                                <li>모든 객실, 무료 Wi-Fi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="section5" id="section5">
+                    <h1 class="title-sec5">호텔정책</h1>
+                    <div class="content-container-sec5">
+                        <div class="content-item">
+                            <span class="label">체크인 &amp;<br class="only_mo">
+                                체크아웃 시간
+                            </span>
+                            <div class="description">
+                                <p>체크인 : 14:00 이전 1<br>
+                                    체크아웃 : 12:00 이후 1<br>
+                                    프런트 데스크 운영시간 : 연중무휴 24시간 </p>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <span class="label">
+                                어린이 정책
+                            </span>
+                            <div class="description">
+                                <p>본 객실 유행은 어린이 투숙이 불가합니다.</p>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <span class="label">
+                                유아용 침대 및 엑스트라 베드
+                            </span>
+                            <div class="description">
+                                <p>객실 유형에 따라 침대 추가 및 유아용 침대 추가 정책이 다를 수 있습니다. 자세한 사항은 객실유형 정보를 참조하세요.</p>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <span class="label">
+                                조식
+                            </span>
+                            <div class="description">
+                                <p>제공방식 : 뷔페<br>
+                                    운영시간 : [월요일-금요일] 06:00~10:00 운영(토요일 ~일요일) 06:00~11:00</p>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>나이</th>
+                                                <th>요금</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>성인</td>
+                                                <td>1인당 THB 550.00(약 20,950원)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <span class="label">
+                                보증금 규정
+                            </span>
+                            <div class="description">
+                                <p> 숙소 부과 보증금 없음 </p>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <span class="label">
+                                반려동물
+                            </span>
+                            <div class="description">
+                                <p> 반려동물 동반 불가 </p>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <span class="label">
+                                연령 제한
+                            </span>
+                            <div class="description">
+                                <p> 체크인하는 대표 투숙객의연령은 반드시 18세 이상이어야 합니다. </p>
+                            </div>
+                        </div>
+                        <div class="content-item">
+                            <span class="label">
+                                흡연 정책
+                            </span>
+                            <div class="description">
+                                <p> 숙소에서 흡연이 불가능합니다. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section6" id="section6">
+                    <h2 class="title-sec6"><span>생생리뷰</span>(516)</h2>
+                    <div class="rating-content">
+                        <div class="rating-left">
+                            <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
+                            <strong>0/5</strong>
+                        </div>
+                        <span class="rating-right text-gray">0개 고객기준</span>
+                    </div>
+                    <div class="list-label-tag">
+                        <div class="label-tag-item">
+                            <img class="square" src="/data/code/1729571645_fb53d1d73b0b13dcf6c2.png" alt="청결">
+                            <div class="label-tag-item-text">
+                                <strong>청결</strong>
+                                <p><strong>0</strong> 최고좋음</p>
+                            </div>
+                        </div>
+                        <div class="label-tag-item">
+                            <img class="square" src="/data/code/1729571657_b1cb8c4fb89a788c1351.png" alt="시설">
+                            <div class="label-tag-item-text">
+                                <strong>시설</strong>
+                                <p><strong>0</strong> 최고좋음</p>
+                            </div>
+                        </div>
+                        <div class="label-tag-item">
+                            <img class="square" src="/data/code/1729571664_f42ea530f35c89161075.png" alt="위치">
+                            <div class="label-tag-item-text">
+                                <strong>위치</strong>
+                                <p><strong>0</strong> 최고좋음</p>
+                            </div>
+                        </div>
+                        <div class="label-tag-item">
+                            <img class="square" src="/data/code/1729571671_ae94a9dbd753c419c162.png" alt="직원친절도">
+                            <div class="label-tag-item-text">
+                                <strong>직원친절도</strong>
+                                <p><strong>0</strong> 최고좋음</p>
+                            </div>
+                        </div>
+                        <div class="label-tag-item">
+                            <img class="square" src="/data/code/1729571681_6b866f4a413112dac498.png" alt="가성비">
+                            <div class="label-tag-item-text">
+                                <strong>가성비</strong>
+                                <p><strong>0</strong> 최고좋음</p>
+                            </div>
+                        </div>
+                        <div class="label-tag-item">
+                            <img class="square" src="/data/code/1729571686_6eb5cc9b65925faeb2d7.png" alt="편안함">
+                            <div class="label-tag-item-text">
+                                <strong>편안함</strong>
+                                <p><strong>0</strong> 최고좋음</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-list-flex">
+                        <div class="card-list-recommemded">
+                        </div>
+                    </div>
 
-                        <div class="item_option">
-                            <!-- opt_list -->
-                            <div class="opt_list">
-                                <strong class="label">옵션선택</strong>
+                </div>
+                <div class="section7">
+                    <div class="d_flex justify_content_end">
+                        <h1 class="title-sec7">다른 추천 호텔도 확인해 보세요 : )</h1>
+                        <div class="swiper_product_list_pagination_ swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 6"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 7"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 8"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 9"></span></div>
+                    </div>
+                    <div class="sub_tour_section7_product_list swiper swiper_product_list_ swiper-initialized swiper-horizontal swiper-backface-hidden">
+                        <div class="swiper-wrapper" id="swiper-wrapper-c2d811557361007f3" aria-live="polite">
+                            <a href="/product-hotel/hotel-detail/1903" class="sub_tour_section7_product_item swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" data-swiper-slide-index="0" style="width: 292.5px; margin-right: 10px;">
 
-                                <div class="opt_select_wrap">
-                                    <!-- opt_select -->
-                                    <div class="opt_select disabled">
-                                        <!--button type="button" class="now_txt "><em>선택</em> <i></i></button-->
-                                        <select name="moption" id="moption" onchange="sel_moption(this.value);">
-                                            <option value="">선택</option>
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729148402_57621970b7c154b4133b.png" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    앤린 브라운초코TEST </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    2,490,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1904" class="sub_tour_section7_product_item swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" data-swiper-slide-index="1" style="width: 292.5px; margin-right: 10px;">
 
-                                            1 <option value="3">1111</option>
-                                        </select>
-                                        <!--li>
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729149866_75b2d3c7243db130bc83.png" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    앤린 브라운초코dcxf </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    2,490,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1906" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="3 / 9" data-swiper-slide-index="2" style="width: 292.5px; margin-right: 10px;">
+
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729155757_13e9d124be865ed9c3f1.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    Le Resort and Villas </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    250,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1907" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="4 / 9" data-swiper-slide-index="3" style="width: 292.5px; margin-right: 10px;">
+
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729156828_c7ab80490d62feae7cfc.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    Phuket Meet Holiday Hotel 普吉岛相遇花园度假酒店 </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    180,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1908" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="5 / 9" data-swiper-slide-index="4" style="width: 292.5px; margin-right: 10px;">
+
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729216984_38c590485764c8393d9f.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    두짓타니 방콕 </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    215,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1909" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="6 / 9" data-swiper-slide-index="5" style="width: 292.5px; margin-right: 10px;">
+
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729218390_4e294aa87b7121d33db1.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    아난타라 시암 방콕 호텔 </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">4.5 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    235,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1910" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="7 / 9" data-swiper-slide-index="6" style="width: 292.5px; margin-right: 10px;">
+
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729236201_c186b2b44a7bc9843938.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    The Fig Lobby </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    160,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1911" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="8 / 9" data-swiper-slide-index="7" style="width: 292.5px; margin-right: 10px;">
+
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729237315_8e77976ccb66ee6de3d6.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    르 드텔 방콕 </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    120,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                            <a href="/product-hotel/hotel-detail/1912" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="9 / 9" data-swiper-slide-index="8" style="width: 292.5px; margin-right: 10px;">
+
+                                <div class="img_box img_box_12">
+                                    <img src="/data/hotel/1729498392_26fc8b1964767785461b.png" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
+                                </div>
+                                <div class="prd_keywords">
+                                    <span class="prd_keywords_cus_span">
+                                        호텔
+                                    </span>
+                                </div>
+                                <div class="prd_name">
+                                    테스트 상품 </div>
+                                <div class="prd_info">
+                                    <div class="prd_info__left">
+                                        <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
+                                        <span class="star_avg">0 </span>
+                                    </div>
+                                    <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                                    <div class="prd_info__right">
+                                        <span class="prd_info__right__ttl">생생리뷰</span>
+                                        <span class="new_review_cnt">(0)</span>
+                                    </div>
+                                </div>
+                                <div class="prd_price_ko">
+                                    180,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
+                                </div>
+                            </a>
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="vertical-line"></div>
+
+            <div class="_wrap-payment">
+                <div class="price-right-c">
+                    <div class="view_nav" id="sticky" style="position: sticky; top: 30px;">
+                        <div class="scroll_box">
+
+                            <div class="cho_nav">
+                                <p class="date_label">
+                                    <i></i> <span>출발일 <span id="select_date">2024-10-30</span></span>
+                                </p>
+
+                                <p class="label item_label">예약인원을 확인해주세요.</p>
+
+                                <ul class="select_peo">
+                                    <li class="flex_b_c cus-count-input">
+                                        <div class="payment">
+                                            <p class="ped_label">성인 </p>
+                                            <p class="money adult">
+                                                <span id="adult_msg">담당자에게 문의해주세요</span> <!-- <strong>0</strong> 원 -->
+                                            </p>
+                                        </div>
+                                        <div class="opt_count_box count_box flex__c">
+                                            <button type="button" class="minus_btn" id="minusAdult"></button>
+                                            <input type="text" class="input-qty" name="qty" id="adultQty" value="2" readonly="">
+                                            <button type="button" class="plus_btn" id="addAdult"></button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="item_option">
+                                <!-- opt_list -->
+                                <div class="opt_list">
+                                    <strong class="label">옵션선택</strong>
+
+                                    <div class="opt_select_wrap">
+                                        <!-- opt_select -->
+                                        <div class="opt_select disabled">
+                                            <!--button type="button" class="now_txt "><em>선택</em> <i></i></button-->
+                                            <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                                <option value="">선택</option>
+
+                                                1 <option value="3">1111</option>
+                                            </select>
+                                            <!--li>
                                   <button type="button" class="view_txt">[멜버른] 툴라마린 공항 고속버스 시내이동 서비스 예약 (편도/왕복 티켓)</button>
                                 </li>
                                 <li>
@@ -587,15 +1119,15 @@
                                   <button type="button" class="view_txt">[호주/골드코스트] 파라다이스 컨트리팜 입장권 티켓</button>
                                 </li-->
 
-                                    </div>
-                                    <!-- // opt_select // -->
-                                    <!-- opt_select -->
-                                    <div class="opt_select disabled sel_option" id="sel_option">
-                                        <!--button type="button" class="now_txt"><em>선택</em> <i></i></button-->
-                                        <select name="option" id="option" onchange="sel_option(this.value);">";
-                                            <option value="">옵션 선택</option>
+                                        </div>
+                                        <!-- // opt_select // -->
+                                        <!-- opt_select -->
+                                        <div class="opt_select disabled sel_option" id="sel_option">
+                                            <!--button type="button" class="now_txt"><em>선택</em> <i></i></button-->
+                                            <select name="option" id="option" onchange="sel_option(this.value);">";
+                                                <option value="">옵션 선택</option>
 
-                                            <!--ul class="scroll_box" id="sel_option">
+                                                <!--ul class="scroll_box" id="sel_option">
                                       li>
                                         <button type="button">
                                           <div class="payment">
@@ -613,15 +1145,15 @@
                                         </button>
                                       </li
                                     </ul-->
-                                        </select>
+                                            </select>
+                                        </div>
+                                        <!-- // opt_select // -->
                                     </div>
-                                    <!-- // opt_select // -->
-                                </div>
 
 
-                                <!-- opt_result_wrap -->
-                                <div class="opt_result_wrap option_item" id="option_item">
-                                    <!--div class="opt_result_box">
+                                    <!-- opt_result_wrap -->
+                                    <div class="opt_result_wrap option_item" id="option_item">
+                                        <!--div class="opt_result_box">
                                   <div class="flex_b">
                                   <div class="opt_name">선택2 - [시드니] 호주 블루마운틴 + 페더데일 동물원 일일투어 # 킹스테이블랜드 성인 (만 12세 이상)</div>
                                     <button type="button" class="opt_del_btn"></button>
@@ -633,535 +1165,56 @@
                                   </div>
                                   <div class="opt_total_price"><strong>68,900</strong>원</div>
                                 </div-->
+                                    </div>
+                                    <!-- //opt_result_wrap -->
+
                                 </div>
-                                <!-- //opt_result_wrap -->
-
+                                <!-- // opt_list -->
                             </div>
-                            <!-- // opt_list -->
                         </div>
-                    </div>
 
 
 
-                    <div class="total_paymemt payment">
-                        <!--p class="ped_label">총 예약금액</p-->
-                        <p class="money"><span style="margin-right:50px;"><strong>합계</strong></span><strong><span id="total_sum" class="total_sum">0</span></strong> 원 </p>
-                    </div>
-                    <h3 class="title-r label">약관동의</h3>
-                    <div class="item-info-check-first">
-                        <span>전체동의</span>
-                        <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
-                    </div>
-                    <div class="item-info-check">
-                        <span>이용약관 동의(필수)</span>
-                        <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
-                    </div>
-                    <div class="item-info-check">
-                        <span>개인정보 처리방침(필수)</span>
-                        <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
-                    </div>
-                    <div class="item-info-check">
-                        <span>개인정보 제3자 제공 및 국외 이전 동의(필수)
-                        </span>
-                        <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
-                    </div>
-                    <div class="item-info-check">
-                        <span>여행안전수칙 동의(필수)</span>
-                        <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
-                    </div>
-                    <div class="nav_btn_wrap">
-                        <a href="/product-spa/product-booking/8386"><button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button></a>
-                        <div class="flex">
-                            <button type="button" class="btn-default" onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
-                            </button>
+                        <div class="total_paymemt payment">
+                            <!--p class="ped_label">총 예약금액</p-->
+                            <p class="money"><span style="margin-right:50px;"><strong>합계</strong></span><strong><span id="total_sum" class="total_sum">0</span> 원</strong> </p>
+                        </div>
+                        <h3 class="title-r label">약관동의</h3>
+                        <div class="item-info-check-first">
+                            <span>전체동의</span>
+                            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                        </div>
+                        <div class="item-info-check">
+                            <span>이용약관 동의(필수)</span>
+                            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                        </div>
+                        <div class="item-info-check">
+                            <span>개인정보 처리방침(필수)</span>
+                            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                        </div>
+                        <div class="item-info-check">
+                            <span>개인정보 제3자 제공 및 국외 이전 동의(필수)
+                            </span>
+                            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                        </div>
+                        <div class="item-info-check">
+                            <span>여행안전수칙 동의(필수)</span>
+                            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                        </div>
+                        <div class="nav_btn_wrap">
+                            <a href="/product-spa/product-booking/8386"><button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button></a>
+                            <div class="flex">
+                                <button type="button" class="btn-default" onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
+                                </button>
 
-                            <!-- delete  -->
-                            <!-- <button type="button" class="btn-default wish_btn "
+                                <!-- delete  -->
+                                <!-- <button type="button" class="btn-default wish_btn "
                         onclick="javascript:wish_it('1219')"><i></i></button> -->
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="section4" id="section4">
-            <h2 class="title-sec4">시설 &amp; 서비스</h2>
-            <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> test to </div>
-                    <ul class="tag-item-list">
-                        <li>test con</li>
-                    </ul>
-                </div>
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> 보안 </div>
-                    <ul class="tag-item-list">
-                        <li>연기 경보기</li>
-                        <li>보안 [24시간]</li>
-                        <li>안전/보안 기능</li>
-                        <li>프런트데스크 [24시간]</li>
-                        <li>소화기</li>
-                        <li>체크인[24시간]</li>
-                        <li>건물 외부 CCTV</li>
-                        <li>공용 구역 CCTV</li>
-                    </ul>
-                </div>
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> 서비스 및 편의 시설 </div>
-                    <ul class="tag-item-list">
-                        <li>회의/연회 시설</li>
-                        <li>송장 제공</li>
-                        <li>공공장소 난방</li>
-                        <li>엘리베이터</li>
-                        <li>매일 하우스키핑</li>
-                        <li>공공장소 에어컨</li>
-                    </ul>
-                </div>
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> 할 일, 휴식 방법 </div>
-                    <ul class="tag-item-list">
-                        <li>수영장 [야외]</li>
-                        <li>전망이 좋은 풀</li>
-                        <li>개인 해변</li>
-                        <li>야외 레크리에이션 기능</li>
-                        <li>미니 골프장</li>
-                        <li>온수 욕조</li>
-                        <li>정원</li>
-                    </ul>
-                </div>
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> 아이들을 위해 </div>
-                    <ul class="tag-item-list">
-                        <li>수영장 [어린이]</li>
-                        <li>패밀리 룸</li>
-                    </ul>
-                </div>
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> 식사, 음료 및 간식 </div>
-                    <ul class="tag-item-list">
-                        <li>자판기</li>
-                        <li>풀사이드 바</li>
-                        <li>커피 샵</li>
-                        <li>바베큐 시설</li>
-                    </ul>
-                </div>
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> 청결과 안전 </div>
-                    <ul class="tag-item-list">
-                        <li>구급 상자</li>
-                    </ul>
-                </div>
-                <div class="tag-container-item-sec4" style="width: calc((100% - 120px)/4); padding-right: 70px">
-                    <div class="tag-item-title"> 인터넷 엑세스 </div>
-                    <ul class="tag-item-list">
-                        <li>공공장소에서의 Wi-Fi</li>
-                        <li>인터넷</li>
-                        <li>모든 객실, 무료 Wi-Fi</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="section5" id="section5">
-            <h1 class="title-sec5">호텔정책</h1>
-            <div class="content-container-sec5">
-                <div class="content-item">
-                    <span class="label">체크인 &amp;<br class="only_mo">
-                        체크아웃 시간
-                    </span>
-                    <div class="description">
-                        <p>체크인 : 14:00 이전 1<br>
-                            체크아웃 : 12:00 이후 1<br>
-                            프런트 데스크 운영시간 : 연중무휴 24시간 </p>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <span class="label">
-                        어린이 정책
-                    </span>
-                    <div class="description">
-                        <p>본 객실 유행은 어린이 투숙이 불가합니다.</p>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <span class="label">
-                        유아용 침대 및 엑스트라 베드
-                    </span>
-                    <div class="description">
-                        <p>객실 유형에 따라 침대 추가 및 유아용 침대 추가 정책이 다를 수 있습니다. 자세한 사항은 객실유형 정보를 참조하세요.</p>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <span class="label">
-                        조식
-                    </span>
-                    <div class="description">
-                        <p>제공방식 : 뷔페<br>
-                            운영시간 : [월요일-금요일] 06:00~10:00 운영(토요일 ~일요일) 06:00~11:00</p>
-                        <div class="table-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>나이</th>
-                                        <th>요금</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>성인</td>
-                                        <td>1인당 THB 550.00(약 20,950원)</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <span class="label">
-                        보증금 규정
-                    </span>
-                    <div class="description">
-                        <p> 숙소 부과 보증금 없음 </p>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <span class="label">
-                        반려동물
-                    </span>
-                    <div class="description">
-                        <p> 반려동물 동반 불가 </p>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <span class="label">
-                        연령 제한
-                    </span>
-                    <div class="description">
-                        <p> 체크인하는 대표 투숙객의연령은 반드시 18세 이상이어야 합니다. </p>
-                    </div>
-                </div>
-                <div class="content-item">
-                    <span class="label">
-                        흡연 정책
-                    </span>
-                    <div class="description">
-                        <p> 숙소에서 흡연이 불가능합니다. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section6" id="section6">
-            <h2 class="title-sec6"><span>생생리뷰</span>(516)</h2>
-            <div class="rating-content">
-                <div class="rating-left">
-                    <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
-                    <strong>0/5</strong>
-                </div>
-                <span class="rating-right text-gray">0개 고객기준</span>
-            </div>
-            <div class="list-label-tag">
-                <div class="label-tag-item">
-                    <img class="square" src="/data/code/1729571645_fb53d1d73b0b13dcf6c2.png" alt="청결">
-                    <div class="label-tag-item-text">
-                        <strong>청결</strong>
-                        <p><strong>0</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/data/code/1729571657_b1cb8c4fb89a788c1351.png" alt="시설">
-                    <div class="label-tag-item-text">
-                        <strong>시설</strong>
-                        <p><strong>0</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/data/code/1729571664_f42ea530f35c89161075.png" alt="위치">
-                    <div class="label-tag-item-text">
-                        <strong>위치</strong>
-                        <p><strong>0</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/data/code/1729571671_ae94a9dbd753c419c162.png" alt="직원친절도">
-                    <div class="label-tag-item-text">
-                        <strong>직원친절도</strong>
-                        <p><strong>0</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/data/code/1729571681_6b866f4a413112dac498.png" alt="가성비">
-                    <div class="label-tag-item-text">
-                        <strong>가성비</strong>
-                        <p><strong>0</strong> 최고좋음</p>
-                    </div>
-                </div>
-                <div class="label-tag-item">
-                    <img class="square" src="/data/code/1729571686_6eb5cc9b65925faeb2d7.png" alt="편안함">
-                    <div class="label-tag-item-text">
-                        <strong>편안함</strong>
-                        <p><strong>0</strong> 최고좋음</p>
-                    </div>
-                </div>
-            </div>
-            <h2 class="sub-title-sec6">BEST 생생리뷰</h2>
-            <div class="card-list-flex">
-                <div class="card-list-recommemded">
-                </div>
-            </div>
-
-        </div>
-        <div class="section7">
-            <div class="d_flex justify_content_end">
-                <h1 class="title-sec7">다른 추천 호텔도 확인해 보세요 : )</h1>
-                <div class="swiper_product_list_pagination_ swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 6"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 7"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 8"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 9"></span></div>
-            </div>
-            <div class="sub_tour_section7_product_list swiper swiper_product_list_ swiper-initialized swiper-horizontal swiper-backface-hidden">
-                <div class="swiper-wrapper" id="swiper-wrapper-c2d811557361007f3" aria-live="polite">
-                    <a href="/product-hotel/hotel-detail/1903" class="sub_tour_section7_product_item swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" data-swiper-slide-index="0" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729148402_57621970b7c154b4133b.png" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            앤린 브라운초코TEST </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            2,490,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1904" class="sub_tour_section7_product_item swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" data-swiper-slide-index="1" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729149866_75b2d3c7243db130bc83.png" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            앤린 브라운초코dcxf </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            2,490,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1906" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="3 / 9" data-swiper-slide-index="2" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729155757_13e9d124be865ed9c3f1.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            Le Resort and Villas </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            250,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1907" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="4 / 9" data-swiper-slide-index="3" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729156828_c7ab80490d62feae7cfc.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            Phuket Meet Holiday Hotel 普吉岛相遇花园度假酒店 </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            180,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1908" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="5 / 9" data-swiper-slide-index="4" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729216984_38c590485764c8393d9f.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            두짓타니 방콕 </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            215,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1909" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="6 / 9" data-swiper-slide-index="5" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729218390_4e294aa87b7121d33db1.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            아난타라 시암 방콕 호텔 </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">4.5 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            235,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1910" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="7 / 9" data-swiper-slide-index="6" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729236201_c186b2b44a7bc9843938.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            The Fig Lobby </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            160,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1911" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="8 / 9" data-swiper-slide-index="7" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729237315_8e77976ccb66ee6de3d6.jpg" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            르 드텔 방콕 </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            120,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                    <a href="/product-hotel/hotel-detail/1912" class="sub_tour_section7_product_item swiper-slide" role="group" aria-label="9 / 9" data-swiper-slide-index="8" style="width: 292.5px; margin-right: 10px;">
-
-                        <div class="img_box img_box_12">
-                            <img src="/data/hotel/1729498392_26fc8b1964767785461b.png" alt="main" onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                        </div>
-                        <div class="prd_keywords">
-                            <span class="prd_keywords_cus_span">
-                                호텔
-                            </span>
-                        </div>
-                        <div class="prd_name">
-                            테스트 상품 </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                <span class="star_avg">0 </span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            180,000 <span>원~</span> <span class="prd_price_thai">6,000 <span>바트~</span></span>
-                        </div>
-                    </a>
-                </div>
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
         </div>
     </div>
@@ -1421,7 +1474,7 @@
 
         minusButton.addEventListener('click', () => {
             let currentValue = parseInt(inputField.value, 10);
-            if (currentValue > 0) { 
+            if (currentValue > 0) {
                 inputField.value = currentValue - 1;
             }
         });
