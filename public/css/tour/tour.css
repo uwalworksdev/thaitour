@@ -564,6 +564,10 @@
     position: relative;
 }
 
+.sub_tour_section7_product_item.spe {
+    width: 100%;
+}
+
 .ico_special_prd {
     position: absolute;
     top: 20px;
