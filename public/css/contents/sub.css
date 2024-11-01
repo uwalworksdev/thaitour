@@ -3609,7 +3609,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .golf-custom-page .banner-middle-tour {
-  background-image: url(/images/sub/golf_img.png);
+  background-image: url(/images/sub/banner__golf01.png);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -4911,7 +4911,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .tour-main-page .banner_section_main_page .banner_section_image {
-  background: url(/uploads/sub/banner_tour_1.png) no-repeat center;
+  background: url(/images/sub/banner__tour01.png) no-repeat center;
   background-size: cover;
   height: 150px;
   margin-top: 100px;
