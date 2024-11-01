@@ -21,7 +21,9 @@
 	
 	<form name=frm action="<?= route_to('admin._tours.write_info_ok') ?>"  method=post >
 	<input type=hidden name="product_idx" value='<?=$product_idx?>'> 
-	<input type=hidden name="info_idx" value='<?=$info_idx?>'> 
+	<?php foreach ($groupedData as $info_idx => $data): ?>
+		<input type="hidden" name="info_idx[]" value="<?= $info_idx ?>">
+	<?php endforeach; ?>
 	<input type=hidden name="s_product_code_1" value='<?=$s_product_code_1?>'> 
 	<input type=hidden name="s_product_code_2" value='<?=$s_product_code_2?>'> 
 	<input type=hidden name="s_product_code_3" value='<?=$s_product_code_3?>'> 
@@ -44,114 +46,76 @@
 									<a href="javascript:remove_table();" class="btn btn-primary">삭제</a>
 								</div>
 								<?php if ($productTourInfo): ?>
-									<?php foreach ($productTourInfo as $info): ?>
-										<div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
-											<table style="width: 100%">
-												<colgroup>
-													<col width="35%">
-													<col width="*">
-													<col width="15%">
-												</colgroup>
-												<thead>
-													<tr>
-														<th>기간</th>
-														<th>출발요일</th>
-														<th></th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<input type="text" readonly class="datepicker" name="o_sdate[<?= $infoIndex ?>]" style="width: 150px; cursor: pointer;" 
-																value="<?= substr($info['info']['o_sdate'],0,10)?>" id=""> ~
-															<input type="text" readonly class="datepicker" name="o_edate[<?= $infoIndex ?>]" style="width: 150px; cursor: pointer;" 
-																value="<?= substr($info['info']['o_edate'],0,10)?>" id="">
-														</td>
-														<td>
-															<input type="checkbox" name="yoil_0[<?= $infoIndex ?>]" value="1" class="yoil" 
-																<?= isset($info['info']['yoil_0']) && $info['info']['yoil_0'] ? 'checked' : '' ?>>
-																일요일&nbsp;&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_1[<?= $infoIndex ?>]" value="1" class="yoil" 
-																<?= isset($info['info']['yoil_1']) && $info['info']['yoil_1'] ? 'checked' : '' ?>>
-																월요일&nbsp;&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_2[<?= $infoIndex ?>]" value="1" class="yoil" 
-																<?= isset($info['info']['yoil_2']) && $info['info']['yoil_2'] ? 'checked' : '' ?>>
-																화요일&nbsp;&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_3[<?= $infoIndex ?>]" value="1" class="yoil" 
-																<?= isset($info['info']['yoil_3']) && $info['info']['yoil_3'] ? 'checked' : '' ?>>
-																수요일&nbsp;&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_4[<?= $infoIndex ?>]" value="1" class="yoil" 
-																<?= isset($info['info']['yoil_4']) && $info['info']['yoil_4'] ? 'checked' : '' ?>>
-																목요일&nbsp;&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_5[<?= $infoIndex ?>]" value="1" class="yoil" 
-																<?= isset($info['info']['yoil_5']) && $info['info']['yoil_5'] ? 'checked' : '' ?>>
-																금요일&nbsp;&nbsp;&nbsp;
-															<input type="checkbox" name="yoil_6[<?= $infoIndex ?>]" value="1" class="yoil" 
-																<?= isset($info['info']['yoil_6']) && $info['info']['yoil_6'] ? 'checked' : '' ?>>
-																토요일&nbsp;&nbsp;&nbsp;
-														</td>
+                                    <?php foreach ($productTourInfo as $info): ?>
+                                        <div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
+                                            <table style="width: 100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" readonly class="datepicker" name="o_sdate[<?= $info['info']['info_idx'] ?>]" style="width: 150px; cursor: pointer;" 
+                                                                value="<?= substr($info['info']['o_sdate'], 0, 10) ?>"> ~
+                                                            <input type="text" readonly class="datepicker" name="o_edate[<?= $info['info']['info_idx'] ?>]" style="width: 150px; cursor: pointer;" 
+                                                                value="<?= substr($info['info']['o_edate'], 0, 10) ?>">
+                                                        </td>
+                                                        <td>
+                                                            <input type="checkbox" name="yoil_0[<?= $info['info']['info_idx'] ?>]" class="yoil" 
+                                                                <?= $info['info']['yoil_0'] == 'Y' ? 'checked' : '' ?>> 일요일
+                                                            <input type="checkbox" name="yoil_1[<?= $info['info']['info_idx'] ?>]" class="yoil" 
+                                                                <?= $info['info']['yoil_1'] == 'Y' ? 'checked' : '' ?>> 월요일
+                                                            <input type="checkbox" name="yoil_2[<?= $info['info']['info_idx'] ?>]" class="yoil" 
+                                                                <?= $info['info']['yoil_2'] == 'Y' ? 'checked' : '' ?>> 화요일
+                                                            <input type="checkbox" name="yoil_3[<?= $info['info']['info_idx'] ?>]" class="yoil" 
+                                                                <?= $info['info']['yoil_3'] == 'Y' ? 'checked' : '' ?>> 수요일
+                                                            <input type="checkbox" name="yoil_4[<?= $info['info']['info_idx'] ?>]" class="yoil" 
+                                                                <?= $info['info']['yoil_4'] == 'Y' ? 'checked' : '' ?>> 목요일
+                                                            <input type="checkbox" name="yoil_5[<?= $info['info']['info_idx'] ?>]" class="yoil" 
+                                                                <?= $info['info']['yoil_5'] == 'Y' ? 'checked' : '' ?>> 금요일
+                                                            <input type="checkbox" name="yoil_6[<?= $info['info']['info_idx'] ?>]" class="yoil" 
+                                                                <?= $info['info']['yoil_6'] == 'Y' ? 'checked' : '' ?>> 토요일
+                                                        </td>
 														<td>
 															<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
-																<a href="javascript:add_it(0);" class="btn btn-primary">추가</a>
-																<a href="javascript:remove_it(0);" class="btn btn-primary">삭제</a>
+																<a href="javascript:add_tour(<?= $info['info']['info_idx'] ?>);" class="btn btn-primary">추가</a>
+																<a href="javascript:remove_tour(<?= $info['info']['info_idx'] ?>);" class="btn btn-primary">삭제</a>
 															</div>
 														</td>
-													</tr>
-													<tr>
-														<td colspan="3">
-															<table style="width:100%">
-																<thead>
-																	<tr style="height:40px">
-																		<td style="width:*;text-align:center">
-																			상품명
-																		</td>
-																		<td style="width:15%;text-align:center">
-																			성인가격
-																		</td>
-																		<td style="width:15%;text-align:center">
-																			소아가격
-																		</td>
-																		<td style="width:15%;text-align:center">
-																			유아가격
-																		</td>
-																		<td style="width:15%;text-align:center">
-																			판매상태
-																		</td>
-																	</tr>
-																</thead>
-																<tbody class="air_main">
-																	<?php foreach ($info['tours'] as $tour): ?>
-																		<tr class="air_list_1" style="height:40px">
-																			<td style="width:100px;text-align:center">
-																				<input type="hidden" name="tours_idx[<?= $info['info']['info_idx'] ?>][]" class="tours_idx" value="<?= $tour['tours_idx']?>">
-																				<input type="text" name="tours_subject[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tours_subject'] ?>" class="tours_subject input_txt" style="width:100%" />
-																			</td>
-																			<td style="text-align:center">
-																				<input type="text" name="tour_price[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tour_price'] ?>" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
-																			</td>
-																			<td style="text-align:center">
-																				<input type="text" name="tour_price_kids[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tour_price_kids'] ?>" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
-																			</td>
-																			<td style="text-align:center">
-																				<input type="text" name="tour_price_baby[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tour_price_baby'] ?>" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
-																			</td>
-																			<td style="text-align:center">
-																				<select name="status[<?= $info['info']['info_idx'] ?>][]">
-																					<option value="Y" <?= ($tour['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
-																					<option value="N" <?= ($tour['status'] == 'N') ? 'selected' : '' ?>>중지</option>
-																				</select>
-																			</td>
-																		</tr>
-																	<?php endforeach?>
-																</tbody>
-															</table>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									<?php endforeach; ?>
-								<?php else: ?>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <table style="width:100%">
+                                                                <tbody class="air_main" data-info-idx="<?= $info['info']['info_idx'] ?>">
+                                                                    <?php foreach ($info['tours'] as $tour): ?>
+                                                                        <tr class="air_list_1" style="height:40px">
+                                                                            <td>
+                                                                                <input type="hidden" name="tours_idx[<?= $info['info']['info_idx'] ?>][]" class="tours_idx" value="<?= $tour['tours_idx'] ?>">
+                                                                                <input type="text" name="tours_subject[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tours_subject'] ?>" class="tours_subject input_txt" style="width:100%" />
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="tour_price[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tour_price'] ?>" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="tour_price_kids[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tour_price_kids'] ?>" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <input type="text" name="tour_price_baby[<?= $info['info']['info_idx'] ?>][]" value="<?= $tour['tour_price_baby'] ?>" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="status[<?= $info['info']['info_idx'] ?>][]">
+                                                                                    <option value="Y" <?= ($tour['status'] == 'Y') ? 'selected' : '' ?>>판매중</option>
+                                                                                    <option value="N" <?= ($tour['status'] == 'N') ? 'selected' : '' ?>>중지</option>
+                                                                                </select>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php endforeach ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
 									<div class="table_list" data-index="0" style="width: 100%; margin-bottom: 20px;">
 										<table style="width: 100%">
 											<colgroup>
@@ -190,8 +154,8 @@
 													</td>
 													<td>
 														<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
-															<a href="javascript:add_it(0);" class="btn btn-primary">추가</a>
-															<a href="javascript:remove_it(0);" class="btn btn-primary">삭제</a>
+															<a href="javascript:add_tour(0);" class="btn btn-primary">추가</a>
+															<a href="javascript:remove_tour(0);" class="btn btn-primary">삭제</a>
 														</div>
 													</td>
 												</tr>
@@ -275,146 +239,184 @@
 	</span><!-- 인쇄 영역 끝 //--> 
 </div>
 <script>
-		var tableCount = <?= isset($productTourInfo) ? count($productTourInfo) : 0 ?>;
+	var tableCount = <?= isset($productTourInfo) ? count($productTourInfo) : 0 ?>;
 
-		function add_table() {
-			tableCount++;
-			var newTable = `
-				<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
-					<table style="width: 100%">
-						<colgroup>
-							<col width="35%">
-							<col width="*">
-							<col width="15%">
-						</colgroup>
-						<thead>
-							<tr>
-								<th>기간</th>
-								<th>출발요일</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<input type="text" readonly class="datepicker" name="o_sdate[]" style="width: 150px; cursor: pointer;" value=""> ~
-									<input type="text" readonly class="datepicker" name="o_edate[]" style="width: 150px; cursor: pointer;" value="">
-								</td>
-								<td>
-									<input type="checkbox" name="yoil_0[${tableCount}]" value="Y" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_1[${tableCount}]" value="Y" class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_2[${tableCount}]" value="Y" class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_3[${tableCount}]" value="Y" class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_4[${tableCount}]" value="Y" class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_5[${tableCount}]" value="Y" class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
-									<input type="checkbox" name="yoil_6[${tableCount}]" value="Y" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
-								</td>
-								<td>
-									<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
-										<a href="javascript:add_it(${tableCount});" class="btn btn-primary">추가</a>
-										<a href="javascript:remove_it(${tableCount});" class="btn btn-primary">삭제</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="3">
-									<table style="width:100%">
-										<thead>
-											<tr style="height:40px">
-												<td style="width:*;text-align:center">상품명</td>
-												<td style="width:15%;text-align:center">성인가격</td>
-												<td style="width:15%;text-align:center">소아가격</td>
-												<td style="width:15%;text-align:center">유아가격</td>
-												<td style="width:15%;text-align:center">판매상태</td>
-											</tr>
-										</thead>
-										<tbody class="air_main">
-											<tr class="air_list_1" style="height:40px">
-												<td style="width:100px;text-align:center">
-													<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
-													<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" style="width:100%" />
-												</td>
-												<td style="text-align:center">
-													<input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
-												</td>
-												<td style="text-align:center">
-													<input type="text" name="tour_price_kids[${tableCount}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
-												</td>
-												<td style="text-align:center">
-													<input type="text" name="tour_price_baby[${tableCount}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
-												</td>
-												<td style="text-align:center">
-													<select name="status[${tableCount}][]">
-														<option value="Y" selected>판매중</option>
-														<option value="N">중지</option>
-													</select>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			`;
-			$(".table_list:last").after(newTable);
-			$(".datepicker").datepicker();
-		}
+	function add_table() {
+		tableCount++;
+		var newTable = `
+			<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
+				<table style="width: 100%">
+					<colgroup>
+						<col width="35%">
+						<col width="*">
+						<col width="15%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>기간</th>
+							<th>출발요일</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<input type="text" readonly class="datepicker" name="o_sdate[]" style="width: 150px; cursor: pointer;" value=""> ~
+								<input type="text" readonly class="datepicker" name="o_edate[]" style="width: 150px; cursor: pointer;" value="">
+							</td>
+							<td>
+								<input type="checkbox" name="yoil_0[${tableCount}]" value="Y" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_1[${tableCount}]" value="Y" class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_2[${tableCount}]" value="Y" class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_3[${tableCount}]" value="Y" class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_4[${tableCount}]" value="Y" class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_5[${tableCount}]" value="Y" class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
+								<input type="checkbox" name="yoil_6[${tableCount}]" value="Y" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
+							</td>
+							<td>
+								<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
+									<a href="javascript:add_tour(${tableCount});" class="btn btn-primary">추가</a>
+									<a href="javascript:remove_table();" class="btn btn-primary">삭제</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<table style="width:100%">
+									<thead>
+										<tr style="height:40px">
+											<td style="width:*;text-align:center">상품명</td>
+											<td style="width:15%;text-align:center">성인가격</td>
+											<td style="width:15%;text-align:center">소아가격</td>
+											<td style="width:15%;text-align:center">유아가격</td>
+											<td style="width:15%;text-align:center">판매상태</td>
+										</tr>
+									</thead>
+									<tbody class="air_main">
+										<tr class="air_list_1" style="height:40px">
+											<td style="width:100px;text-align:center">
+												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
+												<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" style="width:100%" />
+											</td>
+											<td style="text-align:center">
+												<input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+											</td>
+											<td style="text-align:center">
+												<input type="text" name="tour_price_kids[${tableCount}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+											</td>
+											<td style="text-align:center">
+												<input type="text" name="tour_price_baby[${tableCount}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+											</td>
+											<td style="text-align:center">
+												<select name="status[${tableCount}][]">
+													<option value="Y" selected>판매중</option>
+													<option value="N">중지</option>
+												</select>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		`;
+		$(".table_list:last").after(newTable);
+		$(".datepicker").datepicker();
+	}
 
-		function remove_table() {
-			if ($(".table_list").length > 1) {
-				$(".table_list").last().remove();
-			}
+	function remove_table() {
+		if ($(".table_list").length > 1) {
+			$(".table_list").last().remove();
 		}
+	}
 
-		function add_it(tableListIndex) {
-			var targetTable = $(".table_list[data-index='" + tableListIndex + "']").find(".air_main");
-			var newRow = `
-				<tr class="air_list_1" style="height:40px">
-					<td style="width:100px;text-align:center">
-						<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="">
-						<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" style="width:100%" />
-					</td>
-					<td style="text-align:center">
-						<input type="text" name="tour_price[${tableListIndex}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
-					</td>
-					<td style="text-align:center">
-						<input type="text" name="tour_price_kids[${tableListIndex}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
-					</td>
-					<td style="text-align:center">
-						<input type="text" name="tour_price_baby[${tableListIndex}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
-					</td>
-					<td style="text-align:center">
-						<select name="status[${tableListIndex}][]">
-							<option value="Y" selected>판매중</option>
-							<option value="N">중지</option>
-						</select>
-					</td>
-				</tr>
-			`;
-			targetTable.append(newRow);
-		}
+	function add_tour(tableListIndex) {
+		var targetTable = $(".table_list[data-index='" + tableListIndex + "']").find(".air_main");
+		var newRow = `
+			<tr class="air_list_1" style="height:40px">
+				<td style="width:100px;text-align:center">
+					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="">
+					<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" style="width:100%" />
+				</td>
+				<td style="text-align:center">
+					<input type="text" name="tour_price[${tableListIndex}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+				</td>
+				<td style="text-align:center">
+					<input type="text" name="tour_price_kids[${tableListIndex}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+				</td>
+				<td style="text-align:center">
+					<input type="text" name="tour_price_baby[${tableListIndex}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+				</td>
+				<td style="text-align:center">
+					<select name="status[${tableListIndex}][]">
+						<option value="Y" selected>판매중</option>
+						<option value="N">중지</option>
+					</select>
+				</td>
+			</tr>
+		`;
+		targetTable.append(newRow);
+	}
 
-		function remove_it(tableListIndex) {
-			var targetTable = $(".table_list[data-index='" + tableListIndex + "']").find(".air_main");
-			if (targetTable.find(".air_list_1").length > 1) {
-				targetTable.find(".air_list_1").last().remove();
-			}
+	function remove_tour(tableListIndex) {
+		var targetTable = $(".table_list[data-index='" + tableListIndex + "']").find(".air_main");
+		if (targetTable.find(".air_list_1").length > 1) {
+			targetTable.find(".air_list_1").last().remove();
+		} else {
+			alert("Không thể xóa hàng cuối cùng!");
 		}
+	}
+
+	function add_tour(infoIdx) {
+		var targetTable = $(".table_list[data-index='0']").find(".air_main[data-info-idx='" + infoIdx + "']");
+		
+		var newRow = `
+			<tr class="air_list_1" style="height:40px">
+				<td>
+					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="">
+					<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" style="width:100%" />
+				</td>
+				<td>
+					<input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+				</td>
+				<td>
+					<input type="text" name="tour_price_kids[${infoIdx}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+				</td>
+				<td>
+					<input type="text" name="tour_price_baby[${infoIdx}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+				</td>
+				<td>
+					<select name="status[${infoIdx}][]">
+						<option value="Y" selected>판매중</option>
+						<option value="N">중지</option>
+					</select>
+				</td>
+			</tr>
+		`;
+		
+		targetTable.append(newRow);
+	}
+
+	function remove_tour(infoIdx) {
+		var targetTable = $(".table_list[data-index='0']").find(".air_main[data-info-idx='" + infoIdx + "']");
+		var rows = targetTable.find('tr');
+
+		if (rows.length > 1) {
+			rows.last().remove();
+		} else {
+			alert("Không thể xóa hàng cuối cùng!");
+		}
+	}
+
 
 		$(window).load(function(){
 			$("#datepicker1").datepicker("setDate", '<?=$s_date?>');
 			$("#datepicker2").datepicker("setDate", '<?=$e_date?>');
 		});
 
-
-
-				$(window).load(function(){
-					$("#datepicker1").datepicker("setDate", '<?=$s_date?>');
-					$("#datepicker2").datepicker("setDate", '<?=$e_date?>');
-
-				}); 				
+			
 	</script>	
 	<script>
 		function send_it()

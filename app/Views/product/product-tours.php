@@ -581,6 +581,7 @@
 
     <script>
         function handleLoadRecommendedProductStep2(code_no) {
+            pageMD = 1;
             $.ajax({
                 type: "GET",
                 url: "/product/get-step2-by-code-no",
@@ -605,6 +606,14 @@
                 dataType: "json",
                 success: function (data) {
                     $("#product_list_recommended").html(data.html);
+                    totalPageMD = Number(data.nPage);
+                    $(".prd_list_pagination__btn__current").text(pageMD);
+
+                    if (totalPageMD > 1) {
+                        $('#product_list_recommended_pagination').show();
+                    } else {
+                        $('#product_list_recommended_pagination').hide();
+                    }
                 }
             });
         }
@@ -627,30 +636,31 @@
     let totalPageMD = <?= $productStep2ByRecommended['nPage'] ?? 1 ?>;
 
     function handleClickPaginationMD(code_no) {
-        pageMD += 1;
-        console.log(pageMD);
-        
-        $.ajax({
-            type: "GET",
-            url: "/product/get-by-sub-code-tour",
-            data: {
-                page: pageMD,
-                code_no: code_no
-            },
-            dataType: "json",
-            success: function(data) {
-                console.log(data);
-                totalPageMD = Number(data.nPage); 
-                $("#product_list_recommended").append(data.html);
-                $(".prd_list_pagination__btn__current").text(pageMD);
-                
-                if (pageMD >= totalPageMD) {
-                    $('#product_list_recommended_pagination').hide();
-                } else {
-                    $('#product_list_recommended_pagination').show();
+        if (pageMD < totalPageMD) {
+            pageMD += 1;
+            
+            $.ajax({
+                type: "GET",
+                url: "/product/get-by-sub-code-tour",
+                data: {
+                    page: pageMD,
+                    code_no: code_no
+                },
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    totalPageMD = Number(data.nPage); 
+                    $("#product_list_recommended").append(data.html);
+                    $(".prd_list_pagination__btn__current").text(pageMD);
+                    
+                    if (pageMD >= totalPageMD) {
+                        $('#product_list_recommended_pagination').hide();
+                    } else {
+                        $('#product_list_recommended_pagination').show();
+                    }
                 }
-            }
-        })
+            })
+        }
     }
     </script>
     <script>

@@ -11,6 +11,10 @@ class AdminTourController extends BaseController
     protected $tourProducts;
     protected $infoProducts;
     protected $productModel;
+    protected $dayModel;
+    protected $subSchedule;
+    protected $mainSchedule;
+    protected $code;
 
 
     public function __construct()
@@ -21,6 +25,10 @@ class AdminTourController extends BaseController
         $this->tourProducts = model("ProductTourModel");
         $this->infoProducts = model("TourInfoModel");
         $this->productModel = model("ProductModel");
+        $this->dayModel = model("DayModel");
+        $this->subSchedule = model("SubScheduleModel");
+        $this->mainSchedule = model("MainScheduleModel");
+        $this->code = model("Code");
     }
 
     public function write_ok()
@@ -475,11 +483,11 @@ class AdminTourController extends BaseController
     {
         $productIdx = $this->request->getPost('product_idx');
         $o_sdate = $this->request->getPost('o_sdate');
-        $o_edate = $this->request->getPost('o_edate'); 
-        $tours_subject = $this->request->getPost('tours_subject'); 
-        $tour_price = $this->request->getPost('tour_price'); 
-        $tour_price_kids = $this->request->getPost('tour_price_kids'); 
-        $tour_price_baby = $this->request->getPost('tour_price_baby'); 
+        $o_edate = $this->request->getPost('o_edate');
+        $tours_subject = $this->request->getPost('tours_subject');
+        $tour_price = $this->request->getPost('tour_price');
+        $tour_price_kids = $this->request->getPost('tour_price_kids');
+        $tour_price_baby = $this->request->getPost('tour_price_baby');
         $status = $this->request->getPost('status');
         
         $yoil_0 = $this->request->getPost('yoil_0');
@@ -489,7 +497,7 @@ class AdminTourController extends BaseController
         $yoil_4 = $this->request->getPost('yoil_4');
         $yoil_5 = $this->request->getPost('yoil_5');
         $yoil_6 = $this->request->getPost('yoil_6');
-    
+        
         $info_ids = [];
         foreach ($o_sdate as $key => $start_date) {
             $infoIndex = $this->infoProducts->where('product_idx', $productIdx)
@@ -500,13 +508,13 @@ class AdminTourController extends BaseController
                 'product_idx' => $productIdx,
                 'o_sdate' => $start_date,
                 'o_edate' => $o_edate[$key],
-                'yoil_0' => isset($yoil_0) ? 'Y' : 'N',
-                'yoil_1' => isset($yoil_1) ? 'Y' : 'N',
-                'yoil_2' => isset($yoil_2) ? 'Y' : 'N',
-                'yoil_3' => isset($yoil_3) ? 'Y' : 'N',
-                'yoil_4' => isset($yoil_4) ? 'Y' : 'N',
-                'yoil_5' => isset($yoil_5) ? 'Y' : 'N',
-                'yoil_6' => isset($yoil_6) ? 'Y' : 'N',
+                'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
+                'yoil_1' => isset($yoil_1[$key]) ? 'Y' : 'N',
+                'yoil_2' => isset($yoil_2[$key]) ? 'Y' : 'N',
+                'yoil_3' => isset($yoil_3[$key]) ? 'Y' : 'N',
+                'yoil_4' => isset($yoil_4[$key]) ? 'Y' : 'N',
+                'yoil_5' => isset($yoil_5[$key]) ? 'Y' : 'N',
+                'yoil_6' => isset($yoil_6[$key]) ? 'Y' : 'N',
                 'r_date' => date('Y-m-d H:i:s')
             ];
     
@@ -518,31 +526,36 @@ class AdminTourController extends BaseController
                 $info_ids[] = $this->infoProducts->insertID();
             }
         }
-    
+        
         foreach ($info_ids as $index => $info_idx) {
-            foreach ($tours_subject[$index] as $i => $subject) {
-                $tourIndex = $this->tourProducts->where('info_idx', $info_idx)
-                    ->where('tours_subject', $subject)
-                    ->first();
-    
-                $toursData = [
-                    'product_idx' => $productIdx,
-                    'info_idx' => $info_idx,
-                    'tours_subject' => $subject,
-                    'tour_price' => $tour_price[$index][$i],
-                    'tour_price_kids' => $tour_price_kids[$index][$i],
-                    'tour_price_baby' => $tour_price_baby[$index][$i],
-                    'status' => isset($status[$index][$i]) ? $status[$index][$i] : 'Y', 
-                    'r_date' => date('Y-m-d H:i:s')
-                ];
-    
-                if ($tourIndex) {
-                    $this->tourProducts->update($tourIndex['tour_idx'], $toursData);
-                } else {
-                    $this->tourProducts->insert($toursData);
+            if (isset($tours_subject[$index])) {
+                foreach ($tours_subject[$index] as $i => $subject) {
+                    if (empty($subject)) continue;
+        
+                    $tourIndex = $this->tourProducts->where('info_idx', $info_idx)
+                        ->where('tours_idx', $this->request->getPost("tours_idx[$info_idx][$i]"))
+                        ->first();
+        
+                    $toursData = [
+                        'product_idx' => $productIdx,
+                        'info_idx' => $info_idx,
+                        'tours_subject' => $subject,
+                        'tour_price' => $tour_price[$index][$i],
+                        'tour_price_kids' => $tour_price_kids[$index][$i],
+                        'tour_price_baby' => $tour_price_baby[$index][$i],
+                        'status' => isset($status[$index][$i]) ? $status[$index][$i] : 'Y',
+                        'r_date' => date('Y-m-d H:i:s')
+                    ];
+        
+                    if ($tourIndex) {
+                        $this->tourProducts->update($tourIndex['tour_idx'], $toursData);
+                    } else {
+                        $this->tourProducts->insert($toursData);
+                    }
                 }
             }
         }
+        
 
 
     return redirect()->to('AdmMaster/_tourRegist/write_tours?product_idx=' . $productIdx);
@@ -591,5 +604,120 @@ class AdminTourController extends BaseController
         }
 
         return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function detailwrite_new() {
+        $productIdx = $this->request->getGet('product_idx');
+        $airCode = $this->request->getGet('air_code') ?? '0000';
+    
+        $productDetail = $this->dayModel->getProductDetail($productIdx, $airCode);
+        if (!$productDetail) {
+            $this->dayModel->createProductDetail([
+                'product_idx' => $productIdx,
+                'air_code' => $airCode,
+                'total_day' => 0
+            ]);
+            $productDetail = $this->dayModel->getProductDetail($productIdx, $airCode);
+        }
+
+        $product = $this->productModel->find($productIdx);
+    
+        $airline = $this->code->where([
+            'code_gubun' => 'air',
+            'code_no' => $airCode,
+            'status' => 'Y'
+        ])->first();
+    
+        $scheduleDetails = $this->dayModel->where([
+            'product_idx' => $productIdx,
+            'air_code' => $airCode
+        ])->findAll();
+    
+        $totalDays = $productDetail['total_day'];
+        $schedules = [];
+    
+        for ($dd = 1; $dd <= $totalDays; $dd++) {
+            $schedule = $this->mainSchedule->getAllByDetail($productDetail['idx']);
+    
+            $schedules[$dd] = array_filter($schedule, function($item) use ($dd) {
+                return $item['day_idx'] == $dd;
+            });
+        }
+    
+        $detailIdx = $scheduleDetails[0]['idx'] ?? null;
+    
+        $maxGroup = $this->subSchedule->select('IFNULL(MAX(groups), 0) as new_group')
+            ->where('detail_idx', $detailIdx)
+            ->first()['new_group'] ?? 0;
+    
+        $maxOnum = $this->subSchedule->select('IFNULL(MAX(onum), 0) as new_onum')
+            ->where('detail_idx', $detailIdx)
+            ->first()['new_onum'] ?? 0;
+    
+        $subSchedules = [];
+        foreach ($schedules as $day => $schedule) {
+            foreach ($schedule as $item) {
+                $subSchedules[$day][] = $this->subSchedule->where('detail_idx', $item['idx'])->findAll();
+            }
+        }
+    
+        $data = [
+            'product_idx' => $productIdx,
+            'air_code' => $airCode,
+            'product' => $product,
+            'airline' => $airline,
+            'scheduleDetails' => $scheduleDetails,
+            'maxGroup' => $maxGroup,
+            'maxOnum' => $maxOnum,
+            'schedules' => $schedules,
+            'totalDays' => $totalDays,
+            'subSchedules' => $subSchedules,
+            'productDetail' => $productDetail
+        ];
+        return view("admin/_tourRegist/detailwrite_new", $data);
+    }
+    
+
+    public function chg_detailwrite()
+    {
+        $product_idx = $this->request->getPost('product_idx');
+        $air_code = $this->request->getPost('air_code');
+        $sdate = $this->request->getPost('sdate');
+
+        if (empty($product_idx) || empty($air_code)) {
+            return $this->response->setStatusCode(400)->setBody("잘못된 페이지 접근입니다. 다시 접속해주세요.");
+        }
+
+
+        $result = $this->dayModel->updateSchedule($product_idx, $air_code, $sdate);
+
+        if ($result) {
+            return $this->response->setBody("OK");
+        } else {
+            return $this->response->setStatusCode(500)->setBody("오류 발생");
+        }
+    }
+
+    public function day_seq_delete()
+    {
+        $daySeq = $this->request->getPost('idx');
+
+        if (!$daySeq) {
+            return $this->respond([
+                'message' => '일차 삭제에 필요한 데이터가 없습니다.',
+            ], 400);
+        }
+
+        $result = day_delete($daySeq);
+
+        if ($result) {
+            return $this->respond([
+                'message' => '일차전체 삭제 완료',
+            ]);
+        } else {
+            return $this->respond([
+                'message' => '일차전체 삭제 오류',
+            ], 500); 
+        }
     }
 }

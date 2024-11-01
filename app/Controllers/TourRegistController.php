@@ -1173,7 +1173,6 @@ class TourRegistController extends BaseController
     {
         $tours_idx = $this->request->getPost('tours_idx');
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $info_idx = updateSQ($_GET["info_idx"] ?? '');
         $db = $this->connect;
 
         $sql_info = "
@@ -1210,8 +1209,9 @@ class TourRegistController extends BaseController
         $data = [
             'tours_idx' => $tours_idx,
             'product_idx' => $product_idx,
-            'info_idx' => $info_idx,
             'productTourInfo' => $groupedData,
+            'infoIndex' => $infoIndex,
+            'groupedData' => $groupedData,
         ];
 
         return view('admin/_tourRegist/write_tour_info', $data);
