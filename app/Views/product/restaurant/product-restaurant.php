@@ -160,7 +160,7 @@
 
             <div class="">
             <div class="list-ticket-grid">
-            <a href="/product-spa/spa-details/8386" class="list-ticket-item">
+            <a href="/product-restaurant/restaurant-detail/1102" class="list-ticket-item">
                     <div class="img_box  ">
                         <img src="/uploads/products/list-ticket-img1.png" alt="main" class="only_web">
                         <img src="/uploads/products/list-ticket-img1-m.png" alt="main" class="only_mo">
