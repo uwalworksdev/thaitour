@@ -64,6 +64,22 @@ class Product extends BaseController
     }
 
 
+    public function ticketDetail($code_no)
+    {
+        return $this->renderView('/product/ticket/ticket-detail');
+    }
+
+    public function ticketBooking($code_no)
+    {
+        return $this->renderView('/product/ticket/ticket-booking');
+    }
+
+    public function ticketCompleted()
+    {
+        return $this->renderView('/product/ticket/completed-order');
+    }
+
+
     public function indexTour($code_no)
     {
         try {
@@ -1530,9 +1546,18 @@ class Product extends BaseController
 
     public function restaurantDetail($code_no)
     {
-        return $this->renderView('/product/restaurant/spa-details');
+        return $this->renderView('/product/restaurant/restaurant-detail');
     }
 
+    public function restaurantBooking($code_no)
+    {
+        return $this->renderView('/product/restaurant/restaurant-booking');
+    }
+
+    public function restaurantCompleted()
+    {
+        return $this->renderView('/product/restaurant/completed-order');
+    }
     public function vehicleGuide($code_no)
     {
         try {
