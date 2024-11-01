@@ -803,7 +803,7 @@
                                 <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                             </div>
                             <div class="nav_btn_wrap">
-                                <a href="/product-restaurant/restaurantgit-booking/8386">
+                                <a href="/product-restaurant/restaurant-booking/8386">
                                     <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
                                 </a>
                                 <div class="flex">
