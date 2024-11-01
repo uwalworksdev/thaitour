@@ -3088,5 +3088,10 @@
     display: block;
   }
 
+  .sub_tour_section7_product_item > .sub_gold_item {
+    width: 50rem;
+    display: block;
+  }
+
   .best_tour_section5_ .swiper-wrapper {}
 }

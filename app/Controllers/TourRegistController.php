@@ -21,6 +21,7 @@ class TourRegistController extends BaseController
     protected $optionTourModel;
     protected $tourProducts;
     protected $infoProducts;
+    protected $codeModel;
 
     public function __construct()
     {
@@ -36,6 +37,7 @@ class TourRegistController extends BaseController
         $this->optionTourModel = model("OptionTourModel");
         $this->tourProducts = model("ProductTourModel");
         $this->infoProducts = model("TourInfoModel");
+        $this->codeModel = model("Code");
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
@@ -258,12 +260,26 @@ class TourRegistController extends BaseController
         $query = $db->query($sql, [$product_idx]);
         $data['dayDetails'] = $query->getResultArray();
 
+        $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
+
+        foreach ($filters as $key => $filter) {
+            $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
+            if ($filter['code_no'] == 4501) $filters[$key]['filter_name'] = "green_peas";
+            if ($filter['code_no'] == 4502) $filters[$key]['filter_name'] = "sports_days";
+            if ($filter['code_no'] == 4503) $filters[$key]['filter_name'] = "slots";
+            if ($filter['code_no'] == 4504) $filters[$key]['filter_name'] = "golf_course_odd_numbers";
+            if ($filter['code_no'] == 4505) $filters[$key]['filter_name'] = "travel_times";
+            if ($filter['code_no'] == 4506) $filters[$key]['filter_name'] = "carts";
+            if ($filter['code_no'] == 4507) $filters[$key]['filter_name'] = "facilities";
+        }
+
         $new_data = [
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
             "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
-            'vehicles' => $vehicles
+            'vehicles' => $vehicles,
+            'filters' => $filters
         ];
 
         $data = array_merge($data, $new_data);
@@ -277,9 +293,21 @@ class TourRegistController extends BaseController
         $data = $this->request->getPost();
         $data['is_best_value'] = $data['is_best_value'] ?? "N";
         $data['special_price'] = $data['special_price'] ?? "N";
+        $data['md_recommendation_yn'] = $data['md_recommendation_yn'] ?? "N";
+        $data['hot_deal_yn'] = $data['hot_deal_yn'] ?? "N";
         $data['original_price'] = str_replace(",", "", $data['original_price']);
         $data['product_price'] = str_replace(",", "", $data['product_price']);
         $data['golf_vehicle'] = "|" . implode("|", $data['vehicle_arr']) . "|";
+
+        $data['green_peas']                 = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        $data['sports_days']                = "|" . implode("|", $data['sports_days'] ?? []) . "|";
+        $data['slots']                      = "|" . implode("|", $data['slots'] ?? []) . "|";
+        $data['golf_course_odd_numbers']    = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
+        $data['travel_times']               = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        $data['carts']                      = "|" . implode("|", $data['carts'] ?? []) . "|";
+        $data['facilities']                 = "|" . implode("|", $data['facilities'] ?? []) . "|";
+
+        $data['deadline_date']              = implode(",", $data['deadline_date'] ?? []);
 
         $files = $this->request->getFiles();
         for ($i = 1; $i <= 7; $i++) {
@@ -383,8 +411,7 @@ class TourRegistController extends BaseController
 
     public function upd_moption($idx)
     {
-        $option_price = $this->request->getRawInputVar('option_price') ?? 0;
-        $this->golfOptionModel->update($idx, ['option_price' => $option_price]);
+        $this->golfOptionModel->update($idx, $this->request->getRawInputVar());
         return $this->response->setJSON(['message' => '수정되었습니다']);
     }
 
