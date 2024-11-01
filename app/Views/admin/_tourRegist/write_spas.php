@@ -454,49 +454,54 @@
                                     <th>마감 시간</th>
                                     <td colspan="3">
                                         <div class="al_list_" id="al_list_">
-                                            <?php foreach ($arr_deadline_time as $itemTime) { ?>
-                                                <?php if ($itemTime && $itemTime != '') { ?>
-                                                    <?php
-                                                    $arr_itemTime = explode('||', $itemTime)
-                                                    ?>
-                                                    <div class="al">
-                                                        <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                               name="deadline_start" value="<?= $arr_itemTime[0] ?>"
-                                                               id="deadline_start">
-                                                        <span> ~ </span>
-                                                        <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                               name="deadline_end" value="<?= $arr_itemTime[1] ?>"
-                                                               id="deadline_end">
+                                            <?php if ($product_idx) { ?>
+                                                <?php foreach ($arr_deadline_time as $itemTime) { ?>
+                                                    <?php if ($itemTime && $itemTime != '') { ?>
+                                                        <?php
+                                                        $arr_itemTime = explode('||', $itemTime)
+                                                        ?>
+                                                        <div class="al">
+                                                            <input type="text"
+                                                                   class="input_txt _deadline_time_ datepicker"
+                                                                   name="deadline_start" value="<?= $arr_itemTime[0] ?>"
+                                                                   id="deadline_start">
+                                                            <span> ~ </span>
+                                                            <input type="text"
+                                                                   class="input_txt _deadline_time_ datepicker"
+                                                                   name="deadline_end" value="<?= $arr_itemTime[1] ?>"
+                                                                   id="deadline_end">
 
-                                                        <button onclick="removeEl(this);" style="margin: 0"
-                                                                class="btn_al_plus_ btn_02" type="button">
-                                                            -
-                                                        </button>
-                                                        <button onclick="plusEl(this);" style="margin: 0"
-                                                                class="btn_al_plus_ btn_01" type="button">
-                                                            +
-                                                        </button>
-                                                    </div>
+                                                            <button onclick="removeEl(this);" style="margin: 0"
+                                                                    class="btn_al_plus_ btn_02" type="button">
+                                                                -
+                                                            </button>
+                                                            <button onclick="plusEl(this);" style="margin: 0"
+                                                                    class="btn_al_plus_ btn_01" type="button">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    <?php } ?>
                                                 <?php } ?>
-                                            <?php } ?>
-                                            <div class="al">
-                                                <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                       name="deadline_start"
-                                                       id="deadline_start_${num}">
-                                                <span> ~ </span>
-                                                <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                       name="deadline_end"
-                                                       id="deadline_end_${num}">
+                                            <?php } else { ?>
+                                                <div class="al">
+                                                    <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                           name="deadline_start"
+                                                           id="deadline_start_${num}">
+                                                    <span> ~ </span>
+                                                    <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                           name="deadline_end"
+                                                           id="deadline_end_${num}">
 
-                                                <button onclick="removeEl(this);" style="margin: 0"
-                                                        class="btn_al_plus_ btn_02" type="button">
-                                                    -
-                                                </button>
-                                                <button onclick="plusEl(this);" style="margin: 0"
-                                                        class="btn_al_plus_ btn_01" type="button">
-                                                    +
-                                                </button>
-                                            </div>
+                                                    <button onclick="removeEl(this);" style="margin: 0"
+                                                            class="btn_al_plus_ btn_02" type="button">
+                                                        -
+                                                    </button>
+                                                    <button onclick="plusEl(this);" style="margin: 0"
+                                                            class="btn_al_plus_ btn_01" type="button">
+                                                        +
+                                                    </button>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </td>
                                 </tr>
