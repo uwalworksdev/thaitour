@@ -36,6 +36,36 @@
     .cursor-pointer-con img {
         cursor: pointer;
     }
+
+    .btn-gr-ticket {
+        max-width: 81%;
+        overflow: hidden;
+    }
+
+    .btn-gr-ticket.full_ {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .select_tool {
+        padding: 8px 16px 8px 16px;
+        border: 1px solid #dbdbdb;
+        border-radius: 32px;
+    }
+
+    .btnShowAll {
+        padding-right: 32px;
+    }
+
+    .btnShowAll {
+        background: url(/images/ico/down_icon.png) no-repeat right 50% #fff;
+        background-size: 16px 8px;
+    }
+
+    .btnShowAll.open_ {
+        background: url(/images/ico/up_icon.png) no-repeat right 50% #fff;
+        background-size: 16px 8px;
+    }
 </style>
 <script>
     function searchSpa() {
@@ -144,8 +174,8 @@
                 </div>
             </div>
             <div class="tiket-tool-b">
-                <div class="btn-gr-ticket">
-                    <button onclick="searchSpaCode('')" class="<?= !$product_code_2 ? 'on' : '' ?>">방콕</button>
+                <div class="btn-gr-ticket" id="btn-gr-ticket">
+                    <button onclick="searchSpaCode('')" class="<?= !$product_code_2 ? 'on' : '' ?>">전체</button>
                     <!--                    <button>여행편의(8)</button>-->
                     <!--                    <button>공연 티켓(5)</button>-->
                     <!--                    <button class="only_web">전통의상대여(4)</button>-->
@@ -154,16 +184,15 @@
                     <!--                    <button class=" only_tb">동물원(3)</button>-->
                     <!--                    <button class=" only_tb">테마파크 (4)</button>-->
                     <?php foreach ($codes as $code) { ?>
-                        <button class="<?= $product_code_2 === $code['code_no'] ? 'on' : '' ?>"
+                        <button style="text-wrap: nowrap"
+                                class="<?= $product_code_2 === $code['code_no'] ? 'on' : '' ?>"
                                 onclick="searchSpaCode('<?= $code['code_no'] ?>');"><?= $code['code_name'] ?>
                             (<?= $code['count'] ?>)
                         </button>
                     <?php } ?>
                 </div>
-                <div class="select-tool">
-                    <select name="" id="">
-                        <option value="메뉴더보기" class="">메뉴더보기</option>
-                    </select>
+                <div class="select-tool select_tool" id="select_tool">
+                    <button type="button" class="btnShowAll">메뉴더보기</button>
                 </div>
             </div>
 
@@ -254,21 +283,48 @@
         </div>
     </div>
 
-    <script>
-        $('#cl_list_pg_').click(function () {
-            $(this).remove();
-            $('#list-ticket-grid').addClass('open_')
-        })
-    </script>
-
 </section>
 <script>
+    $('#cl_list_pg_').click(function () {
+        $(this).remove();
+        $('#list-ticket-grid').addClass('open_')
+    })
+
     $('#search_product_name').on('keypress', function (e) {
         if (e.which === 13) {
             e.preventDefault();
             searchSpa();
         }
     });
+
+    $(document).ready(function () {
+        let is_show = false;
+        let item = $('#btn-gr-ticket');
+        let w = item.width();
+
+        let m_item = $('.ticket-tool');
+        let wf = m_item.width();
+        wf = wf * 80 / 100;
+        if (w > wf) {
+            is_show = true
+        }
+
+        showCode(is_show);
+    })
+
+    function showCode(is) {
+        let select_tool = $('#select_tool');
+        if (is) {
+            select_tool.css('display', 'block')
+        } else {
+            select_tool.css('display', 'none')
+        }
+    }
+
+    $('.btnShowAll').click(function () {
+        $(this).toggleClass('open_')
+        $('#btn-gr-ticket').toggleClass('full_')
+    })
 </script>
 <script>
     let swiper = new Swiper('.swiper-container-ticket', {
