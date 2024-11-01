@@ -1071,7 +1071,7 @@ class Product extends BaseController
 
     public function reservationForm()
     {
-        $cart = $this->request->getCookie('cart');
+        $cart = $this->request->getCookie('cart-hotel');
 
         if ($cart) {
             $cart_arr = json_decode($cart, true);

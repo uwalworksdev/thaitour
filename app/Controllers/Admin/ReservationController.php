@@ -534,7 +534,11 @@ class ReservationController extends BaseController
                                             ->update(["order_status" => "Y"]);
                 }       
             }
-
+            $message = "수정되었습니다.";
+            return "<script>
+                alert('$message');
+                    parent.location.reload();
+                </script>";
         }catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

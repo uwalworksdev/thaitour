@@ -321,7 +321,7 @@
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
                                                                     class="count_day"
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
-                                                        <!--                                                        <span class="details" style="color: #df0011">쿠폰 적용 10%할인</span>-->
+                                                        <span class="details use_coupon_name" style="color: #df0011"></span>
                                                         <p>
                                                                     <span class="price totalPrice"
                                                                           id="<?= $room_op['rop_idx'] ?>"
@@ -1046,6 +1046,7 @@
                 </script>
             </div>
             <input type="hidden" name="coupon_discount" id="coupon_discount" value="0">
+            <input type="hidden" name="coupon_name" id="coupon_name">
             <input type="hidden" name="coupon_type" id="coupon_type">
             <input type="hidden" name="total_last_price" id="total_last_price">
             <input type="hidden" name="use_coupon_room" id="use_coupon_room">
@@ -1198,12 +1199,11 @@
                     let coupon_type = $("#popup").find(".item-price-popup.active").attr("data-type");
                     let coupon_discount = Number($("#popup").find(".item-price-popup.active").attr("data-discount"));
                     let coupon_idx = Number($("#popup").find(".item-price-popup.active").attr("data-idx"));
-                    console.log(coupon_type);
-
-
+                    let coupon_name = $("#popup").find(".item-price-popup.active .item_coupon_name").text().trim();
                     $("#coupon_type").val(coupon_type);
                     $("#coupon_discount").val(coupon_discount);
                     $("#use_coupon_idx").val(coupon_idx);
+                    $("#coupon_name").val(coupon_name);
                     $("#popup").hide();
 
                     if (room_op_idx) {
@@ -1224,7 +1224,9 @@
                         $('.room_op_[data-room="' + room_op_idx + '"]').find(".totalPrice").text(total_price.toLocaleString('ko-KR'));
                         $("#total_last_price").val(total_price);
                         $("#use_coupon_room").val(room_op_idx);
-
+                        if(coupon_idx){
+                            $('.room_op_[data-room="' + room_op_idx + '"]').find(".use_coupon_name").text("쿠폰 적용 " + coupon_name);
+                        }
                         let rooms = $('.room_op_[data-room!="' + room_op_idx + '"]');
 
                         rooms.each(function () {
@@ -1232,7 +1234,7 @@
                             let room_qty = $(this).find(".room_qty .input_room_qty").val();
                             let day_qty = $(this).find(".day_qty .input_day_qty").val();
                             let total_price = price * parseInt(room_qty) * parseInt(day_qty);
-
+                            $(this).find(".use_coupon_name").text("");
                             $(this).find(".totalPrice").text(total_price.toLocaleString('ko-KR'));
 
                         });
@@ -1327,7 +1329,7 @@
                         number_day: number_day
                     };
 
-                    setCookie("cart", JSON.stringify(cart), 1);
+                    setCookie("cart-hotel", JSON.stringify(cart), 1);
                     window.location.href = '/product-hotel/reservation-form';
                 });
 

@@ -145,6 +145,17 @@
                                         <input type="text" id="local_phone" name="local_phone"
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
                                     </td> -->
+                                    <th>담당자</th>
+                                    <td>
+                                        <input type="text" id="manager_name" name="manager_name"
+                                               value="<?= $row['manager_name'] ?>" class="input_txt" style="width:20%"/>
+                                        <input type="text" id="manager_phone" name="manager_phone"
+                                               value="<?= $row['manager_phone'] ?>" class="input_txt"
+                                               style="width:20%"/>
+                                        <input type="text" id="manager_email" name="manager_email"
+                                               value="<?= $row['manager_email'] ?>" class="input_txt"
+                                               style="width:20%"/>
+                                    </td>
                                 </tr>
                                 
                                 <tr>
@@ -315,25 +326,13 @@
                                     }
                                 </script>
 
-                                <tr>
-                                    <th>담당자</th>
-                                    <td colspan="1">
-                                        <input type="text" id="manager_name" name="manager_name"
-                                               value="<?= $row['manager_name'] ?>" class="input_txt" style="width:20%"/>
-                                        <input type="text" id="manager_phone" name="manager_phone"
-                                               value="<?= $row['manager_phone'] ?>" class="input_txt"
-                                               style="width:20%"/>
-                                        <input type="text" id="manager_email" name="manager_email"
-                                               value="<?= $row['manager_email'] ?>" class="input_txt"
-                                               style="width:20%"/>
-                                    </td>
+                                <!-- <tr>
                                     <th>합계</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="total_price" name="total_price" value=""
                                                class="input_txt" readonly style="width:150px; border: none	;"/>
                                     </td>
-
-                                </tr>
+                                </tr> -->
                                 <?php if ($order_status == "Y") { ?>
                                     <tr>
                                         <th>부여된마일리지</th>
@@ -370,14 +369,14 @@
                                 </caption>
                                 <colgroup>
                                     <col width="7%"/>
+                                    <!-- <col width="*%"/> -->
                                     <col width="*%"/>
-                                    <col width="30%"/>
-                                    <col width="30%"/>
+                                    <col width="40%"/>
                                 </colgroup>
                                 <tbody>
                                 <tr>
                                     <th style="text-align:center">구분</th>
-                                    <th style="text-align:center">한글명</th>
+                                    <!-- <th style="text-align:center">한글명</th> -->
                                     <th style="text-align:center">영문성</th>
                                     <th style="text-align:center">영문이름</th>
                                 </tr>
@@ -390,23 +389,16 @@
                                             <input type="hidden" name="order_gubun[]"
                                                    value="<?= $frow["order_gubun"] ?>">
                                             <?php
-                                                if ($frow["order_gubun"] == "adult") {
-                                                    echo "성인";
-                                                } elseif ($frow["order_gubun"] == "kids") {
-                                                    echo "아동";
-                                                } elseif ($frow["order_gubun"] == "baby") {
-                                                    echo "유아";
-                                                }
 
                                                 if(!empty($frow["number_room"])){
                                                     echo "객실" . $frow["number_room"];
                                                 }
                                             ?>
                                         </td>
-                                        <td style="text-align:center"><input type="text" name="order_name_kor[]"
+                                        <!-- <td style="text-align:center"><input type="text" name="order_name_kor[]"
                                                                              value="<?= $frow["order_name_kor"] ?>"
                                                                              class="order_name_kor input_txt"
-                                                                             style="width:90%"/></td>
+                                                                             style="width:90%"/></td> -->
                                         <td style="text-align:center"><input type="text" name="order_first_name[]"
                                                                              value="<?= $frow["order_first_name"] ?>"
                                                                              class="order_first_name input_txt"
