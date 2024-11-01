@@ -340,17 +340,29 @@
     <div class="nav-container">
         <div class="scroll-con">
             <span class="nav-item"><a class="<?php echo isset($tab_8) ? 'active_' : '' ?>" href="/">홈</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_1) ? 'active_' : '' ?>" href="/product-hotel/1324">호텔</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_2) ? 'active_' : '' ?>" href="/product-golf/1325/1">골프</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_3) ? 'active_' : '' ?>" href="/product-tours/1325/1">투어</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_4) ? 'active_' : '' ?>" href="/product-spa/1320/1">스파</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_5) ? 'active_' : '' ?>" href="/show-ticket">쇼ㆍ입장권</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_6) ? 'active_' : '' ?>" href="/product-restaurant/1320/1">레스토랑</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_7) ? 'active_' : '' ?>" href="/vehicle-guide/1324">차량ㆍ가이드</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_9) ? 'active_' : '' ?>" href="/center/insurance">여행자 보험</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_10) ? 'active_' : '' ?>" href="/event/event_list">이벤트</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_11) ? 'active_' : '' ?>" href="/mypage/discount">여행 쿠폰</a></span>
-            <span class="nav-item"><a class="<?php echo isset($tab_12) ? 'active_' : '' ?>" href="/community/main">태국뉴스</a></span>
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_1) ? 'active_' : '' ?><!--" href="/product-hotel/1324">호텔</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_2) ? 'active_' : '' ?><!--" href="/product-golf/1325/1">골프</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_3) ? 'active_' : '' ?><!--" href="/product-tours/1325/1">투어</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_4) ? 'active_' : '' ?><!--" href="/product-spa/1320/1">스파</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_5) ? 'active_' : '' ?><!--" href="/show-ticket">쇼ㆍ입장권</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_6) ? 'active_' : '' ?><!--" href="/product-restaurant/1320/1">레스토랑</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_7) ? 'active_' : '' ?><!--" href="/vehicle-guide/1324">차량ㆍ가이드</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_9) ? 'active_' : '' ?><!--" href="/center/insurance">여행자 보험</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_10) ? 'active_' : '' ?><!--" href="/event/event_list">이벤트</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_11) ? 'active_' : '' ?><!--" href="/mypage/discount">여행 쿠폰</a></span>-->
+            <!--            <span class="nav-item"><a class="-->
+            <?php //echo isset($tab_12) ? 'active_' : '' ?><!--" href="/community/main">태국뉴스</a></span>-->
+            <?php echo getHeaderTabMobile(); ?>
         </div>
     </div>
     <div class="search_m_header only_web">
@@ -420,15 +432,15 @@
     //         $("#menu_mobile").hide();
     //     }
     // });
-    $("#search-mobile").click(function() {
+    $("#search-mobile").click(function () {
         $("#popup_search_mo").show();
     });
 
-    $("#icon-close-ps").click(function() {
+    $("#icon-close-ps").click(function () {
         $("#popup_search_mo").hide();
     });
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#language-select').select2({
             templateResult: formatState,
             templateSelection: formatState,
@@ -450,7 +462,7 @@
             return $state;
         };
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#language-select2').select2({
             templateResult: formatState,
             templateSelection: formatState,
@@ -481,16 +493,16 @@
             burger.classList.toggle('toggle');
         });
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
         var lastScrollTop = 0;
         var topPart = $('#header_tools');
 
-        $(window).scroll(function(event) {
+        $(window).scroll(function (event) {
             var st = $(this).scrollTop();
 
             if (st > lastScrollTop) {
                 if (!topPart.hasClass('hidden_w')) {
-                    topPart.slideUp(300, function() {
+                    topPart.slideUp(300, function () {
                         topPart.addClass('hidden_w');
                         $("#header").css("padding-bottom", "0px");
                     });
@@ -500,7 +512,7 @@
                 }
             } else {
                 if (topPart.hasClass('hidden_w')) {
-                    topPart.slideDown(300, function() {
+                    topPart.slideDown(300, function () {
                         topPart.removeClass('hidden_w');
                         $("#header").css("padding-bottom", "10px");
                     });

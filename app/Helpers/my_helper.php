@@ -112,6 +112,42 @@ function getHeaderTab()
     return $html;
 }
 
+function getHeaderTabMobile()
+{
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getResultArray();
+
+    $currentUrl = current_url();
+
+    $tabLinks = [
+        1303 => "/product-hotel/1303",
+        1302 => "/product-golf/1302/1",
+        1301 => "/product-tours/1301",
+        1325 => "/product-spa/1325",
+        1317 => "/show-ticket/1317",
+        1320 => "/product-restaurant/1320/1",
+        1324 => "/vehicle-guide/1324"
+    ];
+
+    $html = "";
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        if (array_key_exists($tab_, $tabLinks)) {
+            $link = $tabLinks[$tab_];
+        } else {
+            $link = "/product-hotel/1303";
+        }
+
+        $activeClass = ($currentUrl === base_url($link)) ? "active_" : "";
+
+        $link = "<a class='$activeClass' href='$link'>" . $frow['code_name'] . "</a>";
+        $html .= " <span class=''>" . $link . "</span>";
+    }
+
+    return $html;
+}
 
 function getTab($tab_active)
 {
