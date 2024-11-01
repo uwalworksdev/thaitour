@@ -148,7 +148,7 @@
                     <div class="item-tag">
                         <span class="label">홀수</span>
                         <div class="tag-list">
-                            <?php foreach(GOLF_HOLES as $hole) : ?>
+                            <?php foreach($hole_cnt_arr as $hole) : ?>
                                 <span class="tag tag-js" data-tab="<?=$hole?>"><?=$hole?>홀</span>
                             <?php endforeach; ?>
                         </div>
@@ -169,7 +169,7 @@
                     <div class="item-tag item-tag-mo-cus">
                         <span class="label">시간대</span>
                         <div class="tag-list">
-                            <?php foreach(GOLF_HOURS as $hour) : ?>
+                            <?php foreach($hour_arr as $hour) : ?>
                                 <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?>시</span>
                             <?php endforeach; ?>
                         </div>
@@ -552,6 +552,16 @@
         </div>
     </div>
     <script>
+
+        
+        $(function () {
+            $(".tag-js").eq(0).trigger("click");
+            $(".tag-js2").eq(0).trigger("click");
+            $("#people_adult_cnt").find("option").eq(1).prop("selected", true);
+            $("#people_adult_cnt").trigger("change");
+            $(".final_date").text(formatDate(new Date(), "."));
+        })
+
         function setListVehicle() {
             let total_vehicle_price = 0;
 
@@ -670,15 +680,21 @@
         }
 
         function getOptions() {
+            const hole_cnt = $('.tag-js.active').data('tab');
+            const hour = $('.tag-js2.active').data('tab');
+            if(!hole_cnt || !hour) {
+                return false;
+            }
             $.ajax({
                 type: "GET",
                 url: "/product-golf/option-list/<?= $product['product_idx']?>",
                 data: {
-                    'hole_cnt': $('.tag-js.active').data('tab'),
-                    'hour': $('.tag-js2.active').data('tab'),
+                    hole_cnt,
+                    hour,
                 },
                 success: function (data) {
                     $('#final_option_list').html(data);
+                    $("#final_option_list .card-item").eq(0).trigger("click");
                     calculatePrice();
                 }
             })
@@ -711,6 +727,43 @@
         $(".vehicle_select").change(function () {
             calculatePrice();
         })
+
+        function formatDate(date, separate = "-") {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}${separate}${month}${separate}${day}`;
+        }
+
+        function getDatesInRange(start, end) {
+            let dates = [];
+            let current = new Date(start);
+            while (current <= end) {
+                dates.push(new Date(current));
+                current.setDate(current.getDate() + 1);
+            }
+            return dates;
+        }
+
+        function isDateInRange(date, s, e) {
+            return date >= s && date <= e;
+        }
+
+        function getAvailableDates(s_date, e_date, deadline_date_arr) {
+            let result = [];
+            const allDates = getDatesInRange(s_date, e_date);
+
+            allDates.forEach(date => {
+                let isBlocked = deadline_date_arr.some(deadline => 
+                    isDateInRange(date, deadline.s_date, deadline.e_date)
+                );
+                if (!isBlocked) {
+                    result.push(formatDate(date));
+                }
+            });
+
+            return result.join("|");
+        }
 
         jQuery(document).ready(function () {
             var dim = $('#dim');
@@ -795,6 +848,19 @@
 
         const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
+        const s_date = new Date('<?=$info['s_date']?>');
+        const e_date = new Date('<?=$info['e_date']?>');
+        const deadline_date = '<?=$info['deadline_date']?>';
+        const deadline_date_arr = deadline_date.split(',').map(function (date) {
+            const [s_date, e_date] = date.split('~').map(x=>x.trim());
+            return { s_date: new Date(s_date), e_date: new Date(e_date) };
+        });
+
+        var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
+        
+        const arrDate = sel_Date.split("|");
+        const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
+
         function getMonthDatesWithWeekdays(month, year) {
             const monthDatesWithWeekdays = [];
             const daysInMonth = new Date(year, month, 0).getDate();
@@ -842,34 +908,15 @@
             const currentDay = `0${currentDate.getDate()}`.slice(-2);
             let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
 
-            if (parseInt(currentMonth) < 10) {
-                currentMonth = '0' + parseInt(currentMonth);
-            }
-
             $("#year").text(currentYear);
             $("#month").text(currentMonth);
             swiper01.destroy();
             const daysInCurrentMonth = getMonthDatesWithWeekdays(currentMonth, currentYear);
             $(".calendar-swiper-wrapper").empty();
-            // 
+            
             daysInCurrentMonth.forEach(e => {
 
-                var selDay = currentYear + '-' + currentMonth + '-' + e.dayOfMonth;
-                var yy = currentYear;
-                var mm = currentMonth;
-                var dd = e.dayOfMonth;
-                //if(parseInt(mm) < 10) mm = "0"+mm;
-                if (parseInt(dd) < 10) dd = "0" + dd;
-                var calDate = yy + '-' + mm + '-' + dd;
-                //alert(calDate);
-                var selDate = '2024-09-13';
-                //alert('date- '+selDate);
-
-                var sel_Date = '';
-                var sel_Price = '';
-                //alert(sel_Price);
-                const arrDate = sel_Date.split("|");
-                const arrPrice = sel_Price.split("|");
+                var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
 
                 var idx = -1;
                 for (var i = 0; i < arrDate.length; i++) {
@@ -878,30 +925,24 @@
                     }
                 }
 
-                var min_amt = '0';
                 if (idx == -1) {
                     var selAmt = "-";
                 } else {
-                    if (arrPrice[idx] == min_amt) {
-                        var selAmt = arrPrice[idx] + '만<br>(최소)';
-                    } else {
-                        var selAmt = arrPrice[idx] + '만';
-                    }
+                    var selAmt = arrPrice[idx] + '만';
                 }
 
-                //var selAmt = "100만";
-                var yy = $("#year").text();
-                var mm = $("#month").text();
-                var dd = e.dayOfMonth;
-                //if(parseInt(mm) < 10) mm = "0"+mm;
-                if (parseInt(dd) < 10) dd = "0" + dd;
-                var selDate = yy + '-' + mm + '-' + dd;
+                const href = selAmt !== "-" ? `javascript:sel_date(${e.dayOfMonth}, "${calDate}");` : "javascript:void(0);";
+
+                const active = selAmt !== "-" ? "on" : "";
+
                 $(".calendar-swiper-wrapper").append(`
                 <div class="swiper-slide">
                     <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
-                    <div class="day day_${e.dayOfMonth}">
-                        <a class="${selDate === to_Day ? 'on' : ''}" style="color:#999999" href='#!' onclick='sel_date(${e.dayOfMonth}, "${selDate}");'>
-                        ${e.dayOfMonth}</a>
+                    <div class="day ${active}" day_${e.dayOfMonth}">
+                        <a class="${calDate === to_Day ? 'on' : ''}" href='${href}'>
+                            ${e.dayOfMonth}
+                        </a>
+                        <p class="txt">${selAmt}</p>
                     </div>
                 </div>
             `);
@@ -933,7 +974,7 @@
             swiper01.slideTo(currentDay - 2);
         }
 
-        setSlide(currentMonth, currentYear);
+        setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
         function nextMonth() {
             var yy = $("#year").text();
@@ -965,17 +1006,11 @@
             currentYear  = currentDate.getFullYear();
             setSlide(`0${currentMonth}`.slice(-2), currentYear)
         }
+
         $("#prev_icon").on("click", prevMonth)
         $("#next_icon").on("click", nextMonth)
         $("#prev_icon_mo").on("click", prevMonth)
         $("#next_icon_mo").on("click", nextMonth)
-
-        $(function() {
-            $('.calendar .dates .day a').on('click', function() {
-                $('.day a').removeClass("on");
-                $(this).addClass("on");
-            });
-        });
 
         function img_pops(idx) {
             var dim = $('#dim');

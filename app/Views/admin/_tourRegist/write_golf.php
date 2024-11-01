@@ -2,6 +2,9 @@
 <?= $this->section("body") ?>
     <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
         .tab_title {
             font-size: 16px;
@@ -20,6 +23,61 @@
             width: 500px;
         }
     </style>
+    <script>
+	$(function(){
+		var clareCalendar1 = {
+            dateFormat : 'yy-m-dd',
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+/* 			changeMonth : true, //월변경가능
+            changeYear : true, //년변경가능 */
+            showMonthAfterYear : true, //년 뒤에 월 표시
+            yearRange : '2023:2050',//2023~2050
+            inline : true,
+            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            dateFormat: 'yy-mm-dd',
+            minDate:0,  
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect : function(dateText, inst) {
+                $("#datepicker1").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
+                })
+            }
+        };
+		
+		var clareCalendar2 = {
+            dateFormat : 'yy-m-dd',
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+/* 			changeMonth : true, //월변경가능
+            changeYear : true, //년변경가능 */
+            dateFormat: 'yy-mm-dd',
+            showMonthAfterYear : true, //년 뒤에 월 표시
+            yearRange : '2023:2050',//2023~2050
+            inline : true,
+            minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect : function(dateText, inst) {
+                $("#datepicker2").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
+                })
+            }
+        };
+		$("#datepicker1").datepicker(clareCalendar1);
+		$("#datepicker2").datepicker(clareCalendar2);
+		
+	});
+</script>
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
         function checkForNumber(str) {
@@ -267,29 +325,15 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>출발요일</th>
+                                    <th>베스트여부</th>
                                     <td>
-                                        <input type="checkbox" name="yoil_0" value="Y"
-                                               class="yoil" <?php if (isset($yoil_0) && $yoil_0 == "Y") echo "checked"; ?> >
-                                        일요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_1" value="Y"
-                                               class="yoil" <?php if (isset($yoil_1) && $yoil_1 == "Y") echo "checked"; ?> >
-                                        월요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_2" value="Y"
-                                               class="yoil" <?php if (isset($yoil_2) && $yoil_2 == "Y") echo "checked"; ?> >
-                                        화요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_3" value="Y"
-                                               class="yoil" <?php if (isset($yoil_3) && $yoil_3 == "Y") echo "checked"; ?> >
-                                        수요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_4" value="Y"
-                                               class="yoil" <?php if (isset($yoil_4) && $yoil_4 == "Y") echo "checked"; ?> >
-                                        목요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_5" value="Y"
-                                               class="yoil" <?php if (isset($yoil_5) && $yoil_5 == "Y") echo "checked"; ?> >
-                                        금요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_6" value="Y"
-                                               class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
-                                        토요일&nbsp;&nbsp;&nbsp;
+                                        <?php foreach ($mresult2 as $row_m) : ?>
+                                                <input type="checkbox" name="product_best"
+                                                       id="product_best"
+                                                       value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
+                                                    echo "checked";
+                                                } ?>/>
+                                        <?php endforeach; ?>
                                     </td>
                                     <th>스포츠데이</th>
                                     <td>
@@ -300,8 +344,8 @@
                                     <th>가이드/언어</th>
                                     <td>
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
-                                               value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
-                                               style="width:50%"/><br/>
+                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
+                                                style="width:50%"/><br/>
                                     </td>
                                     <th>사용여부</th>
                                     <td>
@@ -330,6 +374,16 @@
                                             <?php if ($row["special_price"] == "Y") { echo "checked"; } ?> />
                                             특가여부
                                         </label>
+                                        <label for="md_recommendation_yn">
+                                            <input type="checkbox" name="md_recommendation_yn" id="md_recommendation_yn" value="Y" 
+                                            <?php if ($row["md_recommendation_yn"] == "Y") { echo "checked"; } ?> />
+                                            MD 추천
+                                        </label>
+                                        <label for="hot_deal_yn">
+                                            <input type="checkbox" name="hot_deal_yn" id="hot_deal_yn" value="Y" 
+                                            <?php if ($row["hot_deal_yn"] == "Y") { echo "checked"; } ?> />
+                                            핫딜추천
+                                        </label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -352,8 +406,8 @@
                                         /<input id="phone" name="phone" class="input_txt" type="text"
                                                 value="<?= $phone ?>"
                                                 style="width:200px"/> /<input id="email" name="email" class="input_txt"
-                                                                              type="text" value="<?= $email ?>"
-                                                                              style="width:200px"/>
+                                                                            type="text" value="<?= $email ?>"
+                                                                            style="width:200px"/>
                                         <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <?php
@@ -443,18 +497,8 @@
                                 </script>
 
                                 <tr>
-                                    <th>베스트여부</th>
-                                    <td>
-                                        <?php foreach ($mresult2 as $row_m) : ?>
-                                                <input type="checkbox" name="product_best"
-                                                       id="product_best"
-                                                       value="Y" <?php if (isset($row["product_best"]) && $row["product_best"] == "Y") {
-                                                    echo "checked";
-                                                } ?>/>
-                                        <?php endforeach; ?>
-                                    </td>
                                     <th>우선순위</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
@@ -478,7 +522,7 @@
                                     <th>상품정보</th>
                                     <td colspan="3">
 
-								<textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
+								    <textarea name="tour_info" id="tour_info" rows="10" cols="100" class="input_txt"
                                           style="width:100%; height:400px; display:none;"><?= viewSQ($tour_info) ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors14 = [];
@@ -509,9 +553,176 @@
 
                                     </td>
                                 </tr>
-                                </tbody>
+                                <tr>
+                                    <th>출발요일</th>
+                                    <td colspan="3">
+                                        <input type="checkbox" name="yoil_0" value="Y"
+                                               class="yoil" <?php if (isset($yoil_0) && $yoil_0 == "Y") echo "checked"; ?> >
+                                        일요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_1" value="Y"
+                                               class="yoil" <?php if (isset($yoil_1) && $yoil_1 == "Y") echo "checked"; ?> >
+                                        월요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_2" value="Y"
+                                               class="yoil" <?php if (isset($yoil_2) && $yoil_2 == "Y") echo "checked"; ?> >
+                                        화요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_3" value="Y"
+                                               class="yoil" <?php if (isset($yoil_3) && $yoil_3 == "Y") echo "checked"; ?> >
+                                        수요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_4" value="Y"
+                                               class="yoil" <?php if (isset($yoil_4) && $yoil_4 == "Y") echo "checked"; ?> >
+                                        목요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_5" value="Y"
+                                               class="yoil" <?php if (isset($yoil_5) && $yoil_5 == "Y") echo "checked"; ?> >
+                                        금요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_6" value="Y"
+                                               class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
+                                        토요일&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                        <th>시작일</th>
+                                        <td>
+                                            <input type="text" name="s_date" value="<?=$golf_info["s_date"]?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
+                                        </td>
+                                        <th>종료일</th>
+                                        <td>
+                                            <input type="text" name="e_date" value="<?=$golf_info["e_date"]?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
+                                        </td>
+                                </tr>
+                                <tr>
+                                    <th>예약마감일 지정</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $deadline_date          = explode(",", $golf_info["deadline_date"]);
+                                        $deadline_date			= array_filter($deadline_date);
+                                        
+                                        foreach ($deadline_date as $key => $value) {
+                                            $date_array = explode("~", $value);
+                                            ?>
+                                            <input type="text" name="deadline_date[]" data-start_date="<?=$date_array[0]?>" data-end_date="<?=$date_array[1]?>" class="deadline_date" value="<?=$deadline_date?>" style="width: 200px;" readonly >
+                                        <?php }
+                                        ?>
+                                        <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
+                                        <p>"|" 로 일자를 구분해 주세요  </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <script>
+                            $('.deadline_date').each(function(){
+                                $(this).daterangepicker({
+                                    locale: {
+                                        "format": "YYYY-MM-DD",
+                                        "separator": " ~ ",
+                                        cancelLabel: 'Delete',
+                                    },
+                                    "startDate": $(this).data("start_date"),
+                                    "endDate": $(this).data("end_date"),
+                                    "cancelClass": "btn-danger",
+                                    "minDate": $("#datetest1").val(),
+                                    "maxDate": $("#datetest3").val(),
+                                });
+                            })
+                            $('.deadline_date').on('cancel.daterangepicker', function() {
+                                $(this).remove();
+                            });
+                            $("#btn_add_date_range").click(function(){
+                                console.log($(this));
+                                const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
+                                $(this).before(new_date_range);
+                                console.log(new_date_range);
+                                new_date_range.daterangepicker({
+                                    locale: {
+                                        "format": "YYYY-MM-DD",
+                                        "separator": " ~ ",
+                                        cancelLabel: 'Delete',
+                                    },
+                                    "cancelClass": "btn-danger",
+                                    "minDate": $("#datetest1").val(),
+                                    "maxDate": $("#datetest3").val(),
+                                })
+                                new_date_range.on('cancel.daterangepicker', function() {
+                                    $(this).remove();
+                                });
+                            })
+                        </script>
+                            <style>
+                                .list_value_ {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: start;
+                                    gap: 10px;
+                                    margin-top: 10px;
+                                }
 
-                            </table>
+                                .list_value_ .item_ {
+                                    position: relative;
+                                    padding: 10px;
+                                    border: 1px solid #dbdbdb;
+                                }
+
+                                .list_value_ .item_ .remove {
+                                    position: absolute;
+                                    color: #FFFFFF;
+                                    cursor: pointer;
+                                    padding: 0 6px 2px 6px;
+                                    top: -10px;
+                                    background-color: rgba(255, 0, 0, 0.8);
+                                    border-radius: 50%;
+                                    right: -5px;
+                                    border: 1px solid rgba(255, 0, 0, 0.8);
+                                }
+                        </style>
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                            style="margin-top:50px;">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                                <col width="10%"/>
+                                <col width="40%"/>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        제품정보
+                                    </td>
+                                </tr>
+                                <?php foreach ($filters as $key => $filter) { ?>
+                                    <tr>
+                                        <th><?=$filter['code_name']?></th>
+                                        <td colspan="3">
+                                            <select name="filter_<?=$filter['code_no']?>" id="filter_<?=$filter['code_no']?>"
+                                                    class="from-select select_filter" data-code_no="<?= $filter['code_no'] ?>" data-filter_name="<?=$filter['filter_name']?>">
+                                                <option value="">선택하다</option>
+                                                <?php foreach ($filter['children'] as $item) { ?>
+                                                    <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <div class="list_value_ list_value_<?=$filter['code_no']?>">
+                                                <?php
+                                                $filter_arr = explode("|", $golf_info[$filter['filter_name']]);
+                                                $filter_arr = array_filter($filter_arr);
+
+                                                ?>
+                                                <?php foreach ($filter['children'] as $item) { ?>
+                                                    <?php if (in_array($item['code_no'], $filter_arr)) { ?>
+                                                        <div class="item_">
+                                                            <span><?= $item['code_name'] ?></span>
+                                                            <input type="hidden" class="item_<?=$filter['code_no']?>" name="<?=$filter['filter_name']?>[]" value="<?= $item['code_no'] ?>">
+                                                            <div class="remove" onclick="removeData(this)">
+                                                                x
+                                                            </div>
+                                                        </div>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                         </div>
                     </div>
                     <?php if ($product_idx): ?>
@@ -524,7 +735,6 @@
                                 <col width="90%"/>
                             </colgroup>
                             <tbody>
-
                             <tr>
                                 <th>옵션추가</th>
                                 <td>
@@ -1150,10 +1360,49 @@
                     console.error('Error:', error);
                 });
         }
+            $(".select_filter").on("change", function () {
+                const val = $(this).val();
+                const code_no = $(this).data("code_no");
+                const filter_name = $(this).data("filter_name");
+                let arr = val.split('---');
+
+                let value = arr[0];
+                let name = arr[1];
+
+                let theme = ` <div class="item_">
+                                <span data-value="${value}">${name}</span>
+                                <input type="hidden" class="item_${code_no}" name="${filter_name}[]" value="${value}">
+                                <div class="remove" data-parent="${code_no}" data-value="${val}" onclick="removeData(this)">
+                                    x
+                                </div>
+                            </div>`;
+
+                let list_ = $(`.item_${code_no}`);
+
+                let isExist = false;
+                list_.each(function () {
+                    if ($(this).val() === value || $(this).val() === '' || $(this).val() === null) {
+                        isExist = true;
+                    }
+                })
+
+                if (!isExist) {
+                    $(`.list_value_${code_no}`).append(theme);
+                    $(this).find(`option[value="${val}"]`).remove();
+                    $(this).val("");
+                }
+            });
+            function removeData(el) {
+                $(el).parent('.item_').remove();
+                const value = $(el).data('value');
+                let arr = value.split('---');
+                const code_no = $(el).data('parent');
+                $(`#filter_${code_no}`).append(`<option value="${value}">${arr[1]}</option>`);
+            }
         </script>
         <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
-        <form id="listForm" action="./list_golf.php">
+        <form id="listForm" action="/AdmMaster/_tourRegist/list_golf">
             <input type="hidden" name="orderBy" value="<?= $orderBy ?>">
             <input type="hidden" name="pg" value="<?= $pg ?>">
             <input type="hidden" name="product_idx" value="<?= $product_idx ?>">
