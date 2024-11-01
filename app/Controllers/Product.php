@@ -48,12 +48,11 @@ class Product extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
-    public function showTicket()
+    public function showTicket($code_no)
     {
         try {
-            $data = [
-                'tab_active' => '5',
-            ];
+            $data = $this->viewData($code_no);
+
             return $this->renderView('product/show-ticket', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -62,7 +61,6 @@ class Product extends BaseController
             ]);
         }
     }
-
 
     public function ticketDetail($code_no)
     {
@@ -78,7 +76,6 @@ class Product extends BaseController
     {
         return $this->renderView('/product/ticket/completed-order');
     }
-
 
     public function indexTour($code_no)
     {
@@ -431,7 +428,6 @@ class Product extends BaseController
 
     }
 
-
     public function indexResult($code_no)
     {
         try {
@@ -711,64 +707,7 @@ class Product extends BaseController
     public function indexSpa($code_no, $s = "1")
     {
         try {
-            $search_product_name = $this->request->getVar('keyword') ?? "";
-            $product_code_2 = $this->request->getVar('product_code_2') ?? "";
-
-            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' ORDER BY onum DESC, product_idx DESC";
-            $products = $this->db->query($sql);
-            $products = $products->getResultArray();
-
-            $strSql = '';
-
-            if ($search_product_name && $search_product_name != "") {
-                $strSql = $strSql . " AND product_name LIKE '%$search_product_name%'";
-            }
-            if ($product_code_2 && $product_code_2 != "") {
-                $strSql = $strSql . " AND product_code_2 = " . $product_code_2;
-            }
-
-            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' $strSql ORDER BY onum DESC, product_idx DESC";
-            $productResults = $this->db->query($sql);
-            $productResults = $productResults->getResultArray();
-
-            foreach ($productResults as $key => $product) {
-
-                $hotel_codes = explode("|", $product['product_code_list']);
-                $hotel_codes = array_values(array_filter($hotel_codes));
-
-                $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
-
-                $productResults[$key]['codeTree'] = $codeTree;
-
-                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
-
-                $productResults[$key]['total_review'] = $productReview['total_review'];
-                $productResults[$key]['review_average'] = $productReview['avg'];
-            }
-
-            $sql = "SELECT * FROM tbl_code WHERE parent_code_no= 1325 AND status='Y' ORDER BY onum DESC, code_idx DESC";
-            $codes = $this->db->query($sql);
-            $codes = $codes->getResultArray();
-
-            foreach ($codes as $key => $code) {
-                $strSql2 = '';
-                if ($search_product_name && $search_product_name != "") {
-                    $strSql2 = $strSql2 . " AND product_name LIKE '%$search_product_name%'";
-                }
-                $sql = "SELECT * FROM tbl_product_mst WHERE product_code_2 = " . $code['code_no'] . " AND is_view='Y' $strSql2 ORDER BY onum DESC, product_idx DESC";
-                $sProducts = $this->db->query($sql);
-                $sProducts = $sProducts->getNumRows();
-
-                $codes[$key]['count'] = $sProducts;
-            }
-
-            $data = [
-                "products" => $products,
-                "productResults" => $productResults,
-                "search_product_name" => $search_product_name,
-                "product_code_2" => $product_code_2,
-                "codes" => $codes,
-            ];
+            $data = $this->viewData($code_no);
 
             return $this->renderView('product/product-spa', $data);
         } catch (Exception $e) {
@@ -1593,7 +1532,16 @@ class Product extends BaseController
 
     public function restaurantIndex($code_no)
     {
-        return $this->renderView('/product/restaurant/product-restaurant');
+        try {
+            $data = $this->viewData($code_no);
+
+            return $this->renderView('/product/restaurant/product-restaurant', $data);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     public function restaurantDetail($code_no)
@@ -1610,6 +1558,7 @@ class Product extends BaseController
     {
         return $this->renderView('/product/restaurant/completed-order');
     }
+
     public function vehicleGuide($code_no)
     {
         try {
@@ -1786,5 +1735,69 @@ class Product extends BaseController
     {
         // return base_url("images/{$file}");
         return "https://hihojoonew.cafe24.com/data/product/thum_798_463/{$file}";
+    }
+
+    private function viewData($code_no)
+    {
+        $search_product_name = $this->request->getVar('keyword') ?? "";
+        $product_code_2 = $this->request->getVar('product_code_2') ?? "";
+
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' ORDER BY onum DESC, product_idx DESC";
+        $products = $this->db->query($sql);
+        $products = $products->getResultArray();
+
+        $strSql = '';
+
+        if ($search_product_name && $search_product_name != "") {
+            $strSql = $strSql . " AND product_name LIKE '%$search_product_name%'";
+        }
+        if ($product_code_2 && $product_code_2 != "") {
+            $strSql = $strSql . " AND product_code_2 = " . $product_code_2;
+        }
+
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' $strSql ORDER BY onum DESC, product_idx DESC";
+        $productResults = $this->db->query($sql);
+        $productResults = $productResults->getResultArray();
+
+        foreach ($productResults as $key => $product) {
+
+            $hotel_codes = explode("|", $product['product_code_list']);
+            $hotel_codes = array_values(array_filter($hotel_codes));
+
+            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+            $productResults[$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $productResults[$key]['total_review'] = $productReview['total_review'];
+            $productResults[$key]['review_average'] = $productReview['avg'];
+        }
+
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no= $code_no AND status='Y' ORDER BY onum DESC, code_idx DESC";
+        $codes = $this->db->query($sql);
+        $codes = $codes->getResultArray();
+
+        foreach ($codes as $key => $code) {
+            $strSql2 = '';
+            if ($search_product_name && $search_product_name != "") {
+                $strSql2 = $strSql2 . " AND product_name LIKE '%$search_product_name%'";
+            }
+            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_2 = " . $code['code_no'] . " AND is_view='Y' $strSql2 ORDER BY onum DESC, product_idx DESC";
+            $sProducts = $this->db->query($sql);
+            $sProducts = $sProducts->getNumRows();
+
+            $codes[$key]['count'] = $sProducts;
+        }
+
+        $data = [
+            "products" => $products,
+            "productResults" => $productResults,
+            "search_product_name" => $search_product_name,
+            "product_code_2" => $product_code_2,
+            "codes" => $codes,
+        ];
+
+        return $data;
     }
 }

@@ -514,7 +514,7 @@ $routes->get('product_view/(:any)', 'Product::view/$1');
 $routes->get('product-restaurant/completed-order', 'Product::restaurantCompleted');
 $routes->get('product-restaurant/restaurant-booking/(:any)', 'Product::restaurantBooking/$1');
 $routes->get('product-restaurant/restaurant-detail/(:any)', 'Product::restaurantDetail/$1');
-$routes->get('product-restaurant/(:any)/(:any)', 'Product::restaurantIndex/$1/$2');
+$routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');
 $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
 $routes->get('product/get-by-top', 'Product::getProductByTop');
 $routes->get('product/get-by-cheep', 'Product::getProductByCheep');
