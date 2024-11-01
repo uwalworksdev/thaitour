@@ -162,9 +162,11 @@
                     <p><span>더</span>투어랩 쇼ㆍ입장권</p>
                 </div>
                 <div class="ticket-tool-r">
-                    <input type="text">
-                    <img src="/uploads/icons/search-i-ticket.png" alt="" class="ticket-s-i only_web">
-                    <img src="/uploads/icons/search-i-ticket-m.png" alt="" class="ticket-s-i only_mo">
+                    <input type="text" id="search_product_name" value="<?= $search_product_name ?>">
+                    <img src="/uploads/icons/search-i-ticket.png" alt="" class="ticket-s-i searchBtn only_web"
+                         style="cursor: pointer" onclick="searchSpa();">
+                    <img src="/uploads/icons/search-i-ticket-m.png" alt="" class="ticket-s-i searchBtn only_mo"
+                         style="cursor: pointer" onclick="searchSpa();">
                 </div>
             </div>
             <div class="tiket-tool-b">
