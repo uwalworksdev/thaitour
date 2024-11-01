@@ -1310,7 +1310,7 @@
     
                     <div class="tail_menu">
                         <ul>
-                            <li class="left">■ 상세내역</li>
+                            <li class="left">■ 일정내역</li>
                             <li class="right_sub" style="padding-bottom:10px"></li>
                         </ul>
                     </div>
@@ -1326,7 +1326,7 @@
                             <thead>
                             <tr>
                                 <th>번호</th>
-                                <th>항공사</th>
+                                <th></th>
                                 <th>일차</th>
                                 <th>관리</th>
                             </tr>
@@ -1340,7 +1340,7 @@
                                         <td class="tac"><?= $frow["code_name"] ?></td>
                                         <td class="tac"><?= $frow["cnt"] ?>일차</td>
                                         <td>
-                                            <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code=<?= $frow["air_code_1"] ?>"
+                                            <a href="/AdmMaster/_tours/detailwrite_new?product_idx=<?= $product_idx ?>&air_code=0000"
                                                class="btn btn-default">상세내역관리</a>
                                             <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
                                                 <input type="file" hidden name="fileInput"
@@ -1356,7 +1356,7 @@
                                     <td class="tac">미등록</td>
                                     <td class="tac">미등록</td>
                                     <td>
-                                        <a href="detailwrite_new.php?product_idx=<?= $product_idx ?>&air_code="
+                                        <a href="/AdmMaster/_tours/detailwrite_new?product_idx=<?= $product_idx ?>&air_code=0000"
                                            class="btn btn-default">상세내역관리</a>
                                         <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
                                             <!-- <button type="button">Tải lên lịch trình</button> -->

@@ -139,6 +139,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
         $routes->post("del_tours", "Admin\AdminTourController::del_tours", ['as' => "admin._tours.del_tours"]);
         $routes->post("del", "Admin\AdminTourController::del", ['as' => "admin._tours.del"]);
+        $routes->get("detailwrite_new", "Admin\AdminTourController::detailwrite_new", ['as' => "admin._tours.detailwrite_new"]);
+        $routes->post("chg_detailwrite", "Admin\AdminTourController::chg_detailwrite", ['as' => "admin._tours.chg_detailwrite"]);
+        $routes->post("day_seq_delete", "Admin\AdminTourController::day_seq_delete", ['as' => "admin._tours.day_seq_delete"]);
     });
 
     $routes->group("api", function ($routes) {
