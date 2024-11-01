@@ -163,8 +163,8 @@
             <div class="scroll-con-sec7">
                 <div class="sub_tour_section7_product_list">
                     <?php foreach ($productSpecialPrice['items'] as $item) : ?>
-                        <div class="">
-                            <a href="/product-golf/golf-detail/<?= $item['product_idx'] ?>" class="sub_tour_section7_product_item">
+                        <div class="sub_tour_section7_product_item">
+                            <a href="/product-golf/golf-detail/<?= $item['product_idx'] ?>" class="sub_gold_item">
                                 <img class="ico_special_prd only_web" src="/images/ico/ico_special_prd.png" alt="">
                                 <img class="ico_special_prd only_mo" src="/images/ico/ico_special_prd_mo.png" alt="">
                                 <div class="img_box img_box_12">

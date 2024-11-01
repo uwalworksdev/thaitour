@@ -1,7 +1,7 @@
 ._wrap-info-payment {
     display: flex;
     gap: 24px;
-    margin-bottom: 220px;
+    /*margin-bottom: 220px;*/
     margin-top: 40px;
 }
 
@@ -218,7 +218,8 @@
 .spa-detail .label-container,
 .order-travel-page .label-container {
     display: flex;
-    flex-direction: column;
+    /*flex-direction: column;*/
+    justify-content: space-between;
     gap: 20px;
     margin-bottom: 40px;
 }

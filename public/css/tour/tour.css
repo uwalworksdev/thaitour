@@ -2945,14 +2945,28 @@
     position: relative;
 }
 
+.custom-golf-detail .calendar .dates .day {
+    text-align: center;
+}
+
 .custom-golf-detail .calendar .dates .day,
 .custom-golf-detail .calendar .dates .txt {
     color: #999;
 }
 
-.custom-golf-detail .calendar .dates .day a {
+.custom-golf-detail .calendar .dates .txt {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.custom-golf-detail .calendar .dates .day.on a,
+.custom-golf-detail .calendar .dates .day.on .txt {
     color: #252525;
 }
+
+/* .custom-golf-detail .calendar .dates .day a {
+    color: #252525;
+} */
 
 .custom-golf-detail .calendar .dates .day a.on {
     color: #fff !important;
@@ -3143,6 +3157,8 @@
     padding: 40px;
     border-radius: 0 0 0 6px;
     box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
+    display: flex;
+    flex-direction: column;
 }
 
 .custom-golf-detail .section2-sub .left-main .tit-left {
@@ -3170,6 +3186,8 @@
     border-left: none;
     border-radius: 0 0 6px 0;
     box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
+    display: flex;
+    flex-direction: column;
 }
 
 .custom-golf-detail .section2-sub .right-main .item-right {
@@ -3202,6 +3220,7 @@
     background-color: var(--bs-point) !important;
     font-size: 22px !important;
     font-weight: unset;
+    margin-top: auto;
 }
 
 .custom-golf-detail .btn-price-content-normal {
@@ -3209,11 +3228,11 @@
     height: 66px;
     color: var(--bs-point) !important;
     border: 1px solid var(--bs-point) !important;
-    ;
     background-color: white !important;
     font-size: 22px !important;
     font-weight: unset;
     margin-top: 233px;
+    margin-top: auto;
 }
 
 .custom-golf-detail .section2-sub .item-last-right {

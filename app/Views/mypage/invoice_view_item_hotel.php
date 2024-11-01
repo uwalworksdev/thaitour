@@ -568,8 +568,8 @@ $start_date = $row['start_date'];
 				</colgroup>
 				<tbody>
 					<tr>
-						<td width="*%" class="subject">객실</td>
-						<td class="subject">
+						<td width="*%" class="subject" style="font-weight: bold;">객실</td>
+						<td class="subject" style="font-weight: bold;">
 							여행자
 						</td>
 					</tr>
