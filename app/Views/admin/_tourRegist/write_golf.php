@@ -791,10 +791,10 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div class="flex_c_c"><input type="text" name="caddy_fee[]" value='<?= $m['caddy_fee'] ?>'></div>
+                                                        <div class="flex_c_c"><input type="text" id="caddy_fee_<?= $m['idx'] ?>" name="caddy_fee[]" value='<?= $m['caddy_fee'] ?>'></div>
                                                     </td>
                                                     <td>
-                                                        <div class="flex_c_c"><input type="text" name="cart_pie_fee[]" value='<?= $m['cart_pie_fee'] ?>'></div>
+                                                        <div class="flex_c_c"><input type="text" id="cart_pie_fee_<?= $m['idx'] ?>" name="cart_pie_fee[]" value='<?= $m['cart_pie_fee'] ?>'></div>
                                                     </td>
                                                     <td class="tac">
                                                         &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
@@ -988,7 +988,9 @@
                     url: "/AdmMaster/_tourRegist/write_golf/upd_moption/" + code_idx,
                     type: "PUT",
                     data: {
-                        "option_price": $("#option_price_" + code_idx).val()
+                        "option_price": $("#option_price_" + code_idx).val(),
+                        "caddy_fee": $("#caddy_fee_" + code_idx).val(),
+                        "cart_pie_fee": $("#cart_pie_fee_" + code_idx).val(),
                     },
                     dataType: "json",
                     async: false,

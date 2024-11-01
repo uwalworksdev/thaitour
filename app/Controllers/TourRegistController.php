@@ -409,8 +409,7 @@ class TourRegistController extends BaseController
 
     public function upd_moption($idx)
     {
-        $option_price = $this->request->getRawInputVar('option_price') ?? 0;
-        $this->golfOptionModel->update($idx, ['option_price' => $option_price]);
+        $this->golfOptionModel->update($idx, $this->request->getRawInputVar());
         return $this->response->setJSON(['message' => '수정되었습니다']);
     }
 
