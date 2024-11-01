@@ -226,13 +226,7 @@
                     </li>
                 </ul>
                 <ul class="menu_mobile__list">
-                        <li><a href="/product-hotel/1324">호텔</a></li>
-                    <li><a href="/product-golf/1325/1">골프</a></li>
-                    <li><a href="/product-tours/1324/1">투어</a></li>
-                    <li><a href="/product-spa/1320/1">스파</a></li>
-                    <li><a href="/show-ticket">쇼ㆍ입장권</a></li>
-                    <li><a href="/product-restaurant/1320/1">레스토랑</a></li>
-                    <li><a href="/vehicle-guide/1324">차량ㆍ가이드</a></li>
+                    <?php echo getHeaderTab(); ?>
                 </ul>
             </div>
         </div>
