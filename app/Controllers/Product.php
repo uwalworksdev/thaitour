@@ -730,11 +730,28 @@ class Product extends BaseController
                 $productResults[$key]['review_average'] = $productReview['avg'];
             }
 
+            $sql = "SELECT * FROM tbl_code WHERE parent_code_no= 1325 AND status='Y' ORDER BY onum DESC, code_idx DESC";
+            $codes = $this->db->query($sql);
+            $codes = $codes->getResultArray();
+
+            foreach ($codes as $key => $code) {
+                $strSql2 = '';
+                if ($search_product_name && $search_product_name != "") {
+                    $strSql2 = $strSql2 . " AND product_name LIKE '%$search_product_name%'";
+                }
+                $sql = "SELECT * FROM tbl_product_mst WHERE product_code_2 = " . $code['code_no'] . " AND is_view='Y' $strSql2 ORDER BY onum DESC, product_idx DESC";
+                $sProducts = $this->db->query($sql);
+                $sProducts = $sProducts->getNumRows();
+
+                $codes[$key]['count'] = $sProducts;
+            }
+
             $data = [
                 "products" => $products,
                 "productResults" => $productResults,
                 "search_product_name" => $search_product_name,
                 "product_code_2" => $product_code_2,
+                "codes" => $codes,
             ];
 
             return $this->renderView('product/product-spa', $data);

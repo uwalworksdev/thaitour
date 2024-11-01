@@ -37,7 +37,23 @@
         cursor: pointer;
     }
 </style>
+<script>
+    function searchSpa() {
+        let keyword = $('#search_product_name').val() ?? '<?= $search_product_name ?>';
+        let code = '<?= $product_code_2 ?>';
 
+        goUrl(keyword, code);
+    }
+
+    function searchSpaCode(code) {
+        let keyword = $('#search_product_name').val() ?? '<?= $search_product_name ?>';
+        goUrl(keyword, code);
+    }
+
+    function goUrl(key, code) {
+        window.location.href = `/product-spa/1325?keyword=${key}&product_code_2=${code}`;
+    }
+</script>
 <section>
     <div class="body_inner">
         <div class="banner-ticket">
@@ -122,21 +138,27 @@
                 <div class="ticket-tool-r">
                     <input type="text" id="search_product_name" value="<?= $search_product_name ?>">
                     <img src="/uploads/icons/search-i-ticket.png" alt="" class="ticket-s-i searchBtn only_web"
-                         style="cursor: pointer">
+                         style="cursor: pointer" onclick="searchSpa();">
                     <img src="/uploads/icons/search-i-ticket-m.png" alt="" class="ticket-s-i searchBtn only_mo"
-                         style="cursor: pointer">
+                         style="cursor: pointer" onclick="searchSpa();">
                 </div>
             </div>
             <div class="tiket-tool-b">
                 <div class="btn-gr-ticket">
-                    <button class="on">방콕</button>
-                    <button>여행편의(8)</button>
-                    <button>공연 티켓(5)</button>
-                    <button class="only_web">전통의상대여(4)</button>
-                    <button class="only_web">공항 라운지(6)</button>
-                    <button class=" only_tb">액티비티(7)</button>
-                    <button class=" only_tb">동물원(3)</button>
-                    <button class=" only_tb">테마파크 (4)</button>
+                    <button onclick="searchSpaCode('')" class="<?= !$product_code_2 ? 'on' : '' ?>">방콕</button>
+                    <!--                    <button>여행편의(8)</button>-->
+                    <!--                    <button>공연 티켓(5)</button>-->
+                    <!--                    <button class="only_web">전통의상대여(4)</button>-->
+                    <!--                    <button class="only_web">공항 라운지(6)</button>-->
+                    <!--                    <button class=" only_tb">액티비티(7)</button>-->
+                    <!--                    <button class=" only_tb">동물원(3)</button>-->
+                    <!--                    <button class=" only_tb">테마파크 (4)</button>-->
+                    <?php foreach ($codes as $code) { ?>
+                        <button class="<?= $product_code_2 === $code['code_no'] ? 'on' : '' ?>"
+                                onclick="searchSpaCode('<?= $code['code_no'] ?>');"><?= $code['code_name'] ?>
+                            (<?= $code['count'] ?>)
+                        </button>
+                    <?php } ?>
                 </div>
                 <div class="select-tool">
                     <select name="" id="">
@@ -149,6 +171,7 @@
                 .list-ticket-grid {
                     height: 842px;
                     overflow: hidden;
+                    margin-bottom: 50px;
                 }
 
                 .open_ {
@@ -239,18 +262,13 @@
     </script>
 
 </section>
-
 <script>
-   function search() {
-       let keyword = $('#search_product_name').val() ?? <?= $search_product_name ?>;
-       let code = '<?= $product_code_2 ?>';
-
-       goUrl(keyword, code);
-   }
-
-    function goUrl(key, code) {
-        window.location.href = `/product-spa/1325?keyword=${key}&product_code_2=${code}`;
-    }
+    $('#search_product_name').on('keypress', function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            searchSpa();
+        }
+    });
 </script>
 <script>
     let swiper = new Swiper('.swiper-container-ticket', {
