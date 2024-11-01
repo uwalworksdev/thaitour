@@ -153,7 +153,7 @@
             </div>
         </div>
         <div class="mid-banner-ticket">
-            <img class="only_web" src="<?= base_url('/uploads/products/ticket-mid-banner.png') ?>" alt="">
+            <img class="only_web" src="<?= base_url('/images/sub/banner__shoping01.png') ?>" alt="">
             <img class="only_mo" src="<?= base_url('/uploads/products/ticket-mid-banner-m.png') ?>" alt="">
         </div>
         <div class="ticket-list">
