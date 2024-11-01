@@ -365,3 +365,60 @@
     overflow: auto;
     padding-right: 0px;
 }
+
+.view_nav .nav_btn_wrap .btn-point {
+    box-shadow: none;
+}
+
+.content-sub-hotel-detail .section2 .tag_list_done {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 40px;
+    row-gap: 20px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.content-sub-hotel-detail .section2 .tag_list_done .item_done {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: unset;
+    width: 20%;
+}
+
+
+@media screen and (max-width  : 850px) {
+    .content-sub-hotel-detail .hotel-image-container .grid_2_2 > img {
+        width: 49.2% !important;
+        
+    }
+    ._wrap-info-payment ._wrap-info {
+        width: 100%;
+    }
+
+    .calendar .week {
+        display: flex;
+        width: 100%;
+       
+    }
+
+    .calendar .canl_tabel .body .day {
+        position: relative;
+        height: 9.8462rem;
+        width: 100%;
+        border-top: 1px solid #aaa;
+        border-right: 1px solid #aaa;
+        cursor: pointer;
+        display: inline-block;
+
+    }
+
+    .calendar .date_number {
+        color: black !important;
+        position: absolute;
+        top: 1.3846rem;
+        right: 1.5769rem;
+        font-size: 2.8rem;
+    }
+}

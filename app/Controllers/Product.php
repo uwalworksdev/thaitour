@@ -63,18 +63,16 @@ class Product extends BaseController
         }
     }
 
+
     public function indexTour($code_no)
     {
-        $code_no = $this->request->getGet('code_no');
-        $code_recommended_active = $this->request->getGet('code_recommended_active');
         try {
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'DESC')->findAll();
-
+    
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
-                // 'product_status' => 'sale',
             ], $this->scale, 1, ['product_price' => 'ASC']);
-
+    
             $code_name = $this->db->table('tbl_code')
                 ->select('code_name')
                 ->where('code_gubun', 'tour')
@@ -82,7 +80,7 @@ class Product extends BaseController
                 ->get()
                 ->getRow()
                 ->code_name;
-
+    
             if (strlen($code_no) == 4) {
                 $codes = $this->db->table('tbl_code')
                     ->where('parent_code_no', $code_no)
@@ -96,20 +94,26 @@ class Product extends BaseController
                     ->get()
                     ->getResult();
             }
-
+    
             $code_new = $this->codeModel->getByParentAndDepth(2336, 3)->getResultArray();
-
             $codeRecommendedActive = $code_new[0]['code_no'];
-
             $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
 
-
             $code_step2 = $this->codeModel->getByParentAndDepth($codeRecommendedActive, 4)->getResultArray();
+   
+            $codeStep2RecommendedActive = !empty($code_step2) ? $code_step2[0]['code_no'] : null;
+            $productStep2ByRecommended = !empty($codeStep2RecommendedActive) ? $this->mainDispModel->goods_find($codeStep2RecommendedActive, 4, 1) : [];
+            $productStep2ByRecommended['code_no'] = $codeStep2RecommendedActive;
 
-            $codeStep2RecommendedActive = $code_step2[0]['code_no'];
+            $code_popular = $this->codeModel->getByParentAndDepth(2337, 3)->getResultArray();
+            $codePopularActive = $code_popular[0]['code_no'];
+            $productByPopular = $this->mainDispModel->goods_find($codePopularActive);
 
-            $productStep2ByRecommended = $this->mainDispModel->goods_find($codeStep2RecommendedActive);
-
+            $product_popular = $this->productModel->findProductPaging([
+                'product_code_1' => 1301,
+                'special_price' => 'Y',
+            ], $this->scale, 1, ['r_date' => 'DESC']);
+    
             $data = [
                 'code_no' => $code_no,
                 'products' => $products,
@@ -123,8 +127,12 @@ class Product extends BaseController
                 'productStep2ByRecommended' => $productStep2ByRecommended,
                 'codeStep2RecommendedActive' => $codeStep2RecommendedActive,
                 'code_step2' => $code_step2,
+                'productByPopular' => $productByPopular,
+                'codePopularActive' => $codePopularActive,
+                'code_popular' => $code_popular,
+                'product_popular' => $product_popular
             ];
-
+    
             return $this->renderView('product/product-tours', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -350,6 +358,63 @@ class Product extends BaseController
         $productBySubCode['html'] = $html;
         return $this->response->setJSON($productBySubCode);
     }
+
+    public function getStep2ByCodeNo()
+    {
+        $code_no = $this->request->getVar('code_no');
+        
+        $code_step2 = $this->codeModel->getByParentAndDepth($code_no, 4)->getResultArray();
+        
+        $codeStep2RecommendedActive = !empty($code_step2) ? $code_step2[0]['code_no'] : null;
+        
+        $html = '';
+        
+        if (!empty($code_step2)) {
+            foreach ($code_step2 as $code) {
+                $html .= '<a href="javascript:void(0);" onclick="handleLoadRecommendedProduct(' . $code['code_no'] . ');" class="tour__head__tabs2__tab ' . ($codeStep2RecommendedActive == $code['code_no'] ? 'active' : '') . '">' .
+                viewSQ($code['code_name']) .
+                '</a>';
+
+            }
+        }
+    
+        return $this->response->setJSON([
+            'codeStep2RecommendedActive' => $codeStep2RecommendedActive,
+            'html' => $html,
+        ]);
+    }
+
+    public function getProductBySubCodeTour()
+    {
+        $code_no = $this->request->getVar('code_no');
+        $page = $this->request->getVar('page');
+        $perPage = 4;
+        $productBySubCode = $this->mainDispModel->goods_find($code_no, $perPage, $page);
+
+        $html = '';
+        foreach ($productBySubCode['items'] as $key => $item) {
+
+            if ($item['product_code_1'] == 1303) {
+                $hotel_codes = explode("|", $item['product_code_list']);
+                $hotel_codes = array_values(array_filter($hotel_codes));
+                $code = $hotel_codes['0'];
+            } else {
+                $code = $item['product_code_1'];
+                if ($item['product_code_2']) $code = $item['product_code_2'];
+                if ($item['product_code_3']) $code = $item['product_code_3'];
+            }
+
+
+            $codeTree = $this->codeModel->getCodeTree($code);
+
+            $item['codeTree'] = $codeTree;
+            $html .= view('product/tour/product_item_by_recommended', ['item' => $item]);
+        }
+        $productBySubCode['html'] = $html;
+        return $this->response->setJSON($productBySubCode);
+
+    }
+    
 
     public function indexResult($code_no)
     {

@@ -208,7 +208,7 @@
                     <div class="sub_tour_section5__head__tabs1">
                         <div class="tour__head__tabs1__tabs">
                             <?php foreach ($code_new as $code) : ?>
-                                    <a href="javascript:void(0);" onclick="handleLoadRecommendedProduct(<?=$code['code_no']?>);" class="tour__head__tabs1__tab <?=$codeRecommendedActive == $code['code_no'] ? 'active' : ''?>">
+                                    <a href="javascript:void(0);" onclick="handleLoadRecommendedProductStep2(<?=$code['code_no']?>);" class="tour__head__tabs1__tab <?=$codeRecommendedActive == $code['code_no'] ? 'active' : ''?>">
                                         <?=viewSQ($code['code_name'])?>
                                     </a>
                             <?php endforeach; ?>
@@ -224,117 +224,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="sub_tour_section5__prd_list">
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/tour_suggest_1.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_keywords">
-                            <span>#조인</span>
-                            <span>#한국거 기이드</span>
-                        </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                <span class="star_avg">4.7</span>
-                                <span class="star_review_cnt">(954)</span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
-                        </div>
-                    </a>
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/tour_suggest_2.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_keywords">
-                            <span>#조인</span>
-                            <span>#한국거 기이드</span>
-                        </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                <span class="star_avg">4.7</span>
-                                <span class="star_review_cnt">(954)</span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
-                        </div>
-                    </a>
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/tour_suggest_3.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_keywords">
-                            <span>#조인</span>
-                            <span>#한국거 기이드</span>
-                        </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                <span class="star_avg">4.7</span>
-                                <span class="star_review_cnt">(954)</span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
-                        </div>
-                    </a>
-                    <a href="#!" class="sub_tour_section5_item">
-                        <div class="img_box img_box_10">
-                            <img src="/uploads/sub/tour_suggest_4.png" alt="main">
-                        </div>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_keywords">
-                            <span>#조인</span>
-                            <span>#한국거 기이드</span>
-                        </div>
-                        <div class="prd_info">
-                            <div class="prd_info__left">
-                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                <span class="star_avg">4.7</span>
-                                <span class="star_review_cnt">(954)</span>
-                            </div>
-                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                            <div class="prd_info__right">
-                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                <span class="new_review_cnt">(0)</span>
-                            </div>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
-                        </div>
-                    </a>
+                <div class="sub_tour_section5__prd_list" id="product_list_recommended">
+                    <?php foreach ($productStep2ByRecommended['items'] as $item) :
+                        echo view("product/tour/product_item_by_recommended", ["item" => $item]);
+                    endforeach; ?>
                 </div>
-                <div class="prd_list_pagination">
+
+                    <div class="prd_list_pagination" id="product_list_recommended_pagination">
+                        <div class="prd_list_pagination__btn" onclick="handleClickPaginationMD('<?= $productStep2ByRecommended['code_no'] ?>')">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                        d="M2.00001 10C2.00001 10.2589 1.89465 10.5073 1.70712 10.6904C1.51958 10.8735 1.26523 10.9764 1.00001 10.9764C0.734797 10.9764 0.480443 10.8735 0.292907 10.6904C0.105371 10.5073 1.41207e-05 10.2589 1.41207e-05 10C-0.00315467 8.16016 0.527064 6.35702 1.52937 4.79904C2.53167 3.24106 3.96513 1.99188 5.66401 1.1959C7.36289 0.399924 9.25782 0.08967 11.1297 0.301007C13.0016 0.512343 14.774 1.23664 16.242 2.39016V0.976372C16.242 0.717422 16.3473 0.469078 16.5349 0.285973C16.7224 0.102868 16.9768 0 17.242 0C17.5072 0 17.7616 0.102868 17.9491 0.285973C18.1366 0.469078 18.242 0.717422 18.242 0.976372V4.88186C18.242 5.14081 18.1366 5.38915 17.9491 5.57226C17.7616 5.75536 17.5072 5.85823 17.242 5.85823H13.242C12.9768 5.85823 12.7224 5.75536 12.5349 5.57226C12.3474 5.38915 12.242 5.14081 12.242 4.88186C12.242 4.62291 12.3474 4.37457 12.5349 4.19146C12.7224 4.00835 12.9768 3.90549 13.242 3.90549H14.985C13.8101 2.98468 12.3923 2.40715 10.8955 2.23961C9.39874 2.07207 7.88392 2.32136 6.52606 2.95867C5.16819 3.59599 4.02267 4.59534 3.22179 5.84129C2.42091 7.08725 1.99734 8.52899 2.00001 10ZM19 9.02363C18.7348 9.02363 18.4804 9.1265 18.2929 9.3096C18.1053 9.49271 18 9.74105 18 10C18.0027 11.471 17.5791 12.9127 16.7782 14.1587C15.9773 15.4047 14.8318 16.404 13.4739 17.0413C12.1161 17.6786 10.6013 17.9279 9.10446 17.7604C7.60766 17.5928 6.18993 17.0153 5.01501 16.0945H6.75701C7.02222 16.0945 7.27657 15.9916 7.46411 15.8085C7.65165 15.6254 7.757 15.3771 7.757 15.1181C7.757 14.8592 7.65165 14.6108 7.46411 14.4277C7.27657 14.2446 7.02222 14.1418 6.75701 14.1418H2.75701C2.49179 14.1418 2.23744 14.2446 2.0499 14.4277C1.86237 14.6108 1.75701 14.8592 1.75701 15.1181V19.0236C1.75701 19.2826 1.86237 19.5309 2.0499 19.714C2.23744 19.8971 2.49179 20 2.75701 20C3.02223 20 3.27658 19.8971 3.46412 19.714C3.65165 19.5309 3.75701 19.2826 3.75701 19.0236V17.6098C5.22511 18.7633 6.99756 19.4875 8.86946 19.6987C10.7414 19.91 12.6363 19.5998 14.3352 18.8038C16.0341 18.0079 17.4676 16.7588 18.4701 15.2009C19.4725 13.6429 20.0029 11.8398 20 10C20 9.74105 19.8946 9.49271 19.7071 9.3096C19.5196 9.1265 19.2652 9.02363 19 9.02363Z"
+                                        fill="black"/>
+                            </svg>
+                            <span class="prd_list_pagination__btn__text">다음상품</span>
+                            <div class="prd_list_pagination__btn__pages">
+                                <span class="prd_list_pagination__btn__current">1</span> /
+                                <span class="prd_list_pagination__btn__total"><?= $productStep2ByRecommended['nPage'] ?></span>
+                            </div>
+                        </div>
+                    </div>
+                <!-- <div class="prd_list_pagination">
                     <div class="prd_list_pagination__btn">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -348,7 +258,7 @@
                             <span class="prd_list_pagination__btn__total">2</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
         <section class="sub_tour_section6">
@@ -358,22 +268,18 @@
                         인기 최고! 테마별 추천 상품
                     </div>
                     <div class="sub_tour_section6__head__tabs">
-                        <a href="#!" class="sub_tour_section6__head__tabs__tab">
-                            오션 액티비티
-                        </a>
-                        <a href="#!" class="sub_tour_section6__head__tabs__tab active">
-                            신나는 시티 투어
-                        </a>
-                        <a href="#!" class="sub_tour_section6__head__tabs__tab">
-                            생생 동물체험
-                        </a>
-                        <a href="#!" class="sub_tour_section6__head__tabs__tab">
-                            쿠킹 클래스
-                        </a>
+                        <?php foreach ($code_popular as $code) : ?>
+                                <a href="javascript:void(0);" onclick="handleLoadPopularProduct(<?=$code['code_no']?>);" class="sub_tour_section6__head__tabs__tab <?=$codePopularActive == $code['code_no'] ? 'active' : ''?>">
+                                    <?=viewSQ($code['code_name'])?>
+                                </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
-                <div class="sub_tour_section6_product_list">
-                    <a href="#!" class="sub_tour_section6_item">
+                <div class="sub_tour_section6_product_list" id="product_list_popular">
+                    <?php foreach ($productByPopular['items'] as $item) :
+                        echo view("product/tour/product_item_by_recommended", ["item" => $item]);
+                    endforeach; ?>
+                    <!-- <a href="#!" class="sub_tour_section6_item">
                         <div class="img_box img_box_10">
                             <img src="/uploads/sub/tour_theme_1.png" alt="main">
                         </div>
@@ -588,7 +494,7 @@
                         <div class="prd_price_ko">
                             236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
                         </div>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </section>
@@ -599,41 +505,60 @@
                         놓치기 아쉬운 특가
                     </div>
                 </div>
-                <div class="sub_tour_section7_product_list">
-                    <div class="sub_tour_section7_product_item">
-                        <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
-                        <div class="img_box img_box_12">
-                            <img src="/uploads/sub/tour_special_1.png" alt="">
-                        </div>
-                        <div class="sub_tour_section7_product_item__name">놓치기 아쉬운 특가</div>
-                        <div class="sub_tour_section7_product_item__keywords">
-                            <span>#연꽃정원</span>
-                            <span>#치앙마이</span>
-                        </div>
-                    </div>
-                    <div class="sub_tour_section7_product_item">
-                        <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
-                        <div class="img_box img_box_12">
-                            <img src="/uploads/sub/tour_special_2.png" alt="">
-                        </div>
-                        <div class="sub_tour_section7_product_item__name">놓치기 아쉬운 특가</div>
-                        <div class="sub_tour_section7_product_item__keywords">
-                            <span>#연꽃정원</span>
-                            <span>#치앙마이</span>
-                        </div>
-                    </div>
-                    <div class="sub_tour_section7_product_item">
-                        <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
-                        <div class="img_box img_box_12">
-                            <img src="/uploads/sub/tour_special_3.png" alt="">
-                        </div>
-                        <div class="sub_tour_section7_product_item__name">놓치기 아쉬운 특가</div>
-                        <div class="sub_tour_section7_product_item__keywords">
-                            <span>#연꽃정원</span>
-                            <span>#치앙마이</span>
-                        </div>
+                <div class="swiper sub_tour_section7_product_list" style="margin-bottom: 0">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($product_popular['items'] as $item) : 
+                            if(is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
+                                $src = "/data/product/" . $item['ufile1'];
+                            } else {
+                                $src = "/images/product/noimg.png";
+                            }
+                        ?>
+                            <div class="swiper-slide">
+                                <div class="sub_tour_section7_product_item spe">
+                                    <a href="/product-tours/item_view/<?= $item['product_idx'] ?>">
+                                        <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                                        <div class="img_box img_box_12">
+                                            <img src="<?= $src?>" alt="">
+                                        </div>
+                                        <div class="sub_tour_section7_product_item__name"> <?= viewSQ($item["product_name"])?></div>
+                                        <?php
+                                            $arr_keyword = explode(",", $item['keyword']);
+                                            $arr_keyword = array_filter($arr_keyword);
+                                        ?>
+                                        <div class="sub_tour_section7_product_item__keywords">
+                                            <?php foreach ($arr_keyword as $keyword): ?>
+                                                <span>#<?= $keyword ?></span>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+                        <!-- <div class="sub_tour_section7_product_item">
+                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <div class="img_box img_box_12">
+                                <img src="/uploads/sub/tour_special_2.png" alt="">
+                            </div>
+                            <div class="sub_tour_section7_product_item__name">놓치기 아쉬운 특가</div>
+                            <div class="sub_tour_section7_product_item__keywords">
+                                <span>#연꽃정원</span>
+                                <span>#치앙마이</span>
+                            </div>
+                        </div>
+                        <div class="sub_tour_section7_product_item">
+                            <img class="ico_special_prd" src="/images/ico/ico_special_prd.png" alt="">
+                            <div class="img_box img_box_12">
+                                <img src="/uploads/sub/tour_special_3.png" alt="">
+                            </div>
+                            <div class="sub_tour_section7_product_item__name">놓치기 아쉬운 특가</div>
+                            <div class="sub_tour_section7_product_item__keywords">
+                                <span>#연꽃정원</span>
+                                <span>#치앙마이</span>
+                            </div>
+                        </div> -->
             </div>
         </section>
         <section class="sub_tour_section8">
@@ -655,12 +580,25 @@
     </div>
 
     <script>
-        function handleLoadRecommendedProduct(code_no) {
-            console.log(code_no);
-            
+        function handleLoadRecommendedProductStep2(code_no) {
             $.ajax({
                 type: "GET",
-                url: "/product/get-by-sub-code",
+                url: "/product/get-step2-by-code-no",
+                data: {
+                    code_no: code_no,
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#tab2-content").html(data.html);
+                    handleLoadRecommendedProduct(data.codeStep2RecommendedActive);
+                }
+            });
+        }
+
+        function handleLoadRecommendedProduct(code_no) {
+            $.ajax({
+                type: "GET",
+                url: "/product/get-by-sub-code-tour",
                 data: {
                     code_no: code_no,
                 },
@@ -668,8 +606,52 @@
                 success: function (data) {
                     $("#product_list_recommended").html(data.html);
                 }
-            })
+            });
         }
+
+        function handleLoadPopularProduct(code_no) {
+            $.ajax({
+                type: "GET",
+                url: "/product/get-by-sub-code-tour",
+                data: {
+                    code_no: code_no,
+                },
+                dataType: "json",
+                success: function (data) {
+                    $("#product_list_popular").html(data.html);
+                }
+            });
+        }
+
+    let pageMD = 1;
+    let totalPageMD = <?= $productStep2ByRecommended['nPage'] ?? 1 ?>;
+
+    function handleClickPaginationMD(code_no) {
+        pageMD += 1;
+        console.log(pageMD);
+        
+        $.ajax({
+            type: "GET",
+            url: "/product/get-by-sub-code-tour",
+            data: {
+                page: pageMD,
+                code_no: code_no
+            },
+            dataType: "json",
+            success: function(data) {
+                console.log(data);
+                totalPageMD = Number(data.nPage); 
+                $("#product_list_recommended").append(data.html);
+                $(".prd_list_pagination__btn__current").text(pageMD);
+                
+                if (pageMD >= totalPageMD) {
+                    $('#product_list_recommended_pagination').hide();
+                } else {
+                    $('#product_list_recommended_pagination').show();
+                }
+            }
+        })
+    }
     </script>
     <script>
         $(document).ready(function () {
@@ -782,6 +764,13 @@
                 $('.sub_tour_section6__head__tabs__tab').removeClass('active');
 
                 $(this).addClass('active');
+            });
+
+            const swiperlist = new Swiper(".sub_tour_section7_product_list", {
+                // loop: true,
+                slidesPerView: 3,
+                spaceBetween: 20,
+                // autoplay: true,
             });
 
         });

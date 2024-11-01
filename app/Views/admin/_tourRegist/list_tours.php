@@ -551,7 +551,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_all') . $search_val . "&pg=") ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/list_tours') . $search_val . "&pg=") ?>
 
                     <div id="headerContainer">
 
@@ -671,76 +671,33 @@
 
         }
 
-        function SELECT_DELETE() {
-            if ($(".product_idx").is(":checked") == false) {
-                alert_("삭제할 내용을 선택하셔야 합니다.");
-                return;
-            }
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-
-            $("#ajax_loader").removeClass("display-none");
-
-            $.ajax({
-                url: "del.php",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-
-        }
-
         function del_it(product_idx) {
+            if (!confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다."))
+                return false;
 
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-            $("#ajax_loader").removeClass("display-none");
+            var message = "";
             $.ajax({
-                url: "del.php",
+
+                url: "/AdmMaster/_tours/del",
                 type: "POST",
-                data: "product_idx[]=" + product_idx,
+                data: {
+                    "product_idx": product_idx
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
                 error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                 }
             });
 
         }
+
 
         function get_code(strs, depth) {
             $.ajax({
