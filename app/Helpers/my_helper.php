@@ -31,6 +31,44 @@ if (!function_exists('isDateInRange')) {
     }
 }
 
+function getProductPacks($product_idx)
+{
+    $sql = "SELECT * FROM tbl_product_pack WHERE product_idx = '$product_idx' AND pack_status = 'Y' ORDER BY pack_idx ASC";
+    $fresult = db_connect()->query($sql);
+    $fresult = $fresult->getResultArray();
+    $count = 0;
+    $output = '';
+
+    foreach ($fresult as $row) {
+        if ($count % 2 == 0) {
+            if ($count > 0) {
+                $output .= '</div>';
+            }
+            $output .= '<div class="first-i-below-c first-i-below-c_last-1">';
+        }
+
+        $output .= '<div class="left">';
+        $output .= '<span class="font-bold lb-bc">' . htmlspecialchars($row['pack_name']) . '</span>';
+        $output .= '<div class="label-yellow-bc label-bc">';
+        $output .= '<span>시작</span>';
+        $output .= '<span>' . htmlspecialchars($row['pack_s_date']) . '</span>';
+        $output .= '</div>';
+        $output .= '<div class="label-red-bc label-bc">';
+        $output .= '<span>종료</span>';
+        $output .= '<span>' . htmlspecialchars($row['pack_e_date']) . '</span>';
+        $output .= '</div>';
+        $output .= '</div>';
+
+        $count++;
+    }
+
+    if ($count % 2 != 0) {
+        $output .= '</div>';
+    }
+
+    return $output;
+}
+
 
 function dowYoil($strdate)
 {
@@ -784,56 +822,54 @@ function file_check($ok_filename, $ok_file, $path, $ftype)
 
 function day_delete($daySeq)
 {
-	global $connect;
+    global $connect;
 
-	mysqli_query($connect, "SET AUTOCOMMIT=0");
-	mysqli_query($connect, "START TRANSACTION");
+    mysqli_query($connect, "SET AUTOCOMMIT=0");
+    mysqli_query($connect, "START TRANSACTION");
 
-	$_row       = explode(",", $daySeq);
-    $idx        = $_row[0];
+    $_row = explode(",", $daySeq);
+    $idx = $_row[0];
     $detail_idx = $_row[0];
-    $day_idx    = $_row[1];
+    $day_idx = $_row[1];
 
     // 전체일수 차감
-	$sql1       = "UPDATE tbl_product_day_detail SET total_day = total_day - 1  WHERE idx = '$idx' ";
-	$db1        = mysqli_query($connect, $sql1) or die (mysqli_error($connect));
+    $sql1 = "UPDATE tbl_product_day_detail SET total_day = total_day - 1  WHERE idx = '$idx' ";
+    $db1 = mysqli_query($connect, $sql1) or die (mysqli_error($connect));
 
     // tbl_product_main_schedule 삭제
-	$sql2       = "DELETE FROM tbl_product_main_schedule  WHERE detail_idx = '$detail_idx' AND day_idx = '$day_idx' ";
-	$db2        = mysqli_query($connect, $sql2) or die (mysqli_error($connect));
+    $sql2 = "DELETE FROM tbl_product_main_schedule  WHERE detail_idx = '$detail_idx' AND day_idx = '$day_idx' ";
+    $db2 = mysqli_query($connect, $sql2) or die (mysqli_error($connect));
 
     // tbl_product_sub_schedule 삭제
-	$sql3       = "DELETE FROM tbl_product_sub_schedule  WHERE detail_idx = '$detail_idx' AND day_idx = '$day_idx' ";
-	$db3        = mysqli_query($connect, $sql3) or die (mysqli_error($connect));
+    $sql3 = "DELETE FROM tbl_product_sub_schedule  WHERE detail_idx = '$detail_idx' AND day_idx = '$day_idx' ";
+    $db3 = mysqli_query($connect, $sql3) or die (mysqli_error($connect));
 
     // tbl_product_main_schedule 순서 정랼
-    $sql_main       = "SELECT * FROM tbl_product_main_schedule WHERE detail_idx = '$detail_idx' AND day_idx > $day_idx ORDER BY detail_idx, day_idx asc ";
-    $result_main    = mysqli_query($connect, $sql_main) or die (mysqli_error($connect));
-    while($row_main = mysqli_fetch_array($result_main))
-    {
-          //$sql_m    = "UPDATE tbl_product_main_schedule SET day_idx = day_idx - 1 WHERE detail_idx = '". $row_main['detail_idx'] ."' AND schedule_date = '". $row_main['schedule_date'] ."' ";
-          $sql_m    = "UPDATE tbl_product_main_schedule SET day_idx = day_idx - 1 WHERE detail_idx = '". $row_main['detail_idx'] ."' AND day_idx = '". $row_main['day_idx'] ."' ";
-     	  $db_main  = mysqli_query($connect, $sql_m) or die (mysqli_error($connect));
+    $sql_main = "SELECT * FROM tbl_product_main_schedule WHERE detail_idx = '$detail_idx' AND day_idx > $day_idx ORDER BY detail_idx, day_idx asc ";
+    $result_main = mysqli_query($connect, $sql_main) or die (mysqli_error($connect));
+    while ($row_main = mysqli_fetch_array($result_main)) {
+        //$sql_m    = "UPDATE tbl_product_main_schedule SET day_idx = day_idx - 1 WHERE detail_idx = '". $row_main['detail_idx'] ."' AND schedule_date = '". $row_main['schedule_date'] ."' ";
+        $sql_m = "UPDATE tbl_product_main_schedule SET day_idx = day_idx - 1 WHERE detail_idx = '" . $row_main['detail_idx'] . "' AND day_idx = '" . $row_main['day_idx'] . "' ";
+        $db_main = mysqli_query($connect, $sql_m) or die (mysqli_error($connect));
 
     }
 
     // tbl_product_sub_schedule 순서 정랼
-    $sql_sub       = "SELECT * FROM tbl_product_sub_schedule WHERE detail_idx = '$detail_idx' AND day_idx > $day_idx  ORDER BY detail_idx, day_idx asc ";
-    $result_sub    = mysqli_query($connect, $sql_sub) or die (mysqli_error($connect));
-    while($row_sub = mysqli_fetch_array($result_sub))
-    {
-          $sql_s    = "UPDATE tbl_product_sub_schedule SET day_idx = day_idx - 1 WHERE detail_idx = '". $row_sub['detail_idx'] ."' AND groups = '". $row_sub['groups'] ."' AND onum = '". $row_sub['onum'] ."' ";
-     	  $db_sub   = mysqli_query($connect, $sql_s) or die (mysqli_error($connect));
+    $sql_sub = "SELECT * FROM tbl_product_sub_schedule WHERE detail_idx = '$detail_idx' AND day_idx > $day_idx  ORDER BY detail_idx, day_idx asc ";
+    $result_sub = mysqli_query($connect, $sql_sub) or die (mysqli_error($connect));
+    while ($row_sub = mysqli_fetch_array($result_sub)) {
+        $sql_s = "UPDATE tbl_product_sub_schedule SET day_idx = day_idx - 1 WHERE detail_idx = '" . $row_sub['detail_idx'] . "' AND groups = '" . $row_sub['groups'] . "' AND onum = '" . $row_sub['onum'] . "' ";
+        $db_sub = mysqli_query($connect, $sql_s) or die (mysqli_error($connect));
     }
 
 
-	if ($db1 && $db2 && $db3) {
-		mysqli_query($connect,"COMMIT");
-		$result = "Y";
-	} else {        
-		mysqli_query($connect,"ROLLBACK");
-		$result = "N";
-	}
-	
-	return $result;
+    if ($db1 && $db2 && $db3) {
+        mysqli_query($connect, "COMMIT");
+        $result = "Y";
+    } else {
+        mysqli_query($connect, "ROLLBACK");
+        $result = "N";
+    }
+
+    return $result;
 }
