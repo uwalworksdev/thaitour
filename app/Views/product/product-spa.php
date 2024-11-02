@@ -162,7 +162,7 @@
                 <p class="des-box">다운로드 기간 : 2024. 05. 22 ~ 07. 31</p>
             </div>
             <img class="only_web" src="<?= base_url('/images/sub/banner__spa01.png') ?>" alt="">
-            <img class="only_mo" src="<?= base_url('/uploads/products/ticket-mid-banner-m.png') ?>" alt="">
+            <img class="only_mo" src="<?= base_url('/images/sub/banner__spa01-m.png') ?>" alt="">
         </div>
         <div class="ticket-list">
             <div class="ticket-tool">
