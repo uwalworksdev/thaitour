@@ -165,6 +165,8 @@ function day_seq_delete(obj)
 function del_days(obj) {
 
 	var idx = $(obj).attr('value');
+	console.log(idx);
+	
 
 	if(idx) {
 		
@@ -174,7 +176,7 @@ function del_days(obj) {
 		var message = "";
 		$.ajax({
 
-			url: "./ajax.del_days.php",
+			url: "/AdmMaster/_tours/del_day",
 			type: "POST",
 			data: {
 				"idx": idx
@@ -202,20 +204,8 @@ function del_days(obj) {
 // 세부일정 추가 부분
 const add_line_html = `
 <div class="flex__c sub_line" style="margin-top:20px; gap: 20px">
-		<select name="detail_desc[[%dd%]][[%group%]][[%onum%]]" id="">
-			<option value="E" <?php if ($detail_desc == "E") {echo "selected"; } ?>일반</option>
-			<option value="C" <?php if ($detail_desc == "C") {echo "selected"; } ?>택1</option>
-			<option value="P" <?php if ($detail_desc == "P") {echo "selected"; } ?>특전</option>
-			<option value="S" <?php if ($detail_desc == "S") {echo "selected"; } ?>추천</option>
-			<option value="B" <?php if ($detail_desc == "B") {echo "selected"; } ?>유료</option>
-			<option value="D" <?php if ($detail_desc == "D") {echo "selected"; } ?>택2</option>
-		</select>
 	<div class="input-row">
 		<input type="text" name="detail_summary[[%dd%]][[%group%]][[%onum%]]" value="" placeholder="상세일정 설명">
-	</div>
-	<div class="flex__c btn_cont">
-		<button type="button" class="btn btn-success cont_in" onclick="alert('저장을 먼저 해주세요.');" >상세등록</button>
-		<button type="button" class="btn btn-danger remove_form" onclick="del_line(this)" >삭제</button>
 	</div>
 </div>
 `;
@@ -228,7 +218,6 @@ const add_day_html = `
 	<div class="daily_div">
 		<div class="btn_div">
 			<button type="button" class="btn btn-danger remove_form" onclick="del_days(this)">일정 전체 삭제</button>
-			<button type="button" class="btn btn-primary add_form" onclick="add_line(this, '[%dd%]', '[%group%]')" >추가</button>
 		</div>
 		<b class="label">상세일정</b>
 		<div class="flex__c sub_line" style="margin-top:20px;">
