@@ -134,6 +134,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
     });
 
+    $routes->group("_cars", static function ($routes) {
+        $routes->get("list", "Admin\AdminCarsController::list");
+        $routes->get("write", "Admin\AdminCarsController::write");
+    });
+
     $routes->group("_tours", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
         $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
