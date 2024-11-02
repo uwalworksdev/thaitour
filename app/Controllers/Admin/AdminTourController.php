@@ -542,21 +542,23 @@ class AdminTourController extends BaseController
                         'info_idx' => $infoId
                     ];
                     $existingTour = $this->tourProducts->where('info_idx', $infoId)
-                        ->where('tours_subject', $subject)
+                        ->where('tours_subject', $subject) 
                         ->first();
-    
-                    if ($existingTour) {
-                        $this->tourProducts->update($existingTour['tours_idx'], $data);
-                        var_dump("Cập nhật tour: ", $data);
-                    } else {
-                        $this->tourProducts->insert($data);
-                        var_dump("Thêm mới tour: ", $data);
-                    }
+
+                        if ($existingTour) {
+                            if ($existingTour['tours_subject'] !== $subject) {
+                                $this->tourProducts->update($existingTour['tours_idx'], ['tours_subject' => $subject]);
+                            }
+
+                            $this->tourProducts->update($existingTour['tours_idx'], $data);
+                        } else {
+                            $this->tourProducts->insert($data);
+                        }
                 }
             }
         }
     
-        // return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
+        return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
     }
     
 
