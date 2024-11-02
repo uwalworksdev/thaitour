@@ -16,7 +16,46 @@
 	}
 
 </style>
+<script>
 
+// 마지막 그룹번호
+let max_group = '<?=$maxGroup?>';
+
+// 마지막 순서번호
+let max_onum = '<?=$maxOnum?>';
+
+
+$(document).ready(function(){
+
+
+
+
+	//gnb와 sub탭에 active부여
+	var $hd_nav = $(".hd_nav ul li");
+	var $cate = $('.site_location ul .cate');
+	var $current = $('.site_location ul .current');
+	var $sub_tab = $(".sub_tab ul li");
+	
+	for( var i=0; i < $hd_nav.length; i++ ){
+		var menutxt = $.trim($hd_nav.eq(i).children('a').text());
+		var catetxt = $.trim($cate.text());
+		//gnb에 active 부여
+		if( menutxt == catetxt ){
+			$hd_nav.eq(i).addClass('active');
+		}
+		
+		for( var j=0; j < $sub_tab.length; j++ ){
+			var tabtxt = $.trim($sub_tab.eq(j).children('a').text());
+			var currenttxt = $.trim($current.text());
+			//sub_tab에 active 부여
+			if( tabtxt == currenttxt ){
+				$sub_tab.eq(j).addClass('active');
+			}
+		}
+
+	}
+});
+</script>
 <div id="container"> <span id="print_this">
     <!-- 인쇄영역 시작 //-->
 
@@ -55,7 +94,7 @@
 		<div class="listWrap_noline timetable">
 
 
-			<form id="frmm" name="frm" action="detailwrite_new_ok.php" method="post" enctype="multipart/form-data">
+			<form id="frmm" name="frm" action="<?= route_to('admin._tours.detailwrite_new_ok') ?>" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="product_idx" id="product_idx" value="<?=$product_idx?>" />
 				<input type="hidden" name="air_code" id="air_code" value="<?=$air_code?>" />
 			  
@@ -88,19 +127,19 @@
 						<tbody class="main_list">
                         <?php for ($dd = 1; $dd <= $totalDays; $dd++): ?>
                             <?php
-                                $schedule = isset($schedules[$dd]) ? $schedules[$dd] : null;
+                                $schedule = $schedules[$dd] ?? null;
                             ?>
                             <tr class="sch_list">
                                 <th>
                                     <?= ($dd) ?>일차 <br><br>
-                                    <button type="button" class="btn btn-danger more_detail" onclick="day_seq_delete(this);" value="<?= $schedule['idx'] ?>,<?=$dd?> ">일차삭제</button>
+                                    <button type="button" class="btn btn-danger more_detail" onclick="day_seq_delete(this);" value="<?= $idx ?>,<?=$dd?> ">일차삭제</button>
                                 </th>
                                 <td colspan=3><input type="hidden" name="schedule_date[<?= $dd ?>]" id="schedule_date<?= $dd ?>" class="input_txt" value="<?= $schedule['sdate'] ?>" placeholder="여행일자" style="width:150px" />
                                     <div class="input-wrap">
                                         <b class="label">일자별 타이틀</b>
                                         <div class="flex__c">
                                             <div class="input-row">
-                                                <input type="text" name="detail_title[<?= $dd ?>]" value="<?= $schedule['detail_title'] ?>" class="ip02" placeholder="일자별 타이틀">
+                                                <input type="text" name="detail_title[<?= $dd ?>]" value="<?= $schedule['detail_title']?>" class="ip02" placeholder="일자별 타이틀">
                                             </div>
                                             <div class="flex__c btn_cont">
                                                 <button type="button" class="btn btn-primary more_detail" onclick="add_days(this, '<?= $dd ?>')">일정추가</button>
@@ -109,33 +148,21 @@
                                     </div>
                                     <div class="add_in">
                                         <?php
-                                        $groups = $subSchedules[$schedule['idx']] ?? [];
-                                        foreach ($groups as $group): 
+                                        $groups = $subSchedules[$dd] ?? [];
+										foreach ($groups as $groupKey => $group):
                                         ?>
                                             <div class="input-wrap add_detail_form">
                                                 <div class="daily_div">
                                                     <div class="btn_div">
-                                                        <button type="button" class="btn btn-danger remove_form" value="<?= $detail_idx ?>,<?= $dd ?>,<?= $group[0]['groups'] ?>" onclick="del_days(this)">일정 전체 삭제</button>
-                                                        <button type="button" class="btn btn-primary add_form" onclick="add_line(this, '<?= $dd ?>', '<?= $group[0]['groups'] ?>')">추가</button>
+                                                        <button type="button" class="btn btn-danger remove_form" value="<?= $idx ?>,<?= $dd ?>,<?= $groupKey ?>" onclick="del_days(this)">일정 전체 삭제</button>
+                                                        <!-- <button type="button" class="btn btn-primary add_form" onclick="add_line(this, '<?= $dd ?>', '<?= $group[0]['groups'] ?>')">추가</button> -->
                                                     </div>
 
                                                     <b class="label">상세일정</b>
                                                     <?php foreach ($group as $row_ds): ?>
                                                         <div class="flex__c sub_line" style="margin-top:20px; gap: 20px">
-                                                            <select name="detail_desc[<?= $dd ?>][<?= $row_ds['groups'] ?>][<?= $row_ds['onum'] ?>]" id="">
-                                                                <option value="E" <?= $row_ds['detail_desc'] == "E" ? 'selected' : '' ?>>일반</option>
-                                                                <option value="C" <?= $row_ds['detail_desc'] == "C" ? 'selected' : '' ?>>택1</option>
-                                                                <option value="P" <?= $row_ds['detail_desc'] == "P" ? 'selected' : '' ?>>특전</option>
-                                                                <option value="S" <?= $row_ds['detail_desc'] == "S" ? 'selected' : '' ?>>추천</option>
-                                                                <option value="B" <?= $row_ds['detail_desc'] == "B" ? 'selected' : '' ?>>유료</option>
-                                                                <option value="D" <?= $row_ds['detail_desc'] == "D" ? 'selected' : '' ?>>택2</option>
-                                                            </select>
                                                             <div class="input-row">
-                                                                <input type="text" name="detail_summary[<?= $dd ?>][<?= $row_ds['groups'] ?>][<?= $row_ds['onum'] ?>]" value="<?= htmlspecialchars(viewSQ($row_ds['detail_summary']), ENT_QUOTES, 'UTF-8') ?>" placeholder="상세일정 설명">
-                                                            </div>
-                                                            <div class="flex__c btn_cont">
-                                                                <button type="button" class="btn btn-success cont_in" onclick="set_detail_pop('<?= $row_ds['detail_idx'] ?>', '<?= $row_ds['day_idx'] ?>', '<?= $row_ds['groups'] ?>', '<?= $row_ds['onum'] ?>')">상세등록</button>
-                                                                <button type="button" class="btn btn-danger remove_form" value="<?= $row_ds['detail_idx'] ?>,<?= $row_ds['day_idx'] ?>,<?= $row_ds['groups'] ?>,<?= $row_ds['onum'] ?>" onclick="del_line(this)">삭제</button>
+                                                                <input type="text" name="detail_summary[<?= $dd ?>][<?= $groupKey ?>][<?= $row_ds['onum'] ?>]" value="<?= viewSQ($row_ds['detail_summary']) ?>" placeholder="상세일정 설명">
                                                             </div>
                                                         </div>
                                                     <?php endforeach; ?>
@@ -429,8 +456,7 @@ function experience_del()
 
 function go_view(product_idx,air_code) 
 {
-         var view_url = '<?=$view_url?>';
-         location.href='/AdmMaster/_tourRegist/'+view_url+'?product_idx='+ product_idx +'&air_code='+air_code;
+         location.href='/AdmMaster/_tourRegist/write_tours?product_idx='+ product_idx +'&air_code='+air_code;
 		 //history.back(-1);
 }
 </script>

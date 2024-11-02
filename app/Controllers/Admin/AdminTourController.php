@@ -489,7 +489,7 @@ class AdminTourController extends BaseController
         $tour_price_kids = $this->request->getPost('tour_price_kids');
         $tour_price_baby = $this->request->getPost('tour_price_baby');
         $status = $this->request->getPost('status');
-        
+    
         $yoil_0 = $this->request->getPost('yoil_0');
         $yoil_1 = $this->request->getPost('yoil_1');
         $yoil_2 = $this->request->getPost('yoil_2');
@@ -497,13 +497,13 @@ class AdminTourController extends BaseController
         $yoil_4 = $this->request->getPost('yoil_4');
         $yoil_5 = $this->request->getPost('yoil_5');
         $yoil_6 = $this->request->getPost('yoil_6');
-        
+    
         $info_ids = [];
         foreach ($o_sdate as $key => $start_date) {
             $infoIndex = $this->infoProducts->where('product_idx', $productIdx)
                 ->where('o_sdate', $start_date)
                 ->first();
-            
+    
             $infoData = [
                 'product_idx' => $productIdx,
                 'o_sdate' => $start_date,
@@ -526,41 +526,39 @@ class AdminTourController extends BaseController
                 $info_ids[] = $this->infoProducts->insertID();
             }
         }
-        
-        foreach ($info_ids as $index => $info_idx) {
-            if (isset($tours_subject[$index])) {
-                foreach ($tours_subject[$index] as $i => $subject) {
-                    if (empty($subject)) continue;
-        
-                    $tourIndex = $this->tourProducts->where('info_idx', $info_idx)
-                        ->where('tours_idx', $this->request->getPost("tours_idx[$info_idx][$i]"))
-                        ->first();
-        
-                    $toursData = [
+    
+        foreach ($info_ids as $index => $infoId) {
+            $subjectIndex = $info_ids[$index];
+            
+            if (isset($tours_subject[$subjectIndex])) {
+                foreach ($tours_subject[$subjectIndex] as $i => $subject) {
+                    $data = [
                         'product_idx' => $productIdx,
-                        'info_idx' => $info_idx,
                         'tours_subject' => $subject,
-                        'tour_price' => $tour_price[$index][$i],
-                        'tour_price_kids' => $tour_price_kids[$index][$i],
-                        'tour_price_baby' => $tour_price_baby[$index][$i],
-                        'status' => isset($status[$index][$i]) ? $status[$index][$i] : 'Y',
-                        'r_date' => date('Y-m-d H:i:s')
+                        'tour_price' => isset($tour_price[$subjectIndex][$i]) ? $tour_price[$subjectIndex][$i] : null,
+                        'tour_price_kids' => isset($tour_price_kids[$subjectIndex][$i]) ? $tour_price_kids[$subjectIndex][$i] : null,
+                        'tour_price_baby' => isset($tour_price_baby[$subjectIndex][$i]) ? $tour_price_baby[$subjectIndex][$i] : null,
+                        'status' => isset($status[$subjectIndex][$i]) ? $status[$subjectIndex][$i] : null,
+                        'info_idx' => $infoId
                     ];
-        
-                    if ($tourIndex) {
-                        $this->tourProducts->update($tourIndex['tour_idx'], $toursData);
+                    $existingTour = $this->tourProducts->where('info_idx', $infoId)
+                        ->where('tours_subject', $subject)
+                        ->first();
+    
+                    if ($existingTour) {
+                        $this->tourProducts->update($existingTour['tours_idx'], $data);
+                        var_dump("Cập nhật tour: ", $data);
                     } else {
-                        $this->tourProducts->insert($toursData);
+                        $this->tourProducts->insert($data);
+                        var_dump("Thêm mới tour: ", $data);
                     }
                 }
             }
         }
-        
-
-
-    return redirect()->to('AdmMaster/_tourRegist/write_tours?product_idx=' . $productIdx);
-      
+    
+        // return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
     }
+    
 
     public function del_tours() {
         $info_idx = $this->request->getPost('info_idx');
@@ -619,9 +617,9 @@ class AdminTourController extends BaseController
             ]);
             $productDetail = $this->dayModel->getProductDetail($productIdx, $airCode);
         }
-
-        $product = $this->productModel->find($productIdx);
+        $detailIdx = $productDetail['idx'];
     
+        $product = $this->productModel->find($productIdx);
         $airline = $this->code->where([
             'code_gubun' => 'air',
             'code_no' => $airCode,
@@ -637,14 +635,9 @@ class AdminTourController extends BaseController
         $schedules = [];
     
         for ($dd = 1; $dd <= $totalDays; $dd++) {
-            $schedule = $this->mainSchedule->getAllByDetail($productDetail['idx']);
-    
-            $schedules[$dd] = array_filter($schedule, function($item) use ($dd) {
-                return $item['day_idx'] == $dd;
-            });
+            $schedule = $this->mainSchedule->getByDetailAndDay($detailIdx, $dd);
+            $schedules[$dd] = $schedule ?? [];
         }
-    
-        $detailIdx = $scheduleDetails[0]['idx'] ?? null;
     
         $maxGroup = $this->subSchedule->select('IFNULL(MAX(groups), 0) as new_group')
             ->where('detail_idx', $detailIdx)
@@ -656,11 +649,20 @@ class AdminTourController extends BaseController
     
         $subSchedules = [];
         foreach ($schedules as $day => $schedule) {
-            foreach ($schedule as $item) {
-                $subSchedules[$day][] = $this->subSchedule->where('detail_idx', $item['idx'])->findAll();
+            if (!empty($schedule)) {
+                $subScheduleDetails = $this->subSchedule
+                    ->where('detail_idx', $detailIdx)
+                    ->where('day_idx', $day)
+                    ->findAll();
+                
+                foreach ($subScheduleDetails as $subSchedule) {
+                    $subSchedules[$day][$subSchedule['groups']][] = $subSchedule;
+                }
+            } else {
+                $subSchedules[$day] = [];
             }
         }
-    
+            
         $data = [
             'product_idx' => $productIdx,
             'air_code' => $airCode,
@@ -672,12 +674,13 @@ class AdminTourController extends BaseController
             'schedules' => $schedules,
             'totalDays' => $totalDays,
             'subSchedules' => $subSchedules,
-            'productDetail' => $productDetail
+            'productDetail' => $productDetail,
+            'idx' => $detailIdx
         ];
         return view("admin/_tourRegist/detailwrite_new", $data);
     }
     
-
+    
     public function chg_detailwrite()
     {
         $product_idx = $this->request->getPost('product_idx');
@@ -702,22 +705,112 @@ class AdminTourController extends BaseController
     {
         $daySeq = $this->request->getPost('idx');
 
-        if (!$daySeq) {
-            return $this->respond([
-                'message' => '일차 삭제에 필요한 데이터가 없습니다.',
-            ], 400);
+        if ($daySeq) {           
+            $result = $this->dayModel->day_delete($daySeq);
+    
+            if ($result) {
+                $msg = "일차전체 삭제 완료";
+            } else {
+                $msg = "일차전체 삭제 오류";
+            }
+            return $this->response->setJSON(['message' => $msg]);
         }
 
-        $result = day_delete($daySeq);
-
-        if ($result) {
-            return $this->respond([
-                'message' => '일차전체 삭제 완료',
-            ]);
-        } else {
-            return $this->respond([
-                'message' => '일차전체 삭제 오류',
-            ], 500); 
-        }
+        return $this->response->setJSON(['message' => '일차 삭제에 필요한 데이터가 없습니다.']);
     }
+
+    public function del_day() {
+        $idx = $this->request->getPost('idx');
+        if ($idx) {
+            $ids = explode(",", $idx);
+            $detail_idx = $ids[0];
+            $dayIdx = $ids[1];
+            $group = $ids[2];
+    
+            $isDeleted = $this->subSchedule->deleteDaySchedule($detail_idx, $dayIdx, $group);
+    
+            if ($isDeleted) {
+                $msg = "일정전체 삭제 완료";
+            } else {
+                $msg = "일정전체 삭제 오류";
+            }
+    
+            return $this->response->setJSON(['message' => $msg]);
+        }
+    
+        return $this->response->setJSON(['message' => '잘못된 요청입니다.']);
+    }
+
+
+    public function detailwrite_new_ok()
+    {
+        $productIdx = $this->request->getPost('product_idx');
+        $airCode = $this->request->getPost('air_code');
+        $shopping = $this->request->getPost('shopping');
+        $detailDesc = $this->request->getPost('detail_desc');
+        $scheduleDate = $this->request->getPost('schedule_date');
+        $detailTitle = $this->request->getPost('detail_title');
+        $detailExperience1 = $this->request->getPost('detail_experience1');
+        $detailExperience2 = $this->request->getPost('detail_experience2');
+        $detailExperience3 = $this->request->getPost('detail_experience3');
+        $hotelText = $this->request->getPost('hotel_text');
+        $hotelList = $this->request->getPost('hotel_list');
+        $breakfast = $this->request->getPost('breakfast');
+        $lunch = $this->request->getPost('lunch');
+        $dinner = $this->request->getPost('dinner');
+        $detailSummary = $this->request->getPost('detail_summary');
+
+        $productDetail = $this->dayModel->getProductDetail($productIdx, $airCode);
+
+        if (!$productDetail) {
+            return redirect()->back()->with('error', 'Product detail not found');
+        }
+
+        $detailIdx = $productDetail['idx'];
+        $totalDay = $productDetail['total_day'];
+
+        $this->dayModel->deleteMainScheduleByDetailIdx($detailIdx);
+
+        for ($dd = 1; $dd <= $totalDay; $dd++) {
+            $mainScheduleData = [
+                'detail_idx' => $detailIdx,
+                'day_idx' => $dd,
+                'schedule_date' => $scheduleDate[$dd] ?? null,
+                'detail_title' => $detailTitle[$dd] ?? '',
+                'detail_experience1' => $detailExperience1[$dd] ?? '', 
+                'detail_experience2' => $detailExperience2[$dd] ?? '',
+                'detail_experience3' => $detailExperience3[$dd] ?? '',
+                'hotel_text' => $hotelText[$dd] ?? '',
+                'hotel' => $hotelList[$dd] ?? '',
+                'shopping' => $shopping ?? '',
+                'meal1' => $breakfast[$dd] ?? '',
+                'meal2' => $lunch[$dd] ?? '',
+                'meal3' => $dinner[$dd] ?? '',
+            ];
+            $this->dayModel->insertMainSchedule($mainScheduleData);
+
+            foreach ($detailSummary[$dd] as $group => $groupData) {
+                foreach ($groupData as $orderNum => $summary) {
+                    $subScheduleData = [
+                        'detail_idx' => $detailIdx,
+                        'day_idx' => $dd,
+                        'groups' => $group,
+                        'onum' => $orderNum,
+                        'detail_desc' => $detailDesc[$dd][$group][$orderNum] ?? '',
+                        'detail_summary' => updateSQ($summary) ?? '',
+                    ];
+
+                    if ($this->dayModel->subScheduleExists($detailIdx, $dd, $group, $orderNum)) {
+                        $this->dayModel->updateSubSchedule($subScheduleData, $detailIdx, $dd, $group, $orderNum);
+                    } else {
+                        $this->dayModel->insertSubSchedule($subScheduleData);
+                    }
+                }
+            }
+        }
+
+        return redirect()->to("AdmMaster/_tours/detailwrite_new?product_idx={$productIdx}&air_code={$airCode}")
+                         ->with('success', '등록 완료');
+    }
+    
 }
