@@ -2823,6 +2823,7 @@
 
 .mid-banner-ticket {
   margin-top: 75px;
+  position: relative;
 }
 
 .list-ticket-grid {
