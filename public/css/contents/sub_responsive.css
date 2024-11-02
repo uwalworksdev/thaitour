@@ -1836,7 +1836,7 @@
   }
 
   .content-sub-hotel-detail .room-table-item .label {
-    margin-right: 2rem;
+    margin-right: 1rem;
     font-size: 2.6rem;
     font-weight: unset;
   }
@@ -1853,6 +1853,7 @@
 }
 .content-sub-hotel-detail .room-table-item .number-display {
   width: 12rem;
+  height: 100%;
   border: none;
   text-align: center;
   font-size: 2.6rem;
@@ -1879,8 +1880,8 @@
     font-size: 1.2rem;
     cursor: pointer;
     border: none;
-    width: 1.2rem;
-    height: 0.8rem;
+    width: 1.8rem;
+    height: 1.2rem;
   }
 
   .content-sub-hotel-detail .room-table-item .button:active {
@@ -1937,9 +1938,10 @@
   }
 
   .content-sub-hotel-detail .btn-book-button {
-    height: 9rem;
+    height: 8rem;
     width: 100%;
     background-color: var(--bs-point);
     color: white;
+    border-radius: 4px;
   }
 }
