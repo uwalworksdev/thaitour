@@ -22,7 +22,17 @@ class GolfInfoModel extends Model
         "caddy",
         "equipment_rent",
         "sports_day",
-        "golf_vehicle"
+        "golf_vehicle",
+        "green_peas",
+        "sports_days",
+        "slots",
+        "golf_course_odd_numbers",
+        "travel_times",
+        "carts",
+        "facilities",
+        "s_date",
+        "e_date",
+        "deadline_date"
     ];
 
     public function getGolfInfo($product_idx)

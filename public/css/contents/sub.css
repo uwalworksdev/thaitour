@@ -133,7 +133,7 @@
   /* Ẩn placeholder */
 }
 
-.captcha_input:focus+.placeholder-text {
+.captcha_input:focus + .placeholder-text {
   display: none;
   /* Ẩn placeholder khi input được focus */
 }
@@ -483,11 +483,11 @@
   margin-top: 60px;
 }
 
-.top_banner_sec+.item_list_sec {
+.top_banner_sec + .item_list_sec {
   margin-top: 80px;
 }
 
-.dep_filter+.item_list_sec {
+.dep_filter + .item_list_sec {
   margin-top: 60px;
 }
 
@@ -542,7 +542,7 @@
   cursor: pointer;
 }
 
-.item_list_sec .item_filter li+li {
+.item_list_sec .item_filter li + li {
   margin-left: 14px;
 }
 
@@ -580,11 +580,11 @@
   gap: 10px;
 }
 
-.line_tab li+li {
+.line_tab li + li {
   margin-left: 10px;
 }
 
-.daytour_sec .line_tab_recommend li+li {
+.daytour_sec .line_tab_recommend li + li {
   margin-left: 0;
 }
 
@@ -760,7 +760,7 @@
   justify-content: center;
 }
 
-.detail_txt_info .detail_box+.detail_box {
+.detail_txt_info .detail_box + .detail_box {
   margin-left: 28px;
 }
 
@@ -830,7 +830,6 @@
 }
 
 
-
 .manager {
   margin-top: 20px;
 }
@@ -854,7 +853,6 @@
   color: #757575;
   margin-top: 6px;
 }
-
 
 
 .item_list .list_prd_img {
@@ -990,7 +988,7 @@
   margin: -8px 0 40px;
 }
 
-.item_list_wrap .w100.img_big .prd_tit+.hash_box {
+.item_list_wrap .w100.img_big .prd_tit + .hash_box {
   margin: 12px 0 20px;
 }
 
@@ -1067,7 +1065,7 @@
 
 }
 
-.item_list .detail_box dl+dl {
+.item_list .detail_box dl + dl {
   margin-top: 10px;
 }
 
@@ -1199,13 +1197,13 @@
   max-width: 880px;
 }
 
-.item_view .prd_radio_list li+li,
-.air_radio_wrap .air_radio_list li+li {
+.item_view .prd_radio_list li + li,
+.air_radio_wrap .air_radio_list li + li {
   margin-top: 10px;
 }
 
-.item_view .prd_radio_list input[type="radio"]+label,
-.air_radio_wrap .air_radio_list input[type="radio"]+label {
+.item_view .prd_radio_list input[type="radio"] + label,
+.air_radio_wrap .air_radio_list input[type="radio"] + label {
   border: 1px solid #dbdbdb;
   padding: 30px 30px 20px;
   border-radius: 6px;
@@ -1230,17 +1228,17 @@
   margin-right: 8px;
 }
 
-.item_view .prd_radio_list input[type="radio"]:checked+label,
-.air_radio_wrap .air_radio_list input[type="radio"]:checked+label {
+.item_view .prd_radio_list input[type="radio"]:checked + label,
+.air_radio_wrap .air_radio_list input[type="radio"]:checked + label {
   border-color: var(--bs-point);
 }
 
-.air_radio_wrap .air_radio_list input[type="radio"]:checked+label .air_name em {
+.air_radio_wrap .air_radio_list input[type="radio"]:checked + label .air_name em {
   color: #396acf;
   border-color: #396acf;
 }
 
-.air_radio_wrap .air_radio_list input[type="radio"]:checked+label .air_name em.red {
+.air_radio_wrap .air_radio_list input[type="radio"]:checked + label .air_name em.red {
   color: red;
   border-color: red;
 }
@@ -1409,7 +1407,8 @@
   line-height: 26px;
 }
 
-.payment_option .pay_total span {}
+.payment_option .pay_total span {
+}
 
 .payment_option .pay_cont i {
   background: url("/img/ico/pay_destroy.png");
@@ -1722,7 +1721,7 @@
   padding-left: 32px;
 }
 
-.faq_sect .faq_list .active+.answer_box_wrap {
+.faq_sect .faq_list .active + .answer_box_wrap {
   border-bottom: 1px solid #eee;
 }
 
@@ -1771,7 +1770,7 @@
   background-image: url("/images/ico/box_box_arrow.png");
 }
 
-.contact_main .contents>div+div {
+.contact_main .contents > div + div {
   margin-top: 70px;
 }
 
@@ -1792,7 +1791,7 @@
   border: 1px solid #dbdbdb;
 }
 
-.qiuck_box .info .info_detail+.info_detail {
+.qiuck_box .info .info_detail + .info_detail {
   margin-left: -1px;
 }
 
@@ -1857,7 +1856,7 @@
   width: 323px;
 }
 
-.write_container .bs_table tbody td .travel_box input+input {
+.write_container .bs_table tbody td .travel_box input + input {
   margin-left: 1.25rem;
 }
 
@@ -1972,8 +1971,8 @@
   left: -9999px;
 }
 
-.write_container .check_box input[type="checkbox"]:checked+label,
-.write_container .check_box input[type="checkbox"]:not(:checked)+label {
+.write_container .check_box input[type="checkbox"]:checked + label,
+.write_container .check_box input[type="checkbox"]:not(:checked) + label {
   position: relative;
   padding-left: 28px;
   cursor: pointer;
@@ -1982,8 +1981,8 @@
   color: #666;
 }
 
-.write_container .check_box input[type="checkbox"]:checked+label:before,
-.write_container .check_box input[type="checkbox"]:not(:checked)+label:before {
+.write_container .check_box input[type="checkbox"]:checked + label:before,
+.write_container .check_box input[type="checkbox"]:not(:checked) + label:before {
   content: "";
   position: absolute;
   left: 0;
@@ -1995,8 +1994,8 @@
   background: #fff;
 }
 
-.write_container .check_box input[type="checkbox"]:checked+label:after,
-.write_container .check_box input[type="checkbox"]:not(:checked)+label:after {
+.write_container .check_box input[type="checkbox"]:checked + label:after,
+.write_container .check_box input[type="checkbox"]:not(:checked) + label:after {
   content: "";
   width: 12px;
   height: 12px;
@@ -2010,13 +2009,13 @@
   transition: all 0.2s ease;
 }
 
-.write_container .check_box input[type="checkbox"]:not(:checked)+label:after {
+.write_container .check_box input[type="checkbox"]:not(:checked) + label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
 
-.write_container .check_box input[type="checkbox"]:checked+label:after {
+.write_container .check_box input[type="checkbox"]:checked + label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -2265,7 +2264,7 @@
   color: #ffffff;
 }
 
-.ord_total_sec>div {
+.ord_total_sec > div {
   padding: 40px 20px;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -2284,7 +2283,7 @@
   font-weight: 700;
 }
 
-.ord_total_sec .detail_money p+p {
+.ord_total_sec .detail_money p + p {
   margin-top: 10px;
 }
 
@@ -2305,7 +2304,7 @@
 }
 
 
-.ord_total_sec.reservation>div {
+.ord_total_sec.reservation > div {
   padding: 40px 20px;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -2330,7 +2329,7 @@
   font-weight: 700;
 }
 
-.ord_total_sec.reservation .detail_money p+p {
+.ord_total_sec.reservation .detail_money p + p {
   margin-top: 0;
 }
 
@@ -2676,7 +2675,6 @@
 }
 
 
-
 .view_content-top ul li {
   height: 80px;
   border-bottom: 1px solid #e5e5e5;
@@ -2694,7 +2692,6 @@
   width: calc(100% - 100px);
   padding-left: 50px;
 }
-
 
 
 .view_container .f_list {
@@ -2762,12 +2759,12 @@
   align-items: center;
 }
 
-.ticket-tool-l>p {
+.ticket-tool-l > p {
   font-size: 28px;
   font-weight: 700;
 }
 
-.ticket-tool-l>p>span {
+.ticket-tool-l > p > span {
   color: var(--bs-point);
 }
 
@@ -2776,12 +2773,10 @@
 }
 
 
-
 .ticket-tool-r input {
   border-radius: 21px;
   height: 42px;
 }
-
 
 
 .ticket-s-i {
@@ -2814,12 +2809,12 @@
 .tiket-tool-b {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin-top: 30px;
   margin-bottom: 20px;
 }
 
-.select-tool>select {
+.select-tool > select {
   border: none;
   padding-right: 40px;
   font-size: 15px;
@@ -2828,6 +2823,7 @@
 
 .mid-banner-ticket {
   margin-top: 75px;
+  position: relative;
 }
 
 .list-ticket-grid {
@@ -2843,7 +2839,7 @@
   max-width: 285px;
   overflow: hidden;
   margin-bottom: 40px;
-  width : 100%;
+  width: 100%;
 }
 
 /* section_vehicle */
@@ -2901,7 +2897,8 @@
   padding: 23px 40px 200px;
 }
 
-.section_vehicle_2_1 {}
+.section_vehicle_2_1 {
+}
 
 .section_vehicle_2_1__head {
   display: flex;
@@ -2947,7 +2944,8 @@
   gap: 6px;
 }
 
-.place_chosen__start {}
+.place_chosen__start {
+}
 
 .place_chosen__icon {
   display: flex;
@@ -2955,16 +2953,19 @@
   justify-content: center;
 }
 
-.place_chosen__end {}
+.place_chosen__end {
+}
 
 /* section_vehicle_2_2 */
 .section_vehicle_2_2 {
   margin-top: 53px;
 }
 
-.section_vehicle_2_2__head {}
+.section_vehicle_2_2__head {
+}
 
-.section_vehicle_2_2__head__ttl {}
+.section_vehicle_2_2__head__ttl {
+}
 
 .section_vehicle_2_2__head__tabs {
   display: flex;
@@ -2999,11 +3000,11 @@
   margin-top: 40px;
 }
 
-.section_vehicle_2_2__airport>span {
+.section_vehicle_2_2__airport > span {
   margin-right: 72px;
 }
 
-.section_vehicle_2_2__airport input[type="radio"]+label {
+.section_vehicle_2_2__airport input[type="radio"] + label {
   padding-left: 38px;
   position: relative;
   font-size: 18px;
@@ -3012,7 +3013,7 @@
   cursor: pointer;
 }
 
-.section_vehicle_2_2__airport input[type="radio"]+label::before {
+.section_vehicle_2_2__airport input[type="radio"] + label::before {
   content: "";
   display: block;
   border-width: 1px;
@@ -3027,7 +3028,7 @@
   height: 19px;
 }
 
-.section_vehicle_2_2__airport input[type="radio"]:checked+label::before {
+.section_vehicle_2_2__airport input[type="radio"]:checked + label::before {
   background-color: #279eeb;
   border: none;
 }
@@ -3038,7 +3039,8 @@
   border-bottom: 1px solid #dbdbdb;
 }
 
-.section_vehicle_2_3__head {}
+.section_vehicle_2_3__head {
+}
 
 .section_vehicle_2_3__head__ttl {
   padding-bottom: 16px;
@@ -3059,7 +3061,7 @@
   vertical-align: middle;
 }
 
-.vehicle_list tr+tr td {
+.vehicle_list tr + tr td {
   padding: 26px 0 0 0;
 }
 
@@ -3081,7 +3083,7 @@
   margin-top: 18px;
 }
 
-.vehicle_info table tr+tr td {
+.vehicle_info table tr + tr td {
   padding-top: 12px;
 }
 
@@ -3138,14 +3140,14 @@
   user-select: none;
 }
 
-input[type=checkbox]+.vehicle_options__label__vehicle_prd::after {
+input[type=checkbox] + .vehicle_options__label__vehicle_prd::after {
   content: url(/images/ico/checkbox_1.png);
   position: absolute;
   left: 8px;
   top: -15px;
 }
 
-input[type=checkbox]+.vehicle_options__label__vehicle_prd::before {
+input[type=checkbox] + .vehicle_options__label__vehicle_prd::before {
   content: "";
   position: absolute;
   left: 0;
@@ -3156,20 +3158,23 @@ input[type=checkbox]+.vehicle_options__label__vehicle_prd::before {
   height: 40px;
 }
 
-input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
+input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   content: url(/images/ico/checkbox_1_active.png);
 }
 
-.vehicle_cnt {}
+.vehicle_cnt {
+}
 
-.vehicle_prd {}
+.vehicle_prd {
+}
 
 .section_vehicle_2_4 {
   padding-bottom: 40px;
   border-bottom: 1px solid #dbdbdb;
 }
 
-.section_vehicle_2_4__head {}
+.section_vehicle_2_4__head {
+}
 
 .section_vehicle_2_4__head__ttl {
   font-size: 16px;
@@ -3311,9 +3316,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   border-bottom: 1px solid #dbdbdb;
 }
 
-.section_vehicle_2_5__head {}
+.section_vehicle_2_5__head {
+}
 
-.section_vehicle_2_5__head__ttl {}
+.section_vehicle_2_5__head__ttl {
+}
 
 .section_vehicle_2_5__body {
   display: flex;
@@ -3358,9 +3365,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   padding: 40px 0 0 0;
 }
 
-.section_vehicle_2_6__head {}
+.section_vehicle_2_6__head {
+}
 
-.section_vehicle_2_6__head__ttl {}
+.section_vehicle_2_6__head__ttl {
+}
 
 .section_vehicle_2_6__body {
   margin-top: 30px;
@@ -3371,11 +3380,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   line-height: 1.667;
 }
 
-.section_vehicle_2_6__body>ul {
+.section_vehicle_2_6__body > ul {
   margin-left: 20px;
 }
 
-.section_vehicle_2_6__body>ul>li {
+.section_vehicle_2_6__body > ul > li {
   list-style: decimal;
 }
 
@@ -3409,11 +3418,14 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   font-weight: 500;
 }
 
-.section_vehicle_2_7__head {}
+.section_vehicle_2_7__head {
+}
 
-.section_vehicle_2_7__head__ttl {}
+.section_vehicle_2_7__head__ttl {
+}
 
-.section_vehicle_2_7__body {}
+.section_vehicle_2_7__body {
+}
 
 .meeting_time {
   display: flex;
@@ -3464,7 +3476,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   gap: 10px;
 }
 
-.phone_number>* {
+.phone_number > * {
   width: 200px !important;
 }
 
@@ -3478,11 +3490,11 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   align-items: center;
 }
 
-.contact_email>select {
+.contact_email > select {
   width: 200px !important;
 }
 
-.contact_email>input {
+.contact_email > input {
   width: 189px !important;
 }
 
@@ -4005,8 +4017,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   left: -9999px;
 }
 
-.customer-form-page [type="radio"]:checked+label,
-.customer-form-page [type="radio"]:not(:checked)+label {
+.customer-form-page [type="radio"]:checked + label,
+.customer-form-page [type="radio"]:not(:checked) + label {
   position: relative;
   padding-left: 28px;
   cursor: pointer;
@@ -4015,8 +4027,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   color: #666;
 }
 
-.customer-form-page [type="radio"]:checked+label:before,
-.customer-form-page [type="radio"]:not(:checked)+label:before {
+.customer-form-page [type="radio"]:checked + label:before,
+.customer-form-page [type="radio"]:not(:checked) + label:before {
   content: '';
   position: absolute;
   left: 0;
@@ -4028,8 +4040,8 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   background: #fff;
 }
 
-.customer-form-page [type="radio"]:checked+label:after,
-.customer-form-page [type="radio"]:not(:checked)+label:after {
+.customer-form-page [type="radio"]:checked + label:after,
+.customer-form-page [type="radio"]:not(:checked) + label:after {
   content: '';
   width: 10px;
   height: 10px;
@@ -4042,13 +4054,13 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   transition: all 0.2s ease;
 }
 
-.customer-form-page [type="radio"]:not(:checked)+label:after {
+.customer-form-page [type="radio"]:not(:checked) + label:after {
   opacity: 0;
   -webkit-transform: scale(0);
   transform: scale(0);
 }
 
-.customer-form-page [type="radio"]:checked+label:after {
+.customer-form-page [type="radio"]:checked + label:after {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
@@ -4531,12 +4543,12 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   margin-right: 10px;
 }
 
-.cart-item-list .form-group input:checked+label::before {
+.cart-item-list .form-group input:checked + label::before {
   background-color: var(--bs-point);
   border: none;
 }
 
-.cart-item-list .form-group input:checked+label:after {
+.cart-item-list .form-group input:checked + label:after {
   content: '';
   display: block;
   position: absolute;
@@ -4573,7 +4585,7 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
   margin-top: 40px;
 }
 
-.cart-item-list .form-group-2 input:checked+label:after {
+.cart-item-list .form-group-2 input:checked + label:after {
   content: '';
   display: block;
   position: absolute;
@@ -4962,7 +4974,25 @@ input[type=checkbox]:checked+.vehicle_options__label__vehicle_prd::after {
 }
 
 .border-dashed {
-  border-bottom: 1px dashed rgb(219, 219, 219);  
+  border-bottom: 1px dashed rgb(219, 219, 219);
+}
+
+.mid-banner-ticket .box-text {
+  position: absolute;
+  top: 45px;
+  left: 120px;
+}
+
+.mid-banner-ticket .box-text h3 {
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.mid-banner-ticket .box-text p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
 }
 
 @media screen and (max-width: 1200px) {

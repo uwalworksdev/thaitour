@@ -48,12 +48,11 @@ class Product extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
-    public function showTicket()
+    public function showTicket($code_no)
     {
         try {
-            $data = [
-                'tab_active' => '5',
-            ];
+            $data = $this->viewData($code_no);
+
             return $this->renderView('product/show-ticket', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -63,16 +62,30 @@ class Product extends BaseController
         }
     }
 
+    public function ticketDetail($code_no)
+    {
+        return $this->renderView('/product/ticket/ticket-detail');
+    }
+
+    public function ticketBooking($code_no)
+    {
+        return $this->renderView('/product/ticket/ticket-booking');
+    }
+
+    public function ticketCompleted()
+    {
+        return $this->renderView('/product/ticket/completed-order');
+    }
 
     public function indexTour($code_no)
     {
         try {
             $sub_codes = $this->codeModel->where('parent_code_no', 1301)->orderBy('onum', 'DESC')->findAll();
-    
+
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1301,
             ], $this->scale, 1, ['product_price' => 'ASC']);
-    
+
             $code_name = $this->db->table('tbl_code')
                 ->select('code_name')
                 ->where('code_gubun', 'tour')
@@ -80,7 +93,7 @@ class Product extends BaseController
                 ->get()
                 ->getRow()
                 ->code_name;
-    
+
             if (strlen($code_no) == 4) {
                 $codes = $this->db->table('tbl_code')
                     ->where('parent_code_no', $code_no)
@@ -94,13 +107,13 @@ class Product extends BaseController
                     ->get()
                     ->getResult();
             }
-    
+
             $code_new = $this->codeModel->getByParentAndDepth(2336, 3)->getResultArray();
             $codeRecommendedActive = $code_new[0]['code_no'];
             $productByRecommended = $this->mainDispModel->goods_find($codeRecommendedActive);
 
             $code_step2 = $this->codeModel->getByParentAndDepth($codeRecommendedActive, 4)->getResultArray();
-   
+
             $codeStep2RecommendedActive = !empty($code_step2) ? $code_step2[0]['code_no'] : null;
             $productStep2ByRecommended = !empty($codeStep2RecommendedActive) ? $this->mainDispModel->goods_find($codeStep2RecommendedActive, 4, 1) : [];
             $productStep2ByRecommended['code_no'] = $codeStep2RecommendedActive;
@@ -113,7 +126,7 @@ class Product extends BaseController
                 'product_code_1' => 1301,
                 'special_price' => 'Y',
             ], $this->scale, 1, ['r_date' => 'DESC']);
-    
+
             $data = [
                 'code_no' => $code_no,
                 'products' => $products,
@@ -132,7 +145,7 @@ class Product extends BaseController
                 'code_popular' => $code_popular,
                 'product_popular' => $product_popular
             ];
-    
+
             return $this->renderView('product/product-tours', $data);
         } catch (Exception $e) {
             return $this->response->setJSON([
@@ -362,22 +375,22 @@ class Product extends BaseController
     public function getStep2ByCodeNo()
     {
         $code_no = $this->request->getVar('code_no');
-        
+
         $code_step2 = $this->codeModel->getByParentAndDepth($code_no, 4)->getResultArray();
-        
+
         $codeStep2RecommendedActive = !empty($code_step2) ? $code_step2[0]['code_no'] : null;
-        
+
         $html = '';
-        
+
         if (!empty($code_step2)) {
             foreach ($code_step2 as $code) {
                 $html .= '<a href="javascript:void(0);" onclick="handleLoadRecommendedProduct(' . $code['code_no'] . ');" class="tour__head__tabs2__tab ' . ($codeStep2RecommendedActive == $code['code_no'] ? 'active' : '') . '">' .
-                viewSQ($code['code_name']) .
-                '</a>';
+                    viewSQ($code['code_name']) .
+                    '</a>';
 
             }
         }
-    
+
         return $this->response->setJSON([
             'codeStep2RecommendedActive' => $codeStep2RecommendedActive,
             'html' => $html,
@@ -414,7 +427,6 @@ class Product extends BaseController
         return $this->response->setJSON($productBySubCode);
 
     }
-    
 
     public function indexResult($code_no)
     {
@@ -695,28 +707,7 @@ class Product extends BaseController
     public function indexSpa($code_no, $s = "1")
     {
         try {
-            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no;
-            $products = $this->db->query($sql);
-            $products = $products->getResultArray();
-
-            foreach ($products as $key => $product) {
-
-                $hotel_codes = explode("|", $product['product_code_list']);
-                $hotel_codes = array_values(array_filter($hotel_codes));
-
-                $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
-
-                $products[$key]['codeTree'] = $codeTree;
-
-                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
-
-                $products[$key]['total_review'] = $productReview['total_review'];
-                $products[$key]['review_average'] = $productReview['avg'];
-            }
-
-            $data = [
-                "products" => $products,
-            ];
+            $data = $this->viewData($code_no);
 
             return $this->renderView('product/product-spa', $data);
         } catch (Exception $e) {
@@ -1380,6 +1371,19 @@ class Product extends BaseController
             $data['coupons'][$key] = $coupon;
         }
 
+        $options = $this->golfOptionModel->getOptions($product_idx);
+
+        $hole_cnt_arr = array_column($options, 'hole_cnt');
+        $hour_arr = array_column($options, 'hour');
+
+        $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
+            return in_array($value, $hole_cnt_arr);
+        });
+
+        $data['hour_arr'] = array_filter(GOLF_HOURS, function ($value) use ($hour_arr) {
+            return in_array($value, $hour_arr);
+        });
+
         return $this->renderView('product/golf/golf-details', $data);
     }
 
@@ -1492,8 +1496,11 @@ class Product extends BaseController
             $fresult8 = $fresult8->getResultArray();
         }
 
+        $suggestSpas = $this->getSuggestedHotels($spa['product_idx'], $spa['array_hotel_code'][0] ?? '', '1325');
+
         $data = [
             'spa' => $spa,
+            'suggestSpas' => $suggestSpas,
             'fresult4' => $fresult4,
             'bresult4' => $bresult4,
             'fresult5' => $fresult5,
@@ -1525,12 +1532,31 @@ class Product extends BaseController
 
     public function restaurantIndex($code_no)
     {
-        return $this->renderView('/product/restaurant/product-restaurant');
+        try {
+            $data = $this->viewData($code_no);
+
+            return $this->renderView('/product/restaurant/product-restaurant', $data);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     public function restaurantDetail($code_no)
     {
-        return $this->renderView('/product/restaurant/spa-details');
+        return $this->renderView('/product/restaurant/restaurant-detail');
+    }
+
+    public function restaurantBooking($code_no)
+    {
+        return $this->renderView('/product/restaurant/restaurant-booking');
+    }
+
+    public function restaurantCompleted()
+    {
+        return $this->renderView('/product/restaurant/completed-order');
     }
 
     public function vehicleGuide($code_no)
@@ -1709,5 +1735,69 @@ class Product extends BaseController
     {
         // return base_url("images/{$file}");
         return "https://hihojoonew.cafe24.com/data/product/thum_798_463/{$file}";
+    }
+
+    private function viewData($code_no)
+    {
+        $search_product_name = $this->request->getVar('keyword') ?? "";
+        $product_code_2 = $this->request->getVar('product_code_2') ?? "";
+
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' ORDER BY onum DESC, product_idx DESC";
+        $products = $this->db->query($sql);
+        $products = $products->getResultArray();
+
+        $strSql = '';
+
+        if ($search_product_name && $search_product_name != "") {
+            $strSql = $strSql . " AND product_name LIKE '%$search_product_name%'";
+        }
+        if ($product_code_2 && $product_code_2 != "") {
+            $strSql = $strSql . " AND product_code_2 = " . $product_code_2;
+        }
+
+        $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' $strSql ORDER BY onum DESC, product_idx DESC";
+        $productResults = $this->db->query($sql);
+        $productResults = $productResults->getResultArray();
+
+        foreach ($productResults as $key => $product) {
+
+            $hotel_codes = explode("|", $product['product_code_list']);
+            $hotel_codes = array_values(array_filter($hotel_codes));
+
+            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+            $productResults[$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $productResults[$key]['total_review'] = $productReview['total_review'];
+            $productResults[$key]['review_average'] = $productReview['avg'];
+        }
+
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no= $code_no AND status='Y' ORDER BY onum DESC, code_idx DESC";
+        $codes = $this->db->query($sql);
+        $codes = $codes->getResultArray();
+
+        foreach ($codes as $key => $code) {
+            $strSql2 = '';
+            if ($search_product_name && $search_product_name != "") {
+                $strSql2 = $strSql2 . " AND product_name LIKE '%$search_product_name%'";
+            }
+            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_2 = " . $code['code_no'] . " AND is_view='Y' $strSql2 ORDER BY onum DESC, product_idx DESC";
+            $sProducts = $this->db->query($sql);
+            $sProducts = $sProducts->getNumRows();
+
+            $codes[$key]['count'] = $sProducts;
+        }
+
+        $data = [
+            "products" => $products,
+            "productResults" => $productResults,
+            "search_product_name" => $search_product_name,
+            "product_code_2" => $product_code_2,
+            "codes" => $codes,
+        ];
+
+        return $data;
     }
 }

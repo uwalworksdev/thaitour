@@ -454,49 +454,56 @@
                                     <th>마감 시간</th>
                                     <td colspan="3">
                                         <div class="al_list_" id="al_list_">
-                                            <?php foreach ($arr_deadline_time as $itemTime) { ?>
-                                                <?php if ($itemTime && $itemTime != '') { ?>
-                                                    <?php
-                                                    $arr_itemTime = explode('||', $itemTime)
-                                                    ?>
-                                                    <div class="al">
-                                                        <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                               name="deadline_start" value="<?= $arr_itemTime[0] ?>"
-                                                               id="deadline_start">
-                                                        <span> ~ </span>
-                                                        <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                               name="deadline_end" value="<?= $arr_itemTime[1] ?>"
-                                                               id="deadline_end">
+                                            <?php if ($product_idx) { ?>
+                                                <?php $i = 0 ?>
+                                                <?php foreach ($arr_deadline_time as $itemTime) { ?>
+                                                    <?php --$i; ?>
+                                                    <?php if ($itemTime && $itemTime != '') { ?>
+                                                        <?php
+                                                        $arr_itemTime = explode('||', $itemTime)
+                                                        ?>
+                                                        <div class="al">
+                                                            <input type="text"
+                                                                   class="input_txt _deadline_time_ datepicker"
+                                                                   name="deadline_start" value="<?= $arr_itemTime[0] ?>"
+                                                                   id="deadline_start<?= $i ?>">
+                                                            <span> ~ </span>
+                                                            <input type="text"
+                                                                   class="input_txt _deadline_time_ datepicker"
+                                                                   name="deadline_end" value="<?= $arr_itemTime[1] ?>"
+                                                                   id="deadline_end<?= $i ?>">
 
-                                                        <button onclick="removeEl(this);" style="margin: 0"
-                                                                class="btn_al_plus_ btn_02" type="button">
-                                                            -
-                                                        </button>
-                                                        <button onclick="plusEl(this);" style="margin: 0"
-                                                                class="btn_al_plus_ btn_01" type="button">
-                                                            +
-                                                        </button>
-                                                    </div>
+                                                            <button onclick="removeEl(this);" style="margin: 0"
+                                                                    class="btn_al_plus_ btn_02" type="button">
+                                                                -
+                                                            </button>
+                                                            <button onclick="plusEl(this);" style="margin: 0"
+                                                                    class="btn_al_plus_ btn_01" type="button">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    <?php } ?>
                                                 <?php } ?>
-                                            <?php } ?>
-                                            <div class="al">
-                                                <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                       name="deadline_start"
-                                                       id="deadline_start_${num}">
-                                                <span> ~ </span>
-                                                <input type="text" class="input_txt _deadline_time_ datepicker"
-                                                       name="deadline_end"
-                                                       id="deadline_end_${num}">
+                                            <?php } else { ?>
+                                                <div class="al">
+                                                    <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                           name="deadline_start"
+                                                           id="deadline_start_">
+                                                    <span> ~ </span>
+                                                    <input type="text" class="input_txt _deadline_time_ datepicker"
+                                                           name="deadline_end"
+                                                           id="deadline_end_">
 
-                                                <button onclick="removeEl(this);" style="margin: 0"
-                                                        class="btn_al_plus_ btn_02" type="button">
-                                                    -
-                                                </button>
-                                                <button onclick="plusEl(this);" style="margin: 0"
-                                                        class="btn_al_plus_ btn_01" type="button">
-                                                    +
-                                                </button>
-                                            </div>
+                                                    <button onclick="removeEl(this);" style="margin: 0"
+                                                            class="btn_al_plus_ btn_02" type="button">
+                                                        -
+                                                    </button>
+                                                    <button onclick="plusEl(this);" style="margin: 0"
+                                                            class="btn_al_plus_ btn_01" type="button">
+                                                        +
+                                                    </button>
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -855,7 +862,8 @@
                     <caption>
                     </caption>
                     <colgroup>
-                        <col width="*"/>
+                        <col width="10%">
+                        <col width="x">
                     </colgroup>
                     <tbody>
 
@@ -869,21 +877,32 @@
                     </tbody>
                 </table>
             </div>
-
+            <style>
+                .tableCustom td.cus_,
+                .tableCustom th.cus_ {
+                    text-align: center !important;
+                    vertical-align: middle;
+                }
+            </style>
             <?php foreach ($options as $row_option): ?>
-                <div class="listBottom">
+                <div class="listBottom" style="padding: 15px;">
                     <form name="optionForm_<?= $row_option['code_idx'] ?>"
                           id="optionForm_<?= $row_option['code_idx'] ?>">
                         <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
                         <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
 
-                        <table class="listTable mem_detail">
+                        <table class="listTable tableCustom mem_detail">
+                            <colgroup>
+                                <col width="10%">
+                                <col width="x">
+                            </colgroup>
                             <tbody>
                             <tr>
                                 <th>옵션</th>
                                 <td>
                                     <div class="" style="display: flex; align-items: center; gap: 30px">
                                         <input type="text" name="moption_name"
+                                               id="moption_name_<?= $row_option['code_idx'] ?>"
                                                value="<?= $row_option['moption_name'] ?>"/>
                                         <button style="height: 31px;" type="button"
                                                 onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
@@ -906,6 +925,13 @@
                                             onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록
                                     </button>
                                     <table>
+                                        <colgroup>
+                                            <col width="x">
+                                            <col width="200px">
+                                            <col width="100px">
+                                            <col width="200px">
+                                            <col width="200px">
+                                        </colgroup>
                                         <thead>
                                         <tr>
                                             <th>옵션명</th>
@@ -934,7 +960,7 @@
                                                 </td>
                                                 <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>"/>
                                                 </td>
-                                                <td>
+                                                <td class="cus_">
                                                     <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
                                                             type="button" onclick="delOption('<?= $option['idx'] ?>');">
                                                         삭제
@@ -1043,7 +1069,7 @@
 //		addOption += "	</td>																  ";
 
 
-            addOption += "	<td>																  ";
+            addOption += "	<td class='cus_'>																  ";
             addOption += '		<button style="height: 31px; background-color:#d03a3e; color: #FFFFFF" ' +
                 'type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
@@ -1080,7 +1106,7 @@
 //		addOption += "	</td>																  ";
 
 
-            addOption += "	<td>																  ";
+            addOption += "	<td class='cus_'>																  ";
             addOption += '		<button style="height: 31px; background-color:#d03a3e; color: #FFFFFF" ' +
                 'type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
