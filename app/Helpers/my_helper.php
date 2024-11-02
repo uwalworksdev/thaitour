@@ -31,6 +31,44 @@ if (!function_exists('isDateInRange')) {
     }
 }
 
+function getProductPacks($product_idx)
+{
+    $sql = "SELECT * FROM tbl_product_pack WHERE product_idx = '$product_idx' AND pack_status = 'Y' ORDER BY pack_idx ASC";
+    $fresult = db_connect()->query($sql);
+    $fresult = $fresult->getResultArray();
+    $count = 0;
+    $output = '';
+
+    foreach ($fresult as $row) {
+        if ($count % 2 == 0) {
+            if ($count > 0) {
+                $output .= '</div>';
+            }
+            $output .= '<div class="first-i-below-c first-i-below-c_last-1">';
+        }
+
+        $output .= '<div class="left">';
+        $output .= '<span class="font-bold lb-bc">' . htmlspecialchars($row['pack_name']) . '</span>';
+        $output .= '<div class="label-yellow-bc label-bc">';
+        $output .= '<span>시작</span>';
+        $output .= '<span>' . htmlspecialchars($row['pack_s_date']) . '</span>';
+        $output .= '</div>';
+        $output .= '<div class="label-red-bc label-bc">';
+        $output .= '<span>종료</span>';
+        $output .= '<span>' . htmlspecialchars($row['pack_e_date']) . '</span>';
+        $output .= '</div>';
+        $output .= '</div>';
+
+        $count++;
+    }
+
+    if ($count % 2 != 0) {
+        $output .= '</div>';
+    }
+
+    return $output;
+}
+
 
 function dowYoil($strdate)
 {
@@ -781,3 +819,4 @@ function file_check($ok_filename, $ok_file, $path, $ftype)
         return $attached;
     }
 }
+
