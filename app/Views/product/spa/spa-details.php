@@ -478,24 +478,24 @@
             }
         });
 
-        const optCountBoxes = document.querySelectorAll('.opt_count_box');
-        optCountBoxes.forEach(box => {
-            const minusButton = box.querySelector('.minus_btn');
-            const plusButton = box.querySelector('.plus_btn');
-            const inputField = box.querySelector('.input-qty');
-
-            minusButton.addEventListener('click', () => {
-                let currentValue = parseInt(inputField.value, 10);
-                if (currentValue > 0) {
-                    inputField.value = currentValue - 1;
-                }
-            });
-
-            plusButton.addEventListener('click', () => {
-                let currentValue = parseInt(inputField.value, 10);
-                inputField.value = currentValue + 1;
-            });
-        });
+        // const optCountBoxes = document.querySelectorAll('.opt_count_box');
+        // optCountBoxes.forEach(box => {
+        //     const minusButton = box.querySelector('.minus_btn');
+        //     const plusButton = box.querySelector('.plus_btn');
+        //     const inputField = box.querySelector('.input-qty');
+        //
+        //     minusButton.addEventListener('click', () => {
+        //         let currentValue = parseInt(inputField.value, 10);
+        //         if (currentValue > 0) {
+        //             inputField.value = currentValue - 1;
+        //         }
+        //     });
+        //
+        //     plusButton.addEventListener('click', () => {
+        //         let currentValue = parseInt(inputField.value, 10);
+        //         inputField.value = currentValue + 1;
+        //     });
+        // });
     </script>
 
     <div id="dim"></div>

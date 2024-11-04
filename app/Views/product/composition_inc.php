@@ -20,13 +20,29 @@
                         </div>
                         <div class="opt_count_box count_box flex__c">
                             <button type="button" class="minus_btn" id="minusAdult"></button>
-                            <input type="text" class="input-qty" name="qty" id="adultQty" value="2"
+                            <input type="text" class="input-qty" name="qty" id="adultQty" min="1" value="1"
                                    readonly="">
                             <button type="button" class="plus_btn" id="addAdult"></button>
                         </div>
                     </li>
                 </ul>
             </div>
+
+            <script>
+                $(document).ready(function () {
+                   $('.plus_btn').click(function () {
+                       let input = $(this).parent().find('input');
+                       input.val(parseInt(input.val()) + 1);
+                   })
+
+                    $('.minus_btn').click(function () {
+                       let input = $(this).parent().find('input');
+                       if (parseInt(input.val()) > 1) {
+                           input.val(parseInt(input.val()) - 1);
+                       }
+                   })
+                });
+            </script>
 
             <div class="item_option">
                 <!-- opt_list -->
@@ -63,25 +79,30 @@
                             id="total_sum" class="total_sum">0</span> 원</strong></p>
         </div>
         <h3 class="title-r label">약관동의</h3>
-        <div class="item-info-check-first">
-            <span>전체동의</span>
-            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+        <div class="item-info-check item_check_term_">
+            <label for="fullagreement">전체동의</label>
+            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+            <input type="hidden" value="N" id="fullagreement">
         </div>
-        <div class="item-info-check">
-            <span>이용약관 동의(필수)</span>
-            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+        <div class="item-info-check item_check_term_">
+            <label for="">이용약관 동의(필수)</label>
+            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+            <input type="hidden" value="N" id="terms">
         </div>
-        <div class="item-info-check">
-            <span>개인정보 처리방침(필수)</span>
-            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+        <div class="item-info-check item_check_term_">
+            <label for="">개인정보 처리방침(필수)</label>
+            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+            <input type="hidden" value="N" id="policy">
         </div>
-        <div class="item-info-check">
-            <span>개인정보 제3자 제공 및 국외 이전 동의(필수)</span>
-            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+        <div class="item-info-check item_check_term_">
+            <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+            <input type="hidden" value="N" id="information">
         </div>
-        <div class="item-info-check">
-            <span>여행안전수칙 동의(필수)</span>
-            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+        <div class="item-info-check item_check_term_">
+            <label for="guidelines">여행안전수칙 동의(필수)</label>
+            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+            <input type="hidden" value="N" id="guidelines">
         </div>
         <div class="nav_btn_wrap">
             <a href="/product-spa/product-booking/8386">
@@ -97,21 +118,32 @@
     </div>
 </div>
 <script>
+    $('.item_check_term_').click(function () {
+        $(this).toggleClass('checked_');
+        let input = $(this).find('input');
+        if (input.val() == 'N') {
+            input.val('Y');
+        } else {
+            input.val('N');
+        }
+
+        console.log(input.val())
+    })
+
     function sel_moption(code_idx) {
         let url = `<?= route_to('api.product.sel_moption') ?>`;
         $.ajax({
             url: url,
             type: "POST",
             data: {
-                "product_idx": '<?=$product_idx?>',
+                "product_idx": '<?= $spa['product_idx'] ?>',
                 "code_idx": code_idx
             },
-            dataType: "json",
             async: false,
             cache: false,
             success: function (data, textStatus) {
                 console.log(data)
-                $(".sel_option").html(data);
+                $("#sel_option").html(data);
             },
             error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
