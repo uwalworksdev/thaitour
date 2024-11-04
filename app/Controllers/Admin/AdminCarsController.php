@@ -78,7 +78,7 @@ class AdminCarsController extends BaseController
             $row = $this->productModel->find($product_idx);
         }
         
-        $osql = "select * from tbl_cars_option where product_code='" . $row["product_code"] . "' order by idx desc";
+        $osql = "select * from tbl_cars_option where product_code = '" . $row["product_code"] . "' order by idx desc";
         $oresult = $this->connect->query($osql);
         $oresult = $oresult->getResultArray();
 
@@ -106,8 +106,8 @@ class AdminCarsController extends BaseController
             $data['product_name'] = updateSQ($_POST["product_name"] ?? '');
             $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
             $data['product_status'] = updateSQ($_POST["product_status"] ?? '');
-            $data['original_price'] = updateSQ($_POST["original_price"] ?? '');
-            $data['product_price'] = updateSQ($_POST["product_price"] ?? '');
+            $data['original_price'] = updateSQ($_POST["original_price"] ?? 0);
+            $data['product_price'] = updateSQ($_POST["product_price"] ?? 0);
             $data['product_info'] = updateSQ($_POST["product_info"] ?? '');
             $data['product_best'] = updateSQ($_POST["product_best"] ?? 'N');
             $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');

@@ -354,9 +354,9 @@ $links = "list";
                                                style="width:500px;margin-bottom:10px"/>
                                         <?php if (isset($ufile1) && $ufile1 !== "") { ?><br>
                                             파일삭제: <input type=checkbox name="del_1" value='Y'>
-                                            <a href="/data/hotel/<?= $ufile1 ?>" class="imgpop"><?= $rfile1 ?></a>
+                                            <a href="/data/cars/<?= $ufile1 ?>" class="imgpop"><?= $rfile1 ?></a>
                                             <br><br>
-                                            <img src="/data/hotel/<?= $ufile1 ?>" width="200px"/>
+                                            <img src="/data/cars/<?= $ufile1 ?>" width="200px"/>
                                         <?php } ?>
 
                                     </td>
@@ -374,9 +374,9 @@ $links = "list";
                                                 <input type=checkbox
                                                        name="del_<?= $i ?>"
                                                        value='Y'><a
-                                                        href="/data/hotel/<?= ${"ufile" . $i} ?>"
+                                                        href="/data/cars/<?= ${"ufile" . $i} ?>"
                                                         class="imgpop"><?= ${"rfile" . $i} ?></a><br><br>
-                                                <img src="/data/hotel/<?= ${"ufile" . $i} ?>" width="200px"/>
+                                                <img src="/data/cars/<?= ${"ufile" . $i} ?>" width="200px"/>
                                             <?php } ?>
 
                                         </td>
