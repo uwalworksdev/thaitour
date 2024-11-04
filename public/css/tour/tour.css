@@ -2184,6 +2184,13 @@
     border-bottom: 1px dashed rgb(216, 216, 216);
 }
 
+.tours-detail .quantity-container-fa {
+    display: none;
+}
+.calendar-right .quantity-container-fa[data-tour-index="0"] {
+    display: block;
+}
+
 .tours-detail .quantity-info {
     font-size: 18px;
     display: flex;
@@ -2237,6 +2244,11 @@
     border-top: 1px solid rgb(216, 216, 216);
     padding-top: 50px;
     position: relative;
+}
+
+.tours-detail .container-calendar.tour {
+    padding-top: 0;
+    border-top: unset;
 }
 
 .tours-detail .calendar-left {
@@ -2399,6 +2411,14 @@
 }
 
 .tours-detail p.des-type {
+    font-size: 17px;
+    line-height: 1.5rem;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    color: #757575;
+}
+
+.tours-detail .des-type {
     font-size: 17px;
     line-height: 1.5rem;
     margin-top: 20px;

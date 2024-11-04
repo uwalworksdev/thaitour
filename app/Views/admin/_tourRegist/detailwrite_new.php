@@ -146,29 +146,31 @@ $(document).ready(function(){
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="add_in">
-                                        <?php
-                                        $groups = $subSchedules[$dd] ?? [];
-										foreach ($groups as $groupKey => $group):
-                                        ?>
-                                            <div class="input-wrap add_detail_form">
-                                                <div class="daily_div">
-                                                    <div class="btn_div">
-                                                        <button type="button" class="btn btn-danger remove_form" value="<?= $idx ?>,<?= $dd ?>,<?= $groupKey ?>" onclick="del_days(this)">일정 전체 삭제</button>
-                                                        <!-- <button type="button" class="btn btn-primary add_form" onclick="add_line(this, '<?= $dd ?>', '<?= $group[0]['groups'] ?>')">추가</button> -->
-                                                    </div>
-
-                                                    <b class="label">상세일정</b>
+                                    <div class="add_in" style="padding-top: 0">
+										<div class="input-wrap add_detail_form">
+											<div class="daily_div">
+												<b class="label">상세일정</b>
+												<?php
+												$groups = $subSchedules[$dd] ?? [];
+												foreach ($groups as $groupKey => $group):
+												?>
                                                     <?php foreach ($group as $row_ds): ?>
                                                         <div class="flex__c sub_line" style="margin-top:20px; gap: 20px">
-                                                            <div class="input-row">
+															<div class="input-row" style="width: 10%;">
+                                                                <input type="text" name="detail_hour[<?= $dd ?>][<?= $groupKey ?>][<?= $row_ds['onum'] ?>]" value="<?= viewSQ($row_ds['detail_hour']) ?>" placeholder="시간" style="width: 100%;">
+                                                            </div>
+                                                            <div class="input-row" style="width: 70%;">
                                                                 <input type="text" name="detail_summary[<?= $dd ?>][<?= $groupKey ?>][<?= $row_ds['onum'] ?>]" value="<?= viewSQ($row_ds['detail_summary']) ?>" placeholder="상세일정 설명">
                                                             </div>
+															<div class="btn_div">
+																<button type="button" class="btn btn-danger remove_form" value="<?= $idx ?>,<?= $dd ?>,<?= $groupKey ?>" onclick="del_days(this)">일정 전체 삭제</button>
+																<!-- <button type="button" class="btn btn-primary add_form" onclick="add_line(this, '<?= $dd ?>', '<?= $group[0]['groups'] ?>')">추가</button> -->
+															</div>
                                                         </div>
                                                     <?php endforeach; ?>
-                                                </div>
+												<?php endforeach; ?>
                                             </div>
-                                        <?php endforeach; ?>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

@@ -213,22 +213,37 @@ const add_line_html = `
 
 
 // 일정추가 부분
+// const add_day_html = `
+// <div class="input-wrap add_detail_form">
+// 	<div class="daily_div">
+// 		<div class="btn_div">
+// 			<button type="button" class="btn btn-danger remove_form" onclick="del_days(this)">일정 전체 삭제</button>
+// 		</div>
+// 		<b class="label">상세일정</b>
+// 		<div class="flex__c sub_line" style="margin-top:20px;">
+// 			<div class="input-row">
+// 				<input type="text" name="detail_summary[[%dd%]][[%group%]][[%onum%]]" value="" placeholder=" 상세일정 타이틀">
+// 			</div>
+// 		</div>
+// 	</div>
+// </div>
+// `;
+
 const add_day_html = `
-<div class="input-wrap add_detail_form">
-	<div class="daily_div">
-		<div class="btn_div">
-			<button type="button" class="btn btn-danger remove_form" onclick="del_days(this)">일정 전체 삭제</button>
-		</div>
-		<b class="label">상세일정</b>
-		<div class="flex__c sub_line" style="margin-top:20px;">
-			<div class="input-row">
+
+
+		<div class="flex__c sub_line" style="margin-top:20px;gap: 20px ">
+			<div class="input-row" style="width: 10%;">
+				<input type="text" name="detail_hour[[%dd%]][[%group%]][[%onum%]]" value="" placeholder="시간" style="width: 100%;">
+			</div>
+			<div class="input-row" style="width: 70%;">
 				<input type="text" name="detail_summary[[%dd%]][[%group%]][[%onum%]]" value="" placeholder=" 상세일정 타이틀">
 			</div>
+			<div class="btn_div">
+				<button type="button" class="btn btn-danger remove_form" onclick="del_days(this)">일정 전체 삭제</button>
+			</div>
 		</div>
-	</div>
-</div>
 `;
-
 
 
 
