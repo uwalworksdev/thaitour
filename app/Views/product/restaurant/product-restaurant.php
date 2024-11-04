@@ -199,8 +199,11 @@
                 .open_ {
                     height: auto;
                 }
-            </style>
 
+                .btn-gr-ticket {
+                    display: inline-block;
+                }
+            </style>
             <div class="">
                 <div class="list-ticket-grid " id="list-ticket-grid">
                     <?php $i = 0 ?>

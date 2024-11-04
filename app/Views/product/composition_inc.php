@@ -104,7 +104,7 @@
             url: url,
             type: "POST",
             data: {
-                "product_idx": '<?= $spa['product_idx'] ?>',
+                "product_idx": '<?= $data_['product_idx'] ?>',
                 "code_idx": code_idx
             },
             async: false,

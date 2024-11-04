@@ -62,9 +62,104 @@ class Product extends BaseController
         }
     }
 
-    public function ticketDetail($code_no)
+    public function ticketDetail($product_idx)
     {
-        return $this->renderView('/product/ticket/ticket-detail');
+        $ticket = $this->productModel->find($product_idx);
+        if (!$ticket) {
+            throw new Exception('존재하지 않는 상품입니다.');
+        }
+
+        $hotel_codes = explode("|", $ticket['product_code_list']);
+        $hotel_codes = array_values(array_filter($hotel_codes));
+
+        $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+        $ticket['codeTree'] = $codeTree;
+
+        $productReview = $this->reviewModel->getProductReview($ticket['product_idx']);
+
+        $ticket['total_review'] = $productReview['total_review'];
+        $ticket['review_average'] = $productReview['avg'];
+
+        $code_utilities = $ticket['code_utilities'];
+        $_arr_utilities = explode("|", $code_utilities);
+        $_arr_utilities = array_filter($_arr_utilities);
+
+        $code_services = $ticket['code_services'];
+        $_arr_services = explode("|", $code_services);
+        $_arr_services = array_filter($_arr_services);
+
+        $code_best_utilities = $ticket['code_best_utilities'];
+        $_arr_best_utilities = explode("|", $code_best_utilities);
+        $_arr_best_utilities = array_filter($_arr_best_utilities);
+
+        $code_populars = $ticket['code_populars'];
+        $_arr_populars = explode("|", $code_populars);;
+        $_arr_populars = array_filter($_arr_populars);
+
+        $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
+        $list__best_utilities = rtrim(implode(',', $_arr_best_utilities), ',');
+        $list__services = rtrim(implode(',', $_arr_services), ',');
+        $list__populars = rtrim(implode(',', $_arr_populars), ',');
+
+        if (!empty($list__utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+
+            $fresult4 = $this->db->query($fsql);
+            $fresult4 = $fresult4->getResultArray();
+        }
+
+        if (!empty($list__best_utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+            $bresult4 = $this->db->query($fsql);
+            $bresult4 = $bresult4->getResultArray();
+        }
+
+        if (!empty($list__services)) {
+            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='4404' ORDER BY onum DESC, code_idx DESC";
+            $fresult5 = $this->db->query($fsql);
+            $fresult5 = $fresult5->getResultArray();
+
+            $fresult5 = array_map(function ($item) use ($list__services) {
+                $rs = (array)$item;
+
+                $code_no = $rs['code_no'];
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+
+                $rs_child = $this->db->query($fsql)->getResultArray();
+
+                $rs['child'] = $rs_child;
+
+                return $rs;
+            }, $fresult5);
+        }
+
+        if (!empty($list__populars)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+            $fresult8 = $this->db->query($fsql);
+            $fresult8 = $fresult8->getResultArray();
+        }
+
+        $suggestSpas = $this->getSuggestedHotels($ticket['product_idx'], $ticket['array_hotel_code'][0] ?? '', '1317');
+
+        $builder = $this->db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $moption = $query->getResultArray();
+
+        $data = [
+            'data_' => $ticket,
+            'suggestSpas' => $suggestSpas,
+            'moption' => $moption,
+            'fresult4' => $fresult4,
+            'bresult4' => $bresult4,
+            'fresult5' => $fresult5,
+            'fresult8' => $fresult8,
+        ];
+
+        return $this->renderView('/product/ticket/ticket-detail', $data);
     }
 
     public function ticketBooking($code_no)
@@ -1575,7 +1670,7 @@ class Product extends BaseController
         $moption = $query->getResultArray();
 
         $data = [
-            'spa' => $spa,
+            'data_' => $spa,
             'suggestSpas' => $suggestSpas,
             'moption' => $moption,
             'fresult4' => $fresult4,
@@ -1621,9 +1716,104 @@ class Product extends BaseController
         }
     }
 
-    public function restaurantDetail($code_no)
+    public function restaurantDetail($product_idx)
     {
-        return $this->renderView('/product/restaurant/restaurant-detail');
+        $restaurant = $this->productModel->find($product_idx);
+        if (!$restaurant) {
+            throw new Exception('존재하지 않는 상품입니다.');
+        }
+
+        $hotel_codes = explode("|", $restaurant['product_code_list']);
+        $hotel_codes = array_values(array_filter($hotel_codes));
+
+        $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+        $restaurant['codeTree'] = $codeTree;
+
+        $productReview = $this->reviewModel->getProductReview($restaurant['product_idx']);
+
+        $restaurant['total_review'] = $productReview['total_review'];
+        $restaurant['review_average'] = $productReview['avg'];
+
+        $code_utilities = $restaurant['code_utilities'];
+        $_arr_utilities = explode("|", $code_utilities);
+        $_arr_utilities = array_filter($_arr_utilities);
+
+        $code_services = $restaurant['code_services'];
+        $_arr_services = explode("|", $code_services);
+        $_arr_services = array_filter($_arr_services);
+
+        $code_best_utilities = $restaurant['code_best_utilities'];
+        $_arr_best_utilities = explode("|", $code_best_utilities);
+        $_arr_best_utilities = array_filter($_arr_best_utilities);
+
+        $code_populars = $restaurant['code_populars'];
+        $_arr_populars = explode("|", $code_populars);;
+        $_arr_populars = array_filter($_arr_populars);
+
+        $list__utilities = rtrim(implode(',', $_arr_utilities), ',');
+        $list__best_utilities = rtrim(implode(',', $_arr_best_utilities), ',');
+        $list__services = rtrim(implode(',', $_arr_services), ',');
+        $list__populars = rtrim(implode(',', $_arr_populars), ',');
+
+        if (!empty($list__utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__utilities) ORDER BY onum DESC, code_idx DESC";
+
+            $fresult4 = $this->db->query($fsql);
+            $fresult4 = $fresult4->getResultArray();
+        }
+
+        if (!empty($list__best_utilities)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__best_utilities) ORDER BY onum DESC, code_idx DESC";
+            $bresult4 = $this->db->query($fsql);
+            $bresult4 = $bresult4->getResultArray();
+        }
+
+        if (!empty($list__services)) {
+            $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='4404' ORDER BY onum DESC, code_idx DESC";
+            $fresult5 = $this->db->query($fsql);
+            $fresult5 = $fresult5->getResultArray();
+
+            $fresult5 = array_map(function ($item) use ($list__services) {
+                $rs = (array)$item;
+
+                $code_no = $rs['code_no'];
+                $fsql = "SELECT * FROM tbl_code WHERE parent_code_no='$code_no' and code_no IN ($list__services) ORDER BY onum DESC, code_idx DESC";
+
+                $rs_child = $this->db->query($fsql)->getResultArray();
+
+                $rs['child'] = $rs_child;
+
+                return $rs;
+            }, $fresult5);
+        }
+
+        if (!empty($list__populars)) {
+            $fsql = "SELECT * FROM tbl_code WHERE code_no IN ($list__populars) ORDER BY onum DESC, code_idx DESC";
+            $fresult8 = $this->db->query($fsql);
+            $fresult8 = $fresult8->getResultArray();
+        }
+
+        $suggestSpas = $this->getSuggestedHotels($restaurant['product_idx'], $restaurant['array_hotel_code'][0] ?? '', '1320');
+
+        $builder = $this->db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $moption = $query->getResultArray();
+
+        $data = [
+            'data_' => $restaurant,
+            'suggestSpas' => $suggestSpas,
+            'moption' => $moption,
+            'fresult4' => $fresult4,
+            'bresult4' => $bresult4,
+            'fresult5' => $fresult5,
+            'fresult8' => $fresult8,
+        ];
+
+        return $this->renderView('/product/restaurant/restaurant-detail', $data);
     }
 
     public function restaurantBooking($code_no)
