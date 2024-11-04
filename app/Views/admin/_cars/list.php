@@ -10,8 +10,7 @@
             <div class="inner">
                 <h2>패키지 상품관리</h2>
                 <div class="menus">
-                    <ul class="first">
-                    </ul>
+                    <ul class="first"></ul>
 
                     <ul class="last">
                         <li><a href="javascript:change_it()" class="btn btn-success btn_change">순위변경</a></li>
@@ -83,92 +82,13 @@
                     frm.submit();
                 }
 
-                $(function () {
-                    $.datepicker.regional['ko'] = {
-                        showButtonPanel: true,
-                        beforeShow: function (input) {
-                            setTimeout(function () {
-                                var buttonPane = $(input)
-                                    .datepicker("widget")
-                                    .find(".ui-datepicker-buttonpane");
-                                var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                                btn.unbind("click").bind("click", function () {
-                                    $.datepicker._clearDate(input);
-                                });
-                                btn.appendTo(buttonPane);
-                            }, 1);
-                        },
-                        closeText: '닫기',
-                        prevText: '이전',
-                        nextText: '다음',
-                        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                        monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-                        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-                        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-                        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-                        weekHeader: 'Wk',
-                        dateFormat: 'yy-mm-dd',
-                        firstDay: 0,
-                        isRTL: false,
-                        showMonthAfterYear: true,
-                        changeMonth: true,
-                        changeYear: true,
-                        showMonthAfterYear: true,
-                        closeText: '닫기',  // 닫기 버튼 패널
-                        yearSuffix: ''
-                    };
-                    $.datepicker.setDefaults($.datepicker.regional['ko']);
-
-                    $(".date_form").datepicker({
-                        showButtonPanel: true
-                        , beforeShow: function (input) {
-                            setTimeout(function () {
-                                var buttonPane = $(input)
-                                    .datepicker("widget")
-                                    .find(".ui-datepicker-buttonpane");
-                                var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');
-                                btn.unbind("click").bind("click", function () {
-                                    $.datepicker._clearDate(input);
-                                });
-                                btn.appendTo(buttonPane);
-                            }, 1);
-                        }
-                        , dateFormat: 'yy-mm-dd'
-                        , showOn: "both"
-                        , yearRange: "c-100:c+10"
-                        , buttonImage: "/AdmMaster/_images/common/date.png"
-                        , buttonImageOnly: true
-                        , closeText: '닫기'
-                        , prevText: '이전'
-                        , nextText: '다음'
-
-                    });
-                });
-                $(".contact_btn_box .contact_btn").click(function () {
-                    resetClass();
-                    $(this).addClass("active");
-
-
-                    var date1 = $(this).attr("rel");
-                    var date2 = $.datepicker.formatDate('yy-mm-dd', new Date());
-
-                    $("#s_date").val(date1);
-                    $("#e_date").val(date2);
-
-                });
-
-                function resetClass() {
-                    $(".contact_btn_box .contact_btn").each(function () {
-                        $(this).removeClass("active");
-                    });
-                }
             </script>
 
             <script>
                 function change_it() {
                     let f = document.frm;
 
-                    let url = '<?= route_to("admin._hotel.change") ?>'
+                    let url = '<?= route_to("admin._cars.change") ?>'
                     let prod_data = $(f).serialize();
                     $.ajax({
                         type: "POST",
@@ -211,15 +131,10 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="50px"/>
-                                <col width="200px"/>
                                 <col width="100px"/>
                                 <col width="120px"/>
                                 <col width="*"/>
-                                <!-- <col width="120px" /> -->
                                 <col width="100px"/>
-                                <col width="100px"/>
-                                <col width="80px"/>
-                                <!-- <col width="80px"/>-->
                                 <col width="100px"/>
                                 <col width="150px"/>
                                 <col width="100px"/>
@@ -227,17 +142,11 @@
                             <thead>
                             <tr>
                                 <th>번호</th>
-                                <th>메인/상품분류</th>
                                 <th>상품코드</th>
                                 <th>이미지</th>
                                 <th>타이틀</th>
-                                <!-- <th>이용항공</th> -->
-                                <!-- <th>상품담당자</th>-->
                                 <th>사용유무</th>
-                                <th>베스트여부</th>
-                                <!-- <th>특가여부</th>-->
                                 <th>순위</th>
-                                <th>객실수</th>
                                 <th>등록일</th>
                                 <th>관리</th>
                             </tr>
@@ -247,7 +156,7 @@
                             if ($nTotalCount == 0) {
                                 ?>
                                 <tr>
-                                    <td colspan="13" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    <td colspan="9" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                 </tr>
                                 <?php
                             }
@@ -255,17 +164,11 @@
                                 ?>
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
-                                    <td rowspan="2" class="tac">
-                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a>
-                                        <br>
-                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
-                                           class="product_view" target="_blank">[<span>상품상세</span>]</a>
-                                    </td>
-                                    <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
+                                    <td rowspan="2" class="tac"><?= $row["product_code"] ?></td>
                                     <td class="tac">
                                         <?php
-                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/hotel/" . $row["ufile1"])) {
-                                            $src = "/data/hotel/" . $row["ufile1"];
+                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/cars/" . $row["ufile1"])) {
+                                            $src = "/data/cars/" . $row["ufile1"];
                                         } else {
                                             $src = "/data/product/noimg.png";
                                         }
@@ -297,22 +200,11 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <td class="tac">
-                                        <input name="product_best_best" class="type_chker"
-                                            <?php if (isset($row["product_best"]) && $row["product_best"] === "Y")
-                                                echo "checked=checked"; ?>
-                                               id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
-                                               onchange="check_best(<?= $row['product_idx'] ?>)"
-                                               value="Y">
-                                    </td>
                                     <td>
                                         <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
                                                value="<?= $row['onum'] ?>" style="width:66px;">
                                         <input type="hidden" name="code_idx[]" value="<?= $row["product_idx"] ?>"
                                                class="input_txt"/>
-                                    </td>
-                                    <td>
-                                        <?= $row["room_cnt"] ?>
                                     </td>
                                     <td>
                                         <?= $row["reg_date"] ?>
@@ -339,14 +231,13 @@
                     </div><!-- // listBottom -->
                 </form>
 
-                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_hotel/list    ') . "?pg=") ?>
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_cars/list') . "?pg=") ?>
 
                 <div id="headerContainer">
 
                     <div class="inner">
                         <div class="menus">
-                            <ul class="first">
-                            </ul>
+                            <ul class="first"></ul>
 
                             <ul class="last">
                                 <li><a href="javascript:change_it()"
@@ -371,24 +262,6 @@
 
 <script>
 
-    function check_best(idx) {
-        if ($("#product_best_best_" + idx).is(":checked")) {
-            $("#product_best_" + idx).val('Y');
-        } else {
-            $("#product_best_" + idx).val('N');
-
-        }
-    }
-
-    function check_sale(idx) {
-        if ($("#special_price_price_" + idx).is(":checked")) {
-            $("#special_price_" + idx).val('Y');
-        } else {
-            $("#special_price_" + idx).val('N');
-
-        }
-    }
-
     function prod_update(idx) {
         let onum = $("#onum_" + idx).val();
 
@@ -396,12 +269,7 @@
 
         let url = '/AdmMaster/prod_update/' + idx;
 
-        let product_best;
-        if ($("#product_best_best_" + idx).is(":checked")) {
-            product_best = "Y";
-        } else {
-            product_best = "N";
-        }
+        let product_best = "";
 
         if (!confirm("선택한 상품의 정보를 변경 하시겠습니까?"))
             return false;
@@ -417,18 +285,12 @@
             success: function (data, textStatus) {
                 message = data.message;
                 alert(message);
-                // location.href='/AdmMaster/_tourRegist/list.php?pg='+$("#pg").val();
                 location.reload();
             },
             error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             }
         });
-    }
-
-    function go_write(idx) {
-        $("#product_idx").val(idx);
-        $("#search").attr("action", "./write").submit();
     }
 
     function orderBy_set(seq) {
@@ -450,7 +312,7 @@
 
     function SELECT_DELETE() {
         if ($(".product_idx").is(":checked") == false) {
-            alert_("삭제할 내용을 선택하셔야 합니다.");
+            alert("삭제할 내용을 선택하셔야 합니다.");
             return;
         }
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
@@ -459,22 +321,19 @@
 
         $("#ajax_loader").removeClass("display-none");
 
-        let url = "<?= route_to("admin._hotel.del") ?>";
+        let url = "<?= route_to("admin._cars.del") ?>";
         $.ajax({
             url: url,
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
-                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
-            }
-            , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
                 $("#ajax_loader").addClass("display-none");
-                alert_("정상적으로 삭제되었습니다.");
+                alert("정상적으로 삭제되었습니다.");
                 location.reload();
                 return;
             }
@@ -489,7 +348,7 @@
         }
         $("#ajax_loader").removeClass("display-none");
 
-        let url = "<?= route_to("admin._hotel.del") ?>";
+        let url = "<?= route_to("admin._cars.del") ?>";
 
         $.ajax({
             url: url,
@@ -497,15 +356,12 @@
             data: "product_idx[]=" + product_idx,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
-                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
-            }
-            , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
                 $("#ajax_loader").addClass("display-none");
-                alert_("정상적으로 삭제되었습니다.");
+                alert("정상적으로 삭제되었습니다.");
                 location.reload();
                 return;
             }
@@ -513,53 +369,6 @@
 
     }
 
-    function get_code(strs, depth) {
-        $.ajax({
-            type: "GET"
-            , url: "/AdmMaster/api/get_code"
-            , dataType: "html" //전송받을 데이터의 타입
-            , timeout: 30000 //제한시간 지정
-            , cache: false  //true, false
-            , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-            , error: function (request, status, error) {
-                //통신 에러 발생시 처리
-                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            }
-            , success: function (json) {
-                //alert(json);
-                if (depth <= 3) {
-                    $("#product_code_2").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#product_code_2").append("<option value=''>2차분류</option>");
-                }
-                if (depth <= 4) {
-                    $("#product_code_3").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#product_code_3").append("<option value=''>3차분류</option>");
-                }
-                if (depth <= 4) {
-                    $("#product_code_4").find('option').each(function () {
-                        $(this).remove();
-                    });
-                    $("#product_code_4").append("<option value=''>4차분류</option>");
-                }
-                var list = $.parseJSON(json);
-                var listLen = list.length;
-                var contentStr = "";
-                for (var i = 0; i < listLen; i++) {
-                    contentStr = "";
-                    if (list[i].code_status == "C") {
-                        contentStr = "[마감]";
-                    } else if (list[i].code_status == "N") {
-                        contentStr = "[사용안함]";
-                    }
-                    $("#product_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
-                }
-            }
-        });
-    }
 </script>
 
 <?= $this->endSection() ?>

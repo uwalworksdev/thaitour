@@ -1,9 +1,5 @@
 <?php
-
-use App\Controllers\Admin\AdminHotelController;
-
-$formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
-
+    $formAction = $product_idx ? "/AdmMaster/_cars/write_ok/$product_idx" : "/AdmMaster/_cars/write_ok";
 ?>
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
@@ -22,7 +18,7 @@ if (isset($product_idx) && isset($row)) {
     }
 }
 
-$titleStr = "호텔정보 수정";
+$titleStr = "차량정보 수정";
 $links = "list";
 ?>
     <div id="container">
@@ -32,33 +28,20 @@ $links = "list";
                     <h2><?= $titleStr ?></h2>
                     <div class="menus">
                         <ul>
-
-                            <li><a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
+                            <li><a href="/AdmMaster/_cars/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
                             <?php if ($product_idx) { ?>
-                                <li><a href="javascript:copy_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
-                                </li>
-                                <script>
-                                    function copy_it() {
-                                        if (confirm("제품을 복사하시겠습니까?")) {
-                                            location.href = "copy2?product_idx=<?= $product_idx ?>";
-                                        }
-                                    }
-                                </script>
-                            <?php } ?>
-                            <?php if ($product_idx) { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
+                                <li><a href="javascript:send_it_c()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
+                                    <a href="javascript:del_it_c(`<?= route_to("admin._cars.del") ?>`, `<?= $product_idx ?>`)"
                                        class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 </li>
                             <?php } else { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
+                                <li><a href="javascript:send_it_c()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 </li>
                             <?php } ?>
@@ -201,34 +184,6 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>등급</th>
-                                    <td>
-                                        <select name="product_level">
-                                            <?php
-                                            foreach ($fresult9 as $frow) {
-                                                if (isset($product_level) && $product_level == $frow['code_no']) {
-                                                    echo "<option value='" . $frow['code_no'] . "' selected>" . $frow['code_name'] . "</option>";
-                                                } else {
-                                                    echo "<option value='" . $frow['code_no'] . "' >" . $frow['code_name'] . "</option>";
-                                                }
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
-                                    <th>검색키워드</th>
-                                    <td>
-                                        <input type="text" name="keyword" id="keyword"
-                                               value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
-                                               maxlength="1000"/><br/>
-                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>주소</th>
-                                    <td>
-                                        <input type="text" name="addrs" value="<?= $addrs ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="1000"/>
-                                    </td>
                                     <th>판매상태결정</th>
                                     <td>
                                         <select name="product_status" id="product_status">
@@ -246,12 +201,12 @@ $links = "list";
                                             </option>
                                         </select>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>객실수</th>
-                                    <td colspan="3">
-                                        <input type="text" name="room_cnt" value="<?= $room_cnt ?? "" ?>" class="text"
-                                               style="width:300px" maxlength="50"/>
+                                    <th>검색키워드</th>
+                                    <td>
+                                        <input type="text" name="keyword" id="keyword"
+                                               value="<?= $keyword ?? "" ?>" class="text" style="width:90%;"
+                                               maxlength="1000"/><br/>
+                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
                                 </tr>
 
@@ -264,301 +219,6 @@ $links = "list";
                                 </tr>
                                 </tbody>
                             </table>
-
-                            <style>
-                                .list_value_ {
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: start;
-                                    gap: 10px;
-                                    margin-top: 10px;
-                                }
-
-                                .list_value_ .item_ {
-                                    position: relative;
-                                    padding: 10px;
-                                    border: 1px solid #dbdbdb;
-                                }
-
-                                .list_value_ .item_ .remove {
-                                    position: absolute;
-                                    color: #FFFFFF;
-                                    cursor: pointer;
-                                    padding: 0 6px 2px 6px;
-                                    top: -10px;
-                                    background-color: rgba(255, 0, 0, 0.8);
-                                    border-radius: 50%;
-                                    right: -5px;
-                                    border: 1px solid rgba(255, 0, 0, 0.8);
-                                }
-                            </style>
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        제품정보
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>호텔 테마</th>
-                                    <td colspan="3">
-                                        <select name="select_product_theme" id="select_product_theme"
-                                                class="from-select">
-                                            <option value="">선택하다</option>
-                                            <?php foreach ($pthemes as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_theme">
-                                            <?php
-                                            $_product_theme_arr = explode("|", $product_theme);
-                                            $_product_theme_arr = array_filter($_product_theme_arr);
-
-                                            ?>
-                                            <?php foreach ($pthemes as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_theme_arr)) { ?>
-                                                    <div class="item_">
-                                                        <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_theme_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>호텔 침실수</th>
-                                    <td colspan="3">
-                                        <select name="select_product_bedrooms" id="select_product_bedrooms"
-                                                class="from-select">
-                                            <option value="">선택하다</option>
-                                            <?php foreach ($pbedrooms as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_bedroom">
-                                            <?php
-                                            $_product_bedroom_arr = explode("|", $product_bedrooms);
-                                            $_product_bedroom_arr = array_filter($_product_bedroom_arr);
-                                            ?>
-                                            <?php foreach ($pbedrooms as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_bedroom_arr)) { ?>
-                                                    <div class="item_">
-                                                        <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_bedroom_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>호텔타입</th>
-                                    <td colspan="3">
-                                        <select name="select_product_type" id="select_product_type"
-                                                class="from-select">
-                                            <option value="">선택하다</option>
-                                            <?php foreach ($ptypes as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_type">
-                                            <?php
-                                            $_product_type_arr = explode("|", $product_type);
-                                            $_product_type_arr = array_filter($_product_type_arr);
-                                            ?>
-                                            <?php foreach ($ptypes as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_type_arr)) { ?>
-                                                    <div class="item_">
-                                                        <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_type_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>호텔 프로모션</th>
-                                    <td colspan="3">
-                                        <select name="select_product_promotions" id="select_product_promotions"
-                                                class="from-select">
-                                            <option value="">선택하다</option>
-                                            <?php foreach ($ppromotions as $item) { ?>
-                                                <option value="<?= $item['code_no'] ?>---<?= $item['code_name'] ?>"><?= $item['code_name'] ?></option>
-                                            <?php } ?>
-                                        </select>
-                                        <div class="list_value_ list_value_promotion">
-                                            <?php
-                                            $_product_promotion_arr = explode("|", $product_promotions);
-                                            $_product_promotion_arr = array_filter($_product_promotion_arr);
-                                            ?>
-                                            <?php foreach ($ppromotions as $item) { ?>
-                                                <?php if (in_array($item['code_no'], $_product_promotion_arr)) { ?>
-                                                    <div class="item_">
-                                                        <?= $item['code_name'] ?>
-                                                        <input type="hidden" name="product_promotion_"
-                                                               value="<?= $item['code_no'] ?>">
-                                                        <div class="remove" onclick="removeData(this)">
-                                                            x
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-                                            <?php } ?>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                            <script>
-                                $(document).ready(function () {
-                                    $('#select_product_theme').on('change', function () {
-                                        let data = $(this).val();
-                                        let arr = data.split('---');
-
-                                        let value = arr[0];
-                                        let name = arr[1];
-
-                                        let theme = ` <div class="item_">
-                                                ${name}
-                                                <input type="hidden" name="product_theme_" value="${value}">
-                                                <div class="remove" onclick="removeData(this)">
-                                                    x
-                                                </div>
-                                            </div>`;
-
-                                        let list_ = $('input[name="product_theme_"]');
-
-                                        let isExist = false;
-                                        list_.each(function () {
-                                            if ($(this).val() === value || $(this).val() === '' || $(this).val() === null) {
-                                                isExist = true;
-                                            }
-                                        })
-
-                                        if (!isExist) {
-                                            $('.list_value_theme').append(theme);
-                                        }
-                                    });
-
-                                    $('#select_product_bedrooms').on('change', function () {
-                                        let data = $(this).val();
-                                        let arr = data.split('---');
-
-                                        let value = arr[0];
-                                        let name = arr[1];
-
-                                        let bedroom = ` <div class="item_">
-                                                ${name}
-                                                <input type="hidden" name="product_bedroom_" value="${value}">
-                                                <div class="remove" onclick="removeData(this)">
-                                                    x
-                                                </div>
-                                            </div>`;
-
-                                        let list_ = $('input[name="product_bedroom_"]');
-
-                                        let isExist = false;
-                                        list_.each(function () {
-                                            if ($(this).val() === value || $(this).val() === '' || $(this).val() === null) {
-                                                isExist = true;
-                                            }
-                                        })
-
-                                        if (!isExist) {
-                                            $('.list_value_bedroom').append(bedroom);
-                                        }
-                                    });
-
-                                    $('#select_product_type').on('change', function () {
-                                        let data = $(this).val();
-                                        let arr = data.split('---');
-
-                                        let value = arr[0];
-                                        let name = arr[1];
-
-                                        let type = ` <div class="item_">
-                                                ${name}
-                                                <input type="hidden" name="product_type_" value="${value}">
-                                                <div class="remove" onclick="removeData(this)">
-                                                    x
-                                                </div>
-                                            </div>`;
-
-                                        let list_ = $('input[name="product_type_"]');
-
-                                        let isExist = false;
-                                        list_.each(function () {
-                                            if ($(this).val() === value || $(this).val() === '' || $(this).val() === null) {
-                                                isExist = true;
-                                            }
-                                        })
-
-                                        if (!isExist) {
-                                            $('.list_value_type').append(type);
-                                        }
-                                    });
-
-                                    $('#select_product_promotions').on('change', function () {
-                                        let data = $(this).val();
-                                        let arr = data.split('---');
-
-                                        let value = arr[0];
-                                        let name = arr[1];
-
-                                        let promotion = ` <div class="item_">
-                                                ${name}
-                                                <input type="hidden" name="product_promotion_" value="${value}">
-                                                <div class="remove" onclick="removeData(this)">
-                                                    x
-                                                </div>
-                                            </div>`;
-
-                                        let list_ = $('input[name="product_promotion_"]');
-
-                                        let isExist = false;
-                                        list_.each(function () {
-                                            if ($(this).val() === value || $(this).val() === '' || $(this).val() === null) {
-                                                isExist = true;
-                                            }
-                                        })
-
-                                        if (!isExist) {
-                                            $('.list_value_promotion').append(promotion);
-                                        }
-                                    });
-                                })
-
-                                function removeData(el) {
-                                    $(el).parent('.item_').remove();
-                                }
-                            </script>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
@@ -600,400 +260,75 @@ $links = "list";
                                 </tbody>
                             </table>
 
-                            <style>
-                                .btnAddBreakfast {
-                                    padding: 5px 7px;
-                                    color: #fff;
-                                    background: #4F728A;
-                                    border: 1px solid #2b3f4c;
-                                }
-
-                                .btnDeleteBreakfast {
-                                    padding: 5px 7px;
-                                    color: #fff;
-                                    background: #d03a3e;
-                                    border: 1px solid #ba1212;
-                                }
-                            </style>
-                            <?php
-                            if ($product_more) {
-                                $productMoreData = json_decode($product_more, true);
-
-                                if (json_last_error() !== JSON_ERROR_NONE) {
-                                    die("Lỗi giải mã JSON: " . json_last_error_msg());
-                                }
-                                $breakfast_data = '';
-                                if ($productMoreData) {
-                                    $meet_out_time = $productMoreData['meet_out_time'];
-                                    $children_policy = $productMoreData['children_policy'];
-                                    $baby_beds = $productMoreData['baby_beds'];
-                                    $deposit_regulations = $productMoreData['deposit_regulations'];
-                                    $pets = $productMoreData['pets'];
-                                    $age_restriction = $productMoreData['age_restriction'];
-                                    $smoking_policy = $productMoreData['smoking_policy'];
-                                    $breakfast = $productMoreData['breakfast'];
-                                    $breakfast_data = $productMoreData['breakfast_data'];
-                                }
-                            }
-
-                            $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
-                            $breakfast_data_arr = array_filter($breakfast_data_arr);
-                            ?>
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        자세한 정보
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>체크인 & 체크아웃 시간</th>
-                                    <td>
-                                        <textarea name="meet_out_time" id="meet_out_time"
-                                                  style="width:90%;height:100px;"><?= $meet_out_time ?? "" ?></textarea>
-                                    </td>
-                                    <th>어린이 정책</th>
-                                    <td>
-                                        <textarea name="children_policy" id="children_policy"
-                                                  style="width:90%;height:100px;"><?= $children_policy ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>유아용 침대 및 엑스트라 베드</th>
-                                    <td>
-                                        <textarea name="baby_beds" id="baby_beds"
-                                                  style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
-                                    </td>
-                                    <th>조식</th>
-                                    <td>
-                                        <textarea name="breakfast" id="breakfast"
-                                                  style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
-                                        <div class="" style="margin-top: 10px">
-                                            <button type="button" class="btnAddBreakfast">수정</button>
-                                        </div>
-                                        <table style="width:90%">
-                                            <tbody id="tBodyTblBreakfast">
-                                            <?php foreach ($breakfast_data_arr as $dataBreakfast) { ?>
-                                                <?php
-                                                $dataBreakfastArr = explode('::::', $dataBreakfast);
-                                                ?>
-                                                <tr>
-                                                    <th style="width: 30%">
-                                                        <input type="text" name="breakfast_item_name_[]"
-                                                               value="<?= $dataBreakfastArr[0] ?? "" ?>">
-                                                    </th>
-                                                    <td style="width: 60%">
-                                                        <input type="text" name="breakfast_item_value_[]"
-                                                               value="<?= $dataBreakfastArr[1] ?? "" ?>">
-                                                    </td>
-                                                    <td style="width: 10%">
-                                                        <button type="button" class="btnDeleteBreakfast"
-                                                                onclick="removeBreakfast(this);">삭제
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>보증금 규정</th>
-                                    <td>
-                                        <textarea name="deposit_regulations" id="deposit_regulations"
-                                                  style="width:90%;height:100px;"><?= $deposit_regulations ?? "" ?></textarea>
-                                    </td>
-                                    <th>반려동물</th>
-                                    <td>
-                                        <textarea name="pets" id="pets"
-                                                  style="width:90%;height:100px;"><?= $pets ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>연령 제한</th>
-                                    <td>
-                                        <textarea name="age_restriction" id="age_restriction"
-                                                  style="width:90%;height:100px;"><?= $age_restriction ?? "" ?></textarea>
-                                    </td>
-                                    <th>흡연 정책</th>
-                                    <td>
-                                        <textarea name="smoking_policy" id="smoking_policy"
-                                                  style="width:90%;height:100px;"><?= $smoking_policy ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                            <script>
-                                let tr = ` <tr>
-                                                <th style="width: 30%">
-                                                    <input type="text" name="breakfast_item_name_[]">
-                                                </th>
-                                                <td style="width: 60%">
-                                                    <input type="text" name="breakfast_item_value_[]">
-                                                </td>
-                                                <td style="width: 10%">
-                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
-                                                </td>
-                                            </tr>`;
-
-                                $('.btnAddBreakfast').click(function () {
-                                    $('#tBodyTblBreakfast').append(tr);
-                                });
-
-                                function removeBreakfast(el) {
-                                    $(el).parent().parent().remove();
-                                }
-                            </script>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="90%"/>
-                                </colgroup>
-                                <tbody>
-
-                                <tr height="45">
-                                    <th>호텔선택</th>
-                                    <td>
-                                        <select id="hotel_code" name="hotel_code" class="input_select"
-                                                onchange="fn_chgRoom(this.value)">
-                                            <option value="">선택</option>
-                                            <?php
-                                            foreach ($fresult3 as $frow) {
-                                                ?>
-                                                <option value="<?= $frow["code_no"] ?>"
-                                                    <?php if (isset($hotel_code) && $hotel_code === $frow["code_no"])
-                                                        echo "selected"; ?>>
-                                                    <?= $frow["stay_name_eng"] ?></option>
-                                            <?php } ?>
-                                        </select> <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
-                                    </td>
-                                </tr>
-
-
-                                <tr height="45">
-                                    <th>
-                                        객실등록
-                                        <p style="display:block;margin-top:10px;">
-                                            <select name="roomIdx" id="roomIdx" class="input_select">
-
-                                            </select>
-                                            <button type="button" id="btn_add_option" class="btn_01">추가</button>
-                                        </p>
-                                    </th>
-                                    <td>
-									<span style="color:red;">※ 옵션 삭제 시에 해당 옵션과 연동된 주문, 결제내역에 영향을 미치니 반드시 확인 후에 삭제바랍니다. /
-										마감날짜 예시) [ 2019-10-15||2019-10-17 ] Y-m-d 형식으로 || 를 구분자로 사용해주세요.</span>
-                                        <div id="mainRoom">
-                                            <?php
-
-                                            $gresult = (new AdminHotelController())->getListOption($product_code ?? null);
-                                            foreach ($gresult as $grow) {
-                                                ?>
-
-                                                <table>
-                                                    <colgroup>
-                                                        <col width="*">
-                                                        </col>
-                                                        <col width="25%">
-                                                        </col>
-                                                        <col width="10%">
-                                                        </col>
-                                                        <col width="30%">
-                                                        </col>
-                                                        <col width="10%">
-                                                        </col>
-                                                    </colgroup>
-                                                    <thead>
-                                                    <tr>
-                                                        <th>객실명</th>
-                                                        <th>기간</th>
-                                                        <th>가격</th>
-                                                        <th>마감날짜</th>
-                                                        <th>삭제</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="tblroom<?= $grow['o_room'] ?>">
-
-
-                                                    <?php
-                                                    $gresult2 = (new AdminHotelController())->getListOptionRoom($product_code ?? null, $grow['o_room'] ?? null);
-                                                    foreach ($gresult2 as $frow3) {
-
-                                                        ?>
-
-                                                        <tr>
-
-                                                            <td>
-                                                                <input type='hidden' name='o_idx[]'
-                                                                       value='<?= $frow3['idx'] ?>'/>
-                                                                <input type='hidden' name='option_type[]'
-                                                                       value='<?= $frow3['option_type'] ?>'/>
-                                                                <input type='hidden' name='o_room[]' id=''
-                                                                       value="<?= $frow3['o_room'] ?>" size="70"/>
-                                                                <input type='hidden' name='o_name[]' id=''
-                                                                       value="<?= $frow3['goods_name'] ?>" size="70"/>
-                                                                <span class="room_option_"
-                                                                      data-id="<?= $frow3['o_room'] ?>"><?= $frow3['goods_name'] ?></span>
-                                                            </td>
-                                                            <td>
-                                                                <input type='text' readonly class='datepicker '
-                                                                       name='o_sdate[]'
-                                                                       value='<?= $frow3['o_sdate'] ?>'/> ~
-                                                                <input type='text' readonly class='datepicker '
-                                                                       name='o_edate[]'
-                                                                       value='<?= $frow3['o_edate'] ?>'/>
-                                                            </td>
-                                                            <td>
-                                                                <input type='text' class='onlynum' name='o_price1[]'
-                                                                       id=''
-                                                                       value="<?= $frow3['goods_price1'] ?>"/>
-                                                            </td>
-
-                                                            <td>
-                                                                <input type='text' class='' name='o_soldout[]' id=''
-                                                                       style='width:100%;'
-                                                                       value="<?= $frow3['o_soldout'] ?>"/>
-                                                            </td>
-                                                            <td>
-                                                                <button type="button"
-                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)">
-                                                                    삭제
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                    </tbody>
-                                                </table>
-                                                <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr height="45">
-                                    <th>
-                                        객실 옵션 추가
-                                        <p style="display:block;margin-top:10px;">
-                                            <select name="roomIdx2" id="roomIdx2" class="input_select">
-
-                                            </select>
-                                            <button type="button" id="btn_add_option3" class="btn_01">추가</button>
-                                        </p>
-                                    </th>
-                                    <td>
-                                        <div>
+                            <div class="listBottom">
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="90%"/>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th>
+                                            옵션추가
+                                            <button style="margin: 0px;" type="button" class="btn_01" onclick="add_option();">추가</button>
+                                        </th>
+                                        <td>
                                             <table>
                                                 <colgroup>
-                                                    <col width="10%">
-                                                    <col width="*">
-                                                    <col width="25%">
-                                                    <col width="10%">
-                                                    <col width="10%">
-                                                    <col width="10%">
+                                                    <col width="*%"/>
+                                                    <col width="30%"/>
+                                                    <col width="20%"/>
                                                 </colgroup>
                                                 <thead>
-                                                <tr>
-                                                    <th>방 이름</th>
-                                                    <th>객실 상세</th>
-                                                    <th>옵션명</th>
-                                                    <th>가격</th>
-                                                    <th>우대 가격</th>
-                                                    <th>삭제</th>
-                                                </tr>
+                                                    <tr>
+                                                        <th>옵션명</th>
+                                                        <th>차량옵션</th>
+                                                        <th>관리</th>
+                                                    </tr>
                                                 </thead>
-                                                <tbody id="settingBody3">
-                                                <?php foreach ($roresult as $row) { ?>
+                                                <tbody id="list_option">
+                                                    <?php
+                                                        foreach($options as $option){
+                                                    ?>
                                                     <tr>
                                                         <td>
-                                                            <input type='hidden' name='rop_idx[]' id=''
-                                                                   value="<?= $row['rop_idx'] ?>"/>
-                                                            <input type='hidden' name='sup_room__idx[]' id=''
-                                                                   value="<?= $row['r_idx'] ?>"/>
-
-                                                            <input type='hidden' name='sup_room__name[]' id=''
-                                                                   value="<?= $row['r_name'] ?>"/>
-                                                            <?= $row['r_name'] ?>
+                                                            <div class='flex_c_c'>
+                                                                <input type='hidden' name='option_idx[]' value='<?=$option["idx"]?>'>
+                                                                <input type='hidden' class='c_op_type' name='c_op_type[]' value='<?=$option["c_op_type"]?>'>
+                                                                <input type='text' class='c_op_name' name='c_op_name[]' value='<?=$option["c_op_name"]?>'>
+                                                            </div>
                                                         </td>
                                                         <td>
-                                                            <input type='text' name='sup__key[]' id=''
-                                                                   value="<?= $row['r_key'] ?>" size="70"/>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" id="btn_add_name"
-                                                                    onclick="addName(this);"
-                                                                    class="btn_01">추가
-                                                            </button>
-                                                            <div class="list_name list__room_name"
-                                                                 style="margin-top: 10px;">
+                                                            <div class='flex_c_c' style='gap: 10px;'>
                                                                 <?php
-                                                                $i = 0;
-                                                                $arr = explode('|', $row['r_val']);
-                                                                foreach ($arr as $key => $val) {
-                                                                    ?>
-                                                                    <div class="input_item"
-                                                                         style="display: flex;margin-top: 5px;">
-                                                                        <input type='text' class='sup__name_child'
-                                                                               name='sup__name_child[]' id=''
-                                                                               value="<?= $val ?>"/>
-                                                                        <button type="button" id="btn_del_name"
-                                                                                onclick="delName(this);"
-                                                                                class="btn_02">삭제
-                                                                        </button>
+                                                                    foreach($cfresult as $c_type){
+                                                                ?>
+                                                                    <div class='check_wrap'>
+                                                                        <input type='checkbox' value='<?=$c_type['code_no']?>'
+                                                                        <?php if(strpos($option["c_op_type"], $c_type['code_no']) !== false){ echo "checked"; }?>>
+                                                                        <label for=''><?=$c_type['code_name']?></label>
                                                                     </div>
-                                                                    <?php
-                                                                    $i++;
-                                                                }
+                                                                <?php 
+                                                                    }
                                                                 ?>
                                                             </div>
-                                                            <input type='hidden' class='' name='sup__name[]' id=''
-                                                                   value="<?= $row['r_val'] ?>"/>
                                                         </td>
-                                                        <td>
-                                                            <input type='text' class='onlynum' name='sup__price[]' id=''
-                                                                   value="<?= $row['r_price'] ?>"/>
-                                                        </td>
-                                                        <td>
-                                                            <input type='text' class='onlynum' name='sup__price_sale[]'
-                                                                   id=''
-                                                                   value="<?= $row['r_sale_price'] ?>"/>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" id="btn_del_option3"
-                                                                    onclick="delOption2(<?= $row['rop_idx'] ?>, this);"
-                                                                    class="btn_02">삭제
-                                                            </button>
+                                                        <td class='tac'>
+                                                            <button style='margin: 0;' type='button' class='btn_02' onclick='delOption("<?=$option["idx"]?>", this);'>삭제</button>
                                                         </td>
                                                     </tr>
-                                                <?php } ?>
+                                                    <?php
+                                                        }
+                                                    ?>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
@@ -1017,11 +352,10 @@ $links = "list";
 
                                         <input type="file" name="ufile1" class="bbs_inputbox_pixel"
                                                style="width:500px;margin-bottom:10px"/>
-                                        <?php if (isset($ufile1) && $ufile1 !== "") { ?><br>파일삭제:<input type=checkbox
-                                                                                                        name="del_1"
-                                                                                                        value='Y'><a
-                                                href="/data/hotel/<?= $ufile1 ?>"
-                                                class="imgpop"><?= $rfile1 ?></a><br><br>
+                                        <?php if (isset($ufile1) && $ufile1 !== "") { ?><br>
+                                            파일삭제: <input type=checkbox name="del_1" value='Y'>
+                                            <a href="/data/hotel/<?= $ufile1 ?>" class="imgpop"><?= $rfile1 ?></a>
+                                            <br><br>
                                             <img src="/data/hotel/<?= $ufile1 ?>" width="200px"/>
                                         <?php } ?>
 
@@ -1053,7 +387,6 @@ $links = "list";
                         </div>
                     </form>
 
-
                     <!-- 중복체크 팝업 -->
                     <div id="pooup_01" class="popup">
                         <div class="pooup_bg"></div>
@@ -1064,12 +397,9 @@ $links = "list";
                             <p class="text">- 고객님이 요청하신 <span class="code_text"></span>코드 중복 체크</p>
                             <input type="text" name="pop_search" id="pop_search" class="box nothangul">
 
-
                             <label for="" class="name_search">조회</label>
                             <p class="result_text"><strong>코드</strong>를 입력하신 후 조회해주세요.</p>
-                            <!--
-                        <p class="result_text">요청하신 <strong>상품코드</strong>는 사용 <span>가능</span> 합니다.</p>
-                        -->
+
                             <div class="btn_box">
                                 <p class="ok_btn">사용</p><span>|</span>
                                 <p class="close_btn">닫기</p>
@@ -1077,20 +407,19 @@ $links = "list";
                         </div>
                     </div>
 
-
                     <div class="tail_menu">
                         <ul>
                             <li class="left"></li>
                             <li class="right_sub">
-                                <a href="/AdmMaster/_hotel/list" class="btn btn-default"><span
+                                <a href="/AdmMaster/_cars/list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                                 <?php if ($product_idx == "") { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
+                                    <a href="javascript:send_it_c()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
+                                    <a href="javascript:send_it_c()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                    <a href="javascript:del_it(`<?= route_to("admin._hotel.del") ?>`, `<?= $product_idx ?>`)"
+                                    <a href="javascript:del_it_c(`<?= route_to("admin._cars.del") ?>`, `<?= $product_idx ?>`)"
                                        class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 <?php } ?>
@@ -1107,6 +436,127 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+<script>
+    function add_option() {
+        var addOption = "";
+        addOption +="<tr>";
+        addOption +=    "<td>";
+        addOption +=       "<div class='flex_c_c'>";
+        addOption +=            "<input type='hidden' name='option_idx[]' id='option_idx_' value=''>";
+        addOption +=            "<input type='text' class='c_op_name' name='c_op_name[]' value=''>";
+        addOption +=            "<input type='hidden' class='c_op_type' name='c_op_type[]' value=''>";
+        addOption +=        "</div>";
+        addOption +=    "</td>";
+        addOption +=    "<td>";
+        addOption +=        "<div class='flex_c_c' style='gap: 10px;'>";
+                    <?php
+                        foreach($cfresult as $c_type){
+                    ?>
+        addOption +=                "<div class='check_wrap'>";
+        addOption +=                    "<input type='checkbox' value='<?=$c_type['code_no']?>'>";
+        addOption +=                    "<label for=''><?=$c_type['code_name']?></label>";
+        addOption +=              " </div>";
+                    <?php 
+                        }
+                    ?>
+        addOption +=        "</div>";
+        addOption +=    "</td>"
+        addOption +=    "<td class='tac'>";
+        addOption +=        "<button style='margin: 0;' type='button' class='btn_02' onclick='delOption(\"\",this);'>삭제</button>";
+        addOption +=    "</td>";
+        addOption += "</tr>";
 
+        $("#list_option").append(addOption);
+    }
+
+    function delOption(idx, obj) {
+        if (confirm("정말 삭제하시겠습니까?")) {
+
+            if (idx) {
+                $.ajax({
+                    url: "/AdmMaster/_cars/del_cars_option",
+                    type: "POST",
+                    data: "idx=" + idx,
+                    error: function (request, status, error) {
+                        //통신 에러 발생시 처리
+                        alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                        $("#ajax_loader").addClass("display-none");
+                    }
+                    , success: function (response, status, request) {
+                        response = response.trim();
+                        if (response == "OK") {
+                            alert("삭제되었습니다.");
+                        } else {
+                            alert("오류!");
+                            location.reload();
+                        }
+                    }
+                });
+            }
+
+            $(obj).closest("tr").remove();
+        }
+    }
+
+    function send_it_c() {
+        $("#list_option tr").each(function(){
+            let arr_type = [];
+            $(this).find(".check_wrap").each(function(){
+                if($(this).find("input[type='checkbox']").is(":checked")){
+                    arr_type.push($(this).find("input[type='checkbox']").val());
+                }
+            });
+            $(this).find(".c_op_type").val(arr_type.join(","));
+        });
+
+        var frm = document.frm;
+
+        if (frm.product_code_list.value == "") {
+            alert("카테고리를 등록해주세요.");
+            frm.product_code_1.focus();
+            return;
+        }
+
+        if (frm.product_code.value == "") {
+            alert("상품코드를 입력해주세요.");
+            frm.product_code.focus();
+            return;
+        }
+
+
+        if (frm.product_name.value == "") {
+            alert("상품명을 입력해주세요.");
+            frm.product_name.focus();
+            return;
+        }
+
+        $("#ajax_loader").removeClass("display-none");
+        frm.submit();
+    }
+
+    function del_it_c(url, g_idx) {
+        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+            return;
+        }
+        $("#ajax_loader").removeClass("display-none");
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: "g_idx[]=" + g_idx,
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                $("#ajax_loader").addClass("display-none");
+                alert("정상적으로 삭제되었습니다.");
+                window.location.href = '/AdmMaster/_cars/list';
+                return;
+            }
+        });
+    }
+</script>
     <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>
