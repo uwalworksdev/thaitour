@@ -8,6 +8,7 @@
                 <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="">
+                <input type="hidden" name="coupon_idx" id="coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <div class="title-container">
@@ -194,12 +195,13 @@
                     <?php foreach ($golfVehicles as $value) : ?>
                         <div class="item-select">
                             <span class="label"><?= $value['code_name'] ?></span>
-                            <select data-idx="<?= $value['code_idx'] ?>"
-                                data-name="<?= $value['code_name'] ?>" 
+                            <input type="hidden" name="vehicle_code[]" value="<?= $value['code_no'] ?>">
+                            <select
+                                data-name="<?= $value['code_name'] ?>"
                                 data-price="<?= $value['price'] ?>"
                                 data-price_baht="<?= $value['price_baht'] ?>"
-                                class="vehicle_select vehicle_select_<?= $value['code_idx'] ?> select_custom_ active_ cus-width" 
-                                name="vehicle_select[]">
+                                class="vehicle_select select_custom_ active_ cus-width" 
+                                name="vehicle_cnt[]">
                                 <option value="">선택해주세요.</option>
                                 <?php for($i = $value['min_cnt']; $i <= $value['max_cnt']; $i++) : ?>
                                     <option value="<?= $i ?>"><?= $i ?>차</option>
@@ -544,7 +546,7 @@
                             </p>
                         </div>
                     </div>
-                    <button type="button" class="btn_accept_popup">
+                    <button type="button" class="btn_accept_popup btn_accept_coupon">
                         쿠폰적용
                     </button>
                 </div>
@@ -553,13 +555,13 @@
     </div>
     <script>
 
-        
         $(function () {
             $(".tag-js").eq(0).trigger("click");
             $(".tag-js2").eq(0).trigger("click");
             $("#people_adult_cnt").find("option").eq(1).prop("selected", true);
             $("#people_adult_cnt").trigger("change");
             $(".final_date").text(formatDate(new Date(), "."));
+            $("#order_date").val(formatDate(new Date(), "."));
         })
 
         function setListVehicle() {
@@ -572,10 +574,9 @@
                             <span class="price-text text-gray">[price]원 ([price_baht]바트)</span>
                         </div>`;
 
-            const html2 = $("select[name='vehicle_select[]']").filter(function() {
+            const html2 = $(".vehicle_select").filter(function() {
                 return $(this).val() !== "";
             }).map(function () {
-                const idx = $(this).data('idx');
                 const p_name = $(this).data('name');
                 const cnt = $(this).val() || 0;
                 const price = Math.round($(this).data('price') * cnt);
@@ -619,7 +620,7 @@
             }
         }
 
-        function setCouponArea() {
+        function setCouponArea(isAcceptBtn = false) {
             const couponActive = $(".item-price-popup.active");
             let total_price = $("#total_price").val() || 0;
             let total_price_baht = $("#total_price_baht").val() || 0;
@@ -644,6 +645,12 @@
             $(".discount").text(number_format(discount_price) + "원");
             $("#last_price_popup").text(number_format(total_price));
 
+            if (isAcceptBtn) {
+                $("#final_discount").text(number_format(discount_price));
+                $("#final_discount_baht").text(number_format(discount_price_baht));
+                $("#coupon_idx").val(idx);
+            }
+
             return {
                 discount_price,
                 discount_price_baht
@@ -662,13 +669,12 @@
             $("#total_price").val(last_price);
             $("#total_price_baht").val(last_price_baht);
 
-            const couponPrice = setCouponArea();
+            const discount_price = $("#final_discount").text().replace(/[^0-9]/g, '');
+            const discount_price_baht = $("#final_discount_baht").text().replace(/[^0-9]/g, '');
 
-            last_price -= couponPrice.discount_price;
-            last_price_baht -= couponPrice.discount_price_baht;
+            last_price -= discount_price;
+            last_price_baht -= discount_price_baht;
 
-            $("#final_discount").text(number_format(couponPrice.discount_price));
-            $("#final_discount_baht").text(number_format(couponPrice.discount_price_baht));
             $("#last_price").text(number_format(last_price));
             $("#last_price_baht").text(number_format(last_price_baht));
         }
@@ -709,7 +715,8 @@
             setCouponArea();
         })
 
-        $(".btn_accept_popup").click(function () {
+        $(".btn_accept_coupon").click(function () {
+            setCouponArea(true);
             calculatePrice();
             $("#popup_coupon").css('display', 'none');
         })
@@ -899,6 +906,7 @@
             if (date) {
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
+                $("#order_date").val(date);
             }
             $('.day a').removeClass("on");
             $('.day a').eq(day - 1).addClass("on");
