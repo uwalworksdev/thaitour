@@ -9,11 +9,25 @@
 
                 <p class="label item_label">예약인원을 확인해주세요.</p>
 
-                <div class="option_list_" id="option_list_">
-                    <ul class="select_peo option_list_" id="option_list_">
-
-                    </ul>
-                </div>
+                <ul class="select_peo">
+                    <li class="flex_b_c cus-count-input">
+                        <div class="payment">
+                            <p class="ped_label">성인 </p>
+                            <p class="money adult">
+                                <span id="adult_msg">담당자에게 문의해주세요</span>
+                                <!-- <strong>0</strong> 원 -->
+                            </p>
+                        </div>
+                        <div class="opt_count_box count_box flex__c">
+                            <button type="button" onclick="minusInput(this);" class="minus_btn"
+                                    id="minusAdult"></button>
+                            <input type="text" class="input-qty" name="qty" id="adultQty" value="1"
+                                   readonly="">
+                            <button type="button" onclick="plusInput(this);" class="plus_btn"
+                                    id="addAdult"></button>
+                        </div>
+                    </li>
+                </ul>
 
                 <div class="item_option">
                     <!-- opt_list -->
@@ -37,6 +51,12 @@
                         </div>
                     </div>
                     <!-- // opt_list -->
+                </div>
+
+                <div class="option_list_" id="option_list_">
+                    <ul class="select_peo option_list_" id="option_list_">
+
+                    </ul>
                 </div>
             </div>
 
@@ -237,6 +257,11 @@
             let cnt = inp.val();
             total_price += parseInt(price) * parseInt(cnt);
         }
+
+        let adultQty = $('#adultQty').val();
+        let price = `<?= $data_['original_price'] ?>`;
+
+        total_price += parseInt(adultQty) * parseInt(price);
 
         total_price = total_price.toLocaleString();
         $('#total_sum').text(total_price);
