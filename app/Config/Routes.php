@@ -139,6 +139,11 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
         $routes->post("del_tours", "Admin\AdminTourController::del_tours", ['as' => "admin._tours.del_tours"]);
         $routes->post("del", "Admin\AdminTourController::del", ['as' => "admin._tours.del"]);
+        $routes->get("detailwrite_new", "Admin\AdminTourController::detailwrite_new", ['as' => "admin._tours.detailwrite_new"]);
+        $routes->post("chg_detailwrite", "Admin\AdminTourController::chg_detailwrite", ['as' => "admin._tours.chg_detailwrite"]);
+        $routes->post("day_seq_delete", "Admin\AdminTourController::day_seq_delete", ['as' => "admin._tours.day_seq_delete"]);
+        $routes->post("del_day", "Admin\AdminTourController::del_day", ['as' => "admin._tours.del_day"]);
+        $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
     });
 
     $routes->group("api", function ($routes) {
@@ -515,11 +520,14 @@ $routes->get('product_view/(:any)', 'Product::view/$1');
 $routes->get('product-restaurant/completed-order', 'Product::restaurantCompleted');
 $routes->get('product-restaurant/restaurant-booking/(:any)', 'Product::restaurantBooking/$1');
 $routes->get('product-restaurant/restaurant-detail/(:any)', 'Product::restaurantDetail/$1');
-$routes->get('product-restaurant/(:any)/(:any)', 'Product::restaurantIndex/$1/$2');
+$routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');
 $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
 $routes->get('product/get-by-top', 'Product::getProductByTop');
 $routes->get('product/get-by-cheep', 'Product::getProductByCheep');
 $routes->get('product/get-by-sub-code', 'Product::getProductBySubCode');
 $routes->get('product/get-step2-by-code-no', 'Product::getStep2ByCodeNo');
 $routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour');
+
+$routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.product.sel_moption"]);
+$routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
 ?>
