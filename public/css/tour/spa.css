@@ -390,7 +390,7 @@
 
 .view_nav .scroll_box {
     max-height: calc(100vh - 340px);
-    overflow: auto;
+    overflow: unset;
     padding-right: 0px;
 }
 

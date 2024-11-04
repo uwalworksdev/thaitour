@@ -42,12 +42,14 @@
                     </div>
                     <div class="grid_2_2">
                         <?php for ($j = 2; $j < 5; $j++) { ?>
-                            <img onclick="img_pops('<?= $data_['product_idx'] ?>')" class="grid_2_2_size imageDetailSup_"
+                            <img onclick="img_pops('<?= $data_['product_idx'] ?>')"
+                                 class="grid_2_2_size imageDetailSup_"
                                  src="/data/hotel/<?= $data_['ufile' . $j] ?>"
                                  alt="<?= $data_['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                         <?php } ?>
                         <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                            <img onclick="img_pops('<?= $data_['product_idx'] ?>')" class="custom_button imageDetailSup_"
+                            <img onclick="img_pops('<?= $data_['product_idx'] ?>')"
+                                 class="custom_button imageDetailSup_"
                                  src="/data/hotel/<?= $data_['ufile5'] ?>"
                                  alt="<?= $data_['product_name'] ?>"
                                  onerror="this.src='/images/share/noimg.png'">
@@ -462,6 +464,17 @@
             //         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
             //     }
             // });
+        });
+
+        $(document).on('click', '.sel_date', function () {
+            $('.sel_date').removeClass('active_');
+            $(this).addClass('active_');
+            let day_ = $(this).data('date');
+            $('#day_').val(day_);
+            let price = `<?= number_format($data_['original_price']) ?>`;
+            let price_convert = price.toLocaleString();
+            $('#total_sum').text(price_convert);
+            calcTotal();
         });
 
         // const optCountBoxes = document.querySelectorAll('.opt_count_box');
