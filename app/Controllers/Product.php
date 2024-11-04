@@ -1498,9 +1498,17 @@ class Product extends BaseController
 
         $suggestSpas = $this->getSuggestedHotels($spa['product_idx'], $spa['array_hotel_code'][0] ?? '', '1325');
 
+        $builder = $this->db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $moption = $query->getResultArray();
+
         $data = [
             'spa' => $spa,
             'suggestSpas' => $suggestSpas,
+            'moption' => $moption,
             'fresult4' => $fresult4,
             'bresult4' => $bresult4,
             'fresult5' => $fresult5,
@@ -1649,6 +1657,77 @@ class Product extends BaseController
         $data['img_6'] = $this->getImage($data['product']['ufile6']);
 
         return $this->renderView('product/product_view', $data);
+    }
+
+    public function sel_moption()
+    {
+        try {
+            $product_idx = $_POST['product_idx'];
+            $code_idx = $_POST['code_idx'];
+
+            $msg = "";
+            $msg .= "<select name='option' id='option' onchange='sel_option(this.value);'>";
+            $msg .= "<option value=''>옵션 선택</option>";
+
+
+            $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ";
+            write_log($sql);
+            $result = $this->db->query($sql);
+            $result = $result->getResultArray();
+            foreach ($result as $row) {
+                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " $" . number_format($row['option_price']) . "</option>";
+            }
+
+            $msg .= "</select>";
+
+            return $msg;
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function sel_option()
+    {
+        try {
+            $product_idx = $_POST['product_idx'];
+            $code_idx = explode("|", $_POST['code_idx']);
+
+            $msg = "";
+            $sql = "SELECT a.*, b.* FROM tbl_tours_option a 
+	                        LEFT JOIN tbl_tours_moption b ON a.code_idx = b.code_idx
+							WHERE a.product_idx = '$product_idx' AND a.idx = '" . $code_idx[0] . "' ";
+            //write_log($sql);
+            $result = $this->db->query($sql);
+            $result = $result->getResultArray();
+            foreach ($result as $row) {
+                $msg .= "<div class='opt_result_box' id='opt_result_box_" . $row['idx'] . "'>";
+                $msg .= "<input type='hidden' name='option_name[]' id='option_name_" . $row['idx'] . "' value='" . $row['moption_name'] . "|" . $row['option_name'] . "'>";
+                $msg .= "<input type='hidden' id='option_price_" . $row['idx'] . "' value='" . $row['option_price'] . "'>";
+                $msg .= "<input type='hidden' name='option_idx[]' value='" . $row['idx'] . "'>";
+                $msg .= "<input type='hidden' name='option_tot[]' id='option_tot_" . $row['idx'] . "' value='" . $row['option_price'] . "'>";
+                $msg .= "<div class='flex_b'>";
+                $msg .= "<div class='opt_name'>선택2 - " . $row['moption_name'] . "<br>[" . $row['option_name'] . "] $" . number_format($row['option_price']) . "</div>";
+                $msg .= "<button type='button' class='opt_del_btn' onclick='remove(" . $row['idx'] . ")'></button>";
+                $msg .= "</div>";
+                $msg .= "<div class='opt_count_box'>";
+                $msg .= "<button type='button' class='minus_btn' id='minus_btn_" . $row['idx'] . "' onclick='minus_cnt(" . $row['idx'] . ");'></button>";
+                $msg .= "<input type='text' name='option_cnt[]' id='option_cnt_" . $row['idx'] . "' value='1'>";
+                $msg .= "<button type='button' class='plus_btn' id='plus_btn" . $row['idx'] . "' onclick='plus_cnt(" . $row['idx'] . ");'></button>";
+                $msg .= "</div>";
+                $msg .= "<div class='opt_total_price'><strong><span id='price_text_" . $row['idx'] . "'>" . number_format($row['option_price'] * _US_DOLLAR) . "원" . "($" . number_format($row['option_price']) . ")" . "</span></strong></div>";
+                $msg .= "</div>";
+            }
+
+            return $msg;
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 
     private function explodeAndTrim($string, $delimiter)
