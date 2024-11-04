@@ -7,7 +7,7 @@
         <div class="body_inner">
             <div class="section1">
                 <div class="title-container">
-                    <h2><?= $spa['product_name'] ?></h2>
+                    <h2><?= $data_['product_name'] ?></h2>
                     <div class="only_web">
                         <div class="list-icon">
                             <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -18,13 +18,13 @@
                 </div>
                 <div class="location-container">
                     <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span><?= $spa['addrs'] ?></span>
+                    <span><?= $data_['addrs'] ?></span>
                 </div>
                 <div class="above-cus-content">
                     <div class="rating-container">
                         <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
-                        <span><strong> <?= $spa['review_average'] ?></strong></span>
-                        <span>생생리뷰 <strong>(<?= $spa['total_review'] ?>)</strong></span>
+                        <span><strong> <?= $data_['review_average'] ?></strong></span>
+                        <span>생생리뷰 <strong>(<?= $data_['total_review'] ?>)</strong></span>
                     </div>
                     <div class="list-icon only_mo">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -35,21 +35,21 @@
                 <div class="hotel-image-container">
                     <div class="hotel-image-container-1">
                         <img class="imageDetailMain_"
-                             onclick="img_pops('<?= $spa['product_idx'] ?>')"
-                             src="/data/hotel/<?= $spa['ufile1'] ?>"
-                             alt="<?= $spa['product_name'] ?>"
+                             onclick="img_pops('<?= $data_['product_idx'] ?>')"
+                             src="/data/hotel/<?= $data_['ufile1'] ?>"
+                             alt="<?= $data_['product_name'] ?>"
                              onerror="this.src='/images/share/noimg.png'">
                     </div>
                     <div class="grid_2_2">
                         <?php for ($j = 2; $j < 5; $j++) { ?>
-                            <img onclick="img_pops('<?= $spa['product_idx'] ?>')" class="grid_2_2_size imageDetailSup_"
-                                 src="/data/hotel/<?= $spa['ufile' . $j] ?>"
-                                 alt="<?= $spa['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
+                            <img onclick="img_pops('<?= $data_['product_idx'] ?>')" class="grid_2_2_size imageDetailSup_"
+                                 src="/data/hotel/<?= $data_['ufile' . $j] ?>"
+                                 alt="<?= $data_['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                         <?php } ?>
                         <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                            <img onclick="img_pops('<?= $spa['product_idx'] ?>')" class="custom_button imageDetailSup_"
-                                 src="/data/hotel/<?= $spa['ufile5'] ?>"
-                                 alt="<?= $spa['product_name'] ?>"
+                            <img onclick="img_pops('<?= $data_['product_idx'] ?>')" class="custom_button imageDetailSup_"
+                                 src="/data/hotel/<?= $data_['ufile5'] ?>"
+                                 alt="<?= $data_['product_name'] ?>"
                                  onerror="this.src='/images/share/noimg.png'">
                             <div class="button-show-detail-image">
                                 <img class="only_web" src="/uploads/icons/image_detail_icon.png"
@@ -86,7 +86,7 @@
                         </h3>
                         <div class="">
                             <p class="description-sec2" style="letter-spacing: 1px">
-                                <?= viewSQ($spa['product_info']) ?>
+                                <?= viewSQ($data_['product_info']) ?>
                             </p>
                         </div>
                         <div class="tag-list-icon mt-20">
@@ -139,7 +139,7 @@
                     </div>
 
                     <?php
-                    $product_more = $spa['product_more'];
+                    $product_more = $data_['product_more'];
                     $breakfast_data_arr2 = [];
                     if ($product_more) {
                         $productMoreData = json_decode($product_more, true);
@@ -443,39 +443,25 @@
         // 버튼이 동적으로 생성된 경우에도 클릭 이벤트 적용
         $(document).on('click', '.allowBtn', function () {
 
-            var order_no = $("#order_no").val();
-
-            $.ajax({
-
-                url: "/ajax/ajax.order_delete.php",
-                type: "POST",
-                data: {
-                    "order_no": order_no
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    var cnts = data.cnts;
-                    var message = data.message;
-                    //alert(message);
-                    if (cnts > 0) alert(message);
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-
-            var product_idx = $("#product_idx").val(); // "example"을 반환
-            var sel_date = $(this).data('date'); // "example"을 반환
-            if (sel_date) {
-                $("#select_date").text(sel_date);
-                $("#sel_date").val(sel_date);
-                $("#order_date").val(sel_date);
-                //location.href='/t-package/item_view.php?product_idx='+product_idx+'&order_date='+sel_date+'&sel_date='+sel_date+'#flex';
-                $("#frmOrder").attr("action", "/t-package/item_view.php#flex").submit();
-
-            }
+            // let order_no = $("#order_no").val();
+            // console.log(order_no);
+            // $.ajax({
+            //
+            //     url: "/ajax/ajax.order_delete.php",
+            //     type: "POST",
+            //     data: {
+            //         "order_no": order_no
+            //     },
+            //     dataType: "json",
+            //     async: false,
+            //     cache: false,
+            //     success: function (data, textStatus) {
+            //         console.log(data)
+            //     },
+            //     error: function (request, status, error) {
+            //         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            //     }
+            // });
         });
 
         // const optCountBoxes = document.querySelectorAll('.opt_count_box');

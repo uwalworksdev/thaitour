@@ -114,8 +114,8 @@
     }
 
     function viewCal() {
-        let reject_day_ = `<?= $spa['deadline_time'] ?>`;
-        let allow_day_ = `<?= $spa['available_period'] ?>`;
+        let reject_day_ = `<?= $data_['deadline_time'] ?>`;
+        let allow_day_ = `<?= $data_['available_period'] ?>`;
 
         let array_day = reject_day_.split('||||');
 
