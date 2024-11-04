@@ -1405,7 +1405,76 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        return $this->renderView('product/golf/customer-form');
+        $data['product_idx']        = $this->request->getVar('product_idx');
+        $data['order_date']         = $this->request->getVar('order_date');
+        $data['option_idx']         = $this->request->getVar('option_idx');
+        $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
+        $data['vehicle_code']       = $this->request->getVar('vehicle_code');
+        $data['vehicle_cnt']        = $this->request->getVar('vehicle_cnt');
+        $data['coupon_idx']         = $this->request->getVar('coupon_idx');
+
+        $data['option'] = $this->golfOptionModel->find($data['option_idx']);
+
+        $data['total_price'] = $data['option']['option_price'] * $data['people_adult_cnt'];
+
+        $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
+
+        $total_vehicle_price = 0;
+        $total_vehicle_price_baht = 0;
+
+        $vehicle_arr = [];
+        foreach ($data['vehicle_cnt'] as $key => $value) {
+            if ($value > 0) {
+                $info = $this->golfVehicleModel->getByCodeNo($data['vehicle_code'][$key]);
+                $info['cnt'] = $value;
+                $info['price_baht'] = round((float)$info['price'] / (float)($this->setting['baht_thai'] ?? 0));
+                $vehicle_arr[] = $info;
+
+                $total_vehicle_price += $info['price'] * $value;
+                $total_vehicle_price_baht += $info['price_baht'] * $value;
+            }
+        }
+
+
+        $data['vehicle_arr'] = $vehicle_arr;
+
+        $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+
+        $date = date("Y.m.d", strtotime($data['order_date']));
+
+        $dayOfWeek = date("w");
+
+        $formattedDate = $date . "(" . $daysOfWeek[$dayOfWeek] . ")";
+
+        $data['final_date'] = $formattedDate;
+
+        $data['product'] = $this->productModel->find($data['product_idx']);
+
+        $coupon = $this->coupon->getCouponInfo($data['coupon_idx']);
+
+        if ($coupon['dc_type'] == "P") {
+            $price                  = $total_vehicle_price + $data['total_price'];
+            $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
+            $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+        } else if ($coupon['dc_type'] == "D") {
+            $data['discount']       = $coupon['coupon_price'];
+            $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        }
+        $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
+
+        return $this->renderView('product/golf/customer-form', $data);
+    }
+
+    public function customerFormOk()
+    {
+        
+        return $this->response->setBody("
+            <script>
+                alert('주의요청');
+                parent.location.reload();
+            </script>
+        ");
     }
 
     public function index8($code_no)
@@ -1675,7 +1744,7 @@ class Product extends BaseController
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
-                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " $" . number_format($row['option_price']) . "</option>";
+                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . ": " . number_format($row['option_price']) . "</option>";
             }
 
             $msg .= "</select>";

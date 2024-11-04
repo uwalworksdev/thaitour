@@ -1459,14 +1459,14 @@
   justify-content: center;
 }
 
-.opt_count_box .minus_btn:hover {
-  scale: 1.2;
+/*.opt_count_box .minus_btn:hover {*/
+/*  scale: 1.2;*/
 
-}
+/*}*/
 
-.opt_count_box .plus_btn:hover {
-  scale: 1.2;
-}
+/*.opt_count_box .plus_btn:hover {*/
+/*  scale: 1.2;*/
+/*}*/
 
 .opt_count_box input[type="number"],
 .opt_count_box input[type="text"] {
@@ -3954,7 +3954,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .item-info-check-first.click {
   background-color: #686868;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
   color: #fff;
 }
 
@@ -3973,6 +3973,19 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   height: 17px;
 }
 
+.customer-form-page .container-card .item-info-check-first i,
+.customer-form-page .container-card .item-info-check i {
+  width: 25px;
+  height: 17px;
+  background-image: url(/uploads/icons/form_check_icon.png);
+  background-size: 25px 17px;
+  background-repeat: no-repeat;
+}
+
+.customer-form-page .container-card .item-info-check.acti i {
+  background-image: url(/uploads/icons/form_check_icon_black.png);
+}
+
 .customer-form-page .container-card .item-info-check img {
   width: 25px;
   height: 17px;
@@ -3984,6 +3997,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   border-radius: 6px;
   margin: 16px 14px;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .customer-form-page .below-sub-des {

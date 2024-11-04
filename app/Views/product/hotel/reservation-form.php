@@ -325,7 +325,7 @@
                     $(this).addClass("click");
                     $('.item-clause-item').each(function() {
                         $(this).addClass("acti");
-                        $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
+                        $(this).find("img").attr("src", "/uploads/icons/form_check_icon_black.png");
                     })
                 }
             });
@@ -336,7 +336,7 @@
                     $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
                 } else {
                     $(this).addClass("acti");
-                    $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
+                    $(this).find("img").attr("src", "/uploads/icons/form_check_icon_black.png");
                 }
 
                 var allHaveActi = true;
