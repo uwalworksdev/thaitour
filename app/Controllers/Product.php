@@ -25,6 +25,11 @@ class Product extends BaseController
     protected $golfInfoModel;
     protected $golfOptionModel;
     protected $golfVehicleModel;
+    protected $tourProducts;
+    protected $infoProducts;
+    protected $dayModel;
+    protected $subSchedule;
+    protected $mainSchedule;
 
     private $scale = 8;
 
@@ -44,6 +49,11 @@ class Product extends BaseController
         $this->golfInfoModel = model("GolfInfoModel");
         $this->golfOptionModel = model("GolfOptionModel");
         $this->golfVehicleModel = model("GolfVehicleModel");
+        $this->tourProducts = model("ProductTourModel");
+        $this->infoProducts = model("TourInfoModel");
+        $this->dayModel = model("DayModel");
+        $this->subSchedule = model("SubScheduleModel");
+        $this->mainSchedule = model("MainScheduleModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -1572,9 +1582,135 @@ class Product extends BaseController
         ");
     }
 
-    public function index8($code_no)
+    public function index8($product_idx)
     {
-        return $this->renderView('tours/tour-details');
+        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+        $data['product'] = $this->productModel->getProductDetails($product_idx);
+        for ($i = 1; $i <= 7; $i++) {
+            $file = "ufile" . $i;
+            if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
+                $data['imgs'][] = "/data/product/" . $data['product'][$file];
+                $data['img_names'][] = $data['product']["rfile" . $i];
+            } else {
+                $data['imgs'][] = "/images/product/noimg.png";
+                $data['img_names'][] = "";
+            }
+        }
+
+        $data['imgs_tour'] = []; 
+        $data['img_names_tour'] = []; 
+        
+        for ($i = 1; $i <= 6; $i++) {
+            $file = "tours_ufile" . $i;
+            if (isset($data['product'][$file]) && is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
+                $data['imgs_tour'][] = "/data/product/" . $data['product'][$file];
+                $data['img_names_tour'][] = $data['product']["tours_ufile" . $i] ?? '';
+            }
+        }
+
+        $sql_info = "
+        SELECT pt.*, pti.*
+        FROM tbl_product_tours pt
+        LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
+        WHERE pt.product_idx = ? ORDER BY pt.info_idx ASC, pt.tours_idx ASC
+        ";
+
+        $query_info = $this->db->query($sql_info, [$product_idx]);
+        $results = $query_info->getResultArray();
+
+        $groupedData = [];
+        foreach ($results as $row) {
+            $infoIndex = $row['info_idx'];
+
+            if (!isset($groupedData[$infoIndex])) {
+                $groupedData[$infoIndex] = [
+                    'info' => $row,
+                    'tours' => []
+                ];
+            }
+
+            $price = (float)$row['tour_price'];
+            $price_baht = round($price / $baht_thai);
+
+            $price_kids = (float)$row['tour_price_kids'];
+            $price_baht_kids = round($price_kids / $baht_thai);
+
+            $price_baby = (float)$row['tour_price_baby'];
+            $price_baht_baby = round($price_baby / $baht_thai);
+
+            $groupedData[$infoIndex]['tours'][] = [
+                'tours_idx' => $row['tours_idx'],
+                'tours_subject' => $row['tours_subject'],
+                'tour_price' => $row['tour_price'],
+                'tour_price_kids' => $row['tour_price_kids'],
+                'tour_price_baby' => $row['tour_price_baby'],
+                'status' => $row['status'],
+                'price_baht' => $price_baht,
+                'price_baht_kids' => $price_baht_kids,
+                'price_baht_baby' => $price_baht_baby,
+            ];
+        }
+
+        $data['productTourInfo'] = $groupedData;
+        
+        $airCode = $this->request->getGet('air_code') ?? '0000';
+
+        $productDetail = $this->dayModel->getProductDetail($product_idx, $airCode);
+        if (!$productDetail) {
+            $this->dayModel->createProductDetail([
+                'product_idx' => $product_idx,
+                'air_code' => $airCode,
+                'total_day' => 0
+            ]);
+            $productDetail = $this->dayModel->getProductDetail($product_idx, $airCode);
+        }
+        $detailIdx = $productDetail['idx'];
+        $totalDays = $productDetail['total_day'];
+        $schedules = [];
+    
+        for ($dd = 1; $dd <= $totalDays; $dd++) {
+            $schedule = $this->mainSchedule->getByDetailAndDay($detailIdx, $dd);
+            $schedules[$dd] = $schedule ?? [];
+        }
+        $subSchedules = [];
+        foreach ($schedules as $day => $schedule) {
+            if (!empty($schedule)) {
+                $subScheduleDetails = $this->subSchedule
+                    ->where('detail_idx', $detailIdx)
+                    ->where('day_idx', $day)
+                    ->findAll();
+                
+                foreach ($subScheduleDetails as $subSchedule) {
+                    $subSchedules[$day][$subSchedule['groups']][] = $subSchedule;
+                }
+            } else {
+                $subSchedules[$day] = [];
+            }
+        }
+
+        $data['subSchedules'] = $subSchedules;
+        $data['schedules'] = $schedules;
+        $data['totalDays'] = $totalDays;
+
+        $builder = $this->db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $options = $query->getResultArray();
+
+        foreach ($options as &$option) {
+            $optionBuilder = $this->db->table('tbl_tours_option');
+            $optionBuilder->where('product_idx', $product_idx);
+            $optionBuilder->where('code_idx', $option['code_idx']);
+            $optionBuilder->orderBy('onum', 'desc');
+            $optionQuery = $optionBuilder->get();
+            $option['additional_options'] = $optionQuery->getResultArray();
+        }
+
+        $data['options'] = $options;
+
+        return $this->renderView('tours/tour-details', $data);
     }
 
     public function index9($code_no)
