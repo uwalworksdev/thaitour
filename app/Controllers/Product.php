@@ -1405,13 +1405,13 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx']        = $this->request->getVar('product_idx');
-        $data['order_date']         = $this->request->getVar('order_date');
-        $data['option_idx']         = $this->request->getVar('option_idx');
-        $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_code']       = $this->request->getVar('vehicle_code');
-        $data['vehicle_cnt']        = $this->request->getVar('vehicle_cnt');
-        $data['coupon_idx']         = $this->request->getVar('coupon_idx');
+        $data['product_idx'] = $this->request->getVar('product_idx');
+        $data['order_date'] = $this->request->getVar('order_date');
+        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
+        $data['vehicle_code'] = $this->request->getVar('vehicle_code');
+        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
+        $data['coupon_idx'] = $this->request->getVar('coupon_idx');
 
         $data['option'] = $this->golfOptionModel->find($data['option_idx']);
 
@@ -1453,12 +1453,12 @@ class Product extends BaseController
         $coupon = $this->coupon->getCouponInfo($data['coupon_idx']);
 
         if ($coupon['dc_type'] == "P") {
-            $price                  = $total_vehicle_price + $data['total_price'];
-            $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
-            $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+            $price = $total_vehicle_price + $data['total_price'];
+            $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
+            $data['discount_baht'] = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
         } else if ($coupon['dc_type'] == "D") {
-            $data['discount']       = $coupon['coupon_price'];
-            $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+            $data['discount'] = $coupon['coupon_price'];
+            $data['discount_baht'] = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
         }
         $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
@@ -1468,7 +1468,7 @@ class Product extends BaseController
 
     public function customerFormOk()
     {
-        
+
         return $this->response->setBody("
             <script>
                 alert('주의요청');
@@ -1761,36 +1761,19 @@ class Product extends BaseController
     public function sel_option()
     {
         try {
-            $product_idx = $_POST['product_idx'];
-            $code_idx = explode("|", $_POST['code_idx']);
+            $idx = $_POST['idx'];
+            $moption = $_POST['moption'];
 
-            $msg = "";
-            $sql = "SELECT a.*, b.* FROM tbl_tours_option a 
-	                        LEFT JOIN tbl_tours_moption b ON a.code_idx = b.code_idx
-							WHERE a.product_idx = '$product_idx' AND a.idx = '" . $code_idx[0] . "' ";
-            //write_log($sql);
-            $result = $this->db->query($sql);
-            $result = $result->getResultArray();
-            foreach ($result as $row) {
-                $msg .= "<div class='opt_result_box' id='opt_result_box_" . $row['idx'] . "'>";
-                $msg .= "<input type='hidden' name='option_name[]' id='option_name_" . $row['idx'] . "' value='" . $row['moption_name'] . "|" . $row['option_name'] . "'>";
-                $msg .= "<input type='hidden' id='option_price_" . $row['idx'] . "' value='" . $row['option_price'] . "'>";
-                $msg .= "<input type='hidden' name='option_idx[]' value='" . $row['idx'] . "'>";
-                $msg .= "<input type='hidden' name='option_tot[]' id='option_tot_" . $row['idx'] . "' value='" . $row['option_price'] . "'>";
-                $msg .= "<div class='flex_b'>";
-                $msg .= "<div class='opt_name'>선택2 - " . $row['moption_name'] . "<br>[" . $row['option_name'] . "] $" . number_format($row['option_price']) . "</div>";
-                $msg .= "<button type='button' class='opt_del_btn' onclick='remove(" . $row['idx'] . ")'></button>";
-                $msg .= "</div>";
-                $msg .= "<div class='opt_count_box'>";
-                $msg .= "<button type='button' class='minus_btn' id='minus_btn_" . $row['idx'] . "' onclick='minus_cnt(" . $row['idx'] . ");'></button>";
-                $msg .= "<input type='text' name='option_cnt[]' id='option_cnt_" . $row['idx'] . "' value='1'>";
-                $msg .= "<button type='button' class='plus_btn' id='plus_btn" . $row['idx'] . "' onclick='plus_cnt(" . $row['idx'] . ");'></button>";
-                $msg .= "</div>";
-                $msg .= "<div class='opt_total_price'><strong><span id='price_text_" . $row['idx'] . "'>" . number_format($row['option_price'] * _US_DOLLAR) . "원" . "($" . number_format($row['option_price']) . ")" . "</span></strong></div>";
-                $msg .= "</div>";
-            }
+            $sql = "SELECT * FROM tbl_tours_moption WHERE code_idx = '$moption' ";
+            write_log($sql);
+            $result2 = $this->db->query($sql)->getRowArray();
 
-            return $msg;
+            $sql = "SELECT * FROM tbl_tours_option WHERE idx = '$idx' ";
+            write_log($sql);
+            $result = $this->db->query($sql)->getRowArray();
+            $result['parent_name'] = $result2['moption_name'];
+
+            return $this->response->setJSON($result, 200);
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
