@@ -78,7 +78,7 @@ class AdminCarsController extends BaseController
             $row = $this->productModel->find($product_idx);
         }
         
-        $osql = "select * from tbl_cars_option where product_code = '" . $row["product_code"] . "' order by idx desc";
+        $osql = "select * from tbl_cars_option where product_code = '" . $row["product_code"] . "'";
         $oresult = $this->connect->query($osql);
         $oresult = $oresult->getResultArray();
 
@@ -181,6 +181,8 @@ class AdminCarsController extends BaseController
                 }
 
                 $data['product_code_1'] = '1324';
+
+                die($data['product_code']);
 
                 $this->productModel->insert($data);
 
