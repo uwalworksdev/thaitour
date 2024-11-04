@@ -1342,11 +1342,6 @@
                                         <td>
                                             <a href="/AdmMaster/_tours/detailwrite_new?product_idx=<?= $product_idx ?>&air_code=0000"
                                                class="btn btn-default">상세내역관리</a>
-                                            <?php if ($_SERVER['REMOTE_ADDR'] == "113.160.96.156"): ?>
-                                                <input type="file" hidden name="fileInput"
-                                                       data-air_code="<?= $frow["air_code_1"] ?>" id="fileInput"
-                                                       accept=".json">
-                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

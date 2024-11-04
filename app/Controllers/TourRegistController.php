@@ -548,7 +548,7 @@ class TourRegistController extends BaseController
             SELECT pt.*, pti.*
             FROM tbl_product_tours pt
             LEFT JOIN tbl_product_tour_info pti ON pt.info_idx = pti.info_idx
-            WHERE pt.product_idx = ? ORDER BY pt.tours_idx ASC
+            WHERE pt.product_idx = ? ORDER BY pt.info_idx ASC, pt.tours_idx ASC
         ";
 
         $query_info = $db->query($sql_info, [$product_idx]);
@@ -755,14 +755,7 @@ class TourRegistController extends BaseController
 
         $yoil_html = $this->get_yoil($product_idx);
 
-        $fsql = "select air_code_1, air_code_2, code_name
-											, (select ifnull(total_day,0)  as cnt from tbl_product_day_detail where tbl_product_day_detail.air_code=a.air_code_1 and product_idx = '" . $product_idx . "') as cnt
-											from tbl_product_air a, tbl_code b, tbl_product_yoil c 
-											where a.air_code_1 = b.code_no and a.product_idx = '" . $product_idx . "' 
-											and a.yoil_idx=c.yoil_idx
-										group by 	air_code_1, code_name
-										order by 	c.r_date desc
-										";
+        $fsql = "select ifnull(total_day,0)  as cnt from tbl_product_day_detail where tbl_product_day_detail.air_code='0000' and product_idx = '".$product_idx."'";
         $fresult4 = $this->connect->query($fsql)->getResultArray();
         $fTotalresult4 = count($fresult4);
 

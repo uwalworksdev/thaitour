@@ -34,44 +34,33 @@
                     <strong class="label">옵션선택</strong>
 
                     <div class="opt_select_wrap">
-                        <!-- opt_select -->
                         <div class="opt_select disabled">
-                            <!--button type="button" class="now_txt "><em>선택</em> <i></i></button-->
                             <select name="moption" id="moption" onchange="sel_moption(this.value);">
                                 <option value="">선택</option>
-
-                                1
-                                <option value="3">1111</option>
+                                <?php foreach ($moption as $op) { ?>
+                                    <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
-                        <!-- // opt_select // -->
-                        <!-- opt_select -->
                         <div class="opt_select disabled sel_option" id="sel_option">
-                            <!--button type="button" class="now_txt"><em>선택</em> <i></i></button-->
                             <select name="option" id="option" onchange="sel_option(this.value);">";
                                 <option value="">옵션 선택</option>
                             </select>
                         </div>
-                        <!-- // opt_select // -->
                     </div>
 
-
-                    <!-- opt_result_wrap -->
                     <div class="opt_result_wrap option_item" id="option_item">
                     </div>
-                    <!-- //opt_result_wrap -->
-
                 </div>
                 <!-- // opt_list -->
             </div>
         </div>
 
-
         <div class="total_paymemt payment">
             <!--p class="ped_label">총 예약금액</p-->
             <p class="money"><span
-                    style="margin-right:50px;"><strong>합계</strong></span><strong><span
-                        id="total_sum" class="total_sum">0</span> 원</strong></p>
+                        style="margin-right:50px;"><strong>합계</strong></span><strong><span
+                            id="total_sum" class="total_sum">0</span> 원</strong></p>
         </div>
         <h3 class="title-r label">약관동의</h3>
         <div class="item-info-check-first">
@@ -87,8 +76,7 @@
             <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
         </div>
         <div class="item-info-check">
-                            <span>개인정보 제3자 제공 및 국외 이전 동의(필수)
-                            </span>
+            <span>개인정보 제3자 제공 및 국외 이전 동의(필수)</span>
             <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
         </div>
         <div class="item-info-check">
@@ -104,11 +92,93 @@
                         onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
                 </button>
 
-                <!-- delete  -->
-                <!-- <button type="button" class="btn-default wish_btn "
-        onclick="javascript:wish_it('1219')"><i></i></button> -->
-
             </div>
         </div>
     </div>
 </div>
+<script>
+    function sel_moption(code_idx) {
+        let url = `<?= route_to('api.product.sel_moption') ?>`;
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                "product_idx": '<?=$product_idx?>',
+                "code_idx": code_idx
+            },
+            dataType: "json",
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                console.log(data)
+                $(".sel_option").html(data);
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
+
+    function sel_option(code_idx) {
+        let url = `<?= route_to('api.product.sel_option') ?>`;
+        let idx = code_idx.split("|");
+        let option_cnt = 0;
+        $("input[name='option_idx[]']").each(function (index) {
+            if (idx[0] == $(this).val()) option_cnt++;
+        });
+
+        if (option_cnt == 0) {
+            let message = "";
+            $.ajax({
+
+                url: url,
+                type: "POST",
+                data: {
+                    "product_idx": '<?=$product_idx?>',
+                    "code_idx": code_idx
+                },
+                dataType: "json",
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    $(".option_item").append(message);
+                    price_account();
+                    //location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        } else {
+            alert('선택된 옵션입니다.');
+            return false;
+        }
+
+    }
+
+    function order_it() {
+        var frm = document.frm;
+        if (frm.total_price.value == "0" || frm.total_price.value == "") {
+            alert("인원을 추가해주세요.");
+            return false;
+        }
+
+        if (frm.start_date_in.value == "") {
+            alert("춟발일자를 선택해주세요.");
+            return false;
+        }
+
+        if (frm.tours_idx.value == "") {
+            alert("상품을 선택해 주세요");
+            return false;
+        }
+
+        $("#go_view").attr("action", "/cart/order_form.php").submit();
+    }
+
+    function remove(idx) {
+        $("#opt_result_box_" + idx).remove();
+        price_account();
+    }
+</script>
