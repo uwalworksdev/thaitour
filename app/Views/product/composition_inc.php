@@ -9,110 +9,79 @@
 
                 <p class="label item_label">예약인원을 확인해주세요.</p>
 
-                <ul class="select_peo">
-                    <li class="flex_b_c cus-count-input">
-                        <div class="payment">
-                            <p class="ped_label">성인 </p>
-                            <p class="money adult">
-                                <span id="adult_msg">담당자에게 문의해주세요</span>
-                                <!-- <strong>0</strong> 원 -->
-                            </p>
-                        </div>
-                        <div class="opt_count_box count_box flex__c">
-                            <button type="button" class="minus_btn" id="minusAdult"></button>
-                            <input type="text" class="input-qty" name="qty" id="adultQty" min="1" value="1"
-                                   readonly="">
-                            <button type="button" class="plus_btn" id="addAdult"></button>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+                <div class="option_list_" id="option_list_">
+                    <ul class="select_peo option_list_" id="option_list_">
 
-            <script>
-                $(document).ready(function () {
-                   $('.plus_btn').click(function () {
-                       let input = $(this).parent().find('input');
-                       input.val(parseInt(input.val()) + 1);
-                   })
-
-                    $('.minus_btn').click(function () {
-                       let input = $(this).parent().find('input');
-                       if (parseInt(input.val()) > 1) {
-                           input.val(parseInt(input.val()) - 1);
-                       }
-                   })
-                });
-            </script>
-
-            <div class="item_option">
-                <!-- opt_list -->
-                <div class="opt_list">
-                    <strong class="label">옵션선택</strong>
-
-                    <div class="opt_select_wrap">
-                        <div class="opt_select disabled">
-                            <select name="moption" id="moption" onchange="sel_moption(this.value);">
-                                <option value="">선택</option>
-                                <?php foreach ($moption as $op) { ?>
-                                    <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="opt_select disabled sel_option" id="sel_option">
-                            <select name="option" id="option" onchange="sel_option(this.value);">";
-                                <option value="">옵션 선택</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="opt_result_wrap option_item" id="option_item">
-                    </div>
+                    </ul>
                 </div>
-                <!-- // opt_list -->
+
+                <div class="item_option">
+                    <!-- opt_list -->
+                    <div class="opt_list">
+                        <strong class="label">옵션선택</strong>
+
+                        <div class="opt_select_wrap">
+                            <div class="opt_select disabled">
+                                <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                    <option value="">선택</option>
+                                    <?php foreach ($moption as $op) { ?>
+                                        <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="opt_select disabled sel_option" id="sel_option">
+                                <select name="option" id="option" onchange="sel_option(this.value);">";
+                                    <option value="">옵션 선택</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // opt_list -->
+                </div>
             </div>
-        </div>
 
-        <div class="total_paymemt payment">
-            <!--p class="ped_label">총 예약금액</p-->
-            <p class="money"><span
-                        style="margin-right:50px;"><strong>합계</strong></span><strong><span
-                            id="total_sum" class="total_sum">0</span> 원</strong></p>
-        </div>
-        <h3 class="title-r label">약관동의</h3>
-        <div class="item-info-check item_check_term_">
-            <label for="fullagreement">전체동의</label>
-            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-            <input type="hidden" value="N" id="fullagreement">
-        </div>
-        <div class="item-info-check item_check_term_">
-            <label for="">이용약관 동의(필수)</label>
-            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-            <input type="hidden" value="N" id="terms">
-        </div>
-        <div class="item-info-check item_check_term_">
-            <label for="">개인정보 처리방침(필수)</label>
-            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-            <input type="hidden" value="N" id="policy">
-        </div>
-        <div class="item-info-check item_check_term_">
-            <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
-            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-            <input type="hidden" value="N" id="information">
-        </div>
-        <div class="item-info-check item_check_term_">
-            <label for="guidelines">여행안전수칙 동의(필수)</label>
-            <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-            <input type="hidden" value="N" id="guidelines">
-        </div>
-        <div class="nav_btn_wrap">
-            <a href="/product-spa/product-booking/8386">
-                <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
-            </a>
-            <div class="flex">
-                <button type="button" class="btn-default"
-                        onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
-                </button>
+            <div class="total_paymemt payment">
+                <!--p class="ped_label">총 예약금액</p-->
+                <p class="money"><span
+                            style="margin-right:50px;"><strong>합계</strong></span><strong><span
+                                id="total_sum" class="total_sum">0</span> 원</strong></p>
+            </div>
+            <h3 class="title-r label">약관동의</h3>
+            <div class="item-info-check item_check_term_">
+                <label for="fullagreement">전체동의</label>
+                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                <input type="hidden" value="N" id="fullagreement">
+            </div>
+            <div class="item-info-check item_check_term_">
+                <label for="">이용약관 동의(필수)</label>
+                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                <input type="hidden" value="N" id="terms">
+            </div>
+            <div class="item-info-check item_check_term_">
+                <label for="">개인정보 처리방침(필수)</label>
+                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                <input type="hidden" value="N" id="policy">
+            </div>
+            <div class="item-info-check item_check_term_">
+                <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                <input type="hidden" value="N" id="information">
+            </div>
+            <div class="item-info-check item_check_term_">
+                <label for="guidelines">여행안전수칙 동의(필수)</label>
+                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                <input type="hidden" value="N" id="guidelines">
+            </div>
+            <div class="nav_btn_wrap">
+                <a href="/product-spa/product-booking/8386">
+                    <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
+                </a>
+                <div class="flex">
+                    <button type="button" class="btn-default"
+                            onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
+                    </button>
 
+                </div>
             </div>
         </div>
     </div>
@@ -126,12 +95,11 @@
         } else {
             input.val('N');
         }
-
-        console.log(input.val())
     })
 
     function sel_moption(code_idx) {
         let url = `<?= route_to('api.product.sel_moption') ?>`;
+
         $.ajax({
             url: url,
             type: "POST",
@@ -153,40 +121,61 @@
 
     function sel_option(code_idx) {
         let url = `<?= route_to('api.product.sel_option') ?>`;
-        let idx = code_idx.split("|");
-        let option_cnt = 0;
-        $("input[name='option_idx[]']").each(function (index) {
-            if (idx[0] == $(this).val()) option_cnt++;
+        let idx = code_idx.split("|")[0];
+
+        let moption = $("#moption").val();
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                "idx": idx,
+                "moption": moption
+            },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                console.log(data)
+
+                let parent_name = data.parent_name;
+
+                let option_name = data.option_name;
+                let option_price = data.option_price;
+                let option_idx = data.option_idx;
+                let option_tot = data.option_tot;
+                let option_cnt = data.option_cnt;
+
+                let htm_ = `<li class="flex_b_c cus-count-input" style="margin-top: 10px">
+                            <div class="payment">
+                                <p class="ped_label">${parent_name}</p>
+                                <p class="money adult">
+                                    <span id="adult_msg">${option_name}</span>
+                                </p>
+                            </div>
+                            <div class="opt_count_box count_box flex__c">
+                                <button type="button" onclick="minusInput(this);" class="minus_btn"
+                                        id="minusAdult"></button>
+                                <input data-price="${option_price}" type="text" class="input-qty" name="qty" min="1" value="1"
+                                       readonly="">
+                                <button type="button" onclick="plusInput(this);" class="plus_btn"
+                                        id="addAdult"></button>
+                            </div>
+
+                            <div class="" style="display: none">
+                                       <input type="hidden" name="option_name[]" value="${option_name}">
+                                       <input type="hidden" name="option_idx[]" value="${option_idx}">
+                                       <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                       <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                            </div>
+                        </li>`;
+
+                $("#option_list_").append(htm_);
+                calcTotal();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
         });
-
-        if (option_cnt == 0) {
-            let message = "";
-            $.ajax({
-
-                url: url,
-                type: "POST",
-                data: {
-                    "product_idx": '<?=$product_idx?>',
-                    "code_idx": code_idx
-                },
-                dataType: "json",
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    message = data.message;
-                    $(".option_item").append(message);
-                    price_account();
-                    //location.reload();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-        } else {
-            alert('선택된 옵션입니다.');
-            return false;
-        }
-
     }
 
     function order_it() {
@@ -212,5 +201,44 @@
     function remove(idx) {
         $("#opt_result_box_" + idx).remove();
         price_account();
+    }
+</script>
+<script>
+    function plusInput(el) {
+        let input = $(el).parent().find('input');
+        input.val(parseInt(input.val()) + 1);
+        calcTotal();
+    }
+
+    function minusInput(el) {
+        let input = $(el).parent().find('input');
+        if (parseInt(input.val()) > 1) {
+            input.val(parseInt(input.val()) - 1);
+            calcTotal();
+        } else {
+            removeData(el);
+        }
+    }
+
+    function removeData(el) {
+        if (confirm('확실히 선택을 취소하고 싶습니다?')) {
+            $(el).parent().parent().remove();
+            calcTotal();
+        }
+    }
+
+    function calcTotal() {
+        let option_list_ = $("#option_list_").find('li.cus-count-input');
+
+        let total_price = 0;
+        for (let i = 0; i < option_list_.length; i++) {
+            let inp = $(option_list_[i]).find('input.input-qty');
+            let price = inp.attr('data-price');
+            let cnt = inp.val();
+            total_price += parseInt(price) * parseInt(cnt);
+        }
+
+        total_price = total_price.toLocaleString();
+        $('#total_sum').text(total_price);
     }
 </script>
