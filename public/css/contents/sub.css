@@ -8,7 +8,9 @@
   width: 100%;
   /* max-width: 600px;  */
   margin: 20px auto;
+
 }
+
 
 .skeleton {
   width: 100%;
@@ -17,6 +19,7 @@
   margin-bottom: 10px;
 
   background-color: #f0f0f0;
+
 }
 
 /* Animation */
@@ -47,6 +50,7 @@
     background-color: #f0f0f0;
   }
 }
+
 
 #container.sub {
   padding: 30px 0 130px;
@@ -88,7 +92,7 @@
 .re_btn {
   padding: 5px 20px;
   height: 50px;
-  background-color: #eeeeee;
+  background-color: #EEEEEE;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -462,6 +466,7 @@
   position: relative;
 }
 
+
 .best_prd {
   margin-top: 70px;
 }
@@ -519,6 +524,7 @@
   line-height: 2;
   cursor: pointer;
 }
+
 
 .item_list_sec .item_cate .filter_cho li.active {
   color: #252525;
@@ -823,6 +829,7 @@
   right: 1px;
 }
 
+
 .manager {
   margin-top: 20px;
 }
@@ -846,6 +853,7 @@
   color: #757575;
   margin-top: 6px;
 }
+
 
 .item_list .list_prd_img {
   position: relative;
@@ -975,6 +983,7 @@
   font-size: 20px;
 }
 
+
 .item_list_wrap .w100 .hash_box {
   margin: -8px 0 40px;
 }
@@ -1053,6 +1062,7 @@
 
 .item_list .detail_box dl {
   display: flex;
+
 }
 
 .item_list .detail_box dl + dl {
@@ -1065,6 +1075,7 @@
   flex: 0 0 auto;
   font-family: var(--bs-font-sans-serif);
   font-weight: 700;
+
 }
 
 .item_list .detail_box dd {
@@ -1072,6 +1083,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
 }
 
 .item_list .point_list {
@@ -1221,22 +1233,12 @@
   border-color: var(--bs-point);
 }
 
-.air_radio_wrap
-  .air_radio_list
-  input[type="radio"]:checked
-  + label
-  .air_name
-  em {
+.air_radio_wrap .air_radio_list input[type="radio"]:checked + label .air_name em {
   color: #396acf;
   border-color: #396acf;
 }
 
-.air_radio_wrap
-  .air_radio_list
-  input[type="radio"]:checked
-  + label
-  .air_name
-  em.red {
+.air_radio_wrap .air_radio_list input[type="radio"]:checked + label .air_name em.red {
   color: red;
   border-color: red;
 }
@@ -1318,6 +1320,7 @@
   font-size: 22px;
   font-family: var(--bs-font-sans-serif);
 }
+
 
 /* ================= 상품 뷰 오른쪽 네비 */
 
@@ -1447,6 +1450,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .opt_count_box .plus_btn {
@@ -1457,6 +1461,7 @@
 
 .opt_count_box .minus_btn:hover {
   scale: 1.2;
+
 }
 
 .opt_count_box .plus_btn:hover {
@@ -1476,6 +1481,7 @@
   margin: 15px 0 20px;
 }
 
+
 .item_view .label.content {
   padding-top: 40px;
   margin-top: 60px;
@@ -1491,6 +1497,7 @@
 .item_view .reservation_info .txt_box {
   line-height: 1.5 !important;
   color: #757575 !important;
+
 }
 
 .item_view .reservation_info .txt_box p {
@@ -1677,6 +1684,7 @@
   height: 26px;
   background: no-repeat center / cover;
   background-image: url("/images/ico/question_box_item_Q.png");
+
 }
 
 .faq_sect .faq_list .ques_box .description {
@@ -1700,6 +1708,7 @@
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
+
 }
 
 .faq_sect .faq_list .answer_box_wrap {
@@ -1734,6 +1743,7 @@
   line-height: 1.5 !important;
   font-family: inherit !important;
   font-size: inherit !important;
+
 }
 
 .faq_sect .faq_list_wrap {
@@ -1809,6 +1819,7 @@
 
 .common_tab {
   gap: 10px;
+
 }
 
 .common_tab li.active a {
@@ -1971,10 +1982,7 @@
 }
 
 .write_container .check_box input[type="checkbox"]:checked + label:before,
-.write_container
-  .check_box
-  input[type="checkbox"]:not(:checked)
-  + label:before {
+.write_container .check_box input[type="checkbox"]:not(:checked) + label:before {
   content: "";
   position: absolute;
   left: 0;
@@ -2295,6 +2303,7 @@
   color: var(--bs-point);
 }
 
+
 .ord_total_sec.reservation > div {
   padding: 40px 20px;
   border-bottom: 1px solid #e5e5e5;
@@ -2350,6 +2359,7 @@
   width: 100px;
 }
 
+
 .evaluate_search .search_button {
   width: 60px;
   height: 35px;
@@ -2399,6 +2409,7 @@
   justify-content: center;
   align-items: center;
   padding: 8px 10px;
+
 }
 
 .tour_slider .card .card_top .card_best span:first-child {
@@ -2406,6 +2417,7 @@
   font-size: 11px;
   line-height: 15px;
 }
+
 
 .tour_slider .card .card_top .card_best span:last-child {
   color: #ffffff;
@@ -2480,6 +2492,7 @@
   font-size: 22px !important;
   color: #222222 !important;
 }
+
 
 @keyframes spin {
   0% {
@@ -2578,6 +2591,7 @@
   margin-top: 80px;
 }
 
+
 .view_container .view_top {
   padding-bottom: 40px;
   border-bottom: 1px solid #2b2b2b;
@@ -2660,6 +2674,7 @@
   left: 0;
 }
 
+
 .view_content-top ul li {
   height: 80px;
   border-bottom: 1px solid #e5e5e5;
@@ -2677,6 +2692,7 @@
   width: calc(100% - 100px);
   padding-left: 50px;
 }
+
 
 .view_container .f_list {
   margin-top: 20px;
@@ -2756,10 +2772,12 @@
   position: relative;
 }
 
+
 .ticket-tool-r input {
   border-radius: 21px;
   height: 42px;
 }
+
 
 .ticket-s-i {
   position: absolute;
@@ -2780,7 +2798,7 @@
   padding: 8px 16px;
   font-size: 16px;
   color: #757575;
-  border-radius: 30px;
+  border-radius: 30px
 }
 
 .btn-gr-ticket button.on {
@@ -2791,7 +2809,7 @@
 .tiket-tool-b {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   margin-top: 30px;
   margin-bottom: 20px;
 }
@@ -2806,24 +2824,6 @@
 .mid-banner-ticket {
   margin-top: 75px;
   position: relative;
-}
-
-.mid-banner-ticket .box-text {
-  position: absolute;
-  top: 45px;
-  left: 120px;
-}
-
-.mid-banner-ticket .box-text h3 {
-  font-size: 26px;
-    color: #ffffff;
-    margin-bottom: 16px;
-}
-
-.mid-banner-ticket .box-text p {
-  font-size: 18px;
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: 300;
 }
 
 .list-ticket-grid {
@@ -3140,14 +3140,14 @@
   user-select: none;
 }
 
-input[type="checkbox"] + .vehicle_options__label__vehicle_prd::after {
+input[type=checkbox] + .vehicle_options__label__vehicle_prd::after {
   content: url(/images/ico/checkbox_1.png);
   position: absolute;
   left: 8px;
   top: -15px;
 }
 
-input[type="checkbox"] + .vehicle_options__label__vehicle_prd::before {
+input[type=checkbox] + .vehicle_options__label__vehicle_prd::before {
   content: "";
   position: absolute;
   left: 0;
@@ -3158,7 +3158,7 @@ input[type="checkbox"] + .vehicle_options__label__vehicle_prd::before {
   height: 40px;
 }
 
-input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
+input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   content: url(/images/ico/checkbox_1_active.png);
 }
 
@@ -3550,6 +3550,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
   width: 386px;
   height: 360px;
   position: relative;
+
 }
 
 .banner-ticket .img_box_re img:first-child {
@@ -3560,7 +3561,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .img_box_re::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -3603,11 +3604,10 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: white url("../../uploads/icons/arrow-select-m.png ") no-repeat
-    right 0.3rem center;
+  background: white url('../../uploads/icons/arrow-select-m.png ') no-repeat right .3rem center;
   background-size: 15px;
   padding-left: 0;
-  border-radius: 0.4rem;
+  border-radius: .4rem;
   outline: none;
 }
 
@@ -3621,7 +3621,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .golf-custom-page .banner-middle-tour {
-  background-image: url(/images/sub/banner__golf01.png);
+  background-image: url(/images/sub/golf_img.png);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -4029,7 +4029,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page [type="radio"]:checked + label:before,
 .customer-form-page [type="radio"]:not(:checked) + label:before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -4042,7 +4042,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page [type="radio"]:checked + label:after,
 .customer-form-page [type="radio"]:not(:checked) + label:after {
-  content: "";
+  content: '';
   width: 10px;
   height: 10px;
   background: var(--bs-point);
@@ -4528,12 +4528,11 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .form-group label:before {
-  content: "";
+  content: '';
   -webkit-appearance: none;
   background-color: transparent;
   border: 1px solid #ccc;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
-    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
   padding: 8px;
   width: 20px;
   height: 20px;
@@ -4550,7 +4549,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .form-group input:checked + label:after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 2px;
@@ -4563,12 +4562,11 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .form-group-2 label:before {
-  content: "";
+  content: '';
   -webkit-appearance: none;
   background-color: white;
   border: 1px solid #ccc;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
-    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
   padding: 8px;
   width: 20px;
   height: 20px;
@@ -4588,7 +4586,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .cart-item-list .form-group-2 input:checked + label:after {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 2px;
@@ -4925,7 +4923,7 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .tour-main-page .banner_section_main_page .banner_section_image {
-  background: url(/images/sub/banner__tour01.png) no-repeat center;
+  background: url(/uploads/sub/banner_tour_1.png) no-repeat center;
   background-size: cover;
   height: 150px;
   margin-top: 100px;
@@ -4977,6 +4975,24 @@ input[type="checkbox"]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .border-dashed {
   border-bottom: 1px dashed rgb(219, 219, 219);
+}
+
+.mid-banner-ticket .box-text {
+  position: absolute;
+  top: 45px;
+  left: 120px;
+}
+
+.mid-banner-ticket .box-text h3 {
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.mid-banner-ticket .box-text p {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
 }
 
 @media screen and (max-width: 1200px) {
