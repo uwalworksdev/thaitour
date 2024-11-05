@@ -1,8 +1,9 @@
 <div class="price-right-c">
-    <form name="frm" id="frm">
+    <form name="frm" id="frm" method="post" action="<?= route_to('api.product.processBooking') ?>">
         <div class="view_nav" id="sticky" style="position: sticky; top: 30px;">
             <div class="scroll_box">
-
+                <input type="hidden" id="day_" name="day_">
+                <input type="hidden" id="product_idx" name="product_idx" value="<?= $data_['product_idx'] ?>">
                 <div class="cho_nav">
                     <p class="date_label">
                         <i></i> <span>출발일 <span id="select_date">2024-10-30</span></span>
@@ -180,12 +181,13 @@
             async: false,
             cache: false,
             success: function (data, textStatus) {
+                console.log(data)
                 let parent_name = data.parent_name;
 
                 let option_name = data.option_name;
                 let option_price = data.option_price;
-                let option_idx = data.option_idx;
-                let option_tot = data.option_tot;
+                let idx = data.idx;
+                let option_tot = data.option_tot ?? 0;
                 let option_cnt = data.option_cnt;
 
                 let htm_ = `<li class="flex_b_c cus-count-input" style="margin-top: 10px">
@@ -206,7 +208,7 @@
 
                             <div class="" style="display: none">
                                        <input type="hidden" name="option_name[]" value="${option_name}">
-                                       <input type="hidden" name="option_idx[]" value="${option_idx}">
+                                       <input type="hidden" name="option_idx[]" value="${idx}">
                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
                             </div>
@@ -241,23 +243,7 @@
 
         let url = '<?= route_to('api.product.processBooking') ?>';
 
-        const formData = new FormData($('#frm')[0]);
-
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: formData,
-            async: false,
-            cache: false,
-            success: function (data, textStatus) {
-                console.log(data)
-            },
-            error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            }
-        });
-
-        let uri = '/product-spa/product-booking';
+        $("#frm").attr("action", url).submit();
     }
 
     function remove(idx) {
