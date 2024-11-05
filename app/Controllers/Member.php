@@ -249,7 +249,7 @@ class Member extends BaseController
                 'user_mobile' => $user_mobile,
                 'gubun' => $gubun,
                 'sns_key' => $sns_key,
-            ], $private_key);
+            ]);
         } else {
             $this->member->insertMember([
                 'user_id' => $user_id,
@@ -266,7 +266,7 @@ class Member extends BaseController
                 'addr1' => $addr1,
                 'addr2' => $addr2,
                 'visit_route' => $visit_route,
-            ], $private_key);
+            ]);
         }
 
         write_log("회원가입 : " . $user_id);
@@ -477,7 +477,7 @@ class Member extends BaseController
 
         if (!empty($data['user_pw'])) {
             $passwordSql = [
-                'user_pw' => password_hash($data['user_pw'], PASSWORD_DEFAULT)
+                'user_pw' => password_hash($data['user_pw'], PASSWORD_BCRYPT)
             ];
             $this->member->update($m_idx, $passwordSql);
             write_log("password update: " . json_encode($passwordSql));

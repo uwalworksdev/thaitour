@@ -100,30 +100,20 @@ class Member extends Model
 
         return $members;
     }
-    public function insertMember($data, $privateKey)
+    public function insertMember($data)
     {
-        $builder = $this->db->table($this->table);
-        
-        $data['user_name'] = "HEX(AES_ENCRYPT('{$data['user_name']}', '$privateKey'))";
-        $data['user_email'] = "HEX(AES_ENCRYPT('{$data['user_email']}', '$privateKey'))";
-        $data['user_mobile'] = "HEX(AES_ENCRYPT('{$data['user_mobile']}', '$privateKey'))";
-
-        $builder->set('user_id', $data['user_id'], true);
-        $builder->set('user_name', $data['user_name'], false);
-        $builder->set('user_email', $data['user_email'], false);
-        $builder->set('user_mobile', $data['user_mobile'], false);
+        $data['user_name'] = encryptField($data['user_name'], "encode");
+        $data['user_email'] = encryptField($data['user_email'], "encode");
+        $data['user_mobile'] = encryptField($data['user_mobile'] ?? "", "encode");
 
         if (!empty($data['zip'])) {
-            $data['zip'] = "HEX(AES_ENCRYPT('{$data['zip']}', '$privateKey'))";
-            $builder ->set('zip', $data['zip'], false);
+            $data['zip'] = encryptField($data['zip'], "encode");
         }
         if (!empty($data['addr1'])) {
-            $data['addr1'] = "HEX(AES_ENCRYPT('{$data['addr1']}', '$privateKey'))";
-            $builder ->set('addr1', $data['addr1'], false);
+            $data['addr1'] = encryptField($data['addr1'], "encode");
         }
         if (!empty($data['addr2'])) {
-            $data['addr2'] = "HEX(AES_ENCRYPT('{$data['addr2']}', '$privateKey'))";
-            $builder ->set('addr2', $data['addr2'], false);
+            $data['addr2'] = encryptField($data['addr2'], "encode");
         }
 
         $data['user_level'] = '10';
@@ -132,17 +122,10 @@ class Member extends Model
         $data['r_date'] = date('Y-m-d H:i:s');
         $data['encode'] = 'Y';
 
-        $builder->set('user_level', $data['user_level'], true);
-        $builder->set('status', $data['status'], true);
-        $builder->set('user_ip', $data['user_ip'], true);
-        $builder->set('r_date', $data['r_date'], true);
-        $builder->set('encode', $data['encode'], true);
-
         if (!empty($data['user_pw'])) {
-            $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_DEFAULT);
-            $builder->set('user_pw', $data['user_pw'], true);
+            $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_BCRYPT);
         }
 
-        return $builder->insert();
+        return $this->insert($data);
     }
 }
