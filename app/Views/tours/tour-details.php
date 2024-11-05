@@ -1,6 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+<?php $setting = homeSetInfo(); ?>
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
         <div class="section1">
@@ -90,7 +91,11 @@
                         $days[] = '토요일';
                     }
             ?>
-                <h2 class="sec2-date-main"><?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?></h2>
+                <h2 class="sec2-date-main" id="tour-date-<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
+                    data-start-date="<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
+                    data-end-date="<?= substr($info['info']['o_edate'], 0, 10) ?>">
+                    <?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?>
+                </h2>
                 <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
                 <?php foreach ($info['tours'] as $tour): ?>
                     <div class="sec2-item-card">
@@ -247,36 +252,44 @@
                         <?php endforeach;?>
                         <h3 class="title-second">선택옵션</h3>
                         <form>
-                            <div class="form-group">
-                                <div class="above">
-                                    <input type="checkbox" id="html">
-                                    <label for="html">승용차 >>> SUV</label>
-                                </div>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="above">
-                                    <input type="checkbox" id="css">
-                                    <label for="css">돈므앙&수완나품 공항 미팅 또는 샌딩(편도)</label>
-                                </div>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="above">
-                                    <input type="checkbox" id="javascript">
-                                    <label for="javascript">돈므앙&수완나품 공항 미팅/샌딩(왕복) | 성인 : 800바트</label>
-                                </div>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
+                            <?php foreach ($options as $row_option): ?>
+                                <?php foreach ($row_option['additional_options'] as $option): 
+                                                $baht_thai = (float)($setting['baht_thai'] ?? 0);
+                                                $option_price = (float)$option['option_price'];
+                                                $price_baht_option = round($option_price / $baht_thai);
+                                ?>
+                                    <div class="form-group">
+                                        <div class="above">
+                                            <input type="checkbox" id="html">
+                                            <label for="html"><?=$option['option_name']?></label>
+                                        </div>
+                                        <div class="quantity-info">
+                                            <span class="price"><?=$option['option_price']?>원</span>
+                                            <span class="currency"><?= $price_baht_option?>바트</span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <div class="above">
+                                            <input type="checkbox" id="css">
+                                            <label for="css">돈므앙&수완나품 공항 미팅 또는 샌딩(편도)</label>
+                                        </div>
+                                        <div class="quantity-info">
+                                            <span class="price">160,430원</span>
+                                            <span class="currency">1,801바트</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="above">
+                                            <input type="checkbox" id="javascript">
+                                            <label for="javascript">돈므앙&수완나품 공항 미팅/샌딩(왕복) | 성인 : 800바트</label>
+                                        </div>
+                                        <div class="quantity-info">
+                                            <span class="price">160,430원</span>
+                                            <span class="currency">1,801바트</span>
+                                        </div>
+                                    </div> -->
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </form>
                         <div class="des-below text-gray">
                             <p>
@@ -634,84 +647,83 @@
                 const $monthYear = $('#month-year');
                 const $prevMonthBtn = $('#prev-month');
                 const $nextMonthBtn = $('#next-month');
-
-                let currentDate = new Date();
+                
+                let s_date = null;
+                let e_date = null;
+                let productPrice = null;
+                const currentDate = new Date();
                 let selectedDate = null;
+
+                const setTourDatesAndPrice = (startDate, endDate, price) => {
+                    s_date = new Date(startDate);
+                    e_date = new Date(endDate);
+                    productPrice = price;
+                    renderCalendar();
+                };
+
+                const initializeDefaultTour = () => {
+                    const firstTourButton = $('.btn-ct-3').first();
+                    const tourIndex = firstTourButton.data('tour-index'); 
+                    const startDateId = `#tour-date-${firstTourButton.closest('.sec2-item-card').data('tour-index')}`; // Chỉnh sửa để lấy đúng tour index
+
+                    console.log('Start Date ID:', startDateId); // Kiểm tra ID đang được lấy
+                    const tourStartDate = $(startDateId).data('start-date');
+                    const tourEndDate = $(startDateId).data('end-date');
+                    const tourPrice = parseFloat(firstTourButton.closest('.sec2-item-card').find('.ps-right').text());
+                    
+                    console.log('Tour Start Date:', tourStartDate); // Kiểm tra giá trị start date
+                    console.log('Tour End Date:', tourEndDate); // Kiểm tra giá trị end date
+                    console.log('Tour Price:', tourPrice); // Kiểm tra giá trị price
+
+                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice);
+                };
 
                 const renderCalendar = () => {
                     $calendarDays.empty();
                     const month = currentDate.getMonth();
                     const year = currentDate.getFullYear();
 
-                    // Set month and year in the header
                     const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
                     $monthYear.text(`${year}년 ${monthNames[month]}`);
 
-                    // Get first and last day of the month
                     const firstDay = new Date(year, month, 1).getDay();
                     const lastDate = new Date(year, month + 1, 0).getDate();
 
-                    // Adding empty days for the previous month
                     for (let i = 0; i < firstDay; i++) {
                         $('<div/>').appendTo($calendarDays);
                     }
 
-                    // Populate days
                     for (let day = 1; day <= lastDate; day++) {
                         const dayString = day.toString().padStart(2, '0');
-                        const $dayDiv = $('<div/>').text(dayString).addClass('day'); // Thêm class 'day' để dễ dàng thao tác
-
+                        const $dayDiv = $('<div/>').text(dayString).addClass('day');
                         const date = new Date(year, month, day);
 
-                        // Change color based on the day of the week (일: red, 토: blue)
-                        if (date.getDay() === 0) { // Sunday (일)
-                            $dayDiv.addClass('text-red-cus');
-                        } else if (date.getDay() === 6) { // Saturday (토)
-                            $dayDiv.addClass('text-blue-cus');
-                        }
+                        if (date < s_date || date > e_date) {
+                            $dayDiv.addClass('disabled').append("<p>불가</p>");
+                        } else {
+                            $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${productPrice}원</p></p>`);
 
-                        // Check if the day is the current day
-                        if (isCurrentDay(day, month, year)) {
-                            $dayDiv.addClass('active');
+                            $dayDiv.click(() => {
+                                $('.day').removeClass('active');
+                                $dayDiv.addClass('active');
+                                selectedDate = date;
+                            });
                         }
-
-                        // Add booked or special-rate logic here
-                        if (isBooked(day)) {
-                            $dayDiv.addClass('booked').append("<p>예약마감</p>");
-                        } else if (isSpecialRate(day)) {
-                            $dayDiv.addClass('special-rate').html(`<p class="special-rate-div">${dayString}<p class="price1">58,217원</p><p class="price2">(1,452바트)</p></p>`);
-                        }
-
-                        // Thêm sự kiện click cho ngày
-                        $dayDiv.click(() => {
-                            $('.day').removeClass('active'); // Loại bỏ class active từ tất cả các ngày
-                            $dayDiv.addClass('active'); // Thêm class active cho ngày được chọn
-                            selectedDate = date; // Lưu ngày được chọn
-                        });
 
                         $dayDiv.appendTo($calendarDays);
                     }
                 };
 
-                const isBooked = (day) => {
-                    const specialRateDays = [24, 25, 26, 27, 28];
-                    const lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-                    const allDays = [...Array(lastDate).keys()].map(i => i + 1);
-                    const bookedDays = allDays.filter(day => !specialRateDays.includes(day));
-                    return bookedDays.includes(day);
-                };
+                $('.btn-ct-3').click(function() {
+                    const tourIndex = $(this).data('tour-index'); 
+                    const startDateId = `#tour-date-${tourIndex}`;
+                    const tourStartDate = $(startDateId).data('start-date');
+                    const tourEndDate = $(startDateId).data('end-date');
+                    const tourPrice = parseFloat($(this).closest('.sec2-item-card').find('.ps-right').text());
 
-                const isSpecialRate = (day) => {
-                    const specialRateDays = [24, 25, 26, 27, 28];
-                    return specialRateDays.includes(day);
-                };
+                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice);
+                });
 
-                const isCurrentDay = (day, month, year) => {
-                    const today = new Date();
-                    return day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-                };
-
-                // Move to previous or next month
                 $prevMonthBtn.click(() => {
                     currentDate.setMonth(currentDate.getMonth() - 1);
                     renderCalendar();
@@ -722,9 +734,9 @@
                     renderCalendar();
                 });
 
-                // Initial render
-                renderCalendar();
+                initializeDefaultTour();
             });
+
         </script>
         <script>
             jQuery(document).ready(function () {
