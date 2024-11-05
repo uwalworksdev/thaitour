@@ -8,7 +8,7 @@
                 <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                 <input type="hidden" name="order_date" id="order_date" value="">
                 <input type="hidden" name="option_idx" id="option_idx" value="">
-                <input type="hidden" name="coupon_idx" id="coupon_idx" value="">
+                <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <div class="title-container">
@@ -195,7 +195,7 @@
                     <?php foreach ($golfVehicles as $value) : ?>
                         <div class="item-select">
                             <span class="label"><?= $value['code_name'] ?></span>
-                            <input type="hidden" name="vehicle_code[]" value="<?= $value['code_no'] ?>">
+                            <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
                             <select
                                 data-name="<?= $value['code_name'] ?>"
                                 data-price="<?= $value['price'] ?>"
@@ -561,7 +561,7 @@
             $("#people_adult_cnt").find("option").eq(1).prop("selected", true);
             $("#people_adult_cnt").trigger("change");
             $(".final_date").text(formatDate(new Date(), "."));
-            $("#order_date").val(formatDate(new Date(), "."));
+            $("#order_date").val(formatDate(new Date(), "-"));
         })
 
         function setListVehicle() {
@@ -648,7 +648,7 @@
             if (isAcceptBtn) {
                 $("#final_discount").text(number_format(discount_price));
                 $("#final_discount_baht").text(number_format(discount_price_baht));
-                $("#coupon_idx").val(idx);
+                $("#use_coupon_idx").val(idx);
             }
 
             return {

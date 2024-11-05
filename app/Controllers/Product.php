@@ -25,6 +25,7 @@ class Product extends BaseController
     protected $golfInfoModel;
     protected $golfOptionModel;
     protected $golfVehicleModel;
+    protected $orderOptionModel;
     protected $tourProducts;
     protected $infoProducts;
     protected $dayModel;
@@ -49,6 +50,7 @@ class Product extends BaseController
         $this->golfInfoModel = model("GolfInfoModel");
         $this->golfOptionModel = model("GolfOptionModel");
         $this->golfVehicleModel = model("GolfVehicleModel");
+        $this->orderOptionModel = model("OrderOptionModel");
         $this->tourProducts = model("ProductTourModel");
         $this->infoProducts = model("TourInfoModel");
         $this->dayModel = model("DayModel");
@@ -1508,29 +1510,22 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
-    public function customerForm()
+    private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
     {
-        $data['product_idx'] = $this->request->getVar('product_idx');
-        $data['order_date'] = $this->request->getVar('order_date');
-        $data['option_idx'] = $this->request->getVar('option_idx');
-        $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_code'] = $this->request->getVar('vehicle_code');
-        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
-        $data['coupon_idx'] = $this->request->getVar('coupon_idx');
 
-        $data['option'] = $this->golfOptionModel->find($data['option_idx']);
+        $data['option']             = $this->golfOptionModel->find($option_idx);
 
-        $data['total_price'] = $data['option']['option_price'] * $data['people_adult_cnt'];
+        $data['total_price']        = $data['option']['option_price'] * $people_adult_cnt;
 
-        $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_baht']   = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
 
-        $total_vehicle_price = 0;
-        $total_vehicle_price_baht = 0;
+        $total_vehicle_price        = 0;
+        $total_vehicle_price_baht   = 0;
 
         $vehicle_arr = [];
-        foreach ($data['vehicle_cnt'] as $key => $value) {
+        foreach ($vehicle_cnt as $key => $value) {
             if ($value > 0) {
-                $info = $this->golfVehicleModel->getByCodeNo($data['vehicle_code'][$key]);
+                $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
                 $info['cnt'] = $value;
                 $info['price_baht'] = round((float)$info['price'] / (float)($this->setting['baht_thai'] ?? 0));
                 $vehicle_arr[] = $info;
@@ -1542,6 +1537,33 @@ class Product extends BaseController
 
 
         $data['vehicle_arr'] = $vehicle_arr;
+
+        $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
+
+        if ($coupon['dc_type'] == "P") {
+            $price                  = $total_vehicle_price + $data['total_price'];
+            $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
+            $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+        } else if ($coupon['dc_type'] == "D") {
+            $data['discount']       = $coupon['coupon_price'];
+            $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        }
+        $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
+        $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
+
+        return $data;
+
+    }
+
+    public function customerForm()
+    {
+        $data['product_idx']        = $this->request->getVar('product_idx');
+        $data['order_date']         = $this->request->getVar('order_date');
+        $data['option_idx']         = $this->request->getVar('option_idx');
+        $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
+        $data['vehicle_idx']        = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt']        = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx']         = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -1555,29 +1577,101 @@ class Product extends BaseController
 
         $data['product'] = $this->productModel->find($data['product_idx']);
 
-        $coupon = $this->coupon->getCouponInfo($data['coupon_idx']);
+        $priceCalculate = $this->golfPriceCalculate(
+            $data['option_idx'], 
+            $data['people_adult_cnt'], 
+            $data['vehicle_cnt'], 
+            $data['vehicle_idx'], 
+            $data['use_coupon_idx']
+        );
 
-        if ($coupon['dc_type'] == "P") {
-            $price = $total_vehicle_price + $data['total_price'];
-            $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
-            $data['discount_baht'] = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
-        } else if ($coupon['dc_type'] == "D") {
-            $data['discount'] = $coupon['coupon_price'];
-            $data['discount_baht'] = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
-        }
-        $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
-        $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
-
-        return $this->renderView('product/golf/customer-form', $data);
+        return $this->renderView('product/golf/customer-form', array_merge($data, $priceCalculate));
     }
 
     public function customerFormOk()
     {
+        $data                           = $this->request->getPost();
+        $data['m_idx']                  = session('member.idx') ?? "";
+        $product                        = $this->productModel->find($data['product_idx']);
+        $data['product_name']           = $product['product_name'];
+        $data['product_code_1']         = $product['product_code_1'];
+        $data['product_code_2']         = $product['product_code_2'];
+        $data['product_code_3']         = $product['product_code_3'];
+        $data['product_code_4']         = $product['product_code_4'];
+        $data['order_no']               = $this->orderModel->makeOrderNo();
+        $data['order_user_email']       = $data['email_1'] . "@" . $data['email_2'];
+        $data['order_r_date']           = date('Y-m-d H:i:s');
+        $data['order_status']           = "W";
+        if($data['radio_phone'] == "kor") {
+            $data['order_user_phone']   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+        } else {
+            $data['order_user_phone']   = $data['phone_thai'];
+        }
+
+        $data['vehicle_time']           = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+
+        $priceCalculate = $this->golfPriceCalculate(
+            $data['option_idx'], 
+            $data['people_adult_cnt'], 
+            $data['vehicle_cnt'], 
+            $data['vehicle_idx'], 
+            $data['use_coupon_idx']
+        );
+
+        $data['order_price']            = $priceCalculate['final_price'];
+        $data['used_coupon_idx']        = $data['use_coupon_idx'];
+
+        $this->orderModel->save($data);
+
+        $order_idx = $this->orderModel->getInsertID();
+
+        foreach ($data['companion_name'] as $key => $value) {
+            $this->orderSubModel->insert([
+                'order_idx' => $order_idx,
+                'product_idx' => $data['product_idx'],
+                'order_name_kor' => encryptField($data['companion_name'][$key], 'encode'),
+                'order_sex' => $data['companion_gender'][$key],
+            ]);
+        }
+
+        foreach ($data['vehicle_idx'] as $key => $value) {
+            $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
+            if ($vehicle) {
+                $this->orderOptionModel->insert([
+                    'option_type' => 'vehicle',
+                    'order_idx' => $order_idx,
+                    'product_idx' => $data['product_idx'],
+                    'option_name' => $vehicle['code_name'],
+                    'option_idx' => $vehicle['code_idx'],
+                    'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key],
+                    'option_cnt' => $data['vehicle_cnt'][$key],
+                    'option_date' => $data['order_r_date'],
+                ]);
+            }
+        }
+
+        if (!empty($data['use_coupon_idx'])) {
+            $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
+            $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
+
+            $cou_his = [
+                "order_idx" => $order_idx,
+                "product_idx" => $data['product_idx'],
+                "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                "used_coupon_idx" => $data['use_coupon_idx'],
+                "used_coupon_money" => $priceCalculate['discount'],
+                "ch_r_date" => date('Y-m-d H:i:s'),
+                "m_idx" => session('member.idx')
+            ];
+
+            $this->couponHistory->insert($cou_his);
+        }
 
         return $this->response->setBody("
             <script>
                 alert('주의요청');
-                parent.location.reload();
+                console.log(JSON.parse(`" . json_encode($data) . "`));
+                // parent.location.reload();
             </script>
         ");
     }
