@@ -540,4 +540,5 @@ $routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour')
 
 $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.product.sel_moption"]);
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
+$routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 ?>
