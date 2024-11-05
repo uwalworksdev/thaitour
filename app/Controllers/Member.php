@@ -605,7 +605,7 @@ class Member extends BaseController
             }
         }
 
-        return $num;
+        return strval($num);
     }
     public function join_form_sns()
     {
