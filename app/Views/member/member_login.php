@@ -12,7 +12,7 @@
 </style> -->
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript" src="/member/kakao.js"></script>
+<script type="text/javascript" src="/js/kakao.js"></script>
 
 <main id="container" class="sub login member pt100">
   <div class="inner_620">
