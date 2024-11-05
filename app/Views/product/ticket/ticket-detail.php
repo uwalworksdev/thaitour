@@ -472,7 +472,7 @@
             $(this).addClass('active_');
             let day_ = $(this).data('date');
             $('#day_').val(day_);
-            let price = `<?= number_format($data_['original_price']) ?>`;
+            let price = `<?= number_format($data_['product_price']) ?>`;
             let price_convert = price.toLocaleString();
             $('#total_sum').text(price_convert);
             calcTotal();

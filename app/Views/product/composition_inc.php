@@ -290,7 +290,7 @@
         }
 
         let adultQty = $('#adultQty').val();
-        let price = `<?= $data_['original_price'] ?>`;
+        let price = `<?= $data_['product_price'] ?>`;
 
         total_price += parseInt(adultQty) * parseInt(price);
 
