@@ -1,12 +1,12 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $connect = db_connect();
+$connect = db_connect();
 
-    if ($_SESSION["member"]["mIdx"] == "") {
-        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-        exit();
-    }
+if ($_SESSION["member"]["mIdx"] == "") {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
 ?>
 <style>
     .cancel .btn.btn-lg {
@@ -17,6 +17,7 @@
     .cancel a.btn.btn-lg {
         line-height: 45px;
     }
+
     @media screen and (max-width: 850px) {
 
         .cancel .btn.btn-lg {
@@ -29,12 +30,12 @@
             margin: 0;
             width: 6.3333rem;
         }
-        }
+    }
 </style>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
@@ -57,12 +58,12 @@
             if ($page == "") $page = 1;
             $start = ($page - 1) * $scale;
 
-            $sql    = $total_sql . " order by s1.idx desc limit $start, $scale ";
+            $sql = $total_sql . " order by s1.idx desc limit $start, $scale ";
             $result = $connect->query($sql)->getResultArray();
 
             $num = $total_cnt - $start;
             $no = $total_cnt - $start;
-         
+
             ?>
             <form id="frm" name="frm" class="content">
                 <h1 class="ttl_table">1:1 여행상담</h1>
@@ -78,61 +79,72 @@
                         <!-- <col width="10%"> -->
                     </colgroup>
                     <thead>
-                        <tr>
-                            <th>
-                                <div class="ch_visit">
-                                    <input type="checkbox" id="agree1" class="agree" name="agree">
-                                    <label for="agree1"></label>
-                                </div>
-                            </th>
-                            <th>번호</th>
-                            <th>구분</th>
-                            <th>제목</th>
-                            <th>답변상태</th>
-                            <th>등록일</th>
-                            <!-- <th>시간</th> -->
-                        </tr>
+                    <tr>
+                        <th>
+                            <div class="ch_visit">
+                                <input type="checkbox" id="agree1" class="agree" name="agree">
+                                <label for="agree1"></label>
+                            </div>
+                        </th>
+                        <th>번호</th>
+                        <th>구분</th>
+                        <th>제목</th>
+                        <th>답변상태</th>
+                        <th>등록일</th>
+                        <!-- <th>시간</th> -->
+                    </tr>
                     </thead>
                     <tbody>
-                        <?php
-                           $stt=1;
-                        foreach ($result as $row) {
+                    <?php
+                    $stt = 1;
+                    $index = 0;
+                    foreach ($result as $row) {
+                        $index++;
                         ?>
-                            <tr>
-                                <input type="hidden" name="contact_idx[]" value="<?= $row['idx'] ?>">
-                                <td class="check">
-                                    <div class="ch_visit">
-                                        <input type="checkbox" data-idx="<?= $row['idx'] ?>" id="del_check_<?= $no ?>" class="agree del_check" name="del_check[]">
-                                        <label for="del_check_<?= $no ?>"></label>
-                                    </div>
-                                </td>
-                                <!-- <td class="no"><span><?= $no ?></span></td> -->
-                                <td class="no"><span><?= $stt ?></span></td> 
-                                <td class="num"><?= $row['code_name'] ?></td>
-                                </td>
-                                <td class="des"><a href="../travel/travel_view?idx=<?= $row["idx"] ?>"><?= $row['title'] ?></a></td>
-                                <td class="stt">
+                        <tr>
+                            <input type="hidden" name="contact_idx[]" value="<?= $row['idx'] ?>">
+                            <td class="check">
+                                <div class="ch_visit">
+                                    <input type="checkbox" data-idx="<?= $row['idx'] ?>" id="del_check_<?= $no ?>"
+                                           class="agree del_check" name="del_check[]">
+                                    <label for="del_check_<?= $no ?>"></label>
+                                </div>
+                            </td>
+                            <!-- <td class="no"><span><?= $no ?></span></td> -->
+                            <td class="no"><span><?= $stt ?></span></td>
+                            <td class="num"><?= $row['code_name'] ?></td>
+                            </td>
+                            <td class="des"><a
+                                        href="../travel/travel_view?idx=<?= $row["idx"] ?>"><?= $row['title'] ?></a>
+                            </td>
+                            <td class="stt">
 
-                                    <?php
-                                    if ($row['status'] == "W") {
-                                        echo "<span style='color: #e5001a'>답변대기</span>";
-                                    } elseif ($row["status"] == "Y") {
-                                        echo "상담완료";
-                                    } elseif ($row["status"] == "C") {
-                                        echo "상담취소";
-                                    }
-                                    ?>
+                                <?php
+                                if ($row['status'] == "W") {
+                                    echo "<span style='color: #e5001a'>답변대기</span>";
+                                } elseif ($row["status"] == "Y") {
+                                    echo "상담완료";
+                                } elseif ($row["status"] == "C") {
+                                    echo "상담취소";
+                                }
+                                ?>
 
-                                </td>
-                                <!-- <td class="date"><?= date("Y.m.d", strtotime($row['r_date'])) ?></td> -->
-                                <td class="date"><?= $row['r_date'] ?></td>
-                                <!-- <td class="date"><? //=date("H:s:i", strtotime($row['r_date']))
-                                                        ?></td> -->
-                            </tr>
+                            </td>
+                            <!-- <td class="date"><?= date("Y.m.d", strtotime($row['r_date'])) ?></td> -->
+                            <td class="date"><?= $row['r_date'] ?></td>
+                            <!-- <td class="date"><? //=date("H:s:i", strtotime($row['r_date']))
+                            ?></td> -->
+                        </tr>
                         <?php
-                            $no--;
-                        }
-                        ?>
+                        $no--;
+                    }
+                    ?>
+
+                    <?php if ($index == 0) { ?>
+                        <tr style="text-align: center; vertical-align: middle">
+                            <td colspan="6" class="none_data">문의 내역이 없습니다.</td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 <div class="cancel flex_b_c">
@@ -141,7 +153,8 @@
                             <label for="agree10"></label>
                         </div> -->
                     <button type="button" onclick="delete_selected()">선택삭제</button>
-                    <a href="/travel/travel_write.php" class="btn btn-lg btn-point contact_btn" style="position: relative">문의하기</a>
+                    <a href="/travel/travel_write.php" class="btn btn-lg btn-point contact_btn"
+                       style="position: relative">문의하기</a>
                 </div>
                 <?php echo ipageListing2($page, $total_page, 10, $_SERVER['PHP_SELF'] . "?scategory=$scategory&page=") ?>
             </form>
@@ -175,16 +188,16 @@
     <div class="bg"></div>
 </div>
 <script>
-    $("#agree1").on("click", function() {
+    $("#agree1").on("click", function () {
         if ($(this).is(":checked")) {
             $("input.del_check").prop("checked", true);
         } else {
             $("input.del_check").prop("checked", false);
         }
     })
-    $("input.del_check").on("click", function() {
+    $("input.del_check").on("click", function () {
         let flag = true;
-        $("input.del_check").each(function(index, elm) {
+        $("input.del_check").each(function (index, elm) {
             if (!$(elm).is(":checked")) {
                 flag = false;
             }
@@ -196,10 +209,10 @@
             $("#agree1").prop("checked", false);
         }
     })
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
 
@@ -212,7 +225,7 @@
             return;
         }
         let del_idxs = [];
-        $("input.del_check").each(function() {
+        $("input.del_check").each(function () {
             if ($(this).is(":checked")) {
                 del_idxs.push($(this).data("idx"));
             }
@@ -223,13 +236,13 @@
             data: {
                 del_idxs: del_idxs.join(",")
             },
-            success: function(response, textStatus, jqXHR) {
+            success: function (response, textStatus, jqXHR) {
                 if (response === "OK") {
                     alert("정상적으로 삭제되었습니다.");
                     location.reload();
                 }
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR)
             }
         });

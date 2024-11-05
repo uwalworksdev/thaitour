@@ -1,20 +1,20 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $connect = db_connect();
+$connect = db_connect();
 
-    if ($_SESSION["member"]["mIdx"] == "") {
-        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-        exit();
-    }
+if ($_SESSION["member"]["mIdx"] == "") {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
 
-    $page = $_GET['pg'];
+$page = $_GET['pg'];
 
 ?>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
@@ -22,16 +22,16 @@
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-                echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_2" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_2" => "on"]);
 
-                $sql_wish  = " select a.*, b.* from tbl_wish_list a
+            $sql_wish = " select a.*, b.* from tbl_wish_list a
                                                 left join tbl_product_mst b on a.product_idx = b.product_idx 
                                                 where m_idx = '" . $_SESSION["member"]["idx"] . "'   ";
 
-                $g_list_rows = 10;
-                $page_cnt    = 10; // 페이지 목록에 표시되는 페이지의 수
-                $total_cnt   = $connect->query($sql_wish)->getNumRows();
-                $total_page  = ceil($total_cnt / $g_list_rows);
+            $g_list_rows = 10;
+            $page_cnt = 10; // 페이지 목록에 표시되는 페이지의 수
+            $total_cnt = $connect->query($sql_wish)->getNumRows();
+            $total_page = ceil($total_cnt / $g_list_rows);
             ?>
             <div class="content">
                 <h1 class="ttl_table">찜한 상품</h1>
@@ -47,65 +47,77 @@
                             <col width="10%">
                         </colgroup>
                         <thead>
-                            <tr>
-                                <th>
-                                    <div class="ch_visit">
-                                        <input type="checkbox" id="agree1" class="idx_checkbox_all" name="agree" onclick="checkBoxSwitchAll()">
-                                        <label for="agree1"></label>
-                                    </div>
-                                </th>
-                                <th>번호</th>
-                                <th>상품번호</th>
-                                <th>상품</th>
-                                <th>상세보기</th>
-                                <th>등록일</th>
-                            </tr>
+                        <tr>
+                            <th>
+                                <div class="ch_visit">
+                                    <input type="checkbox" id="agree1" class="idx_checkbox_all" name="agree"
+                                           onclick="checkBoxSwitchAll()">
+                                    <label for="agree1"></label>
+                                </div>
+                            </th>
+                            <th>번호</th>
+                            <th>상품번호</th>
+                            <th>상품</th>
+                            <th>상세보기</th>
+                            <th>등록일</th>
+                        </tr>
                         </thead>
                         <tbody>
 
-                            <?php
-                            $nPage = ceil($total_cnt / $g_list_rows);
-                            if ($page == "") $page = 1;
-                            $nFrom = ($page - 1) * $g_list_rows;
-                            $fsql   = $sql_wish . " order by wish_r_date asc  limit $nFrom, $g_list_rows ";
+                        <?php
+                        $nPage = ceil($total_cnt / $g_list_rows);
+                        if ($page == "") $page = 1;
+                        $nFrom = ($page - 1) * $g_list_rows;
+                        $fsql = $sql_wish . " order by wish_r_date asc  limit $nFrom, $g_list_rows ";
 
-                            // echo $fsql;
+                        // echo $fsql;
 
-                            $fresult = $connect->query($fsql)->getResultArray();
-
-                            $num = $total_cnt - $nFrom;
-                            foreach ($fresult as $frow) {
+                        $fresult = $connect->query($fsql)->getResultArray();
+                        $index = 0;
+                        $num = $total_cnt - $nFrom;
+                        foreach ($fresult as $frow) {
+                            $index++;
                             ?>
-                                <tr>
-                                    <td class="check">
-                                        <div class="ch_visit">
-                                            <input type="checkbox" id="agree<?= $frow['wish_idx'] ?>" class="idx_checkbox input_check" name="idx[]" value="<?= $frow['wish_idx'] ?>">
-                                            <label for="agree<?= $frow['wish_idx'] ?>"></label>
-                                        </div>
-                                    </td>
-                                    <td class="no"><span><?= $num-- ?></span></td>
-                                    <td class="num"><?= $frow['product_code'] ?></td>
-                                    <td class="des"><span><?= viewSQ($frow['product_name']) ?></span></td>
+                            <tr>
+                                <td class="check">
+                                    <div class="ch_visit">
+                                        <input type="checkbox" id="agree<?= $frow['wish_idx'] ?>"
+                                               class="idx_checkbox input_check" name="idx[]"
+                                               value="<?= $frow['wish_idx'] ?>">
+                                        <label for="agree<?= $frow['wish_idx'] ?>"></label>
+                                    </div>
+                                </td>
+                                <td class="no"><span><?= $num-- ?></span></td>
+                                <td class="num"><?= $frow['product_code'] ?></td>
+                                <td class="des"><span><?= viewSQ($frow['product_name']) ?></span></td>
 
-                                    <?php
-                                    if ($frow['product_code_1'] == "1317") {
-                                        $product = "t-tours";
-                                    } else if ($frow['product_code_1'] == "1320") {
-                                        $product = "t-honeymoon";
-                                    } else if ($frow['product_code_1'] == "1324") {
-                                        $product = "t-package";
-                                    } else if ($frow['product_code_1'] == "1325") {
-                                        $product = "t-trip";
-                                    }
-                                    ?>
+                                <?php
+                                if ($frow['product_code_1'] == "1317") {
+                                    $product = "t-tours";
+                                } else if ($frow['product_code_1'] == "1320") {
+                                    $product = "t-honeymoon";
+                                } else if ($frow['product_code_1'] == "1324") {
+                                    $product = "t-package";
+                                } else if ($frow['product_code_1'] == "1325") {
+                                    $product = "t-trip";
+                                }
+                                ?>
 
-                                    <td class="schedule"><a href="/<?= $product ?>/item_view?product_idx=<?= $frow['product_idx'] ?>">상세보기</a></td>
-                                    <td class="date"><?= date("Y.m.d", strtotime($frow['wish_r_date'])) ?></td>
-                                </tr>
+                                <td class="schedule"><a
+                                            href="/<?= $product ?>/item_view?product_idx=<?= $frow['product_idx'] ?>">상세보기</a>
+                                </td>
+                                <td class="date"><?= date("Y.m.d", strtotime($frow['wish_r_date'])) ?></td>
+                            </tr>
 
                             <?php
-                            }
-                            ?>
+                        }
+                        ?>
+
+                        <?php if ($index == 0) { ?>
+                            <tr style="text-align: center; vertical-align: middle">
+                                <td colspan="6" class="none_data">찜한 상품이 없습니다.</td>
+                            </tr>
+                        <?php } ?>
                         </tbody>
                     </table>
                     <div class="cancel flex__c">
@@ -150,10 +162,10 @@
     <!-- </div> -->
 </div>
 <script>
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
 
@@ -161,7 +173,7 @@
         let checkboxAll = document.querySelector('.idx_checkbox_all');
         let checkboxEach = document.querySelectorAll('.idx_checkbox');
 
-        checkboxEach.forEach(function(element) {
+        checkboxEach.forEach(function (element) {
             element.checked = checkboxAll.checked
         });
     }
@@ -181,12 +193,12 @@
             url: "/tools/del_wish",
             type: "POST",
             data: $("#frm").serialize(),
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 $("#ajax_loader").addClass("display-none");
             },
-            success: function(data, status, request) {
+            success: function (data, status, request) {
                 alert("정상적으로 삭제되었습니다.");
                 location.reload();
             }

@@ -322,16 +322,19 @@
     font-size: 15px;
 }
 
+.spa-detail .item_check_term_all_,
 .spa-detail .item_check_term_ {
     background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
     background-size: 23px 15px;
 }
 
+.spa-detail .item_check_term_all_.checked_,
 .spa-detail .item_check_term_.checked_ {
     background: url(/images/ico/check_2.png) no-repeat right 50% #fff;
     background-size: 23px 15px;
 }
 
+.spa-detail .item_check_term_all_ label,
 .spa-detail .item_check_term_ label {
     font-size: 16px;
 }

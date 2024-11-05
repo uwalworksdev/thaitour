@@ -1,13 +1,13 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $connect = db_connect();
+$connect = db_connect();
 
-    $page = $_GET['pg'];
-    if ($_SESSION["member"]["mIdx"] == "") {
-        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-        exit();
-    }
+$page = $_GET['pg'];
+if ($_SESSION["member"]["mIdx"] == "") {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
 ?>
 <style>
     .cancel .btn.btn-lg {
@@ -31,11 +31,11 @@
             margin: 0;
             width: 6.3333rem;
         }
-        }
+    }
 </style>
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
@@ -44,7 +44,7 @@
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-                echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_6" => "on", "tab_6_2" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_6" => "on", "tab_6_2" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table">문의하기</h1>
@@ -58,7 +58,7 @@
                     </span>개</p>
                 <table class="details_table mo">
                     <colgroup>
-                    <col width="5%">
+                        <col width="5%">
                         <col width="10%">
                         <col width="15%">
                         <col width="*">
@@ -66,65 +66,66 @@
                         <col width="10%">
                     </colgroup>
                     <thead>
-                        <tr>
-                            <th>
-                                <div class="ch_visit">
-                                    <input type="checkbox" id="agree1" class="agree1" name="agree">
-                                    <label for="agree1"></label>
-                                </div>
-                            </th>
-                            <th>번호</th>
-                            <th>구분</th>
-                            <th>제목</th>
-                            <th>상태</th>
-                            <th>등록일</th>
-                        </tr>
+                    <tr>
+                        <th>
+                            <div class="ch_visit">
+                                <input type="checkbox" id="agree1" class="agree1" name="agree">
+                                <label for="agree1"></label>
+                            </div>
+                        </th>
+                        <th>번호</th>
+                        <th>구분</th>
+                        <th>제목</th>
+                        <th>상태</th>
+                        <th>등록일</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $sql = "SELECT t.idx, c.code_name, c.code_no, t.product_name, t.title, t.`status`, t.r_date FROM tbl_travel_contact t
+                    <?php
+                    $sql = "SELECT t.idx, c.code_name, c.code_no, t.product_name, t.title, t.`status`, t.r_date FROM tbl_travel_contact t
                         left join tbl_code c on t.travel_type_1 = c.code_no where t.reg_m_idx = '" . $_SESSION["member"]["mIdx"] . "'   ";
-                        $talCount_wish_cnt = $connect->query($sql)->getNumRows();
-                        $g_list_rows = 10;
-                        $nPage = ceil($talCount_wish_cnt / $g_list_rows);
-                        if ($page == "") $page = 1;
-                        $nFrom = ($page - 1) * $g_list_rows;
-                        $fsql   = $sql . " order by r_date asc limit $nFrom, $g_list_rows ";
-                        $fresult = $connect->query($fsql)->getResultArray();
-                        $num = $talCount_wish_cnt - $nFrom;
-
-                        $stt=1;
-                        foreach ($fresult as $row) {
+                    $talCount_wish_cnt = $connect->query($sql)->getNumRows();
+                    $g_list_rows = 10;
+                    $nPage = ceil($talCount_wish_cnt / $g_list_rows);
+                    if ($page == "") $page = 1;
+                    $nFrom = ($page - 1) * $g_list_rows;
+                    $fsql = $sql . " order by r_date asc limit $nFrom, $g_list_rows ";
+                    $fresult = $connect->query($fsql)->getResultArray();
+                    $num = $talCount_wish_cnt - $nFrom;
+                    $index = 0;
+                    $stt = 1;
+                    foreach ($fresult as $row) {
+                        $index++
                         ?>
-                            <tr>
-                                <td class="check">
-                                    <div class="ch_visit">
+                        <tr>
+                            <td class="check">
+                                <div class="ch_visit">
 
-                                        <!-- <input type="checkbox" id="<?= $row['idx'] ?>" class="agree" name="agree" onclick="change_stt(this)"> -->
-                                        <input type="checkbox" id="<?= $row['idx'] ?>" class="agree" name="agree">
-                                        <label for="<?= $row['idx'] ?>"></label>
-                                    </div>
-                                </td>
-                                <td class="no"><span>
+                                    <!-- <input type="checkbox" id="<?= $row['idx'] ?>" class="agree" name="agree" onclick="change_stt(this)"> -->
+                                    <input type="checkbox" id="<?= $row['idx'] ?>" class="agree" name="agree">
+                                    <label for="<?= $row['idx'] ?>"></label>
+                                </div>
+                            </td>
+                            <td class="no"><span>
                                         <?php echo $stt++ ?>
                                         <!-- <?php echo $row['idx'] ?> -->
                                     </span></td>
-                                <td class="num">
-                                    <?php echo $row['code_name'] ?>
-                                </td>
-                                <td class="des"><a href="../mypage/inquiry_view?idx=<?= $row['idx'] ?>">
-                                        <? echo $row['title'] ?>
-                                    </a></td>
-                                <td class="stt">
-                                    <?php
-                                    if ($row['status'] == 'W') {
+                            <td class="num">
+                                <?php echo $row['code_name'] ?>
+                            </td>
+                            <td class="des"><a href="../mypage/inquiry_view?idx=<?= $row['idx'] ?>">
+                                    <? echo $row['title'] ?>
+                                </a></td>
+                            <td class="stt">
+                                <?php
+                                if ($row['status'] == 'W') {
                                     ?>
-                                        <span style="color: #e5001a">답변대기</span>
+                                    <span style="color: #e5001a">답변대기</span>
                                     <?php
-                                    } else {
-                                    ?>
-                                        <span>답변완료</span>
-                                </td>
+                                } else {
+                                ?>
+                                <span>답변완료</span>
+                            </td>
                             <?php } ?>
                             <td class="date spe">
                                 <?php
@@ -132,12 +133,16 @@
                                 $date = $row['r_date'];
                                 echo $date; ?>
                             </td>
-                            </tr>
+                        </tr>
                         <?php
-                        }
+                    }
+                    ?>
 
-                        ?>
-
+                    <?php if ($index == 0) { ?>
+                        <tr style="text-align: center; vertical-align: middle">
+                            <td colspan="6" class="none_data">문의 내역이 없습니다.</td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 <div class="cancel flex_b_c">
@@ -146,7 +151,8 @@
                         <label for="agree10"></label>
                     </div> -->
                     <button id="delete">선택삭제</button>
-                    <a href="/inquiry/inquiry_write.php" class="btn btn-lg btn-point contact_btn" style="position: relative">문의하기</a>
+                    <a href="/inquiry/inquiry_write.php" class="btn btn-lg btn-point contact_btn"
+                       style="position: relative">문의하기</a>
                 </div>
                 <?php echo ipageListing2($page, $nPage, $g_list_rows, $_SERVER['PHP_SELF'] . "?scategory=$scategory&pg=") ?>
             </div>
@@ -181,13 +187,13 @@
     <!-- </div> -->
 </div>
 <script>
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
-    $('#agree1').click(function() {
+    $('#agree1').click(function () {
         var x = [];
         x = document.getElementsByClassName("agree");
         var y = document.getElementById("agree1");
@@ -202,7 +208,7 @@
         }
     });
 
-    $('#delete').click(function() {
+    $('#delete').click(function () {
         var x = [],
             y = [];
         x = document.getElementsByClassName("agree");
@@ -221,11 +227,11 @@
             data: {
                 data: y
             },
-            success: function(response) {
+            success: function (response) {
                 alert("삭제되었습니다!");
                 location.reload();
             },
-            error: function(error) {
+            error: function (error) {
                 alert("삭제에 실패했습니다!");
             }
         });
