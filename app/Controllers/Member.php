@@ -253,7 +253,7 @@ class Member extends BaseController
         } else {
             $this->member->insertMember([
                 'user_id' => $user_id,
-                'user_pw' => password_hash($user_pw, PASSWORD_BCRYPT),
+                'user_pw' => $user_pw,
                 'user_name' => $user_name,
                 'birthday' => $birthday,
                 'user_email' => $user_email,
