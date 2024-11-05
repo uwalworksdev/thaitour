@@ -1,20 +1,20 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $connect = db_connect();
+$connect = db_connect();
 
-    if ($_SESSION["member"]["mIdx"] == "") {
-        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-        exit();
-    }
+if ($_SESSION["member"]["mIdx"] == "") {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
 
-    $page = $_GET['pg'];
+$page = $_GET['pg'];
 
 ?>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
@@ -23,7 +23,7 @@
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-                echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_3" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc.php", ["tab_3" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table">여행후기</h1>
@@ -38,9 +38,9 @@
                 // echo $sql;
 
                 $g_list_rows = 10;
-                $page_cnt    = 10; // 페이지 목록에 표시되는 페이지의 수
-                $total_cnt   = $connect->query($sql)->getNumRows();
-                $total_page  = ceil($total_cnt / $g_list_rows);
+                $page_cnt = 10; // 페이지 목록에 표시되는 페이지의 수
+                $total_cnt = $connect->query($sql)->getNumRows();
+                $total_page = ceil($total_cnt / $g_list_rows);
 
                 ?>
 
@@ -53,37 +53,45 @@
                         <col width="10%">
                     </colgroup>
                     <thead>
-                        <tr>
-                            <th>번호</th>
-                            <th>구분</th>
-                            <th>제목</th>
-                            <th>등록일</th>
-                        </tr>
+                    <tr>
+                        <th>번호</th>
+                        <th>구분</th>
+                        <th>제목</th>
+                        <th>등록일</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $nPage = ceil($totalCount / $g_list_rows);
-                        if ($page == "") $page = 1;
-                        $nFrom = ($page - 1) * $g_list_rows;
-                        $fsql   = $sql . " order by r_date desc, A.onum desc limit $nFrom, $g_list_rows ";
+                    <?php
+                    $nPage = ceil($totalCount / $g_list_rows);
+                    if ($page == "") $page = 1;
+                    $nFrom = ($page - 1) * $g_list_rows;
+                    $fsql = $sql . " order by r_date desc, A.onum desc limit $nFrom, $g_list_rows ";
 
-                        // echo $fsql;
+                    // echo $fsql;
 
-                        $fresult = $connect->query($fsql)->getResultArray();
-
-                        $num = $totalCount - $nFrom;
-                        $j = $totalCount;
-                        foreach ($fresult as $frow) {
+                    $fresult = $connect->query($fsql)->getResultArray();
+                    $index = 0;
+                    $num = $totalCount - $nFrom;
+                    $j = $totalCount;
+                    foreach ($fresult as $frow) {
+                        $index++;
                         ?>
-                            <tr>
-                                <td class="no"><span><?= $j ?></span></td>
-                                <td class="num"><?= $frow['code_name'] ?></td>
-                                <td class="des"><a href="../review/review_detail?idx=<?= $frow['idx'] ?>"><?= $frow['title'] ?></a></td>
-                                <td class="date"><?= date("Y.m.d", strtotime($frow['r_date'])) ?></td>
-                            </tr>
+                        <tr>
+                            <td class="no"><span><?= $j ?></span></td>
+                            <td class="num"><?= $frow['code_name'] ?></td>
+                            <td class="des"><a
+                                        href="../review/review_detail?idx=<?= $frow['idx'] ?>"><?= $frow['title'] ?></a>
+                            </td>
+                            <td class="date"><?= date("Y.m.d", strtotime($frow['r_date'])) ?></td>
+                        </tr>
 
                         <?php $j--;
-                        } ?>
+                    } ?>
+                    <?php if ($index == 0) { ?>
+                        <tr style="text-align: center; vertical-align: middle">
+                            <td colspan="6" class="none_data">작성한 후기가 없습니다.</td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 <div class="travel_review_bottom">
@@ -122,10 +130,10 @@
     <!-- </div> -->
 </div>
 <script>
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
 </script>

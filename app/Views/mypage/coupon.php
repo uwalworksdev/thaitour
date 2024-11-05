@@ -1,14 +1,14 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $connect = db_connect();
+$connect = db_connect();
 
-    if ($_SESSION["member"]["mIdx"] == "") {
-        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-        exit();
-    }
+if ($_SESSION["member"]["mIdx"] == "") {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
 
-    $coupon_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price
+$coupon_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price
                         from tbl_coupon c
                         left outer join tbl_coupon_setting s
                         on c.coupon_type = s.idx
@@ -16,29 +16,29 @@
                         on c.c_idx = h.used_coupon_idx
                         where 1=1 and c.status != 'C' and c.enddate > curdate() and c.usedate = '' and c.get_issued_yn = 'Y' and h.used_coupon_idx is null and c.user_id = '{$_SESSION["member"]["id"]}' 
                         group by c.c_idx ";
-    $c_nTotalCount = $connect->query($coupon_sql)->getNumRows();
+$c_nTotalCount = $connect->query($coupon_sql)->getNumRows();
 
 
-    $total_sql    = " select * from tbl_member where m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-    $row        = $connect->query($total_sql)->getRowArray();
-    $mileage    = number_format($row["mileage"]);
+$total_sql = " select * from tbl_member where m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
+$row = $connect->query($total_sql)->getRowArray();
+$mileage = number_format($row["mileage"]);
 
-    $s_date                = updateSQ($_GET["s_date"]);
-    $e_date                = updateSQ($_GET["e_date"]);
+$s_date = updateSQ($_GET["s_date"]);
+$e_date = updateSQ($_GET["e_date"]);
 
 
-    $pg = $_GET['pg'];
+$pg = $_GET['pg'];
 
-    $search_val = "";
+$search_val = "";
 
-    if (isset($s_date) && isset($e_date)) {
-        $search_val = "AND DATE_FORMAT(ch_r_date, '%Y-%m-%d') >= '$s_date' AND DATE_FORMAT(ch_r_date, '%Y-%m-%d') <= '$e_date'";
-    }
+if (isset($s_date) && isset($e_date)) {
+    $search_val = "AND DATE_FORMAT(ch_r_date, '%Y-%m-%d') >= '$s_date' AND DATE_FORMAT(ch_r_date, '%Y-%m-%d') <= '$e_date'";
+}
 ?>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
@@ -47,7 +47,7 @@
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-                echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_2" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_2" => "on"]);
             ?>
             <div class="content">
                 <div class="top_content">
@@ -63,13 +63,15 @@
                                 </div>
                             </div>
                             <div class="discount flex__c">
-                                <div class="discount_ico"><img src="../assets/img/mypage/mypage_discount_ico_w.png" alt="">
+                                <div class="discount_ico"><img src="../assets/img/mypage/mypage_discount_ico_w.png"
+                                                               alt="">
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 쿠폰</p>
                                     <p class="num"><?= $c_nTotalCount ?> <span>장</span></p>
                                 </div>
-                                <a class="discount_detail_ico" href="/mypage/discount.php"><img src="../assets/img/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
+                                <a class="discount_detail_ico" href="/mypage/discount.php"><img
+                                            src="../assets/img/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -94,7 +96,8 @@
                                 <div class="depart flex__c">
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="s_date" id="departure_date1" placeholder="" class="date_pic">
+                                            <input type="text" name="s_date" id="departure_date1" placeholder=""
+                                                   class="date_pic">
                                             <!-- <img class="ui-datepicker-trigger" src="/images/ico/datepicker_ico.png"
                                                 alt="..." title="..."> -->
                                         </div>
@@ -104,7 +107,8 @@
                                     </div>
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="e_date" id="departure_date2" placeholder="" class="date_pic">
+                                            <input type="text" name="e_date" id="departure_date2" placeholder=""
+                                                   class="date_pic">
                                             <!-- <img class="ui-datepicker-trigger" src="/images/ico/datepicker_ico.png"
                                                 alt="..." title="..."> -->
                                         </div>
@@ -122,60 +126,63 @@
                                 <col width="15%">
                             </colgroup>
                             <thead>
-                                <tr>
-                                    <th>발행일</th>
-                                    <th>쿠폰명</th>
-                                    <th>사용일자</th>
-                                </tr>
+                            <tr>
+                                <th>발행일</th>
+                                <th>쿠폰명</th>
+                                <th>사용일자</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <?php
+                            <?php
 
-                                $ngayHienTai = date('Y-m-d');
+                            $ngayHienTai = date('Y-m-d');
 
-                                // Lấy ngày 1 tháng trước
-                                $ngayMotThangTruoc = date('Y-m-d', strtotime($ngayHienTai . ' -1 month'));
+                            // Lấy ngày 1 tháng trước
+                            $ngayMotThangTruoc = date('Y-m-d', strtotime($ngayHienTai . ' -1 month'));
+                            $index = 0;
+                            $g_list_rows = 100;
 
-                                $g_list_rows = 100;
-
-                                $total_sql = "
+                            $total_sql = "
                                         select DATE_FORMAT(ch_r_date, '%Y-%m-%d') as ch_r_date_new, a.*, b.*, s.* from tbl_coupon a 
                                             left join tbl_coupon_history b ON a.c_idx = b.used_coupon_idx 
                                             left join tbl_coupon_setting s ON a.coupon_type = s.idx
                                             where m_idx = '" . $_SESSION["member"]["mIdx"] . "' $search_val
                                     ";
 
-                                $nTotalCount = $connect->query($total_sql)->getNumRows();
+                            $nTotalCount = $connect->query($total_sql)->getNumRows();
 
-                                $nPage = ceil($nTotalCount / $g_list_rows);
-                                if ($pg == "") $pg = 1;
-                                $nFrom = ($pg - 1) * $g_list_rows;
+                            $nPage = ceil($nTotalCount / $g_list_rows);
+                            if ($pg == "") $pg = 1;
+                            $nFrom = ($pg - 1) * $g_list_rows;
 
-                                $sql    = $total_sql . " order by ch_idx desc limit $nFrom, $g_list_rows ";
+                            $sql = $total_sql . " order by ch_idx desc limit $nFrom, $g_list_rows ";
 
-                                // echo $sql;
+                            // echo $sql;
 
-                                $result = $connect->query($sql)->getResultArray();
-                                $num = $nTotalCount - $nFrom;
-                                if ($nTotalCount == 0) {
+                            $result = $connect->query($sql)->getResultArray();
+                            $num = $nTotalCount - $nFrom;
+                            if ($nTotalCount == 0) {
                                 ?>
-                                    <tr>
-                                        <td colspan=6 style="text-align:center;height:100px; display: flex; align-items: center;">검색된 결과가 없습니다.</td>
-                                    </tr>
+                                <tr style="text-align: center; vertical-align: middle">
+                                    <td colspan=6
+                                        style="text-align:center;height:100px; display: flex; align-items: center;">검색된
+                                        결과가 없습니다.
+                                    </td>
+                                </tr>
                                 <?php
-                                }
+                            }
 
-                                $coupon_type_arr = array("percent" => "%", "won" => "원");
+                            $coupon_type_arr = array("percent" => "%", "won" => "원");
 
-                                foreach ($result as $row) {
-
+                            foreach ($result as $row) {
+                                $index++;
                                 ?>
-                                    <tr>
-                                        <td class="date_s"><?= date("Y.m.d", strtotime($row['regdate'])) ?></td>
-                                        <td class="des"><span><?= $row['coupon_name'] ?></span></td>
-                                        <td class="date_e"><?= date("Y.m.d", strtotime($row['enddate'])) ?></td>
-                                    </tr>
-                                <?php } ?>
+                                <tr>
+                                    <td class="date_s"><?= date("Y.m.d", strtotime($row['regdate'])) ?></td>
+                                    <td class="des"><span><?= $row['coupon_name'] ?></span></td>
+                                    <td class="date_e"><?= date("Y.m.d", strtotime($row['enddate'])) ?></td>
+                                </tr>
+                            <?php } ?>
                             </tbody>
                         </table>
                         <?php echo ipageListing2($pg, $nFrom, $g_list_rows, $_SERVER['PHP_SELF'] . "?scategory=$scategory&pg=") ?>
@@ -243,7 +250,7 @@
         yearSuffix: ''
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.date_pic').datepicker(datePickerConfig)
         // .datepicker('widget').wrap('<div class="ll-skin-melon"/>');
     });
@@ -257,7 +264,7 @@
         frm.submit();
     }
 
-    $('.m_filter').on('click', function() {
+    $('.m_filter').on('click', function () {
         $(this).addClass('active').siblings().removeClass('active')
         let value = $(this).text();
 
@@ -270,17 +277,17 @@
                 'time': value,
                 url: '<?= $_SERVER['PHP_SELF'] ?>'
             },
-            success: function(data) {
+            success: function (data) {
                 // alert(data);
                 $(".board_list").html(data);
             }
         })
     })
 
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
 </script>

@@ -466,6 +466,17 @@
             // });
         });
 
+        $(document).on('click', '.sel_date', function () {
+            $('.sel_date').removeClass('active_');
+            $(this).addClass('active_');
+            let day_ = $(this).data('date');
+            $('#day_').val(day_);
+            let price = `<?= number_format($data_['original_price']) ?>`;
+            let price_convert = price.toLocaleString();
+            $('#total_sum').text(price_convert);
+            calcTotal();
+        });
+
         // const optCountBoxes = document.querySelectorAll('.opt_count_box');
         // optCountBoxes.forEach(box => {
         //     const minusButton = box.querySelector('.minus_btn');

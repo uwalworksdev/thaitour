@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $connect = db_connect();
+$connect = db_connect();
 
 if ($_SESSION["member"]["mIdx"] == "") {
     alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
@@ -10,8 +10,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 ?>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <!--
 <script src="/mypage/mypage.js" type="text/javascript"></script>
 -->
@@ -25,14 +25,14 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                     left outer join tbl_coupon_setting s
                     on c.coupon_type = s.idx
                 where 1=1 and c.status != 'C' and c.get_issued_yn = 'Y' and c.user_id = '{$_SESSION["member"]["id"]}' ";
-                $nTotalCount = $connect->query($total_sql)->getNumRows();
+$nTotalCount = $connect->query($total_sql)->getNumRows();
 
 ?>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-                echo view("/mypage/mypage_gnb_menu_inc", ["tab_5" => "on", "tab_5_2" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc", ["tab_5" => "on", "tab_5_2" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table_discount">쿠폰함</h1>
@@ -50,36 +50,36 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                         <col width="15%">
                     </colgroup>
                     <thead>
-                        <tr>
-                            <th>발행일</th>
-                            <th>쿠폰명</th>
-                            <th>사용일자</th>
-                        </tr>
+                    <tr>
+                        <th>발행일</th>
+                        <th>쿠폰명</th>
+                        <th>사용일자</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        $nPage = ceil($nTotalCount / $g_list_rows);
-                        if ($pg == "") $pg = 1;
-                        $nFrom = ($pg - 1) * $g_list_rows;
+                    <?php
+                    $nPage = ceil($nTotalCount / $g_list_rows);
+                    if ($pg == "") $pg = 1;
+                    $nFrom = ($pg - 1) * $g_list_rows;
 
-                        $sql    = $total_sql . " order by c_idx desc limit $nFrom, $g_list_rows ";
-                        //echo $sql;
-                        $result = $connect->query($sql)->getResultArray();
-                        $num = $nTotalCount - $nFrom;
-                        if ($nTotalCount == 0) {
+                    $sql = $total_sql . " order by c_idx desc limit $nFrom, $g_list_rows ";
+                    //echo $sql;
+                    $result = $connect->query($sql)->getResultArray();
+                    $num = $nTotalCount - $nFrom;
+                    if ($nTotalCount == 0) {
                         ?>
-                            <tr>
-                                <td colspan="3" style="text-align:center;height:100px; display: flex; align-items: center;">검색된 결과가 없습니다.</td>
-                            </tr>
+                        <tr style="text-align: center; vertical-align: middle">
+                            <td colspan="3" style="">검색된 결과가 없습니다.</td>
+                        </tr>
                         <?php
-                        }
-                        foreach ($result as $row) {
+                    }
+                    foreach ($result as $row) {
                         ?>
-                            <tr>
-                                <td class="date_s">
-                                    <span><?= (date("Y.m.d", strtotime($row["regdate"]))) ?></span>
-                                </td>
-                                <td class="des">
+                        <tr>
+                            <td class="date_s">
+                                <span><?= (date("Y.m.d", strtotime($row["regdate"]))) ?></span>
+                            </td>
+                            <td class="des">
                                     <span>
                                         <?php
                                         if ($row['types'] == "N") {
@@ -89,12 +89,12 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                                         }
                                         ?>
                                     </span>
-                                </td>
-                                <td class="date_e">
-                                    <span><?= (date("Y.m.d", strtotime($row["enddate"]))) ?></span>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            </td>
+                            <td class="date_e">
+                                <span><?= (date("Y.m.d", strtotime($row["enddate"]))) ?></span>
+                            </td>
+                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
                 <?php echo ipageListing2($pg, $nPage, 10, $_SERVER['PHP_SELF'] . "?pg=") ?>
@@ -130,10 +130,10 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
     <!-- </div> -->
 </div>
 <script>
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
 </script>

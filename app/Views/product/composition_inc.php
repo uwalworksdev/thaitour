@@ -13,10 +13,6 @@
                     <li class="flex_b_c cus-count-input">
                         <div class="payment">
                             <p class="ped_label">성인 </p>
-                            <p class="money adult">
-                                <span id="adult_msg">담당자에게 문의해주세요</span>
-                                <!-- <strong>0</strong> 원 -->
-                            </p>
                         </div>
                         <div class="opt_count_box count_box flex__c">
                             <button type="button" onclick="minusInput(this);" class="minus_btn"
@@ -53,7 +49,7 @@
                     <!-- // opt_list -->
                 </div>
 
-                <div class="option_list_" id="option_list_">
+                <div class="option_list_" id="option_list_" style="margin-top: 20px">
                     <ul class="select_peo option_list_" id="option_list_">
 
                     </ul>
@@ -67,7 +63,7 @@
                                 id="total_sum" class="total_sum">0</span> 원</strong></p>
             </div>
             <h3 class="title-r label">약관동의</h3>
-            <div class="item-info-check item_check_term_">
+            <div class="item-info-check item_check_term_all_">
                 <label for="fullagreement">전체동의</label>
                 <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
                 <input type="hidden" value="N" id="fullagreement">
@@ -93,9 +89,9 @@
                 <input type="hidden" value="N" id="guidelines">
             </div>
             <div class="nav_btn_wrap">
-                <a href="/product-spa/product-booking/8386">
+                <div data-href="/product-spa/product-booking/8386">
                     <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
-                </a>
+                </div>
                 <div class="flex">
                     <button type="button" class="btn-default"
                             onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
@@ -110,12 +106,38 @@
     $('.item_check_term_').click(function () {
         $(this).toggleClass('checked_');
         let input = $(this).find('input');
-        if (input.val() == 'N') {
-            input.val('Y');
-        } else {
-            input.val('N');
-        }
-    })
+        input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+
+        checkOrUncheckAll();
+    });
+
+    function checkOrUncheckAll() {
+        let allChecked = true;
+
+        $('.item_check_term_').each(function () {
+            let input = $(this).find('input');
+            if (input.val() !== 'Y') {
+                allChecked = false;
+                return false;
+            }
+        });
+
+        let allCheckbox = $('.item_check_term_all_');
+        let allInput = allCheckbox.find('input');
+        allCheckbox.toggleClass('checked_', allChecked);
+        allInput.val(allChecked ? 'Y' : 'N');
+    }
+
+    $('.item_check_term_all_').click(function () {
+        $(this).toggleClass('checked_');
+        let allChecked = $(this).hasClass('checked_');
+        let value = allChecked ? 'Y' : 'N';
+
+        $('.item_check_term_').each(function () {
+            $(this).toggleClass('checked_', allChecked);
+            $(this).find('input').val(value);
+        });
+    });
 
     function sel_moption(code_idx) {
         let url = `<?= route_to('api.product.sel_moption') ?>`;
@@ -199,7 +221,7 @@
     }
 
     function order_it() {
-        var frm = document.frm;
+        let frm = document.frm;
         if (frm.total_price.value == "0" || frm.total_price.value == "") {
             alert("인원을 추가해주세요.");
             return false;
@@ -215,7 +237,16 @@
             return false;
         }
 
-        $("#go_view").attr("action", "/cart/order_form.php").submit();
+        let fullagreement = $("#fullagreement").val();
+        let terms = $("#terms").val();
+        let policy = $("#policy").val();
+        let information = $("#information").val();
+        let guidelines = $("#guidelines").val();
+
+        if (fullagreement == "N" || terms == "N" || policy == "N" || information == "N" || guidelines == "N") {
+            alert("이전 작업을 피해야 할 수 있습니다.");
+            return false;
+        }
     }
 
     function remove(idx) {
