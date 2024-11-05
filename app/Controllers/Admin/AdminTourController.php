@@ -135,6 +135,8 @@ class AdminTourController extends BaseController
             $tours_join = updateSQ($_POST["tours_join" ?? '']);
             $tours_hour = updateSQ($_POST["tours_hour" ?? '']);
             $tours_total_hour = updateSQ($_POST["tours_total_hour" ?? '']);
+            $t_sdate = updateSQ($_POST["t_sdate" ?? '']);
+            $t_edate = updateSQ($_POST["t_edate" ?? '']);
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -159,22 +161,32 @@ class AdminTourController extends BaseController
 
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["tours_ufile" . $i]) ? $files["tours_ufile" . $i] : null;
-
-                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+            
+                $checkImg = $this->request->getPost("checkImg_" . $i);
+            
+                if (isset($checkImg) && $checkImg == "N") {
+                    $existingFile = $connect->query("SELECT tours_ufile$i FROM tbl_product_mst WHERE product_idx='$product_idx'")->getRowArray();
+                    if ($existingFile['tours_ufile' . $i]) {
+                        $filePath = ROOTPATH . '/public/data/product/' . $existingFile['tours_ufile' . $i];
+                        if (file_exists($filePath)) {
+                            unlink($filePath);
+                        }
+                    }
+            
                     $sql = "UPDATE tbl_product_mst SET 
-                            tours_ufile" . $i . "=''
-                            WHERE product_idx='$product_idx'
-                        ";
-
+                            tours_ufile" . $i . "='' 
+                            WHERE product_idx='$product_idx'";
                     $connect->query($sql);
+                    continue; 
                 }
-
+            
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["tours_ufile$i"] = $file->getRandomName();
                     $publicPath = ROOTPATH . '/public/data/product/';
                     $file->move($publicPath, $data["tours_ufile$i"]);
                 }
             }
+            
 
             if ($product_idx) {
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
@@ -319,6 +331,8 @@ class AdminTourController extends BaseController
                             ,tours_join             = '" . $tours_join . "'
                             ,tours_hour             = '" . $tours_hour . "'
                             ,tours_total_hour       = '" . $tours_total_hour . "'
+                            ,t_sdate                = '" . $t_sdate . "'
+                            ,t_edate                = '" . $t_edate . "'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -438,6 +452,8 @@ class AdminTourController extends BaseController
                             ,tours_join             = '" . $tours_join . "'
                             ,tours_hour             = '" . $tours_hour . "'
                             ,tours_total_hour       = '" . $tours_total_hour . "'
+                            ,t_sdate                = '" . $t_sdate . "'
+                            ,t_edate                = '" . $t_edate . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";
