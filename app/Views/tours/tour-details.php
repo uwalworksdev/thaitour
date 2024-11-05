@@ -5,7 +5,7 @@
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
-                <h2>(아속출발) 아유타야 선셋 리버크루즈 반일 투어</h2>
+                <h2><?= viewSQ($product['product_name']) ?></h2>
                 <div class="only_web">
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -16,7 +16,7 @@
             </div>
             <div class="location-container">
                 <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                <span>413 Soi Sukhumvit 49, Watthana 10110,방콕,태국</span>
+                <span><?=$product['addrs']?></span>
             </div>
             <div class="above-cus-content">
                 <div class="rating-container">
@@ -31,20 +31,20 @@
                 </div>
             </div>
             <div class="hotel-image-container">
-                <div class="">
-                    <img src="/uploads/sub/tour_details_1.png" alt="tour_details_1">
+                <div class="hotel-image-container-1" style="<?= $imgs[0] == '' ? 'visibility: hidden' : '' ?>">
+                    <img src="<?= $imgs[0] ?>" alt="<?= $img_names[0] ?>">
                 </div>
                 <div class="grid_2_2">
-                    <img src="/uploads/sub/tour_details_2.png" alt="tour_details_2">
-                    <img src="/uploads/sub/tour_details_3.png" alt="tour_details_3">
-                    <img src="/uploads/sub/tour_details_4.png" alt="tour_details_4">
-                    <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                        <img class="custom_button" src="/uploads/sub/tour_details_5.png" alt="tour_details_5">
-                        <div class="button-show-detail-image">
+                    <img class="grid_2_2_size" src="<?= $imgs[1] ?>" alt="<?= $img_names[1] ?>" style="<?= $imgs[1] == '' ? 'visibility: hidden' : '' ?>">
+                    <img class="grid_2_2_size" src="<?= $imgs[2] ?>" alt="<?= $img_names[2] ?>" style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
+                    <img class="grid_2_2_size" src="<?= $imgs[3] ?>" alt="<?= $img_names[3] ?>" style="<?= $imgs[3] == '' ? 'visibility: hidden' : '' ?>">
+                    <div class="grid_2_2_sub" style="position: relative; cursor: pointer;<?= $imgs[4] == '' ? 'visibility: hidden;' : '' ?>" onclick="img_pops('<?= $product['product_idx'] ?>')">
+                        <img class="custom_button" src="<?= $imgs[4] ?>" alt="<?= $img_names[4] ?>">
+                        <div class="button-show-detail-image" style="<?= $imgs[5] == '' ? 'visibility: hidden' : '' ?>">
                             <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
                             <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png" alt="image_detail_icon_m">
                             <span>사진 모두 보기</span>
-                            <span>(125장)</span>
+                            <span>(<?= count($imgs) - 5 ?>장)</span>
                         </div>
                     </div>
                 </div>
@@ -52,70 +52,101 @@
 
             <div class="sub-header-hotel-detail">
                 <div class="main">
-                    <a class="active" href="">상품예약</a>
-                    <a href="">상품설명</a>
+                    <a class="active short_link" data-target="product_info" href="#product_info">상품예약</a>
+                    <a class="short_link" data-target="product_des" href="#product_des">상품설명</a>
                     <a href="/product-tours/location_info/1324">위치정보</a>
-                    <a href="">더투어랩리뷰</a>
-                    <a href="">생생리뷰(159개)</a>
-                    <a href="">상품Q&A</a>
+                    <a class="short_link" href="">더투어랩리뷰</a>
+                    <a class="short_link" href="">생생리뷰(159개)</a>
+                    <a class="short_link" href="">상품Q&A</a>
                 </div>
             </div>
 
         </div>
-        <div class="section2">
+        <div class="section2" id="product_info">
             <h2 class="title-sec2">
                 상품예약
             </h2>
-            <h2 class="sec2-date-main">2022.11.14 ~ 2024.10.31</h2>
-            <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
-            <div class="sec2-item-card">
-                <div class="text-content-1">
-                    <h3>[조인-프로모션] 아유타야에서 즐기는 아트 뮤지엄 + 선셋 투어</h3>
-                    <del class="text-grey">202,043원</del>
-                </div>
-                <div class="text-content-2">
-                    <span class="text-grey">요일 : 일, 수, 목, 금, 토</span>
-                    <div class="price-sub">
-                        <span class="ps-left text-grey">1,801바트</span>
-                        <span class="ps-right">160,430</span> <span class="text-grey">원</span>
+            <?php foreach ($productTourInfo as $info ): 
+                    $days = [];
+                    if($info['info']['yoil_0'] == 'Y') {
+                        $days[] = '일요일';
+                    } 
+                    if ($info['info']['yoil_1'] == 'Y') {
+                        $days[] = '월요일';
+                    }
+                    if ($info['info']['yoil_2'] == 'Y') {
+                        $days[] = '화요일';
+                    }
+                    if ($info['info']['yoil_3'] == 'Y') {
+                        $days[] = '수요일';
+                    }
+                    if ($info['info']['yoil_4'] == 'Y') {
+                        $days[] = '목요일';
+                    }
+                    if ($info['info']['yoil_5'] == 'Y') {
+                        $days[] = '금요일';
+                    }
+                    if ($info['info']['yoil_6'] == 'Y') {
+                        $days[] = '토요일';
+                    }
+            ?>
+                <h2 class="sec2-date-main"><?= substr($info['info']['o_sdate'], 0, 10) ?> ~ <?= substr($info['info']['o_edate'], 0, 10) ?></h2>
+                <p class="sec2-date-sub text-grey">*부가세/봉사료 포함가격입니다. 현장 결제는 불가능하며 사전 결제 후 예약확인서를 받아야 이용이 가능합니다.</p>
+                <?php foreach ($info['tours'] as $tour): ?>
+                    <div class="sec2-item-card">
+                        <div class="text-content-1">
+                            <h3><?= $tour['tours_subject'] ?></h3>
+                            <del class="text-grey"><?= $info['info']['tour_info_price']?>원</del>
+                        </div>
+                        <div class="text-content-2">
+                            <?php if (!empty($days)) { ?>
+                            <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
+                            <?php } ?>
+                            <div class="price-sub">
+                                <span class="ps-left text-grey"><?= $tour['price_baht']?>바트</span>
+                                <span class="ps-right"><?= $tour['tour_price'] ?></span> <span class="text-grey">원</span>
+                            </div>
+                        </div>
+                        <div class="text-content-3">
+                            <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>">선택</button>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <!-- <div class="sec2-item-card">
+                    <div class="text-content-1">
+                        <h3>[조인] 아유타야에서 즐기는 아트 뮤지엄 + 선셋 투어</h3>
+                        <del class="text-grey">202,043원</del>
+                    </div>
+                    <div class="text-content-2">
+                        <span class="text-grey">요일 : 일, 수, 목, 금, 토</span>
+                        <div class="price-sub">
+                            <span class="ps-left text-grey">1,801바트</span>
+                            <span class="ps-right">160,430</span> <span class="text-grey">원</span>
+                        </div>
+                    </div>
+                    <div class="text-content-3">
+                        <button class="btn-ct-3">선택</button>
                     </div>
                 </div>
-                <div class="text-content-3">
-                    <button class="btn-ct-3">선택</button>
-                </div>
-            </div>
-            <div class="sec2-item-card">
-                <div class="text-content-1">
-                    <h3>[조인] 아유타야에서 즐기는 아트 뮤지엄 + 선셋 투어</h3>
-                    <del class="text-grey">202,043원</del>
-                </div>
-                <div class="text-content-2">
-                    <span class="text-grey">요일 : 일, 수, 목, 금, 토</span>
-                    <div class="price-sub">
-                        <span class="ps-left text-grey">1,801바트</span>
-                        <span class="ps-right">160,430</span> <span class="text-grey">원</span>
+                <div class="sec2-item-card">
+                    <div class="text-content-1">
+                        <h3>[8인 이상 단독투어] 아유타이에서 즐기는 아트 뮤지엄 + 선셋투어</h3>
+                        <del class="text-grey">202,043원</del>
                     </div>
-                </div>
-                <div class="text-content-3">
-                    <button class="btn-ct-3">선택</button>
-                </div>
-            </div>
-            <div class="sec2-item-card">
-                <div class="text-content-1">
-                    <h3>[8인 이상 단독투어] 아유타이에서 즐기는 아트 뮤지엄 + 선셋투어</h3>
-                    <del class="text-grey">202,043원</del>
-                </div>
-                <div class="text-content-2">
-                    <span class="text-grey">요일 : 일, 수, 목, 금, 토</span>
-                    <div class="price-sub">
-                        <span class="ps-left text-grey">1,801바트</span>
-                        <span class="ps-right">160,430</span> <span class="text-grey">원</span>
+                    <div class="text-content-2">
+                        <span class="text-grey">요일 : 일, 수, 목, 금, 토</span>
+                        <div class="price-sub">
+                            <span class="ps-left text-grey">1,801바트</span>
+                            <span class="ps-right">160,430</span> <span class="text-grey">원</span>
+                        </div>
                     </div>
-                </div>
-                <div class="text-content-3-last">
-                    <button class="btn-ct-3">선택</button>
-                </div>
-                <div class="container-calendar">
+                    <div class="text-content-3-last">
+                        <button class="btn-ct-3">선택</button>
+                    </div>
+                </div> -->
+            <?php endforeach;?>
+            <div class="sec2-item-card">
+                <div class="container-calendar tour">
                     <div class="calendar-left">
                         <h3 class="title-left">
                             이용일자 선택
@@ -159,55 +190,61 @@
                                 </select>
                             </div>
                         </div>
-
+    
                     </div>
-
+    
                     <div class="calendar-right">
                         <h3 class="title-right">
                             인원 선택
                         </h3>
-                        <div class="quantity-container">
-                            <div class="quantity-info-con">
-                                <span class="des">성인, Adult (키 120cm 이상)</span>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
+                        <?php foreach ($productTourInfo as $infoIndex => $info): ?>
+                            <?php foreach ($info['tours'] as $tourIndex => $tour): ?>
+                                <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
+                                    <div class="quantity-container">
+                                        <div class="quantity-info-con">
+                                            <span class="des">성인, Adult (키 120cm 이상)</span>
+                                            <div class="quantity-info">
+                                                <span class="price"><?= $tour['tour_price'] ?>원</span>
+                                                <span class="currency"><?= $tour['price_baht']?>바트</span>
+                                            </div>
+                                        </div>
+                                        <div class="quantity-selector">
+                                            <button class="decrease" disabled>-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="increase">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="quantity-container">
+                                        <div class="quantity-info-con">
+                                            <span class="des">아동, Child (키 91~119cm)</span>
+                                            <div class="quantity-info">
+                                                <span class="price"><?= $tour['tour_price_kids'] ?>원</span>
+                                                <span class="currency"><?= $tour['price_baht_kids']?>바트</span>
+                                            </div>
+                                        </div>
+                                        <div class="quantity-selector">
+                                            <button class="decrease" disabled>-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="increase">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="quantity-container">
+                                        <div class="quantity-info-con">
+                                            <span class="des">유아, baby (키 90cm 이하)</span>
+                                            <div class="quantity-info">
+                                                <span class="price"><?= $tour['tour_price_baby'] ?>원</span>
+                                                <span class="currency"><?= $tour['price_baht_baby']?>바트</span>
+                                            </div>
+                                        </div>
+                                        <div class="quantity-selector">
+                                            <button class="decrease" disabled>-</button>
+                                            <span class="quantity">0</span>
+                                            <button class="increase">+</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <button class="decrease" disabled>-</button>
-                                <span class="quantity">0</span>
-                                <button class="increase">+</button>
-                            </div>
-                        </div>
-                        <div class="quantity-container">
-                            <div class="quantity-info-con">
-                                <span class="des">아동, Child (키 91~119cm)</span>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <button class="decrease" disabled>-</button>
-                                <span class="quantity">0</span>
-                                <button class="increase">+</button>
-                            </div>
-                        </div>
-                        <div class="quantity-container">
-                            <div class="quantity-info-con">
-                                <span class="des">유아, baby (키 90cm 이하)</span>
-                                <div class="quantity-info">
-                                    <span class="price">160,430원</span>
-                                    <span class="currency">1,801바트</span>
-                                </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <button class="decrease" disabled>-</button>
-                                <span class="quantity">0</span>
-                                <button class="increase">+</button>
-                            </div>
-                        </div>
+                            <?php endforeach;?>
+                        <?php endforeach;?>
                         <h3 class="title-second">선택옵션</h3>
                         <form>
                             <div class="form-group">
@@ -263,39 +300,51 @@
             </h3> -->
 
         </div>
-        <h2 class="title-sec3">
+        <h2 class="title-sec3" id="product_des">
             상품설명
         </h2>
-        <h3 class="title-sec2">
-            상품 포인트
-        </h3>
-        <div class="list-tag-item">
-            <div class="tag-item">
-                <div class="picture">
-                    <img src="/uploads/sub/tour_item_1.png" alt="tour_item_1">
+        <?php if($product['tours_guide'] == 'Y' || $product['tours_ko'] == 'Y' || $product['tours_join'] == 'Y' || $product['tours_total_hour'] == 'Y') {?>
+            <h3 class="title-sec2">
+                상품 포인트
+            </h3>
+            <div class="list-tag-item">
+                <?php if($product['tours_guide'] == 'Y') {?>
+                <div class="tag-item">
+                    <div class="picture">
+                        <img src="/uploads/sub/tour_item_1.png" alt="tour_item_1">
+                    </div>
+                    <span class="label-tag">가이드 유</span>
                 </div>
-                <span class="label-tag">가이드 유</span>
-            </div>
-            <div class="tag-item">
-                <div class="picture">
-                    <img src="/uploads/sub/tour_item_2.png" alt="tour_item_2">
+                <?php } if($product['tours_ko'] == 'Y') { ?>
+                <div class="tag-item">
+                    <div class="picture">
+                        <img src="/uploads/sub/tour_item_2.png" alt="tour_item_2">
+                    </div>
+                    <span class="label-tag">한국어</span>
                 </div>
-                <span class="label-tag">한국어</span>
-            </div>
-            <div class="tag-item">
-                <div class="picture">
-                    <img src="/uploads/sub/tour_item_3.png" alt="tour_item_3">
+                <?php } if($product['tours_join'] == 'Y') { ?>
+                <div class="tag-item">
+                    <div class="picture">
+                        <img src="/uploads/sub/tour_item_3.png" alt="tour_item_3">
+                    </div>
+                    <span class="label-tag">조인투어</span>
                 </div>
-                <span class="label-tag">조인투어</span>
+                <?php } if($product['tours_total_hour'] == 'Y') { ?>
+                    <div class="tag-item">
+                        <div class="picture">
+                            <img src="/uploads/sub/tour_item_4.png" alt="tour_item_4">
+                        </div>
+                        <span class="label-tag">총 <?= $product['tours_hour']?>시간</span>
+                    </div>
+                <?php } ?>
             </div>
-            <div class="tag-item">
-                <div class="picture">
-                    <img src="/uploads/sub/tour_item_4.png" alt="tour_item_4">
-                </div>
-                <span class="label-tag">총 8시간</span>
+        <?php } ?>
+        <?php if($product['tour_info']) {?>
+            <div>
+                <?= viewSQ($product['tour_info']) ?>
             </div>
-        </div>
-        <h2 class="title-sec2">
+        <?php }?>
+        <!-- <h2 class="title-sec2">
             공지사항
         </h2>
         <p class="des-type">- 미팅장소는 MBK G층 안쪽 Meeting point 광장입니다.
@@ -364,147 +413,109 @@
             수완나품 공항 미팅 장소: 도착층 3번과 4번 게이트 사이에서 고객님의 영문 성함 피켓명을 찾아주세요.<br>
             돈무앙 공항 미팅 장소: 도착층 3번 게이트 앞 고객님의 영문 성함 피켓명을 찾아주세요.<br>
             인원이 많아 차량이 2대가 나가야 하는 경우, 차량 추가 요금이 발생합니다.
-        </p>
-        <h2 class="title-sec2 tit-swip-pic">
-            투어 사진
-        </h2>
-        <div class="container-pic-slider">
-            <div class="swiper-container_tour_content">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="/uploads/sub/tour_details_1.png" alt="tour_details_1">
+        </p> -->
+        <?php if (!empty($imgs_tour)): ?>
+            <h2 class="title-sec2 tit-swip-pic">
+                투어 사진
+            </h2>
+            <div class="container-pic-slider">
+                <div class="swiper-container_tour_content">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($imgs_tour as $index => $img_tour): ?>
+                            <div class="swiper-slide">
+                                <img src="<?= $img_tour ?>" alt="tour_details_<?= $index + 1 ?>">
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="/uploads/sub/tour_details_2.png" alt="tour_details_2">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="/uploads/sub/tour_details_3.png" alt="tour_details_3">
-                    </div>
+                    <div class="swiper-tour_content-pagination"></div>
                 </div>
-                <div class="swiper-tour_content-pagination"></div>
             </div>
-        </div>
-        <h2 class="title-sec2">
-            미팅/픽업장소 안내
-        </h2>
-        <div class="des-type-1">
-            <p>
-                - 원활한 투어 진행을 위해 정시에 출발합니다. (미팅 시간: 12:00/ 미팅 장소: MBK)<br>
-                - 미팅 시간에 늦으실 경우 미리 연락을 주셔도 다른 조인된 손님들 때문에 대기할 수 없습니다.<br>
-                - 늦으시면 노쇼(No-Show) 처리가 되어 변경, 취소 및 환불이 불가하니 늦지 않게 꼭 미리 도착해주세요.
-            </p>
-        </div>
-        <h2 class="title-sec2">
-            투어 일정표
-        </h2>
-        <span class="tit-blue">오후투어</span>
-        <ul class="timeline-con">
-            <li class="timeline-item">
-                <span class="time-l">12:00</span>
-                <span class="des-l">미팅장소 집결 : MBK G층 안쪽 Meeting point 광장</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">12:00~13:10</span>
-                <span class="des-l">이동</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">13:10~15:00</span>
-                <span class="des-l">아트 오브 킹덤(Arts of Kingdom) 박물관 관람</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">15:00~15:30</span>
-                <span class="des-l">이동</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">15:30~16:20</span>
-                <span class="des-l">왓 마하탓 관광</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">16:20~16:30</span>
-                <span class="des-l">이동</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">16:30~17:20</span>
-                <span class="des-l">프랑 뷰(Prang View)에서 식사 및 휴식 *사전에 음식 메뉴를 확인해주세요!</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">17:20~17:30</span>
-                <span class="des-l">이동</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">17:30~18:30</span>
-                <span class="des-l">선셋 보트 대기 & 탑승</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">18:30~18:40</span>
-                <span class="des-l">이동</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">18:40~19:00</span>
-                <span class="des-l">왓 프라시산펫 (안으로 들어가지 않고, 외부만 구경)</span>
-            </li>
-            <li class="timeline-item">
-                <span class="time-l">19:00~20:00</span>
-                <span class="des-l">방콕으로 출발 (20시~20:20시 정도에 MBK 도착)</span>
-            </li>
-        </ul>
+        <?php endif; ?>
+        <?php if($product['product_confirm']) { ?>
+            <h2 class="title-sec2">
+                미팅/픽업장소 안내
+            </h2>
+            <div class="des-type-1">
+                <p>
+                    <?= viewSQ($product['product_confirm'])?>
+                </p>
+            </div>
+        <?php } ?>
+        <?php if($totalDays) {?>
+            <h2 class="title-sec2">
+                투어 일정표
+            </h2>
+            <?php for ($dd = 1; $dd <= $totalDays; $dd++): ?>
+                <?php
+                    $schedule = $schedules[$dd] ?? null;
+                ?>
+                <span class="tit-blue"><?= $schedule['detail_title']?></span>
+                <ul class="timeline-con">
+                    <?php
+                    $groups = $subSchedules[$dd] ?? [];
+                    foreach ($groups as $groupKey => $group):
+                    ?>
+                        <?php foreach ($group as $row_ds): ?>
+                        <li class="timeline-item">
+                            <span class="time-l"><?= viewSQ($row_ds['detail_hour']) ?></span>
+                            <span class="des-l"><?= viewSQ($row_ds['detail_summary']) ?></span>
+                        </li>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endfor; ?>
+        <?php } ?>
         <h2 class="title-sec2">
             포함/불포함 사항
         </h2>
+        <?php if($product['product_able']) {?>
         <div class="tit-blue-type-2">
             <span class="tit-blue">포함사항</span>
         </div>
-        <p class="des-type">
-            - 단독차량 & 드라이빙가이드<br>
-            - 호텔 픽업 & 드롭 서비스<br>
-            - 시닉월드 (케이블웨이, 레일웨이, 스카이웨이) 입장권<br>
-            - 시드니 동물원 입장권
-        </p>
+        <div class="des-type">
+            <?= viewSQ($product['product_able'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['product_unable']) {?>
         <div class="tit-blue-type-2">
             <span class="tit-blue">불포함 사항</span>
         </div>
-        <p class="des-type">
-            - 박물관 입장료(150바트)<br>
-            - 사원 입장료(50바트)<br>
-            - 개인경비<br>
-            - 가이드&기사 팁
-        </p>
+        <div class="des-type">
+            <?= viewSQ($product['product_unable'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['mobile_able']) {?>
         <h2 class="title-sec2">
             추가정보 및 참고사항
         </h2>
-        <p class="des-type">
-            박물관 입장료, 개인 경비, 편안한 운동화, 모자나 선글라스
-        </p>
+        <div class="des-type">
+            <?= viewSQ($product['mobile_able'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['special_benefit']) {?>
         <h2 class="title-sec2">
             어린이정책
         </h2>
-        <p class="des-type">
-            - 아동(키 91~119cm) : 아동 금액 적용<br>
-            - 유아(키 90cm 이하) : 무료
-        </p>
+        <div class="des-type">
+            <?= viewSQ($product['special_benefit'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['notice_comment']) {?>
         <h2 class="title-sec2">
             어린이정책
         </h2>
-        <p class="des-type">
-            - 해당 투어는 조인 투어로 캐리어, 유모차, 휠체어를 가지고 가실 수 없습니다. 가지고 갈 경우, 투어 참여가 안되는 점 꼭 유념해 주시기 바랍니다.<br>
-            비가 와도 투어는 진행됩니다. 비가 와서 투어가 진행이 어려워지더라도, 투어 비용은 환불이 어렵습니다.<br>
-
-            - *비로 인해 선셋 보트 탑승을 못하는 경우, 보트 비용은 환불 가능합니다.<br>
-            사원이나 유적지를 손으로 만지거나 낙서를 하는 행위, 유적지에 걸터 앉아 사진을 찍는 행위 등은 절대 불가하며 가이드의 안내에 따라 주시기 바랍니다.<br>
-
-            - 쇼핑센터를 방문하지 않는 상품이니 안심하셔도 됩니다.<br>
-
-            - 보통 기사님, 가이드석을 제외한 짐칸이 없는 12인승 봉고로 배정되는 경우가 많습니다.<br>
-            이와 같은 12인승 봉고차량으로 배정될 경우 당일 투어 인원에 따라 달라지겠지만, 최대 10~12인승까지 채워서 차량 배정을 합니다.<br>
-            이 점 미리 양해 부탁드립니다.
-        </p>
+        <div class="des-type">
+            <?= viewSQ($product['notice_comment'])?>
+        </div>
+        <?php } ?>
+        <?php if($product['etc_comment']) {?>
         <h2 class="title-sec2">
             더투어랩 이용방법
         </h2>
-        <p class="des-type">
-            귀중품은 꼭 본인이 보관하시고, 상품 이용시 부주의로 인한 안전사고가 발생하지 않도록 조심해주세요.<br>
-            개인 부주의로 인한 귀중품 분실 및 안전사고의 경우 본인의 책임이므로 꼭꼭 주의 부탁드립니다.
-        </p>
+        <div class="des-type">
+            <?= viewSQ($product['etc_comment'])?>
+        </div>
+        <?php } ?>
         <div class="steps-type">
             <div class="step-type">
                 <div class="con-step">
@@ -547,6 +558,18 @@
                 <span class="step-label">예약신청</span>
                 <span class="number-step">4</span>
             </div>
+        </div>
+        <div id="dim"></div>
+        <div id="popup_img" class="on">
+            <strong id="pop_roomName"></strong>
+            <div>
+                <ul class="multiple-items">
+                    <?php foreach ($imgs as $img) {
+                        echo "<li><img src='" . $img . "' alt='' /></li>";
+                    } ?>
+                </ul>
+            </div>
+            <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close"/></a>
         </div>
         <script>
             let swiper = new Swiper(".swiper_product_list_", {
@@ -703,5 +726,79 @@
                 renderCalendar();
             });
         </script>
+        <script>
+            jQuery(document).ready(function () {
+                var dim = $('#dim');
+                var popup = $('#popupRoom');
+                var closedBtn = $('#popupRoom .closed_btn');
+
+                var popup2 = $('#popup_img');
+                var closedBtn2 = $('#popup_img .closed_btn');
+
+                /* closed btn*/
+                closedBtn.click(function () {
+                    popup.hide();
+                    dim.fadeOut();
+                    $('.multiple-items').slick('unslick'); // slick 삭제
+                    return false;
+                });
+
+                closedBtn2.click(function () {
+                    popup2.hide();
+                    dim.fadeOut();
+                    $('.multiple-items').slick('unslick'); // slick 삭제
+                    return false;
+                });
+
+                $(".short_link").on('click', function(evt) {
+                    evt.preventDefault();
+                    var target = $(this).data('target');
+                    // $(window).scrollTop($('#' + target).offset().top - 100, 300);
+                    $('html, body').animate({
+                        scrollTop: $('#' + target).offset().top - 100
+                    }, 'slow');
+                    return false;
+                });
+
+            });
+
+            function img_pops(idx) {
+            var dim = $('#dim');
+            var popup = $('#popup_img');
+
+            popup.show();
+                    dim.fadeIn();
+
+                    $('.multiple-items').slick({
+                        slidesToShow: 1,
+                        initialSlide: 0,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 2000,
+                        dots: true,
+                        focusOnSelect: true
+                    });
+            }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.btn-ct-3').forEach((button, index) => {
+                    button.addEventListener('click', function() {
+                        const tourIndex = this.getAttribute('data-tour-index');
+
+                        document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
+                            container.style.display = 'none';
+                        });
+
+                        const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
+                        if (selectedContainer) {
+                            selectedContainer.style.display = 'block';
+                        }
+                    });
+                });
+            });
+    </script>
+
+            </script>
 
         <?php $this->endSection(); ?>

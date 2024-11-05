@@ -24,6 +24,11 @@
             <p><span>금</span></p>
             <p><span style="color : #e5001c">토</span></p>
         </div>
+        <style>
+            .sel_date.active_ {
+                background-color: #FFCB08;
+            }
+        </style>
         <div class="body" id="option_cal">
 
         </div>
@@ -38,6 +43,8 @@
             <span class="label-text">예약이 마감된 상태로 예약이 불가합니다.</span>
         </div>
     </div>
+
+    <input type="hidden" id="day_" name="day_">
 </div>
 
 <script>
@@ -114,8 +121,8 @@
     }
 
     function viewCal() {
-        let reject_day_ = `<?= $spa['deadline_time'] ?>`;
-        let allow_day_ = `<?= $spa['available_period'] ?>`;
+        let reject_day_ = `<?= $data_['deadline_time'] ?>`;
+        let allow_day_ = `<?= $data_['available_period'] ?>`;
 
         let array_day = reject_day_.split('||||');
 
@@ -174,7 +181,7 @@
                 let is_check = new Date(start_) <= new Date(checkDate) && new Date(checkDate) <= new Date(end_);
 
                 if (!is_valid) {
-                    if (is_check){
+                    if (is_check) {
                         isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
                         priceLabel = '<span class="label allowBtn allow-text">예약가능</span>';
                     } else {

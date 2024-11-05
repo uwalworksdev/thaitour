@@ -199,6 +199,10 @@
                 .open_ {
                     height: auto;
                 }
+
+                .btn-gr-ticket {
+                    display: inline-block;
+                }
             </style>
 
             <div class="">

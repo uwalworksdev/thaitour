@@ -489,7 +489,9 @@ class AdminTourController extends BaseController
         $tour_price_kids = $this->request->getPost('tour_price_kids');
         $tour_price_baby = $this->request->getPost('tour_price_baby');
         $status = $this->request->getPost('status');
-    
+        $tours_idx = $this->request->getPost('tours_idx');
+        $tour_info_price = $this->request->getPost('tour_info_price');
+
         $yoil_0 = $this->request->getPost('yoil_0');
         $yoil_1 = $this->request->getPost('yoil_1');
         $yoil_2 = $this->request->getPost('yoil_2');
@@ -497,8 +499,9 @@ class AdminTourController extends BaseController
         $yoil_4 = $this->request->getPost('yoil_4');
         $yoil_5 = $this->request->getPost('yoil_5');
         $yoil_6 = $this->request->getPost('yoil_6');
-    
+        
         $info_ids = [];
+    
         foreach ($o_sdate as $key => $start_date) {
             $infoIndex = $this->infoProducts->where('product_idx', $productIdx)
                 ->where('o_sdate', $start_date)
@@ -515,6 +518,7 @@ class AdminTourController extends BaseController
                 'yoil_4' => isset($yoil_4[$key]) ? 'Y' : 'N',
                 'yoil_5' => isset($yoil_5[$key]) ? 'Y' : 'N',
                 'yoil_6' => isset($yoil_6[$key]) ? 'Y' : 'N',
+                'tour_info_price' => $tour_info_price[$key],
                 'r_date' => date('Y-m-d H:i:s')
             ];
     
@@ -528,38 +532,44 @@ class AdminTourController extends BaseController
         }
     
         foreach ($info_ids as $index => $infoId) {
-            $subjectIndex = $info_ids[$index];
-            
-            if (isset($tours_subject[$subjectIndex])) {
-                foreach ($tours_subject[$subjectIndex] as $i => $subject) {
-                    $data = [
-                        'product_idx' => $productIdx,
-                        'tours_subject' => $subject,
-                        'tour_price' => isset($tour_price[$subjectIndex][$i]) ? $tour_price[$subjectIndex][$i] : null,
-                        'tour_price_kids' => isset($tour_price_kids[$subjectIndex][$i]) ? $tour_price_kids[$subjectIndex][$i] : null,
-                        'tour_price_baby' => isset($tour_price_baby[$subjectIndex][$i]) ? $tour_price_baby[$subjectIndex][$i] : null,
-                        'status' => isset($status[$subjectIndex][$i]) ? $status[$subjectIndex][$i] : null,
-                        'info_idx' => $infoId
-                    ];
-                    $existingTour = $this->tourProducts->where('info_idx', $infoId)
-                        ->where('tours_subject', $subject)
-                        ->first();
+            if (isset($tours_subject[$index])) {
+                foreach ($tours_subject[$index] as $i => $subject) {
+                    if (!empty($subject)) {
+                        $data = [
+                            'product_idx' => $productIdx,
+                            'tours_subject' => $subject,
+                            'tour_price' => isset($tour_price[$index][$i]) ? $tour_price[$index][$i] : null,
+                            'tour_price_kids' => isset($tour_price_kids[$index][$i]) ? $tour_price_kids[$index][$i] : null,
+                            'tour_price_baby' => isset($tour_price_baby[$index][$i]) ? $tour_price_baby[$index][$i] : null,
+                            'status' => isset($status[$index][$i]) ? $status[$index][$i] : null,
+                            'info_idx' => $infoId,
+                            'tours_idx' => $tours_idx[$index][$i] ?? null
+                        ];
     
-                    if ($existingTour) {
-                        $this->tourProducts->update($existingTour['tours_idx'], $data);
-                        var_dump("Cập nhật tour: ", $data);
-                    } else {
                         $this->tourProducts->insert($data);
-                        var_dump("Thêm mới tour: ", $data);
                     }
                 }
             }
         }
     
-        // return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
+        foreach ($tours_idx as $index => $tourIds) {
+            foreach ($tourIds as $i => $tourId) {
+                if ($tourId) {
+                    $updateData = [
+                        'tours_subject' => $tours_subject[$index][$i] ?? null,
+                        'tour_price' => $tour_price[$index][$i] ?? null,
+                        'tour_price_kids' => $tour_price_kids[$index][$i] ?? null,
+                        'tour_price_baby' => $tour_price_baby[$index][$i] ?? null,
+                        'status' => $status[$index][$i] ?? null,
+                    ];
+                    $this->tourProducts->update($tourId, $updateData);
+                }
+            }
+        }
+    
+        return redirect()->to('AdmMaster/_tourRegist/write_tour_info?product_idx=' . $productIdx);
     }
     
-
     public function del_tours() {
         $info_idx = $this->request->getPost('info_idx');
         $tours_idx = $this->request->getPost('tours_idx');
@@ -759,6 +769,7 @@ class AdminTourController extends BaseController
         $lunch = $this->request->getPost('lunch');
         $dinner = $this->request->getPost('dinner');
         $detailSummary = $this->request->getPost('detail_summary');
+        $detail_hour = $this->request->getPost('detail_hour');
 
         $productDetail = $this->dayModel->getProductDetail($productIdx, $airCode);
 
@@ -798,6 +809,7 @@ class AdminTourController extends BaseController
                         'onum' => $orderNum,
                         'detail_desc' => $detailDesc[$dd][$group][$orderNum] ?? '',
                         'detail_summary' => updateSQ($summary) ?? '',
+                        'detail_hour' => $detail_hour[$dd][$group][$orderNum] ?? '',
                     ];
 
                     if ($this->dayModel->subScheduleExists($detailIdx, $dd, $group, $orderNum)) {
