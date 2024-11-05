@@ -376,6 +376,7 @@ $routes->group("tools", static function ($routes) {
 $routes->group("member", static function ($routes) {
     $routes->get("login", "Member::LoginForm");
     $routes->post("login_check", "Member::LoginCheck");
+    $routes->get("login_find_id", "Member::LoginFindId");
     $routes->get("join_choice", "Member::JoinChoice");
     $routes->get("join_agree", "Member::JoinAgree");
     $routes->post("join_form", "Member::JoinForm");

@@ -47,7 +47,7 @@ class AdminLogin extends BaseController {
             return $this->response->setJSON($resultArr);
         }
 
-        if ($row["user_pw"] != $this->member->sql_password($user_pw)) {
+        if (!password_verify($user_pw, $row["user_pw"])) {
             $resultArr['result'] = false;
             $resultArr['message'] = '패스워드가 일치하지 않습니다.';
             return $this->response->setJSON($resultArr);

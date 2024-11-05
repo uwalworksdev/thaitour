@@ -23,7 +23,8 @@ class OrdersModel extends Model
     , "bank_2", "isDelete", "delDate", "encode", "custom_req", "local_phone", "order_zip", "order_addr1", "order_addr2"
     , "deposit_price_change", "price_confirm_change", "total_price_change", "bbs_no", "transfer_date", "user_id"
     , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
-    , "room_op_idx", "order_room_cnt", "order_day_cnt"];
+    , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_gender_list"
+    , "vehicle_time"];
     public function getOrders($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10)
     {
         $private_key = private_key();
@@ -65,5 +66,13 @@ class OrdersModel extends Model
             'g_list_rows' => $g_list_rows,
             'num' => $num,
         ];
+    }
+    public function makeOrderNo() {
+        $todayOrder = $this->select()->where('order_date', date('Y-m-d'))->orderBy('order_no', 'desc')->limit(1)->get()->getRowArray();
+        if ($todayOrder) {
+            return $todayOrder['order_no'] + 1;
+        } else {
+            return 1;
+        }
     }
 }

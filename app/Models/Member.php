@@ -50,14 +50,6 @@ class Member extends Model
         return $builder->findColumn('user_pw');
     }
 
-    function sql_password($value)
-    {
-        $sql = " select SHA1(MD5('".$value."')) as pass ";
-        $row= $this->db->query($sql)->getRowArray();
-
-        return $row['pass'];
-    }
-
     public function AdminInfo($id)
     {
         $builder = $this;
@@ -147,7 +139,7 @@ class Member extends Model
         $builder->set('encode', $data['encode'], true);
 
         if (!empty($data['user_pw'])) {
-            $data['user_pw'] = sql_password($data['user_pw']);
+            $data['user_pw'] = password_hash($data['user_pw'], PASSWORD_DEFAULT);
             $builder->set('user_pw', $data['user_pw'], true);
         }
 

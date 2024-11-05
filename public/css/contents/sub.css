@@ -4128,8 +4128,30 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   width: 280px;
 }
 
+.email-group {
+  position: relative;
+}
+
+.email-group input {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
 .customer-form-page .mo-cus-in-3 {
   width: 130px;
+}
+
+.phone_wrap {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.phone_wrap_item {
+  flex: 1;
 }
 
 .completed-order-page {

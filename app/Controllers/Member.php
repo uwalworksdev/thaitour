@@ -133,7 +133,7 @@ class Member extends BaseController
                         alert("회원탈퇴 되었습니다.");
                         history.back();
                     </script>';
-        } else if (hash("sha1", md5($user_pw)) != $row["user_pw"]) {
+        } else if (!password_verify($user_pw, $row["user_pw"])) {
             return '<script>
                         alert("패스워드가 일치하지 않습니다.");
                         history.back();
@@ -183,8 +183,6 @@ class Member extends BaseController
         if (($member['phone_chk'] ?? "") != $phone_sms) {
             die("Error: The field 'SMS'.");
         }
-
-
 
         $user_id = updateSQ($this->request->getPost("user_id"));
         $user_pw = updateSQ($this->request->getPost("user_pw"));
@@ -255,7 +253,7 @@ class Member extends BaseController
         } else {
             $this->member->insertMember([
                 'user_id' => $user_id,
-                'user_pw' => sql_password($user_pw),
+                'user_pw' => password_hash($user_pw, PASSWORD_BCRYPT),
                 'user_name' => $user_name,
                 'birthday' => $birthday,
                 'user_email' => $user_email,
@@ -479,7 +477,7 @@ class Member extends BaseController
 
         if (!empty($data['user_pw'])) {
             $passwordSql = [
-                'user_pw' => sha1(md5($data['user_pw'])),
+                'user_pw' => password_hash($data['user_pw'], PASSWORD_DEFAULT)
             ];
             $this->member->update($m_idx, $passwordSql);
             write_log("password update: " . json_encode($passwordSql));
@@ -709,5 +707,9 @@ class Member extends BaseController
         $form .= '<script type="text/javascript">document.getElementById("redirectForm").submit();</script>';
 
         return $form;
+    }
+    public function LoginFindId()
+    {
+        return "";
     }
 }
