@@ -1639,8 +1639,25 @@ class Product extends BaseController
     public function vehicleGuide($code_no)
     {
         try {
+
+            $codes = $this->codeModel->getByParentCode($code_no);
+            $products = $this->productModel->getAllProductsByCode($code_no);
+
+            foreach($codes as $key => $value){
+                $codes[$key]["list_code"] = $this->codeModel->getByParentCode($value["code_no"]);
+            }
+
+            foreach($products as $key => $value){
+                $osql = "select * from tbl_cars_option where product_code = '" . $value["product_code"] . "'";
+                $oresult = $this->db->query($osql);
+                $oresult = $oresult->getResultArray();
+                $products[$key]["options"] = $oresult;
+            }
+
             $data = [
                 'tab_active' => '7',
+                'codes' => $codes,
+                'products' => $products
             ];
 
             return $this->renderView('product/vehicle-guide', $data);

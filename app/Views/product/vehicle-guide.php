@@ -121,7 +121,74 @@
                         <col width="320">
                     </colgroup>
                     <tbody>
+                        <?php
+                            foreach($products as $product){
+                                if(!empty($product["ufile1"])){
+                                    $img = '/data/cars/' . $product["ufile1"];
+                                }else{
+                                    $img = '/data/product/noimg.png';
+                                }
+                        ?>
                         <tr>
+                            <td>
+                                <div class="vehicle_image">
+                                    <div class="img_box img_box_15">
+                                        <img src="<?=$img?>" alt="<?=$product["rfile1"]?>">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="vehicle_info">
+                                    <h4 class="vehicle_info__name">
+                                        프리미엄세단 (도요타 알티스, 캠리 등 준중형 세단) <br>
+                                        좌석 3개 (어른3 / 어린이 1)
+                                    </h4>
+                                    <table>
+                                        <colgroup>
+                                            <col width="10%">
+                                            <col width="30%">
+                                            <col width="10%">
+                                            <col width="10%">
+                                            <col width="40%">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td class=""><img src="/images/ico/ico_baggage.png" alt=""></td>
+                                                <td class="vehicle_info__item">가방 20kg 3개</td>
+                                                <td class="vehicle_info__item">또는</td>
+                                                <td class="vehicle_info__item"><img src="/images/ico/ico_baggage.png" alt=""></td>
+                                                <td class="vehicle_info__item">가방 20kg 1개 + 24kg 1개</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""></td>
+                                                <td class="vehicle_info__item">골프백 3개</td>
+                                                <td class="vehicle_info__item">또는</td>
+                                                <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""><img
+                                                        src="/images/ico/ico_baggage.png" alt=""></td>
+                                                <td class="vehicle_info__item">골프백 2개+가방 20kg</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="vehicle_price">
+                                    43,758<span>원 (1,100바트)</span>
+                                </div>
+                                <div class="vehicle_options">
+                                    <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
+                                    <select name="" id="vehicle_cnt" class="vehicle_options__select">
+                                        <option value="">1</option>
+                                    </select>
+                                    <input type="checkbox" id="vehicle_prd1" name="">
+                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd1">상품담기</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                            }
+                        ?>
+                        <!-- <tr>
                             <td>
                                 <div class="vehicle_image">
                                     <div class="img_box img_box_15">
@@ -288,7 +355,7 @@
                                     <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd3">상품담기</label>
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </section>

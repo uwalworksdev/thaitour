@@ -175,6 +175,15 @@ class ProductModel extends Model
             ->getResultArray();
     }
 
+    public function getAllProductsByCode($code)
+    {
+        return $this->where('product_code_1', $code)
+                        ->orderBy('onum', 'desc')
+                        ->orderBy('product_idx', 'desc')
+                        ->get()
+                        ->getResultArray();
+    }
+
     public function getTotalProducts($suggest_code)
     {
         return $this->db->table('tbl_product_mst a')
