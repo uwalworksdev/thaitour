@@ -1917,6 +1917,40 @@ class Product extends BaseController
         return $this->renderView('/product/spa/product-booking');
     }
 
+    public function processBooking()
+    {
+        try {
+            $product_idx = $_POST['product_idx'];
+            $day_ = $_POST['day_'];
+
+            $member_idx = $_SESSION['member']['idx'];
+            $qty = $_POST['qty'];
+
+            $option_idx = $_POST['option_idx'];
+            $option_tot = $_POST['option_tot'];
+            $option_cnt = $_POST['option_cnt'];
+            $option_name = $_POST['option_name'];
+
+            $data = [
+                'product_idx' => $product_idx,
+                'day_' => $day_,
+                'member_idx' => $member_idx,
+                'qty' => $qty,
+                'option_idx' => $option_idx,
+                'option_tot' => $option_tot,
+                'option_cnt' => $option_cnt,
+                'option_name' => $option_name
+            ];
+
+            return $this->response->setJSON($data, 200);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     public function spaCompletedOrder()
     {
         return $this->renderView('/product/spa/completed-order');

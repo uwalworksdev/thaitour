@@ -77,67 +77,67 @@
                             <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">생생리뷰(159개)</p>
                         </div>
                     </div>
-                    <div class="section2" id="section2">
-                        <h2 class="title-sec2">
-                            숙소개요
-                        </h2>
-                        <h3 class="sub-title-sec2">
-                            추천 포인트
-                        </h3>
-                        <div class="">
-                            <p class="description-sec2" style="letter-spacing: 1px">
-                                <?= viewSQ($data_['product_info']) ?>
-                            </p>
-                        </div>
-                        <div class="tag-list-icon mt-20">
-                            <?php foreach ($fresult4 as $row) : ?>
-                                <div class="item-tag">
-                                    <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
-                                    <span><?= $row['code_name'] ?></span>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <h2 class="sub-title-sec2">
-                            인기 시설 및 서비스
-                        </h2>
-                        <div class="tag_list_done">
-                            <?php foreach ($bresult4 as $row) : ?>
-                                <div class="item_done">
-                                    <img src="/uploads/icons/done_icon.png" alt="done_icon">
-                                    <span><?= $row['code_name'] ?></span>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <h2 class="sub-title-sec2">
-                            호텔주변 추천명소
-                        </h2>
-                        <div class="post-list-sec2">
-                            <?php foreach ($fresult8 as $row) : ?>
-                                <div class="">
-                                    <img src="/data/code/<?= $row['ufile1'] ?>" alt="hotel_thumbnai_1">
-                                    <span><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['code_name'] ?>(<?= $row['distance'] ?>)</span>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
 
-                    <div class="section4" id="section3">
-                        <h2 class="title-sec4">시설 &amp; 서비스</h2>
-                        <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">
-                            <?php foreach ($fresult5 as $row2): ?>
-                                <div class="tag-container-item-sec4"
-                                     style="width: calc((100% - 120px)/3); padding-right: 70px">
-                                    <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
-                                    <ul class="tag-item-list">
-                                        <?php $child = $row2['child'];
-                                        foreach ($child as $item2): ?>
-                                            <li><?= $item2['code_name'] ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
+<!--                    <div class="section2" id="section2">-->
+<!--                        <h2 class="title-sec2">-->
+<!--                            숙소개요-->
+<!--                        </h2>-->
+<!--                        <h3 class="sub-title-sec2">-->
+<!--                            추천 포인트-->
+<!--                        </h3>-->
+<!--                        <div class="">-->
+<!--                            <p class="description-sec2" style="letter-spacing: 1px">-->
+<!--                                --><?php //= viewSQ($data_['product_info']) ?>
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                        <div class="tag-list-icon mt-20">-->
+<!--                            --><?php //foreach ($fresult4 as $row) : ?>
+<!--                                <div class="item-tag">-->
+<!--                                    <img src="/data/code/--><?php //= $row['ufile1'] ?><!--" alt="--><?php //= $row['code_name'] ?><!--">-->
+<!--                                    <span>--><?php //= $row['code_name'] ?><!--</span>-->
+<!--                                </div>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </div>-->
+<!--                        <h2 class="sub-title-sec2">-->
+<!--                            인기 시설 및 서비스-->
+<!--                        </h2>-->
+<!--                        <div class="tag_list_done">-->
+<!--                            --><?php //foreach ($bresult4 as $row) : ?>
+<!--                                <div class="item_done">-->
+<!--                                    <img src="/uploads/icons/done_icon.png" alt="done_icon">-->
+<!--                                    <span>--><?php //= $row['code_name'] ?><!--</span>-->
+<!--                                </div>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </div>-->
+<!--                        <h2 class="sub-title-sec2">-->
+<!--                            호텔주변 추천명소-->
+<!--                        </h2>-->
+<!--                        <div class="post-list-sec2">-->
+<!--                            --><?php //foreach ($fresult8 as $row) : ?>
+<!--                                <div class="">-->
+<!--                                    <img src="/data/code/--><?php //= $row['ufile1'] ?><!--" alt="hotel_thumbnai_1">-->
+<!--                                    <span>--><?php //if ($row['type']) { ?><!-- --><?php //= $row['type'] ?><!--: --><?php //} ?><!-- --><?php //= $row['code_name'] ?><!--(--><?php //= $row['distance'] ?><!--)</span>-->
+<!--                                </div>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="section4" id="section3">-->
+<!--                        <h2 class="title-sec4">시설 &amp; 서비스</h2>-->
+<!--                        <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">-->
+<!--                            --><?php //foreach ($fresult5 as $row2): ?>
+<!--                                <div class="tag-container-item-sec4"-->
+<!--                                     style="width: calc((100% - 120px)/3); padding-right: 70px">-->
+<!--                                    <div class="tag-item-title"> --><?php //= $row2['code_name'] ?><!-- </div>-->
+<!--                                    <ul class="tag-item-list">-->
+<!--                                        --><?php //$child = $row2['child'];
+//                                        foreach ($child as $item2): ?>
+<!--                                            <li>--><?php //= $item2['code_name'] ?><!--</li>-->
+<!--                                        --><?php //endforeach; ?>
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </div>-->
+<!--                    </div>-->
 
                     <?php
                     $product_more = $data_['product_more'];
