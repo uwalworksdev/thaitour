@@ -1,106 +1,108 @@
 <div class="price-right-c">
-    <div class="view_nav" id="sticky" style="position: sticky; top: 30px;">
-        <div class="scroll_box">
+    <form name="frm" id="frm">
+        <div class="view_nav" id="sticky" style="position: sticky; top: 30px;">
+            <div class="scroll_box">
 
-            <div class="cho_nav">
-                <p class="date_label">
-                    <i></i> <span>출발일 <span id="select_date">2024-10-30</span></span>
-                </p>
+                <div class="cho_nav">
+                    <p class="date_label">
+                        <i></i> <span>출발일 <span id="select_date">2024-10-30</span></span>
+                    </p>
 
-                <p class="label item_label">예약인원을 확인해주세요.</p>
+                    <p class="label item_label">예약인원을 확인해주세요.</p>
 
-                <ul class="select_peo">
-                    <li class="flex_b_c cus-count-input">
-                        <div class="payment">
-                            <p class="ped_label">성인 </p>
-                        </div>
-                        <div class="opt_count_box count_box flex__c">
-                            <button type="button" onclick="minusInput(this);" class="minus_btn"
-                                    id="minusAdult"></button>
-                            <input type="text" class="input-qty" name="qty" id="adultQty" value="1"
-                                   readonly="">
-                            <button type="button" onclick="plusInput(this);" class="plus_btn"
-                                    id="addAdult"></button>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="item_option">
-                    <!-- opt_list -->
-                    <div class="opt_list">
-                        <strong class="label">옵션선택</strong>
-
-                        <div class="opt_select_wrap">
-                            <div class="opt_select disabled">
-                                <select name="moption" id="moption" onchange="sel_moption(this.value);">
-                                    <option value="">선택</option>
-                                    <?php foreach ($moption as $op) { ?>
-                                        <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
-                                    <?php } ?>
-                                </select>
+                    <ul class="select_peo">
+                        <li class="flex_b_c cus-count-input">
+                            <div class="payment">
+                                <p class="ped_label">성인 </p>
                             </div>
-                            <div class="opt_select disabled sel_option" id="sel_option">
-                                <select name="option" id="option" onchange="sel_option(this.value);">";
-                                    <option value="">옵션 선택</option>
-                                </select>
+                            <div class="opt_count_box count_box flex__c">
+                                <button type="button" onclick="minusInput(this, 'd');" class="minus_btn"
+                                        id="minusAdult"></button>
+                                <input type="text" class="input-qty" name="qty" id="adultQty" value="1"
+                                       readonly="">
+                                <button type="button" onclick="plusInput(this);" class="plus_btn"
+                                        id="addAdult"></button>
                             </div>
-                        </div>
-                    </div>
-                    <!-- // opt_list -->
-                </div>
-
-                <div class="option_list_" id="option_list_" style="margin-top: 20px">
-                    <ul class="select_peo option_list_" id="option_list_">
-
+                        </li>
                     </ul>
-                </div>
-            </div>
 
-            <div class="total_paymemt payment">
-                <!--p class="ped_label">총 예약금액</p-->
-                <p class="money"><span
-                            style="margin-right:50px;"><strong>합계</strong></span><strong><span
-                                id="total_sum" class="total_sum">0</span> 원</strong></p>
-            </div>
-            <h3 class="title-r label">약관동의</h3>
-            <div class="item-info-check item_check_term_all_">
-                <label for="fullagreement">전체동의</label>
-                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                <input type="hidden" value="N" id="fullagreement">
-            </div>
-            <div class="item-info-check item_check_term_">
-                <label for="">이용약관 동의(필수)</label>
-                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                <input type="hidden" value="N" id="terms">
-            </div>
-            <div class="item-info-check item_check_term_">
-                <label for="">개인정보 처리방침(필수)</label>
-                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                <input type="hidden" value="N" id="policy">
-            </div>
-            <div class="item-info-check item_check_term_">
-                <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
-                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                <input type="hidden" value="N" id="information">
-            </div>
-            <div class="item-info-check item_check_term_">
-                <label for="guidelines">여행안전수칙 동의(필수)</label>
-                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                <input type="hidden" value="N" id="guidelines">
-            </div>
-            <div class="nav_btn_wrap">
-                <div data-href="/product-spa/product-booking/8386">
-                    <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
-                </div>
-                <div class="flex">
-                    <button type="button" class="btn-default"
-                            onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
-                    </button>
+                    <div class="item_option">
+                        <!-- opt_list -->
+                        <div class="opt_list">
+                            <strong class="label">옵션선택</strong>
 
+                            <div class="opt_select_wrap">
+                                <div class="opt_select disabled">
+                                    <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                        <option value="">선택</option>
+                                        <?php foreach ($moption as $op) { ?>
+                                            <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                                <div class="opt_select disabled sel_option" id="sel_option">
+                                    <select name="option" id="option" onchange="sel_option(this.value);">";
+                                        <option value="">옵션 선택</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- // opt_list -->
+                    </div>
+
+                    <div class="option_list_" id="option_list_" style="margin-top: 20px">
+                        <ul class="select_peo option_list_" id="option_list_">
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="total_paymemt payment">
+                    <!--p class="ped_label">총 예약금액</p-->
+                    <p class="money"><span
+                                style="margin-right:50px;"><strong>합계</strong></span><strong><span
+                                    id="total_sum" class="total_sum">0</span> 원</strong></p>
+                </div>
+                <h3 class="title-r label">약관동의</h3>
+                <div class="item-info-check item_check_term_all_">
+                    <label for="fullagreement">전체동의</label>
+                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                    <input type="hidden" value="N" id="fullagreement">
+                </div>
+                <div class="item-info-check item_check_term_">
+                    <label for="">이용약관 동의(필수)</label>
+                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                    <input type="hidden" value="N" id="terms">
+                </div>
+                <div class="item-info-check item_check_term_">
+                    <label for="">개인정보 처리방침(필수)</label>
+                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                    <input type="hidden" value="N" id="policy">
+                </div>
+                <div class="item-info-check item_check_term_">
+                    <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                    <input type="hidden" value="N" id="information">
+                </div>
+                <div class="item-info-check item_check_term_">
+                    <label for="guidelines">여행안전수칙 동의(필수)</label>
+                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
+                    <input type="hidden" value="N" id="guidelines">
+                </div>
+                <div class="nav_btn_wrap">
+                    <div data-href="/product-spa/product-booking/8386">
+                        <button type="button" class="btn-point" onclick="order_it();">상품 예약하기</button>
+                    </div>
+                    <div class="flex">
+                        <button type="button" class="btn-default"
+                                onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
+                        </button>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <script>
     $('.item_check_term_').click(function () {
@@ -132,6 +134,7 @@
         $(this).toggleClass('checked_');
         let allChecked = $(this).hasClass('checked_');
         let value = allChecked ? 'Y' : 'N';
+        $(this).find('input').val(value);
 
         $('.item_check_term_').each(function () {
             $(this).toggleClass('checked_', allChecked);
@@ -177,8 +180,6 @@
             async: false,
             cache: false,
             success: function (data, textStatus) {
-                console.log(data)
-
                 let parent_name = data.parent_name;
 
                 let option_name = data.option_name;
@@ -197,7 +198,7 @@
                             <div class="opt_count_box count_box flex__c">
                                 <button type="button" onclick="minusInput(this);" class="minus_btn"
                                         id="minusAdult"></button>
-                                <input data-price="${option_price}" type="text" class="input-qty" name="qty" min="1" value="1"
+                                <input data-price="${option_price}" type="text" class="input-qty" name="option_qty[]" min="1" value="1"
                                        readonly="">
                                 <button type="button" onclick="plusInput(this);" class="plus_btn"
                                         id="addAdult"></button>
@@ -221,22 +222,6 @@
     }
 
     function order_it() {
-        let frm = document.frm;
-        if (frm.total_price.value == "0" || frm.total_price.value == "") {
-            alert("인원을 추가해주세요.");
-            return false;
-        }
-
-        if (frm.start_date_in.value == "") {
-            alert("춟발일자를 선택해주세요.");
-            return false;
-        }
-
-        if (frm.tours_idx.value == "") {
-            alert("상품을 선택해 주세요");
-            return false;
-        }
-
         let fullagreement = $("#fullagreement").val();
         let terms = $("#terms").val();
         let policy = $("#policy").val();
@@ -247,6 +232,32 @@
             alert("이전 작업을 피해야 할 수 있습니다.");
             return false;
         }
+
+        let day_ = $('#day_').val();
+        if (day_ == "") {
+            alert("등록 날짜를 선택하세요.");
+            return false;
+        }
+
+        let url = '<?= route_to('api.product.processBooking') ?>';
+
+        const formData = new FormData($('#frm')[0]);
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+                console.log(data)
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+
+        let uri = '/product-spa/product-booking';
     }
 
     function remove(idx) {
@@ -261,13 +272,15 @@
         calcTotal();
     }
 
-    function minusInput(el) {
+    function minusInput(el, d) {
         let input = $(el).parent().find('input');
         if (parseInt(input.val()) > 1) {
             input.val(parseInt(input.val()) - 1);
             calcTotal();
         } else {
-            removeData(el);
+            if (d !== 'd') {
+                removeData(el);
+            }
         }
     }
 
