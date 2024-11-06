@@ -460,6 +460,10 @@
     line-height: 1.5rem;
 }
 
+.section2 .price_in {
+    width: 65px;
+}
+
 .section2 .box3_2 .note p:not(:first-child) {
     display: flex;
     align-items: center;
@@ -512,6 +516,7 @@
     padding: 25px 0;
     gap: 30px;
     border-bottom: 1px solid #ddd;
+    cursor: pointer;
 }
 
 .section6 .qa-meta {

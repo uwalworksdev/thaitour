@@ -90,10 +90,8 @@
                             <colgroup>
                                 <col width="*">
                                 <col width="10%">
-                                <col width="25%">
-                                <col width="25%">
-                                <col width="8%">
-                                <col width="8%">
+                                <col width="20%">
+                                <col width="20%">
                             </colgroup>
                             <thead>
                             <tr>
@@ -104,7 +102,6 @@
                                 <th>요일</th>
                                 <th>성인(만 13세이상)</th>
                                 <th>아름(만5세)</th>
-                                <th colspan="2">유아(만 4세 이하)</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -130,12 +127,6 @@
                                                onkeyup="chkNum(this)">
                                     </div>
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
 
                             <tr>
@@ -159,13 +150,8 @@
                                                onkeyup="chkNum(this)">
                                     </div>
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
+
                             <tr>
                                 <td>아로마 테라피 마사지 (220분)</td>
                                 <td>매일</td>
@@ -187,13 +173,8 @@
                                                onkeyup="chkNum(this)">
                                     </div>
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
+
                             <tr>
                                 <td>아로마 첫 오일 (60분)</td>
                                 <td>매일</td>
@@ -215,13 +196,8 @@
                                                onkeyup="chkNum(this)">
                                     </div>
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
+
                             <tr>
                                 <td>아로마 오일 (90분)</td>
                                 <td>매일</td>
@@ -237,13 +213,8 @@
                                 <td>
                                     이용불가
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
+
                             <tr>
                                 <td>아로마 첫 오일 (120)</td>
                                 <td>매일</td>
@@ -259,13 +230,8 @@
                                 <td>
                                     이용불가
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
+
                             <tr>
                                 <td>아로마 스크럽 (90분)</td>
                                 <td>매일</td>
@@ -281,13 +247,8 @@
                                 <td>
                                     이용불가
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
+
                             <tr>
                                 <td>아로마 스크럽 (120)</td>
                                 <td>매일</td>
@@ -309,13 +270,8 @@
                                                onkeyup="chkNum(this)">
                                     </div>
                                 </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
-                                </td>
                             </tr>
+
                             <tr>
                                 <td>아로마 오일 등 목& 어깨 (90분)</td>
                                 <td>매일</td>
@@ -330,12 +286,6 @@
                                 </td>
                                 <td>
                                     이용불가
-                                </td>
-                                <td>
-                                    <p>이용불가</p>
-                                </td>
-                                <td>
-                                    <button class="btn_orderIt">건지/메이</button>
                                 </td>
                             </tr>
                             </tbody>
@@ -554,6 +504,17 @@
                         </div>
                     </div>
 
+                    <div class="section4" id="section4">
+                        <h2 class="title-sec4">
+                            위치안내
+                        </h2>
+
+                        <div id="section4_map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.7788784300687!2d106.70966641198126!3d20.84063378068171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314a7b6f6b358d29%3A0xbfdae1fdabbc3523!2sSakura%20massage%20nuru!5e0!3m2!1svi!2s!4v1730858482450!5m2!1svi!2s"
+                                    width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
                     <!--                    <div class="section2" id="section2">-->
                     <!--                        <h2 class="title-sec2">-->
                     <!--                            숙소개요-->
@@ -798,72 +759,92 @@
 
 
                                 <ul class="qa-list">
-                                    <li class="qa-item">
-                                        <div class="qa-question">
-                                            <span class="qa-number">124</span>
-                                            <span class="qa-tag normal-style">답변대기중</span>
-                                            <div class="con-cus-mo-qa">
-                                                <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
-                                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">124</span>
+                                                <span class="qa-tag normal-style">답변대기중</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
                                             </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                         </div>
-                                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                     </li>
-                                    <li class="qa-item">
-                                        <div class="qa-question">
-                                            <span class="qa-number">123</span>
-                                            <span class="qa-tag">답변대기중</span>
-                                            <div class="con-cus-mo-qa">
-                                                <p class="qa-text">결제 시점은 언제인가요?</p>
-                                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">123</span>
+                                                <span class="qa-tag">답변완료</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">결제 시점은 언제인가요?</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
                                             </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                         </div>
-                                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                                        <div class="additional-info d_none additional_info_">
+                                            <span class="load-more">더투어랩</span>
+                                            <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점
+                                                예약 시
+                                                참고해주시기
+                                                바랍니다.
+                                            </p>
+                                            <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
+                                        </div>
                                     </li>
-                                    <li class="qa-item">
-                                        <div class="qa-question">
-                                            <span class="qa-number">122</span>
-                                            <span class="qa-tag normal-style">답변대기중</span>
-                                            <div class="con-cus-mo-qa">
-                                                <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로
-                                                    외주실수...</p>
-                                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">122</span>
+                                                <span class="qa-tag normal-style">답변대기중</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로
+                                                        외주실수...</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
                                             </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                         </div>
-                                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                     </li>
-                                    <li class="qa-item">
-                                        <div class="qa-question">
-                                            <span class="qa-number">121</span>
-                                            <span class="qa-tag normal-style">답변대기중</span>
-                                            <div class="con-cus-mo-qa">
-                                                <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고
-                                                    아유타야에서...</p>
-                                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">121</span>
+                                                <span class="qa-tag normal-style">답변대기중</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고
+                                                        아유타야에서...</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
                                             </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                         </div>
-                                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                     </li>
-                                    <li class="qa-item">
-                                        <div class="qa-question">
-                                            <span class="qa-number">120</span>
-                                            <span class="qa-tag">답변대기중</span>
-                                            <div class="con-cus-mo-qa">
-                                                <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
-                                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">120</span>
+                                                <span class="qa-tag">답변완료</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
                                             </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                         </div>
-                                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                                        <div class="additional-info d_none additional_info_">
+                                            <span class="load-more">더투어랩</span>
+                                            <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점
+                                                예약 시
+                                                참고해주시기
+                                                바랍니다.
+                                            </p>
+                                            <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
+                                        </div>
                                     </li>
                                 </ul>
-                                <div class="additional-info">
-                                    <span class="load-more">더투어랩</span>
-                                    <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시
-                                        참고해주시기
-                                        바랍니다.
-                                    </p>
-                                    <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
-                                </div>
                             </div>
                             <div class="pagination">
                                 <a href="#" class="page-link">
@@ -894,6 +875,13 @@
                             </div>
                         </div>
                     </div>
+
+                    <script>
+                        $('.qa_item_').click(function () {
+                            $('.additional_info_').addClass('d_none');
+                            $(this).next().removeClass('d_none');
+                        })
+                    </script>
 
                     <div class="section7" id="section7">
                         <div class="d_flex justify_content_end">
