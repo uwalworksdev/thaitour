@@ -25,6 +25,19 @@
                                         id="addAdult"></button>
                             </div>
                         </li>
+                        <li class="flex_b_c cus-count-input">
+                            <div class="payment">
+                                <p class="ped_label">아름 </p>
+                            </div>
+                            <div class="opt_count_box count_box flex__c">
+                                <button type="button" onclick="minusInput(this, 'd');" class="minus_btn"
+                                        id="minusAdult2"></button>
+                                <input type="text" class="input-qty" name="qty" id="adultQty2" value="1"
+                                       readonly="">
+                                <button type="button" onclick="plusInput(this);" class="plus_btn"
+                                        id="addAdult2"></button>
+                            </div>
+                        </li>
                     </ul>
 
                     <div class="item_option">
