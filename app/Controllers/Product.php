@@ -1680,6 +1680,8 @@ class Product extends BaseController
     {
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+        $data['imgs'] = [];
+        $data['img_names'] = [];
         for ($i = 1; $i <= 7; $i++) {
             $file = "ufile" . $i;
             if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
