@@ -312,7 +312,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>출발요일</th>
+                                    <!-- <th>출발요일</th>
                                     <td>
                                         <input type="checkbox" name="yoil_0" value="Y"
                                                class="yoil" <?php if (isset($yoil_0) && $yoil_0 == "Y") echo "checked"; ?> >
@@ -335,14 +335,14 @@
                                         <input type="checkbox" name="yoil_6" value="Y"
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
-                                    </td>
+                                    </td> -->
                                     <th>가이드/언어</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= $guide_lang ?>" style="width:20%"/><br/>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>시작일</th>
                                     <td>
                                         <input type="text" name="t_sdate" value="<?=substr($t_sdate, 0, 10)?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
@@ -351,7 +351,7 @@
                                     <td>
                                         <input type="text" name="t_edate" value="<?=substr($t_edate, 0, 10)?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>메모</th>
