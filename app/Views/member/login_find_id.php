@@ -185,10 +185,9 @@ $this->section('content'); ?>
 
 
 	function confirm_it() {
-		const cert_num = $("#confirm_num").val();
+		let cert_num;
 		let user_name;
 		if($("input:radio[name=find_id]:checked").val() == 'sms') {
-			user_name = $("#user_name").val();
 			if ($("#user_name").val().length < 2) {
 				alert("이름을 입력해주셔야 합니다.");
 				$("#user_name").focus();
@@ -209,24 +208,31 @@ $this->section('content'); ?>
 				alert("휴대전화번호를 바르게 입력해주셔야 합니다.");
 				return;
 			}
+			if ($("#confirm_num").val().length == 0) {
+				$("#confirm_num").focus();
+				alert("인증번호를 바르게 입력해주셔야 합니다.");
+				return;
+			}
+			user_name 	= $("#user_name").val();
+			cert_num 	= $("#confirm_num").val()
 		} else {
 			if ($("#name2").val().length < 2) {
 				alert("이름을 입력해주셔야 합니다.");
 				$("#name2").focus();
 				return;
 			}
-			user_name = $("#name2").val();
 			if ($("#email_1").val() == "" || $("#email_2").val() == "") {
 				alert("이메일을 입력해주셔야 합니다.");
 				$("#email_1").focus();
 				return;
 			}
-		}
-		
-		if ($("#confirm_num").val().length == 0) {
-			$("#confirm_num").focus();
-			alert("인증번호를 바르게 입력해주셔야 합니다.");
-			return;
+			if ($("#confirm_num2").val().length == 0) {
+				$("#confirm_num2").focus();
+				alert("인증번호를 바르게 입력해주셔야 합니다.");
+				return;
+			}
+			user_name = $("#name2").val();
+			cert_num = $("#confirm_num2").val()
 		}
 
 		const mobile 		= $("#tel1").val() + "-" + $("#tel2").val() + "-" + $("#tel3").val();

@@ -204,7 +204,7 @@
                                 name="vehicle_cnt[]">
                                 <option value="">선택해주세요.</option>
                                 <?php for($i = $value['min_cnt']; $i <= $value['max_cnt']; $i++) : ?>
-                                    <option value="<?= $i ?>"><?= $i ?>차</option>
+                                    <option value="<?= $i ?>"><?= $i ?>개</option>
                                 <?php endfor; ?>
                             </select>
                         </div>
