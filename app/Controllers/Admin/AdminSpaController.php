@@ -110,6 +110,9 @@ class AdminSpaController extends BaseController
 
             $addrs = updateSQ($_POST["addrs"] ?? '');
 
+            $latitude = updateSQ($_POST["latitude"] ?? '');
+            $longitude = updateSQ($_POST["longitude"] ?? '');
+
             $product_type = updateSQ($_POST["product_type"] ?? '');
 
             $code_utilities = updateSQ($_POST["code_utilities"] ?? '');
@@ -281,6 +284,9 @@ class AdminSpaController extends BaseController
                             ,rfile7				    = '" . $data["rfile7"] . "'
                 
                             ,addrs                  = '" . $addrs . "'
+                            ,longitude              = '" . $longitude . "'
+                            ,latitude               = '" . $latitude . "'
+                            
                             ,product_type           = '" . $product_type . "'
                             
                             ,code_utilities         = '" . $code_utilities . "'
@@ -388,6 +394,9 @@ class AdminSpaController extends BaseController
                             ,rfile7				    = '" . $data["rfile7"] . "'
                             
                             ,addrs                  = '" . $addrs . "'
+                            ,longitude              = '" . $longitude . "'
+                            ,latitude               = '" . $latitude . "'
+                            
                             ,product_type           = '" . $product_type . "'
                             
                             ,code_utilities         = '" . $code_utilities . "'
