@@ -387,6 +387,13 @@ $routes->group("member", static function ($routes) {
     $routes->get("login", "Member::LoginForm");
     $routes->post("login_check", "Member::LoginCheck");
     $routes->get("login_find_id", "Member::LoginFindId");
+    $routes->get("login_find_pw", "Member::LoginFindPw");
+    $routes->post('cert_id_send_sms', 'Member::cert_id_send_sms');
+    $routes->post('cert_pw_send_sms', 'Member::cert_pw_send_sms');
+    $routes->post('cert_id_send_email', 'Member::cert_id_send_email');
+    $routes->post('cert_pw_send_email', 'Member::cert_pw_send_email');
+    $routes->post('find_id_ok', 'Member::find_id_ok');
+    $routes->post('find_pw_ok', 'Member::find_pw_ok');
     $routes->get("join_choice", "Member::JoinChoice");
     $routes->get("join_agree", "Member::JoinAgree");
     $routes->post("join_form", "Member::JoinForm");
@@ -402,6 +409,7 @@ $routes->group("member", static function ($routes) {
     $routes->get("google_login", "Member::google_login");
     $routes->post("join_form_sns", "Member::join_form_sns");
     $routes->post("update/(:segment)", "Member::update_member/$1");
+    $routes->get("admin_password_change", "Member::AdminPasswordChange");
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
