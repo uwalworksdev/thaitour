@@ -43,7 +43,11 @@
 							<td>
 								<div style="margin:10px; display: flex; gap: 5px">
 									<a href="javascript:add_table();" class="btn btn-primary">추가</a>
-									<a href="javascript:remove_table();" class="btn btn-primary">삭제</a>
+									<?php if ($productTourInfo) { ?>
+										<a href="javascript:delete_table();" class="btn btn-primary">삭제</a>
+									<?php } else { ?>
+										<a href="javascript:remove_table();" class="btn btn-primary">삭제</a>
+									<?php }?>
 								</div>
 								<?php if ($productTourInfo): ?>
                                     <?php foreach ($productTourInfo as $info): ?>
@@ -420,40 +424,34 @@
 	}
 
 	function add_tour(infoIdx) {
-    var targetTable = $(".table_list[data-index='0']").find(".air_main[data-info-idx='" + infoIdx + "']");
+		var targetTable = $(".table_list[data-index='0']").find(".air_main[data-info-idx='" + infoIdx + "']");
 
-    if (targetTable.length === 0) {
-        console.error("Không tìm thấy bảng với infoIdx:", infoIdx);
-        return;
-    }
+		var newRow = `
+			<tr class="air_list_1" style="height:40px">
+				<td>
+					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="">
+					<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" style="width:100%" />
+				</td>
+				<td>
+					<input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+				</td>
+				<td>
+					<input type="text" name="tour_price_kids[${infoIdx}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+				</td>
+				<td>
+					<input type="text" name="tour_price_baby[${infoIdx}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+				</td>
+				<td>
+					<select name="status[${infoIdx}][]">
+						<option value="Y" selected>판매중</option>
+						<option value="N">중지</option>
+					</select>
+				</td>
+			</tr>
+		`;
 
-    var newRow = `
-        <tr class="air_list_1" style="height:40px">
-            <td>
-                <input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="">
-                <input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" style="width:100%" />
-            </td>
-            <td>
-                <input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
-            </td>
-            <td>
-                <input type="text" name="tour_price_kids[${infoIdx}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
-            </td>
-            <td>
-                <input type="text" name="tour_price_baby[${infoIdx}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
-            </td>
-            <td>
-                <select name="status[${infoIdx}][]">
-                    <option value="Y" selected>판매중</option>
-                    <option value="N">중지</option>
-                </select>
-            </td>
-        </tr>
-    `;
-
-    // Thêm hàng mới vào bảng
-    targetTable.append(newRow);
-}
+		targetTable.append(newRow);
+	}
 
 	function remove_tour(infoIdx) {
 		var targetTable = $(".table_list[data-index='0']").find(".air_main[data-info-idx='" + infoIdx + "']");

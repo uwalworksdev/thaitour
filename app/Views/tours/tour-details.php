@@ -55,7 +55,7 @@
                 <div class="main">
                     <a class="active short_link" data-target="product_info" href="#product_info">상품예약</a>
                     <a class="short_link" data-target="product_des" href="#product_des">상품설명</a>
-                    <a href="/product-tours/location_info/1324">위치정보</a>
+                    <a href="/product-tours/location_info/<?= $product['product_idx']?>">위치정보</a>
                     <a class="short_link" href="">더투어랩리뷰</a>
                     <a class="short_link" href="">생생리뷰(159개)</a>
                     <a class="short_link" href="">상품Q&A</a>
@@ -260,8 +260,8 @@
                                 ?>
                                     <div class="form-group">
                                         <div class="above">
-                                            <input type="checkbox" id="html">
-                                            <label for="html"><?=$option['option_name']?></label>
+                                            <input type="checkbox" id="<?=$option['idx']?>">
+                                            <label for="<?=$option['idx']?>"><?=$option['option_name']?></label>
                                         </div>
                                         <div class="quantity-info">
                                             <span class="price"><?=$option['option_price']?>원</span>
@@ -481,7 +481,7 @@
         <h2 class="title-sec2">
             포함/불포함 사항
         </h2>
-        <?php if($product['product_able']) {?>
+        <?php if($product['product_able'] && $product['product_able'] != "&lt;p&gt;&nbsp;&lt;/p&gt;") {?>
         <div class="tit-blue-type-2">
             <span class="tit-blue">포함사항</span>
         </div>
@@ -654,28 +654,27 @@
                 const currentDate = new Date();
                 let selectedDate = null;
 
-                const setTourDatesAndPrice = (startDate, endDate, price) => {
+                const setTourDatesAndPrice = (startDate, endDate, price, priceBaht) => {
                     s_date = new Date(startDate);
                     e_date = new Date(endDate);
                     productPrice = price;
+                    productPriceBaht = priceBaht;
                     renderCalendar();
                 };
 
                 const initializeDefaultTour = () => {
-                    const firstTourButton = $('.btn-ct-3').first();
-                    const tourIndex = firstTourButton.data('tour-index'); 
-                    const startDateId = `#tour-date-${firstTourButton.closest('.sec2-item-card').data('tour-index')}`; // Chỉnh sửa để lấy đúng tour index
-
-                    console.log('Start Date ID:', startDateId); // Kiểm tra ID đang được lấy
-                    const tourStartDate = $(startDateId).data('start-date');
-                    const tourEndDate = $(startDateId).data('end-date');
-                    const tourPrice = parseFloat(firstTourButton.closest('.sec2-item-card').find('.ps-right').text());
+                    const firstTourDateElement = $('.sec2-date-main').first();
+                    const tourStartDate = firstTourDateElement.data('start-date');
+                    const tourEndDate = firstTourDateElement.data('end-date');
                     
-                    console.log('Tour Start Date:', tourStartDate); // Kiểm tra giá trị start date
-                    console.log('Tour End Date:', tourEndDate); // Kiểm tra giá trị end date
-                    console.log('Tour Price:', tourPrice); // Kiểm tra giá trị price
+                    const firstTourCard = $('.sec2-item-card').first();
+                    const tourPriceText = firstTourCard.find('.ps-right').text().trim();
+                    const tourPrice = parseFloat(tourPriceText);
 
-                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice);
+                    const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim();
+                    const tourPriceBaht = parseFloat(tourPriceTextBath);
+
+                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht);
                 };
 
                 const renderCalendar = () => {
@@ -699,9 +698,9 @@
                         const date = new Date(year, month, day);
 
                         if (date < s_date || date > e_date) {
-                            $dayDiv.addClass('disabled').append("<p>불가</p>");
+                            $dayDiv.addClass('disabled').append("<p>예약마감</p>");
                         } else {
-                            $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${productPrice}원</p></p>`);
+                            $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${productPrice}원</p><p class="price2">(${productPriceBaht}바트)</p></p>`);
 
                             $dayDiv.click(() => {
                                 $('.day').removeClass('active');
@@ -715,13 +714,14 @@
                 };
 
                 $('.btn-ct-3').click(function() {
-                    const tourIndex = $(this).data('tour-index'); 
-                    const startDateId = `#tour-date-${tourIndex}`;
-                    const tourStartDate = $(startDateId).data('start-date');
-                    const tourEndDate = $(startDateId).data('end-date');
+                    const firstTourDateElement = $('.sec2-date-main').first();
+                    const tourStartDate = firstTourDateElement.data('start-date');
+                    const tourEndDate = firstTourDateElement.data('end-date');
+                    
                     const tourPrice = parseFloat($(this).closest('.sec2-item-card').find('.ps-right').text());
+                    const tourPriceBaht = parseFloat($(this).closest('.sec2-item-card').find('.ps-left').text());
 
-                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice);
+                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice,tourPriceBaht);
                 });
 
                 $prevMonthBtn.click(() => {

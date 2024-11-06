@@ -638,8 +638,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>예약전 확인사항(PC)</th>
-                                    <td>
+                                    <th>미팅/픽업장소 안내</th>
+                                    <td colspan="3">
 
 								<textarea name="product_confirm" id="product_confirm" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
@@ -671,9 +671,9 @@
                                         </script>
 
                                     </td>
-                                    <th>예약전 확인사항(모바일)</th>
+                                    <!-- <th>예약전 확인사항(모바일)</th>
                                     <td>
-								<textarea name="product_confirm_m" id="product_confirm_m" class="input_txt"
+								        <textarea name="product_confirm_m" id="product_confirm_m" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm_m); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors13 = [];
@@ -701,7 +701,7 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
-                                    </td>
+                                    </td> -->
                                 </tr>
 
                                 <tr>
@@ -868,7 +868,7 @@
                                             });
                                         </script>
                                     </td>
-                                    <th>어린이정책</th>
+                                    <th>더투어랩 이용방법</th>
                                     <td>
 								<textarea name="etc_comment" id="etc_comment" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($etc_comment); ?></textarea>
@@ -1019,9 +1019,9 @@
                                                                 <td>
                                                                     <input type='text' class='onlynum' name='o_num[]' id='o_num_<?=$option['idx']?>' value="<?=$option['onum']?>" />
                                                                 </td>
-                                                                <td align="center">
-                                                                    <button type="button" onclick="updOption('<?=$option['idx']?>')" >수정</button>
-                                                                    <button type="button" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
+                                                                <td align="center" style="display: flex; gap: 5px; justify-content: center; align-items: center">
+                                                                    <button type="button" style="height: 25px" onclick="updOption('<?=$option['idx']?>')" >수정</button>
+                                                                    <button type="button" style="height: 25px" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
                                                                 </td>
                                                             </tr>
                                                         <?php endforeach; ?>
@@ -1455,7 +1455,7 @@
 
 
             addOption += "	<td>																  ";
-            addOption += '		<button type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
+            addOption += '		<button type="button" style="height: 25px" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
             addOption += "</tr>																	  ";
 
@@ -1491,7 +1491,7 @@
 
 
             addOption += "	<td>																  ";
-            addOption += '		<button type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
+            addOption += '		<button type="button" style="height: 25px" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
             addOption += "</tr>																	  ";
 
@@ -1781,7 +1781,7 @@
             oEditors10.getById["etc_comment"].exec("UPDATE_CONTENTS_FIELD", []);
             // oEditors11.getById["etc_comment_m"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors12.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);
-            oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
+            // oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
 
