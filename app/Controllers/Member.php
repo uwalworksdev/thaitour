@@ -732,7 +732,7 @@ class Member extends BaseController
             $result = phone_chk($mobile);
         }
 
-        return $this->response->setBody('인증번호가 발송되었습니다.' . session("member.phone_chk"));
+        return $this->response->setBody('인증번호가 발송되었습니다.' );
     }
     public function cert_pw_send_sms()
     {
@@ -752,7 +752,7 @@ class Member extends BaseController
             $result = phone_chk($mobile);
         }
 
-        return $this->response->setBody('인증번호가 발송되었습니다.'. session("member.phone_chk"));
+        return $this->response->setBody('인증번호가 발송되었습니다.');
     }
     public function cert_id_send_email()
     {
@@ -773,7 +773,7 @@ class Member extends BaseController
             $result = email_chk($to_email);
         }
 
-        return $this->response->setBody('인증번호가 발송되었습니다.' . session("member.email_chk"));
+        return $this->response->setBody('인증번호가 발송되었습니다.');
     }
     public function cert_pw_send_email()
     {
@@ -793,7 +793,7 @@ class Member extends BaseController
             $result = email_chk($user_email);
         }
 
-        return $this->response->setBody('인증번호가 발송되었습니다.'. session("member.email_chk"));
+        return $this->response->setBody('인증번호가 발송되었습니다.');
     }
     public function find_id_ok()
     {
