@@ -559,6 +559,67 @@
                                 </caption>
                                 <colgroup>
                                     <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        상세정보
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>소개&시설</th>
+                                    <td colspan="3">
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>위치안내</th>
+                                    <td colspan="3">
+
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        상품문의
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>상품문의(FAQ)</th>
+                                    <td colspan="3">
+
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
                                     <col width="5%"/>
                                     <col width="10%"/>
                                     <col width="40%"/>
@@ -1341,6 +1402,8 @@
             // oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
             // oEditors12.getById["product_info"].exec("UPDATE_CONTENTS_FIELD", []);
             // oEditors13.getById["product_info_m"].exec("UPDATE_CONTENTS_FIELD", []);
+
+            oEditors12.getById["product_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
             let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {

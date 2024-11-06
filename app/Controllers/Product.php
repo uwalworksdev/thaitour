@@ -6,6 +6,7 @@ use Config\CustomConstants as ConfigCustomConstants;
 use CodeIgniter\I18n\Time;
 use Exception;
 use App\Models\Hotel;
+use mysql_xdevapi\Session;
 
 class Product extends BaseController
 {
@@ -1680,6 +1681,8 @@ class Product extends BaseController
     {
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+        $data['imgs'] = [];
+        $data['img_names'] = [];
         for ($i = 1; $i <= 7; $i++) {
             $file = "ufile" . $i;
             if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
@@ -1912,14 +1915,36 @@ class Product extends BaseController
         return $this->renderView('/product/spa/spa-details', $data);
     }
 
-    public function productBooking($code_no)
+    public function productBooking()
     {
-        return $this->renderView('/product/spa/product-booking');
+        $session = \Config\Services::session();
+        $data = $session->get('data_cart');
+
+        $product_idx = $data['product_idx'];
+        $day_ = $data['day_'];
+        $member_idx = $data['member_idx'];
+        $qty = $data['qty'];
+
+        $sql = 'SELECT * FROM tbl_product_mst WHERE product_idx = ' . $product_idx;
+        $result = $this->db->query($sql);
+        $prod = $result->getRowArray();
+
+        $res = [
+            'prod' => $prod,
+            'day_' => $day_,
+            'member_idx' => $member_idx,
+            'qty' => $qty,
+        ];
+
+        return $this->response->setJSON($data, 200);
+        return $this->renderView('/product/spa/product-booking', $res);
     }
 
     public function processBooking()
     {
         try {
+            $session = \Config\Services::session();
+
             $product_idx = $_POST['product_idx'];
             $day_ = $_POST['day_'];
 
@@ -1928,6 +1953,7 @@ class Product extends BaseController
 
             $option_idx = $_POST['option_idx'];
             $option_tot = $_POST['option_tot'];
+            $option_qty = $_POST['option_qty'];
             $option_cnt = $_POST['option_cnt'];
             $option_name = $_POST['option_name'];
 
@@ -1937,12 +1963,21 @@ class Product extends BaseController
                 'member_idx' => $member_idx,
                 'qty' => $qty,
                 'option_idx' => $option_idx,
+                'option_qty' => $option_qty,
                 'option_tot' => $option_tot,
                 'option_cnt' => $option_cnt,
                 'option_name' => $option_name
             ];
 
-            return $this->response->setJSON($data, 200);
+            $session->set('data_cart', $data);
+//            return $this->response->setJSON($data, 200);
+            $url = '/product-spa/product-booking';
+
+            $message = "성공.";
+            return "<script>
+                    alert('$message');
+                        parent.location.href='$url';
+                    </script>";
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
