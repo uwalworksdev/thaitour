@@ -27,7 +27,7 @@
                         </li>
                         <li class="flex_b_c cus-count-input">
                             <div class="payment">
-                                <p class="ped_label">아름 </p>
+                                <p class="ped_label">아동</p>
                             </div>
                             <div class="opt_count_box count_box flex__c">
                                 <button type="button" onclick="minusInput(this, 'd');" class="minus_btn"
