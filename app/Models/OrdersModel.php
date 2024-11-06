@@ -68,11 +68,15 @@ class OrdersModel extends Model
         ];
     }
     public function makeOrderNo() {
-        $todayOrder = $this->select()->where('order_date', date('Y-m-d'))->orderBy('order_no', 'desc')->limit(1)->get()->getRowArray();
-        if ($todayOrder) {
-            return $todayOrder['order_no'] + 1;
-        } else {
-            return 1;
+        $todayOrder = $this->select()->where('order_date', date('Y-m-d'))->get()->getResultArray();
+        $maxOrderNo = 0;
+        foreach ($todayOrder as $key => $value) {
+            $no = substr($value['order_no'], -3);
+            if ($no > $maxOrderNo) {
+                $maxOrderNo = $no;
+            }
         }
+        $order_no = str_pad($maxOrderNo + 1, 3, "0", STR_PAD_LEFT);
+        return "S" . date('Ymd') . $order_no;
     }
 }

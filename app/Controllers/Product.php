@@ -1342,7 +1342,7 @@ class Product extends BaseController
 
             $order_idx = $this->orderModel->insert($data);
             if ($order_idx) {
-                $order_no = "S" . substr(date("Ymd"), 2, 8) . str_pad($order_idx, 3, "0", STR_PAD_LEFT);
+                $order_no = $this->orderModel->makeOrderNo();
                 $this->orderModel->update($order_idx, ["order_no" => $order_no]);
 
                 if (!empty($use_coupon_idx)) {
@@ -1546,14 +1546,17 @@ class Product extends BaseController
 
         $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
 
-        if ($coupon['dc_type'] == "P") {
-            $price                  = $total_vehicle_price + $data['total_price'];
-            $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
-            $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
-        } else if ($coupon['dc_type'] == "D") {
-            $data['discount']       = $coupon['coupon_price'];
-            $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        if ($coupon) {
+            if ($coupon['dc_type'] == "P") {
+                $price                  = $total_vehicle_price + $data['total_price'];
+                $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
+                $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+            } else if ($coupon['dc_type'] == "D") {
+                $data['discount']       = $coupon['coupon_price'];
+                $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+            }
         }
+
         $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
@@ -1569,7 +1572,7 @@ class Product extends BaseController
         $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
         $data['vehicle_idx']        = $this->request->getVar('vehicle_idx');
         $data['vehicle_cnt']        = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx']         = $this->request->getVar('use_coupon_idx');
+        $data['use_coupon_idx']     = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -1596,90 +1599,113 @@ class Product extends BaseController
 
     public function customerFormOk()
     {
-        $data                           = $this->request->getPost();
-        $data['m_idx']                  = session('member.idx') ?? "";
-        $product                        = $this->productModel->find($data['product_idx']);
-        $data['product_name']           = $product['product_name'];
-        $data['product_code_1']         = $product['product_code_1'];
-        $data['product_code_2']         = $product['product_code_2'];
-        $data['product_code_3']         = $product['product_code_3'];
-        $data['product_code_4']         = $product['product_code_4'];
-        $data['order_no']               = $this->orderModel->makeOrderNo();
-        $data['order_user_email']       = $data['email_1'] . "@" . $data['email_2'];
-        $data['order_r_date']           = date('Y-m-d H:i:s');
-        $data['order_status']           = "W";
-        if($data['radio_phone'] == "kor") {
-            $data['order_user_phone']   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
-        } else {
-            $data['order_user_phone']   = $data['phone_thai'];
-        }
+        try {
+            $data                           = $this->request->getPost();
+            $data['m_idx']                  = session('member.idx') ?? "";
+            $product                        = $this->productModel->find($data['product_idx']);
+            $data['product_name']           = $product['product_name'];
+            $data['product_code_1']         = $product['product_code_1'];
+            $data['product_code_2']         = $product['product_code_2'];
+            $data['product_code_3']         = $product['product_code_3'];
+            $data['product_code_4']         = $product['product_code_4'];
+            $data['order_no']               = $this->orderModel->makeOrderNo();
+            $data['order_user_email']       = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_r_date']           = date('Y-m-d H:i:s');
+            $data['order_status']           = "W";
+            if($data['radio_phone'] == "kor") {
+                $data['order_user_phone']   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+            } else {
+                $data['order_user_phone']   = $data['phone_thai'];
+            }
 
-        $data['vehicle_time']           = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+            $data['vehicle_time']           = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
-        $priceCalculate = $this->golfPriceCalculate(
-            $data['option_idx'],
-            $data['people_adult_cnt'],
-            $data['vehicle_cnt'],
-            $data['vehicle_idx'],
-            $data['use_coupon_idx']
-        );
+            $priceCalculate = $this->golfPriceCalculate(
+                $data['option_idx'],
+                $data['people_adult_cnt'],
+                $data['vehicle_cnt'],
+                $data['vehicle_idx'],
+                $data['use_coupon_idx']
+            );
 
-        $data['order_price']            = $priceCalculate['final_price'];
-        $data['used_coupon_idx']        = $data['use_coupon_idx'];
-        $data['ip']                     = $this->request->getIPAddress();
+            $data['order_price']            = $priceCalculate['final_price'];
+            $data['used_coupon_idx']        = $data['use_coupon_idx'];
+            $data['ip']                     = $this->request->getIPAddress();
+            $data['order_gubun']            = "golf";
+            $data['code_name']              = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name']        = encryptField($data['order_user_name'], 'encode');
 
-        $this->orderModel->save($data);
+            if($data['radio_phone'] == "kor") {
+                $order_user_mobile              = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+            } else {
+                $order_user_mobile              = $data['phone_thai'];
+            }
 
-        $order_idx = $this->orderModel->getInsertID();
+            $data['order_user_mobile']      = encryptField($order_user_mobile, 'encode');
 
-        foreach ($data['companion_name'] as $key => $value) {
-            $this->orderSubModel->insert([
-                'order_idx' => $order_idx,
-                'product_idx' => $data['product_idx'],
-                'order_name_kor' => encryptField($data['companion_name'][$key], 'encode'),
-                'order_sex' => $data['companion_gender'][$key],
-            ]);
-        }
+            $this->orderModel->save($data);
 
-        foreach ($data['vehicle_idx'] as $key => $value) {
-            $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
-            if ($vehicle) {
-                $this->orderOptionModel->insert([
-                    'option_type' => 'vehicle',
+            $order_idx = $this->orderModel->getInsertID();
+
+            foreach ($data['companion_name'] as $key => $value) {
+                $this->orderSubModel->insert([
                     'order_idx' => $order_idx,
                     'product_idx' => $data['product_idx'],
-                    'option_name' => $vehicle['code_name'],
-                    'option_idx' => $vehicle['code_idx'],
-                    'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key],
-                    'option_cnt' => $data['vehicle_cnt'][$key],
-                    'option_date' => $data['order_r_date'],
+                    'order_name_kor' => encryptField($data['companion_name'][$key], 'encode'),
+                    'order_sex' => $data['companion_gender'][$key],
                 ]);
             }
+
+            foreach ($data['vehicle_idx'] as $key => $value) {
+                $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
+                if ($vehicle) {
+                    $this->orderOptionModel->insert([
+                        'option_type' => 'vehicle',
+                        'order_idx' => $order_idx,
+                        'product_idx' => $data['product_idx'],
+                        'option_name' => $vehicle['code_name'],
+                        'option_idx' => $vehicle['code_idx'],
+                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key],
+                        'option_cnt' => $data['vehicle_cnt'][$key],
+                        'option_date' => $data['order_r_date'],
+                    ]);
+                }
+            }
+
+            if (!empty($data['use_coupon_idx'])) {
+                $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
+
+                if ($coupon) {
+                    $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
+
+                    $cou_his = [
+                        "order_idx" => $order_idx,
+                        "product_idx" => $data['product_idx'],
+                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx" => $data['use_coupon_idx'],
+                        "used_coupon_money" => $priceCalculate['discount'],
+                        "ch_r_date" => date('Y-m-d H:i:s'),
+                        "m_idx" => session('member.idx')
+                    ];
+
+                    $this->couponHistory->insert($cou_his);
+                }
+            }
+
+            return $this->response->setBody("
+                <script>
+                    alert('주문되었습니다');
+                    parent.location.href = '/product/completed-order';
+                </script>
+            ");
+        } catch (\Throwable $th) {
+            return $this->response->setBody("
+                    <script>
+                        alert('주문되지 않습니다');
+                        parent.location.reload();
+                    </script>
+                ");
         }
-
-        if (!empty($data['use_coupon_idx'])) {
-            $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
-            $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
-
-            $cou_his = [
-                "order_idx" => $order_idx,
-                "product_idx" => $data['product_idx'],
-                "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                "used_coupon_idx" => $data['use_coupon_idx'],
-                "used_coupon_money" => $priceCalculate['discount'],
-                "ch_r_date" => date('Y-m-d H:i:s'),
-                "m_idx" => session('member.idx')
-            ];
-
-            $this->couponHistory->insert($cou_his);
-        }
-
-        return $this->response->setBody("
-            <script>
-                alert('주문되었습니다');
-                parent.location.href = '/product/completed-order';
-            </script>
-        ");
     }
 
     public function index8($product_idx)

@@ -159,11 +159,11 @@
                                         <label for="test1">한국번호*</label>
                                     </p>
                                     <div class="form-group form-group-cus-4input">
-                                        <input name="phone_1" class="phone_kor" type="text" id="phone_1" required data-label="한국번호" />
+                                        <input name="phone_1" maxlength="3" class="phone_kor phone" type="text" id="phone_1" required data-label="한국번호" />
                                         <span> - </span>
-                                        <input name="phone_2" class="phone_kor" type="text" id="phone_2" required data-label="한국번호" />
+                                        <input name="phone_2" maxlength="4" class="phone_kor phone" type="text" id="phone_2" required data-label="한국번호" />
                                         <span> - </span>
-                                        <input name="phone_3" class="phone_kor" type="text" id="phone_3" required data-label="한국번호" />
+                                        <input name="phone_3" maxlength="4" class="phone_kor phone" type="text" id="phone_3" required data-label="한국번호" />
                                     </div>
                                 </div>
                                 <div class="phone_wrap_item form-group">
@@ -172,7 +172,7 @@
                                         <label for="test2">태국번호 *</label>
                                     </p>
                                     <div class="form-group">
-                                        <input name="phone_thai" class="phone_thai" type="text" id="phone_thai" disabled required data-label="한국번호" />
+                                        <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text" id="phone_thai" disabled required data-label="한국번호" />
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                                     <select id="car-time-hour" class="select-width">
                                         <option value="01">TH</option>
                                     </select>
-                                    <input name="local_phone" type="text" id="local_phone" placeholder="" />
+                                    <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone" placeholder="" />
                                 </div>
                             </div>
                         </div>
@@ -294,6 +294,11 @@
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
     <script>
         $(document).ready(function() {
+
+            $(".phone").on("input", function() {
+                $(this).val($(this).val().replace(/[^0-9]/g, ""));
+            });
+
             function formatDate(date) {
                 var d = new Date(date),
                     month = '' + (d.getMonth() + 1),
