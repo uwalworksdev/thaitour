@@ -172,6 +172,8 @@ class AdminSpaController extends BaseController
                 }
             }
 
+            $product_code_list = $product_code_1 . '|' . $product_code_2 . '|' . $product_code_3 . '|' . $product_code_4;
+
             if ($product_idx) {
                 $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
                 $row = $this->connect->query("$sql")->getRowArray();
@@ -197,6 +199,7 @@ class AdminSpaController extends BaseController
                             ,product_code_2			= '" . $product_code_2 . "'
                             ,product_code_3			= '" . $product_code_3 . "'
                             ,product_code_4			= '" . $product_code_4 . "'
+                            ,product_code_list		= '" . $product_code_list . "'
                             ,product_code_name_1	= '" . $product_code_name_1 . "'
                             ,product_code_name_2	= '" . $product_code_name_2 . "'
                             ,product_code_name_3	= '" . $product_code_name_3 . "'
@@ -311,6 +314,7 @@ class AdminSpaController extends BaseController
                             ,product_code_2			= '" . $product_code_2 . "'
                             ,product_code_3			= '" . $product_code_3 . "'
                             ,product_code_4			= '" . $product_code_4 . "'
+                            ,product_code_list		= '" . $product_code_list . "'
                             ,product_code_name_1	= '" . $product_code_name_1 . "'
                             ,product_code_name_2	= '" . $product_code_name_2 . "'
                             ,product_code_name_3	= '" . $product_code_name_3 . "'
@@ -870,13 +874,58 @@ class AdminSpaController extends BaseController
     public function save_option_price()
     {
         try {
-            $msg = '';
+            $p_idx = $_POST['p_idx'];
 
-            return $this->response->setStatusCode(200)
-                ->setJSON([
-                    'status' => 'success',
-                    'message' => $msg
-                ]);
+            $product_idx = $_POST['product_idx'];
+            $s_date = $_POST['s_date'];
+            $e_date = $_POST['e_date'];
+            $price1 = $_POST['price1'];
+            $price2 = $_POST['price2'];
+            $price3 = $_POST['price3'];
+
+            $sel_day = $_POST['sel_day'];
+
+            if ($product_idx) {
+                $sql = "update tbl_product_mst SET 
+                            ,product_idx		= '" . $product_idx . "'
+                            ,s_date				= '" . $s_date . "'
+                            ,e_date			    = '" . $e_date . "'
+                            ,price1			    = '" . $price1 . "'
+                            ,price2				= '" . $price2 . "'
+                            ,price3		        = '" . $price3 . "' 
+                            ,sel_day		    = '" . $sel_day . "'
+                        where p_idx             = '" . $p_idx . "'
+                    ";
+                write_log("상품정보수정 : " . $sql);
+
+                $this->connect->query($sql);
+            } else {
+                $sql = "insert into tbl_product_mst SET 
+                            product_idx			= '" . $product_idx . "'
+                            ,s_date             = '" . $s_date . "'
+                            ,e_date             = '" . $e_date . "'
+                            ,price1             = '" . $price1 . "'
+                            ,price2             = '" . $price2 . "'
+                            ,price3             = '" . $price3 . "'
+                            ,sel_day            = '" . $sel_day . "'
+                    ";
+
+                write_log("상품정보입력 : " . $sql);
+
+                $this->connect->query($sql);
+            }
+
+            if ($product_idx) {
+                $message = "수정되었습니다.";
+
+            } else {
+                $message = "등록되었습니다.";
+            }
+            return "<script>
+                    alert('$message');
+                        parent.location.reload();
+                    </script>";
+
         } catch (\Exception $e) {
             return $this->response
                 ->setStatusCode(400)
