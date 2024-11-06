@@ -88,8 +88,8 @@
                             <colgroup>
                                 <col width="*">
                                 <col width="10%">
-                                <col width="20%">
-                                <col width="20%">
+                                <col width="25%">
+                                <col width="25%">
                             </colgroup>
                             <thead>
                             <tr>
@@ -114,6 +114,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -123,6 +124,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                             </tr>
@@ -137,6 +139,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -146,6 +149,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                             </tr>
@@ -160,6 +164,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -169,6 +174,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                             </tr>
@@ -183,6 +189,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -192,6 +199,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                             </tr>
@@ -206,6 +214,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -223,6 +232,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -240,6 +250,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -257,6 +268,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
@@ -266,6 +278,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                             </tr>
@@ -280,6 +293,7 @@
                                         </div>
                                         <input type="text" name="mem_cnt1[]" class="price_in" size="4"
                                                onkeyup="chkNum(this)">
+                                        <span>명</span>
                                     </div>
                                 </td>
                                 <td>
