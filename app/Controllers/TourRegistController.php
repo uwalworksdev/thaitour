@@ -722,8 +722,6 @@ class TourRegistController extends BaseController
             $tours_join = $row["tours_join"];
             $tours_hour = $row["tours_hour"];
             $tours_total_hour = $row["tours_total_hour"];
-            $t_sdate = $row["t_sdate"];
-            $t_edate = $row["t_edate"];
 
             $product_type = $row["product_type"];
 
@@ -890,8 +888,6 @@ class TourRegistController extends BaseController
             "tours_join" => $tours_join ?? '',
             "tours_hour" => $tours_hour ?? '',
             "tours_total_hour" => $tours_total_hour ?? '',
-            "t_sdate" => $t_sdate ?? '',
-            "t_edate" => $t_edate ?? '',
             "product_points" => $product_points ?? '',
             "product_type" => $product_type ?? '',
             "code_utilities" => $code_utilities ?? '',
@@ -1210,13 +1206,15 @@ class TourRegistController extends BaseController
         $results = $query_info->getResultArray();
 
         $groupedData = [];
+        $toursIdxMap = [];
         foreach ($results as $row) {
             $infoIndex = $row['info_idx'];
 
             if (!isset($groupedData[$infoIndex])) {
                 $groupedData[$infoIndex] = [
                     'info' => $row,
-                    'tours' => []
+                    'tours' => [],
+                    'tours_idx_json' => ''
                 ];
             }
 
@@ -1228,7 +1226,17 @@ class TourRegistController extends BaseController
                 'tour_price_baby' => $row['tour_price_baby'],
                 'status' => $row['status'],
             ];
+            if (!isset($toursIdxMap[$infoIndex])) {
+                $toursIdxMap[$infoIndex] = [];
+            }
+    
+            if ($row['tours_idx'] !== null && !in_array($row['tours_idx'], $toursIdxMap[$infoIndex])) {
+                $toursIdxMap[$infoIndex][] = $row['tours_idx'];
+            }
+    
+            $groupedData[$infoIndex]['tours_idx_json'] = htmlspecialchars(json_encode($toursIdxMap[$infoIndex]), ENT_QUOTES, 'UTF-8');
         }
+
 
         $data = [
             'tours_idx' => $tours_idx,

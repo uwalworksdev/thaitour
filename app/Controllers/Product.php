@@ -1991,9 +1991,10 @@ class Product extends BaseController
         return $this->renderView('/product/spa/completed-order');
     }
 
-    public function tourLocationInfo($code_no)
+    public function tourLocationInfo($product_idx)
     {
-        return $this->renderView('tours/location-info');
+        $data['product'] = $this->productModel->getProductDetails($product_idx);
+        return $this->renderView('tours/location-info', $data);
     }
 
     public function tourOrderForm($code_no)

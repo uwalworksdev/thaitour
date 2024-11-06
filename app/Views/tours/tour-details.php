@@ -53,12 +53,12 @@
 
             <div class="sub-header-hotel-detail">
                 <div class="main">
-                    <a class="active short_link" data-target="product_info" href="#product_info">상품예약</a>
-                    <a class="short_link" data-target="product_des" href="#product_des">상품설명</a>
-                    <a href="/product-tours/location_info/<?= $product['product_idx']?>">위치정보</a>
-                    <a class="short_link" href="">더투어랩리뷰</a>
-                    <a class="short_link" href="">생생리뷰(159개)</a>
-                    <a class="short_link" href="">상품Q&A</a>
+                <a class="active short_link" data-target="product_info" href="/product-tours/item_view/<?= $product['product_idx']?>#product_info">상품예약</a>
+                    <a class="short_link" data-target="product_des" href="/product-tours/item_view/<?= $product['product_idx']?>#product_des">상품설명</a>
+                    <a href="/product-tours/location_info/<?= $product['product_idx']?>#section2">위치정보</a>
+                    <!-- <a class="short_link" href="/product-tours/item_view/<?= $product['product_idx']?>">더투어랩리뷰</a> -->
+                    <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#section6">생생리뷰(159개)</a>
+                    <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qa-section">상품Q&A</a>
                 </div>
             </div>
 
@@ -69,26 +69,35 @@
             </h2>
             <?php foreach ($productTourInfo as $info ): 
                     $days = [];
+                    $validDays = [];
+                
                     if($info['info']['yoil_0'] == 'Y') {
                         $days[] = '일요일';
-                    } 
+                        $validDays[] = 0;
+                    }
                     if ($info['info']['yoil_1'] == 'Y') {
                         $days[] = '월요일';
+                        $validDays[] = 1;
                     }
                     if ($info['info']['yoil_2'] == 'Y') {
                         $days[] = '화요일';
+                        $validDays[] = 2;
                     }
                     if ($info['info']['yoil_3'] == 'Y') {
                         $days[] = '수요일';
+                        $validDays[] = 3;
                     }
                     if ($info['info']['yoil_4'] == 'Y') {
                         $days[] = '목요일';
+                        $validDays[] = 4;
                     }
                     if ($info['info']['yoil_5'] == 'Y') {
                         $days[] = '금요일';
+                        $validDays[] = 5;
                     }
                     if ($info['info']['yoil_6'] == 'Y') {
                         $days[] = '토요일';
+                        $validDays[] = 6;
                     }
             ?>
                 <h2 class="sec2-date-main" id="tour-date-<?= substr($info['info']['o_sdate'], 0, 10) ?>" 
@@ -105,18 +114,19 @@
                         </div>
                         <div class="text-content-2">
                             <?php if (!empty($days)) { ?>
-                            <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
+                                <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                             <?php } ?>
                             <div class="price-sub">
                                 <span class="ps-left text-grey"><?= $tour['price_baht']?>바트</span>
-                                <span class="ps-right"><?= $tour['tour_price'] ?></span> <span class="text-grey">원</span>
+                                <span class="ps-right"><?= number_format($tour['tour_price']) ?></span> <span class="text-grey">원</span>
                             </div>
                         </div>
                         <div class="text-content-3">
-                            <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>">선택</button>
+                            <button type="button" class="btn-ct-3" data-tour-index="<?= $tour['tours_idx'] ?>" data-valid-days="<?= implode(',', $validDays) ?>">선택</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
+
                 <!-- <div class="sec2-item-card">
                     <div class="text-content-1">
                         <h3>[조인] 아유타야에서 즐기는 아트 뮤지엄 + 선셋 투어</h3>
@@ -178,7 +188,7 @@
                                 </div>
                                 <div class="calendar-days"></div>
                             </div>
-                            <div class="note-container">
+                            <!-- <div class="note-container">
                                 <div class="first-note">
                                     <div class="ball-red-n"></div>
                                     <span>예약마감</span>
@@ -193,7 +203,7 @@
                                 <select class="select-time-c">
                                     <option value="01">07:50 ~ 13:30</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
     
                     </div>
@@ -203,53 +213,54 @@
                             인원 선택
                         </h3>
                         <?php foreach ($productTourInfo as $infoIndex => $info): ?>
-                            <?php foreach ($info['tours'] as $tourIndex => $tour): ?>
-                                <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
-                                    <div class="quantity-container">
-                                        <div class="quantity-info-con">
-                                            <span class="des">성인, Adult (키 120cm 이상)</span>
-                                            <div class="quantity-info">
-                                                <span class="price"><?= $tour['tour_price'] ?>원</span>
-                                                <span class="currency"><?= $tour['price_baht']?>바트</span>
+                                <?php foreach ($info['tours'] as $tourIndex => $tour): ?>
+                                    <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
+                                        <div class="quantity-container">
+                                            <div class="quantity-info-con">
+                                                <span class="des">성인, Adult (키 120cm 이상)</span>
+                                                <div class="quantity-info">
+                                                    <span class="price" data-price="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?>원</span>
+                                                    <span class="currency" data-price-baht="<?= $tour['price_baht'] ?>"><?= number_format($tour['price_baht']) ?>바트</span>
+                                                </div>
+                                            </div>
+                                            <div class="quantity-selector">
+                                                <button class="decrease" disabled>-</button>
+                                                <span class="quantity">0</span>
+                                                <button class="increase">+</button>
                                             </div>
                                         </div>
-                                        <div class="quantity-selector">
-                                            <button class="decrease" disabled>-</button>
-                                            <span class="quantity">0</span>
-                                            <button class="increase">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="quantity-container">
-                                        <div class="quantity-info-con">
-                                            <span class="des">아동, Child (키 91~119cm)</span>
-                                            <div class="quantity-info">
-                                                <span class="price"><?= $tour['tour_price_kids'] ?>원</span>
-                                                <span class="currency"><?= $tour['price_baht_kids']?>바트</span>
+                                        <div class="quantity-container">
+                                            <div class="quantity-info-con">
+                                                <span class="des">아동, Child (키 91~119cm)</span>
+                                                <div class="quantity-info">
+                                                    <span class="price" data-price="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?>원</span>
+                                                    <span class="currency" data-price-baht="<?= $tour['price_baht_kids'] ?>"><?= number_format($tour['price_baht_kids']) ?>바트</span>
+                                                </div>
+                                            </div>
+                                            <div class="quantity-selector">
+                                                <button class="decrease" disabled>-</button>
+                                                <span class="quantity">0</span>
+                                                <button class="increase">+</button>
                                             </div>
                                         </div>
-                                        <div class="quantity-selector">
-                                            <button class="decrease" disabled>-</button>
-                                            <span class="quantity">0</span>
-                                            <button class="increase">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="quantity-container">
-                                        <div class="quantity-info-con">
-                                            <span class="des">유아, baby (키 90cm 이하)</span>
-                                            <div class="quantity-info">
-                                                <span class="price"><?= $tour['tour_price_baby'] ?>원</span>
-                                                <span class="currency"><?= $tour['price_baht_baby']?>바트</span>
+                                        <div class="quantity-container">
+                                            <div class="quantity-info-con">
+                                                <span class="des">유아, baby (키 90cm 이하)</span>
+                                                <div class="quantity-info">
+                                                    <span class="price" data-price="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?>원</span>
+                                                    <span class="currency" data-price-baht="<?= $tour['price_baht_baby'] ?>"><?= number_format($tour['price_baht_baby']) ?>바트</span>
+                                                </div>
+                                            </div>
+                                            <div class="quantity-selector">
+                                                <button class="decrease" disabled>-</button>
+                                                <span class="quantity">0</span>
+                                                <button class="increase">+</button>
                                             </div>
                                         </div>
-                                        <div class="quantity-selector">
-                                            <button class="decrease" disabled>-</button>
-                                            <span class="quantity">0</span>
-                                            <button class="increase">+</button>
-                                        </div>
                                     </div>
-                                </div>
-                            <?php endforeach;?>
-                        <?php endforeach;?>
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+
                         <h3 class="title-second">선택옵션</h3>
                         <form>
                             <?php foreach ($options as $row_option): ?>
@@ -515,7 +526,7 @@
         <?php } ?>
         <?php if($product['notice_comment']) {?>
         <h2 class="title-sec2">
-            어린이정책
+            유의사항
         </h2>
         <div class="des-type">
             <?= viewSQ($product['notice_comment'])?>
@@ -614,12 +625,26 @@
                 var $quantityDisplay = $container.find('.quantity');
                 var $increaseBtn = $container.find('.increase');
                 var $decreaseBtn = $container.find('.decrease');
-                var quantity = 0;
+                var quantity = 0; 
+                var pricePerUnit = parseFloat($container.find('.price').data('price')); 
+                var priceBahtPerUnit = parseFloat($container.find('.currency').data('price-baht'));
+
+                var $price = $container.find('.price');
+                var $currency = $container.find('.currency');
+                updatePrice();
+
+                if ($container.find('.des').text().includes('성인')) {
+                    quantity = 1;
+                    $quantityDisplay.text(quantity);
+                    $decreaseBtn.removeAttr('disabled');
+                    updatePrice();
+                }
 
                 $increaseBtn.click(function() {
                     quantity++;
                     $quantityDisplay.text(quantity);
                     $decreaseBtn.removeAttr('disabled');
+                    updatePrice();
                 });
 
                 $decreaseBtn.click(function() {
@@ -630,8 +655,24 @@
                     if (quantity === 0) {
                         $decreaseBtn.attr('disabled', true);
                     }
+                    updatePrice();
                 });
+                function updatePrice() {
+                    var totalPrice = quantity * pricePerUnit;
+                    var totalPriceBaht = quantity * priceBahtPerUnit;
+
+                    $price.text(number_format(totalPrice) + '원');
+                    $currency.text(number_format(totalPriceBaht) + '바트');
+                }
             });
+
+            function number_format(number) {
+                return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+
+
+
 
             const swiper_content = new Swiper(".swiper-container_tour_content", {
                 loop: true,
@@ -651,6 +692,7 @@
                 let s_date = null;
                 let e_date = null;
                 let productPrice = null;
+                let productPriceBaht = null;
                 const currentDate = new Date();
                 let selectedDate = null;
 
@@ -668,10 +710,10 @@
                     const tourEndDate = firstTourDateElement.data('end-date');
                     
                     const firstTourCard = $('.sec2-item-card').first();
-                    const tourPriceText = firstTourCard.find('.ps-right').text().trim();
+                    const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, ''); 
                     const tourPrice = parseFloat(tourPriceText);
 
-                    const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim();
+                    const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim().replace(/,/g, '');
                     const tourPriceBaht = parseFloat(tourPriceTextBath);
 
                     setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht);
@@ -697,10 +739,13 @@
                         const $dayDiv = $('<div/>').text(dayString).addClass('day');
                         const date = new Date(year, month, day);
 
-                        if (date < s_date || date > e_date) {
+                        const validDaysString = $('.btn-ct-3').data('valid-days');
+                        const validDays = validDaysString ? validDaysString.split(',').map(Number) : [];
+
+                        if (date < s_date || date > e_date || !validDays.includes(date.getDay())) {
                             $dayDiv.addClass('disabled').append("<p>예약마감</p>");
                         } else {
-                            $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${productPrice}원</p><p class="price2">(${productPriceBaht}바트)</p></p>`);
+                            $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${number_format(productPrice)}원</p><p class="price2">(${number_format(productPriceBaht)}바트)</p></p>`);
 
                             $dayDiv.click(() => {
                                 $('.day').removeClass('active');
@@ -718,10 +763,15 @@
                     const tourStartDate = firstTourDateElement.data('start-date');
                     const tourEndDate = firstTourDateElement.data('end-date');
                     
-                    const tourPrice = parseFloat($(this).closest('.sec2-item-card').find('.ps-right').text());
-                    const tourPriceBaht = parseFloat($(this).closest('.sec2-item-card').find('.ps-left').text());
+                    const tourPriceText = $(this).closest('.sec2-item-card').find('.ps-right').text().trim().replace(/,/g, '');
+                    const tourPrice = parseFloat(tourPriceText);
 
-                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice,tourPriceBaht);
+                    const tourPriceTextBaht = $(this).closest('.sec2-item-card').find('.ps-left').text().trim().replace(/,/g, ''); 
+                    const tourPriceBaht = parseFloat(tourPriceTextBaht); 
+
+                    // Lưu valid days vào data attribute
+                    const validDays = $(this).data('valid-days');
+                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht);
                 });
 
                 $prevMonthBtn.click(() => {
@@ -736,6 +786,8 @@
 
                 initializeDefaultTour();
             });
+
+
 
         </script>
         <script>
@@ -762,15 +814,15 @@
                     return false;
                 });
 
-                $(".short_link").on('click', function(evt) {
-                    evt.preventDefault();
-                    var target = $(this).data('target');
-                    // $(window).scrollTop($('#' + target).offset().top - 100, 300);
-                    $('html, body').animate({
-                        scrollTop: $('#' + target).offset().top - 100
-                    }, 'slow');
-                    return false;
-                });
+                // $(".short_link").on('click', function(evt) {
+                //     evt.preventDefault();
+                //     var target = $(this).data('target');
+                //     // $(window).scrollTop($('#' + target).offset().top - 100, 300);
+                //     $('html, body').animate({
+                //         scrollTop: $('#' + target).offset().top - 100
+                //     }, 'slow');
+                //     return false;
+                // });
 
             });
 

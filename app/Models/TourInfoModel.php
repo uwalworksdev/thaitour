@@ -26,4 +26,9 @@ class TourInfoModel extends Model
     {
         return $this->where('info_idx', $info_idx)->findAll();
     }
+
+    public function deleteTour($info_idx)
+    {
+        return $this->where('info_idx', $info_idx)->delete();
+    }
 }

@@ -47,23 +47,33 @@
             </div>
             <div class="sub-header-hotel-detail">
                 <div class="main">
-                    <a href="/product-tours/item_view/1324">상품예약</a>
-                    <a href="">상품설명</a>
-                    <a href="/product-tours/location_info/1324" class="active">위치정보</a>
-                    <a href="">더투어랩리뷰</a>
-                    <a href="">생생리뷰(159개)</a>
-                    <a href="">상품Q&A</a>
+                    <a class="active short_link" data-target="product_info" href="/product-tours/item_view/<?= $product['product_idx']?>#product_info">상품예약</a>
+                    <a class="short_link" data-target="product_des" href="/product-tours/item_view/<?= $product['product_idx']?>#product_des">상품설명</a>
+                    <a href="/product-tours/location_info/<?= $product['product_idx']?>#section2">위치정보</a>
+                    <!-- <a class="short_link" href="/product-tours/item_view/<?= $product['product_idx']?>">더투어랩리뷰</a> -->
+                    <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#section6">생생리뷰(159개)</a>
+                    <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qa-section">상품Q&A</a>
                 </div>
             </div>
         </div>
-        <div class="section2">
+        <div class="section2" id="section2">
             <h3 class="title-size-24">위치정보</h3>
-            <img class="topic-img" src="/uploads/sub/map-golf-detail.png" alt=""></img>
+            <div id="map" style="width: 100%; height: 450px;"></div>
+                <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+                <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+                <script>
+                    var lat = '<?= $product['latitude'] ?>' || 13.7563;
+                    var lng = '<?= $product['longitude'] ?>' || 100.5018;
+                    var map = L.map('map').setView([lat, lng], 17);
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'The Tour Lab'
+                    }).addTo(map);
+                    L.marker([lat, lng]).addTo(map)
+                </script>
             <div class="location-container">
-                <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
                 <span class="text-gray">19 Moo.14, Bang Krasan, Bangpain,Phra Nakhon Si Ayutthaya 13160</span>
             </div>
-            <div class="section6">
+            <div class="section6" id="section6">
                 <h2 class="title-sec6"><span>생생리뷰</span>(516)</h2>
                 <div class="rating-content">
                     <div class="rating-left">
@@ -151,7 +161,7 @@
                         </div>
                     </div>
                 </div>
-                <h2 class="title-sec6"><span>상품 Q&A</span>(516)</h2>
+                <h2 class="title-sec6" id="qa-section"><span>상품 Q&A</span>(516)</h2>
                 <div class="qa-section">
                     <div class="custom-area-text">
                         <label class="custom-label" for="qa-comment">
@@ -288,102 +298,31 @@
                     },
                 });
 
-                $(document).ready(function () {
-                    const $calendarDays = $('.calendar-days');
-                    const $monthYear = $('#month-year');
-                    const $prevMonthBtn = $('#prev-month');
-                    const $nextMonthBtn = $('#next-month');
+                jQuery(document).ready(function () {
+                var dim = $('#dim');
+                var popup = $('#popupRoom');
+                var closedBtn = $('#popupRoom .closed_btn');
 
-                    let currentDate = new Date();
-                    let selectedDate = null;
+                var popup2 = $('#popup_img');
+                var closedBtn2 = $('#popup_img .closed_btn');
 
-                    const renderCalendar = () => {
-                        $calendarDays.empty();
-                        const month = currentDate.getMonth();
-                        const year = currentDate.getFullYear();
-
-                        // Set month and year in the header
-                        const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
-                        $monthYear.text(`${year}년 ${monthNames[month]}`);
-
-                        // Get first and last day of the month
-                        const firstDay = new Date(year, month, 1).getDay();
-                        const lastDate = new Date(year, month + 1, 0).getDate();
-
-                        // Adding empty days for the previous month
-                        for (let i = 0; i < firstDay; i++) {
-                            $('<div/>').appendTo($calendarDays);
-                        }
-
-                        // Populate days
-                        for (let day = 1; day <= lastDate; day++) {
-                            const dayString = day.toString().padStart(2, '0');
-                            const $dayDiv = $('<div/>').text(dayString).addClass('day'); // Thêm class 'day' để dễ dàng thao tác
-
-                            const date = new Date(year, month, day);
-
-                            // Change color based on the day of the week (일: red, 토: blue)
-                            if (date.getDay() === 0) {  // Sunday (일)
-                                $dayDiv.addClass('text-red-cus');
-                            } else if (date.getDay() === 6) {  // Saturday (토)
-                                $dayDiv.addClass('text-blue-cus');
-                            }
-
-                            // Check if the day is the current day
-                            if (isCurrentDay(day, month, year)) {
-                                $dayDiv.addClass('active');
-                            }
-
-                            // Add booked or special-rate logic here
-                            if (isBooked(day)) {
-                                $dayDiv.addClass('booked').append("<p>예약마감</p>");
-                            } else if (isSpecialRate(day)) {
-                                $dayDiv.addClass('special-rate').html(`<p class="special-rate-div">${dayString}<p class="price1">58,217원</p><p class="price2">(1,452바트)</p></p>`);
-                            }
-
-                            // Thêm sự kiện click cho ngày
-                            $dayDiv.click(() => {
-                                $('.day').removeClass('active'); // Loại bỏ class active từ tất cả các ngày
-                                $dayDiv.addClass('active'); // Thêm class active cho ngày được chọn
-                                selectedDate = date; // Lưu ngày được chọn
-                            });
-
-                            $dayDiv.appendTo($calendarDays);
-                        }
-                    };
-
-                    const isBooked = (day) => {
-                        const specialRateDays = [24, 25, 26, 27, 28];
-                        const lastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
-                        const allDays = [...Array(lastDate).keys()].map(i => i + 1);
-                        const bookedDays = allDays.filter(day => !specialRateDays.includes(day));
-                        return bookedDays.includes(day);
-                    };
-
-                    const isSpecialRate = (day) => {
-                        const specialRateDays = [24, 25, 26, 27, 28];
-                        return specialRateDays.includes(day);
-                    };
-
-                    const isCurrentDay = (day, month, year) => {
-                        const today = new Date();
-                        return day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-                    };
-
-                    // Move to previous or next month
-                    $prevMonthBtn.click(() => {
-                        currentDate.setMonth(currentDate.getMonth() - 1);
-                        renderCalendar();
-                    });
-
-                    $nextMonthBtn.click(() => {
-                        currentDate.setMonth(currentDate.getMonth() + 1);
-                        renderCalendar();
-                    });
-
-                    // Initial render
-                    renderCalendar();
+                /* closed btn*/
+                closedBtn.click(function () {
+                    popup.hide();
+                    dim.fadeOut();
+                    $('.multiple-items').slick('unslick'); // slick 삭제
+                    return false;
                 });
+
+                closedBtn2.click(function () {
+                    popup2.hide();
+                    dim.fadeOut();
+                    $('.multiple-items').slick('unslick'); // slick 삭제
+                    return false;
+                });
+
+
+            });
 
             </script>
 
