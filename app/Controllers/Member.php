@@ -837,6 +837,11 @@ class Member extends BaseController
                 'member_id' => $user_id
             ];
             autoEmail($code, $user_mail, $_tmp_fir_array);
+
+            return $this->response->setJSON([
+                'result' => 'OK',
+                'msg' => '가입하신 이메일으로 아이디가 발송되었습니다.'
+            ]);
         } else {
             if (phone_chk_ok($cert_num) != "Y") {
                 return $this->response->setJSON([
@@ -853,16 +858,13 @@ class Member extends BaseController
                 ];
                 autoSms($code, $to_phone, $_tmp_fir_array);
 
+                return $this->response->setJSON([
+                    'result' => 'OK',
+                    'msg' => '가입하신 휴대폰으로 아이디가 발송되었습니다.'
+                ]);
+
             }
         }
-
-        
-
-
-        return $this->response->setJSON([
-            'result' => 'OK',
-            'msg' => '가입하신 휴대폰으로 아이디가 발송되었습니다.'
-        ]);
     }
 
     public function find_pw_ok()
@@ -920,6 +922,10 @@ class Member extends BaseController
                 'user_pw' => $passwd
             ];
             autoEmail($code, $user_mail, $_tmp_fir_array);
+            return $this->response->setJSON([
+                'result' => 'OK',
+                'msg' => '가입하신 임메일으로 임시패스워드가 발송되었습니다.'
+            ]);
         } else {
             $code = "S12";
             $to_phone = $mobile;
@@ -927,11 +933,10 @@ class Member extends BaseController
                 'MEMBER_PW' => $passwd
             ];
             autoSms($code, $to_phone, $_tmp_fir_array);
+            return $this->response->setJSON([
+                'result' => 'OK',
+                'msg' => '가입하신 휴대폰으로 임시패스워드가 발송되었습니다.'
+            ]);
         }
-
-        return $this->response->setJSON([
-            'result' => 'OK',
-            'msg' => '가입하신 휴대폰으로 임시패스워드가 발송되었습니다.'
-        ]);
     }
 }
