@@ -93,7 +93,7 @@
                             </colgroup>
                             <thead>
                             <tr>
-                                <th colspan="6">적용일자 : 2024-11-20</th>
+                                <th colspan="4">적용일자 : 2024-11-20</th>
                             </tr>
                             <tr>
                                 <th>선택옵션</th>
@@ -108,23 +108,27 @@
                                 <td>아로마 테라피 마사지(60분)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -133,23 +137,27 @@
                                 <td>아로마 테라피 마사지(90분)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">56,304원</span>(880바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -158,23 +166,27 @@
                                 <td>아로마 테라피 마사지 (220분)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">47,168원</span>(1,100바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -183,23 +195,27 @@
                                 <td>아로마 첫 오일 (60분)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -208,13 +224,15 @@
                                 <td>아로마 오일 (90분)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
@@ -226,13 +244,15 @@
                                 <td>아로마 첫 오일 (120)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
@@ -244,13 +264,15 @@
                                 <td>아로마 스크럽 (90분)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
@@ -262,23 +284,27 @@
                                 <td>아로마 스크럽 (120)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -287,13 +313,15 @@
                                 <td>아로마 오일 등 목& 어깨 (90분)</td>
                                 <td>매일</td>
                                 <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                               onkeyup="chkNum(this)">
-                                        <span>명</span>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
                                     </div>
                                 </td>
                                 <td>
@@ -310,7 +338,12 @@
                         </h2>
 
                         <div class="container-big-text">
-                            <?= viewSQ($data_['product_contents']) ?>
+                            <div class="only_w">
+                                <?= viewSQ($data_['product_contents']) ?>
+                            </div>
+                            <div class="only_m">
+                                <?= viewSQ($data_['product_contents_m']) ?>
+                            </div>
                         </div>
                     </div>
 
@@ -319,7 +352,7 @@
                             위치안내
                         </h2>
 
-                        <div id="section4_map" style="width: 800px; height: 500px;">
+                        <div class="section4_map" id="section4_map" style="">
 
                         </div>
                     </div>
@@ -721,75 +754,6 @@
                             }
                         });
                     </script>
-
-                    <div class="section7" id="section7">
-                        <div class="d_flex justify_content_end">
-                            <h1 class="title-sec7">다른 추천 스파도 확인해 보세요 : )</h1>
-                            <div class="swiper_product_list_pagination_ swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0"
-                                      role="button" aria-label="Go to slide 1" aria-current="true"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 3"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 5"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 6"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 7"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 8"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 9"></span></div>
-                        </div>
-                        <div class="sub_tour_section7_product_list swiper swiper_product_list_ swiper-initialized swiper-horizontal swiper-backface-hidden">
-                            <div class="swiper-wrapper" id="swiper-wrapper-c2d811557361007f3" aria-live="polite">
-
-                                <?php foreach ($suggestSpas as $suggestSpa) { ?>
-                                    <a href="/product-hotel/hotel-detail/<?= $suggestSpa['product_idx'] ?>"
-                                       class="sub_tour_section7_product_item swiper-slide swiper-slide-active"
-                                       role="group"
-                                       aria-label="1 / 9" data-swiper-slide-index="0"
-                                       style="width: 292.5px; margin-right: 10px;">
-
-                                        <div class="img_box img_box_12">
-                                            <img src="/data/hotel/<?= $suggestSpa['ufile1'] ?>" alt="main"
-                                                 onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                                        </div>
-                                        <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">
-                                        <?= $suggestSpa['product_type'] ?>
-                                    </span>
-                                        </div>
-                                        <div class="prd_name">
-                                            <?= $suggestSpa['product_name'] ?>
-                                        </div>
-                                        <div class="prd_info">
-                                            <div class="prd_info__left">
-                                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                                <span class="star_avg"> <?= $suggestSpa['review_average'] ?> </span>
-                                            </div>
-                                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                            <div class="prd_info__right">
-                                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                                <span class="new_review_cnt">(<?= $suggestSpa['total_review'] ?>)</span>
-                                            </div>
-                                        </div>
-                                        <div class="prd_price_ko">
-                                            <?= number_format($suggestSpa['product_price']) ?> <span>원~</span> <span
-                                                    class="prd_price_thai">6,000 <span>바트~</span></span>
-                                        </div>
-                                    </a>
-                                <?php } ?>
-
-                            </div>
-                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="vertical-line"></div>
