@@ -16,7 +16,6 @@ class TourRegistController extends BaseController
     protected $productModel;
     protected $golfInfoModel;
     protected $golfVehicleModel;
-
     protected $moptionModel;
     protected $optionTourModel;
     protected $tourProducts;
@@ -1240,5 +1239,4 @@ class TourRegistController extends BaseController
 
         return view('admin/_tourRegist/write_tour_info', $data);
     }
-
 }

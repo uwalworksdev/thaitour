@@ -2,7 +2,8 @@
 
 <?php $this->section('content'); ?>
     <link rel="stylesheet" type="text/css" href="/css/tour/spa.css">
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
+            async defer></script>
     <div class="content-sub-hotel-detail tours-detail spa-detail">
         <div class="body_inner">
             <div class="section1">
@@ -298,209 +299,7 @@
                         </h2>
 
                         <div class="container-big-text">
-                            <p>
-                                <span style="background-color: rgb(255, 255, 255); color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em;"><b>주요 공지사항</b></span>
-                            </p>
-                            <h3 class="sub-title-18"
-                                style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                [1~2인 예약]</h3>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                (1) 비수기(4월 ~ 10월)의 경우, 1~2인 예약이 가능합니다.<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">대신, 단체 예약, 토너먼트 또는 주말의
-                                경우 간혹 1~2인 플레이가 안되는 날도 있습니다.<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">1~2인 예약 시 현장 상황에 따라 조인될
-                                수도 있습니다.</p>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                (2) 성수기(11월~3월)의 경우, 1~2인 예약 가능한 티오프가 한정되어있습니다.<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">- 주중 : 06:30am ~
-                                06:40am (예약이 가능하더라도 1~2인 단독 플레이는 불가합니다.)<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">- 주말 및 공휴일 : 예약불가</p>
-                            <p style="margin-bottom: 20px; box-sizing: border-box; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255);">
-                                그린피에 캐디피와 카트피 및 클럽 하우스에서 식사, 그늘집에서간단한 간식 및 생수가 포함되어 있습니다.</p>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                <span style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">[18홀 라운드 시]</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">- 라운딩 전/후로 2회의 식사와 간식이 제공됩니다.</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">[36홀 라운딩 시]</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">- 라운딩 전/후로 4회의 식사와 간식이 제공됩니다.</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">[식사 이용 시간]</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">- 아침 : 06:00 AM ~ 10:30 AM</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">- 점심 : 10:30 AM ~ 15:30 PM</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">- 저녁 : 15:30 AM ~ 19:30 PM ( 마지막 주문 시간 18:00 PM)</span>
-                            </p>
-                            <p style="margin-bottom: 20px; box-sizing: border-box; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255);">
-                                해당 골프장은 라운드하시는 모든 분들의 영문 성함과 성별이 필요합니다. 영문 성함은 여권과 일치 하지 않아도 괜찮으며<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">미정이실 경우 TBS 라고 기재해주세요.
-                            </p>
-                            <h1 class="sub-title-18 mt-50"
-                                style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                코스정보</h1>
-                            <div class="info-container"
-                                 style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255);">
-                                <span style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; width: 110px; display: inline-block;">총 홀수:</span>&nbsp;<span
-                                        class="text-gray"
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; width: 110px; display: inline-block; color: rgb(117, 117, 117) !important;">18홀</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; width: 110px; display: inline-block;">그린 스피드:</span>&nbsp;<span
-                                        class="text-gray"
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; width: 110px; display: inline-block; color: rgb(117, 117, 117) !important;">빠름</span><br
-                                        style="box-sizing: border-box; font-family: sans-serif;"><span
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; width: 110px; display: inline-block;">잔디타입:</span>&nbsp;<span
-                                        class="text-gray"
-                                        style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; width: unset; display: inline-block; color: rgb(117, 117, 117) !important;">백연드 테이블, 파쿠시빌, 백연드 419</span>
-                            </div>
-                            <div class="highlight-des"
-                                 style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);">
-                                <p class="highlight-des-p text-gray"
-                                   style="margin-top: 28px; margin-bottom: 20px; padding: 30px 20px; box-sizing: border-box; border: 0px; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; line-height: 1.5rem; background-color: rgb(243, 245, 247); color: rgb(117, 117, 117) !important;">
-                                    골프장은 2015년 정식 오픈한 고급 골프장으로 최신 시설을 자랑하고 있습니다. 니칸티의 관계자들은 골퍼가 꼭 다시 찾아오는 골프클럽이 되는 것을
-                                    목표로 하고 있으며 아직 오픈한지 얼마 되지 않아 태국내에서 베스트 코스는 아니지만 유니크한 코스에 재미를 찾는 골퍼들의 호평을 받는 곳이라고 합니다.
-                                    코스 디자인은 태국 최고 코스 설계자 중 한명인 콘 오프가 설계하였습니다. 페어웨이 굴곡이 많아 느낌은 방콕 근교 리버테일과 비슷하나 일반적인 골프장
-                                    코스와 다르게 6홀씩 3개의 코스로 전세계 어디서도 볼 수 없는 구성으로 이루어져 있습니다. 경험 많은 골퍼들에게는 도전정신 을 초보자들에게는 색다른
-                                    경험을 제공합니다. 각 6홀은 파3, 파4,파5가 2홀씩 전체 18홀 중 파3, 4,5홀이 각 6홀씩 파 72홀로 구성되어 있으며 다소 골프장 전장이
-                                    짧고 파5가 총 18홀 중 6홀이 되 어 이 글의 기회도 그만큼 많으나 홀 주위로 장애물로 세컨샷을 온을 시키기에는 모험이 따릅니다.</p></div>
-                            <h2 class="sub-title-18 mt-50"
-                                style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                티오프 시간</h2>
-                            <ul class="text-gray mb-40"
-                                style="box-sizing: border-box; margin: 20px 0px 40px; padding: 0px; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; list-style: none; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: none;">
-                                    - 주중:&nbsp;<span class="text-gray"
-                                                     style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">1부, 2부 06:30 ~ 13:40</span>
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: none;">
-                                    - 주말:&nbsp;<span class="text-gray"
-                                                     style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-family: inherit; font-size: inherit; letter-spacing: -0.04em;">1부 06:40 ~ 08:20 / 2부 12:00 ~ 13:40</span>
-                                </li>
-                            </ul>
-                            <h3 class="sub-title-18"
-                                style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                상품소개</h3>
-                            <p class="sub-title-18"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; line-height: 1.5rem; background-color: rgb(255, 255, 255);">
-                                위치정보</p>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                니칸티 골프클럽은 방콕에서 서쪽으로 60킬로미터 떨어진 니콘파톰 지역에 위치한 골프장으로서 방콕 시내에서 70km(약 70~75분 내외 소요) 되는 거리에
-                                위치하고 있습니다. 공항에서 골프장에 오실 때에는 85km로 약 90여 분이 소요됩니다.방콕 시내에서 골프장까지 가는 도로가 교통 체증이 심한 곳입니다. 예상
-                                시간보다 더 여유있게 출발해야 합니다.</p>
-                            <p class="font-bold"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); font-weight: 600 !important;">
-                                대회정보</p>
-                            <ul class="text-gray ul-html-content"
-                                style="box-sizing: border-box; margin: 20px 0px 50px 16px; padding: 0px; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; list-style: decimal; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    2019년 아시아 태평양 골프 그룹 대회에서 아시아 태평양 최고의 인식상인 골프장 수상
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    2018년 아시아 태평양 골프 그룹 상수상 받은 인식상인 골프 그룹
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    2018년 아시아 태평양 골프 그룹 상수상 받은 골프장 중 하나로 선정됨
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    TRAVEL &amp; HOSPITALITY AWARD로 최고의 골프장 수상
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    Tripadvisor® 2018년 오수 상서 누적 2번째로 인식
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    Tripadvisor® 2017년 오수 상서 누적 2번째로 인식
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    2017년 아시아 태평양 골프 그룹 상수상 받은 골프장 중 하나로 선정됨
-                                </li>
-                                <li style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: inherit; font-family: inherit; font-size: inherit; letter-spacing: -0.04em; list-style: decimal;">
-                                    Asia Pacific Golf Group의 상장향 2016년 아시아 태평양 지역 최고의 골프장으로 인식
-                                </li>
-                            </ul>
-                            <h3 class="sub-title-18"
-                                style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                체크인</h3>
-                            <p><span class=""
-                                     style="box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);">라운드 체크인</span><span
-                                        style="color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);"></span>
-                            </p>
-                            <p class="text-gray mb-50"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                - 프로샵에서 티모스 시간과 성함을 말씀해주세요.</p>
-                            <h2 class="sub-title-18 mt-50"
-                                style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                시설정보</h2>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                사이즈: 시설, 러프, 탈잉실, 퍼팅그린, 프로샵, 레스토랑, 카페(스 드라이빙레인지(없음)</p>
-                            <h2 class="sub-title-18 mt-50"
-                                style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                레스토랑 정보</h2>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                인터내셔널, 태국식<br style="box-sizing: border-box; font-family: sans-serif;">운영시간: 06:00 ~
-                                19:00</p>
-                            <h2 class="sub-title-18 mt-50"
-                                style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                장비렌탈</h2>
-                            <p><span class="sub-title-18"
-                                     style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">클럽렌탈:</span><span
-                                        style="color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);"></span>
-                            </p>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                (1)아이템리스트 : 샤프트 2300버트, 클럽 2000버트, 남녀<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">(2)아이템 : 2000버트, 남/골프:
-                                500버트</p>
-                            <p><span class="sub-title-18"
-                                     style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">클럽렌탈 디파짓</span><span
-                                        style="color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);"></span>
-                            </p>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                5000버트(세트당/환불가능)<br style="box-sizing: border-box; font-family: sans-serif;">**해당 정보는
-                                골프장 사정에 의해 예고없이 변경될 수 있습니다.</p>
-                            <h2 class="sub-title-18 mt-50"
-                                style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">
-                                추가정보/참고사항</h2>
-                            <p><span class="sub-title-18"
-                                     style="box-sizing: border-box; margin: 0px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">복장규정</span><span
-                                        style="color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);"></span>
-                            </p>
-                            <p class="text-gray"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(117, 117, 117) !important;">
-                                - 라운드 티, 착용 유니폼, 보드셔츠, 청바지 계열, 짧은 반바지는 입장이 불가능합니다.<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">- 한국에서 골프웨어로 나온 차이나 바지나
-                                카라티 입장이 가능한 곳이므로 되도록 일반 피켓(카라티)를 착용하는 것이 좋습니다.<br
-                                        style="box-sizing: border-box; font-family: sans-serif;">- 무료 길이 반바지는 허용되고 있습니다.
-                            </p>
-                            <p><span class="sub-title-18 mt-50"
-                                     style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">캐디팁</span><span
-                                        style="color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);"></span>
-                            </p>
-                            <p class="text-"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255);">
-                                - 캐디팁이 전체 가격에 이미 포함되어있지만, 캐디에게 좋은 서비스를 받으셨다면 200~300버트 정도 더 주시면 좋습니다.</p>
-                            <p><span class="sub-title-18 mt-50"
-                                     style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">갤러리 규정</span><span
-                                        style="color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);"></span>
-                            </p>
-                            <p class="text-"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255);">
-                                - 갤러리와 플레이어와 동반하는 것이 가능합니다.</p>
-                            <p><span class="sub-title-18 mt-50"
-                                     style="box-sizing: border-box; margin: 50px 0px 20px; padding: 0px; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 18px; letter-spacing: -0.04em; background-color: rgb(255, 255, 255);">레인저 규정</span><span
-                                        style="color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; background-color: rgb(255, 255, 255);"></span>
-                            </p>
-                            <p class="text-"
-                               style="margin-bottom: 20px; box-sizing: border-box; border: 0px; color: rgb(37, 37, 37); font-family: Pretendard, sans-serif; font-size: 16px; letter-spacing: -0.64px; line-height: 1.5rem; background-color: rgb(255, 255, 255);">
-                                약속대로 인하더라도 라운딩 불가할 경우 추후 이용이 가능한 레인저 체계 쿠폰을 발급해드립니다.</p>
+                            <?= viewSQ($data_['product_contents']) ?>
                         </div>
                     </div>
 
@@ -509,12 +308,30 @@
                             위치안내
                         </h2>
 
-                        <div id="section4_map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3728.7788784300687!2d106.70966641198126!3d20.84063378068171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314a7b6f6b358d29%3A0xbfdae1fdabbc3523!2sSakura%20massage%20nuru!5e0!3m2!1svi!2s!4v1730858482450!5m2!1svi!2s"
-                                    width="800" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div id="section4_map" style="width: 800px; height: 500px;">
+
                         </div>
                     </div>
+                    <script>
+                        const latitude = Number(`<?= $data_['latitude'] ?>`);
+                        const longitude = Number(`<?= $data_['longitude'] ?>`);
+
+                        function initMap() {
+                            const location = {lat: latitude, lng: longitude};
+                            const map = new google.maps.Map(document.getElementById("section4_map"), {
+                                zoom: 16,
+                                center: location,
+                            });
+
+                            new google.maps.Marker({
+                                position: location,
+                                map: map,
+                            });
+                        }
+
+                        window.onload = initMap;
+                    </script>
+
                     <!--                    <div class="section2" id="section2">-->
                     <!--                        <h2 class="title-sec2">-->
                     <!--                            숙소개요-->
@@ -875,12 +692,23 @@
                             </div>
                         </div>
                     </div>
-
+                    <style>
+                        .d_none {
+                            display: none;
+                            transition: all 0.3s ease;
+                        }
+                    </style>
                     <script>
-                        $('.qa_item_').click(function () {
-                            $('.additional_info_').addClass('d_none');
-                            $(this).next().removeClass('d_none');
-                        })
+                        $('.qa_item_').on('click keypress', function (e) {
+                            if (e.type === 'click' || e.key === 'Enter') {
+                                $('.additional_info_').addClass('d_none').attr('aria-hidden', 'true');
+                                if ($(this).next('.additional-info').hasClass('d_none')) {
+                                    $(this).attr('aria-expanded', 'true').next().removeClass('d_none').attr('aria-hidden', 'false');
+                                } else {
+                                    $(this).attr('aria-expanded', 'false').next().addClass('d_none').attr('aria-hidden', 'true');
+                                }
+                            }
+                        });
                     </script>
 
                     <div class="section7" id="section7">
