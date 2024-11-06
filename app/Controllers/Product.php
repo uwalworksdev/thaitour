@@ -1202,8 +1202,13 @@ class Product extends BaseController
                 $c_row = [];
             }
 
+            $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $hotel['product_level'] . "' order by onum desc, code_idx desc";
+            $fresult9 = $this->db->query($fsql9);
+            $fresult9 = $fresult9->getRowArray();
+
             $data = [
                 'hotel' => $hotel,
+                'fresult9' => $fresult9,
                 's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
                 'bresult4' => $bresult4 ?? [],
@@ -1514,14 +1519,14 @@ class Product extends BaseController
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
     {
 
-        $data['option']             = $this->golfOptionModel->find($option_idx);
+        $data['option'] = $this->golfOptionModel->find($option_idx);
 
-        $data['total_price']        = $data['option']['option_price'] * $people_adult_cnt;
+        $data['total_price'] = $data['option']['option_price'] * $people_adult_cnt;
 
-        $data['total_price_baht']   = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
 
-        $total_vehicle_price        = 0;
-        $total_vehicle_price_baht   = 0;
+        $total_vehicle_price = 0;
+        $total_vehicle_price_baht = 0;
 
         $vehicle_arr = [];
         $total_vehicle = 0;
@@ -1587,10 +1592,10 @@ class Product extends BaseController
         $data['product'] = $this->productModel->find($data['product_idx']);
 
         $priceCalculate = $this->golfPriceCalculate(
-            $data['option_idx'], 
-            $data['people_adult_cnt'], 
-            $data['vehicle_cnt'], 
-            $data['vehicle_idx'], 
+            $data['option_idx'],
+            $data['people_adult_cnt'],
+            $data['vehicle_cnt'],
+            $data['vehicle_idx'],
             $data['use_coupon_idx']
         );
 
@@ -1725,9 +1730,9 @@ class Product extends BaseController
             }
         }
 
-        $data['imgs_tour'] = []; 
-        $data['img_names_tour'] = []; 
-        
+        $data['imgs_tour'] = [];
+        $data['img_names_tour'] = [];
+
         for ($i = 1; $i <= 6; $i++) {
             $file = "tours_ufile" . $i;
             if (isset($data['product'][$file]) && is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
@@ -1780,7 +1785,7 @@ class Product extends BaseController
         }
 
         $data['productTourInfo'] = $groupedData;
-        
+
         $airCode = $this->request->getGet('air_code') ?? '0000';
 
         $productDetail = $this->dayModel->getProductDetail($product_idx, $airCode);
@@ -1795,7 +1800,7 @@ class Product extends BaseController
         $detailIdx = $productDetail['idx'];
         $totalDays = $productDetail['total_day'];
         $schedules = [];
-    
+
         for ($dd = 1; $dd <= $totalDays; $dd++) {
             $schedule = $this->mainSchedule->getByDetailAndDay($detailIdx, $dd);
             $schedules[$dd] = $schedule ?? [];
@@ -1807,7 +1812,7 @@ class Product extends BaseController
                     ->where('detail_idx', $detailIdx)
                     ->where('day_idx', $day)
                     ->findAll();
-                
+
                 foreach ($subScheduleDetails as $subSchedule) {
                     $subSchedules[$day][$subSchedule['groups']][] = $subSchedule;
                 }
