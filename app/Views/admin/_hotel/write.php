@@ -1053,7 +1053,6 @@ $links = "list";
                         </div>
                     </form>
 
-
                     <!-- 중복체크 팝업 -->
                     <div id="pooup_01" class="popup">
                         <div class="pooup_bg"></div>
@@ -1067,16 +1066,13 @@ $links = "list";
 
                             <label for="" class="name_search">조회</label>
                             <p class="result_text"><strong>코드</strong>를 입력하신 후 조회해주세요.</p>
-                            <!--
-                        <p class="result_text">요청하신 <strong>상품코드</strong>는 사용 <span>가능</span> 합니다.</p>
-                        -->
+
                             <div class="btn_box">
                                 <p class="ok_btn">사용</p><span>|</span>
                                 <p class="close_btn">닫기</p>
                             </div>
                         </div>
                     </div>
-
 
                     <div class="tail_menu">
                         <ul>
@@ -1097,7 +1093,6 @@ $links = "list";
                             </li>
                         </ul>
                     </div>
-
 
                 </div>
                 <!-- // listWrap -->
