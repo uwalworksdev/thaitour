@@ -47,12 +47,12 @@
                                     <h3 class="title-sub-c">인원<?= $i ?></h3>
                                     <div class="con-form mb-40">
                                         <div class="form-group">
-                                            <label for="passport-name1">여권 영문명(성명)*</label>
-                                            <input type="text" name="companion_name[]" id="passport-name1" placeholder="영어로 작성해주세요." />
+                                            <label for="passport-name<?=$i?>">여권 영문명(성명)*</label>
+                                            <input type="text" name="companion_name[]" id="passport-name<?=$i?>" data-label="인원성명" required placeholder="영어로 작성해주세요." />
                                         </div>
                                         <div class="form-group">
-                                            <label for="gender1">성별(MR/MS)*</label>
-                                            <input type="text" name="companion_gender[]" id="gender1" placeholder="성별(MR/MS)" list="gender" />
+                                            <label for="gender<?=$i?>">성별(MR/MS)*</label>
+                                            <input type="text" name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" placeholder="성별(MR/MS)" list="gender" />
                                             <datalist id="gender">
                                                 <option value="MR">MR</option>
                                                 <option value="MS">MS</option>
@@ -60,7 +60,7 @@
                                         </div>
                                     </div>
                                 <?php } ?>
-                                <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <?=$vehicle_amount?>대</h3>
+                                <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <?=$total_vehicle?>대</h3>
                                 <div class="con-form-select form-group mb-30">
                                     <label for="car-time-hour">차량 미팅 시간</label>
                                     <div class="form-group time-group">
@@ -112,26 +112,26 @@
                             <h3 class="title-sub-c">예약확정서 이름</h3>
                             <div class="form-group mb-30">
                                 <label for="order_user_name">한국이름</label>
-                                <input type="text" id="order_user_name" name="order_user_name" value="박지애" />
+                                <input type="text" id="order_user_name" name="order_user_name" required data-label="한국이름" placeholder="한국이름 작성해주세요." />
                             </div>
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="order_user_first_name_en">영문 이름(First Name) *</label>
-                                    <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" placeholder="영어로 작성해주세요." />
+                                    <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" required data-label="영문 이름" placeholder="영어로 작성해주세요." />
                                 </div>
                                 <div class="form-group">
                                     <label for="order_user_last_name_en">영문 성(Last Name) *</label>
-                                    <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" placeholder="영어로 작성해주세요." />
+                                    <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required data-label="영문 성" placeholder="영어로 작성해주세요." />
                                 </div>
                             </div>
                             <h3 class="title-sub-c">연락처</h3>
                             <div class="form-group form-cus-select">
                                 <label for="passport-name2">이메일 주소*</label>
                                 <div class="cus-select-group">
-                                    <input type="text" id="email_1" name="email_1" placeholder="이메일" />
+                                    <input type="text" id="email_1" name="email_1" required data-label="이메일" placeholder="이메일" />
                                     <span>@</span>
                                     <div class="email-group">
-                                        <input type="text" name="email_2" id="email_2" placeholder="" readonly>
+                                        <input type="text" name="email_2" id="email_2" required data-label="이메일" placeholder="" readonly>
                                         <select id="" class="select-width" onchange="handleEmail(this.value)">
                                             <option value="">선택</option>
                                             <option value="naver.com">naver.com</option>
@@ -159,11 +159,11 @@
                                         <label for="test1">한국번호*</label>
                                     </p>
                                     <div class="form-group form-group-cus-4input">
-                                        <input name="phone_1" class="phone_kor" type="text" id="" />
+                                        <input name="phone_1" class="phone_kor" type="text" id="phone_1" required data-label="한국번호" />
                                         <span> - </span>
-                                        <input name="phone_2" class="phone_kor" type="text" id="" />
+                                        <input name="phone_2" class="phone_kor" type="text" id="phone_2" required data-label="한국번호" />
                                         <span> - </span>
-                                        <input name="phone_3" class="phone_kor" type="text" id="" />
+                                        <input name="phone_3" class="phone_kor" type="text" id="phone_3" required data-label="한국번호" />
                                     </div>
                                 </div>
                                 <div class="phone_wrap_item form-group">
@@ -172,7 +172,7 @@
                                         <label for="test2">태국번호 *</label>
                                     </p>
                                     <div class="form-group">
-                                        <input name="phone_thai" class="phone_thai" type="text" id="" disabled />
+                                        <input name="phone_thai" class="phone_thai" type="text" id="phone_thai" disabled required data-label="한국번호" />
                                     </div>
                                 </div>
                             </div>
@@ -393,6 +393,21 @@
     <script>
         function handleSubmit() {
             const frm = document.order_frm;
+            let flag = true;
+
+            $("input[required]:not(:disabled)").each(function() {
+                if ($(this).val().trim() == "") {
+                    alert($(this).attr("data-label") + "를 입력하십시오.");
+                    $(this).focus();
+                    flag = false;
+                    return false;
+                }
+            });
+
+            if (!flag) {
+                return false;
+            }
+
             if (!($(".item-clause-all").hasClass("click"))) {
                 alert("이용약관 동의(필수)를 선택하십시오.");
                 return false;

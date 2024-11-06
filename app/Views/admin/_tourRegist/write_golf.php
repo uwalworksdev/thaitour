@@ -553,7 +553,7 @@
 
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>출발요일</th>
                                     <td colspan="3">
                                         <input type="checkbox" name="yoil_0" value="Y"
@@ -578,7 +578,7 @@
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                         <th>시작일</th>
                                         <td>
@@ -603,7 +603,7 @@
                                         <?php }
                                         ?>
                                         <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
-                                        <p>"|" 로 일자를 구분해 주세요  </p>
+                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
                                     </td>
                                 </tr>
                             </tbody>

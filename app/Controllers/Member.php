@@ -585,20 +585,18 @@ class Member extends BaseController
         } else {
             $existingMember = $this->member->where('sns_key', $sns_key)->first();
             if ($existingMember) {
-                $session->set([
-                    'member.id' => $existingMember['user_id'],
-                    'member.shop' => $existingMember['user_id'],
-                    'member.idx' => $existingMember['m_idx'],
-                    'member.mIdx' => $existingMember['m_idx'],
-                    'member.level' => $existingMember['user_level'],
-                    'member.email' => $existingMember['user_email'],
-                    'member.gubun' => $existingMember['gubun'],
-                    'member.name' => $existingMember['user_name'],
-                    'member.mlevel' => $existingMember['mem_level']
-                ]);
+                $data['id'] = $existingMember['user_id'];
+                $data['idx'] = $existingMember['m_idx'];
+                $data["mIdx"] = $existingMember['m_idx'];
+                $data['name'] = $existingMember['user_name'];
+                $data['email'] = $existingMember['user_email'];
+                $data['level'] = $existingMember['user_level'];
+
+                $session->set("member", $data);
 
                 if (!empty($existingMember['sns_key'])) {
-                    $session->set('member.sns_login', 'Y');
+                    $data['sns_login'] = 'Y';
+                    $session->set("member", $data);
                 }
 
                 $num = 2;
@@ -710,6 +708,235 @@ class Member extends BaseController
     }
     public function LoginFindId()
     {
-        return "";
+        return $this->renderView('member/login_find_id');
+    }
+
+    public function LoginFindPw()
+    {
+        return view('member/login_find_pw');
+    }
+    public function cert_id_send_sms()
+    {
+        $mobile = updateSQ($this->request->getPost('mobile'));
+        $user_name = updateSQ($this->request->getPost('user_name'));
+
+        $mobile_sec = encryptField($mobile, "encode");
+        $user_name_sec = encryptField($user_name, "encode");
+
+        $row = $this->member->where(['user_mobile' => $mobile_sec, 'user_name' => $user_name_sec])->first();
+        if (!$row) {
+            return "일치하는 정보가 없습니다.";
+        }
+
+        if ($mobile) {
+            $result = phone_chk($mobile);
+        }
+
+        return $this->response->setBody('인증번호가 발송되었습니다.' );
+    }
+    public function cert_pw_send_sms()
+    {
+        $mobile = updateSQ($this->request->getPost('mobile'));
+        $user_name = updateSQ($this->request->getPost('user_name'));
+        $user_id = updateSQ($this->request->getPost('user_id'));
+
+        $mobile_sec = encryptField($mobile, "encode");
+        $user_name_sec = encryptField($user_name, "encode");
+
+        $row = $this->member->where(['user_mobile' => $mobile_sec, 'user_name' => $user_name_sec, 'user_id' => $user_id])->first();
+        if (!$row) {
+            return "일치하는 정보가 없습니다.";
+        }
+
+        if ($mobile) {
+            $result = phone_chk($mobile);
+        }
+
+        return $this->response->setBody('인증번호가 발송되었습니다.');
+    }
+    public function cert_id_send_email()
+    {
+        $user_email = updateSQ($this->request->getPost('user_email'));
+        $user_name = updateSQ($this->request->getPost('user_name'));
+
+        $user_email_sec = encryptField($user_email, "encode");
+        $user_name_sec = encryptField($user_name, "encode");
+
+        $row = $this->member->where(['user_email' => $user_email_sec, 'user_name' => $user_name_sec])->first();
+        if (!$row) {
+            return "일치하는 정보가 없습니다.";
+        }
+
+        $to_email = $user_email;
+
+        if ($to_email) {
+            $result = email_chk($to_email);
+        }
+
+        return $this->response->setBody('인증번호가 발송되었습니다.');
+    }
+    public function cert_pw_send_email()
+    {
+        $user_email = updateSQ($this->request->getPost('user_email'));
+        $user_name = updateSQ($this->request->getPost('user_name'));
+        $user_id = updateSQ($this->request->getPost('user_id'));
+
+        $user_email_sec = encryptField($user_email, "encode");
+        $user_name_sec = encryptField($user_name, "encode");
+
+        $row = $this->member->where(['user_email' => $user_email_sec, 'user_name' => $user_name_sec, 'user_id' => $user_id])->first();
+        if (!$row) {
+            return "일치하는 정보가 없습니다.";
+        }
+
+        if ($user_email) {
+            $result = email_chk($user_email);
+        }
+
+        return $this->response->setBody('인증번호가 발송되었습니다.');
+    }
+    public function find_id_ok()
+    {
+        $mobile = updateSQ($this->request->getPost('mobile'));
+        $user_name = updateSQ($this->request->getPost('user_name'));
+        $user_email = updateSQ($this->request->getPost('user_email'));
+        $cert_num = updateSQ($this->request->getPost('cert_num'));
+        $gubun = updateSQ($this->request->getPost('gubun'));
+
+        $user_name_sec = encryptField($user_name, "encode");
+
+        $mobile_sec = encryptField($mobile, "encode");
+
+        $user_email_sec = encryptField($user_email, "encode");
+
+        if ($gubun == "email") {
+            $row = $this->member->where(['user_email' => $user_email_sec, 'user_name' => $user_name_sec])->first();
+        } else {
+            $row = $this->member->where(['user_mobile' => $mobile_sec, 'user_name' => $user_name_sec])->first();
+        }
+
+        if (!$row) {
+            return $this->response->setJSON([
+                'result' => 'NO',
+                'msg' => '일치하는 정보가 없습니다.'
+            ]);
+        }
+
+        $user_id	= $row["user_id"];
+
+        if ($gubun == "email") {
+            if (email_chk_ok($cert_num) != "Y") {
+                return $this->response->setJSON([
+                    'result' => 'NO',
+                    'msg' => "인증번호가 일치하지 않습니다."]
+                );
+            }
+            $code = "A11";
+            $user_mail = $user_email;
+            $_tmp_fir_array = [
+                'member_id' => $user_id
+            ];
+            autoEmail($code, $user_mail, $_tmp_fir_array);
+
+            return $this->response->setJSON([
+                'result' => 'OK',
+                'msg' => '가입하신 이메일으로 아이디가 발송되었습니다.'
+            ]);
+        } else {
+            if (phone_chk_ok($cert_num) != "Y") {
+                return $this->response->setJSON([
+                    'result' => 'NO',
+                    'msg' => "인증번호가 일치하지 않습니다."]
+                );
+            }
+            if(str_replace("-", "", $mobile)) {
+                $code = "S11";
+                $to_phone = $mobile;
+                $_tmp_fir_array = [
+                    'MEMBER_NAME' => $user_name,
+                    'MEMBER_ID' => $user_id
+                ];
+                autoSms($code, $to_phone, $_tmp_fir_array);
+
+                return $this->response->setJSON([
+                    'result' => 'OK',
+                    'msg' => '가입하신 휴대폰으로 아이디가 발송되었습니다.'
+                ]);
+
+            }
+        }
+    }
+
+    public function find_pw_ok()
+    {
+        $mobile = updateSQ($this->request->getPost('mobile'));
+        $user_name = updateSQ($this->request->getPost('user_name'));
+        $user_email = updateSQ($this->request->getPost('user_email'));
+        $cert_num = updateSQ($this->request->getPost('cert_num'));
+        $gubun = updateSQ($this->request->getPost('gubun'));
+        $user_id = updateSQ($this->request->getPost('user_id'));
+
+        $mobile_sec = encryptField($mobile, "encode");
+        $user_email_sec = encryptField($user_email, "encode");
+        $user_name_sec = encryptField($user_name, "encode");
+
+        if ($gubun == "email") {
+            $row = $this->member->where(['user_email' => $user_email_sec, 'user_name' => $user_name_sec, 'user_id' => $user_id])->first();
+        } else {
+            $row = $this->member->where(['user_mobile' => $mobile_sec, 'user_name' => $user_name_sec, 'user_id' => $user_id])->first();
+        }
+
+
+        if (!$row) {
+            return $this->response->setJSON([
+                'result' => 'NO',
+                'msg' => "일치하는 정보가 없습니다."
+            ]);
+        }
+
+        if ($gubun == "email") {
+            if (email_chk_ok($cert_num) != "Y") {
+                return $this->response->setJSON([
+                    'result' => 'NO',
+                    'msg' => "인증번호가 일치하지 않습니다."
+                ]);
+            } 
+        } else {
+            if (phone_chk_ok($cert_num) != "Y") {
+                return $this->response->setJSON([
+                    'result' => 'NO',
+                    'msg' => "인증번호가 일치하지 않습니다."
+                ]);
+            }
+        }
+        
+        $user_id	= $row["user_id"];
+        $passwd	= get_rand(8);
+
+        $this->member->where(['user_id' => $user_id])->set(['user_pw' => password_hash($passwd, PASSWORD_BCRYPT)])->update();
+
+        if ($gubun == "email") {
+            $code = "A12";
+            $user_mail = $user_email;
+            $_tmp_fir_array = [
+                'user_pw' => $passwd
+            ];
+            autoEmail($code, $user_mail, $_tmp_fir_array);
+            return $this->response->setJSON([
+                'result' => 'OK',
+                'msg' => '가입하신 임메일으로 임시패스워드가 발송되었습니다.'
+            ]);
+        } else {
+            $code = "S12";
+            $to_phone = $mobile;
+            $_tmp_fir_array = [
+                'MEMBER_PW' => $passwd
+            ];
+            autoSms($code, $to_phone, $_tmp_fir_array);
+            return $this->response->setJSON([
+                'result' => 'OK',
+                'msg' => '가입하신 휴대폰으로 임시패스워드가 발송되었습니다.'
+            ]);
+        }
     }
 }
