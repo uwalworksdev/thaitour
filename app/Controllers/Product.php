@@ -735,7 +735,6 @@ class Product extends BaseController
                     ->getResult();
             }
 
-            // Dữ liệu cho sub_visual
             $len = strlen($code_no);
             $code_name1 = $code_name2 = $code_name3 = '';
 
@@ -765,7 +764,6 @@ class Product extends BaseController
 
             $sub_banners = $this->bannerModel->getBanners('1317');
 
-            // Xử lý biến yoil cho mỗi sản phẩm
             foreach ($products as &$product) {
                 $product['yoil_values'] = explode('|', $product['yoil_0'] . "|" . $product['yoil_1'] . "|" . $product['yoil_2'] . "|" . $product['yoil_3'] . "|" . $product['yoil_4'] . "|" . $product['yoil_5'] . "|" . $product['yoil_6']);
             }
@@ -1406,7 +1404,7 @@ class Product extends BaseController
 
     public function completedOrder()
     {
-        return $this->renderView('product/completed-order');
+        return $this->renderView('product/completed-order', ['return_url' => '/']);
     }
 
     public function golfList($code_no)
@@ -1700,7 +1698,7 @@ class Product extends BaseController
             return $this->response->setBody("
                 <script>
                     alert('주문되었습니다');
-                    parent.location.href = '/product/completed-order';
+                    parent.location.href = '/product-golf/completed-order';
                 </script>
             ");
         } catch (\Throwable $th) {
@@ -1711,6 +1709,11 @@ class Product extends BaseController
                     </script>
                 ");
         }
+    }
+
+    public function golfCompletedOrder()
+    {
+        return $this->renderView('product/completed-order', ['return_url' => '/']);
     }
 
     public function index8($product_idx)
