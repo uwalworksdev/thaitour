@@ -204,7 +204,6 @@
                                     </td>
                                 </tr>
 
-
                                 <tr>
                                     <th>간단소개</th>
                                     <td>
@@ -661,13 +660,27 @@
                                                id="d_end">
                                     </td>
                                     <td class="tac">
-                                        <input type="checkbox" name="yoil_0" id="yoil_0" value="Y" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_1" id="yoil_1" value="Y" class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_2" id="yoil_2" value="Y" class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_3" id="yoil_3" value="Y" class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_4" id="yoil_4" value="Y" class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_5" id="yoil_5" value="Y" class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_6" id="yoil_6" value="Y" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_0" id="yoil_0" value="Y" class="yoil">
+                                        <label for="yoil_0">일요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_1" id="yoil_1" value="Y" class="yoil">
+                                        <label for="yoil_1">월요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_2" id="yoil_2" value="Y" class="yoil">
+                                        <label for="yoil_2">화요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_3" id="yoil_3" value="Y" class="yoil">
+                                        <label for="yoil_3">수요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_4" id="yoil_4" value="Y" class="yoil">
+                                        <label for="yoil_4">목요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_5" id="yoil_5" value="Y" class="yoil">
+                                        <label for="yoil_5">금요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_6" id="yoil_6" value="Y" class="yoil">
+                                        <label for="yoil_6">토요일</label>
+                                        &nbsp;&nbsp;&nbsp;
                                     </td>
                                     <td style="text-align:center">
                                         <input type="text" name="price1" id="price1" value="0"
@@ -684,7 +697,7 @@
                                                class="price price3 input_txt"
                                                style="width:90%;text-align:right;">
                                     </td>
-                                    <td>
+                                    <td style="text-align: center">
                                         <a href="#!" onclick="isrt_price();" class="btn btn-default"><span
                                                     class="glyphicon glyphicon-cog"></span><span class="txt">가격추가</span></a>
                                     </td>
@@ -725,38 +738,48 @@
                                         2024-12-31
                                     </td>
                                     <td class="tac">
-                                        <input type="checkbox" name="yoil_0" id="yoil_0_33" value="Y" checked=""
-                                               class="yoil" disabled=""> 일요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_1" id="yoil_1_33" value="Y" checked=""
-                                               class="yoil" disabled=""> 월요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_2" id="yoil_2_33" value="Y" checked=""
-                                               class="yoil" disabled=""> 화요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_3" id="yoil_3_33" value="Y" checked=""
-                                               class="yoil" disabled=""> 수요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_4" id="yoil_4_33" value="Y" class="yoil"
-                                               disabled=""> 목요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_5" id="yoil_5_33" value="Y" class="yoil"
-                                               disabled=""> 금요일&nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_6" id="yoil_6_33" value="Y" class="yoil"
-                                               disabled=""> 토요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_0" id="yoil_0_" value="Y" checked=""
+                                               class="yoil">
+                                        <label for="yoil_0_">일요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_1" id="yoil_1_" value="Y" checked=""
+                                               class="yoil">
+                                        <label for="yoil_1_">월요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_2" id="yoil_2_" value="Y" checked=""
+                                               class="yoil">
+                                        <label for="yoil_2_">화요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_3" id="yoil_3_" value="Y" checked=""
+                                               class="yoil">
+                                        <label for="yoil_3_">수요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_4" id="yoil_4_" value="Y" class="yoil">
+                                        <label for="yoil_4_">목요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_5" id="yoil_5_" value="Y" class="yoil">
+                                        <label for="yoil_5_">금요일</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_6" id="yoil_6_" value="Y" class="yoil">
+                                        <label for="yoil_6_">토요일</label>
+                                        &nbsp;&nbsp;&nbsp;
                                     </td>
                                     <td>
-                                        <input type="checkbox" name="sale" id="sale_33" value="N" class="yoil"
+                                        <input type="checkbox" name="sale" id="sale_" value="N" class="yoil"
                                                disabled="">
                                     </td>
                                     <td class="tac">
                                         2024-10-30 18:49:45
                                     </td>
                                     <td style="text-align: center">
-                                        <a href="../_tourPrice/write_new.php?s_product_code_1=&amp;s_product_code_2=&amp;s_product_code_2=&amp;search_name=&amp;search_category=product_name&amp;pg=1&amp;product_idx=3137&amp;back_url=write.php&amp;yoil_idx=33"
+                                        <a href="/_tourPrice/write_new?yoil_idx="
                                            class="btn btn-default">가격수정</a>
 
-                                        <a href="javascript:close_yoil('33');" class="btn btn-default">마감처리</a>
+                                        <a href="javascript:close_yoil('');" class="btn btn-default">마감처리</a>
 
-                                        <a href="javascript:del_yoil('33');" class="btn btn-default">삭제하기</a>
+                                        <a href="javascript:del_yoil('');" class="btn btn-default">삭제하기</a>
                                     </td>
                                 </tr>
-
 
                                 </tbody>
                             </table>
@@ -809,154 +832,171 @@
                                 </tbody>
                             </table>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="5%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        상세정보
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>추천 포인트</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_utility" class="all_input"
-                                               name="all_code_utility" value=""/>
-                                        <label for="all_code_utility">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $code_utilities);
-                                        foreach ($fresult6 as $row_r) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="code_utilitie<?= $row_r['code_no'] ?>"
-                                                   name="_code_utilities" class="code_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-                                            <label for="code_utilitie<?= $row_r['code_no'] ?>"><?= $row_r['code_name'] ?></label>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>인기 시설 및 서비스</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_best_utilities" class="all_input"
-                                               name="all_code_best_utilities" value=""/>
-                                        <label for="all_code_best_utilities">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $code_best_utilities);
-                                        foreach ($fresult6 as $row_r) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="code_best_utilities<?= $row_r['code_no'] ?>"
-                                                   name="_code_best_utilities" class="code_best_utilities"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-                                            <label for="code_best_utilities<?= $row_r['code_no'] ?>">
-                                                <?= $row_r['code_name'] ?>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>시설 & 서비스</th>
-                                    <th>
-                                        <input type="checkbox" id="all_code_service" class="all_input"
-                                               name="all_code_service" value=""/>
-                                        <label for="all_code_service">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $code_services);
-                                        foreach ($fresult5 as $row_r) : ?>
-                                            <div class="" style="margin-bottom: 20px">
-                                                <span class=""
-                                                      style="font-weight: 600;color: #333;font-size: 13px;"> <?= $row_r['code_name'] ?></span>
-                                                <div class="" style="margin-left: 30px;margin-top: 8px;">
-                                                    <?php
-                                                    $fresult6 = $row_r['child'];
-                                                    foreach ($fresult6 as $row_r2) :
-                                                        $find2 = "";
-                                                        for ($i = 0; $i < count($_arr); $i++) {
-                                                            if ($_arr[$i]) {
-                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
-                                                            }
-                                                        }
-                                                        ?>
-                                                        <input type="checkbox" class="code_service"
-                                                               id="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>"
-                                                               name="_code_services"
-                                                               value="<?= $row_r2['code_no'] ?>" <?php if ($find2 == "Y") echo "checked"; ?> />
-                                                        <label for="code_service<?= $row_r['code_no'] ?>_<?= $row_r2['code_no'] ?>">
-                                                            <?= $row_r2['code_name'] ?>
-                                                        </label>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>호텔주변 추천명소</th>
-                                    <th style="width: 20px">
-                                        <input type="checkbox" id="all_code_populars" class="all_input"
-                                               name="all_code_populars" value="Y"/>
-                                        <label for="all_code_populars">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $code_populars);
-                                        foreach ($fresult8 as $row_r) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="code_populars<?= $row_r['code_no'] ?>"
-                                                   name="_code_populars" class="code_populars"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-                                            <label for="code_populars<?= $row_r['code_no'] ?>">
-                                                <?= $row_r['code_name'] ?>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
+                            <!--                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"-->
+                            <!--                                   style="margin-top:50px;">-->
+                            <!--                                <caption>-->
+                            <!--                                </caption>-->
+                            <!--                                <colgroup>-->
+                            <!--                                    <col width="10%"/>-->
+                            <!--                                    <col width="5%"/>-->
+                            <!--                                    <col width="10%"/>-->
+                            <!--                                    <col width="40%"/>-->
+                            <!--                                </colgroup>-->
+                            <!--                                <tbody>-->
+                            <!--                                <tr>-->
+                            <!--                                    <td colspan="4">-->
+                            <!--                                        상세정보-->
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                <tr>-->
+                            <!--                                    <th>추천 포인트</th>-->
+                            <!--                                    <th>-->
+                            <!--                                        <input type="checkbox" id="all_code_utility" class="all_input"-->
+                            <!--                                               name="all_code_utility" value=""/>-->
+                            <!--                                        <label for="all_code_utility">-->
+                            <!--                                            모두 선택-->
+                            <!--                                        </label>-->
+                            <!--                                    </th>-->
+                            <!--                                    <td colspan="2">-->
+                            <!--                                        --><?php
+                            //                                        $_arr = explode("|", $code_utilities);
+                            //                                        foreach ($fresult6 as $row_r) :
+                            //                                            $find = "";
+                            //                                            for ($i = 0; $i < count($_arr); $i++) {
+                            //                                                if ($_arr[$i]) {
+                            //                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                            //                                                }
+                            //                                            }
+                            //                                            ?>
+                            <!--                                            <input type="checkbox" id="code_utilitie-->
+                            <?php //= $row_r['code_no'] ?><!--"-->
+                            <!--                                                   name="_code_utilities" class="code_utilities"-->
+                            <!--                                                   value="-->
+                            <?php //= $row_r['code_no'] ?><!--" -->
+                            <?php //if ($find == "Y") echo "checked"; ?><!-- />-->
+                            <!--                                            <label for="code_utilitie-->
+                            <?php //= $row_r['code_no'] ?><!--">--><?php //= $row_r['code_name'] ?><!--</label>-->
+                            <!--                                        --><?php //endforeach; ?>
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                <tr>-->
+                            <!--                                    <th>인기 시설 및 서비스</th>-->
+                            <!--                                    <th>-->
+                            <!--                                        <input type="checkbox" id="all_code_best_utilities" class="all_input"-->
+                            <!--                                               name="all_code_best_utilities" value=""/>-->
+                            <!--                                        <label for="all_code_best_utilities">-->
+                            <!--                                            모두 선택-->
+                            <!--                                        </label>-->
+                            <!--                                    </th>-->
+                            <!--                                    <td colspan="2">-->
+                            <!--                                        --><?php
+                            //                                        $_arr = explode("|", $code_best_utilities);
+                            //                                        foreach ($fresult6 as $row_r) :
+                            //                                            $find = "";
+                            //                                            for ($i = 0; $i < count($_arr); $i++) {
+                            //                                                if ($_arr[$i]) {
+                            //                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                            //                                                }
+                            //                                            }
+                            //                                            ?>
+                            <!--                                            <input type="checkbox" id="code_best_utilities-->
+                            <?php //= $row_r['code_no'] ?><!--"-->
+                            <!--                                                   name="_code_best_utilities" class="code_best_utilities"-->
+                            <!--                                                   value="-->
+                            <?php //= $row_r['code_no'] ?><!--" -->
+                            <?php //if ($find == "Y") echo "checked"; ?><!-- />-->
+                            <!--                                            <label for="code_best_utilities-->
+                            <?php //= $row_r['code_no'] ?><!--">-->
+                            <!--                                                --><?php //= $row_r['code_name'] ?>
+                            <!--                                            </label>-->
+                            <!--                                        --><?php //endforeach; ?>
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                <tr>-->
+                            <!--                                    <th>시설 & 서비스</th>-->
+                            <!--                                    <th>-->
+                            <!--                                        <input type="checkbox" id="all_code_service" class="all_input"-->
+                            <!--                                               name="all_code_service" value=""/>-->
+                            <!--                                        <label for="all_code_service">-->
+                            <!--                                            모두 선택-->
+                            <!--                                        </label>-->
+                            <!--                                    </th>-->
+                            <!--                                    <td colspan="2">-->
+                            <!--                                        --><?php
+                            //                                        $_arr = explode("|", $code_services);
+                            //                                        foreach ($fresult5 as $row_r) : ?>
+                            <!--                                            <div class="" style="margin-bottom: 20px">-->
+                            <!--                                                <span class=""-->
+                            <!--                                                      style="font-weight: 600;color: #333;font-size: 13px;"> -->
+                            <?php //= $row_r['code_name'] ?><!--</span>-->
+                            <!--                                                <div class="" style="margin-left: 30px;margin-top: 8px;">-->
+                            <!--                                                    --><?php
+                            //                                                    $fresult6 = $row_r['child'];
+                            //                                                    foreach ($fresult6 as $row_r2) :
+                            //                                                        $find2 = "";
+                            //                                                        for ($i = 0; $i < count($_arr); $i++) {
+                            //                                                            if ($_arr[$i]) {
+                            //                                                                if ($_arr[$i] == $row_r2['code_no']) $find2 = "Y";
+                            //                                                            }
+                            //                                                        }
+                            //                                                        ?>
+                            <!--                                                        <input type="checkbox" class="code_service"-->
+                            <!--                                                               id="code_service-->
+                            <?php //= $row_r['code_no'] ?><!--_--><?php //= $row_r2['code_no'] ?><!--"-->
+                            <!--                                                               name="_code_services"-->
+                            <!--                                                               value="-->
+                            <?php //= $row_r2['code_no'] ?><!--" -->
+                            <?php //if ($find2 == "Y") echo "checked"; ?><!-- />-->
+                            <!--                                                        <label for="code_service-->
+                            <?php //= $row_r['code_no'] ?><!--_--><?php //= $row_r2['code_no'] ?><!--">-->
+                            <!--                                                            --><?php //= $row_r2['code_name'] ?>
+                            <!--                                                        </label>-->
+                            <!--                                                    --><?php //endforeach; ?>
+                            <!--                                                </div>-->
+                            <!--                                            </div>-->
+                            <!--                                        --><?php //endforeach; ?>
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                <tr>-->
+                            <!--                                    <th>호텔주변 추천명소</th>-->
+                            <!--                                    <th style="width: 20px">-->
+                            <!--                                        <input type="checkbox" id="all_code_populars" class="all_input"-->
+                            <!--                                               name="all_code_populars" value="Y"/>-->
+                            <!--                                        <label for="all_code_populars">-->
+                            <!--                                            모두 선택-->
+                            <!--                                        </label>-->
+                            <!--                                    </th>-->
+                            <!--                                    <td colspan="2">-->
+                            <!--                                        --><?php
+                            //                                        $_arr = explode("|", $code_populars);
+                            //                                        foreach ($fresult8 as $row_r) :
+                            //                                            $find = "";
+                            //                                            for ($i = 0; $i < count($_arr); $i++) {
+                            //                                                if ($_arr[$i]) {
+                            //                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
+                            //                                                }
+                            //                                            }
+                            //                                            ?>
+                            <!--                                            <input type="checkbox" id="code_populars-->
+                            <?php //= $row_r['code_no'] ?><!--"-->
+                            <!--                                                   name="_code_populars" class="code_populars"-->
+                            <!--                                                   value="-->
+                            <?php //= $row_r['code_no'] ?><!--" -->
+                            <?php //if ($find == "Y") echo "checked"; ?><!-- />-->
+                            <!--                                            <label for="code_populars-->
+                            <?php //= $row_r['code_no'] ?><!--">-->
+                            <!--                                                --><?php //= $row_r['code_name'] ?>
+                            <!--                                            </label>-->
+                            <!--                                        --><?php //endforeach; ?>
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                </tbody>-->
+                            <!--                            </table>-->
 
                             <style>
                                 .btnAddBreakfast {
@@ -1250,6 +1290,58 @@
     </div>
 
     <script>
+        function isrt_price() {
+            let url = `<?= route_to('admin.api.spa_.img_remove') ?>`;
+
+            let d_start = $("#d_start").val();
+            let d_end = $("#d_end").val();
+
+            let price_1 = $("#price_1").val();
+            let price_2 = $("#price_2").val();
+            let price_3 = $("#price_3").val();
+
+            let yoil_0 = $("#yoil_0").val();
+            let yoil_1 = $("#yoil_1").val();
+            let yoil_2 = $("#yoil_2").val();
+            let yoil_3 = $("#yoil_3").val();
+            let yoil_4 = $("#yoil_4").val();
+            let yoil_5 = $("#yoil_5").val();
+            let yoil_6 = $("#yoil_6").val();
+
+            let data = {
+                "d_start": d_start,
+                "d_end": d_end,
+                "price_1": price_1,
+                "price_2": price_2,
+                "price_3": price_3,
+                "yoil_0": yoil_0,
+                "yoil_1": yoil_1,
+                "yoil_2": yoil_2,
+                "yoil_3": yoil_3,
+                "yoil_4": yoil_4,
+                "yoil_5": yoil_5,
+                "yoil_6": yoil_6
+            };
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: data,
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+
+            });
+        }
+    </script>
+    <script>
         function change_manager(user_id) {
 
             if (user_id === "정민경 사원") {
@@ -1310,7 +1402,6 @@
 
         }
     </script>
-
     <script>
         $("#btn_add_optionx").click(function () {
 
@@ -1541,7 +1632,6 @@
 
         }
     </script>
-
     <script>
         function img_remove(img) {
             //alert('img- '+img);
@@ -1572,7 +1662,6 @@
             });
         }
     </script>
-
     <script type="text/javascript">
         function del_yoil(yoil_idx) {
             if (confirm("삭제하시겠습니까?\n삭제후에는 복구가 불가합니다.")) {
@@ -1820,10 +1909,6 @@
                 $('.code_utilities').prop('checked', false)
             }
         })
-
-        function isrt_price() {
-
-        }
 
         function getCoordinates() {
             let address = $("#addrs").val();

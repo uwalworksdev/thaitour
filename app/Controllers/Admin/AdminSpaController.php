@@ -866,4 +866,26 @@ class AdminSpaController extends BaseController
                 );
         }
     }
+
+    public function save_option_price()
+    {
+        try {
+            $msg = '';
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
 }
