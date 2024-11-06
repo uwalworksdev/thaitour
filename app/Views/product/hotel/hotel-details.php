@@ -22,7 +22,8 @@
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
                     <span><strong> <?= $hotel['review_average'] ?></strong></span>
-                    <span class="text-gray">생생리뷰 <strong style="color: #000;">(0)</strong></span>
+                    <span class="page_">생생리뷰 <strong style="color: #000;">(0)</strong></span>
+                    <span class="page_"><?= $fresult9['code_name'] ?></span>
                 </div>
                 <div class="hotel-image-container">
                     <div class="hotel-image-container-1">
@@ -321,7 +322,8 @@
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
                                                                     class="count_day"
                                                                     id="<?= $room_op['rop_idx'] ?>">1</span>박 (세금 포함)</span>
-                                                        <span class="details use_coupon_name" style="color: #df0011"></span>
+                                                        <span class="details use_coupon_name"
+                                                              style="color: #df0011"></span>
                                                         <p>
                                                                     <span class="price totalPrice"
                                                                           id="<?= $room_op['rop_idx'] ?>"
@@ -1224,7 +1226,7 @@
                         $('.room_op_[data-room="' + room_op_idx + '"]').find(".totalPrice").text(total_price.toLocaleString('ko-KR'));
                         $("#total_last_price").val(total_price);
                         $("#use_coupon_room").val(room_op_idx);
-                        if(coupon_idx){
+                        if (coupon_idx) {
                             $('.room_op_[data-room="' + room_op_idx + '"]').find(".use_coupon_name").text("쿠폰 적용 " + coupon_name);
                         }
                         let rooms = $('.room_op_[data-room!="' + room_op_idx + '"]');

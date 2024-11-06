@@ -1202,8 +1202,13 @@ class Product extends BaseController
                 $c_row = [];
             }
 
+            $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $hotel['product_level'] . "' order by onum desc, code_idx desc";
+            $fresult9 = $this->db->query($fsql9);
+            $fresult9 = $fresult9->getRowArray();
+
             $data = [
                 'hotel' => $hotel,
+                'fresult9' => $fresult9,
                 's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
                 'bresult4' => $bresult4 ?? [],
@@ -1514,14 +1519,14 @@ class Product extends BaseController
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
     {
 
-        $data['option']             = $this->golfOptionModel->find($option_idx);
+        $data['option'] = $this->golfOptionModel->find($option_idx);
 
-        $data['total_price']        = $data['option']['option_price'] * $people_adult_cnt;
+        $data['total_price'] = $data['option']['option_price'] * $people_adult_cnt;
 
-        $data['total_price_baht']   = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
 
-        $total_vehicle_price        = 0;
-        $total_vehicle_price_baht   = 0;
+        $total_vehicle_price = 0;
+        $total_vehicle_price_baht = 0;
 
         $vehicle_arr = [];
         foreach ($vehicle_cnt as $key => $value) {
@@ -1542,12 +1547,12 @@ class Product extends BaseController
         $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
 
         if ($coupon['dc_type'] == "P") {
-            $price                  = $total_vehicle_price + $data['total_price'];
-            $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
-            $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+            $price = $total_vehicle_price + $data['total_price'];
+            $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
+            $data['discount_baht'] = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
         } else if ($coupon['dc_type'] == "D") {
-            $data['discount']       = $coupon['coupon_price'];
-            $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+            $data['discount'] = $coupon['coupon_price'];
+            $data['discount_baht'] = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
         }
         $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
@@ -1558,13 +1563,13 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx']        = $this->request->getVar('product_idx');
-        $data['order_date']         = $this->request->getVar('order_date');
-        $data['option_idx']         = $this->request->getVar('option_idx');
-        $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx']        = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt']        = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx']         = $this->request->getVar('use_coupon_idx');
+        $data['product_idx'] = $this->request->getVar('product_idx');
+        $data['order_date'] = $this->request->getVar('order_date');
+        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
+        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -1579,10 +1584,10 @@ class Product extends BaseController
         $data['product'] = $this->productModel->find($data['product_idx']);
 
         $priceCalculate = $this->golfPriceCalculate(
-            $data['option_idx'], 
-            $data['people_adult_cnt'], 
-            $data['vehicle_cnt'], 
-            $data['vehicle_idx'], 
+            $data['option_idx'],
+            $data['people_adult_cnt'],
+            $data['vehicle_cnt'],
+            $data['vehicle_idx'],
             $data['use_coupon_idx']
         );
 
@@ -1591,36 +1596,36 @@ class Product extends BaseController
 
     public function customerFormOk()
     {
-        $data                           = $this->request->getPost();
-        $data['m_idx']                  = session('member.idx') ?? "";
-        $product                        = $this->productModel->find($data['product_idx']);
-        $data['product_name']           = $product['product_name'];
-        $data['product_code_1']         = $product['product_code_1'];
-        $data['product_code_2']         = $product['product_code_2'];
-        $data['product_code_3']         = $product['product_code_3'];
-        $data['product_code_4']         = $product['product_code_4'];
-        $data['order_no']               = $this->orderModel->makeOrderNo();
-        $data['order_user_email']       = $data['email_1'] . "@" . $data['email_2'];
-        $data['order_r_date']           = date('Y-m-d H:i:s');
-        $data['order_status']           = "W";
-        if($data['radio_phone'] == "kor") {
-            $data['order_user_phone']   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+        $data = $this->request->getPost();
+        $data['m_idx'] = session('member.idx') ?? "";
+        $product = $this->productModel->find($data['product_idx']);
+        $data['product_name'] = $product['product_name'];
+        $data['product_code_1'] = $product['product_code_1'];
+        $data['product_code_2'] = $product['product_code_2'];
+        $data['product_code_3'] = $product['product_code_3'];
+        $data['product_code_4'] = $product['product_code_4'];
+        $data['order_no'] = $this->orderModel->makeOrderNo();
+        $data['order_user_email'] = $data['email_1'] . "@" . $data['email_2'];
+        $data['order_r_date'] = date('Y-m-d H:i:s');
+        $data['order_status'] = "W";
+        if ($data['radio_phone'] == "kor") {
+            $data['order_user_phone'] = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
         } else {
-            $data['order_user_phone']   = $data['phone_thai'];
+            $data['order_user_phone'] = $data['phone_thai'];
         }
 
-        $data['vehicle_time']           = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+        $data['vehicle_time'] = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
         $priceCalculate = $this->golfPriceCalculate(
-            $data['option_idx'], 
-            $data['people_adult_cnt'], 
-            $data['vehicle_cnt'], 
-            $data['vehicle_idx'], 
+            $data['option_idx'],
+            $data['people_adult_cnt'],
+            $data['vehicle_cnt'],
+            $data['vehicle_idx'],
             $data['use_coupon_idx']
         );
 
-        $data['order_price']            = $priceCalculate['final_price'];
-        $data['used_coupon_idx']        = $data['use_coupon_idx'];
+        $data['order_price'] = $priceCalculate['final_price'];
+        $data['used_coupon_idx'] = $data['use_coupon_idx'];
 
         $this->orderModel->save($data);
 
@@ -1694,9 +1699,9 @@ class Product extends BaseController
             }
         }
 
-        $data['imgs_tour'] = []; 
-        $data['img_names_tour'] = []; 
-        
+        $data['imgs_tour'] = [];
+        $data['img_names_tour'] = [];
+
         for ($i = 1; $i <= 6; $i++) {
             $file = "tours_ufile" . $i;
             if (isset($data['product'][$file]) && is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
@@ -1749,7 +1754,7 @@ class Product extends BaseController
         }
 
         $data['productTourInfo'] = $groupedData;
-        
+
         $airCode = $this->request->getGet('air_code') ?? '0000';
 
         $productDetail = $this->dayModel->getProductDetail($product_idx, $airCode);
@@ -1764,7 +1769,7 @@ class Product extends BaseController
         $detailIdx = $productDetail['idx'];
         $totalDays = $productDetail['total_day'];
         $schedules = [];
-    
+
         for ($dd = 1; $dd <= $totalDays; $dd++) {
             $schedule = $this->mainSchedule->getByDetailAndDay($detailIdx, $dd);
             $schedules[$dd] = $schedule ?? [];
@@ -1776,7 +1781,7 @@ class Product extends BaseController
                     ->where('detail_idx', $detailIdx)
                     ->where('day_idx', $day)
                     ->findAll();
-                
+
                 foreach ($subScheduleDetails as $subSchedule) {
                     $subSchedules[$day][$subSchedule['groups']][] = $subSchedule;
                 }
