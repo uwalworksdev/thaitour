@@ -1524,6 +1524,7 @@ class Product extends BaseController
         $total_vehicle_price_baht   = 0;
 
         $vehicle_arr = [];
+        $total_vehicle = 0;
         foreach ($vehicle_cnt as $key => $value) {
             if ($value > 0) {
                 $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
@@ -1533,11 +1534,15 @@ class Product extends BaseController
 
                 $total_vehicle_price += $info['price'] * $value;
                 $total_vehicle_price_baht += $info['price_baht'] * $value;
+
+                $total_vehicle += $value;
             }
         }
 
 
         $data['vehicle_arr'] = $vehicle_arr;
+
+        $data['total_vehicle'] = $total_vehicle;
 
         $coupon = $this->coupon->getCouponInfo($use_coupon_idx);
 
@@ -1612,15 +1617,16 @@ class Product extends BaseController
         $data['vehicle_time']           = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
         $priceCalculate = $this->golfPriceCalculate(
-            $data['option_idx'], 
-            $data['people_adult_cnt'], 
-            $data['vehicle_cnt'], 
-            $data['vehicle_idx'], 
+            $data['option_idx'],
+            $data['people_adult_cnt'],
+            $data['vehicle_cnt'],
+            $data['vehicle_idx'],
             $data['use_coupon_idx']
         );
 
         $data['order_price']            = $priceCalculate['final_price'];
         $data['used_coupon_idx']        = $data['use_coupon_idx'];
+        $data['ip']                     = $this->request->getIPAddress();
 
         $this->orderModel->save($data);
 
@@ -1670,9 +1676,8 @@ class Product extends BaseController
 
         return $this->response->setBody("
             <script>
-                alert('주의요청');
-                console.log(JSON.parse(`" . json_encode($data) . "`));
-                // parent.location.reload();
+                alert('주문되었습니다');
+                parent.location.href = '/product/completed-order';
             </script>
         ");
     }
