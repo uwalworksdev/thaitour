@@ -2,133 +2,7 @@
 
 <?php $this->section('content'); ?>
     <link rel="stylesheet" type="text/css" href="/css/tour/spa.css">
-    <style>
-        .section2 .price-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
 
-        .section2 .price-table thead th {
-            background-color: #f5f5f5;
-            font-weight: bold;
-            text-align: center;
-            padding: 15px 10px;
-            border: 1px solid #ccc;
-            border-top: 2px solid #000;
-        }
-
-        .section2 .price-table tbody td {
-            padding: 15px 10px;
-            text-align: center;
-            color: #666666;
-            border: 1px solid #ccc;
-        }
-
-        .section2 .price-table-container .title-container {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        .section2 .con-label-cjt {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-            gap: 3px;
-        }
-
-        .section2 .custom-label-cjt.extend {
-            transform: translateY(40%);
-        }
-
-        .section2 .box3_2 .note {
-            line-height: 1.5rem;
-        }
-
-        .section2 .box3_2 .note p:not(:first-child) {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .section6 .qa-section h2 {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-
-        .content-sub-hotel-detail .section6 .title-sec6 {
-            font-size: 24px;
-        }
-
-        .section6 .qa-form {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .section6 .qa-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .section6 .qa-submit {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .section6 .qa-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .section6 .qa-list {
-            border-top: 1px solid #ddd;
-        }
-
-        .section6 .qa-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 25px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .section6 .qa-question {
-            display: flex;
-            align-items: center;
-        }
-
-        .section6 .qa-number {
-            margin: 0 28px;
-            font-size: 17px;
-        }
-
-        .section6 .qa-tag {
-            background-color: var(--bs-point);
-            color: white;
-            padding: 10px 16px 8px 16px;
-            border-radius: 99px;
-            font-size: 15px;
-            margin-right: 10px;
-            width: 93px;
-        }
-
-        .section6 .qa-tag.normal-style {
-            background-color: white;
-            color: var(--bs-point);
-            padding: 10px 16px 8px 16px;
-            border-radius: 99px;
-            border: 1px solid var(--bs-point);
-            font-size: 15px;
-            margin-right: 10px;
-            width: 93px;
-        }
-    </style>
     <div class="content-sub-hotel-detail tours-detail spa-detail">
         <div class="body_inner">
             <div class="section1">
@@ -215,197 +89,255 @@
                         <table class="price-table" id="price-table" style="margin-bottom:30px;">
                             <colgroup>
                                 <col width="*">
-                                <col width="15%">
-                                <col width="12%">
-                                <col width="15%">
-                                <col width="12%">
-                                <col width="15%">
-                                <col width="12%">
+                                <col width="10%">
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="8%">
+                                <col width="8%">
                             </colgroup>
                             <thead>
                             <tr>
-                                <th colspan="7">적용일자 : 2024-11-20</th>
+                                <th colspan="6">적용일자 : 2024-11-20</th>
                             </tr>
                             <tr>
-                                <th>출발역</th>
-                                <th colspan="2">대인(원)</th>
-                                <th colspan="2">소인(원)</th>
-                                <th colspan="2">경로(원)</th>
+                                <th>선택옵션</th>
+                                <th>요일</th>
+                                <th>성인(만 13세이상)</th>
+                                <th>아름(만5세)</th>
+                                <th colspan="2">유아(만 4세 이하)</th>
                             </tr>
                             </thead>
                             <tbody>
 
                             <tr>
-                                <td>서울역</td>
-                                <input type="hidden" name="idx[]" value="|7825"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>영등포역</td>
-                                <input type="hidden" name="idx[]" value="|7861"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>수원역</td>
-                                <input type="hidden" name="idx[]" value="|7897"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>천안역</td>
-                                <input type="hidden" name="idx[]" value="|7933"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>조치원</td>
-                                <input type="hidden" name="idx[]" value="|7969"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>대전역</td>
-                                <input type="hidden" name="idx[]" value="|8005"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>진주역</td>
-                                <input type="hidden" name="idx[]" value="|8041"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>창원역</td>
-                                <input type="hidden" name="idx[]" value="|8077"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>창원중앙역</td>
-                                <input type="hidden" name="idx[]" value="|8113"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                            </tr>
-                            <tr>
-                                <td>진영역</td>
-                                <input type="hidden" name="idx[]" value="|8149"><input type="hidden" name="price1[]"
-                                                                                       value="5000"><input type="hidden"
-                                                                                                           name="price2[]"
-                                                                                                           value="0"><input
-                                        type="hidden" name="price3[]" value="0">
-                                <td>5,000</td>
-                                <td><input type="text" name="mem_cnt1[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
-                                <td>0</td>
-                                <td><input type="text" name="mem_cnt3[]" class="price_in" size="4"
-                                           onkeyup="chkNum(this)"></td>
+                                <td>아로마 테라피 마사지(60분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
                             </tr>
 
+                            <tr>
+                                <td>아로마 테라피 마사지(90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">56,304원</span>(880바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>아로마 테라피 마사지 (220분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">47,168원</span>(1,100바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>아로마 첫 오일 (60분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>아로마 오일 (90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>아로마 첫 오일 (120)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>아로마 스크럽 (90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>아로마 스크럽 (120)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>아로마 오일 등 목& 어깨 (90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <input type="text" name="mem_cnt1[]" class="price_in" size="4"
+                                               onkeyup="chkNum(this)">
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                                <td>
+                                    <p>이용불가</p>
+                                </td>
+                                <td>
+                                    <button class="btn_orderIt">건지/메이</button>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -1281,6 +1213,16 @@
             $('html, body').animate({
                 scrollTop: $('#' + elID).offset().top - 230
             }, 'slow');
+        }
+
+        function chkNum(el) {
+            let val = $(el).val();
+
+            if (!$.isNumeric(val)) {
+                val = val.replace(/\D/g, '');
+
+                $(el).val(val);
+            }
         }
     </script>
 <?php $this->endSection(); ?>
