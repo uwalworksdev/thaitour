@@ -627,6 +627,142 @@
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
+                                <caption></caption>
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="*">
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>시작일</th>
+                                    <th>종료일</th>
+                                    <th>선택요일</th>
+                                    <th>대인가격</th>
+                                    <th>소인가격</th>
+                                    <th>경로가격</th>
+                                    <th>가격추가</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr style="height:50px">
+                                    <td class="tac">
+                                        <input type="text" class="input_txt _available_period_ datepicker"
+                                               name="d_start" value=""
+                                               id="d_start">
+                                    </td>
+                                    <td class="tac">
+                                        <input type="text" class="input_txt _available_period_ datepicker"
+                                               name="d_end" value=""
+                                               id="d_end">
+                                    </td>
+                                    <td class="tac">
+                                        <input type="checkbox" name="yoil_0" id="yoil_0" value="Y" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_1" id="yoil_1" value="Y" class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_2" id="yoil_2" value="Y" class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_3" id="yoil_3" value="Y" class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_4" id="yoil_4" value="Y" class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_5" id="yoil_5" value="Y" class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_6" id="yoil_6" value="Y" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    <td style="text-align:center">
+                                        <input type="text" name="price1" id="price1" value="0"
+                                               class="price price1 input_txt"
+                                               style="width:90%;text-align:right;">
+                                    </td>
+                                    <td style="text-align:center">
+                                        <input type="text" name="price2" id="price2" value="0"
+                                               class="price price2 input_txt"
+                                               style="width:90%;text-align:right;">
+                                    </td>
+                                    <td style="text-align:center">
+                                        <input type="text" name="price3" id="price3" value="0"
+                                               class="price price3 input_txt"
+                                               style="width:90%;text-align:right;">
+                                    </td>
+                                    <td>
+                                        <a href="#!" onclick="isrt_price();" class="btn btn-default"><span
+                                                    class="glyphicon glyphicon-cog"></span><span class="txt">가격추가</span></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption></caption>
+                                <colgroup>
+                                    <col width="5%">
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="*">
+                                    <col width="10%">
+                                    <col width="10%">
+                                    <col width="20%">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>시작일</th>
+                                    <th>종료일</th>
+                                    <th>선택요일</th>
+                                    <th>마감</th>
+                                    <th>등록일</th>
+                                    <th>관리</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr style="height:50px">
+                                    <td>1</td>
+                                    <td class="tac">
+                                        2024-10-30
+                                    </td>
+                                    <td class="tac">
+                                        2024-12-31
+                                    </td>
+                                    <td class="tac">
+                                        <input type="checkbox" name="yoil_0" id="yoil_0_33" value="Y" checked=""
+                                               class="yoil" disabled=""> 일요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_1" id="yoil_1_33" value="Y" checked=""
+                                               class="yoil" disabled=""> 월요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_2" id="yoil_2_33" value="Y" checked=""
+                                               class="yoil" disabled=""> 화요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_3" id="yoil_3_33" value="Y" checked=""
+                                               class="yoil" disabled=""> 수요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_4" id="yoil_4_33" value="Y" class="yoil"
+                                               disabled=""> 목요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_5" id="yoil_5_33" value="Y" class="yoil"
+                                               disabled=""> 금요일&nbsp;&nbsp;&nbsp;
+                                        <input type="checkbox" name="yoil_6" id="yoil_6_33" value="Y" class="yoil"
+                                               disabled=""> 토요일&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="sale" id="sale_33" value="N" class="yoil"
+                                               disabled="">
+                                    </td>
+                                    <td class="tac">
+                                        2024-10-30 18:49:45
+                                    </td>
+                                    <td style="text-align: center">
+                                        <a href="../_tourPrice/write_new.php?s_product_code_1=&amp;s_product_code_2=&amp;s_product_code_2=&amp;search_name=&amp;search_category=product_name&amp;pg=1&amp;product_idx=3137&amp;back_url=write.php&amp;yoil_idx=33"
+                                           class="btn btn-default">가격수정</a>
+
+                                        <a href="javascript:close_yoil('33');" class="btn btn-default">마감처리</a>
+
+                                        <a href="javascript:del_yoil('33');" class="btn btn-default">삭제하기</a>
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
                                 <caption>
                                 </caption>
                                 <colgroup>
@@ -663,10 +799,10 @@
                                         2024-10-31 18:16:58
                                     </td>
                                     <td>
-                                       <div class="" style="display: flex; gap: 10px">
-                                           <a href="#" class="btn btn-default">추가등록</a>
-                                           <a href="#" class="btn btn-default">하위리스트</a>
-                                       </div>
+                                        <div class="" style="display: flex; gap: 10px">
+                                            <a href="#" class="btn btn-default">추가등록</a>
+                                            <a href="#" class="btn btn-default">하위리스트</a>
+                                        </div>
                                     </td>
                                 </tr>
 
@@ -988,7 +1124,6 @@
                     </li>
                 </ul>
             </div>
-
 
             <div class="listBottom" style="padding: 15px;">
                 <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -1685,6 +1820,10 @@
                 $('.code_utilities').prop('checked', false)
             }
         })
+
+        function isrt_price() {
+
+        }
 
         function getCoordinates() {
             let address = $("#addrs").val();
