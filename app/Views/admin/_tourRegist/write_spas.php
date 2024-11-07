@@ -687,7 +687,7 @@
                                 }
                             </style>
                             <?php foreach ($options as $row_option): ?>
-                                <div class="listBottom" style="padding: 15px;">
+                                <div class="listBottom" style="">
                                     <form name="optionForm_<?= $row_option['code_idx'] ?>"
                                           id="optionForm_<?= $row_option['code_idx'] ?>">
                                         <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
