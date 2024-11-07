@@ -7,6 +7,8 @@ foreach ($options as $option) { ?>
         data-idx="<?=$option['idx']?>"
         data-option_price="<?=$option['option_price']?>"
         data-option_price_baht="<?=$option['option_price_baht']?>"
+        data-caddy_fee="<?=$option['caddy_fee']?>"
+        data-cart_pie_fee="<?=$option['cart_pie_fee']?>"
         onclick="selectOption(this)">
         <div class="header">
             <div class="header-con">

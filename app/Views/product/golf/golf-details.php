@@ -600,6 +600,8 @@
 
             const optionActive = $("#final_option_list .card-item.active_2");
             const price = optionActive.data("option_price") || 0;
+            const caddy_fee = optionActive.data("caddy_fee") || "그린피에 포함";
+            const cart_pie_fee = optionActive.data("cart_pie_fee") || "그린피에 포함";
             const price_baht = optionActive.data("option_price_baht") || 0;
             const people_cnt = $("#people_adult_cnt").val() || 0;
             const final_price = Math.round(price * people_cnt);
@@ -608,6 +610,8 @@
 
             $("#option_idx").val(optionActive.data("idx"));
             $("#final_option_price").text(number_format(price));
+            $("#final_caddy_fee").text(caddy_fee);
+            $("#final_cart_pie_fee").text(cart_pie_fee);
             $("#final_option_price_baht").text(number_format(price_baht));
             $(".final_people_cnt").text(number_format(people_cnt));
             $("#total_final_option_price").text(number_format(final_price));
