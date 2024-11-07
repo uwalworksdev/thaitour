@@ -1751,6 +1751,41 @@ class Product extends BaseController
         return $this->renderView('product/completed-order', ['return_url' => '/']);
     }
 
+    public function tourCustomerForm()
+    {
+        $data['product_idx']        = $this->request->getVar('product_idx');
+        $data['order_date']         = $this->request->getVar('order_date');
+        $data['option_idx']         = $this->request->getVar('option_idx');
+        $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
+        $data['start_place']        = $this->request->getVar('start_place');
+        $data['end_place']          = $this->request->getVar('end_place');
+        $data['metting_time']       = $this->request->getVar('metting_time');
+        $data['description']        = $this->request->getVar('description');
+        $data['id_kakao']           = $this->request->getVar('id_kakao');
+
+        $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+
+        $date = date("Y.m.d", strtotime($data['order_date']));
+
+        $dayOfWeek = date("w");
+
+        $formattedDate = $date . "(" . $daysOfWeek[$dayOfWeek] . ")";
+
+        $data['final_date'] = $formattedDate;
+
+        $data['product'] = $this->productModel->find($data['product_idx']);
+
+        $priceCalculate = $this->golfPriceCalculate(
+            $data['option_idx'],
+            $data['people_adult_cnt'],
+            $data['vehicle_cnt'],
+            $data['vehicle_idx'],
+            $data['use_coupon_idx']
+        );
+
+        return $this->renderView('product/tour/customer-form', array_merge($data, $priceCalculate));
+    }
+
     public function index8($product_idx)
     {
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
@@ -2068,6 +2103,18 @@ class Product extends BaseController
     public function tourLocationInfo($product_idx)
     {
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+        $data['imgs'] = [];
+        $data['img_names'] = [];
+        for ($i = 1; $i <= 7; $i++) {
+            $file = "ufile" . $i;
+            if (is_file(ROOTPATH . "public/data/product/" . $data['product'][$file])) {
+                $data['imgs'][] = "/data/product/" . $data['product'][$file];
+                $data['img_names'][] = $data['product']["rfile" . $i];
+            } else {
+                $data['imgs'][] = "/images/product/noimg.png";
+                $data['img_names'][] = "";
+            }
+        }
         return $this->renderView('tours/location-info', $data);
     }
 

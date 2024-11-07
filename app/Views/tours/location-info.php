@@ -5,7 +5,7 @@
     <div class="body_inner">
         <div class="section1">
             <div class="title-container">
-                <h2>(아속출발) 아유타야 선셋 리버크루즈 반일 투어</h2>
+                <h2><?=$product['product_name']?></h2>
                 <div class="list-icon only_web">
                     <img src="/uploads/icons/print_icon.png" alt="print_icon">
                     <img src="/uploads/icons/heart_icon.png" alt="heart_icon">
@@ -14,7 +14,7 @@
             </div>
             <div class="location-container">
                 <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                <span>413 Soi Sukhumvit 49, Watthana 10110,방콕,태국</span>
+                <span><?=$product['addrs']?></span>
             </div>
             <div class="rating-container">
                 <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
@@ -27,30 +27,29 @@
                 <img src="/uploads/icons/share_icon.png" alt="share_icon">
             </div>
             <div class="hotel-image-container">
-                <div class="">
-                    <img src="/uploads/sub/tour_details_1.png" alt="tour_details_1">
+                <div class="hotel-image-container-1" style="<?= $imgs[0] == '' ? 'visibility: hidden' : '' ?>">
+                    <img src="<?= $imgs[0] ?>" alt="<?= $img_names[0] ?>">
                 </div>
                 <div class="grid_2_2">
-                    <img src="/uploads/sub/tour_details_2.png" alt="tour_details_2">
-                    <img src="/uploads/sub/tour_details_3.png" alt="tour_details_3">
-                    <img src="/uploads/sub/tour_details_4.png" alt="tour_details_4">
-                    <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                        <img class="custom_button" src="/uploads/sub/tour_details_5.png" alt="tour_details_5">
-                        <div class="button-show-detail-image">
+                    <img class="grid_2_2_size" src="<?= $imgs[1] ?>" alt="<?= $img_names[1] ?>" style="<?= $imgs[1] == '' ? 'visibility: hidden' : '' ?>">
+                    <img class="grid_2_2_size" src="<?= $imgs[2] ?>" alt="<?= $img_names[2] ?>" style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
+                    <img class="grid_2_2_size" src="<?= $imgs[3] ?>" alt="<?= $img_names[3] ?>" style="<?= $imgs[3] == '' ? 'visibility: hidden' : '' ?>">
+                    <div class="grid_2_2_sub" style="position: relative; cursor: pointer;<?= $imgs[4] == '' ? 'visibility: hidden;' : '' ?>" onclick="img_pops('<?= $product['product_idx'] ?>')">
+                        <img class="custom_button" src="<?= $imgs[4] ?>" alt="<?= $img_names[4] ?>">
+                        <div class="button-show-detail-image" style="<?= $imgs[5] == '' ? 'visibility: hidden' : '' ?>">
                             <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
                             <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png" alt="image_detail_icon_m">
                             <span>사진 모두 보기</span>
-                            <span>(125장)</span>
+                            <span>(<?= count($imgs) - 5 ?>장)</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="sub-header-hotel-detail">
                 <div class="main">
-                    <a class="active short_link" data-target="product_info" href="/product-tours/item_view/<?= $product['product_idx']?>#product_info">상품예약</a>
+                    <a class="short_link" data-target="product_info" href="/product-tours/item_view/<?= $product['product_idx']?>#product_info">상품예약</a>
                     <a class="short_link" data-target="product_des" href="/product-tours/item_view/<?= $product['product_idx']?>#product_des">상품설명</a>
-                    <a href="/product-tours/location_info/<?= $product['product_idx']?>#section2">위치정보</a>
-                    <!-- <a class="short_link" href="/product-tours/item_view/<?= $product['product_idx']?>">더투어랩리뷰</a> -->
+                    <a class="short_link active" href="/product-tours/location_info/<?= $product['product_idx']?>#section2">위치정보</a>
                     <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#section6">생생리뷰(159개)</a>
                     <a class="short_link" href="/product-tours/location_info/<?= $product['product_idx']?>#qa-section">상품Q&A</a>
                 </div>
@@ -71,7 +70,7 @@
                     L.marker([lat, lng]).addTo(map)
                 </script>
             <div class="location-container">
-                <span class="text-gray">19 Moo.14, Bang Krasan, Bangpain,Phra Nakhon Si Ayutthaya 13160</span>
+                <span class="text-gray"><?=$product['addrs']?></span>
             </div>
             <div class="section6" id="section6">
                 <h2 class="title-sec6"><span>생생리뷰</span>(516)</h2>
@@ -322,6 +321,17 @@
                 });
 
 
+            });
+
+            document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.short_link');
+
+                links.forEach(link => {
+                    link.addEventListener('click', function() {
+                        links.forEach(link => link.classList.remove('active'));
+                        this.classList.add('active');
+                    });
+                });
             });
 
             </script>
