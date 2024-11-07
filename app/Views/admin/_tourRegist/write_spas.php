@@ -660,7 +660,7 @@
                                 </tbody>
                             </table>
 
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <table style="margin-top: 50px;" cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
                                 <colgroup>
