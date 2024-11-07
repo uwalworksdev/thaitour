@@ -140,8 +140,7 @@
                             <td>
                                 <div class="vehicle_info">
                                     <h4 class="vehicle_info__name">
-                                        프리미엄세단 (도요타 알티스, 캠리 등 준중형 세단) <br>
-                                        좌석 3개 (어른3 / 어린이 1)
+                                        <?=$product["product_name"]?>
                                     </h4>
                                     <table>
                                         <colgroup>
@@ -153,18 +152,24 @@
                                         </colgroup>
                                         <tbody>
                                             <tr>
-                                                <td class=""><img src="/images/ico/ico_baggage.png" alt=""></td>
+                                                <td class="">
+                                                    <img src="/images/ico/ico_baggage.png" alt="">
+                                                </td>
                                                 <td class="vehicle_info__item">가방 20kg 3개</td>
                                                 <td class="vehicle_info__item">또는</td>
-                                                <td class="vehicle_info__item"><img src="/images/ico/ico_baggage.png" alt=""></td>
+                                                <td class="vehicle_info__item">
+                                                    <img src="/images/ico/ico_baggage.png" alt="">
+                                                </td>
                                                 <td class="vehicle_info__item">가방 20kg 1개 + 24kg 1개</td>
                                             </tr>
                                             <tr>
                                                 <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""></td>
                                                 <td class="vehicle_info__item">골프백 3개</td>
                                                 <td class="vehicle_info__item">또는</td>
-                                                <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""><img
-                                                        src="/images/ico/ico_baggage.png" alt=""></td>
+                                                <td class="vehicle_info__item">
+                                                    <img src="/images/ico/ico_bat.png" alt="">
+                                                    <img src="/images/ico/ico_baggage.png" alt="">
+                                                </td>
                                                 <td class="vehicle_info__item">골프백 2개+가방 20kg</td>
                                             </tr>
                                         </tbody>
@@ -173,7 +178,7 @@
                             </td>
                             <td>
                                 <div class="vehicle_price">
-                                    43,758<span>원 (1,100바트)</span>
+                                    <?=number_format($product["product_price"])?><span>원 (<?=number_format($product['product_price_baht'])?>바트)</span>
                                 </div>
                                 <div class="vehicle_options">
                                     <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
