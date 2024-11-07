@@ -291,6 +291,12 @@ class Product extends BaseController
 
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $products['items'][$key]['level_name'] = $fresult9['code_name'];
             }
 
             $pager = \Config\Services::pager();
@@ -340,6 +346,12 @@ class Product extends BaseController
 
                 $bestValueProduct[$key]['total_review'] = $productReview['total_review'];
                 $bestValueProduct[$key]['review_average'] = $productReview['avg'];
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $bestValueProduct[$key]['level_name'] = $fresult9['code_name'];
             }
 
             $keyWordAll = $this->productModel->getKeyWordAll(1303);
@@ -351,6 +363,15 @@ class Product extends BaseController
                 'search_txt' => $keyWordAll[$keyWordActive] ?? "",
                 'search_category' => 'keyword'
             ], $this->scale, 1);
+
+            foreach ($productByKeyword['items'] as $key => $product) {
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $productByKeyword['items'][$key]['level_name'] = $fresult9['code_name'];
+            }
 
             $data = [
                 'banners' => $banners,
@@ -962,6 +983,12 @@ class Product extends BaseController
 
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $products['items'][$key]['level_name'] = $fresult9['code_name'];
             }
 
             $data = [
@@ -1551,15 +1578,16 @@ class Product extends BaseController
 
         if ($coupon) {
             if ($coupon['dc_type'] == "P") {
-                $price                  = $total_vehicle_price + $data['total_price'];
-                $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
-                $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+                $price = $total_vehicle_price + $data['total_price'];
+                $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
+                $data['discount_baht'] = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
             } else if ($coupon['dc_type'] == "D") {
-                $data['discount']       = $coupon['coupon_price'];
-                $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+                $data['discount'] = $coupon['coupon_price'];
+                $data['discount_baht'] = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
             }
         }
 
+        $data['inital_price'] = $total_vehicle_price + $data['total_price'];
         $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
@@ -1569,13 +1597,13 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx']        = $this->request->getVar('product_idx');
-        $data['order_date']         = $this->request->getVar('order_date');
-        $data['option_idx']         = $this->request->getVar('option_idx');
-        $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx']        = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt']        = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx']     = $this->request->getVar('use_coupon_idx');
+        $data['product_idx'] = $this->request->getVar('product_idx');
+        $data['order_date'] = $this->request->getVar('order_date');
+        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
+        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -1612,14 +1640,17 @@ class Product extends BaseController
             $data['product_code_3']         = $product['product_code_3'];
             $data['product_code_4']         = $product['product_code_4'];
             $data['order_no']               = $this->orderModel->makeOrderNo();
-            $data['order_user_email']       = $data['email_1'] . "@" . $data['email_2'];
+            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_user_email']       = encryptField($order_user_email, 'encode');
             $data['order_r_date']           = date('Y-m-d H:i:s');
             $data['order_status']           = "W";
             if($data['radio_phone'] == "kor") {
-                $data['order_user_phone']   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+                $order_user_phone   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $data['order_user_phone']   = $data['phone_thai'];
+                $order_user_phone   = $data['phone_thai'];
             }
+
+            $data['order_user_phone']       = encryptField($order_user_phone, 'encode');
 
             $data['vehicle_time']           = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
@@ -1632,6 +1663,7 @@ class Product extends BaseController
             );
 
             $data['order_price']            = $priceCalculate['final_price'];
+            $data['inital_price']           = $priceCalculate['inital_price'];
             $data['used_coupon_idx']        = $data['use_coupon_idx'];
             $data['ip']                     = $this->request->getIPAddress();
             $data['order_gubun']            = "golf";
@@ -1639,12 +1671,14 @@ class Product extends BaseController
             $data['order_user_name']        = encryptField($data['order_user_name'], 'encode');
 
             if($data['radio_phone'] == "kor") {
-                $order_user_mobile              = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+                $order_user_mobile          = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_mobile              = $data['phone_thai'];
+                $order_user_mobile          = $data['phone_thai'];
             }
 
-            $data['order_user_mobile']      = encryptField($order_user_mobile, 'encode');
+            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
+
+            $data['local_phone']            = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
 
@@ -1652,9 +1686,10 @@ class Product extends BaseController
 
             foreach ($data['companion_name'] as $key => $value) {
                 $this->orderSubModel->insert([
+                    'order_gubun' => 'adult',
                     'order_idx' => $order_idx,
                     'product_idx' => $data['product_idx'],
-                    'order_name_kor' => encryptField($data['companion_name'][$key], 'encode'),
+                    'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
                     'order_sex' => $data['companion_gender'][$key],
                 ]);
             }
@@ -2470,7 +2505,7 @@ class Product extends BaseController
     private function getImage($file)
     {
         // return base_url("images/{$file}");
-        return "https://hihojoonew.cafe24.com/data/product/thum_798_463/{$file}";
+        return base_url("/data/product/thum_798_463/{$file}");
     }
 
     private function viewData($code_no)

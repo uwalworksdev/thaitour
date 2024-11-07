@@ -117,7 +117,7 @@ class Member extends Model
         }
 
         $data['user_level'] = '10';
-        $data['status'] = '1';
+        $data['status'] = 'Y';
         $data['user_ip'] = $_SERVER['REMOTE_ADDR'];
         $data['r_date'] = date('Y-m-d H:i:s');
         $data['encode'] = 'Y';
@@ -127,5 +127,12 @@ class Member extends Model
         }
 
         return $this->insert($data);
+    }
+    public function checkPhone($phone)
+    {
+        $private_key = private_key();
+        $builder = $this->builder();
+        $builder->where("(AES_DECRYPT(UNHEX(user_mobile), '$private_key'))", $phone);
+        return $builder->get()->getNumRows() > 0;
     }
 }

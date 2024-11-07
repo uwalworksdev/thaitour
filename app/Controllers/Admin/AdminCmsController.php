@@ -10,10 +10,12 @@ use JkCms;
 class AdminCmsController extends BaseController
 {
     protected $connect;
+    protected $policyModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
+        $this->policyModel = model("PolicyModel");
         helper('my_helper');
         helper('alert_helper');
         helper('JkCms_helper');
@@ -152,5 +154,20 @@ class AdminCmsController extends BaseController
             'row' => $row
         ];
         return view('admin/_cms/policy_write', $data);
+    }
+
+    public function policy_ok()
+    {
+        $p_idx		      = updateSQ($_POST["p_idx"]);
+        $policy_type      = updateSQ($_POST["policy_type"]);
+        $policy_contents  = updateSQ($_POST["policy_contents"]);
+
+        if($p_idx) {
+            $this->policyModel->update($p_idx, ['policy_type' => $policy_type, 'policy_contents' => $policy_contents]);
+            return redirect()->to("/AdmMaster/_cms/policy_write?p_idx=$p_idx");
+        } else {
+            $this->policyModel->insert(['policy_type' => $policy_type, 'policy_contents' => $policy_contents]);
+            return redirect()->to("/AdmMaster/_cms/policy_list");
+        }
     }
 }

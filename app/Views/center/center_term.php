@@ -1,6 +1,6 @@
 <div class="center_term_box">
     <div class="inner">
-        <h1 class="title">하이호주 약관</h1>
+        <h1 class="title">더투어랩 약관</h1>
         <nav class="snb ">
             <ul>
                 <li class="<?= $tab1 ?>"><a href="./insurance">여행자보험</a></li>

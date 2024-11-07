@@ -73,10 +73,10 @@
           </div>
         </div>
         <ul class="ux_btn_wrap flex_e_c">
-          <li><button type="button" onclick="openPopup()" class="ux_txt_btn message"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_message.png" alt="">일정보내기</button></li>
-          <li><button type="button" onclick="printPage()" class="ux_txt_btn print"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_print.png" alt="">인쇄</button></li>
+          <li><button type="button" onclick="openPopup()" class="ux_txt_btn message"><img src="/assets/img/btn/ux_btn_message.png" alt="">일정보내기</button></li>
+          <li><button type="button" onclick="printPage()" class="ux_txt_btn print"><img src="/assets/img/btn/ux_btn_print.png" alt="">인쇄</button></li>
           <li>
-            <button type="button" aria-label="공유버튼" class="ux_txt_btn share"><img src="https://hihojoonew.cafe24.com/assets/img/btn/ux_btn_share.png" alt=""></button>
+            <button type="button" aria-label="공유버튼" class="ux_txt_btn share"><img src="/assets/img/btn/ux_btn_share.png" alt=""></button>
             <!-- <div class="wrap_share">
               <button type="button" class="sns_close"></button>
               <ul class="sns_list flex_c_c">
@@ -87,7 +87,7 @@
                   </a>
                 </li>
                 <li>
-                  <a onclick="copyItemLink(`https://hihojoonew.cafe24.com/t-package/item_view?product_idx=1707`)">
+                  <a onclick="copyItemLink(`/t-package/item_view?product_idx=1707`)">
                     <img src="../img/ico/share_link_icon.png" alt="">
                     <p>링그</p>
                   </a>
@@ -99,8 +99,8 @@
         <div class="view_banner only_web">
           <a href="/mypage/discount_download.php">
             <picture>
-              <source media="(max-width: 768px)" srcset="https://hihojoonew.cafe24.com/assets/img/sub/view_mid_banner.png">
-              <img src="https://hihojoonew.cafe24.com/assets/img/sub/view_mid_banner.png" alt="쿠폰받고 더욱 저렴하게 여행가기 배너">
+              <source media="(max-width: 768px)" srcset="/assets/img/sub/view_mid_banner.png">
+              <img src="/assets/img/sub/view_mid_banner.png" alt="쿠폰받고 더욱 저렴하게 여행가기 배너">
             </picture>
           </a>
         </div>
@@ -142,7 +142,7 @@
 
         <div class="manager flex__c">
           <figure class="cover_img">
-            <img src="https://hihojoonew.cafe24.com/assets/img/sub/sub_logo.png" alt="하이호주 로고">
+            <img src="/assets/img/sub/sub_logo.png" alt="더투어랩 로고">
           </figure>
           <div class="profile">
             <strong class="name"><?= $product['product_manager'] ?></strong>

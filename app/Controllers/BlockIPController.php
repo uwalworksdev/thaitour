@@ -236,7 +236,7 @@ class BoardController extends BaseController
 
         if ($code == "b2b_notice") {
             if ($writer == "") {
-                $writer = "하이호주";
+                $writer = "더투어랩";
             }
         }
 

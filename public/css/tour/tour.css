@@ -2512,6 +2512,10 @@
     margin-bottom: 50px;
 }
 
+.tours-detail .timeline-con:not(:first-child) {
+    margin-bottom: 20px;
+}
+
 .tours-detail .steps-type {
     display: flex;
     align-items: center;

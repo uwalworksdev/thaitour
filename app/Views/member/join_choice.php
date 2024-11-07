@@ -56,7 +56,7 @@
   <div class="inner_620">
 
     <div class="sub_sec_ttl tac ">
-      <h2 class="ttl">반가워요! <span class="font_emoji">👋</span> <br> 하이호주에는 처음 오셨나요?</h2>
+      <h2 class="ttl">반가워요! <span class="font_emoji">👋</span> <br> 더투어랩에는 처음 오셨나요?</h2>
     </div>
 
     <ul class="join_list">

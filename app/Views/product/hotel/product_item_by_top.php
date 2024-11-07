@@ -1,5 +1,5 @@
 <?php
-if(is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
+if (is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
     $src = "/data/hotel/" . $item['ufile1'];
 } else {
     $src = "/images/product/noimg.png";
@@ -34,10 +34,14 @@ if(is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
             <span class="prd_info__right__ttl">생생리뷰</span>
             <span class="new_review_cnt">(<?= $item['total_review'] ?>)</span>
         </div>
+        <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+        <div class="prd_info__right">
+            <span class="prd_info__right__ttl"><?= $item['level_name'] ?></span>
+        </div>
     </div>
     <div class="prd_price_ko">
         <?= number_format($item['product_price']) ?> <span>원 ~</span> <span class="prd_price_thai">
-            <?=number_format($item['product_price_baht'])?>
+            <?= number_format($item['product_price_baht']) ?>
             <span>바트</span></span>
     </div>
 </a>

@@ -15,4 +15,5 @@ if (is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
         <?=number_format($item['product_price_baht'])?>
             <span>바트</span></span>
     </div>
+    <p class="mt--10"><?= $item['level_name'] ?></p>
 </a>
