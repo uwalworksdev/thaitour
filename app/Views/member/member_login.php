@@ -20,12 +20,12 @@
     <div class="flex_c_c logo_box">
       <picture>
         <source media="(max-width: 768px)" srcset="/images/sub/logo_w.png">
-        <img src="/images/sub/logo_w.png" alt="하이호주 로고">
+        <img src="/images/sub/logo_w.png" alt="더투어랩 로고">
       </picture>
     </div>
-    <div class="alert_box">
+    <!-- <div class="alert_box">
         <p>기존 회원분들은 비밀번호 찾기로 비밀번호를 재발급 받으셔야 합니다. <br>재발급후 로그인이 안되시는 분들은 고객센터로 연락부탁드립니다.</p>
-    </div>
+    </div> -->
     <div class="login_tab">
       <button type="button" class="on">회원 로그인</button>
       <button type="button">비회원 예약확인</button>

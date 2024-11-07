@@ -475,8 +475,8 @@
                                     </div>
                                     <div class="ch_visit agr_7">
                                         <input type="checkbox" id="agree7" class="agree" name="visit_route"
-                                            value="하이호주 블로그">
-                                        <label for="agree7">하이호주 블로그</label>
+                                            value="더투어랩 블로그">
+                                        <label for="agree7">더투어랩 블로그</label>
                                     </div>
                                     <div class="ch_visit agr_8">
                                         <input type="checkbox" id="agree8" class="agree" name="visit_route"
