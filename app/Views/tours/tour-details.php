@@ -113,9 +113,7 @@
                             <del class="text-grey"><?= $info['info']['tour_info_price']?>원</del>
                         </div>
                         <div class="text-content-2">
-                            <?php if (!empty($days)) { ?>
                                 <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
-                            <?php } ?>
                             <div class="price-sub">
                                 <span class="ps-left text-grey"><?= $tour['price_baht']?>바트</span>
                                 <span class="ps-right"><?= number_format($tour['tour_price']) ?></span> <span class="text-grey">원</span>
@@ -711,7 +709,8 @@
                     
                     const firstTourCard = $('.sec2-item-card').first();
                     const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, ''); 
-                    const tourPrice = parseFloat(tourPriceText);
+                    const tourPrices = parseFloat(tourPriceText) / 100000;
+                    const tourPrice = parseFloat(tourPrices.toFixed(1));
 
                     const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim().replace(/,/g, '');
                     const tourPriceBaht = parseFloat(tourPriceTextBath);
@@ -759,17 +758,18 @@
                 };
 
                 $('.btn-ct-3').click(function() {
-                    const firstTourDateElement = $('.sec2-date-main').first();
-                    const tourStartDate = firstTourDateElement.data('start-date');
-                    const tourEndDate = firstTourDateElement.data('end-date');
-                    
-                    const tourPriceText = $(this).closest('.sec2-item-card').find('.ps-right').text().trim().replace(/,/g, '');
-                    const tourPrice = parseFloat(tourPriceText);
+                    const tourCard = $(this).closest('.sec2-item-card');
+                    const tourDateElement = tourCard.prevAll('.sec2-date-main').first();
+                    const tourStartDate = tourDateElement.data('start-date');
+                    const tourEndDate = tourDateElement.data('end-date');
 
-                    const tourPriceTextBaht = $(this).closest('.sec2-item-card').find('.ps-left').text().trim().replace(/,/g, ''); 
-                    const tourPriceBaht = parseFloat(tourPriceTextBaht); 
+                    const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
+                    const tourPrices = parseFloat(tourPriceText) / 100000;
+                    const tourPrice = parseFloat(tourPrices.toFixed(1));
 
-                    // Lưu valid days vào data attribute
+                    const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, ''); 
+                    const tourPriceBaht = parseFloat(tourPriceTextBaht);
+
                     const validDays = $(this).data('valid-days');
                     setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht);
                 });
@@ -846,7 +846,17 @@
         </script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                document.querySelectorAll('.btn-ct-3').forEach((button, index) => {
+                const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
+                allContainers.forEach(container => {
+                    container.style.display = 'none';
+                });
+
+                const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
+                if (firstContainer) {
+                    firstContainer.style.display = 'block';
+                }
+
+                document.querySelectorAll('.btn-ct-3').forEach((button) => {
                     button.addEventListener('click', function() {
                         const tourIndex = this.getAttribute('data-tour-index');
 
@@ -861,8 +871,7 @@
                     });
                 });
             });
-    </script>
 
-            </script>
+        </script>
 
         <?php $this->endSection(); ?>

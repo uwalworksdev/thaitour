@@ -381,6 +381,7 @@
 		`;
 		$(".table_list:last").after(newTable);
 		$(".datepicker").datepicker();
+		$(".price").number(true);
 	}
 
 	function remove_table(tableIndex) {
@@ -398,17 +399,17 @@
 
 		var newRow = `
 			<tr class="air_list_1" style="height:40px">
-				<td>
+				<td style="text-align:center">
 					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="new">
 					<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" style="width:100%" />
 				</td>
-				<td>
+				<td style="text-align:center">
 					<input type="text" name="tour_price[${tableListIndex}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
 				</td>
-				<td>
+				<td style="text-align:center">
 					<input type="text" name="tour_price_kids[${tableListIndex}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
 				</td>
-				<td>
+				<td style="text-align:center">
 					<input type="text" name="tour_price_baby[${tableListIndex}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
 				</td>
 				<td>
@@ -424,6 +425,7 @@
 		`;
 
 		targetTable.append(newRow);
+		$(".price").number(true);
 	}
 
 	function remove_tours(tableListIndex, rowIndex) {
@@ -442,17 +444,17 @@
 
 		var newRow = `
 			<tr class="air_list_1" style="height:40px">
-				<td>
+				<td style="text-align:center">
 					<input type="hidden" name="tours_idx[${infoIdx}][]" class="tours_idx" value="new">
 					<input type="text" name="tours_subject[${infoIdx}][]" value="" class="tours_subject input_txt" style="width:100%" />
 				</td>
-				<td>
+				<td style="text-align:center">
 					<input type="text" name="tour_price[${infoIdx}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
 				</td>
-				<td>
+				<td style="text-align:center">
 					<input type="text" name="tour_price_kids[${infoIdx}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
 				</td>
-				<td>
+				<td style="text-align:center">
 					<input type="text" name="tour_price_baby[${infoIdx}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
 				</td>
 				<td>
@@ -468,6 +470,7 @@
 		`;
 
 		targetTable.append(newRow);
+		$(".price").number(true);
 	}
 
 
