@@ -1343,6 +1343,7 @@
         }
 
         function del_yoil(p_idx) {
+            $("#ajax_loader").removeClass("display-none");
             if (!confirm("정말로 삭제하시겠습니까?\n\n한 번 삭제되면 데이터를 복구할 수 없습니다.\n\n"))
                 return false;
 
@@ -1365,6 +1366,7 @@
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    $("#ajax_loader").removeClass("display-none");
                 }
 
             });
@@ -1376,6 +1378,7 @@
 
 
         function upd_price(p_idx) {
+            $("#ajax_loader").removeClass("display-none");
             let url = `<?= route_to('admin.api.spa_.save_option_price') ?>`;
 
             let d_start = $("#d_start").val();
@@ -1425,6 +1428,7 @@
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    $("#ajax_loader").removeClass("display-none");
                 }
 
             });
