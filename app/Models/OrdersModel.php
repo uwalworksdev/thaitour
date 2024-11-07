@@ -79,4 +79,19 @@ class OrdersModel extends Model
         $order_no = str_pad($maxOrderNo + 1, 3, "0", STR_PAD_LEFT);
         return "S" . date('Ymd') . $order_no;
     }
+
+    public function getOrderInfo($order_idx) {
+        $private_key = private_key();
+        $sql_d = " SELECT *
+        , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') order_user_name
+        , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') order_user_mobile
+        , AES_DECRYPT(UNHEX(order_user_phone),  '$private_key') order_user_phone
+        , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') order_user_email
+        , AES_DECRYPT(UNHEX(manager_name),      '$private_key') manager_name
+        , AES_DECRYPT(UNHEX(manager_phone),     '$private_key') manager_phone
+        , AES_DECRYPT(UNHEX(manager_email),     '$private_key') manager_email
+        , AES_DECRYPT(UNHEX(local_phone),     	'$private_key') local_phone 
+        FROM tbl_order_mst where order_idx='" . $order_idx . "' ";
+        return $this->db->query($sql_d)->getRowArray();
+    }
 }

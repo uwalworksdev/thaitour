@@ -215,97 +215,7 @@ class ReservationController extends BaseController
         $order_idx = updateSQ($_GET["order_idx"] ?? '');
         $titleStr = "주문 생성";
         if ($order_idx) {
-            $total_sql = " select * from tbl_order_mst where order_idx='" . $order_idx . "'";
-            $result = $this->connect->query($total_sql);
-            $row = $result->getRowArray();
-
-            $sql_d = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') order_user_name
-						    , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'), '$private_key') order_user_mobile
-						    , AES_DECRYPT(UNHEX('{$row['order_user_phone']}'),  '$private_key') order_user_phone
-						    , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),  '$private_key') order_user_email
-						    , AES_DECRYPT(UNHEX('{$row['manager_name']}'),      '$private_key') manager_name
-						    , AES_DECRYPT(UNHEX('{$row['manager_phone']}'),     '$private_key') manager_phone
-						    , AES_DECRYPT(UNHEX('{$row['manager_email']}'),     '$private_key') manager_email
-							, AES_DECRYPT(UNHEX('{$row['local_phone']}'),     	'$private_key') local_phone ";
-            $res_d = $this->connect->query($sql_d);
-            $row_d = $res_d->getRowArray();
-
-            $row['order_user_name'] = $row_d['order_user_name'];
-            $row['order_user_mobile'] = $row_d['order_user_mobile'];
-            $row['order_user_phone'] = $row_d['order_user_phone'];
-            $row['order_user_email'] = $row_d['order_user_email'];
-            $row['manager_name'] = $row_d['manager_name'];
-            $row['manager_phone'] = $row_d['manager_phone'];
-            $row['manager_email'] = $row_d['manager_email'];
-            $row['local_phone'] = $row_d['local_phone'];
-
-            $m_idx = $row["m_idx"];
-            $air_idx = $row["air_idx"];
-            $yoil_idx = $row["yoil_idx"];
-            $product_idx = $row["product_idx"];
-            $product_name = $row["product_name"];
-            $tours_subject = $row["tours_subject"];
-            $order_gubun = $row["order_gubun"];
-            $order_no = $row["order_no"];
-            $order_date = $row["order_date"];
-            $order_user_name = $row["order_user_name"];
-            $order_user_email = $row["order_user_email"];
-            $order_user_mobile = $row["order_user_mobile"];
-            $order_user_phone = $row["order_user_phone"];
-            $order_memo = $row["order_memo"];
-            $custom_req = $row["custom_req"];
-            $local_phone = $row["local_phone"];
-            $start_date = $row["start_date"];
-            $end_date = $row["end_date"];
-            $product_period = $row["product_period"];
-            $tour_period = $row["tour_period"];
-            $people_adult_cnt = $row["people_adult_cnt"];
-            $people_adult_price = $row["people_adult_price"];
-            $people_kids_cnt = $row["people_kids_cnt"];
-            $people_kids_price = $row["people_kids_price"];
-            $people_baby_cnt = $row["people_baby_cnt"];
-            $people_baby_price = $row["people_baby_price"];
-            $inital_price = $row["inital_price"];
-            $order_price = $row["order_price"];
-            $order_room_cnt = $row["order_room_cnt"];
-            $order_day_cnt = $row["order_day_cnt"];
-            $order_confirm_price = $row["order_confirm_price"];
-            $order_method = $row["order_method"];
-            $used_coupon_idx = $row["used_coupon_idx"];
-            $used_coupon_point = $row["used_coupon_point"];
-            $product_mileage = $row["product_mileage"];
-            $order_mileage = $row["order_mileage"];
-            $used_coupon_money = $row["used_coupon_money"];
-            $oil_price = $row["oil_price"];
-            $order_status = $row["order_status"];
-            $order_r_date = $row["order_r_date"];
-            $admin_memo = $row["admin_memo"];
-            $paydate = $row["paydate"];
-            $deposit_price = $row["deposit_price"];
-            $order_confirm_date = $row["order_confirm_date"];
-            $used_mileage_money = $row["used_mileage_money"];
-            $order_mileage_yn = $row["order_mileage_yn"];
-
-            $ResultCode_1 = $row["ResultCode_1"];
-            $ResultMsg_1 = $row["ResultMsg_1"];
-            $Amt_1 = $row["Amt_1"];
-            $TID_1 = $row["TID_1"];
-            $AuthCode_1 = $row["AuthCode_1"];
-            $AuthDate_1 = $row["AuthDate_1"];
-            $CancelDate_1 = $row["CancelDate_1"];
-
-            $ResultCode_2 = $row["ResultCode_2"];
-            $ResultMsg_2 = $row["ResultMsg_2"];
-            $Amt_2 = $row["Amt_2"];
-            $TID_2 = $row["TID_2"];
-            $AuthCode_2 = $row["AuthCode_2"];
-            $AuthDate_2 = $row["AuthDate_2"];
-            $CancelDate_2 = $row["CancelDate_2"];
-
-            $home_depart_date = $row["home_depart_date"];
-            $away_arrive_date = $row["away_arrive_date"];
-            $away_depart_date = $row["away_depart_date"];
-            $home_arrive_date = $row["home_arrive_date"];
+            $row = $this->orderModel->getOrderInfo($order_idx);
 
             $titleStr = "일정 및 결제정보";
         }
@@ -314,22 +224,7 @@ class ReservationController extends BaseController
         $result_cou = $this->connect->query($sql_cou);
         $row_cou = $result_cou->getRowArray();
 
-        $fsql = " SELECT order_gubun, number_room
-                                    , AES_DECRYPT(UNHEX(order_name_kor),   '$private_key') AS order_name_kor
-                                    , AES_DECRYPT(UNHEX(order_first_name), '$private_key') AS order_first_name
-                                    , AES_DECRYPT(UNHEX(order_last_name),  '$private_key') AS order_last_name
-                                    , AES_DECRYPT(UNHEX(order_mobile),     '$private_key') AS order_mobile
-                                    , AES_DECRYPT(UNHEX(passport_num),     '$private_key') AS passport_num
-                                    , AES_DECRYPT(UNHEX(order_email),      '$private_key') AS order_email
-                                    , order_birthday
-                                    , passport_date
-                                    , order_sex
-                                    , gl_idx
-                                    , ufile
-                                    , rfile
-                                        FROM tbl_order_list WHERE order_idx = '" . $order_idx . "' ORDER BY gl_idx asc";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
+        $fresult = $this->orderSubModel->getOrderSub($order_idx);
 
         $str_guide = '';
         $used_coupon_no = '';
@@ -338,82 +233,15 @@ class ReservationController extends BaseController
             "search_name" => $search_name ?? '',
             "pg" => $pg ?? '',
             "titleStr" => $titleStr,
-            "order_idx" => $order_idx ?? '',
-            "m_idx" => $m_idx ?? '',
-            "air_idx" => $air_idx ?? '',
-            "yoil_idx" => $yoil_idx ?? '',
-            "product_idx" => $product_idx ?? '',
-            "product_name" => $product_name ?? '',
-            "tours_subject" => $tours_subject ?? '',
-            "order_gubun" => $order_gubun ?? '',
-            "order_no" => $order_no ?? '',
-            "order_date" => $order_date ?? '',
-            "order_user_name" => $order_user_name ?? '',
-            "order_user_email" => $order_user_email ?? '',
-            "order_user_mobile" => $order_user_mobile ?? '',
-            "order_user_phone" => $order_user_phone ?? '',
-            "order_memo" => $order_memo ?? '',
-            "custom_req" => $custom_req ?? '',
-            "local_phone" => $local_phone ?? '',
-            "start_date" => $start_date ?? '',
-            "end_date" => $end_date ?? '',
-            "product_period" => $product_period ?? '',
-            "tour_period" => $tour_period ?? '',
-            "people_adult_cnt" => $people_adult_cnt ?? '',
-            "people_adult_price" => $people_adult_price ?? '',
-            "people_kids_cnt" => $people_kids_cnt ?? '',
-            "people_kids_price" => $people_kids_price ?? '',
-            "people_baby_cnt" => $people_baby_cnt ?? '',
-            "people_baby_price" => $people_baby_price ?? '',
-            "order_price" => $order_price ?? '',
-            "inital_price" => $inital_price ?? '',
-            "order_room_cnt" => $order_room_cnt ?? '',
-            "order_day_cnt" => $order_day_cnt ?? '',
-            "order_confirm_price" => $order_confirm_price ?? '',
-            "order_method" => $order_method ?? '',
-            "used_coupon_idx" => $used_coupon_idx ?? '',
-            "used_coupon_point" => $used_coupon_point ?? '',
-            "product_mileage" => $product_mileage ?? '',
-            "order_mileage" => $order_mileage ?? '',
-            "used_coupon_money" => $used_coupon_money ?? '',
-            "oil_price" => $oil_price ?? '',
-            "order_status" => $order_status ?? '',
-            "order_r_date" => $order_r_date ?? '',
-            "admin_memo" => $admin_memo ?? '',
-            "paydate" => $paydate ?? '',
-            "deposit_price" => $deposit_price ?? '',
-            "order_confirm_date" => $order_confirm_date ?? '',
-            "used_mileage_money" => $used_mileage_money ?? '',
-            "order_mileage_yn" => $order_mileage_yn ?? '',
-            "ResultCode_1" => $ResultCode_1 ?? '',
-            "ResultMsg_1" => $ResultMsg_1 ?? '',
-            "Amt_1" => $Amt_1 ?? '',
-            "TID_1" => $TID_1 ?? '',
-            "AuthCode_1" => $AuthCode_1 ?? '',
-            "AuthDate_1" => $AuthDate_1 ?? '',
-            "CancelDate_1" => $CancelDate_1 ?? '',
-            "ResultCode_2" => $ResultCode_2 ?? '',
-            "ResultMsg_2" => $ResultMsg_2 ?? '',
-            "Amt_2" => $Amt_2 ?? '',
-            "TID_2" => $TID_2 ?? '',
-            "AuthCode_2" => $AuthCode_2 ?? '',
-            "AuthDate_2" => $AuthDate_2 ?? '',
-            "CancelDate_2" => $CancelDate_2 ?? '',
-            "home_depart_date" => $home_depart_date ?? '',
-            "away_arrive_date" => $away_arrive_date ?? '',
-            "away_depart_date" => $away_depart_date ?? '',
-            "home_arrive_date" => $home_arrive_date ?? '',
             "str_guide" => $str_guide,
-            "row" => $row  ?? '',
             "row_cou" => $row_cou ?? [
                 'used_coupon_no' => '',
                 ],
             "fresult" => $fresult ?? '',
             "used_coupon_no" => $used_coupon_no,
-            "deposit_date" => $deposit_date ?? '',
         ];
 
-        return view("admin/_reservation/{$gubun}/write", $data);
+        return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
     }
 
 
@@ -482,6 +310,7 @@ class ReservationController extends BaseController
                 $order_name_kor = $this->request->getPost('order_name_kor');
                 $order_first_name = $this->request->getPost('order_first_name');
                 $order_last_name = $this->request->getPost('order_last_name');
+                $order_full_name = $this->request->getPost('order_full_name');
                 $passport_num = $this->request->getPost('passport_num');
                 $order_email = $this->request->getPost('order_email');
                 $order_birthday = $this->request->getPost('order_birthday');
@@ -495,6 +324,7 @@ class ReservationController extends BaseController
                         "order_name_kor" => encryptField($order_name_kor[$i], "encode"),
                         "order_first_name" => encryptField($order_first_name[$i], "encode"),
                         "order_last_name" => encryptField($order_last_name[$i], "encode"),
+                        "order_full_name" => encryptField($order_full_name[$i], "encode"),
                         "passport_num" => encryptField($passport_num[$i], "encode"),
                         "order_email" => encryptField($order_email[$i], "encode"),
                         "order_birthday" => $order_birthday[$i],

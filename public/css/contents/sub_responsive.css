@@ -1321,6 +1321,10 @@
     background-size: 2.4rem 1.4rem;
   }
 
+  .customer-form-page .con-form .form-group select {
+    width: 59rem;
+  }
+
   .customer-form-page .card-left2 .cus-select-group .email-group select {
     width: 27.5rem;
   }
