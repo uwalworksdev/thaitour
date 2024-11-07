@@ -253,6 +253,10 @@
                                 <span class="prd_info__right__ttl">생생리뷰</span>
                                 <span class="new_review_cnt">(<?= $product['total_review'] ?>)</span>
                             </div>
+                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
+                            <div class="prd_info__right">
+                                <span class="prd_info__right__ttl"><?= $product['level_name'] ?></span>
+                            </div>
                         </div>
                         <div class="prd_price_ko">
                             <?= number_format($product['product_price']) ?> <span>원 ~</span> <span class="prd_price_thai">

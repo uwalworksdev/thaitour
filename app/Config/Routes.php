@@ -211,6 +211,7 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("upd_option", "Admin\AdminSpaController::upd_option", ['as' => "admin.api.spa_.upd_option"]);
             $routes->post("del_option", "Admin\AdminSpaController::del_option", ['as' => "admin.api.spa_.del_option"]);
             $routes->post("img_remove", "Admin\AdminSpaController::img_remove", ['as' => "admin.api.spa_.img_remove"]);
+            $routes->post("save_option_price", "Admin\AdminSpaController::save_option_price", ['as' => "admin.api.spa_.save_option_price"]);
         });
     });
 

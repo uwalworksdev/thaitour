@@ -4,7 +4,6 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
-use stdClass;
 
 class AdminSpaController extends BaseController
 {
@@ -56,7 +55,9 @@ class AdminSpaController extends BaseController
             $product_price = str_replace(",", "", updateSQ($_POST["product_price"]) ?? '');
             $product_best = updateSQ($_POST["product_best"] ?? '');
             $onum = updateSQ($_POST["onum"] ?? '');
+
             $product_contents = updateSQ($_POST["product_contents"] ?? '');
+            $product_contents_m = updateSQ($_POST["product_contents_m"] ?? '');
 
             $product_confirm = updateSQ($_POST["product_confirm"] ?? '');
             $product_confirm_m = updateSQ($_POST["product_confirm_m"] ?? '');
@@ -221,6 +222,7 @@ class AdminSpaController extends BaseController
                             ,product_best			= '" . $product_best . "'
                             ,onum					= '" . $onum . "'
                             ,product_contents		= '" . $product_contents . "' 
+                            ,product_contents_m		= '" . $product_contents_m . "' 
                             ,product_confirm		= '" . $product_confirm . "' 
                             ,product_confirm_m		= '" . $product_confirm_m . "' 
                             ,product_able			= '" . $product_able . "'
@@ -334,6 +336,7 @@ class AdminSpaController extends BaseController
                             ,product_best			= '" . $product_best . "'
                             ,onum					= '" . $onum . "'
                             ,product_contents		= '" . $product_contents . "'
+                            ,product_contents_m		= '" . $product_contents_m . "'
                             ,min_price				= '" . $min_price . "'
                             ,max_price				= '" . $max_price . "'
                             ,product_able			= '" . $product_able . "'
@@ -876,38 +879,59 @@ class AdminSpaController extends BaseController
         try {
             $p_idx = $_POST['p_idx'];
 
-            $product_idx = $_POST['product_idx'];
-            $s_date = $_POST['s_date'];
-            $e_date = $_POST['e_date'];
-            $price1 = $_POST['price1'];
-            $price2 = $_POST['price2'];
-            $price3 = $_POST['price3'];
+            $product_idx = updateSQ($_POST['product_idx']);
+            $s_date = updateSQ($_POST['s_date']);
+            $e_date = updateSQ($_POST['e_date']);
+            $price1 = updateSQ($_POST['price1']);
+            $price2 = updateSQ($_POST['price2']);
+            $price3 = updateSQ($_POST['price3']);
 
-            $sel_day = $_POST['sel_day'];
+            $yoil_0 = updateSQ($_POST['yoil_0']);
+            $yoil_1 = updateSQ($_POST['yoil_1']);
+            $yoil_2 = updateSQ($_POST['yoil_2']);
+            $yoil_3 = updateSQ($_POST['yoil_3']);
+            $yoil_4 = updateSQ($_POST['yoil_4']);
+            $yoil_5 = updateSQ($_POST['yoil_5']);
+            $yoil_6 = updateSQ($_POST['yoil_6']);
 
-            if ($product_idx) {
-                $sql = "update tbl_product_mst SET 
-                            ,product_idx		= '" . $product_idx . "'
-                            ,s_date				= '" . $s_date . "'
-                            ,e_date			    = '" . $e_date . "'
-                            ,price1			    = '" . $price1 . "'
-                            ,price2				= '" . $price2 . "'
-                            ,price3		        = '" . $price3 . "' 
-                            ,sel_day		    = '" . $sel_day . "'
+            if ($p_idx) {
+                $sql = "SELECT * FROM tbl_product_price WHERE p_idx = '" . $p_idx . "' ";
+                $row = $this->connect->query($sql)->getRowArray();
+
+                $sql = "update tbl_product_price SET 
+                            ,product_idx		= '" . $product_idx ?? $row["product_idx"] . "'
+                            ,s_date				= '" . $s_date ?? $row["s_date"] . "'
+                            ,e_date			    = '" . $e_date ?? $row["e_date"] . "'
+                            ,price1			    = '" . $price1 ?? $row["price1"] . "'
+                            ,price2				= '" . $price2 ?? $row["price2"] . "'
+                            ,price3		        = '" . $price3 ?? $row["price3"] . "' 
+                            ,yoil_0		        = '" . $yoil_0 ?? $row["yoil_0"] . "'
+                            ,yoil_1		        = '" . $yoil_1 ?? $row["yoil_1"] . "'
+                            ,yoil_2		        = '" . $yoil_2 ?? $row["yoil_2"] . "'
+                            ,yoil_3		        = '" . $yoil_3 ?? $row["yoil_3"] . "'
+                            ,yoil_4		        = '" . $yoil_4 ?? $row["yoil_4"] . "'
+                            ,yoil_5		        = '" . $yoil_5 ?? $row["yoil_5"] . "'
+                            ,yoil_6		        = '" . $yoil_6 ?? $row["yoil_6"] . "'
                         where p_idx             = '" . $p_idx . "'
                     ";
                 write_log("상품정보수정 : " . $sql);
 
                 $this->connect->query($sql);
             } else {
-                $sql = "insert into tbl_product_mst SET 
+                $sql = "insert into tbl_product_price SET 
                             product_idx			= '" . $product_idx . "'
                             ,s_date             = '" . $s_date . "'
                             ,e_date             = '" . $e_date . "'
                             ,price1             = '" . $price1 . "'
                             ,price2             = '" . $price2 . "'
                             ,price3             = '" . $price3 . "'
-                            ,sel_day            = '" . $sel_day . "'
+                            ,yoil_0		        = '" . $yoil_0 . "'
+                            ,yoil_1		        = '" . $yoil_1 . "'
+                            ,yoil_2		        = '" . $yoil_2 . "'
+                            ,yoil_3		        = '" . $yoil_3 . "'
+                            ,yoil_4		        = '" . $yoil_4 . "'
+                            ,yoil_5		        = '" . $yoil_5 . "'
+                            ,yoil_6		        = '" . $yoil_6 . "'
                     ";
 
                 write_log("상품정보입력 : " . $sql);
@@ -921,10 +945,14 @@ class AdminSpaController extends BaseController
             } else {
                 $message = "등록되었습니다.";
             }
-            return "<script>
-                    alert('$message');
-                        parent.location.reload();
-                    </script>";
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON(
+                    [
+                        'status' => 'success',
+                        'message' => $message
+                    ]
+                );
 
         } catch (\Exception $e) {
             return $this->response

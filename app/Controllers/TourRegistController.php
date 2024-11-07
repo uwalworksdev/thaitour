@@ -298,15 +298,15 @@ class TourRegistController extends BaseController
         $data['product_price'] = str_replace(",", "", $data['product_price']);
         $data['golf_vehicle'] = "|" . implode("|", $data['vehicle_arr']) . "|";
 
-        $data['green_peas']                 = "|" . implode("|", $data['green_peas'] ?? []) . "|";
-        $data['sports_days']                = "|" . implode("|", $data['sports_days'] ?? []) . "|";
-        $data['slots']                      = "|" . implode("|", $data['slots'] ?? []) . "|";
-        $data['golf_course_odd_numbers']    = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
-        $data['travel_times']               = "|" . implode("|", $data['travel_times'] ?? []) . "|";
-        $data['carts']                      = "|" . implode("|", $data['carts'] ?? []) . "|";
-        $data['facilities']                 = "|" . implode("|", $data['facilities'] ?? []) . "|";
+        $data['green_peas'] = "|" . implode("|", $data['green_peas'] ?? []) . "|";
+        $data['sports_days'] = "|" . implode("|", $data['sports_days'] ?? []) . "|";
+        $data['slots'] = "|" . implode("|", $data['slots'] ?? []) . "|";
+        $data['golf_course_odd_numbers'] = "|" . implode("|", $data['golf_course_odd_numbers'] ?? []) . "|";
+        $data['travel_times'] = "|" . implode("|", $data['travel_times'] ?? []) . "|";
+        $data['carts'] = "|" . implode("|", $data['carts'] ?? []) . "|";
+        $data['facilities'] = "|" . implode("|", $data['facilities'] ?? []) . "|";
 
-        $data['deadline_date']              = implode(",", $data['deadline_date'] ?? []);
+        $data['deadline_date'] = implode(",", $data['deadline_date'] ?? []);
 
         $files = $this->request->getFiles();
         for ($i = 1; $i <= 7; $i++) {
@@ -493,10 +493,15 @@ class TourRegistController extends BaseController
 
         $data['fresult8'] = $fresult8;
 
+        $sql = "SELECT * FROM tbl_product_price WHERE product_idx = $product_idx ORDER BY p_idx DESC";
+        $fresult9 = $this->connect->query($sql);
+        $fresult9 = $fresult9->getResultArray();
+
         $new_data = [
             'product_idx' => $product_idx,
             'codes' => $fresult_c,
             'options' => $options,
+            'fresult9' => $fresult9,
         ];
 
         $data = array_merge($data, $new_data);
@@ -732,6 +737,7 @@ class TourRegistController extends BaseController
             $deadline_time = $row["deadline_time"];
 
             $product_more = $row["product_more"];
+            $product_contents_m = $row["product_contents_m"];
 
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -754,7 +760,7 @@ class TourRegistController extends BaseController
 
         $yoil_html = $this->get_yoil($product_idx);
 
-        $fsql = "select ifnull(total_day,0)  as cnt from tbl_product_day_detail where tbl_product_day_detail.air_code='0000' and product_idx = '".$product_idx."'";
+        $fsql = "select ifnull(total_day,0)  as cnt from tbl_product_day_detail where tbl_product_day_detail.air_code='0000' and product_idx = '" . $product_idx . "'";
         $fresult4 = $this->connect->query($fsql)->getResultArray();
         $fTotalresult4 = count($fresult4);
 
@@ -896,6 +902,7 @@ class TourRegistController extends BaseController
             "available_period" => $available_period ?? '',
             "deadline_time" => $deadline_time ?? '',
             "product_more" => $product_more ?? '',
+            "product_contents_m" => $product_contents_m ?? '',
         ];
 
         return $data;
@@ -1228,11 +1235,11 @@ class TourRegistController extends BaseController
             if (!isset($toursIdxMap[$infoIndex])) {
                 $toursIdxMap[$infoIndex] = [];
             }
-    
+
             if ($row['tours_idx'] !== null && !in_array($row['tours_idx'], $toursIdxMap[$infoIndex])) {
                 $toursIdxMap[$infoIndex][] = $row['tours_idx'];
             }
-    
+
             $groupedData[$infoIndex]['tours_idx_json'] = htmlspecialchars(json_encode($toursIdxMap[$infoIndex]), ENT_QUOTES, 'UTF-8');
         }
 

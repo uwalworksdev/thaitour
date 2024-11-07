@@ -597,6 +597,42 @@
                                 </tr>
 
                                 <tr>
+                                    <th>소개&시설</th>
+                                    <td colspan="3">
+                                        <textarea name="product_contents_m" id="product_contents_m" rows="10" cols="100"
+                                                  class="input_txt"
+                                                  style="width:100%; height:400px; display:none;"><?= viewSQ($product_contents_m) ?>
+                                        </textarea>
+                                        <script type="text/javascript">
+                                            var oEditors15 = [];
+
+                                            // 추가 글꼴 목록
+                                            //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                            nhn.husky.EZCreator.createInIFrame({
+                                                oAppRef: oEditors15,
+                                                elPlaceHolder: "product_contents_m",
+                                                sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                htParams: {
+                                                    bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                    //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                    fOnBeforeUnload: function () {
+                                                        //alert("완료!");
+                                                    }
+                                                }, //boolean
+                                                fOnAppLoad: function () {
+                                                    //예제 코드
+                                                    //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                },
+                                                fCreator: "createSEditor2"
+                                            });
+                                        </script>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>위치안내</th>
                                     <td colspan="3">
 
@@ -710,12 +746,13 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="5%">
-                                    <col width="10%">
-                                    <col width="10%">
+                                    <col width="8%">
+                                    <col width="8%">
                                     <col width="*">
-                                    <col width="10%">
-                                    <col width="10%">
-                                    <col width="20%">
+                                    <col width="8%">
+                                    <col width="8%">
+                                    <col width="8%">
+                                    <col width="15%">
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -723,63 +760,93 @@
                                     <th>시작일</th>
                                     <th>종료일</th>
                                     <th>선택요일</th>
-                                    <th>마감</th>
-                                    <th>등록일</th>
+                                    <th>대인가격</th>
+                                    <th>소인가격</th>
+                                    <th>경로가격</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr style="height:50px">
-                                    <td>1</td>
-                                    <td class="tac">
-                                        2024-10-30
-                                    </td>
-                                    <td class="tac">
-                                        2024-12-31
-                                    </td>
-                                    <td class="tac">
-                                        <input type="checkbox" name="yoil_0" id="yoil_0_" value="Y" checked=""
-                                               class="yoil">
-                                        <label for="yoil_0_">일요일</label>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_1" id="yoil_1_" value="Y" checked=""
-                                               class="yoil">
-                                        <label for="yoil_1_">월요일</label>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_2" id="yoil_2_" value="Y" checked=""
-                                               class="yoil">
-                                        <label for="yoil_2_">화요일</label>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_3" id="yoil_3_" value="Y" checked=""
-                                               class="yoil">
-                                        <label for="yoil_3_">수요일</label>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_4" id="yoil_4_" value="Y" class="yoil">
-                                        <label for="yoil_4_">목요일</label>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_5" id="yoil_5_" value="Y" class="yoil">
-                                        <label for="yoil_5_">금요일</label>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <input type="checkbox" name="yoil_6" id="yoil_6_" value="Y" class="yoil">
-                                        <label for="yoil_6_">토요일</label>
-                                        &nbsp;&nbsp;&nbsp;
-                                    </td>
-                                    <td>
-                                        <input type="checkbox" name="sale" id="sale_" value="N" class="yoil"
-                                               disabled="">
-                                    </td>
-                                    <td class="tac">
-                                        2024-10-30 18:49:45
-                                    </td>
-                                    <td style="text-align: center">
-                                        <a href="/_tourPrice/write_new?yoil_idx="
-                                           class="btn btn-default">가격수정</a>
+                                <?php
+                                $i2 = 0;
+                                foreach ($fresult9 as $row) {
+                                    $i2++;
+                                    ?>
+                                    <tr style="height:50px">
+                                        <td><?= $i2 ?></td>
+                                        <td class="tac">
+                                            <?= $row['s_date'] ?>
+                                        </td>
+                                        <td class="tac">
+                                            <?= $row['e_date'] ?>
+                                        </td>
+                                        <td class="tac">
+                                            <input type="checkbox" name="yoil_0" id="yoil_0_<?= $row['p_idx'] ?>"
+                                                   value="Y" <?= $row['yoil_0'] == "Y" ? "checked" : "" ?>
+                                                   class="yoil">
+                                            <label for="yoil_0_<?= $row['p_idx'] ?>">일요일</label>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="yoil_1" id="yoil_1_<?= $row['p_idx'] ?>"
+                                                   value="Y" <?= $row['yoil_1'] == "Y" ? "checked" : "" ?>
+                                                   class="yoil">
+                                            <label for="yoil_1_<?= $row['p_idx'] ?>">월요일</label>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="yoil_2" id="yoil_2_<?= $row['p_idx'] ?>"
+                                                   value="Y" <?= $row['yoil_2'] == "Y" ? "checked" : "" ?>
+                                                   class="yoil">
+                                            <label for="yoil_2_<?= $row['p_idx'] ?>">화요일</label>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="yoil_3" id="yoil_3_<?= $row['p_idx'] ?>"
+                                                   value="Y" <?= $row['yoil_3'] == "Y" ? "checked" : "" ?>
+                                                   class="yoil">
+                                            <label for="yoil_3_<?= $row['p_idx'] ?>">수요일</label>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="yoil_4" id="yoil_4_<?= $row['p_idx'] ?>"
+                                                   value="Y" <?= $row['yoil_4'] == "Y" ? "checked" : "" ?>
+                                                   class="yoil">
+                                            <label for="yoil_4_<?= $row['p_idx'] ?>">목요일</label>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="yoil_5" id="yoil_5_<?= $row['p_idx'] ?>"
+                                                   value="Y" <?= $row['yoil_5'] == "Y" ? "checked" : "" ?>
+                                                   class="yoil">
+                                            <label for="yoil_5_<?= $row['p_idx'] ?>">금요일</label>
+                                            &nbsp;&nbsp;&nbsp;
+                                            <input type="checkbox" name="yoil_6" id="yoil_6_<?= $row['p_idx'] ?>"
+                                                   value="Y" <?= $row['yoil_6'] == "Y" ? "checked" : "" ?>
+                                                   class="yoil">
+                                            <label for="yoil_6_<?= $row['p_idx'] ?>">토요일</label>
+                                            &nbsp;&nbsp;&nbsp;
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="price1" id="price1_<?= $row['p_idx'] ?>"
+                                                   value="<?= $row['price1'] ?>"
+                                                   class="price price1 input_txt"
+                                                   style="width:90%;text-align:right;">
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="price2" id="price2_<?= $row['p_idx'] ?>"
+                                                   value="<?= $row['price2'] ?>"
+                                                   class="price price2 input_txt"
+                                                   style="width:90%;text-align:right;">
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="price3" id="price3_<?= $row['p_idx'] ?>"
+                                                   value="<?= $row['price3'] ?>"
+                                                   class="price price3 input_txt"
+                                                   style="width:90%;text-align:right;">
+                                        </td>
+                                        <td style="text-align: center">
+                                            <a href="/_tourPrice/write_new?yoil_idx=<?= $row['p_idx'] ?>"
+                                               class="btn btn-default">가격수정</a>
 
-                                        <a href="javascript:close_yoil('');" class="btn btn-default">마감처리</a>
+                                            <a href="javascript:close_yoil('<?= $row['p_idx'] ?>');"
+                                               class="btn btn-default">마감처리</a>
 
-                                        <a href="javascript:del_yoil('');" class="btn btn-default">삭제하기</a>
-                                    </td>
-                                </tr>
+                                            <a href="javascript:del_yoil('<?= $row['p_idx'] ?>');"
+                                               class="btn btn-default">삭제하기</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
 
                                 </tbody>
                             </table>
@@ -1291,29 +1358,37 @@
 
     <script>
         function isrt_price() {
-            let url = `<?= route_to('admin.api.spa_.img_remove') ?>`;
+            upd_price('');
+        }
+
+        function upd_price(p_idx) {
+            let url = `<?= route_to('admin.api.spa_.save_option_price') ?>`;
 
             let d_start = $("#d_start").val();
             let d_end = $("#d_end").val();
 
-            let price_1 = $("#price_1").val();
-            let price_2 = $("#price_2").val();
-            let price_3 = $("#price_3").val();
+            let price_1 = $("#price1").val();
+            let price_2 = $("#price2").val();
+            let price_3 = $("#price3").val();
 
-            let yoil_0 = $("#yoil_0").val();
-            let yoil_1 = $("#yoil_1").val();
-            let yoil_2 = $("#yoil_2").val();
-            let yoil_3 = $("#yoil_3").val();
-            let yoil_4 = $("#yoil_4").val();
-            let yoil_5 = $("#yoil_5").val();
-            let yoil_6 = $("#yoil_6").val();
+            let yoil_0 = $("#yoil_0").is(":checked") ? "Y" : "N";
+            let yoil_1 = $("#yoil_1").is(":checked") ? "Y" : "N";
+            let yoil_2 = $("#yoil_2").is(":checked") ? "Y" : "N";
+            let yoil_3 = $("#yoil_3").is(":checked") ? "Y" : "N";
+            let yoil_4 = $("#yoil_4").is(":checked") ? "Y" : "N";
+            let yoil_5 = $("#yoil_5").is(":checked") ? "Y" : "N";
+            let yoil_6 = $("#yoil_6").is(":checked") ? "Y" : "N";
+
+            console.log(price_1, price_2, price_3);
 
             let data = {
-                "d_start": d_start,
-                "d_end": d_end,
-                "price_1": price_1,
-                "price_2": price_2,
-                "price_3": price_3,
+                "p_idx": p_idx,
+                "product_idx": '<?= $product_idx ?>',
+                "s_date": d_start,
+                "e_date": d_end,
+                "price1": price_1,
+                "price2": price_2,
+                "price3": price_3,
                 "yoil_0": yoil_0,
                 "yoil_1": yoil_1,
                 "yoil_2": yoil_2,
@@ -1330,7 +1405,7 @@
                 async: false,
                 cache: false,
                 success: function (data, textStatus) {
-                    message = data.message;
+                    let message = data.message;
                     alert(message);
                     location.reload();
                 },
@@ -1700,6 +1775,7 @@
             // oEditors13.getById["product_info_m"].exec("UPDATE_CONTENTS_FIELD", []);
 
             oEditors14.getById["product_contents"].exec("UPDATE_CONTENTS_FIELD", []);
+            oEditors15.getById["product_contents_m"].exec("UPDATE_CONTENTS_FIELD", []);
 
             let option = "";
             $("input:checkbox[name='_option']:checked").each(function () {

@@ -28,7 +28,7 @@ class ProductModel extends Model
         "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
         "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value",
         "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms',
-        'product_type', 'product_promotions', 'product_more',
+        'product_type', 'product_promotions', 'product_more', 'product_contents_m',
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn"
     ];
