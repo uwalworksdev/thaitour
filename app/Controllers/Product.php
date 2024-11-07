@@ -291,6 +291,12 @@ class Product extends BaseController
 
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $products['items'][$key]['level_name'] = $fresult9['code_name'];
             }
 
             $pager = \Config\Services::pager();
@@ -962,6 +968,12 @@ class Product extends BaseController
 
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $products['items'][$key]['level_name'] = $fresult9['code_name'];
             }
 
             $data = [
@@ -1551,12 +1563,12 @@ class Product extends BaseController
 
         if ($coupon) {
             if ($coupon['dc_type'] == "P") {
-                $price                  = $total_vehicle_price + $data['total_price'];
-                $data['discount']       = $price * ($coupon['coupon_pe'] / 100);
-                $data['discount_baht']  = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+                $price = $total_vehicle_price + $data['total_price'];
+                $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
+                $data['discount_baht'] = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
             } else if ($coupon['dc_type'] == "D") {
-                $data['discount']       = $coupon['coupon_price'];
-                $data['discount_baht']  = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+                $data['discount'] = $coupon['coupon_price'];
+                $data['discount_baht'] = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
             }
         }
 
@@ -1570,13 +1582,13 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx']        = $this->request->getVar('product_idx');
-        $data['order_date']         = $this->request->getVar('order_date');
-        $data['option_idx']         = $this->request->getVar('option_idx');
-        $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx']        = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt']        = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx']     = $this->request->getVar('use_coupon_idx');
+        $data['product_idx'] = $this->request->getVar('product_idx');
+        $data['order_date'] = $this->request->getVar('order_date');
+        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
+        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -1649,7 +1661,7 @@ class Product extends BaseController
                 $order_user_mobile          = $data['phone_thai'];
             }
 
-            $data['order_user_mobile']      = encryptField($order_user_mobile, 'encode');
+            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
             $data['local_phone']            = encryptField($data['local_phone'], 'encode');
 
