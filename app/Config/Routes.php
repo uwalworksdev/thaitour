@@ -310,6 +310,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminCmsController::write");
         $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
         $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
+        $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
     });
 
     $routes->group("_statistics", static function ($routes) {

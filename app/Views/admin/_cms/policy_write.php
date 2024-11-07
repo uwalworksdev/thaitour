@@ -17,7 +17,7 @@
                     <h2>약관 및 정책</h2>
                     <div class="menus">
                         <ul>
-                            <li><a href="./policy_list.php" class="btn btn-default"><span
+                            <li><a href="./policy_list" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
                             <?php if ($p_idx) { ?>
@@ -39,7 +39,7 @@
 
             <div id="contents">
                 <div class="listWrap_noline">
-                    <form name="frm" id="frm" action="policy_ok.php" method="post" enctype="multipart/form-data">
+                    <form name="frm" id="frm" action="policy_ok" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="p_idx" id="p_idx" value="<?= $p_idx ?>">
 
 
