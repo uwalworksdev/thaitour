@@ -1,15 +1,15 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-    $connect = db_connect();
-    $private_key = private_key();
+$connect = db_connect();
+$private_key = private_key();
 
-    if ($_SESSION["member"]["mIdx"] == "") {
-        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-        exit();
-    }
+if ($_SESSION["member"]["mIdx"] == "") {
+    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
 
-    $coupon_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price
+$coupon_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price
                         from tbl_coupon c
                         left outer join tbl_coupon_setting s
                         on c.coupon_type = s.idx
@@ -17,33 +17,33 @@
                         on c.c_idx = h.used_coupon_idx
                         where 1=1 and c.status != 'C' and c.enddate > curdate() and c.usedate = '' and c.get_issued_yn = 'Y' and h.used_coupon_idx is null and c.user_id = '{$_SESSION["member"]["id"]}' 
                         group by c.c_idx ";
-    $c_nTotalCount = $connect->query($coupon_sql)->getNumRows();
+$c_nTotalCount = $connect->query($coupon_sql)->getNumRows();
 
 
-    $total_sql    = " select * from tbl_member where m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-    $row        = $connect->query($total_sql)->getRowArray();
-    $mileage    = number_format($row["mileage"]);
+$total_sql = " select * from tbl_member where m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
+$row = $connect->query($total_sql)->getRowArray();
+$mileage = number_format($row["mileage"]);
 
-    $s_date                = updateSQ($_GET["s_date"]);
-    $e_date                = updateSQ($_GET["e_date"]);
+$s_date = updateSQ($_GET["s_date"]);
+$e_date = updateSQ($_GET["e_date"]);
 
-    $pg = $_GET['pg'];
+$pg = $_GET['pg'];
 
-    $search_val = "";
+$search_val = "";
 
-    if (isset($s_date) && isset($e_date)) {
-        $search_val = "AND DATE_FORMAT(mi_r_date, '%Y-%m-%d') >= '$s_date' AND DATE_FORMAT(mi_r_date, '%Y-%m-%d') <= '$e_date'";
-    }
+if (isset($s_date) && isset($e_date)) {
+    $search_val = "AND DATE_FORMAT(mi_r_date, '%Y-%m-%d') >= '$s_date' AND DATE_FORMAT(mi_r_date, '%Y-%m-%d') <= '$e_date'";
+}
 ?>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-                echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_1" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_1" => "on"]);
             ?>
             <div class="content">
                 <div class="top_content">
@@ -59,13 +59,15 @@
                                 </div>
                             </div>
                             <div class="discount flex__c">
-                                <div class="discount_ico"><img src="../assets/img/mypage/mypage_discount_ico_w.png" alt="">
+                                <div class="discount_ico"><img src="../assets/img/mypage/mypage_discount_ico_w.png"
+                                                               alt="">
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 쿠폰</p>
                                     <p class="num"><?= $c_nTotalCount ?> <span>장</span></p>
                                 </div>
-                                <a class="discount_detail_ico" href="/mypage/discount_download.php"><img src="../assets/img/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
+                                <a class="discount_detail_ico" href="/mypage/discount_download.php"><img
+                                            src="../assets/img/mypage/mypage_discount_detail_ico_w.png" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +92,8 @@
                                 <div class="depart flex__c">
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="s_date" id="departure_date1" placeholder="" class="date_pic">
+                                            <input type="text" name="s_date" id="departure_date1" placeholder=""
+                                                   class="date_pic">
                                         </div>
                                     </div>
                                     <div>
@@ -98,7 +101,8 @@
                                     </div>
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="e_date" id="departure_date2" placeholder="" class="date_pic">
+                                            <input type="text" name="e_date" id="departure_date2" placeholder=""
+                                                   class="date_pic">
                                         </div>
                                     </div>
                                 </div>
@@ -115,56 +119,62 @@
                                 <col width="15%">
                             </colgroup>
                             <thead>
-                                <tr>
-                                    <th>사용일자</th>
-                                    <th>적립/ 사용 내역</th>
-                                    <th>적립/사용 포인트</th>
-                                    <th>잔여 포인트</th>
-                                </tr>
+                            <tr>
+                                <th>사용일자</th>
+                                <th>적립/ 사용 내역</th>
+                                <th>적립/사용 포인트</th>
+                                <th>잔여 포인트</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                $g_list_rows = 100;
+                            <?php
+                            $g_list_rows = 100;
 
-                                $history_sql = "select *
+                            $history_sql = "select *
                                         from tbl_order_mileage where m_idx= '" . $_SESSION["member"]["mIdx"] . "' $search_val";
-                                // $result1 = mysqli_query($connect, $history_sql) or die(mysqli_error($connect));
-                                $nTotalCount = $connect->query($history_sql)->getNumRows();
+                            // $result1 = mysqli_query($connect, $history_sql) or die(mysqli_error($connect));
+                            $nTotalCount = $connect->query($history_sql)->getNumRows();
 
-                                $nPage = ceil($nTotalCount / $g_list_rows);
-                                if ($pg == "") $pg = 1;
-                                $nFrom = ($pg - 1) * $g_list_rows;
+                            $nPage = ceil($nTotalCount / $g_list_rows);
+                            if ($pg == "") $pg = 1;
+                            $nFrom = ($pg - 1) * $g_list_rows;
+                            $index = 0;
+                            $sql = $history_sql . " order by mi_idx desc limit $nFrom, $g_list_rows ";
+                            $result1 = $connect->query($sql)->getResultArray();
+                            foreach ($result1 as $row) {
+                                $index++;
+                                $order_gubun = get_mileage_name($row["order_gubun"]);
+                                $order_mileage_str = "";
+                                if ($row["order_mileage"] < 0) {
+                                    $order_mileage_str = "사용";
+                                } else {
+                                    $order_mileage_str = "적립";
+                                }
 
-                                $sql    = $history_sql . " order by mi_idx desc limit $nFrom, $g_list_rows ";
-                                $result1 = $connect->query($sql)->getResultArray();
-                                foreach ($result1 as $row) {
-                                    $order_gubun = get_mileage_name($row["order_gubun"]);
-                                    $order_mileage_str = "";
-                                    if ($row["order_mileage"] < 0) {
-                                        $order_mileage_str = "사용";
-                                    } else {
-                                        $order_mileage_str = "적립";
-                                    }
-
-                                    $sql_d    = "SELECT  AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name ";
-                                    $result_d = mysqli_query($connect, $sql_d) or die(mysqli_error($connect));
-                                    $row_d    = mysqli_fetch_array($result_d);
-                                    $row['user_name'] = $row_d['user_name'];
+                                $sql_d = "SELECT  AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name ";
+                                $result_d = mysqli_query($connect, $sql_d) or die(mysqli_error($connect));
+                                $row_d = mysqli_fetch_array($result_d);
+                                $row['user_name'] = $row_d['user_name'];
                                 ?>
-                                    <tr>
-                                        <td class="date"><?= date("Y.m.d", strtotime($row["mi_r_date"])) ?></td>
-                                        <td class="history"><span><?= $row["mi_title"] ?></span></td>
-                                        <td class="used"><span><?
-                                                                if ($row["order_gubun"] == "admin") {
-                                                                    echo "+" . $row["order_mileage"];
-                                                                } else {
-                                                                    echo $row["order_mileage"];
-                                                                }
-                                                                ?></span>
-                                        </td>
-                                        <td class="remaining"><span><?= $row["remaining_mileage"] ?></span></td>
-                                    </tr>
-                                <?php  } ?>
+                                <tr>
+                                    <td class="date"><?= date("Y.m.d", strtotime($row["mi_r_date"])) ?></td>
+                                    <td class="history"><span><?= $row["mi_title"] ?></span></td>
+                                    <td class="used"><span><?
+                                            if ($row["order_gubun"] == "admin") {
+                                                echo "+" . $row["order_mileage"];
+                                            } else {
+                                                echo $row["order_mileage"];
+                                            }
+                                            ?></span>
+                                    </td>
+                                    <td class="remaining"><span><?= $row["remaining_mileage"] ?></span></td>
+                                </tr>
+                            <?php } ?>
+                            <?php if ($index == 0) { ?>
+                                <tr style="text-align: center; vertical-align: middle">
+                                    <td colspan="6" class="none_data">검색된 결과가 없습니다.</td>
+                                </tr>
+                            <?php } ?>
                             </tbody>
                         </table>
                         <?php echo ipageListing2($pg, $nFrom, $g_list_rows, $_SERVER['PHP_SELF'] . "?scategory=$scategory&pg=") ?>
@@ -233,7 +243,7 @@
         yearSuffix: ''
     }
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.date_pic').datepicker(datePickerConfig)
         // .datepicker('widget').wrap('<div class="ll-skin-melon"/>');
     });
@@ -247,7 +257,7 @@
         frm.submit();
     }
 
-    $('.m_filter').on('click', function() {
+    $('.m_filter').on('click', function () {
         $(this).addClass('active').siblings().removeClass('active')
         let value = $(this).text();
         $.ajax({
@@ -257,17 +267,17 @@
                 'time': value,
                 url: '<?= $_SERVER['PHP_SELF'] ?>'
             },
-            success: function(data) {
+            success: function (data) {
                 // alert(data);
                 $(".point_list").html(data);
             }
         })
     })
 
-    $('.show_popup').on('click', function() {
+    $('.show_popup').on('click', function () {
         $('.agree_pop').show();
     });
-    $(".popup_wrap .close, .popup_wrap .bg").on("click", function() {
+    $(".popup_wrap .close, .popup_wrap .bg").on("click", function () {
         $(".popup_wrap").hide();
     });
 </script>

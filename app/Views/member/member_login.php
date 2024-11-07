@@ -12,7 +12,7 @@
 </style> -->
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript" src="/member/kakao.js"></script>
+<script type="text/javascript" src="/js/kakao.js"></script>
 
 <main id="container" class="sub login member pt100">
   <div class="inner_620">
@@ -78,18 +78,23 @@
         $scope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email ";
         $response_type = "code";
 
+        $client_id = env('GOOGLE_LOGIN_CLIENT_ID');
+        $redirection_url = env("GOOGLE_REDIRECT_URI");
+        $scope = urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email');
+        $response_type = "code";
+      
         $_url = "https://accounts.google.com/o/oauth2/v2/auth";
         $_url .="?client_id=".$client_id;
         $_url .="&redirect_uri=".urlencode($redirection_url);
         $_url .="&scope=".$scope;
         $_url .="&response_type=".$response_type;
         $_url .="&state=OK";
-		  // 네이버 로그인 접근토큰 요청 예제
-		  $client_id   = "nEJfS5h48JVMBwecw1NJ";
-		  $redirectURI = urlencode("https://".$_SERVER["HTTP_HOST"]."/include/naver.php");
-		  $state       = md5(microtime() . mt_rand())."log";
-		  $_SESSION['naver_state'] = $state;
-		  $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=".$client_id."&redirect_uri=".$redirectURI."&state=".$state;
+        // 네이버 로그인 접근토큰 요청 예제
+        $client_id   = "nEJfS5h48JVMBwecw1NJ";
+        $redirectURI = urlencode("https://".$_SERVER["HTTP_HOST"]."/include/naver.php");
+        $state       = md5(microtime() . mt_rand())."log";
+        $_SESSION['naver_state'] = $state;
+        $apiURL      = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=".$client_id."&redirect_uri=".$redirectURI."&state=".$state;
 		?>
 
 		<script>

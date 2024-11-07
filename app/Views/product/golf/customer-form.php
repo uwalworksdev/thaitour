@@ -29,6 +29,11 @@
         </div>
     </div>
     <form action="/product-golf/customer-form-ok" name="order_frm" id="order_frm" method="post" target="hiddenFrame">
+        <input type="hidden" name="product_idx" value="<?=$product_idx?>">
+        <input type="hidden" name="people_adult_cnt" value="<?=$people_adult_cnt?>">
+        <input type="hidden" name="order_date" id="order_date" value="<?=$order_date?>">
+        <input type="hidden" name="option_idx" id="option_idx" value="<?=$option_idx?>">
+        <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?=$use_coupon_idx?>">
         <div class="main-section">
             <div class="body_inner">
                 <div class="container-card">
@@ -42,12 +47,12 @@
                                     <h3 class="title-sub-c">인원<?= $i ?></h3>
                                     <div class="con-form mb-40">
                                         <div class="form-group">
-                                            <label for="passport-name1">여권 영문명(성명)*</label>
-                                            <input type="text" name="passport_name[]" id="passport-name1" placeholder="영어로 작성해주세요." />
+                                            <label for="passport-name<?=$i?>">여권 영문명(성명)*</label>
+                                            <input type="text" name="companion_name[]" id="passport-name<?=$i?>" data-label="인원성명" required placeholder="영어로 작성해주세요." />
                                         </div>
                                         <div class="form-group">
-                                            <label for="gender1">성별(MR/MS)*</label>
-                                            <input type="text" name="gender[]" id="gender1" placeholder="성별(MR/MS)" list="gender" />
+                                            <label for="gender<?=$i?>">성별(MR/MS)*</label>
+                                            <input type="text" name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" placeholder="성별(MR/MS)" list="gender" />
                                             <datalist id="gender">
                                                 <option value="MR">MR</option>
                                                 <option value="MS">MS</option>
@@ -55,35 +60,22 @@
                                         </div>
                                     </div>
                                 <?php } ?>
-                                <!-- <h3 class="title-sub-c">인원2</h3>
-                                <div class="con-form cus-border-bottom">
-                                    <div class="form-group">
-                                        <label for="passport-name2">여권 영문명(성명)</label>
-                                        <input type="text" id="passport-name2" placeholder="영어로 작성해주세요." />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="gender2">성별(MR/MS)*</label>
-                                        <input type="text" id="gender2" placeholder="성별(MR/MS)" />
-                                    </div>
-                                </div> -->
-
-
-                                <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <?=$vehicle_amount?>대</h3>
+                                <h3 class="form-title title-sub-c">골프장 왕복 픽업 차량 승용차: <?=$total_vehicle?>대</h3>
                                 <div class="con-form-select form-group mb-30">
                                     <label for="car-time-hour">차량 미팅 시간</label>
                                     <div class="form-group time-group">
                                         <div class="form-group-second">
-                                            <select id="car-time-hour" class="select-width">
+                                            <select id="car-time-hour" name="vehicle_time_hour" class="select-width">
                                                 <?php for($i = 6; $i <= 19; $i++) { ?>
-                                                    <option value="<?= $i ?>"><?= sprintf("%02d", $i) ?></option>
+                                                    <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
                                                 <?php } ?>
                                             </select>
                                             <span>시</span>
                                         </div>
                                         <div class="form-group-second">
-                                            <select id="car-time-minute" class="select-width">
+                                            <select id="car-time-minute" name="vehicle_time_minute" class="select-width">
                                                 <?php for($i = 0; $i < 60; $i++) { ?>
-                                                    <option value="<?= $i ?>"><?= sprintf("%02d", $i) ?></option>
+                                                    <option value="<?= sprintf("%02d", $i) ?>"><?= sprintf("%02d", $i) ?></option>
                                                 <?php } ?>
                                             </select>
                                             <span>분</span>
@@ -95,6 +87,7 @@
                                 <div class="form-group mb-30">
                                     <label for="pickup-location">출발지(필요호텔)</label>
                                     <input class="mb-10" type="text" id="pickup-location"
+                                        name="pickup_location"
                                         placeholder="호텔명을 영어로 적어주세요(주소불가)" />
                                     <span class="text-gray">※일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨줴요.</span>
                                 </div>
@@ -108,8 +101,7 @@
 
                                 <div class="form-group cus-form-group">
                                     <label for="extra-requests">기타요청</label>
-                                    <textarea id="extra-requests" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 
-    중요한 요청 및 한글 요청 사항은 1:1게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
+                                    <textarea id="extra-requests" name="order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -119,81 +111,86 @@
                             </h3>
                             <h3 class="title-sub-c">예약확정서 이름</h3>
                             <div class="form-group mb-30">
-                                <label for="passport-name2">한국이름</label>
-                                <input type="text" id="" value="박지애" />
+                                <label for="order_user_name">한국이름</label>
+                                <input type="text" id="order_user_name" name="order_user_name" required data-label="한국이름" placeholder="한국이름 작성해주세요." />
                             </div>
                             <div class="con-form mb-40">
                                 <div class="form-group">
-                                    <label for="passport-name2">영문 이름(First Name) *</label>
-                                    <input type="text" id="" placeholder="영어로 작성해주세요." />
+                                    <label for="order_user_first_name_en">영문 이름(First Name) *</label>
+                                    <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" required data-label="영문 이름" placeholder="영어로 작성해주세요." />
                                 </div>
                                 <div class="form-group">
-                                    <label for="passport-name2">영문 성(Last Name) *</label>
-                                    <input type="text" id="" placeholder="영어로 작성해주세요." />
+                                    <label for="order_user_last_name_en">영문 성(Last Name) *</label>
+                                    <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required data-label="영문 성" placeholder="영어로 작성해주세요." />
                                 </div>
                             </div>
                             <h3 class="title-sub-c">연락처</h3>
                             <div class="form-group form-cus-select">
                                 <label for="passport-name2">이메일 주소*</label>
                                 <div class="cus-select-group">
-                                    <input type="text" id="" placeholder="이메일" />
+                                    <input type="text" id="email_1" name="email_1" required data-label="이메일" placeholder="이메일" />
                                     <span>@</span>
-                                    <select id="" class="select-width">
-                                        <option value="">선택</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="hanmail.net">hanmail.net</option>
-                                        <option value="hotmail.com">hotmail.com</option>
-                                        <option value="nate.com">nate.com</option>
-                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                        <option value="empas.com">empas.com</option>
-                                        <option value="dreamwiz.com">dreamwiz.com</option>
-                                        <option value="freechal.com">freechal.com</option>
-                                        <option value="lycos.co.kr">lycos.co.kr</option>
-                                        <option value="korea.com">korea.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="hanmir.com">hanmir.com</option>
-                                        <option value="paran.com">paran.com</option>
-                                        <option value="1">직접입력</option>
-                                    </select>
+                                    <div class="email-group">
+                                        <input type="text" name="email_2" id="email_2" required data-label="이메일" placeholder="" readonly>
+                                        <select id="" class="select-width" onchange="handleEmail(this.value)">
+                                            <option value="">선택</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="hanmail.net">hanmail.net</option>
+                                            <option value="hotmail.com">hotmail.com</option>
+                                            <option value="nate.com">nate.com</option>
+                                            <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                            <option value="empas.com">empas.com</option>
+                                            <option value="dreamwiz.com">dreamwiz.com</option>
+                                            <option value="freechal.com">freechal.com</option>
+                                            <option value="lycos.co.kr">lycos.co.kr</option>
+                                            <option value="korea.com">korea.com</option>
+                                            <option value="gmail.com">gmail.com</option>
+                                            <option value="hanmir.com">hanmir.com</option>
+                                            <option value="paran.com">paran.com</option>
+                                            <option value="1">직접입력</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group form-group-radio">
-                                <p>
-                                    <input type="radio" id="test1" name="radio-group" checked>
-                                    <label for="test1">한국번호*</label>
-                                </p>
-                                <p class="only_web">
-                                    <input type="radio" id="test2" name="radio-group">
-                                    <label for="test2">태국번호 *</label>
-                                </p>
+                            <div class="phone_wrap">
+                                <div class="phone_wrap_item form-group">
+                                    <p>
+                                        <input type="radio" id="test1" name="radio_phone" value="kor" checked>
+                                        <label for="test1">한국번호*</label>
+                                    </p>
+                                    <div class="form-group form-group-cus-4input">
+                                        <input name="phone_1" maxlength="3" class="phone_kor phone" type="text" id="phone_1" required data-label="한국번호" />
+                                        <span> - </span>
+                                        <input name="phone_2" maxlength="4" class="phone_kor phone" type="text" id="phone_2" required data-label="한국번호" />
+                                        <span> - </span>
+                                        <input name="phone_3" maxlength="4" class="phone_kor phone" type="text" id="phone_3" required data-label="한국번호" />
+                                    </div>
+                                </div>
+                                <div class="phone_wrap_item form-group">
+                                    <p>
+                                        <input type="radio" id="test2" name="radio_phone" value="thai">
+                                        <label for="test2">태국번호 *</label>
+                                    </p>
+                                    <div class="form-group">
+                                        <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text" id="phone_thai" disabled required data-label="한국번호" />
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group form-group-cus-4input">
-                                <input type="text" id="" placeholder="010" />
-                                <span> - </span>
-                                <input type="text" id="" />
-                                <span> - </span>
-                                <input class="mo-cus-in-3" type="text" id="" />
-                                <input class="only_web" type="text" id="" />
-                            </div>
-                            <p class="only_mo radio-gr-mo-cus">
-                                <input type="radio" id="test_mo" name="radio-group">
-                                <label for="test_mo">태국번호 *</label>
-                            </p>
-                            <input class="only_mo" type="text" id="" />
+                            
                             <div class="form-group mo_mt-30">
                                 <label for="passport-name2">여행시 현지 연락처</label>
                                 <div class="form-group-flex">
                                     <select id="car-time-hour" class="select-width">
                                         <option value="01">TH</option>
                                     </select>
-                                    <input type="text" id="" placeholder="" />
+                                    <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone" placeholder="" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="">
                         <div class="card-right">
-                            <img src="/uploads/sub/customer-form.png" alt="customer-form.png">
+                            <img src="/data/product/<?= $product['ufile1'] ?>" alt="">
                             <div class="below-right">
                                 <h3 class="title-r"><?= $product['product_name'] ?></h3>
                                 <p class="title-sub-r text-gray"><?= $product['addrs'] ?></p>
@@ -236,6 +233,8 @@
                                 <div class="item-info-r item-info-r-border-b">
                                     <span>골프장 왕복 픽업 차량 승용차 x <?=$value['cnt']?>대</span>
                                     <span><?=number_format($value['price'])?>원 (<?=number_format($value['price_baht'])?>바트)</span>
+                                    <input type="hidden" name="vehicle_idx[]" value="<?=$value['code_idx']?>">
+                                    <input type="hidden" name="vehicle_cnt[]" value="<?=$value['cnt']?>">
                                 </div>
                             <?php } ?>
                             <div class="item-info-r">
@@ -295,6 +294,11 @@
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
     <script>
         $(document).ready(function() {
+
+            $(".phone").on("input", function() {
+                $(this).val($(this).val().replace(/[^0-9]/g, ""));
+            });
+
             function formatDate(date) {
                 var d = new Date(date),
                     month = '' + (d.getMonth() + 1),
@@ -371,11 +375,44 @@
                     $(".item-clause-all").removeClass("click")
                 }
             });
+
+            $("input[name='radio_phone'").change(function() {
+                if($(this).val() == 'kor') {
+                    $(".phone_kor").attr("disabled", false).eq(0).focus();
+                    $(".phone_thai").attr("disabled", true);
+                } else {
+                    $(".phone_thai").attr("disabled", false).focus();
+                    $(".phone_kor").attr("disabled", true);
+                }
+            })
         });
+
+        function handleEmail(email) {
+            if (email == '1') {
+                $("#email_2").val('').prop('readonly', false).focus();
+            } else {
+                $("#email_2").val(email).prop('readonly', true);
+            }
+        }
     </script>
     <script>
         function handleSubmit() {
             const frm = document.order_frm;
+            let flag = true;
+
+            $("input[required]:not(:disabled)").each(function() {
+                if ($(this).val().trim() == "") {
+                    alert($(this).attr("data-label") + "를 입력하십시오.");
+                    $(this).focus();
+                    flag = false;
+                    return false;
+                }
+            });
+
+            if (!flag) {
+                return false;
+            }
+
             if (!($(".item-clause-all").hasClass("click"))) {
                 alert("이용약관 동의(필수)를 선택하십시오.");
                 return false;

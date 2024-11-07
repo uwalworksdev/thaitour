@@ -3,6 +3,8 @@
     <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <script type="text/javascript" src="/lib/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
         .tab_title {
             font-size: 16px;
@@ -310,7 +312,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>출발요일</th>
+                                    <!-- <th>출발요일</th>
                                     <td>
                                         <input type="checkbox" name="yoil_0" value="Y"
                                                class="yoil" <?php if (isset($yoil_0) && $yoil_0 == "Y") echo "checked"; ?> >
@@ -333,13 +335,23 @@
                                         <input type="checkbox" name="yoil_6" value="Y"
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
-                                    </td>
+                                    </td> -->
                                     <th>가이드/언어</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= $guide_lang ?>" style="width:20%"/><br/>
                                     </td>
                                 </tr>
+                                <!-- <tr>
+                                    <th>시작일</th>
+                                    <td>
+                                        <input type="text" name="t_sdate" value="<?=substr($t_sdate, 0, 10)?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
+                                    </td>
+                                    <th>종료일</th>
+                                    <td>
+                                        <input type="text" name="t_edate" value="<?=substr($t_edate, 0, 10)?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
+                                    </td>
+                                </tr> -->
 
                                 <tr>
                                     <th>메모</th>
@@ -566,14 +578,14 @@
 										<div class="img_add" style="font-size: 0; margin-top: 10px;">
 										<?php 
 											for($i = 1; $i <= 6; $i++) : 
-												$img = get_img(${"tours_ufile" . $i}, "/data/product/", "100", "100");
+												$img = get_img_tour(${"tours_ufile" . $i}, "/data/product/", "100", "100");
 										?>
 											<div class="file_input <?=empty(${"tours_ufile" . $i}) ? "" : "applied"?>">
-												<input type="file" name='tours_ufile<?=$i?>' id="tours_ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-												<label for="tours_ufile<?=$i?>" <?=!empty(${"tours_ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-												<input type="hidden" name="checkImg_<?=$i?>">
-												<button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-											</div>
+                                                <input type="file" name='tours_ufile<?=$i?>' id="tours_ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                <label for="tours_ufile<?=$i?>" <?=!empty(${"tours_ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                <input type="hidden" id="checkImg_<?=$i?>" name="checkImg_<?=$i?>" value="Y">
+                                                <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                            </div>
 										<?php 
 											endfor; 
 										?>
@@ -626,8 +638,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>예약전 확인사항(PC)</th>
-                                    <td>
+                                    <th>미팅/픽업장소 안내</th>
+                                    <td colspan="3">
 
 								<textarea name="product_confirm" id="product_confirm" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm); ?></textarea>
@@ -659,9 +671,9 @@
                                         </script>
 
                                     </td>
-                                    <th>예약전 확인사항(모바일)</th>
+                                    <!-- <th>예약전 확인사항(모바일)</th>
                                     <td>
-								<textarea name="product_confirm_m" id="product_confirm_m" class="input_txt"
+								        <textarea name="product_confirm_m" id="product_confirm_m" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($product_confirm_m); ?></textarea>
                                         <script type="text/javascript">
                                             var oEditors13 = [];
@@ -689,7 +701,7 @@
                                                 fCreator: "createSEditor2"
                                             });
                                         </script>
-                                    </td>
+                                    </td> -->
                                 </tr>
 
                                 <tr>
@@ -856,7 +868,7 @@
                                             });
                                         </script>
                                     </td>
-                                    <th>어린이정책</th>
+                                    <th>더투어랩 이용방법</th>
                                     <td>
 								<textarea name="etc_comment" id="etc_comment" class="input_txt"
                                           style="width:100%; height:200px; display:none;"><?= viewSQ($etc_comment); ?></textarea>
@@ -1007,9 +1019,9 @@
                                                                 <td>
                                                                     <input type='text' class='onlynum' name='o_num[]' id='o_num_<?=$option['idx']?>' value="<?=$option['onum']?>" />
                                                                 </td>
-                                                                <td align="center">
-                                                                    <button type="button" onclick="updOption('<?=$option['idx']?>')" >수정</button>
-                                                                    <button type="button" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
+                                                                <td align="center" style="display: flex; gap: 5px; justify-content: center; align-items: center">
+                                                                    <button type="button" style="height: 25px" onclick="updOption('<?=$option['idx']?>')" >수정</button>
+                                                                    <button type="button" style="height: 25px" onclick="delOption('<?=$option['idx']?>')" >삭제</button>
                                                                 </td>
                                                             </tr>
                                                         <?php endforeach; ?>
@@ -1249,6 +1261,60 @@
         </div>
 
     <script>
+        	$(function(){
+            var clareCalendar1 = {
+                dateFormat : 'yy-m-dd',
+                monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+                monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+                dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+    /* 			changeMonth : true, //월변경가능
+                changeYear : true, //년변경가능 */
+                showMonthAfterYear : true, //년 뒤에 월 표시
+                yearRange : '2023:2050',//2023~2050
+                inline : true,
+                /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+                dateFormat: 'yy-mm-dd',
+                minDate:0,  
+                prevText: '이전달',
+                nextText: '다음달',
+                currentText: '오늘',
+                yearSuffix: '년',
+                onSelect : function(dateText, inst) {
+                    $("#datepicker1").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                    $('.deadline_date').each(function () {
+                        $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
+                    })
+                }
+            };
+            
+            var clareCalendar2 = {
+                dateFormat : 'yy-m-dd',
+                monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+                monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+                dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+    /* 			changeMonth : true, //월변경가능
+                changeYear : true, //년변경가능 */
+                dateFormat: 'yy-mm-dd',
+                showMonthAfterYear : true, //년 뒤에 월 표시
+                yearRange : '2023:2050',//2023~2050
+                inline : true,
+                minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+                prevText: '이전달',
+                nextText: '다음달',
+                currentText: '오늘',
+                yearSuffix: '년',
+                onSelect : function(dateText, inst) {
+                    $("#datepicker2").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                    $('.deadline_date').each(function () {
+                        $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
+                    })
+                }
+            };
+            $("#datepicker1").datepicker(clareCalendar1);
+            $("#datepicker2").datepicker(clareCalendar2);
+            
+        });
+
         function change_manager(user_id) {
 
             if (user_id === "정민경 사원") {
@@ -1389,7 +1455,7 @@
 
 
             addOption += "	<td>																  ";
-            addOption += '		<button type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
+            addOption += '		<button type="button" style="height: 25px" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
             addOption += "</tr>																	  ";
 
@@ -1425,7 +1491,7 @@
 
 
             addOption += "	<td>																  ";
-            addOption += '		<button type="button" onclick="delOption(\'\',this)">삭제</button>	  ';
+            addOption += '		<button type="button" style="height: 25px" onclick="delOption(\'\',this)">삭제</button>	  ';
             addOption += "	</td>																  ";
             addOption += "</tr>																	  ";
 
@@ -1631,7 +1697,7 @@
 		}
 
 		let imageTag = document.querySelector('label[for="tours_ufile'+onum+'"]');
-
+        
 		if(inputFile.files.length > 0) {
 			let imageReader     = new FileReader();
 
@@ -1645,14 +1711,17 @@
 	}
 
     function productImagePreviewRemove(element) {
-		let inputFile = element.parentNode.children[0];
-		let labelImg = element.parentNode.children[1];
+        let inputFile = element.parentNode.querySelector('input[type="file"]');
+        let labelImg = element.parentNode.querySelector('label');
+        let checkImgInput = element.parentNode.querySelector('input[type="hidden"]');
 
-		inputFile.value = "";
-		labelImg.style = "";
-		element.closest('.file_input').classList.remove('applied');
-		element.closest('.file_input').children[2].value = 'N';
-	}
+        inputFile.value = "";
+        labelImg.style.backgroundImage = ""; 
+        element.closest('.file_input').classList.remove('applied');
+        
+        checkImgInput.value = 'N'; 
+    }
+
 
 	function sizeAndExtCheck(input) {
 		let fileSize        = input.files[0].size;
@@ -1712,7 +1781,7 @@
             oEditors10.getById["etc_comment"].exec("UPDATE_CONTENTS_FIELD", []);
             // oEditors11.getById["etc_comment_m"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors12.getById["product_confirm"].exec("UPDATE_CONTENTS_FIELD", []);
-            oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
+            // oEditors13.getById["product_confirm_m"].exec("UPDATE_CONTENTS_FIELD", []);
             oEditors14.getById["tour_info"].exec("UPDATE_CONTENTS_FIELD", []);
 
 

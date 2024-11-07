@@ -295,7 +295,7 @@ function send_aligo($msg, $to_phone, $title = "")
 function phone_chk($to_phone)
 {
 
-    $_chk_no = mt_rand(1000, 999999);
+    $_chk_no = mt_rand(100000, 999999);
 
     $member = session()->get('member');
     $member['phone_chk'] = $_chk_no;
@@ -624,7 +624,7 @@ function smtp_email($from_email, $to_email, $mail_data)
 function email_chk($email)
 {
 
-    $_chk_no = mt_rand(1000, 9999);
+    $_chk_no = mt_rand(100000, 999999);
 
     $member = session("member");
     $member['email_chk'] = $_chk_no;
@@ -662,9 +662,9 @@ function email_chk_ok($chkNum)
     }
 
     if ($chkNum == $email_chk) {
-        echo "Y";
+        return "Y";
     } else {
-        echo "인증에 실패하셨습니다.";
+        return "인증에 실패하셨습니다.";
     }
 }
 
@@ -823,4 +823,26 @@ function getImage($path)
 {
     if(!is_file($_SERVER["DOCUMENT_ROOT"]."/{$path}")) return "/images/product/noimg.png";
     return $path;
+}
+
+function get_rand($size)
+{
+	$feed = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $rand_str = "";
+	for ($i=0; $i < $size; $i++)
+	{
+	    $rand_str .= substr($feed, rand(0, strlen($feed)-1), 1);
+	}
+	return $rand_str;
+}
+
+function get_rand_num($size)
+{
+	$feed = "0123456789";
+    $rand_str = "";
+	for ($i=0; $i < $size; $i++)
+	{
+	    $rand_str .= substr($feed, rand(0, strlen($feed)-1), 1);
+	}
+	return $rand_str;
 }

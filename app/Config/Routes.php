@@ -154,6 +154,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("day_seq_delete", "Admin\AdminTourController::day_seq_delete", ['as' => "admin._tours.day_seq_delete"]);
         $routes->post("del_day", "Admin\AdminTourController::del_day", ['as' => "admin._tours.del_day"]);
         $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
+        $routes->post("del_tour_option", "Admin\AdminTourController::del_tour_option", ['as' => "admin._tours.del_tour_option"]);
+        $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
     });
 
     $routes->group("api", function ($routes) {
@@ -386,6 +388,14 @@ $routes->group("tools", static function ($routes) {
 $routes->group("member", static function ($routes) {
     $routes->get("login", "Member::LoginForm");
     $routes->post("login_check", "Member::LoginCheck");
+    $routes->get("login_find_id", "Member::LoginFindId");
+    $routes->get("login_find_pw", "Member::LoginFindPw");
+    $routes->post('cert_id_send_sms', 'Member::cert_id_send_sms');
+    $routes->post('cert_pw_send_sms', 'Member::cert_pw_send_sms');
+    $routes->post('cert_id_send_email', 'Member::cert_id_send_email');
+    $routes->post('cert_pw_send_email', 'Member::cert_pw_send_email');
+    $routes->post('find_id_ok', 'Member::find_id_ok');
+    $routes->post('find_pw_ok', 'Member::find_pw_ok');
     $routes->get("join_choice", "Member::JoinChoice");
     $routes->get("join_agree", "Member::JoinAgree");
     $routes->post("join_form", "Member::JoinForm");
@@ -401,6 +411,7 @@ $routes->group("member", static function ($routes) {
     $routes->get("google_login", "Member::google_login");
     $routes->post("join_form_sns", "Member::join_form_sns");
     $routes->post("update/(:segment)", "Member::update_member/$1");
+    $routes->get("admin_password_change", "Member::AdminPasswordChange");
 });
 $routes->group("mypage", static function ($routes) {
     $routes->get("details", "MyPage::details");
@@ -515,6 +526,7 @@ $routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
+$routes->get('product-golf/completed-order', 'Product::golfCompletedOrder/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
@@ -522,7 +534,7 @@ $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
-$routes->get('product-spa/product-booking/(:any)', 'Product::productBooking/$1');
+$routes->get('product-spa/product-booking', 'Product::productBooking');
 $routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
 $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
@@ -540,4 +552,5 @@ $routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour')
 
 $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.product.sel_moption"]);
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
+$routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 ?>

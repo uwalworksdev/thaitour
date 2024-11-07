@@ -39,7 +39,7 @@
   font-size: normal;
 }
 
-@font-face {
+/* @font-face {
   font-family: "Noto Sans CJK KR";
   font-weight: 400;
   src: url(/fonts/NotoSansCJKkr-Regular.otf);
@@ -58,4 +58,4 @@
   font-weight: 700;
   src: url(/fonts/NotoSansCJKkr-Bold.otf);
   src: local("notocjkkr-bold"), url(/fonts/NotoSansCJKkr-Medium.otf) format("woff"), url(/fonts/notokr-bold.eot?#iefix) format("embedded-opentype"), url(/fonts/notokr-bold.woff) format("woff"), url(/fonts/notokr-bold.woff2) format("woff2"), url(/fonts/notokr-bold.ttf) format("truetype");
-}
+} */

@@ -322,16 +322,19 @@
     font-size: 15px;
 }
 
+.spa-detail .item_check_term_all_,
 .spa-detail .item_check_term_ {
     background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
     background-size: 23px 15px;
 }
 
+.spa-detail .item_check_term_all_.checked_,
 .spa-detail .item_check_term_.checked_ {
     background: url(/images/ico/check_2.png) no-repeat right 50% #fff;
     background-size: 23px 15px;
 }
 
+.spa-detail .item_check_term_all_ label,
 .spa-detail .item_check_term_ label {
     font-size: 16px;
 }
@@ -415,6 +418,158 @@
     width: 20%;
 }
 
+.section2 .price-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.section2 .price-table thead th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 10px;
+    border: 1px solid #ccc;
+    border-top: 2px solid #000;
+}
+
+.section2 .price-table tbody td {
+    padding: 15px 10px;
+    text-align: center;
+    color: #666666;
+    border: 1px solid #ccc;
+}
+
+.section2 .price-table-container .title-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.section2 .con-label-cjt {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 3px;
+}
+
+.section2 .custom-label-cjt.extend {
+    transform: translateY(40%);
+}
+
+.section2 .box3_2 .note {
+    line-height: 1.5rem;
+}
+
+.section2 .price_in {
+    width: 65px;
+}
+
+.section2 .box3_2 .note p:not(:first-child) {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.section6 .qa-section h2 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.content-sub-hotel-detail .section6 .title-sec6 {
+    font-size: 24px;
+}
+
+.section6 .qa-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.section6 .qa-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.section6 .qa-submit {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.section6 .qa-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.section6 .qa-list {
+    border-top: 1px solid #ddd;
+}
+
+.section6 .qa-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+    gap: 30px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.section6 .qa-meta {
+    font-size: 15px;
+    text-wrap: nowrap;
+}
+
+.section6 .qa-question {
+    display: flex;
+    align-items: center;
+}
+
+.section6 .qa-number {
+    margin: 0 28px;
+    font-size: 17px;
+}
+
+.section6 .qa-tag {
+    background-color: var(--bs-point);
+    color: white;
+    padding: 10px 16px 8px 16px;
+    border-radius: 99px;
+    font-size: 15px;
+    margin-right: 10px;
+    width: 93px;
+}
+
+.section6 .qa-tag.normal-style {
+    background-color: white;
+    color: var(--bs-point);
+    padding: 10px 16px 8px 16px;
+    border-radius: 99px;
+    border: 1px solid var(--bs-point);
+    font-size: 15px;
+    margin-right: 10px;
+    width: 93px;
+}
+
+.btn_orderIt {
+    background-color: var(--bs-point);
+    color: white;
+    padding: 10px 16px 8px 16px;
+    border-radius: 99px;
+    font-size: 15px;
+    margin-right: 10px;
+    width: 93px;
+    cursor: pointer;
+}
+
+.section4_map {
+    width: 800px;
+    height: 500px;
+}
 
 @media screen and (max-width: 850px) {
     .content-sub-hotel-detail .hotel-image-container .grid_2_2 > img {
@@ -449,5 +604,45 @@
         top: 1.3846rem;
         right: 1.5769rem;
         font-size: 2.8rem;
+    }
+
+    .section4_map {
+        width: 100%;
+        height: 60vh;
+    }
+
+    .section2 {
+        overflow: auto;
+    }
+
+    .allow-text,
+    .sold-out-text {
+        display: none !important;
+    }
+
+    .label-container {
+        flex-direction: column;
+        margin-bottom: 1.538rem !important;
+    }
+
+    .section2 .price-table {
+        table-layout: fixed;
+    }
+
+    .section2 .price_in {
+        width: 10vw;
+        height: 6vw;
+    }
+
+    .price_sl_ {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .price_sl_ p {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
     }
 }

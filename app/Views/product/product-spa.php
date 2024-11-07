@@ -243,7 +243,14 @@
 
                                 </div>
                                 <div class="breakcum">
-                                    <p><?= $product['product_type'] ?></p>
+                                    <?php foreach ($product['codeTree'] as $key => $code): ?>
+                                        <p class="">
+                                            <?= $code['code_name'] ?>
+                                            <?php if ($key < count($product['codeTree']) - 1): ?>
+                                                <img src="/images/ico/arrow_right_icon.png" alt="arrow_right_icon">
+                                            <?php endif; ?>
+                                        </p>
+                                    <?php endforeach; ?>
                                 </div>
                                 <div class="prd_name">
                                     <?= $product['product_name'] ?>

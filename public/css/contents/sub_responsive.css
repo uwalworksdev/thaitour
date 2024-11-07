@@ -1316,9 +1316,26 @@
     width: 27.5rem;
     height: 9rem;
     border-width: 0.21rem;
-    background: #fff url(/images/ico/select_ico_mo.png) right 2rem center
-      no-repeat;
+    /* background: #fff url(/images/ico/select_ico_mo.png) right 2rem center
+      no-repeat; */
     background-size: 2.4rem 1.4rem;
+  }
+
+  .customer-form-page .card-left2 .cus-select-group .email-group select {
+    width: 27.5rem;
+  }
+
+  .customer-form-page .card-left2 .cus-select-group .email-group input {
+    width: 20rem;
+  }
+
+  .customer-form-page .time-group .form-group-second {
+    flex: 1;
+  }
+
+  .customer-form-page .time-group .form-group-second .select-width {
+    width: auto;
+    flex: 1;
   }
 
   .customer-form-page .mb-30 {
@@ -1538,6 +1555,11 @@
   .customer-form-page .navigation-container-prev .cus-size-home {
     width: 2.2rem;
     height: 2rem;
+  }
+
+  .phone_wrap {
+    flex-direction: column;
+    gap: 0;
   }
 
   .cart-item-list .navigation-container-prev .cus-size-arrow {

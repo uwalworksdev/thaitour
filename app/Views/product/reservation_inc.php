@@ -43,8 +43,6 @@
             <span class="label-text">예약이 마감된 상태로 예약이 불가합니다.</span>
         </div>
     </div>
-
-    <input type="hidden" id="day_" name="day_">
 </div>
 
 <script>

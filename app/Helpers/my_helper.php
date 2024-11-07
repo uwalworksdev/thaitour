@@ -730,6 +730,20 @@ function get_img($img, $path, $width, $height, $water = "")
     return $path . "/thum_" . $width . "_" . $height . "/" . $img;
 }
 
+function get_img_tour($img, $path, $width, $height, $water = "")
+{
+    $file_dir = "";
+    $thumb_img_path = $_SERVER["DOCUMENT_ROOT"];
+    if (!is_dir($thumb_img_path)) {
+        @mkdir($thumb_img_path, 0777);
+    }
+    $thumb_img = $thumb_img_path . $img;
+    if (!file_exists($thumb_img)) {
+        @GD2_make_thumb($width, $height, $thumb_img, $_SERVER["DOCUMENT_ROOT"] . "/" . $path . "/" . $img);
+    }
+    return $path . $img;
+}
+
 function getConImg($con)
 {
     $cnt = preg_match_all('@<img\s[^>]*src\s*=\s*(["\'])?([^\s>]+?)\1@i', stripslashes($con), $output);

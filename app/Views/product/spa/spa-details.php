@@ -1,8 +1,9 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-
     <link rel="stylesheet" type="text/css" href="/css/tour/spa.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBw3G5DUAOaV9CFr3Pft_X-949-64zXaBg&libraries=geometry"
+            async defer></script>
     <div class="content-sub-hotel-detail tours-detail spa-detail">
         <div class="body_inner">
             <div class="section1">
@@ -73,72 +74,376 @@
                     </div>
                     <div class="sub-header-hotel-detail">
                         <div class="main nav-list">
-                            <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
-                            <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">시설&서비스</p>
-                            <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">스파 정책</p>
-                            <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">생생리뷰(159개)</p>
+                            <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">상품선택</p>
+                            <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">소개&시설</p>
+                            <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p>
+                            <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(503)</p>
+                            <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
                         </div>
                     </div>
+
                     <div class="section2" id="section2">
                         <h2 class="title-sec2">
-                            숙소개요
+                            상품선택
                         </h2>
-                        <h3 class="sub-title-sec2">
-                            추천 포인트
-                        </h3>
-                        <div class="">
-                            <p class="description-sec2" style="letter-spacing: 1px">
-                                <?= viewSQ($data_['product_info']) ?>
-                            </p>
-                        </div>
-                        <div class="tag-list-icon mt-20">
-                            <?php foreach ($fresult4 as $row) : ?>
-                                <div class="item-tag">
-                                    <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
-                                    <span><?= $row['code_name'] ?></span>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <h2 class="sub-title-sec2">
-                            인기 시설 및 서비스
+
+                        <table class="price-table" id="price-table" style="margin-bottom:30px;">
+                            <colgroup>
+                                <col width="*">
+                                <col width="10%">
+                                <col width="25%">
+                                <col width="25%">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th colspan="4">적용일자 : 2024-11-20</th>
+                            </tr>
+                            <tr>
+                                <th>선택옵션</th>
+                                <th>요일</th>
+                                <th>성인(만 13세이상)</th>
+                                <th>아동(만 5세~12세)</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>아로마 테라피 마사지(60분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 테라피 마사지(90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">56,304원</span>(880바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 테라피 마사지 (220분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">47,168원</span>(1,100바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 첫 오일 (60분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 오일 (90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 첫 오일 (120)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 스크럽 (90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 스크럽 (120)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>아로마 오일 등 목& 어깨 (90분)</td>
+                                <td>매일</td>
+                                <td>
+                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                                        <div class="price">
+                                            <span class="text_primary">34,304원</span>(800바트)
+                                        </div>
+                                        <p>
+                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
+                                                   onkeyup="chkNum(this)">
+                                            <span>명</span>
+                                        </p>
+                                    </div>
+                                </td>
+                                <td>
+                                    이용불가
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="section3" id="section3">
+                        <h2 class="title-sec3">
+                            소개&시설
                         </h2>
-                        <div class="tag_list_done">
-                            <?php foreach ($bresult4 as $row) : ?>
-                                <div class="item_done">
-                                    <img src="/uploads/icons/done_icon.png" alt="done_icon">
-                                    <span><?= $row['code_name'] ?></span>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <h2 class="sub-title-sec2">
-                            스파주변 추천명소
-                        </h2>
-                        <div class="post-list-sec2">
-                            <?php foreach ($fresult8 as $row) : ?>
-                                <div class="">
-                                    <img src="/data/code/<?= $row['ufile1'] ?>" alt="hotel_thumbnai_1">
-                                    <span><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['code_name'] ?>(<?= $row['distance'] ?>)</span>
-                                </div>
-                            <?php endforeach; ?>
+
+                        <div class="container-big-text">
+                            <div class="only_w">
+                                <?= viewSQ($data_['product_contents']) ?>
+                            </div>
+                            <div class="only_m">
+                                <?= viewSQ($data_['product_contents_m']) ?>
+                            </div>
                         </div>
                     </div>
-                    <div class="section4" id="section3">
-                        <h2 class="title-sec4">시설 &amp; 서비스</h2>
-                        <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">
-                            <?php foreach ($fresult5 as $row2): ?>
-                                <div class="tag-container-item-sec4"
-                                     style="width: calc((100% - 120px)/3); padding-right: 70px">
-                                    <div class="tag-item-title"> <?= $row2['code_name'] ?> </div>
-                                    <ul class="tag-item-list">
-                                        <?php $child = $row2['child'];
-                                        foreach ($child as $item2): ?>
-                                            <li><?= $item2['code_name'] ?></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </div>
-                            <?php endforeach; ?>
+
+                    <div class="section4" id="section4">
+                        <h2 class="title-sec4">
+                            위치안내
+                        </h2>
+
+                        <div class="section4_map" id="section4_map" style="">
+
                         </div>
                     </div>
+                    <script>
+                        const latitude = Number(`<?= $data_['latitude'] ?>`);
+                        const longitude = Number(`<?= $data_['longitude'] ?>`);
+
+                        function initMap() {
+                            const location = {lat: latitude, lng: longitude};
+                            const map = new google.maps.Map(document.getElementById("section4_map"), {
+                                zoom: 16,
+                                center: location,
+                            });
+
+                            new google.maps.Marker({
+                                position: location,
+                                map: map,
+                            });
+                        }
+
+                        window.onload = initMap;
+                    </script>
+
+                    <!--                    <div class="section2" id="section2">-->
+                    <!--                        <h2 class="title-sec2">-->
+                    <!--                            숙소개요-->
+                    <!--                        </h2>-->
+                    <!--                        <h3 class="sub-title-sec2">-->
+                    <!--                            추천 포인트-->
+                    <!--                        </h3>-->
+                    <!--                        <div class="">-->
+                    <!--                            <p class="description-sec2" style="letter-spacing: 1px">-->
+                    <!--                                --><?php //= viewSQ($data_['product_info']) ?>
+                    <!--                            </p>-->
+                    <!--                        </div>-->
+                    <!--                        <div class="tag-list-icon mt-20">-->
+                    <!--                            --><?php //foreach ($fresult4 as $row) : ?>
+                    <!--                                <div class="item-tag">-->
+                    <!--                                    <img src="/data/code/-->
+                    <?php //= $row['ufile1'] ?><!--" alt="--><?php //= $row['code_name'] ?><!--">-->
+                    <!--                                    <span>--><?php //= $row['code_name'] ?><!--</span>-->
+                    <!--                                </div>-->
+                    <!--                            --><?php //endforeach; ?>
+                    <!--                        </div>-->
+                    <!--                        <h2 class="sub-title-sec2">-->
+                    <!--                            인기 시설 및 서비스-->
+                    <!--                        </h2>-->
+                    <!--                        <div class="tag_list_done">-->
+                    <!--                            --><?php //foreach ($bresult4 as $row) : ?>
+                    <!--                                <div class="item_done">-->
+                    <!--                                    <img src="/uploads/icons/done_icon.png" alt="done_icon">-->
+                    <!--                                    <span>--><?php //= $row['code_name'] ?><!--</span>-->
+                    <!--                                </div>-->
+                    <!--                            --><?php //endforeach; ?>
+                    <!--                        </div>-->
+                    <!--                        <h2 class="sub-title-sec2">-->
+                    <!--                            스파주변 추천명소-->
+                    <!--                        </h2>-->
+                    <!--                        <div class="post-list-sec2">-->
+                    <!--                            --><?php //foreach ($fresult8 as $row) : ?>
+                    <!--                                <div class="">-->
+                    <!--                                    <img src="/data/code/-->
+                    <?php //= $row['ufile1'] ?><!--" alt="hotel_thumbnai_1">-->
+                    <!--                                    <span>--><?php //if ($row['type']) { ?><!-- -->
+                    <?php //= $row['type'] ?><!--: --><?php //} ?><!-- --><?php //= $row['code_name'] ?><!--(-->
+                    <?php //= $row['distance'] ?><!--)</span>-->
+                    <!--                                </div>-->
+                    <!--                            --><?php //endforeach; ?>
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="section4" id="section3">-->
+                    <!--                        <h2 class="title-sec4">시설 &amp; 서비스</h2>-->
+                    <!--                        <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">-->
+                    <!--                            --><?php //foreach ($fresult5 as $row2): ?>
+                    <!--                                <div class="tag-container-item-sec4"-->
+                    <!--                                     style="width: calc((100% - 120px)/3); padding-right: 70px">-->
+                    <!--                                    <div class="tag-item-title"> -->
+                    <?php //= $row2['code_name'] ?><!-- </div>-->
+                    <!--                                    <ul class="tag-item-list">-->
+                    <!--                                        --><?php //$child = $row2['child'];
+                    //                                        foreach ($child as $item2): ?>
+                    <!--                                            <li>--><?php //= $item2['code_name'] ?><!--</li>-->
+                    <!--                                        --><?php //endforeach; ?>
+                    <!--                                    </ul>-->
+                    <!--                                </div>-->
+                    <!--                            --><?php //endforeach; ?>
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <?php
                     $product_more = $data_['product_more'];
@@ -173,7 +478,7 @@
                     }
                     ?>
 
-                    <div class="section5" id="section4">
+                    <div class="section5" id="section5">
                         <h1 class="title-sec5">스파정책</h1>
                         <div class="content-container-sec5">
                             <div class="content-item">
@@ -241,7 +546,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="section6" id="section5">
+
+                    <div class="section6" id="section6">
                         <h2 class="title-sec6"><span>생생리뷰</span>(516)</h2>
                         <div class="rating-content">
                             <div class="rating-left">
@@ -300,75 +606,159 @@
                         </div>
 
                     </div>
-                    <div class="section7">
-                        <div class="d_flex justify_content_end">
-                            <h1 class="title-sec7">다른 추천 스파도 확인해 보세요 : )</h1>
-                            <div class="swiper_product_list_pagination_ swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
-                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0"
-                                      role="button" aria-label="Go to slide 1" aria-current="true"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 3"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 5"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 6"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 7"></span><span
-                                        class="swiper-pagination-bullet" tabindex="0" role="button"
-                                        aria-label="Go to slide 8"></span><span class="swiper-pagination-bullet"
-                                                                                tabindex="0" role="button"
-                                                                                aria-label="Go to slide 9"></span></div>
-                        </div>
-                        <div class="sub_tour_section7_product_list swiper swiper_product_list_ swiper-initialized swiper-horizontal swiper-backface-hidden">
-                            <div class="swiper-wrapper" id="swiper-wrapper-c2d811557361007f3" aria-live="polite">
 
-                                <?php foreach ($suggestSpas as $suggestSpa) { ?>
-                                    <a href="/product-hotel/hotel-detail/<?= $suggestSpa['product_idx'] ?>"
-                                       class="sub_tour_section7_product_item swiper-slide swiper-slide-active"
-                                       role="group"
-                                       aria-label="1 / 9" data-swiper-slide-index="0"
-                                       style="width: 292.5px; margin-right: 10px;">
+                    <div class="custom-golf-detail">
+                        <div class="section6" id="section8">
+                            <h2 class="title-sec6">상품문의(FAQ)</h2>
 
-                                        <div class="img_box img_box_12">
-                                            <img src="/data/hotel/<?= $suggestSpa['ufile1'] ?>" alt="main"
-                                                 onerror="this.src='/images/product/noimg.png'" loading="lazy">
-                                        </div>
-                                        <div class="prd_keywords">
-                                    <span class="prd_keywords_cus_span">
-                                        <?= $suggestSpa['product_type'] ?>
-                                    </span>
-                                        </div>
-                                        <div class="prd_name">
-                                            <?= $suggestSpa['product_name'] ?>
-                                        </div>
-                                        <div class="prd_info">
-                                            <div class="prd_info__left">
-                                                <img class="ico_star" src="/images/ico/star_yellow_icon.png" alt="">
-                                                <span class="star_avg"> <?= $suggestSpa['review_average'] ?> </span>
+                            <div class="qa-section">
+                                <div class="custom-area-text">
+                                    <label class="custom-label" for="qa-comment">
+                            <textarea name="qa-comment" id="qa-comment"
+                                      class="custom-main-input-style textarea autoExpand"
+                                      placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
+                                    </label>
+                                    <div type="submit" class="qa-submit-btn">등록</div>
+                                </div>
+
+
+                                <ul class="qa-list">
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">124</span>
+                                                <span class="qa-tag normal-style">답변대기중</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
                                             </div>
-                                            <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
-                                            <div class="prd_info__right">
-                                                <span class="prd_info__right__ttl">생생리뷰</span>
-                                                <span class="new_review_cnt">(<?= $suggestSpa['total_review'] ?>)</span>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                                        </div>
+                                    </li>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">123</span>
+                                                <span class="qa-tag">답변완료</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">결제 시점은 언제인가요?</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
                                             </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
                                         </div>
-                                        <div class="prd_price_ko">
-                                            <?= number_format($suggestSpa['product_price']) ?> <span>원~</span> <span
-                                                    class="prd_price_thai">6,000 <span>바트~</span></span>
+                                        <div class="additional-info d_none additional_info_">
+                                            <span class="load-more">더투어랩</span>
+                                            <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점
+                                                예약 시
+                                                참고해주시기
+                                                바랍니다.
+                                            </p>
+                                            <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
                                         </div>
-                                    </a>
-                                <?php } ?>
-
+                                    </li>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">122</span>
+                                                <span class="qa-tag normal-style">답변대기중</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로
+                                                        외주실수...</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
+                                            </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                                        </div>
+                                    </li>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">121</span>
+                                                <span class="qa-tag normal-style">답변대기중</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고
+                                                        아유타야에서...</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
+                                            </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                                        </div>
+                                    </li>
+                                    <li class="">
+                                        <div class="qa-item qa_item_">
+                                            <div class="qa-question">
+                                                <span class="qa-number">120</span>
+                                                <span class="qa-tag">답변완료</span>
+                                                <div class="con-cus-mo-qa">
+                                                    <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                                                </div>
+                                            </div>
+                                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                                        </div>
+                                        <div class="additional-info d_none additional_info_">
+                                            <span class="load-more">더투어랩</span>
+                                            <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점
+                                                예약 시
+                                                참고해주시기
+                                                바랍니다.
+                                            </p>
+                                            <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                            <div class="pagination">
+                                <a href="#" class="page-link">
+                                    <img class="only_web" src="/uploads/icons/arrow_prev_step.png"
+                                         alt="arrow_prev_step">
+                                    <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png"
+                                         alt="arrow_prev_step_mo">
+                                </a>
+                                <a href="#" class="page-link cus-padding mr">
+                                    <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                                    <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png"
+                                         alt="arrow_prev_all_mo">
+                                </a>
+                                <a href="#" class="page-link active">1</a>
+                                <a href="#" class="page-link">2</a>
+                                <a href="#" class="page-link">3</a>
+                                <a href="#" class="page-link cus-padding ml">
+                                    <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                                    <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png"
+                                         alt="arrow_next_step_mo">
+                                </a>
+                                <a href="#" class="page-link">
+                                    <img class="only_web" src="/uploads/icons/arrow_next_step.png"
+                                         alt="arrow_next_step">
+                                    <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png"
+                                         alt="arrow_next_step">
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    <style>
+                        .d_none {
+                            display: none;
+                            transition: all 0.3s ease;
+                        }
+                    </style>
+                    <script>
+                        $('.qa_item_').on('click keypress', function (e) {
+                            if (e.type === 'click' || e.key === 'Enter') {
+                                $('.additional_info_').addClass('d_none').attr('aria-hidden', 'true');
+                                if ($(this).next('.additional-info').hasClass('d_none')) {
+                                    $(this).attr('aria-expanded', 'true').next().removeClass('d_none').attr('aria-hidden', 'false');
+                                } else {
+                                    $(this).attr('aria-expanded', 'false').next().addClass('d_none').attr('aria-hidden', 'true');
+                                }
+                            }
+                        });
+                    </script>
                 </div>
+
                 <div class="vertical-line"></div>
 
                 <div class="_wrap-payment">
@@ -471,7 +861,7 @@
             $(this).addClass('active_');
             let day_ = $(this).data('date');
             $('#day_').val(day_);
-            let price = `<?= number_format($data_['original_price']) ?>`;
+            let price = `<?= number_format($data_['product_price']) ?>`;
             let price_convert = price.toLocaleString();
             $('#total_sum').text(price_convert);
             calcTotal();
@@ -617,6 +1007,16 @@
             $('html, body').animate({
                 scrollTop: $('#' + elID).offset().top - 230
             }, 'slow');
+        }
+
+        function chkNum(el) {
+            let val = $(el).val();
+
+            if (!$.isNumeric(val)) {
+                val = val.replace(/\D/g, '');
+
+                $(el).val(val);
+            }
         }
     </script>
 <?php $this->endSection(); ?>

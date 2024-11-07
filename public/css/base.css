@@ -268,7 +268,7 @@ table thead td {
 }
 
 .text_primary {
-    color: #17469E;
+    color: var(--bs-point);
 }
 
 .text_warning {
