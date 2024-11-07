@@ -25,6 +25,10 @@
                     <span class="page_">생생리뷰 <strong style="color: #000;">(0)</strong></span>
                     <span class="page_"><?= $fresult9['code_name'] ?></span>
                 </div>
+                <?php
+                $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));
+                ?>
+
                 <div class="hotel-image-container">
                     <div class="hotel-image-container-1">
                         <img class="imageDetailMain_"
@@ -34,15 +38,17 @@
                              onerror="this.src='/images/share/noimg.png'">
                     </div>
                     <div class="grid_2_2">
-                        <?php for ($j = 2; $j < 5; $j++) { ?>
+                        <?php for ($j = 2; $j < 5; $j++) {
+                            ?>
                             <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                                  class="grid_2_2_size imageDetailSup_"
                                  src="/data/hotel/<?= $hotel['ufile' . $j] ?>"
                                  alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                         <?php } ?>
-                        <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                            <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                                 class="custom_button imageDetailSup_"
+                        <div class="grid_2_2_sub"
+                             onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                             style="position: relative; cursor: pointer;">
+                            <img class="custom_button imageDetailSup_"
                                  src="/data/hotel/<?= $hotel['ufile5'] ?>"
                                  alt="<?= $hotel['product_name'] ?>"
                                  onerror="this.src='/images/share/noimg.png'">
@@ -52,7 +58,7 @@
                                 <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
                                      alt="image_detail_icon_m">
                                 <span>사진 모두 보기</span>
-                                <span>(2장)</span>
+                                <span>(<?= $i3 ?>장)</span>
                             </div>
                         </div>
                     </div>

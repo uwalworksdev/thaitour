@@ -33,6 +33,14 @@
                         <img src="/uploads/icons/share_icon.png" alt="share_icon">
                     </div>
                 </div>
+                <?php
+                $i3 = 0;
+                for ($t = 1; $t < 8; $t++) {
+                    if (!empty($data_['ufile' . $t]) && $data_['ufile' . $t] != '') {
+                        $i3++;
+                    }
+                }
+                ?>
                 <div class="hotel-image-container">
                     <div class="hotel-image-container-1">
                         <img class="imageDetailMain_"
@@ -48,9 +56,9 @@
                                  src="/data/hotel/<?= $data_['ufile' . $j] ?>"
                                  alt="<?= $data_['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                         <?php } ?>
-                        <div class="grid_2_2_sub" style="position: relative; cursor: pointer;">
-                            <img onclick="img_pops('<?= $data_['product_idx'] ?>')"
-                                 class="custom_button imageDetailSup_"
+                        <div class="grid_2_2_sub" onclick="img_pops('<?= $data_['product_idx'] ?>')"
+                             style="position: relative; cursor: pointer;">
+                            <img class="custom_button imageDetailSup_"
                                  src="/data/hotel/<?= $data_['ufile5'] ?>"
                                  alt="<?= $data_['product_name'] ?>"
                                  onerror="this.src='/images/share/noimg.png'">
@@ -60,7 +68,7 @@
                                 <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
                                      alt="image_detail_icon_m">
                                 <span>사진 모두 보기</span>
-                                <span>(125장)</span>
+                                <span>(<?= $i3 ?>장)</span>
                             </div>
                         </div>
                     </div>
