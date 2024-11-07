@@ -2169,32 +2169,86 @@ class Product extends BaseController
     {
         try {
 
-            $codes = $this->codeModel->getByParentCode($code_no);
-            $products = $this->productModel->getAllProductsByCode($code_no);
-            $setting = homeSetInfo();
+            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
-            // foreach($codes as $key => $value){
-            //     $codes[$key]["list_code"] = $this->codeModel->getByParentCode($value["code_no"])->getResultArray();
+            // foreach($products as $key => $value){
+            //     $osql = "select * from tbl_cars_option where product_code = '" . $value["product_code"] . "'";
+            //     $oresult = $this->db->query($osql);
+            //     $oresult = $oresult->getResultArray();
+            //     $products[$key]["options"] = $oresult;
+            //     $product_price = (float)$value['product_price'];
+            //     $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            //     $product_price_baht = $product_price / $baht_thai;
+            //     $products[$key]['product_price_baht'] = $product_price_baht;
             // }
-
-            foreach($products as $key => $value){
-                $osql = "select * from tbl_cars_option where product_code = '" . $value["product_code"] . "'";
-                $oresult = $this->db->query($osql);
-                $oresult = $oresult->getResultArray();
-                $products[$key]["options"] = $oresult;
-                $product_price = (float)$value['product_price'];
-                $baht_thai = (float)($setting['baht_thai'] ?? 0);
-                $product_price_baht = $product_price / $baht_thai;
-                $products[$key]['product_price_baht'] = $product_price_baht;
-            }
 
             $data = [
                 'tab_active' => '7',
-                'codes' => $codes,
-                'products' => $products
+                'codes' => $codes
             ];
 
             return $this->renderView('product/vehicle-guide', $data);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function filterVehicle()
+    {
+        try {
+            $code_no = $this->request->getPost("code_no");
+
+            $child_codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+
+            if(count($child_codes) > 0){
+                $i = 1;
+                foreach($child_codes as $child){
+                    if($i == 1){
+                        $code_first = $child["code_no"];
+                    }
+                    $i++;
+                }      
+                
+            }else{
+                $code_first = $code_no;
+            }
+
+            $products = $this->productModel->findProductPaging([
+                "product_code_list" => $code_first
+            ]);
+
+            $data = [
+                'child_codes' => $child_codes,
+                'products' => $products["items"]
+            ];
+
+            return $this->response->setJSON($data, 200);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+
+    public function filterChildVehicle()
+    {
+        try {
+            $child_code = $this->request->getPost("child_code");
+
+            $products = $this->productModel->findProductPaging([
+                "product_code_list" => $child_code
+            ]);
+
+            $data = [
+                'products' => $products["items"]
+            ];
+
+            return $this->response->setJSON($data, 200);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

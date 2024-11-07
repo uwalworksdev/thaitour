@@ -83,9 +83,20 @@
                         <img style="vertical-align: middle;margin-left: 3px" src="/images/ico/ico_question.png" alt="">
                     </div>
                     <ul class="section_vehicle_2_2__head__tabs">
-                        <li class="section_vehicle_2_2__head__tabs__item active">
+                        <?php 
+                            $i = 1;
+                            foreach($codes as $code){
+                        ?>
+                            <li class="section_vehicle_2_2__head__tabs__item <?php if($i === 1){ echo "active"; }?>" data-code="<?=$code["code_no"]?>">
+                                <a href="#!"><?=$code["code_name"]?></a>
+                            </li> 
+                        <?php 
+                            $i++;
+                            } 
+                        ?>
+                        <!-- <li class="section_vehicle_2_2__head__tabs__item active">
                             <a href="#!">공항픽업</a>
-                        </li>
+                        </li> 
                         <li class="section_vehicle_2_2__head__tabs__item">
                             <a href="#!">공항샌딩</a>
                         </li>
@@ -94,17 +105,10 @@
                         </li>
                         <li class="section_vehicle_2_2__head__tabs__item">
                             <a href="#!">편도이동</a>
-                        </li>
+                        </li> -->
                     </ul>
                     <div class="section_vehicle_2_2__airport">
-                        <span>
-                            <input checked type="radio" id="airport1" name="airport" value="airport">
-                            <label for="airport1">공항1</label>
-                        </span>
-                        <span>
-                            <input type="radio" id="airport2" name="airport" value="airport">
-                            <label for="airport2">공항2</label>
-                        </span>
+
                     </div>
                 </div>
             </section>
@@ -120,79 +124,7 @@
                         <col width="480px">
                         <col width="320">
                     </colgroup>
-                    <tbody>
-                        <?php
-                            foreach($products as $product){
-                                if(!empty($product["ufile1"])){
-                                    $img = '/data/cars/' . $product["ufile1"];
-                                }else{
-                                    $img = '/data/product/noimg.png';
-                                }
-                        ?>
-                        <tr>
-                            <td>
-                                <div class="vehicle_image">
-                                    <div class="img_box img_box_15">
-                                        <img src="<?=$img?>" alt="<?=$product["rfile1"]?>">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="vehicle_info">
-                                    <h4 class="vehicle_info__name">
-                                        <?=$product["product_name"]?>
-                                    </h4>
-                                    <table>
-                                        <colgroup>
-                                            <col width="10%">
-                                            <col width="30%">
-                                            <col width="10%">
-                                            <col width="10%">
-                                            <col width="40%">
-                                        </colgroup>
-                                        <tbody>
-                                            <tr>
-                                                <td class="">
-                                                    <img src="/images/ico/ico_baggage.png" alt="">
-                                                </td>
-                                                <td class="vehicle_info__item">가방 20kg 3개</td>
-                                                <td class="vehicle_info__item">또는</td>
-                                                <td class="vehicle_info__item">
-                                                    <img src="/images/ico/ico_baggage.png" alt="">
-                                                </td>
-                                                <td class="vehicle_info__item">가방 20kg 1개 + 24kg 1개</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""></td>
-                                                <td class="vehicle_info__item">골프백 3개</td>
-                                                <td class="vehicle_info__item">또는</td>
-                                                <td class="vehicle_info__item">
-                                                    <img src="/images/ico/ico_bat.png" alt="">
-                                                    <img src="/images/ico/ico_baggage.png" alt="">
-                                                </td>
-                                                <td class="vehicle_info__item">골프백 2개+가방 20kg</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="vehicle_price">
-                                    <?=number_format($product["product_price"])?><span>원 (<?=number_format($product['product_price_baht'])?>바트)</span>
-                                </div>
-                                <div class="vehicle_options">
-                                    <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
-                                    <select name="" id="vehicle_cnt" class="vehicle_options__select">
-                                        <option value="">1</option>
-                                    </select>
-                                    <input type="checkbox" id="vehicle_prd1" name="">
-                                    <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd1">상품담기</label>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php
-                            }
-                        ?>
+                    <tbody id="product_vehicle_list">
                         <!-- <tr>
                             <td>
                                 <div class="vehicle_image">
@@ -574,6 +506,313 @@
         </div>
     </div>
 </section>
+
+<script>
+    function filter() {
+
+        let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
+
+        $.ajax({
+            url: '/filter-vehicle',
+            type: "POST",
+            data: { code_no },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+
+                let product_list = "";
+                let code_list = "";
+                let child_codes = data.child_codes;
+                let products = data.products;
+
+                for(let i = 0; i < child_codes.length; i++){
+                    code_list += 
+                    `
+                        <span>
+                            <input ${i == 0 ? 'checked' : ''} type="radio" id="airport${i}" name="airport" value="${child_codes[i]["code_no"]}">
+                            <label for="airport${i}">${child_codes[i]["code_name"]}</label>
+                        </span>
+                    `;
+                }
+
+                $(".section_vehicle_2_2__airport").html(code_list);
+
+                for(let i = 0; i < products.length; i++){
+                    let img = "";
+                    if(products[i]["ufile1"]){
+                        img = '/data/cars/' + products[i]["ufile1"];
+                    }else{
+                        img = '/data/product/noimg.png';
+                    }
+                    product_list += 
+                    `<tr>
+                        <td>
+                            <div class="vehicle_image">
+                                <div class="img_box img_box_15">
+                                    <img src="${img}" alt="${products[i]["rfile1"]}">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="vehicle_info">
+                                <h4 class="vehicle_info__name">
+                                    ${products[i]["product_name"]}
+                                </h4>
+                                <table>
+                                    <colgroup>
+                                        <col width="10%">
+                                        <col width="30%">
+                                        <col width="10%">
+                                        <col width="10%">
+                                        <col width="40%">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td class="">
+                                                <img src="/images/ico/ico_baggage.png" alt="">
+                                            </td>
+                                            <td class="vehicle_info__item">가방 20kg 3개</td>
+                                            <td class="vehicle_info__item">또는</td>
+                                            <td class="vehicle_info__item">
+                                                <img src="/images/ico/ico_baggage.png" alt="">
+                                            </td>
+                                            <td class="vehicle_info__item">가방 20kg 1개 + 24kg 1개</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""></td>
+                                            <td class="vehicle_info__item">골프백 3개</td>
+                                            <td class="vehicle_info__item">또는</td>
+                                            <td class="vehicle_info__item">
+                                                <img src="/images/ico/ico_bat.png" alt="">
+                                                <img src="/images/ico/ico_baggage.png" alt="">
+                                            </td>
+                                            <td class="vehicle_info__item">골프백 2개+가방 20kg</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="vehicle_price">
+                                ${Math.round(products[i]["product_price"]).toLocaleString('ko-KR')}<span>원 (${Math.round(products[i]["product_price_baht"]).toLocaleString('ko-KR')}바트)</span>
+                            </div>
+                            <div class="vehicle_options">
+                                <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
+                                <select name="" id="vehicle_cnt" class="vehicle_options__select">
+                                    <option value="">1</option>
+                                </select>
+                                <input type="checkbox" id="vehicle_prd1" name="">
+                                <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd1">상품담기</label>
+                            </div>
+                        </td>
+                    </tr>`;
+                }
+
+                $("#product_vehicle_list").html(product_list);
+
+                $(".section_vehicle_2_2__airport input[type='radio']").on("change", function() {
+                    let child_code = $(this).val();
+
+                    $.ajax({
+                        url: '/filter-child-vehicle',
+                        type: "POST",
+                        data: { child_code },
+                        async: false,
+                        cache: false,
+                        success: function (data, textStatus) {
+
+                            let product_list = "";
+                            let products = data.products;
+
+                            for(let i = 0; i < products.length; i++){
+                                let img = "";
+                                if(products[i]["ufile1"]){
+                                    img = '/data/cars/' + products[i]["ufile1"];
+                                }else{
+                                    img = '/data/product/noimg.png';
+                                }
+                                product_list += 
+                                `<tr>
+                                    <td>
+                                        <div class="vehicle_image">
+                                            <div class="img_box img_box_15">
+                                                <img src="${img}" alt="${products[i]["rfile1"]}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle_info">
+                                            <h4 class="vehicle_info__name">
+                                                ${products[i]["product_name"]}
+                                            </h4>
+                                            <table>
+                                                <colgroup>
+                                                    <col width="10%">
+                                                    <col width="30%">
+                                                    <col width="10%">
+                                                    <col width="10%">
+                                                    <col width="40%">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="">
+                                                            <img src="/images/ico/ico_baggage.png" alt="">
+                                                        </td>
+                                                        <td class="vehicle_info__item">가방 20kg 3개</td>
+                                                        <td class="vehicle_info__item">또는</td>
+                                                        <td class="vehicle_info__item">
+                                                            <img src="/images/ico/ico_baggage.png" alt="">
+                                                        </td>
+                                                        <td class="vehicle_info__item">가방 20kg 1개 + 24kg 1개</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""></td>
+                                                        <td class="vehicle_info__item">골프백 3개</td>
+                                                        <td class="vehicle_info__item">또는</td>
+                                                        <td class="vehicle_info__item">
+                                                            <img src="/images/ico/ico_bat.png" alt="">
+                                                            <img src="/images/ico/ico_baggage.png" alt="">
+                                                        </td>
+                                                        <td class="vehicle_info__item">골프백 2개+가방 20kg</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle_price">
+                                            ${Math.round(products[i]["product_price"]).toLocaleString('ko-KR')}<span>원 (${Math.round(products[i]["product_price_baht"]).toLocaleString('ko-KR')}바트)</span>
+                                        </div>
+                                        <div class="vehicle_options">
+                                            <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
+                                            <select name="" id="vehicle_cnt" class="vehicle_options__select">
+                                                <option value="">1</option>
+                                            </select>
+                                            <input type="checkbox" id="vehicle_prd1" name="">
+                                            <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd1">상품담기</label>
+                                        </div>
+                                    </td>
+                                </tr>`;
+                            }
+
+                            $("#product_vehicle_list").html(product_list);
+
+                        },
+                        error: function (request, status, error) {
+                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                        }
+                    });
+                });
+
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
+
+    filter();
+
+    $(".section_vehicle_2_2__head__tabs li").on("click", function() {
+        $(this).addClass("active").siblings().removeClass("active");
+        filter(); 
+    });
+
+    
+    $(".section_vehicle_2_2__airport input[type='radio']").on("change", function() {
+        let child_code = $(this).val();
+
+        $.ajax({
+            url: '/filter-child-vehicle',
+            type: "POST",
+            data: { child_code },
+            async: false,
+            cache: false,
+            success: function (data, textStatus) {
+
+                let product_list = "";
+                let products = data.products;
+
+                for(let i = 0; i < products.length; i++){
+                    let img = "";
+                    if(products[i]["ufile1"]){
+                        img = '/data/cars/' + products[i]["ufile1"];
+                    }else{
+                        img = '/data/product/noimg.png';
+                    }
+                    product_list += 
+                    `<tr>
+                        <td>
+                            <div class="vehicle_image">
+                                <div class="img_box img_box_15">
+                                    <img src="${img}" alt="${products[i]["rfile1"]}">
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="vehicle_info">
+                                <h4 class="vehicle_info__name">
+                                    ${products[i]["product_name"]}
+                                </h4>
+                                <table>
+                                    <colgroup>
+                                        <col width="10%">
+                                        <col width="30%">
+                                        <col width="10%">
+                                        <col width="10%">
+                                        <col width="40%">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td class="">
+                                                <img src="/images/ico/ico_baggage.png" alt="">
+                                            </td>
+                                            <td class="vehicle_info__item">가방 20kg 3개</td>
+                                            <td class="vehicle_info__item">또는</td>
+                                            <td class="vehicle_info__item">
+                                                <img src="/images/ico/ico_baggage.png" alt="">
+                                            </td>
+                                            <td class="vehicle_info__item">가방 20kg 1개 + 24kg 1개</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="vehicle_info__item"><img src="/images/ico/ico_bat.png" alt=""></td>
+                                            <td class="vehicle_info__item">골프백 3개</td>
+                                            <td class="vehicle_info__item">또는</td>
+                                            <td class="vehicle_info__item">
+                                                <img src="/images/ico/ico_bat.png" alt="">
+                                                <img src="/images/ico/ico_baggage.png" alt="">
+                                            </td>
+                                            <td class="vehicle_info__item">골프백 2개+가방 20kg</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="vehicle_price">
+                                ${Math.round(products[i]["product_price"]).toLocaleString('ko-KR')}<span>원 (${Math.round(products[i]["product_price_baht"]).toLocaleString('ko-KR')}바트)</span>
+                            </div>
+                            <div class="vehicle_options">
+                                <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
+                                <select name="" id="vehicle_cnt" class="vehicle_options__select">
+                                    <option value="">1</option>
+                                </select>
+                                <input type="checkbox" id="vehicle_prd1" name="">
+                                <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd1">상품담기</label>
+                            </div>
+                        </td>
+                    </tr>`;
+                }
+
+                $("#product_vehicle_list").html(product_list);
+
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    });
+</script>
 
 <script>
     var swiper = new Swiper('.swiper_container_ticket', {
