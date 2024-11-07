@@ -346,6 +346,12 @@ class Product extends BaseController
 
                 $bestValueProduct[$key]['total_review'] = $productReview['total_review'];
                 $bestValueProduct[$key]['review_average'] = $productReview['avg'];
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $bestValueProduct[$key]['level_name'] = $fresult9['code_name'];
             }
 
             $keyWordAll = $this->productModel->getKeyWordAll(1303);
@@ -357,6 +363,15 @@ class Product extends BaseController
                 'search_txt' => $keyWordAll[$keyWordActive] ?? "",
                 'search_category' => 'keyword'
             ], $this->scale, 1);
+
+            foreach ($productByKeyword['items'] as $key => $product) {
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $productByKeyword['items'][$key]['level_name'] = $fresult9['code_name'];
+            }
 
             $data = [
                 'banners' => $banners,

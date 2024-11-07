@@ -746,13 +746,11 @@
                                 <caption></caption>
                                 <colgroup>
                                     <col width="5%">
-                                    <col width="8%">
-                                    <col width="8%">
+                                    <col width="10%">
+                                    <col width="10%">
                                     <col width="*">
-                                    <col width="8%">
-                                    <col width="8%">
-                                    <col width="8%">
-                                    <col width="15%">
+                                    <col width="10%">
+                                    <col width="20%">
                                 </colgroup>
                                 <thead>
                                 <tr>
@@ -760,9 +758,7 @@
                                     <th>시작일</th>
                                     <th>종료일</th>
                                     <th>선택요일</th>
-                                    <th>대인가격</th>
-                                    <th>소인가격</th>
-                                    <th>경로가격</th>
+                                    <th>등록일</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
@@ -818,22 +814,7 @@
                                             &nbsp;&nbsp;&nbsp;
                                         </td>
                                         <td style="text-align:center">
-                                            <input type="text" name="price1" id="price1_<?= $row['p_idx'] ?>"
-                                                   value="<?= $row['price1'] ?>"
-                                                   class="price price1 input_txt"
-                                                   style="width:90%;text-align:right;">
-                                        </td>
-                                        <td style="text-align:center">
-                                            <input type="text" name="price2" id="price2_<?= $row['p_idx'] ?>"
-                                                   value="<?= $row['price2'] ?>"
-                                                   class="price price2 input_txt"
-                                                   style="width:90%;text-align:right;">
-                                        </td>
-                                        <td style="text-align:center">
-                                            <input type="text" name="price3" id="price3_<?= $row['p_idx'] ?>"
-                                                   value="<?= $row['price3'] ?>"
-                                                   class="price price3 input_txt"
-                                                   style="width:90%;text-align:right;">
+                                            <?= $row['c_date'] ?>
                                         </td>
                                         <td style="text-align: center">
                                             <a href="/_tourPrice/write_new?yoil_idx=<?= $row['p_idx'] ?>"
@@ -1361,6 +1342,39 @@
             upd_price('');
         }
 
+        function del_yoil(p_idx) {
+            if (!confirm("정말로 삭제하시겠습니까?\n\n한 번 삭제되면 데이터를 복구할 수 없습니다.\n\n"))
+                return false;
+
+            let url = `<?= route_to('admin.api.spa_.del_option_price') ?>`;
+
+            let data = {
+                "p_idx": p_idx,
+            };
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: data,
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    let message = data.message;
+                    alert(message);
+                    location.reload();
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+
+            });
+        }
+
+        function del_detail(air_code) {
+
+        }
+
+
         function upd_price(p_idx) {
             let url = `<?= route_to('admin.api.spa_.save_option_price') ?>`;
 
@@ -1737,21 +1751,7 @@
             });
         }
     </script>
-    <script type="text/javascript">
-        function del_yoil(yoil_idx) {
-            if (confirm("삭제하시겠습니까?\n삭제후에는 복구가 불가합니다.")) {
-                hiddenFrame.location.href = "/AdmMaster/_tourRegist/yoil_del.php?s_product_code_1=<?= $s_product_code_1 ?>&s_product_code_2=<?= $s_product_code_2 ?>&s_product_code_2=<?= $s_product_code_3 ?>&search_name=<?= $search_name ?>&search_category=<?= $search_category ?>&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>&yoil_idx=" + yoil_idx;
-            }
-        }
 
-        function del_detail(air_code) {
-            if (confirm("삭제하시겠습니까?\n삭제후에는 복구가 불가합니다.")) {
-                hiddenFrame.location.href = "/AdmMaster/_tourRegist/detail_del.php?product_idx=<?= $product_idx ?>&air_code=" + air_code;
-            }
-        }
-
-
-    </script>
     <script>
         function send_it() {
             $("#ajax_loader").removeClass("display-none");

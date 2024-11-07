@@ -932,6 +932,7 @@ class AdminSpaController extends BaseController
                             ,yoil_4		        = '" . $yoil_4 . "'
                             ,yoil_5		        = '" . $yoil_5 . "'
                             ,yoil_6		        = '" . $yoil_6 . "'
+                            ,c_date				= now()
                     ";
 
                 write_log("상품정보입력 : " . $sql);
@@ -954,6 +955,55 @@ class AdminSpaController extends BaseController
                     ]
                 );
 
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function del_option_price()
+    {
+        try {
+            $msg = '삭제 성공.';
+            $p_idx = $_POST['p_idx'];
+
+            $sql = "DELETE FROM tbl_product_price WHERE p_idx = '$p_idx' ";
+            $this->connect->query($sql);
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function close_option_price()
+    {
+        try {
+            $msg = '';
+            $p_idx = $_POST['p_idx'];
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
         } catch (\Exception $e) {
             return $this->response
                 ->setStatusCode(400)
