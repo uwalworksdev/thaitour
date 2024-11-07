@@ -158,6 +158,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
     });
 
+    $routes->group("_productPrice", static function ($routes) {
+        $routes->get("write_new", "Admin\AdminSpaController::write_new", ['as' => "admin._product.price.write_new"]);
+    });
+
     $routes->group("api", function ($routes) {
         $routes->get("get_code", "Api\AdminTourApi::get_code");
         $routes->post("ajax_change", "Api\AdminTourApi::ajax_change");

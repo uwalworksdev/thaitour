@@ -18,6 +18,166 @@ class AdminSpaController extends BaseController
         $this->productModel = model("ProductModel");
     }
 
+    public function write_new()
+    {
+        $back_url = updateSQ($_GET["back_url"]);
+        $product_idx = updateSQ($_GET["product_idx"]);
+        $yoil_idx = updateSQ($_GET["yoil_idx"]);
+        $parent_yoil_idx = updateSQ($_GET["parent_yoil_idx"]);
+        $pg = updateSQ($_GET["pg"]);
+        $search_name = updateSQ($_GET["search_name"]);
+        $search_category = updateSQ($_GET["search_category"]);
+        $s_product_code_1 = updateSQ($_GET["s_product_code_1"]);
+        $s_product_code_2 = updateSQ($_GET["s_product_code_2"]);
+        $s_product_code_3 = updateSQ($_GET["s_product_code_3"]);
+
+        $sql = " select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' ";
+        $result = $this->connect->query($sql);
+        $row = $result->getRowArray();
+        $prod_info = $row["prod_info"];
+        $deadline_date = explode(",", $row["deadline_date"]);
+        $deadline_date = array_filter($deadline_date, function ($value) {
+            return $value;
+        });
+
+        $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
+        $result = $this->connect->query($sql);
+        $row = $result->getRowArray();
+        $product_name = viewSQ($row["product_name"]);
+        $product_code_1 = $row["product_code_1"];
+        $s_station = $row["CodeF"];
+        if ($parent_yoil_idx) {
+            $sql = " select * from tbl_product_price where p_idx = '" . $parent_yoil_idx . "'";
+            $result = $this->connect->query($sql);
+            $row = $result->getRowArray();
+            $min_date = $row["s_date"];
+            $max_date = $row["e_date"];
+
+            $yoil_0 = $row["yoil_0"];
+            $yoil_1 = $row["yoil_1"];
+            $yoil_2 = $row["yoil_2"];
+            $yoil_3 = $row["yoil_3"];
+            $yoil_4 = $row["yoil_4"];
+            $yoil_5 = $row["yoil_5"];
+            $yoil_6 = $row["yoil_6"];
+
+            $m_date = $row["m_date"];
+            $r_date = $row["r_date"];
+
+            $yoilStr = "";
+            if ($row["yoil_0"] == "Y") {
+                $yoilStr = $yoilStr . "일, ";
+            }
+            if ($row["yoil_1"] == "Y") {
+                $yoilStr = $yoilStr . "월, ";
+            }
+            if ($row["yoil_2"] == "Y") {
+                $yoilStr = $yoilStr . "화, ";
+            }
+            if ($row["yoil_3"] == "Y") {
+                $yoilStr = $yoilStr . "수, ";
+            }
+            if ($row["yoil_4"] == "Y") {
+                $yoilStr = $yoilStr . "목, ";
+            }
+            if ($row["yoil_5"] == "Y") {
+                $yoilStr = $yoilStr . "금, ";
+            }
+            if ($row["yoil_6"] == "Y") {
+                $yoilStr = $yoilStr . "토, ";
+            }
+            $yoilStr = substr($yoilStr, 0, strlen($yoilStr) - 2);
+        }
+
+        if ($yoil_idx) {
+            $sql = " select * from tbl_product_price where p_idx = '" . $yoil_idx . "'";
+            $result = $this->connect->query($sql);
+            $row = $result->getRowArray();
+            $s_date = $row["s_date"];
+            $e_date = $row["e_date"];
+
+            $yoil_0 = $row["yoil_0"];
+            $yoil_1 = $row["yoil_1"];
+            $yoil_2 = $row["yoil_2"];
+            $yoil_3 = $row["yoil_3"];
+            $yoil_4 = $row["yoil_4"];
+            $yoil_5 = $row["yoil_5"];
+            $yoil_6 = $row["yoil_6"];
+            $sale = $row["sale"];
+
+            $m_date = $row["m_date"];
+            $r_date = $row["r_date"];
+
+        }
+
+        $fsql2 = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
+        $result2 = $this->connect->query($fsql2);
+        $result2 = $result2->getRowArray();
+
+        $data = [
+            "product_idx" => $product_idx ?? '',
+            "yoil_idx" => $yoil_idx ?? '',
+            "parent_yoil_idx" => $parent_yoil_idx ?? '',
+            "pg" => $pg ?? '',
+            "search_name" => $search_name ?? '',
+            "search_category" => $search_category ?? '',
+            "s_product_code_1" => $s_product_code_1 ?? '',
+            "s_product_code_2" => $s_product_code_2 ?? '',
+            "s_product_code_3" => $s_product_code_3 ?? '',
+            "product_name" => $product_name ?? '',
+            "product_code_1" => $product_code_1 ?? '',
+            "product_code_2" => $product_code_2 ?? '',
+            "product_code_3" => $product_code_3 ?? '',
+            "product_code_4" => $product_code_4 ?? '',
+            "product_code_name_1" => $product_code_name_1 ?? '',
+            "product_code_name_2" => $product_code_name_2 ?? '',
+            "product_code_name_3" => $product_code_name_3 ?? '',
+            "product_code_name_4" => $product_code_name_4 ?? '',
+            "product_air" => $product_air ?? '',
+            "s_station" => $s_station ?? '',
+            "product_info" => $product_info ?? '',
+            "prod_info" => $prod_info ?? '',
+            "yoil_0" => $yoil_0 ?? '',
+            "yoil_1" => $yoil_1 ?? '',
+            "yoil_2" => $yoil_2 ?? '',
+            "yoil_3" => $yoil_3 ?? '',
+            "yoil_4" => $yoil_4 ?? '',
+            "yoil_5" => $yoil_5 ?? '',
+            "yoil_6" => $yoil_6 ?? '',
+            "min_date" => $min_date ?? '',
+            "max_date" => $max_date ?? '',
+            "m_date" => $m_date ?? '',
+            "r_date" => $r_date ?? '',
+            "sale" => $sale ?? '',
+            "fresult2" => $fresult2 ?? [],
+        ];
+
+        return view('admin/_spa/write_new', $data);
+    }
+
+    public function write_new_ok()
+    {
+        try {
+            $msg = '';
+            $p_idx = $_POST['p_idx'];
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
     public function write_ok()
     {
         $connect = $this->connect;
