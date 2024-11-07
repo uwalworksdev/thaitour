@@ -11,7 +11,7 @@
                         </ul>
 
                         <ul class="last">
-                            <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
+                            <!-- <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li> -->
                             <li><a href="write_tours" class="btn btn-primary"><span
                                             class="glyphicon glyphicon-pencil"></span> <span
                                             class="txt">상품 등록</span></a></li>
