@@ -1560,6 +1560,7 @@ class Product extends BaseController
             }
         }
 
+        $data['inital_price'] = $total_vehicle_price + $data['total_price'];
         $data['final_price'] = $total_vehicle_price + $data['total_price'] - $data['discount'];
         $data['final_price_baht'] = $total_vehicle_price_baht + $data['total_price_baht'] - $data['discount_baht'];
 
@@ -1612,14 +1613,17 @@ class Product extends BaseController
             $data['product_code_3']         = $product['product_code_3'];
             $data['product_code_4']         = $product['product_code_4'];
             $data['order_no']               = $this->orderModel->makeOrderNo();
-            $data['order_user_email']       = $data['email_1'] . "@" . $data['email_2'];
+            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_user_email']       = encryptField($order_user_email, 'encode');
             $data['order_r_date']           = date('Y-m-d H:i:s');
             $data['order_status']           = "W";
             if($data['radio_phone'] == "kor") {
-                $data['order_user_phone']   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+                $order_user_phone   = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $data['order_user_phone']   = $data['phone_thai'];
+                $order_user_phone   = $data['phone_thai'];
             }
+
+            $data['order_user_phone']       = encryptField($order_user_phone, 'encode');
 
             $data['vehicle_time']           = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
@@ -1632,6 +1636,7 @@ class Product extends BaseController
             );
 
             $data['order_price']            = $priceCalculate['final_price'];
+            $data['inital_price']           = $priceCalculate['inital_price'];
             $data['used_coupon_idx']        = $data['use_coupon_idx'];
             $data['ip']                     = $this->request->getIPAddress();
             $data['order_gubun']            = "golf";
@@ -1639,12 +1644,14 @@ class Product extends BaseController
             $data['order_user_name']        = encryptField($data['order_user_name'], 'encode');
 
             if($data['radio_phone'] == "kor") {
-                $order_user_mobile              = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+                $order_user_mobile          = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
-                $order_user_mobile              = $data['phone_thai'];
+                $order_user_mobile          = $data['phone_thai'];
             }
 
             $data['order_user_mobile']      = encryptField($order_user_mobile, 'encode');
+
+            $data['local_phone']            = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
 
@@ -1652,9 +1659,10 @@ class Product extends BaseController
 
             foreach ($data['companion_name'] as $key => $value) {
                 $this->orderSubModel->insert([
+                    'order_gubun' => 'adult',
                     'order_idx' => $order_idx,
                     'product_idx' => $data['product_idx'],
-                    'order_name_kor' => encryptField($data['companion_name'][$key], 'encode'),
+                    'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
                     'order_sex' => $data['companion_gender'][$key],
                 ]);
             }

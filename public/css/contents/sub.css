@@ -3850,6 +3850,10 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   width: 370px;
 }
 
+.customer-form-page .con-form .form-group select {
+  width: 370px;
+}
+
 .customer-form-page .con-form.cus-border-bottom {
   padding-bottom: 40px;
   border-bottom: 1px solid rgb(238, 238, 238);

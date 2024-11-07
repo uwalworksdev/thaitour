@@ -52,11 +52,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="gender<?=$i?>">성별(MR/MS)*</label>
-                                            <input type="text" name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" placeholder="성별(MR/MS)" list="gender" />
-                                            <datalist id="gender">
-                                                <option value="MR">MR</option>
-                                                <option value="MS">MS</option>
-                                            </datalist>
+                                            <select name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" class="select-width" id="">
+                                                <option value="M">MR</option>
+                                                <option value="F">MS</option>
+                                            </select>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -101,7 +100,7 @@
 
                                 <div class="form-group cus-form-group">
                                     <label for="extra-requests">기타요청</label>
-                                    <textarea id="extra-requests" name="order_memo" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
+                                    <textarea id="extra-requests" name="custom_req" placeholder="예약업무를 주로 현지인 직원들이 처리하므로 여기에는 가급적 영어로 요청사항을 적어주시기 바랍니다. 중요한 요청 및 한글 요청 사항은 1:1게시판에 따로 남겨주셔야 정상적으로 처리가 가능합니다."></textarea>
                                 </div>
                             </div>
                         </div>
