@@ -532,6 +532,7 @@ $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
 $routes->get('product-tours/item_view/(:any)', 'Product::index8/$1');
 $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1');
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
+$routes->get('product-tours/customer-form', 'Product::tourCustomerForm');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 $routes->get('product-spa/product-booking', 'Product::productBooking');

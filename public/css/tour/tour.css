@@ -1218,6 +1218,10 @@
     font-size: 20px;
 }
 
+.content-sub-hotel-detail .main a.active {
+    color: var(--bs-point);
+}
+
 .content-sub-hotel-detail .main p.active {
     color: var(--bs-point);
 }
@@ -1920,6 +1924,10 @@
     box-shadow: 0px 5px 0px 0px rgba(51, 51, 51, 0.04);
 }
 
+.tours-detail .section2 .sec2-item-card.active {
+    border: 1px solid var(--bs-point);;
+}
+
 .tours-detail .section2 .sec2-item-card:last-child {
     padding-bottom: 160px;
 }
@@ -1964,6 +1972,12 @@
     width: 120px;
     color: var(--bs-point);
     font-weight: 500;
+    background-color: #fff;
+}
+
+.tours-detail .section2 .sec2-item-card.active .text-content-3 .btn-ct-3 {
+    color: #fff;
+    background-color: var(--bs-point);
 }
 
 
@@ -2278,6 +2292,7 @@
     height: 42px;
     font-size: 30px;
     width: 48px;
+    color: #252525;
 }
 
 .tours-detail .quantity-selector button.increase {
@@ -2285,6 +2300,7 @@
     height: 42px;
     font-size: 30px;
     width: 48px;
+    color: #252525;
 }
 
 .tours-detail .container-calendar .calendar-right {
@@ -2396,6 +2412,11 @@
     background-color: rgb(42, 69, 159);
     color: white;
     font-size: 22px;
+}
+
+.tours-detail .primary-btn-calendar.tour {
+    position: relative;
+    margin-top: 70px;
 }
 
 .tours-detail .title-sec3 {
