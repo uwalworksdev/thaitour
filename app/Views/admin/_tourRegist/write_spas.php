@@ -660,6 +660,304 @@
                                 </tbody>
                             </table>
 
+                            <div class="listBottom" style="padding: 15px;">
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%">
+                                        <col width="x">
+                                    </colgroup>
+                                    <tbody>
+
+                                    <tr>
+                                        <th>옵션추가</th>
+                                        <td>
+                                            <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
+                                            <button type="button" class="btn_01" onclick="add_moption();">추가</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <style>
+                                .tableCustom td.cus_,
+                                .tableCustom th.cus_ {
+                                    text-align: center !important;
+                                    vertical-align: middle;
+                                }
+                            </style>
+                            <?php foreach ($options as $row_option): ?>
+                                <div class="listBottom" style="padding: 15px;">
+                                    <form name="optionForm_<?= $row_option['code_idx'] ?>"
+                                          id="optionForm_<?= $row_option['code_idx'] ?>">
+                                        <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
+                                        <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
+
+                                        <table class="listTable tableCustom mem_detail">
+                                            <colgroup>
+                                                <col width="10%">
+                                                <col width="x">
+                                            </colgroup>
+                                            <tbody>
+                                            <tr>
+                                                <th>옵션</th>
+                                                <td>
+                                                    <div class="" style="display: flex; align-items: center; gap: 30px">
+                                                        <input type="text" name="moption_name"
+                                                               id="moption_name_<?= $row_option['code_idx'] ?>"
+                                                               value="<?= $row_option['moption_name'] ?>"/>
+                                                        <button style="height: 31px;" type="button"
+                                                                onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
+                                                        </button>
+                                                        <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
+                                                                type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">
+                                                            삭제
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>추가 옵션등록</th>
+                                                <td>
+                                                    <button style="height: 31px; background-color:#4F728A; color: #FFFFFF" type="button"
+                                                            onclick="add_option('<?= $row_option['code_idx'] ?>');">추가
+                                                    </button>
+                                                    <button style="height: 31px; background-color: rgba(0,128,0,0.79); color: #FFFFFF"
+                                                            type="button"
+                                                            onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록
+                                                    </button>
+                                                    <table>
+                                                        <colgroup>
+                                                            <col width="x">
+                                                            <col width="200px">
+                                                            <col width="100px">
+                                                            <col width="200px">
+                                                            <col width="200px">
+                                                        </colgroup>
+                                                        <thead>
+                                                        <tr>
+                                                            <th>옵션명</th>
+                                                            <th>가격</th>
+                                                            <th>적용</th>
+                                                            <th>순서</th>
+                                                            <th>삭제</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="settingBody_<?= $row_option['code_idx'] ?>">
+                                                        <?php foreach ($row_option['additional_options'] as $option): ?>
+                                                            <tr>
+                                                                <td><input type="text" name="o_name[]"
+                                                                           value="<?= $option['option_name'] ?>"/></td>
+                                                                <td><input type="text" name="o_price[]"
+                                                                           value="<?= $option['option_price'] ?>"/></td>
+                                                                <td>
+                                                                    <select name="use_yn[]">
+                                                                        <option value="Y" <?= $option['use_yn'] == 'Y' ? 'selected' : '' ?>>
+                                                                            판매중
+                                                                        </option>
+                                                                        <option value="N" <?= $option['use_yn'] != 'Y' ? 'selected' : '' ?>>
+                                                                            중지
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+                                                                <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>"/>
+                                                                </td>
+                                                                <td class="cus_">
+                                                                    <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
+                                                                            type="button" onclick="delOption('<?= $option['idx'] ?>');">
+                                                                        삭제
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                            <?php endforeach; ?>
+
+<!--                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"-->
+<!--                                   style="margin-top:50px;">-->
+<!--                                <caption>-->
+<!--                                </caption>-->
+<!--                                <colgroup>-->
+<!--                                    <col width="5%"/>-->
+<!--                                    <col width="x"/>-->
+<!--                                    <col width="10%"/>-->
+<!--                                    <col width="10%"/>-->
+<!--                                    <col width="10%"/>-->
+<!--                                </colgroup>-->
+<!--                                <tbody>-->
+<!--                                <tr>-->
+<!--                                    <td colspan="5">-->
+<!--                                        상품문의(FAQ)-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!---->
+<!--                                <tr>-->
+<!--                                    <th>번호</th>-->
+<!--                                    <th>코드명</th>-->
+<!--                                    <th>현황</th>-->
+<!--                                    <th>등록일</th>-->
+<!--                                    <th>관리</th>-->
+<!--                                </tr>-->
+<!---->
+<!--                                <tr>-->
+<!--                                    <td>32</td>-->
+<!--                                    <td class="tal">-->
+<!--                                        <a href="#">호텔등급</a>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        답변완료-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        2024-10-31 18:16:58-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <div class="" style="display: flex; gap: 10px">-->
+<!--                                            <a href="#" class="btn btn-default">추가등록</a>-->
+<!--                                            <a href="#" class="btn btn-default">하위리스트</a>-->
+<!--                                        </div>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!---->
+<!--                                </tbody>-->
+<!--                            </table>-->
+
+                            <style>
+                                .btnAddBreakfast {
+                                    padding: 5px 7px;
+                                    color: #fff;
+                                    background: #4F728A;
+                                    border: 1px solid #2b3f4c;
+                                }
+
+                                .btnDeleteBreakfast {
+                                    padding: 5px 7px;
+                                    color: #fff;
+                                    background: #d03a3e;
+                                    border: 1px solid #ba1212;
+                                }
+                            </style>
+                            <?php
+                            if ($product_more) {
+                                $productMoreData = json_decode($product_more, true);
+
+                                $breakfast_data = '';
+                                if ($productMoreData) {
+                                    $meet_out_time = $productMoreData['meet_out_time'];
+                                    $children_policy = $productMoreData['children_policy'];
+                                    $baby_beds = $productMoreData['baby_beds'];
+                                    $deposit_regulations = $productMoreData['deposit_regulations'];
+                                    $pets = $productMoreData['pets'];
+                                    $age_restriction = $productMoreData['age_restriction'];
+                                    $smoking_policy = $productMoreData['smoking_policy'];
+                                    $breakfast = $productMoreData['breakfast'];
+                                    $breakfast_data = $productMoreData['breakfast_data'];
+                                }
+                            }
+
+                            $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
+                            $breakfast_data_arr = array_filter($breakfast_data_arr);
+                            ?>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                    <col width="10%"/>
+                                    <col width="40%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        자세한 정보
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>서비스 정책</th>
+                                    <td>
+                                        <textarea name="meet_out_time" id="meet_out_time"
+                                                  style="width:90%;height:100px;"><?= $meet_out_time ?? "" ?></textarea>
+                                    </td>
+                                    <th>결제 정책</th>
+                                    <td>
+                                        <textarea name="children_policy" id="children_policy"
+                                                  style="width:90%;height:100px;"><?= $children_policy ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>할인 정책</th>
+                                    <td>
+                                        <textarea name="baby_beds" id="baby_beds"
+                                                  style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
+                                    </td>
+                                    <th>개인청보 보안 정책</th>
+                                    <td>
+                                        <textarea name="breakfast" id="breakfast"
+                                                  style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>보증금 규정</th>
+                                    <td>
+                                        <textarea name="deposit_regulations" id="deposit_regulations"
+                                                  style="width:90%;height:100px;"><?= $deposit_regulations ?? "" ?></textarea>
+                                    </td>
+                                    <th>반려동물</th>
+                                    <td>
+                                        <textarea name="pets" id="pets"
+                                                  style="width:90%;height:100px;"><?= $pets ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>연령 제한</th>
+                                    <td>
+                                        <textarea name="age_restriction" id="age_restriction"
+                                                  style="width:90%;height:100px;"><?= $age_restriction ?? "" ?></textarea>
+                                    </td>
+                                    <th>흡연 정책</th>
+                                    <td>
+                                        <textarea name="smoking_policy" id="smoking_policy"
+                                                  style="width:90%;height:100px;"><?= $smoking_policy ?? "" ?></textarea>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <script>
+                                let tr = ` <tr>
+                                                <th style="width: 30%">
+                                                    <input type="text" name="breakfast_item_name_[]">
+                                                </th>
+                                                <td style="width: 60%">
+                                                    <input type="text" name="breakfast_item_value_[]">
+                                                </td>
+                                                <td style="width: 10%">
+                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
+                                                </td>
+                                            </tr>`;
+
+                                $('.btnAddBreakfast').click(function () {
+                                    $('#tBodyTblBreakfast').append(tr);
+                                });
+
+                                function removeBreakfast(el) {
+                                    $(el).parent().parent().remove();
+                                }
+                            </script>
+
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption></caption>
@@ -831,203 +1129,12 @@
 
                                 </tbody>
                             </table>
-
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="5%"/>
-                                    <col width="x"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="5">
-                                        상품문의(FAQ)
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>번호</th>
-                                    <th>코드명</th>
-                                    <th>현황</th>
-                                    <th>등록일</th>
-                                    <th>관리</th>
-                                </tr>
-
-                                <tr>
-                                    <td>32</td>
-                                    <td class="tal">
-                                        <a href="#">호텔등급</a>
-                                    </td>
-                                    <td>
-                                        답변완료
-                                    </td>
-                                    <td>
-                                        2024-10-31 18:16:58
-                                    </td>
-                                    <td>
-                                        <div class="" style="display: flex; gap: 10px">
-                                            <a href="#" class="btn btn-default">추가등록</a>
-                                            <a href="#" class="btn btn-default">하위리스트</a>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-
-                            <style>
-                                .btnAddBreakfast {
-                                    padding: 5px 7px;
-                                    color: #fff;
-                                    background: #4F728A;
-                                    border: 1px solid #2b3f4c;
-                                }
-
-                                .btnDeleteBreakfast {
-                                    padding: 5px 7px;
-                                    color: #fff;
-                                    background: #d03a3e;
-                                    border: 1px solid #ba1212;
-                                }
-                            </style>
-                            <?php
-                            if ($product_more) {
-                                $productMoreData = json_decode($product_more, true);
-
-                                $breakfast_data = '';
-                                if ($productMoreData) {
-                                    $meet_out_time = $productMoreData['meet_out_time'];
-                                    $children_policy = $productMoreData['children_policy'];
-                                    $baby_beds = $productMoreData['baby_beds'];
-                                    $deposit_regulations = $productMoreData['deposit_regulations'];
-                                    $pets = $productMoreData['pets'];
-                                    $age_restriction = $productMoreData['age_restriction'];
-                                    $smoking_policy = $productMoreData['smoking_policy'];
-                                    $breakfast = $productMoreData['breakfast'];
-                                    $breakfast_data = $productMoreData['breakfast_data'];
-                                }
-                            }
-
-                            $breakfast_data_arr = explode('||||', $breakfast_data ?? "");
-                            $breakfast_data_arr = array_filter($breakfast_data_arr);
-                            ?>
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                   style="margin-top:50px;">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                    <col width="10%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <td colspan="4">
-                                        자세한 정보
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>서비스 정책</th>
-                                    <td>
-                                        <textarea name="meet_out_time" id="meet_out_time"
-                                                  style="width:90%;height:100px;"><?= $meet_out_time ?? "" ?></textarea>
-                                    </td>
-                                    <th>결제 정책</th>
-                                    <td>
-                                        <textarea name="children_policy" id="children_policy"
-                                                  style="width:90%;height:100px;"><?= $children_policy ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>할인 정책</th>
-                                    <td>
-                                        <textarea name="baby_beds" id="baby_beds"
-                                                  style="width:90%;height:100px;"><?= $baby_beds ?? "" ?></textarea>
-                                    </td>
-                                    <th>개인청보 보안 정책</th>
-                                    <td>
-                                        <textarea name="breakfast" id="breakfast"
-                                                  style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>보증금 규정</th>
-                                    <td>
-                                        <textarea name="deposit_regulations" id="deposit_regulations"
-                                                  style="width:90%;height:100px;"><?= $deposit_regulations ?? "" ?></textarea>
-                                    </td>
-                                    <th>반려동물</th>
-                                    <td>
-                                        <textarea name="pets" id="pets"
-                                                  style="width:90%;height:100px;"><?= $pets ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>연령 제한</th>
-                                    <td>
-                                        <textarea name="age_restriction" id="age_restriction"
-                                                  style="width:90%;height:100px;"><?= $age_restriction ?? "" ?></textarea>
-                                    </td>
-                                    <th>흡연 정책</th>
-                                    <td>
-                                        <textarea name="smoking_policy" id="smoking_policy"
-                                                  style="width:90%;height:100px;"><?= $smoking_policy ?? "" ?></textarea>
-                                    </td>
-                                </tr>
-
-                                </tbody>
-                            </table>
-                            <script>
-                                let tr = ` <tr>
-                                                <th style="width: 30%">
-                                                    <input type="text" name="breakfast_item_name_[]">
-                                                </th>
-                                                <td style="width: 60%">
-                                                    <input type="text" name="breakfast_item_value_[]">
-                                                </td>
-                                                <td style="width: 10%">
-                                                    <button type="button" class="btnDeleteBreakfast" onclick="removeBreakfast(this);">삭제</button>
-                                                </td>
-                                            </tr>`;
-
-                                $('.btnAddBreakfast').click(function () {
-                                    $('#tBodyTblBreakfast').append(tr);
-                                });
-
-                                function removeBreakfast(el) {
-                                    $(el).parent().parent().remove();
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
             </form>
-            <!-- // listBottom -->
-            <div class="pick_item_pop02" id="popup_location">
-                <div>
-                    <h2>메인노출상품 등록</h2>
-                    <div class="table_box" style="height: calc(100% - 146px);">
-                        <ul id="list_location">
 
-                        </ul>
-                    </div>
-                    <div class="sel_box">
-                        <button type="button" class="close">닫기</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tail_menu">
+            <div class="tail_menu" style="margin-bottom: 60px">
                 <ul>
                     <li class="left"></li>
                     <li class="right_sub">
@@ -1047,127 +1154,21 @@
                 </ul>
             </div>
 
-            <div class="listBottom" style="padding: 15px;">
-                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                    <caption>
-                    </caption>
-                    <colgroup>
-                        <col width="10%">
-                        <col width="x">
-                    </colgroup>
-                    <tbody>
+        </div>
+    </div>
 
-                    <tr>
-                        <th>옵션추가</th>
-                        <td>
-                            <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
-                            <button type="button" class="btn_01" onclick="add_moption();">추가</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+    <!-- // listBottom -->
+    <div class="pick_item_pop02" id="popup_location">
+        <div>
+            <h2>메인노출상품 등록</h2>
+            <div class="table_box" style="height: calc(100% - 146px);">
+                <ul id="list_location">
+
+                </ul>
             </div>
-            <style>
-                .tableCustom td.cus_,
-                .tableCustom th.cus_ {
-                    text-align: center !important;
-                    vertical-align: middle;
-                }
-            </style>
-            <?php foreach ($options as $row_option): ?>
-                <div class="listBottom" style="padding: 15px;">
-                    <form name="optionForm_<?= $row_option['code_idx'] ?>"
-                          id="optionForm_<?= $row_option['code_idx'] ?>">
-                        <input type="hidden" name="product_idx" value="<?= $product_idx ?>"/>
-                        <input type="hidden" name="code_idx" value="<?= $row_option['code_idx'] ?>"/>
-
-                        <table class="listTable tableCustom mem_detail">
-                            <colgroup>
-                                <col width="10%">
-                                <col width="x">
-                            </colgroup>
-                            <tbody>
-                            <tr>
-                                <th>옵션</th>
-                                <td>
-                                    <div class="" style="display: flex; align-items: center; gap: 30px">
-                                        <input type="text" name="moption_name"
-                                               id="moption_name_<?= $row_option['code_idx'] ?>"
-                                               value="<?= $row_option['moption_name'] ?>"/>
-                                        <button style="height: 31px;" type="button"
-                                                onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
-                                        </button>
-                                        <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
-                                                type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">
-                                            삭제
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>추가 옵션등록</th>
-                                <td>
-                                    <button style="height: 31px; background-color:#4F728A; color: #FFFFFF" type="button"
-                                            onclick="add_option('<?= $row_option['code_idx'] ?>');">추가
-                                    </button>
-                                    <button style="height: 31px; background-color: rgba(0,128,0,0.79); color: #FFFFFF"
-                                            type="button"
-                                            onclick="upd_option('<?= $row_option['code_idx'] ?>');">등록
-                                    </button>
-                                    <table>
-                                        <colgroup>
-                                            <col width="x">
-                                            <col width="200px">
-                                            <col width="100px">
-                                            <col width="200px">
-                                            <col width="200px">
-                                        </colgroup>
-                                        <thead>
-                                        <tr>
-                                            <th>옵션명</th>
-                                            <th>가격</th>
-                                            <th>적용</th>
-                                            <th>순서</th>
-                                            <th>삭제</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="settingBody_<?= $row_option['code_idx'] ?>">
-                                        <?php foreach ($row_option['additional_options'] as $option): ?>
-                                            <tr>
-                                                <td><input type="text" name="o_name[]"
-                                                           value="<?= $option['option_name'] ?>"/></td>
-                                                <td><input type="text" name="o_price[]"
-                                                           value="<?= $option['option_price'] ?>"/></td>
-                                                <td>
-                                                    <select name="use_yn[]">
-                                                        <option value="Y" <?= $option['use_yn'] == 'Y' ? 'selected' : '' ?>>
-                                                            판매중
-                                                        </option>
-                                                        <option value="N" <?= $option['use_yn'] != 'Y' ? 'selected' : '' ?>>
-                                                            중지
-                                                        </option>
-                                                    </select>
-                                                </td>
-                                                <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>"/>
-                                                </td>
-                                                <td class="cus_">
-                                                    <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
-                                                            type="button" onclick="delOption('<?= $option['idx'] ?>');">
-                                                        삭제
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-            <?php endforeach; ?>
-
+            <div class="sel_box">
+                <button type="button" class="close">닫기</button>
+            </div>
         </div>
     </div>
 
