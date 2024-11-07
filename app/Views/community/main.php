@@ -3,8 +3,8 @@
 <div id="container" class="sub contact contact_main">
     <div class="inner">
         <div class="sect_ttl_box">
-            <h2>하이호주 고객센터</h2>
-            <p class="description">하이호주 서비스 이용 중 궁금하신 문의사항에 대해 친절하게 상담해드립니다.<br class="only_web">
+            <h2>더투어랩 고객센터</h2>
+            <p class="description">더투어랩 서비스 이용 중 궁금하신 문의사항에 대해 친절하게 상담해드립니다.<br class="only_web">
                 고객님의 작은 질문까지 소중히 생각하며 고객님의 의견을 항상 열린 마음으로 수용하겠습니다.
             </p>
         </div>

@@ -353,8 +353,8 @@ if ($mIdx != "") {
                                 <label for="agree6">배너광고</label>
                             </div>
                             <div class="bs-input-check">
-                                <input type="checkbox" id="agree7" class="agree" name="_visit_route" value="하이호주블로그">
-                                <label for="agree7">하이호주블로그</label>
+                                <input type="checkbox" id="agree7" class="agree" name="_visit_route" value="더투어랩블로그">
+                                <label for="agree7">더투어랩블로그</label>
                             </div>
                             <div class="bs-input-check">
                                 <input type="checkbox" id="agree8" class="agree" name="_visit_route" value="뉴스기사">
@@ -553,7 +553,7 @@ if ($mIdx != "") {
             return false;
         }
 
-        var tophone = $("#mobile_1_1").val() + $("#mobile_1_2").val() + $("#mobile_1_3").val();
+        var tophone = $("#mobile_1_1").val() + "-" + $("#mobile_1_2").val() + "-" + $("#mobile_1_3").val();
         //ifm_chks.location.href="phone_chk_ajax.php?tophone="+tophone;
 
 

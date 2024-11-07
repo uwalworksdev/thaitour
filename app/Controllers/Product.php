@@ -2402,7 +2402,7 @@ class Product extends BaseController
     private function getImage($file)
     {
         // return base_url("images/{$file}");
-        return "https://hihojoonew.cafe24.com/data/product/thum_798_463/{$file}";
+        return base_url("/data/product/thum_798_463/{$file}");
     }
 
     private function viewData($code_no)
