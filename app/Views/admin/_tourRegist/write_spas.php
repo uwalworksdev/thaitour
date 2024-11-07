@@ -660,26 +660,25 @@
                                 </tbody>
                             </table>
 
-                            <div class="listBottom" style="padding: 15px;">
-                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                    <caption>
-                                    </caption>
-                                    <colgroup>
-                                        <col width="10%">
-                                        <col width="x">
-                                    </colgroup>
-                                    <tbody>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%">
+                                    <col width="x">
+                                </colgroup>
+                                <tbody>
 
-                                    <tr>
-                                        <th>옵션추가</th>
-                                        <td>
-                                            <input type='text' name='moption_name' id='moption_name' value="" style="width:550px"/>
-                                            <button type="button" class="btn_01" onclick="add_moption();">추가</button>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                <tr>
+                                    <th>옵션추가</th>
+                                    <td>
+                                        <input type='text' name='moption_name' id='moption_name' value=""
+                                               style="width:550px"/>
+                                        <button type="button" class="btn_01" onclick="add_moption();">추가</button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                             <style>
                                 .tableCustom td.cus_,
                                 .tableCustom th.cus_ {
@@ -708,10 +707,12 @@
                                                                id="moption_name_<?= $row_option['code_idx'] ?>"
                                                                value="<?= $row_option['moption_name'] ?>"/>
                                                         <button style="height: 31px;" type="button"
-                                                                onclick="upd_moption('<?= $row_option['code_idx'] ?>');">수정
+                                                                onclick="upd_moption('<?= $row_option['code_idx'] ?>');">
+                                                            수정
                                                         </button>
                                                         <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
-                                                                type="button" onclick="del_moption('<?= $row_option['code_idx'] ?>');">
+                                                                type="button"
+                                                                onclick="del_moption('<?= $row_option['code_idx'] ?>');">
                                                             삭제
                                                         </button>
                                                     </div>
@@ -720,7 +721,8 @@
                                             <tr>
                                                 <th>추가 옵션등록</th>
                                                 <td>
-                                                    <button style="height: 31px; background-color:#4F728A; color: #FFFFFF" type="button"
+                                                    <button style="height: 31px; background-color:#4F728A; color: #FFFFFF"
+                                                            type="button"
                                                             onclick="add_option('<?= $row_option['code_idx'] ?>');">추가
                                                     </button>
                                                     <button style="height: 31px; background-color: rgba(0,128,0,0.79); color: #FFFFFF"
@@ -761,11 +763,13 @@
                                                                         </option>
                                                                     </select>
                                                                 </td>
-                                                                <td><input type="text" name="o_num[]" value="<?= $option['onum'] ?>"/>
+                                                                <td><input type="text" name="o_num[]"
+                                                                           value="<?= $option['onum'] ?>"/>
                                                                 </td>
                                                                 <td class="cus_">
                                                                     <button style="height: 31px; background-color:#d03a3e; color: #FFFFFF"
-                                                                            type="button" onclick="delOption('<?= $option['idx'] ?>');">
+                                                                            type="button"
+                                                                            onclick="delOption('<?= $option['idx'] ?>');">
                                                                         삭제
                                                                     </button>
                                                                 </td>
@@ -781,53 +785,53 @@
                                 </div>
                             <?php endforeach; ?>
 
-<!--                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"-->
-<!--                                   style="margin-top:50px;">-->
-<!--                                <caption>-->
-<!--                                </caption>-->
-<!--                                <colgroup>-->
-<!--                                    <col width="5%"/>-->
-<!--                                    <col width="x"/>-->
-<!--                                    <col width="10%"/>-->
-<!--                                    <col width="10%"/>-->
-<!--                                    <col width="10%"/>-->
-<!--                                </colgroup>-->
-<!--                                <tbody>-->
-<!--                                <tr>-->
-<!--                                    <td colspan="5">-->
-<!--                                        상품문의(FAQ)-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <th>번호</th>-->
-<!--                                    <th>코드명</th>-->
-<!--                                    <th>현황</th>-->
-<!--                                    <th>등록일</th>-->
-<!--                                    <th>관리</th>-->
-<!--                                </tr>-->
-<!---->
-<!--                                <tr>-->
-<!--                                    <td>32</td>-->
-<!--                                    <td class="tal">-->
-<!--                                        <a href="#">호텔등급</a>-->
-<!--                                    </td>-->
-<!--                                    <td>-->
-<!--                                        답변완료-->
-<!--                                    </td>-->
-<!--                                    <td>-->
-<!--                                        2024-10-31 18:16:58-->
-<!--                                    </td>-->
-<!--                                    <td>-->
-<!--                                        <div class="" style="display: flex; gap: 10px">-->
-<!--                                            <a href="#" class="btn btn-default">추가등록</a>-->
-<!--                                            <a href="#" class="btn btn-default">하위리스트</a>-->
-<!--                                        </div>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!---->
-<!--                                </tbody>-->
-<!--                            </table>-->
+                            <!--                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"-->
+                            <!--                                   style="margin-top:50px;">-->
+                            <!--                                <caption>-->
+                            <!--                                </caption>-->
+                            <!--                                <colgroup>-->
+                            <!--                                    <col width="5%"/>-->
+                            <!--                                    <col width="x"/>-->
+                            <!--                                    <col width="10%"/>-->
+                            <!--                                    <col width="10%"/>-->
+                            <!--                                    <col width="10%"/>-->
+                            <!--                                </colgroup>-->
+                            <!--                                <tbody>-->
+                            <!--                                <tr>-->
+                            <!--                                    <td colspan="5">-->
+                            <!--                                        상품문의(FAQ)-->
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                <tr>-->
+                            <!--                                    <th>번호</th>-->
+                            <!--                                    <th>코드명</th>-->
+                            <!--                                    <th>현황</th>-->
+                            <!--                                    <th>등록일</th>-->
+                            <!--                                    <th>관리</th>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                <tr>-->
+                            <!--                                    <td>32</td>-->
+                            <!--                                    <td class="tal">-->
+                            <!--                                        <a href="#">호텔등급</a>-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        답변완료-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        2024-10-31 18:16:58-->
+                            <!--                                    </td>-->
+                            <!--                                    <td>-->
+                            <!--                                        <div class="" style="display: flex; gap: 10px">-->
+                            <!--                                            <a href="#" class="btn btn-default">추가등록</a>-->
+                            <!--                                            <a href="#" class="btn btn-default">하위리스트</a>-->
+                            <!--                                        </div>-->
+                            <!--                                    </td>-->
+                            <!--                                </tr>-->
+                            <!---->
+                            <!--                                </tbody>-->
+                            <!--                            </table>-->
 
                             <style>
                                 .btnAddBreakfast {
