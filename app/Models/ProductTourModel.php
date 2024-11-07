@@ -14,4 +14,9 @@ class ProductTourModel extends Model
     {
         return $this->where('tours_idx', $tours_idx)->findAll();
     }
+
+    public function deleteTour($tours_idx)
+    {
+        return $this->where('tours_idx', $tours_idx)->delete();
+    }
 }

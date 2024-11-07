@@ -225,8 +225,8 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th rowspan=8>썸네일<br>(600 * 450)</th>
-                                    <td rowspan=8>
+                                    <th rowspan=7>썸네일<br>(600 * 450)</th>
+                                    <td rowspan=7>
                                         <?php for ($i = 1; $i <= 6; $i++) { ?>
                                             <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
                                                    style="width:500px;margin-bottom:10px"/>
@@ -290,14 +290,14 @@
                                         결제비용 %)
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>이동방법</th>
                                     <td>
                                         <input id="tour_transport" name="tour_transport" class="input_txt" type="text"
                                                value="<?= $tour_transport ?>" style="width:90%"/>
                                     </td>
-                                </tr>
-                                <tr>
+                                </tr> -->
+                                <!-- <tr>
                                     <th>여행혜택</th>
                                     <td>
                                         <input id="benefit" name="benefit" class="input_txt" type="text"
@@ -309,10 +309,10 @@
                                         <input id="capital_city" name="capital_city" class="input_txt" type="text"
                                                value="<?= $capital_city ?>" style="width:200px"/>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
-                                    <th>출발요일</th>
+                                    <!-- <th>출발요일</th>
                                     <td>
                                         <input type="checkbox" name="yoil_0" value="Y"
                                                class="yoil" <?php if (isset($yoil_0) && $yoil_0 == "Y") echo "checked"; ?> >
@@ -335,14 +335,14 @@
                                         <input type="checkbox" name="yoil_6" value="Y"
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
-                                    </td>
+                                    </td> -->
                                     <th>가이드/언어</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= $guide_lang ?>" style="width:20%"/><br/>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>시작일</th>
                                     <td>
                                         <input type="text" name="t_sdate" value="<?=substr($t_sdate, 0, 10)?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
@@ -351,13 +351,13 @@
                                     <td>
                                         <input type="text" name="t_edate" value="<?=substr($t_edate, 0, 10)?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
                                     </td>
-                                </tr>
+                                </tr> -->
 
-                                <tr>
+                                <!-- <tr>
                                     <th>메모</th>
                                     <td colspan="3"><textarea name="information" cols="100" rows="5"
                                                               style="width: 100%"><?= $information ?></textarea></td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>주소</th>
@@ -514,13 +514,13 @@
 
                                 <tr>
                                     <th>특가여부</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="checkbox" name="special_price" id="special_price"
                                                value="Y" <?php if (isset($row["special_price"]) && $row["special_price"] == "Y") {
                                             echo "checked";
                                         } ?> />&nbsp;&nbsp;&nbsp;&nbsp;
                                     </td>
-                                    <th>투어구분</th>
+                                    <!-- <th>투어구분</th>
                                     <td>
                                         <div id="text" class="flex" style="gap: 5px">
                                             <?php foreach ($codes as $code): ?>
@@ -531,7 +531,7 @@
                                                        value="<?= esc($code['code_no']) ?>" <?= $chk ?> /><?= esc($code['code_name']) ?> &nbsp;&nbsp;
                                             <?php endforeach; ?>
                                         </div>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <tr>
                                     <th>투어메인</th>
@@ -555,7 +555,7 @@
                                     </td>
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">
                                         <input type="text" name="adult_text" class="bbs_inputbox_pixel"
@@ -571,7 +571,7 @@
                                                value="<?= isset($row) ? $row["baby_text"] : '' ?>"/>
                                         <span style="margin-right:20px;"></span>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
 									<th>투어 사진</th>
 									<td colspan="3">
