@@ -1755,35 +1755,22 @@ class Product extends BaseController
     {
         $data['product_idx']        = $this->request->getVar('product_idx');
         $data['order_date']         = $this->request->getVar('order_date');
-        $data['option_idx']         = $this->request->getVar('option_idx');
+        $data['tours_idx']           = $this->request->getVar('tours_idx');
         $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
+        $data['people_adult_price'] = $this->request->getVar('people_adult_price');
+        $data['people_kids_cnt']    = $this->request->getVar('people_kids_cnt');
+        $data['people_kids_price']  = $this->request->getVar('people_kids_price');
+        $data['people_baby_cnt']    = $this->request->getVar('people_baby_cnt');
+        $data['people_baby_price']  = $this->request->getVar('people_baby_price');
         $data['start_place']        = $this->request->getVar('start_place');
         $data['end_place']          = $this->request->getVar('end_place');
         $data['metting_time']       = $this->request->getVar('metting_time');
         $data['description']        = $this->request->getVar('description');
         $data['id_kakao']           = $this->request->getVar('id_kakao');
 
-        $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
-
-        $date = date("Y.m.d", strtotime($data['order_date']));
-
-        $dayOfWeek = date("w");
-
-        $formattedDate = $date . "(" . $daysOfWeek[$dayOfWeek] . ")";
-
-        $data['final_date'] = $formattedDate;
-
         $data['product'] = $this->productModel->find($data['product_idx']);
 
-        $priceCalculate = $this->golfPriceCalculate(
-            $data['option_idx'],
-            $data['people_adult_cnt'],
-            $data['vehicle_cnt'],
-            $data['vehicle_idx'],
-            $data['use_coupon_idx']
-        );
-
-        return $this->renderView('product/tour/customer-form', array_merge($data, $priceCalculate));
+        return $this->renderView('product/tour/customer-form', $data);
     }
 
     public function index8($product_idx)

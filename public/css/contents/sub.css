@@ -4106,6 +4106,20 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   width: 120px;
 }
 
+.customer-form-page .form-group-cus-4input.tour_input {
+  gap: 6.5px;
+  margin-bottom: 0;
+}
+
+.customer-form-page .tour_input input:nth-child(1) {
+  width: 90px !important;
+}
+
+.customer-form-page .tour_input input
+ {
+  width: 120px !important;
+}
+
 .customer-form-page .form-group-cus-4input input:nth-child(4) {
   width: 370px;
 }
