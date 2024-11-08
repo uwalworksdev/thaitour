@@ -209,7 +209,7 @@
                                             </div>
                                         </div>
                                     <?php endforeach; ?>
-                                <?php endforeach; ?>
+                            <?php endforeach; ?>
 
                             <h3 class="title-second">선택옵션</h3>
                             <form>
@@ -249,6 +249,7 @@
                     <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                     <input type="hidden" name="order_date" id="order_date" value="">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="">
+                    <input type="hidden" name="idx" id="idx" value="">
                     <input type="hidden" name="people_adult_cnt" id="people_adult_cnt" value="">
                     <input type="hidden" name="people_kids_cnt" id="people_kids_cnt" value="">
                     <input type="hidden" name="people_baby_cnt" id="people_baby_cnt" value="">
@@ -334,8 +335,8 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-                                <button type="button" class="primary-btn-sub" onclick="handleSubmit()">이 상품만 예약하기</button>
-                                <a href="" class="primary-btn-calendar">견적/예약하기</a>
+                                <button type="button" class="primary-btn-sub tours" onclick="handleSubmit()">이 상품만 예약하기</button>
+                                <a href="" class="primary-btn-calendar tours">견적/예약하기</a>
                             </div>
                         </div>
                     </div>
@@ -576,269 +577,321 @@
                 },
             });
 
-            $(document).ready(function() {
-                var adultQuantity = 1;
-                var childQuantity = 0;
-                var babyQuantity = 0;
-
-                var adultTotalPrice = 0;
-                var childTotalPrice = 0;
-                var babyTotalPrice = 0;
-
-                function updateTotalPeopleDisplay() {
-                    var totalPeople = adultQuantity + childQuantity + babyQuantity;
-                    var numText = `${totalPeople}명 (성인: ${adultQuantity}, 아이: ${childQuantity}, 아기: ${babyQuantity})`;
-                    $('.num_people').text(numText);
-                }
-
-                $('.quantity-container').each(function() {
-                    var $container = $(this);
-                    var $quantityDisplay = $container.find('.quantity');
-                    var $increaseBtn = $container.find('.increase');
-                    var $decreaseBtn = $container.find('.decrease');
-                    var pricePerUnit = parseFloat($container.find('.price').data('price'));
-                    var priceBahtPerUnit = parseFloat($container.find('.currency').data('price-baht'));
-
-                    var quantity = parseInt($quantityDisplay.text());
-                    var $price = $container.find('.price');
-                    var $currency = $container.find('.currency');
-
-                    if ($container.find('.des').text().includes('성인') && quantity === 0) {
-                        quantity = 1; 
-                        adultQuantity = quantity;
-                        $quantityDisplay.text(quantity);
-                        $decreaseBtn.removeAttr('disabled');
-                    }
-
-                    updatePrice();
-
-                    $increaseBtn.click(function() {
-                        quantity++;
-                        $quantityDisplay.text(quantity);
-                        $decreaseBtn.removeAttr('disabled');
-                        updateQuantity($container, quantity);
-                        updatePrice();
-                    });
-
-                    $decreaseBtn.click(function() {
-                        if (quantity > 0) {
-                            quantity--;
-                            $quantityDisplay.text(quantity);
-                        }
-                        if (quantity === 0) {
-                            $decreaseBtn.attr('disabled', true);
-                        }
-                        updateQuantity($container, quantity);
-                        updatePrice();
-                    });
-
-                    function updateQuantity($container, quantity) {
-                        if ($container.find('.des').text().includes('성인')) {
-                            adultQuantity = quantity;
-                            adultTotalPrice = adultQuantity * pricePerUnit;
-                        } else if ($container.find('.des').text().includes('아동')) {
-                            childQuantity = quantity;
-                            childTotalPrice = childQuantity * pricePerUnit;
-                        } else if ($container.find('.des').text().includes('유아')) {
-                            babyQuantity = quantity;
-                            babyTotalPrice = babyQuantity * pricePerUnit;
-                        }
-                        updateTotalPeopleDisplay();
-                    }
-
-                    function updatePrice() {
-                        var totalPrice = quantity * pricePerUnit;
-                        var totalPriceBaht = quantity * priceBahtPerUnit;
-
-                        $price.text(number_format(totalPrice) + '원');
-                        $currency.text(number_format(totalPriceBaht) + '바트');
-                    }
-                });
-
-                function number_format(number) {
-                    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                }
-
-                updateTotalPeopleDisplay();
-
-                var selectedTourIds = [];
-                $('input[type="checkbox"]').change(function() {
-                    updateOptionText();
-                });
-
-                function updateOptionText() {
-                    var selectedOptions = [];
-                    selectedTourIds = [];
-
-                    $('input[type="checkbox"]:checked').each(function() {
-                        var optionContainer = $(this).closest('.form-group');
-                        var optionName = optionContainer.find('label').text();
-                        var optionPrice = parseFloat(optionContainer.find('.price').text().replace('원', '').replace(',', ''));
-                        var optionBaht = parseFloat(optionContainer.find('.currency').text().replace('바트', '').replace(',', ''));
-
-                        var tourIdx = $(this).attr('id');
-                        
-                        selectedTourIds.push(tourIdx); 
-                        selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
-                    });
-
-                    var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
-                    $('td.option').text(optionText);
+            document.addEventListener('DOMContentLoaded', function() {
+                    let currentToursIdx = null;
+                    const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
+                    const sec2Items = document.querySelectorAll('.sec2-item-card');
                     
-                }
+                    allContainers.forEach(container => {
+                        container.style.display = 'none';
+                    });
 
-                function number_format(number) {
-                    return number.toLocaleString('ko-KR');
-                }
-
-                const $calendarDays = $('.calendar-days');
-                const $monthYear = $('#month-year');
-                const $prevMonthBtn = $('#prev-month');
-                const $nextMonthBtn = $('#next-month');
-                const $selectedDayElement = $('.days');
-                
-                let s_date = null;
-                let e_date = null;
-                let productPrice = null;
-                let productPriceBaht = null;
-                const currentDate = new Date();
-                let selectedDate = null;
-
-                const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDays) => {
-                    s_date = new Date(startDate);
-                    e_date = new Date(endDate);
-                    productPrice = price;
-                    productPriceBaht = priceBaht;
-                    renderCalendar(validDays);
-                };
-
-                const initializeDefaultTour = () => {
-                    const firstTourDateElement = $('.sec2-date-main').first();
-                    const tourStartDate = firstTourDateElement.data('start-date');
-                    const tourEndDate = firstTourDateElement.data('end-date');
-                    
-                    const firstTourCard = $('.sec2-item-card').first();
-                    const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, ''); 
-                    const tourPrices = parseFloat(tourPriceText) / 10000;
-                    const tourPrice = parseFloat(tourPrices.toFixed(1));
-
-                    const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim().replace(/,/g, '');
-                    const tourPriceBaht = parseFloat(tourPriceTextBath);
-
-                    const validDays = firstTourCard.find('.btn-ct-3').data('valid-days').split(',').map(Number);
-                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays);
-                };
-
-                const renderCalendar = (validDays) => {
-                    $calendarDays.empty();
-                    const month = currentDate.getMonth();
-                    const year = currentDate.getFullYear();
-
-                    const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
-                    $monthYear.text(`${year}년 ${monthNames[month]}`);
-
-                    const firstDay = new Date(year, month, 1).getDay();
-                    const lastDate = new Date(year, month + 1, 0).getDate();
-
-                    for (let i = 0; i < firstDay; i++) {
-                        $('<div/>').appendTo($calendarDays);
+                    const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
+                    if (firstContainer) {
+                        firstContainer.style.display = 'block';
+                        const initialToursIdx = firstContainer.getAttribute('data-tour-index');
                     }
 
-                    for (let day = 1; day <= lastDate; day++) {
-                        const dayString = day.toString().padStart(2, '0');
-                        const $dayDiv = $('<div/>').text(dayString).addClass('day');
-                        const date = new Date(year, month, day);
+                    if (sec2Items.length > 0) {
+                        sec2Items[0].classList.add('active');
+                    }
 
-                        if (date < s_date || date > e_date || !validDays.includes(date.getDay())) {
-                            $dayDiv.addClass('disabled').append("<p>예약마감</p>");
-                        } else {
-                            $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${number_format(productPrice)}만원</p><p class="price2">(${number_format(productPriceBaht)}바트)</p></p>`);
+                    document.querySelectorAll('.btn-ct-3').forEach((button) => {
+                        button.addEventListener('click', function() {
+                            const tourIndex = this.getAttribute('data-tour-index');
 
-                            $dayDiv.click(() => {
-                                $('.day').removeClass('active');
-                                $dayDiv.addClass('active');
-                                selectedDate = date;
-
-                                const formattedDate = formatSelectedDate(date);
-                                $('td.days_choose').text(formattedDate);
+                            sec2Items.forEach(sec2Item => {
+                                sec2Item.classList.remove('active');
                             });
+
+                            const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
+                            if (selectedSec2Item) {
+                                selectedSec2Item.classList.add('active');
+                            }
+
+
+                            document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
+                                container.style.display = 'none';
+                            });
+
+                            const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
+                            if (selectedContainer) {
+                                selectedContainer.style.display = 'block';
+                                currentToursIdx = selectedContainer.getAttribute('data-tour-index');
+                            }
+                        });
+                    });
+                    
+                    var adultQuantity = 1;
+                    var childQuantity = 0;
+                    var babyQuantity = 0;
+
+                    var adultTotalPrice = 0;
+                    var childTotalPrice = 0;
+                    var babyTotalPrice = 0;
+
+                    function updateTotalPeopleDisplay() {
+                        var totalPeople = adultQuantity + childQuantity + babyQuantity;
+                        var numText = `${totalPeople}명 (성인: ${adultQuantity}, 아이: ${childQuantity}, 아기: ${babyQuantity})`;
+                        $('.num_people').text(numText);
+                    }
+
+                    $('.quantity-container').each(function() {
+                        var $container = $(this);
+                        var $quantityDisplay = $container.find('.quantity');
+                        var $increaseBtn = $container.find('.increase');
+                        var $decreaseBtn = $container.find('.decrease');
+                        var pricePerUnit = parseFloat($container.find('.price').data('price'));
+                        var priceBahtPerUnit = parseFloat($container.find('.currency').data('price-baht'));
+
+                        var quantity = parseInt($quantityDisplay.text());
+                        var $price = $container.find('.price');
+                        var $currency = $container.find('.currency');
+
+                        if ($container.find('.des').text().includes('성인') && quantity === 0) {
+                            quantity = 1; 
+                            adultQuantity = quantity;
+                            $quantityDisplay.text(quantity);
+                            $decreaseBtn.removeAttr('disabled');
                         }
 
-                        $dayDiv.appendTo($calendarDays);
+                        updatePrice();
+
+                        $increaseBtn.click(function() {
+                            quantity++;
+                            $quantityDisplay.text(quantity);
+                            $decreaseBtn.removeAttr('disabled');
+                            updateQuantity($container, quantity);
+                            updatePrice();
+                        });
+
+                        $decreaseBtn.click(function() {
+                            if (quantity > 0) {
+                                quantity--;
+                                $quantityDisplay.text(quantity);
+                            }
+                            if (quantity === 0) {
+                                $decreaseBtn.attr('disabled', true);
+                            }
+                            updateQuantity($container, quantity);
+                            updatePrice();
+                        });
+
+                        function updateQuantity($container, quantity) {
+                            if ($container.find('.des').text().includes('성인')) {
+                                adultQuantity = quantity;
+                                adultTotalPrice = adultQuantity * pricePerUnit;
+                            } else if ($container.find('.des').text().includes('아동')) {
+                                childQuantity = quantity;
+                                childTotalPrice = childQuantity * pricePerUnit;
+                            } else if ($container.find('.des').text().includes('유아')) {
+                                babyQuantity = quantity;
+                                babyTotalPrice = babyQuantity * pricePerUnit;
+                            }
+                            updateTotalPeopleDisplay();
+                        }
+
+                        function updatePrice() {
+                            var totalPrice = quantity * pricePerUnit;
+                            var totalPriceBaht = quantity * priceBahtPerUnit;
+
+                            $price.text(number_format(totalPrice) + '원');
+                            $currency.text(number_format(totalPriceBaht) + '바트');
+                        }
+                    });
+
+                    function number_format(number) {
+                        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     }
-                };
 
-                function formatSelectedDate(date) {
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
-                    return `${year}.${month}.${day}(${dayOfWeek})`;
-                }
+                    updateTotalPeopleDisplay();
 
-                $('.btn-ct-3').click(function() {
-                    const tourCard = $(this).closest('.sec2-item-card');
-                    const tourDateElement = tourCard.prevAll('.sec2-date-main').first();
-                    const tourStartDate = tourDateElement.data('start-date');
-                    const tourEndDate = tourDateElement.data('end-date');
+                    var selectedTourIds = [];
+                    $('input[type="checkbox"]').change(function() {
+                        updateOptionText();
+                    });
 
-                    const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
-                    const tourPrices = parseFloat(tourPriceText) / 10000;
-                    const tourPrice = parseFloat(tourPrices.toFixed(1));
+                    function updateOptionText() {
+                        var selectedOptions = [];
+                        selectedTourIds = [];
 
-                    const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, ''); 
-                    const tourPriceBaht = parseFloat(tourPriceTextBaht);
+                        $('input[type="checkbox"]:checked').each(function() {
+                            var optionContainer = $(this).closest('.form-group');
+                            var optionName = optionContainer.find('label').text();
+                            var optionPrice = parseFloat(optionContainer.find('.price').text().replace('원', '').replace(',', ''));
+                            var optionBaht = parseFloat(optionContainer.find('.currency').text().replace('바트', '').replace(',', ''));
 
-                    const validDays = $(this).data('valid-days').split(',').map(Number);
-                    setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays);
-                });
+                            var tourIdx = $(this).attr('id');
+                            
+                            selectedTourIds.push(tourIdx); 
+                            selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
+                        });
 
-                $prevMonthBtn.click(() => {
-                    currentDate.setMonth(currentDate.getMonth() - 1);
-                    renderCalendar();
-                });
-
-                $nextMonthBtn.click(() => {
-                    currentDate.setMonth(currentDate.getMonth() + 1);
-                    renderCalendar();
-                });
-
-                function checkDateSelected() {
-                    if (!selectedDate) {
-                        alert('달력 선택해주세요!');
-                        return false;
+                        var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
+                        $('td.option').text(optionText);
+                        
                     }
-                    return true;
-                }
 
-                $('.primary-btn-calendar.tour').click(function() {
-                    if (checkDateSelected()) {
-                        $('.sec2-item-card.tour_calendar').hide();
-                        $('.sec2-item-card.order-form-page').show();
-
-                        var selectedDateText = $('#days_choose').text();
-                        var dateParts = selectedDateText.split('(')[0].trim();
-                        var formattedDate = dateParts.replace(/\./g, '-');
-                        var adultCnt = adultQuantity;
-                        var childCnt = childQuantity;
-                        var babyCnt = babyQuantity;
-                        var adultTotalPrices = adultTotalPrice;
-                        var childTotalPrices = childTotalPrice;
-                        var babyTotalPrices = babyTotalPrice ;
-
-                        $('#order_date').val(formattedDate);
-                        $('#people_adult_cnt').val(adultCnt);
-                        $('#people_kids_cnt').val(childCnt);
-                        $('#people_baby_cnt').val(babyCnt);
-                        $('#people_adult_price"]').val(adultTotalPrices);
-                        $('#people_kids_price').val(childTotalPrices);
-                        $('#people_baby_price').val(babyTotalPrices);
-                        $('#tours_idx').val(selectedTourIds.join(','));
+                    function number_format(number) {
+                        return number.toLocaleString('ko-KR');
                     }
+
+                    const $calendarDays = $('.calendar-days');
+                    const $monthYear = $('#month-year');
+                    const $prevMonthBtn = $('#prev-month');
+                    const $nextMonthBtn = $('#next-month');
+                    const $selectedDayElement = $('.days');
+                    
+                    let s_date = null;
+                    let e_date = null;
+                    let productPrice = null;
+                    let productPriceBaht = null;
+                    const currentDate = new Date();
+                    let selectedDate = null;
+
+                    const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDays) => {
+                        s_date = new Date(startDate);
+                        e_date = new Date(endDate);
+                        productPrice = price;
+                        productPriceBaht = priceBaht;
+                        renderCalendar(validDays);
+                    };
+
+                    const initializeDefaultTour = () => {
+                        const firstTourDateElement = $('.sec2-date-main').first();
+                        const tourStartDate = firstTourDateElement.data('start-date');
+                        const tourEndDate = firstTourDateElement.data('end-date');
+                        
+                        const firstTourCard = $('.sec2-item-card').first();
+                        const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, ''); 
+                        const tourPrices = parseFloat(tourPriceText) / 10000;
+                        const tourPrice = parseFloat(tourPrices.toFixed(1));
+
+                        const tourPriceTextBath = firstTourCard.find('.ps-left').text().trim().replace(/,/g, '');
+                        const tourPriceBaht = parseFloat(tourPriceTextBath);
+
+                        const validDays = firstTourCard.find('.btn-ct-3').data('valid-days').split(',').map(Number);
+                        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays);
+                    };
+
+                    const renderCalendar = (validDays) => {
+                        $calendarDays.empty();
+                        const month = currentDate.getMonth();
+                        const year = currentDate.getFullYear();
+
+                        const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+                        $monthYear.text(`${year}년 ${monthNames[month]}`);
+
+                        const firstDay = new Date(year, month, 1).getDay();
+                        const lastDate = new Date(year, month + 1, 0).getDate();
+
+                        for (let i = 0; i < firstDay; i++) {
+                            $('<div/>').appendTo($calendarDays);
+                        }
+
+                        for (let day = 1; day <= lastDate; day++) {
+                            const dayString = day.toString().padStart(2, '0');
+                            const $dayDiv = $('<div/>').text(dayString).addClass('day');
+                            const date = new Date(year, month, day);
+
+                            if (date < s_date || date > e_date || !validDays.includes(date.getDay())) {
+                                $dayDiv.addClass('disabled').append("<p>예약마감</p>");
+                            } else {
+                                $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${number_format(productPrice)}만원</p><p class="price2">(${number_format(productPriceBaht)}바트)</p></p>`);
+
+                                $dayDiv.click(() => {
+                                    $('.day').removeClass('active');
+                                    $dayDiv.addClass('active');
+                                    selectedDate = date;
+
+                                    const formattedDate = formatSelectedDate(date);
+                                    $('td.days_choose').text(formattedDate);
+                                });
+                            }
+
+                            $dayDiv.appendTo($calendarDays);
+                        }
+                    };
+
+                    function formatSelectedDate(date) {
+                        const year = date.getFullYear();
+                        const month = String(date.getMonth() + 1).padStart(2, '0');
+                        const day = String(date.getDate()).padStart(2, '0');
+                        const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"][date.getDay()];
+                        return `${year}.${month}.${day}(${dayOfWeek})`;
+                    }
+
+                    $('.btn-ct-3').click(function() {
+                        const tourCard = $(this).closest('.sec2-item-card');
+                        const tourDateElement = tourCard.prevAll('.sec2-date-main').first();
+                        const tourStartDate = tourDateElement.data('start-date');
+                        const tourEndDate = tourDateElement.data('end-date');
+
+                        const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
+                        const tourPrices = parseFloat(tourPriceText) / 10000;
+                        const tourPrice = parseFloat(tourPrices.toFixed(1));
+
+                        const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, ''); 
+                        const tourPriceBaht = parseFloat(tourPriceTextBaht);
+
+                        const validDays = $(this).data('valid-days').split(',').map(Number);
+                        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays);
+                    });
+
+                    $prevMonthBtn.click(() => {
+                        currentDate.setMonth(currentDate.getMonth() - 1);
+                        renderCalendar();
+                    });
+
+                    $nextMonthBtn.click(() => {
+                        currentDate.setMonth(currentDate.getMonth() + 1);
+                        renderCalendar();
+                    });
+
+                    function checkDateSelected() {
+                        if (!selectedDate) {
+                            alert('달력 선택해주세요!');
+                            return false;
+                        }
+                        return true;
+                    }
+
+                    $('.primary-btn-calendar.tour').click(function() {
+                        if (checkDateSelected()) {
+                            $('.sec2-item-card.tour_calendar').hide();
+                            $('.sec2-item-card.order-form-page').show();
+
+                            var selectedDateText = $('#days_choose').text();
+                            var dateParts = selectedDateText.split('(')[0].trim();
+                            var formattedDate = dateParts.replace(/\./g, '-');
+                            var adultCnt = adultQuantity;
+                            var childCnt = childQuantity;
+                            var babyCnt = babyQuantity;
+                            var adultTotalPrices = adultTotalPrice;
+                            var childTotalPrices = childTotalPrice;
+                            var babyTotalPrices = babyTotalPrice;
+                            var tourIdx = 
+
+                            $('#order_date').val(formattedDate);
+                            $('#people_adult_cnt').val(adultCnt);
+                            $('#people_kids_cnt').val(childCnt);
+                            $('#people_baby_cnt').val(babyCnt);
+                            $('#people_adult_price').val(adultTotalPrices);
+                            $('#people_kids_price').val(childTotalPrices);
+                            $('#people_baby_price').val(babyTotalPrices);
+                            $('#tours_idx').val(currentToursIdx);
+                            $('#idx').val(selectedTourIds.join(','));
+                            console.log(selectedTourIds.join(','));
+                            console.log(currentToursIdx);
+                            
+                            
+                        }
+                    });
+
+                    initializeDefaultTour();
                 });
 
-                initializeDefaultTour();
-            });
+
 
             function handleSubmit() {
                 $("#frm").submit();
@@ -900,48 +953,52 @@
             }
         </script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
-                const sec2Items = document.querySelectorAll('.sec2-item-card');
+            // document.addEventListener('DOMContentLoaded', function() {
+            //     const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
+            //     const sec2Items = document.querySelectorAll('.sec2-item-card');
                 
-                allContainers.forEach(container => {
-                    container.style.display = 'none';
-                });
+            //     allContainers.forEach(container => {
+            //         container.style.display = 'none';
+            //     });
 
-                const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
-                if (firstContainer) {
-                    firstContainer.style.display = 'block';
-                }
+            //     const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
+            //     if (firstContainer) {
+            //         firstContainer.style.display = 'block';
+            //         const initialToursIdx = firstContainer.getAttribute('data-tour-index');
+            //         console.log("Initial tours_idx:", initialToursIdx);
+            //     }
 
-                if (sec2Items.length > 0) {
-                    sec2Items[0].classList.add('active');
-                }
+            //     if (sec2Items.length > 0) {
+            //         sec2Items[0].classList.add('active');
+            //     }
 
-                document.querySelectorAll('.btn-ct-3').forEach((button) => {
-                    button.addEventListener('click', function() {
-                        const tourIndex = this.getAttribute('data-tour-index');
+            //     document.querySelectorAll('.btn-ct-3').forEach((button) => {
+            //         button.addEventListener('click', function() {
+            //             const tourIndex = this.getAttribute('data-tour-index');
 
-                        sec2Items.forEach(sec2Item => {
-                            sec2Item.classList.remove('active');
-                        });
+            //             sec2Items.forEach(sec2Item => {
+            //                 sec2Item.classList.remove('active');
+            //             });
 
-                        const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
-                        if (selectedSec2Item) {
-                            selectedSec2Item.classList.add('active');
-                        }
+            //             const selectedSec2Item = document.querySelector(`.section2 .sec2-item-card[data-tour-index="${tourIndex}"]`);
+            //             if (selectedSec2Item) {
+            //                 selectedSec2Item.classList.add('active');
+            //             }
 
 
-                        document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
-                            container.style.display = 'none';
-                        });
+            //             document.querySelectorAll('.calendar-right .quantity-container-fa').forEach(container => {
+            //                 container.style.display = 'none';
+            //             });
 
-                        const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
-                        if (selectedContainer) {
-                            selectedContainer.style.display = 'block';
-                        }
-                    });
-                });
-            });
+            //             const selectedContainer = document.querySelector(`.calendar-right .quantity-container-fa[data-tour-index="${tourIndex}"]`);
+            //             if (selectedContainer) {
+            //                 selectedContainer.style.display = 'block';
+            //                 const toursIdx = selectedContainer.getAttribute('data-tour-index');
+            //                 console.log("tours_idx:", toursIdx);
+            //             }
+            //         });
+            //     });
+            // });
 
             document.addEventListener('DOMContentLoaded', function() {
             const links = document.querySelectorAll('.short_link');
