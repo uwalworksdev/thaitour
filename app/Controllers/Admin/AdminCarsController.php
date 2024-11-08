@@ -182,8 +182,6 @@ class AdminCarsController extends BaseController
 
                 $data['product_code_1'] = '1324';
 
-                die($data['product_code']);
-
                 $this->productModel->insert($data);
 
             }
