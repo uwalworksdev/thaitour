@@ -48,6 +48,10 @@ class Code extends Model
     public function getByCodeNo($code_no) {
         return $this->where('code_no', $code_no)->first();
     }
+    public function getByCodeNos($code_nos) {
+        if(empty($code_nos)) return [];
+        return $this->whereIn('code_no', $code_nos)->findAll();
+    }
     public function getTotalCount($parentCodeNo = '')
     {
         $builder = $this->builder();

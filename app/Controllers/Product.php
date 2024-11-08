@@ -32,6 +32,7 @@ class Product extends BaseController
     protected $dayModel;
     protected $subSchedule;
     protected $mainSchedule;
+    protected $carsOptionModel;
 
     private $scale = 8;
 
@@ -57,6 +58,7 @@ class Product extends BaseController
         $this->dayModel = model("DayModel");
         $this->subSchedule = model("SubScheduleModel");
         $this->mainSchedule = model("MainScheduleModel");
+        $this->carsOptionModel = model("CarsOptionModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -2240,6 +2242,10 @@ class Product extends BaseController
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
+            $place_start_list = $this->codeModel->getByParentCode(48)->getResultArray();
+
+            $place_end_list = $this->codeModel->getByParentCode(49)->getResultArray();
+
             // foreach($products as $key => $value){
             //     $osql = "select * from tbl_cars_option where product_code = '" . $value["product_code"] . "'";
             //     $oresult = $this->db->query($osql);
@@ -2253,7 +2259,9 @@ class Product extends BaseController
 
             $data = [
                 'tab_active' => '7',
-                'codes' => $codes
+                'codes' => $codes,
+                'place_start_list' => $place_start_list,
+                'place_end_list' => $place_end_list
             ];
 
             return $this->renderView('product/vehicle-guide', $data);
@@ -2289,6 +2297,15 @@ class Product extends BaseController
                 "product_code_list" => $code_first
             ]);
 
+            foreach($products["items"] as $key => $value) {
+                $options = $this->carsOptionModel->findOption($products["items"][$key]["product_code"]);
+                foreach($options as $key2 => $value2) {
+                    $types = $this->codeModel->getByCodeNos(array_map("trim", explode(",", $value2["c_op_type"])));
+                    $options[$key2]["icons"] = array_column($types, "ufile1");
+                }
+                $products["items"][$key]["options"] = $options;
+            }
+
             $data = [
                 'child_codes' => $child_codes,
                 'products' => $products["items"]
@@ -2312,6 +2329,15 @@ class Product extends BaseController
             $products = $this->productModel->findProductPaging([
                 "product_code_list" => $child_code
             ]);
+
+            foreach($products["items"] as $key => $value) {
+                $options = $this->carsOptionModel->findOption($products["items"][$key]["product_code"]);
+                foreach($options as $key2 => $value2) {
+                    $types = $this->codeModel->getByCodeNos(array_map("trim", explode(",", $value2["c_op_type"])));
+                    $options[$key2]["icons"] = array_column($types, "ufile1");
+                }
+                $products["items"][$key]["options"] = $options;
+            }
 
             $data = [
                 'products' => $products["items"]

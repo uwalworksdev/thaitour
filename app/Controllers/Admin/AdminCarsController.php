@@ -9,6 +9,8 @@ class AdminCarsController extends BaseController
 {
     protected $connect;
     protected $productModel;
+    protected $carsOptionModel;
+    protected $codeModel;
 
     public function __construct()
     {
@@ -16,6 +18,8 @@ class AdminCarsController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->productModel = model("ProductModel");
+        $this->carsOptionModel = model("CarsOptionModel");
+        $this->codeModel = model("Code");
     }
 
     public function list()
@@ -66,21 +70,15 @@ class AdminCarsController extends BaseController
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
-        $fsql = "select * from tbl_code where code_gubun = 'tour' and code_no = '1324'";
-        $fresult = $this->connect->query($fsql);
-        $fresult = $fresult->getResultArray();
+        $fresult = $this->codeModel->getByCodeNos(["1324"]);
 
-        $csql = "select * from tbl_code where parent_code_no = '47'";
-        $cfresult = $this->connect->query($csql);
-        $cfresult = $cfresult->getResultArray();
+        $cfresult = $this->codeModel->getByParentAndDepth(47, 2)->getResultArray();
 
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
         }
         
-        $osql = "select * from tbl_cars_option where product_code = '" . $row["product_code"] . "'";
-        $oresult = $this->connect->query($osql);
-        $oresult = $oresult->getResultArray();
+        $oresult = $this->carsOptionModel->where("product_code", $row["product_code"])->findAll();
 
         $data = [
             'product_idx' => $product_idx,
@@ -101,17 +99,7 @@ class AdminCarsController extends BaseController
     {
         try {
             $files = $this->request->getFiles();
-            $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
-            $data['product_code'] = updateSQ($_POST["product_code"] ?? '');
-            $data['product_name'] = updateSQ($_POST["product_name"] ?? '');
-            $data['keyword'] = updateSQ($_POST["keyword"] ?? '');
-            $data['product_status'] = updateSQ($_POST["product_status"] ?? '');
-            $data['original_price'] = updateSQ($_POST["original_price"] ?? 0);
-            $data['product_price'] = updateSQ($_POST["product_price"] ?? 0);
-            $data['product_info'] = updateSQ($_POST["product_info"] ?? '');
-            $data['product_best'] = updateSQ($_POST["product_best"] ?? 'N');
-            $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');
-            $data['is_view'] = "Y";
+            $data = $this->request->getPost();
 
             $o_idx = $_POST["option_idx"] ?? [];
             $c_op_type = $_POST["c_op_type"] ?? [];
@@ -136,53 +124,43 @@ class AdminCarsController extends BaseController
             if ($product_idx) {
 
                 foreach ($o_idx as $key => $val) {
-                    $sql_chk = " select count(*) as cnts from tbl_cars_option where idx = '" . $val . "'";
-                    $result_chk = $this->connect->query($sql_chk);
-                    $row_chk = $result_chk->getRowArray();
+                    $row_chk = $this->carsOptionModel->find($val);
 
                     if ($row_chk) {
+                        $this->carsOptionModel->update($val, [
+                            'c_op_name' => $c_op_name[$key],
+                            'c_op_type' => $c_op_type[$key],
+                        ]);
 
-                        if ($row_chk['cnts'] < 1) {
-                            $sql_su = "insert into tbl_cars_option SET
-                                         product_code	= '" . $data['product_code'] . "'
-                                        ,c_op_name		= '" . $c_op_name[$key] . "'
-                                        ,c_op_type	    = '" . $c_op_type[$key] . "'
-                                ";
+                    } else {
+                        $this->carsOptionModel->insert([
+                            'product_code' => $data['product_code'],
+                            'c_op_name' => $c_op_name[$key],
+                            'c_op_type' => $c_op_type[$key],
+                        ]);
 
-                            $this->connect->query($sql_su);
-
-                        } else {
-                            $sql_su = "update tbl_cars_option SET 
-                                         c_op_name		= '" . $c_op_name[$key] . "'
-                                        ,c_op_type	    = '" . $c_op_type[$key] . "'
-                                    where idx	= '" . $val . "'
-                                ";
-
-                            $this->connect->query($sql_su);
-                        }
                     }
                 }
 
                 // 상품 테이블 변경
-                $this->productModel->update($product_idx, $data);
+                $this->productModel->updateData($product_idx, $data);
 
             } else {
                 // 옵션 등록
                 foreach ($o_idx as $key => $val) {
 
-                    $sql_su = "insert into tbl_cars_option SET
-                                     product_code	= '" . $data['product_code'] . "'
-                                    ,c_op_name		= '" . $c_op_name[$key] . "'
-                                    ,c_op_type	    = '" . $c_op_type[$key] . "'
-                            ";
-
-                    $this->connect->query($sql_su);
+                    $this->carsOptionModel->insert([
+                        'product_code' => $data['product_code'],
+                        'c_op_name' => $c_op_name[$key],
+                        'c_op_type' => $c_op_type[$key],
+                    ]);
 
                 }
 
+                $data['is_view'] = "Y";
                 $data['product_code_1'] = '1324';
 
-                $this->productModel->insert($data);
+                $this->productModel->insertData($data);
 
             }
 
@@ -217,18 +195,7 @@ class AdminCarsController extends BaseController
 
             $tot = count($product_idx);
             for ($j = 0; $j < $tot; $j++) {
-                $sql = " update tbl_product_mst set onum='" . $onum[$j] . "' where product_idx='" . $product_idx[$j] . "'";
-                $db = $this->connect->query($sql);
-                if (!$db) {
-                    return $this->response
-                        ->setStatusCode(400)
-                        ->setJSON(
-                            [
-                                'status' => 'error',
-                                'message' => '수정 중 오류가 발생했습니다!!'
-                            ]
-                        );
-                }
+                $this->productModel->update($product_idx[$j], ['onum' => $onum[$j]]);
             }
 
             return $this->response
