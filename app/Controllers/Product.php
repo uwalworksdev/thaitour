@@ -33,6 +33,8 @@ class Product extends BaseController
     protected $subSchedule;
     protected $mainSchedule;
 
+    protected $optionTours;
+
     private $scale = 8;
 
     public function __construct()
@@ -54,6 +56,7 @@ class Product extends BaseController
         $this->orderOptionModel = model("OrderOptionModel");
         $this->tourProducts = model("ProductTourModel");
         $this->infoProducts = model("TourInfoModel");
+        $this->optionTours = model("OptionTourModel");
         $this->dayModel = model("DayModel");
         $this->subSchedule = model("SubScheduleModel");
         $this->mainSchedule = model("MainScheduleModel");
@@ -1755,7 +1758,7 @@ class Product extends BaseController
     {
         $data['product_idx']        = $this->request->getVar('product_idx');
         $data['order_date']         = $this->request->getVar('order_date');
-        $data['tours_idx']           = $this->request->getVar('tours_idx');
+        $data['tours_idx']          = $this->request->getVar('tours_idx');
         $data['people_adult_cnt']   = $this->request->getVar('people_adult_cnt');
         $data['people_adult_price'] = $this->request->getVar('people_adult_price');
         $data['people_kids_cnt']    = $this->request->getVar('people_kids_cnt');
@@ -1767,8 +1770,20 @@ class Product extends BaseController
         $data['metting_time']       = $this->request->getVar('metting_time');
         $data['description']        = $this->request->getVar('description');
         $data['id_kakao']           = $this->request->getVar('id_kakao');
+        $idx                        = $this->request->getVar('idx');
+        $data['idx'] = explode(',', $idx);
 
         $data['product'] = $this->productModel->find($data['product_idx']);
+
+        $data['tour_product'] = $this->tourProducts->find($data['tours_idx']);
+        $data['tour_info'] = $this->infoProducts->find($data['tour_product']['info_idx']);
+        $data['tour_option'] = [];
+        foreach ($data['idx'] as $id) {
+            $tourOption = $this->optionTours->find(trim($id));
+            if ($tourOption) {
+                $data['tour_option'][] = $tourOption;
+            }
+        }
 
         return $this->renderView('product/tour/customer-form', $data);
     }

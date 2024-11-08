@@ -3923,8 +3923,22 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   margin-bottom: 12px;
 }
 
-.customer-form-page .container-card .item-info span:first-child {
-  width: 110px;
+.customer-form-page .tour .container-card .item-info {
+  width: 280px;
+}
+
+.customer-form-page .tour .container-card .item-info {
+  width: 280px;
+}
+
+.customer-form-page .tour .container-card .item-info span:first-child {
+  width: 90px;
+}
+
+.customer-form-page .container-card .item-info-r-line {
+  margin: 26px 0;
+  border: 1px dashed #dbdbdb;
+  width: 100%;
 }
 
 .customer-form-page .container-card .item-info-r.font-bold-cus {
@@ -4144,6 +4158,38 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .card-left2 .cus-select-group select {
   width: 280px;
+}
+
+.customer-form-page .cus-select-group.tour input {
+  width: 230px;
+}
+
+.customer-form-page .cus-select-group.tour select {
+  width: 280px;
+}
+
+.customer-form-page .card-left2 .tbl_form {
+  width: 100%;
+  border-top: 1px solid #dbdbdb;
+}
+
+.customer-form-page .card-left2 .tbl_form tr {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.customer-form-page .card-left2 .tbl_form tr th {
+  padding: 20px 15px;
+  background-color: #f5f7fa;
+  font-size: 15px;
+  color: #454545;
+  text-align: left;
+}
+
+.customer-form-page .card-left2 .tbl_form tr td {
+  padding: 20px 15px;
+  font-size: 15px;
+  color: #252525;
+  text-align: left;
 }
 
 .email-group {
@@ -4541,6 +4587,28 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   border: 1px solid rgb(219, 219, 219);
   color: black;
   font-size: 22px;
+}
+
+.order-form-page .container-below-tb .primary-btn-sub.tours {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.tours-detail .primary-btn-calendar.tours {
+  position: absolute;
+  bottom: -12%;
+  left: 42%;
+  width: 250px;
+  height: 66px;
+  border-radius: 6px;
+  background-color: rgb(42, 69, 159);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
 }
 
 .cart-item-list .form-group {
