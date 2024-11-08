@@ -168,19 +168,19 @@ $links = "list";
                                 </tr>
                                 <tr>
                                     <th>상품명</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="text" name="product_name"
                                                value="<?= $product_name ?? "" ?>"
                                                class="text" style="width:300px" maxlength="100"/>
                                     </td>
-                                    <th>핫한 특가</th>
+                                    <!-- <th>핫한 특가</th>
                                     <td>
                                         <input type="checkbox" name="special_price" id="special_price" value="Y"
                                             <?php if (isset($special_price) && $special_price === "Y")
                                                 echo "checked=checked"; ?>> <label for="special_price"
                                                                                    style="max-height:200px;margin-right:20px;">매력적인
                                             제안</label>
-                                    </td>
+                                    </td> -->
                                 </tr>
 
                                 <tr>
@@ -209,14 +209,28 @@ $links = "list";
                                         <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)자켓,방풍자켓,기능성자켓</span>
                                     </td>
                                 </tr>
-
                                 <tr>
+                                    <th>최소출발인원(성인)</th>
+                                    <td>
+                                        <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
+                                               type="text"
+                                               value="<?= $minium_people_cnt ? $minium_people_cnt : "0" ?>" style="width:100%"/>
+                                    </td>
+                                    <th>최대인원(성인)</th>
+                                    <td>
+                                        <input id="total_people_cnt" name="total_people_cnt" class="input_txt"
+                                               type="text"
+                                               value="<?= $total_people_cnt ? $total_people_cnt : "0" ?>" style="width:100%"/>
+                                    </td>
+                                </tr>
+
+                                <!-- <tr>
                                     <th>간략소개</th>
                                     <td colspan="3">
 										<textarea name="product_info" id="product_info"
                                                   style="width:90%;height:100px;"><?= $product_info ?? "" ?></textarea>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 </tbody>
                             </table>
 
