@@ -31,9 +31,10 @@
     <form action="/product-golf/customer-form-ok" name="order_frm" id="order_frm" method="post" target="hiddenFrame">
         <input type="hidden" name="product_idx" value="<?=$product_idx?>">
         <input type="hidden" name="people_adult_cnt" value="<?=$people_adult_cnt?>">
+        <input type="hidden" name="people_kids_cnt" value="<?=$people_kids_cnt?>">
+        <input type="hidden" name="people_baby_cnt" value="<?=$people_baby_cnt?>">
         <input type="hidden" name="order_date" id="order_date" value="<?=$order_date?>">
-        <input type="hidden" name="option_idx" id="option_idx" value="<?=$option_idx?>">
-        <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?=$use_coupon_idx?>">
+        <input type="hidden" name="tours_idx" id="tours_idx" value="<?=$tours_idx?>">
         <div class="main-section">
             <div class="body_inner">
                 <div class="container-card">
@@ -51,12 +52,28 @@
                                             <input type="text" name="companion_name[]" id="passport-name<?=$i?>" data-label="인원성명" required placeholder="영어로 작성해주세요." />
                                         </div>
                                         <div class="form-group">
+                                            <label for="order_birthday<?=$i?>">생년월일</label>
+                                            <div class="datepick"><input type="text" name="order_birthday[]" id="order_birthday<?=$i?>" onfocus="this.blur()" class="bs-input">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="con-form mb-40">
+                                        <div class="form-group">
+                                            <label for="한국번호">한국번호*</label>
+                                            <div class="form-group-cus-4input tour_input">
+                                                <input name="phone_1[]" maxlength="3" class="phone_kor phone" type="text" id="phone_1<?=$i?>" required data-label="한국번호" />
+                                                <span> - </span>
+                                                <input name="phone_2[]" maxlength="4" class="phone_kor phone" type="text" id="phone_2<?=$i?>" required data-label="한국번호" />
+                                                <span> - </span>
+                                                <input name="phone_3[]" maxlength="4" class="phone_kor phone" type="text" id="phone_3<?=$i?>" required data-label="한국번호" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="gender<?=$i?>">성별(MR/MS)*</label>
-                                            <input type="text" name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" placeholder="성별(MR/MS)" list="gender" />
-                                            <datalist id="gender">
-                                                <option value="MR">MR</option>
-                                                <option value="MS">MS</option>
-                                            </datalist>
+                                            <select name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" class="select-width" id="">
+                                                <option value="M">MR</option>
+                                                <option value="F">MS</option>
+                                            </select>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -294,6 +311,22 @@
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
     <script>
         $(document).ready(function() {
+
+            $(".datepick input").datepicker({
+                dateFormat: 'yy-mm-dd',
+                showOn: "both",
+                buttonImage: '/images/ico/datepicker_ico.png',
+                showMonthAfterYear: true,
+                buttonImageOnly: true,
+                monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+                dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+                dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                changeMonth: true, // month 셀렉트박스 사용
+                changeYear: true, // year 셀렉트박스 사용
+                yearRange: 'c-100:c+0', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.
+            });
 
             $(".phone").on("input", function() {
                 $(this).val($(this).val().replace(/[^0-9]/g, ""));

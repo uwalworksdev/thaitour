@@ -5,12 +5,6 @@
 
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
-        <form name="frm" id="frm" action="/product-tours/customer-form" class="section1">
-            <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
-            <input type="hidden" name="order_date" id="order_date" value="">
-            <input type="hidden" name="option_idx" id="option_idx" value="">
-            <input type="hidden" id="total_price" value="">
-            <input type="hidden" id="total_price_baht" value="">
             <div class="section1">
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
@@ -251,92 +245,102 @@
                     </div>
                     <button type="button" class="primary-btn-calendar tour">견적/예약하기</button>
                 </div>
-                <div class="sec2-item-card order-form-page" style="display: none">
-                    <div class="container-calendar">
-                        <div class="main-order-form">
-                            <div class="main-order-form-container">
-                                <h1>선택하신 날짜에 즉시확정 예약이 가능합니다.</h1>
-                                <p class="text-grey">예약 즉시 결제가 가능하며, 엄격하게 관련 예약정책이 발생됩니다.</p>
-                            </div>
+                <form name="frm" id="frm" action="/product-tours/customer-form" class="section1">
+                    <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+                    <input type="hidden" name="order_date" id="order_date" value="">
+                    <input type="hidden" name="tours_idx" id="tours_idx" value="">
+                    <input type="hidden" name="people_adult_cnt" id="people_adult_cnt" value="">
+                    <input type="hidden" name="people_kids_cnt" id="people_kids_cnt" value="">
+                    <input type="hidden" name="people_baby_cnt" id="people_baby_cnt" value="">
+                    <input type="hidden" name="people_adult_price" id="people_adult_price" value="">
+                    <input type="hidden" name="people_kids_price" id="people_kids_price" value="">
+                    <input type="hidden" name="people_baby_price" id="people_baby_price" value="">
+                    <div class="sec2-item-card order-form-page" style="display: none">
+                        <div class="container-calendar">
+                            <div class="main-order-form">
+                                <div class="main-order-form-container">
+                                    <h1>선택하신 날짜에 즉시확정 예약이 가능합니다.</h1>
+                                    <p class="text-grey">예약 즉시 결제가 가능하며, 엄격하게 관련 예약정책이 발생됩니다.</p>
+                                </div>
 
-                            <h2 class="title-above-tb">예약정보</h2>
-                            <div class="two-table-tb">
-                                <table class="info-table-order">
-                                    <tr>
-                                        <th>이용일</th>
-                                        <td class="days_choose" id="days_choose"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>상품명</th>
-                                        <td class="name_product" id="name_product"><?= $product['product_name']?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>선택옵션</th>
-                                        <td class="option" id="product_option"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>총인원</th>
-                                        <td class="num_people" id="num_people"></td>
-                                    </tr>
-                                    <tr>
-                                        <th>회원등급 할인</th>
-                                        <td>없음</td>
-                                    </tr>
-                                    <!-- <tr>
-                                        <th>예약시간</th>
-                                        <td>15:00 ~ 18:30</td>
-                                    </tr> -->
-                                    <!-- <tr>
-                                        <th>픽업</th>
-                                        <td>포함 (왕복)</td>
-                                    </tr> -->
-                                </table>
-                                <div class="">
-                                    <table class="info-table-order info-table-cus-padding">
+                                <h2 class="title-above-tb">예약정보</h2>
+                                <div class="two-table-tb">
+                                    <table class="info-table-order">
                                         <tr>
-                                            <th>미팅장소</th>
-                                            <td>
-                                                <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
-                                                <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
-                                            </td>
+                                            <th>이용일</th>
+                                            <td class="days_choose" id="days_choose"></td>
                                         </tr>
                                         <tr>
-                                            <th>미팅 시간</th>
-                                            <td><input type="text" name="metting_time" id="metting_time"></td>
+                                            <th>상품명</th>
+                                            <td class="name_product" id="name_product"><?= $product['product_name']?></td>
                                         </tr>
                                         <tr>
-                                            <th>종료 후 내리실 곳</th>
-                                            <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
+                                            <th>선택옵션</th>
+                                            <td class="option" id="product_option"></td>
                                         </tr>
                                         <tr>
-                                            <th>카카오톡 아이디</th>
-                                            <td>
-                                                <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다." name="id_kakao" id="id_kakao">
-                                                <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
-                                            </td>
+                                            <th>총인원</th>
+                                            <td class="num_people" id="num_people"></td>
                                         </tr>
                                         <tr>
-                                            <th>기타 요청</th>
-                                            <td>
-                                                <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
-                                                <textarea class="textarea-tb" rows="5" placeholder="" name="id_kakao" id="id_kakao">
-                                            </textarea>
-                                            </td>
+                                            <th>회원등급 할인</th>
+                                            <td>없음</td>
                                         </tr>
+                                        <!-- <tr>
+                                            <th>예약시간</th>
+                                            <td>15:00 ~ 18:30</td>
+                                        </tr> -->
+                                        <!-- <tr>
+                                            <th>픽업</th>
+                                            <td>포함 (왕복)</td>
+                                        </tr> -->
                                     </table>
-                                    <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                                    <p class="summary-tb2">본 예약건 취소규정 자세히보기</p>
+                                    <div class="">
+                                        <table class="info-table-order info-table-cus-padding">
+                                            <tr>
+                                                <th>미팅장소</th>
+                                                <td>
+                                                    <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
+                                                    <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>미팅 시간</th>
+                                                <td><input type="text" name="metting_time" id="metting_time"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>종료 후 내리실 곳</th>
+                                                <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>카카오톡 아이디</th>
+                                                <td>
+                                                    <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다." name="id_kakao" id="id_kakao">
+                                                    <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>기타 요청</th>
+                                                <td>
+                                                    <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
+                                                    <textarea class="textarea-tb" rows="5" placeholder="" name="description" id="description">
+                                                </textarea>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
+                                        <p class="summary-tb2">본 예약건 취소규정 자세히보기</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="container-below-tb">
-                            <button type="button" class="primary-btn-sub" onclick="location.href=''">이 상품만 예약하기</button>
-                            <button type="button" class="primary-btn-calendar" onclick="location.href=''">견적/예약하기</button>
+                            <div class="container-below-tb">
+                                <button type="button" class="primary-btn-sub" onclick="handleSubmit()">이 상품만 예약하기</button>
+                                <a href="" class="primary-btn-calendar">견적/예약하기</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
         <h2 class="title-sec3" id="product_des">
             상품설명
         </h2>
@@ -577,6 +581,10 @@
                 var childQuantity = 0;
                 var babyQuantity = 0;
 
+                var adultTotalPrice = 0;
+                var childTotalPrice = 0;
+                var babyTotalPrice = 0;
+
                 function updateTotalPeopleDisplay() {
                     var totalPeople = adultQuantity + childQuantity + babyQuantity;
                     var numText = `${totalPeople}명 (성인: ${adultQuantity}, 아이: ${childQuantity}, 아기: ${babyQuantity})`;
@@ -627,10 +635,13 @@
                     function updateQuantity($container, quantity) {
                         if ($container.find('.des').text().includes('성인')) {
                             adultQuantity = quantity;
+                            adultTotalPrice = adultQuantity * pricePerUnit;
                         } else if ($container.find('.des').text().includes('아동')) {
                             childQuantity = quantity;
+                            childTotalPrice = childQuantity * pricePerUnit;
                         } else if ($container.find('.des').text().includes('유아')) {
                             babyQuantity = quantity;
+                            babyTotalPrice = babyQuantity * pricePerUnit;
                         }
                         updateTotalPeopleDisplay();
                     }
@@ -650,12 +661,14 @@
 
                 updateTotalPeopleDisplay();
 
+                var selectedTourIds = [];
                 $('input[type="checkbox"]').change(function() {
                     updateOptionText();
                 });
 
                 function updateOptionText() {
                     var selectedOptions = [];
+                    selectedTourIds = [];
 
                     $('input[type="checkbox"]:checked').each(function() {
                         var optionContainer = $(this).closest('.form-group');
@@ -663,19 +676,21 @@
                         var optionPrice = parseFloat(optionContainer.find('.price').text().replace('원', '').replace(',', ''));
                         var optionBaht = parseFloat(optionContainer.find('.currency').text().replace('바트', '').replace(',', ''));
 
+                        var tourIdx = $(this).attr('id');
+                        
+                        selectedTourIds.push(tourIdx); 
                         selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
                     });
 
                     var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
                     $('td.option').text(optionText);
+                    
                 }
 
                 function number_format(number) {
                     return number.toLocaleString('ko-KR');
                 }
-            });
 
-            $(document).ready(function() {
                 const $calendarDays = $('.calendar-days');
                 const $monthYear = $('#month-year');
                 const $prevMonthBtn = $('#prev-month');
@@ -800,11 +815,34 @@
                     if (checkDateSelected()) {
                         $('.sec2-item-card.tour_calendar').hide();
                         $('.sec2-item-card.order-form-page').show();
+
+                        var selectedDateText = $('#days_choose').text();
+                        var dateParts = selectedDateText.split('(')[0].trim();
+                        var formattedDate = dateParts.replace(/\./g, '-');
+                        var adultCnt = adultQuantity;
+                        var childCnt = childQuantity;
+                        var babyCnt = babyQuantity;
+                        var adultTotalPrices = adultTotalPrice;
+                        var childTotalPrices = childTotalPrice;
+                        var babyTotalPrices = babyTotalPrice ;
+
+                        $('#order_date').val(formattedDate);
+                        $('#people_adult_cnt').val(adultCnt);
+                        $('#people_kids_cnt').val(childCnt);
+                        $('#people_baby_cnt').val(babyCnt);
+                        $('#people_adult_price"]').val(adultTotalPrices);
+                        $('#people_kids_price').val(childTotalPrices);
+                        $('#people_baby_price').val(babyTotalPrices);
+                        $('#tours_idx').val(selectedTourIds.join(','));
                     }
                 });
 
                 initializeDefaultTour();
             });
+
+            function handleSubmit() {
+                $("#frm").submit();
+            }
 
         </script>
         <script>
