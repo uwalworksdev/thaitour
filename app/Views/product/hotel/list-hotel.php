@@ -157,7 +157,7 @@
                                         <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
                                                name="price_max" class="slider" id="slider-max">
                                     </div>
-                                    <span>10,000원 ~ 500,000원 이상</span>
+                                    <span><i class="price_min">10,000</i>원 ~ <i class="price_max">500,000원</i> 이상</span>
                                 </div>
                             </div>
                             <div class="category-left-item">
@@ -1216,8 +1216,8 @@
                                        name="price_max" class="slider" id="slider-max">
                             </div>
                             <div class="value-container">
-                                <span>10,000원</span>
-                                <span>500,000원 이상</span>
+                                <span><i class="price_min">10,000</i>원</span>
+                                <span><i class="price_max">500,000</i>원 이상</span>
                             </div>
                             <p class="tab-currency">
                                 <span class="currency active">원</span>
@@ -1545,6 +1545,9 @@
 
                 sliderTrack.style.left = percentMin + '%';
                 sliderTrack.style.width = (percentMax - percentMin) + '%';
+
+                $(".price_min").text(number_format(sliderMin.value));
+                $(".price_max").text(number_format(sliderMax.value));
             }
 
             sliderMin.addEventListener('input', updateSliderTrack);
