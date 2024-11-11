@@ -146,6 +146,8 @@ class AdminSpaController extends BaseController
             "yoil_6" => $yoil_6 ?? '',
             "min_date" => $min_date ?? '',
             "max_date" => $max_date ?? '',
+            "s_date" => $s_date ?? '',
+            "e_date" => $e_date ?? '',
             "m_date" => $m_date ?? '',
             "r_date" => $r_date ?? '',
             "sale" => $sale ?? '',
