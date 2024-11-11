@@ -335,8 +335,8 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-                                <button type="button" class="primary-btn-sub tours" onclick="handleSubmit()">이 상품만 예약하기</button>
-                                <a href="" class="primary-btn-calendar tours">견적/예약하기</a>
+                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">이 상품만 예약하기</button>
+                                <a href="" class="primary-btn-sub tours">장바구니에 담기</a>
                             </div>
                         </div>
                     </div>
@@ -654,6 +654,7 @@
                         if ($container.find('.des').text().includes('성인') && quantity === 0) {
                             quantity = 1; 
                             adultQuantity = quantity;
+                            adultTotalPrice = adultQuantity * pricePerUnit;
                             $quantityDisplay.text(quantity);
                             $decreaseBtn.removeAttr('disabled');
                         }
@@ -887,6 +888,7 @@
                             $('#idx').val(selectedTourIds.join(','));
                             console.log(selectedTourIds.join(','));
                             console.log(currentToursIdx);
+                            console.log(adultTotalPrices);
                             
                             
                         }
