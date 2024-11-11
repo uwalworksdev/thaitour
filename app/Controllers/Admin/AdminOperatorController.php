@@ -591,7 +591,7 @@ class AdminOperatorController extends BaseController
 
             if ($nTotalCount < 1) {
                 return '<tr>
-                    <th colspan="2">'.$sql.'.</th>
+                    <th colspan="2">일치하는 회원이 없습니다.</th>
                 </tr>';
             }
 
