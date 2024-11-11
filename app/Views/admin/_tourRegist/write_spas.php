@@ -660,7 +660,8 @@
                                 </tbody>
                             </table>
 
-                            <table style="margin-top: 50px;" cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <table style="margin-top: 50px;" cellpadding="0" cellspacing="0" summary=""
+                                   class="listTable mem_detail">
                                 <caption>
                                 </caption>
                                 <colgroup>
@@ -1119,7 +1120,7 @@
                                             <?= $row['c_date'] ?>
                                         </td>
                                         <td style="text-align: center">
-                                            <a href="/AdmMaster/_productPrice/write_new?yoil_idx=<?= $row['p_idx'] ?>"
+                                            <a href="/AdmMaster/_productPrice/write_new?yoil_idx=<?= $row['p_idx'] ?>&product_idx=<?= $product_idx ?>"
                                                class="btn btn-default">가격수정</a>
 
                                             <a href="javascript:close_yoil('<?= $row['p_idx'] ?>');"

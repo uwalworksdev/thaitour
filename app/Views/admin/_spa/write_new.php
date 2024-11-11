@@ -95,14 +95,14 @@
                                 <tr>
                                     <th>날짜지정</th>
                                     <td>
-                                        <div class="container_date">
-                                            <div id="datepicker1"></div> <!-- style="height: 255px;" -->
-                                            <div style="text-align:left; margin-left: 80px;">
+                                        <div class="container_date" style="margin: 0">
+                                            <div id="datepicker1"></div>
+                                            <div style="text-align:left;">
                                                 시작일:<input type="text" name="s_date" value="<?= $s_date ?>" id="from"
                                                            style="text-align: center;background: white; width: 200px;"
                                                            readonly>
                                             </div>
-                                            <div id="datepicker2"></div> <!-- style="height: 255px;" -->
+                                            <div id="datepicker2"></div>
                                             <div style="text-align:left;text-wrap: nowrap; margin-left: 80px;">
                                                 종료일:<input type="text" name="e_date" value="<?= $e_date ?>" id="to"
                                                            style="text-align: center; background: white;; width: 200px;"

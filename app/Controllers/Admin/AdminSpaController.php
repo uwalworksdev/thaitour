@@ -161,6 +161,9 @@ class AdminSpaController extends BaseController
             $msg = '';
             $p_idx = $_POST['p_idx'];
 
+            $connect = $this->connect;
+            $session = session();
+
             return $this->response->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
@@ -1042,6 +1045,7 @@ class AdminSpaController extends BaseController
             $product_idx = updateSQ($_POST['product_idx']);
             $s_date = updateSQ($_POST['s_date']);
             $e_date = updateSQ($_POST['e_date']);
+
             $price1 = updateSQ($_POST['price1']);
             $price2 = updateSQ($_POST['price2']);
             $price3 = updateSQ($_POST['price3']);
@@ -1062,9 +1066,9 @@ class AdminSpaController extends BaseController
                             ,product_idx		= '" . $product_idx ?? $row["product_idx"] . "'
                             ,s_date				= '" . $s_date ?? $row["s_date"] . "'
                             ,e_date			    = '" . $e_date ?? $row["e_date"] . "'
-                            ,price1			    = '" . $price1 ?? $row["price1"] . "'
-                            ,price2				= '" . $price2 ?? $row["price2"] . "'
-                            ,price3		        = '" . $price3 ?? $row["price3"] . "' 
+                            ,adult_price		= '" . $price1 ?? $row["price1"] . "'
+                            ,kids_price			= '" . $price2 ?? $row["price2"] . "'
+                            ,senior_price		= '" . $price3 ?? $row["price3"] . "' 
                             ,yoil_0		        = '" . $yoil_0 ?? $row["yoil_0"] . "'
                             ,yoil_1		        = '" . $yoil_1 ?? $row["yoil_1"] . "'
                             ,yoil_2		        = '" . $yoil_2 ?? $row["yoil_2"] . "'
@@ -1082,9 +1086,9 @@ class AdminSpaController extends BaseController
                             product_idx			= '" . $product_idx . "'
                             ,s_date             = '" . $s_date . "'
                             ,e_date             = '" . $e_date . "'
-                            ,price1             = '" . $price1 . "'
-                            ,price2             = '" . $price2 . "'
-                            ,price3             = '" . $price3 . "'
+                            ,adult_price        = '" . $price1 . "'
+                            ,kids_price	        = '" . $price2 . "'
+                            ,senior_price       = '" . $price3 . "'
                             ,yoil_0		        = '" . $yoil_0 . "'
                             ,yoil_1		        = '" . $yoil_1 . "'
                             ,yoil_2		        = '" . $yoil_2 . "'

@@ -123,7 +123,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -135,7 +135,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -152,7 +152,7 @@
                                         <div class="price">
                                             <span class="text_primary">56,304원</span>(880바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -164,7 +164,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -181,7 +181,7 @@
                                         <div class="price">
                                             <span class="text_primary">47,168원</span>(1,100바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -193,7 +193,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -210,7 +210,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -222,7 +222,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -239,7 +239,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -259,7 +259,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -279,7 +279,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -299,7 +299,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -311,7 +311,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
@@ -328,7 +328,7 @@
                                         <div class="price">
                                             <span class="text_primary">34,304원</span>(800바트)
                                         </div>
-                                        <p>
+                                        <p class="" style="display: flex; align-items: center; gap: 5px">
                                             <input type="text" name="mem_cnt2[]" class="price_in" size="4"
                                                    onkeyup="chkNum(this)">
                                             <span>명</span>
