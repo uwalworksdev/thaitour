@@ -3545,6 +3545,58 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 .popup_place__body {
   margin-top: 30px;
 }
+
+.popup_place__body .policy_top {
+  margin-top: 30px;
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #555555;
+}
+
+.popup_place__body .policy_center {
+  margin-top: 40px;
+  display: flex;
+}
+
+.popup_place__body .policy_center .left {
+  width: 50%;
+}
+
+.popup_place__body .policy_center .right {
+  width: 50%;
+}
+
+.popup_place__body .policy_center p {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #222222;
+}
+
+.popup_place__body .policy_center .left p:not(:first-child) {
+  margin-top: 10px;
+}
+
+.popup_place__body .policy_center .right p:not(:first-child) {
+  margin-top: 10px;
+}
+
+.popup_place__body .policy_center p .color {
+  color: #ff8827;
+}
+
+.popup_place__body .policy_bottom {
+  font-family: "Pretendard";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  color: #acacac;
+  margin-top: 40px;
+}
+
 .popup_place__list {
   display: flex;
   flex-wrap: wrap;

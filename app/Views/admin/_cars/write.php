@@ -102,7 +102,7 @@ $links = "list";
                                 <tr>
                                     <th>카테고리선택</th>
                                     <td colspan="3">
-                                        <select id="product_code_1" name="product_code_1" class="input_select"
+                                        <select id="product_code_1" class="input_select"
                                                 onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <?php
@@ -120,11 +120,11 @@ $links = "list";
                                                     <?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select"
+                                        <select id="product_code_2" class="input_select"
                                                 onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                         </select>
-                                        <select id="product_code_3" name="product_code_3" class="input_select">
+                                        <select id="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                         </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
@@ -527,7 +527,7 @@ $links = "list";
 
         if (frm.product_code_list.value == "") {
             alert("카테고리를 등록해주세요.");
-            frm.product_code_1.focus();
+            $("#product_code_1").focus();
             return;
         }
 

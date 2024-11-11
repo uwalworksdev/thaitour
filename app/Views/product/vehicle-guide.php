@@ -216,7 +216,7 @@
                     <div class="include_box chk_info">
                         <p class="sub_label"> <i></i> 포함사항</p>
                         <div class="txt_box">
-                            <p>- 국제선 항공요금 및 각종 TAX 및 유류할증료 (항공불포함 제외)</p>
+                            <!-- <p>- 국제선 항공요금 및 각종 TAX 및 유류할증료 (항공불포함 제외)</p>
                             <p>&nbsp; <font color="red">비지니스 이용을 원하실 경우 담당자에게 문의해주세요.</font>
                             </p>
                             <p>- 전일정 4성급 호텔 및 식사 (불포함 표기 식사 제외)</p>
@@ -225,20 +225,23 @@
                             <p>- 전일정 전용차량 및 입장료 (자유일정 제외)<br>- 여행자 보험&nbsp;</p>
                             <p>
                                 <font color="black">&nbsp;</font>
-                            </p>
+                            </p> -->
+                            <?=viewSQ(getPolicy(16))?>
                         </div>
                     </div>
                     <div class="no_include_box chk_info">
                         <p class="sub_label"> <i></i> 불포함사항</p>
                         <div class="txt_box">
-                            <p>- 더투어랩는 가이드 팁 대신 책 (신간) 을 받습니다.</p>
+                            <!-- <p>- 더투어랩는 가이드 팁 대신 책 (신간) 을 받습니다.</p>
                             <p>&nbsp; 장르 상관없이 1인당 책 1권만 가지고 오시면 되며, 호주 내 한인 도서관에 기증됩니다.</p>
                             <p>- 불포함 표기 식사 및 자유일정</p>
                             <p>
                                 <font color="black">- 호주 ETA 비자 : AustralianETA 모바일 앱을 통해 직접 신청</font>
                             </p>
                             <p>- 기타 개인 경비 (물값, 자유시간 시 개인비용 등)</p>
-                            <p>※ 호주 화폐로 준비해주시기 바랍니다.</p>
+                            <p>※ 호주 화폐로 준비해주시기 바랍니다.</p> -->
+                            <?=viewSQ(getPolicy(17))?>
+
                         </div>
                     </div>
                 </div>
@@ -250,7 +253,7 @@
                     </div>
                 </div>
                 <div class="section_vehicle_2_6__body">
-                    <ul>
+                    <!-- <ul>
                         <li>승용차는 최대 성인 3인 혹은 성인 2인 + 아동 1인까지만 가능합니다. 만약 성인 3인 + 아동 1인인 경우 SUV 혹은 승합차로 이용하셔야 합니다.</li>
                         <li>승용차의 트렁크에는 가스통이 있어 짐이 많을 경우 좁을 수 있으니 소인을 포함하여 인원이 3 ~ 4분이면 짐의 양도 고려하셔야 합니다.</li>
                         <li>별도로 카시트는 준비되지 않습니다.</li>
@@ -263,7 +266,8 @@
                         <li>고급차량(알파드,벤츠)등은 10시간 렌탈로 요청 가능하며, 일일렌탈 12시간으로 예약신청 후 10시간으로 렌탈요청시 견적서 다시 보내드립니다.</li>
                         <li>프리미엄 세단은 벤츠 E클래스 또는 BMW5 시리즈 등 동급으로 배정 됩니다.</li>
                         <li>럭셔리 세단은 벤츠 S클래스 또는 BMW7 시리즈 등 동급으로 배정됩니다.</li>
-                    </ul>
+                    </ul> -->
+                    <?=viewSQ(getPolicy(18))?>
                 </div>
             </section>
             <section class="section_vehicle_2_7">
@@ -423,10 +427,30 @@
     </div>
     <div class="dim"></div>
 </div>
+
+<div class="popup_wrap place_pop policy_pop">
+    <div class="pop_box">
+        <button type="button" class="close" onclick="closePopup()"></button>
+        <div class="pop_body">
+            <div class="padding">
+                <div class="popup_place__head">
+                    <div class="popup_place__head__ttl">
+                        <h2>취소 규정</h2>
+                    </div>
+                </div>
+                <div class="popup_place__body">
+                    <?=viewSQ(getPolicy(19))?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dim"></div>
+</div>
+
 </section>
 
 <script>
-    function renderPrdList(products) {
+    function renderPrdList(products, code_no) {
         let product_list = "";
 
         for(let i = 0; i < products.length; i++){
@@ -439,37 +463,39 @@
             const options = products[i]["options"].map((option, index) => {
                 let html = "";
                 let icons = option.icons.map(icon => `<img src="/data/code/${icon}" alt="">`).join('');
-                if(index %2 == 0) {
+                if(index % 2 == 0) {
                     html += `
                     <tr>
                         <td class="">${icons}</td>
-                        <td class="vehicle_info__item">가방 20kg 3개</td>`;
+                        <td class="vehicle_info__item">${option.c_op_name}</td>`;
                 }
-                if(index %2 == 1) {
+                if(index % 2 == 1) {
                     html += `
                         <td class="vehicle_info__item">또는</td>
                         <td class="">${icons}</td>
-                        <td class="vehicle_info__item">가방 20kg 1개 + 24kg 1개</td>
+                        <td class="vehicle_info__item">${option.c_op_name}</td>
                     </tr>
                     `;
                 }
                 return html;
             }).join('');
 
-            const minium_people_cnt = Number(products[i]["minium_people_cnt"]) ?? 1;
-            const total_people_cnt = Number(products[i]["total_people_cnt"]) ?? 1;
+            const minium_people_cnt = Number(products[i]["minium_people_cnt"]) ?? 0;
+            const total_people_cnt = Number(products[i]["total_people_cnt"]) ?? 0;
 
             const cnt_options = Array(total_people_cnt - minium_people_cnt + 1).fill(1).map((_, index) => {
                 const cnt = minium_people_cnt + index;
-                return `<option value="${cnt}">${cnt}인</option>`
+                return `<option value="${cnt}">${cnt}대</option>`
             }).join('');
 
             const price_str = Math.round(products[i]["product_price"]);
 
             const price_baht_str = Math.round(products[i]["product_price_baht"]);
 
+            let product_arr = $("#product_arr").val().split(",");
+
             product_list += 
-            `<tr class="product_${products[i]["product_idx"]}" data-price="${price_str}" data-price_baht="${price_baht_str}">
+            `<tr class="product_${products[i]["product_idx"]}" data-price="${price_str}" data-price_baht="${price_baht_str}" data-code="${code_no}">
                 <td>
                     <div class="vehicle_image">
                         <div class="img_box img_box_15">
@@ -502,10 +528,13 @@
                     </div>
                     <div class="vehicle_options">
                         <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
-                        <select name="" id="vehicle_cnt" class="vehicle_options__select vehicle_cnt">
+                        <select name="" id="vehicle_cnt_${products[i]["product_idx"]}" data-id="${products[i]["product_idx"]}" class="vehicle_options__select vehicle_cnt" onchange="handleSelectNumber(this)">
                             ${cnt_options}
                         </select>
-                        <input type="checkbox" id="vehicle_prd_${products[i]["product_idx"]}" data-id="${products[i]["product_idx"]}" name="" onchange="handleSelectVehicle(this)">
+                        <input type="hidden" id="minium_people_cnt_${products[i]["product_idx"]}" value="${minium_people_cnt}">
+                        <input type="hidden" id="total_people_cnt_${products[i]["product_idx"]}" value="${total_people_cnt}">
+                        <input type="checkbox" id="vehicle_prd_${products[i]["product_idx"]}" data-id="${products[i]["product_idx"]}" name="" 
+                            ${product_arr.includes(products[i]["product_idx"]) ? "checked" : ""} onchange="handleSelectVehicle(this)">
                         <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd_${products[i]["product_idx"]}"></label>
                         <button>상품담기</button>
                     </div>
@@ -517,6 +546,7 @@
     }
     function handleFetch() {
         let child_code = $(this).val();
+        let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
 
         $.ajax({
             url: '/filter-child-vehicle',
@@ -526,7 +556,7 @@
             cache: false,
             success: function (data, textStatus) {
 
-                renderPrdList(data.products);
+                renderPrdList(data.products, code_no);
 
             },
             error: function (request, status, error) {
@@ -563,7 +593,7 @@
 
                 $(".section_vehicle_2_2__airport").html(code_list);
 
-                renderPrdList(products);
+                renderPrdList(products, code_no);
 
                 $(".section_vehicle_2_2__airport input[type='radio']").on("change", handleFetch);
 
@@ -597,16 +627,53 @@
         $("#final_price_baht").text(totalPriceBaht.toLocaleString('ko-KR'));
     }
 
-    function handleSelectVehicle(e) {
+    function handleSelectNumber(e){
         let id = $(e).data("id");
+        let cnt = $(e).val();
+
+        $(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val(cnt);
+        $(`#product_vehicle_list_selected tr.product_${id}`).data("cnt", cnt);
+        calculatePrice();
+    }
+
+    function handleSelectVehicle(e) {
+
+        let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
+        let id = $(e).data("id");
+        let current_code = $(`#product_vehicle_list tr.product_${id}`).data("code");
         let product_arr = $("#product_arr").val().split(",");
+        const min_cnt = Number($(`#minium_people_cnt_${id}`).val());
+        const max_cnt = Number($(`#total_people_cnt_${id}`).val());
+        let cnt = Number($(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val());
+
+        if(max_cnt - min_cnt <= 0) {
+            alert("제품 수량이 충분하지 않습니다.");
+            $(e).prop("checked", false);
+            return false;
+        }
+
+        if(cnt === 0){
+            alert("0보다 큰 수량을 선택하세요.");
+            $(e).prop("checked", false);
+            return false;
+        }
+
+        if(current_code != code_no){
+            $("#product_arr").val("");
+            $("#product_vehicle_list_selected").remove();
+        }
         if($(e).is(":checked")) {
-            const $tr = $(`#product_vehicle_list tr.product_${id}`).clone();
-            $tr.find(".vehicle_options").hide();
-            $tr.find("button").attr("disabled", true);
-            $tr.data("cnt", $(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val());
-            $("#product_vehicle_list_selected").append($tr);
-            product_arr.push(id);
+
+            if(!product_arr.includes(id)){
+                const $tr = $(`#product_vehicle_list tr.product_${id}`).clone();
+                $tr.find(".vehicle_options").hide();
+                $tr.find("button").attr("disabled", true);
+                $tr.data("cnt", $(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val());
+                $("#product_vehicle_list_selected").append($tr);
+    
+                product_arr.push(id);
+            }
+            
         } else {
             $(`#product_vehicle_list_selected .product_${id}`).remove();
             product_arr.splice(product_arr.indexOf(id), 1);
@@ -632,10 +699,13 @@
     }
     $("#place_chosen__start").on("click", function() {
         $(".place_chosen__start_pop, .place_chosen__start_pop .dim").show();
-    })
+    });
     $("#place_chosen__end").on("click", function() {
         $(".place_chosen__end_pop, .place_chosen__end_pop .dim").show();
-    })
+    });
+    $(".vehicle_ttl__link").on("click", function() {
+        $(".policy_pop, .policy_pop .dim").show();
+    });
     $(".datepicker").datepicker({
         dateFormat: "yy-mm-dd",
         onSelect: function(dateText, inst) {

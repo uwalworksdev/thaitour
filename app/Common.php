@@ -19,6 +19,21 @@ function private_key()
     return "gkdlghwn!@12";
 }
 
+function getPolicy($p_idx) {
+    $policy = model("PolicyModel");
+    try {
+        $infoData = $policy->where("p_idx", $p_idx)->first();
+        if (!$infoData) {
+            throw new Exception("");
+        }
+        $resultArr = $infoData["policy_contents"];
+    } catch (Exception $err) {
+        $resultArr = "";
+    } finally {
+        return $resultArr;
+    }
+}
+
 function get_deli_type() {
     $_deli_type['W'] = "예약접수";
 	$_deli_type['Y'] = "결제완료";
