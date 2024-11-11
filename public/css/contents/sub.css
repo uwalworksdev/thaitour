@@ -4085,6 +4085,14 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
   width: 90px;
 }
 
+.customer-form-page.golf .container-card .item-info span:first-child {
+  width: 110px;
+}
+
+.customer-form-page.golf .container-card .item-info span:last-child {
+  color: #000;
+}
+
 .customer-form-page .container-card .item-info-r-line {
   margin: 26px 0;
   border: 1px dashed #dbdbdb;

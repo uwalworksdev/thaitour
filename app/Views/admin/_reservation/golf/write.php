@@ -312,8 +312,8 @@
                                     <th>골프장 왕복 픽업 차량</th>
                                     <td colspan="3">
                                         <?php foreach ($vehicle as $key => $item): ?>
-                                            <span><?= $item['option_name'] ?>(<?= $item['option_cnt'] ?>)</span>
-                                            <?= $key == count($vehicle) - 1 ? "" : ", " ?>
+                                            <span>골프장 왕복 픽업 차량: <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대</span>
+                                            <?= $key == count($vehicle) - 1 ? "" : "<br>" ?>
                                         <?php endforeach; ?>
                                     </td>
                                 </tr>
@@ -367,7 +367,7 @@
                                 <tr>
                                     <th style="text-align:center">번호</th>
                                     <th style="text-align:center">영문성</th>
-                                    <th style="text-align:center">영문이름</th>
+                                    <th style="text-align:center">성별</th>
                                 </tr>
                                 <?php
                                     foreach ($fresult as $key => $frow) {
@@ -384,8 +384,8 @@
                                         </td>
                                         <td style="text-align:center">
                                             <select name="order_sex[]" id="" style="width:100px">
-                                                <option value="M" <?= $frow["order_sex"] == "M" ? "selected" : ""?>>M</option>
-                                                <option value="F" <?= $frow["order_sex"] == "F" ? "selected" : ""?>>F</option>
+                                                <option value="M" <?= $frow["order_sex"] == "M" ? "selected" : ""?>>MR</option>
+                                                <option value="F" <?= $frow["order_sex"] == "F" ? "selected" : ""?>>MS</option>
                                             </select>
                                         </td>
                                     </tr>
