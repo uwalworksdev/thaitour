@@ -179,6 +179,11 @@
                             </td>
                         </tr>
 
+                        <tr height="45">
+                            <th>방문경로</th>
+                            <td colspan="3"><?=$visit_route?></td>
+                        </tr>
+
                         <!-- 주소 -->
                         <tr height="45">
                             <th>주소</th>
