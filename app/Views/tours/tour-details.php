@@ -382,7 +382,7 @@
             </div>
         <?php } ?>
         <?php if($product['tour_info']) {?>
-            <div>
+            <div class="des-type">
                 <?= viewSQ($product['tour_info']) ?>
             </div>
         <?php }?>
