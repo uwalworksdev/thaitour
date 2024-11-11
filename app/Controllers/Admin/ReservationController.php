@@ -17,6 +17,7 @@ class ReservationController extends BaseController
     private $orderSubModel;
     private $codeModel;
     private $paymentHistModel;
+    private $orderOptionModel;
 
 
     public function __construct()
@@ -24,6 +25,7 @@ class ReservationController extends BaseController
         $this->db = db_connect();
         $this->orderModel = model("OrdersModel");
         $this->orderSubModel = model("OrderSubModel");
+        $this->orderOptionModel = model("OrderOptionModel");
         $this->codeModel = model("Code");
         $this->paymentHistModel = model("PaymentHist");
         $this->connect = Config::connect();
@@ -240,6 +242,11 @@ class ReservationController extends BaseController
             "fresult" => $fresult ?? '',
             "used_coupon_no" => $used_coupon_no,
         ];
+
+        if($gubun == 'golf') {
+            $data['option'] = $this->orderOptionModel->getOption($order_idx, 'main')[0];
+            $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
+        }
 
         return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
     }

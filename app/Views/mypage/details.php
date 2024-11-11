@@ -106,7 +106,7 @@
                                 </tr>
                                 <?php
                             } else {
-                                foreach ($result as $row) {
+                                foreach ($order_list as $row) {
                                 ?>
                                     <tr>
                                         <td class="date date_1">
