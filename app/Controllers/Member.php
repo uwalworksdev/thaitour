@@ -441,7 +441,8 @@ class Member extends BaseController
                 'mobile3' => $mobile3,
                 'phone1' => $phone1,
                 'phone2' => $phone2,
-                'phone3' => $phone3
+                'phone3' => $phone3,
+                'visit_route' => $member['visit_route']
             ]);
         } else {
             return "Thwarted.";
