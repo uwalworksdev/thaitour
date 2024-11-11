@@ -223,7 +223,7 @@
                         , dateFormat: 'yy-mm-dd'
                         , showOn: "both"
                         , yearRange: "c-100:c+10"
-                        , buttonImage: "/AdmMaster/_images/common/date.png"
+                        , buttonImage: "/images/admin/common/date.png"
                         , buttonImageOnly: true
                         , closeText: '닫기'
                         , prevText: '이전'

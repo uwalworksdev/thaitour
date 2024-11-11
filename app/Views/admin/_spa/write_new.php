@@ -371,7 +371,7 @@
                                     , dateFormat: 'yy-mm-dd'
                                     , showOn: "both"
                                     , yearRange: "c:c+10"
-                                    , buttonImage: "/AdmMaster/_images/common/date.png"
+                                    , buttonImage: "/images/admin/common/date.png"
                                     , buttonImageOnly: true
                                     , closeText: '닫기'
                                     , currentText: '오늘' // 오늘 버튼 텍스트 설정
@@ -402,7 +402,7 @@
                                     , dateFormat: 'yy-mm-dd'
                                     , showOn: "both"
                                     , yearRange: "c:c+30"
-                                    , buttonImage: "/AdmMaster/_images/common/date.png"
+                                    , buttonImage: "/images/admin/common/date.png"
                                     , buttonImageOnly: true
                                     , closeText: '닫기'
                                     , currentText: '오늘' // 오늘 버튼 텍스트 설정
@@ -434,7 +434,7 @@
                                     , dateFormat: 'yy-mm-dd'
                                     , showOn: "both"
                                     , yearRange: "c:c+30"
-                                    , buttonImage: "/AdmMaster/_images/common/date.png"
+                                    , buttonImage: "/images/admin/common/date.png"
                                     , buttonImageOnly: true
                                     , closeText: '닫기'
                                     , currentText: '오늘' // 오늘 버튼 텍스트 설정
@@ -465,7 +465,7 @@
                                     , dateFormat: 'yy-mm-dd'
                                     , showOn: "both"
                                     , yearRange: "c-100:c+10"
-                                    , buttonImage: "/AdmMaster/_images/common/date.png"
+                                    , buttonImage: "/images/admin/common/date.png"
                                     , buttonImageOnly: true
                                     , closeText: '닫기'
                                     , currentText: '오늘' // 오늘 버튼 텍스트 설정
@@ -848,49 +848,6 @@
         })
 
         function send_it() {
-            var frm = document.chargeForm;
-
-            if (frm.s_date.value == "") {
-                alert("시작일을 지정하셔야 합니다.");
-                frm.s_date.focus();
-                return;
-            }
-            if (frm.e_date.value == "") {
-                alert("종료일을 지정하셔야 합니다.");
-                frm.e_date.focus();
-                return;
-            }
-
-            <?php if ($parent_yoil_idx == "") { ?>
-            if ($(".yoil").is(":checked") == false) {
-                alert("요일을 1개 이상 선택하셔야 합니다.");
-                return;
-            }
-            <?php } ?>
-            for (i = 0; i < $(".s_station").length; i++) {
-                if ($(".tour_price:eq(" + i + ")").val() == "") {
-                    $(".tour_price:eq(" + i + ")").focus();
-                    alert("대인가격을 입력해 주셔야 합니다.");
-                    return;
-                }
-
-                if ($(".tour_price_kids:eq(" + i + ")").val() == "") {
-                    $(".tour_price_kids:eq(" + i + ")").focus();
-                    alert("소인가격을 입력해 주셔야 합니다.");
-                    return;
-                }
-
-                if ($(".tour_price_senior:eq(" + i + ")").val() == "") {
-                    $(".tour_price_senior:eq(" + i + ")").focus();
-                    alert("경로가격을 입력해 주셔야 합니다.");
-                    return;
-                }
-            }
-
-            //oEditors14.getById["prod_info"].exec("UPDATE_CONTENTS_FIELD", []);
-
-            //frm.submit();
-
             var f = document.chargeForm;
             $.ajax({
                 url: 'write_ok.php',  // 데이터를 전송할 서버의 URL
