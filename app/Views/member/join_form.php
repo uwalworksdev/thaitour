@@ -374,7 +374,7 @@ if ($mIdx != "") {
                 <div class="input-wrap">
                     <label class="label">기타사항</label>
                     <div class="textarea_wrap">
-                        <textarea name="" id="" class="bs-textarea" placeholder=""></textarea>
+                        <textarea name="recommender" id="" class="bs-textarea" placeholder=""></textarea>
                     </div>
                 </div>
                 <div class="input-wrap">
@@ -1052,12 +1052,9 @@ if ($mIdx != "") {
         $("#user_email_yn").val(work_fields);
 
 
-        var visit_route = "";
-        $('input:checkbox[name="_visit_route"]').each(function () {
-            if ($(this).is(":checked") == true) {
-                visit_route += $(this).val() + ',';
-            }
-        })
+        var visit_route = $('input:checkbox[name="_visit_route"]').filter(':checked').map(function () {
+            return $(this).val();
+        }).get().join(', ');
 
         $("#visit_route").val(visit_route);
 
