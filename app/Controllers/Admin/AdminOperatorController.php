@@ -582,7 +582,7 @@ class AdminOperatorController extends BaseController
 
             $sql = "SELECT *, CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) as user_name_convert FROM tbl_member 
                             WHERE user_level > '1' 
-                            AND status = '1' 
+                            AND status = 'Y' 
                             AND (user_id LIKE '%" . $user_id . "%' OR CONVERT(AES_DECRYPT(UNHEX(user_name), '$private_key') USING utf8) LIKE '%" . $user_id . "%') 
                             ORDER BY user_id ASC";
 
@@ -591,7 +591,7 @@ class AdminOperatorController extends BaseController
 
             if ($nTotalCount < 1) {
                 return '<tr>
-                    <th colspan="2">일치하는 회원이 없습니다.</th>
+                    <th colspan="2">'.$sql.'.</th>
                 </tr>';
             }
 
