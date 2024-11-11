@@ -500,19 +500,19 @@ class AdminTourController extends BaseController
         $tour_price_baby = $this->request->getPost('tour_price_baby') ?? [];
         $status = $this->request->getPost('status');
         $tours_idx = $this->request->getPost('tours_idx');
+        $info_idx = $this->request->getPost('info_idx');
         $tour_info_price = $this->request->getPost('tour_info_price');
+        
         foreach ($tour_price as &$price) {
             $price = str_replace(",", "", $price);
         }
-    
         foreach ($tour_price_kids as &$price) {
             $price = str_replace(",", "", $price);
         }
-    
         foreach ($tour_price_baby as &$price) {
             $price = str_replace(",", "", $price);
         }
-
+    
         $yoil_0 = $this->request->getPost('yoil_0');
         $yoil_1 = $this->request->getPost('yoil_1');
         $yoil_2 = $this->request->getPost('yoil_2');
@@ -520,35 +520,47 @@ class AdminTourController extends BaseController
         $yoil_4 = $this->request->getPost('yoil_4');
         $yoil_5 = $this->request->getPost('yoil_5');
         $yoil_6 = $this->request->getPost('yoil_6');
-        
         $info_ids = [];
     
         foreach ($o_sdate as $key => $start_date) {
-            $infoIndex = $this->infoProducts->where('product_idx', $productIdx)
-                ->where('o_sdate', $start_date)
-                ->first();
-                $infoData = [
-                    'product_idx' => $productIdx,
-                    'o_sdate' => $start_date,
-                    'o_edate' => $o_edate[$key],
-                    'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
-                    'yoil_1' => isset($yoil_1[$key]) ? 'Y' : 'N',
-                    'yoil_2' => isset($yoil_2[$key]) ? 'Y' : 'N',
-                    'yoil_3' => isset($yoil_3[$key]) ? 'Y' : 'N',
-                    'yoil_4' => isset($yoil_4[$key]) ? 'Y' : 'N',
-                    'yoil_5' => isset($yoil_5[$key]) ? 'Y' : 'N',
-                    'yoil_6' => isset($yoil_6[$key]) ? 'Y' : 'N',
-                    'tour_info_price' => $tour_info_price[$key],
-                    'r_date' => date('Y-m-d H:i:s')
-                ];
+            $info_id = isset($info_idx[$key]) ? $info_idx[$key] : null;
         
-                if ($infoIndex) {
-                    $this->infoProducts->update($infoIndex['info_idx'], $infoData);
-                    $info_ids[] = $infoIndex['info_idx'];
-                } else {
-                    $this->infoProducts->insert($infoData);
-                    $info_ids[] = $this->infoProducts->insertID();
+            var_dump($key);
+            var_dump($info_idx);
+            
+            if ($info_id) {
+                $infoIndex = $this->infoProducts->find($info_id);
+            } else {
+                $infoIndex = $this->infoProducts->where('product_idx', $productIdx)
+                    ->where('o_sdate', $start_date)
+                    ->first();
+            }
+        
+            $infoData = [
+                'product_idx' => $productIdx,
+                'o_sdate' => $start_date,
+                'o_edate' => isset($o_edate[$key]) ? $o_edate[$key] : null,
+                'yoil_0' => isset($yoil_0[$key]) ? 'Y' : 'N',
+                'yoil_1' => isset($yoil_1[$key]) ? 'Y' : 'N',
+                'yoil_2' => isset($yoil_2[$key]) ? 'Y' : 'N',
+                'yoil_3' => isset($yoil_3[$key]) ? 'Y' : 'N',
+                'yoil_4' => isset($yoil_4[$key]) ? 'Y' : 'N',
+                'yoil_5' => isset($yoil_5[$key]) ? 'Y' : 'N',
+                'yoil_6' => isset($yoil_6[$key]) ? 'Y' : 'N',
+                'tour_info_price' => isset($tour_info_price[$key]) ? $tour_info_price[$key] : null,
+                'r_date' => date('Y-m-d H:i:s')
+            ];
+        
+            if ($infoIndex) {
+                if ($infoIndex['o_sdate'] !== $start_date) {
+                    $infoData['o_sdate'] = $start_date; 
                 }
+                $this->infoProducts->update($infoIndex['info_idx'], $infoData);
+                $info_ids[] = $infoIndex['info_idx']; 
+            } else {
+                $this->infoProducts->insert($infoData);
+                $info_ids[] = $this->infoProducts->insertID();
+            }
         }
     
         foreach ($info_ids as $index => $infoId) {
@@ -556,7 +568,7 @@ class AdminTourController extends BaseController
                 foreach ($tours_subject[$index] as $i => $subject) {
                     if (!empty($subject)) {
                         $tourIdx = $tours_idx[$index][$i] ?? 'new'; 
-    
+        
                         $data = [
                             'product_idx' => $productIdx,
                             'tours_subject' => $subject,
@@ -567,7 +579,7 @@ class AdminTourController extends BaseController
                             'info_idx' => $infoId,
                             'r_date' => date('Y-m-d H:i:s')
                         ];
-    
+        
                         if ($tourIdx == 'new' || empty($tourIdx)) {
                             $this->tourProducts->insert($data);
                         } else {
@@ -577,31 +589,24 @@ class AdminTourController extends BaseController
                 }
             }
         }
-    
+        
         foreach ($tours_idx as $index => $tourIds) {
             foreach ($tourIds as $i => $tourId) {
+                $data = [
+                    'tours_subject' => $tours_subject[$index][$i] ?? null,
+                    'tour_price' => $tour_price[$index][$i] ?? null,
+                    'tour_price_kids' => $tour_price_kids[$index][$i] ?? null,
+                    'tour_price_baby' => $tour_price_baby[$index][$i] ?? null,
+                    'status' => $status[$index][$i] ?? null,
+                    'r_date' => date('Y-m-d H:i:s')
+                ];
+    
                 if ($tourId && $tourId != 'new') {
-                    $updateData = [
-                        'tours_subject' => $tours_subject[$index][$i] ?? null,
-                        'tour_price' => $tour_price[$index][$i] ?? null,
-                        'tour_price_kids' => $tour_price_kids[$index][$i] ?? null,
-                        'tour_price_baby' => $tour_price_baby[$index][$i] ?? null,
-                        'status' => $status[$index][$i] ?? null,
-                        'r_date' => date('Y-m-d H:i:s')
-                    ];
-                    $this->tourProducts->update($tourId, $updateData);
-                } else {
-                    $updateData = [
-                        'product_idx' => $productIdx,
-                        'tours_subject' => $tours_subject[$index][$i] ?? null,
-                        'tour_price' => $tour_price[$index][$i] ?? null,
-                        'tour_price_kids' => $tour_price_kids[$index][$i] ?? null,
-                        'tour_price_baby' => $tour_price_baby[$index][$i] ?? null,
-                        'status' => $status[$index][$i] ?? null,
-                        'info_idx' => $infoId,
-                        'r_date' => date('Y-m-d H:i:s')
-                    ];
-                    $this->tourProducts->insert($updateData);
+                    $this->tourProducts->update($tourId, $data);
+                } if($tourId == 'new') {
+                    $data['product_idx'] = $productIdx;
+                    $data['info_idx'] = $infoId;
+                    $this->tourProducts->insert($data);
                 }
             }
         }

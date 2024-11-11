@@ -28,13 +28,22 @@
             </div>
         </div>
     </div>
-    <form action="/product-golf/customer-form-ok" name="order_frm" id="order_frm" method="post" target="hiddenFrame">
+    <form action="/product-tours/customer-form-ok" name="order_frm" id="order_frm" method="post" target="hiddenFrame">
         <input type="hidden" name="product_idx" value="<?=$product_idx?>">
         <input type="hidden" name="people_adult_cnt" value="<?=$people_adult_cnt?>">
         <input type="hidden" name="people_kids_cnt" value="<?=$people_kids_cnt?>">
         <input type="hidden" name="people_baby_cnt" value="<?=$people_baby_cnt?>">
+        <input type="hidden" name="people_adult_price" value="<?=$adult_price_total?>">
+        <input type="hidden" name="people_kids_price" value="<?=$kids_price_total?>">
+        <input type="hidden" name="people_baby_price" value="<?=$baby_price_total?>">
         <input type="hidden" name="order_date" id="order_date" value="<?=$order_date?>">
         <input type="hidden" name="tours_idx" id="tours_idx" value="<?=$tours_idx?>">
+        <input type="hidden" name="start_place" id="start_place" value="<?=$start_place?>">
+        <input type="hidden" name="metting_time" id="metting_time" value="<?=$metting_time?>">
+        <input type="hidden" name="id_kakao" id="id_kakao" value="<?=$id_kakao?>">
+        <input type="hidden" name="description" id="description" value="<?=$description?>">
+        <input type="hidden" name="end_place" id="end_place" value="<?=$end_place?>">
+        <input type="hidden" name="final_price" id="final_price" value="<?=$final_price?>">
         <div class="main-section tour">
             <div class="body_inner">
                 <div class="container-card">
@@ -80,10 +89,10 @@
                                     <div class="form-group form-cus-select">
                                             <label for="passport-name2">이메일 주소*</label>
                                             <div class="cus-select-group tour">
-                                                <input type="text" id="order_email_1" name="order_email_1[]" required data-label="이메일" placeholder="이메일" />
+                                                <input type="text" id="email_1" name="email_1[]" required data-label="이메일" placeholder="이메일" />
                                                 <span>@</span>
                                                 <div class="email-group">
-                                                    <select id="" name="order_email_2[]" id="order_email_2" class="select-width" onchange="handleEmail(this.value)">
+                                                    <select id="" name="email_2[]" id="email_2" class="select-width" onchange="handleEmail(this.value)">
                                                         <option value="">선택</option>
                                                         <option value="naver.com">naver.com</option>
                                                         <option value="hanmail.net">hanmail.net</option>
@@ -113,8 +122,8 @@
                                             <input type="text" name="companion_name[]" id="passport-name<?=$i?>" data-label="인원성명" required placeholder="영어로 작성해주세요." />
                                         </div>
                                         <div class="form-group">
-                                            <label for="order_birthday<?=$i?>">생년월일</label>
-                                            <div class="datepick"><input type="text" name="order_birthday[]" id="order_birthday<?=$i?>" onfocus="this.blur()" class="bs-input">
+                                            <label for="order_birthday_kids<?=$i?>">생년월일</label>
+                                            <div class="datepick"><input type="text" name="order_birthday[]" id="order_birthday_kids<?=$i?>" onfocus="this.blur()" class="bs-input">
                                             </div>
                                         </div>
                                     </div>
@@ -136,8 +145,8 @@
                                             <input type="text" name="companion_name[]" id="passport-name<?=$i?>" data-label="인원성명" required placeholder="영어로 작성해주세요." />
                                         </div>
                                         <div class="form-group">
-                                            <label for="order_birthday<?=$i?>">생년월일</label>
-                                            <div class="datepick"><input type="text" name="order_birthday[]" id="order_birthday<?=$i?>" onfocus="this.blur()" class="bs-input">
+                                            <label for="order_birthdays<?=$i?>">생년월일</label>
+                                            <div class="datepick"><input type="text" name="order_birthday[]" id="order_birthdays<?=$i?>" onfocus="this.blur()" class="bs-input">
                                             </div>
                                         </div>
                                     </div>
@@ -214,21 +223,21 @@
                             </h3>
                             <div class="item-info-r">
                                 <span>성인 X<?=$people_adult_cnt?></span>
-                                <span><?=number_format($people_adult_price)?>원 (<?=number_format($total_price_baht)?>바트)</span>
+                                <span><?=number_format($people_adult_price)?>원 (<?=number_format($adult_price_bath)?>바트)</span>
                             </div>
                             <div class="item-info-r">
                                 <span>아동 X<?=$people_kids_cnt?></span>
-                                <span><?=number_format($people_kids_price)?>원 (<?=number_format($total_price_baht)?>바트)</span>
+                                <span><?=number_format($people_kids_price)?>원 (<?=number_format($kids_price_bath)?>바트)</span>
                             </div>
                             <div class="item-info-r">
                                 <span>유아 X<?=$people_baby_cnt?></span>
-                                <span><?=number_format($people_baby_price)?>원 (<?=number_format($total_price_baht)?>바트)</span>
+                                <span><?=number_format($people_baby_price)?>원 (<?=number_format($baby_price_bath)?>바트)</span>
                             </div>
                             <div class="item-info-r-line"></div>
                             <?php foreach ($tour_option as $key => $option): ?>
                                 <div class="item-info-r">
                                     <span><?=$option['option_name']?></span>
-                                    <span><?=number_format($option['option_price'])?>원 (<?=number_format($total_price_baht)?>바트)</span>
+                                    <span><?=number_format($option_price[$key])?>원 (<?=number_format($option_price_bath[$key])?>바트)</span>
                                 </div>
                             <?php endforeach; ?>
                             <div class="item-info-r-line"></div>
@@ -238,7 +247,7 @@
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><?=number_format($final_price)?>원</span>
+                                <span><?=number_format($final_price)?>원 (<?= number_format($final_price_bath)?>바트)</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -387,15 +396,6 @@
                 }
             });
 
-            $("input[name='radio_phone'").change(function() {
-                if($(this).val() == 'kor') {
-                    $(".phone_kor").attr("disabled", false).eq(0).focus();
-                    $(".phone_thai").attr("disabled", true);
-                } else {
-                    $(".phone_thai").attr("disabled", false).focus();
-                    $(".phone_kor").attr("disabled", true);
-                }
-            })
         });
 
         function handleEmail(email) {
