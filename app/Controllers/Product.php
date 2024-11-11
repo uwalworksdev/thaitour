@@ -1647,7 +1647,7 @@ class Product extends BaseController
             $data['product_code_3']         = $product['product_code_3'];
             $data['product_code_4']         = $product['product_code_4'];
             $data['order_no']               = $this->orderModel->makeOrderNo();
-            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
+            $order_user_email               = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email']       = encryptField($order_user_email, 'encode');
             $data['order_r_date']           = date('Y-m-d H:i:s');
             $data['order_status']           = "W";
@@ -1701,6 +1701,17 @@ class Product extends BaseController
                 ]);
             }
 
+            $this->orderOptionModel->insert([
+                'option_type' => 'main',
+                'order_idx' => $order_idx,
+                'product_idx' => $data['product_idx'],
+                'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
+                'option_idx' => $data['option_idx'],
+                'option_tot' => $priceCalculate['total_price'],
+                'option_cnt' => $data['people_adult_cnt'],
+                'option_date' => $data['order_r_date'],
+            ]);
+
             foreach ($data['vehicle_idx'] as $key => $value) {
                 $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
                 if ($vehicle) {
@@ -1746,7 +1757,7 @@ class Product extends BaseController
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
-                        alert('주문되지 않습니다');
+                        alert(`".$th->getMessage()."`);
                         parent.location.reload();
                     </script>
                 ");

@@ -856,9 +856,6 @@
             $("#popup_coupon").css('display', 'none');
         });
 
-
-        const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
-
         const s_date = new Date('<?=$info['s_date']?>');
         const e_date = new Date('<?=$info['e_date']?>');
         const deadline_date = '<?=$info['deadline_date']?>';

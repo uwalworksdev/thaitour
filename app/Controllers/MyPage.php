@@ -14,6 +14,7 @@ class MyPage extends BaseController
     private $travel_qna;
     private $sessionLib;
     private $sessionChk;
+    private $ordersModel;
     public function __construct()
     {
         helper(['html']);
@@ -23,6 +24,7 @@ class MyPage extends BaseController
         $this->travel_qna = model('TravelQnaModel');
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
+        $this->ordersModel = new \App\Models\OrdersModel();
         helper('my_helper');
         helper('alert_helper');
     }
@@ -34,35 +36,20 @@ class MyPage extends BaseController
         $search_word = trim($this->request->getVar('search_word'));
         $s_status = $this->request->getVar('s_status');
         $g_list_rows = 10;
-        $strSql = "";
-        if ($search_word) {
-            $strSql = $strSql . " and a.product_name like '%" . $search_word . "%' ";
-        }
-
-        if ($s_status) {
-            $strSql = $strSql . " and a.order_status = '" . $s_status . "' ";
-        }
-        // $strSql = $strSql . " and a.order_gubun='hotel' ";
-        $strSql = $strSql . " and a.m_idx='" . $_SESSION["member"]["mIdx"] . "' ";
-        $strSql = $strSql . " and a.order_status != 'D' ";
-        $total_sql = "	SELECT a.*, b.ufile1, IFNULL(COUNT(c.order_idx), 0) AS cnt
-                                FROM tbl_order_mst a
-                                LEFT JOIN tbl_product_mst b
-                                    ON b.product_idx = a.product_idx
-                                LEFT JOIN tbl_order_list c
-                                    ON c.order_idx = a.order_idx WHERE 1 = 1 $strSql 
-                                    GROUP BY a.order_idx ";
-        $nTotalCount = $this->db->query($total_sql)->getNumRows();
-
-        $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == ""){
             $pg = 1;
         }
-        $nFrom = ($pg - 1) * $g_list_rows;
 
-        $sql = $total_sql . " order by a.order_idx desc limit $nFrom, $g_list_rows ";
-        $result = $this->db->query($sql)->getResultArray();
-        $num = $nTotalCount - $nFrom;
+        $where = [ 'm_idx' => $_SESSION["member"]["mIdx"] ];
+
+        if ($s_status) {
+            $where['order_status'] = $s_status;
+        }
+
+        $result = $this->ordersModel->getOrders($search_word, 'product_name', $pg, $g_list_rows, $where);
+        $nTotalCount = $result['nTotalCount'];
+        $nPage = $result['nPage'];
+        $num = $result['num'];
 
         $data = [
             'nTotalCount' => $nTotalCount,
@@ -70,7 +57,7 @@ class MyPage extends BaseController
             'g_list_rows' => $g_list_rows,
             'pg' => $pg,
             'num' => $num,
-            'result' => $result,
+            'order_list' => $result['order_list'],
             'is_allow_payment' => $is_allow_payment,
             'search_word' => $search_word,
             's_status' => $s_status,
