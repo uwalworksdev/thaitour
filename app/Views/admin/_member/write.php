@@ -181,7 +181,9 @@
 
                         <tr height="45">
                             <th>방문경로</th>
-                            <td colspan="3"><?=$visit_route?></td>
+                            <td><?=$visit_route?></td>
+                            <th>기타사항</th>
+                            <td><?=$recommender?></td>
                         </tr>
 
                         <!-- 주소 -->
@@ -189,7 +191,7 @@
                             <th>주소</th>
                             <td colspan="3">
                                 <input type="text" name="zip" id="sample2_postcode" placeholder="" class="bs-input" style="width:70px;" value="<?= esc($member['zip']) ?>">
-                                <button type="button" onclick="openPostCode()" class="zip_btn btn-outline-dark">우편번호</button>
+                                <button type="button" onclick="openPostCode()" class="zip_btn btn btn-outline-dark">우편번호</button>
                                 <input type="text" name="addr1" id="sample2_address" placeholder="" class="bs-input" style="width:400px;" value="<?= esc($member['addr1']) ?>">
                                 <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input" style="width:300px;" value="<?= esc($member['addr2']) ?>">
                             </td>
