@@ -35,6 +35,7 @@ class Product extends BaseController
     protected $carsOptionModel;
 
     protected $optionTours;
+    protected $orderTours;
 
     private $scale = 8;
 
@@ -62,6 +63,7 @@ class Product extends BaseController
         $this->subSchedule = model("SubScheduleModel");
         $this->mainSchedule = model("MainScheduleModel");
         $this->carsOptionModel = model("CarsOptionModel");
+        $this->orderTours = model("OrderTourModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -1645,7 +1647,7 @@ class Product extends BaseController
             $data['product_code_3']         = $product['product_code_3'];
             $data['product_code_4']         = $product['product_code_4'];
             $data['order_no']               = $this->orderModel->makeOrderNo();
-            $order_user_email       = $data['email_1'] . "@" . $data['email_2'];
+            $order_user_email               = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email']       = encryptField($order_user_email, 'encode');
             $data['order_r_date']           = date('Y-m-d H:i:s');
             $data['order_status']           = "W";
@@ -1699,6 +1701,17 @@ class Product extends BaseController
                 ]);
             }
 
+            $this->orderOptionModel->insert([
+                'option_type' => 'main',
+                'order_idx' => $order_idx,
+                'product_idx' => $data['product_idx'],
+                'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
+                'option_idx' => $data['option_idx'],
+                'option_tot' => $priceCalculate['total_price'],
+                'option_cnt' => $data['people_adult_cnt'],
+                'option_date' => $data['order_r_date'],
+            ]);
+
             foreach ($data['vehicle_idx'] as $key => $value) {
                 $vehicle = $this->golfVehicleModel->find($data['vehicle_idx'][$key]);
                 if ($vehicle) {
@@ -1744,7 +1757,7 @@ class Product extends BaseController
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
-                        alert('주문되지 않습니다');
+                        alert(`".$th->getMessage()."`);
                         parent.location.reload();
                     </script>
                 ");
@@ -1774,7 +1787,15 @@ class Product extends BaseController
         $data['id_kakao']           = $this->request->getVar('id_kakao');
         $idx                        = $this->request->getVar('idx');
         $data['idx'] = explode(',', $idx);
-
+        $data['adult_price_bath'] = round($data['people_adult_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['kids_price_bath'] = round($data['people_kids_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['baby_price_bath'] = round($data['people_baby_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_product'] = ($data['people_adult_cnt'] * $data['people_adult_price']) + ($data['people_kids_cnt'] * $data['people_kids_price']) + ($data['people_baby_cnt'] * $data['people_baby_price']);
+        $data['total_price_product_bath'] = ($data['people_adult_cnt'] * $data['adult_price_bath']) + ($data['people_kids_cnt'] * $data['kids_price_bath']) + ($data['people_baby_cnt'] * $data['baby_price_bath']);
+        $data['adult_price_total'] = ($data['people_adult_cnt'] * $data['people_adult_price']) ;
+        $data['kids_price_total'] = ($data['people_kids_cnt'] * $data['people_kids_price']) ;
+        $data['baby_price_total'] = ($data['people_baby_cnt'] * $data['people_baby_price']);
+        
         $data['product'] = $this->productModel->find($data['product_idx']);
 
         $data['tour_product'] = $this->tourProducts->find($data['tours_idx']);
@@ -1784,10 +1805,110 @@ class Product extends BaseController
             $tourOption = $this->optionTours->find(trim($id));
             if ($tourOption) {
                 $data['tour_option'][] = $tourOption;
+                $data['option_price'][] = $tourOption['option_price'];
+                $data['option_price_bath'][] = round($tourOption['option_price'] / (float)($this->setting['baht_thai'] ?? 0));;
             }
         }
+        $total_option_price_bath = array_sum($data['option_price_bath']);
+        $total_option_price = array_sum($data['option_price']);
+
+        $data['final_price'] = $data['total_price_product'] + $total_option_price;
+        $data['final_price_bath'] = $data['total_price_product_bath'] + $total_option_price_bath;
+
 
         return $this->renderView('product/tour/customer-form', $data);
+    }
+
+    public function tourFormOk()
+    {
+        try {
+            $data                           = $this->request->getPost();
+            $data['m_idx']                  = session('member.idx') ?? "";
+            $product                        = $this->productModel->find($data['product_idx']);
+            $data['product_name']           = $product['product_name'];
+            $data['product_code_1']         = $product['product_code_1'];
+            $data['product_code_2']         = $product['product_code_2'];
+            $data['product_code_3']         = $product['product_code_3'];
+            $data['product_code_4']         = $product['product_code_4'];
+            $data['order_no']               = $this->orderModel->makeOrderNo();
+            $order_user_email               = $data['email_1'][0] . "@" . $data['email_2'][0];
+            $data['order_user_email']       = encryptField($order_user_email, 'encode');
+            $data['order_r_date']           = date('Y-m-d H:i:s');
+            $data['order_status']           = "W";
+
+            $data['ip']                     = $this->request->getIPAddress();
+            $data['order_gubun']            = "tour";
+            $data['code_name']              = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name']        = encryptField($data['companion_name'][0], 'encode');
+
+            $order_user_mobile = $data['phone_1'][0] . "-" . $data['phone_2'][0] . "-" . $data['phone_3'][0];
+            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
+
+            $data['people_adult_cnt']       = $data['people_adult_cnt'];
+            $data['people_kids_cnt']        = $data['people_kids_cnt'];
+            $data['people_baby_cnt']        = $data['people_baby_cnt'];
+
+            $data['people_adult_price']     = $data['people_adult_price'];
+            $data['people_kids_price']      = $data['people_kids_price'];
+            $data['people_baby_price']      = $data['people_baby_price'];
+            $data['order_price']            = $data['final_price'];
+
+            $this->orderModel->save($data);
+
+            $order_idx = $this->orderModel->getInsertID();
+
+            $adultCount = (int) $data['people_adult_cnt'];
+            $kidsCount = (int) $data['people_kids_cnt'];
+            $babyCount = (int) $data['people_baby_cnt'];
+            foreach ($data['companion_name'] as $key => $value) {
+                if ($key < $adultCount) {
+                    $orderGubun = 'adult';
+                } elseif ($key < $adultCount + $kidsCount) {
+                    $orderGubun = 'kids';
+                } else {
+                    $orderGubun = 'baby';
+                }
+
+                $companion_email = $data['email_1'][$key] . "@" . $data['email_2'][$key] ?? '';
+                $this->orderSubModel->insert([
+                    'order_gubun' => $orderGubun,
+                    'order_idx' => $order_idx,
+                    'product_idx' => $data['product_idx'],
+                    'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
+                    'order_sex' => $data['companion_gender'][$key],
+                    'order_birthday' => $data['order_birthday'][$key],
+                    'order_email' => encryptField($companion_email, 'encode'),
+                ]);
+            }
+
+            $orderTourData = [
+                'tours_idx' => $this->request->getPost('tours_idx'),
+                'order_idx' => $order_idx,
+                'product_idx' => $data['product_idx'],
+                'start_place' => $this->request->getPost('start_place'),
+                'metting_time' => $this->request->getPost('metting_time'),
+                'id_kakao' => $this->request->getPost('id_kakao'),
+                'description' => $this->request->getPost('description'),
+                'end_place' => $this->request->getPost('end_place'),
+                'r_date' => date('Y-m-d H:i:s'),
+            ];
+            $this->orderTours->save($orderTourData);
+
+
+            return $this->response->setBody("
+                <script>
+                    alert('주문되었습니다');
+                    parent.location.href = '/product-golf/completed-order';
+                </script>
+            ");
+        } catch (\Throwable $th) {
+            return $this->response->setBody("
+                    <script>
+                        alert('주문되지 않습니다');
+                        parent.location.reload();
+                    </script>
+                ");
+        }
     }
 
     public function index8($product_idx)

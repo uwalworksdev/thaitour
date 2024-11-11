@@ -289,100 +289,101 @@
 	var tableCount = <?= isset($productTourInfo) ? count($productTourInfo) : 0 ?>;
 
 	function add_table() {
-		tableCount++;
-		var newTable = `
-			<div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
-				<table style="width: 100%">
-					<colgroup>
-						<col width="35%">
-						<col width="*">
-						<col width="10%">
-						<col width="15%">
-					</colgroup>
-					<thead>
-						<tr>
-							<th>기간</th>
-							<th>출발요일</th>
-							<th>기존상품가</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>
-								<div style="display: flex; justify-content: center">
-									<input type="text" readonly class="datepicker" name="o_sdate[]" style="width: 150px; cursor: pointer;" value=""> ~
-									<input type="text" readonly class="datepicker" name="o_edate[]" style="width: 150px; cursor: pointer;" value="">
-								</div>
-							</td>
-							<td>
-								<input type="checkbox" name="yoil_0[]" value="" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_1[]" value="" class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_2[]" value="" class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_3[]" value="" class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_4[]" value="" class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_5[]" value="" class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
-								<input type="checkbox" name="yoil_6[]" value="" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
-							</td>
-							<td>
-								<input type="text" name="tour_info_price[]">
-							</td>
-							<td>
-								<div style="margin:10px; display: flex; justify-content: center; gap: 5px">
-									<a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
-									<a href="javascript:remove_table(${tableCount});" class="btn btn-primary">삭제</a>
-								</div>
-							</td>
-						</tr>
-						<tr>-
-							<td colspan="4">
-								<table style="width:100%">
-									<thead>
-										<tr style="height:40px">
-											<td style="width:*;text-align:center">상품명</td>
-											<td style="width:15%;text-align:center">성인가격</td>
-											<td style="width:15%;text-align:center">소아가격</td>
-											<td style="width:15%;text-align:center">유아가격</td>
-											<td style="width:15%;text-align:center">판매상태</td>
-										</tr>
-									</thead>
-									<tbody class="air_main">
-										<tr class="air_list_1" style="height:40px">
-											<td style="width:100px;text-align:center">
-												<input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="new">
-												<input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" style="width:100%" />
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="tour_price_kids[${tableCount}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
-											</td>
-											<td style="text-align:center">
-												<input type="text" name="tour_price_baby[${tableCount}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
-											</td>
-											<td>
-												<div style="display: flex; gap: 10px; align-items: center; justify-content: center">
-													<select name="status[${tableCount}][]">
-														<option value="Y" selected>판매중</option>
-														<option value="N">중지</option>
-													</select>
-													<a href="javascript:remove_tours(${tableCount}, 0);" class="btn btn-primary">삭제</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		`;
-		$(".table_list:last").after(newTable);
-		$(".datepicker").datepicker();
-		$(".price").number(true);
-	}
+    tableCount++;
+    var newTable = `
+        <div class="table_list" data-index="${tableCount}" style="width: 100%; margin-bottom: 20px;">
+            <table style="width: 100%">
+                <colgroup>
+                    <col width="35%">
+                    <col width="*">
+                    <col width="10%">
+                    <col width="15%">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>기간</th>
+                        <th>출발요일</th>
+                        <th>기존상품가</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="display: flex; justify-content: center">
+                                <input type="text" readonly class="datepicker" name="o_sdate[${tableCount}][]" style="width: 150px; cursor: pointer;" value=""> ~
+                                <input type="text" readonly class="datepicker" name="o_edate[${tableCount}][]" style="width: 150px; cursor: pointer;" value="">
+                            </div>
+                        </td>
+                        <td>
+                            <input type="checkbox" name="yoil_0[${tableCount}][]" value="일요일" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="yoil_1[${tableCount}][]" value="월요일" class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="yoil_2[${tableCount}][]" value="화요일" class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="yoil_3[${tableCount}][]" value="수요일" class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="yoil_4[${tableCount}][]" value="목요일" class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="yoil_5[${tableCount}][]" value="금요일" class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" name="yoil_6[${tableCount}][]" value="토요일" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            <input type="text" name="tour_info_price[${tableCount}][]">
+                        </td>
+                        <td>
+                            <div style="margin:10px; display: flex; justify-content: center; gap: 5px">
+                                <a href="javascript:add_tours(${tableCount});" class="btn btn-primary">추가</a>
+                                <a href="javascript:remove_table(${tableCount});" class="btn btn-primary">삭제</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <table style="width:100%">
+                                <thead>
+                                    <tr style="height:40px">
+                                        <td style="width:*;text-align:center">상품명</td>
+                                        <td style="width:15%;text-align:center">성인가격</td>
+                                        <td style="width:15%;text-align:center">소아가격</td>
+                                        <td style="width:15%;text-align:center">유아가격</td>
+                                        <td style="width:15%;text-align:center">판매상태</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="air_main">
+                                    <tr class="air_list_1" style="height:40px">
+                                        <td style="width:100px;text-align:center">
+                                            <input type="hidden" name="tours_idx[${tableCount}][]" class="tours_idx" value="">
+                                            <input type="text" name="tours_subject[${tableCount}][]" value="" class="tours_subject input_txt" style="width:100%" />
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="tour_price[${tableCount}][]" value="" class="price tour_price input_txt" style="width:100%" numberOnly=true/>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="tour_price_kids[${tableCount}][]" value="" class="price tour_price_kids input_txt" style="width:90%" numberOnly=true/>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <input type="text" name="tour_price_baby[${tableCount}][]" value="" class="price tour_price_baby input_txt" style="width:90%" numberOnly=true/>
+                                        </td>
+                                        <td>
+                                            <div style="display: flex; gap: 10px; align-items: center; justify-content: center">
+                                                <select name="status[${tableCount}][]">
+                                                    <option value="Y" selected>판매중</option>
+                                                    <option value="N">중지</option>
+                                                </select>
+                                                <a href="javascript:remove_tours(${tableCount}, 0);" class="btn btn-primary">삭제</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+    $(".table_list:last").after(newTable);
+    $(".datepicker").datepicker();
+    $(".price").number(true);
+}
+
 
 	function remove_table(tableIndex) {
     var targetTable = $(".table_list[data-index='" + tableIndex + "']");
@@ -400,7 +401,7 @@
 		var newRow = `
 			<tr class="air_list_1" style="height:40px">
 				<td style="text-align:center">
-					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="new">
+					<input type="hidden" name="tours_idx[${tableListIndex}][]" class="tours_idx" value="">
 					<input type="text" name="tours_subject[${tableListIndex}][]" value="" class="tours_subject input_txt" style="width:100%" />
 				</td>
 				<td style="text-align:center">

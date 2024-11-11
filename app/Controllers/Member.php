@@ -200,6 +200,7 @@ class Member extends BaseController
         $addr1 = updateSQ($this->request->getPost("addr1"));
         $addr2 = updateSQ($this->request->getPost("addr2"));
         $visit_route = updateSQ($this->request->getPost("visit_route"));
+        $recommender = updateSQ($this->request->getPost("recommender"));
 
         if ($gubun == "") {
             $fields = [
@@ -266,6 +267,7 @@ class Member extends BaseController
                 'addr1' => $addr1,
                 'addr2' => $addr2,
                 'visit_route' => $visit_route,
+                'recommender' => $recommender
             ]);
         }
 
@@ -441,7 +443,9 @@ class Member extends BaseController
                 'mobile3' => $mobile3,
                 'phone1' => $phone1,
                 'phone2' => $phone2,
-                'phone3' => $phone3
+                'phone3' => $phone3,
+                'visit_route' => $member['visit_route'],
+                'recommender' => $member['recommender'],
             ]);
         } else {
             return "Thwarted.";

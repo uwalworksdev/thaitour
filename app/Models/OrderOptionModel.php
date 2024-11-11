@@ -19,4 +19,9 @@ class OrderOptionModel extends Model
         'option_cnt',
         'option_date'
     ];
+
+    public function getOption($order_idx, $option_type)
+    {
+        return $this->where('order_idx', $order_idx)->where('option_type', $option_type)->findAll();
+    }
 }

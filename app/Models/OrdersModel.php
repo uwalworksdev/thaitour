@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 use CodeIgniter\Model;
 
 class OrdersModel extends Model
@@ -25,7 +27,7 @@ class OrdersModel extends Model
     , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
     , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_gender_list"
     , "vehicle_time"];
-    public function getOrders($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10)
+    public function getOrders($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
     {
         $private_key = private_key();
 
@@ -35,8 +37,11 @@ class OrdersModel extends Model
             ->join('tbl_code as s3', 's1.product_code_1 = s3.code_no', 'left')
             ->where('s1.is_modify', 'N')
             ->where('s1.isDelete !=', 'Y')
-            ->where('s1.order_gubun', 'tour')
             ->where('s1.order_status !=', 'D');
+
+        if ($where) {
+            $builder->where($where);
+        }
 
         if ($s_txt && $search_category == 'order_user_name') {
             $builder->like("CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)", $s_txt);

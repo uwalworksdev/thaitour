@@ -78,7 +78,7 @@
                 <input type=hidden name="used_coupon_no" value='<?= $used_coupon_no ?>'>
                 <input type=hidden name="used_coupon_point" value='<?= $used_coupon_point ?>'>
                 <input type=hidden name="used_coupon_idx" value='<?= $used_coupon_idx ?>'>
-                <input type=hidden name="used_coupon_money" value='<?= $used_coupon_money ?>'>
+                <input type=hidden name="used_coupon_money" value='<?= $row_cou['used_coupon_money'] ?>'>
                 <input type=hidden name="product_mileage" value='<?= $product_mileage ?>'>
                 <input type=hidden name="order_mileage" value='<?= $order_mileage ?>'>
 
@@ -166,7 +166,7 @@
                                         </td>
                                         <th>쿠폰금액</th>
                                         <td>
-                                            <?= number_format($used_coupon_money) ?>원
+                                            <?= number_format($row_cou['used_coupon_money']) ?>원
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -175,7 +175,7 @@
                                     <td>
                                         <?= number_format($inital_price) ?>원    
                                         -
-                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
+                                        <?= number_format($row_cou['used_coupon_money']) ?>원(할인쿠폰)
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
                                         = <?= number_format( $order_price) ?>
@@ -300,11 +300,28 @@
                                 </script>
 
                                 <tr>
+                                    <th>예약일시</th>
+                                    <td><?= $order_date ?></td>
                                     <th>합계</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input type="text" id="total_price" name="total_price" value=""
                                                class="input_txt" readonly style="width:150px; border: none	;"/>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <th>골프장 왕복 픽업 차량</th>
+                                    <td colspan="3">
+                                        <?php foreach ($vehicle as $key => $item): ?>
+                                            <span>골프장 왕복 픽업 차량: <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대</span>
+                                            <?= $key == count($vehicle) - 1 ? "" : "<br>" ?>
+                                        <?php endforeach; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>상품 업션</th>
+                                    <td><?= $option['option_name'] ?></td>
+                                    <th>인원</th>
+                                    <td><?= $option['option_cnt'] ?></td>
                                 </tr>
                                 <?php if ($order_status == "Y") { ?>
                                     <tr>
@@ -350,7 +367,7 @@
                                 <tr>
                                     <th style="text-align:center">번호</th>
                                     <th style="text-align:center">영문성</th>
-                                    <th style="text-align:center">영문이름</th>
+                                    <th style="text-align:center">성별</th>
                                 </tr>
                                 <?php
                                     foreach ($fresult as $key => $frow) {
@@ -367,8 +384,8 @@
                                         </td>
                                         <td style="text-align:center">
                                             <select name="order_sex[]" id="" style="width:100px">
-                                                <option value="M" <?= $frow["order_sex"] == "M" ? "selected" : ""?>>M</option>
-                                                <option value="F" <?= $frow["order_sex"] == "F" ? "selected" : ""?>>F</option>
+                                                <option value="M" <?= $frow["order_sex"] == "M" ? "selected" : ""?>>MR</option>
+                                                <option value="F" <?= $frow["order_sex"] == "F" ? "selected" : ""?>>MS</option>
                                             </select>
                                         </td>
                                     </tr>

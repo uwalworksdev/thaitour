@@ -129,7 +129,7 @@
                 <div class="sec2-item-card tour_calendar">
                     <div class="container-calendar tour">
                         <div class="calendar-left">
-                            <h3 class="title-left">
+                            <h3 class="title-left calendar_txt">
                                 이용일자 선택
                             </h3>
                             <div class="calendar-container">
@@ -335,8 +335,8 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-                                <button type="button" class="primary-btn-sub tours" onclick="handleSubmit()">이 상품만 예약하기</button>
-                                <a href="" class="primary-btn-calendar tours">견적/예약하기</a>
+                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">이 상품만 예약하기</button>
+                                <a href="" class="primary-btn-sub tours">장바구니에 담기</a>
                             </div>
                         </div>
                     </div>
@@ -382,7 +382,7 @@
             </div>
         <?php } ?>
         <?php if($product['tour_info']) {?>
-            <div>
+            <div class="des-type">
                 <?= viewSQ($product['tour_info']) ?>
             </div>
         <?php }?>
@@ -588,8 +588,11 @@
 
                     const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
                     if (firstContainer) {
-                        firstContainer.style.display = 'block';
-                        const initialToursIdx = firstContainer.getAttribute('data-tour-index');
+                        const dataTourIndex = firstContainer.getAttribute('data-tour-index');
+                        if (dataTourIndex) { 
+                            firstContainer.style.display = 'block';
+                            currentToursIdx = dataTourIndex;
+                        }
                     }
 
                     if (sec2Items.length > 0) {
@@ -651,6 +654,7 @@
                         if ($container.find('.des').text().includes('성인') && quantity === 0) {
                             quantity = 1; 
                             adultQuantity = quantity;
+                            adultTotalPrice = adultQuantity * pricePerUnit;
                             $quantityDisplay.text(quantity);
                             $decreaseBtn.removeAttr('disabled');
                         }
@@ -806,6 +810,7 @@
 
                                     const formattedDate = formatSelectedDate(date);
                                     $('td.days_choose').text(formattedDate);
+                                    $('.calendar_txt').text(formattedDate);
                                 });
                             }
 
@@ -883,6 +888,7 @@
                             $('#idx').val(selectedTourIds.join(','));
                             console.log(selectedTourIds.join(','));
                             console.log(currentToursIdx);
+                            console.log(adultTotalPrices);
                             
                             
                         }
