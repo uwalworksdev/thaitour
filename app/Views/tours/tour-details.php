@@ -129,7 +129,7 @@
                 <div class="sec2-item-card tour_calendar">
                     <div class="container-calendar tour">
                         <div class="calendar-left">
-                            <h3 class="title-left">
+                            <h3 class="title-left calendar_txt">
                                 이용일자 선택
                             </h3>
                             <div class="calendar-container">
@@ -588,8 +588,11 @@
 
                     const firstContainer = document.querySelector('.calendar-right .quantity-container-fa');
                     if (firstContainer) {
-                        firstContainer.style.display = 'block';
-                        const initialToursIdx = firstContainer.getAttribute('data-tour-index');
+                        const dataTourIndex = firstContainer.getAttribute('data-tour-index');
+                        if (dataTourIndex) { 
+                            firstContainer.style.display = 'block';
+                            currentToursIdx = dataTourIndex;
+                        }
                     }
 
                     if (sec2Items.length > 0) {
@@ -806,6 +809,7 @@
 
                                     const formattedDate = formatSelectedDate(date);
                                     $('td.days_choose').text(formattedDate);
+                                    $('.calendar_txt').text(formattedDate);
                                 });
                             }
 

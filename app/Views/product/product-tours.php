@@ -615,6 +615,16 @@
                     } else {
                         $('#product_list_recommended_pagination').hide();
                     }
+
+                    $('.tour__head__tabs2__tab').on('click', function(event) {
+                        event.preventDefault();
+
+
+                        $('.tour__head__tabs2__tab').removeClass('active');
+
+
+                        $(this).addClass('active');
+                    });
                 }
             });
         }
