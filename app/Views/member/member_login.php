@@ -11,6 +11,12 @@
   }
 </style> -->
 
+<?php if (session()->getFlashdata('error')) : ?>
+  <script>
+    alert('<?= session()->getFlashdata('error') ?>');
+  </script>
+<?php endif; ?>
+
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/js/kakao.js"></script>
 

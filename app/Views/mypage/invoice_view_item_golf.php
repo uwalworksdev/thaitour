@@ -88,7 +88,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 						<td class="content">
 							<p>
-								<?= $people_adult_cnt ?>
+								<?= $people_adult_cnt ?>인
 							</p>
 						</td>
 
@@ -444,7 +444,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 		<div class="invoice_table invoice_table_new only_web">
 			<h2>
-				투숙객 정보
+				여행정보
 			</h2>
 			<table>
 				<colgroup>
@@ -453,7 +453,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				</colgroup>
 				<tbody>
 					<tr>
-						<td width="*%" class="subject" style="font-weight: bold;">객실</td>
+						<td width="*%" class="subject" style="font-weight: bold;">인원정보</td>
 						<td class="subject" style="font-weight: bold;">
 							여행자
 						</td>
@@ -464,13 +464,13 @@ if ($_SESSION["member"]["mIdx"] == "") {
                         ?>
                             <tr>
                                 <td class="content" style="border-right: 1px solid #dbdbdb;" >
-                                    객실<?= $key + 1 ?>
+									인원<?= $key + 1 ?>
                                 </td>
                                 <td class="content">
                                     <?= $sub['order_full_name'] ?>
                                 </td>
 								<td class="content">
-									<?= $sub['order_sex'] == "M" ? "MS" : "MR" ?>
+									<?= $sub['order_sex'] == "M" ? "MR" : "MS" ?>
 								</td>
                             </tr>
                         <?php	

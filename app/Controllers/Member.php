@@ -86,7 +86,7 @@ class Member extends BaseController
 
     public function LoginForm()
     {
-        return view("member/member_login", ['returnUrl' => $this->request->getGet('returnUrl')]);
+        return view("member/member_login", ['returnUrl' => urldecode($this->request->getGet('returnUrl'))]);
     }
 
     public function JoinChoice()
@@ -117,7 +117,7 @@ class Member extends BaseController
 
     public function LoginCheck()
     {
-        $returnUrl = updateSQ($this->request->getPost("returnUrl"));
+        $returnUrl = urldecode($this->request->getPost("returnUrl"));
         $user_id = updateSQ($this->request->getPost("user_id"));
         $user_pw = updateSQ($this->request->getPost("user_pw"));
         $save_id = updateSQ($this->request->getPost("save_id"));
@@ -163,7 +163,7 @@ class Member extends BaseController
             setcookie("c_userId", "", time() - 86000 * 365, '/');
         }
 
-        return redirect()->to(base_url($returnUrl ?? "/"));
+        return redirect()->to($returnUrl ?? "/");
     }
 
     public function Logout()
@@ -266,8 +266,8 @@ class Member extends BaseController
                 'zip' => $zip,
                 'addr1' => $addr1,
                 'addr2' => $addr2,
-                'visit_route' => $visit_route,
-                'recommender' => $recommender
+                'visit_route' => $visit_route ?? "",
+                'recommender' => $recommender ?? "",
             ]);
         }
 
