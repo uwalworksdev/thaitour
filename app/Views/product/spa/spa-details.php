@@ -95,7 +95,7 @@
                             상품선택
                         </h2>
 
-                        <table class="price-table" id="price-table" style="margin-bottom:30px;">
+                        <table class="price-table" id="price_table_" style="margin-bottom:30px;">
                             <colgroup>
                                 <col width="*">
                                 <col width="10%">
@@ -104,7 +104,7 @@
                             </colgroup>
                             <thead>
                             <tr>
-                                <th colspan="4">적용일자 : 2024-11-20</th>
+                                <th colspan="4">적용일자 : <span id="day_select_">...</span></th>
                             </tr>
                             <tr>
                                 <th>선택옵션</th>
@@ -113,232 +113,37 @@
                                 <th>아동(만 5세~12세)</th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="price_body_">
 
-                            <tr>
-                                <td>아로마 테라피 마사지(60분)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
+                            <!--                            <tr>-->
+                            <!--                                <td>아로마 테라피 마사지(60분)</td>-->
+                            <!--                                <td>매일</td>-->
+                            <!--                                <td>-->
+                            <!--                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">-->
+                            <!--                                        <div class="price">-->
+                            <!--                                            <span class="text_primary">34,304원</span>(800바트)-->
+                            <!--                                        </div>-->
+                            <!--                                        <p class="" style="display: flex; align-items: center; gap: 5px">-->
+                            <!--                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"-->
+                            <!--                                                   onkeyup="chkNum(this)">-->
+                            <!--                                            <span>명</span>-->
+                            <!--                                        </p>-->
+                            <!--                                    </div>-->
+                            <!--                                </td>-->
+                            <!--                                <td>-->
+                            <!--                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">-->
+                            <!--                                        <div class="price">-->
+                            <!--                                            <span class="text_primary">34,304원</span>(800바트)-->
+                            <!--                                        </div>-->
+                            <!--                                        <p class="" style="display: flex; align-items: center; gap: 5px">-->
+                            <!--                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"-->
+                            <!--                                                   onkeyup="chkNum(this)">-->
+                            <!--                                            <span>명</span>-->
+                            <!--                                        </p>-->
+                            <!--                                    </div>-->
+                            <!--                                </td>-->
+                            <!--                            </tr>-->
 
-                            <tr>
-                                <td>아로마 테라피 마사지(90분)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">56,304원</span>(880바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>아로마 테라피 마사지 (220분)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">47,168원</span>(1,100바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>아로마 첫 오일 (60분)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>아로마 오일 (90분)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    이용불가
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>아로마 첫 오일 (120)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    이용불가
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>아로마 스크럽 (90분)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    이용불가
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>아로마 스크럽 (120)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>아로마 오일 등 목& 어깨 (90분)</td>
-                                <td>매일</td>
-                                <td>
-                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
-                                        <div class="price">
-                                            <span class="text_primary">34,304원</span>(800바트)
-                                        </div>
-                                        <p class="" style="display: flex; align-items: center; gap: 5px">
-                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"
-                                                   onkeyup="chkNum(this)">
-                                            <span>명</span>
-                                        </p>
-                                    </div>
-                                </td>
-                                <td>
-                                    이용불가
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -841,39 +646,43 @@
         }
 
         // 버튼이 동적으로 생성된 경우에도 클릭 이벤트 적용
-        $(document).on('click', '.allowBtn', function () {
-
-            // let order_no = $("#order_no").val();
-            // console.log(order_no);
-            // $.ajax({
-            //
-            //     url: "/ajax/ajax.order_delete.php",
-            //     type: "POST",
-            //     data: {
-            //         "order_no": order_no
-            //     },
-            //     dataType: "json",
-            //     async: false,
-            //     cache: false,
-            //     success: function (data, textStatus) {
-            //         console.log(data)
-            //     },
-            //     error: function (request, status, error) {
-            //         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-            //     }
-            // });
-        });
+        // $(document).on('click', '.allowBtn', function () {
+        // let order_no = $("#order_no").val();
+        // console.log(order_no);
+        // $.ajax({
+        //
+        //     url: "/ajax/ajax.order_delete.php",
+        //     type: "POST",
+        //     data: {
+        //         "order_no": order_no
+        //     },
+        //     dataType: "json",
+        //     async: false,
+        //     cache: false,
+        //     success: function (data, textStatus) {
+        //         console.log(data)
+        //     },
+        //     error: function (request, status, error) {
+        //         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+        //     }
+        // });
+        // });
 
         $(document).on('click', '.sel_date', function () {
             $('.sel_date').removeClass('active_');
             $(this).addClass('active_');
             let day_ = $(this).data('date');
             $('#day_').val(day_);
+            loadDay(day_);
             let price = `<?= number_format($data_['product_price']) ?>`;
             let price_convert = price.toLocaleString();
             $('#total_sum').text(price_convert);
             calcTotal();
         });
+
+        function loadDay(day_) {
+
+        }
 
         // const optCountBoxes = document.querySelectorAll('.opt_count_box');
         // optCountBoxes.forEach(box => {
