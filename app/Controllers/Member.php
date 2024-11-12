@@ -267,7 +267,7 @@ class Member extends BaseController
                 'addr1' => $addr1,
                 'addr2' => $addr2,
                 'visit_route' => $visit_route,
-                'recommender' => $recommender
+                'recommender' => $recommender ?? "",
             ]);
         }
 

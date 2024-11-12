@@ -88,7 +88,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 						<td class="content">
 							<p>
-								<?= $people_adult_cnt ?>
+								<?= $people_adult_cnt ?>인
 							</p>
 						</td>
 
