@@ -240,21 +240,21 @@
                                                     <td style="text-align:center">
                                                         <input type="text" name="tour_price[]"
                                                                id="tour_price_<?= $frow2["charge_idx"] ?>"
-                                                               value="<?= $frow2["tour_price"] ?>"
+                                                               value="<?= number_format($frow2["tour_price"]) ?>"
                                                                class="price tour_price input_txt"
                                                                style="text-align:right"/>
                                                     </td>
                                                     <td style="text-align:center">
                                                         <input type="text" name="tour_price_kids[]"
                                                                id="tour_price_kids_<?= $frow2["charge_idx"] ?>"
-                                                               value="<?= $frow2["tour_price_kids"] ?>"
+                                                               value="<?= number_format($frow2["tour_price_kids"]) ?>"
                                                                class="price tour_price_kids input_txt"
                                                                style="text-align:right"/>
                                                     </td>
                                                     <td style="text-align:center">
                                                         <input type="text" name="tour_price_senior[]"
                                                                id="tour_price_senior_<?= $frow2["charge_idx"] ?>"
-                                                               value="<?= $frow2["tour_price_senior"] ?>"
+                                                               value="<?= number_format($frow2["tour_price_senior"]) ?>"
                                                                class="price tour_price_senior input_txt"
                                                                style="text-align:right"/>
                                                     </td>
@@ -536,9 +536,9 @@
 
                                             "charge_idx": idx,
                                             "s_station": $("#s_station_" + idx).val(),
-                                            "tour_price": $("#tour_price_" + idx).val(),
-                                            "tour_price_kids": $("#tour_price_kids_" + idx).val(),
-                                            "tour_price_senior": $("#tour_price_senior_" + idx).val()
+                                            "tour_price": $("#tour_price_" + idx).val().replaceAll(',', ''),
+                                            "tour_price_kids": $("#tour_price_kids_" + idx).val().replaceAll(',', ''),
+                                            "tour_price_senior": $("#tour_price_senior_" + idx).val().replaceAll(',', '')
 
                                         },
                                         dataType: "json",
@@ -555,11 +555,7 @@
                                         }
                                     });
                                 });
-                            });
-                        </script>
 
-                        <script>
-                            $(document).ready(function () {
                                 // 차량정보 삭제버튼 클릭 이벤트
                                 $(".chargeDelete").click(function () {
                                     $("#ajax_loader").removeClass("display-none");
@@ -592,11 +588,7 @@
                                         }
                                     });
                                 });
-                            });
-                        </script>
 
-                        <script>
-                            $(document).ready(function () {
                                 // Select 요소에서 값이 변경될 때마다 호출되는 함수
                                 $('.unique-select').on('change', function () {
                                     var selectedValues = [];
@@ -626,12 +618,7 @@
                                         selectedValues.push(value);
                                     });
                                 });
-                            });
-                        </script>
 
-                        <script>
-                            // 요금정보 :S
-                            $(document).ready(function () {
                                 // 요금정보 추가 버튼 클릭 이벤트
                                 $('#addcharge').click(function () {
                                     $("#ajax_loader").removeClass("display-none");
@@ -662,6 +649,10 @@
                                     $(this).closest('tr').remove();
                                 });
                             });
+
+                            function convertNUmber(num) {
+                                return num.toLocaleString();
+                            }
                         </script>
 
                         <script>
