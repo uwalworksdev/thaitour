@@ -209,7 +209,7 @@
         }
         $("#ajax_loader").removeClass("display-none");
         $.ajax({
-            url: "del.php",
+            url: "del",
             type: "POST",
             data: "m_idx[]=" + m_idx,
             error: function (request, status, error) {
