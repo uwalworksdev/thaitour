@@ -11,8 +11,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 ?>
 
 
-<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css" />
-<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css" />
+<link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
+<link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
 <style>
     .mypage_container .slide_tab .slide_tab_btn {
         height: 3.0769rem;
@@ -43,7 +43,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-				echo view("/mypage/mypage_gnb_menu_inc", ["tab_9" => "on", "tab_9_3" => "on"]);
+            echo view("/mypage/mypage_gnb_menu_inc", ["tab_9" => "on", "tab_9_3" => "on"]);
             ?>
 
             <div class="money_content">
@@ -66,20 +66,23 @@ if ($_SESSION["member"]["mIdx"] == "") {
                         <label style="margin-bottom: 115px;">탈퇴 사유</label>
                         <div class="list_select_option">
                             <?php
-                            $fsql    = "select * from tbl_code where code_gubun='leave' and depth='2' and status='Y' order by onum desc";
+                            $fsql = "select * from tbl_code where code_gubun='leave' and depth='2' and status='Y' order by onum desc";
                             $fresult = $connect->query($fsql)->getResultArray();
                             foreach ($fresult as $frow) {
-                            ?>
+                                ?>
                                 <div class="type_of_reason <?php if ($frow["code_name"] == "기타") {
-                                                                echo "etc";
-                                                            } ?>">
-                                    <input type="checkbox" class="element_select_option" id="e_select_option_<?= $frow["code_idx"] ?>" name="out_code" value="<?= $frow["code_name"] ?>" data-value="<?= $frow["code_name"] ?>">
+                                    echo "etc";
+                                } ?>">
+                                    <input type="checkbox" class="element_select_option"
+                                           id="e_select_option_<?= $frow["code_idx"] ?>" name="out_code"
+                                           value="<?= $frow["code_name"] ?>" data-value="<?= $frow["code_name"] ?>">
                                     <label for="e_select_option_<?= $frow["code_idx"] ?>"><?= $frow["code_name"] ?></label>
                                 </div>
                             <?php } ?>
                             <div class="type_of_reason dr-col">
                                 <p class="reason_text_ttl">탈퇴 사유 및 개선점(선택)</p>
-                                <textarea type="text" id="element_select_option_text" name="out_etc" placeholder="여행시 중요시 여기는 부분" maxlength=120></textarea>
+                                <textarea type="text" id="element_select_option_text" name="out_etc"
+                                          placeholder="여행시 중요시 여기는 부분" maxlength=120></textarea>
                             </div>
                         </div>
                     </div>
@@ -94,17 +97,14 @@ if ($_SESSION["member"]["mIdx"] == "") {
 </section>
 <script>
     function send_it() {
-
-        var reason_list = "";
-        $("input[name=out_code]:checked").each(function() {
+        let reason_list = "";
+        $("input[name=out_code]:checked").each(function () {
             reason_list += $(this).val() + ',';
         })
 
-
         $("#reason_list").val(reason_list);
 
-
-        var frm = document.frm;
+        let frm = document.frm;
         if (frm.user_pw.value == "") {
             frm.user_pw.focus();
             alert("비밀번호를 입력해주셔야 합니다.");
@@ -112,21 +112,21 @@ if ($_SESSION["member"]["mIdx"] == "") {
         }
 
         $.ajax({
-            url: "money_ok.php",
+            url: "money_ok",
             type: "POST",
             data: $("#frm").serialize(),
-            error: function(request, status, error) {
+            error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             },
-            complete: function(request, status, error) {
+            complete: function (request, status, error) {
                 //				$("#ajax_loader").addClass("display-none");
             },
-            success: function(response, status, request) {
-
+            success: function (res, status, request) {
+                let response = res.message;
                 if (response == "OK") {
                     alert("정상적으로 탈퇴 신청이 되었습니다.");
-                    location.href = "/mypage/member_out.php";
+                    location.href = "/mypage/member_out";
                     return;
                 } else if (response == "NOUSER") {
                     alert("일치하는 아이디가 없습니다.");
