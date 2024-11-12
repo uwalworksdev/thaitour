@@ -266,7 +266,7 @@ class Member extends BaseController
                 'zip' => $zip,
                 'addr1' => $addr1,
                 'addr2' => $addr2,
-                'visit_route' => $visit_route,
+                'visit_route' => $visit_route ?? "",
                 'recommender' => $recommender ?? "",
             ]);
         }
