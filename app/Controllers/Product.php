@@ -1612,6 +1612,11 @@ class Product extends BaseController
         $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
 
+        if (empty(session('member.idx'))) {
+            $current_url = $this->request->getUri();
+            return redirect()->to("/member/login?returnUrl=" . urlencode($current_url));
+        }
+
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
         $date = date("Y.m.d", strtotime($data['order_date']));

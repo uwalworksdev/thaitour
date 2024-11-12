@@ -77,7 +77,7 @@ class BoardController extends BaseController
         }
 
         if ($auth && !$this->check_auth($auth)) {
-            return redirect()->to('/AdmMaster/_main/main.php')->with('error', '당신은 접근 권한이 없습니다');
+            return redirect()->to('/AdmMaster/main')->with('error', '당신은 접근 권한이 없습니다');
         }
 
         $data = [

@@ -20,13 +20,6 @@ if (session()->has('member') && isset(session('member')['m_auth'])) {
 ?>
 <?php
 $code = isset($_GET['code']) ? $_GET['code'] : null;
-
-//if ($_SESSION[member][id] != "admin") {
-//if ($_SESSION[member][level] != "1") {
-if (session('member.level') > 2 || session('member.level') == "") {
-    header('Location:/AdmMaster/');
-    exit();
-}
 ?>
 
 <!DOCTYPE HTML>

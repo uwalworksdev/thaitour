@@ -13,6 +13,7 @@
             </div>
             <div class="login_form">
                 <form action="/AdmMaster/login" method="post" name="loginForm">
+                    <input type="hidden" name="returnUrl" value="<?=urlencode($returnUrl)?>">
                     <div class="login_box">
                         <h2>관리자 로그인</h2>
 
