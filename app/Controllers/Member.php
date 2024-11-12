@@ -86,7 +86,7 @@ class Member extends BaseController
 
     public function LoginForm()
     {
-        return view("member/member_login", ['returnUrl' => $this->request->getGet('returnUrl')]);
+        return view("member/member_login", ['returnUrl' => urldecode($this->request->getGet('returnUrl'))]);
     }
 
     public function JoinChoice()

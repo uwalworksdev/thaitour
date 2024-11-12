@@ -7,22 +7,17 @@ use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\I18n\Time;
 
-class AdminAuth implements FilterInterface
+class UserAuth implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
         $session = session();
 
-        if (!$session->has('member') || $session->get('member.level') > 2) {
+        if (!$session->has('member') || empty($session->get('member.idx'))) {
 
-            $currentUrl = $request->getUri();
-            $currentPath = $currentUrl->getPath();
+            $currentUrl = urlencode($request->getUri());
 
-            if ($currentPath === '/AdmMaster/login') {
-                return;
-            }
-
-            return redirect()->to('/AdmMaster?returnUrl=' . $currentUrl);
+            return redirect()->to('/member/login?returnUrl=' . $currentUrl)->with('error', '로그인 필요합니다.');
         }
     }
 
