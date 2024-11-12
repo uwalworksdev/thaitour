@@ -1234,10 +1234,10 @@ class AdminSpaController extends BaseController
     public function charge_update()
     {
         try {
-            $charge_idx        = $_POST['charge_idx'];
-            $s_station         = $_POST['s_station'];
-            $tour_price        = $_POST['tour_price'];
-            $tour_price_kids   = $_POST['tour_price_kids'];
+            $charge_idx = $_POST['charge_idx'];
+            $s_station = $_POST['s_station'];
+            $tour_price = $_POST['tour_price'];
+            $tour_price_kids = $_POST['tour_price_kids'];
             $tour_price_senior = $_POST['tour_price_senior'];
 
             $sql = "UPDATE tbl_product_charge SET 
@@ -1250,7 +1250,7 @@ class AdminSpaController extends BaseController
             write_log($sql);
             $result = $this->connect->query($sql);
 
-            if($result) {
+            if ($result) {
                 $msg = "수정 완료.";
             } else {
                 $msg = "수정 오류.";
@@ -1311,32 +1311,31 @@ class AdminSpaController extends BaseController
         try {
             $msg = '';
 
-            $id          = $_POST['id'];
-            $flag        = $_POST['flag'];
+            $id = $_POST['id'];
+            $flag = $_POST['flag'];
             $product_idx = $_POST['product_idx'];
-            $yoil_idx    = $_POST['yoil_idx'];
+            $yoil_idx = $_POST['yoil_idx'];
             $charge_date = $_POST['charge_date'];
 
-            if( $flag  == "U" ){ // 위로
-                $sql    = "UPDATE tbl_product_charge SET seq = seq - 1.5 WHERE charge_idx = ".$id ;
+            if ($flag == "U") { // 위로
+                $sql = "UPDATE tbl_product_charge SET seq = seq - 1.5 WHERE charge_idx = " . $id;
                 write_log($sql);
                 $result = $this->connect->query($sql);
-            }else if( $flag == "D" ){ // 아래로
-                $sql    = "UPDATE tbl_product_charge SET seq = seq + 1.5 WHERE charge_idx = ".$id ;
+            } else if ($flag == "D") { // 아래로
+                $sql = "UPDATE tbl_product_charge SET seq = seq + 1.5 WHERE charge_idx = " . $id;
                 write_log($sql);
                 $result = $this->connect->query($sql);
             }
 
             // 순서 정의
-            $sql    = "SELECT charge_idx, seq FROM tbl_product_charge where product_idx = '". $product_idx ."' ORDER BY seq ASC";
+            $sql = "SELECT charge_idx, seq FROM tbl_product_charge where product_idx = '" . $product_idx . "' ORDER BY seq ASC";
             write_log($sql);
             $result = $this->connect->query($sql);
             $result = $result->getResultArray();
             $num = 0;
-            foreach ($result as $row)
-            {
-                $num    = $num + 1;
-                $sql1   = "UPDATE tbl_product_charge SET seq = '" . $num . "' WHERE charge_idx = ".$row['charge_idx'];
+            foreach ($result as $row) {
+                $num = $num + 1;
+                $sql1 = "UPDATE tbl_product_charge SET seq = '" . $num . "' WHERE charge_idx = " . $row['charge_idx'];
                 write_log($sql1);
                 $this->connect->query($sql1);
             }
@@ -1351,6 +1350,46 @@ class AdminSpaController extends BaseController
                 ->setJSON([
                     'status' => 'success',
                     'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function charge_list()
+    {
+        $product_idx = $_POST['product_idx'];
+        $day_ = $_POST['day_'];
+        try {
+            $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND product_idx = ?";
+            $query = $this->connect->query($sql, [$day_, $day_, $product_idx]);
+            $result = $query->getRowArray();
+
+            if ($result) {
+                $yoil_idx = $result['p_idx'];
+
+                $fsql2 = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
+                $fresult2 = $this->connect->query($fsql2);
+                $fresult2 = $fresult2->getResultArray();
+
+                return $this->response->setStatusCode(200)
+                    ->setJSON([
+                        'status' => 'error',
+                        'data' => $fresult2
+                    ]);
+            }
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'error',
+                    'data' => null
                 ]);
         } catch (\Exception $e) {
             return $this->response

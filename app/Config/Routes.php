@@ -222,6 +222,7 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("charge_delete", "Admin\AdminSpaController::charge_delete", ['as' => "admin.api.spa_.charge_delete"]);
             $routes->post("charge_update", "Admin\AdminSpaController::charge_update", ['as' => "admin.api.spa_.charge_update"]);
             $routes->post("station_seq", "Admin\AdminSpaController::station_seq", ['as' => "admin.api.spa_.station_seq"]);
+            $routes->post("charge_list", "Admin\AdminSpaController::charge_list", ['as' => "admin.api.spa_.charge_list"]);
         });
     });
 
