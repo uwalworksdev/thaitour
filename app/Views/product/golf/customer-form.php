@@ -86,7 +86,7 @@
                                 <div class="form-group mb-30">
                                     <label for="pickup-location">출발지(필요호텔)</label>
                                     <input class="mb-10" type="text" id="pickup-location"
-                                        name="pickup_location"
+                                        name="departure_point"
                                         placeholder="호텔명을 영어로 적어주세요(주소불가)" />
                                     <span class="text-gray">※일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨줴요.</span>
                                 </div>
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="item-info">
                                     <span>홀수</span>
-                                    <span>티오프시간</span>
+                                    <span><?=$option['hole_cnt']?>홀</span>
                                 </div>
                                 <div class="item-info">
                                     <span>티오프시간</span>

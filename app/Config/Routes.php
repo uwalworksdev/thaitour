@@ -59,7 +59,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_reservation", static function ($routes) {
         $routes->get("list", "Admin\ReservationController::list");
         $routes->get("(:segment)/write", "Admin\ReservationController::write/$1");
-        $routes->post("write_ok", "Admin\ReservationController::write_ok");
+        $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
         $routes->post("delete", "Admin\ReservationController::delete");
         $routes->get("get_code", "Admin\ReservationController::get_code");
     });
@@ -438,7 +438,7 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("info_change", "MyPage::info_change");
     $routes->get("user_mange", "MyPage::user_mange");
     $routes->get("money", "MyPage::money");
-    $routes->get("invoice_view_item", "MyPage::invoice_view_item");
+    $routes->get("(:segment)/invoice_view_item", "MyPage::invoice_view_item/$1");
     $routes->post("info_option_ok", "MyPage::info_option_ok");
     $routes->post("info_change_ok", "MyPage::info_change_ok");
     $routes->post("contactDel", "MyPage::contactDel");

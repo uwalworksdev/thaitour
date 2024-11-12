@@ -8,7 +8,7 @@ class OrdersModel extends Model
 {
     protected $table = 'tbl_order_mst';
     protected $primaryKey = 'order_idx';
-    protected $allowedFields = ["order_idx", "m_idx", "air_idx", "yoil_idx", "home_depart_date", "away_arrive_date"
+    protected $allowedFields = ["m_idx", "air_idx", "yoil_idx", "home_depart_date", "away_arrive_date"
     , "away_depart_date", "home_arrive_date", "product_idx", "product_code_1", "product_code_2", "product_code_3"
     , "product_code_4", "code_name", "product_name", "tours_subject", "order_mileage_yn"
     , "order_gubun", "order_no", "order_date", "order_user_name", "order_user_email", "order_user_mobile", "order_user_phone"
@@ -26,7 +26,51 @@ class OrdersModel extends Model
     , "deposit_price_change", "price_confirm_change", "total_price_change", "bbs_no", "transfer_date", "user_id"
     , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
     , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_gender_list"
-    , "vehicle_time"];
+    , "vehicle_time", "departure_point"];
+    protected $encryptedField = [ "order_user_name", "order_user_email", "order_user_mobile", "order_user_phone", "local_phone", "order_user_first_name_en", "order_user_last_name_en", "manager_name", "manager_phone", "manager_email",];
+    public function insertData($data)
+    {
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields, $data) {
+                return in_array($key, $allowedFields) && is_string($data[$key]);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        foreach ($filteredData as $key => $value) {
+            $filteredData[$key] = updateSQ($value);
+            if (in_array($key, $this->encryptedField)) {
+                $filteredData[$key] = encryptField($value, "encode");
+            }
+        }
+
+        return $this->insert($filteredData);
+    }
+
+    public function updateData($id, $data)
+    {
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields, $data) {
+                return in_array($key, $allowedFields) && is_string($data[$key]);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        foreach ($filteredData as $key => $value) {
+            $filteredData[$key] = updateSQ($value);
+            if (in_array($key, $this->encryptedField)) {
+                $filteredData[$key] = encryptField($value, "encode");
+            }
+        }
+
+        return $this->update($id, $filteredData);
+    }
     public function getOrders($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
     {
         $private_key = private_key();
@@ -88,14 +132,16 @@ class OrdersModel extends Model
     public function getOrderInfo($order_idx) {
         $private_key = private_key();
         $sql_d = " SELECT *
-        , AES_DECRYPT(UNHEX(order_user_name),   '$private_key') order_user_name
-        , AES_DECRYPT(UNHEX(order_user_mobile), '$private_key') order_user_mobile
-        , AES_DECRYPT(UNHEX(order_user_phone),  '$private_key') order_user_phone
-        , AES_DECRYPT(UNHEX(order_user_email),  '$private_key') order_user_email
-        , AES_DECRYPT(UNHEX(manager_name),      '$private_key') manager_name
-        , AES_DECRYPT(UNHEX(manager_phone),     '$private_key') manager_phone
-        , AES_DECRYPT(UNHEX(manager_email),     '$private_key') manager_email
-        , AES_DECRYPT(UNHEX(local_phone),     	'$private_key') local_phone 
+        , AES_DECRYPT(UNHEX(order_user_name),           '$private_key') order_user_name
+        , AES_DECRYPT(UNHEX(order_user_mobile),         '$private_key') order_user_mobile
+        , AES_DECRYPT(UNHEX(order_user_phone),          '$private_key') order_user_phone
+        , AES_DECRYPT(UNHEX(order_user_email),          '$private_key') order_user_email
+        , AES_DECRYPT(UNHEX(manager_name),              '$private_key') manager_name
+        , AES_DECRYPT(UNHEX(manager_phone),             '$private_key') manager_phone
+        , AES_DECRYPT(UNHEX(manager_email),             '$private_key') manager_email
+        , AES_DECRYPT(UNHEX(local_phone),     	        '$private_key') local_phone 
+        , AES_DECRYPT(UNHEX(order_user_first_name_en),  '$private_key') order_user_first_name_en 
+        , AES_DECRYPT(UNHEX(order_user_last_name_en),   '$private_key') order_user_last_name_en 
         FROM tbl_order_mst where order_idx='" . $order_idx . "' ";
         return $this->db->query($sql_d)->getRowArray();
     }
