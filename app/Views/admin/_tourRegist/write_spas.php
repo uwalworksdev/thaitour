@@ -1236,8 +1236,6 @@
             let yoil_5 = $("#yoil_5").is(":checked") ? "Y" : "N";
             let yoil_6 = $("#yoil_6").is(":checked") ? "Y" : "N";
 
-            console.log(price_1, price_2, price_3);
-
             let data = {
                 "p_idx": p_idx,
                 "product_idx": '<?= $product_idx ?>',

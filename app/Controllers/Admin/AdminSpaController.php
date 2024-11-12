@@ -111,8 +111,9 @@ class AdminSpaController extends BaseController
         }
 
         $fsql2 = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
-        $result2 = $this->connect->query($fsql2);
-        $result2 = $result2->getRowArray();
+        write_log($fsql2);
+        $fresult2 = $this->connect->query($fsql2);
+        $fresult2 = $fresult2->getResultArray();
 
         $data = [
             "product_idx" => $product_idx ?? '',
@@ -1052,6 +1053,8 @@ class AdminSpaController extends BaseController
             $price2 = updateSQ($_POST['price2']);
             $price3 = updateSQ($_POST['price3']);
 
+            $sale = updateSQ($_POST['sale']);
+
             $yoil_0 = updateSQ($_POST['yoil_0']);
             $yoil_1 = updateSQ($_POST['yoil_1']);
             $yoil_2 = updateSQ($_POST['yoil_2']);
@@ -1064,22 +1067,22 @@ class AdminSpaController extends BaseController
                 $sql = "SELECT * FROM tbl_product_price WHERE p_idx = '" . $p_idx . "' ";
                 $row = $this->connect->query($sql)->getRowArray();
 
-                $sql = "update tbl_product_price SET 
-                            ,product_idx		= '" . $product_idx ?? $row["product_idx"] . "'
-                            ,s_date				= '" . $s_date ?? $row["s_date"] . "'
-                            ,e_date			    = '" . $e_date ?? $row["e_date"] . "'
-                            ,adult_price		= '" . $price1 ?? $row["price1"] . "'
-                            ,kids_price			= '" . $price2 ?? $row["price2"] . "'
-                            ,senior_price		= '" . $price3 ?? $row["price3"] . "' 
-                            ,yoil_0		        = '" . $yoil_0 ?? $row["yoil_0"] . "'
-                            ,yoil_1		        = '" . $yoil_1 ?? $row["yoil_1"] . "'
-                            ,yoil_2		        = '" . $yoil_2 ?? $row["yoil_2"] . "'
-                            ,yoil_3		        = '" . $yoil_3 ?? $row["yoil_3"] . "'
-                            ,yoil_4		        = '" . $yoil_4 ?? $row["yoil_4"] . "'
-                            ,yoil_5		        = '" . $yoil_5 ?? $row["yoil_5"] . "'
-                            ,yoil_6		        = '" . $yoil_6 ?? $row["yoil_6"] . "'
-                        where p_idx             = '" . $p_idx . "'
-                    ";
+                $sql = "UPDATE tbl_product_price SET 
+                                s_date          = '" . ($s_date ?? $row['s_date']) . "',
+                                e_date          = '" . ($e_date ?? $row['e_date']) . "',
+                                adult_price     = '" . ($price1 ?? $row['price1']) . "',
+                                kids_price      = '" . ($price2 ?? $row['price2']) . "',
+                                senior_price    = '" . ($price3 ?? $row['price3']) . "',
+                                sale            = '" . ($sale ?? $row['sale']) . "',
+                                yoil_0          = '" . ($yoil_0 ?? $row['yoil_0']) . "',
+                                yoil_1          = '" . ($yoil_1 ?? $row['yoil_1']) . "',
+                                yoil_2          = '" . ($yoil_2 ?? $row['yoil_2']) . "',
+                                yoil_3          = '" . ($yoil_3 ?? $row['yoil_3']) . "',
+                                yoil_4          = '" . ($yoil_4 ?? $row['yoil_4']) . "',
+                                yoil_5          = '" . ($yoil_5 ?? $row['yoil_5']) . "',
+                                yoil_6          = '" . ($yoil_6 ?? $row['yoil_6']) . "'
+                            WHERE p_idx = '" . $p_idx . "'";
+
                 write_log("상품정보수정 : " . $sql);
 
                 $this->connect->query($sql);
@@ -1164,6 +1167,185 @@ class AdminSpaController extends BaseController
         try {
             $msg = '';
             $p_idx = $_POST['p_idx'];
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function charge_dummy()
+    {
+        try {
+            $msg = '';
+
+            $product_idx = $_POST['product_idx'];
+            $yoil_idx = $_POST['yoil_idx'];
+
+            $sql_c = "INSERT INTO tbl_product_charge SET 
+										     product_idx       = '$product_idx'
+										   , yoil_idx          = '$yoil_idx'
+										   , tour_price        = '0'
+										   , tour_price_kids   = '0'
+										   , tour_price_senior = '0'
+										   , r_date            =  now()
+										   , sale              = 'Y'
+										   , deadline_date     = '' ";
+            $result = $this->connect->query($sql_c);
+
+            if ($result) {
+                $msg = '등록 성공.';
+                return $this->response->setStatusCode(200)
+                    ->setJSON([
+                        'status' => 'success',
+                        'message' => $msg
+                    ]);
+            }
+            $msg = '등록 실패.';
+            return $this->response->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $msg
+                ]);
+
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function charge_update()
+    {
+        try {
+            $charge_idx        = $_POST['charge_idx'];
+            $s_station         = $_POST['s_station'];
+            $tour_price        = $_POST['tour_price'];
+            $tour_price_kids   = $_POST['tour_price_kids'];
+            $tour_price_senior = $_POST['tour_price_senior'];
+
+            $sql = "UPDATE tbl_product_charge SET 
+										   s_station         = '$s_station'
+										 , tour_price        = '$tour_price'
+										 , tour_price_kids   = '$tour_price_kids'
+										 , tour_price_senior = '$tour_price_senior'
+										 , u_date            =  now() WHERE charge_idx = '$charge_idx' ";
+
+            write_log($sql);
+            $result = $this->connect->query($sql);
+
+            if($result) {
+                $msg = "수정 완료.";
+            } else {
+                $msg = "수정 오류.";
+            }
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function charge_delete()
+    {
+        try {
+            $charge_idx = $_POST['charge_idx'];
+
+            $sql = "DELETE FROM tbl_product_charge WHERE charge_idx = '$charge_idx' ";
+
+            write_log($sql);
+            $result = $this->connect->query($sql);
+
+            if ($result) {
+                $msg = "삭제 완료.";
+            } else {
+                $msg = "삭제 오류.";
+            }
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+
+    public function station_seq()
+    {
+        try {
+            $msg = '';
+
+            $id          = $_POST['id'];
+            $flag        = $_POST['flag'];
+            $product_idx = $_POST['product_idx'];
+            $yoil_idx    = $_POST['yoil_idx'];
+            $charge_date = $_POST['charge_date'];
+
+            if( $flag  == "U" ){ // 위로
+                $sql    = "UPDATE tbl_product_charge SET seq = seq - 1.5 WHERE charge_idx = ".$id ;
+                write_log($sql);
+                $result = $this->connect->query($sql);
+            }else if( $flag == "D" ){ // 아래로
+                $sql    = "UPDATE tbl_product_charge SET seq = seq + 1.5 WHERE charge_idx = ".$id ;
+                write_log($sql);
+                $result = $this->connect->query($sql);
+            }
+
+            // 순서 정의
+            $sql    = "SELECT charge_idx, seq FROM tbl_product_charge where product_idx = '". $product_idx ."' ORDER BY seq ASC";
+            write_log($sql);
+            $result = $this->connect->query($sql);
+            $result = $result->getResultArray();
+            $num = 0;
+            foreach ($result as $row)
+            {
+                $num    = $num + 1;
+                $sql1   = "UPDATE tbl_product_charge SET seq = '" . $num . "' WHERE charge_idx = ".$row['charge_idx'];
+                write_log($sql1);
+                $this->connect->query($sql1);
+            }
+
+            if ($result) {
+                $msg = "삭제 완료.";
+            } else {
+                $msg = "삭제 오류.";
+            }
 
             return $this->response->setStatusCode(200)
                 ->setJSON([
