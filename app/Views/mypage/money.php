@@ -125,7 +125,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
             success: function (res, status, request) {
                 let response = res.message;
                 if (response == "OK") {
-                    alert("정상적으로 탈퇴 신청이 되었습니다.");
+                    alert("탈퇴한 계정입니다.");
                     location.href = "/mypage/member_out";
                     return;
                 } else if (response == "NOUSER") {
