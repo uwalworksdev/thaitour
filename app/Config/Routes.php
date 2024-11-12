@@ -218,6 +218,10 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("save_option_price", "Admin\AdminSpaController::save_option_price", ['as' => "admin.api.spa_.save_option_price"]);
             $routes->post("del_option_price", "Admin\AdminSpaController::del_option_price", ['as' => "admin.api.spa_.del_option_price"]);
             $routes->post("close_option_price", "Admin\AdminSpaController::close_option_price", ['as' => "admin.api.spa_.close_option_price"]);
+            $routes->post("charge_dummy", "Admin\AdminSpaController::charge_dummy", ['as' => "admin.api.spa_.charge_dummy"]);
+            $routes->post("charge_delete", "Admin\AdminSpaController::charge_delete", ['as' => "admin.api.spa_.charge_delete"]);
+            $routes->post("charge_update", "Admin\AdminSpaController::charge_update", ['as' => "admin.api.spa_.charge_update"]);
+            $routes->post("station_seq", "Admin\AdminSpaController::station_seq", ['as' => "admin.api.spa_.station_seq"]);
         });
     });
 
@@ -439,6 +443,8 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("user_mange", "MyPage::user_mange");
     $routes->get("money", "MyPage::money");
     $routes->get("(:segment)/invoice_view_item", "MyPage::invoice_view_item/$1");
+    $routes->post("money_ok", "MyPage::money_ok");
+    $routes->get("member_out", "MyPage::member_out");
     $routes->post("info_option_ok", "MyPage::info_option_ok");
     $routes->post("info_change_ok", "MyPage::info_change_ok");
     $routes->post("contactDel", "MyPage::contactDel");
