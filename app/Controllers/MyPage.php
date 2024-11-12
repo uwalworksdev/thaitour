@@ -15,6 +15,9 @@ class MyPage extends BaseController
     private $sessionLib;
     private $sessionChk;
     private $ordersModel;
+    private $orderSubModel;
+    private $golfOptionModel;
+    private $orderOptionModel;
     public function __construct()
     {
         helper(['html']);
@@ -25,6 +28,9 @@ class MyPage extends BaseController
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->ordersModel = new \App\Models\OrdersModel();
+        $this->orderSubModel = new \App\Models\OrderSubModel();
+        $this->golfOptionModel = new \App\Models\GolfOptionModel();
+        $this->orderOptionModel = new \App\Models\OrderOptionModel();
         helper('my_helper');
         helper('alert_helper');
     }
@@ -154,13 +160,27 @@ class MyPage extends BaseController
     {
         return view('mypage/money');
     }
-    public function invoice_view_item()
+    public function invoice_view_item($gubun)
     {
-        $gubun = updateSQ($_GET["gubun"]);
 
-        if(!empty($gubun)){
-            return view("mypage/invoice_view_item_{$gubun}");
-        }else{
+        $data = $this->request->getVar();
+        $order_idx = $data["order_idx"];
+
+        $info = $this->ordersModel->getOrderInfo($order_idx);
+
+        $data = array_merge($data, $info);
+
+        $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
+
+        if(!empty($gubun)) {
+
+            if ($gubun == "golf") {
+                $option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
+                $data['option'] = $this->golfOptionModel->getByIdx($option_idx);
+            }
+
+            return view("mypage/invoice_view_item_{$gubun}", $data);
+        } else {
             return view('mypage/invoice_view_item');
         }
 

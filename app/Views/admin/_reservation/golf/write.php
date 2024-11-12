@@ -53,13 +53,12 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="/AdmMaster/_reservation/write_ok" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="/AdmMaster/_reservation/write_ok/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
                 <input type="hidden" id="action_type" name="action_type" value="">
 
-                <input type=hidden name="order_idx" id="order_idx" value='<?= $order_idx ?>'>
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
@@ -121,6 +120,12 @@
                                         <?= $order_no ?>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>상품 업션</th>
+                                    <td><?= $option['option_name'] ?></td>
+                                    <th>인원</th>
+                                    <td><?= $option['option_cnt'] ?></td>
+                                </tr>
                                 
                                 <tr>
                                     <th>주문자명</th>
@@ -135,16 +140,25 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>영문 이름(First Name)</th>
+                                    <td>
+                                        <input type="text" id="order_user_first_name_en" name="order_user_first_name_en"
+                                               value="<?= $order_user_first_name_en ?>" class="input_txt"
+                                               style="width:90%"/>
+                                    </td>
+                                    <th>영문 성(Last Name)</th>
+                                    <td>
+                                        <input type="text" id="order_user_last_name_en" name="order_user_last_name_en"
+                                               value="<?= $order_user_last_name_en ?>" class="input_txt"
+                                               style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>휴대전화</th>
                                     <td>
                                         <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                    <!-- <th>해외 전화번호</th>
-                                    <td>
-                                        <input type="text" id="local_phone" name="local_phone"
-                                               value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
-                                    </td> -->
                                     <th>담당자</th>
                                     <td>
                                         <input type="text" id="manager_name" name="manager_name"
@@ -310,18 +324,23 @@
                                 </tr>
                                 <tr>
                                     <th>골프장 왕복 픽업 차량</th>
-                                    <td colspan="3">
+                                    <td>
                                         <?php foreach ($vehicle as $key => $item): ?>
                                             <span>골프장 왕복 픽업 차량: <?= $item['option_name'] ?> x <?= $item['option_cnt'] ?>대</span>
                                             <?= $key == count($vehicle) - 1 ? "" : "<br>" ?>
                                         <?php endforeach; ?>
                                     </td>
+                                    <th>여행시 현지 연락처</th>
+                                    <td>
+                                        <input type="text" id="local_phone" name="local_phone"
+                                               value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <th>상품 업션</th>
-                                    <td><?= $option['option_name'] ?></td>
-                                    <th>인원</th>
-                                    <td><?= $option['option_cnt'] ?></td>
+                                    <th>차량 미팅 시간</th>
+                                    <td><?= $vehicle_time ?></td>
+                                    <th>출발지(필요호텔)</th>
+                                    <td><?= $departure_point ?></td>
                                 </tr>
                                 <?php if ($order_status == "Y") { ?>
                                     <tr>

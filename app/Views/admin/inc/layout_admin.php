@@ -52,10 +52,15 @@
             maxWidth: '90%',
             maxHeight: '90%'
         });
+
+        $(".price").keyup(function() {
+            let number = $(this).val().replace(/,/g, '');
+            if (!isNaN(number)) {
+                $(this).val(Number(number).toLocaleString("en-US"));
+            }
+        });
     });
     //$('#colorbox').draggable();
-
-    $(".price").number(true);
 
 </script>
 

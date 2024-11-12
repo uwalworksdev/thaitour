@@ -46,6 +46,10 @@ class GolfOptionModel extends Model
         }
         return $options->findAll();
     }
+    public function getByIdx($idx)
+    {
+        return $this->where("idx", $idx)->first();
+    }
     public function checkOptionExist($product_idx, $hole_cnt, $hour, $minute)
     {
         $cnt = $this->where("product_idx", $product_idx)
