@@ -71,7 +71,7 @@ class SpaController extends BaseController
             return $this->response->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
-                    'data' => null
+                    'data' => []
                 ]);
         } catch (\Exception $e) {
             return $this->response

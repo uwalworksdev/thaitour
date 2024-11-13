@@ -677,7 +677,8 @@
 
         async function spaCharge(day_) {
             await LoadingPage();
-            $('#day_').val(day_);
+            $('#day_').val(day_)
+            $('#day_select_').text(day_);;
             await loadDay(day_);
             let price = `<?= number_format($data_['product_price']) ?>`;
             let price_convert = price.toLocaleString();
@@ -698,7 +699,6 @@
                     let data = response.data;
                     let day = response.day;
                     let full_ = response.full_;
-                    $('#day_select_').text(day);
                     renderData(data, full_);
                     LoadingPage();
                 }
@@ -725,7 +725,7 @@
                                 (${convertNum(item_.tour_price_baht)}바트)
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
-                                <input type="text" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_adults_select_" size="4"
+                                <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_adults_select_" size="4"
                                        onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
@@ -738,7 +738,7 @@
                                 (${convertNum(item_.tour_price_kids_baht)}바트)
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
-                                <input type="text" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_children_select_" size="4"
+                                <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_kids}" class="price_in qty_children_select_" size="4"
                                        onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
@@ -768,7 +768,7 @@
             let price_total = 0;
 
             $('.qty_adults_select_').each(function () {
-                let q = $(this).val();
+                let q = $(this).val() ?? 0;
                 let p = $(this).data('price');
 
                 qty_adults += parseInt(q);
@@ -778,7 +778,7 @@
             })
 
             $('.qty_children_select_').each(function () {
-                let q = $(this).val();
+                let q = $(this).val() ?? 0;
                 let p = $(this).data('price');
 
                 qty_children += parseInt(q);
@@ -787,11 +787,12 @@
                 price_total += pT;
             })
 
-            price_total = convertNUmber(price_total);
+            price_total = convertNum(price_total);
             $('#total_sum').text(price_total);
+
+            $('#adultQty').val(qty_adults);
+            $('#childrenQty').val(qty_children);
         }
-
-
 
         // const optCountBoxes = document.querySelectorAll('.opt_count_box');
         // optCountBoxes.forEach(box => {

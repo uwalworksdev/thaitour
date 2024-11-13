@@ -32,7 +32,7 @@
                             <div class="opt_count_box count_box flex__c">
                                 <button type="button" onclick="minusInput(this, 'd');" class="minus_btn"
                                         id="minusAdult2"></button>
-                                <input type="text" class="input-qty" name="qty" id="adultQty2" value="1"
+                                <input type="text" class="input-qty" name="qty" id="childrenQty" value="1"
                                        readonly="">
                                 <button type="button" onclick="plusInput(this);" class="plus_btn"
                                         id="addAdult2"></button>
@@ -228,7 +228,7 @@
                         </li>`;
 
                 $("#option_list_").append(htm_);
-                calcTotal();
+                calcTotalSup();
             },
             error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -265,32 +265,32 @@
     }
 </script>
 <script>
-    function plusInput(el) {
-        let input = $(el).parent().find('input');
-        input.val(parseInt(input.val()) + 1);
-        calcTotal();
-    }
-
-    function minusInput(el, d) {
-        let input = $(el).parent().find('input');
-        if (parseInt(input.val()) > 1) {
-            input.val(parseInt(input.val()) - 1);
-            calcTotal();
-        } else {
-            if (d !== 'd') {
-                removeData(el);
-            }
-        }
-    }
+    // function plusInput(el) {
+    //     let input = $(el).parent().find('input');
+    //     input.val(parseInt(input.val()) + 1);
+    //     calcTotalSup();
+    // }
+    //
+    // function minusInput(el, d) {
+    //     let input = $(el).parent().find('input');
+    //     if (parseInt(input.val()) > 1) {
+    //         input.val(parseInt(input.val()) - 1);
+    //         calcTotalSup();
+    //     } else {
+    //         if (d !== 'd') {
+    //             removeData(el);
+    //         }
+    //     }
+    // }
 
     function removeData(el) {
         if (confirm('확실히 선택을 취소하고 싶습니다?')) {
             $(el).parent().parent().remove();
-            calcTotal();
+            calcTotalSup();
         }
     }
 
-    function calcTotal() {
+    function calcTotalSup() {
         let option_list_ = $("#option_list_").find('li.cus-count-input');
 
         let total_price = 0;
