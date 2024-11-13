@@ -668,21 +668,130 @@
         // });
         // });
 
-        $(document).on('click', '.sel_date', function () {
+        $(document).on('click', '.allowBtn', function () {
             $('.sel_date').removeClass('active_');
-            $(this).addClass('active_');
-            let day_ = $(this).data('date');
+            $(this).parent().parent().addClass('active_');
+            let day_ = $(this).parent().parent().data('date');
+            spaCharge(day_)
+        });
+
+        async function spaCharge(day_) {
+            await LoadingPage();
             $('#day_').val(day_);
-            loadDay(day_);
+            await loadDay(day_);
             let price = `<?= number_format($data_['product_price']) ?>`;
             let price_convert = price.toLocaleString();
             $('#total_sum').text(price_convert);
-            calcTotal();
-        });
+        }
 
         function loadDay(day_) {
-
+            let url = `<?= route_to('api.spa_.charge_list') ?>?product_idx=<?= $data_['product_idx'] ?>&day_=${day_}`;
+            $.ajax({
+                url: url,
+                type: "GET",
+                async: false,
+                error: function (request, status, error) {
+                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    LoadingPage();
+                },
+                success: function (response, status, request) {
+                    let data = response.data;
+                    let day = response.day;
+                    let full_ = response.full_;
+                    $('#day_select_').text(day);
+                    renderData(data, full_);
+                    LoadingPage();
+                }
+            });
         }
+
+        function renderData(data, full_) {
+            let html = ``;
+            for (let i = 0; i < data.length; i++) {
+                let item_ = data[i];
+
+                let txt = '매일'
+                if (full_ && full_ == false) {
+                    txt = '';
+                }
+
+                html += `<tr>
+                    <td>${item_.s_station}</td>
+                    <td>${txt}</td>
+                    <td>
+                        <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                            <div class="price">
+                                <span class="text_primary">${convertNum(item_.tour_price)}원</span>
+                                (${convertNum(item_.tour_price_baht)}바트)
+                            </div>
+                            <p class="" style="display: flex; align-items: center; gap: 5px">
+                                <input type="text" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_adults_select_" size="4"
+                                       onkeyup="chkNum(this)">
+                                <span>명</span>
+                            </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                            <div class="price">
+                                <span class="text_primary">${convertNum(item_.tour_price_kids)}원</span>
+                                (${convertNum(item_.tour_price_kids_baht)}바트)
+                            </div>
+                            <p class="" style="display: flex; align-items: center; gap: 5px">
+                                <input type="text" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_children_select_" size="4"
+                                       onkeyup="chkNum(this)">
+                                <span>명</span>
+                            </p>
+                        </div>
+                    </td>
+                </tr>`;
+            }
+
+            $('#price_body_').html(html);
+        }
+
+        function chkNum(el) {
+            let val = $(el).val();
+
+            if (!$.isNumeric(val)) {
+                val = val.replace(/\D/g, '');
+
+                $(el).val(val);
+            }
+
+            calcTotal();
+        }
+
+        function calcTotal() {
+            let qty_children = 0;
+            let qty_adults = 0;
+            let price_total = 0;
+
+            $('.qty_adults_select_').each(function () {
+                let q = $(this).val();
+                let p = $(this).data('price');
+
+                qty_adults += parseInt(q);
+                let pT = parseInt(p) * parseInt(q)
+
+                price_total += pT;
+            })
+
+            $('.qty_children_select_').each(function () {
+                let q = $(this).val();
+                let p = $(this).data('price');
+
+                qty_children += parseInt(q);
+                let pT = parseInt(p) * parseInt(q)
+
+                price_total += pT;
+            })
+
+            price_total = convertNUmber(price_total);
+            $('#total_sum').text(price_total);
+        }
+
+
 
         // const optCountBoxes = document.querySelectorAll('.opt_count_box');
         // optCountBoxes.forEach(box => {
@@ -824,16 +933,6 @@
             $('html, body').animate({
                 scrollTop: $('#' + elID).offset().top - 230
             }, 'slow');
-        }
-
-        function chkNum(el) {
-            let val = $(el).val();
-
-            if (!$.isNumeric(val)) {
-                val = val.replace(/\D/g, '');
-
-                $(el).val(val);
-            }
         }
     </script>
 <?php $this->endSection(); ?>

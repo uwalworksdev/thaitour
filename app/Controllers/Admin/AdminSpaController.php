@@ -1362,44 +1362,4 @@ class AdminSpaController extends BaseController
                 );
         }
     }
-
-    public function charge_list()
-    {
-        $product_idx = $_POST['product_idx'];
-        $day_ = $_POST['day_'];
-        try {
-            $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND product_idx = ?";
-            $query = $this->connect->query($sql, [$day_, $day_, $product_idx]);
-            $result = $query->getRowArray();
-
-            if ($result) {
-                $yoil_idx = $result['p_idx'];
-
-                $fsql2 = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
-                $fresult2 = $this->connect->query($fsql2);
-                $fresult2 = $fresult2->getResultArray();
-
-                return $this->response->setStatusCode(200)
-                    ->setJSON([
-                        'status' => 'error',
-                        'data' => $fresult2
-                    ]);
-            }
-
-            return $this->response->setStatusCode(200)
-                ->setJSON([
-                    'status' => 'error',
-                    'data' => null
-                ]);
-        } catch (\Exception $e) {
-            return $this->response
-                ->setStatusCode(400)
-                ->setJSON(
-                    [
-                        'status' => 'error',
-                        'message' => $e->getMessage()
-                    ]
-                );
-        }
-    }
 }
