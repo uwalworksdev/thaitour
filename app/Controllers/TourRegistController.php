@@ -493,9 +493,12 @@ class TourRegistController extends BaseController
 
         $data['fresult8'] = $fresult8;
 
-        $sql = "SELECT * FROM tbl_product_price WHERE product_idx = $product_idx ORDER BY p_idx DESC";
-        $fresult9 = $this->connect->query($sql);
-        $fresult9 = $fresult9->getResultArray();
+        $fresult9 = [];
+        if ($product_idx) {
+            $sql = "SELECT * FROM tbl_product_price WHERE product_idx = $product_idx ORDER BY p_idx DESC";
+            $fresult9 = $this->connect->query($sql);
+            $fresult9 = $fresult9->getResultArray();
+        }
 
         $new_data = [
             'product_idx' => $product_idx,
