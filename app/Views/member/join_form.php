@@ -323,7 +323,7 @@ if ($mIdx != "") {
                         <input type="text" name="addr2" id="sample2_detailAddress" placeholder="" class="bs-input">
                     </div>
                 </div>
-                <div class="input-wrap">
+                <div class="input-wrap d-none">
                     <label class="label">방문경로</label>
                     <div class="input-row">
                         <div class="check flex col_3 mo_col_2"
