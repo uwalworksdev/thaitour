@@ -260,12 +260,14 @@
                                                     </td>
 
                                                     <td style="text-align:center;">
-                                                        <button type="button" class="chargeUpdate"
-                                                                value="<?= $frow2["charge_idx"] ?>">수정
-                                                        </button>
-                                                        <button type="button" class="chargeDelete"
-                                                                value="<?= $frow2["charge_idx"] ?>">삭제
-                                                        </button>
+                                                        <div class="" style="display: flex">
+                                                            <button type="button" class="chargeUpdate"
+                                                                    value="<?= $frow2["charge_idx"] ?>">수정
+                                                            </button>
+                                                            <button type="button" class="chargeDelete"
+                                                                    value="<?= $frow2["charge_idx"] ?>">삭제
+                                                            </button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -764,11 +766,7 @@
 
     <script>
         function go_list() {
-            var product_code_1 = $("#product_code_1").val();
-            if (product_code_1 == "1317") location.href = '/AdmMaster/_tourRegist/write_train.php?product_idx=' + $("#product_idx").val();
-            if (product_code_1 == "1320") location.href = '/AdmMaster/_tourRegist/write_season.php?product_idx=' + $("#product_idx").val();
-            if (product_code_1 == "1324") location.href = '/AdmMaster/_tourRegist/write_srt.php?product_idx=' + $("#product_idx").val();
-            if (product_code_1 == "1303") location.href = '/AdmMaster/_tourRegist/write_island.php?product_idx=' + $("#product_idx").val();
+            window.location.href = "/AdmMaster/_tourRegist/write_spas?s_product_code_1=&s_product_code_2=&s_product_code_2=&search_category=&search_name=&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>";
         }
     </script>
 
@@ -795,6 +793,9 @@
             $("#ajax_loader").removeClass("display-none");
             let url = `<?= route_to('admin.api.spa_.save_option_price') ?>`;
 
+            // let formData = $("#chargeForm").serialize();
+            const formData = new FormData($('#chargeForm')[0]);
+
             let d_start = $("#from").val();
             let d_end = $("#to").val();
 
@@ -808,28 +809,42 @@
             let yoil_5 = $("#yoil_5").is(":checked") ? "Y" : "N";
             let yoil_6 = $("#yoil_6").is(":checked") ? "Y" : "N";
 
-            let data = {
-                "p_idx": p_idx,
-                "product_idx": '<?= $product_idx ?>',
-                "s_date": d_start,
-                "e_date": d_end,
-                "sale": sale,
-                "yoil_0": yoil_0,
-                "yoil_1": yoil_1,
-                "yoil_2": yoil_2,
-                "yoil_3": yoil_3,
-                "yoil_4": yoil_4,
-                "yoil_5": yoil_5,
-                "yoil_6": yoil_6
-            };
+            //let data = {
+            //    "p_idx": p_idx,
+            //    "product_idx": '<?php //= $product_idx ?>//',
+            //    "s_date": d_start,
+            //    "e_date": d_end,
+            //    "sale": sale,
+            //    "yoil_0": yoil_0,
+            //    "yoil_1": yoil_1,
+            //    "yoil_2": yoil_2,
+            //    "yoil_3": yoil_3,
+            //    "yoil_4": yoil_4,
+            //    "yoil_5": yoil_5,
+            //    "yoil_6": yoil_6
+            //};
 
+            formData.append("p_idx", p_idx);
+            formData.append("product_idx", '<?= $product_idx ?>');
+            formData.append("s_date", d_start);
+            formData.append("e_date", d_end);
+            formData.append("sale", sale);
+            formData.append("yoil_0", yoil_0);
+            formData.append("yoil_1", yoil_1);
+            formData.append("yoil_2", yoil_2);
+            formData.append("yoil_3", yoil_3);
+            formData.append("yoil_4", yoil_4);
+            formData.append("yoil_5", yoil_5);
+            formData.append("yoil_6", yoil_6);
 
             $.ajax({
                 url: url,
                 type: "POST",
-                data: data,
+                data: formData,
                 async: false,
                 cache: false,
+                processData: false,
+                contentType: false,
                 success: function (data, textStatus) {
                     let message = data.message;
                     alert(message);

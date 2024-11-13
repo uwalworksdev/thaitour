@@ -1070,9 +1070,9 @@ class AdminSpaController extends BaseController
                 $sql = "UPDATE tbl_product_price SET 
                                 s_date          = '" . ($s_date ?? $row['s_date']) . "',
                                 e_date          = '" . ($e_date ?? $row['e_date']) . "',
-                                adult_price     = '" . ($price1 ?? $row['price1']) . "',
-                                kids_price      = '" . ($price2 ?? $row['price2']) . "',
-                                senior_price    = '" . ($price3 ?? $row['price3']) . "',
+                                adult_price     = '" . ($price1 ?? $row['adult_price']) . "',
+                                kids_price      = '" . ($price2 ?? $row['kids_price']) . "',
+                                senior_price    = '" . ($price3 ?? $row['senior_price']) . "',
                                 sale            = '" . ($sale ?? $row['sale']) . "',
                                 yoil_0          = '" . ($yoil_0 ?? $row['yoil_0']) . "',
                                 yoil_1          = '" . ($yoil_1 ?? $row['yoil_1']) . "',
@@ -1115,6 +1115,33 @@ class AdminSpaController extends BaseController
             } else {
                 $message = "등록되었습니다.";
             }
+
+            $charge_idx = $_POST['charge_idx'] ?? [];
+            $s_station = $_POST['s_station'] ?? [];
+            $tour_price = $_POST['tour_price'] ?? [];
+            $tour_price_kids = $_POST['tour_price_kids'] ?? [];
+            $tour_price_senior = $_POST['tour_price_senior'] ?? [];
+
+            $length = count($charge_idx);
+
+            for ($i = 0; $i < $length; $i++) {
+                $item_s_station = $s_station[$i];
+                $item_tour_price = str_replace(',', '', $tour_price[$i]);
+                $item_tour_price_kids = str_replace(',', '', $tour_price_kids[$i]);
+                $item_tour_price_senior = str_replace(',', '', $tour_price_senior[$i]);
+                $item_charge_idx = $charge_idx[$i];
+
+                $sql = "UPDATE tbl_product_charge SET 
+										   s_station         = '$item_s_station'
+										 , tour_price        = '$item_tour_price'
+										 , tour_price_kids   = '$item_tour_price_kids'
+										 , tour_price_senior = '$item_tour_price_senior'
+										 , u_date            =  now() WHERE charge_idx = '$item_charge_idx' ";
+
+                write_log($sql);
+                $result = $this->connect->query($sql);
+            }
+
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON(
@@ -1193,12 +1220,16 @@ class AdminSpaController extends BaseController
             $product_idx = $_POST['product_idx'];
             $yoil_idx = $_POST['yoil_idx'];
 
+            $sql = "SELECT * FROM tbl_product_price WHERE p_idx = '$yoil_idx' ";
+            $result = $this->connect->query($sql);
+            $result = $result->getRowArray();
+
             $sql_c = "INSERT INTO tbl_product_charge SET 
 										     product_idx       = '$product_idx'
 										   , yoil_idx          = '$yoil_idx'
-										   , tour_price        = '0'
-										   , tour_price_kids   = '0'
-										   , tour_price_senior = '0'
+										   , tour_price        = '" . $result['adult_price'] . "'
+										   , tour_price_kids   = '" . $result['kids_price'] . "'
+										   , tour_price_senior = '" . $result['senior_price'] . "'
 										   , r_date            =  now()
 										   , sale              = 'Y'
 										   , deadline_date     = '' ";
@@ -1340,11 +1371,7 @@ class AdminSpaController extends BaseController
                 $this->connect->query($sql1);
             }
 
-            if ($result) {
-                $msg = "삭제 완료.";
-            } else {
-                $msg = "삭제 오류.";
-            }
+            $msg = "수정되었습니다.";
 
             return $this->response->setStatusCode(200)
                 ->setJSON([
