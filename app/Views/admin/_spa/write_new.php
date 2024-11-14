@@ -261,10 +261,12 @@
 
                                                     <td style="text-align:center;">
                                                         <div class="" style="display: flex; gap: 10px">
-                                                            <button style="height: 30px" type="button" class="chargeUpdate"
+                                                            <button style="height: 30px" type="button"
+                                                                    class="chargeUpdate"
                                                                     value="<?= $frow2["charge_idx"] ?>">수정
                                                             </button>
-                                                            <button style="height: 30px" type="button" class="chargeDelete"
+                                                            <button style="height: 30px" type="button"
+                                                                    class="chargeDelete"
                                                                     value="<?= $frow2["charge_idx"] ?>">삭제
                                                             </button>
                                                         </div>
