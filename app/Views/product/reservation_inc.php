@@ -181,7 +181,7 @@
                 if (!is_valid) {
                     if (is_check) {
                         isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
-                        priceLabel = '<span class="label allowBtn allow-text">예약가능</span>';
+                        priceLabel = `<span data-day="${day}" class="label allowBtn allow-text">예약가능</span>`;
                     } else {
                         priceLabel = '<span class="label sold-out-text">예약마감</span>';
                         isDeadline = " deadline";
