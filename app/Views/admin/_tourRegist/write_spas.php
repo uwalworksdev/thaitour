@@ -638,7 +638,7 @@
                                         <input type="text" autocomplete="off" name="addrs" id="addrs"
                                                value="<?= $addrs ?>" class="text" style="width:70%"/>
                                         <button type="button" class="btn btn-primary" style="width: unset;"
-                                                onclick="getCoordinates();">위치 얻기
+                                                onclick="getCoordinates();">위치선택
                                         </button>
                                         <div style="margin-top: 10px;">
                                             Latitude : <input type="text" name="latitude" id="latitude"

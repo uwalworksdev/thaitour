@@ -678,7 +678,7 @@
         async function spaCharge(day_) {
             await LoadingPage();
             $('#day_').val(day_)
-            $('#day_select_').text(day_);;
+            $('#day_select_').text(day_);
             await loadDay(day_);
             let price = `<?= number_format($data_['product_price']) ?>`;
             let price_convert = price.toLocaleString();
