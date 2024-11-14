@@ -144,6 +144,12 @@
                             <!--                                </td>-->
                             <!--                            </tr>-->
 
+                            <tr>
+                                <td colspan="7">
+                                    날짜 선택해주세요!
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -427,13 +433,12 @@
                             <div class="qa-section">
                                 <div class="custom-area-text">
                                     <label class="custom-label" for="qa-comment">
-                            <textarea name="qa-comment" id="qa-comment"
-                                      class="custom-main-input-style textarea autoExpand"
-                                      placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
+                                    <textarea name="qa-comment" id="qa-comment"
+                                          class="custom-main-input-style textarea autoExpand"
+                                          placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
                                     </label>
                                     <div type="submit" class="qa-submit-btn">등록</div>
                                 </div>
-
 
                                 <ul class="qa-list">
                                     <li class="">
@@ -523,6 +528,7 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="pagination">
                                 <a href="#" class="page-link">
                                     <img class="only_web" src="/uploads/icons/arrow_prev_step.png"
@@ -638,7 +644,6 @@
             },
         });
 
-
         function getPriceLabel(status) {
             if (status === "예약가능") return '<span class="label allow-text">예약가능</span>';
             if (status === "예약마감") return '<span class="label sold-out-text">예약마감</span>';
@@ -672,7 +677,7 @@
             $('.sel_date').removeClass('active_');
             $(this).parent().parent().addClass('active_');
             let day_ = $(this).parent().parent().data('date');
-            spaCharge(day_)
+            spaCharge(day_);
         });
 
         async function spaCharge(day_) {
@@ -685,8 +690,15 @@
             $('#total_sum').text(price_convert);
         }
 
+        function getYoil(day) {
+            const yoilArray = ['yoil_0', 'yoil_1', 'yoil_2', 'yoil_3', 'yoil_4', 'yoil_5', 'yoil_6'];
+            const date = new Date(day);
+            const dayIndex = date.getUTCDay();
+            return yoilArray[dayIndex];
+        }
         function loadDay(day_) {
-            let url = `<?= route_to('api.spa_.charge_list') ?>?product_idx=<?= $data_['product_idx'] ?>&day_=${day_}`;
+            let yoil = getYoil(day_);
+            let url = `<?= route_to('api.spa_.charge_list') ?>?product_idx=<?= $data_['product_idx'] ?>&day_=${day_}&yoil=${yoil}`;
             $.ajax({
                 url: url,
                 type: "GET",
@@ -747,6 +759,14 @@
                 </tr>`;
             }
 
+            if (data.length === 0) {
+                html = `<tr>
+                                <td colspan="7">
+                                    날짜 선택해주세요!
+                                </td>
+                            </tr>`;
+            }
+
             $('#price_body_').html(html);
         }
 
@@ -759,10 +779,10 @@
                 $(el).val(val);
             }
 
-            calcTotal();
+            showTotalPrice();
         }
 
-        function calcTotal() {
+        function calcTotalPrice() {
             let qty_children = 0;
             let qty_adults = 0;
             let price_total = 0;
@@ -788,30 +808,29 @@
             })
 
             price_total = convertNum(price_total);
-            $('#total_sum').text(price_total);
 
+            return data = {
+                qty_adults: qty_adults,
+                qty_children: qty_children,
+                price_total: price_total
+            }
+        }
+
+        function showTotalPrice() {
+            let data = calcTotalPrice();
+
+            let qty_adults = data.qty_adults;
+            let qty_children = data.qty_children;
+            let price_total = data.price_total;
+
+            renderTotalPrice(price_total, qty_adults, qty_children);
+        }
+
+        function renderTotalPrice(price_total, qty_adults, qty_children) {
+            $('#total_sum').text(price_total);
             $('#adultQty').val(qty_adults);
             $('#childrenQty').val(qty_children);
         }
-
-        // const optCountBoxes = document.querySelectorAll('.opt_count_box');
-        // optCountBoxes.forEach(box => {
-        //     const minusButton = box.querySelector('.minus_btn');
-        //     const plusButton = box.querySelector('.plus_btn');
-        //     const inputField = box.querySelector('.input-qty');
-        //
-        //     minusButton.addEventListener('click', () => {
-        //         let currentValue = parseInt(inputField.value, 10);
-        //         if (currentValue > 0) {
-        //             inputField.value = currentValue - 1;
-        //         }
-        //     });
-        //
-        //     plusButton.addEventListener('click', () => {
-        //         let currentValue = parseInt(inputField.value, 10);
-        //         inputField.value = currentValue + 1;
-        //     });
-        // });
     </script>
 
     <div id="dim"></div>
@@ -888,9 +907,7 @@
                         dots: true,
                         focusOnSelect: true
                     });
-
                     return false;
-
                 }
             });
         }
