@@ -285,6 +285,51 @@ $links = "list";
                                     <tbody>
                                     <tr>
                                         <th>
+                                            <input type="checkbox" id="all_departure_area" class="all_input">
+                                            <label for="all_departure_area">
+                                                출발지역
+                                            </label>
+                                        </th>
+                                        <td>
+                                            <?php
+                                                foreach($place_start_list as $start){
+                                            ?>
+                                                <input type="checkbox" id="departure_area_<?=$start["code_no"]?>" name="departure_area[]" class="departure_area" value="<?=$start["code_no"]?>">
+                                                <label for="departure_area_<?=$start["code_no"]?>"><?=$start["code_name"]?></label>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" id="all_destination_area" class="all_input">
+                                            <label for="all_destination_area">
+                                                도착지역
+                                            </label> 
+                                        </th>
+                                        <td>
+                                            <?php
+                                                foreach($place_end_list as $end){
+                                            ?>
+                                                <input type="checkbox" id="destination_area_<?=$end["code_no"]?>" name="destination_area[]" class="destination_area" value="<?=$end["code_no"]?>">
+                                                <label for="destination_area_<?=$end["code_no"]?>"><?=$end["code_name"]?></label>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="listBottom">
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="90%"/>
+                                    </colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th>
                                             옵션추가
                                             <button style="margin: 0px;" type="button" class="btn_01" onclick="add_option();">추가</button>
                                         </th>
@@ -450,6 +495,23 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+<script>
+    $("#all_departure_area").on("change", function(){
+        if($(this).is(":checked")){
+            $(".departure_area").prop("checked", true);
+        }else{
+            $(".departure_area").prop("checked", false);
+        }
+    });
+
+    $("#all_destination_area").on("change", function(){
+        if($(this).is(":checked")){
+            $(".destination_area").prop("checked", true);
+        }else{
+            $(".destination_area").prop("checked", false);
+        }
+    });
+</script>
 <script>
     function add_option() {
         var addOption = "";

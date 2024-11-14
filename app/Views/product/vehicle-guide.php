@@ -507,10 +507,15 @@
 
             const minium_people_cnt = Number(products[i]["minium_people_cnt"]) ?? 0;
             const total_people_cnt = Number(products[i]["total_people_cnt"]) ?? 0;
+            let vehicle_select =  $(`#product_vehicle_list_selected tr.product_${products[i]["product_idx"]}`);
 
             const cnt_options = Array(total_people_cnt - minium_people_cnt + 1).fill(1).map((_, index) => {
                 const cnt = minium_people_cnt + index;
-                return `<option value="${cnt}">${cnt}대</option>`
+                let selected = "";
+                if(vehicle_select && vehicle_select.data("cnt") == cnt){
+                    selected = "selected";
+                }
+                return `<option value="${cnt}" ${selected}>${cnt}대</option>`
             }).join('');
 
             const price_str = Math.round(products[i]["product_price"]);
@@ -646,16 +651,26 @@
             totalCnt += cnt;
         })
 
-        $("#totalCnt").text(totalCnt);
+        $("#total_cnt").text(totalCnt);
         $("#all_price").text(totalPrice.toLocaleString('ko-KR'));
         $("#all_price_baht").text(totalPriceBaht.toLocaleString('ko-KR'));
         $("#final_price").text(totalPrice.toLocaleString('ko-KR'));
         $("#final_price_baht").text(totalPriceBaht.toLocaleString('ko-KR'));
     }
 
+    var previousValue;
+
     function handleSelectNumber(e){
         let id = $(e).data("id");
         let cnt = $(e).val();
+
+        if(Number(cnt) === 0){
+            alert("0보다 큰 수량을 선택하세요.");
+            $(e).val(previousValue);
+            return false;
+        }
+
+        previousValue = cnt;
 
         $(`#product_vehicle_list_selected tr.product_${id}`).data("cnt", cnt);
         calculatePrice();
