@@ -198,72 +198,6 @@
                         window.onload = initMap;
                     </script>
 
-                    <!--                    <div class="section2" id="section2">-->
-                    <!--                        <h2 class="title-sec2">-->
-                    <!--                            숙소개요-->
-                    <!--                        </h2>-->
-                    <!--                        <h3 class="sub-title-sec2">-->
-                    <!--                            추천 포인트-->
-                    <!--                        </h3>-->
-                    <!--                        <div class="">-->
-                    <!--                            <p class="description-sec2" style="letter-spacing: 1px">-->
-                    <!--                                --><?php //= viewSQ($data_['product_info']) ?>
-                    <!--                            </p>-->
-                    <!--                        </div>-->
-                    <!--                        <div class="tag-list-icon mt-20">-->
-                    <!--                            --><?php //foreach ($fresult4 as $row) : ?>
-                    <!--                                <div class="item-tag">-->
-                    <!--                                    <img src="/data/code/-->
-                    <?php //= $row['ufile1'] ?><!--" alt="--><?php //= $row['code_name'] ?><!--">-->
-                    <!--                                    <span>--><?php //= $row['code_name'] ?><!--</span>-->
-                    <!--                                </div>-->
-                    <!--                            --><?php //endforeach; ?>
-                    <!--                        </div>-->
-                    <!--                        <h2 class="sub-title-sec2">-->
-                    <!--                            인기 시설 및 서비스-->
-                    <!--                        </h2>-->
-                    <!--                        <div class="tag_list_done">-->
-                    <!--                            --><?php //foreach ($bresult4 as $row) : ?>
-                    <!--                                <div class="item_done">-->
-                    <!--                                    <img src="/uploads/icons/done_icon.png" alt="done_icon">-->
-                    <!--                                    <span>--><?php //= $row['code_name'] ?><!--</span>-->
-                    <!--                                </div>-->
-                    <!--                            --><?php //endforeach; ?>
-                    <!--                        </div>-->
-                    <!--                        <h2 class="sub-title-sec2">-->
-                    <!--                            스파주변 추천명소-->
-                    <!--                        </h2>-->
-                    <!--                        <div class="post-list-sec2">-->
-                    <!--                            --><?php //foreach ($fresult8 as $row) : ?>
-                    <!--                                <div class="">-->
-                    <!--                                    <img src="/data/code/-->
-                    <?php //= $row['ufile1'] ?><!--" alt="hotel_thumbnai_1">-->
-                    <!--                                    <span>--><?php //if ($row['type']) { ?><!-- -->
-                    <?php //= $row['type'] ?><!--: --><?php //} ?><!-- --><?php //= $row['code_name'] ?><!--(-->
-                    <?php //= $row['distance'] ?><!--)</span>-->
-                    <!--                                </div>-->
-                    <!--                            --><?php //endforeach; ?>
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="section4" id="section3">-->
-                    <!--                        <h2 class="title-sec4">시설 &amp; 서비스</h2>-->
-                    <!--                        <div class="list-tag-sec4" style="flex-wrap: wrap; gap: 30px; justify-content: start; ">-->
-                    <!--                            --><?php //foreach ($fresult5 as $row2): ?>
-                    <!--                                <div class="tag-container-item-sec4"-->
-                    <!--                                     style="width: calc((100% - 120px)/3); padding-right: 70px">-->
-                    <!--                                    <div class="tag-item-title"> -->
-                    <?php //= $row2['code_name'] ?><!-- </div>-->
-                    <!--                                    <ul class="tag-item-list">-->
-                    <!--                                        --><?php //$child = $row2['child'];
-                    //                                        foreach ($child as $item2): ?>
-                    <!--                                            <li>--><?php //= $item2['code_name'] ?><!--</li>-->
-                    <!--                                        --><?php //endforeach; ?>
-                    <!--                                    </ul>-->
-                    <!--                                </div>-->
-                    <!--                            --><?php //endforeach; ?>
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-
                     <?php
                     $product_more = $data_['product_more'];
                     $breakfast_data_arr2 = [];
@@ -434,8 +368,8 @@
                                 <div class="custom-area-text">
                                     <label class="custom-label" for="qa-comment">
                                     <textarea name="qa-comment" id="qa-comment"
-                                          class="custom-main-input-style textarea autoExpand"
-                                          placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
+                                              class="custom-main-input-style textarea autoExpand"
+                                              placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
                                     </label>
                                     <div type="submit" class="qa-submit-btn">등록</div>
                                 </div>
@@ -685,9 +619,6 @@
             $('#day_').val(day_)
             $('#day_select_').text(day_);
             await loadDay(day_);
-            let price = `<?= number_format($data_['product_price']) ?>`;
-            let price_convert = price.toLocaleString();
-            $('#total_sum').text(price_convert);
         }
 
         function getYoil(day) {
@@ -696,6 +627,7 @@
             const dayIndex = date.getUTCDay();
             return yoilArray[dayIndex];
         }
+
         function loadDay(day_) {
             let yoil = getYoil(day_);
             let url = `<?= route_to('api.spa_.charge_list') ?>?product_idx=<?= $data_['product_idx'] ?>&day_=${day_}&yoil=${yoil}`;
@@ -708,26 +640,29 @@
                     LoadingPage();
                 },
                 success: function (response, status, request) {
-                    let data = response.data;
-                    let day = response.day;
-                    let full_ = response.full_;
-                    renderData(data, full_);
+                    let day = response.data.day;
+                    renderData(response.data);
                     LoadingPage();
                 }
             });
         }
 
-        function renderData(data, full_) {
+        function renderData(rs) {
             let html = ``;
-            for (let i = 0; i < data.length; i++) {
-                let item_ = data[i];
+            for (let i = 0; i < rs.length; i++) {
+                let data = rs[i].data;
 
-                let txt = '매일'
-                if (full_ && full_ == false) {
-                    txt = '';
-                }
+                let full_ = data.full_;
 
-                html += `<tr>
+                for (let i = 0; i < data.length; i++) {
+                    let item_ = data[i];
+
+                    let txt = '매일'
+                    if (full_ && full_ == false) {
+                        txt = '';
+                    }
+
+                    html += `<tr>
                     <td>${item_.s_station}</td>
                     <td>${txt}</td>
                     <td>
@@ -757,9 +692,10 @@
                         </div>
                     </td>
                 </tr>`;
+                }
             }
 
-            if (data.length === 0) {
+            if (rs.length === 0) {
                 html = `<tr>
                                 <td colspan="7">
                                     날짜 선택해주세요!
@@ -827,9 +763,27 @@
         }
 
         function renderTotalPrice(price_total, qty_adults, qty_children) {
+            price_total = data.price_total.replaceAll(',', '');
+            price_total = mainCalc(price_total);
             $('#total_sum').text(price_total);
             $('#adultQty').val(qty_adults);
             $('#childrenQty').val(qty_children);
+        }
+
+        function mainCalc(price_total) {
+            let option_list_ = $("#option_list_").find('li.cus-count-input');
+
+            let total_price = 0;
+            for (let i = 0; i < option_list_.length; i++) {
+                let inp = $(option_list_[i]).find('input.input-qty');
+                let price = inp.attr('data-price');
+                let cnt = inp.val();
+                total_price += parseInt(price) * parseInt(cnt);
+            }
+
+            total_price += parseInt(price_total);
+            total_price = total_price.toLocaleString();
+            return total_price;
         }
     </script>
 
@@ -892,7 +846,6 @@
                     alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                 },
                 success: function (response, status, request) {
-
                     $(".multiple-items").html(response.data);
 
                     popup.show();

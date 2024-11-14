@@ -308,22 +308,8 @@
     }
 
     function calcTotalSup() {
-        let option_list_ = $("#option_list_").find('li.cus-count-input');
-
-        let total_price = 0;
-        for (let i = 0; i < option_list_.length; i++) {
-            let inp = $(option_list_[i]).find('input.input-qty');
-            let price = inp.attr('data-price');
-            let cnt = inp.val();
-            total_price += parseInt(price) * parseInt(cnt);
-        }
-
         let data = calcTotalPrice();
-
-        let price_total = data.price_total.replaceAll(',', '');
-
-        total_price += parseInt(price_total);
-        total_price = total_price.toLocaleString();
-        $('#total_sum').text(total_price);
+        let price_total = mainCalc(data.price_total.replaceAll(',', ''));
+        $('#total_sum').text(price_total);
     }
 </script>
