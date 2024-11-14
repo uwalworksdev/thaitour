@@ -59,7 +59,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_reservation", static function ($routes) {
         $routes->get("list", "Admin\ReservationController::list");
         $routes->get("(:segment)/write", "Admin\ReservationController::write/$1");
-        $routes->post("write_ok", "Admin\ReservationController::write_ok");
+        $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
         $routes->post("delete", "Admin\ReservationController::delete");
         $routes->get("get_code", "Admin\ReservationController::get_code");
     });
@@ -218,6 +218,10 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("save_option_price", "Admin\AdminSpaController::save_option_price", ['as' => "admin.api.spa_.save_option_price"]);
             $routes->post("del_option_price", "Admin\AdminSpaController::del_option_price", ['as' => "admin.api.spa_.del_option_price"]);
             $routes->post("close_option_price", "Admin\AdminSpaController::close_option_price", ['as' => "admin.api.spa_.close_option_price"]);
+            $routes->post("charge_dummy", "Admin\AdminSpaController::charge_dummy", ['as' => "admin.api.spa_.charge_dummy"]);
+            $routes->post("charge_delete", "Admin\AdminSpaController::charge_delete", ['as' => "admin.api.spa_.charge_delete"]);
+            $routes->post("charge_update", "Admin\AdminSpaController::charge_update", ['as' => "admin.api.spa_.charge_update"]);
+            $routes->post("station_seq", "Admin\AdminSpaController::station_seq", ['as' => "admin.api.spa_.station_seq"]);
         });
     });
 
@@ -380,6 +384,10 @@ $routes->group("api", static function ($routes) {
         $routes->post("roomPhoto", "Api\ProductApi::roomPhoto");
         $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
     });
+
+    $routes->group("spa_", function ($routes) {
+        $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
+    });
 });
 
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
@@ -438,7 +446,9 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("info_change", "MyPage::info_change");
     $routes->get("user_mange", "MyPage::user_mange");
     $routes->get("money", "MyPage::money");
-    $routes->get("invoice_view_item", "MyPage::invoice_view_item");
+    $routes->get("(:segment)/invoice_view_item", "MyPage::invoice_view_item/$1");
+    $routes->post("money_ok", "MyPage::money_ok");
+    $routes->get("member_out", "MyPage::member_out");
     $routes->post("info_option_ok", "MyPage::info_option_ok");
     $routes->post("info_change_ok", "MyPage::info_change_ok");
     $routes->post("contactDel", "MyPage::contactDel");

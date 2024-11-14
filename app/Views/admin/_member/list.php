@@ -113,7 +113,7 @@
                             <tbody>
                                 <?php foreach ($members as $i => $row) { ?>
                                     <tr>
-                                        <td><input type="checkbox" name="m_idx[]" value="<?= $row['m_idx'] ?>" /></td>
+                                        <td><input type="checkbox" class="m_idx" name="m_idx[]" value="<?= $row['m_idx'] ?>" /></td>
                                         <td><?= $nTotalCount - (($pg - 1) * $g_list_rows + $i) ?></td>
                                         <td><?= $row['status'] == 'Y' ? '정상' : '탈퇴' ?></td>
                                         <td><?= esc($row['user_id']) ?></td>
@@ -183,7 +183,7 @@
         $("#ajax_loader").removeClass("display-none");
 
         $.ajax({
-            url: "del.php",
+            url: "del",
             type: "POST",
             data: $("#frm").serialize(),
             error: function (request, status, error) {
@@ -209,7 +209,7 @@
         }
         $("#ajax_loader").removeClass("display-none");
         $.ajax({
-            url: "del.php",
+            url: "del",
             type: "POST",
             data: "m_idx[]=" + m_idx,
             error: function (request, status, error) {

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libraries\SessionChk;
+use Config\CustomConstants as ConfigCustomConstants;
 use Exception;
 use TravelContactModel;
 
@@ -15,6 +16,9 @@ class MyPage extends BaseController
     private $sessionLib;
     private $sessionChk;
     private $ordersModel;
+    private $orderSubModel;
+    private $golfOptionModel;
+    private $orderOptionModel;
     public function __construct()
     {
         helper(['html']);
@@ -25,9 +29,14 @@ class MyPage extends BaseController
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->ordersModel = new \App\Models\OrdersModel();
+        $this->orderSubModel = new \App\Models\OrderSubModel();
+        $this->golfOptionModel = new \App\Models\GolfOptionModel();
+        $this->orderOptionModel = new \App\Models\OrderOptionModel();
         helper('my_helper');
+        $constants = new ConfigCustomConstants();
         helper('alert_helper');
     }
+
     public function details()
     {
         $clientIP = $this->request->getIPAddress();
@@ -36,11 +45,11 @@ class MyPage extends BaseController
         $search_word = trim($this->request->getVar('search_word'));
         $s_status = $this->request->getVar('s_status');
         $g_list_rows = 10;
-        if ($pg == ""){
+        if ($pg == "") {
             $pg = 1;
         }
 
-        $where = [ 'm_idx' => $_SESSION["member"]["mIdx"] ];
+        $where = ['m_idx' => $_SESSION["member"]["mIdx"]];
 
         if ($s_status) {
             $where['order_status'] = $s_status;
@@ -65,18 +74,22 @@ class MyPage extends BaseController
 
         return view('mypage/details', $data);
     }
+
     public function custom_travel()
     {
         return view('mypage/custom_travel');
     }
+
     public function custom_travel_view()
     {
         return view('mypage/custom_travel_view');
     }
+
     public function contact()
     {
         return view('mypage/contact');
     }
+
     public function contactDel()
     {
         $data = $_POST['data'];
@@ -86,10 +99,12 @@ class MyPage extends BaseController
             }
         }
     }
+
     public function consultation()
     {
         return view('mypage/consultation');
     }
+
     public function qnaDel()
     {
 
@@ -103,38 +118,47 @@ class MyPage extends BaseController
             return "ERROR";
         }
     }
+
     public function fav_list()
     {
         return view('mypage/fav_list');
     }
+
     public function travel_review()
     {
         return view('mypage/travel_review');
     }
+
     public function point()
     {
         return view('mypage/point');
     }
+
     public function coupon()
     {
         return view('mypage/coupon');
     }
+
     public function discount()
     {
         return view('mypage/discount');
     }
+
     public function discount_owned()
     {
         return view('mypage/discount_owned');
     }
+
     public function discount_download()
     {
         return view('mypage/discount_download');
     }
+
     public function info_option()
     {
         return view('mypage/info_option');
     }
+
     public function info_change()
     {
         if ($_SESSION["member"]["mIdx"] == "") {
@@ -146,25 +170,127 @@ class MyPage extends BaseController
         }
         return view('mypage/info_change', ["member" => $member]);
     }
+
     public function user_mange()
     {
         return view('mypage/user_mange');
     }
+
     public function money()
     {
         return view('mypage/money');
     }
-    public function invoice_view_item()
-    {
-        $gubun = updateSQ($_GET["gubun"]);
 
-        if(!empty($gubun)){
-            return view("mypage/invoice_view_item_{$gubun}");
-        }else{
+    public function money_ok()
+    {
+        try {
+            $msg = '';
+
+            $m_idx = updateSQ($_SESSION["member"]["mIdx"]);
+            $user_pw = updateSQ($_POST["user_pw"]);
+            $user_mobile = updateSQ($_POST["mobile1"]) . "-" . updateSQ($_POST["mobile2"]) . "-" . updateSQ($_POST["mobile3"]);
+            // $out_code				= updateSQ($_POST["reason"]);
+            $out_etc = updateSQ($_POST["out_etc"]);
+            $out_reason = updateSQ($_POST["out_reason"]);
+
+            $total_sql = " select * from tbl_member where m_idx = '" . $m_idx . "' ";
+            // echo $total_sql;
+            $result = $this->db->query($total_sql);
+            $row = $result->getRowArray();
+            $user_name = $row["user_name"];
+
+            if ($_SESSION["member"]["mIdx"] == "") {
+                $msg = "";
+                return $this->response->setStatusCode(200)
+                    ->setJSON([
+                        'status' => 'success',
+                        'message' => $msg
+                    ]);
+            }
+
+            if ($row["user_id"] == "") {
+                $msg = "NOUSER";
+                return $this->response->setStatusCode(200)
+                    ->setJSON([
+                        'status' => 'success',
+                        'message' => $msg
+                    ]);
+            }
+
+            if (!password_verify($user_pw, $row["user_pw"])) {
+                $msg = "NOPASS";
+                return $this->response->setStatusCode(200)
+                    ->setJSON([
+                        'status' => 'success',
+                        'message' => $msg
+                    ]);
+            }
+
+            $sql = " update tbl_member set 
+				out_etc				= '" . $out_etc . "' 
+				,out_reason			= '" . $out_reason . "' 
+				,out_date			= now()
+				,m_date				= now()
+				,status				= 'O'
+				where m_idx = '" . $_SESSION["member"]["mIdx"] . "'
+			";
+            write_log("탈퇴신청:" . $sql);
+            $result = $this->db->query($sql);
+            $_SESSION["member"]["userId"] = "";
+            $_SESSION["member"]["mIdx"] = "";
+            $_SESSION["member"]["userLevel"] = "";
+            $_SESSION["member"]["userName"] = "";
+            setcookie("c_mIdx", "", time() - 86000 * 365, '/');
+
+            $msg = "OK";
+
+            return $this->response->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON(
+                    [
+                        'status' => 'error',
+                        'message' => $e->getMessage()
+                    ]
+                );
+        }
+    }
+    public function member_out()
+    {
+        return view('mypage/member_out');
+    }
+
+    public function invoice_view_item($gubun)
+    {
+
+        $data = $this->request->getVar();
+        $order_idx = $data["order_idx"];
+
+        $info = $this->ordersModel->getOrderInfo($order_idx);
+
+        $data = array_merge($data, $info);
+
+        $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
+
+        if(!empty($gubun)) {
+
+            if ($gubun == "golf") {
+                $option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
+                $data['option'] = $this->golfOptionModel->getByIdx($option_idx);
+            }
+
+            return view("mypage/invoice_view_item_{$gubun}", $data);
+        } else {
             return view('mypage/invoice_view_item');
         }
 
     }
+
     public function info_option_ok()
     {
         $user_id = updateSQ($_POST["user_id"]);
@@ -184,6 +310,7 @@ class MyPage extends BaseController
 
         return "OK";
     }
+
     public function info_change_ok()
     {
         $private_key = private_key();

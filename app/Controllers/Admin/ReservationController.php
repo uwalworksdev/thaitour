@@ -252,125 +252,85 @@ class ReservationController extends BaseController
     }
 
 
-    public function write_ok() {
+    public function write_ok($order_idx = null) {
         try{
-            $product_name			= updateSQ($_POST["product_name"]);
-            $order_idx				= updateSQ($_POST["order_idx"]);	
-	        $order_no				= updateSQ($_POST["order_no"]);	
-            $deposit_price_change	= number_format($_POST["deposit_price_change"]);	
-            $price_confirm_change	= updateSQ($_POST["price_confirm_change"]);	
-            $total_price_change		= updateSQ($_POST["total_price_change"]);	
-            $order_user_name		= updateSQ($_POST["order_user_name"]);	
-            $order_user_email		= updateSQ($_POST["order_user_email"]);	
-            $order_user_mobile		= updateSQ($_POST["order_user_mobile"]);	
-            $order_user_phone		= updateSQ($_POST["order_user_phone"]);	
-            $order_status			= updateSQ($_POST["order_status"]);	
-            $manager_name			= updateSQ($_POST["manager_name"]);	
-            $manager_phone			= updateSQ($_POST["manager_phone"]);	
-            $manager_email			= updateSQ($_POST["manager_email"]);	
-            $order_method			= updateSQ($_POST["order_method"]);	
-            $order_confirm_price	= str_replace(",","",updateSQ($_POST["order_confirm_price"]));	
-            $custom_req				= updateSQ($_POST["custom_req"]);	
-            $local_phone			= updateSQ($_POST["local_phone"]);	
-            $admin_memo				= updateSQ($_POST["admin_memo"]);	
-            $deposit_price			= str_replace(",","",updateSQ($_POST["deposit_price"]));	
-                
-            $start_date				= updateSQ($_POST['start_date']);  
-            $end_date				= updateSQ($_POST['end_date']);  
-            $order_price			= str_replace(",","",updateSQ($_POST["order_price"]));	
-    
-            if($order_idx){
-                $data = [
-                    "product_name" => $product_name,
-                    "order_user_name" => encryptField($order_user_name, "encode"),
-                    "order_user_email" => encryptField($order_user_email, "encode"),
-                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
-                    "order_user_phone" => encryptField($order_user_phone, "encode"),
-                    "local_phone" => encryptField($local_phone, "encode"),
-                    "order_status" => $order_status,
-                    "order_method" => $order_method,
-                    "deposit_price_change" => $deposit_price_change,
-                    "price_confirm_change" => $price_confirm_change,
-                    "total_price_change" => $total_price_change,
-                    "order_confirm_price" => $order_confirm_price,
-                    "custom_req" => $custom_req,
-                    "admin_memo" => $admin_memo,
-                    "manager_name" => encryptField($manager_name, "encode"),
-                    "manager_phone" => encryptField($manager_phone, "encode"),
-                    "manager_email" => encryptField($manager_email, "encode"),
-                    "start_date" => $start_date,
-                    "end_date" => $end_date,
-                    "order_price" => $order_price,
-                    "deposit_price" => $deposit_price,
-                    "order_m_date" => Time::now('Asia/Seoul', 'en_US') 
-                ];
-    
-                if($order_status == "R") {
-                    $data["order_confirm_date"] = Time::now('Asia/Seoul', 'en_US');
-                } else if($order_status == "Y") {
-                    $data["order_c_date"] = Time::now('Asia/Seoul', 'en_US');
-                }
-    
-                $this->orderModel->update($order_idx, $data);
-    
-                $gl_idx = $this->request->getPost('gl_idx');
-                $order_name_kor = $this->request->getPost('order_name_kor');
-                $order_first_name = $this->request->getPost('order_first_name');
-                $order_last_name = $this->request->getPost('order_last_name');
-                $order_full_name = $this->request->getPost('order_full_name');
-                $passport_num = $this->request->getPost('passport_num');
-                $order_email = $this->request->getPost('order_email');
-                $order_birthday = $this->request->getPost('order_birthday');
-                $order_mobile = $this->request->getPost('order_mobile');
-                $passport_date = $this->request->getPost('passport_date');
-                $order_sex = $this->request->getPost('order_sex');
-    
-                for ($i = 0; $i < count($gl_idx) ; $i++)
-                {
-                    $data_sub = [
-                        "order_name_kor" => encryptField($order_name_kor[$i], "encode"),
-                        "order_first_name" => encryptField($order_first_name[$i], "encode"),
-                        "order_last_name" => encryptField($order_last_name[$i], "encode"),
-                        "order_full_name" => encryptField($order_full_name[$i], "encode"),
-                        "passport_num" => encryptField($passport_num[$i], "encode"),
-                        "order_email" => encryptField($order_email[$i], "encode"),
-                        "order_birthday" => $order_birthday[$i],
-                        "order_mobile" => encryptField($order_mobile[$i], "encode"),
-                        "passport_date" => $passport_date[$i],
-                        "order_sex" => $order_sex[$i]
-                    ];
-    
-                    $this->orderSubModel->update($gl_idx[$i], $data_sub);
-                }
+            $data = $this->request->getPost();
 
-                if($order_status == "G" || $order_status == "J") {
-	   
-                    $this->paymentHistModel->where('order_no', $order_no)->delete();
+            $data['order_price'] = str_replace(",","",$data['order_price']);
+            $data['order_confirm_price'] = str_replace(",","",$data['order_confirm_price']);
+            $data['deposit_price'] = str_replace(",","",$data['deposit_price']);
 
-                    $this->paymentHistModel->insert([
-                        "order_no" => $order_no,
-                        "order_gubun" => "1",
-                        "order_price" => $deposit_price,
-                        "regDate" => Time::now('Asia/Seoul', 'en_US')
-                    ]);
+            $order_status = $data['order_status'];
+            $order_no = $data['order_no'];
 
-                    $this->paymentHistModel->insert([
-                        "order_no" => $order_no,
-                        "order_gubun" => "2",
-                        "order_price" => $order_confirm_price,
-                        "regDate" => Time::now('Asia/Seoul', 'en_US')
-                    ]);
-               
-                } else if($order_status == "R") {
-                    $this->paymentHistModel->where('order_no', $order_no)
-                                            ->where('order_gubun', "1")
-                                            ->update(["order_status" => "Y"]);
-                } else if($order_status == "Y") {
-                    $this->paymentHistModel->where('order_no', $order_no)
-                                            ->where('order_gubun', "2")
-                                            ->update(["order_status" => "Y"]);
-                }       
+            
+            $data['order_m_date'] = (String) Time::now('Asia/Seoul', 'en_US');
+            
+            if($order_status == "R") {
+                $data["order_confirm_date"] = (String) Time::now('Asia/Seoul', 'en_US');
+            } else if($order_status == "Y") {
+                $data["order_c_date"] = (String) Time::now('Asia/Seoul', 'en_US');
             }
+            
+            $this->orderModel->updateData($order_idx, $data);
+
+            $gl_idx = $data['gl_idx'];
+            $order_name_kor = $data['order_name_kor'];
+            $order_first_name = $data['order_first_name'];
+            $order_last_name = $data['order_last_name'];
+            $order_full_name = $data['order_full_name'];
+            $passport_num = $data['passport_num'];
+            $order_email = $data['order_email'];
+            $order_birthday = $data['order_birthday'];
+            $order_mobile = $data['order_mobile'];
+            $passport_date = $data['passport_date'];
+            $order_sex = $data['order_sex'];
+
+            for ($i = 0; $i < count($gl_idx) ; $i++)
+            {
+                $data_sub = [
+                    "order_name_kor" => encryptField($order_name_kor[$i], "encode"),
+                    "order_first_name" => encryptField($order_first_name[$i], "encode"),
+                    "order_last_name" => encryptField($order_last_name[$i], "encode"),
+                    "order_full_name" => encryptField($order_full_name[$i], "encode"),
+                    "passport_num" => encryptField($passport_num[$i], "encode"),
+                    "order_email" => encryptField($order_email[$i], "encode"),
+                    "order_birthday" => $order_birthday[$i],
+                    "order_mobile" => encryptField($order_mobile[$i], "encode"),
+                    "passport_date" => $passport_date[$i],
+                    "order_sex" => $order_sex[$i]
+                ];
+
+                $this->orderSubModel->update($gl_idx[$i], $data_sub);
+            }
+
+            if($order_status == "G" || $order_status == "J") {
+    
+                $this->paymentHistModel->where('order_no', $order_no)->delete();
+
+                $this->paymentHistModel->insert([
+                    "order_no" => $order_no,
+                    "order_gubun" => "1",
+                    "order_price" => $data['deposit_price'],
+                    "regDate" => Time::now('Asia/Seoul', 'en_US')
+                ]);
+
+                $this->paymentHistModel->insert([
+                    "order_no" => $order_no,
+                    "order_gubun" => "2",
+                    "order_price" => $data['order_confirm_price'],
+                    "regDate" => Time::now('Asia/Seoul', 'en_US')
+                ]);
+            
+            } else if($order_status == "R") {
+                $this->paymentHistModel->where('order_no', $order_no)
+                                        ->where('order_gubun', "1")
+                                        ->update(["order_status" => "Y"]);
+            } else if($order_status == "Y") {
+                $this->paymentHistModel->where('order_no', $order_no)
+                                        ->where('order_gubun', "2")
+                                        ->update(["order_status" => "Y"]);
+            }       
             $message = "수정되었습니다.";
             return "<script>
                 alert('$message');

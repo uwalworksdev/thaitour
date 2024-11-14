@@ -597,7 +597,7 @@
                                 </tr>
 
                                 <tr>
-                                    <th>소개&시설</th>
+                                    <th>소개&시설 모바일</th>
                                     <td colspan="3">
                                         <textarea name="product_contents_m" id="product_contents_m" rows="10" cols="100"
                                                   class="input_txt"
@@ -635,16 +635,10 @@
                                 <tr>
                                     <th>위치안내</th>
                                     <td colspan="3">
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>주소</th>
-                                    <td colspan="3">
                                         <input type="text" autocomplete="off" name="addrs" id="addrs"
                                                value="<?= $addrs ?>" class="text" style="width:70%"/>
                                         <button type="button" class="btn btn-primary" style="width: unset;"
-                                                onclick="getCoordinates();">위치 얻기
+                                                onclick="getCoordinates();">위치선택
                                         </button>
                                         <div style="margin-top: 10px;">
                                             Latitude : <input type="text" name="latitude" id="latitude"
@@ -1224,9 +1218,9 @@
             let d_start = $("#d_start").val();
             let d_end = $("#d_end").val();
 
-            let price_1 = $("#price1").val();
-            let price_2 = $("#price2").val();
-            let price_3 = $("#price3").val();
+            let price_1 = $("#price1").val().replaceAll(',', '');
+            let price_2 = $("#price2").val().replaceAll(',', '');
+            let price_3 = $("#price3").val().replaceAll(',', '');
 
             let yoil_0 = $("#yoil_0").is(":checked") ? "Y" : "N";
             let yoil_1 = $("#yoil_1").is(":checked") ? "Y" : "N";
@@ -1235,8 +1229,6 @@
             let yoil_4 = $("#yoil_4").is(":checked") ? "Y" : "N";
             let yoil_5 = $("#yoil_5").is(":checked") ? "Y" : "N";
             let yoil_6 = $("#yoil_6").is(":checked") ? "Y" : "N";
-
-            console.log(price_1, price_2, price_3);
 
             let data = {
                 "p_idx": p_idx,

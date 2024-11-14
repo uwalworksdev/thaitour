@@ -117,7 +117,7 @@
                                     <td>
                                         <input type="checkbox" name="sale" value="N" <?php if ($sale == "N") {
                                             echo "checked";
-                                        } ?> class="yoil"> 마감
+                                        } ?> id="sale" class="yoil"> 마감
                                     </td>
                                 </tr>
 
@@ -138,25 +138,32 @@
                                             <input type="hidden" name="yoil_5" value="<?= $yoil_5 ?>">
                                             <input type="hidden" name="yoil_6" value="<?= $yoil_6 ?>">
                                         <?php } else { ?>
-                                            <input type="checkbox" name="yoil_0" value="Y" <?php if ($yoil_0 == "Y") {
+                                            <input type="checkbox" name="yoil_0" id="yoil_0"
+                                                   value="Y" <?php if ($yoil_0 == "Y") {
                                                 echo "checked";
                                             } ?> class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="yoil_1" value="Y" <?php if ($yoil_1 == "Y") {
+                                            <input type="checkbox" name="yoil_1" id="yoil_1"
+                                                   value="Y" <?php if ($yoil_1 == "Y") {
                                                 echo "checked";
                                             } ?> class="yoil"> 월요일&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="yoil_2" value="Y" <?php if ($yoil_2 == "Y") {
+                                            <input type="checkbox" name="yoil_2" id="yoil_2"
+                                                   value="Y" <?php if ($yoil_2 == "Y") {
                                                 echo "checked";
                                             } ?> class="yoil"> 화요일&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="yoil_3" value="Y" <?php if ($yoil_3 == "Y") {
+                                            <input type="checkbox" name="yoil_3" id="yoil_3"
+                                                   value="Y" <?php if ($yoil_3 == "Y") {
                                                 echo "checked";
                                             } ?> class="yoil"> 수요일&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="yoil_4" value="Y" <?php if ($yoil_4 == "Y") {
+                                            <input type="checkbox" name="yoil_4" id="yoil_4"
+                                                   value="Y" <?php if ($yoil_4 == "Y") {
                                                 echo "checked";
                                             } ?> class="yoil"> 목요일&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="yoil_5" value="Y" <?php if ($yoil_5 == "Y") {
+                                            <input type="checkbox" name="yoil_5" id="yoil_5"
+                                                   value="Y" <?php if ($yoil_5 == "Y") {
                                                 echo "checked";
                                             } ?> class="yoil"> 금요일&nbsp;&nbsp;&nbsp;
-                                            <input type="checkbox" name="yoil_6" value="Y" <?php if ($yoil_6 == "Y") {
+                                            <input type="checkbox" name="yoil_6" id="yoil_6"
+                                                   value="Y" <?php if ($yoil_6 == "Y") {
                                                 echo "checked";
                                             } ?> class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
                                         <?php } ?>
@@ -198,8 +205,19 @@
                                                     처리
                                                 </td>
                                             </tr>
+                                            <style>
+                                                .order_btn {
+                                                    cursor: pointer;
+                                                    width: 30px;
+                                                    height: 30px;
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                    border: 1px solid #ccc;
+                                                    border-radius: 5px;
+                                                }
+                                            </style>
                                             <?php
-
                                             foreach ($fresult2 as $frow2) {
                                                 ?>
                                                 <tr style="height:40px">
@@ -207,57 +225,49 @@
                                                         <input type="hidden" name="charge_idx[]"
                                                                id="charge_idx_<?= $frow2["charge_idx"] ?>]"
                                                                class="charge_idx" value="<?= $frow2["charge_idx"] ?>">
-                                                        <select name="s_station[]"
-                                                                id="s_station_<?= $frow2["charge_idx"] ?>"
-                                                                class="unique-select">
-                                                            <option value="">출발지 선택</option>
-                                                            <?php
-                                                            $arr = explode("|", $s_station);
-                                                            foreach ($arr as $iValue) {
-                                                                if ($frow2['s_station'] == $iValue) {
-                                                                    echo "<option value='" . $iValue . "' selected >" . $iValue . "</option>";
-                                                                } else {
-                                                                    echo "<option value='" . $iValue . "' >" . $iValue . "</option>";
-                                                                }
 
-                                                            }
-                                                            ?>
-                                                        </select>
-                                                        <a href="#!" class="order_btn"
-                                                           onclick="return positionUP('<?= $frow2["charge_idx"] ?>','U')">▲</a>
-                                                        <a href="#!" class="order_btn"
-                                                           onclick="return positionUP('<?= $frow2["charge_idx"] ?>','D')">▼</a>
-
+                                                        <div class="" style="display: flex; gap: 10px">
+                                                            <input type="text" name="s_station[]"
+                                                                   id="s_station_<?= $frow2["charge_idx"] ?>"
+                                                                   value="<?= $frow2["s_station"] ?>"
+                                                                   class="s_station input_txt" style="width:80%"/>
+                                                            <a href="#!" class="order_btn"
+                                                               onclick="return positionUP('<?= $frow2["charge_idx"] ?>','U')">▲</a>
+                                                            <a href="#!" class="order_btn"
+                                                               onclick="return positionUP('<?= $frow2["charge_idx"] ?>','D')">▼</a>
+                                                        </div>
                                                     </td>
                                                     <td style="text-align:center">
                                                         <input type="text" name="tour_price[]"
                                                                id="tour_price_<?= $frow2["charge_idx"] ?>"
-                                                               value="<?= $frow2["tour_price"] ?>"
+                                                               value="<?= number_format($frow2["tour_price"]) ?>"
                                                                class="price tour_price input_txt"
                                                                style="text-align:right"/>
                                                     </td>
                                                     <td style="text-align:center">
                                                         <input type="text" name="tour_price_kids[]"
                                                                id="tour_price_kids_<?= $frow2["charge_idx"] ?>"
-                                                               value="<?= $frow2["tour_price_kids"] ?>"
+                                                               value="<?= number_format($frow2["tour_price_kids"]) ?>"
                                                                class="price tour_price_kids input_txt"
                                                                style="text-align:right"/>
                                                     </td>
                                                     <td style="text-align:center">
                                                         <input type="text" name="tour_price_senior[]"
                                                                id="tour_price_senior_<?= $frow2["charge_idx"] ?>"
-                                                               value="<?= $frow2["tour_price_senior"] ?>"
+                                                               value="<?= number_format($frow2["tour_price_senior"]) ?>"
                                                                class="price tour_price_senior input_txt"
                                                                style="text-align:right"/>
                                                     </td>
 
                                                     <td style="text-align:center;">
-                                                        <button type="button" class="chargeUpdate"
-                                                                value="<?= $frow2["charge_idx"] ?>">수정
-                                                        </button>
-                                                        <button type="button" class="chargeDelete"
-                                                                value="<?= $frow2["charge_idx"] ?>">삭제
-                                                        </button>
+                                                        <div class="" style="display: flex; gap: 10px">
+                                                            <button style="height: 30px" type="button" class="chargeUpdate"
+                                                                    value="<?= $frow2["charge_idx"] ?>">수정
+                                                            </button>
+                                                            <button style="height: 30px" type="button" class="chargeDelete"
+                                                                    value="<?= $frow2["charge_idx"] ?>">삭제
+                                                            </button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -275,7 +285,23 @@
                         <!-- // listBottom -->
 
                         <script>
+                            // async function positionUP(id, flag) {
+                            //
+                            //     let myPromise = new Promise(function (myResolve) {
+                            //         $("#ajax_loader").removeClass("display-none");
+                            //         myResolve();
+                            //     });
+                            //
+                            //     myPromise.then(
+                            //         function (value) {
+                            //             handlePositionUp(id, flag);
+                            //         },
+                            //     );
+                            // }
+
                             function positionUP(id, flag) {
+                                $("#ajax_loader").removeClass("display-none");
+                                let uri = `<?= route_to('admin.api.spa_.station_seq')?>`;
 
                                 if (id == "") return false;
                                 if (flag == "") return false;
@@ -283,7 +309,7 @@
                                 var message = "";
                                 $.ajax({
 
-                                    url: "/ajax/ajax.station_seq.php",
+                                    url: uri,
                                     type: "POST",
                                     data: {
                                         "id": id,
@@ -296,14 +322,11 @@
                                     cache: false,
                                     success: function (data, textStatus) {
                                         message = data.message;
-                                        if (message == "OK") {
-                                            location.reload();
-                                        } else {
-                                            alert(data);
-                                        }
-
+                                        alert(message);
+                                        location.reload();
                                     },
                                     error: function (request, status, error) {
+                                        $("#ajax_loader").addClass("display-none");
                                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                                     }
                                 });
@@ -499,23 +522,25 @@
                             $(document).ready(function () {
                                 // 차량정보 확인버튼 클릭 이벤트
                                 $(".chargeUpdate").click(function () {
+                                    $("#ajax_loader").removeClass("display-none");
+                                    let uri = '<?= route_to('admin.api.spa_.charge_update') ?>';
 
                                     if (!confirm("가격정보를 수정 하시겠습니까?"))
                                         return false;
 
-                                    var idx = $(this).val();
-                                    var message = "";
+                                    let idx = $(this).val();
+                                    let message = "";
                                     $.ajax({
 
-                                        url: "/ajax/ajax.charge_update.php",
+                                        url: uri,
                                         type: "POST",
                                         data: {
 
                                             "charge_idx": idx,
                                             "s_station": $("#s_station_" + idx).val(),
-                                            "tour_price": $("#tour_price_" + idx).val(),
-                                            "tour_price_kids": $("#tour_price_kids_" + idx).val(),
-                                            "tour_price_senior": $("#tour_price_senior_" + idx).val()
+                                            "tour_price": $("#tour_price_" + idx).val().replaceAll(',', ''),
+                                            "tour_price_kids": $("#tour_price_kids_" + idx).val().replaceAll(',', ''),
+                                            "tour_price_senior": $("#tour_price_senior_" + idx).val().replaceAll(',', '')
 
                                         },
                                         dataType: "json",
@@ -524,52 +549,48 @@
                                         success: function (data, textStatus) {
                                             message = data.message;
                                             alert(message);
-                                            location.reload();
+                                            $("#ajax_loader").addClass("display-none");
                                         },
                                         error: function (request, status, error) {
+                                            $("#ajax_loader").addClass("display-none");
                                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                                         }
                                     });
                                 });
-                            });
-                        </script>
 
-                        <script>
-                            $(document).ready(function () {
                                 // 차량정보 삭제버튼 클릭 이벤트
                                 $(".chargeDelete").click(function () {
+                                    $("#ajax_loader").removeClass("display-none");
+                                    let uri = '<?= route_to('admin.api.spa_.charge_delete') ?>';
+
+                                    $(this).parent().parent().remove();
 
                                     if (!confirm("가격정보를 삭제 하시겠습니까?"))
                                         return false;
 
-                                    var idx = $(this).val();
-                                    var message = "";
+                                    let idx = $(this).val();
+                                    let message = "";
                                     $.ajax({
 
-                                        url: "/ajax/ajax.charge_delete.php",
+                                        url: uri,
                                         type: "POST",
                                         data: {
-
                                             "charge_idx": idx
-
                                         },
                                         dataType: "json",
                                         async: false,
                                         cache: false,
                                         success: function (data, textStatus) {
                                             message = data.message;
-                                            location.reload();
+                                            $("#ajax_loader").addClass("display-none");
                                         },
                                         error: function (request, status, error) {
+                                            $("#ajax_loader").addClass("display-none");
                                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                                         }
                                     });
                                 });
-                            });
-                        </script>
 
-                        <script>
-                            $(document).ready(function () {
                                 // Select 요소에서 값이 변경될 때마다 호출되는 함수
                                 $('.unique-select').on('change', function () {
                                     var selectedValues = [];
@@ -599,30 +620,26 @@
                                         selectedValues.push(value);
                                     });
                                 });
-                            });
-                        </script>
 
-                        <script>
-                            // 요금정보 :S
-                            $(document).ready(function () {
                                 // 요금정보 추가 버튼 클릭 이벤트
                                 $('#addcharge').click(function () {
+                                    $("#ajax_loader").removeClass("display-none");
+                                    let uri = `<?= route_to('admin.api.spa_.charge_dummy') ?>`;
+
                                     var message = "";
                                     $.ajax({
 
-                                        url: "/ajax/ajax.charge_dummy.php",
+                                        url: uri,
                                         type: "POST",
                                         data: {
                                             "product_idx": $("#product_idx").val(),
                                             "yoil_idx": $("#yoil_idx").val()
                                         },
                                         success: function (rs) {
-                                            const data = JSON.parse(rs);
-                                            message = data.addRow;
-                                            //$('#chargeTable tbody').append(message);
                                             location.reload();
                                         },
                                         error: function (request, status, error) {
+                                            $("#ajax_loader").addClass("display-none");
                                             alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                                         }
                                     });
@@ -634,6 +651,10 @@
                                     $(this).closest('tr').remove();
                                 });
                             });
+
+                            function convertNUmber(num) {
+                                return num.toLocaleString();
+                            }
                         </script>
 
                         <script>
@@ -745,94 +766,10 @@
 
     <script>
         function go_list() {
-            var product_code_1 = $("#product_code_1").val();
-            if (product_code_1 == "1317") location.href = '/AdmMaster/_tourRegist/write_train.php?product_idx=' + $("#product_idx").val();
-            if (product_code_1 == "1320") location.href = '/AdmMaster/_tourRegist/write_season.php?product_idx=' + $("#product_idx").val();
-            if (product_code_1 == "1324") location.href = '/AdmMaster/_tourRegist/write_srt.php?product_idx=' + $("#product_idx").val();
-            if (product_code_1 == "1303") location.href = '/AdmMaster/_tourRegist/write_island.php?product_idx=' + $("#product_idx").val();
+            window.location.href = "/AdmMaster/_tourRegist/write_spas?s_product_code_1=&s_product_code_2=&s_product_code_2=&search_category=&search_name=&pg=<?= $pg ?>&product_idx=<?= $product_idx ?>";
         }
     </script>
 
-    <script type="text/javascript">
-        function del_yoil(yoil_idx) {
-            if (confirm("삭제하시겠습니까?\n삭제후에는 복구가 불가합니다.")) {
-                hiddenFrame.location.href = "/AdmMaster/_tourRegist/yoil_del.php?s_product_code_1=<?=$s_product_code_1?>&s_product_code_2=<?=$s_product_code_2?>&s_product_code_2=<?=$s_product_code_3?>&search_name=<?=$search_name?>&search_category=<?=$search_category?>&pg=<?=$pg?>&product_idx=<?=$product_idx?>&yoil_idx=" + yoil_idx;
-            }
-        }
-
-        /* 상세일정 내용 */
-        var oEditors1 = [];
-        nhn.husky.EZCreator.createInIFrame({
-            oAppRef: oEditors1,
-            elPlaceHolder: "product_contents",
-            sSkinURI: "/smarteditor/SmartEditor2Skin.html",
-            htParams: {
-                bUseVerticalResizer: false,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            }, //boolean
-            fCreator: "createSEditor2"
-        });
-
-        /* 상세일정 포함사항 */
-        var oEditors2 = [];
-        nhn.husky.EZCreator.createInIFrame({
-            oAppRef: oEditors2,
-            elPlaceHolder: "product_able",
-            sSkinURI: "/smarteditor/SmartEditor2Skin.html",
-            htParams: {
-                bUseVerticalResizer: false,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            }, //boolean
-            fCreator: "createSEditor2"
-        });
-
-
-        var oEditors3 = [];
-        nhn.husky.EZCreator.createInIFrame({
-            oAppRef: oEditors3,
-            elPlaceHolder: "mobile_able",
-            sSkinURI: "/smarteditor/SmartEditor2Skin.html",
-            htParams: {
-                bUseVerticalResizer: false,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            }, //boolean
-            fCreator: "createSEditor2"
-        });
-
-        var oEditors4 = [];
-        nhn.husky.EZCreator.createInIFrame({
-            oAppRef: oEditors4,
-            elPlaceHolder: "mobile_unable",
-            sSkinURI: "/smarteditor/SmartEditor2Skin.html",
-            htParams: {
-                bUseVerticalResizer: false,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            }, //boolean
-            fCreator: "createSEditor2"
-        });
-
-        function pasteHTML(filepath) {
-            var sHTML1 = '<img src="http://www.sjrtour.com/newAdmin/upload/acco/' + filepath + '" width="">';
-            oEditors1.getById["product_contents"].exec("PASTE_HTML", [sHTML1]); //상세일정 내용
-        }
-
-
-        $(window).load(function () {
-            $.ajax({
-                url: "/smarteditor/SmartEditor2.html",
-                type: "POST",
-                data: "",
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    $("#test_txt").html(response);
-                }
-            });
-        });
-
-
-    </script>
     <script>
         $(".air_code_1").on("change", function () {
             const $this = $(this);
@@ -848,21 +785,76 @@
         })
 
         function send_it() {
-            var f = document.chargeForm;
+            upd_price('<?= $yoil_idx ?>');
+        }
+
+
+        function upd_price(p_idx) {
+            $("#ajax_loader").removeClass("display-none");
+            let url = `<?= route_to('admin.api.spa_.save_option_price') ?>`;
+
+            // let formData = $("#chargeForm").serialize();
+            const formData = new FormData($('#chargeForm')[0]);
+
+            let d_start = $("#from").val();
+            let d_end = $("#to").val();
+
+            let sale = $("#sale").is(":checked") ? "N" : "Y";
+
+            let yoil_0 = $("#yoil_0").is(":checked") ? "Y" : "N";
+            let yoil_1 = $("#yoil_1").is(":checked") ? "Y" : "N";
+            let yoil_2 = $("#yoil_2").is(":checked") ? "Y" : "N";
+            let yoil_3 = $("#yoil_3").is(":checked") ? "Y" : "N";
+            let yoil_4 = $("#yoil_4").is(":checked") ? "Y" : "N";
+            let yoil_5 = $("#yoil_5").is(":checked") ? "Y" : "N";
+            let yoil_6 = $("#yoil_6").is(":checked") ? "Y" : "N";
+
+            //let data = {
+            //    "p_idx": p_idx,
+            //    "product_idx": '<?php //= $product_idx ?>//',
+            //    "s_date": d_start,
+            //    "e_date": d_end,
+            //    "sale": sale,
+            //    "yoil_0": yoil_0,
+            //    "yoil_1": yoil_1,
+            //    "yoil_2": yoil_2,
+            //    "yoil_3": yoil_3,
+            //    "yoil_4": yoil_4,
+            //    "yoil_5": yoil_5,
+            //    "yoil_6": yoil_6
+            //};
+
+            formData.append("p_idx", p_idx);
+            formData.append("product_idx", '<?= $product_idx ?>');
+            formData.append("s_date", d_start);
+            formData.append("e_date", d_end);
+            formData.append("sale", sale);
+            formData.append("yoil_0", yoil_0);
+            formData.append("yoil_1", yoil_1);
+            formData.append("yoil_2", yoil_2);
+            formData.append("yoil_3", yoil_3);
+            formData.append("yoil_4", yoil_4);
+            formData.append("yoil_5", yoil_5);
+            formData.append("yoil_6", yoil_6);
+
             $.ajax({
-                url: 'write_ok.php',  // 데이터를 전송할 서버의 URL
-                type: 'POST',  // HTTP 요청 방식
-                data: $(f).serialize(),  // 폼 데이터를 직렬화하여 전송
-                success: function (rs) {  // 요청 성공 시 실행되는 함수
-                    const data = JSON.parse(rs);
-                    var message = data.message;
-                    var url = data.url;
+                url: url,
+                type: "POST",
+                data: formData,
+                async: false,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (data, textStatus) {
+                    let message = data.message;
                     alert(message);
-                    location.href = url;
+                    $("#ajax_loader").addClass("display-none");
                 },
-                error: function (xhr, status, error) {  // 요청 실패 시 실행되는 함수
-                    $('#response').html('<p>오류가 발생했습니다. 다시 시도해 주세요.</p>');
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                    $("#ajax_loader").addClass("display-none");
                 }
+
             });
         }
 

@@ -49,6 +49,10 @@ class ProductModel extends Model
             ARRAY_FILTER_USE_KEY
         );
 
+        foreach ($filteredData as $key => $value) {
+            $filteredData[$key] = updateSQ($value);
+        }
+
         return $this->insert($filteredData);
     }
 

@@ -25,10 +25,11 @@ class AdminLogin extends BaseController {
     public function LoginView(){
         $scripts = [];
         array_push($scripts, script_tag(["src"=>"js/admin/login.js?version=1", "defer"=>false]));
-
+        $returnUrl = $this->request->getGet('returnUrl');
         
         return view("admin/login",[
             "headers"=>[...$scripts],
+            "returnUrl"=>$returnUrl
         ]);
     }
 
@@ -36,6 +37,7 @@ class AdminLogin extends BaseController {
 
         $user_id = $this->request->getPost('user_id');
         $user_pw = $this->request->getPost('user_pw');
+        $returnUrl = urldecode($this->request->getPost('returnUrl'));
 
         $row = $this->member->getAdminLogin($user_id);
 
@@ -77,7 +79,12 @@ class AdminLogin extends BaseController {
         $this->session->set('create_at', time());
 
         $resultArr['result'] = true;
-        $resultArr['location'] = '/AdmMaster/main';
+
+        if ($returnUrl) {
+            $resultArr['location'] = $returnUrl;
+        } else {
+            $resultArr['location'] = '/AdmMaster/main';
+        }
 
         return $this->response->setJSON($resultArr);
     }

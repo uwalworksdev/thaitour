@@ -53,13 +53,12 @@
             </header>
             <!-- // headerContainer -->
 
-            <form name=frm action="/AdmMaster/_reservation/write_ok" method=post enctype="multipart/form-data" target="hiddenFrame">
+            <form name=frm action="/AdmMaster/_reservation/write_ok/<?= $order_idx ?>" method=post enctype="multipart/form-data" target="hiddenFrame">
                 <input type=hidden name="search_category" value='<?= $search_category ?>'>
                 <input type=hidden name="search_name" value='<?= $search_name ?>'>
                 <input type=hidden name="pg" value='<?= $pg ?>'>
                 <input type="hidden" id="action_type" name="action_type" value="">
 
-                <input type=hidden name="order_idx" id="order_idx" value='<?= $order_idx ?>'>
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
                 <input type=hidden name="product_idx" value='<?= $product_idx ?>'>

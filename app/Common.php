@@ -19,7 +19,8 @@ function private_key()
     return "gkdlghwn!@12";
 }
 
-function getPolicy($p_idx) {
+function getPolicy($p_idx)
+{
     $policy = model("PolicyModel");
     try {
         $infoData = $policy->where("p_idx", $p_idx)->first();
@@ -34,13 +35,14 @@ function getPolicy($p_idx) {
     }
 }
 
-function get_deli_type() {
+function get_deli_type()
+{
     $_deli_type['W'] = "예약접수";
-	$_deli_type['Y'] = "결제완료";
-	$_deli_type['G'] = "예약금대기";
-	$_deli_type['J'] = "예약금입금대기";
-	$_deli_type['C'] = "예약취소";
-	$_deli_type['R'] = "잔금대기";
+    $_deli_type['Y'] = "결제완료";
+    $_deli_type['G'] = "예약금대기";
+    $_deli_type['J'] = "예약금입금대기";
+    $_deli_type['C'] = "예약취소";
+    $_deli_type['R'] = "잔금대기";
     return $_deli_type;
 }
 
@@ -59,6 +61,15 @@ function homeSetInfo()
     } finally {
         return $resultArr;
     }
+}
+
+function convertToBath($product_price): float
+{
+    $setting = homeSetInfo();
+    $product_price = (float)$product_price;
+    $baht_thai = (float)($setting['baht_thai'] ?? 0);
+    $product_price_baht = $product_price / $baht_thai;
+    return round($product_price_baht, 2);
 }
 
 function no_file_ext($filename)
@@ -819,14 +830,14 @@ function encryptField($value, $way)
         $query = $connect->query("SELECT HEX(AES_ENCRYPT(?, ?)) AS encrypted_name", [$value, $private_key]);
         $result = $query->getRow();
 
-        $outText =  $result->encrypted_name;
+        $outText = $result->encrypted_name;
 
     } else if ($way == "decode") {
 
         $query = $connect->query("SELECT HEX(AES_ENCRYPT(?, ?)) AS encrypted_name", [$value, $private_key]);
         $result = $query->getRow();
 
-        $outText =  $result->encrypted_name;
+        $outText = $result->encrypted_name;
     }
 
 
@@ -836,28 +847,26 @@ function encryptField($value, $way)
 
 function getImage($path)
 {
-    if(!is_file($_SERVER["DOCUMENT_ROOT"]."/{$path}")) return "/images/product/noimg.png";
+    if (!is_file($_SERVER["DOCUMENT_ROOT"] . "/{$path}")) return "/images/product/noimg.png";
     return $path;
 }
 
 function get_rand($size)
 {
-	$feed = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    $feed = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     $rand_str = "";
-	for ($i=0; $i < $size; $i++)
-	{
-	    $rand_str .= substr($feed, rand(0, strlen($feed)-1), 1);
-	}
-	return $rand_str;
+    for ($i = 0; $i < $size; $i++) {
+        $rand_str .= substr($feed, rand(0, strlen($feed) - 1), 1);
+    }
+    return $rand_str;
 }
 
 function get_rand_num($size)
 {
-	$feed = "0123456789";
+    $feed = "0123456789";
     $rand_str = "";
-	for ($i=0; $i < $size; $i++)
-	{
-	    $rand_str .= substr($feed, rand(0, strlen($feed)-1), 1);
-	}
-	return $rand_str;
+    for ($i = 0; $i < $size; $i++) {
+        $rand_str .= substr($feed, rand(0, strlen($feed) - 1), 1);
+    }
+    return $rand_str;
 }

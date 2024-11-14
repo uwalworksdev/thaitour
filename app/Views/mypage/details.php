@@ -120,7 +120,7 @@
                                         <td class="des"><span>
                                                 <?= (html_entity_decode($row["product_name"])) ?>
                                             </span></td>
-                                        <td class="schedule"><a href="../mypage/invoice_view_item?gubun=<?=$row['order_gubun']?>&order_idx=<?= $row['order_idx'] ?>&pg=<?= $pg ?>"><i></i>일정</a>
+                                        <td class="schedule"><a href="../mypage/<?=$row['order_gubun']?>/invoice_view_item?order_idx=<?= $row['order_idx'] ?>&pg=<?= $pg ?>"><i></i>일정</a>
                                         </td>
                                         <?php if ($row["order_status"] == "W") {
                                             $color = '#e5001a';
