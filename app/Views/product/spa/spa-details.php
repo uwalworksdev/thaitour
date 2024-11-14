@@ -144,6 +144,12 @@
                             <!--                                </td>-->
                             <!--                            </tr>-->
 
+                            <tr>
+                                <td colspan="7">
+                                    날짜 선택해주세요!
+                                </td>
+                            </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -434,7 +440,6 @@
                                     <div type="submit" class="qa-submit-btn">등록</div>
                                 </div>
 
-
                                 <ul class="qa-list">
                                     <li class="">
                                         <div class="qa-item qa_item_">
@@ -523,6 +528,7 @@
                                     </li>
                                 </ul>
                             </div>
+
                             <div class="pagination">
                                 <a href="#" class="page-link">
                                     <img class="only_web" src="/uploads/icons/arrow_prev_step.png"
@@ -672,7 +678,7 @@
             $('.sel_date').removeClass('active_');
             $(this).parent().parent().addClass('active_');
             let day_ = $(this).parent().parent().data('date');
-            spaCharge(day_)
+            spaCharge(day_);
         });
 
         async function spaCharge(day_) {
@@ -759,10 +765,10 @@
                 $(el).val(val);
             }
 
-            calcTotal();
+            showTotalPrice();
         }
 
-        function calcTotal() {
+        function calcTotalPrice() {
             let qty_children = 0;
             let qty_adults = 0;
             let price_total = 0;
@@ -788,8 +794,26 @@
             })
 
             price_total = convertNum(price_total);
-            $('#total_sum').text(price_total);
 
+            return data = {
+                qty_adults: qty_adults,
+                qty_children: qty_children,
+                price_total: price_total
+            }
+        }
+
+        function showTotalPrice() {
+            let data = calcTotalPrice();
+
+            let qty_adults = data.qty_adults;
+            let qty_children = data.qty_children;
+            let price_total = data.price_total;
+
+            renderTotalPrice(price_total, qty_adults, qty_children);
+        }
+
+        function renderTotalPrice(price_total, qty_adults, qty_children) {
+            $('#total_sum').text(price_total);
             $('#adultQty').val(qty_adults);
             $('#childrenQty').val(qty_children);
         }

@@ -17,11 +17,11 @@
                                 <p class="ped_label">성인 </p>
                             </div>
                             <div class="opt_count_box count_box flex__c">
-                                <button type="button" onclick="minusInput(this, 'd');" class="minus_btn"
+                                <button type="button" class="minus_btn"
                                         id="minusAdult"></button>
                                 <input type="text" class="input-qty" name="qty" id="adultQty" value="1"
                                        readonly="">
-                                <button type="button" onclick="plusInput(this);" class="plus_btn"
+                                <button type="button" class="plus_btn"
                                         id="addAdult"></button>
                             </div>
                         </li>
@@ -30,11 +30,11 @@
                                 <p class="ped_label">아동</p>
                             </div>
                             <div class="opt_count_box count_box flex__c">
-                                <button type="button" onclick="minusInput(this, 'd');" class="minus_btn"
+                                <button type="button" class="minus_btn"
                                         id="minusAdult2"></button>
                                 <input type="text" class="input-qty" name="qty" id="childrenQty" value="1"
                                        readonly="">
-                                <button type="button" onclick="plusInput(this);" class="plus_btn"
+                                <button type="button" class="plus_btn"
                                         id="addAdult2"></button>
                             </div>
                         </li>
@@ -111,7 +111,6 @@
                         <button type="button" class="btn-default"
                                 onclick="location='/inquiry/inquiry_write.php?product_idx=1219'">상담 문의하기
                         </button>
-
                     </div>
                 </div>
             </div>
@@ -169,7 +168,6 @@
             async: false,
             cache: false,
             success: function (data, textStatus) {
-                console.log(data)
                 $("#sel_option").html(data);
             },
             error: function (request, status, error) {
@@ -194,7 +192,6 @@
             async: false,
             cache: false,
             success: function (data, textStatus) {
-                console.log(data)
                 let parent_name = data.parent_name;
 
                 let option_name = data.option_name;
@@ -203,7 +200,7 @@
                 let option_tot = data.option_tot ?? 0;
                 let option_cnt = data.option_cnt;
 
-                let htm_ = `<li class="flex_b_c cus-count-input" style="margin-top: 10px">
+                let htm_ = `<li id="sel_option_data_${idx}" class="flex_b_c cus-count-input" style="margin-top: 10px">
                             <div class="payment">
                                 <p class="ped_label">${parent_name}</p>
                                 <p class="money adult">
@@ -227,8 +224,11 @@
                             </div>
                         </li>`;
 
-                $("#option_list_").append(htm_);
-                calcTotalSup();
+                let sel_option_ = $('#sel_option_data_' + idx);
+                if (!sel_option_.length > 0) {
+                    $("#option_list_").append(htm_);
+                    calcTotalSup();
+                }
             },
             error: function (request, status, error) {
                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -257,6 +257,23 @@
         let url = '<?= route_to('api.product.processBooking') ?>';
 
         $("#frm").attr("action", url).submit();
+    }
+
+    function minusInput(el) {
+        let input = $(el).parent().find('input');
+
+        if (parseInt(input.val()) > 1) {
+            input.val(parseInt(input.val()) - 1);
+            calcTotalSup();
+        } else {
+            removeData(el);
+        }
+    }
+
+    function plusInput(el) {
+        let input = $(el).parent().find('input');
+        input.val(parseInt(input.val()) + 1);
+        calcTotalSup();
     }
 
     function remove(idx) {
@@ -301,11 +318,11 @@
             total_price += parseInt(price) * parseInt(cnt);
         }
 
-        let adultQty = $('#adultQty').val();
-        let price = `<?= $data_['product_price'] ?>`;
+        let data = calcTotalPrice();
 
-        total_price += parseInt(adultQty) * parseInt(price);
+        let price_total = data.price_total.replaceAll(',', '');
 
+        total_price += parseInt(price_total);
         total_price = total_price.toLocaleString();
         $('#total_sum').text(total_price);
     }
