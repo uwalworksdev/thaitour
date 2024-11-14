@@ -330,7 +330,7 @@
                                             </tr>
                                         </table>
                                         <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                                        <p class="summary-tb2">본 예약건 취소규정 자세히보기</p>
+                                        <p class="summary-tb2" id="policy_show">본 예약건 취소규정 자세히보기</p>
                                     </div>
                                 </div>
                             </div>
@@ -543,6 +543,36 @@
             </div>
             <a class="closed_btn" href="javaScript:void(0)"><img src="/images/ico/close_ico_w.png" alt="close"/></a>
         </div>
+
+        <div class="popup_wrap place_pop policy_pop">
+            <div class="pop_box">
+                <button type="button" class="close" onclick="closePopup()"></button>
+                <div class="pop_body">
+                    <div class="padding">
+                        <div class="popup_place__head">
+                            <div class="popup_place__head__ttl">
+                                <h2>취소 규정</h2>
+                            </div>
+                        </div>
+                        <div class="popup_place__body">
+                            <?=viewSQ(getPolicy(19))?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dim"></div>
+        </div>
+
+        <script>
+            function closePopup() {
+                $(".popup_wrap").hide();
+                $(".dim").hide();
+            }
+
+            $("#policy_show").on("click", function() {
+                $(".policy_pop, .policy_pop .dim").show();
+            });
+        </script>
         <script>
             let swiper = new Swiper(".swiper_product_list_", {
                 slidesPerView: 1,

@@ -261,7 +261,7 @@
                             </div>
                             <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간) 이전
                             </p>
-                            <span class="cus-label-r">본 예약건 취소규정</span>
+                            <span class="cus-label-r" id="policy_show">본 예약건 취소규정</span>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check-first item-clause-all">
                                 <span>전체동의</span>
@@ -295,7 +295,35 @@
             </div>
         </div>
     </form>
+    <div class="popup_wrap place_pop policy_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>취소 규정</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <?=viewSQ(getPolicy(19))?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
     <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
+    <script>
+        function closePopup() {
+            $(".popup_wrap").hide();
+            $(".dim").hide();
+        }
+
+        $("#policy_show").on("click", function() {
+            $(".policy_pop, .policy_pop .dim").show();
+        });
+    </script>
     <script>
         $(document).ready(function() {
 
