@@ -74,6 +74,10 @@ class AdminCarsController extends BaseController
 
         $cfresult = $this->codeModel->getByParentAndDepth(47, 2)->getResultArray();
 
+        $place_start_list = $this->codeModel->getByParentCode(48)->getResultArray();
+
+        $place_end_list = $this->codeModel->getByParentCode(49)->getResultArray();
+
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
         }
@@ -90,7 +94,9 @@ class AdminCarsController extends BaseController
             'row' => $row ?? '',
             'fresult' => $fresult,
             'cfresult' => $cfresult,
-            'options' => $oresult
+            'options' => $oresult,
+            'place_start_list' => $place_start_list,
+            'place_end_list' => $place_end_list
         ];
         return view("admin/_cars/write", $data);
     }
@@ -100,10 +106,28 @@ class AdminCarsController extends BaseController
         try {
             $files = $this->request->getFiles();
             $data = $this->request->getPost();
-
+            
             $o_idx = $_POST["option_idx"] ?? [];
             $c_op_type = $_POST["c_op_type"] ?? [];
             $c_op_name = $_POST["c_op_name"] ?? [];
+
+            $arr_departure_area = $this->request->getPost("departure_area");
+            $arr_destination_area = $this->request->getPost("destination_area");
+
+            if(isset($arr_departure_area)){
+                $departure_area = implode(",", $arr_departure_area) ?? "";
+            }else{
+                $departure_area = "";
+            }
+            
+            if(isset($arr_destination_area)){
+                $destination_area = implode(",", $arr_destination_area) ?? "";
+            }else{
+                $destination_area = "";
+            }
+
+            $data["departure_area"] = $departure_area;
+            $data["destination_area"] = $destination_area;
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;

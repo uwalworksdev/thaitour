@@ -628,6 +628,12 @@
             return yoilArray[dayIndex];
         }
 
+        function getYoil(day) {
+            const yoilArray = ['yoil_0', 'yoil_1', 'yoil_2', 'yoil_3', 'yoil_4', 'yoil_5', 'yoil_6'];
+            const date = new Date(day);
+            const dayIndex = date.getUTCDay();
+            return yoilArray[dayIndex];
+        }
         function loadDay(day_) {
             let yoil = getYoil(day_);
             let url = `<?= route_to('api.spa_.charge_list') ?>?product_idx=<?= $data_['product_idx'] ?>&day_=${day_}&yoil=${yoil}`;
@@ -696,6 +702,14 @@
             }
 
             if (rs.length === 0) {
+                html = `<tr>
+                                <td colspan="7">
+                                    날짜 선택해주세요!
+                                </td>
+                            </tr>`;
+            }
+
+            if (data.length === 0) {
                 html = `<tr>
                                 <td colspan="7">
                                     날짜 선택해주세요!
