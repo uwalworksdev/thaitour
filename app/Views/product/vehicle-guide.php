@@ -49,14 +49,14 @@
                     <div class="place_chosen">
                         <div class="place_chosen__start bg_gray" role="button" id="place_chosen__start">
                             <img src="/images/ico/ico_place.svg" alt="">
-                            출발지역
+                            <span id="place_start">출발지역</span>
                         </div>
                         <div class="place_chosen__icon">
                             <img src="/images/ico/ico_transfer.svg" alt="">
                         </div>
                         <div class="place_chosen__end bg_gray" role="button" id="place_chosen__end">
                             <img src="/images/ico/ico_place.svg" alt="">
-                            도착지역
+                            <span id="place_end">도착지역</span>
                         </div>
                         <label for="departure_date" class="place_chosen__date bg_gray" role="button" id="place_chosen__date">
                             <img src="/images/ico/ico_calendar_1.png" alt="">
@@ -115,7 +115,11 @@
                     <ul class="section_vehicle_2_2__head__tabs">
                         <?php 
                             $i = 1;
+                            $first_code_no = 0;
                             foreach($codes as $code){
+                                if($i === 1){
+                                    $first_code_no = $code["code_no"];
+                                }
                         ?>
                             <li class="section_vehicle_2_2__head__tabs__item <?php if($i === 1){ echo "active"; }?>" data-code="<?=$code["code_no"]?>">
                                 <a href="#!"><?=$code["code_name"]?></a>
@@ -142,6 +146,9 @@
                     </div>
                 </div>
             </section>
+            <input type="hidden" name="product_code" id="product_code" value="<?=$first_code_no?>">
+            <input type="hidden" name="departure_area" id="departure_area" value="">
+            <input type="hidden" name="destination_area" id="destination_area" value="">
             <section class="section_vehicle_2_3">
                 <div class="section_vehicle_2_3__head">
                     <div class="section_vehicle_2_3__head__ttl vehicle_ttl">
@@ -171,13 +178,13 @@
                         <col width="480px">
                         <col width="320">
                     </colgroup>
-                    <tbody id="product_vehicle_list_selected">
+                    <tbody id="product_vehicle_list_selected" style="display: none;">
                     </tbody>
                 </table>
                 <div class="vehicle_synthetic">
                     <div>
                         <p class="vehicle_synthetic__ttl">선택상품</p>
-                        <p class="vehicle_synthetic__txt">차량 3대</p>
+                        <p class="vehicle_synthetic__txt">차량 <i id="total_cnt">0</i>대</p>
                     </div>
                     <div>
                         <p class="vehicle_synthetic__ttl">차량가격</p>
@@ -396,7 +403,7 @@
                 <div class="popup_place__body">
                     <ul class="popup_place__list">
                         <?php foreach ($place_start_list as $key => $place) : ?>
-                            <li><span class="<?= $key == 0 ? 'active' : '' ?>"><?= $place['code_name'] ?></span></li>
+                            <li data-code="<?=$place['code_no']?>"><span><?= $place['code_name'] ?></span></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -418,7 +425,7 @@
                 <div class="popup_place__body">
                     <ul class="popup_place__list">
                         <?php foreach ($place_end_list as $key => $place) : ?>
-                            <li><span class="<?= $key == 0 ? 'active' : '' ?>"><?= $place['code_name'] ?></span></li>
+                            <li data-code="<?=$place['code_no']?>"><span><?= $place['code_name'] ?></span></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -450,6 +457,24 @@
 </section>
 
 <script>
+    $(".place_chosen__start_pop .popup_place__list li").on("click", function(){
+        let code = $(this).data("code");
+        let place = $(this).find("span").text();
+        $(this).find("span").addClass("active");
+        $(this).siblings().find("span").removeClass("active");
+        $("#departure_area").val(code);
+        $("#place_start").text(place);
+    });
+
+    $(".place_chosen__end_pop .popup_place__list li").on("click", function(){
+        let code = $(this).data("code");
+        let place = $(this).find("span").text();
+        $(this).find("span").addClass("active");
+        $(this).siblings().find("span").removeClass("active");
+        $("#destination_area").val(code);
+        $("#place_end").text(place);
+    });
+
     function renderPrdList(products, code_no) {
         let product_list = "";
 
@@ -609,8 +634,8 @@
     function calculatePrice() {
         let totalPrice = 0;
         let totalPriceBaht = 0;
+        let totalCnt = 0;
         $("#product_vehicle_list_selected > tr").each(function() {
-            console.log($(this));
             
             const price = Number($(this).data("price")) ?? 0;
             const price_baht = Number($(this).data("price_baht")) ?? 0;
@@ -618,9 +643,10 @@
 
             totalPrice += price * cnt;
             totalPriceBaht += price_baht * cnt;
-            
+            totalCnt += cnt;
         })
 
+        $("#totalCnt").text(totalCnt);
         $("#all_price").text(totalPrice.toLocaleString('ko-KR'));
         $("#all_price_baht").text(totalPriceBaht.toLocaleString('ko-KR'));
         $("#final_price").text(totalPrice.toLocaleString('ko-KR'));
@@ -631,17 +657,16 @@
         let id = $(e).data("id");
         let cnt = $(e).val();
 
-        $(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val(cnt);
         $(`#product_vehicle_list_selected tr.product_${id}`).data("cnt", cnt);
         calculatePrice();
     }
 
     function handleSelectVehicle(e) {
 
-        let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
+        let code_no = $("#product_code").val();
         let id = $(e).data("id");
         let current_code = $(`#product_vehicle_list tr.product_${id}`).data("code");
-        let product_arr = $("#product_arr").val().split(",");
+
         const min_cnt = Number($(`#minium_people_cnt_${id}`).val());
         const max_cnt = Number($(`#total_people_cnt_${id}`).val());
         let cnt = Number($(`#product_vehicle_list tr.product_${id}`).find("select.vehicle_cnt").val());
@@ -658,10 +683,14 @@
             return false;
         }
 
-        if(current_code != code_no){
+        if(current_code != code_no && code_no){
             $("#product_arr").val("");
-            $("#product_vehicle_list_selected").remove();
+            $("#product_vehicle_list_selected").empty();
+            $("#product_code").val(current_code);
         }
+
+        let product_arr = $("#product_arr").val().split(",");
+
         if($(e).is(":checked")) {
 
             if(!product_arr.includes(id)){

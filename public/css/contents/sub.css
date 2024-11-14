@@ -3604,6 +3604,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 .popup_place__list > li {
   width: calc((100% - 80px) / 5);
+  cursor: pointer;
 }
 
 .popup_place__list > li > * {
