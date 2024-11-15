@@ -220,6 +220,17 @@ class CodeController extends BaseController
         }
         return "OK";
     }
+
+    public function change()
+    {
+        $code_idx = $this->request->getPost('code_idx');
+        $onum = $this->request->getPost('onum');
+        $tot = count($code_idx);
+        for ($j = 0; $j < $tot; $j++) {
+            $this->CodeModel->update($code_idx[$j], ['onum' => $onum[$j]]);
+        }
+        return "OK";
+    }
     public function ajaxGet() {
         $depth = $this->request->getVar('depth');
         $parent_code_no = $this->request->getVar('parent_code_no');

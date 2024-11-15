@@ -93,7 +93,7 @@
 	
 	<header id="headerContainer">
 		<div class="inner">
-			<h2>코드 <?= $titleStr ?><?= $parent_code_no ?></h2>
+			<h2>코드 <?= $titleStr ?><?//= $code_no ?></h2>
 			<div class="menus">
 				<ul>
 					<li><a href="javascript:history.back();" class="btn btn-default"><span

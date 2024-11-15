@@ -1,9 +1,12 @@
-<!-- app/Views/main/home.php -->
+<!-- app/Views/main/main.php -->
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$Bbs = model("Bbs");
-$list = $Bbs->List("banner", ["category" => "1"])->findAll();
+	$Bbs = model("Bbs");
+	$list = $Bbs->List("banner", ["category" => "1"])->findAll();
+
+	//$MainDisp   = model("MainDisp");
+	//$mainList_1 = $MainDisp->List()->findAll();
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
@@ -25,6 +28,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
     <section class="main_visual">
         <div class="body_inner">
             <div class="relative">
+			    <!-- Web -->
                 <div class="main_visual_slider owl-carousel only_web">
                     <?php foreach ($list as $item): ?>
                         <div class="img_box img_box_1 only_web">
@@ -32,9 +36,10 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
                         </div>
                     <?php endforeach; ?>
-
                 </div>
-                <div class="main_visual_slider owl-carousel only_mo">
+                
+				<!-- Mobile -->
+				<div class="main_visual_slider owl-carousel only_mo">
                     <div class="img_box img_box_1_m  only_mo">
                         <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
                             onerror="this.src='/images/main/image.svg'">
@@ -48,7 +53,8 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                             onerror="this.src='/images/main/image.svg'">
                     </div>
                 </div>
-            </div>
+            
+			</div>
             <div class="swiper-main-tools">
                 <div class="play_pause" id="autoplay-button">
                     <svg id="pause-button" class="pause" width="6" height="10" viewBox="0 0 6 10" fill="none"
@@ -157,7 +163,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             </div>
             <div>
                 <div class="best_list best_list_1">
-                    <a href="#!" class="best_list_item">
+                    <a href="/product-hotel/hotel-detail/1912" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_1.png" alt="main">
                         </div>
@@ -342,7 +348,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                         </div>
                     </a>
                 </div>
-                <div class="best_list best_list_2 hidden">
+                <div class="best_list best_list_3 hidden">
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_5.png" alt="main">
@@ -865,7 +871,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
             <div class="main_section9__row">
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 <br> 5성급 호텔의 특별함 </div>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 5성급 호텔의 특별함 </div>
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
@@ -922,7 +928,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
                 </div>
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 <br> 5성급 호텔의 특별함 </div>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 골프의 특별함 </div>
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">

@@ -14,9 +14,9 @@
 
         <div id="contents" class="">
             <div class="listWrap_noline">
-                <form name="frm" id="frm" action="./list.php" method="post">
+                <form name="frm" id="frm" action="./list" method="get">
                     <input type="hidden" name="code" id="code" value="<?= $code ?>">
-                    <input type="hidden" name="table" id="table" value="tbl_goods">
+                    <input type="hidden" name="table" id="table" value="tbl_goods_mst">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                             <caption></caption>
@@ -30,11 +30,33 @@
                                 <td>
                                     <div class="sel_wrap">
                                         <div class="sel_box">
-                                            <select name="code" id="code" class="main_category"
-                                                    onchange="area_sel(this.value);">
+                                            <select name="child_code_1" id="child_code_1" class="main_category"
+                                                    onchange="getChildCode(this.value, 3)">
                                                 <option value="">카테고리 선택</option>
                                                 <?php
                                                 foreach ($result as $row) {
+                                                    ?>
+                                                    <option value="<?= $row['code_no'] ?>" <?php if ($parent_code == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                            <select name="code" id="child_code_2" class="main_category"
+                                                    onchange="getChildCode(this.value, 4);">
+                                                <option value="">카테고리 선택</option>
+                                                <?php
+                                                foreach ($result2 as $row) {
+                                                    ?>
+                                                    <option value="<?= $row['code_no'] ?>" <?php if ($code == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
+                                            <select name="code" id="child_code_3" class="main_category"
+                                                    onchange="getChildCode(this.value, 5);">
+                                                <option value="">카테고리 선택</option>
+                                                <?php
+                                                foreach ($result3 as $row) {
                                                     ?>
                                                     <option value="<?= $row['code_no'] ?>" <?php if ($code == $row['code_no']) echo "selected"; ?> ><?= $row['code_name'] ?></option>
                                                     <?php
@@ -73,7 +95,7 @@
                                             <th>삭제</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="prd_list">
                                         <?php
                                         foreach ($result2 as $row) {
                                             ?>
@@ -107,10 +129,74 @@
                             </tr>
 
                             <script>
-                                function area_sel(area) {
-                                    $("#area").val(area);
-                                    $("#frm").submit();
+
+                                function getChildCode(parent_code_no, depth) {
+                                    $.ajax({
+                                        url: "/ajax/get_code",
+                                        type: "GET",
+                                        dataType: "html",
+                                        data: {
+                                            "parent_code_no": parent_code_no,
+                                            "depth": depth
+                                        },
+                                        success: function (json, textStatus) {
+                                            $("#isrt_code").val(parent_code_no);
+                                            if (depth <= 3) {
+                                                $("#child_code_2").find('option').each(function () {
+                                                    $(this).remove();
+                                                });
+                                                $("#child_code_2").append("<option value=''>2차분류</option>");
+                                                $("#parent_code").val(parent_code_no);
+                                                updateQueryParam("parent_code", parent_code_no);
+                                            } else if (depth == 4) {
+                                                $("#child_code_3").find('option').remove();
+                                                $("#child_code_3").append("<option value=''>3차분류</option>");
+                                                $("#parent_code").val(parent_code_no);
+                                                updateQueryParam("parent_code", parent_code_no);
+                                            } else {
+                                                $("#code").val(parent_code_no);
+                                                updateQueryParam("code", parent_code_no);
+                                            }
+                                            var list = $.parseJSON(json);
+                                            var listLen = list.length;
+                                            var contentStr = "";
+                                            for (var i = 0; i < listLen; i++) {
+                                                contentStr = "";
+                                                if (list[i].code_status == "C") {
+                                                    contentStr = "[마감]";
+                                                } else if (list[i].code_status == "N") {
+                                                    contentStr = "[사용안함]";
+                                                }
+                                                $("#child_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                                            }
+                                            get_prd_list(parent_code_no);
+                                        },
+                                        error: function (request, status, error) {
+                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                        }
+                                    });
                                 }
+
+                                function get_prd_list(code, parent_code) {
+                                    $.ajax({
+                                        url: "./prd_list",
+                                        type: "GET",
+                                        dataType: "html",
+                                        data: {
+                                            parent_code,
+                                            code
+                                        },
+                                        async: false,
+                                        cache: false,
+                                        success: function (json, textStatus) {
+                                            $("#prd_list").html(json);
+                                        },
+                                        error: function (request, status, error) {
+                                            alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                        }
+                                    });
+                                }
+                                get_prd_list('<?= $replace_code ?>');
                             </script>
 
                             <script>

@@ -5,169 +5,171 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+		$routes->group("AdmMaster", static function ($routes) {
+			$routes->get("", "AdminLogin::loginView");
+			$routes->post("login", "AdminLogin::LoginCheckAjax");
+			$routes->get("logout", "AdminLogin::Logout");
 
+			$routes->post("prod_update/(:segment)", "TourRegistController::prod_update/$1", ['as' => "admin._tour.prod_update"]);
 
-$routes->group("AdmMaster", static function ($routes) {
-    $routes->get("", "AdminLogin::loginView");
-    $routes->post("login", "AdminLogin::LoginCheckAjax");
-    $routes->get("logout", "AdminLogin::Logout");
+			$routes->get("main", "StatisticsController::main");
 
-    $routes->post("prod_update/(:segment)", "TourRegistController::prod_update/$1", ['as' => "admin._tour.prod_update"]);
+		$routes->group("_review", static function ($routes) {
+			$routes->get("list", "ReviewController::list_admin");
+			$routes->get("write", "ReviewController::write_admin");
+			$routes->post("change_ajax", "ReviewController::change_ajax");
+			$routes->post("del", "ReviewController::del");
+			$routes->post("ajax_del", "ReviewController::ajax_del");
+		});
 
-    $routes->get("main", "StatisticsController::main");
+		$routes->group("_member", static function ($routes) {
+			$routes->get("list", "Member::list_member");
+			$routes->post("del", "Member::del");
+			$routes->get("email", "AutoMailController::index");
+			$routes->get("sms", "SmsSettings::index");
+			$routes->get("write", "Member::detail");
+			$routes->get("sms_view", "SmsSettings::sms_view");
+			$routes->post("sms_mod_ok", "SmsSettings::sms_mod_ok");
+			$routes->get("email_view", "AutoMailController::email_view");
+			$routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
+			$routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");
+			// $routes->post("del", "TourRegistController::del");
+			// $routes->post("ajax_del", "TourRegistController::ajax_del");
+		});
 
-    $routes->group("_review", static function ($routes) {
-        $routes->get("list", "ReviewController::list_admin");
-        $routes->get("write", "ReviewController::write_admin");
-        $routes->post("change_ajax", "ReviewController::change_ajax");
-        $routes->post("del", "ReviewController::del");
-        $routes->post("ajax_del", "ReviewController::ajax_del");
+		$routes->group("_bbs", static function ($routes) {
+			$routes->get("board_list", "BoardController::index");
+			$routes->get("board_write", "BoardController::board_write");
+			$routes->post("ajax_bbs_proc", "BoardController::write_ok");
+			$routes->get("board_list_q", "BoardController::index2");
+			$routes->get("form", "BoardController::form");
+			$routes->get("view", "BoardController::view");
+			$routes->post("form_ok", "BoardController::form_ok");
+			// $routes->get("email", "AutoMailController::index");
+			// $routes->get("sms", "SmsSettings::index");
+			// $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
+			// $routes->get("list_tours", "TourRegistController::list_admin");
+			// $routes->get("list_golf", "TourRegistController::list_admin");
+			// $routes->get("_tourStay", "TourRegistController::list_admin");
+			// $routes->post("del", "TourRegistController::del");
+			// $routes->post("ajax_del", "TourRegistController::ajax_del");
+		});
+
+		$routes->group("_reservation", static function ($routes) {
+			$routes->get("list", "Admin\ReservationController::list");
+			$routes->get("(:segment)/write", "Admin\ReservationController::write/$1");
+			$routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
+			$routes->post("delete", "Admin\ReservationController::delete");
+			$routes->get("get_code", "Admin\ReservationController::get_code");
+		});
+
+		$routes->group("_qna", static function ($routes) {
+			$routes->get("list", "Admin\QnaController::list");
+			$routes->get("write", "Admin\QnaController::write");
+			$routes->post("write_ok", "Admin\QnaController::write_ok");
+			$routes->post("delete", "Admin\QnaController::delete");
+		});
+
+		$routes->group("_contact", static function ($routes) {
+			$routes->get("list", "Admin\ContactController::list");
+			$routes->get("write", "Admin\ContactController::write");
+			$routes->post("write_ok", "Admin\ContactController::write_ok");
+			$routes->post("delete", "Admin\ContactController::delete");
+		});
+
+		$routes->group("_code", static function ($routes) {
+			$routes->get("list", "CodeController::list_admin");
+			$routes->get("write", "CodeController::write_admin");
+			$routes->post("write_ok", "CodeController::write_ok");
+			$routes->post("del", "CodeController::del");
+
+		});
+
+		$routes->group("_tourRegist", static function ($routes) {
+			$routes->get("list_hotel", "TourRegistController::list_hotel");
+			$routes->get("list_spas", "TourRegistController::list_spas");
+			$routes->get("list_all", "TourRegistController::list_all");
+			$routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
+			$routes->get("list_tours", "TourRegistController::list_tours");
+			$routes->get("list_golf", "TourRegistController::list_golfs");
+			$routes->get("write", "TourRegistController::write");
+			$routes->get("write_all", "TourRegistController::write_all");
+			$routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
+			$routes->get("write_golf", "TourRegistController::write_golf");
+			$routes->post("write_golf_ok", "TourRegistController::write_golf_ok");
+			$routes->post("write_golf_ok/(:segment)", "TourRegistController::write_golf_ok/$1");
+			$routes->post("write_golf/add_moption", "TourRegistController::add_moption");
+			$routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
+			$routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
+			$routes->get("write_spas", "TourRegistController::write_spas");
+			$routes->get("write_tours", "TourRegistController::write_tours");
+			$routes->get("write_tour_info", "TourRegistController::write_tour_info");
+			$routes->post("write_tours/addMoption", "TourRegistController::addMoption");
+			$routes->post("write_tours/updMoption", "TourRegistController::updMoption");
+			$routes->post("write_tours/delMoption", "TourRegistController::delMoption");
+			$routes->post("write_tours/addOption", "TourRegistController::addOption");
+			$routes->post("write_tours/updOption", "TourRegistController::updOption");
+			$routes->post("write_tours/delOption", "TourRegistController::delOption");
+			$routes->get("_tourStay", "TourRegistController::list");
+
+		$routes->group('golf_vehicles', function ($routes) {
+			$routes->get('/', 'GolfVehicleController::list');
+			$routes->get('write', 'GolfVehicleController::write');
+			$routes->get('write/(:num)', 'GolfVehicleController::write/$1');
+			$routes->post("write_ok", "GolfVehicleController::write_ok");
+			$routes->post('del', 'GolfVehicleController::del');
+			$routes->post("change", "GolfVehicleController::change_ajax");
+
+			});
     });
 
-    $routes->group("_member", static function ($routes) {
-        $routes->get("list", "Member::list_member");
-        $routes->post("del", "Member::del");
-        $routes->get("email", "AutoMailController::index");
-        $routes->get("sms", "SmsSettings::index");
-        $routes->get("write", "Member::detail");
-        $routes->get("sms_view", "SmsSettings::sms_view");
-        $routes->post("sms_mod_ok", "SmsSettings::sms_mod_ok");
-        $routes->get("email_view", "AutoMailController::email_view");
-        $routes->post("email_mod_ok", "AutoMailController::email_mod_ok");
-        $routes->get("pre_viw_mail", "Admin\AdminMemberController::pre_viw_mail");
-        // $routes->post("del", "TourRegistController::del");
-        // $routes->post("ajax_del", "TourRegistController::ajax_del");
-    });
-    $routes->group("_bbs", static function ($routes) {
-        $routes->get("board_list", "BoardController::index");
-        $routes->get("board_write", "BoardController::board_write");
-        $routes->post("ajax_bbs_proc", "BoardController::write_ok");
-        $routes->get("board_list_q", "BoardController::index2");
-        $routes->get("form", "BoardController::form");
-        $routes->get("view", "BoardController::view");
-        $routes->post("form_ok", "BoardController::form_ok");
-        // $routes->get("email", "AutoMailController::index");
-        // $routes->get("sms", "SmsSettings::index");
-        // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
-        // $routes->get("list_tours", "TourRegistController::list_admin");
-        // $routes->get("list_golf", "TourRegistController::list_admin");
-        // $routes->get("_tourStay", "TourRegistController::list_admin");
-        // $routes->post("del", "TourRegistController::del");
-        // $routes->post("ajax_del", "TourRegistController::ajax_del");
-    });
+		$routes->group("_hotel", static function ($routes) {
+			$routes->get("list", "Admin\AdminHotelController::list");
+			$routes->get("write", "Admin\AdminHotelController::write");
+			$routes->get("get_room", "Admin\AdminHotelController::get_room", ['as' => "admin._hotel.get_room"]);
+			$routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
+			$routes->post("write_ok/(:segment)", "Admin\AdminHotelController::write_ok/$1", ['as' => "admin._hotel.write_ok.id"]);
+			$routes->post("change", "Admin\AdminHotelController::change", ['as' => "admin._hotel.change"]);
+			$routes->post("del", "Admin\AdminHotelController::del", ['as' => "admin._hotel.del"]);
+			$routes->post("search_code", "Admin\AdminHotelController::search_code", ['as' => "admin._hotel.search_code"]);
+			$routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);
+			$routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
+		});
 
-    $routes->group("_reservation", static function ($routes) {
-        $routes->get("list", "Admin\ReservationController::list");
-        $routes->get("(:segment)/write", "Admin\ReservationController::write/$1");
-        $routes->post("write_ok/(:segment)", "Admin\ReservationController::write_ok/$1");
-        $routes->post("delete", "Admin\ReservationController::delete");
-        $routes->get("get_code", "Admin\ReservationController::get_code");
-    });
+		$routes->group("_cars", static function ($routes) {
+			$routes->get("list", "Admin\AdminCarsController::list");
+			$routes->get("write", "Admin\AdminCarsController::write");
+			$routes->post("write_ok", "Admin\AdminCarsController::write_ok", ['as' => "admin._cars.write_ok"]);
+			$routes->post("write_ok/(:segment)", "Admin\AdminCarsController::write_ok/$1", ['as' => "admin._cars.write_ok.id"]);
+			$routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars.change"]);
+			$routes->post("delete", "Admin\AdminCarsController::delete", ['as' => "admin._cars.del"]);
+			$routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
+		});
 
-    $routes->group("_qna", static function ($routes) {
-        $routes->get("list", "Admin\QnaController::list");
-        $routes->get("write", "Admin\QnaController::write");
-        $routes->post("write_ok", "Admin\QnaController::write_ok");
-        $routes->post("delete", "Admin\QnaController::delete");
-    });
+		$routes->group("_tours", static function ($routes) {
+			$routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
+			$routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
+			$routes->post("del_tours", "Admin\AdminTourController::del_tours", ['as' => "admin._tours.del_tours"]);
+			$routes->post("del", "Admin\AdminTourController::del", ['as' => "admin._tours.del"]);
+			$routes->get("detailwrite_new", "Admin\AdminTourController::detailwrite_new", ['as' => "admin._tours.detailwrite_new"]);
+			$routes->post("chg_detailwrite", "Admin\AdminTourController::chg_detailwrite", ['as' => "admin._tours.chg_detailwrite"]);
+			$routes->post("day_seq_delete", "Admin\AdminTourController::day_seq_delete", ['as' => "admin._tours.day_seq_delete"]);
+			$routes->post("del_day", "Admin\AdminTourController::del_day", ['as' => "admin._tours.del_day"]);
+			$routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
+			$routes->post("del_tour_option", "Admin\AdminTourController::del_tour_option", ['as' => "admin._tours.del_tour_option"]);
+			$routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
+		});
 
-    $routes->group("_contact", static function ($routes) {
-        $routes->get("list", "Admin\ContactController::list");
-        $routes->get("write", "Admin\ContactController::write");
-        $routes->post("write_ok", "Admin\ContactController::write_ok");
-        $routes->post("delete", "Admin\ContactController::delete");
-    });
+		$routes->group("_productPrice", static function ($routes) {
+			$routes->get("write_new", "Admin\AdminSpaController::write_new", ['as' => "admin._product.price.write_new"]);
+		});
 
-    $routes->group("_code", static function ($routes) {
-        $routes->get("list", "CodeController::list_admin");
-        $routes->get("write", "CodeController::write_admin");
-        $routes->post("write_ok", "CodeController::write_ok");
-        $routes->post("del", "CodeController::del");
-    });
-
-    $routes->group("_tourRegist", static function ($routes) {
-        $routes->get("list_hotel", "TourRegistController::list_hotel");
-        $routes->get("list_spas", "TourRegistController::list_spas");
-        $routes->get("list_all", "TourRegistController::list_all");
-        $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
-        $routes->get("list_tours", "TourRegistController::list_tours");
-        $routes->get("list_golf", "TourRegistController::list_golfs");
-        $routes->get("write", "TourRegistController::write");
-        $routes->get("write_all", "TourRegistController::write_all");
-        $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
-        $routes->get("write_golf", "TourRegistController::write_golf");
-        $routes->post("write_golf_ok", "TourRegistController::write_golf_ok");
-        $routes->post("write_golf_ok/(:segment)", "TourRegistController::write_golf_ok/$1");
-        $routes->post("write_golf/add_moption", "TourRegistController::add_moption");
-        $routes->put("write_golf/upd_moption/(:segment)", "TourRegistController::upd_moption/$1");
-        $routes->delete("write_golf/del_moption/(:segment)", "TourRegistController::del_moption/$1");
-        $routes->get("write_spas", "TourRegistController::write_spas");
-        $routes->get("write_tours", "TourRegistController::write_tours");
-        $routes->get("write_tour_info", "TourRegistController::write_tour_info");
-        $routes->post("write_tours/addMoption", "TourRegistController::addMoption");
-        $routes->post("write_tours/updMoption", "TourRegistController::updMoption");
-        $routes->post("write_tours/delMoption", "TourRegistController::delMoption");
-        $routes->post("write_tours/addOption", "TourRegistController::addOption");
-        $routes->post("write_tours/updOption", "TourRegistController::updOption");
-        $routes->post("write_tours/delOption", "TourRegistController::delOption");
-        $routes->get("_tourStay", "TourRegistController::list");
-        $routes->group('golf_vehicles', function ($routes) {
-            $routes->get('/', 'GolfVehicleController::list');
-            $routes->get('write', 'GolfVehicleController::write');
-            $routes->get('write/(:num)', 'GolfVehicleController::write/$1');
-            $routes->post("write_ok", "GolfVehicleController::write_ok");
-            $routes->post('del', 'GolfVehicleController::del');
-            $routes->post("change", "GolfVehicleController::change_ajax");
-        });
-    });
-
-    $routes->group("_hotel", static function ($routes) {
-        $routes->get("list", "Admin\AdminHotelController::list");
-        $routes->get("write", "Admin\AdminHotelController::write");
-        $routes->get("get_room", "Admin\AdminHotelController::get_room", ['as' => "admin._hotel.get_room"]);
-        $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
-        $routes->post("write_ok/(:segment)", "Admin\AdminHotelController::write_ok/$1", ['as' => "admin._hotel.write_ok.id"]);
-        $routes->post("change", "Admin\AdminHotelController::change", ['as' => "admin._hotel.change"]);
-        $routes->post("del", "Admin\AdminHotelController::del", ['as' => "admin._hotel.del"]);
-        $routes->post("search_code", "Admin\AdminHotelController::search_code", ['as' => "admin._hotel.search_code"]);
-        $routes->post("del_hotel_option", "Admin\AdminHotelController::del_hotel_option", ['as' => "admin._hotel.del_hotel_option"]);
-        $routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
-    });
-
-    $routes->group("_cars", static function ($routes) {
-        $routes->get("list", "Admin\AdminCarsController::list");
-        $routes->get("write", "Admin\AdminCarsController::write");
-        $routes->post("write_ok", "Admin\AdminCarsController::write_ok", ['as' => "admin._cars.write_ok"]);
-        $routes->post("write_ok/(:segment)", "Admin\AdminCarsController::write_ok/$1", ['as' => "admin._cars.write_ok.id"]);
-        $routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars.change"]);
-        $routes->post("delete", "Admin\AdminCarsController::delete", ['as' => "admin._cars.del"]);
-        $routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
-    });
-
-    $routes->group("_tours", static function ($routes) {
-        $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
-        $routes->post("write_info_ok", "Admin\AdminTourController::write_info_ok", ['as' => "admin._tours.write_info_ok"]);
-        $routes->post("del_tours", "Admin\AdminTourController::del_tours", ['as' => "admin._tours.del_tours"]);
-        $routes->post("del", "Admin\AdminTourController::del", ['as' => "admin._tours.del"]);
-        $routes->get("detailwrite_new", "Admin\AdminTourController::detailwrite_new", ['as' => "admin._tours.detailwrite_new"]);
-        $routes->post("chg_detailwrite", "Admin\AdminTourController::chg_detailwrite", ['as' => "admin._tours.chg_detailwrite"]);
-        $routes->post("day_seq_delete", "Admin\AdminTourController::day_seq_delete", ['as' => "admin._tours.day_seq_delete"]);
-        $routes->post("del_day", "Admin\AdminTourController::del_day", ['as' => "admin._tours.del_day"]);
-        $routes->post("detailwrite_new_ok", "Admin\AdminTourController::detailwrite_new_ok", ['as' => "admin._tours.detailwrite_new_ok"]);
-        $routes->post("del_tour_option", "Admin\AdminTourController::del_tour_option", ['as' => "admin._tours.del_tour_option"]);
-        $routes->post("del_tour_product", "Admin\AdminTourController::del_tour_product", ['as' => "admin._tours.del_tour_product"]);
-    });
-
-    $routes->group("_productPrice", static function ($routes) {
-        $routes->get("write_new", "Admin\AdminSpaController::write_new", ['as' => "admin._product.price.write_new"]);
-    });
-
-    $routes->group("api", function ($routes) {
-        $routes->get("get_code", "Api\AdminTourApi::get_code");
-        $routes->post("ajax_change", "Api\AdminTourApi::ajax_change");
-        $routes->post("del", "Api\AdminTourApi::del");
-        $routes->post("prod_update", "Api\AdminTourApi::prod_update");
-        $routes->post("ajax_del", "Api\AdminTourApi::ajax_del");
+		$routes->group("api", function ($routes) {
+			$routes->get("get_code", "Api\AdminTourApi::get_code");
+			$routes->post("ajax_change", "Api\AdminTourApi::ajax_change");
+			$routes->post("del", "Api\AdminTourApi::del");
+			$routes->post("prod_update", "Api\AdminTourApi::prod_update");
+			$routes->post("ajax_del", "Api\AdminTourApi::ajax_del");
 
         // Nested group for 'tour_stay_'
         $routes->group("tour_stay_", function ($routes) {
@@ -187,6 +189,7 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'code_'
         $routes->group("code_", function ($routes) {
             $routes->post("code_del", "Api\AdminCodeApi::code_del", ['as' => "admin.api.code.code_del"]);
+            $routes->post("code_change", "Api\AdminCodeApi::code_change", ['as' => "admin.api.code.code_change"]);
         });
 
         $routes->group("product_", function ($routes) {
@@ -225,121 +228,133 @@ $routes->group("AdmMaster", static function ($routes) {
         });
     });
 
-    $routes->group("_tourStay", static function ($routes) {
-        $routes->get("list", "TourStayController::list");
-        $routes->get("write", "TourStayController::write");
-        $routes->post("write_ok", "TourStayController::write_ok", ['as' => "admin.tourStay.write_ok"]);
-    });
+		$routes->group("_tourStay", static function ($routes) {
+			$routes->get("list", "TourStayController::list");
+			$routes->get("write", "TourStayController::write");
+			$routes->post("write_ok", "TourStayController::write_ok", ['as' => "admin.tourStay.write_ok"]);
+		});
 
-    $routes->group("_room", static function ($routes) {
-        $routes->get("list", "Admin\AdminRoomController::list", ['as' => "admin.room.list"]);
-        $routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);
-        $routes->post("write_ok", "Admin\AdminRoomController::write_ok", ['as' => "admin.room.write_ok"]);
-        $routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
-    });
+		$routes->group("_room", static function ($routes) {
+			$routes->get("list", "Admin\AdminRoomController::list", ['as' => "admin.room.list"]);
+			$routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);
+			$routes->post("write_ok", "Admin\AdminRoomController::write_ok", ['as' => "admin.room.write_ok"]);
+			$routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
+		});
 
-    $routes->group("_tourSuggestion", static function ($routes) {
-        $routes->get("list", "TourSuggestionSubController::list");
-        $routes->get("write", "TourSuggestionController::write");
-    });
+		//$routes->group("_tourSuggestion", static function ($routes) {
+		//	$routes->get("list",     "TourSuggestionController::list");
+		//	$routes->get("prd_list", "TourSuggestionController::prd_list");
+		//	$routes->get("write",    "TourSuggestionController::write");
+		//});
 
-    $routes->group("_tourSuggestionSub", static function ($routes) {
-        $routes->get("list", "TourSuggestionSubController::list");
-        $routes->get("write", "TourSuggestionSubController::write");
-        $routes->get("prd_list", "TourSuggestionSubController::prd_list");
-        $routes->get("goods_find", "TourSuggestionSubController::goods_find");
-        $routes->get("item_allfind", "TourSuggestionSubController::item_allfind");
-        $routes->post("main_update", "TourSuggestionSubController::main_update");
-        $routes->post("seq_upd1", "TourSuggestionSubController::seq_upd1");
-        $routes->post("goods_alldel", "TourSuggestionSubController::goods_alldel");
-    });
+		$routes->group("_tourSuggestionSub", static function ($routes) {
+			$routes->get("list", "TourSuggestionSubController::list");
+			$routes->get("write", "TourSuggestionSubController::write");
+			$routes->get("prd_list", "TourSuggestionSubController::prd_list");
+			$routes->get("goods_find", "TourSuggestionSubController::goods_find");
+			$routes->get("item_allfind", "TourSuggestionSubController::item_allfind");
+			$routes->post("main_update", "TourSuggestionSubController::main_update");
+			$routes->post("seq_upd1", "TourSuggestionSubController::seq_upd1");
+			$routes->post("goods_alldel", "TourSuggestionSubController::goods_alldel");
+		});
 
-    $routes->group("_tourLevel", static function ($routes) {
-        $routes->get("list", "Admin\TourLevelController::list");
-        $routes->get("write", "Admin\TourLevelController::write");
-    });
+		$routes->group("_tourSuggestion", static function ($routes) {
+			$routes->get("list", "TourSuggestionController::list");
+			$routes->get("write", "TourSuggestionController::write");
+			$routes->get("prd_list", "TourSuggestionController::prd_list");
+			$routes->get("goods_find", "TourSuggestionController::goods_find");
+			$routes->get("item_allfind", "TourSuggestionController::item_allfind");
+			$routes->post("main_update", "TourSuggestionController::main_update");
+			$routes->post("seq_upd1", "TourSuggestionController::seq_upd1");
+			$routes->post("goods_alldel", "TourSuggestionController::goods_alldel");
+		});
 
-    $routes->group("_tourOption", static function ($routes) {
-        $routes->get("list", "Admin\TourOptionController::list");
-        $routes->get("write", "Admin\TourOptionController::write");
-    });
+		$routes->group("_tourLevel", static function ($routes) {
+			$routes->get("list", "Admin\TourLevelController::list");
+			$routes->get("write", "Admin\TourLevelController::write");
+		});
 
-    $routes->group("_inquiry", static function ($routes) {
-        $routes->get("list", "Admin\AdminInquiryController::list");
-        $routes->get("write", "Admin\AdminInquiryController::write");
-    });
+		$routes->group("_tourOption", static function ($routes) {
+			$routes->get("list", "Admin\TourOptionController::list");
+			$routes->get("write", "Admin\TourOptionController::write");
+		});
 
-    $routes->group("_operator", static function ($routes) {
-        $routes->get("coupon_setting", "Admin\AdminOperatorController::coupon_setting");
-        $routes->get("coupon_setting_write", "Admin\AdminOperatorController::coupon_setting_write");
-        $routes->post("coupon_setting_write_ok", "Admin\AdminOperatorController::coupon_setting_write_ok", ['as' => "admin.operator.coupon_setting_write_ok"]);
-        $routes->post("coupon_setting_del", "Admin\AdminOperatorController::coupon_setting_del", ['as' => "admin.operator.coupon_setting_del"]);
-        $routes->get("coupon_list", "Admin\AdminOperatorController::coupon_list");
-        $routes->get("coupon_write", "Admin\AdminOperatorController::coupon_write");
-        $routes->post("coupon_write_ok", "Admin\AdminOperatorController::coupon_write_ok", ['as' => "admin.operator.coupon_write_ok"]);
-        $routes->post("coupon_del", "Admin\AdminOperatorController::coupon_del", ['as' => "admin.operator.coupon_del"]);
-        $routes->get("find_user", "Admin\AdminOperatorController::find_user");
-        $routes->get("send_coupon", "Admin\AdminOperatorController::send_coupon");
+		$routes->group("_inquiry", static function ($routes) {
+			$routes->get("list", "Admin\AdminInquiryController::list");
+			$routes->get("write", "Admin\AdminInquiryController::write");
+		});
 
-    });
+		$routes->group("_operator", static function ($routes) {
+			$routes->get("coupon_setting", "Admin\AdminOperatorController::coupon_setting");
+			$routes->get("coupon_setting_write", "Admin\AdminOperatorController::coupon_setting_write");
+			$routes->post("coupon_setting_write_ok", "Admin\AdminOperatorController::coupon_setting_write_ok", ['as' => "admin.operator.coupon_setting_write_ok"]);
+			$routes->post("coupon_setting_del", "Admin\AdminOperatorController::coupon_setting_del", ['as' => "admin.operator.coupon_setting_del"]);
+			$routes->get("coupon_list", "Admin\AdminOperatorController::coupon_list");
+			$routes->get("coupon_write", "Admin\AdminOperatorController::coupon_write");
+			$routes->post("coupon_write_ok", "Admin\AdminOperatorController::coupon_write_ok", ['as' => "admin.operator.coupon_write_ok"]);
+			$routes->post("coupon_del", "Admin\AdminOperatorController::coupon_del", ['as' => "admin.operator.coupon_del"]);
+			$routes->get("find_user", "Admin\AdminOperatorController::find_user");
+			$routes->get("send_coupon", "Admin\AdminOperatorController::send_coupon");
 
-    $routes->group("_mileage", static function ($routes) {
-        $routes->get("list", "Admin\AdminMileageController::list");
-        $routes->get("write", "Admin\AdminMileageController::write");
-    });
+		});
 
-    $routes->group("_memberBoard", static function ($routes) {
-        $routes->get("board_list", "Admin\AdminMemberBoardController::board_list");
-        $routes->get("board_write", "Admin\AdminMemberBoardController::board_write");
-    });
+		$routes->group("_mileage", static function ($routes) {
+			$routes->get("list", "Admin\AdminMileageController::list");
+			$routes->get("write", "Admin\AdminMileageController::write");
+		});
 
-    $routes->group("_memberBreak", static function ($routes) {
-        $routes->get("list", "Admin\AdminMemberBreakController::list");
-        $routes->get("write", "Admin\AdminMemberBreakController::write");
-    });
+		$routes->group("_memberBoard", static function ($routes) {
+			$routes->get("board_list", "Admin\AdminMemberBoardController::board_list");
+			$routes->get("board_write", "Admin\AdminMemberBoardController::board_write");
+		});
 
-    $routes->group("_bbsBanner", static function ($routes) {
-        $routes->get("list", "Admin\AdminBbsBannerController::list");
-        $routes->get("write", "Admin\AdminBbsBannerController::write");
-    });
+		$routes->group("_memberBreak", static function ($routes) {
+			$routes->get("list", "Admin\AdminMemberBreakController::list");
+			$routes->get("write", "Admin\AdminMemberBreakController::write");
+		});
 
-    $routes->group("_codeBanner", static function ($routes) {
-        $routes->get("list", "Admin\AdminCodeBannerController::list");
-        $routes->get("write", "Admin\AdminCodeBannerController::write");
-    });
+		$routes->group("_bbsBanner", static function ($routes) {
+			$routes->get("list", "Admin\AdminBbsBannerController::list");
+			$routes->get("write", "Admin\AdminBbsBannerController::write");
+		});
 
-    $routes->group("_cateBanner", static function ($routes) {
-        $routes->get("list", "Admin\AdminCateBannerController::list");
-        $routes->get("write", "Admin\AdminCateBannerController::write");
-    });
+		$routes->group("_codeBanner", static function ($routes) {
+			$routes->get("list", "Admin\AdminCodeBannerController::list");
+			$routes->get("write", "Admin\AdminCodeBannerController::write");
+		});
 
-    $routes->group("_cms", static function ($routes) {
-        $routes->get("index", "Admin\AdminCmsController::index");
-        $routes->get("write", "Admin\AdminCmsController::write");
-        $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
-        $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
-        $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
-    });
+		$routes->group("_cateBanner", static function ($routes) {
+			$routes->get("list", "Admin\AdminCateBannerController::list");
+			$routes->get("write", "Admin\AdminCateBannerController::write");
+		});
 
-    $routes->group("_statistics", static function ($routes) {
-        $routes->get("statistics01_01", "Admin\AdminStatisticsController::statistics01_01");
-        $routes->get("statistics01_02", "Admin\AdminStatisticsController::statistics01_02");
-        $routes->get("statistics01_03", "Admin\AdminStatisticsController::statistics01_03");
-        $routes->get("statistics01_04", "Admin\AdminStatisticsController::statistics01_04");
-        $routes->get("statistics01_05", "Admin\AdminStatisticsController::statistics01_05");
-        $routes->get("statistics01_06", "Admin\AdminStatisticsController::statistics01_06");
-        $routes->get("statistics01_07", "Admin\AdminStatisticsController::statistics01_07");
-        $routes->get("statistics01_08", "Admin\AdminStatisticsController::statistics01_08");
-        $routes->get("statistics02_01", "Admin\AdminStatisticsController::statistics02_01");
-        $routes->get("statistics03_01", "Admin\AdminStatisticsController::statistics03_01");
-        $routes->get("statistics04_01", "Admin\AdminStatisticsController::statistics04_01");
-        $routes->get("statistics05_01", "Admin\AdminStatisticsController::statistics05_01");
-    });
+		$routes->group("_cms", static function ($routes) {
+			$routes->get("index", "Admin\AdminCmsController::index");
+			$routes->get("write", "Admin\AdminCmsController::write");
+			$routes->get("policy_list", "Admin\AdminCmsController::policy_list");
+			$routes->get("policy_write", "Admin\AdminCmsController::policy_write");
+			$routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
+		});
 
-    $routes->group("_adminrator", static function ($routes) {
-        // 사이트 기본설정
-        $routes->get("setting", "Setting::writeView");
-        $routes->post("update", "Setting::writeUpdate");
+		$routes->group("_statistics", static function ($routes) {
+			$routes->get("statistics01_01", "Admin\AdminStatisticsController::statistics01_01");
+			$routes->get("statistics01_02", "Admin\AdminStatisticsController::statistics01_02");
+			$routes->get("statistics01_03", "Admin\AdminStatisticsController::statistics01_03");
+			$routes->get("statistics01_04", "Admin\AdminStatisticsController::statistics01_04");
+			$routes->get("statistics01_05", "Admin\AdminStatisticsController::statistics01_05");
+			$routes->get("statistics01_06", "Admin\AdminStatisticsController::statistics01_06");
+			$routes->get("statistics01_07", "Admin\AdminStatisticsController::statistics01_07");
+			$routes->get("statistics01_08", "Admin\AdminStatisticsController::statistics01_08");
+			$routes->get("statistics02_01", "Admin\AdminStatisticsController::statistics02_01");
+			$routes->get("statistics03_01", "Admin\AdminStatisticsController::statistics03_01");
+			$routes->get("statistics04_01", "Admin\AdminStatisticsController::statistics04_01");
+			$routes->get("statistics05_01", "Admin\AdminStatisticsController::statistics05_01");
+		});
+
+		$routes->group("_adminrator", static function ($routes) {
+			// 사이트 기본설정
+			$routes->get("setting", "Setting::writeView");
+			$routes->post("update", "Setting::writeUpdate");
         // 팝업
         $routes->group("popup", static function ($routes) {
             $routes->get("list", "Popup::ListView");
@@ -377,6 +392,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
     $routes->post("get_travel_types", "AjaxController::get_travel_types");
     $routes->get("get_code", "CodeController::ajaxGet");
+    $routes->post("get_code", "CodeController::ajaxGet");
 });
 
 $routes->group("api", static function ($routes) {
@@ -391,7 +407,6 @@ $routes->group("api", static function ($routes) {
 });
 
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
-
 $routes->get('/', 'Home::index');
 $routes->post('/file_uploader', 'FileUpload::file_uploader');
 $routes->group("tools", static function ($routes) {
