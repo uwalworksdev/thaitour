@@ -709,14 +709,6 @@
                             </tr>`;
             }
 
-            if (data.length === 0) {
-                html = `<tr>
-                                <td colspan="7">
-                                    날짜 선택해주세요!
-                                </td>
-                            </tr>`;
-            }
-
             $('#price_body_').html(html);
         }
 
