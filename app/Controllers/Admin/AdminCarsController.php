@@ -10,7 +10,10 @@ class AdminCarsController extends BaseController
     protected $connect;
     protected $productModel;
     protected $carsOptionModel;
+    protected $carsSubModel;
+
     protected $codeModel;
+
 
     public function __construct()
     {
@@ -19,6 +22,7 @@ class AdminCarsController extends BaseController
         helper('alert_helper');
         $this->productModel = model("ProductModel");
         $this->carsOptionModel = model("CarsOptionModel");
+        $this->carsSubModel = model("CarsSubModel");
         $this->codeModel = model("Code");
     }
 
@@ -78,6 +82,13 @@ class AdminCarsController extends BaseController
 
         $place_end_list = $this->codeModel->getByParentCode(49)->getResultArray();
 
+        $cars_sub_list = $this->carsSubModel->findSub($product_idx);
+
+        foreach($cars_sub_list as $key => $value){
+            $cars_sub_list[$key]["departure_name"] = $this->codeModel->getCodeName($value["departure_code"]);
+            $cars_sub_list[$key]["destination_name"] = $this->codeModel->getCodeName($value["destination_code"]);
+        }
+
         if ($product_idx) {
             $row = $this->productModel->find($product_idx);
         }
@@ -96,7 +107,8 @@ class AdminCarsController extends BaseController
             'cfresult' => $cfresult,
             'options' => $oresult,
             'place_start_list' => $place_start_list,
-            'place_end_list' => $place_end_list
+            'place_end_list' => $place_end_list,
+            'cars_sub_list' => $cars_sub_list
         ];
         return view("admin/_cars/write", $data);
     }
@@ -302,4 +314,75 @@ class AdminCarsController extends BaseController
         }
     }
 
+    function cars_sub_ok() {
+        try {
+            $product_idx = $this->request->getPost("product_idx") ?? [];
+            $cars_sub_idx = $this->request->getPost("cars_sub_idx") ?? [];
+            $departure_list = $this->request->getPost("departure_code") ?? [];
+            $destination_list = $this->request->getPost("destination_code") ?? [];
+            $car_price = $this->request->getPost("car_price") ?? [];
+            
+            foreach ($cars_sub_idx as $key => $val) {
+                $row_chk = $this->carsSubModel->find($val);
+
+                if ($row_chk) {
+                    $this->carsSubModel->update($val, [
+                        'car_price' => $car_price[$key],
+                    ]);
+
+                } else {
+                    $this->carsSubModel->insert([
+                        'product_idx' => $product_idx,
+                        'departure_code' => $departure_list[$key],
+                        'destination_code' => $destination_list[$key],
+                        'car_price' => $car_price[$key],
+                    ]);
+
+                }
+            }
+
+            return $this->response->setJSON([
+                'result' => true,
+                'message' => '업데이트되었습니다.'
+            ], 200);
+
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
+    public function cars_sub_del()
+    {
+        try {
+            $idx = $_POST['idx'] ?? '';
+            if (!isset($idx)) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'idx가 없습니다.'
+                ], 400);
+            }
+
+            $result = $this->carsSubModel->delete($idx);
+
+            if($result) {
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => '삭제되었습니다.'
+                ], 200);
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "오류!"
+                ], 400); 
+            }
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
 }

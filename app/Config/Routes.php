@@ -136,15 +136,17 @@ use CodeIgniter\Router\RouteCollection;
 			$routes->post("del_room_option", "Admin\AdminHotelController::del_room_option", ['as' => "admin._hotel.del_room_option"]);
 		});
 
-		$routes->group("_cars", static function ($routes) {
-			$routes->get("list", "Admin\AdminCarsController::list");
-			$routes->get("write", "Admin\AdminCarsController::write");
-			$routes->post("write_ok", "Admin\AdminCarsController::write_ok", ['as' => "admin._cars.write_ok"]);
-			$routes->post("write_ok/(:segment)", "Admin\AdminCarsController::write_ok/$1", ['as' => "admin._cars.write_ok.id"]);
-			$routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars.change"]);
-			$routes->post("delete", "Admin\AdminCarsController::delete", ['as' => "admin._cars.del"]);
-			$routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
-		});
+    $routes->group("_cars", static function ($routes) {
+        $routes->get("list", "Admin\AdminCarsController::list");
+        $routes->get("write", "Admin\AdminCarsController::write");
+        $routes->post("write_ok", "Admin\AdminCarsController::write_ok", ['as' => "admin._cars.write_ok"]);
+        $routes->post("write_ok/(:segment)", "Admin\AdminCarsController::write_ok/$1", ['as' => "admin._cars.write_ok.id"]);
+        $routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars.change"]);
+        $routes->post("delete", "Admin\AdminCarsController::delete", ['as' => "admin._cars.del"]);
+        $routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
+        $routes->post("cars_sub_ok", "Admin\AdminCarsController::cars_sub_ok");
+        $routes->post("cars_sub_del", "Admin\AdminCarsController::cars_sub_del");
+    });
 
 		$routes->group("_tours", static function ($routes) {
 			$routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
