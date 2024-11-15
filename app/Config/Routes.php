@@ -142,6 +142,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("change", "Admin\AdminCarsController::change", ['as' => "admin._cars.change"]);
         $routes->post("delete", "Admin\AdminCarsController::delete", ['as' => "admin._cars.del"]);
         $routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
+        $routes->post("cars_sub_ok", "Admin\AdminCarsController::cars_sub_ok");
+        $routes->post("cars_sub_del", "Admin\AdminCarsController::cars_sub_del");
     });
 
     $routes->group("_tours", static function ($routes) {
