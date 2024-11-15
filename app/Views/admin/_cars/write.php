@@ -678,7 +678,7 @@ $links = "list";
     });
 </script>
 <script>
-    document.querySelector('.car_price').addEventListener('input', function() {
+    document?.querySelector('.car_price')?.addEventListener('input', function() {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
@@ -788,7 +788,7 @@ $links = "list";
             addOptionSub +=    `</td>`;
             addOptionSub += `</tr>`;
             
-            document.querySelector('.car_price').addEventListener('input', function() {
+            document?.querySelector('.car_price')?.addEventListener('input', function() {
                 this.value = this.value.replace(/[^0-9]/g, '');
             });
 
