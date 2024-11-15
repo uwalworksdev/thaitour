@@ -1,5 +1,8 @@
 <div class="price-right-c">
     <form name="frm" id="frm" method="post" action="<?= route_to('api.product.processBooking') ?>">
+        <div class="" style="display: none">
+            <input type="hidden" name="totalPrice" id="totalPrice" value="0">
+        </div>
         <div class="view_nav" id="sticky" style="position: sticky; top: 30px;">
             <div class="scroll_box">
                 <input type="hidden" id="day_" name="day_">
@@ -19,7 +22,7 @@
                             <div class="opt_count_box count_box flex__c">
                                 <button type="button" class="minus_btn"
                                         id="minusAdult"></button>
-                                <input type="text" class="input-qty" name="qty" id="adultQty" value="1"
+                                <input type="text" class="input-qty" name="adultQty" id="adultQty" value="0"
                                        readonly="">
                                 <button type="button" class="plus_btn"
                                         id="addAdult"></button>
@@ -32,7 +35,7 @@
                             <div class="opt_count_box count_box flex__c">
                                 <button type="button" class="minus_btn"
                                         id="minusAdult2"></button>
-                                <input type="text" class="input-qty" name="qty" id="childrenQty" value="1"
+                                <input type="text" class="input-qty" name="childrenQty" id="childrenQty" value="0"
                                        readonly="">
                                 <button type="button" class="plus_btn"
                                         id="addAdult2"></button>
@@ -237,26 +240,57 @@
     }
 
     function order_it() {
-        let fullagreement = $("#fullagreement").val();
-        let terms = $("#terms").val();
-        let policy = $("#policy").val();
-        let information = $("#information").val();
-        let guidelines = $("#guidelines").val();
+        $("#ajax_loader").removeClass("display-none");
+        /* Collect values for validation */
+        let fullagreement = $("#fullagreement").val().trim();
+        let terms = $("#terms").val().trim();
+        let policy = $("#policy").val().trim();
+        let information = $("#information").val().trim();
+        let guidelines = $("#guidelines").val().trim();
 
-        if (fullagreement == "N" || terms == "N" || policy == "N" || information == "N" || guidelines == "N") {
-            alert("이전 작업을 피해야 할 수 있습니다.");
+        /* Check for agreement validation */
+        if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
+            alert("모든 약관에 동의해야 합니다.");
             return false;
         }
 
-        let day_ = $('#day_').val();
-        if (day_ == "") {
+        // Check if day_ is provided
+        let day_ = $('#day_').val().trim();
+        if (day_ === "") {
             alert("등록 날짜를 선택하세요.");
             return false;
         }
 
-        let url = '<?= route_to('api.product.processBooking') ?>';
+        let $adultQty = $('#adultQty').val().trim();
+        let $childrenQty = $('#childrenQty').val().trim();
+        if ($adultQty === 0 && $childrenQty === 0) {
+            alert("성인 수를 입력해주세요.");
+            return false;
+        }
 
-        $("#frm").attr("action", url).submit();
+        /* Form submission setup */
+        let url = '<?= route_to('api.product.processBooking') ?>';
+        let formData = new FormData($('#frm')[0]);
+
+        /* AJAX request */
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                $("#ajax_loader").addClass("display-none");
+                console.log("Success:", response);
+                alert("작업이 성공적으로 완료되었습니다.");
+                window.location.href = '/product-spa/product-booking';
+            },
+            error: function (request, status, error) {
+                console.error("Error:", request, status, error);
+                alert("오류 발생: " + request.responseText || "알 수 없는 오류");
+                $("#ajax_loader").removeClass("display-none");
+            }
+        });
     }
 
     function minusInput(el) {

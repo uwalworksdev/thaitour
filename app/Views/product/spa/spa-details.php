@@ -789,6 +789,9 @@
             }
 
             total_price += parseInt(price_total);
+
+            $('#totalPrice').val(total_price);
+
             total_price = total_price.toLocaleString();
             return total_price;
         }
