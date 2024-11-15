@@ -534,17 +534,17 @@
                                     $("#ajax_loader").removeClass("display-none");
                                     let uri = '<?= route_to('admin.api.spa_.charge_update') ?>';
 
-                                    if (!confirm("가격정보를 수정 하시겠습니까?"))
+                                    if (!confirm("가격정보를 수정 하시겠습니까?")) {
+                                        $("#ajax_loader").addClass("display-none");
                                         return false;
+                                    }
 
                                     let idx = $(this).val();
                                     let message = "";
                                     $.ajax({
-
                                         url: uri,
                                         type: "POST",
                                         data: {
-
                                             "charge_idx": idx,
                                             "s_station": $("#s_station_" + idx).val(),
                                             "tour_price": $("#tour_price_" + idx).val().replaceAll(',', ''),
@@ -572,10 +572,12 @@
                                     $("#ajax_loader").removeClass("display-none");
                                     let uri = '<?= route_to('admin.api.spa_.charge_delete') ?>';
 
-                                    $(this).parent().parent().remove();
-
-                                    if (!confirm("가격정보를 삭제 하시겠습니까?"))
+                                    if (!confirm("가격정보를 삭제 하시겠습니까?")) {
+                                        $("#ajax_loader").addClass("display-none");
                                         return false;
+                                    }
+
+                                    $(this).closest('tr').remove();
 
                                     let idx = $(this).val();
                                     let message = "";
@@ -635,9 +637,8 @@
                                     $("#ajax_loader").removeClass("display-none");
                                     let uri = `<?= route_to('admin.api.spa_.charge_dummy') ?>`;
 
-                                    var message = "";
+                                    let message = "";
                                     $.ajax({
-
                                         url: uri,
                                         type: "POST",
                                         data: {
@@ -680,15 +681,15 @@
                                     "minDate": $("#datetest1").val(),
                                     "maxDate": $("#datetest3").val(),
                                 });
-                            })
+                            });
+
                             $('.deadline_date').on('cancel.daterangepicker', function () {
                                 $(this).remove();
                             });
+
                             $("#btn_add_date_range").click(function () {
-                                console.log($(this));
                                 const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
                                 $(this).before(new_date_range);
-                                console.log(new_date_range);
                                 new_date_range.daterangepicker({
                                     locale: {
                                         "format": "YYYY-MM-DD",
@@ -761,11 +762,8 @@
                                 </li>
                             </ul>
                         </div>
-
-
                     </div>
                     <!-- // listWrap -->
-
                 </div>
                 <!-- // contents -->
             </form>

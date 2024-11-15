@@ -634,6 +634,7 @@
             const dayIndex = date.getUTCDay();
             return yoilArray[dayIndex];
         }
+
         function loadDay(day_) {
             let yoil = getYoil(day_);
             let url = `<?= route_to('api.spa_.charge_list') ?>?product_idx=<?= $data_['product_idx'] ?>&day_=${day_}&yoil=${yoil}`;
