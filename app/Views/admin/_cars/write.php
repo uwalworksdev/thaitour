@@ -284,8 +284,13 @@ $links = "list";
                                     </colgroup>
                                     <tbody>
                                     <tr>
+                                        <?php
+                                            $arr_departure_area = array_filter(explode(",", $departure_area));
+                                            $arr_destination_area = array_filter(explode(",", $destination_area));
+                                        ?>
                                         <th>
-                                            <input type="checkbox" id="all_departure_area" class="all_input">
+                                            <input type="checkbox" id="all_departure_area" class="all_input" 
+                                                <?php if(count($arr_departure_area) == count($place_start_list)){ echo "checked"; }?>>
                                             <label for="all_departure_area">
                                                 출발지역
                                             </label>
@@ -294,14 +299,17 @@ $links = "list";
                                             <?php
                                                 foreach($place_start_list as $start){
                                             ?>
-                                                <input type="checkbox" id="departure_area_<?=$start["code_no"]?>" name="departure_area[]" class="departure_area" value="<?=$start["code_no"]?>">
+                                                <input type="checkbox" id="departure_area_<?=$start["code_no"]?>" name="departure_area[]" 
+                                                    class="departure_area" value="<?=$start["code_no"]?>" 
+                                                    <?php if(in_array($start["code_no"], $arr_departure_area)){ echo "checked"; }?>>
                                                 <label for="departure_area_<?=$start["code_no"]?>"><?=$start["code_name"]?></label>
                                             <?php } ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            <input type="checkbox" id="all_destination_area" class="all_input">
+                                            <input type="checkbox" id="all_destination_area" class="all_input"
+                                                <?php if(count($arr_destination_area) == count($place_end_list)){ echo "checked"; }?>>
                                             <label for="all_destination_area">
                                                 도착지역
                                             </label> 
@@ -310,7 +318,9 @@ $links = "list";
                                             <?php
                                                 foreach($place_end_list as $end){
                                             ?>
-                                                <input type="checkbox" id="destination_area_<?=$end["code_no"]?>" name="destination_area[]" class="destination_area" value="<?=$end["code_no"]?>">
+                                                <input type="checkbox" id="destination_area_<?=$end["code_no"]?>" name="destination_area[]" 
+                                                    class="destination_area" value="<?=$end["code_no"]?>"
+                                                    <?php if(in_array($end["code_no"], $arr_destination_area)){ echo "checked"; }?>>
                                                 <label for="destination_area_<?=$end["code_no"]?>"><?=$end["code_name"]?></label>
                                             <?php } ?>
                                         </td>
@@ -504,11 +514,45 @@ $links = "list";
         }
     });
 
+    $(".departure_area").on("click", function() {
+        var checkAll = true;
+
+        $('.departure_area').each(function() {
+            if (!$(this).is(":checked")) {
+                checkAll = false;
+                return false;
+            }
+        });
+
+        if (checkAll) {
+            $("#all_departure_area").prop("checked", true)
+        } else {
+            $("#all_departure_area").prop("checked", false)
+        }
+    });
+
     $("#all_destination_area").on("change", function(){
         if($(this).is(":checked")){
             $(".destination_area").prop("checked", true);
         }else{
             $(".destination_area").prop("checked", false);
+        }
+    });
+
+    $(".destination_area").on("click", function() {
+        var checkAll = true;
+
+        $('.destination_area').each(function() {
+            if (!$(this).is(":checked")) {
+                checkAll = false;
+                return false;
+            }
+        });
+
+        if (checkAll) {
+            $("#all_destination_area").prop("checked", true)
+        } else {
+            $("#all_destination_area").prop("checked", false)
         }
     });
 </script>
