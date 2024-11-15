@@ -218,6 +218,7 @@
                                                 }
                                             </style>
                                             <?php
+                                            $i = 0;
                                             foreach ($fresult2 as $frow2) {
                                                 ?>
                                                 <tr style="height:40px">
@@ -231,8 +232,13 @@
                                                                    id="s_station_<?= $frow2["charge_idx"] ?>"
                                                                    value="<?= $frow2["s_station"] ?>"
                                                                    class="s_station input_txt" style="width:80%"/>
-                                                            <a href="#!" class="order_btn"
-                                                               onclick="return positionUP('<?= $frow2["charge_idx"] ?>','U')">▲</a>
+                                                            <a href="#!"
+                                                                <?php if ($i !== 0) {
+                                                                    echo 'onclick="return positionUP(' . $frow2["charge_idx"] . ',\'U\')"';
+                                                                } else {
+                                                                    echo 'disabled';
+                                                                } ?>
+                                                               class="order_btn">▲</a>
                                                             <a href="#!" class="order_btn"
                                                                onclick="return positionUP('<?= $frow2["charge_idx"] ?>','D')">▼</a>
                                                         </div>
@@ -273,6 +279,7 @@
                                                     </td>
                                                 </tr>
                                                 <?php
+                                                $i++;
                                             }
                                             ?>
                                             </tbody>
