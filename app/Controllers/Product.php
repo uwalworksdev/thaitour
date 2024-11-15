@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Hotel;
 use CodeIgniter\I18n\Time;
 use Config\CustomConstants as ConfigCustomConstants;
+use Config\Services;
 use Exception;
 
 class Product extends BaseController
@@ -305,7 +306,7 @@ class Product extends BaseController
                 $products['items'][$key]['level_name'] = $fresult9['code_name'];
             }
 
-            $pager = \Config\Services::pager();
+            $pager = Services::pager();
 
             $code_name = $this->db->table('tbl_code')
                 ->select('code_name')
@@ -578,7 +579,7 @@ class Product extends BaseController
 
             $totalProducts = $this->productModel->where($this->productModel->getCodeColumn($code_no), $code_no)->where('is_view', 'Y')->countAllResults();
 
-            $pager = \Config\Services::pager();
+            $pager = Services::pager();
 
             $code_name = $this->db->table('tbl_code')
                 ->select('code_name')
@@ -738,7 +739,7 @@ class Product extends BaseController
                 ->where('is_view', 'Y')
                 ->countAllResults();
 
-            $pager = \Config\Services::pager();
+            $pager = Services::pager();
 
             $code_name = $this->db->table('tbl_code')
                 ->select('code_name')
@@ -2152,33 +2153,48 @@ class Product extends BaseController
 
     public function productBooking()
     {
-        $session = \Config\Services::session();
+        $session = Services::session();
         $data = $session->get('data_cart');
 
         $product_idx = $data['product_idx'];
         $day_ = $data['day_'];
         $member_idx = $data['member_idx'];
-        $qty = $data['qty'];
+
+        $adultQty = $data['adultQty'];
+        $childrenQty = $data['childrenQty'];
+
+        $totalPrice = $data['totalPrice'];
 
         $sql = 'SELECT * FROM tbl_product_mst WHERE product_idx = ' . $product_idx;
         $result = $this->db->query($sql);
         $prod = $result->getRowArray();
 
+        $builder = $this->db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $moption = $query->getResultArray();
+
         $res = [
             'prod' => $prod,
             'day_' => $day_,
             'member_idx' => $member_idx,
-            'qty' => $qty,
+            'moption' => $moption,
+            'adultQty' => $adultQty,
+            'childrenQty' => $childrenQty,
+            'totalPrice' => $totalPrice,
+            'data' => $data,
         ];
 
-        return $this->response->setJSON($data, 200);
+//        return $this->response->setJSON($data, 200);
         return $this->renderView('/product/spa/product-booking', $res);
     }
 
     public function processBooking()
     {
         try {
-            $session = \Config\Services::session();
+            $session = Services::session();
 
             $product_idx = $_POST['product_idx'];
             $day_ = $_POST['day_'];
@@ -2187,12 +2203,15 @@ class Product extends BaseController
 
             if (!$member_idx) {
                 $message = "로그인해주세요!";
-                return "<script>
-                    alert('$message');
-                        window.location.href='/member/login';
-                    </script>";
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $message
+                ], 401);
             }
-            $qty = $_POST['qty'];
+            $adultQty = $_POST['adultQty'];
+            $childrenQty = $_POST['childrenQty'];
+
+            $totalPrice = $_POST['totalPrice'];
 
             $option_idx = $_POST['option_idx'];
             $option_tot = $_POST['option_tot'];
@@ -2204,7 +2223,9 @@ class Product extends BaseController
                 'product_idx' => $product_idx,
                 'day_' => $day_,
                 'member_idx' => $member_idx,
-                'qty' => $qty,
+                'adultQty' => $adultQty,
+                'childrenQty' => $childrenQty,
+                'totalPrice' => $totalPrice,
                 'option_idx' => $option_idx,
                 'option_qty' => $option_qty,
                 'option_tot' => $option_tot,
@@ -2213,14 +2234,12 @@ class Product extends BaseController
             ];
 
             $session->set('data_cart', $data);
-//            return $this->response->setJSON($data, 200);
-            $url = '/product-spa/product-booking';
 
             $message = "성공.";
-            return "<script>
-                    alert('$message');
-                        parent.location.href='$url';
-                    </script>";
+            return $this->response->setJSON([
+                'result' => $data,
+                'message' => $message
+            ], 200);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

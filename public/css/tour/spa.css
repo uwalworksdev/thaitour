@@ -646,3 +646,183 @@
         gap: 10px;
     }
 }
+
+.customer-form-page .con-form .form-group .mo-cus-in-3 {
+    width: 120px;
+}
+
+.customer-form-page .con-form .form-group select {
+    width: 130px;
+}
+
+.customer-form-page .con-form.group-phone {
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.customer-form-page .form-group-cus-4input {
+    margin-bottom: 0;
+}
+
+.customer-form-page .form-group-cus-4input input:nth-child(1) {
+    width: 84px;
+}
+
+.customer-form-page .form-group.group-payment {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.customer-form-page .form-group.group-payment .payment-item {
+    flex: 1;
+}
+
+.customer-form-page .form-group.group-payment .payment-input-wrap {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.customer-form-page .form-group-radio {
+    margin-bottom: 20px;
+}
+
+.card-right2 .select-wrap {
+    padding-bottom: 30px;
+    border-bottom: 1px dotted #dbdbdb;
+    margin-bottom: 30px;
+}
+
+.card-right2 select {
+    margin-bottom: 10px;
+}
+
+.customer-form-page .container-card .btn-cancle {
+    font-size: 22px;
+    background-color: #fff;
+    color: #2a459f;
+    border-radius: 5px;
+    padding: 12px 50px;
+    width: 100%;
+    margin-top: 25px;
+    font-weight: bold;
+    height: 66px;
+    border: 1px solid currentColor;
+}
+
+.customer-form-page .container-card .card-left .more {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.customer-form-page .container-card .card-left .more p {
+    color: #004ce7;
+    font-weight: 500;
+}
+
+.customer-form-page .container-card .card-right2 {
+    margin-bottom: 190px;
+}
+
+.customer-form-page .container-card .card-right2 .schedule {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #dbdbdb;
+    margin-bottom: 54px;
+}
+
+.card-right2 .schedule .wrap-text span {
+    color: #ccc;
+    font-size: 16px;
+
+}
+
+.card-right2 .schedule .wrap-text p {
+    color: #252525;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+.card-right2 .schedule .wrap-btn {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+}
+
+.card-right2 .schedule .wrap-btn img {
+    width: 32px;
+}
+
+@media screen and (max-width: 850px) {
+    .customer-form-page .con-form .form-group .mo-cus-in-3 {
+        width: 18rem;
+    }
+
+    .customer-form-page .form-group-cus-4input input:nth-child(1) {
+        width: 16rem;
+    }
+
+    .customer-form-page .form-group-cus-4input input:nth-child(1) {
+        width: 17.5rem;
+    }
+
+    .customer-form-page .con-form .form-group select {
+        width: 25rem;
+    }
+
+
+    .customer-form-page .cus-select-group input,
+    .customer-form-page .cus-select-group select {
+        width: 0;
+        flex: 1;
+    }
+
+    .form-group.group-payment .payment-item {
+        width: 100%;
+
+    }
+
+    .form-group.group-payment .payment-item input {
+        flex: 1;
+        width: 0;
+    }
+
+    .card-right2 .select-wrap select {
+        width: 100%;
+    }
+
+    .customer-form-page .container-card .btn-cancle {
+        font-size: 3.2rem;
+        border-radius: 0.6rem;
+        padding: 1.2rem 5rem;
+        width: 100%;
+        font-weight: bold;
+        height: 10rem;
+    }
+
+    .mb-40 {
+        margin-bottom: 2.5385rem;
+    }
+
+    .card-right2 .select-wrap {
+        padding-bottom: 1.5385rem;
+        border-bottom: 1px dotted #dbdbdb;
+        margin-bottom: 2.5385rem;
+    }
+
+    .customer-form-page .container-card .card-right2 {
+        margin-bottom: 7.3077rem;
+    }
+
+    .main-section {
+        margin-bottom: 14.6923rem;
+    }
+
+}

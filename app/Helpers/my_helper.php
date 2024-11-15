@@ -834,3 +834,31 @@ function file_check($ok_filename, $ok_file, $path, $ftype)
     }
 }
 
+function getCharge($charge_idx)
+{
+    $fsql = "SELECT * FROM tbl_product_charge WHERE charge_idx = " . $charge_idx;
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getRowArray();
+
+    return $fresult;
+}
+
+function getMOption($code_idx)
+{
+    $fsql = "SELECT * FROM tbl_tours_moption WHERE code_idx = " . $code_idx;
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getRowArray();
+
+    return $fresult;
+}
+
+function getOption($idx)
+{
+    $fsql = "SELECT * FROM tbl_tours_option WHERE idx = " . $idx;
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getRowArray();
+
+    return $fresult;
+}
+
+

@@ -106,9 +106,7 @@ try {
 
     function convertNum(num) {
         let number = Number(num);
-        let formattedNumber = number.toLocaleString();
-        console.log(formattedNumber);
-        return formattedNumber;
+        return number.toLocaleString();
     }
 </script>
 
