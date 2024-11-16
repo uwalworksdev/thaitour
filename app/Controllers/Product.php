@@ -1854,7 +1854,6 @@ class Product extends BaseController
             $data['people_kids_price'] = $data['people_kids_price'];
             $data['people_baby_price'] = $data['people_baby_price'];
             $data['order_price'] = $data['final_price'];
-
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
@@ -1900,7 +1899,7 @@ class Product extends BaseController
             return $this->response->setBody("
                 <script>
                     alert('주문되었습니다');
-                    parent.location.href = '/product-golf/completed-order';
+                    parent.location.href = '/product-tours/completed-order';
                 </script>
             ");
         } catch (\Throwable $th) {
@@ -1911,6 +1910,11 @@ class Product extends BaseController
                     </script>
                 ");
         }
+    }
+
+    public function tourCompletedOrder()
+    {
+        return $this->renderView('product/completed-order', ['return_url' => '/']);
     }
 
     public function index8($product_idx)
