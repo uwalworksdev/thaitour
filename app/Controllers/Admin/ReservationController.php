@@ -18,6 +18,7 @@ class ReservationController extends BaseController
     private $codeModel;
     private $paymentHistModel;
     private $orderOptionModel;
+    private $orderTours;
 
 
     public function __construct()
@@ -28,6 +29,7 @@ class ReservationController extends BaseController
         $this->orderOptionModel = model("OrderOptionModel");
         $this->codeModel = model("Code");
         $this->paymentHistModel = model("PaymentHist");
+        $this->orderTours = model("OrderTourModel");
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
@@ -243,11 +245,14 @@ class ReservationController extends BaseController
             "used_coupon_no" => $used_coupon_no,
         ];
 
+        
         if($gubun == 'golf') {
             $data['option'] = $this->orderOptionModel->getOption($order_idx, 'main')[0];
             $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
         }
 
+        $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
+        
         return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
     }
 

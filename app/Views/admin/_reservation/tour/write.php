@@ -124,13 +124,10 @@
                                     <th>일정</th>
                                     <td>
                                         <?php 
-                                            if(!empty($start_date) && !empty($end_date)){
+                                            if(!empty($order_date) && !empty($end_date)){
                                         ?>
-                                            <?= str_replace("-", ".", $start_date) ?>
-                                            ~
-                                            <?= str_replace("-", ".", $end_date) ?>
-                                            <input type=hidden name="start_date" value='<?= $start_date ?>'>
-                                            <input type=hidden name="end_date" value='<?= $end_date ?>'>
+                                            <?= str_replace("-", ".", $order_date) ?>
+                                            <input type=hidden name="order_date" value='<?= $order_date ?>'>
                                         <?php 
                                             }
                                         ?>
@@ -188,20 +185,18 @@
                                         <?php } ?>
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>유아신청</th>
                                     <td>
-                                        <?php if ($people_baby_price > 0) { ?>
-                                            <?= $people_baby_cnt ?>명    X <?= number_format($people_baby_price) ?>원 = <?= number_format($people_baby_price * $people_baby_cnt) ?>원
-                                        <?php } else { ?>
-                                            0원
-                                        <?php } ?>
+                                        <?= $people_baby_cnt ?>명
+                                        X
+                                        <?= number_format($people_baby_price) ?>원
+                                        = <?= number_format($people_baby_price * $people_baby_cnt) ?>원
                                     </td>
-                                    <th>유류비</th>
+                                    <th>선택옵션</th>
                                     <td>
-                                        <?= $people_adult_cnt + $people_kids_cnt ?>명 X <?= number_format($oil_price) ?>원
-                                        = <?= number_format(($people_adult_cnt + $people_kids_cnt) * $oil_price) ?>원
+                                        
                                     </td>
                                 </tr>
 

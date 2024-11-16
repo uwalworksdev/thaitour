@@ -38,6 +38,9 @@
         <input type="hidden" name="people_baby_price" value="<?=$baby_price_total?>">
         <input type="hidden" name="order_date" id="order_date" value="<?=$order_date?>">
         <input type="hidden" name="tours_idx" id="tours_idx" value="<?=$tours_idx?>">
+        <?php foreach ($tour_option as $option): ?>
+            <input type="hidden" name="option_idx[]" id="option_idx[]" value="<?= htmlspecialchars($option['idx']) ?>">
+        <?php endforeach; ?>
         <input type="hidden" name="start_place" id="start_place" value="<?=$start_place?>">
         <input type="hidden" name="metting_time" id="metting_time" value="<?=$metting_time?>">
         <input type="hidden" name="id_kakao" id="id_kakao" value="<?=$id_kakao?>">
