@@ -1,188 +1,25 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-
-<style>
-    .customer-form-page .con-form .form-group .mo-cus-in-3 {
-        width: 120px;
-    }
-
-    .customer-form-page .con-form .form-group select {
-        width: 130px;
-    }
-
-    .customer-form-page .con-form.group-phone {
-        justify-content: flex-start;
-        gap: 20px;
-    }
-
-    .customer-form-page .form-group-cus-4input {
-        margin-bottom: 0;
-    }
-
-    .customer-form-page .form-group-cus-4input input:nth-child(1) {
-        width: 84px;
-    }
-
-    .customer-form-page .form-group.group-payment {
-        display: flex;
-        justify-content: space-between;
-        gap: 30px;
-    }
-
-    .customer-form-page .form-group.group-payment .payment-item {
-        flex: 1;
-    }
-
-    .customer-form-page .form-group.group-payment .payment-input-wrap {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 10px;
-    }
-
-    .customer-form-page .form-group-radio {
-        margin-bottom: 20px;
-    }
-
-    .card-right2 .select-wrap {
-        padding-bottom: 30px;
-        border-bottom: 1px dotted #dbdbdb;
-        margin-bottom: 30px;
-    }
-
-    .card-right2 select {
-        margin-bottom: 10px;
-    }
-
-    .customer-form-page .container-card .btn-cancle {
-        font-size: 22px;
-        background-color: #fff;
-        color: #2a459f;
-        border-radius: 5px;
-        padding: 12px 50px;
-        width: 100%;
-        margin-top: 25px;
-        font-weight: bold;
-        height: 66px;
-        border: 1px solid currentColor;
-    }
-
-    .customer-form-page .container-card .card-left .more {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        margin-top: 10px;
-    }
-
-    .customer-form-page .container-card .card-left .more p {
-        color: #004ce7;
-        font-weight: 500;
-    }
-
-    .customer-form-page .container-card .card-right2 {
-        margin-bottom: 190px;
-    }
-
-    .customer-form-page .container-card .card-right2 .schedule {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-bottom: 22px;
-        border-bottom: 1px solid #dbdbdb;
-        margin-bottom: 54px;
-    }
-
-    .card-right2 .schedule .wrap-text span {
-        color: #ccc;
-        font-size: 16px;
-
-    }
-
-    .card-right2 .schedule .wrap-text p {
-        color: #252525;
-        font-size: 16px;
-        margin-top: 10px;
-    }
-
-
-    .card-right2 .schedule .wrap-btn {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .card-right2 .schedule .wrap-btn img {
-        width: 32px;
-    }
-
-    @media screen and (max-width : 850px) {
-        .customer-form-page .con-form .form-group .mo-cus-in-3 {
-            width: 18rem;
+    <link rel="stylesheet" href="/css/tour/spa.css">
+    <style>
+        .input_qty {
+            width: 50px !important;
+            height: 40px;
+            border: 1px solid #e5e5e5;
+            border-radius: 5px;
+            padding: 10px !important;
         }
 
-        .customer-form-page .form-group-cus-4input input:nth-child(1) {
-            width: 16rem;
+        .schedule .wrap-text {
+            width: 50%;
         }
 
-        .customer-form-page .form-group-cus-4input input:nth-child(1) {
-            width: 17.5rem;
+        .schedule .wrap-btn {
+            width: 50%;
         }
-
-        .customer-form-page .con-form .form-group select {
-            width: 25rem;
-        }
-
-
-        .customer-form-page .cus-select-group input,
-        .customer-form-page .cus-select-group select {
-            width: 0;
-            flex: 1;
-        }
-
-        .form-group.group-payment .payment-item {
-            width: 100%;
-
-        }
-
-        .form-group.group-payment .payment-item input {
-            flex: 1;
-            width: 0;
-        }
-
-        .card-right2 .select-wrap select {
-            width: 100%;
-        }
-
-        .customer-form-page .container-card .btn-cancle {
-            font-size: 3.2rem;
-            border-radius: 0.6rem;
-            padding: 1.2rem 5rem;
-            width: 100%;
-            font-weight: bold;
-            height: 10rem;
-        }
-
-        .mb-40 {
-            margin-bottom: 2.5385rem;
-        }
-
-        .card-right2 .select-wrap {
-            padding-bottom: 1.5385rem;
-            border-bottom: 1px dotted #dbdbdb;
-            margin-bottom: 2.5385rem;
-        }
-
-        .customer-form-page .container-card .card-right2 {
-            margin-bottom: 7.3077rem;
-        }
-
-        .main-section {
-            margin-bottom: 14.6923rem;
-        }
-
-    }
-</style>
-<div class="customer-form-page">
+    </style>
+    <div class="customer-form-page">
     <div class="navigation-section">
         <div class="body_inner">
             <div class="content-main">
@@ -222,22 +59,23 @@
                             <div class="con-form mb-40">
                                 <div class="form-group">
                                     <label for="passport-name1">여권 영문명(성명)*</label>
-                                    <input type="text" id="passport-name1" placeholder="영어로 작성해주세요." />
+                                    <input type="text" id="passport-name1" placeholder="영어로 작성해주세요."/>
                                 </div>
                                 <div class="form-group">
                                     <label for="gender1">성별(MR/MS)*</label>
-                                    <input type="text" id="gender1" placeholder="성별(MR/MS)" />
+                                    <input type="text" id="gender1" placeholder="성별(MR/MS)"/>
                                 </div>
                             </div>
+
                             <div class="con-form mb-40 group-phone">
                                 <div class="form-group">
                                     <label for="passport-name2">한국번호</label>
                                     <div class="form-group form-group-cus-4input">
-                                        <input type="text" id="passport-name2" placeholder="010" />
+                                        <input type="text" id="passport-name2" placeholder="010"/>
                                         <span> - </span>
-                                        <input type="text" id="" />
+                                        <input type="text" id=""/>
                                         <span> - </span>
-                                        <input class="mo-cus-in-3" type="text" id="" />
+                                        <input class="mo-cus-in-3" type="text" id=""/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -249,10 +87,11 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group form-cus-select">
                             <label for="passport-name_02">이메일 주소*</label>
                             <div class="cus-select-group">
-                                <input type="text" id="passport-name_02" placeholder="이메일" />
+                                <input type="text" id="passport-name_02" placeholder="이메일"/>
                                 <span>@</span>
                                 <select id="" class="select-width">
                                     <option value="01">이메일 주소*</option>
@@ -282,7 +121,7 @@
                             <div class="payment-item only_web">
                                 <label for="">결제(입금)정보</label>
                                 <select name="" id="">
-                                    <option value="">신용/체크카드 </option>
+                                    <option value="">신용/체크카드</option>
                                 </select>
                             </div>
                             <div class="payment-item">
@@ -301,14 +140,16 @@
                 </div>
                 <div class="">
                     <div class="card-right">
-                        <img src="/images/sub/form-spa-booking.png" alt="customer-form.png">
+                        <img src="/data/hotel/<?= $prod['ufile1'] ?>" alt="customer-form.png">
                         <div class="below-right">
-                            <h3 class="title-r">방콕 막카 스파 & 마사지 (아속점)</h3>
-                            <p class="title-sub-r text-gray">425 Sukhumvit Rd, Khlong Tan Nuea, Watthana 10110,방콕,태국</p>
+                            <h3 class="title-r"><?= $prod['product_name'] ?></h3>
+                            <p class="title-sub-r text-gray">
+                                <?= $prod['addrs'] ?>
+                            </p>
                             <h3 class="title-r">예약안내</h3>
-                            <div class="item-info">
-                                <span>일정</span>
-                                <span>2024.09.05(목)</span>
+                            <div class="item-info" style="gap: 10px;">
+                                <span>일정: </span>
+                                <span><?= $day_ ?>(<span id="day_"></span>)</span>
                             </div>
                         </div>
                     </div>
@@ -316,15 +157,26 @@
                         <h3 class="title-r">
                             여행인원 및 예약금액
                         </h3>
-                        <div class="schedule">
-                            <div class="wrap-text">
-                                <span>일정</span>
-                                <p>담당자에게 문의해주세요</p>
+                        <div class="list_schedule_">
+                            <div class="schedule">
+                                <div class="wrap-text">
+                                    <p>성인</p>
+                                </div>
+                                <div class="wrap-btn">
+                                    <img src="/images/sub/minus-ic.png" alt="">
+                                    <span><?= $adultQty ?></span>
+                                    <img src="/images/sub/plus-ic.png" alt="">
+                                </div>
                             </div>
-                            <div class="wrap-btn">
-                                <img src="/images/sub/minus-ic.png" alt="">
-                                <span>2</span>
-                                <img src="/images/sub/plus-ic.png" alt="">
+                            <div class="schedule">
+                                <div class="wrap-text">
+                                    <p>아동</p>
+                                </div>
+                                <div class="wrap-btn">
+                                    <img src="/images/sub/minus-ic.png" alt="">
+                                    <span><?= $childrenQty ?></span>
+                                    <img src="/images/sub/plus-ic.png" alt="">
+                                </div>
                             </div>
                         </div>
 
@@ -332,17 +184,47 @@
                             옵션선택
                         </h3>
                         <div class="select-wrap">
-                            <select>
-                                <option>선택</option>
+                            <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                <option value="">옵션선택</option>
+                                <?php foreach ($moption as $op) { ?>
+                                    <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
+                                <?php } ?>
                             </select>
-                            <select>
-                                <option>옵션선택</option>
-                            </select>
+                            <div class="opt_select disabled sel_option" id="sel_option">
+                                <select name="option" id="option" onchange="sel_option(this.value);">";
+                                    <option value="">옵션 선택</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="list_schedule_" id="option_list_">
+                            <?php
+                            $num = count($data['option_idx']);
+                            for ($i = 0; $i < $num; $i++) {
+                                $item = $data['option_idx'][$i];
+                                ?>
+                                <div class="schedule" id="schedule_<?= $item ?>">
+                                    <div class="wrap-text">
+                                        <span>일정</span>
+                                        <p><?= $data['option_name'][$i] ?></p>
+                                    </div>
+                                    <div class="wrap-btn">
+                                        <img src="/images/sub/minus-ic.png" alt="">
+                                        <span>
+                                        <input type="text" class="form-control input_qty" id="input_qty[]"
+                                               readonly value="<?= $data['option_qty'][$i] ?>">
+                                        </span>
+                                        <img src="/images/sub/plus-ic.png" alt="">
+                                    </div>
+                                </div>
+                                <?php
+                            }
+                            ?>
                         </div>
 
                         <div class="item-info-r font-bold-cus">
                             <span>합계</span>
-                            <span>0원</span>
+                            <span><?= number_format($totalPrice) ?>원</span>
                         </div>
                         <p class="below-des-price">
                             · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -354,7 +236,8 @@
                             <img class="only_mo" src="/uploads/icons/block_icon_mo.png" alt="block_icon">
                             <span>취소규정</span>
                         </div>
-                        <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간) 이전
+                        <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간)
+                            이전
                         </p>
                         <span class="cus-label-r">본 예약건 취소규정</span>
                         <h3 class="title-r">약관동의</h3>
@@ -378,7 +261,8 @@
                             <span>여행안전수칙 동의(필수)</span>
                             <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                         </div>
-                        <button class="btn-order" onclick="location.href='/product-spa/completed-order'">예약하기</button>
+                        <button class="btn-order" onclick="location.href='/product-spa/completed-order'">예약하기
+                        </button>
                         <button class="btn-cancle" onclick="location.href='/product/completed-order'">취소하기</button>
                     </div>
                 </div>
@@ -386,22 +270,17 @@
         </div>
     </div>
     <script>
-        $(document).ready(function() {
-            function formatDate(date) {
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + d.getDate(),
-                    year = d.getFullYear();
+        $(document).ready(function () {
+            let date = new Date('<?= $day_ ?>');
+            let daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+            let dayOfWeek = daysOfWeek[date.getUTCDay()];
+            $('#day_').text(dayOfWeek);
+        })
 
-                if (month.length < 2) month = '0' + month;
-                if (day.length < 2) day = '0' + day;
-
-                return [year, month, day].join('/');
-            }
-
+        $(document).ready(function () {
             $("#checkin, #checkout").datepicker({
                 dateFormat: 'yy/mm/dd',
-                onSelect: function(dateText, inst) {
+                onSelect: function (dateText, inst) {
                     var date = $(this).datepicker('getDate');
                     $(this).val(formatDate(date));
                 }
@@ -411,7 +290,7 @@
             $('#checkout').val(formatDate('2024/07/10'));
 
 
-            $('.tab_box_element_').on('click', function() {
+            $('.tab_box_element_').on('click', function () {
 
                 $('.tab_box_element_').removeClass('tab_active_');
 
@@ -424,6 +303,97 @@
                 $('#' + tabId).show();
             });
         });
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('/');
+        }
+
+        function sel_moption(code_idx) {
+            let url = `<?= route_to('api.product.sel_moption') ?>`;
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    "product_idx": '<?= $prod['product_idx'] ?>',
+                    "code_idx": code_idx
+                },
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    $("#sel_option").html(data);
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        }
+
+        function sel_option(code_idx) {
+            let url = `<?= route_to('api.product.sel_option') ?>`;
+            let idx = code_idx.split("|")[0];
+
+            let moption = $("#moption").val();
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    "idx": idx,
+                    "moption": moption
+                },
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    let parent_name = data.parent_name;
+
+                    let option_name = data.option_name;
+                    let option_price = data.option_price;
+                    let idx = data.idx;
+                    let option_tot = data.option_tot ?? 0;
+                    let option_cnt = data.option_cnt;
+
+                    let htm_ = `<div class="schedule" id="schedule_${idx}">
+                                    <div class="wrap-text">
+                                        <span>${parent_name}</span>
+                                        <p>${option_name}</p>
+                                    </div>
+                                    <div class="wrap-btn">
+                                        <img src="/images/sub/minus-ic.png" alt="">
+                                        <span>
+                                            <input data-price="${option_price}" readonly type="text" class="form-control input_qty" id="input_qty[]" value="1">
+                                        </span>
+                                        <img src="/images/sub/plus-ic.png" alt="">
+                                    </div>
+                                </div>
+
+                            <div class="" style="display: none">
+                                       <input type="hidden" name="option_name[]" value="${option_name}">
+                                       <input type="hidden" name="option_idx[]" value="${idx}">
+                                       <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                       <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                            </div>
+                        </li>`;
+
+                    let sel_option_ = $('#schedule_' + idx);
+                    if (!sel_option_.length > 0) {
+                        $("#option_list_").append(htm_);
+                        calcTotalSup();
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        }
     </script>
 
-    <?php $this->endSection(); ?>
+<?php $this->endSection(); ?>
