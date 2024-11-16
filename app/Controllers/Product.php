@@ -2206,7 +2206,7 @@ class Product extends BaseController
                 return $this->response->setJSON([
                     'result' => false,
                     'message' => $message
-                ], 401);
+                ], 400);
             }
             $adultQty = $_POST['adultQty'];
             $childrenQty = $_POST['childrenQty'];

@@ -105,8 +105,10 @@ try {
     }
 
     function convertNum(num) {
+        // let number = Number(num);
+        // return number.toLocaleString();
         let number = Number(num);
-        return number.toLocaleString();
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 </script>
 

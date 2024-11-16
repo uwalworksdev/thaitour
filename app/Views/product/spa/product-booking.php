@@ -163,9 +163,7 @@
                                     <p>성인</p>
                                 </div>
                                 <div class="wrap-btn">
-                                    <img src="/images/sub/minus-ic.png" alt="">
                                     <span><?= $adultQty ?></span>
-                                    <img src="/images/sub/plus-ic.png" alt="">
                                 </div>
                             </div>
                             <div class="schedule">
@@ -173,9 +171,7 @@
                                     <p>아동</p>
                                 </div>
                                 <div class="wrap-btn">
-                                    <img src="/images/sub/minus-ic.png" alt="">
                                     <span><?= $childrenQty ?></span>
-                                    <img src="/images/sub/plus-ic.png" alt="">
                                 </div>
                             </div>
                         </div>
@@ -211,8 +207,8 @@
                                     <div class="wrap-btn">
                                         <img src="/images/sub/minus-ic.png" alt="">
                                         <span>
-                                        <input type="text" class="form-control input_qty" id="input_qty[]"
-                                               readonly value="<?= $data['option_qty'][$i] ?>">
+                                        <input style="text-align: center;" type="text" class="form-control input_qty"
+                                               id="input_qty[]" readonly value="<?= $data['option_qty'][$i] ?>">
                                         </span>
                                         <img src="/images/sub/plus-ic.png" alt="">
                                     </div>
@@ -369,7 +365,7 @@
                                     <div class="wrap-btn">
                                         <img src="/images/sub/minus-ic.png" alt="">
                                         <span>
-                                            <input data-price="${option_price}" readonly type="text" class="form-control input_qty" id="input_qty[]" value="1">
+                                            <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty" id="input_qty[]" value="1">
                                         </span>
                                         <img src="/images/sub/plus-ic.png" alt="">
                                     </div>
