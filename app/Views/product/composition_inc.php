@@ -20,12 +20,12 @@
                                 <p class="ped_label">성인 </p>
                             </div>
                             <div class="opt_count_box count_box flex__c">
-                                <button type="button" class="minus_btn"
-                                        id="minusAdult"></button>
+                                <!--                                <button type="button" class="minus_btn"-->
+                                <!--                                        id="minusAdult"></button>-->
                                 <input type="text" class="input-qty" name="adultQty" id="adultQty" value="0"
                                        readonly="">
-                                <button type="button" class="plus_btn"
-                                        id="addAdult"></button>
+                                <!--                                <button type="button" class="plus_btn"-->
+                                <!--                                        id="addAdult"></button>-->
                             </div>
                         </li>
                         <li class="flex_b_c cus-count-input">
@@ -33,12 +33,12 @@
                                 <p class="ped_label">아동</p>
                             </div>
                             <div class="opt_count_box count_box flex__c">
-                                <button type="button" class="minus_btn"
-                                        id="minusAdult2"></button>
+                                <!--                                <button type="button" class="minus_btn"-->
+                                <!--                                        id="minusAdult2"></button>-->
                                 <input type="text" class="input-qty" name="childrenQty" id="childrenQty" value="0"
                                        readonly="">
-                                <button type="button" class="plus_btn"
-                                        id="addAdult2"></button>
+                                <!--                                <button type="button" class="plus_btn"-->
+                                <!--                                        id="addAdult2"></button>-->
                             </div>
                         </li>
                     </ul>
@@ -282,8 +282,13 @@
             success: function (response) {
                 $("#ajax_loader").addClass("display-none");
                 console.log("Success:", response);
-                alert("작업이 성공적으로 완료되었습니다.");
-                window.location.href = '/product-spa/product-booking';
+                if (response.result) {
+                    alert("작업이 성공적으로 완료되었습니다.");
+                    window.location.href = '/product-spa/product-booking';
+                } else {
+                    alert(response.message);
+                    window.location.href = '/member/login';
+                }
             },
             error: function (request, status, error) {
                 console.error("Error:", request, status, error);
