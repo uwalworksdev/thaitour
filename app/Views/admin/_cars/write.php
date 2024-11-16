@@ -678,7 +678,7 @@ $links = "list";
     });
 </script>
 <script>
-    document?.querySelector('.car_price')?.addEventListener('input', function() {
+    $('.car_price').on('input', function () {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
@@ -786,11 +786,7 @@ $links = "list";
             addOptionSub +=    `<td class='tac'>`;
             addOptionSub +=        `<button style='margin: 0;' type='button' class='btn_02' onclick='delOptionSub(\"\",this);'>삭제</button>`;
             addOptionSub +=    `</td>`;
-            addOptionSub += `</tr>`;
-            
-            document?.querySelector('.car_price')?.addEventListener('input', function() {
-                this.value = this.value.replace(/[^0-9]/g, '');
-            });
+            addOptionSub += `</tr>`;   
 
             $("#list_option_sub").append(addOptionSub);
         }
@@ -798,6 +794,10 @@ $links = "list";
             alert("위치가 중복되었습니다.");
             return;
         }
+
+        $('.car_price').on('input', function () {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
     }
 
     function delOptionSub(idx, obj) {

@@ -464,6 +464,7 @@
         $(this).siblings().find("span").removeClass("active");
         $("#departure_area").val(code);
         $("#place_start").text(place);
+        $(".place_chosen__start_pop").hide();
     });
 
     $(".place_chosen__end_pop .popup_place__list li").on("click", function(){
@@ -473,6 +474,7 @@
         $(this).siblings().find("span").removeClass("active");
         $("#destination_area").val(code);
         $("#place_end").text(place);
+        $(".place_chosen__end_pop").hide();
     });
 
     function renderPrdList(products, code_no) {
@@ -518,9 +520,9 @@
                 return `<option value="${cnt}" ${selected}>${cnt}대</option>`
             }).join('');
 
-            const price_str = Math.round(products[i]["product_price"]);
+            const price_str = Math.round(products[i]["car_price"]);
 
-            const price_baht_str = Math.round(products[i]["product_price_baht"]);
+            const price_baht_str = Math.round(products[i]["car_price_baht"]);
 
             let product_arr = $("#product_arr").val().split(",");
 
@@ -595,13 +597,14 @@
         });
     }
     function filter() {
-
+        let departure_code = $(".section_vehicle_2_2__head__tabs li.active").data("code");
+        let destination_code = $(".section_vehicle_2_2__head__tabs li.active").data("code");
         let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
 
         $.ajax({
             url: '/filter-vehicle',
             type: "POST",
-            data: { code_no },
+            data: { departure_code, destination_code, code_no },
             async: false,
             cache: false,
             success: function (data, textStatus) {

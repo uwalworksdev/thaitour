@@ -864,6 +864,103 @@ class ProductModel extends Model
         return $data;
     }
 
+    public function findProductCarPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->db->table('tbl_cars_sub AS c');
+        $builder->select('p.*, c.* ');
+        $builder->join('tbl_product_mst AS p', 'p.product_idx = c.product_idx', 'left');
+
+        if ($where['product_code_1'] != "") {
+            $builder->where('product_code_1', $where['product_code_1']);
+        }
+        if ($where['product_code_2'] != "") {
+            $builder->where('product_code_2', $where['product_code_2']);
+        }
+        if ($where['product_code_3'] != "") {
+            $builder->where('product_code_3', $where['product_code_3']);
+        }
+
+        if ($where['product_code_list']) {
+            $product_code_list = explode(",", $where['product_code_list']);
+            $cnt_code = 1;
+            $builder->groupStart();
+            foreach ($product_code_list as $code) {
+                if ($cnt_code > 1) {
+                    $builder->orLike('product_code_list', $code);
+                } else {
+                    $builder->like('product_code_list', $code);
+                }
+                $cnt_code++;
+            }
+            $builder->groupEnd();
+        }
+
+        if ($where['search_product_name']) {
+            $builder->like('product_name', $where['search_product_name']);
+        }
+
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            }
+        }
+        if ($where['is_view'] != "") {
+            $builder->where("is_view", $where['is_view']);
+        }
+
+        if ($where['special_price'] != "") {
+            $builder->where("special_price", $where['special_price']);
+        }
+
+        if ($where['product_status'] != "") {
+            $builder->where("product_status", $where['product_status']);
+        }
+
+        $builder->where("product_status !=", "D");
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = ['product_idx' => 'DESC'];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        foreach ($items as $key => $value) {
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
+            $product_price = (float)$value['product_price'];
+            $product_price_baht = $product_price / $baht_thai;
+            $items[$key]['product_price_baht'] = $product_price_baht;
+
+            $car_price = (float)$value['car_price'];
+            $car_price_baht = $car_price / $baht_thai;
+            $items[$key]['car_price_baht'] = $car_price_baht;
+        }
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'is_view' => $where['is_view'],
+            'product_code_1' => $where['product_code_1'],
+            'product_code_2' => $where['product_code_2'],
+            'product_code_3' => $where['product_code_3'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
+    }
+
     public function getKeyWordAll($code_no)
     {
         $keyWords = $this->select("keyword")->where("product_code_1", $code_no)->get()->getResultArray();
