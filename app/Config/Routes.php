@@ -238,11 +238,22 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);
         $routes->post("write_ok", "Admin\AdminRoomController::write_ok", ['as' => "admin.room.write_ok"]);
         $routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
-    });
+    });  
+
+    //$routes->group("_tourSuggestion", static function ($routes) {
+    //    $routes->get("list", "TourSuggestionSubController::list");
+    //    $routes->get("write", "TourSuggestionController::write");
+    //});
 
     $routes->group("_tourSuggestion", static function ($routes) {
-        $routes->get("list", "TourSuggestionSubController::list");
+        $routes->get("list", "TourSuggestionController::list");  
         $routes->get("write", "TourSuggestionController::write");
+        $routes->get("prd_list", "TourSuggestionController::prd_list");
+        $routes->get("goods_find", "TourSuggestionController::goods_find");
+        $routes->get("item_allfind", "TourSuggestionController::item_allfind");
+        $routes->post("main_update", "TourSuggestionController::main_update");
+        $routes->post("seq_upd1", "TourSuggestionController::seq_upd1");
+        $routes->post("goods_alldel", "TourSuggestionController::goods_alldel");
     });
 
     $routes->group("_tourSuggestionSub", static function ($routes) {
