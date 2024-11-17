@@ -240,7 +240,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
     });  
 
-    // 2024-11-17 수정
+    // 2024-11-17 수정  
     //$routes->group("_tourSuggestion", static function ($routes) {
     //    $routes->get("list", "TourSuggestionSubController::list");
     //    $routes->get("write", "TourSuggestionController::write");
