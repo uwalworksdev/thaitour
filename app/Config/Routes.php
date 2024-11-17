@@ -245,7 +245,7 @@ $routes->group("AdmMaster", static function ($routes) {
     //    $routes->get("write", "TourSuggestionController::write");
     //});
 
-    $routes->group("_tourSuggestion", static function ($routes) {
+    $routes->group("_tourSuggestion", static function ($routes) { 
         $routes->get("list", "TourSuggestionController::list");  
         $routes->get("write", "TourSuggestionController::write");
         $routes->get("prd_list", "TourSuggestionController::prd_list");
