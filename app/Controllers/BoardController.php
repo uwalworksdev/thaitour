@@ -2,12 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Libraries\JkBbs;
-use App\Libraries\Lib;
-
-use CodeIgniter\Controller;
-use Config\Database;
-
+use App\Controllers\BaseController;
+use Cassandra\Date;
+use CodeIgniter\Database\Config;
+use stdClass;
 
 class BoardController extends BaseController
 {
