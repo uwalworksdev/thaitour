@@ -93,4 +93,32 @@ class ProductPrice extends Model
 
         return $this->update($id, $filteredData);
     }
+
+    protected function selectYoilByProductIdx($yoil, $day_, $product_idx)
+    {
+        switch ($yoil) {
+            case 'yoil_0':
+                $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_0 = 'Y' AND product_idx = ?";
+                break;
+            case 'yoil_1':
+                $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_1 = 'Y' AND product_idx = ?";
+                break;
+            case 'yoil_2':
+                $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_2 = 'Y' AND product_idx = ?";
+                break;
+            case 'yoil_3':
+                $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_3 = 'Y' AND product_idx = ?";
+                break;
+            case 'yoil_4':
+                $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_4 = 'Y' AND product_idx = ?";
+                break;
+            case 'yoil_5':
+                $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_5 = 'Y' AND product_idx = ?";
+                break;
+            default:
+                $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_6 = 'Y' AND product_idx = ?";
+                break;
+        }
+        return $this->db->query($sql, [$day_, $day_, $product_idx])->getResultArray();
+    }
 }
