@@ -178,7 +178,7 @@ $list1    = $MainDisp->List("290401")->findAll();
                             <span class="star_review_cnt">(954)</span>
                         </div>
                         <div class="prd_price_ko">
-                            <?= number_format($item1['product_price']) ?> <span>원</span>
+                            <?= number_format($item1['original_price']) ?> <span>원</span>
                         </div>
                         <div class="prd_price_thai">
                             6,000 <span>바트</span>
