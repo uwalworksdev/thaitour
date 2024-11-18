@@ -54,7 +54,7 @@
         margin-bottom: 10px;
     }
 
-    .customer-form-page .container-card .btn-cancle {
+    .customer-form-page .container-card .btn-cancel {
         font-size: 22px;
         background-color: #fff;
         color: #2a459f;
@@ -153,7 +153,7 @@
             width: 100%;
         }
 
-        .customer-form-page .container-card .btn-cancle {
+        .customer-form-page .container-card .btn-cancel {
             font-size: 3.2rem;
             border-radius: 0.6rem;
             padding: 1.2rem 5rem;
@@ -379,7 +379,7 @@
                             <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                         </div>
                         <button class="btn-order" onclick="location.href='/ticket/completed-order'">예약하기</button>
-                        <button class="btn-cancle" onclick="location.href='/product/completed-order'">취소하기</button>
+                        <button class="btn-cancel" onclick="location.href='/product/completed-order'">취소하기</button>
                     </div>
                 </div>
             </div>

@@ -284,7 +284,6 @@
                 $("#ajax_loader").addClass("display-none");
                 console.log("Success:", response);
                 if (response.result) {
-                    alert("작업이 성공적으로 완료되었습니다.");
                     window.location.href = '/product-spa/product-booking';
                 } else {
                     alert(response.message);
