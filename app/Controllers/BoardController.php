@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-use Cassandra\Date;
-use CodeIgniter\Database\Config;
-use stdClass;
+use App\Libraries\JkBbs;
+use App\Libraries\Lib;
+
+use CodeIgniter\Controller;
+use Config\Database;
+
 
 class BoardController extends BaseController
 {
@@ -512,7 +514,6 @@ class BoardController extends BaseController
         $b_level = updateSQ($this->request->getPost('b_level'));
         $wdate = updateSQ($this->request->getPost('wdate'));
         $files = $this->request->getFiles();
-
         $member = session('member') ?? [];
 
         $user_id = $member["id"];
@@ -532,7 +533,9 @@ class BoardController extends BaseController
         $db = \Config\Database::connect();
 
         for ($i = 1; $i <= 6; $i++) {
-            if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+            ${"rfile_" . $i} = "";
+            ${"ufile_" . $i} = "";
+            if ($this->request->getPost("del_" . $i) == "Y") {
                 $sql = "
                     UPDATE tbl_bbs_list SET
                     ufile" . $i . "='',
@@ -540,31 +543,36 @@ class BoardController extends BaseController
                     WHERE bbs_idx='$bbs_idx'
                 ";
                 $db->query($sql);
-            } 
+            } elseif ($files["ufile" . $i]) {
+                $file = $files["ufile" . $i];
 
-			$file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $fileName = $file->getClientName();
+                    ${"rfile_" . $i} = $fileName;
+                    if (no_file_ext($fileName) == "Y") {
+                        $microtime = microtime(true);
+                        $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
+                        $date = date('YmdHis');
+                        $ext = explode(".", strtolower($fileName));
+                        $newName = $date . $timestamp . '.' . $ext[1];
+                        ${"ufile_" . $i} = $newName;
 
-			if ($file) {
-				$data["rfile$i"] = $file->getClientName();
-				$data["ufile$i"] = $file->getRandomName();
-				$publicPath = ROOTPATH . 'public/uploads/bbs/';
-				write_log($publicPath ." - ". $data["ufile$i"]);
-				$file->move($publicPath, $data["ufile$i"]);
-			}
+                        $file->move($uploadPath, $newName);
+                    }
+                }
 
-			//if ($bbs_idx) {
-				$sql = "
-					UPDATE tbl_bbs_list SET
-					ufile" . $i . "='" . $data["rfile$i"] . "',
-					rfile" . $i . "='" . $data["ufile$i"] . "'
-					WHERE bbs_idx='$bbs_idx';
-				";
-				write_log("upload- ". $sql);
-				$db->query($sql);
-			//}
+                if ($bbs_idx) {
+                    $sql = "
+                        UPDATE tbl_bbs_list SET
+                        ufile" . $i . "='" . ${"ufile_" . $i} . "',
+                        rfile" . $i . "='" . ${"rfile_" . $i} . "'
+                        WHERE bbs_idx='$bbs_idx';
+                    ";
+                    $db->query($sql);
+                }
+            }
         }
-
-		if ($mode == "reply") {
+        if ($mode == "reply") {
             $sql = "update tbl_bbs_list set b_step = b_step + 1 where b_ref = '$b_ref' and b_step > $b_step";
             $db->query($sql);
             $b_step = $b_step + 1;
@@ -603,7 +611,6 @@ class BoardController extends BaseController
                 $sql = $sql . ",  r_date = $r_date ";
             }
             $sql = $sql . ",  recomm_yn = '$recomm_yn', url='$url' where bbs_idx='$bbs_idx'";
-			write_log($sql);
             $query = $db->query($sql);
 
         } else {
