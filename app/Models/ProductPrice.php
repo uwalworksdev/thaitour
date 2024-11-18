@@ -44,7 +44,7 @@ class ProductPrice extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
-    protected function getById($p_idx)
+    public function getById($p_idx)
     {
         try {
             $sql = " select * from tbl_product_price where p_idx = '" . $p_idx . "'";
@@ -56,7 +56,7 @@ class ProductPrice extends Model
         }
     }
 
-    protected function insertData($data)
+    public function insertData($data)
     {
         $allowedFields = $this->allowedFields;
 
@@ -75,7 +75,7 @@ class ProductPrice extends Model
         return $this->insert($filteredData);
     }
 
-    protected function updateData($id, $data)
+    public function updateData($id, $data)
     {
         $allowedFields = $this->allowedFields;
 
@@ -94,7 +94,7 @@ class ProductPrice extends Model
         return $this->update($id, $filteredData);
     }
 
-    protected function selectYoilByProductIdx($yoil, $day_, $product_idx)
+    public function selectYoilByProductIdx($yoil, $day_, $product_idx)
     {
         switch ($yoil) {
             case 'yoil_0':

@@ -43,17 +43,19 @@ class ProductCharge extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
-    protected function getById($charge_idx)
+    public function getById($charge_idx)
     {
         try {
-
+            $sql = " select * from tbl_product_charge where charge_idx = '" . $charge_idx . "' ";
+            write_log($sql);
+            return $this->db->query($sql)->getRowArray();
         } catch (\Exception $e) {
             write_log($e->getMessage());
             return false;
         }
     }
 
-    protected function getByYoilAndProduct($yoil_idx, $product_idx, $orderby = null, $sort = 'asc')
+    public function getByYoilAndProduct($yoil_idx, $product_idx, $orderby = null, $sort = 'asc')
     {
         try {
             $sql = " select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' ";
@@ -68,7 +70,7 @@ class ProductCharge extends Model
         }
     }
 
-    protected function insertData($data)
+    public function insertData($data)
     {
         $allowedFields = $this->allowedFields;
 
@@ -87,7 +89,7 @@ class ProductCharge extends Model
         return $this->insert($filteredData);
     }
 
-    protected function updateData($id, $data)
+    public function updateData($id, $data)
     {
         $allowedFields = $this->allowedFields;
 
@@ -106,7 +108,7 @@ class ProductCharge extends Model
         return $this->update($id, $filteredData);
     }
 
-    protected function updateSeq($charge_idx, $type)
+    public function updateSeq($charge_idx, $type)
     {
         try {
             if ($type == 'up') {
@@ -123,7 +125,7 @@ class ProductCharge extends Model
         }
     }
 
-    protected function updateSeqByProduct($charge_idx, $seq)
+    public function updateSeqByProduct($charge_idx, $seq)
     {
         try {
             $sql = "UPDATE tbl_product_charge SET seq = '" . $seq . "' WHERE charge_idx = " . $charge_idx;
@@ -135,7 +137,7 @@ class ProductCharge extends Model
         }
     }
 
-    protected function selectSeqByProduct($product_idx)
+    public function selectSeqByProduct($product_idx)
     {
         try {
             $sql = "SELECT charge_idx, seq FROM tbl_product_charge where product_idx = '" . $product_idx . "' ORDER BY seq ASC";
@@ -147,7 +149,7 @@ class ProductCharge extends Model
         }
     }
 
-    protected function selectByProductAndYoil($product_idx, $yoil_idx)
+    public function selectByProductAndYoil($product_idx, $yoil_idx)
     {
         $sql = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
         return $this->db->query($sql)->getResultArray();

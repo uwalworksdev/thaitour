@@ -42,14 +42,14 @@ class ToursMoption extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
-    protected function getById($product_idx)
+    public function getById($product_idx)
     {
         $sql = " select * from tbl_tours_moption where product_idx = '" . $product_idx . "'";
         write_log($sql);
         return $this->db->query($sql)->getRowArray();
     }
 
-    protected function insertData($data)
+    public function insertData($data)
     {
         $allowedFields = $this->allowedFields;
 
@@ -68,7 +68,7 @@ class ToursMoption extends Model
         return $this->insert($filteredData);
     }
 
-    protected function updateData($id, $data)
+    public function updateData($id, $data)
     {
         $allowedFields = $this->allowedFields;
 

@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<div class="customer-form-page reservation-form-cus">
+    <div class="customer-form-page reservation-form-cus">
     <div class="navigation-section">
         <div class="body_inner">
             <div class="content-main">
@@ -33,7 +33,7 @@
             <form action="product-hotel/reservation-form-insert" name="order_frm" id="order_frm" method="post">
                 <div class="container-card">
                     <div class="">
-                    <div class="card-left">
+                        <div class="card-left">
                             <h3 class="title-main-c title-main-2">
                                 예약확정서 정보 입력
                             </h3>
@@ -70,7 +70,8 @@
                                 <div class="parent-form-group">
                                     <div class="form-group">
                                         <label for="order_user_mobile">휴대폰번호</label>
-                                        <input type="text" id="order_user_mobile" name="order_user_mobile[]" placeholder="번호를 입력해주세요." />
+                                        <input type="text" id="order_user_mobile" name="order_user_mobile[]"
+                                               placeholder="번호를 입력해주세요."/>
                                     </div>
                                 </div>
                             </div>
@@ -95,40 +96,46 @@
                             </h3>
                             <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>
                             <?php
-                                $number_room = intval($number_room);
-                                for($i = 1; $i <= $number_room; $i++){
-                            ?>
-                                <h3 class="title-sub-c mt-30">객실<?=$i?></h3>
-                                <div class="form-container" data-group="group<?=$i?>">
+                            $number_room = intval($number_room);
+                            for ($i = 1; $i <= $number_room; $i++) {
+                                ?>
+                                <h3 class="title-sub-c mt-30">객실<?= $i ?></h3>
+                                <div class="form-container" data-group="group<?= $i ?>">
                                     <div class="con-form mb-40">
                                         <div class="parent-form-group">
                                             <div class="form-group">
-                                                <input type="hidden" name="order_num_room[]" value="group<?=$i?>"/>
+                                                <input type="hidden" name="order_num_room[]" value="group<?= $i ?>"/>
                                                 <label for="first-name-1">영문 이름(First Name) *</label>
-                                                <input type="text" id="first-name-1" name="order_first_name[]" placeholder="영어로 작성해주세요." />
+                                                <input type="text" id="first-name-1" name="order_first_name[]"
+                                                       placeholder="영어로 작성해주세요."/>
                                             </div>
                                             <div class="form-group">
                                                 <label for="last-name-1">영문 성(Last Name) *</label>
-                                                <input type="text" id="last-name-1" name="order_last_name[]" placeholder="영어로 작성해주세요." />
+                                                <input type="text" id="last-name-1" name="order_last_name[]"
+                                                       placeholder="영어로 작성해주세요."/>
                                             </div>
                                         </div>
-    
+
                                         <div class="button-action-con">
-                                            <div class="conn-icon add-item" data-group="group<?=$i?>">
-                                                <img class="only_web" src="/uploads/icons/add_item_icon.png" alt="add_item_icon">
-                                                <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png" alt="add_item_icon">
+                                            <div class="conn-icon add-item" data-group="group<?= $i ?>">
+                                                <img class="only_web" src="/uploads/icons/add_item_icon.png"
+                                                     alt="add_item_icon">
+                                                <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png"
+                                                     alt="add_item_icon">
                                                 <span>투숙객 추가</span>
                                             </div>
-                                            <div class="conn-icon remove-item" data-group="group<?=$i?>">
-                                                <img class="only_web" src="/uploads/icons/remove-item_icon.png" alt="remove_item_icon">
-                                                <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png" alt="add_item_icon">
+                                            <div class="conn-icon remove-item" data-group="group<?= $i ?>">
+                                                <img class="only_web" src="/uploads/icons/remove-item_icon.png"
+                                                     alt="remove_item_icon">
+                                                <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png"
+                                                     alt="add_item_icon">
                                                 <span>투숙객 삭제</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <?php
-                                }
+                                <?php
+                            }
                             ?>
                         </div>
 
@@ -136,25 +143,27 @@
                             <h3 class="title-main-c">
                                 별도 요청
                             </h3>
-                            <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가 보장되지 않을 수 있습니다.</p>
+                            <p class="title-sub-below">숙소는 최선을 다해 요청 사항을 제공해 드릴 수 있도록 최선을 다하겠습니다. 다만, 사정에 따라 제공 여부가 보장되지
+                                않을 수 있습니다.</p>
                             <div class="form-group cus-form-group">
-                                <textarea id="extra-requests" name="order_memo" placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
+                                <textarea id="extra-requests" name="order_memo"
+                                          placeholder="여기에 요청 사항을 입력하세요(선택사항)"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="">
                         <div class="card-right">
                             <?php
-                                if(!empty($hotel['ufile1'])){
-                                    $img = "/data/hotel/" . $hotel['ufile1'];
-                                }else{
-                                    $img = "";
-                                }
+                            if (!empty($hotel['ufile1'])) {
+                                $img = "/data/hotel/" . $hotel['ufile1'];
+                            } else {
+                                $img = "";
+                            }
                             ?>
-                            <img src="<?=$img?>" alt="<?=$hotel['rfile1']?>">
+                            <img src="<?= $img ?>" alt="<?= $hotel['rfile1'] ?>">
                             <div class="below-right">
-                                <h3 class="title-r"><?=$hotel["product_name"]?></h3>
-                                <p class="title-sub-r text-gray"><?=$hotel["addrs"]?></p>
+                                <h3 class="title-r"><?= $hotel["product_name"] ?></h3>
+                                <p class="title-sub-r text-gray"><?= $hotel["addrs"] ?></p>
                             </div>
                         </div>
                         <div class="card-right2">
@@ -162,19 +171,19 @@
                                 요금정보
                             </h3>
                             <?php
-                                $order_price = intval($last_price) + intval($extra_cost);
+                            $order_price = intval($last_price) + intval($extra_cost);
                             ?>
                             <div class="item-info-r">
-                                <span>객실 <?=$number_room?>개 X <?=$number_day?>박</span>
-                                <span class="font-bold"><?=number_format($last_price)?>원</span>
+                                <span>객실 <?= $number_room ?>개 X <?= $number_day ?>박</span>
+                                <span class="font-bold"><?= number_format($last_price) ?>원</span>
                             </div>
                             <div class="item-info-r item-info-r-border-b">
                                 <span>세금&서비스비용</span>
-                                <span class="font-bold"><?=number_format($extra_cost)?>원</span>
+                                <span class="font-bold"><?= number_format($extra_cost) ?>원</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><?=number_format($order_price)?>원</span>
+                                <span><?= number_format($order_price) ?>원</span>
                             </div>
                             <p class="below-des-price">
                                 · 체크인하시려면 3일 전에 숙소로 연락해 주세요<br>· 선택하신 객실 유형의 체크인 시간은 14:00~24:00 사이,
@@ -202,20 +211,20 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="product_idx" id="product_idx" value="<?=$hotel["product_idx"]?>">
-                <input type="hidden" name="room_op_idx" id="room_op_idx" value="<?=$room_op_idx?>">
-                <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?=$use_coupon_idx?>">
-                <input type="hidden" name="used_coupon_money" id="used_coupon_money" value="<?=$used_coupon_money?>">
-                <input type="hidden" name="inital_price" id="inital_price" value="<?=$inital_price?>">
-                <input type="hidden" name="last_price" id="last_price" value="<?=$last_price?>">
-                <input type="hidden" name="order_price" id="order_price" value="<?=$order_price?>">
-                <input type="hidden" name="number_room" id="number_room" value="<?=$number_room?>">
-                <input type="hidden" name="number_day" id="number_day" value="<?=$number_day?>">
+                <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel["product_idx"] ?>">
+                <input type="hidden" name="room_op_idx" id="room_op_idx" value="<?= $room_op_idx ?>">
+                <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
+                <input type="hidden" name="used_coupon_money" id="used_coupon_money" value="<?= $used_coupon_money ?>">
+                <input type="hidden" name="inital_price" id="inital_price" value="<?= $inital_price ?>">
+                <input type="hidden" name="last_price" id="last_price" value="<?= $last_price ?>">
+                <input type="hidden" name="order_price" id="order_price" value="<?= $order_price ?>">
+                <input type="hidden" name="number_room" id="number_room" value="<?= $number_room ?>">
+                <input type="hidden" name="number_day" id="number_day" value="<?= $number_day ?>">
             </form>
         </div>
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             function formatDate(date) {
                 var d = new Date(date),
                     month = '' + (d.getMonth() + 1),
@@ -230,7 +239,7 @@
 
             $("#checkin, #checkout").datepicker({
                 dateFormat: 'yy/mm/dd',
-                onSelect: function(dateText, inst) {
+                onSelect: function (dateText, inst) {
                     var date = $(this).datepicker('getDate');
                     $(this).val(formatDate(date));
                 }
@@ -239,7 +248,7 @@
             $('#checkin').val(formatDate('2024/07/09'));
             $('#checkout').val(formatDate('2024/07/10'));
 
-            $('.tab_box_element_').on('click', function() {
+            $('.tab_box_element_').on('click', function () {
 
                 $('.tab_box_element_').removeClass('tab_active_');
 
@@ -253,7 +262,7 @@
             // add, remove element
             var guestCounter = {};
 
-            $(".form-container").each(function(){
+            $(".form-container").each(function () {
                 let group = $(this).data("group");
                 guestCounter[group] = 1;
             });
@@ -271,7 +280,7 @@
             $('.remove-item').hide();
 
             // Function to add new parent-form-group
-            $('.add-item').on('click', function() {
+            $('.add-item').on('click', function () {
                 var group = $(this).data('group');
                 guestCounter[group]++; // Increment guest counter for the specific group
 
@@ -299,7 +308,7 @@
             });
 
             // Function to remove the last parent-form-group
-            $('.remove-item').on('click', function() {
+            $('.remove-item').on('click', function () {
                 var group = $(this).data('group');
 
                 // Make sure there's more than one parent-form-group before removing
@@ -314,23 +323,23 @@
                 updateRemoveButtonVisibility(group);
             });
 
-            $(".item-clause-all").click(function() {
+            $(".item-clause-all").click(function () {
                 if ($(this).hasClass("click")) {
                     $(this).removeClass("click");
-                    $('.item-clause-item').each(function() {
+                    $('.item-clause-item').each(function () {
                         $(this).removeClass("acti");
                         $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
                     })
                 } else {
                     $(this).addClass("click");
-                    $('.item-clause-item').each(function() {
+                    $('.item-clause-item').each(function () {
                         $(this).addClass("acti");
                         $(this).find("img").attr("src", "/uploads/icons/form_check_icon_black.png");
                     })
                 }
             });
 
-            $(".item-clause-item").click(function() {
+            $(".item-clause-item").click(function () {
                 if ($(this).hasClass("acti")) {
                     $(this).removeClass("acti");
                     $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
@@ -341,7 +350,7 @@
 
                 var allHaveActi = true;
 
-                $('.item-clause-item').each(function() {
+                $('.item-clause-item').each(function () {
                     if (!$(this).hasClass('acti')) {
                         allHaveActi = false;
                         return false;
@@ -354,21 +363,21 @@
                 }
             });
 
-            $(".btn-order").click(function() {
+            $(".btn-order").click(function () {
                 const frm = document.order_frm;
                 let formData = new FormData(frm);
 
-                if($("#email_name").val() === ""){
+                if ($("#email_name").val() === "") {
                     alert("이메일 입력해주세요!");
                     return false;
                 }
 
-                if($("#email_host").val() === ""){
+                if ($("#email_host").val() === "") {
                     alert("이메일 입력해주세요!");
                     return false;
                 }
 
-                if($("#order_user_mobile").val() === ""){
+                if ($("#order_user_mobile").val() === "") {
                     alert("휴대폰번호 입력해주세요!");
                     return false;
                 }
@@ -403,10 +412,10 @@
                         alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
                     }
                     , success: function (response, status, request) {
-                        if(response.result == true){
+                        if (response.result == true) {
                             alert(response.message);
                             window.location.href = '/product/completed-order';
-                        }else{
+                        } else {
                             alert(response.message);
                         }
                     }
@@ -414,8 +423,8 @@
 
             });
 
-            
+
         });
     </script>
 
-    <?php $this->endSection(); ?>
+<?php $this->endSection(); ?>
