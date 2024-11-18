@@ -1452,7 +1452,7 @@ class Product extends BaseController
         $travel_times = $this->request->getGet('travel_times');
         $carts = $this->request->getGet('carts');
         $facilities = $this->request->getGet('facilities');
-        $page = $this->request->getGet('page') ?? 1;
+        $pg = $this->request->getGet('pg') ?? 1;
 
         foreach ($filters as $key => $filter) {
             $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
@@ -1482,7 +1482,7 @@ class Product extends BaseController
             'travel_times'              => $travel_times,
             'carts'                     => $carts,
             'facilities'                => $facilities,
-        ], 10, $page, []);
+        ], 10, $pg, []);
 
 
         foreach ($products['items'] as $key => $product) {

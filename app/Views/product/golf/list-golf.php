@@ -139,12 +139,6 @@
                                              alt="arrow_right_mo">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-
-                                <!-- <span>방콕</span>
-                                <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                                <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                    alt="arrow_right_mo">
-                                <span>스쿰빛(야속-프로퐁)</span> -->
                             </div>
                             <div class="only_mo">
                                 <div class="star-container">
@@ -173,7 +167,17 @@
                         </div>
                     </div>
                 <?php endforeach; ?>
-                <?=ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], current_url() . ($_SERVER['QUERY_STRING'] =! "" ? "?{$_SERVER['QUERY_STRING']}&" : "?" ) . "pg=")?>
+                <?php
+                $url = $_SERVER['REQUEST_URI'];
+
+                parse_str(parse_url($url, PHP_URL_QUERY), $queryParams);
+                unset($queryParams['pg']);
+                $queryParams['pg'] = "";
+                $newQuery = urldecode(http_build_query($queryParams));
+                $newUrl = strtok($url, '?') . '?' . $newQuery;
+                
+                ?>
+                <?=ipagelistingSub($products["pg"], $products["nPage"], $products["g_list_rows"], $newUrl)?>
             </div>
         </div>
     </div>
@@ -306,7 +310,7 @@
                 grouped[group] = grouped[group] + String(idx);
             });
 
-            grouped['page'] = [1];
+            grouped['pg'] = [1];
 
             const query = Object.keys(grouped).map(key => `${key}=${grouped[key]}`).join("&");
             const path = window.location.href.split('?')[0];

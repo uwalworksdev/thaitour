@@ -1018,7 +1018,7 @@ class ProductModel extends Model
 
         $builder->where("product_status !=", "D");
         $nTotalCount = $builder->countAllResults(false);
-        $nPage = ceil($nTotalCount / $g_list_rows);
+        $nPage = (int) ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
