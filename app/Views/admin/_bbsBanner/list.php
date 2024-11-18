@@ -102,7 +102,7 @@ $youtube_code = '';
                                     $scategory = $row['category'];
                                     if ($row["ufile6"]) {
                                         if (substr(strtolower($row["ufile6"]), -3) == "jpg" || substr(strtolower($row["ufile6"]), -3) == "png" || substr(strtolower($row["ufile6"]), -3) == "gif") {
-                                            $img = get_img($row["ufile6"], "/data/bbs/", 390, 220);
+                                            $img = get_img($row["ufile6"], ROOTPATH . "/public/upload/bbs/", 390, 220);
                                         }
                                     } elseif ($youtube_code != "") {
                                         $img = "http://img.youtube.com/vi/" . $youtube_code . "/hqdefault.jpg";
