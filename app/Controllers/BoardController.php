@@ -514,6 +514,7 @@ class BoardController extends BaseController
         $b_level = updateSQ($this->request->getPost('b_level'));
         $wdate = updateSQ($this->request->getPost('wdate'));
         $files = $this->request->getFiles();
+		write_log("files- ". $files);
         $member = session('member') ?? [];
 
         $user_id = $member["id"];
@@ -573,6 +574,7 @@ class BoardController extends BaseController
                 }
             }
         }
+
         if ($mode == "reply") {
             $sql = "update tbl_bbs_list set b_step = b_step + 1 where b_ref = '$b_ref' and b_step > $b_step";
             $db->query($sql);
