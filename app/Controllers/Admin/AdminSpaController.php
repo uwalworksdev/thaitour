@@ -9,6 +9,11 @@ class AdminSpaController extends BaseController
 {
     protected $connect;
     protected $productModel;
+    protected $productPriceModel;
+    protected $productChargeModel;
+    protected $tblCode;
+    protected $toursMoption;
+    protected $toursOption;
 
     public function __construct()
     {
@@ -16,6 +21,11 @@ class AdminSpaController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->productModel = model("ProductModel");
+        $this->productPriceModel = model("ProductPrice");
+        $this->productChargeModel = model("ProductCharge");
+        $this->tblCode = model("Code");
+        $this->toursMoption = model("ToursMoption");
+        $this->toursOption = model("ToursOption");
     }
 
     public function write_new()
@@ -31,25 +41,20 @@ class AdminSpaController extends BaseController
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"]);
         $s_product_code_3 = updateSQ($_GET["s_product_code_3"]);
 
-        $sql = " select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' ";
-        $result = $this->connect->query($sql);
-        $row = $result->getRowArray();
+        $row = $this->productChargeModel->getByYoilAndProduct($yoil_idx, $product_idx);
+
         $prod_info = $row["prod_info"];
         $deadline_date = explode(",", $row["deadline_date"]);
         $deadline_date = array_filter($deadline_date, function ($value) {
             return $value;
         });
 
-        $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-        $result = $this->connect->query($sql);
-        $row = $result->getRowArray();
+        $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
         $product_code_1 = $row["product_code_1"];
         $s_station = $row["CodeF"];
         if ($parent_yoil_idx) {
-            $sql = " select * from tbl_product_price where p_idx = '" . $parent_yoil_idx . "'";
-            $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
+            $row = $this->productPriceModel->getById($parent_yoil_idx);
             $min_date = $row["s_date"];
             $max_date = $row["e_date"];
 
@@ -90,9 +95,7 @@ class AdminSpaController extends BaseController
         }
 
         if ($yoil_idx) {
-            $sql = " select * from tbl_product_price where p_idx = '" . $yoil_idx . "'";
-            $result = $this->connect->query($sql);
-            $row = $result->getRowArray();
+            $row = $this->productPriceModel->getById($yoil_idx);
             $s_date = $row["s_date"];
             $e_date = $row["e_date"];
 
@@ -110,10 +113,7 @@ class AdminSpaController extends BaseController
 
         }
 
-        $fsql2 = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
-        write_log($fsql2);
-        $fresult2 = $this->connect->query($fsql2);
-        $fresult2 = $fresult2->getResultArray();
+        $fresult2 = $this->productChargeModel->getByYoilAndProduct($yoil_idx, $product_idx, 'seq', 'asc');
 
         $data = [
             "product_idx" => $product_idx ?? '',
@@ -342,8 +342,7 @@ class AdminSpaController extends BaseController
             $product_code_list = $product_code_1 . '|' . $product_code_2 . '|' . $product_code_3 . '|' . $product_code_4;
 
             if ($product_idx) {
-                $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-                $row = $this->connect->query("$sql")->getRowArray();
+                $row = $this->productModel->getById($product_idx);
 
                 $data["ufile1"] = $data["ufile1"] ?? $row['ufile1'];
                 $data["ufile2"] = $data["ufile2"] ?? $row['ufile2'];
@@ -361,241 +360,208 @@ class AdminSpaController extends BaseController
                 $data["rfile6"] = $data["rfile6"] ?? $row['rfile6'];
                 $data["rfile7"] = $data["rfile7"] ?? $row['rfile7'];
 
-                $sql = "update tbl_product_mst SET 
-                            product_code_1			= '" . $product_code_1 . "'
-                            ,product_code_2			= '" . $product_code_2 . "'
-                            ,product_code_3			= '" . $product_code_3 . "'
-                            ,product_code_4			= '" . $product_code_4 . "'
-                            ,product_code_list		= '" . $product_code_list . "'
-                            ,product_code_name_1	= '" . $product_code_name_1 . "'
-                            ,product_code_name_2	= '" . $product_code_name_2 . "'
-                            ,product_code_name_3	= '" . $product_code_name_3 . "'
-                            ,product_code_name_4	= '" . $product_code_name_4 . "'
-                            ,product_name			= '" . $product_name . "'
-                            ,product_air			= '" . $product_air . "'
-                            ,product_info			= '" . $product_info . "'
-                            ,product_schedule		= '" . $product_schedule . "'
-                            ,product_country		= '" . $product_country . "'
-                            ,is_view				= '" . $is_view . "'
-                            ,product_period			= '" . $product_period . "'
-                            ,product_manager		= '" . $product_manager . "'
-                            ,product_manager_id		= '" . $product_manager_id . "'		
-                            ,original_price			= '" . $original_price . "'
-                            ,min_price				= '" . $min_price . "'
-                            ,max_price				= '" . $max_price . "'
-                            ,keyword				= '" . $keyword . "'
-                            ,product_price			= '" . $product_price . "'
-                            ,product_best			= '" . $product_best . "'
-                            ,onum					= '" . $onum . "'
-                            ,product_contents		= '" . $product_contents . "' 
-                            ,product_contents_m		= '" . $product_contents_m . "' 
-                            ,product_confirm		= '" . $product_confirm . "' 
-                            ,product_confirm_m		= '" . $product_confirm_m . "' 
-                            ,product_able			= '" . $product_able . "'
-                            ,product_unable			= '" . $product_unable . "'
-                            ,mobile_able			= '" . $mobile_able . "'
-                            ,mobile_unable			= '" . $mobile_unable . "'
-                            ,special_benefit        = '" . $special_benefit . "'
-                            ,special_benefit_m      = '" . $special_benefit_m . "'
-                            ,notice_comment         = '" . $notice_comment . "'
-                            ,notice_comment_m       = '" . $notice_comment_m . "'
-                            ,etc_comment            = '" . $etc_comment . "'
-                            ,etc_comment_m          = '" . $etc_comment_m . "'
-                
-                            ,stay_list				= '" . $stay_list . "'
-                            ,country_list			= '" . $country_list . "'
-                            ,active_list			= '" . $active_list . "'
-                            ,sight_list				= '" . $sight_list . "'
-                
-                            ,benefit				= '" . $benefit . "'
-                            ,local_info				= '" . $local_info . "'
-                            ,phone					= '" . $phone . "'
-                            ,email 					= '" . $email . "'
-                            ,product_manager_2		= '" . $product_manager_2 . "'	
-                            ,phone_2				= '" . $phone_2 . "'
-                            ,email_2				= '" . $email_2 . "'
-                
-                            ,product_route			= '" . $product_route . "'
-                            ,minium_people_cnt		= '" . $minium_people_cnt . "'
-                            ,total_people_cnt		= '" . $total_people_cnt . "'
-                            ,tour_period			= '" . $tour_period . "'
-                            ,tour_info				= '" . $tour_info . "'
-                            ,tour_detail			= '" . $tour_detail . "'
-                            ,product_mileage		= '" . $product_mileage . "'
-                            ,exchange				= '" . $exchange . "'
-                            ,jetlag					= '" . $jetlag . "'
-                            ,main_top_best			= '" . $main_top_best . "'
-                            ,main_theme_best		= '" . $main_theme_best . "'
-                            ,capital_city			= '" . $capital_city . "'
-                            ,information			= '" . $information . "'
-                            ,meeting_guide          = '" . $meeting_guide . "'
-                            ,meeting_place          = '" . $meeting_place . "'
-                            ,product_level			= '" . $product_level . "'
-                            ,product_option         = '" . $product_option . "'
-                            ,coupon_y               = '" . $coupon_y . "'
-                            ,special_price			= '" . $special_price . "'
-                            ,adult_text             = '" . $adult_text . "'
-                            ,kids_text              = '" . $kids_text . "'
-                            ,baby_text              = '" . $baby_text . "'
-                            
-                            ,ufile1				    = '" . $data["ufile1"] . "'
-                            ,ufile2			        = '" . $data["ufile2"] . "'
-                            ,ufile3			        = '" . $data["ufile3"] . "'
-                            ,ufile4				    = '" . $data["ufile4"] . "'
-                            ,ufile5				    = '" . $data["ufile5"] . "'
-                            ,ufile6				    = '" . $data["ufile6"] . "'
-                            ,ufile7				    = '" . $data["ufile7"] . "'
-                            
-                            ,rfile1				    = '" . $data["rfile1"] . "'
-                            ,rfile2			        = '" . $data["rfile2"] . "'
-                            ,rfile3			        = '" . $data["rfile3"] . "'
-                            ,rfile4				    = '" . $data["rfile4"] . "'
-                            ,rfile5				    = '" . $data["rfile5"] . "'
-                            ,rfile6				    = '" . $data["rfile6"] . "'
-                            ,rfile7				    = '" . $data["rfile7"] . "'
-                
-                            ,addrs                  = '" . $addrs . "'
-                            ,longitude              = '" . $longitude . "'
-                            ,latitude               = '" . $latitude . "'
-                            
-                            ,product_type           = '" . $product_type . "'
-                            
-                            ,code_utilities         = '" . $code_utilities . "'
-                            ,code_services          = '" . $code_services . "'
-                            ,code_best_utilities    = '" . $code_best_utilities . "'
-                            ,code_populars          = '" . $code_populars . "'
-                            ,available_period       = '" . $available_period . "'
-                            ,deadline_time          = '" . $deadline_time . "'
-                            
-                            ,product_more           = '" . $dataProductMore . "'
-                            
-                            ,m_date					= now()
-                        where product_idx = '" . $product_idx . "'
-                    ";
-                write_log("상품정보수정 : " . $sql);
+                $data = [
+                    'product_code_1' => updateSQ($product_code_1),
+                    'product_code_2' => updateSQ($product_code_2),
+                    'product_code_3' => updateSQ($product_code_3),
+                    'product_code_4' => updateSQ($product_code_4),
+                    'product_code_list' => updateSQ($product_code_list),
+                    'product_code_name_1' => updateSQ($product_code_name_1),
+                    'product_code_name_2' => updateSQ($product_code_name_2),
+                    'product_code_name_3' => updateSQ($product_code_name_3),
+                    'product_code_name_4' => updateSQ($product_code_name_4),
+                    'product_name' => updateSQ($product_name),
+                    'product_air' => updateSQ($product_air),
+                    'product_info' => updateSQ($product_info),
+                    'product_schedule' => updateSQ($product_schedule),
+                    'product_country' => updateSQ($product_country),
+                    'is_view' => updateSQ($is_view),
+                    'product_period' => updateSQ($product_period),
+                    'product_manager' => updateSQ($product_manager),
+                    'product_manager_id' => updateSQ($product_manager_id),
+                    'original_price' => updateSQ($original_price),
+                    'min_price' => updateSQ($min_price),
+                    'max_price' => updateSQ($max_price),
+                    'keyword' => updateSQ($keyword),
+                    'product_price' => updateSQ($product_price),
+                    'product_best' => updateSQ($product_best),
+                    'onum' => updateSQ($onum),
+                    'product_contents' => updateSQ($product_contents),
+                    'product_contents_m' => updateSQ($product_contents_m),
+                    'product_confirm' => updateSQ($product_confirm),
+                    'product_confirm_m' => updateSQ($product_confirm_m),
+                    'product_able' => updateSQ($product_able),
+                    'product_unable' => updateSQ($product_unable),
+                    'mobile_able' => updateSQ($mobile_able),
+                    'mobile_unable' => updateSQ($mobile_unable),
+                    'special_benefit' => updateSQ($special_benefit),
+                    'special_benefit_m' => updateSQ($special_benefit_m),
+                    'notice_comment' => updateSQ($notice_comment),
+                    'notice_comment_m' => updateSQ($notice_comment_m),
+                    'etc_comment' => updateSQ($etc_comment),
+                    'etc_comment_m' => updateSQ($etc_comment_m),
+                    'stay_list' => updateSQ($stay_list),
+                    'country_list' => updateSQ($country_list),
+                    'active_list' => updateSQ($active_list),
+                    'sight_list' => updateSQ($sight_list),
+                    'benefit' => updateSQ($benefit),
+                    'local_info' => updateSQ($local_info),
+                    'phone' => updateSQ($phone),
+                    'email' => updateSQ($email),
+                    'product_manager_2' => updateSQ($product_manager_2),
+                    'phone_2' => updateSQ($phone_2),
+                    'email_2' => updateSQ($email_2),
+                    'product_route' => updateSQ($product_route),
+                    'minium_people_cnt' => updateSQ($minium_people_cnt),
+                    'total_people_cnt' => updateSQ($total_people_cnt),
+                    'tour_period' => updateSQ($tour_period),
+                    'tour_info' => updateSQ($tour_info),
+                    'tour_detail' => updateSQ($tour_detail),
+                    'product_mileage' => updateSQ($product_mileage),
+                    'exchange' => updateSQ($exchange),
+                    'jetlag' => updateSQ($jetlag),
+                    'main_top_best' => updateSQ($main_top_best),
+                    'main_theme_best' => updateSQ($main_theme_best),
+                    'capital_city' => updateSQ($capital_city),
+                    'information' => updateSQ($information),
+                    'meeting_guide' => updateSQ($meeting_guide),
+                    'meeting_place' => updateSQ($meeting_place),
+                    'product_level' => updateSQ($product_level),
+                    'product_option' => updateSQ($product_option),
+                    'coupon_y' => updateSQ($coupon_y),
+                    'special_price' => updateSQ($special_price),
+                    'adult_text' => updateSQ($adult_text),
+                    'kids_text' => updateSQ($kids_text),
+                    'baby_text' => updateSQ($baby_text),
+                    'ufile1' => updateSQ($data['ufile1']),
+                    'ufile2' => updateSQ($data['ufile2']),
+                    'ufile3' => updateSQ($data['ufile3']),
+                    'ufile4' => updateSQ($data['ufile4']),
+                    'ufile5' => updateSQ($data['ufile5']),
+                    'ufile6' => updateSQ($data['ufile6']),
+                    'ufile7' => updateSQ($data['ufile7']),
+                    'rfile1' => updateSQ($data['rfile1']),
+                    'rfile2' => updateSQ($data['rfile2']),
+                    'rfile3' => updateSQ($data['rfile3']),
+                    'rfile4' => updateSQ($data['rfile4']),
+                    'rfile5' => updateSQ($data['rfile5']),
+                    'rfile6' => updateSQ($data['rfile6']),
+                    'rfile7' => updateSQ($data['rfile7']),
+                    'addrs' => updateSQ($addrs),
+                    'longitude' => updateSQ($longitude),
+                    'latitude' => updateSQ($latitude),
+                    'product_type' => updateSQ($product_type),
+                    'code_utilities' => updateSQ($code_utilities),
+                    'code_services' => updateSQ($code_services),
+                    'code_best_utilities' => updateSQ($code_best_utilities),
+                    'code_populars' => updateSQ($code_populars),
+                    'available_period' => updateSQ($available_period),
+                    'deadline_time' => updateSQ($deadline_time),
+                    'product_more' => updateSQ($dataProductMore),
+                    'm_date' => 'now()',
+                ];
 
-                $connect->query($sql);
+                $this->productModel->updateData($product_idx, $data);
             } else {
-                $sql = "insert into tbl_product_mst SET 
-                            product_idx				= '" . $product_idx . "'
-                            ,product_code_1			= '" . $product_code_1 . "'
-                            ,product_code_2			= '" . $product_code_2 . "'
-                            ,product_code_3			= '" . $product_code_3 . "'
-                            ,product_code_4			= '" . $product_code_4 . "'
-                            ,product_code_list		= '" . $product_code_list . "'
-                            ,product_code_name_1	= '" . $product_code_name_1 . "'
-                            ,product_code_name_2	= '" . $product_code_name_2 . "'
-                            ,product_code_name_3	= '" . $product_code_name_3 . "'
-                            ,product_code_name_4	= '" . $product_code_name_4 . "'
-                            ,product_name			= '" . $product_name . "'
-                            ,product_air			= '" . $product_air . "'
-                            ,product_info			= '" . $product_info . "'
-                            ,product_schedule		= '" . $product_schedule . "'
-                            ,product_country		= '" . $product_country . "'
-                            ,is_view				= '" . $is_view . "'
-                            ,product_period			= '" . $product_period . "'
-                            ,product_manager		= '" . $product_manager . "'
-                            ,product_manager_id		= '" . $product_manager_id . "'		
-                            ,original_price			= '" . $original_price . "'
-                            ,keyword				= '" . $keyword . "'
-                            ,product_price			= '" . $product_price . "'
-                            ,product_best			= '" . $product_best . "'
-                            ,onum					= '" . $onum . "'
-                            ,product_contents		= '" . $product_contents . "'
-                            ,product_contents_m		= '" . $product_contents_m . "'
-                            ,min_price				= '" . $min_price . "'
-                            ,max_price				= '" . $max_price . "'
-                            ,product_able			= '" . $product_able . "'
-                            ,product_unable			= '" . $product_unable . "'
-                            ,mobile_able			= '" . $mobile_able . "'
-                            ,mobile_unable			= '" . $mobile_unable . "'
-                            ,notice_comment         = '" . $notice_comment . "'
-                            ,notice_comment_m       = '" . $notice_comment_m . "'
-                            ,etc_comment            = '" . $etc_comment . "'
-                            ,etc_comment_m          = '" . $etc_comment_m . "'
-                
-                            ,stay_list				= '" . $stay_list . "'
-                            ,country_list			= '" . $country_list . "'
-                            ,active_list			= '" . $active_list . "'
-                            ,sight_list				= '" . $sight_list . "'
-                            ,tour_period			= '" . $tour_period . "'
-                            ,tour_info				= '" . $tour_info . "'
-                            ,tour_detail			= '" . $tour_detail . "'
-                
-                            ,benefit				= '" . $benefit . "'
-                            ,local_info				= '" . $local_info . "'
-                            ,phone					= '" . $phone . "'
-                            ,email 					= '" . $email . "'
-                            ,product_manager_2		= '" . $product_manager_2 . "'	
-                            ,phone_2				= '" . $phone_2 . "'
-                            ,email_2				= '" . $email_2 . "'
-                            ,product_route			= '" . $product_route . "'
-                            ,minium_people_cnt		= '" . $minium_people_cnt . "'
-                            ,total_people_cnt		= '" . $total_people_cnt . "'
-                
-                            ,exchange				= '" . $exchange . "'
-                            ,jetlag					= '" . $jetlag . "'
-                            ,capital_city			= '" . $capital_city . "'
-                
-                            ,user_id				= '" . $_SESSION['member']['id'] . "'
-                            ,user_level				= '" . $_SESSION['member']['level'] . "'
-                            ,information			= '" . $information . "'
-                            ,meeting_guide          = '" . $meeting_guide . "'
-                            ,meeting_place          = '" . $meeting_place . "'
-                            ,product_level			= '" . $product_level . "'
-                            ,product_option         = '" . $product_option . "'
-                            ,coupon_y               = '" . $coupon_y . "'
-                            ,special_price			= '" . $special_price . "'
-                            ,adult_text             = '" . $adult_text . "'
-                            ,kids_text              = '" . $kids_text . "'
-                            ,baby_text              = '" . $baby_text . "'
-                
-                            ,ufile1				    = '" . $data["ufile1"] . "'
-                            ,ufile2			        = '" . $data["ufile2"] . "'
-                            ,ufile3			        = '" . $data["ufile3"] . "'
-                            ,ufile4				    = '" . $data["ufile4"] . "'
-                            ,ufile5				    = '" . $data["ufile5"] . "'
-                            ,ufile6				    = '" . $data["ufile6"] . "'
-                            ,ufile7				    = '" . $data["ufile7"] . "'
-                            
-                            ,rfile1				    = '" . $data["rfile1"] . "'
-                            ,rfile2			        = '" . $data["rfile2"] . "'
-                            ,rfile3			        = '" . $data["rfile3"] . "'
-                            ,rfile4				    = '" . $data["rfile4"] . "'
-                            ,rfile5				    = '" . $data["rfile5"] . "'
-                            ,rfile6				    = '" . $data["rfile6"] . "'
-                            ,rfile7				    = '" . $data["rfile7"] . "'
-                            
-                            ,addrs                  = '" . $addrs . "'
-                            ,longitude              = '" . $longitude . "'
-                            ,latitude               = '" . $latitude . "'
-                            
-                            ,product_type           = '" . $product_type . "'
-                            
-                            ,code_utilities         = '" . $code_utilities . "'
-                            ,code_services          = '" . $code_services . "'
-                            ,code_best_utilities    = '" . $code_best_utilities . "'
-                            ,code_populars          = '" . $code_populars . "'
-                            ,available_period       = '" . $available_period . "'
-                            ,deadline_time          = '" . $deadline_time . "'
-                            
-                            ,product_more           = '" . $dataProductMore . "'
-                            
-                            ,m_date					= now()
-                            ,r_date					= now()
-                    ";
+                $data = [
+                    'product_idx' => $product_idx,
+                    'product_code_1' => $product_code_1,
+                    'product_code_2' => $product_code_2,
+                    'product_code_3' => $product_code_3,
+                    'product_code_4' => $product_code_4,
+                    'product_code_list' => $product_code_list,
+                    'product_code_name_1' => $product_code_name_1,
+                    'product_code_name_2' => $product_code_name_2,
+                    'product_code_name_3' => $product_code_name_3,
+                    'product_code_name_4' => $product_code_name_4,
+                    'product_name' => $product_name,
+                    'product_air' => $product_air,
+                    'product_info' => $product_info,
+                    'product_schedule' => $product_schedule,
+                    'product_country' => $product_country,
+                    'is_view' => $is_view,
+                    'product_period' => $product_period,
+                    'product_manager' => $product_manager,
+                    'product_manager_id' => $product_manager_id,
+                    'original_price' => $original_price,
+                    'keyword' => $keyword,
+                    'product_price' => $product_price,
+                    'product_best' => $product_best,
+                    'onum' => $onum,
+                    'product_contents' => $product_contents,
+                    'product_contents_m' => $product_contents_m,
+                    'min_price' => $min_price,
+                    'max_price' => $max_price,
+                    'product_able' => $product_able,
+                    'product_unable' => $product_unable,
+                    'mobile_able' => $mobile_able,
+                    'mobile_unable' => $mobile_unable,
+                    'notice_comment' => $notice_comment,
+                    'notice_comment_m' => $notice_comment_m,
+                    'etc_comment' => $etc_comment,
+                    'etc_comment_m' => $etc_comment_m,
+                    'stay_list' => $stay_list,
+                    'country_list' => $country_list,
+                    'active_list' => $active_list,
+                    'sight_list' => $sight_list,
+                    'tour_period' => $tour_period,
+                    'tour_info' => $tour_info,
+                    'tour_detail' => $tour_detail,
+                    'benefit' => $benefit,
+                    'local_info' => $local_info,
+                    'phone' => $phone,
+                    'email' => $email,
+                    'product_manager_2' => $product_manager_2,
+                    'phone_2' => $phone_2,
+                    'email_2' => $email_2,
+                    'product_route' => $product_route,
+                    'minium_people_cnt' => $minium_people_cnt,
+                    'total_people_cnt' => $total_people_cnt,
+                    'exchange' => $exchange,
+                    'jetlag' => $jetlag,
+                    'capital_city' => $capital_city,
+                    'user_id' => $_SESSION['member']['id'],
+                    'user_level' => $_SESSION['member']['level'],
+                    'information' => $information,
+                    'meeting_guide' => $meeting_guide,
+                    'meeting_place' => $meeting_place,
+                    'product_level' => $product_level,
+                    'product_option' => $product_option,
+                    'coupon_y' => $coupon_y,
+                    'special_price' => $special_price,
+                    'adult_text' => $adult_text,
+                    'kids_text' => $kids_text,
+                    'baby_text' => $baby_text,
+                    'ufile1' => $data['ufile1'],
+                    'ufile2' => $data['ufile2'],
+                    'ufile3' => $data['ufile3'],
+                    'ufile4' => $data['ufile4'],
+                    'ufile5' => $data['ufile5'],
+                    'ufile6' => $data['ufile6'],
+                    'ufile7' => $data['ufile7'],
+                    'rfile1' => $data['rfile1'],
+                    'rfile2' => $data['rfile2'],
+                    'rfile3' => $data['rfile3'],
+                    'rfile4' => $data['rfile4'],
+                    'rfile5' => $data['rfile5'],
+                    'rfile6' => $data['rfile6'],
+                    'rfile7' => $data['rfile7'],
+                    'addrs' => $addrs,
+                    'longitude' => $longitude,
+                    'latitude' => $latitude,
+                    'product_type' => $product_type,
+                    'code_utilities' => $code_utilities,
+                    'code_services' => $code_services,
+                    'code_best_utilities' => $code_best_utilities,
+                    'code_populars' => $code_populars,
+                    'available_period' => $available_period,
+                    'deadline_time' => $deadline_time,
+                    'product_more' => $dataProductMore,
+                    'm_date' => date('Y-m-d H:i:s'),
+                    'r_date' => date('Y-m-d H:i:s'),
+                ];
 
-                write_log("상품정보입력 : " . $sql);
-                $connect->query($sql);
-
-                $product_idx = $connect->insert_id;
-
-                $sql = "update tbl_product_mst SET 
-                            product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
-                            where product_idx = '" . $product_idx . "'
-                    ";
-
-                $connect->query($sql);
+                $this->productModel->insertData($product_idx, $data);
             }
 
             if ($product_idx) {
@@ -628,9 +594,7 @@ class AdminSpaController extends BaseController
             $parent_code_no = $this->request->getVar('parent_code_no');
 
             try {
-                $sql = "SELECT * FROM tbl_code WHERE depth = ? AND parent_code_no = ? AND status = 'Y'";
-                $query = $this->connect->query($sql, [$depth, $parent_code_no]);
-                $results = $query->getResultArray();
+                $results = $this->tblCode->getCodeSpa($depth, $parent_code_no);
 
                 if (count($results) > 0) {
                     return $this->response->setJSON($results);
@@ -659,9 +623,15 @@ class AdminSpaController extends BaseController
             $is_view = $_POST['is_view'] ?? '';
             $onum = $_POST['onum'] ?? '';
 
-            $sql = " UPDATE tbl_product_mst SET product_best = '$product_best', special_price = '$special_price', is_view = '$is_view', onum = '$onum' WHERE product_idx = '$product_idx' ";
+            $data = [
+                'product_best' => $product_best,
+                'special_price' => $special_price,
+                'is_view' => $is_view,
+                'onum' => $onum
+            ];
 
-            $result = $this->connect->query($sql);
+            $result = $this->productModel->updateData($product_idx, $data);
+
             if ($result) {
                 $msg = "수정 되었습니다!";
             } else {
@@ -697,12 +667,11 @@ class AdminSpaController extends BaseController
                     );
             };
 
-            $sql = '';
             $connect = $this->connect;
             $product_idx = $_POST['product_idx'];
             for ($i = 0; $i < count($product_idx); $i++) {
-                $sql1 = $sql . " delete from tbl_product_mst where product_idx=" . $product_idx[$i] . " ";
-                $db1 = $connect->query($sql1);
+                $this->productModel->delete($product_idx[$i]);
+
                 if (!$db1) {
                     return $this->response
                         ->setStatusCode(400)
@@ -714,14 +683,9 @@ class AdminSpaController extends BaseController
                         );
                 }
 
-                $sql1 = $sql . " delete from tbl_product_yoil where product_idx='" . $product_idx[$i] . "' ";
-                $db2 = $connect->query($sql1);
-
-                $sql1 = $sql . " delete from tbl_product_air where product_idx='" . $product_idx[$i] . "' ";
-                $db2 = $connect->query($sql1);
-
-                $sql1 = $sql . " delete from tbl_product_day_detail where product_idx='" . $product_idx[$i] . "' ";
-                $db2 = $connect->query($sql1);
+                $this->productModel->delProductYoil($product_idx[$i]);
+                $this->productModel->delProductAir($product_idx[$i]);
+                $this->productModel->delProductDay($product_idx[$i]);
             }
             return $this->response->setStatusCode(200)
                 ->setJSON([
@@ -747,12 +711,18 @@ class AdminSpaController extends BaseController
             $product_best = $this->request->getPost('product_best');
             $special_price = $this->request->getPost('special_price');
             $tot = count($code_idx);
-            $result = null;
+            $updateData = [];
             for ($j = 0; $j < $tot; $j++) {
-                $sql = " update tbl_product_mst set is_view = '" . $is_view[$j] . "' , product_best = '" . $product_best[$j] . "' , special_price = '" . $special_price[$j] . "' , onum='" . $onum[$j] . "' where product_idx='" . $code_idx[$j] . "'";
-
-                $result = $this->connect->query($sql);
+                $updateData[] = [
+                    'is_view' => $is_view[$j],
+                    'product_best' => $product_best[$j],
+                    'special_price' => $special_price[$j],
+                    'onum' => $onum[$j],
+                    'product_idx' => $code_idx[$j]
+                ];
             }
+
+            $result = $this->productModel->batchUpdate($updateData);
 
             if ($result) {
                 $msg = "수정 되었습니다!";
@@ -780,27 +750,9 @@ class AdminSpaController extends BaseController
         try {
             $msg = '';
 
-            $private_key = private_key();
-
-            $user_id = $_POST['user_id'];
-
-            $sql = " SELECT AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name
-                    ,AES_DECRYPT(UNHEX(user_phone), '$private_key') AS user_phone
-                    ,AES_DECRYPT(UNHEX(user_email), '$private_key') AS user_email
-            FROM tbl_member WHERE user_id = '$user_id'";
-
-            $result = $this->connect->query($sql);
-
-            $row = $result->getRowArray();
-
-            $resultArr['user_name'] = $row["user_name"];
-            $resultArr['user_phone'] = $row["user_phone"];
-            $resultArr['user_email'] = $row["user_email"];
-
             return $this->response->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
-                    'data' => $row,
                     'message' => $msg
                 ]);
         } catch (\Exception $e) {
@@ -821,12 +773,14 @@ class AdminSpaController extends BaseController
             $product_idx = $_POST['product_idx'];
             $moption_name = $_POST['moption_name'];
 
-            $sql = "INSERT INTO tbl_tours_moption SET  product_idx  = '$product_idx'
-                                        	 , moption_name = '$moption_name'
-                                        	 , use_yn       = 'Y' 
-											 , rdate        =  now() ";
+            $data = [
+                'product_idx' => $product_idx,
+                'moption_name' => $moption_name,
+                'use_yn' => 'Y',
+                'rdate' => date('Y-m-d H:i:s')
+            ];
 
-            $this->connect->query($sql);
+            $this->toursMoption->insertData($data);
 
             $msg = "등록 완료.";
 
@@ -853,9 +807,11 @@ class AdminSpaController extends BaseController
             $code_idx = $_POST['code_idx'];
             $moption_name = $_POST['moption_name'];
 
-            $sql = "UPDATE tbl_tours_moption SET moption_name = '$moption_name' WHERE code_idx = '$code_idx' ";
+            $data = [
+                'moption_name' => $moption_name
+            ];
 
-            $this->connect->query($sql);
+            $this->toursMoption->updateData($data, $code_idx);
 
             $msg = "등록 완료.";
 
@@ -881,9 +837,7 @@ class AdminSpaController extends BaseController
         try {
             $code_idx = $_POST['code_idx'];
 
-            $sql = "DELETE FROM tbl_tours_moption WHERE code_idx = '$code_idx' ";
-
-            $this->connect->query($sql);
+            $this->toursMoption->delete($code_idx);
 
             $msg = "등록 완료.";
 
@@ -911,9 +865,7 @@ class AdminSpaController extends BaseController
             $product_idx = $_POST['product_idx'];
             $option_cnt = count($_POST['o_name']);
 
-            $sql = "delete from tbl_tours_option where code_idx = '" . $code_idx . "'  and product_idx = '" . $product_idx . "' ";
-
-            $this->connect->query($sql);
+            $this->toursOption->deleteData($code_idx, $product_idx);
 
             for ($i = 0; $i < $option_cnt; $i++) {
                 $option_name = $_POST['o_name'][$i];
@@ -922,16 +874,17 @@ class AdminSpaController extends BaseController
                 $onum = $_POST['o_num'][$i];
 
                 if ($option_name && $option_price) {
-                    $sql = "insert into tbl_tours_option set   code_idx     = '$code_idx'  
-													 , product_idx  = '$product_idx' 
-													 , option_name  = '$option_name'
-													 , option_price = '$option_price'
-													 , use_yn       = '$use_yn'
-													 , onum         = '$onum'
-													 , rdate        =  now()		  
-				   ";
+                    $data = [
+                        'code_idx' => $code_idx,
+                        'product_idx' => $product_idx,
+                        'option_name' => $option_name,
+                        'option_price' => $option_price,
+                        'use_yn' => $use_yn,
+                        'onum' => $onum,
+                        'rdate' => date('Y-m-d H:i:s')
+                    ];
 
-                    $this->connect->query($sql);
+                    $this->toursOption->insertData($data);
                 }
             }
 
@@ -961,9 +914,7 @@ class AdminSpaController extends BaseController
 
             $idx = $_POST['idx'];
 
-            $sql = "DELETE FROM tbl_tours_option  WHERE idx = '$idx' ";
-
-            $this->connect->query($sql);
+            $this->toursOption->delete($idx);
 
             return $this->response->setStatusCode(200)
                 ->setJSON([
@@ -993,13 +944,14 @@ class AdminSpaController extends BaseController
             $use_yn = $_POST['use_yn'];
             $onum = $_POST['onum'];
 
-            $sql = "UPDATE tbl_tours_option SET   option_name  = '$option_name'
-										, option_price = '$option_price'
-										, use_yn       = '$use_yn'
-	                                    , onum         = '$onum'
-	                                    WHERE      idx = '$idx' ";
+            $data = [
+                'option_name' => $option_name,
+                'option_price' => $option_price,
+                'use_yn' => $use_yn,
+                'onum' => $onum,
+            ];
 
-            $this->connect->query($sql);
+            $this->toursOption->updateData($idx, $data);
 
             return $this->response->setStatusCode(200)
                 ->setJSON([
@@ -1064,49 +1016,44 @@ class AdminSpaController extends BaseController
             $yoil_6 = updateSQ($_POST['yoil_6']);
 
             if ($p_idx) {
-                $sql = "SELECT * FROM tbl_product_price WHERE p_idx = '" . $p_idx . "' ";
-                $row = $this->connect->query($sql)->getRowArray();
+                $row = $this->productPriceModel->getById($p_idx);
 
-                $sql = "UPDATE tbl_product_price SET 
-                                s_date          = '" . ($s_date ?? $row['s_date']) . "',
-                                e_date          = '" . ($e_date ?? $row['e_date']) . "',
-                                adult_price     = '" . ($price1 ?? $row['adult_price']) . "',
-                                kids_price      = '" . ($price2 ?? $row['kids_price']) . "',
-                                senior_price    = '" . ($price3 ?? $row['senior_price']) . "',
-                                sale            = '" . ($sale ?? $row['sale']) . "',
-                                yoil_0          = '" . ($yoil_0 ?? $row['yoil_0']) . "',
-                                yoil_1          = '" . ($yoil_1 ?? $row['yoil_1']) . "',
-                                yoil_2          = '" . ($yoil_2 ?? $row['yoil_2']) . "',
-                                yoil_3          = '" . ($yoil_3 ?? $row['yoil_3']) . "',
-                                yoil_4          = '" . ($yoil_4 ?? $row['yoil_4']) . "',
-                                yoil_5          = '" . ($yoil_5 ?? $row['yoil_5']) . "',
-                                yoil_6          = '" . ($yoil_6 ?? $row['yoil_6']) . "'
-                            WHERE p_idx = '" . $p_idx . "'";
+                $data = [
+                    's_date' => $s_date ?? $row['s_date'],
+                    'e_date' => $e_date ?? $row['e_date'],
+                    'adult_price' => $price1 ?? $row['adult_price'],
+                    'kids_price' => $price2 ?? $row['kids_price'],
+                    'senior_price' => $price3 ?? $row['senior_price'],
+                    'sale' => $sale ?? $row['sale'],
+                    'yoil_0' => $yoil_0 ?? $row['yoil_0'],
+                    'yoil_1' => $yoil_1 ?? $row['yoil_1'],
+                    'yoil_2' => $yoil_2 ?? $row['yoil_2'],
+                    'yoil_3' => $yoil_3 ?? $row['yoil_3'],
+                    'yoil_4' => $yoil_4 ?? $row['yoil_4'],
+                    'yoil_5' => $yoil_5 ?? $row['yoil_5'],
+                    'yoil_6' => $yoil_6 ?? $row['yoil_6']
+                ];
 
-                write_log("상품정보수정 : " . $sql);
-
-                $this->connect->query($sql);
+                $this->productPriceModel->updateData($p_idx, $data);
             } else {
-                $sql = "insert into tbl_product_price SET 
-                            product_idx			= '" . $product_idx . "'
-                            ,s_date             = '" . $s_date . "'
-                            ,e_date             = '" . $e_date . "'
-                            ,adult_price        = '" . $price1 . "'
-                            ,kids_price	        = '" . $price2 . "'
-                            ,senior_price       = '" . $price3 . "'
-                            ,yoil_0		        = '" . $yoil_0 . "'
-                            ,yoil_1		        = '" . $yoil_1 . "'
-                            ,yoil_2		        = '" . $yoil_2 . "'
-                            ,yoil_3		        = '" . $yoil_3 . "'
-                            ,yoil_4		        = '" . $yoil_4 . "'
-                            ,yoil_5		        = '" . $yoil_5 . "'
-                            ,yoil_6		        = '" . $yoil_6 . "'
-                            ,c_date				= now()
-                    ";
+                $data = [
+                    'product_idx' => $product_idx,
+                    's_date' => $s_date,
+                    'e_date' => $e_date,
+                    'adult_price' => $price1,
+                    'kids_price' => $price2,
+                    'senior_price' => $price3,
+                    'yoil_0' => $yoil_0,
+                    'yoil_1' => $yoil_1,
+                    'yoil_2' => $yoil_2,
+                    'yoil_3' => $yoil_3,
+                    'yoil_4' => $yoil_4,
+                    'yoil_5' => $yoil_5,
+                    'yoil_6' => $yoil_6,
+                    'c_date' => date('Y-m-d H:i:s')
+                ];
 
-                write_log("상품정보입력 : " . $sql);
-
-                $this->connect->query($sql);
+                $this->productPriceModel->insertData($data);
             }
 
             if ($product_idx) {
@@ -1131,15 +1078,15 @@ class AdminSpaController extends BaseController
                 $item_tour_price_senior = str_replace(',', '', $tour_price_senior[$i]);
                 $item_charge_idx = $charge_idx[$i];
 
-                $sql = "UPDATE tbl_product_charge SET 
-										   s_station         = '$item_s_station'
-										 , tour_price        = '$item_tour_price'
-										 , tour_price_kids   = '$item_tour_price_kids'
-										 , tour_price_senior = '$item_tour_price_senior'
-										 , u_date            =  now() WHERE charge_idx = '$item_charge_idx' ";
+                $data = [
+                    's_station' => $item_s_station,
+                    'tour_price' => $item_tour_price,
+                    'tour_price_kids' => $item_tour_price_kids,
+                    'tour_price_senior' => $item_tour_price_senior,
+                    'u_date' => date('Y-m-d H:i:s')
+                ];
 
-                write_log($sql);
-                $result = $this->connect->query($sql);
+                $this->productChargeModel->updateData($item_charge_idx, $data);
             }
 
             return $this->response
@@ -1169,8 +1116,7 @@ class AdminSpaController extends BaseController
             $msg = '삭제 성공.';
             $p_idx = $_POST['p_idx'];
 
-            $sql = "DELETE FROM tbl_product_price WHERE p_idx = '$p_idx' ";
-            $this->connect->query($sql);
+            $this->productPriceModel->delete($p_idx);
 
             return $this->response->setStatusCode(200)
                 ->setJSON([
@@ -1220,20 +1166,20 @@ class AdminSpaController extends BaseController
             $product_idx = $_POST['product_idx'];
             $yoil_idx = $_POST['yoil_idx'];
 
-            $sql = "SELECT * FROM tbl_product_price WHERE p_idx = '$yoil_idx' ";
-            $result = $this->connect->query($sql);
-            $result = $result->getRowArray();
+            $result = $this->productPriceModel->getById($yoil_idx);
 
-            $sql_c = "INSERT INTO tbl_product_charge SET 
-										     product_idx       = '$product_idx'
-										   , yoil_idx          = '$yoil_idx'
-										   , tour_price        = '" . $result['adult_price'] . "'
-										   , tour_price_kids   = '" . $result['kids_price'] . "'
-										   , tour_price_senior = '" . $result['senior_price'] . "'
-										   , r_date            =  now()
-										   , sale              = 'Y'
-										   , deadline_date     = '' ";
-            $result = $this->connect->query($sql_c);
+            $data = [
+                'product_idx' => $product_idx,
+                'yoil_idx' => $yoil_idx,
+                'tour_price' => $result['adult_price'],
+                'tour_price_kids' => $result['kids_price'],
+                'tour_price_senior' => $result['senior_price'],
+                'r_date' => date('Y-m-d H:i:s'),
+                'sale' => 'Y',
+                'deadline_date' => ''
+            ];
+
+            $this->productChargeModel->insertData($data);
 
             if ($result) {
                 $msg = '등록 성공.';
@@ -1271,15 +1217,15 @@ class AdminSpaController extends BaseController
             $tour_price_kids = $_POST['tour_price_kids'];
             $tour_price_senior = $_POST['tour_price_senior'];
 
-            $sql = "UPDATE tbl_product_charge SET 
-										   s_station         = '$s_station'
-										 , tour_price        = '$tour_price'
-										 , tour_price_kids   = '$tour_price_kids'
-										 , tour_price_senior = '$tour_price_senior'
-										 , u_date            =  now() WHERE charge_idx = '$charge_idx' ";
+            $data = [
+                's_station' => $s_station,
+                'tour_price' => $tour_price,
+                'tour_price_kids' => $tour_price_kids,
+                'tour_price_senior' => $tour_price_senior,
+                'u_date' => date('Y-m-d H:i:s')
+            ];
 
-            write_log($sql);
-            $result = $this->connect->query($sql);
+            $result = $this->productChargeModel->updateData($charge_idx, $data);
 
             if ($result) {
                 $msg = "수정 완료.";
@@ -1309,10 +1255,7 @@ class AdminSpaController extends BaseController
         try {
             $charge_idx = $_POST['charge_idx'];
 
-            $sql = "DELETE FROM tbl_product_charge WHERE charge_idx = '$charge_idx' ";
-
-            write_log($sql);
-            $result = $this->connect->query($sql);
+            $result = $this->productChargeModel->delete($charge_idx);
 
             if ($result) {
                 $msg = "삭제 완료.";
@@ -1349,26 +1292,17 @@ class AdminSpaController extends BaseController
             $charge_date = $_POST['charge_date'];
 
             if ($flag == "U") { // 위로
-                $sql = "UPDATE tbl_product_charge SET seq = seq - 1.5 WHERE charge_idx = " . $id;
-                write_log($sql);
-                $result = $this->connect->query($sql);
+                $result = $this->productChargeModel->updateSeq($id, 'up');
             } else if ($flag == "D") { // 아래로
-                $sql = "UPDATE tbl_product_charge SET seq = seq + 1.5 WHERE charge_idx = " . $id;
-                write_log($sql);
-                $result = $this->connect->query($sql);
+                $result = $this->productChargeModel->updateSeq($id, 'down');
             }
 
             // 순서 정의
-            $sql = "SELECT charge_idx, seq FROM tbl_product_charge where product_idx = '" . $product_idx . "' ORDER BY seq ASC";
-            write_log($sql);
-            $result = $this->connect->query($sql);
-            $result = $result->getResultArray();
+            $result = $this->productChargeModel->selectSeqByProduct($product_idx);
             $num = 0;
             foreach ($result as $row) {
                 $num = $num + 1;
-                $sql1 = "UPDATE tbl_product_charge SET seq = '" . $num . "' WHERE charge_idx = " . $row['charge_idx'];
-                write_log($sql1);
-                $this->connect->query($sql1);
+                $this->productChargeModel->updateSeqByProduct($row['charge_idx'], $num);
             }
 
             $msg = "수정되었습니다.";
