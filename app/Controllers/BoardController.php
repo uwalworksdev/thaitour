@@ -544,7 +544,7 @@ class BoardController extends BaseController
 
 			$file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
-			if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+			if ($files["ufile" . $i]) {
 				$data["rfile$i"] = $file->getClientName();
 				$data["ufile$i"] = $file->getRandomName();
 				$publicPath = ROOTPATH . 'public/uploads/bbs/';
