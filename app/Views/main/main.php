@@ -2,11 +2,14 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$Bbs = model("Bbs");
-$list = $Bbs->List("banner", ["category" => "1"])->findAll();
+	// 메인 배너
+	$Bbs = model("Bbs");
+	$list = $Bbs->List("banner", ["category" => "1"])->findAll();
 
-$MainDisp = model("MainDispModel");
-$list1    = $MainDisp->List("290401")->findAll();
+	// 취향저격 더투어랩 Best
+	$MainDisp = model("MainDispModel");
+	$list1    = $MainDisp->List("290401")->findAll();
+
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
