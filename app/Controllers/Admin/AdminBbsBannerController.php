@@ -77,7 +77,8 @@ class AdminBbsBannerController extends BaseController
             'search_mode' => $search_mode,
             'search_word' => $search_word,
             'search_category' => $search_category,
-            'search_name' => $search_name
+            'search_name' => $search_name,
+			'total_sql' => $total_sql
         ];
         return view('admin/_bbsBanner/list', $data);
     }
