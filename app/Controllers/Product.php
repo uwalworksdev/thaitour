@@ -2160,6 +2160,10 @@ class Product extends BaseController
         $session = Services::session();
         $data = $session->get('data_cart');
 
+        if (empty($data)) {
+            return redirect()->to('/');
+        }
+
         $product_idx = $data['product_idx'];
         $day_ = $data['day_'];
         $member_idx = $data['member_idx'];
@@ -2169,9 +2173,7 @@ class Product extends BaseController
 
         $totalPrice = $data['totalPrice'];
 
-        $sql = 'SELECT * FROM tbl_product_mst WHERE product_idx = ' . $product_idx;
-        $result = $this->db->query($sql);
-        $prod = $result->getRowArray();
+        $prod = $this->productModel->getById($product_idx);
 
         $builder = $this->db->table('tbl_tours_moption');
         $builder->where('product_idx', $product_idx);

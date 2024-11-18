@@ -8,6 +8,8 @@ class SpaController extends BaseController
 {
     protected $connect;
     protected $productModel;
+    protected $productPrice;
+    protected $productCharge;
 
     public function __construct()
     {
@@ -15,6 +17,8 @@ class SpaController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->productModel = model("ProductModel");
+        $this->productPrice = model("ProductPrice");
+        $this->productCharge = model("ProductCharge");
     }
 
     public function charge_list()
@@ -23,40 +27,14 @@ class SpaController extends BaseController
         $day_ = $_GET['day_'];
         $yoil = $_GET['yoil'];
         try {
-            switch ($yoil) {
-                case 'yoil_0':
-                    $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_0 = 'Y' AND product_idx = ?";
-                    break;
-                case 'yoil_1':
-                    $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_1 = 'Y' AND product_idx = ?";
-                    break;
-                case 'yoil_2':
-                    $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_2 = 'Y' AND product_idx = ?";
-                    break;
-                case 'yoil_3':
-                    $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_3 = 'Y' AND product_idx = ?";
-                    break;
-                case 'yoil_4':
-                    $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_4 = 'Y' AND product_idx = ?";
-                    break;
-                case 'yoil_5':
-                    $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_5 = 'Y' AND product_idx = ?";
-                    break;
-                default:
-                    $sql = "SELECT * FROM tbl_product_price WHERE s_date <= ? AND e_date >= ? AND yoil_6 = 'Y' AND product_idx = ?";
-                    break;
-            }
-            $query = $this->connect->query($sql, [$day_, $day_, $product_idx]);
-            $results = $query->getResultArray();
+            $results = $this->productPrice->selectYoilByProductIdx($yoil, $day_, $product_idx);
 
             if ($results && count($results) > 0) {
                 $results = array_map(function ($it) use ($product_idx) {
                     $result = (array)$it;
                     $yoil_idx = $result['p_idx'];
 
-                    $fsql2 = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
-                    $fresult2 = $this->connect->query($fsql2);
-                    $fresult2 = $fresult2->getResultArray();
+                    $fresult2 = $this->productCharge->selectByProductAndYoil($product_idx, $yoil_idx);
 
                     $fresult2 = array_map(function ($item) {
                         $rs = (array)$item;

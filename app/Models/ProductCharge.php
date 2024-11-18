@@ -146,4 +146,10 @@ class ProductCharge extends Model
             return false;
         }
     }
+
+    protected function selectByProductAndYoil($product_idx, $yoil_idx)
+    {
+        $sql = "select * from tbl_product_charge where product_idx = '" . $product_idx . "' and yoil_idx = '" . $yoil_idx . "' order by seq asc";
+        return $this->db->query($sql)->getResultArray();
+    }
 }
