@@ -562,7 +562,7 @@ class BoardController extends BaseController
                     }
                 }
 
-                if ($bbs_idx) {
+                if ($bbs_idx && ${"ufile_" . $i} && ${"rfile_" . $i}) {
                     $sql = "
                         UPDATE tbl_bbs_list SET
                         ufile" . $i . "='" . ${"ufile_" . $i} . "',
