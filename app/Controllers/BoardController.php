@@ -543,6 +543,8 @@ class BoardController extends BaseController
                 $db->query($sql);
             } 
 
+			$file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+
 			if (isset($file) && $file->isValid() && !$file->hasMoved()) {
 				$data["rfile$i"] = $file->getClientName();
 				$data["ufile$i"] = $file->getRandomName();
