@@ -60,4 +60,14 @@ class MainDispModel extends Model
                     ->where('code_no', $code_no)
                     ->countAllResults();
     }
+
+    public function List($code, $whereArr = [])
+    {
+        $builder = $this;
+        $builder->select("{$this->table}.*  ");
+        $builder->where('code', $code);
+        $builder->orderBy("{$this->table}.code_no", "desc");
+
+        return $builder;
+    }
 }
