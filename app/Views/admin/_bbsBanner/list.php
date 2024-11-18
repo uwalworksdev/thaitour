@@ -103,14 +103,14 @@ $youtube_code = '';
                                     if ($row["ufile6"]) {
                                         if (substr(strtolower($row["ufile6"]), -3) == "jpg" || substr(strtolower($row["ufile6"]), -3) == "png" || substr(strtolower($row["ufile6"]), -3) == "gif") {
                                             //$img = get_img($row["ufile6"], ROOTPATH . "/public/upload/bbs/", 390, 220);
-                                            $img = "/upload/bbs/". $row["ufile6"];
+                                            $img = "/uploads/bbs/". $row["ufile6"];
                                         }
                                     } elseif ($youtube_code != "") {
                                         $img = "http://img.youtube.com/vi/" . $youtube_code . "/hqdefault.jpg";
                                     } elseif ($row["ufile5"]) {
                                         if (substr(strtolower($row["ufile5"]), -3) == "jpg" || substr(strtolower($row["ufile5"]), -3) == "png" || substr(strtolower($row["ufile5"]), -3) == "gif") {
                                             //$img = get_img($row["ufile5"], ROOTPATH . "/public/upload/bbs/", 390, 220);
-                                            $img = "/upload/bbs/". $row["ufile5"];
+                                            $img = "/uploads/bbs/". $row["ufile5"];
                                         }
                                     } else {
                                         $img = getConImg(str_replace("", "", viewSQ($row["contents"])));
