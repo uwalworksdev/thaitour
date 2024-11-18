@@ -37,6 +37,13 @@ class ProductModel extends Model
     {
     }
 
+    public function getById($product_idx)
+    {
+        $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
+        write_log($sql);
+        return $this->db->query($sql)->getRowArray();
+    }
+
     public function insertData($data)
     {
         $allowedFields = $this->allowedFields;
@@ -182,10 +189,10 @@ class ProductModel extends Model
     public function getAllProductsByCode($code)
     {
         return $this->where('product_code_1', $code)
-                        ->orderBy('onum', 'desc')
-                        ->orderBy('product_idx', 'desc')
-                        ->get()
-                        ->getResultArray();
+            ->orderBy('onum', 'desc')
+            ->orderBy('product_idx', 'desc')
+            ->get()
+            ->getResultArray();
     }
 
     public function getTotalProducts($suggest_code)
@@ -983,5 +990,44 @@ class ProductModel extends Model
 
 
         return array_slice($uniqueArray, 0, 20);
+    }
+
+    public function batchUpdate(array $data)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('tbl_product_mst');
+
+        foreach ($data as $item) {
+            $builder->where('product_idx', $item['product_idx']);
+            $builder->update([
+                'is_view'       => $item['is_view'],
+                'product_best'  => $item['product_best'],
+                'special_price' => $item['special_price'],
+                'onum'          => $item['onum']
+            ]);
+        }
+
+        return true;
+    }
+
+    public function delProductYoil($product_idx)
+    {
+        $sql = " delete from tbl_product_yoil where product_idx='" . $product_idx . "' ";
+        write_log($sql);
+        return $this->db->query($sql);
+    }
+
+    public function delProductAir($product_idx)
+    {
+        $sql = " delete from tbl_product_air where product_idx='" . $product_idx . "' ";
+        write_log($sql);
+        return $this->db->query($sql);
+    }
+
+    public function delProductDay($product_idx)
+    {
+        $sql = " delete from tbl_product_day_detail where product_idx='" . $product_idx . "' ";
+        write_log($sql);
+        return $this->db->query($sql);
     }
 }
