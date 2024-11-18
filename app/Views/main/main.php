@@ -73,11 +73,7 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
     </section>
     <section class="main_section2">
         <div class="body_inner">
-<<<<<<< HEAD
             <h1 class="ttl">태국여행, 왜 더투어랩이 답일까요??</h1>
-=======
-            <h1 class="ttl">태국여행, 왜 더투어랩이 답일까요?</h1>
->>>>>>> dev_diana
             <div style="position: relative;">
                 <div class="swiper main_swiper2">
                     <div class="swiper-wrapper">
