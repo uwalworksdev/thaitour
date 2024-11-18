@@ -109,9 +109,9 @@
 
                     <div class="card-left card-left-2">
                         <h3 class="title-main-c">
-                            투숙객 정보
+                            고객정보
                         </h3>
-                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>
+<!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
                         <?php
                         $adultQty = intval($adultQty);
                         for ($i = 1; $i <= $adultQty; $i++) {
@@ -137,7 +137,7 @@
                             <?php
                         }
                         ?>
-                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>
+<!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
                         <?php
                         $childrenQty = intval($childrenQty);
                         for ($i = 1; $i <= $childrenQty; $i++) {
@@ -165,7 +165,7 @@
                         ?>
                     </div>
 
-                    <div class="card-left2">
+                    <div class="card-left2 card_left_bottom_">
                         <h3 class="title-main-c">
                             별도 요청
                         </h3>
@@ -177,40 +177,40 @@
                         </div>
                     </div>
 
-                    <div class="card-left2 card_left_bottom_">
-                        <h3 class="title-main-c">
-                            결제방법 선택
-                        </h3>
-                        <div class="form-group form-group-radio mb-40">
-                            <p>
-                                <input type="radio" id="test1" name="radio-group" checked>
-                                <label for="test1">신용카드/체크카드 결제</label>
-                            </p>
-                            <p class="">
-                                <input type="radio" id="test2" name="radio-group">
-                                <label for="test2">무통장 입금</label>
-                            </p>
-                        </div>
-                        <div class="form-group group-payment">
-                            <div class="payment-item only_web">
-                                <label for="">결제(입금)정보</label>
-                                <select name="" id="">
-                                    <option value="">신용/체크카드</option>
-                                </select>
-                            </div>
-                            <div class="payment-item">
-                                <label for="">결제(입금)정보</label>
-                                <div class="payment-input-wrap">
-                                    <input type="text" placeholder="입금자명">
-                                    <input type="text" placeholder="(주)마인갤러리">
-                                </div>
-                                <div class="payment-input-wrap">
-                                    <input type="text" placeholder="신한은행">
-                                    <input type="text" placeholder="100-036-005729">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="card-left2 card_left_bottom_">-->
+<!--                        <h3 class="title-main-c">-->
+<!--                            결제방법 선택-->
+<!--                        </h3>-->
+<!--                        <div class="form-group form-group-radio mb-40">-->
+<!--                            <p>-->
+<!--                                <input type="radio" id="test1" name="radio-group" checked>-->
+<!--                                <label for="test1">신용카드/체크카드 결제</label>-->
+<!--                            </p>-->
+<!--                            <p class="">-->
+<!--                                <input type="radio" id="test2" name="radio-group">-->
+<!--                                <label for="test2">무통장 입금</label>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                        <div class="form-group group-payment">-->
+<!--                            <div class="payment-item only_web">-->
+<!--                                <label for="">결제(입금)정보</label>-->
+<!--                                <select name="" id="">-->
+<!--                                    <option value="">신용/체크카드</option>-->
+<!--                                </select>-->
+<!--                            </div>-->
+<!--                            <div class="payment-item">-->
+<!--                                <label for="">결제(입금)정보</label>-->
+<!--                                <div class="payment-input-wrap">-->
+<!--                                    <input type="text" placeholder="입금자명">-->
+<!--                                    <input type="text" placeholder="(주)마인갤러리">-->
+<!--                                </div>-->
+<!--                                <div class="payment-input-wrap">-->
+<!--                                    <input type="text" placeholder="신한은행">-->
+<!--                                    <input type="text" placeholder="100-036-005729">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </form>
                 <div class="">
                     <div class="card-right">
@@ -315,7 +315,7 @@
                         <p class="below-sub-des"><span class="color-blue">무료취소</span> / 결제 후 2024.09.01(일) 18시(한국시간)
                             이전
                         </p>
-                        <span class="cus-label-r">본 예약건 취소규정</span>
+                        <span class="cus-label-r" id="policy_show" style="cursor: pointer">본 예약건 취소규정</span>
                         <h3 class="title-r">약관동의</h3>
                         <div class="item-info-check-first">
                             <span>전체동의</span>
@@ -345,6 +345,34 @@
             </div>
         </div>
     </div>
+    <div class="popup_wrap place_pop policy_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>취소 규정</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <?=viewSQ(getPolicy(19))?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
+    </div>
+    <script>
+        function closePopup() {
+            $(".popup_wrap").hide();
+            $(".dim").hide();
+        }
+
+        $("#policy_show").on("click", function() {
+            $(".policy_pop, .policy_pop .dim").show();
+        });
+    </script>
     <script>
         $(document).ready(function () {
             let date = new Date('<?= $day_ ?>');

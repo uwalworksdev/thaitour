@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
+use Config\Services;
 
 class SpaController extends BaseController
 {
@@ -10,6 +12,8 @@ class SpaController extends BaseController
     protected $productModel;
     protected $productPrice;
     protected $productCharge;
+    protected $orderModel;
+    protected $codeModel;
 
     public function __construct()
     {
@@ -19,6 +23,8 @@ class SpaController extends BaseController
         $this->productModel = model("ProductModel");
         $this->productPrice = model("ProductPrice");
         $this->productCharge = model("ProductCharge");
+        $this->orderModel = model("OrdersModel");
+        $this->codeModel = model("Code");
     }
 
     public function charge_list()
@@ -90,6 +96,48 @@ class SpaController extends BaseController
                         'message' => $e->getMessage()
                     ]
                 );
+        }
+    }
+
+    public function handleBooking()
+    {
+        try {
+            $session = Services::session();
+            $member_idx = $_SESSION['member']['idx'];
+
+            if (!$member_idx) {
+                $message = "로그인해주세요!";
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => $message
+                ], 400);
+            }
+
+            $data = $session->get('data_cart');
+
+            if (empty($data)) {
+                return redirect()->to('/');
+            }
+
+            $product_idx = $data['product_idx'];
+            $day_ = $data['day_'];
+            $yoil = $data['yoil'];
+            $adultQty = $data['adultQty'];
+            $childrenQty = $data['childrenQty'];
+            $totalPrice = $data['totalPrice'];
+            $totalPriceBath = convertToBath($totalPrice);
+            $totalPriceBaht = str_replace(",", "", $totalPriceBath);
+            $totalPriceBaht = str_replace(".", "", $totalPriceBaht);
+
+            return $this->response->setJSON([
+                'result' => true,
+                'message' => "주문되었습니다."
+            ], 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
         }
     }
 }
