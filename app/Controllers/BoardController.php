@@ -552,7 +552,7 @@ class BoardController extends BaseController
 				$file->move($publicPath, $data["ufile$i"]);
 			}
 
-			if ($bbs_idx) {
+			//if ($bbs_idx) {
 				$sql = "
 					UPDATE tbl_bbs_list SET
 					ufile" . $i . "='" . $data["rfile$i"] . "',
@@ -561,7 +561,7 @@ class BoardController extends BaseController
 				";
 				write_log("upload- ". $sql);
 				$db->query($sql);
-			}
+			//}
         }
 
 		if ($mode == "reply") {
