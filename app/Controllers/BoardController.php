@@ -536,6 +536,7 @@ class BoardController extends BaseController
         for ($i = 1; $i <= 6; $i++) {
             ${"rfile_" . $i} = "";
             ${"ufile_" . $i} = "";
+
             if ($this->request->getPost("del_" . $i) == "Y") {
                 $sql = "
                     UPDATE tbl_bbs_list SET
@@ -569,6 +570,7 @@ class BoardController extends BaseController
                         rfile" . $i . "='" . ${"rfile_" . $i} . "'
                         WHERE bbs_idx='$bbs_idx';
                     ";
+					write_log("upload- ". $sql);
                     $db->query($sql);
                 }
             }
@@ -608,6 +610,7 @@ class BoardController extends BaseController
             }
 
             $sql = "update tbl_bbs_list set subject='$subject', subject_e='$subject_e', writer='$writer', seq='$seq', hit='$hit', simple='$simple', s_date='$s_date', email='$email', e_date='$e_date', secure_yn='$secure_yn', category='$category', category1='$category1', contents='$contents', notice_yn = '$notice_yn', reply = '$reply'";
+			write_log("bbs_list update - ". $sql);
             if ($wdate) {
                 $sql = $sql . ",  r_date = $r_date ";
             }
