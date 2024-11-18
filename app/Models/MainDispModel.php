@@ -61,7 +61,7 @@ class MainDisp extends Model
                     ->countAllResults();
     }
 
-    public function List($code)
+    public function List($code,  $where = [])
     {
         //$builder = $this;
         //$builder->select("{$this->table}.*  ");
