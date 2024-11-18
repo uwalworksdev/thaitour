@@ -514,6 +514,7 @@ class BoardController extends BaseController
         $b_level = updateSQ($this->request->getPost('b_level'));
         $wdate = updateSQ($this->request->getPost('wdate'));
         $files = $this->request->getFiles();
+
         $member = session('member') ?? [];
 
         $user_id = $member["id"];
@@ -546,21 +547,13 @@ class BoardController extends BaseController
                 ";
                 $db->query($sql);
             } elseif ($files["ufile" . $i]) {
-                $file = $files["ufile" . $i];
+                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
-                if ($file->isValid() && !$file->hasMoved()) {
-                    $fileName = $file->getClientName();
-                    ${"rfile_" . $i} = $fileName;
-                    if (no_file_ext($fileName) == "Y") {
-                        $microtime = microtime(true);
-                        $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
-                        $date = date('YmdHis');
-                        $ext = explode(".", strtolower($fileName));
-                        $newName = $date . $timestamp . '.' . $ext[1];
-                        ${"ufile_" . $i} = $newName;
-
-                        $file->move($uploadPath, $newName);
-                    }
+                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+                    $data["rfile$i"] = $file->getClientName();
+                    $data["ufile$i"] = $file->getRandomName();
+                    $publicPath = ROOTPATH . '/public/uploads/bbs/';
+                    $file->move($publicPath, $data["ufile$i"]);
                 }
 
                 if ($bbs_idx) {
