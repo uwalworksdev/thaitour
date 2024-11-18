@@ -160,6 +160,7 @@ $list1 = $MainDisp->List("290401")->findAll();
             </div>
             <div>
                 <div class="best_list best_list_1">
+                    <?php foreach ($list1 as $item): ?>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_1.png" alt="main">
@@ -183,7 +184,9 @@ $list1 = $MainDisp->List("290401")->findAll();
                             6,000 <span>바트</span>
                         </div>
                     </a>
-                    <a href="#!" class="best_list_item">
+                    <?php endforeach; ?>
+
+					<!--a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_2.png" alt="main">
                         </div>
@@ -205,7 +208,7 @@ $list1 = $MainDisp->List("290401")->findAll();
                         <!-- <div class="prd_price_thai">
                             6,000 <span>바트</span>
                         </div> -->
-                    </a>
+                    <!--/a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_3.png" alt="main">
@@ -343,7 +346,7 @@ $list1 = $MainDisp->List("290401")->findAll();
                         <div class="prd_price_thai">
                             6,000 <span>바트</span>
                         </div>
-                    </a>
+                    </a-->
                 </div>
                 <div class="best_list best_list_2 hidden">
                     <a href="#!" class="best_list_item">
