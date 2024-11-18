@@ -611,6 +611,7 @@ class BoardController extends BaseController
                 $sql = $sql . ",  r_date = $r_date ";
             }
             $sql = $sql . ",  recomm_yn = '$recomm_yn', url='$url' where bbs_idx='$bbs_idx'";
+			write_log($sql);
             $query = $db->query($sql);
 
         } else {
