@@ -49,7 +49,7 @@ class TourSuggestionController extends BaseController
             $product_code_name = $row1['code_name'];
         };
 
-        $sql    = "  select  * from tbl_code where code_gubun = 'suggestion' and depth = '2' and parent_code = '29' and status = 'Y' order by onum desc ";
+        $sql    = "  select  * from tbl_code where code_gubun = 'suggestion' and depth = '2' and parent_code_no = '29' and status = 'Y' order by onum desc ";
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
 
