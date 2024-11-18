@@ -63,7 +63,7 @@ class MainDisp extends Model
 
     public function List(int $code_no)
     {
-        //$builder = $this;
+        $builder = $this;
         $builder->select('tbl_main_disp.*, tbl_product_mst.*');
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'left');
         $builder->where('tbl_main_disp.code_no', $code_no);
