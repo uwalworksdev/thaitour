@@ -170,7 +170,7 @@ $list1    = $MainDisp->List("290401")->findAll();
                             <li class="breadcrumb_item">시암</li>
                         </ul>
                         <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            <?=$list1['product_name']?>
                         </div>
                         <div class="prd_info">
                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
