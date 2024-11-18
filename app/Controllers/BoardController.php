@@ -514,7 +514,6 @@ class BoardController extends BaseController
         $b_level = updateSQ($this->request->getPost('b_level'));
         $wdate = updateSQ($this->request->getPost('wdate'));
         $files = $this->request->getFiles();
-
         $member = session('member') ?? [];
 
         $user_id = $member["id"];
@@ -529,16 +528,13 @@ class BoardController extends BaseController
             $r_date = "now()";
         }
 
-		//write_log("upload start- ");
-/*
-        $uploadPath = ROOTPATH . '/public/uploads/bbs/';
 
+        $uploadPath = $this->uploadPath;
         $db = \Config\Database::connect();
 
         for ($i = 1; $i <= 6; $i++) {
             ${"rfile_" . $i} = "";
             ${"ufile_" . $i} = "";
-
             if ($this->request->getPost("del_" . $i) == "Y") {
                 $sql = "
                     UPDATE tbl_bbs_list SET
@@ -548,13 +544,21 @@ class BoardController extends BaseController
                 ";
                 $db->query($sql);
             } elseif ($files["ufile" . $i]) {
-                $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+                $file = $files["ufile" . $i];
 
-                if (isset($file) && $file->isValid() && !$file->hasMoved()) {
-                    $data["rfile$i"] = $file->getClientName();
-                    $data["ufile$i"] = $file->getRandomName();
-                    $publicPath = ROOTPATH . '/public/uploads/bbs/';
-                    $file->move($publicPath, $data["ufile$i"]);
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $fileName = $file->getClientName();
+                    ${"rfile_" . $i} = $fileName;
+                    if (no_file_ext($fileName) == "Y") {
+                        $microtime = microtime(true);
+                        $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
+                        $date = date('YmdHis');
+                        $ext = explode(".", strtolower($fileName));
+                        $newName = $date . $timestamp . '.' . $ext[1];
+                        ${"ufile_" . $i} = $newName;
+
+                        $file->move($uploadPath, $newName);
+                    }
                 }
 
                 if ($bbs_idx) {
@@ -564,12 +568,10 @@ class BoardController extends BaseController
                         rfile" . $i . "='" . ${"rfile_" . $i} . "'
                         WHERE bbs_idx='$bbs_idx';
                     ";
-					write_log("upload- ". $sql);
                     $db->query($sql);
                 }
             }
         }
-*/
         if ($mode == "reply") {
             $sql = "update tbl_bbs_list set b_step = b_step + 1 where b_ref = '$b_ref' and b_step > $b_step";
             $db->query($sql);
@@ -605,7 +607,6 @@ class BoardController extends BaseController
             }
 
             $sql = "update tbl_bbs_list set subject='$subject', subject_e='$subject_e', writer='$writer', seq='$seq', hit='$hit', simple='$simple', s_date='$s_date', email='$email', e_date='$e_date', secure_yn='$secure_yn', category='$category', category1='$category1', contents='$contents', notice_yn = '$notice_yn', reply = '$reply'";
-			//write_log("bbs_list update - ". $sql);
             if ($wdate) {
                 $sql = $sql . ",  r_date = $r_date ";
             }
