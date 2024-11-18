@@ -568,6 +568,7 @@ class BoardController extends BaseController
                         rfile" . $i . "='" . ${"rfile_" . $i} . "'
                         WHERE bbs_idx='$bbs_idx';
                     ";
+					write_log("1- ". $sql);
                     $db->query($sql);
                 }
             }
