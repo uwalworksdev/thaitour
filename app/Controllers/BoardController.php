@@ -514,6 +514,7 @@ class BoardController extends BaseController
         $b_level = updateSQ($this->request->getPost('b_level'));
         $wdate = updateSQ($this->request->getPost('wdate'));
         $files = $this->request->getFiles();
+
         $member = session('member') ?? [];
 
         $user_id = $member["id"];
@@ -549,6 +550,7 @@ class BoardController extends BaseController
 				$data["rfile$i"] = $file->getClientName();
 				$data["ufile$i"] = $file->getRandomName();
 				$publicPath = ROOTPATH . '/public/uploads/bbs/';
+				write_log($publicPath ." - ". $data["ufile$i"]);
 				$file->move($publicPath, $data["ufile$i"]);
 			}
 
