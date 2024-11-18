@@ -533,9 +533,7 @@ class BoardController extends BaseController
         $db = \Config\Database::connect();
 
         for ($i = 1; $i <= 6; $i++) {
-            ${"rfile_" . $i} = "";
-            ${"ufile_" . $i} = "";
-            if ($this->request->getPost("del_" . $i) == "Y") {
+            if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
                 $sql = "
                     UPDATE tbl_bbs_list SET
                     ufile" . $i . "='',
@@ -543,37 +541,28 @@ class BoardController extends BaseController
                     WHERE bbs_idx='$bbs_idx'
                 ";
                 $db->query($sql);
-            } elseif ($files["ufile" . $i]) {
-                $file = $files["ufile" . $i];
+            } 
 
-                if ($file->isValid() && !$file->hasMoved()) {
-                    $fileName = $file->getClientName();
-                    ${"rfile_" . $i} = $fileName;
-                    if (no_file_ext($fileName) == "Y") {
-                        $microtime = microtime(true);
-                        $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
-                        $date = date('YmdHis');
-                        $ext = explode(".", strtolower($fileName));
-                        $newName = $date . $timestamp . '.' . $ext[1];
-                        ${"ufile_" . $i} = $newName;
+			if (isset($file) && $file->isValid() && !$file->hasMoved()) {
+				$data["rfile$i"] = $file->getClientName();
+				$data["ufile$i"] = $file->getRandomName();
+				$publicPath = ROOTPATH . '/public/uploads/bbs/';
+				$file->move($publicPath, $data["ufile$i"]);
+			}
 
-                        $file->move($uploadPath, $newName);
-                    }
-                }
-
-                if ($bbs_idx) {
-                    $sql = "
-                        UPDATE tbl_bbs_list SET
-                        ufile" . $i . "='" . ${"ufile_" . $i} . "',
-                        rfile" . $i . "='" . ${"rfile_" . $i} . "'
-                        WHERE bbs_idx='$bbs_idx';
-                    ";
-					write_log("upload- ". $sql);
-                    $db->query($sql);
-                }
-            }
+			if ($bbs_idx) {
+				$sql = "
+					UPDATE tbl_bbs_list SET
+					ufile" . $i . "='" . ${"ufile_" . $i} . "',
+					rfile" . $i . "='" . ${"rfile_" . $i} . "'
+					WHERE bbs_idx='$bbs_idx';
+				";
+				write_log("upload- ". $sql);
+				$db->query($sql);
+			}
         }
-        if ($mode == "reply") {
+
+		if ($mode == "reply") {
             $sql = "update tbl_bbs_list set b_step = b_step + 1 where b_ref = '$b_ref' and b_step > $b_step";
             $db->query($sql);
             $b_step = $b_step + 1;
