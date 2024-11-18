@@ -173,7 +173,7 @@ $youtube_code = '';
 
     <script>
         function go_list(cate) {
-            location.href = '/AdmMaster/_bbsBanner/list.php?code=banner&scategory=' + cate
+            location.href = '/AdmMaster/_bbsBanner/list?code=banner&scategory=' + cate
         }
     </script>
 
