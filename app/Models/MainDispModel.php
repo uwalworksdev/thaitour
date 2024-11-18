@@ -63,10 +63,16 @@ class MainDisp extends Model
 
     public function List($code)
     {
-        $builder = $this;
-        $builder->select("{$this->table}.*  ");
-        $builder->where('code_no', $code);
-        $builder->orderBy("{$this->table}.code_no", "desc");
+        //$builder = $this;
+        //$builder->select("{$this->table}.*  ");
+        //$builder->where('code_no', $code);
+        //$builder->orderBy("{$this->table}.code_no", "desc");
+
+        $builder = $this->db->table('tbl_main_disp as s1')
+            ->select('s1.*, s2.*')
+            ->join('tbl_product_mst as s2', 's1.product_idx = s2.product_idx', 'left')
+            ->where('s1.code_no =', '$code')
+            ->where('s1.status  =', 'Y');
 
         return $builder;
     }
