@@ -10,7 +10,7 @@ $youtube_code = '';
 
                 <div class="inner">
                     <h2>
-                        메인/서브비주얼관리 <?= $tit ?>>
+                        메인/서브비주얼관리 <?= $tit ?>
                     </h2>
                     <div class="menus">
                         <ul class="first">
