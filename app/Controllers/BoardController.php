@@ -529,7 +529,8 @@ class BoardController extends BaseController
             $r_date = "now()";
         }
 
-
+		write_log("upload start- ");
+/*
         $uploadPath = ROOTPATH . '/public/uploads/bbs/';
 
         $db = \Config\Database::connect();
@@ -568,6 +569,7 @@ class BoardController extends BaseController
                 }
             }
         }
+*/
         if ($mode == "reply") {
             $sql = "update tbl_bbs_list set b_step = b_step + 1 where b_ref = '$b_ref' and b_step > $b_step";
             $db->query($sql);
