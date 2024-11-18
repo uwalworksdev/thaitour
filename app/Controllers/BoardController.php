@@ -529,7 +529,8 @@ class BoardController extends BaseController
         }
 
 
-        $uploadPath = $this->uploadPath;
+        $uploadPath = ROOTPATH . '/public/uploads/bbs/';
+
         $db = \Config\Database::connect();
 
         for ($i = 1; $i <= 6; $i++) {
