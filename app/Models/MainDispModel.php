@@ -61,13 +61,13 @@ class MainDisp extends Model
                     ->countAllResults();
     }
 
-    public function List($where = [])
+    public function List(int $code_no)
     {
-        $builder = $this->db->table('tbl_main_disp as s1');
-        $builder->select('s1.*, s2.*');
-        $builder->join('tbl_product_mst as s2', 's1.product_idx = s2.product_idx', 'left');
-        $builder->where('s1.code_no', $code);
-        $builder->orderBy("s1.code_no", "desc");
+        $builder = $this->db->table($this->table);
+        $builder->select('tbl_main_disp.*, tbl_product_mst.*');
+        $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'left');
+        $builder->where('tbl_main_disp.code_no', $code_no);
+        $builder->where('tbl_product_mst.is_view', 'Y');
 
         //$builder = $this->db->table('tbl_main_disp as s1')
         //    ->select('s1.*, s2.*')
