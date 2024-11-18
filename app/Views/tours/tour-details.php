@@ -257,6 +257,10 @@
                     <input type="hidden" name="people_kids_price" id="people_kids_price" value="">
                     <input type="hidden" name="people_baby_price" id="people_baby_price" value="">
                     <div class="sec2-item-card order-form-page" style="display: none">
+                        <div class="btn_back flex__c">
+                            <img src="/images/ico/arrow_up_icon.png" alt="">
+                            <p>뒤로가기</p>
+                        </div>
                         <div class="container-calendar">
                             <div class="main-order-form">
                                 <div class="main-order-form-container">
@@ -932,6 +936,11 @@
             function handleSubmit() {
                 $("#frm").submit();
             }
+
+            $('.btn_back').click(function() {
+                $('.sec2-item-card.tour_calendar').show();
+                $('.sec2-item-card.order-form-page').hide();
+            });
 
         </script>
         <script>
