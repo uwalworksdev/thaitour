@@ -224,6 +224,7 @@
                                        <input type="hidden" name="option_idx[]" value="${idx}">
                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                                       <input type="hidden" name="option_price[]" value="${option_price}">
                             </div>
                         </li>`;
 

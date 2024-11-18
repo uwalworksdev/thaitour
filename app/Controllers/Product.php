@@ -2222,6 +2222,7 @@ class Product extends BaseController
             $option_qty = $_POST['option_qty'];
             $option_cnt = $_POST['option_cnt'];
             $option_name = $_POST['option_name'];
+            $option_price = $_POST['option_price'];
 
             $data = [
                 'product_idx' => $product_idx,
@@ -2233,6 +2234,7 @@ class Product extends BaseController
                 'option_idx' => $option_idx,
                 'option_qty' => $option_qty,
                 'option_tot' => $option_tot,
+                'option_price' => $option_price,
                 'option_cnt' => $option_cnt,
                 'option_name' => $option_name
             ];
