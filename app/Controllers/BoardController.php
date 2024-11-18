@@ -549,7 +549,7 @@ class BoardController extends BaseController
 			if (isset($file) && $file->isValid() && !$file->hasMoved()) {
 				$data["rfile$i"] = $file->getClientName();
 				$data["ufile$i"] = $file->getRandomName();
-				$publicPath = ROOTPATH . '/public/uploads/bbs/';
+				$publicPath = ROOTPATH . 'public/uploads/bbs/';
 				write_log($publicPath ." - ". $data["ufile$i"]);
 				$file->move($publicPath, $data["ufile$i"]);
 			}
@@ -557,8 +557,8 @@ class BoardController extends BaseController
 			if ($bbs_idx) {
 				$sql = "
 					UPDATE tbl_bbs_list SET
-					ufile" . $i . "='" . ${"ufile_" . $i} . "',
-					rfile" . $i . "='" . ${"rfile_" . $i} . "'
+					ufile" . $i . "='" . $data["rfile$i"] . "',
+					rfile" . $i . "='" . $data["ufile$i"] . "'
 					WHERE bbs_idx='$bbs_idx';
 				";
 				write_log("upload- ". $sql);
