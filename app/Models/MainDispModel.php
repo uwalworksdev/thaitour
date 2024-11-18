@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MainDispModel extends Model
+class MainDisp extends Model
 {
     protected $table      = 'tbl_main_disp';
     protected $primaryKey = 'code_idx';
@@ -61,11 +61,11 @@ class MainDispModel extends Model
                     ->countAllResults();
     }
 
-    public function List($code, $whereArr = [])
+    public function List($code)
     {
         $builder = $this;
         $builder->select("{$this->table}.*  ");
-        $builder->where('code', $code);
+        $builder->where('code_no', $code);
         $builder->orderBy("{$this->table}.code_no", "desc");
 
         return $builder;

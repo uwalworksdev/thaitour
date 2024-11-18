@@ -4,6 +4,9 @@
 <?php
 $Bbs = model("Bbs");
 $list = $Bbs->List("banner", ["category" => "1"])->findAll();
+
+$MainDisp = model("MainDispModel");
+$list1 = $MainDisp->List("290401")->findAll();
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
