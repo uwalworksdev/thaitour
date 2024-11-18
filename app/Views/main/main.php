@@ -161,7 +161,7 @@ $list1    = $MainDisp->List("290401")->findAll();
             <div>
                 <div class="best_list best_list_1">
                     <?php foreach ($list1 as $item1): ?>
-                    <a href="#!" class="best_list_item">
+                    <a href="/product-hotel/<?=$item1['product_idx']?>" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_1.png" alt="main">
                         </div>
