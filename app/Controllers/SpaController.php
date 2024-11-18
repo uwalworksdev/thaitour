@@ -168,6 +168,8 @@ class SpaController extends BaseController
                 'order_memo' => $order_memo,
             ];
 
+            $data['order_no'] = $this->orderModel->makeOrderNo();
+
             $data['order_r_date'] = date('Y-m-d H:i:s');
             $data['order_status'] = "W";
 
