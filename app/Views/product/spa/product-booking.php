@@ -205,12 +205,15 @@
                                         <p><?= $data['option_name'][$i] ?></p>
                                     </div>
                                     <div class="wrap-btn">
-                                        <img src="/images/sub/minus-ic.png" alt="">
+                                        <img onclick="minusQty(this)" class="minusQty" src="/images/sub/minus-ic.png"
+                                             alt="">
                                         <span>
                                         <input style="text-align: center;" type="text" class="form-control input_qty"
+                                               data-price="<?= $data['option_price'][$i] ?>"
                                                id="input_qty[]" readonly value="<?= $data['option_qty'][$i] ?>">
                                         </span>
-                                        <img src="/images/sub/plus-ic.png" alt="">
+                                        <img onclick="plusQty(this)" class="plusQty" src="/images/sub/plus-ic.png"
+                                             alt="">
                                     </div>
                                 </div>
                                 <?php
@@ -220,7 +223,10 @@
 
                         <div class="item-info-r font-bold-cus">
                             <span>합계</span>
-                            <span><?= number_format($totalPrice) ?>원</span>
+                            <span><span id="totalPrice"><?= number_format($totalPrice) ?></span>원</span>
+                        </div>
+                        <div class="" style="display: none">
+                            <input type="hidden" name="realTotal" id="realTotal" value="">
                         </div>
                         <p class="below-des-price">
                             · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -363,11 +369,11 @@
                                         <p>${option_name}</p>
                                     </div>
                                     <div class="wrap-btn">
-                                        <img src="/images/sub/minus-ic.png" alt="">
+                                        <img onclick="minusQty(this)" class="minusQty" src="/images/sub/minus-ic.png" alt="">
                                         <span>
                                             <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty" id="input_qty[]" value="1">
                                         </span>
-                                        <img src="/images/sub/plus-ic.png" alt="">
+                                        <img onclick="plusQty(this)" class="plusQty" src="/images/sub/plus-ic.png" alt="">
                                     </div>
                                 </div>
 
@@ -382,13 +388,78 @@
                     let sel_option_ = $('#schedule_' + idx);
                     if (!sel_option_.length > 0) {
                         $("#option_list_").append(htm_);
-                        calcTotalSup();
+                        calcTotal();
                     }
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                 }
             });
+        }
+
+
+        function minusQty(el) {
+            let inp = $(el).parent().find('input.input_qty');
+
+            let num = inp.val();
+            if (Number(num) > 1) {
+                num = Number(num) - 1;
+                inp.val(num);
+            } else {
+                if (confirm('선택 항목을 지우시겠습니까?')) {
+                    $(el).closest('.schedule').remove();
+                }
+            }
+            calcTotal();
+        }
+
+        function plusQty(el) {
+            let inp = $(el).parent().find('input.input_qty');
+            let num = inp.val();
+            num = Number(num) + 1;
+            inp.val(num);
+            calcTotal();
+        }
+
+        function calcTotal() {
+            let realTotal = $('#realTotal').val();
+            let optionTotal = 0;
+
+            $('.input_qty').each(function () {
+                let qty = $(this).val();
+                let price = $(this).data('price');
+
+                let total = Number(qty) * Number(price);
+
+                optionTotal += total;
+            })
+
+            let total = Number(realTotal) + Number(optionTotal);
+
+            total = convertNum(total);
+            $('#totalPrice').text(total);
+        }
+
+        getMainTotal();
+
+        function getMainTotal() {
+            let realTotal = 0;
+            let optionTotal = 0;
+
+            $('.input_qty').each(function () {
+                let qty = $(this).val();
+                let price = $(this).data('price');
+
+                let total = Number(qty) * Number(price);
+
+                optionTotal += total;
+            })
+
+            let mainTotal = $('#totalPrice').text();
+            mainTotal = mainTotal.replaceAll(',', '');
+            realTotal = mainTotal - optionTotal;
+
+            $('#realTotal').val(realTotal);
         }
     </script>
 
