@@ -2828,6 +2828,24 @@
     border-color: var(--bs-point);
 }
 
+.custom-product-golf .form-group.tab_active_ label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-product-golf .form-group.tab_active_ label:before {
+    background-color: var(--bs-point);
+    border-color: var(--bs-point);
+}
+
 .custom-product-golf .filter-container {
     margin-top: 30px;
 }
