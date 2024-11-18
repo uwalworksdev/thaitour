@@ -37,6 +37,13 @@ class ProductModel extends Model
     {
     }
 
+    public function getById($product_idx)
+    {
+        $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
+        write_log($sql);
+        return $this->db->query($sql)->getRowArray();
+    }
+
     public function insertData($data)
     {
         $allowedFields = $this->allowedFields;
@@ -182,10 +189,10 @@ class ProductModel extends Model
     public function getAllProductsByCode($code)
     {
         return $this->where('product_code_1', $code)
-                        ->orderBy('onum', 'desc')
-                        ->orderBy('product_idx', 'desc')
-                        ->get()
-                        ->getResultArray();
+            ->orderBy('onum', 'desc')
+            ->orderBy('product_idx', 'desc')
+            ->get()
+            ->getResultArray();
     }
 
     public function getTotalProducts($suggest_code)
@@ -961,6 +968,93 @@ class ProductModel extends Model
         return $data;
     }
 
+    
+    public function findProductGolfPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->db->table($this->table . " as pm");
+        $builder->select('pm.*');
+        if ($where['product_code_1'] != "") {
+            $builder->where('product_code_1', $where['product_code_1']);
+        }
+        if ($where['product_code_2'] != "") {
+            $builder->where('product_code_2', $where['product_code_2']);
+        }
+        if ($where['product_code_3'] != "") {
+            $builder->where('product_code_3', $where['product_code_3']);
+        }
+
+        if ($where['search_txt'] != "") {
+            if ($where['search_category'] != "") {
+                $builder->like($where['search_category'], $where['search_txt']);
+            }
+        }
+        if ($where['is_view'] != "") {
+            $builder->where("is_view", $where['is_view']);
+        }
+
+        if ($where['special_price'] != "") {
+            $builder->where("special_price", $where['special_price']);
+        }
+
+        if ($where['product_status'] != "") {
+            $builder->where("product_status", $where['product_status']);
+        }
+
+        $filter_fields = ['green_peas', 'sports_days', 'slots', 'golf_course_odd_numbers', 'travel_times', 'carts', 'facilities'];
+
+        foreach ($filter_fields as $filter_field) {
+            if (!empty($where[$filter_field])) {
+                $builder->groupStart();
+                foreach ($where[$filter_field] as $key => $value) {
+                    $builder->orLike('gi.' . $filter_field, "|$value|");
+                }
+                $builder->groupEnd();
+            }
+        }
+
+        $builder->join("tbl_golf_info gi", "gi.product_idx = pm.product_idx", "left");
+
+        $builder->where("product_status !=", "D");
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = (int) ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        if ($orderBy == []) {
+            $orderBy = ['pm.product_idx' => 'DESC'];
+        }
+
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        foreach ($items as $key => $value) {
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $product_price_baht = $product_price / $baht_thai;
+            $items[$key]['product_price_baht'] = $product_price_baht;
+        }
+        $data = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'search_txt' => $where['search_txt'],
+            'search_category' => $where['search_category'],
+            'is_view' => $where['is_view'],
+            'product_code_1' => $where['product_code_1'],
+            'product_code_2' => $where['product_code_2'],
+            'product_code_3' => $where['product_code_3'],
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom
+        ];
+        return $data;
+    }
+
+
     public function getKeyWordAll($code_no)
     {
         $keyWords = $this->select("keyword")->where("product_code_1", $code_no)->get()->getResultArray();
@@ -983,5 +1077,44 @@ class ProductModel extends Model
 
 
         return array_slice($uniqueArray, 0, 20);
+    }
+
+    public function batchUpdate(array $data)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('tbl_product_mst');
+
+        foreach ($data as $item) {
+            $builder->where('product_idx', $item['product_idx']);
+            $builder->update([
+                'is_view'       => $item['is_view'],
+                'product_best'  => $item['product_best'],
+                'special_price' => $item['special_price'],
+                'onum'          => $item['onum']
+            ]);
+        }
+
+        return true;
+    }
+
+    public function delProductYoil($product_idx)
+    {
+        $sql = " delete from tbl_product_yoil where product_idx='" . $product_idx . "' ";
+        write_log($sql);
+        return $this->db->query($sql);
+    }
+
+    public function delProductAir($product_idx)
+    {
+        $sql = " delete from tbl_product_air where product_idx='" . $product_idx . "' ";
+        write_log($sql);
+        return $this->db->query($sql);
+    }
+
+    public function delProductDay($product_idx)
+    {
+        $sql = " delete from tbl_product_day_detail where product_idx='" . $product_idx . "' ";
+        write_log($sql);
+        return $this->db->query($sql);
     }
 }
