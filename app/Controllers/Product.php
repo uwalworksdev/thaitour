@@ -1871,6 +1871,7 @@ class Product extends BaseController
                 }
 
                 $companion_email = $data['email_1'][$key] . "@" . $data['email_2'][$key] ?? '';
+                $order_mobile = $data['phone_1'][$key] . "-" . $data['phone_2'][$key] . "-" . $data['phone_3'][$key] ?? '';
                 $this->orderSubModel->insert([
                     'order_gubun' => $orderGubun,
                     'order_idx' => $order_idx,
@@ -1878,13 +1879,18 @@ class Product extends BaseController
                     'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
                     'order_sex' => $data['companion_gender'][$key],
                     'order_birthday' => $data['order_birthday'][$key],
+                    'order_mobile' => encryptField($order_mobile, 'encode'),
                     'order_email' => encryptField($companion_email, 'encode'),
                 ]);
             }
 
+            $optionsIdx = $this->request->getPost('option_idx');
+            $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
+
             $orderTourData = [
                 'tours_idx' => $this->request->getPost('tours_idx'),
                 'order_idx' => $order_idx,
+                'options_idx' => $optionsIdxString,
                 'product_idx' => $data['product_idx'],
                 'start_place' => $this->request->getPost('start_place'),
                 'metting_time' => $this->request->getPost('metting_time'),
@@ -1906,7 +1912,6 @@ class Product extends BaseController
             return $this->response->setBody("
                     <script>
                         alert('주문되지 않습니다');
-                        parent.location.reload();
                     </script>
                 ");
         }
