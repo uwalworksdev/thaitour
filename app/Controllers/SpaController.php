@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use CodeIgniter\Database\Config;
-use CodeIgniter\I18n\Time;
 use Config\Services;
 
 class SpaController extends BaseController
@@ -12,8 +11,10 @@ class SpaController extends BaseController
     protected $productModel;
     protected $productPrice;
     protected $productCharge;
-    protected $orderModel;
     protected $codeModel;
+    protected $orderModel;
+    protected $orderOptionModel;
+    protected $orderSubModel;
 
     public function __construct()
     {
@@ -23,8 +24,10 @@ class SpaController extends BaseController
         $this->productModel = model("ProductModel");
         $this->productPrice = model("ProductPrice");
         $this->productCharge = model("ProductCharge");
-        $this->orderModel = model("OrdersModel");
         $this->codeModel = model("Code");
+        $this->orderModel = model("OrdersModel");
+        $this->orderOptionModel = model("OrderOptionModel");
+        $this->orderSubModel = model("OrderSubModel");
     }
 
     public function charge_list()
@@ -113,21 +116,126 @@ class SpaController extends BaseController
                 ], 400);
             }
 
-            $data = $session->get('data_cart');
+            $dataCart = $session->get('data_cart');
 
-            if (empty($data)) {
+            if (empty($dataCart)) {
                 return redirect()->to('/');
             }
 
-            $product_idx = $data['product_idx'];
-            $day_ = $data['day_'];
-            $yoil = $data['yoil'];
-            $adultQty = $data['adultQty'];
-            $childrenQty = $data['childrenQty'];
-            $totalPrice = $data['totalPrice'];
-            $totalPriceBath = convertToBath($totalPrice);
-            $totalPriceBaht = str_replace(",", "", $totalPriceBath);
-            $totalPriceBaht = str_replace(".", "", $totalPriceBaht);
+            $dataPost = $this->request->getPost();
+
+            $order_user_name = $this->request->getPost('order_user_name');
+            $email_name = $this->request->getPost('email_name');
+            $email_host = $this->request->getPost('email_host');
+            $order_user_mobile = $this->request->getPost('order_user_mobile');
+
+            $product_idx = $this->request->getPost('product_idx');
+
+            $order_a_first_name = $this->request->getPost('order_a_first_name');
+            $order_a_last_name = $this->request->getPost('order_a_last_name');
+
+            $order_c_first_name = $this->request->getPost('order_c_first_name');
+            $order_c_last_name = $this->request->getPost('order_c_last_name');
+
+            $order_memo = $this->request->getPost('order_memo');
+
+            $day_ = $this->request->getPost('day_');
+            $adultQty = $this->request->getPost('adultQty');
+            $childrenQty = $this->request->getPost('childrenQty');
+            $totalPrice = $this->request->getPost('totalPrice');
+
+            $option_idx = $this->request->getPost('option_idx');
+            $input_qty = $this->request->getPost('input_qty');
+            $option_tot = $this->request->getPost('option_tot');
+            $option_cnt = $this->request->getPost('option_cnt');
+            $option_price = $this->request->getPost('option_price');
+
+            $order_user_email = $email_name . '@' . $email_host;
+
+            $product = $this->productModel->find($product_idx);
+
+            $data = [
+                'order_user_name' => $order_user_name,
+                'order_user_email' => encryptField($order_user_email, 'encode'),
+                'order_user_phone' => encryptField($order_user_mobile, 'encode'),
+                'product_idx' => $product_idx,
+                'user_id' => $member_idx,
+                'order_day' => $day_,
+                'people_adult_cnt' => $adultQty,
+                'people_kids_cnt' => $childrenQty,
+                'inital_price' => $totalPrice,
+                'order_price' => $totalPrice,
+                'order_memo' => $order_memo,
+            ];
+
+            $data['order_r_date'] = date('Y-m-d H:i:s');
+            $data['order_status'] = "W";
+
+            $data['product_name'] = $product['product_name'];
+            $data['product_code_1'] = $product['product_code_1'];
+            $data['product_code_2'] = $product['product_code_2'];
+            $data['product_code_3'] = $product['product_code_3'];
+            $data['product_code_4'] = $product['product_code_4'];
+
+            $data['ip'] = $this->request->getIPAddress();
+            $data['order_gubun'] = "spa";
+            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name'] = encryptField($dataPost['order_user_name'] ?? '', 'encode');
+            $data['order_user_first_name_en'] = encryptField($dataPost['order_user_first_name_en'] ?? '', 'encode');
+            $data['order_user_last_name_en'] = encryptField($dataPost['order_user_last_name_en'] ?? '', 'encode');
+
+            $data['local_phone'] = encryptField($dataPost['local_phone'] ?? '', 'encode');
+
+            if ($dataPost['radio_phone'] === "kor") {
+                $order_user_mobile = $dataPost['phone_1'] . "-" . $dataPost['phone_2'] . "-" . $dataPost['phone_3'];
+            } else {
+                $order_user_mobile = $dataPost['phone_thai'] ?? $order_user_mobile;
+            }
+
+            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
+
+            $this->orderModel->save($data);
+
+            $order_idx = $this->orderModel->getInsertID();
+
+            $countA = count($order_a_first_name);
+            for ($i = 0; $i < $countA; $i++) {
+                $this->orderSubModel->insert([
+                    'order_gubun' => 'adult',
+                    'order_idx' => $order_idx,
+                    'product_idx' => $data['product_idx'],
+                    'order_first_name' => encryptField($order_a_first_name[$i], 'encode'),
+                    'order_last_name' => $order_a_last_name[$i],
+                ]);
+            }
+
+            $countC = count($order_c_first_name);
+            for ($i = 0; $i < $countC; $i++) {
+                $this->orderSubModel->insert([
+                    'order_gubun' => 'kids',
+                    'order_idx' => $order_idx,
+                    'product_idx' => $data['product_idx'],
+                    'order_first_name' => encryptField($order_c_first_name[$i], 'encode'),
+                    'order_last_name' => encryptField($order_c_last_name[$i], 'encode'),
+                ]);
+            }
+
+            $countO = count($option_idx);
+            for ($i = 0; $i < $countO; $i++) {
+                $this->orderOptionModel->insert([
+                    'option_type' => 'main',
+                    'order_idx' => $order_idx,
+                    'product_idx' => $data['product_idx'],
+                    'option_idx' => $option_idx[$i],
+                    'option_cnt' => $option_cnt[$i],
+                    'option_price' => $option_price[$i],
+                    'option_qty' => $input_qty[$i],
+                    'option_tot' => $option_tot[$i],
+                    'option_date' => $day_,
+                ]);
+            }
+
+            $session->set('data_cart', null);
 
             return $this->response->setJSON([
                 'result' => true,
