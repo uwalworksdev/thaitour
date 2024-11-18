@@ -160,7 +160,7 @@ $list1    = $MainDisp->List("290401")->findAll();
             </div>
             <div>
                 <div class="best_list best_list_1">
-                    <?php foreach ($list1 as $item): ?>
+                    <?php foreach ($list1 as $item1): ?>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_1.png" alt="main">
@@ -170,7 +170,7 @@ $list1    = $MainDisp->List("290401")->findAll();
                             <li class="breadcrumb_item">시암</li>
                         </ul>
                         <div class="prd_name">
-                            <?=$list1['product_name']?>
+                            <?=$item1['product_name']?>
                         </div>
                         <div class="prd_info">
                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
