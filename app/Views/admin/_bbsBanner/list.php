@@ -10,7 +10,7 @@ $youtube_code = '';
 
                 <div class="inner">
                     <h2>
-                        메인/서브비주얼관리 <?= $tit ?><?=$total_sql?>
+                        메인/서브비주얼관리 <?= $tit ?>>
                     </h2>
                     <div class="menus">
                         <ul class="first">
@@ -100,17 +100,17 @@ $youtube_code = '';
                                     $img = "";
                                     $row['subject'] = str_replace('&lt;br class=&#34only_mo&#34&gt;', '', $row['subject']);
                                     $scategory = $row['category'];
-                                    if ($row["ufile6"]) {
-                                        if (substr(strtolower($row["ufile6"]), -3) == "jpg" || substr(strtolower($row["ufile6"]), -3) == "png" || substr(strtolower($row["ufile6"]), -3) == "gif") {
+                                    if ($row["ufile5"]) {
+                                        if (substr(strtolower($row["ufile5"]), -3) == "jpg" || substr(strtolower($row["ufile5"]), -3) == "png" || substr(strtolower($row["ufile5"]), -3) == "gif") {
                                             //$img = get_img($row["ufile6"], ROOTPATH . "/public/upload/bbs/", 390, 220);
-                                            $img = "/uploads/bbs/". $row["ufile6"];
+                                            $img = "/uploads/bbs/". $row["ufile5"];
                                         }
                                     } elseif ($youtube_code != "") {
                                         $img = "http://img.youtube.com/vi/" . $youtube_code . "/hqdefault.jpg";
-                                    } elseif ($row["ufile5"]) {
-                                        if (substr(strtolower($row["ufile5"]), -3) == "jpg" || substr(strtolower($row["ufile5"]), -3) == "png" || substr(strtolower($row["ufile5"]), -3) == "gif") {
+                                    } elseif ($row["ufile6"]) {
+                                        if (substr(strtolower($row["ufile6"]), -3) == "jpg" || substr(strtolower($row["ufile6"]), -3) == "png" || substr(strtolower($row["ufile6"]), -3) == "gif") {
                                             //$img = get_img($row["ufile5"], ROOTPATH . "/public/upload/bbs/", 390, 220);
-                                            $img = "/uploads/bbs/". $row["ufile5"];
+                                            $img = "/uploads/bbs/". $row["ufile6"];
                                         }
                                     } else {
                                         $img = getConImg(str_replace("", "", viewSQ($row["contents"])));
