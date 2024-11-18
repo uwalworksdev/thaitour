@@ -144,7 +144,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
         $routes->post("cars_sub_ok", "Admin\AdminCarsController::cars_sub_ok");
         $routes->post("cars_sub_del", "Admin\AdminCarsController::cars_sub_del");
-    });
+    }); 
 
     $routes->group("_tours", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
@@ -189,6 +189,7 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'code_'
         $routes->group("code_", function ($routes) {
             $routes->post("code_del", "Api\AdminCodeApi::code_del", ['as' => "admin.api.code.code_del"]);
+            $routes->post("code_change", "Api\AdminCodeApi::code_change", ['as' => "admin.api.code.code_change"]);
         });
 
         $routes->group("product_", function ($routes) {
@@ -238,7 +239,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);
         $routes->post("write_ok", "Admin\AdminRoomController::write_ok", ['as' => "admin.room.write_ok"]);
         $routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
-    });
+    });  
 
     // 2024-11-17 수정  
     //$routes->group("_tourSuggestion", static function ($routes) {
@@ -246,8 +247,8 @@ $routes->group("AdmMaster", static function ($routes) {
     //    $routes->get("write", "TourSuggestionController::write");
     //});
 
-    $routes->group("_tourSuggestion", static function ($routes) {
-        $routes->get("list", "TourSuggestionController::list");
+    $routes->group("_tourSuggestion", static function ($routes) {  
+        $routes->get("list", "TourSuggestionController::list");  
         $routes->get("write", "TourSuggestionController::write");
         $routes->get("prd_list", "TourSuggestionController::prd_list");
         $routes->get("goods_find", "TourSuggestionController::goods_find");
@@ -401,7 +402,6 @@ $routes->group("api", static function ($routes) {
 
     $routes->group("spa_", function ($routes) {
         $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
-        $routes->post("handleBooking", "SpaController::handleBooking", ['as' => "api.spa_.handleBooking"]);
     });
 });
 
