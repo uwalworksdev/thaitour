@@ -94,10 +94,10 @@ class AdminBbsBannerController extends BaseController
     public function banner_change()
     {
         try {
-            $code_idx = $_POST['code_idx'] ?? [];
+            $idx = $_POST['idx'] ?? [];
             $onum     = $_POST['onum'] ?? [];
 
-            if (empty($code_idx)) {
+            if (empty($idx)) {
                 return $this->response
                     ->setStatusCode(400)
                     ->setJSON([
@@ -106,10 +106,10 @@ class AdminBbsBannerController extends BaseController
                     ]);
             }
 
-            $tot = count($code_idx);
+            $tot = count($idx);
             for ($j = 0; $j < $tot; $j++) {
 
-                $sql    = " update tbl_code set onum='" . $onum[$j] . "' where code_idx='" . $code_idx[$j] . "'";
+                $sql    = " update tbl_bbs_list set onum='" . $onum[$j] . "' where bbs_idx='" . $idx[$j] . "'";
                 $result = $this->connect->query($sql);
             }
 
