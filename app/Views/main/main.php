@@ -657,13 +657,13 @@
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
                     <div class="swiper-wrapper">
 
-                        <?php foreach ($list1 as $item1): ?>
+                        <?php foreach ($list2 as $item2): ?>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_1.png" alt="main">
+                                    <img src="/data/hotel/<?=$item2['ufile1']?>" alt="main">
                                 </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
+                                <div class="prd_name"><?=$item2['product_name']?></div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
                                 <span class="number_item_label number_one">1</span>
