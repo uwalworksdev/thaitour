@@ -907,6 +907,8 @@
                         <img src="/uploads/main/main_banner_8.png" alt="">
                     </div>
                     <div class="main_section9__prd">
+
+                        <?php foreach ($list4 as $item4): ?>
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
@@ -930,7 +932,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="main_section9__prd__item">
+                        <?php endforeach; ?>
+
+                        <!--div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
                                     <img src="/uploads/main/main_tour_2.png" alt="">
@@ -952,7 +956,7 @@
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
                 <div class="main_section9__col">
