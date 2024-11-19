@@ -49,14 +49,14 @@
                     <div class="place_chosen">
                         <div class="place_chosen__start bg_gray" role="button" id="place_chosen__start">
                             <img src="/images/ico/ico_place.svg" alt="">
-                            <span id="place_start">출발지역</span>
+                            <span class="departure_name">출발지역</span>
                         </div>
                         <div class="place_chosen__icon">
                             <img src="/images/ico/ico_transfer.svg" alt="">
                         </div>
                         <div class="place_chosen__end bg_gray" role="button" id="place_chosen__end">
                             <img src="/images/ico/ico_place.svg" alt="">
-                            <span id="place_end">도착지역</span>
+                            <span class="destination_name">도착지역</span>
                         </div>
                         <label for="departure_date" class="place_chosen__date bg_gray" role="button" id="place_chosen__date">
                             <img src="/images/ico/ico_calendar_1.png" alt="">
@@ -146,9 +146,7 @@
                     </div>
                 </div>
             </section>
-            <input type="hidden" name="product_code" id="product_code" value="<?=$first_code_no?>">
-            <input type="hidden" name="departure_area" id="departure_area" value="">
-            <input type="hidden" name="destination_area" id="destination_area" value="">
+
             <section class="section_vehicle_2_3">
                 <div class="section_vehicle_2_3__head">
                     <div class="section_vehicle_2_3__head__ttl vehicle_ttl">
@@ -285,9 +283,12 @@
                 </div>
                 <div class="section_vehicle_2_7__body">
                     <form action="" method="post">
+                        <input type="hidden" name="product_code" id="product_code" value="<?=$first_code_no?>">
                         <input type="hidden" name="product_arr" id="product_arr" value="">
+                        <input type="hidden" name="departure_area" id="departure_area" value="">
+                        <input type="hidden" name="destination_area" id="destination_area" value="">
                         <table>
-                            <colgroup class="only_web">
+                            <colgroup>
                                 <col width="150px" >
                                 <col width="*" >
                             </colgroup>
@@ -297,12 +298,26 @@
                                     <td>
                                         <div class="meeting_time">
                                             <span class="meeting_time__date">2024-06-28(금)</span>
-                                            <select name="" id="hours">
-                                                <option value="">00</option>
+                                            <select name="hours" id="hours">
+                                            <?php
+                                                for ($i = 0; $i < 24; $i++) {
+                                                    $hour = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                            ?>
+                                                <option value="<?= $hour ?>"><?= $hour ?></option>
+                                            <?php
+                                                }
+                                            ?>
                                             </select>
                                             <label for="hours">시</label>
-                                            <select name="" id="minutes">
-                                                <option value="">00</option>
+                                            <select name="minutes" id="minutes">
+                                            <?php
+                                                for ($i = 0; $i < 60; $i++) {
+                                                    $minute = str_pad($i, 2, '0', STR_PAD_LEFT);
+                                            ?>
+                                                <option value="<?= $minute ?>"><?= $minute ?></option>
+                                            <?php
+                                                }
+                                            ?>
                                             </select>
                                             <label for="minutes">분</label>
                                         </div>
@@ -314,8 +329,8 @@
                                     </th>
                                     <td>
                                         <div class="departure">
-                                            <span>방콕</span>
-                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                            <span class="departure_name"></span>
+                                            <input type="text" name="departure_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
                                         </div>
                                         <div class="departure__note">
                                             - 일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요. <br>
@@ -330,8 +345,8 @@
                                     </th>
                                     <td>
                                         <div class="destination">
-                                            <span>방콕</span>
-                                            <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)">
+                                            <span class="destination_name"></span>
+                                            <input type="text" name="destination_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
                                         </div>
                                     </td>
                                 </tr>
@@ -345,11 +360,12 @@
                                     <th>전화번호*</th>
                                     <td>
                                         <div class="phone_number">
-                                            <select name="" id="">
+                                            <select name="phone1" id="phone1">
                                                 <option value="010">010</option>
+                                                <option value="011">011</option>
                                             </select>
-                                            <input type="text">
-                                            <input type="text">
+                                            <input type="text" name="phone2" id="phone2" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
+                                            <input type="text" name="phone3" id="phone3" oninput="this.value = this.value.replace(/[^0-9]/g, '');" maxlength="4">
                                         </div>
                                     </td>
                                 </tr>
@@ -357,18 +373,18 @@
                                     <th>이메일*</th>
                                     <td>
                                         <div class="contact_email">
-                                            <input type="text">
+                                            <input type="text" name="email_name" id="email_name">
                                             <span>@</span>
-                                            <input type="text">
-                                            <select name="" id="">
-                                                <option value="">gmail.com</option>
-                                                <option value="">naver.com</option>
-                                                <option value="">kakao.com</option>
-                                                <option value="">hanmail.com</option>
-                                                <option value="">nate.com</option>
-                                                <option value="">yahoo.com</option>
-                                                <option value="">hotmail.com</option>
-                                                <option value="">chol.com</option>
+                                            <input type="text" name="email_host" id="email_host" value="gmail.com" disabled>
+                                            <select id="select_email">
+                                                <option value="gmail.com">gmail.com</option>
+                                                <option value="naver.com">naver.com</option>
+                                                <option value="kakao.com">kakao.com</option>
+                                                <option value="hanmail.com">hanmail.com</option>
+                                                <option value="nate.com">nate.com</option>
+                                                <option value="yahoo.com">yahoo.com</option>
+                                                <option value="hotmail.com">hotmail.com</option>
+                                                <option value="chol.com">chol.com</option>
                                             </select>
                                         </div>
                                     </td>
@@ -457,13 +473,18 @@
 </section>
 
 <script>
+    $("#select_email").on("change", function() {
+        let email_host = $(this).val();
+        $("#email_host").val(email_host);
+    });
+
     $(".place_chosen__start_pop .popup_place__list li").on("click", function(){
         let code = $(this).data("code");
         let place = $(this).find("span").text();
         $(this).find("span").addClass("active");
         $(this).siblings().find("span").removeClass("active");
         $("#departure_area").val(code);
-        $("#place_start").text(place);
+        $(".departure_name").text(place);
         $(".place_chosen__start_pop").hide();
     });
 
@@ -473,7 +494,7 @@
         $(this).find("span").addClass("active");
         $(this).siblings().find("span").removeClass("active");
         $("#destination_area").val(code);
-        $("#place_end").text(place);
+        $(".destination_name").text(place);
         $(".place_chosen__end_pop").hide();
     });
 
@@ -579,11 +600,13 @@
     function handleFetch() {
         let child_code = $(this).val();
         let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
+        let departure_code = $("#departure_area").val();
+        let destination_code = $("#destination_area").val();
 
         $.ajax({
             url: '/filter-child-vehicle',
             type: "POST",
-            data: { child_code },
+            data: { departure_code, destination_code, child_code },
             async: false,
             cache: false,
             success: function (data, textStatus) {
@@ -597,8 +620,8 @@
         });
     }
     function filter() {
-        let departure_code = $(".section_vehicle_2_2__head__tabs li.active").data("code");
-        let destination_code = $(".section_vehicle_2_2__head__tabs li.active").data("code");
+        let departure_code = $("#departure_area").val();
+        let destination_code = $("#destination_area").val();
         let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
 
         $.ajax({
@@ -763,6 +786,7 @@
             const dayOfWeek = daysOfWeek[date.getDay()];
 
             $("#departure_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
+            $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`)
         }
     });
     $("#place_chosen__people").on("click", function() {

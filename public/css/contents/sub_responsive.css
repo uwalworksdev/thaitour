@@ -456,6 +456,10 @@
     display: block;
   }
 
+  .section_vehicle_2_7__body table colgroup {
+    display: none;
+  }
+
   .section_vehicle_2_7__body table tr {
     border-bottom: 0.2rem solid #dddddd;
     display: block;

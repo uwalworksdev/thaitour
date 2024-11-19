@@ -2526,6 +2526,8 @@ class Product extends BaseController
     {
         try {
             $code_no = $this->request->getPost("code_no");
+            $departure_code = $this->request->getPost("departure_code");
+            $destination_code = $this->request->getPost("destination_code");
 
             $child_codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
@@ -2542,8 +2544,10 @@ class Product extends BaseController
                 $code_first = $code_no;
             }
 
-            $products = $this->productModel->findProductPaging([
-                "product_code_list" => $code_first
+            $products = $this->productModel->findProductCarPaging([
+                "product_code_list" => $code_first,
+                "departure_code" => $departure_code,
+                "destination_code" => $destination_code
             ]);
 
             foreach ($products["items"] as $key => $value) {
@@ -2574,9 +2578,13 @@ class Product extends BaseController
     {
         try {
             $child_code = $this->request->getPost("child_code");
+            $departure_code = $this->request->getPost("departure_code");
+            $destination_code = $this->request->getPost("destination_code");
 
-            $products = $this->productModel->findProductPaging([
-                "product_code_list" => $child_code
+            $products = $this->productModel->findProductCarPaging([
+                "product_code_list" => $child_code,
+                "departure_code" => $departure_code,
+                "destination_code" => $destination_code
             ]);
 
             foreach ($products["items"] as $key => $value) {

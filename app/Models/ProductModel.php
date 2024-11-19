@@ -876,7 +876,7 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->db->table('tbl_cars_sub AS c');
-        $builder->select('p.*, c.* ');
+        $builder->select('p.*, c.departure_code, c.destination_code, c.car_price');
         $builder->join('tbl_product_mst AS p', 'p.product_idx = c.product_idx', 'left');
 
         if ($where['product_code_1'] != "") {
@@ -925,6 +925,11 @@ class ProductModel extends Model
             $builder->where("product_status", $where['product_status']);
         }
 
+        if (!empty($where['departure_code']) && !empty($where['destination_code'])) {
+            $builder->where("departure_code", $where['departure_code']);
+            $builder->where("destination_code", $where['destination_code']);
+        }
+
         $builder->where("product_status !=", "D");
         $nTotalCount = $builder->countAllResults(false);
         $nPage = ceil($nTotalCount / $g_list_rows);
@@ -932,7 +937,7 @@ class ProductModel extends Model
         $nFrom = ($pg - 1) * $g_list_rows;
 
         if ($orderBy == []) {
-            $orderBy = ['product_idx' => 'DESC'];
+            $orderBy = ['p.product_idx' => 'DESC'];
         }
 
         foreach ($orderBy as $key => $value) {
