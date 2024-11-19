@@ -134,7 +134,6 @@
                                             <?= get_status_name($row["order_status"]) ?>
                                         <td class="pay_btn pay_btn_1" style="<?=($is_allow_payment ? "" : "display: none;")?>">
                                             <?php
-                                            //echo $row["order_status"];
                                             if ($row["order_status"] == "W") { ?>
                                                 <span class="no_click" data_order_idx="">예약 준비중</span>
                                             <?php } else if ($row["order_status"] == "G") { ?>
@@ -142,11 +141,8 @@
                                             <?php } elseif ($row["order_status"] == "R") { ?>
                                                 <a href="#!" class="btn pops_btn btn_cash" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="balance">결제하기</a>
                                             <?php } elseif ($row["order_status"] == "Y") { ?>
-                                                <!-- <span class="btn pops_btn complete" data_order_idx="">결제완료</span> -->
-                                                <!-- <a href="/community/review_write.php?cmd=new&sch_product_idx=<?= $row["product_idx"] ?>" class="btn pops_btn review_write" data_order_idx="">후기쓰기</a> -->
                                                 <a href="/review/review_write?product_idx=<?= $row["product_idx"] ?>" class="btn pops_btn review_write" data_order_idx="">후기쓰기</a>
                                             <?php } elseif ($row["order_status"] == "C") {  ?>
-                                                <!-- <span class="no_click" data_order_idx="">중도금</span> -->
                                             <?php } ?>
                                         </td>
                                     </tr>

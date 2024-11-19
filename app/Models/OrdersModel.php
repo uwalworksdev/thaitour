@@ -123,7 +123,8 @@ class OrdersModel extends Model
 
     public function makeOrderNo()
     {
-        $todayOrder = $this->select()->where('order_date', date('Y-m-d'))->get()->getResultArray();
+//        $todayOrder = $this->select()->where('order_r_date', date('Y-m-d'))->get()->getResultArray();
+        $todayOrder = $this->select()->where('date(order_r_date)', date('Y-m-d'))->get()->getResultArray();
         $maxOrderNo = 0;
         foreach ($todayOrder as $key => $value) {
             $no = substr($value['order_no'], -3);
