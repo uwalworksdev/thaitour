@@ -291,9 +291,9 @@
                                                          alt="">
                                                     <span>
                                                 <input style="text-align: center;" type="text"
-                                                       class="form-control input_qty"
+                                                       class="form-control input_qty" name="option_qty[]"
                                                        data-price="<?= $data['option_price'][$i] ?>"
-                                                       id="input_qty[]" readonly value="<?= $data['option_qty'][$i] ?>">
+                                                       id="input_qty" readonly value="<?= $data['option_qty'][$i] ?>">
                                                 </span>
                                                     <img onclick="plusQty(this)" class="plusQty"
                                                          src="/images/sub/plus-ic.png"
@@ -301,6 +301,8 @@
                                                 </div>
                                                 <div class="" style="display: none">
                                                     <input type="hidden" name="option_idx[]" value="<?= $item ?>">
+                                                    <input type="hidden" name="option_name[]"
+                                                           value="<?= $data['option_name'][$i] ?>">
                                                     <input type="hidden" name="option_price[]"
                                                            value="<?= $data['option_price'][$i] ?>">
                                                     <input type="hidden" name="option_tot[]" value="0">
@@ -545,7 +547,8 @@
                                     <div class="wrap-btn">
                                         <img onclick="minusQty(this)" class="minusQty" src="/images/sub/minus-ic.png" alt="">
                                         <span>
-                                            <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty" id="input_qty[]" value="1">
+                                            <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty"
+                                                    name="option_qty[]" id="input_qty" value="1">
                                         </span>
                                         <img onclick="plusQty(this)" class="plusQty" src="/images/sub/plus-ic.png" alt="">
                                     </div>
