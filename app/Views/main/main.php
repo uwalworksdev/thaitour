@@ -13,6 +13,10 @@
     // 1주일간 예약순위 : 호텔
 	$MainDisp = model("MainDispModel");
 	$list2    = $MainDisp->List("290201")->findAll();
+
+    // 1주일간 예약순위 : 골프
+	$MainDisp = model("MainDispModel");
+	$list3    = $MainDisp->List("290101")->findAll();
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
@@ -792,6 +796,7 @@
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
                     <div class="swiper-wrapper">
+
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
@@ -803,7 +808,8 @@
                                 <span class="number_item_label number_one">1</span>
                             </div>
                         </div>
-                        <div class="swiper-slide">
+
+                        <!--div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
                                     <img src="/uploads/main/main_hot_6.png" alt="main">
@@ -855,7 +861,7 @@
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
                 <div class="swiper-button-prev-main-2 swiper-button-main-2 hot_product_list_swiper_2_btn_prev">
