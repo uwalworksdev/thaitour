@@ -283,13 +283,17 @@
                 </div>
                 <div class="section_vehicle_2_7__body">
                     <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
+                        <input type="hidden" name="parent_code" id="parent_code" value="<?=$parent_code?>">
                         <input type="hidden" name="product_code" id="product_code" value="<?=$first_code_no?>">
                         <input type="hidden" name="product_arr" id="product_arr" value="">
+                        <input type="hidden" name="product_cnt_arr" id="product_cnt_arr" value="">
                         <input type="hidden" name="departure_area" id="departure_area" value="">
                         <input type="hidden" name="destination_area" id="destination_area" value="">
                         <input type="hidden" name="meeting_date" id="meeting_date" value="">
                         <input type="hidden" name="adult_cnt" id="adult_cnt" value="">
                         <input type="hidden" name="child_cnt" id="child_cnt" value="">
+                        <input type="hidden" name="inital_price" id="inital_price" value="">
+                        <input type="hidden" name="order_price" id="order_price" value="">
                         <table>
                             <colgroup>
                                 <col width="150px" >
@@ -356,7 +360,7 @@
                                 <tr>
                                     <th>기타요철</th>
                                     <td>
-                                        <textarea name="" id="" class="other_irregularities"></textarea>
+                                        <textarea name="order_memo" id="order_memo" class="other_irregularities"></textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -492,6 +496,7 @@
         $("#departure_area").val(code);
         $(".departure_name").text(place);
         $(".place_chosen__start_pop").hide();
+        handleFetch();
     });
 
     $(".place_chosen__end_pop .popup_place__list li").on("click", function(){
@@ -502,6 +507,7 @@
         $("#destination_area").val(code);
         $(".destination_name").text(place);
         $(".place_chosen__end_pop").hide();
+        handleFetch();
     });
 
     function renderPrdList(products, code_no) {
@@ -536,7 +542,7 @@
 
             const minium_people_cnt = Number(products[i]["minium_people_cnt"]) ?? 0;
             const total_people_cnt = Number(products[i]["total_people_cnt"]) ?? 0;
-            let vehicle_select =  $(`#product_vehicle_list_selected tr.product_${products[i]["product_idx"]}`);
+            let vehicle_select =  $(`#product_vehicle_list_selected tr.product_${products[i]["cs_idx"]}`);
 
             const cnt_options = Array(total_people_cnt - minium_people_cnt + 1).fill(1).map((_, index) => {
                 const cnt = minium_people_cnt + index;
@@ -554,7 +560,7 @@
             let product_arr = $("#product_arr").val().split(",").filter(Boolean);
 
             product_list += 
-            `<tr class="product_${products[i]["product_idx"]}" data-price="${price_str}" data-price_baht="${price_baht_str}" data-code="${code_no}">
+            `<tr class="product_${products[i]["cs_idx"]}" data-price="${price_str}" data-price_baht="${price_baht_str}" data-code="${code_no}">
                 <td>
                     <div class="vehicle_image">
                         <div class="img_box img_box_15">
@@ -587,14 +593,14 @@
                     </div>
                     <div class="vehicle_options">
                         <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
-                        <select name="" id="vehicle_cnt_${products[i]["product_idx"]}" data-id="${products[i]["product_idx"]}" class="vehicle_options__select vehicle_cnt" onchange="handleSelectNumber(this)">
+                        <select name="" id="vehicle_cnt_${products[i]["cs_idx"]}" data-id="${products[i]["cs_idx"]}" class="vehicle_options__select vehicle_cnt" onchange="handleSelectNumber(this)">
                             ${cnt_options}
                         </select>
-                        <input type="hidden" id="minium_people_cnt_${products[i]["product_idx"]}" value="${minium_people_cnt}">
-                        <input type="hidden" id="total_people_cnt_${products[i]["product_idx"]}" value="${total_people_cnt}">
-                        <input type="checkbox" id="vehicle_prd_${products[i]["product_idx"]}" data-id="${products[i]["product_idx"]}" name="" 
-                            ${product_arr.includes(products[i]["product_idx"]) ? "checked" : ""} onchange="handleSelectVehicle(this)">
-                        <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd_${products[i]["product_idx"]}"></label>
+                        <input type="hidden" id="minium_people_cnt_${products[i]["cs_idx"]}" value="${minium_people_cnt}">
+                        <input type="hidden" id="total_people_cnt_${products[i]["cs_idx"]}" value="${total_people_cnt}">
+                        <input type="checkbox" id="vehicle_prd_${products[i]["cs_idx"]}" data-id="${products[i]["cs_idx"]}" name="" 
+                            ${product_arr.includes(products[i]["cs_idx"]) ? "checked" : ""} onchange="handleSelectVehicle(this)">
+                        <label class="vehicle_options__label__vehicle_prd" for="vehicle_prd_${products[i]["cs_idx"]}"></label>
                         <button>상품담기</button>
                     </div>
                 </td>
@@ -604,7 +610,7 @@
         $("#product_vehicle_list").html(product_list);
     }
     function handleFetch() {
-        let child_code = $(this).val();
+        let child_code = $(".section_vehicle_2_2__airport input[type='radio']:checked").val();
         let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
         let departure_code = $("#departure_area").val();
         let destination_code = $("#destination_area").val();
@@ -672,6 +678,7 @@
         let totalPrice = 0;
         let totalPriceBaht = 0;
         let totalCnt = 0;
+        let arr_cnt = [];
         $("#product_vehicle_list_selected > tr").each(function() {
             
             const price = Number($(this).data("price")) ?? 0;
@@ -681,8 +688,12 @@
             totalPrice += price * cnt;
             totalPriceBaht += price_baht * cnt;
             totalCnt += cnt;
-        })
+            arr_cnt.push(cnt);
+        });
 
+        $("#inital_price").val(totalPrice);
+        $("#order_price").val(totalPrice);
+        $("#product_cnt_arr").val(arr_cnt.join(","));
         $("#total_cnt").text(totalCnt);
         $("#all_price").text(totalPrice.toLocaleString('ko-KR'));
         $("#all_price_baht").text(totalPriceBaht.toLocaleString('ko-KR'));
@@ -750,11 +761,20 @@
                 product_arr.push(id);
             }
             
-        } else {
+        } else {   
+            console.log(product_arr);
+            
             $(`#product_vehicle_list_selected .product_${id}`).remove();
-            product_arr.splice(product_arr.indexOf(id), 1);
+            const index = product_arr.map(String).indexOf(String(id));
+            if (index !== -1) {
+                product_arr.splice(index, 1);
+            }
+            // product_arr.splice(product_arr.indexOf(id), 1);
         }
         $("#product_arr").val(product_arr.join(","));
+
+        console.log(id);
+        console.log(product_arr);
 
         calculatePrice();
     }
@@ -823,9 +843,19 @@
     });
 
     $(".btn_submit").on("click", function() {
+
+        <?php
+            if (empty(session()->get("member")["id"])) {
+        ?>
+            alert("주문하시려면 로그인해주세요");
+            return false;
+        <?php
+            }
+        ?>
+
         var frm = document.frmCar;
+
         if(frm.departure_area.value == ""){
-            
             alert("출발지역 선택해주세요!");
             return false;
         }
@@ -860,7 +890,22 @@
             return false;
         }
 
-        frm.submit();
+        $.ajax({
+            url: "/vehicle-guide/vehicle-order",
+            type: "POST",
+            data: $("#frmCar").serialize(),
+            error: function (request, status, error) {
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            }
+            , success: function (response, status, request) {
+                if (response.result == true) {
+                    alert(response.message);
+                    window.location.href = '/product/completed-order';
+                } else {
+                    alert(response.message);
+                }
+            }
+        });
         
     });
 </script>
