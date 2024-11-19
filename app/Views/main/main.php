@@ -375,7 +375,7 @@
                 </div>
                 <div class="best_list best_list_2 hidden">
                     <?php foreach ($list1_2 as $item1_2): ?>
-                    <a href="#!" class="best_list_item">
+                    <a href="/product-hotel/hotel-detail/<?=$item1_2['product_idx']?>" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/data/hotel/<?=$item1_2['ufile1']?>" alt="main">
                         </div>
