@@ -268,7 +268,7 @@ class ReservationController extends BaseController
         }
 
         if ($gubun == 'spa') {
-            $data['option'] = $this->orderOptionModel->getOption($order_idx, '')[0];
+            $data['option_order'] = $this->orderOptionModel->getOption($order_idx, 'spa');
         }
 
         return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
