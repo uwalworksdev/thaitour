@@ -76,7 +76,7 @@
                                         <button class="btn_minus">
                                             <img src="/images/ico/ico_minus1.png" alt="">
                                         </button>
-                                        <input type="text" class="pickup_amount__num" name="people_adult_cnt" value="1" min="0">
+                                        <input type="text" class="pickup_amount__num" name="adult_cnt" value="1" min="0">
                                         <button class="btn_plus">
                                             <img src="/images/ico/ico_plus1.png" alt="">
                                         </button>
@@ -88,7 +88,7 @@
                                         <button class="btn_minus">
                                             <img src="/images/ico/ico_minus1.png" alt="">
                                         </button>
-                                        <input type="text" class="pickup_amount__num" name="people_child_cnt" value="1" min="0">
+                                        <input type="text" class="pickup_amount__num" name="child_cnt" value="1" min="0">
                                         <button class="btn_plus">
                                             <img src="/images/ico/ico_plus1.png" alt="">
                                         </button>
@@ -282,11 +282,14 @@
                     </div>
                 </div>
                 <div class="section_vehicle_2_7__body">
-                    <form action="" method="post">
+                    <form action="/vehicle-guide/vehicle-order" name="frmCar" id="frmCar" method="post">
                         <input type="hidden" name="product_code" id="product_code" value="<?=$first_code_no?>">
                         <input type="hidden" name="product_arr" id="product_arr" value="">
                         <input type="hidden" name="departure_area" id="departure_area" value="">
                         <input type="hidden" name="destination_area" id="destination_area" value="">
+                        <input type="hidden" name="meeting_date" id="meeting_date" value="">
+                        <input type="hidden" name="adult_cnt" id="adult_cnt" value="">
+                        <input type="hidden" name="child_cnt" id="child_cnt" value="">
                         <table>
                             <colgroup>
                                 <col width="150px" >
@@ -391,15 +394,18 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="section_vehicle_2_7__btn_wrap">
+                            <button class="btn_add_cart" onclick="window.location.href='/cart/item-list/123'">
+                                장바구니담기
+                            </button>
+                            <!-- <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
+                                상품 예약하기
+                            </button> -->
+                            <button class="btn_submit" type="button">
+                                상품 예약하기
+                            </button>
+                        </div>
                     </form>
-                    <div class="section_vehicle_2_7__btn_wrap">
-                        <button class="btn_add_cart" onclick="window.location.href='/cart/item-list/123'">
-                            장바구니담기
-                        </button>
-                        <button class="btn_submit" onclick="window.location.href='/product/completed-order'">
-                            상품 예약하기
-                        </button>
-                    </div>
                 </div>
             </section>
         </div>
@@ -545,7 +551,7 @@
 
             const price_baht_str = Math.round(products[i]["car_price_baht"]);
 
-            let product_arr = $("#product_arr").val().split(",");
+            let product_arr = $("#product_arr").val().split(",").filter(Boolean);
 
             product_list += 
             `<tr class="product_${products[i]["product_idx"]}" data-price="${price_str}" data-price_baht="${price_baht_str}" data-code="${code_no}">
@@ -730,7 +736,7 @@
             $("#product_code").val(current_code);
         }
 
-        let product_arr = $("#product_arr").val().split(",");
+        let product_arr = $("#product_arr").val().split(",").filter(Boolean);
 
         if($(e).is(":checked")) {
 
@@ -786,12 +792,13 @@
             const dayOfWeek = daysOfWeek[date.getDay()];
 
             $("#departure_date_text").text(`${year}.${month}.${day}(${dayOfWeek})`);
-            $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`)
+            $(".meeting_time__date").text(`${date.getFullYear()}-${month}-${day}(${dayOfWeek})`);
+            $("#meeting_date").val(`${date.getFullYear()}-${month}-${day}`);
         }
     });
     $("#place_chosen__people").on("click", function() {
         $(".place_chosen__people_pop").toggle();
-    })
+    });
     $(".btn_minus").on("click", function() {
         const val = Number($(this).parent().find("input").val()) || 1;
         if(val === 1) {
@@ -800,19 +807,62 @@
         if(val > 0) {
             $(this).parent().find("input").val(val - 1);
         }
-    })
+    });
     $(".btn_plus").on("click", function() {
         const val = Number($(this).parent().find("input").val()) || 1;
         $(this).parent().find("input").val(val + 1);
         $(this).parent().find(".btn_minus").attr("disabled", false);
-    })
+    });
     $("#btn_pickup_people").on("click", function() {
         $(".pickup_amount__num").each(function() {
             const name = $(this).attr("name");
-            $("#" + name).text($(this).val());
+            $("#people_" + name).text($(this).val());
+            $("#" + name).val($(this).val());
         })
         $(".place_chosen__people_pop").hide();
-    })
+    });
+
+    $(".btn_submit").on("click", function() {
+        var frm = document.frmCar;
+        if(frm.departure_area.value == ""){
+            
+            alert("출발지역 선택해주세요!");
+            return false;
+        }
+
+        if(frm.destination_area.value == ""){
+            alert("출발지역 선택해주세요!");
+            return false;
+        }
+
+        if(frm.departure_area.value == frm.destination_area.value) {
+            alert("동일하지 않은 출발지와 도착지를 선택하세요.");
+            return false;
+        }
+
+        if(!frm.adult_cnt.value) {
+            alert("소아 선택해주세요!");
+            return false;
+        }
+
+        if(frm.product_arr.value == ""){
+            alert("제품을 선택해주세요!");
+            return false;
+        }
+
+        if(frm.phone1.value == "" || frm.phone2.value == "" || frm.phone3.value == ""){
+            alert("전화번호 입력해주세요!");
+            return false;
+        }
+
+        if(frm.email_name.value == "" || frm.email_host.value == ""){
+            alert("이메일 입력해주세요!");
+            return false;
+        }
+
+        frm.submit();
+        
+    });
 </script>
 
 <script>
