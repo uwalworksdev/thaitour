@@ -870,3 +870,15 @@ function get_rand_num($size)
     }
     return $rand_str;
 }
+
+function img_link($code)
+{
+	if($code == "1303") $link = "hotel";
+	if($code == "1325") $link = "hotel";
+	if($code == "1317") $link = "hotel";
+	if($code == "1320") $link = "hotel";
+	if($code == "1301") $link = "product";
+	if($code == "1302") $link = "product";
+    return $link;
+
+}
