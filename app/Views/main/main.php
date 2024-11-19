@@ -917,7 +917,7 @@
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
-                                    <div class="prd_name">아난타라 시암 방콕 호텔</div>
+                                    <div class="prd_name"><?=$item4['product_name']?></div>
                                     <div class="prd_description">
                                         연박 프로모션 "3박 이상시 룸 업그레이드...
                                     </div>
@@ -927,7 +927,7 @@
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
-                                    <div class="prd_price_ko">236,100<span>원</span></div>
+                                    <div class="prd_price_ko"><?= number_format($item4['original_price']) ?><span>원</span></div>
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
