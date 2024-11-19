@@ -11,8 +11,11 @@
 	$list_m = $Bbs->List("banner", ["category" => "16"])->findAll();
 
 	// 취향저격 더투어랩 Best
-	$MainDisp = model("MainDispModel");
+	$MainDisp = model("MainDispModel"); // 방콕
 	$list1_1  = $MainDisp->List("290401")->findAll();
+
+	$MainDisp = model("MainDispModel"); // 파타야
+	$list1_2  = $MainDisp->List("290402")->findAll();
 
     // 1주일간 예약순위 : 호텔
 	$MainDisp = model("MainDispModel");
@@ -371,16 +374,17 @@
                     </a-->
                 </div>
                 <div class="best_list best_list_2 hidden">
+                    <?php foreach ($list1_2 as $item1_2): ?>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_5.png" alt="main">
+                            <img src="/data/hotel/<?=$item1_2['ufile1']?>" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
                             <li class="breadcrumb_item">시암</li>
                         </ul>
                         <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
+                            <?=$item1_2['product_name']?>
                         </div>
                         <div class="prd_info">
                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -388,13 +392,15 @@
                             <span class="star_review_cnt">(954)</span>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span>
+                            <?= number_format($item1_2['original_price']) ?> <span>원</span>
                         </div>
                         <div class="prd_price_thai">
                             6,000 <span>바트</span>
                         </div>
                     </a>
-                    <a href="#!" class="best_list_item">
+                    <?php endforeach; ?>
+
+                    <!--a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_6.png" alt="main">
                         </div>
@@ -507,8 +513,8 @@
                         </div>
                         <!-- <div class="prd_price_thai">
                             6,000 <span>바트</span>
-                        </div> -->
-                    </a>
+                        </div>
+                    </a-->
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_3.png" alt="main">
