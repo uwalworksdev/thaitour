@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use App\Libraries\SessionChk;
 use Config\CustomConstants as ConfigCustomConstants;
-use Exception;
-use TravelContactModel;
 
 class MyPage extends BaseController
 {
@@ -19,6 +17,7 @@ class MyPage extends BaseController
     private $orderSubModel;
     private $golfOptionModel;
     private $orderOptionModel;
+
     public function __construct()
     {
         helper(['html']);
@@ -260,6 +259,7 @@ class MyPage extends BaseController
                 );
         }
     }
+
     public function member_out()
     {
         return view('mypage/member_out');
@@ -277,17 +277,77 @@ class MyPage extends BaseController
 
         $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
 
-        if(!empty($gubun)) {
+        $connect = db_connect();
+        $private_key = private_key();
+
+        if ($_SESSION["member"]["mIdx"] == "") {
+            alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+            exit();
+        }
+
+        $order_idx = updateSQ($_GET["order_idx"]);
+        $pg = updateSQ($_GET["pg"]);
+
+        $sql = "select * from tbl_order_mst a
+	                           left join tbl_member b on a.m_idx = b.m_idx 
+							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
+
+        $row = $connect->query($sql)->getRowArray();
+
+        $sql_d = "SELECT AES_DECRYPT(UNHEX('{$row['local_phone']}'),       '$private_key') local_phone ";
+
+        $row_d = $connect->query($sql_d)->getRowArray();
+
+        $row['local_phone'] = $row_d['local_phone'];
+
+        $tour_period = $row["tour_period"];
+        $order_memo = $row['order_memo'];
+
+        $home_depart_date = $row['home_depart_date'];
+        $away_arrive_date = $row['away_arrive_date'];
+        $away_depart_date = $row['away_depart_date'];
+        $home_arrive_date = $row['home_arrive_date'];
+
+        $start_date = $row['start_date'];
+
+        $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
+									   , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
+									   , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
+									   , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
+        $row_d = $connect->query($sql_d)->getRowArray();
+
+        $data['row'] = $row;
+
+        $data['tour_period'] = $tour_period;
+        $data['order_memo'] = $order_memo;
+        $data['home_depart_date'] = $home_depart_date;
+        $data['away_arrive_date'] = $away_arrive_date;
+        $data['away_depart_date'] = $away_depart_date;
+        $data['home_arrive_date'] = $home_arrive_date;
+        $data['start_date'] = $start_date;
+        $data['row_d'] = $row_d;
+
+        $data['pg'] = $pg;
+
+        $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
+
+        if (!empty($gubun)) {
 
             if ($gubun == "golf") {
                 $option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
                 $data['option'] = $this->golfOptionModel->getByIdx($option_idx);
             }
 
+            if ($gubun == "spa") {
+                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, 'spa');
+            }
+
             return view("mypage/invoice_view_item_{$gubun}", $data);
-        } else {
-            return view('mypage/invoice_view_item');
         }
+
+        return view('mypage/invoice_view_item');
 
     }
 
