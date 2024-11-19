@@ -661,7 +661,7 @@
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/data/hotel/<?=$item2['ufile1']?>" alt="main">
+                                    <img src="/data/product/<?=$item2['ufile1']?>" alt="main">
                                 </div>
                                 <div class="prd_name"><?=$item2['product_name']?></div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
