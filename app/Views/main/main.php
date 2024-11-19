@@ -797,6 +797,7 @@
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
                     <div class="swiper-wrapper">
 
+                        <?php foreach ($list3 as $item3): ?>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
@@ -808,6 +809,7 @@
                                 <span class="number_item_label number_one">1</span>
                             </div>
                         </div>
+                        <?php endforeach; ?>
 
                         <!--div class="swiper-slide">
                             <div class="hot_product_list__item">
