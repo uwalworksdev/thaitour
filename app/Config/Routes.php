@@ -316,6 +316,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_bbsBanner", static function ($routes) {
         $routes->get("list", "Admin\AdminBbsBannerController::list");
         $routes->get("write", "Admin\AdminBbsBannerController::write");
+        $routes->post("code_change", "Admin\AdminBbsBannerController::banner_change", ['as' => "admin.api.banner.banner_change"]);
     });
 
     $routes->group("_codeBanner", static function ($routes) {
