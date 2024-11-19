@@ -36,7 +36,7 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
+                                <a href="/AdmMaster/_reservation/list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                             class="txt">리스트</span></a></li>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
@@ -91,6 +91,7 @@
                 <input type=hidden name="deposit_date" value='<?= $deposit_date ?>'>
                 <input type=hidden name="order_confirm_date" value='<?= $order_confirm_date ?>'>
                 <input type=hidden name="paydate" value='<?= $paydate ?>'>
+                <input type=hidden name="idx_tour" value='<?= $tour_orders['idx'] ?>'>
 
 
                 <div id="contents">
@@ -124,22 +125,13 @@
                                     <th>일정</th>
                                     <td>
                                         <?php 
-                                            if(!empty($start_date) && !empty($end_date)){
+                                            if(!empty($order_date)){
                                         ?>
-                                            <?= str_replace("-", ".", $start_date) ?>
-                                            ~
-                                            <?= str_replace("-", ".", $end_date) ?>
-                                            <input type=hidden name="start_date" value='<?= $start_date ?>'>
-                                            <input type=hidden name="end_date" value='<?= $end_date ?>'>
+                                            <?= str_replace("-", ".", $order_date) ?>
+                                            <input type=hidden name="order_date" value='<?= $order_date ?>'>
                                         <?php 
                                             }
                                         ?>
-                                        <?php
-                                            if(!empty($home_depart_date) && !empty($away_arrive_date) && !empty($away_depart_date) && !empty($home_arrive_date)){
-                                        ?>
-                                            (한국출발 <?= $home_depart_date ?> ~ <?= $away_arrive_date ?>
-                                            현지출발 <?= $away_depart_date ?> ~ <?= $home_arrive_date ?>)
-                                        <?php } ?>
                                     </td>
                                     <th>기간</th>
                                     <td>
@@ -188,21 +180,27 @@
                                         <?php } ?>
                                     </td>
                                 </tr>
-                                
+
                                 <tr>
                                     <th>유아신청</th>
                                     <td>
-                                        <?php if ($people_baby_price > 0) { ?>
-                                            <?= $people_baby_cnt ?>명    X <?= number_format($people_baby_price) ?>원 = <?= number_format($people_baby_price * $people_baby_cnt) ?>원
-                                        <?php } else { ?>
-                                            0원
-                                        <?php } ?>
+                                        <?= $people_baby_cnt ?>명
+                                        X
+                                        <?= number_format($people_baby_price) ?>원
+                                        = <?= number_format($people_baby_price * $people_baby_cnt) ?>원
                                     </td>
-                                    <th>유류비</th>
+                                    <th>전체 옵션</th>
                                     <td>
-                                        <?= $people_adult_cnt + $people_kids_cnt ?>명 X <?= number_format($oil_price) ?>원
-                                        = <?= number_format(($people_adult_cnt + $people_kids_cnt) * $oil_price) ?>원
-                                    </td>
+                                    <?php if (!empty($tour_option)): ?>
+                                        <?php 
+                                        $first = true; 
+                                        foreach ($tour_option as $option): ?>
+                                            <?php if (!$first): ?> + <?php endif; ?>
+                                            <?= $option['option_name']?>: <?= number_format($option['option_price']) ?>명
+                                            <?php $first = false; ?>
+                                        <?php endforeach; ?>
+                                        = <?= number_format($total_price) ?>명
+                                    <?php endif; ?>
                                 </tr>
 
                                 <?php if ($used_coupon_idx != "" && isset($order_idx) && $order_idx != "") { ?>
@@ -238,16 +236,11 @@
                                         +
                                         <?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
                                         +
-                                        <?= number_format((($people_adult_cnt + $people_kids_cnt) * $oil_price)) ?>
-                                        원(유류비)
-                                        -
-                                        <?= number_format($used_coupon_money) ?>원(할인쿠폰)
-                                        -
-                                        <?= number_format($used_mileage_money) ?>원(마일리지사용)
+                                        <?= number_format($total_price) ?>
+                                        옵션
                                         = <?= number_format( ($people_adult_price * $people_adult_cnt) +
                                                                 ($people_kids_price * $people_kids_cnt) +
-                                                                ($people_baby_price * $people_baby_cnt) + ((($people_adult_cnt + $people_kids_cnt) * $oil_price)) 
-                                                                - $used_coupon_money - $used_mileage_money) ?>
+                                                                ($people_baby_price * $people_baby_cnt) + $total_price ) ?>
                                         원
 
                                     </td>
@@ -369,7 +362,7 @@
                                     }
                                 </script>
 
-                                <tr>
+                                <!-- <tr>
                                     <th>담당자</th>
                                     <td colspan="1">
                                         <input type="text" id="manager_name" name="manager_name"
@@ -387,7 +380,7 @@
                                                class="input_txt" readonly style="width:150px; border: none	;"/>
                                     </td>
 
-                                </tr>
+                                </tr> -->
                                 <?php if ($order_status == "Y") { ?>
                                     <tr>
                                         <th>부여된마일리지</th>
@@ -400,18 +393,31 @@
                                         </td>
                                     </tr>
                                 <?php } ?>
-                                <tr style="height:100px">
-                                    <th>요청사항</th>
-                                    <td colspan="3">
-                                        <textarea id="custom_req" name="custom_req" class="input_txt"
-                                                  style="width:90%;height:100px"><?php echo $custom_req ? $custom_req : $order_memo ?></textarea>
+                                <tr>
+                                    <th>미팅장소</th>
+                                    <td>
+                                        <input type="text" name="start_place" value="<?= $tour_orders['start_place'] ?>">
+                                    </td>
+                                    <th>미팅 시간</th>
+                                    <td>
+                                        <input type="text" name="metting_time" value="<?= $tour_orders['metting_time'] ?>">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>종료 후 내리실 곳</th>
+                                    <td>
+                                        <input type="text" name="end_place" value="<?= $tour_orders['end_place'] ?>">
+                                    </td>
+                                    <th>카카오톡 아이디</th>
+                                    <td>
+                                        <input type="text" name="id_kakao" value="<?= $tour_orders['id_kakao'] ?>">
                                     </td>
                                 </tr>
                                 <tr style="height:100px">
-                                    <th>관리자 메모</th>
+                                    <th>기타 요청</th>
                                     <td colspan="3">
-                                        <textarea id="admin_memo" name="admin_memo" class="input_txt"
-                                                  style="width:90%;height:100px"><?= $admin_memo ?></textarea>
+                                        <textarea id="description" name="description" class="input_txt"
+                                                  style="width:90%;height:100px"><?php echo $tour_orders['description'] ? $tour_orders['description'] : '' ?></textarea>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -423,28 +429,20 @@
                                 <caption>
                                 </caption>
                                 <colgroup>
-                                    <col width="7%"/>
                                     <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="12%"/>
-                                    <col width="8%"/>
-                                    <col width="7%"/>
-                                    <col width="11%"/>
-                                    <col width="5%"/>
+                                    <col width="18%"/>
+                                    <col width="18%"/>
+                                    <col width="18%"/>
+                                    <col width="18%"/>
+                                    <col width="18%"/>
                                 </colgroup>
                                 <tbody>
                                 <tr>
                                     <th style="text-align:center">구분</th>
-                                    <th style="text-align:center">한글명</th>
-                                    <th style="text-align:center">영문성</th>
-                                    <th style="text-align:center">영문이름</th>
-                                    <th style="text-align:center">여권파일</th>
-                                    <th style="text-align:center">이메일</th>
-                                    <th style="text-align:center">여권만료일</th>
+                                    <th style="text-align:center">여권 영문명</th>
                                     <th style="text-align:center">생년월일</th>
-                                    <th style="text-align:center">휴대폰번호</th>
+                                    <th style="text-align:center">한국번호</th>
+                                    <th style="text-align:center">이메일 주소</th>
                                     <th style="text-align:center">성별</th>
                                 </tr>
                                 <?php
@@ -469,47 +467,21 @@
                                                 }
                                             ?>
                                         </td>
-                                        <td style="text-align:center"><input type="text" name="order_name_kor[]"
-                                                                             value="<?= $frow["order_name_kor"] ?>"
-                                                                             class="order_name_kor input_txt"
+                                        <td style="text-align:center"><input type="text" name="order_full_name[]"
+                                                                             value="<?= $frow["order_full_name"] ?>"
+                                                                             class="order_full_name input_txt"
                                                                              style="width:90%"/></td>
-                                        <td style="text-align:center"><input type="text" name="order_first_name[]"
-                                                                             value="<?= $frow["order_first_name"] ?>"
-                                                                             class="order_first_name input_txt"
-                                                                             style="width:90%"/></td>
-                                        <td style="text-align:center"><input type="text" name="order_last_name[]"
-                                                                             value="<?= $frow["order_last_name"] ?>"
-                                                                             class="order_last_name input_txt"
-                                                                             style="width:90%"/></td>
-                                        <td style="text-align:center">
-                                            <div class="flex__c">
-                                                <input type="text" value="<?= $frow["rfile"] ?>"
-                                                       class="passport_num input_txt" style="width:90%"/>
-                                                <?php
-                                                if ($frow['ufile']) {
-                                                    echo '<img width="16px" height="16px" onclick="handleShowImgPop(`/data/tour/' . $frow['ufile'] . '`)" style="cursor: pointer;margin-left: 5px" src="/AdmMaster/_images/content/icon_file.png" alt=""/>';
-                                                } else {
-                                                    echo '<img width="16px" height="16px"  style="visibility:hidden;margin-left: 5px" src="/AdmMaster/_images/content/icon_file.png" alt=""/>';
-                                                }
-                                                ?>
-                                            </div>
-                                        </td>
-                                        <td style="text-align:center"><input type="text" name="order_email[]"
-                                                                             value="<?= $frow["order_email"] ?>"
-                                                                             class="order_email input_txt"
-                                                                             style="width:90%"/></td>
-                                        <td style="text-align:center">
-                                            <input type="text" name="passport_date[]"
-                                                   value="<?= $frow["passport_date"] ?>"
-                                                   class="passport_date input_txt datepicker" style="width:110px"/>
-                                        </td>
                                         <td style="text-align:center"><input type="text" name="order_birthday[]"
                                                                              value="<?= $frow["order_birthday"] ?>"
                                                                              class="order_birthday input_txt datepicker"
                                                                              style="width:110px" maxlength="10"/></td>
                                         <td style="text-align:center"><input type="text" name="order_mobile[]"
-                                                                             value="<?= $frow["order_mobile"] ?>"
-                                                                             class="order_mobile input_txt"
+                                                                            value="<?= $frow["order_mobile"] ?>"
+                                                                            class="order_mobile input_txt"
+                                                                            style="width:90%"/></td>
+                                        <td style="text-align:center"><input type="text" name="order_email[]"
+                                                                             value="<?= $frow["order_email"] ?>"
+                                                                             class="order_email input_txt"
                                                                              style="width:90%"/></td>
                                         <td style="text-align:center">
                                             <select name="order_sex[]" class="select_txt order_sex" style="width:50px">
@@ -535,7 +507,7 @@
                                 <li class="left"></li>
                                 <li class="right_sub">
 
-                                    <a href="list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
+                                    <a href="/AdmMaster/_reservation/list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                        class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
                                                 class="txt">리스트</span></a>
                                     <?php if ($order_idx == "") { ?>

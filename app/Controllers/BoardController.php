@@ -514,6 +514,7 @@ class BoardController extends BaseController
         $b_level = updateSQ($this->request->getPost('b_level'));
         $wdate = updateSQ($this->request->getPost('wdate'));
         $files = $this->request->getFiles();
+		write_log("files- ". $files);
         $member = session('member') ?? [];
 
         $user_id = $member["id"];
@@ -556,22 +557,24 @@ class BoardController extends BaseController
                         $ext = explode(".", strtolower($fileName));
                         $newName = $date . $timestamp . '.' . $ext[1];
                         ${"ufile_" . $i} = $newName;
-
+                        write_log($i ." - ". $uploadPath ." - ". $newName); 
                         $file->move($uploadPath, $newName);
                     }
                 }
 
-                if ($bbs_idx) {
+                if ($bbs_idx && ${"ufile_" . $i} && ${"rfile_" . $i}) {
                     $sql = "
                         UPDATE tbl_bbs_list SET
                         ufile" . $i . "='" . ${"ufile_" . $i} . "',
                         rfile" . $i . "='" . ${"rfile_" . $i} . "'
                         WHERE bbs_idx='$bbs_idx';
                     ";
+					write_log("1- ". $sql);
                     $db->query($sql);
                 }
             }
         }
+
         if ($mode == "reply") {
             $sql = "update tbl_bbs_list set b_step = b_step + 1 where b_ref = '$b_ref' and b_step > $b_step";
             $db->query($sql);

@@ -1443,7 +1443,76 @@ class Product extends BaseController
 
     public function golfList($code_no)
     {
-        return $this->renderView('product/golf/list-golf');
+        $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
+
+        $green_peas = $this->request->getGet('green_peas');
+        $sports_days = $this->request->getGet('sports_days');
+        $slots = $this->request->getGet('slots');
+        $golf_course_odd_numbers = $this->request->getGet('golf_course_odd_numbers');
+        $travel_times = $this->request->getGet('travel_times');
+        $carts = $this->request->getGet('carts');
+        $facilities = $this->request->getGet('facilities');
+        $pg = $this->request->getGet('pg') ?? 1;
+
+        foreach ($filters as $key => $filter) {
+            $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
+            if ($filter['code_no'] == 4501) $filters[$key]['filter_name'] = "green_peas";
+            if ($filter['code_no'] == 4502) $filters[$key]['filter_name'] = "sports_days";
+            if ($filter['code_no'] == 4503) $filters[$key]['filter_name'] = "slots";
+            if ($filter['code_no'] == 4504) $filters[$key]['filter_name'] = "golf_course_odd_numbers";
+            if ($filter['code_no'] == 4505) $filters[$key]['filter_name'] = "travel_times";
+            if ($filter['code_no'] == 4506) $filters[$key]['filter_name'] = "carts";
+            if ($filter['code_no'] == 4507) $filters[$key]['filter_name'] = "facilities";
+        }
+
+        $green_peas = array_filter(explode(",", $green_peas));
+        $sports_days = array_filter(explode(",", $sports_days));
+        $slots = array_filter(explode(",", $slots));
+        $golf_course_odd_numbers = array_filter(explode(",", $golf_course_odd_numbers));
+        $travel_times = array_filter(explode(",", $travel_times));
+        $carts = array_filter(explode(",", $carts));
+        $facilities = array_filter(explode(",", $facilities));
+
+        $products = $this->productModel->findProductGolfPaging([
+            'product_code_1'            => 1302,
+            'green_peas'                => $green_peas,
+            'sports_days'               => $sports_days,
+            'slots'                     => $slots,
+            'golf_course_odd_numbers'   => $golf_course_odd_numbers,
+            'travel_times'              => $travel_times,
+            'carts'                     => $carts,
+            'facilities'                => $facilities,
+        ], 10, $pg, []);
+
+
+        foreach ($products['items'] as $key => $product) {
+
+            $code = $product['product_code_1'];
+            if ($product['product_code_2']) $code = $product['product_code_2'];
+            if ($product['product_code_3']) $code = $product['product_code_3'];
+
+            $codeTree = $this->codeModel->getCodeTree($product['product_code_1']);
+
+            $products['items'][$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $products['items'][$key]['total_review'] = $productReview['total_review'];
+            $products['items'][$key]['review_average'] = $productReview['avg'];
+        }
+
+        return $this->renderView('product/golf/list-golf', [
+            'filters'                   => $filters,
+            'code_no'                   => $code_no,
+            'green_peas'                => $green_peas,
+            'sports_days'               => $sports_days,
+            'slots'                     => $slots,
+            'golf_course_odd_numbers'   => $golf_course_odd_numbers,
+            'travel_times'              => $travel_times,
+            'carts'                     => $carts,
+            'facilities'                => $facilities,
+            'products'                  => $products
+        ]);
     }
 
     public function golfDetail($product_idx)
@@ -1451,6 +1520,9 @@ class Product extends BaseController
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
 
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+        if (!$data['product']) {
+            return view('errors/html/error_404');
+        }
         $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
         $data['product']['total_review'] = $productReview['total_review'];
@@ -1854,7 +1926,6 @@ class Product extends BaseController
             $data['people_kids_price'] = $data['people_kids_price'];
             $data['people_baby_price'] = $data['people_baby_price'];
             $data['order_price'] = $data['final_price'];
-
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
@@ -1872,6 +1943,7 @@ class Product extends BaseController
                 }
 
                 $companion_email = $data['email_1'][$key] . "@" . $data['email_2'][$key] ?? '';
+                $order_mobile = $data['phone_1'][$key] . "-" . $data['phone_2'][$key] . "-" . $data['phone_3'][$key] ?? '';
                 $this->orderSubModel->insert([
                     'order_gubun' => $orderGubun,
                     'order_idx' => $order_idx,
@@ -1879,13 +1951,18 @@ class Product extends BaseController
                     'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
                     'order_sex' => $data['companion_gender'][$key],
                     'order_birthday' => $data['order_birthday'][$key],
+                    'order_mobile' => encryptField($order_mobile, 'encode'),
                     'order_email' => encryptField($companion_email, 'encode'),
                 ]);
             }
 
+            $optionsIdx = $this->request->getPost('option_idx');
+            $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
+
             $orderTourData = [
                 'tours_idx' => $this->request->getPost('tours_idx'),
                 'order_idx' => $order_idx,
+                'options_idx' => $optionsIdxString,
                 'product_idx' => $data['product_idx'],
                 'start_place' => $this->request->getPost('start_place'),
                 'metting_time' => $this->request->getPost('metting_time'),
@@ -1900,17 +1977,21 @@ class Product extends BaseController
             return $this->response->setBody("
                 <script>
                     alert('주문되었습니다');
-                    parent.location.href = '/product-golf/completed-order';
+                    parent.location.href = '/product-tours/completed-order';
                 </script>
             ");
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
                         alert('주문되지 않습니다');
-                        parent.location.reload();
                     </script>
                 ");
         }
+    }
+
+    public function tourCompletedOrder()
+    {
+        return $this->renderView('product/completed-order', ['return_url' => '/']);
     }
 
     public function index8($product_idx)
@@ -2156,6 +2237,10 @@ class Product extends BaseController
         $session = Services::session();
         $data = $session->get('data_cart');
 
+        if (empty($data)) {
+            return redirect()->to('/');
+        }
+
         $product_idx = $data['product_idx'];
         $day_ = $data['day_'];
         $member_idx = $data['member_idx'];
@@ -2165,9 +2250,7 @@ class Product extends BaseController
 
         $totalPrice = $data['totalPrice'];
 
-        $sql = 'SELECT * FROM tbl_product_mst WHERE product_idx = ' . $product_idx;
-        $result = $this->db->query($sql);
-        $prod = $result->getRowArray();
+        $prod = $this->productModel->getById($product_idx);
 
         $builder = $this->db->table('tbl_tours_moption');
         $builder->where('product_idx', $product_idx);
@@ -2206,7 +2289,7 @@ class Product extends BaseController
                 return $this->response->setJSON([
                     'result' => false,
                     'message' => $message
-                ], 401);
+                ], 400);
             }
             $adultQty = $_POST['adultQty'];
             $childrenQty = $_POST['childrenQty'];
@@ -2218,6 +2301,7 @@ class Product extends BaseController
             $option_qty = $_POST['option_qty'];
             $option_cnt = $_POST['option_cnt'];
             $option_name = $_POST['option_name'];
+            $option_price = $_POST['option_price'];
 
             $data = [
                 'product_idx' => $product_idx,
@@ -2229,6 +2313,7 @@ class Product extends BaseController
                 'option_idx' => $option_idx,
                 'option_qty' => $option_qty,
                 'option_tot' => $option_tot,
+                'option_price' => $option_price,
                 'option_cnt' => $option_cnt,
                 'option_name' => $option_name
             ];

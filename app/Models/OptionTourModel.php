@@ -10,5 +10,9 @@ class OptionTourModel extends Model
 
     protected $allowedFields = ['code_idx' , 'product_idx', 'option_name', 'option_price', 'option_cnt', 'use_yn', 'afile', 'bfile', 'option_type', 'onum', 'rdate'];
 
+    public function findOptionIdx($idx)
+    {
+        return $this->where('idx', $idx)->findAll();
+    }
 
 }

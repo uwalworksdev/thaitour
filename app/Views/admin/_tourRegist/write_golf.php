@@ -160,7 +160,7 @@
                                 <tr>
                                     <th>상품분류</th>
                                     <td>
-                                        <select id="product_code_1" class="input_select"
+                                        <select id="product_code_1" name="product_code_1" class="input_select"
                                                 onchange="javascript:get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <?php
@@ -182,7 +182,7 @@
                                             <?php endforeach; ?>
 
                                         </select>
-                                        <select id="product_code_2" class="input_select"
+                                        <select id="product_code_2" name="product_code_2" class="input_select"
                                                 onchange="javascript:get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                             <?php
@@ -203,7 +203,7 @@
 
                                             <?php endforeach; ?>
                                         </select>
-                                        <select id="product_code_3" class="input_select">
+                                        <select id="product_code_3" name="product_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                             <?php
                                             foreach ($fresult3 as $frow):

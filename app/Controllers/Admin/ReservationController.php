@@ -18,6 +18,8 @@ class ReservationController extends BaseController
     private $codeModel;
     private $paymentHistModel;
     private $orderOptionModel;
+    private $orderTours;
+    private $optionTours;
 
 
     public function __construct()
@@ -28,6 +30,8 @@ class ReservationController extends BaseController
         $this->orderOptionModel = model("OrderOptionModel");
         $this->codeModel = model("Code");
         $this->paymentHistModel = model("PaymentHist");
+        $this->orderTours = model("OrderTourModel");
+        $this->optionTours = model("OptionTourModel");
         $this->connect = Config::connect();
         helper('my_helper');
         helper('alert_helper');
@@ -243,11 +247,28 @@ class ReservationController extends BaseController
             "used_coupon_no" => $used_coupon_no,
         ];
 
+        
         if($gubun == 'golf') {
             $data['option'] = $this->orderOptionModel->getOption($order_idx, 'main')[0];
             $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
         }
+        if($gubun == 'tour') {
+            $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
+            $optionsIdx = $data['tour_orders']['options_idx'];
 
+            $options_idx = explode(',', $optionsIdx); 
+
+            $data['tour_option'] = [];
+            $data['total_price'] = 0;
+            foreach ($options_idx as $idx) {
+                $optionDetail = $this->optionTours->find($idx); 
+                if ($optionDetail) {
+                    $data['tour_option'][] = $optionDetail; 
+                    $data['total_price'] += $optionDetail['option_price'];
+                }
+            }
+        }
+        
         return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
     }
 
@@ -302,6 +323,25 @@ class ReservationController extends BaseController
                 ];
 
                 $this->orderSubModel->update($gl_idx[$i], $data_sub);
+            }
+
+            $idx = $data['idx_tour'];
+            $start_place = $data['start_place'];
+            $metting_time = $data['metting_time'];
+            $id_kakao = $data['id_kakao'];
+            $description = $data['description'];
+            $end_place = $data['end_place'];
+
+            if(!empty($idx)) {
+                $data_tour = [
+                    "start_place" => $start_place,
+                    "metting_time" => $metting_time,
+                    "id_kakao" => $id_kakao,
+                    "description" => $description,
+                    "end_place" => $end_place,
+                ];
+    
+                $this->orderTours->update($idx, $data_tour);
             }
 
             if($order_status == "G" || $order_status == "J") {

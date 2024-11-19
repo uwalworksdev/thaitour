@@ -3,7 +3,7 @@
 use CodeIgniter\Router\RouteCollection;
 
 /**
- * @var RouteCollection $routes
+ * @var RouteCollection $routes 
  */
 
 
@@ -144,7 +144,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
         $routes->post("cars_sub_ok", "Admin\AdminCarsController::cars_sub_ok");
         $routes->post("cars_sub_del", "Admin\AdminCarsController::cars_sub_del");
-    });
+    }); 
 
     $routes->group("_tours", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
@@ -189,6 +189,7 @@ $routes->group("AdmMaster", static function ($routes) {
         // Nested group for 'code_'
         $routes->group("code_", function ($routes) {
             $routes->post("code_del", "Api\AdminCodeApi::code_del", ['as' => "admin.api.code.code_del"]);
+            $routes->post("code_change", "Api\AdminCodeApi::code_change", ['as' => "admin.api.code.code_change"]);
         });
 
         $routes->group("product_", function ($routes) {
@@ -238,11 +239,23 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);
         $routes->post("write_ok", "Admin\AdminRoomController::write_ok", ['as' => "admin.room.write_ok"]);
         $routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
-    });
+    });  
 
-    $routes->group("_tourSuggestion", static function ($routes) {
-        $routes->get("list", "TourSuggestionSubController::list");
+    // 2024-11-17 수정  
+    //$routes->group("_tourSuggestion", static function ($routes) {
+    //    $routes->get("list", "TourSuggestionSubController::list");
+    //    $routes->get("write", "TourSuggestionController::write");
+    //});
+
+    $routes->group("_tourSuggestion", static function ($routes) {  
+        $routes->get("list", "TourSuggestionController::list");  
         $routes->get("write", "TourSuggestionController::write");
+        $routes->get("prd_list", "TourSuggestionController::prd_list");
+        $routes->get("goods_find", "TourSuggestionController::goods_find");
+        $routes->get("item_allfind", "TourSuggestionController::item_allfind");
+        $routes->post("main_update", "TourSuggestionController::main_update");
+        $routes->post("seq_upd1", "TourSuggestionController::seq_upd1");
+        $routes->post("goods_alldel", "TourSuggestionController::goods_alldel");
     });
 
     $routes->group("_tourSuggestionSub", static function ($routes) {
@@ -556,6 +569,7 @@ $routes->get('product-tours/location_info/(:any)', 'Product::tourLocationInfo/$1
 $routes->get('product-tours/order-form/(:any)', 'Product::tourOrderForm/$1');
 $routes->get('product-tours/customer-form', 'Product::tourCustomerForm');
 $routes->post('product-tours/customer-form-ok', 'Product::tourFormOk');
+$routes->get('product-tours/completed-order', 'Product::tourCompletedOrder/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 $routes->get('product-spa/product-booking', 'Product::productBooking');
