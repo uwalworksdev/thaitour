@@ -801,7 +801,7 @@
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_5.png" alt="main">
+                                    <img src="/data/product/<?=$item3['ufile1']?>" alt="main">
                                 </div>
                                 <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
