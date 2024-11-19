@@ -892,7 +892,7 @@
             <div class="main_section9__row">
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 <br> 5성급 호텔의 특별함 </div>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 5성급 호텔의 특별함 </div>
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
@@ -949,7 +949,7 @@
                 </div>
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 <br> 5성급 호텔의 특별함 </div>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 골프의 특별함 </div>
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
