@@ -16,6 +16,7 @@ class MainDisp extends Model
         'onum', 
         'p_idx'
     ];
+
     public function goods_find(int $code_no, $g_list_rows = 1000, $pg = 1): array
     {
         helper(['setting']);
@@ -54,6 +55,7 @@ class MainDisp extends Model
         ];
         return $data;
     }
+
     public function itemCntByProductAndCode(int $product_idx, int $code_no)
     {
         return $this->where('product_idx', $product_idx)
@@ -72,3 +74,5 @@ class MainDisp extends Model
         return $builder;
     }
 }
+
+
