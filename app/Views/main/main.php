@@ -17,6 +17,14 @@
     // 1주일간 예약순위 : 골프
 	$MainDisp = model("MainDispModel");
 	$list3    = $MainDisp->List("290101")->findAll();
+
+	// 태국에서 즐기는 5성급 호텔의 특별함
+	$MainDisp = model("MainDispModel");
+	$list4    = $MainDisp->List("2903")->findAll();
+
+	// 태국에서 즐기는 골프의 특별함
+	$MainDisp = model("MainDispModel");
+	$list5    = $MainDisp->List("2905")->findAll();
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
