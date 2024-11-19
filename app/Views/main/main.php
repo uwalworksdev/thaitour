@@ -968,15 +968,17 @@
                         <img src="/uploads/main/main_banner_9.png" alt="">
                     </div>
                     <div class="main_section9__prd">
+
+                        <?php foreach ($list5 as $item5): ?>
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_3.png" alt="">
+                                    <img src="/data/hotel/<?=$item5['ufile1']?>" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
-                                    <div class="prd_name">아난타라 시암 방콕 호텔</div>
+                                    <div class="prd_name"><?=$item5['product_name']?></div>
                                     <div class="prd_description">
                                         3박 했습니다. 조식은 거의
                                         동일하고 과일 이랑 쌀국수 ... </div>
@@ -986,12 +988,14 @@
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
-                                    <div class="prd_price_ko">236,100<span>원</span></div>
+                                    <div class="prd_price_ko"><?= number_format($item5['original_price']) ?><span>원</span></div>
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="main_section9__prd__item">
+                        <?php endforeach; ?>
+
+						<!--div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
                                     <img src="/uploads/main/main_tour_4.png" alt="">
@@ -1012,7 +1016,7 @@
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>
