@@ -193,29 +193,32 @@ $youtube_code = '';
 
         }
 
-		function change_it()
-		{
-				let f = document.frm;
-
-				let url = '<?= route_to('admin.api.code.code_change') ?>'
-				let prod_data = $(f).serialize();
-				$.ajax({
-					type: "POST",
-					data: prod_data,
-					url: url,
-					cache: false,
-					async: false,
-					success: function (data, textStatus) {
-						let message = data.message;
-						alert(message);
-						location.reload();
-					},
-					error: function (request, status, error) {
-						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-					}
-				});
-
-		 }
+        function change_it() {
+            $.ajax({
+                url: "change.php",
+                type: "POST",
+                data: $("#frm").serialize(),
+                error: function (request, status, error) {
+                    //통신 에러 발생시 처리
+                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                    $("#ajax_loader").addClass("display-none");
+                }
+                , complete: function (request, status, error) {
+                    //				$("#ajax_loader").addClass("display-none");
+                }
+                , success: function (response, status, request) {
+                    if (response == "OK") {
+                        alert_("정상적으로 변경되었습니다.");
+                        location.reload();
+                        return;
+                    } else {
+                        alert(response);
+                        alert_("오류가 발생하였습니다!!");
+                        return;
+                    }
+                }
+            });
+        }
 
         function SELECT_DELETE() {
             if ($(".code_idx").is(":checked") == false) {
