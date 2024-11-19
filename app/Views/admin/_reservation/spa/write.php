@@ -406,9 +406,9 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th style="text-align:center">구분</th>
-                                    <th style="text-align:center">영문성</th>
-                                    <th style="text-align:center">영문이름</th>
+                                    <th style="text-align:center">옵션 이름</th>
+                                    <th style="text-align:center">옵션 가격</th>
+                                    <th style="text-align:center">옵션 수량</th>
                                 </tr>
                                 <?php
                                 foreach ($option_order as $frow) {

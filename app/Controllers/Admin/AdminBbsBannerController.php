@@ -90,4 +90,48 @@ class AdminBbsBannerController extends BaseController
         $row_cate = $result_cate->getRowArray();
         return $row_cate;
     }
+
+    public function banner_change()
+    {
+        try {
+            $idx = $_POST['idx'] ?? [];
+            $onum     = $_POST['onum'] ?? [];
+
+            if (empty($idx)) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON([
+                        'status'  => 'error',
+                        'message' => 'No code_idx provided'
+                    ]);
+            }
+
+            $tot = count($idx);
+            for ($j = 0; $j < $tot; $j++) {
+
+                $sql    = " update tbl_bbs_list set onum='" . $onum[$j] . "' where bbs_idx='" . $idx[$j] . "'";
+                $result = $this->connect->query($sql);
+            }
+
+            if (isset($result) && $result) {
+                $msg = "순위변경 완료";
+            } else {
+                $msg = "순위변경 오류";
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
 }

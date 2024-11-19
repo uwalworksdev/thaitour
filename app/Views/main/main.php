@@ -6,6 +6,10 @@
 	$Bbs = model("Bbs");
 	$list = $Bbs->List("banner", ["category" => "1"])->findAll();
 
+	// 메인 중간 배너
+	$Bbs = model("Bbs");
+	$list_m = $Bbs->List("banner", ["category" => "16"])->findAll();
+
 	// 취향저격 더투어랩 Best
 	$MainDisp = model("MainDispModel");
 	$list1    = $MainDisp->List("290401")->findAll();
@@ -895,7 +899,19 @@
             <div class="bar01"></div>
         </div>
     </section>
-    <section class="main_section9">
+
+	<?php 
+	    $seq = 0;
+		foreach ($list_m as $item_m):
+		
+           $seq++;
+		   if($seq == 1) $banner_1 = "/uploads/bbs/". $item_m['ufile5'];
+		   if($seq == 2) $banner_2 = "/uploads/bbs/". $item_m['ufile5'];
+         
+		endforeach; 
+	?>
+
+	<section class="main_section9">
         <div class="body_inner">
             <div class="main_section9__row">
                 <div class="main_section9__col">
@@ -904,7 +920,7 @@
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/uploads/main/main_banner_8.png" alt="">
+                        <img src="<?=$banner_1?>" alt="">
                     </div>
                     <div class="main_section9__prd">
 
@@ -917,7 +933,7 @@
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
-                                    <div class="prd_name">아난타라 시암 방콕 호텔</div>
+                                    <div class="prd_name"><?=$item4['product_name']?></div>
                                     <div class="prd_description">
                                         연박 프로모션 "3박 이상시 룸 업그레이드...
                                     </div>
@@ -927,7 +943,7 @@
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
-                                    <div class="prd_price_ko">236,100<span>원</span></div>
+                                    <div class="prd_price_ko"><?= number_format($item4['original_price']) ?><span>원</span></div>
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
@@ -965,18 +981,20 @@
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/uploads/main/main_banner_9.png" alt="">
+                        <img src="<?=$banner_2?>" alt="">
                     </div>
                     <div class="main_section9__prd">
+
+                        <?php foreach ($list5 as $item5): ?>
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_3.png" alt="">
+                                    <img src="/data/product/<?=$item5['ufile1']?>" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
                                 <div class="prd__item__info">
-                                    <div class="prd_name">아난타라 시암 방콕 호텔</div>
+                                    <div class="prd_name"><?=$item5['product_name']?></div>
                                     <div class="prd_description">
                                         3박 했습니다. 조식은 거의
                                         동일하고 과일 이랑 쌀국수 ... </div>
@@ -986,12 +1004,14 @@
                                         <li class="breadcrumb_item">방콕</li>
                                         <li class="breadcrumb_item">시암</li>
                                     </ul>
-                                    <div class="prd_price_ko">236,100<span>원</span></div>
+                                    <div class="prd_price_ko"><?= number_format($item5['original_price']) ?><span>원</span></div>
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="main_section9__prd__item">
+                        <?php endforeach; ?>
+
+						<!--div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
                                     <img src="/uploads/main/main_tour_4.png" alt="">
@@ -1012,7 +1032,7 @@
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
             </div>

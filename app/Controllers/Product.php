@@ -183,9 +183,18 @@ class Product extends BaseController
         return $this->renderView('/product/ticket/ticket-detail', $data);
     }
 
-    public function ticketBooking($code_no)
+    public function ticketBooking()
     {
-        return $this->renderView('/product/ticket/ticket-booking');
+        $session = Services::session();
+        $data = $session->get('data_cart');
+
+        if (empty($data)) {
+            return redirect()->to('/');
+        }
+
+        $res = $this->getDataBooking();
+
+        return $this->renderView('/product/ticket/ticket-booking', $res);
     }
 
     public function ticketCompleted()
@@ -1476,14 +1485,14 @@ class Product extends BaseController
         $facilities = array_filter(explode(",", $facilities));
 
         $products = $this->productModel->findProductGolfPaging([
-            'product_code_1'            => 1302,
-            'green_peas'                => $green_peas,
-            'sports_days'               => $sports_days,
-            'slots'                     => $slots,
-            'golf_course_odd_numbers'   => $golf_course_odd_numbers,
-            'travel_times'              => $travel_times,
-            'carts'                     => $carts,
-            'facilities'                => $facilities,
+            'product_code_1' => 1302,
+            'green_peas' => $green_peas,
+            'sports_days' => $sports_days,
+            'slots' => $slots,
+            'golf_course_odd_numbers' => $golf_course_odd_numbers,
+            'travel_times' => $travel_times,
+            'carts' => $carts,
+            'facilities' => $facilities,
         ], 10, $pg, []);
 
 
@@ -1504,16 +1513,16 @@ class Product extends BaseController
         }
 
         return $this->renderView('product/golf/list-golf', [
-            'filters'                   => $filters,
-            'code_no'                   => $code_no,
-            'green_peas'                => $green_peas,
-            'sports_days'               => $sports_days,
-            'slots'                     => $slots,
-            'golf_course_odd_numbers'   => $golf_course_odd_numbers,
-            'travel_times'              => $travel_times,
-            'carts'                     => $carts,
-            'facilities'                => $facilities,
-            'products'                  => $products
+            'filters' => $filters,
+            'code_no' => $code_no,
+            'green_peas' => $green_peas,
+            'sports_days' => $sports_days,
+            'slots' => $slots,
+            'golf_course_odd_numbers' => $golf_course_odd_numbers,
+            'travel_times' => $travel_times,
+            'carts' => $carts,
+            'facilities' => $facilities,
+            'products' => $products
         ]);
     }
 
@@ -2243,36 +2252,8 @@ class Product extends BaseController
             return redirect()->to('/');
         }
 
-        $product_idx = $data['product_idx'];
-        $day_ = $data['day_'];
-        $member_idx = $data['member_idx'];
+        $res = $this->getDataBooking();
 
-        $adultQty = $data['adultQty'];
-        $childrenQty = $data['childrenQty'];
-
-        $totalPrice = $data['totalPrice'];
-
-        $prod = $this->productModel->getById($product_idx);
-
-        $builder = $this->db->table('tbl_tours_moption');
-        $builder->where('product_idx', $product_idx);
-        $builder->where('use_yn', 'Y');
-        $builder->orderBy('onum', 'desc');
-        $query = $builder->get();
-        $moption = $query->getResultArray();
-
-        $res = [
-            'prod' => $prod,
-            'day_' => $day_,
-            'member_idx' => $member_idx,
-            'moption' => $moption,
-            'adultQty' => $adultQty,
-            'childrenQty' => $childrenQty,
-            'totalPrice' => $totalPrice,
-            'data' => $data,
-        ];
-
-//        return $this->response->setJSON($data, 200);
         return $this->renderView('/product/spa/product-booking', $res);
     }
 
@@ -2477,9 +2458,18 @@ class Product extends BaseController
         return $this->renderView('/product/restaurant/restaurant-detail', $data);
     }
 
-    public function restaurantBooking($code_no)
+    public function restaurantBooking()
     {
-        return $this->renderView('/product/restaurant/restaurant-booking');
+        $session = Services::session();
+        $data = $session->get('data_cart');
+
+        if (empty($data)) {
+            return redirect()->to('/');
+        }
+
+        $res = $this->getDataBooking();
+
+        return $this->renderView('/product/restaurant/restaurant-booking', $res);
     }
 
     public function restaurantCompleted()
@@ -3010,5 +3000,40 @@ class Product extends BaseController
         ];
 
         return $data;
+    }
+
+    private function getDataBooking()
+    {
+        $session = Services::session();
+        $data = $session->get('data_cart');
+
+        $product_idx = $data['product_idx'];
+        $day_ = $data['day_'];
+        $member_idx = $data['member_idx'];
+
+        $adultQty = $data['adultQty'];
+        $childrenQty = $data['childrenQty'];
+
+        $totalPrice = $data['totalPrice'];
+
+        $prod = $this->productModel->getById($product_idx);
+
+        $builder = $this->db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $moption = $query->getResultArray();
+
+        return [
+            'prod' => $prod,
+            'day_' => $day_,
+            'member_idx' => $member_idx,
+            'moption' => $moption,
+            'adultQty' => $adultQty,
+            'childrenQty' => $childrenQty,
+            'totalPrice' => $totalPrice,
+            'data' => $data,
+        ];
     }
 }
