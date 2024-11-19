@@ -899,7 +899,19 @@
             <div class="bar01"></div>
         </div>
     </section>
-    <section class="main_section9">
+
+	<?php 
+	    $seq = 0;
+		foreach ($list_m as $item_m):
+		
+           $seq++;
+		   if($seq == 1) $banner_1 = "/uploads/bbs/". $item_m['ufile5'];
+		   if($seq == 2) $banner_2 = "/uploads/bbs/". $item_m['ufile5'];
+         
+		endforeach; 
+	?>
+
+	<section class="main_section9">
         <div class="body_inner">
             <div class="main_section9__row">
                 <div class="main_section9__col">
@@ -908,7 +920,7 @@
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/uploads/main/main_banner_8.png" alt="">
+                        <img src="<?=$banner_1?>" alt="">
                     </div>
                     <div class="main_section9__prd">
 
@@ -969,7 +981,7 @@
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="/uploads/main/main_banner_9.png" alt="">
+                        <img src="<?=$banner_2?>" alt="">
                     </div>
                     <div class="main_section9__prd">
 
