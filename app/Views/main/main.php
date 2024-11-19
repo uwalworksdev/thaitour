@@ -973,7 +973,7 @@
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/data/hotel/<?=$item5['ufile1']?>" alt="">
+                                    <img src="/data/product/<?=$item5['ufile1']?>" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
