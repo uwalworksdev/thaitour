@@ -1409,6 +1409,7 @@ class Product extends BaseController
                         "order_idx" => $order_idx,
                         "product_idx" => $product_idx,
                         "number_room" => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
+                        "order_gubun" => "hotel",
                         "order_first_name" => $first_name,
                         "order_last_name" => $last_name,
                         "encode" => "Y"
@@ -2601,6 +2602,124 @@ class Product extends BaseController
             ];
 
             return $this->response->setJSON($data, 200);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function vehicleOrder()
+    {
+        try {
+
+            $product_idx = $this->request->getPost('product_idx') ?? 0;
+            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
+            $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
+            $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
+            $inital_price = $this->request->getPost('inital_price') ?? 0;
+            $order_price = $this->request->getPost('order_price') ?? 0;
+            $number_room = $this->request->getPost('number_room') ?? 0;
+            $number_day = $this->request->getPost('number_day') ?? 0;
+            $order_memo = $this->request->getPost('order_memo') ?? "";
+            $email_name = $this->request->getPost('email_name') ?? "";
+            $email_host = $this->request->getPost('email_host') ?? "";
+            $order_user_name = $this->request->getPost('order_user_name') ?? "";
+            $order_user_mobile = $this->request->getPost('order_user_mobile') ?? "";
+            $order_user_email = $email_name . "@" . $email_host;
+            $hotel = $this->productModel->find($product_idx);
+            $m_idx = session()->get("member")["idx"];
+            $order_status = "W";
+            $ipAddress = $this->request->getIPAddress();
+            $device_type = get_device();
+            $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
+
+            if (!empty($use_coupon_idx)) {
+                $coupon = $this->coupon->find($use_coupon_idx);
+            }
+
+            $data = [
+                "m_idx" => $m_idx,
+                "device_type" => $device_type,
+                "product_idx" => $product_idx,
+                "product_code_1" => $hotel["product_code_1"],
+                "product_code_2" => $hotel["product_code_2"],
+                "product_code_3" => $hotel["product_code_3"],
+                "product_code_4" => $hotel["product_code_4"],
+                "product_code_list" => $hotel["product_code_list"],
+                "product_name" => $hotel["product_name"],
+                "code_name" => $code_name,
+                "order_gubun" => "hotel",
+                "order_user_name" => encryptField($order_user_name, "encode"),
+                "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                "order_user_email" => encryptField($order_user_email, "encode"),
+                "order_memo" => $order_memo,
+                "inital_price" => $inital_price,
+                "order_price" => $order_price,
+                "order_date" => Time::now('Asia/Seoul', 'en_US'),
+                "used_coupon_idx" => $use_coupon_idx,
+                "used_coupon_money" => $used_coupon_money,
+                "room_op_idx" => $room_op_idx,
+                "order_room_cnt" => $number_room,
+                "order_day_cnt" => $number_day,
+                "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                "order_status" => $order_status,
+                "encode" => "Y",
+                "ip" => $ipAddress
+            ];
+
+            $order_idx = $this->orderModel->insert($data);
+            if ($order_idx) {
+                $order_no = $this->orderModel->makeOrderNo();
+                $this->orderModel->update($order_idx, ["order_no" => $order_no]);
+
+                if (!empty($use_coupon_idx)) {
+                    $this->coupon->update($use_coupon_idx, ["status" => "E"]);
+
+                    $cou_his = [
+                        "order_idx" => $order_idx,
+                        "product_idx" => $product_idx,
+                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx" => $use_coupon_idx,
+                        "used_coupon_money" => $used_coupon_money,
+                        "ch_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                        "m_idx" => $m_idx
+                    ];
+
+                    $this->couponHistory->insert($cou_his);
+                }
+
+                $order_num_room = $this->request->getPost('order_num_room');
+                $order_first_name = $this->request->getPost('order_first_name');
+                $order_last_name = $this->request->getPost('order_last_name');
+                foreach ($order_num_room as $key => $value) {
+                    $first_name = encryptField($order_first_name[$key], "encode");
+                    $last_name = encryptField($order_last_name[$key], "encode");
+                    $data_sub = [
+                        "m_idx" => $m_idx,
+                        "order_idx" => $order_idx,
+                        "product_idx" => $product_idx,
+                        "number_room" => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
+                        "order_first_name" => $first_name,
+                        "order_last_name" => $last_name,
+                        "encode" => "Y"
+                    ];
+                    $this->orderSubModel->insert($data_sub);
+                }
+
+                $this->response->deleteCookie('cart');
+
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "주문되었습니다."
+                ], 200);
+            }
+
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => "Error"
+            ], 400);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,

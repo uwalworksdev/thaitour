@@ -547,6 +547,7 @@ $routes->get('ticket/ticket-booking/(:any)', 'Product::ticketBooking/$1');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
 $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
 $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
+$routes->post('vehicle-guide/vehicle-order', 'Product::vehicleOrder/$1');
 $routes->post('filter-vehicle', 'Product::filterVehicle');
 $routes->post('filter-child-vehicle', 'Product::filterChildVehicle');
 $routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');
