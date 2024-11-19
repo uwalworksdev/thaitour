@@ -23,9 +23,10 @@
                                 <!--                                <button type="button" class="minus_btn"-->
                                 <!--                                        id="minusAdult"></button>-->
                                 <input type="text" class="input-qty" name="adultQty" id="adultQty" value="0"
-                                       readonly="">
+                                       readonly="" style="padding: 0; width: 30px">
                                 <!--                                <button type="button" class="plus_btn"-->
                                 <!--                                        id="addAdult"></button>-->
+                                <span>명</span>
                             </div>
                         </li>
                         <li class="flex_b_c cus-count-input">
@@ -36,9 +37,10 @@
                                 <!--                                <button type="button" class="minus_btn"-->
                                 <!--                                        id="minusAdult2"></button>-->
                                 <input type="text" class="input-qty" name="childrenQty" id="childrenQty" value="0"
-                                       readonly="">
+                                       readonly="" style="padding: 0; width: 30px">
                                 <!--                                <button type="button" class="plus_btn"-->
                                 <!--                                        id="addAdult2"></button>-->
+                                <span>명</span>
                             </div>
                         </li>
                     </ul>

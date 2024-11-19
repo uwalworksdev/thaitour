@@ -4,14 +4,12 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use CodeIgniter\Database\Config;
-use Config\CustomConstants as ConfigCustomConstants;
 use CodeIgniter\I18n\Time;
 use Exception;
 
 class ReservationController extends BaseController
 {
     private $db;
-
     protected $connect;
     private $orderModel;
     private $orderSubModel;
@@ -20,7 +18,6 @@ class ReservationController extends BaseController
     private $orderOptionModel;
     private $orderTours;
     private $optionTours;
-
 
     public function __construct()
     {
@@ -39,23 +36,23 @@ class ReservationController extends BaseController
 
     public function list()
     {
-		$private_key     = private_key();
+        $private_key = private_key();
 
-        $product_code_1  = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
-        $product_code_2  = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
-        $product_code_3  = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
-        $pg              = !empty($_GET["pg"]) ? $_GET['pg'] : "";
-        $isDelete        = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
-        $s_date          = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
-        $e_date          = !empty($_GET["e_date"]) ? $_GET['e_date'] : "";
-        $date_chker      = !empty($_GET["date_chker"]) ? $_GET['date_chker'] : "";
-        $search_name     = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
+        $product_code_1 = !empty($_GET["product_code_1"]) ? $_GET['product_code_1'] : "";
+        $product_code_2 = !empty($_GET["product_code_2"]) ? $_GET['product_code_2'] : "";
+        $product_code_3 = !empty($_GET["product_code_3"]) ? $_GET['product_code_3'] : "";
+        $pg = !empty($_GET["pg"]) ? $_GET['pg'] : "";
+        $isDelete = !empty($_GET["is_delete"]) ? $_GET['is_delete'] : "";
+        $s_date = !empty($_GET["s_date"]) ? $_GET['s_date'] : "";
+        $e_date = !empty($_GET["e_date"]) ? $_GET['e_date'] : "";
+        $date_chker = !empty($_GET["date_chker"]) ? $_GET['date_chker'] : "";
+        $search_name = !empty($_GET["search_name"]) ? $_GET['search_name'] : "";
         $search_category = !empty($_GET["search_category"]) ? $_GET['search_category'] : "";
-        $arrays_paging   = "";
-        $strSql          = "";
+        $arrays_paging = "";
+        $strSql = "";
 
-        $payment_chker   = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
-        $state_chker     = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
+        $payment_chker = !empty($_GET["payment_chker"]) ? $_GET['payment_chker'] : array();
+        $state_chker = !empty($_GET["state_chker"]) ? $_GET['state_chker'] : array();
 
         if (sizeof($payment_chker) > 0) {
 
@@ -116,7 +113,7 @@ class ReservationController extends BaseController
         }
         $strSql = $strSql . " and a.order_status != 'D' ";
 
-		$total_sql = "	select a.product_name as product_name_new  
+        $total_sql = "	select a.product_name as product_name_new  
 		                     , AES_DECRYPT(UNHEX(a.order_user_name),   '$private_key') AS user_name
 						     , AES_DECRYPT(UNHEX(a.order_user_mobile), '$private_key') AS user_mobile
 						     , AES_DECRYPT(UNHEX(a.manager_name),      '$private_key') AS man_name
@@ -154,7 +151,7 @@ class ReservationController extends BaseController
 
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
-        $num    = $nTotalCount - $nFrom;
+        $num = $nTotalCount - $nFrom;
 
         /*
 		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$result['order_user_name']}'),   '$private_key') order_user_name
@@ -179,35 +176,35 @@ class ReservationController extends BaseController
         $s_status = '';
         $arrays_paging = '';
         $data = [
-            'total_sql'       => $total_sql,
-            'nTotalCount'     => $nTotalCount,
-            'num'             => $num,
-            'result'          => $result,
-            'fresult'         => $fresult,
-            'fresult2'        => $fresult2,
-            'fresult3'        => $fresult3,
-            'pg'              => $pg,
-            'nPage'           => $nPage,
+            'total_sql' => $total_sql,
+            'nTotalCount' => $nTotalCount,
+            'num' => $num,
+            'result' => $result,
+            'fresult' => $fresult,
+            'fresult2' => $fresult2,
+            'fresult3' => $fresult3,
+            'pg' => $pg,
+            'nPage' => $nPage,
             'search_category' => $search_category,
-            'search_name'     => $search_name,
-            'product_code_1'  => $product_code_1,
-            'product_code_2'  => $product_code_2,
-            'product_code_3'  => $product_code_3,
-            's_date'          => $s_date,
-            'e_date'          => $e_date,
-            'date_chker'      => $date_chker,
-            'isDelete'        => $isDelete,
-            '_isDelete'       => $isDelete,
-            'g_list_rows'     => $g_list_rows,
-            'nFrom'           => $nFrom,
-            '_pg_Method'      => $_pg_Method,
-            '_deli_type'      => $_deli_type,
-            'state_chker'     => $state_chker,
-            's_time'          => $s_time,
-            'e_time'          => $e_time,
-            'payment_chker'   => $payment_chker,
-            's_status'        => $s_status,
-            'arrays_paging'   => $arrays_paging
+            'search_name' => $search_name,
+            'product_code_1' => $product_code_1,
+            'product_code_2' => $product_code_2,
+            'product_code_3' => $product_code_3,
+            's_date' => $s_date,
+            'e_date' => $e_date,
+            'date_chker' => $date_chker,
+            'isDelete' => $isDelete,
+            '_isDelete' => $isDelete,
+            'g_list_rows' => $g_list_rows,
+            'nFrom' => $nFrom,
+            '_pg_Method' => $_pg_Method,
+            '_deli_type' => $_deli_type,
+            'state_chker' => $state_chker,
+            's_time' => $s_time,
+            'e_time' => $e_time,
+            'payment_chker' => $payment_chker,
+            's_status' => $s_status,
+            'arrays_paging' => $arrays_paging
         ];
         return view('admin/_reservation/list', $data);
     }
@@ -241,58 +238,64 @@ class ReservationController extends BaseController
             "titleStr" => $titleStr,
             "str_guide" => $str_guide,
             "row_cou" => $row_cou ?? [
-                'used_coupon_no' => '',
+                    'used_coupon_no' => '',
                 ],
             "fresult" => $fresult ?? '',
             "used_coupon_no" => $used_coupon_no,
         ];
 
-        
-        if($gubun == 'golf') {
+
+        if ($gubun == 'golf') {
             $data['option'] = $this->orderOptionModel->getOption($order_idx, 'main')[0];
             $data['vehicle'] = $this->orderOptionModel->getOption($order_idx, 'vehicle');
         }
-        if($gubun == 'tour') {
+
+        if ($gubun == 'tour') {
             $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
             $optionsIdx = $data['tour_orders']['options_idx'];
 
-            $options_idx = explode(',', $optionsIdx); 
+            $options_idx = explode(',', $optionsIdx);
 
             $data['tour_option'] = [];
             $data['total_price'] = 0;
             foreach ($options_idx as $idx) {
-                $optionDetail = $this->optionTours->find($idx); 
+                $optionDetail = $this->optionTours->find($idx);
                 if ($optionDetail) {
-                    $data['tour_option'][] = $optionDetail; 
+                    $data['tour_option'][] = $optionDetail;
                     $data['total_price'] += $optionDetail['option_price'];
                 }
             }
         }
-        
+
+        if ($gubun == 'spa') {
+            $data['option'] = $this->orderOptionModel->getOption($order_idx, '')[0];
+        }
+
         return view("admin/_reservation/{$gubun}/write", array_merge($data, $row));
     }
 
 
-    public function write_ok($order_idx = null) {
-        try{
+    public function write_ok($order_idx = null)
+    {
+        try {
             $data = $this->request->getPost();
 
-            $data['order_price'] = str_replace(",","",$data['order_price']);
-            $data['order_confirm_price'] = str_replace(",","",$data['order_confirm_price']);
-            $data['deposit_price'] = str_replace(",","",$data['deposit_price']);
+            $data['order_price'] = str_replace(",", "", $data['order_price']);
+            $data['order_confirm_price'] = str_replace(",", "", $data['order_confirm_price']);
+            $data['deposit_price'] = str_replace(",", "", $data['deposit_price']);
 
             $order_status = $data['order_status'];
             $order_no = $data['order_no'];
 
-            
-            $data['order_m_date'] = (String) Time::now('Asia/Seoul', 'en_US');
-            
-            if($order_status == "R") {
-                $data["order_confirm_date"] = (String) Time::now('Asia/Seoul', 'en_US');
-            } else if($order_status == "Y") {
-                $data["order_c_date"] = (String) Time::now('Asia/Seoul', 'en_US');
+
+            $data['order_m_date'] = (string)Time::now('Asia/Seoul', 'en_US');
+
+            if ($order_status == "R") {
+                $data["order_confirm_date"] = (string)Time::now('Asia/Seoul', 'en_US');
+            } else if ($order_status == "Y") {
+                $data["order_c_date"] = (string)Time::now('Asia/Seoul', 'en_US');
             }
-            
+
             $this->orderModel->updateData($order_idx, $data);
 
             $gl_idx = $data['gl_idx'];
@@ -307,8 +310,7 @@ class ReservationController extends BaseController
             $passport_date = $data['passport_date'];
             $order_sex = $data['order_sex'];
 
-            for ($i = 0; $i < count($gl_idx) ; $i++)
-            {
+            for ($i = 0; $i < count($gl_idx); $i++) {
                 $data_sub = [
                     "order_name_kor" => encryptField($order_name_kor[$i], "encode"),
                     "order_first_name" => encryptField($order_first_name[$i], "encode"),
@@ -332,7 +334,7 @@ class ReservationController extends BaseController
             $description = $data['description'];
             $end_place = $data['end_place'];
 
-            if(!empty($idx)) {
+            if (!empty($idx)) {
                 $data_tour = [
                     "start_place" => $start_place,
                     "metting_time" => $metting_time,
@@ -340,12 +342,12 @@ class ReservationController extends BaseController
                     "description" => $description,
                     "end_place" => $end_place,
                 ];
-    
+
                 $this->orderTours->update($idx, $data_tour);
             }
 
-            if($order_status == "G" || $order_status == "J") {
-    
+            if ($order_status == "G" || $order_status == "J") {
+
                 $this->paymentHistModel->where('order_no', $order_no)->delete();
 
                 $this->paymentHistModel->insert([
@@ -361,34 +363,35 @@ class ReservationController extends BaseController
                     "order_price" => $data['order_confirm_price'],
                     "regDate" => Time::now('Asia/Seoul', 'en_US')
                 ]);
-            
-            } else if($order_status == "R") {
+
+            } else if ($order_status == "R") {
                 $this->paymentHistModel->where('order_no', $order_no)
-                                        ->where('order_gubun', "1")
-                                        ->update(["order_status" => "Y"]);
-            } else if($order_status == "Y") {
+                    ->where('order_gubun', "1")
+                    ->update(["order_status" => "Y"]);
+            } else if ($order_status == "Y") {
                 $this->paymentHistModel->where('order_no', $order_no)
-                                        ->where('order_gubun', "2")
-                                        ->update(["order_status" => "Y"]);
-            }       
+                    ->where('order_gubun', "2")
+                    ->update(["order_status" => "Y"]);
+            }
             $message = "수정되었습니다.";
             return "<script>
                 alert('$message');
                     parent.location.reload();
                 </script>";
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
             ]);
-        }   
+        }
     }
 
-    public function delete() {
+    public function delete()
+    {
 
         try {
             $order_idx = $this->request->getPost('order_idx');
-            if(is_array($order_idx)){
+            if (is_array($order_idx)) {
                 $this->db->transBegin();
 
                 foreach ($order_idx as $idx) {
@@ -408,16 +411,17 @@ class ReservationController extends BaseController
             $resultArr['message'] = $err->getMessage();
         } finally {
             return $this->response->setJSON($resultArr);
-        } 
+        }
     }
 
-    function get_code() {
+    function get_code()
+    {
         $parent_code_no = $this->request->getVar('parent_code_no');
         $depth = $this->request->getVar('depth');
 
         $data = [];
         $codes = $this->codeModel->getByParentCode($parent_code_no)->getResultArray();
-        foreach($codes as $code){
+        foreach ($codes as $code) {
             $arr = array(
                 "code_no" => $code["code_no"],
                 "code_name" => $code["code_name"],
