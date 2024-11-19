@@ -12,7 +12,7 @@
 
 	// 취향저격 더투어랩 Best
 	$MainDisp = model("MainDispModel");
-	$list1    = $MainDisp->List("290401")->findAll();
+	$list1_1  = $MainDisp->List("290401")->findAll();
 
     // 1주일간 예약순위 : 호텔
 	$MainDisp = model("MainDispModel");
@@ -182,17 +182,17 @@
             </div>
             <div>
                 <div class="best_list best_list_1">
-                    <?php foreach ($list1 as $item1): ?>
-                    <a href="/product-hotel/hotel-detail/<?=$item1['product_idx']?>" class="best_list_item">
+                    <?php foreach ($list1_1 as $item1_1): ?>
+                    <a href="/product-hotel/hotel-detail/<?=$item1_1['product_idx']?>" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/data/hotel/<?=$item1['ufile1']?>" alt="main">
+                            <img src="/data/hotel/<?=$item1_1['ufile1']?>" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
                             <li class="breadcrumb_item">시암</li>
                         </ul>
                         <div class="prd_name">
-                            <?=$item1['product_name']?>
+                            <?=$item1_1['product_name']?>
                         </div>
                         <div class="prd_info">
                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -200,7 +200,7 @@
                             <span class="star_review_cnt">(954)</span>
                         </div>
                         <div class="prd_price_ko">
-                            <?= number_format($item1['original_price']) ?> <span>원</span>
+                            <?= number_format($item1_1['original_price']) ?> <span>원</span>
                         </div>
                         <div class="prd_price_thai">
                             6,000 <span>바트</span>
