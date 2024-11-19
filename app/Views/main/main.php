@@ -912,7 +912,7 @@
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/data/product/<?=$item4['ufile1']?>" alt="">
+                                    <img src="/data/hotel/<?=$item4['ufile1']?>" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
