@@ -876,7 +876,7 @@ class ProductModel extends Model
         helper(['setting']);
         $setting = homeSetInfo();
         $builder = $this->db->table('tbl_cars_sub AS c');
-        $builder->select('p.*, c.departure_code, c.destination_code, c.car_price');
+        $builder->select('p.*, c.idx as cs_idx, c.departure_code, c.destination_code, c.car_price');
         $builder->join('tbl_product_mst AS p', 'p.product_idx = c.product_idx', 'left');
 
         if ($where['product_code_1'] != "") {

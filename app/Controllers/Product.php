@@ -33,7 +33,7 @@ class Product extends BaseController
     protected $subSchedule;
     protected $mainSchedule;
     protected $carsOptionModel;
-
+    protected $carsSubModel;
     protected $optionTours;
     protected $orderTours;
 
@@ -63,6 +63,7 @@ class Product extends BaseController
         $this->subSchedule = model("SubScheduleModel");
         $this->mainSchedule = model("MainScheduleModel");
         $this->carsOptionModel = model("CarsOptionModel");
+        $this->carsSubModel = model("CarsSubModel");
         $this->orderTours = model("OrderTourModel");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
@@ -182,9 +183,18 @@ class Product extends BaseController
         return $this->renderView('/product/ticket/ticket-detail', $data);
     }
 
-    public function ticketBooking($code_no)
+    public function ticketBooking()
     {
-        return $this->renderView('/product/ticket/ticket-booking');
+        $session = Services::session();
+        $data = $session->get('data_cart');
+
+        if (empty($data)) {
+            return redirect()->to('/');
+        }
+
+        $res = $this->getDataBooking();
+
+        return $this->renderView('/product/ticket/ticket-booking', $res);
     }
 
     public function ticketCompleted()
@@ -1475,14 +1485,14 @@ class Product extends BaseController
         $facilities = array_filter(explode(",", $facilities));
 
         $products = $this->productModel->findProductGolfPaging([
-            'product_code_1'            => 1302,
-            'green_peas'                => $green_peas,
-            'sports_days'               => $sports_days,
-            'slots'                     => $slots,
-            'golf_course_odd_numbers'   => $golf_course_odd_numbers,
-            'travel_times'              => $travel_times,
-            'carts'                     => $carts,
-            'facilities'                => $facilities,
+            'product_code_1' => 1302,
+            'green_peas' => $green_peas,
+            'sports_days' => $sports_days,
+            'slots' => $slots,
+            'golf_course_odd_numbers' => $golf_course_odd_numbers,
+            'travel_times' => $travel_times,
+            'carts' => $carts,
+            'facilities' => $facilities,
         ], 10, $pg, []);
 
 
@@ -1503,16 +1513,16 @@ class Product extends BaseController
         }
 
         return $this->renderView('product/golf/list-golf', [
-            'filters'                   => $filters,
-            'code_no'                   => $code_no,
-            'green_peas'                => $green_peas,
-            'sports_days'               => $sports_days,
-            'slots'                     => $slots,
-            'golf_course_odd_numbers'   => $golf_course_odd_numbers,
-            'travel_times'              => $travel_times,
-            'carts'                     => $carts,
-            'facilities'                => $facilities,
-            'products'                  => $products
+            'filters' => $filters,
+            'code_no' => $code_no,
+            'green_peas' => $green_peas,
+            'sports_days' => $sports_days,
+            'slots' => $slots,
+            'golf_course_odd_numbers' => $golf_course_odd_numbers,
+            'travel_times' => $travel_times,
+            'carts' => $carts,
+            'facilities' => $facilities,
+            'products' => $products
         ]);
     }
 
@@ -2242,36 +2252,8 @@ class Product extends BaseController
             return redirect()->to('/');
         }
 
-        $product_idx = $data['product_idx'];
-        $day_ = $data['day_'];
-        $member_idx = $data['member_idx'];
+        $res = $this->getDataBooking();
 
-        $adultQty = $data['adultQty'];
-        $childrenQty = $data['childrenQty'];
-
-        $totalPrice = $data['totalPrice'];
-
-        $prod = $this->productModel->getById($product_idx);
-
-        $builder = $this->db->table('tbl_tours_moption');
-        $builder->where('product_idx', $product_idx);
-        $builder->where('use_yn', 'Y');
-        $builder->orderBy('onum', 'desc');
-        $query = $builder->get();
-        $moption = $query->getResultArray();
-
-        $res = [
-            'prod' => $prod,
-            'day_' => $day_,
-            'member_idx' => $member_idx,
-            'moption' => $moption,
-            'adultQty' => $adultQty,
-            'childrenQty' => $childrenQty,
-            'totalPrice' => $totalPrice,
-            'data' => $data,
-        ];
-
-//        return $this->response->setJSON($data, 200);
         return $this->renderView('/product/spa/product-booking', $res);
     }
 
@@ -2476,9 +2458,18 @@ class Product extends BaseController
         return $this->renderView('/product/restaurant/restaurant-detail', $data);
     }
 
-    public function restaurantBooking($code_no)
+    public function restaurantBooking()
     {
-        return $this->renderView('/product/restaurant/restaurant-booking');
+        $session = Services::session();
+        $data = $session->get('data_cart');
+
+        if (empty($data)) {
+            return redirect()->to('/');
+        }
+
+        $res = $this->getDataBooking();
+
+        return $this->renderView('/product/restaurant/restaurant-booking', $res);
     }
 
     public function restaurantCompleted()
@@ -2509,6 +2500,7 @@ class Product extends BaseController
 
             $data = [
                 'tab_active' => '7',
+                'parent_code' => $code_no,
                 'codes' => $codes,
                 'place_start_list' => $place_start_list,
                 'place_end_list' => $place_end_list
@@ -2614,112 +2606,117 @@ class Product extends BaseController
     {
         try {
 
-            $product_idx = $this->request->getPost('product_idx') ?? 0;
-            $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
-            $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
-            $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
-            $inital_price = $this->request->getPost('inital_price') ?? 0;
-            $order_price = $this->request->getPost('order_price') ?? 0;
-            $number_room = $this->request->getPost('number_room') ?? 0;
-            $number_day = $this->request->getPost('number_day') ?? 0;
-            $order_memo = $this->request->getPost('order_memo') ?? "";
-            $email_name = $this->request->getPost('email_name') ?? "";
-            $email_host = $this->request->getPost('email_host') ?? "";
-            $order_user_name = $this->request->getPost('order_user_name') ?? "";
-            $order_user_mobile = $this->request->getPost('order_user_mobile') ?? "";
-            $order_user_email = $email_name . "@" . $email_host;
-            $hotel = $this->productModel->find($product_idx);
-            $m_idx = session()->get("member")["idx"];
-            $order_status = "W";
-            $ipAddress = $this->request->getIPAddress();
-            $device_type = get_device();
-            $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
-
-            if (!empty($use_coupon_idx)) {
-                $coupon = $this->coupon->find($use_coupon_idx);
-            }
-
-            $data = [
-                "m_idx" => $m_idx,
-                "device_type" => $device_type,
-                "product_idx" => $product_idx,
-                "product_code_1" => $hotel["product_code_1"],
-                "product_code_2" => $hotel["product_code_2"],
-                "product_code_3" => $hotel["product_code_3"],
-                "product_code_4" => $hotel["product_code_4"],
-                "product_code_list" => $hotel["product_code_list"],
-                "product_name" => $hotel["product_name"],
-                "code_name" => $code_name,
-                "order_gubun" => "hotel",
-                "order_user_name" => encryptField($order_user_name, "encode"),
-                "order_user_mobile" => encryptField($order_user_mobile, "encode"),
-                "order_user_email" => encryptField($order_user_email, "encode"),
-                "order_memo" => $order_memo,
-                "inital_price" => $inital_price,
-                "order_price" => $order_price,
-                "order_date" => Time::now('Asia/Seoul', 'en_US'),
-                "used_coupon_idx" => $use_coupon_idx,
-                "used_coupon_money" => $used_coupon_money,
-                "room_op_idx" => $room_op_idx,
-                "order_room_cnt" => $number_room,
-                "order_day_cnt" => $number_day,
-                "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
-                "order_status" => $order_status,
-                "encode" => "Y",
-                "ip" => $ipAddress
-            ];
-
-            $order_idx = $this->orderModel->insert($data);
-            if ($order_idx) {
-                $order_no = $this->orderModel->makeOrderNo();
-                $this->orderModel->update($order_idx, ["order_no" => $order_no]);
-
-                if (!empty($use_coupon_idx)) {
-                    $this->coupon->update($use_coupon_idx, ["status" => "E"]);
-
-                    $cou_his = [
-                        "order_idx" => $order_idx,
-                        "product_idx" => $product_idx,
-                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                        "used_coupon_idx" => $use_coupon_idx,
-                        "used_coupon_money" => $used_coupon_money,
-                        "ch_r_date" => Time::now('Asia/Seoul', 'en_US'),
-                        "m_idx" => $m_idx
-                    ];
-
-                    $this->couponHistory->insert($cou_his);
+            if (empty(session()->get("member")["id"])) {
+                
+                $parent_code = $this->request->getPost('parent_code') ?? "";
+                $product_code = $this->request->getPost('product_code') ?? "";
+                $product_arr = $this->request->getPost('product_arr') ?? "";
+                $product_cnt_arr = $this->request->getPost('product_cnt_arr') ?? "";
+                $departure_area = $this->request->getPost('departure_area') ?? "";
+                $destination_area = $this->request->getPost('destination_area') ?? "";
+                $meeting_date = $this->request->getPost('meeting_date') ?? "";
+                $adult_cnt = $this->request->getPost('adult_cnt') ?? 0;
+                $child_cnt = $this->request->getPost('child_cnt') ?? 0;
+                $hours = $this->request->getPost('hours') ?? "";
+                $minutes = $this->request->getPost('minutes') ?? "";
+                $departure_hotel = $this->request->getPost('departure_hotel') ?? "";
+                $destination_hotel = $this->request->getPost('destination_hotel') ?? "";
+                $order_memo = $this->request->getPost('order_memo') ?? "";
+                $phone1 = $this->request->getPost('phone1') ?? "";
+                $phone2 = $this->request->getPost('phone2') ?? "";
+                $phone3 = $this->request->getPost('phone3') ?? "";
+                $email_name = $this->request->getPost('email_name') ?? "";
+                $email_host = $this->request->getPost('email_host') ?? "";
+                $inital_price = $this->request->getPost('inital_price') ?? 0;
+                $order_price = $this->request->getPost('order_price') ?? 0;
+    
+                $order_user_mobile = $phone1 . "-" . $phone2 . $phone3;
+                $order_user_email = $email_name . "@" . $email_host;
+                $m_idx = session()->get("member")["idx"];
+                $order_status = "W";
+                $ipAddress = $this->request->getIPAddress();
+                $device_type = get_device();
+    
+                $code_name = $this->codeModel->getCodeName($parent_code);
+    
+                if(!empty($hours) && !empty($minutes)) {
+                    $vehicle_time = $hours . ":" . $minutes;
                 }
-
-                $order_num_room = $this->request->getPost('order_num_room');
-                $order_first_name = $this->request->getPost('order_first_name');
-                $order_last_name = $this->request->getPost('order_last_name');
-                foreach ($order_num_room as $key => $value) {
-                    $first_name = encryptField($order_first_name[$key], "encode");
-                    $last_name = encryptField($order_last_name[$key], "encode");
-                    $data_sub = [
-                        "m_idx" => $m_idx,
-                        "order_idx" => $order_idx,
-                        "product_idx" => $product_idx,
-                        "number_room" => filter_var(preg_replace('/[^0-9]/', '', $value), FILTER_SANITIZE_NUMBER_INT),
-                        "order_first_name" => $first_name,
-                        "order_last_name" => $last_name,
-                        "encode" => "Y"
-                    ];
-                    $this->orderSubModel->insert($data_sub);
+    
+                $data = [
+                    "m_idx" => $m_idx,
+                    "device_type" => $device_type,
+                    "product_idx" => 0,
+                    "product_code_1" => $parent_code,
+                    "product_code_2" => "",
+                    "product_code_3" => "",
+                    "product_code_4" => "",
+                    "product_code_list" => $product_code,
+                    "product_name" => "",
+                    "code_name" => $code_name,
+                    "order_gubun" => "vehicle",
+                    "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                    "order_user_email" => encryptField($order_user_email, "encode"),
+                    "order_memo" => $order_memo,
+                    "people_adult_cnt" => $adult_cnt,
+                    "people_kids_cnt" => $child_cnt,
+                    "inital_price" => $inital_price,
+                    "order_price" => $order_price,
+                    "order_date" => Time::now('Asia/Seoul', 'en_US'),
+                    "vehicle_time" => $vehicle_time,
+                    "departure_area" => $departure_area,
+                    "destination_area" => $destination_area,
+                    "meeting_date" => $meeting_date,
+                    "departure_hotel" => $departure_hotel,
+                    "destination_hotel" => $destination_hotel,
+                    "order_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                    "order_status" => $order_status,
+                    "encode" => "Y",
+                    "ip" => $ipAddress
+                ];
+    
+                $order_idx = $this->orderModel->insert($data);
+                if ($order_idx) {
+                    $order_no = $this->orderModel->makeOrderNo();
+                    $this->orderModel->update($order_idx, ["order_no" => $order_no]);
+    
+                    $car_op_idx = explode(",", $product_arr);
+                    $car_op_cnt = explode(",", $product_cnt_arr);
+    
+                    if(count($car_op_idx) > 0 && count($car_op_cnt) > 0){
+                        for ($i = 0; $i < count($car_op_idx); $i++) {
+                            $product_idx = $this->carsSubModel->find($car_op_idx[$i])["product_idx"];
+                            $op_price = $this->carsSubModel->find($car_op_idx[$i])["car_price"];
+                            $data_sub = [
+                                "option_type" => "vehicle",
+                                "order_idx" => $order_idx,
+                                "product_idx" => $product_idx,
+                                "option_idx" => $car_op_idx[$i],
+                                "option_date" => Time::now('Asia/Seoul', 'en_US'),
+                                "option_price" => $op_price,
+                                "option_qty" => $car_op_cnt[$i],
+                            ];
+                            $this->carsSubModel->insert($data_sub);
+                        }
+                    }
+    
+                    return $this->response->setJSON([
+                        'result' => true,
+                        'message' => "주문되었습니다."
+                    ], 200);
                 }
-
-                $this->response->deleteCookie('cart');
-
+    
                 return $this->response->setJSON([
-                    'result' => true,
-                    'message' => "주문되었습니다."
-                ], 200);
+                    'result' => false,
+                    'message' => "Error"
+                ], 400);
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "주문하시려면 로그인해주세요"
+                ]);
             }
 
-            return $this->response->setJSON([
-                'result' => false,
-                'message' => "Error"
-            ], 400);
         } catch (Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -3003,5 +3000,40 @@ class Product extends BaseController
         ];
 
         return $data;
+    }
+
+    private function getDataBooking()
+    {
+        $session = Services::session();
+        $data = $session->get('data_cart');
+
+        $product_idx = $data['product_idx'];
+        $day_ = $data['day_'];
+        $member_idx = $data['member_idx'];
+
+        $adultQty = $data['adultQty'];
+        $childrenQty = $data['childrenQty'];
+
+        $totalPrice = $data['totalPrice'];
+
+        $prod = $this->productModel->getById($product_idx);
+
+        $builder = $this->db->table('tbl_tours_moption');
+        $builder->where('product_idx', $product_idx);
+        $builder->where('use_yn', 'Y');
+        $builder->orderBy('onum', 'desc');
+        $query = $builder->get();
+        $moption = $query->getResultArray();
+
+        return [
+            'prod' => $prod,
+            'day_' => $day_,
+            'member_idx' => $member_idx,
+            'moption' => $moption,
+            'adultQty' => $adultQty,
+            'childrenQty' => $childrenQty,
+            'totalPrice' => $totalPrice,
+            'data' => $data,
+        ];
     }
 }
