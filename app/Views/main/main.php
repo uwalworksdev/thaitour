@@ -572,6 +572,37 @@
                         </div>
                     </a-->
                 </div>
+
+                <div class="best_list best_list_3 hidden">
+                    <?php foreach ($list1_3 as $item1_3): ?>
+					<?php $img_dir   = img_link($item1_3['product_code_1']); ?>
+					<?php $prog_link = prog_link($item1_3['product_code_1']);?>
+                    <a href="<?=$prog_link?><?=$item1_3['product_idx']?>" class="best_list_item">
+                        <div class="img_box img_box_3">
+                            <img src="/data/<?=$img_dir?>/<?=$item1_3['ufile1']?>" alt="main">
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb_item">방콕</li>
+                            <li class="breadcrumb_item">시암</li>
+                        </ul>
+                        <div class="prd_name">
+                            <?=$item1_3['product_name']?>
+                        </div>
+                        <div class="prd_info">
+                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                            <span class="star_avg">4.7</span>
+                            <span class="star_review_cnt">(954)</span>
+                        </div>
+                        <div class="prd_price_ko">
+                            <?= number_format($item1_3['original_price']) ?> <span>원</span>
+                        </div>
+                        <div class="prd_price_thai">
+                            6,000 <span>바트</span>
+                        </div>
+                    </a>
+                    <?php endforeach; ?>
+                </div>
+
             </div>
         </div>
     </section>
