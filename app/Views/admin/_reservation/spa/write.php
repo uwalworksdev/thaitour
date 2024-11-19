@@ -394,6 +394,39 @@
                                 <?php } ?>
                                 </tbody>
                             </table>
+
+                            <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 선택 정보</div>
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="*%"/>
+                                    <col width="30%"/>
+                                    <col width="30%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th style="text-align:center">구분</th>
+                                    <th style="text-align:center">영문성</th>
+                                    <th style="text-align:center">영문이름</th>
+                                </tr>
+                                <?php
+                                foreach ($option_order as $frow) {
+                                    ?>
+                                    <tr>
+                                        <td style="text-align:center">
+                                            <?= $frow["option_name"] ?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?= $frow["option_price"] ?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?= $frow["option_qty"] ?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- // listBottom -->
 
