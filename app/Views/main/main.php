@@ -798,7 +798,9 @@
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
                     <div class="swiper-wrapper">
 
+                        <?php $seq = 0;?> 
                         <?php foreach ($list3 as $item3): ?>
+						<?php $seq++;?>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
@@ -807,7 +809,7 @@
                                 <div class="prd_name"><?=$item3['product_name']?></div>
                                 <div class="prd_price_ko"><?= number_format($item3['original_price']) ?> <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label number_one">1</span>
+                                <span class="number_item_label number_one"><?=$seq?></span>
                             </div>
                         </div>
                         <?php endforeach; ?>
