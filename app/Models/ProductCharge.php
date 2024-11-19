@@ -63,7 +63,7 @@ class ProductCharge extends Model
                 $sql .= " order by " . $orderby . " " . $sort;
             }
             write_log($sql);
-            return $this->db->query($sql)->getRowArray();
+            return $this->db->query($sql)->getResultArray();
         } catch (\Exception $e) {
             write_log($e->getMessage());
             return false;

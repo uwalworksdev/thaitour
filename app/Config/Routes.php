@@ -545,7 +545,7 @@ $routes->group("custom_travel", static function ($routes) {
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('ticket/completed-order', 'Product::ticketCompleted');
-$routes->get('ticket/ticket-booking/(:any)', 'Product::ticketBooking/$1');
+$routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');
 $routes->get('show-ticket/(:any)', 'Product::showTicket/$1');
 $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
@@ -581,7 +581,7 @@ $routes->get('product-spa/spa-details/(:any)', 'Product::spaDetail/$1');
 $routes->get('product-spa/(:any)', 'Product::indexSpa/$1');
 $routes->get('product_view/(:any)', 'Product::view/$1');
 $routes->get('product-restaurant/completed-order', 'Product::restaurantCompleted');
-$routes->get('product-restaurant/restaurant-booking/(:any)', 'Product::restaurantBooking/$1');
+$routes->get('product-restaurant/restaurant-booking', 'Product::restaurantBooking');
 $routes->get('product-restaurant/restaurant-detail/(:any)', 'Product::restaurantDetail/$1');
 $routes->get('product-restaurant/(:any)', 'Product::restaurantIndex/$1');
 $routes->get('product/get-by-keyword', 'Product::getProductByKeyword');
