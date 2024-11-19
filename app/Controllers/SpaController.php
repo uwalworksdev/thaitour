@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use CodeIgniter\Database\Config;
+use CodeIgniter\I18n\Time;
 use Config\Services;
 
 class SpaController extends BaseController
@@ -161,12 +162,14 @@ class SpaController extends BaseController
                 'order_user_phone' => encryptField($order_user_mobile, 'encode'),
                 'product_idx' => $product_idx,
                 'user_id' => $member_idx,
+                'm_idx' => $member_idx,
                 'order_day' => $day_,
                 'people_adult_cnt' => $adultQty,
                 'people_kids_cnt' => $childrenQty,
                 'inital_price' => $totalPrice,
                 'order_price' => $totalPrice,
                 'order_memo' => $order_memo,
+                'order_date' => Time::now('Asia/Seoul', 'en_US'),
             ];
 
             $data['order_no'] = $this->orderModel->makeOrderNo();
@@ -223,7 +226,7 @@ class SpaController extends BaseController
                 ]);
             }
 
-            if (isset($option_idx)){
+            if (isset($option_idx)) {
                 $countO = count($option_idx);
                 for ($i = 0; $i < $countO; $i++) {
                     $this->orderOptionModel->insert([
