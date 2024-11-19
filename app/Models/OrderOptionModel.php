@@ -17,7 +17,9 @@ class OrderOptionModel extends Model
         'option_idx',
         'option_tot',
         'option_cnt',
-        'option_date'
+        'option_price',
+        'option_qty',
+        'option_date',
     ];
 
     public function getOption($order_idx, $option_type)

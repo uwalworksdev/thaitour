@@ -418,10 +418,10 @@
                                             <?= $frow["option_name"] ?>
                                         </td>
                                         <td style="text-align:center">
-                                            <?= $frow["option_price"] ?>
+                                            <?= number_format($frow["option_price"]) ?>
                                         </td>
                                         <td style="text-align:center">
-                                            <?= $frow["option_qty"] ?>
+                                            <?= number_format($frow["option_qty"]) ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
