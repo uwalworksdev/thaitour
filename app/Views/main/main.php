@@ -17,6 +17,12 @@
 	$MainDisp = model("MainDispModel"); // 파타야
 	$list1_2  = $MainDisp->List("290402")->findAll();
 
+	$MainDisp = model("MainDispModel"); // 푸켓
+	$list1_3  = $MainDisp->List("290403")->findAll();
+
+	$MainDisp = model("MainDispModel"); // 치앙마이
+	$list1_4  = $MainDisp->List("290404")->findAll();
+
     // 1주일간 예약순위 : 호텔
 	$MainDisp = model("MainDispModel");
 	$list2    = $MainDisp->List("290201")->findAll();
@@ -518,7 +524,7 @@
                         <!-- <div class="prd_price_thai">
                             6,000 <span>바트</span>
                         </div>
-                    </a-->
+                    </a>
                     <a href="#!" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/uploads/main/main_best_3.png" alt="main">
@@ -564,7 +570,7 @@
                         <div class="prd_price_thai">
                             6,000 <span>바트</span>
                         </div>
-                    </a>
+                    </a-->
                 </div>
             </div>
         </div>
