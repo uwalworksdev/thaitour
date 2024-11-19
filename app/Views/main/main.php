@@ -660,7 +660,7 @@
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
                     <div class="swiper-wrapper">
-
+                        <?php $seq = 0;?> 
                         <?php foreach ($list2 as $item2): ?>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
@@ -670,7 +670,7 @@
                                 <div class="prd_name"><?=$item2['product_name']?></div>
                                 <div class="prd_price_ko"><?= number_format($item2['original_price']) ?> <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label number_one">1</span>
+                                <span class="number_item_label number_one"><?php $seq++;?></span>
                             </div>
                         </div>
                         <?php endforeach; ?>
