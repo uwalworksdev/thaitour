@@ -10,6 +10,21 @@
 	$MainDisp = model("MainDispModel");
 	$list1    = $MainDisp->List("290401")->findAll();
 
+    // 1주일간 예약순위 : 호텔
+	$MainDisp = model("MainDispModel");
+	$list2    = $MainDisp->List("290201")->findAll();
+
+    // 1주일간 예약순위 : 골프
+	$MainDisp = model("MainDispModel");
+	$list3    = $MainDisp->List("290101")->findAll();
+
+	// 태국에서 즐기는 5성급 호텔의 특별함
+	$MainDisp = model("MainDispModel");
+	$list4    = $MainDisp->List("2903")->findAll();
+
+	// 태국에서 즐기는 골프의 특별함
+	$MainDisp = model("MainDispModel");
+	$list5    = $MainDisp->List("2905")->findAll();
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
@@ -653,18 +668,23 @@
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
                     <div class="swiper-wrapper">
+                        <?php $seq = 0;?> 
+                        <?php foreach ($list2 as $item2): ?>
+						<?php $seq++;?>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_1.png" alt="main">
+                                    <img src="/data/product/<?=$item2['ufile1']?>" alt="main">
                                 </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
+                                <div class="prd_name"><?=$item2['product_name']?></div>
+                                <div class="prd_price_ko"><?= number_format($item2['original_price']) ?> <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label number_one">1</span>
+                                <span class="number_item_label number_one"><?=$seq?></span>
                             </div>
                         </div>
-                        <div class="swiper-slide">
+                        <?php endforeach; ?>
+
+                        <!--div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
                                     <img src="/uploads/main/main_hot_2.png" alt="main">
@@ -716,7 +736,7 @@
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
                 <div class="swiper-button-prev-main-2 swiper-button-main-2 hot_product_list_swiper_1_btn_prev">
@@ -766,10 +786,10 @@
                         1주일간 예약순위 : <span>골프</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <div class="place_item">방콕</div>
+                        <div class="place_item active">방콕</div>
                         <div class="place_item">파타야</div>
                         <div class="place_item">푸켓</div>
-                        <div class="place_item active">치앙마이</div>
+                        <div class="place_item">치앙마이</div>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -785,18 +805,24 @@
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
                     <div class="swiper-wrapper">
+
+                        <?php $seq = 0;?> 
+                        <?php foreach ($list3 as $item3): ?>
+						<?php $seq++;?>
                         <div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_5.png" alt="main">
+                                    <img src="/data/product/<?=$item3['ufile1']?>" alt="main">
                                 </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
+                                <div class="prd_name"><?=$item3['product_name']?></div>
+                                <div class="prd_price_ko"><?= number_format($item3['original_price']) ?> <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label number_one">1</span>
+                                <span class="number_item_label number_one"><?=$seq?></span>
                             </div>
                         </div>
-                        <div class="swiper-slide">
+                        <?php endforeach; ?>
+
+                        <!--div class="swiper-slide">
                             <div class="hot_product_list__item">
                                 <div class="img_box img_box_2">
                                     <img src="/uploads/main/main_hot_6.png" alt="main">
@@ -848,7 +874,7 @@
                                 <div class="prd_price_ko">236,100 <span>원</span></div>
                                 <div class="prd_price_thai">6,000 <span>바트</span></div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
                 <div class="swiper-button-prev-main-2 swiper-button-main-2 hot_product_list_swiper_2_btn_prev">
@@ -874,17 +900,19 @@
             <div class="main_section9__row">
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 <br> 5성급 호텔의 특별함 </div>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 5성급 호텔의 특별함 </div>
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
                         <img src="/uploads/main/main_banner_8.png" alt="">
                     </div>
                     <div class="main_section9__prd">
+
+                        <?php foreach ($list4 as $item4): ?>
                         <div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_1.png" alt="">
+                                    <img src="/data/hotel/<?=$item4['ufile1']?>" alt="">
                                 </div>
                             </div>
                             <div class="prd__item__right">
@@ -904,7 +932,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="main_section9__prd__item">
+                        <?php endforeach; ?>
+
+                        <!--div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
                                     <img src="/uploads/main/main_tour_2.png" alt="">
@@ -926,12 +956,12 @@
                                     <div class="prd_price_thai">6,000바트</div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                 </div>
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 <br> 5성급 호텔의 특별함 </div>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 골프의 특별함 </div>
                         <a href="#!" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">

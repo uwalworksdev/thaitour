@@ -145,10 +145,11 @@ class SpaController extends BaseController
             $totalPrice = $this->request->getPost('totalPrice');
 
             $option_idx = $this->request->getPost('option_idx');
-            $input_qty = $this->request->getPost('input_qty');
+            $option_qty = $this->request->getPost('option_qty');
             $option_tot = $this->request->getPost('option_tot');
             $option_cnt = $this->request->getPost('option_cnt');
             $option_price = $this->request->getPost('option_price');
+            $option_name = $this->request->getPost('option_name');
 
             $order_user_email = $email_name . '@' . $email_host;
 
@@ -222,19 +223,22 @@ class SpaController extends BaseController
                 ]);
             }
 
-            $countO = count($option_idx);
-            for ($i = 0; $i < $countO; $i++) {
-                $this->orderOptionModel->insert([
-                    'option_type' => 'main',
-                    'order_idx' => $order_idx,
-                    'product_idx' => $data['product_idx'],
-                    'option_idx' => $option_idx[$i],
-                    'option_cnt' => $option_cnt[$i],
-                    'option_price' => $option_price[$i],
-                    'option_qty' => $input_qty[$i],
-                    'option_tot' => $option_tot[$i],
-                    'option_date' => $day_,
-                ]);
+            if (isset($option_idx)){
+                $countO = count($option_idx);
+                for ($i = 0; $i < $countO; $i++) {
+                    $this->orderOptionModel->insert([
+                        'option_type' => 'spa',
+                        'order_idx' => $order_idx,
+                        'product_idx' => $data['product_idx'],
+                        'option_idx' => $option_idx[$i],
+                        'option_name' => $option_name[$i],
+                        'option_cnt' => $option_cnt[$i],
+                        'option_price' => $option_price[$i],
+                        'option_qty' => $option_qty[$i],
+                        'option_tot' => $option_tot[$i],
+                        'option_date' => $day_,
+                    ]);
+                }
             }
 
             $session->set('data_cart', null);

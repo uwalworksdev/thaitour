@@ -242,6 +242,7 @@
                                         </div>
                                         <div class="wrap-btn">
                                             <span><?= $adultQty ?></span>
+                                            <span>명</span>
                                         </div>
                                     </div>
                                     <div class="schedule">
@@ -250,6 +251,7 @@
                                         </div>
                                         <div class="wrap-btn">
                                             <span><?= $childrenQty ?></span>
+                                            <span>명</span>
                                         </div>
                                     </div>
                                 </div>
@@ -273,38 +275,42 @@
 
                                 <div class="list_schedule_" id="option_list_">
                                     <?php
-                                    $num = count($data['option_idx']);
-                                    for ($i = 0; $i < $num; $i++) {
-                                        $item = $data['option_idx'][$i];
-                                        ?>
-                                        <div class="schedule" id="schedule_<?= $item ?>">
-                                            <div class="wrap-text">
-                                                <span>일정</span>
-                                                <p><?= $data['option_name'][$i] ?></p>
-                                            </div>
-                                            <div class="wrap-btn">
-                                                <img onclick="minusQty(this)" class="minusQty"
-                                                     src="/images/sub/minus-ic.png"
-                                                     alt="">
-                                                <span>
+                                    if (isset($data['option_idx'])) {
+                                        $num = count($data['option_idx']);
+                                        for ($i = 0; $i < $num; $i++) {
+                                            $item = $data['option_idx'][$i];
+                                            ?>
+                                            <div class="schedule" id="schedule_<?= $item ?>">
+                                                <div class="wrap-text">
+                                                    <span>옵션</span>
+                                                    <p><?= $data['option_name'][$i] ?></p>
+                                                </div>
+                                                <div class="wrap-btn">
+                                                    <img onclick="minusQty(this)" class="minusQty"
+                                                         src="/images/sub/minus-ic.png"
+                                                         alt="">
+                                                    <span>
                                                 <input style="text-align: center;" type="text"
-                                                       class="form-control input_qty"
+                                                       class="form-control input_qty" name="option_qty[]"
                                                        data-price="<?= $data['option_price'][$i] ?>"
-                                                       id="input_qty[]" readonly value="<?= $data['option_qty'][$i] ?>">
+                                                       id="input_qty" readonly value="<?= $data['option_qty'][$i] ?>">
                                                 </span>
-                                                <img onclick="plusQty(this)" class="plusQty"
-                                                     src="/images/sub/plus-ic.png"
-                                                     alt="">
+                                                    <img onclick="plusQty(this)" class="plusQty"
+                                                         src="/images/sub/plus-ic.png"
+                                                         alt="">
+                                                </div>
+                                                <div class="" style="display: none">
+                                                    <input type="hidden" name="option_idx[]" value="<?= $item ?>">
+                                                    <input type="hidden" name="option_name[]"
+                                                           value="<?= $data['option_name'][$i] ?>">
+                                                    <input type="hidden" name="option_price[]"
+                                                           value="<?= $data['option_price'][$i] ?>">
+                                                    <input type="hidden" name="option_tot[]" value="0">
+                                                    <input type="hidden" name="option_cnt[]" value="0">
+                                                </div>
                                             </div>
-                                            <div class="" style="display: none">
-                                                <input type="hidden" name="option_idx[]" value="<?= $item ?>">
-                                                <input type="hidden" name="option_price[]"
-                                                       value="<?= $data['option_price'][$i] ?>">
-                                                <input type="hidden" name="option_tot[]" value="0">
-                                                <input type="hidden" name="option_cnt[]" value="0">
-                                            </div>
-                                        </div>
-                                        <?php
+                                            <?php
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -541,7 +547,8 @@
                                     <div class="wrap-btn">
                                         <img onclick="minusQty(this)" class="minusQty" src="/images/sub/minus-ic.png" alt="">
                                         <span>
-                                            <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty" id="input_qty[]" value="1">
+                                            <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty"
+                                                    name="option_qty[]" id="input_qty" value="1">
                                         </span>
                                         <img onclick="plusQty(this)" class="plusQty" src="/images/sub/plus-ic.png" alt="">
                                     </div>

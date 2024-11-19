@@ -16,6 +16,7 @@ class MainDisp extends Model
         'onum', 
         'p_idx'
     ];
+
     public function goods_find(int $code_no, $g_list_rows = 1000, $pg = 1): array
     {
         helper(['setting']);
@@ -54,6 +55,7 @@ class MainDisp extends Model
         ];
         return $data;
     }
+
     public function itemCntByProductAndCode(int $product_idx, int $code_no)
     {
         return $this->where('product_idx', $product_idx)
@@ -69,12 +71,8 @@ class MainDisp extends Model
         $builder->where('tbl_main_disp.code_no', $code_no);
         $builder->where('tbl_product_mst.is_view', 'Y');
 
-        //$builder = $this->db->table('tbl_main_disp as s1')
-        //    ->select('s1.*, s2.*')
-        //    ->join('tbl_product_mst as s2', 's1.product_idx = s2.product_idx', 'left')
-        //    ->where('s1.code_no =', '$code')
-        //    ->where('s1.status  =', 'Y');
-
         return $builder;
     }
 }
+
+
