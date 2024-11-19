@@ -584,6 +584,29 @@
             return '<span></span>';
         }
 
+        // 버튼이 동적으로 생성된 경우에도 클릭 이벤트 적용
+        // $(document).on('click', '.allowBtn', function () {
+        // let order_no = $("#order_no").val();
+        // console.log(order_no);
+        // $.ajax({
+        //
+        //     url: "/ajax/ajax.order_delete.php",
+        //     type: "POST",
+        //     data: {
+        //         "order_no": order_no
+        //     },
+        //     dataType: "json",
+        //     async: false,
+        //     cache: false,
+        //     success: function (data, textStatus) {
+        //         console.log(data)
+        //     },
+        //     error: function (request, status, error) {
+        //         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+        //     }
+        // });
+        // });
+
         $(document).on('click', '.allowBtn', function () {
             $('.sel_date').removeClass('active_');
             $(this).parent().parent().addClass('active_');
@@ -759,6 +782,9 @@
             }
 
             total_price += parseInt(price_total);
+
+            $('#totalPrice').val(total_price);
+
             total_price = total_price.toLocaleString();
             return total_price;
         }

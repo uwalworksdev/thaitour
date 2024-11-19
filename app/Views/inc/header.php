@@ -86,10 +86,10 @@
 
             <div>
                 <div class="icon-menu">
-                    <a href="#" class="icon-menu-item">
-                        <img src="/images/ico/icon_calen.png" alt="">
-                        <p style="margin-top:5px;">일정표</p>
-                    </a>
+<!--                    <a href="#" class="icon-menu-item">-->
+<!--                        <img src="/images/ico/icon_calen.png" alt="">-->
+<!--                        <p style="margin-top:5px;">일정표</p>-->
+<!--                    </a>-->
                     <a href="#" class="icon-menu-item">
                         <img src="/images/ico/icon_note.png" alt="">
                         <p>매거진</p>
@@ -140,6 +140,7 @@
                         <li><a href="/event/event_list">이벤트</a></li>
                         <li><a href="/mypage/discount">여행 쿠폰</a></li>
                         <li><a href="/community/main">태국뉴스</a></li>
+                        <li><a href="#">여행후기</a></li>
                     </ul>
                 </div>
 
@@ -394,6 +395,7 @@
         <a href="">이벤트</a>
         <a href="">여행 쿠폰</a>
         <a href="">태국뉴스</a>
+        <a href="#">여행후기</a>
     </div>
 </header>
 <div class="only_mo">
@@ -412,10 +414,10 @@
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
-        <div class="nav-item">
-            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">
-            <span class="nav-text text-grey">일정표</span>
-        </div>
+<!--        <div class="nav-item">-->
+<!--            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">-->
+<!--            <span class="nav-text text-grey">일정표</span>-->
+<!--        </div>-->
         <div class="nav-item">
             <img class="nav-pic" src="/images/ico/quick-header-footer_5.png" alt="quick-header-footer_5">
             <span class="nav-text text-grey">찜</span>
