@@ -186,8 +186,9 @@
             <div>
                 <div class="best_list best_list_1">
                     <?php foreach ($list1_1 as $item1_1): ?>
-					<?php $img_dir = img_link($item1_1['product_code_1']);?>
-                    <a href="/product-hotel/hotel-detail/<?=$item1_1['product_idx']?>" class="best_list_item">
+					<?php $img_dir   = img_link($item1_1['product_code_1']); ?>
+					<?php $prog_link = prog_link($item1_1['product_code_1']);?>
+                    <a href="<?=$prog_link?><?=$item1_1['product_idx']?>" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/data/<?=$img_dir?>/<?=$item1_1['ufile1']?>" alt="main">
                         </div>
@@ -376,8 +377,9 @@
                 </div>
                 <div class="best_list best_list_2 hidden">
                     <?php foreach ($list1_2 as $item1_2): ?>
-					<?php $img_dir = img_link($item1_2['product_code_1']);?>
-                    <a href="/product-hotel/hotel-detail/<?=$item1_2['product_idx']?>" class="best_list_item">
+					<?php $img_dir   = img_link($item1_2['product_code_1']); ?>
+					<?php $prog_link = prog_link($item1_2['product_code_1']);?>
+                    <a href="<?=$prog_link?><?=$item1_2['product_idx']?>" class="best_list_item">
                         <div class="img_box img_box_3">
                             <img src="/data/<?=$img_dir?>/<?=$item1_2['ufile1']?>" alt="main">
                         </div>
