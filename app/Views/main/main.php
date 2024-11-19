@@ -189,7 +189,7 @@
 					<?php $img_dir = img_link($item1_1['product_code_1']);?>
                     <a href="/product-hotel/hotel-detail/<?=$item1_1['product_idx']?>" class="best_list_item">
                         <div class="img_box img_box_3">
-                            <img src="/<?=$img_dir?>/<?=$item1_1['ufile1']?>" alt="main">
+                            <img src="/data/<?=$img_dir?>/<?=$item1_1['ufile1']?>" alt="main">
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb_item">방콕</li>
