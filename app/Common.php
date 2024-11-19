@@ -882,3 +882,15 @@ function img_link($code)
     return $link;
 
 }
+
+function prog_link($code)
+{
+	if($code == "1303") $link = "/product-hotel/hotel-detail/";
+	if($code == "1325") $link = "/product-spa/spa-details/";
+	if($code == "1317") $link = "/ticket/ticket-detail/";
+	if($code == "1320") $link = "/product-restaurant/restaurant-detail/";
+	if($code == "1301") $link = "/product-tours/item_view/";
+	if($code == "1302") $link = "/product-golf/golf-detail/";
+    return $link;
+
+}
