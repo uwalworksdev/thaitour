@@ -185,7 +185,7 @@
                                 <tr style="height:50px">
                                     <td><?= $num-- ?></td>
                                     <td class="tac"><?= $row["code_no"] ?></td>
-                                    <td class="tac"><?= $row["stay_gubun"] ?>
+                                    <td class="tac">호텔
                                         <br><strong
                                                 style="color:blue"><?= $row["stay_city"] . " " . $row["country_name_2"] ?></strong>
                                     </td>
