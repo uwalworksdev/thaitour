@@ -2354,7 +2354,7 @@ class Product extends BaseController
                 $inital_price = $this->request->getPost('inital_price') ?? 0;
                 $order_price = $this->request->getPost('order_price') ?? 0;
 
-                $order_user_mobile = $phone1 . "-" . $phone2 . $phone3;
+                $order_user_mobile = $phone1 . "-" . $phone2 . "-" . $phone3;
                 $order_user_email = $email_name . "@" . $email_host;
                 $m_idx = session()->get("member")["idx"];
                 $order_status = "W";

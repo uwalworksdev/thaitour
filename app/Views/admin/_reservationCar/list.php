@@ -474,13 +474,13 @@
                                             <?= $_isDelete ?><br>(<?= $row['code_name'] ?>)
                                         </td>
                                         <td class="tal">
-                                            <div class="flex_c_c" style="flex-direction: column; gap: 10px;">
+                                            <div class="flex" style="flex-direction: column; gap: 10px;">
                                                 <?php
                                                     foreach($row['options'] as $option){
                                                 ?>
-                                                    <div class="flex_c_c" style="gap: 10px;">
+                                                    <div class="flex" style="gap: 10px;">
                                                         <span>상품명 : <?=$option["op_product_name"]?></span> 
-                                                        <span>상품명 : <?=$option["option_price"]?></span> 
+                                                        <span>금액이 : <?=number_format($option["option_price"])?></span> 
                                                         <span>수량 : <?=$option["option_qty"]?></span>
                                                     </div>
                                                 <?php 
@@ -500,7 +500,7 @@
                                         <td class="tac"><?= $row["deposit_method"] ?></td>
                                         <td class="tac"><?= isset($row["ip"]) ? $row["ip"] : "" ?></td>
                                         <td>
-                                            <a href="/AdmMaster/_reservation/<?=$row['order_gubun']?>/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
+                                            <a href="/AdmMaster/_reservationCar/write?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>&order_idx=<?= $row['order_idx'] ?>"><img
                                                         src="/images/admin/common/ico_setting2.png"></a>
                                             <a href="javascript:del_it('<?= $row['order_idx'] ?>');"><img
                                                         src="/images/admin/common/ico_error.png" alt="에러"/></a>
@@ -515,7 +515,7 @@
                         </div><!-- // listBottom -->
                     </form>
 
-                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservation/list') . "?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
+                    <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_reservationCar/list') . "?s_status=$s_status&search_category=$search_category&search_name=$search_name&pg=" . $arrays_paging) ?>
 
 
                     <div id="headerContainer">
@@ -562,7 +562,7 @@
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "delete",
+                url: "/AdmMaster/_reservation/delete",
                 type: "POST",
                 data: "order_idx[]=" + order_idx,
                 error: function (request, status, error) {

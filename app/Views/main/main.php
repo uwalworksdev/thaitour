@@ -2,42 +2,39 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-	// 메인 배너
-	$Bbs = model("Bbs");
-	$list = $Bbs->List("banner", ["category" => "1"])->findAll();
+$keyword = $_GET['keyword'] ?? '';
 
-	// 메인 중간 배너
-	$Bbs = model("Bbs");
-	$list_m = $Bbs->List("banner", ["category" => "16"])->findAll();
+// 메인 배너
+$Bbs = model("Bbs");
+$list = $Bbs->List("banner", ["category" => "1"])->findAll();
 
-	// 취향저격 더투어랩 Best
-	$MainDisp = model("MainDispModel"); // 방콕
-	$list1_1  = $MainDisp->List("290401")->findAll();
+// 메인 중간 배너
+$list_m = $Bbs->List("banner", ["category" => "16"])->findAll();
 
-	$MainDisp = model("MainDispModel"); // 파타야
-	$list1_2  = $MainDisp->List("290402")->findAll();
+// 취향저격 더투어랩 Best
+$MainDisp = model("MainDispModel"); // 방콕
+$list1_1 = $MainDisp->List("290401")->findAll();
 
-	$MainDisp = model("MainDispModel"); // 푸켓
-	$list1_3  = $MainDisp->List("290403")->findAll();
+// 파타야
+$list1_2 = $MainDisp->List("290402")->findAll();
 
-	$MainDisp = model("MainDispModel"); // 치앙마이
-	$list1_4  = $MainDisp->List("290404")->findAll();
+// 푸켓
+$list1_3 = $MainDisp->List("290403")->findAll();
 
-    // 1주일간 예약순위 : 호텔
-	$MainDisp = model("MainDispModel");
-	$list2    = $MainDisp->List("290201")->findAll();
+// 치앙마이
+$list1_4 = $MainDisp->List("290404")->findAll();
 
-    // 1주일간 예약순위 : 골프
-	$MainDisp = model("MainDispModel");
-	$list3    = $MainDisp->List("290101")->findAll();
+// 1주일간 예약순위 : 호텔
+$list2 = $MainDisp->List("290201")->findAll();
 
-	// 태국에서 즐기는 5성급 호텔의 특별함
-	$MainDisp = model("MainDispModel");
-	$list4    = $MainDisp->List("2903")->findAll();
+// 1주일간 예약순위 : 골프
+$list3 = $MainDisp->List("290101")->findAll();
 
-	// 태국에서 즐기는 골프의 특별함
-	$MainDisp = model("MainDispModel");
-	$list5    = $MainDisp->List("2905")->findAll();
+// 태국에서 즐기는 5성급 호텔의 특별함
+$list4 = $MainDisp->List("2903")->findAll();
+
+// 태국에서 즐기는 골프의 특별함
+$list5 = $MainDisp->List("2905")->findAll();
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
@@ -63,7 +60,7 @@
                     <?php foreach ($list as $item): ?>
                         <div class="img_box img_box_1 only_web">
                             <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
-                                alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
+                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
                         </div>
                     <?php endforeach; ?>
 
@@ -71,88 +68,59 @@
                 <div class="main_visual_slider owl-carousel only_mo">
                     <div class="img_box img_box_1_m  only_mo">
                         <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
-                            onerror="this.src='/images/main/image.svg'">
+                             onerror="this.src='/images/main/image.svg'">
                     </div>
                     <div class="img_box img_box_1_m only_mo ">
                         <img class="only_mo" src="/uploads/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
-                            onerror="this.src='/images/main/image.svg'">
+                             onerror="this.src='/images/main/image.svg'">
                     </div>
                     <div class="img_box img_box_1_m only_mo ">
                         <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
-                            onerror="this.src='/images/main/image.svg'">
+                             onerror="this.src='/images/main/image.svg'">
                     </div>
                 </div>
             </div>
             <div class="swiper-main-tools">
                 <div class="play_pause" id="autoplay-button">
                     <svg id="pause-button" class="pause" width="6" height="10" viewBox="0 0 6 10" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <rect width="2" height="10" fill="#757575" />
-                        <rect x="4" width="2" height="10" fill="#757575" />
+                         xmlns="http://www.w3.org/2000/svg">
+                        <rect width="2" height="10" fill="#757575"/>
+                        <rect x="4" width="2" height="10" fill="#757575"/>
                     </svg>
                     <svg id="play-button" style="display: none;" class="play" width="8" height="10" viewBox="0 0 8 10"
-                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
-                            d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
-                            fill="#757575" />
+                              d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
+                              fill="#757575"/>
                     </svg>
                 </div>
                 <div class="swiper-pagination-main">
                     <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span
-                        class="main_total_slide"><?= count($list) ?></span>
+                            class="main_total_slide"><?= count($list) ?></span>
                     <!-- get total slide from database -->
                 </div>
             </div>
         </div>
     </section>
+
     <section class="main_section2">
         <div class="body_inner">
             <h1 class="ttl">태국여행, 왜 더투어랩이 답일까요?</h1>
             <div style="position: relative;">
                 <div class="swiper main_swiper2">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="img_box img_box_2 img_box_2_m">
-                                <img class="only_web" src="/uploads/main/main_banner_1.png"
-                                    alt="main">
-                                <img class="only_mo" src="../uploads/main/main_banner_1_m.png" alt="main">
-                            </div>
-                            <div class="main_swiper2__text">
-                                # 왜 더투어랩이<br class="only_mo"> 답일까요?
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img_box img_box_2 img_box_2_m">
-                                <img src="/uploads/main/main_banner_2.png" alt="main">
-                                <img class="only_mo" src="../uploads/main/main_banner_2_m.png" alt="main">
 
+                        <?php foreach ($codes as $code): ?>
+                            <div class="swiper-slide">
+                                <div class="img_box img_box_2 img_box_2_m">
+                                    <img class="only_web" src="/data/code/<?= $code['ufile1'] ?>"
+                                         alt="main">
+                                </div>
+                                <div class="main_swiper2__text">
+                                    <?= $code['code_name'] ?>
+                                </div>
                             </div>
-                            <div class="main_swiper2__text"> # 더투어랩의 <br> 신용도는 <br> AAA</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img_box img_box_2 img_box_2_m">
-                                <img src="/uploads/main/main_banner_3.png" alt="main">
-                            </div>
-                            <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img_box img_box_2 img_box_2_m">
-                                <img src="/uploads/main/main_banner_4.png" alt="main">
-                            </div>
-                            <div class="main_swiper2__text">#무려 4% <br> 포인트 적립</div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img_box img_box_2 img_box_2_m">
-                                <img src="/uploads/main/main_banner_5.png" alt="main">
-                            </div>
-                            <div class="main_swiper2__text">#예약이 <br> 정말 쉬워요! </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="img_box img_box_2 img_box_2_m">
-                                <img src="/uploads/main/main_banner_3.png" alt="main">
-                            </div>
-                            <div class="main_swiper2__text">#무조건 <br> 최저가 보장</div>
-                        </div>
+                        <?php endforeach; ?>
 
                     </div>
 
@@ -171,6 +139,7 @@
 
         </div>
     </section>
+
     <section class="main_section3">
         <div class="body_inner">
             <div class="main_section3__head">
@@ -192,450 +161,128 @@
             <div>
                 <div class="best_list best_list_1">
                     <?php foreach ($list1_1 as $item1_1): ?>
-					<?php $img_dir   = img_link($item1_1['product_code_1']); ?>
-					<?php $prog_link = prog_link($item1_1['product_code_1']);?>
-                    <a href="<?=$prog_link?><?=$item1_1['product_idx']?>" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/data/<?=$img_dir?>/<?=$item1_1['ufile1']?>" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            <?=$item1_1['product_name']?>
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            <?= number_format($item1_1['original_price']) ?> <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
+                        <?php $img_dir = img_link($item1_1['product_code_1']); ?>
+                        <?php $prog_link = prog_link($item1_1['product_code_1']); ?>
+                        <a href="<?= $prog_link ?><?= $item1_1['product_idx'] ?>" class="best_list_item">
+                            <div class="img_box img_box_3">
+                                <img src="/data/<?= $img_dir ?>/<?= $item1_1['ufile1'] ?>" alt="main">
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb_item">방콕</li>
+                                <li class="breadcrumb_item">시암</li>
+                            </ul>
+                            <div class="prd_name">
+                                <?= $item1_1['product_name'] ?>
+                            </div>
+                            <div class="prd_info">
+                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                <span class="star_avg">4.7</span>
+                                <span class="star_review_cnt">(954)</span>
+                            </div>
+                            <div class="prd_price_ko">
+                                <?= number_format($item1_1['original_price']) ?> <span>원</span>
+                            </div>
+                            <div class="prd_price_thai">
+                                6,000 <span>바트</span>
+                            </div>
+                        </a>
                     <?php endforeach; ?>
-
-					<!--a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_2.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <!-- <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div> -->
-                    <!--/a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_3.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_4.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_5.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_6.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_7.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_8.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a-->
                 </div>
+
                 <div class="best_list best_list_2 hidden">
                     <?php foreach ($list1_2 as $item1_2): ?>
-					<?php $img_dir   = img_link($item1_2['product_code_1']); ?>
-					<?php $prog_link = prog_link($item1_2['product_code_1']);?>
-                    <a href="<?=$prog_link?><?=$item1_2['product_idx']?>" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/data/<?=$img_dir?>/<?=$item1_2['ufile1']?>" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            <?=$item1_2['product_name']?>
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            <?= number_format($item1_2['original_price']) ?> <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
+                        <?php $img_dir = img_link($item1_2['product_code_1']); ?>
+                        <?php $prog_link = prog_link($item1_2['product_code_1']); ?>
+                        <a href="<?= $prog_link ?><?= $item1_2['product_idx'] ?>" class="best_list_item">
+                            <div class="img_box img_box_3">
+                                <img src="/data/<?= $img_dir ?>/<?= $item1_2['ufile1'] ?>" alt="main">
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb_item">방콕</li>
+                                <li class="breadcrumb_item">시암</li>
+                            </ul>
+                            <div class="prd_name">
+                                <?= $item1_2['product_name'] ?>
+                            </div>
+                            <div class="prd_info">
+                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                <span class="star_avg">4.7</span>
+                                <span class="star_review_cnt">(954)</span>
+                            </div>
+                            <div class="prd_price_ko">
+                                <?= number_format($item1_2['original_price']) ?> <span>원</span>
+                            </div>
+                            <div class="prd_price_thai">
+                                6,000 <span>바트</span>
+                            </div>
+                        </a>
                     <?php endforeach; ?>
-
-                    <!--a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_6.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_7.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_8.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_1.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_2.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <!-- <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_3.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
-                    <a href="#!" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/uploads/main/main_best_4.png" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            쉐라톤 그랜드 수쿰윗, 럭셔리 컬렉션 호럭셔리 컬렉션 호...럭셔리 컬렉션 호
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            236,100 <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a-->
                 </div>
 
                 <div class="best_list best_list_3 hidden">
                     <?php foreach ($list1_3 as $item1_3): ?>
-					<?php $img_dir   = img_link($item1_3['product_code_1']); ?>
-					<?php $prog_link = prog_link($item1_3['product_code_1']);?>
-                    <a href="<?=$prog_link?><?=$item1_3['product_idx']?>" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/data/<?=$img_dir?>/<?=$item1_3['ufile1']?>" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            <?=$item1_3['product_name']?>
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            <?= number_format($item1_3['original_price']) ?> <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
+                        <?php $img_dir = img_link($item1_3['product_code_1']); ?>
+                        <?php $prog_link = prog_link($item1_3['product_code_1']); ?>
+                        <a href="<?= $prog_link ?><?= $item1_3['product_idx'] ?>" class="best_list_item">
+                            <div class="img_box img_box_3">
+                                <img src="/data/<?= $img_dir ?>/<?= $item1_3['ufile1'] ?>" alt="main">
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb_item">방콕</li>
+                                <li class="breadcrumb_item">시암</li>
+                            </ul>
+                            <div class="prd_name">
+                                <?= $item1_3['product_name'] ?>
+                            </div>
+                            <div class="prd_info">
+                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                <span class="star_avg">4.7</span>
+                                <span class="star_review_cnt">(954)</span>
+                            </div>
+                            <div class="prd_price_ko">
+                                <?= number_format($item1_3['original_price']) ?> <span>원</span>
+                            </div>
+                            <div class="prd_price_thai">
+                                6,000 <span>바트</span>
+                            </div>
+                        </a>
                     <?php endforeach; ?>
                 </div>
 
                 <div class="best_list best_list_4 hidden">
                     <?php foreach ($list1_4 as $item1_4): ?>
-					<?php $img_dir   = img_link($item1_4['product_code_1']); ?>
-					<?php $prog_link = prog_link($item1_4['product_code_1']);?>
-                    <a href="<?=$prog_link?><?=$item1_4['product_idx']?>" class="best_list_item">
-                        <div class="img_box img_box_3">
-                            <img src="/data/<?=$img_dir?>/<?=$item1_4['ufile1']?>" alt="main">
-                        </div>
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb_item">방콕</li>
-                            <li class="breadcrumb_item">시암</li>
-                        </ul>
-                        <div class="prd_name">
-                            <?=$item1_4['product_name']?>
-                        </div>
-                        <div class="prd_info">
-                            <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                            <span class="star_avg">4.7</span>
-                            <span class="star_review_cnt">(954)</span>
-                        </div>
-                        <div class="prd_price_ko">
-                            <?= number_format($item1_4['original_price']) ?> <span>원</span>
-                        </div>
-                        <div class="prd_price_thai">
-                            6,000 <span>바트</span>
-                        </div>
-                    </a>
+                        <?php $img_dir = img_link($item1_4['product_code_1']); ?>
+                        <?php $prog_link = prog_link($item1_4['product_code_1']); ?>
+                        <a href="<?= $prog_link ?><?= $item1_4['product_idx'] ?>" class="best_list_item">
+                            <div class="img_box img_box_3">
+                                <img src="/data/<?= $img_dir ?>/<?= $item1_4['ufile1'] ?>" alt="main">
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb_item">방콕</li>
+                                <li class="breadcrumb_item">시암</li>
+                            </ul>
+                            <div class="prd_name">
+                                <?= $item1_4['product_name'] ?>
+                            </div>
+                            <div class="prd_info">
+                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                <span class="star_avg">4.7</span>
+                                <span class="star_review_cnt">(954)</span>
+                            </div>
+                            <div class="prd_price_ko">
+                                <?= number_format($item1_4['original_price']) ?> <span>원</span>
+                            </div>
+                            <div class="prd_price_thai">
+                                6,000 <span>바트</span>
+                            </div>
+                        </a>
                     <?php endforeach; ?>
                 </div>
 
             </div>
         </div>
     </section>
+
     <section class="main_section4">
         <div class="body_inner">
             <div class="main_section4_community">
@@ -697,6 +344,7 @@
             </div>
         </div>
     </section>
+
     <section class="main_section5">
         <div class="body_inner">
             <div class="main_section5__head">
@@ -722,8 +370,19 @@
             </div>
         </div>
     </section>
+
     <section class="main_hot">
         <div class="body_inner">
+            <!--            <div class="main_hot__search">-->
+            <!--                <form action="" method="get" class="form_search_">-->
+            <!--                    <input type="text" name="keyword" id="keyword_inp" class="search_input_" value="-->
+            <?php //= $keyword ?><!--"-->
+            <!--                           placeholder="검색어를 입력해 주세요">-->
+            <!--                    <button class="btn_search">-->
+            <!--                        <i class="fa fa-search search-icon" style="font-size: 20px;"></i>-->
+            <!--                    </button>-->
+            <!--                </form>-->
+            <!--            </div>-->
             <div class="main_hot__head">
                 <div class="main_hot__head__left">
                     <div class="main_hot__head_ttl">
@@ -749,75 +408,22 @@
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
                     <div class="swiper-wrapper">
-                        <?php $seq = 0;?> 
+                        <?php $seq = 0; ?>
                         <?php foreach ($list2 as $item2): ?>
-						<?php $seq++;?>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/data/product/<?=$item2['ufile1']?>" alt="main">
-                                </div>
-                                <div class="prd_name"><?=$item2['product_name']?></div>
-                                <div class="prd_price_ko"><?= number_format($item2['original_price']) ?> <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label number_one"><?=$seq?></span>
+                            <?php $seq++; ?>
+                            <div class="swiper-slide">
+                                <a href="<?= getUrlFromProduct($item2) ?>" class="hot_product_list__item">
+                                    <div class="img_box img_box_2">
+                                        <img src="/data/product/<?= $item2['ufile1'] ?>" alt="main">
+                                    </div>
+                                    <div class="prd_name"><?= $item2['product_name'] ?></div>
+                                    <div class="prd_price_ko"><?= number_format($item2['original_price']) ?>
+                                        <span>원</span></div>
+                                    <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    <span class="number_item_label number_one"><?= $seq ?></span>
+                                </a>
                             </div>
-                        </div>
                         <?php endforeach; ?>
-
-                        <!--div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_2.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label">2</span>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_3.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label">3</span>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_4.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label">4</span>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_5.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_3.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                            </div>
-                        </div-->
                     </div>
                 </div>
                 <div class="swiper-button-prev-main-2 swiper-button-main-2 hot_product_list_swiper_1_btn_prev">
@@ -828,37 +434,33 @@
                 </div>
             </div>
             <div class="flex">
-                <a href="#!" class="btn_more_hot_product btn_more_hot_product_1 flex justify-center items-center">더보기
-                    +</a>
+                <a href="/product-hotel/1303"
+                   class="btn_more_hot_product btn_more_hot_product_1  flex justify-center items-center">
+                    더보기 +
+                </a>
             </div>
         </div>
     </section>
+
     <section class="main_section7">
         <div class="body_inner">
             <div class="main_section7__banner">
-                <div class="main_section7__banner__item">
-                    <div class="img_box img_box_4">
-                        <img src="/uploads/main/main_banner_6.png" alt="" class="only_web">
-                        <img src="/uploads/main/main_banner_6_m.png" alt="" class="only_mo">
+
+                <?php foreach ($codeBanners as $code): ?>
+                    <div class="main_section7__banner__item">
+                        <div class="img_box img_box_4">
+                            <img src="/data/code/<?= $code['ufile1'] ?>" alt="" class="only_web">
+                        </div>
+                        <div class="text-content only_web">
+                            <h3><?= $code['code_name'] ?></h3>
+                            <span><?= $code['code_memo'] ?></span>
+                        </div>
                     </div>
-                    <div class="text-content only_web">
-                        <h3>유심도 도시락으로<br>도시락 usim</h3>
-                        <span class="text-gray">2024.06.04~</span>
-                    </div>
-                </div>
-                <div class="main_section7__banner__item">
-                    <div class="img_box img_box_4">
-                        <img src="/uploads/main/main_banner_7.png" alt="" class="only_web">
-                        <img src="/uploads/main/main_banner_7_m.png" alt="" class="only_mo">
-                    </div>
-                    <div class="text-content only_web">
-                        <h3>여행일정표 만들기<br>공유 이벤트 </h3>
-                        <span>일정표 공유시 포인트 2,000점!</span>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
+
     <section class="main_hot">
         <div class="body_inner">
             <div class="main_hot__head">
@@ -886,76 +488,23 @@
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
                     <div class="swiper-wrapper">
-
-                        <?php $seq = 0;?> 
+                        <?php $seq = 0; ?>
                         <?php foreach ($list3 as $item3): ?>
-						<?php $seq++;?>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/data/product/<?=$item3['ufile1']?>" alt="main">
-                                </div>
-                                <div class="prd_name"><?=$item3['product_name']?></div>
-                                <div class="prd_price_ko"><?= number_format($item3['original_price']) ?> <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label number_one"><?=$seq?></span>
+                            <?php $seq++; ?>
+                            <div class="swiper-slide">
+                                <a href="<?= getUrlFromProduct($item3) ?>" class="hot_product_list__item">
+                                    <div class="img_box img_box_2">
+                                        <img src="/data/product/<?= $item3['ufile1'] ?>" alt="main">
+                                    </div>
+                                    <div class="prd_name"><?= $item3['product_name'] ?></div>
+                                    <div class="prd_price_ko"><?= number_format($item3['original_price']) ?>
+                                        <span>원</span></div>
+                                    <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                    <span class="number_item_label number_one"><?= $seq ?></span>
+                                </a>
                             </div>
-                        </div>
                         <?php endforeach; ?>
 
-                        <!--div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_6.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                                <span class="number_item_label">2</span>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_7.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                            </div>
-                            <span class="number_item_label">3</span>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_8.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                            </div>
-                            <span class="number_item_label">4</span>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_6.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="hot_product_list__item">
-                                <div class="img_box img_box_2">
-                                    <img src="/uploads/main/main_hot_7.png" alt="main">
-                                </div>
-                                <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
-                                <div class="prd_price_ko">236,100 <span>원</span></div>
-                                <div class="prd_price_thai">6,000 <span>바트</span></div>
-                            </div>
-                        </div-->
                     </div>
                 </div>
                 <div class="swiper-button-prev-main-2 swiper-button-main-2 hot_product_list_swiper_2_btn_prev">
@@ -966,129 +515,112 @@
                 </div>
             </div>
             <div class="flex">
-                <a href="#!" class="btn_more_hot_product btn_more_hot_product_2  flex justify-center items-center">더보기
-                    +</a>
+                <a href="/product-golf/1302/1"
+                   class="btn_more_hot_product btn_more_hot_product_2  flex justify-center items-center">
+                    더보기 +
+                </a>
             </div>
         </div>
     </section>
+
     <section class="main_section8">
         <div class="body_inner">
             <div class="bar01"></div>
         </div>
     </section>
 
-	<?php 
-	    $seq = 0;
-		foreach ($list_m as $item_m):
-		
-           $seq++;
-		   if($seq == 1) $banner_1 = "/uploads/bbs/". $item_m['ufile5'];
-		   if($seq == 2) $banner_2 = "/uploads/bbs/". $item_m['ufile5'];
-         
-		endforeach; 
-	?>
+    <?php
+    $seq = 0;
+    foreach ($list_m as $item_m):
 
-	<section class="main_section9">
+        $seq++;
+        if ($seq == 1) $banner_1 = "/uploads/bbs/" . $item_m['ufile5'];
+        if ($seq == 2) $banner_2 = "/uploads/bbs/" . $item_m['ufile5'];
+
+    endforeach;
+    ?>
+
+    <section class="main_section9">
         <div class="body_inner">
             <div class="main_section9__row">
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 5성급 호텔의 특별함 </div>
-                        <a href="#!" class="btn_more">더보기 +</a>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 5성급 호텔의 특별함</div>
+                        <a href="/product-hotel/1303" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="<?=$banner_1?>" alt="">
+                        <img src="<?= $banner_1 ?>" alt="">
                     </div>
                     <div class="main_section9__prd">
 
                         <?php foreach ($list4 as $item4): ?>
-                        <div class="main_section9__prd__item">
-                            <div class="prd__item__left">
-                                <div class="img_box img_box_6">
-                                    <img src="/data/hotel/<?=$item4['ufile1']?>" alt="">
-                                </div>
-                            </div>
-                            <div class="prd__item__right">
-                                <div class="prd__item__info">
-                                    <div class="prd_name"><?=$item4['product_name']?></div>
-                                    <div class="prd_description">
-                                        연박 프로모션 "3박 이상시 룸 업그레이드...
+                            <a href="<?= getUrlFromProduct($item4) ?>" class="main_section9__prd__item">
+                                <div class="prd__item__left">
+                                    <div class="img_box img_box_6">
+                                        <img src="/data/hotel/<?= $item4['ufile1'] ?>" alt="">
                                     </div>
-                                    <ul class="breadcrumb breadcrumb_location">
-                                        <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
-                                        <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
-                                        <li class="breadcrumb_item">방콕</li>
-                                        <li class="breadcrumb_item">시암</li>
-                                    </ul>
-                                    <div class="prd_price_ko"><?= number_format($item4['original_price']) ?><span>원</span></div>
-                                    <div class="prd_price_thai">6,000바트</div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="prd__item__right">
+                                    <div class="prd__item__info">
+                                        <div class="prd_name"><?= $item4['product_name'] ?></div>
+                                        <div class="prd_description">
+                                            연박 프로모션 "3박 이상시 룸 업그레이드...
+                                        </div>
+                                        <ul class="breadcrumb breadcrumb_location">
+                                            <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                            <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
+                                            <li class="breadcrumb_item">방콕</li>
+                                            <li class="breadcrumb_item">시암</li>
+                                        </ul>
+                                        <div class="prd_price_ko"><?= number_format($item4['original_price']) ?>
+                                            <span>원</span></div>
+                                        <div class="prd_price_thai">6,000바트</div>
+                                    </div>
+                                </div>
+                            </a>
                         <?php endforeach; ?>
 
-                        <!--div class="main_section9__prd__item">
-                            <div class="prd__item__left">
-                                <div class="img_box img_box_6">
-                                    <img src="/uploads/main/main_tour_2.png" alt="">
-                                </div>
-                            </div>
-                            <div class="prd__item__right">
-                                <div class="prd__item__info">
-                                    <div class="prd_name">아난타라 시암 방콕 호텔</div>
-                                    <div class="prd_description">
-                                        2박 이상시 레이트 체크아웃 (보장) | 16시...
-                                    </div>
-                                    <ul class="breadcrumb breadcrumb_location">
-                                        <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
-                                        <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
-                                        <li class="breadcrumb_item">방콕</li>
-                                        <li class="breadcrumb_item">시암</li>
-                                    </ul>
-                                    <div class="prd_price_ko">236,100<span>원</span></div>
-                                    <div class="prd_price_thai">6,000바트</div>
-                                </div>
-                            </div>
-                        </div-->
                     </div>
                 </div>
                 <div class="main_section9__col">
                     <div class="main_section9__head">
-                        <div class="main_section9__head__ttl">태국에서 즐기는 골프의 특별함 </div>
-                        <a href="#!" class="btn_more">더보기 +</a>
+                        <div class="main_section9__head__ttl">태국에서 즐기는 골프의 특별함</div>
+                        <a href="/product-golf/1302/1" class="btn_more">더보기 +</a>
                     </div>
                     <div class="main_section9__col__img img_box img_box_5">
-                        <img src="<?=$banner_2?>" alt="">
+                        <img src="<?= $banner_2 ?>" alt="">
                     </div>
                     <div class="main_section9__prd">
 
                         <?php foreach ($list5 as $item5): ?>
-                        <div class="main_section9__prd__item">
-                            <div class="prd__item__left">
-                                <div class="img_box img_box_6">
-                                    <img src="/data/product/<?=$item5['ufile1']?>" alt="">
+                            <a href="<?= getUrlFromProduct($item5) ?>" class="main_section9__prd__item">
+                                <div class="prd__item__left">
+                                    <div class="img_box img_box_6">
+                                        <img src="/data/product/<?= $item5['ufile1'] ?>" alt="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="prd__item__right">
-                                <div class="prd__item__info">
-                                    <div class="prd_name"><?=$item5['product_name']?></div>
-                                    <div class="prd_description">
-                                        3박 했습니다. 조식은 거의
-                                        동일하고 과일 이랑 쌀국수 ... </div>
-                                    <ul class="breadcrumb breadcrumb_location">
-                                        <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
-                                        <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
-                                        <li class="breadcrumb_item">방콕</li>
-                                        <li class="breadcrumb_item">시암</li>
-                                    </ul>
-                                    <div class="prd_price_ko"><?= number_format($item5['original_price']) ?><span>원</span></div>
-                                    <div class="prd_price_thai">6,000바트</div>
+                                <div class="prd__item__right">
+                                    <div class="prd__item__info">
+                                        <div class="prd_name"><?= $item5['product_name'] ?></div>
+                                        <div class="prd_description">
+                                            3박 했습니다. 조식은 거의
+                                            동일하고 과일 이랑 쌀국수 ...
+                                        </div>
+                                        <ul class="breadcrumb breadcrumb_location">
+                                            <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
+                                            <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
+                                            <li class="breadcrumb_item">방콕</li>
+                                            <li class="breadcrumb_item">시암</li>
+                                        </ul>
+                                        <div class="prd_price_ko"><?= number_format($item5['original_price']) ?>
+                                            <span>원</span></div>
+                                        <div class="prd_price_thai">6,000바트</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            </a>
                         <?php endforeach; ?>
 
-						<!--div class="main_section9__prd__item">
+                        <!--div class="main_section9__prd__item">
                             <div class="prd__item__left">
                                 <div class="img_box img_box_6">
                                     <img src="/uploads/main/main_tour_4.png" alt="">
@@ -1115,6 +647,7 @@
             </div>
         </div>
     </section>
+
     <section class="main_section_review">
         <div class="body_inner">
             <div class="main_section_review__head">
@@ -1143,7 +676,8 @@
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
                                     <div class="review__list__item__content">3박 했습니다. 조식은 거의
-                                        동일하고 과일 이랑 쌀국수 ...</div>
+                                        동일하고 과일 이랑 쌀국수 ...
+                                    </div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -1152,13 +686,13 @@
                                         </div>
                                         <div class="eye">
                                             <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                                 <path
-                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -1175,7 +709,8 @@
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
                                     <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...</div>
+                                        그린 모두 적 당히 괞찮습니다...
+                                    </div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -1184,13 +719,13 @@
                                         </div>
                                         <div class="eye">
                                             <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                                 <path
-                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -1207,7 +742,8 @@
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
                                     <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...</div>
+                                        그린 모두 적 당히 괞찮습니다...
+                                    </div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -1216,13 +752,13 @@
                                         </div>
                                         <div class="eye">
                                             <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                                 <path
-                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -1239,7 +775,8 @@
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
                                     <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...</div>
+                                        그린 모두 적 당히 괞찮습니다...
+                                    </div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -1248,13 +785,13 @@
                                         </div>
                                         <div class="eye">
                                             <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                                 <path
-                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -1271,7 +808,8 @@
                                     <div class="review__list__item__type">골프</div>
                                     <div class="review__list__item__title">파타야 컨트리 클럽</div>
                                     <div class="review__list__item__content">파타야에서 가깝고 페어웨이
-                                        그린 모두 적 당히 괞찮습니다...</div>
+                                        그린 모두 적 당히 괞찮습니다...
+                                    </div>
                                     <div class="review__list__item__extra">
                                         <div class="review__list__item__extra__star">
                                             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
@@ -1280,13 +818,13 @@
                                         </div>
                                         <div class="eye">
                                             <svg class="eye_icon" width="18" height="14" viewBox="0 0 18 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
-                                                    d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M2.01991 9.47178C1.33997 8.64363 1 8.22955 1 7C1 5.77045 1.33997 5.3564 2.01991 4.52825C3.37757 2.87467 5.65449 1 9 1C12.3455 1 14.6224 2.87467 15.9801 4.52825C16.66 5.3564 17 5.77045 17 7C17 8.22955 16.66 8.64363 15.9801 9.47178C14.6224 11.1253 12.3455 13 9 13C5.65449 13 3.37757 11.1253 2.01991 9.47178Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                                 <path
-                                                    d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
-                                                    stroke="#ADADAD" stroke-width="1.5" />
+                                                        d="M11 7C11 8.1046 10.1046 9 9 9C7.8954 9 7 8.1046 7 7C7 5.8954 7.8954 5 9 5C10.1046 5 11 5.8954 11 7Z"
+                                                        stroke="#ADADAD" stroke-width="1.5"/>
                                             </svg>
                                             <span class="eye_cnt">1,248</span>
                                         </div>
@@ -1305,6 +843,7 @@
             </div>
         </div>
     </section>
+
     <section class="main_section_magazine">
         <div class="body_inner">
             <div class="main_section_magazine__head">
@@ -1400,6 +939,15 @@
 </div>
 
 <script src="/js/main.js"></script>
-
+<script>
+    <?php if ($keyword) { ?>
+    scrollToEl('keyword_inp');
+    <?php } ?>
+    function scrollToEl(elID) {
+        $('html, body').animate({
+            scrollTop: $('#' + elID).offset().top - 250
+        }, 'slow');
+    }
+</script>
 
 <?php $this->endSection(); ?>

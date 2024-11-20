@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class MainDisp extends Model
+class MainDispModel extends Model
 {
-    protected $table      = 'tbl_main_disp';
+    protected $table = 'tbl_main_disp';
     protected $primaryKey = 'code_idx';
 
     protected $allowedFields = [
-        'code_no', 
-        'product_idx', 
-        'status', 
-        'onum', 
+        'code_no',
+        'product_idx',
+        'status',
+        'onum',
         'p_idx'
     ];
 
@@ -37,14 +37,14 @@ class MainDisp extends Model
         $builder->limit($g_list_rows, ($pg - 1) * $g_list_rows);
 
         $items = $builder->get()->getResultArray();
-        
+
         foreach ($items as $key => $value) {
-            $product_price = (float) $value['product_price'];
-            $baht_thai = (float) ($setting['baht_thai'] ?? 0);
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_baht = $product_price / $baht_thai;
             $items[$key]['product_price_baht'] = $product_price_baht;
         }
-        
+
         $data = [
             'items' => $items,
             'nTotalCount' => $nTotalCount,
@@ -59,16 +59,20 @@ class MainDisp extends Model
     public function itemCntByProductAndCode(int $product_idx, int $code_no)
     {
         return $this->where('product_idx', $product_idx)
-                    ->where('code_no', $code_no)
-                    ->countAllResults();
+            ->where('code_no', $code_no)
+            ->countAllResults();
     }
 
-    public function List(int $code_no)
+    public function List(int $code_no, string $keyword = null)
     {
         $builder = $this;
         $builder->select('tbl_main_disp.*, tbl_product_mst.*');
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'left');
         $builder->where('tbl_main_disp.code_no', $code_no);
+        if ($keyword) {
+            $builder->like('tbl_product_mst.product_name', $keyword);
+        }
+
         $builder->where('tbl_product_mst.is_view', 'Y');
 
         return $builder;
