@@ -608,12 +608,14 @@
         }
 
         $("#product_vehicle_list").html(product_list);
+        
     }
     function handleFetch() {
         let child_code = $(".section_vehicle_2_2__airport input[type='radio']:checked").val();
         let code_no = $(".section_vehicle_2_2__head__tabs li.active").data("code");
         let departure_code = $("#departure_area").val();
         let destination_code = $("#destination_area").val();
+
 
         $.ajax({
             url: '/filter-child-vehicle',
@@ -622,8 +624,9 @@
             async: false,
             cache: false,
             success: function (data, textStatus) {
-
+                
                 renderPrdList(data.products, code_no);
+                $("#product_code").val(child_code);
 
             },
             error: function (request, status, error) {
@@ -664,6 +667,9 @@
                 renderPrdList(products, code_no);
 
                 $(".section_vehicle_2_2__airport input[type='radio']").on("change", handleFetch);
+
+                let child_code = $(".section_vehicle_2_2__airport input[type='radio']:checked").val();
+                $("#product_code").val(child_code);
 
             },
             error: function (request, status, error) {
