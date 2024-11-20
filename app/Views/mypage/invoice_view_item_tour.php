@@ -66,11 +66,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="*%" class="subject">홀수</td>
-						<td col width="15%" class="subject">인원</td>
-						<td col width="15%" class="subject">티오프시간</td>
-						<td col width="15%" class="subject">상품 예약금액</td>
-						<td col width="15%" class="subject">쿠폰</td>
+						<td col width="15%" class="subject">예약시간</td>
+						<td col width="25%" class="subject">홀수</td>
+						<td col width="15%" class="subject">전체 옵션</td>
+						<td col width="15%" class="subject">총 결제금액</td>
 						<td col width="15%" class="subject">실예약금액</td>
 
 					</tr>
@@ -83,18 +82,45 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						</td>
 
 						<td class="content">
-							<span><?= $option['hole_cnt'] ?>홀</span>
-						</td>
-
-						<td class="content">
 							<p>
-								<?= $people_adult_cnt ?>인
+								<?php 
+									if(!empty($order_date)){
+								?>
+									<?= str_replace("-", ".", $order_date) ?>
+									<input type=hidden name="order_date" value='<?= $order_date ?>'>
+								<?php 
+									}
+								?>
 							</p>
 						</td>
 
 						<td class="content">
+							<?php if (!empty($tour_option)): ?>
+								<?php 
+								$first = true; 
+								foreach ($tour_option as $option): ?>
+									<?php if (!$first): ?> + <?php endif; ?>
+									<?= $option['option_name']?>: <?= number_format($option['option_price']) ?>명
+									<?php $first = false; ?>
+								<?php endforeach; ?>
+								= <?= number_format($total_price) ?>명
+							<?php endif; ?>
+						</td>
+
+						<td class="content">
 							<p>
-							<?= $option['hour'] ?>시<?= $option['minute'] ?>분
+								<?= number_format($people_adult_price * $people_adult_cnt) ?>원(성인)
+								+
+								<?= number_format($people_kids_price * $people_kids_cnt) ?>원(아동)
+								+
+								<?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
+								+
+								<?= number_format($total_price) ?>
+								옵션
+								= <?= number_format( ($people_adult_price * $people_adult_cnt) +
+														($people_kids_price * $people_kids_cnt) +
+														($people_baby_price * $people_baby_cnt) + $total_price ) ?>
+								원
 							</p>
 						</td>
 						<td class="content">
@@ -115,10 +141,57 @@ if ($_SESSION["member"]["mIdx"] == "") {
 										</span></strong></p>
 							<?php } ?>
 						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="invoice_table invoice_table_new">
+			<h2>기타 정보</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class="subject">미팅장소</td>
+						<td col width="23%" class="subject">일정</td>
+						<td col width="*%" class="subject">미팅 시간</td>
+						<td col width="15%" class="subject">종료 후 내리실 곳</td>
+						<td col width="15%" class="subject">카카오톡 아이디</td>
+						<td col width="15%" class="subject">기타 요청</td>
+
+					</tr>
+					<tr>
+
+						<td col width="15%" class="content">
+							<span>
+								<?= $tour_orders['start_place'] ?>
+							</span>
+						</td>
+
+						<td col width="15%" class="content">
+							<span>
+								<?= $tour_orders['time_line'] ?>
+							</span>
+						</td>
+
 						<td class="content">
-							<p><strong><span id="price_tot">
-										<?= number_format($deposit_price + $order_confirm_price) ?></strong>
-								</span> 원</p>
+							<?= $tour_orders['metting_time'] ?>
+						</td>
+
+						<td class="content">
+							<?= $tour_orders['end_place'] ?>
+						</td>
+
+						<td class="content">
+							<p>
+								<?= $tour_orders['id_kakao'] ?>
+							</p>
+						</td>
+						<td class="content">
+							<p><?= $tour_orders['description']?></p>
 						</td>
 					</tr>
 				</tbody>
@@ -479,7 +552,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				</tbody>
 			</table>
 		</div>
-		<div class="invoice_table">
+		<!-- <div class="invoice_table">
 			<h2>요청사항</h2>
 			<table>
 				<colgroup>
@@ -495,7 +568,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					</tr>
 				</tbody>
 			</table>
-		</div>
+		</div> -->
 
 		<div class="invoice_comment">
 			<div class="invoice_comment-top">

@@ -133,13 +133,12 @@
                                             }
                                         ?>
                                     </td>
-                                    <th>기간</th>
+                                    <th>예약시간</th>
                                     <td>
-                                        <?= $product_period ?>
-                                        (<?= $tour_period ?>일)
+                                        <?= $tour_orders['time_line'] ?>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>주문자명</th>
                                     <td>
                                         <input type="text" id="order_user_name" name="order_user_name"
@@ -162,7 +161,7 @@
                                         <input type="text" id="local_phone" name="local_phone"
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th>성인신청</th>
                                     <td>

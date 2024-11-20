@@ -135,6 +135,7 @@ class AdminTourController extends BaseController
             $tours_join = updateSQ($_POST["tours_join" ?? '']);
             $tours_hour = updateSQ($_POST["tours_hour" ?? '']);
             $tours_total_hour = updateSQ($_POST["tours_total_hour" ?? '']);
+            $time_line = updateSQ($_POST["time_line" ?? '']);
 
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
@@ -329,6 +330,7 @@ class AdminTourController extends BaseController
                             ,tours_join             = '" . $tours_join . "'
                             ,tours_hour             = '" . $tours_hour . "'
                             ,tours_total_hour       = '" . $tours_total_hour . "'
+                            ,time_line              = '" . $time_line . "'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
@@ -448,6 +450,7 @@ class AdminTourController extends BaseController
                             ,tours_join             = '" . $tours_join . "'
                             ,tours_hour             = '" . $tours_hour . "'
                             ,tours_total_hour       = '" . $tours_total_hour . "'
+                            ,time_line              = '" . $time_line . "'
                             ,m_date					= now()
                             ,r_date					= now()
                     ";
