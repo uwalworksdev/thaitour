@@ -228,7 +228,7 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($s_country_code_1 == $frow["code_no"]) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($row["country_code_1"] == $frow["code_no"]) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
                                             <?php endforeach; ?>
