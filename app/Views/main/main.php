@@ -480,12 +480,14 @@ $list5 = $MainDisp->List("2905")->findAll();
 			var message   = "";
 			$.ajax({
 
-				url: "/ajax/get_best",
+				//url: "/ajax/get_best",
+                url: '<?= base_url('ajax/get_best') ?>', // AJAX 요청 URL
 				type: "POST",
 				data: { 
-					     "list" : list, 
-					     "code" : code 
+					      list : list, 
+					      code : code 
 					  },
+			    dataType: "json",
 				success: function(rs) {
 					const data = JSON.parse(rs);
 					var message  = data.msg;
