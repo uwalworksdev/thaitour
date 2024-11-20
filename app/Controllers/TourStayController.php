@@ -245,7 +245,7 @@ class TourStayController extends BaseController
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql     = "select * from tbl_code where code_gubun='stay' and depth='2' order by onum desc, code_idx desc";
+        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='4' order by onum desc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
 
