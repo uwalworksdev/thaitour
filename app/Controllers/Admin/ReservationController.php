@@ -302,17 +302,17 @@ class ReservationController extends BaseController
 
             $this->orderModel->updateData($order_idx, $data);
 
-            $gl_idx = $data['gl_idx'];
-            $order_name_kor = $data['order_name_kor'];
-            $order_first_name = $data['order_first_name'];
-            $order_last_name = $data['order_last_name'];
-            $order_full_name = $data['order_full_name'];
-            $passport_num = $data['passport_num'];
-            $order_email = $data['order_email'];
-            $order_birthday = $data['order_birthday'];
-            $order_mobile = $data['order_mobile'];
-            $passport_date = $data['passport_date'];
-            $order_sex = $data['order_sex'];
+            $gl_idx = $data['gl_idx'] ?? [];
+            $order_name_kor = $data['order_name_kor'] ?? "";
+            $order_first_name = $data['order_first_name'] ?? "";
+            $order_last_name = $data['order_last_name'] ?? "";
+            $order_full_name = $data['order_full_name'] ?? "";
+            $passport_num = $data['passport_num'] ?? "";
+            $order_email = $data['order_email'] ?? "";
+            $order_birthday = $data['order_birthday'] ?? "";
+            $order_mobile = $data['order_mobile'] ?? "";
+            $passport_date = $data['passport_date'] ?? "";
+            $order_sex = $data['order_sex'] ?? "";
 
             for ($i = 0; $i < count($gl_idx); $i++) {
                 $data_sub = [
@@ -331,12 +331,12 @@ class ReservationController extends BaseController
                 $this->orderSubModel->update($gl_idx[$i], $data_sub);
             }
 
-            $idx = $data['idx_tour'];
-            $start_place = $data['start_place'];
-            $metting_time = $data['metting_time'];
-            $id_kakao = $data['id_kakao'];
-            $description = $data['description'];
-            $end_place = $data['end_place'];
+            $idx = $data['idx_tour'] ?? "";
+            $start_place = $data['start_place'] ?? "";
+            $metting_time = $data['metting_time'] ?? "";
+            $id_kakao = $data['id_kakao'] ?? "";
+            $description = $data['description'] ?? "";
+            $end_place = $data['end_place'] ?? "";
 
             if (!empty($idx)) {
                 $data_tour = [
@@ -610,13 +610,16 @@ class ReservationController extends BaseController
     {
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
-        $private_key = private_key();
         $pg = updateSQ($_GET["pg"] ?? '');
         $order_idx = updateSQ($_GET["order_idx"] ?? '');
         $titleStr = "주문 생성";
         if ($order_idx) {
             $row = $this->orderModel->getOrderInfo($order_idx);
-
+            $options = $this->orderOptionModel->getOption($order_idx, "vehicle");
+            foreach($options as $o_key => $o_value) {
+                $op_product_name = $this->productModel->getById($options[$o_key]["product_idx"])["product_name"];
+                $options[$o_key]["op_product_name"] = $op_product_name;
+            }
             $titleStr = "일정 및 결제정보";
         }
 
@@ -638,6 +641,7 @@ class ReservationController extends BaseController
                     'used_coupon_no' => '',
                 ],
             "fresult" => $fresult ?? '',
+            "options" => $options ?? [],
             "used_coupon_no" => $used_coupon_no,
         ];
 
