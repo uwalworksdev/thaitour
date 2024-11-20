@@ -142,7 +142,7 @@
                         <li><a href="/event/event_list">이벤트</a></li>
                         <li><a href="/mypage/discount">여행 쿠폰</a></li>
                         <li><a href="/community/main">태국뉴스</a></li>
-                        <li><a href="#">여행후기</a></li>
+                        <li><a href="/review/review_list">여행후기</a></li>
                     </ul>
                 </div>
 

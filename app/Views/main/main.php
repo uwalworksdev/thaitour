@@ -865,7 +865,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="main_section_magazine__head__ttl">
                     더투어랩 <span>매거진</span>
                 </div>
-                <a href="#!" class="main_section_magazine__head__more">더보기 +</a>
+                <a href="/magazines/list" class="main_section_magazine__head__more">더보기 +</a>
             </div>
             <div class="magazine_swiper swiper">
                 <div class="swiper-wrapper">

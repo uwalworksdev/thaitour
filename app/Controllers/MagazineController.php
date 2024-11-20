@@ -24,7 +24,7 @@ class MagazineController extends BaseController
         try {
             $data = [];
 
-            return view('magazines/list', $data);
+            return $this->renderView('magazines/list', $data);
         } catch (\Exception $e) {
             return $this->response
                 ->setStatusCode(400)
@@ -42,7 +42,7 @@ class MagazineController extends BaseController
         try {
             $m_idx = $this->request->getVar('m_idx');
             $data = [];
-            return view('magazines/detail', $data);
+            return $this->renderView('magazines/detail', $data);
         } catch (\Exception $e) {
             return $this->response
                 ->setStatusCode(400)

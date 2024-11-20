@@ -93,7 +93,6 @@
             <input type=hidden name="paydate" value='<?= $paydate ?>'>
             <input type=hidden name="order_day" value='<?= $order_day ?>'>
 
-
             <div id="contents">
                 <div class="listWrap_noline">
                     <div class="listBottom">
@@ -163,13 +162,13 @@
                             </tr>
 
                             <tr>
-                                <th>등록일</th>
+                                <th>일정</th>
                                 <td>
                                     <?= $order_day ?>
                                 </td>
-                                <th>총할인 금액</th>
+                                <th>등록일</th>
                                 <td>
-                                    <?= number_format($used_coupon_money + $used_mileage_money) ?>원
+                                    <?= $order_r_date ?>
                                 </td>
                             </tr>
 
