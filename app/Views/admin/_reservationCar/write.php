@@ -38,7 +38,8 @@
                             <li>
                                 <a href="list?search_category=<?= $search_category ?>&search_name=<?= $search_name ?>&pg=<?= $pg ?>"
                                    class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span><span
-                                            class="txt">리스트</span></a></li>
+                                            class="txt">리스트</span></a>
+                            </li>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
@@ -61,7 +62,6 @@
 
                 <input type=hidden name="m_idx" value='<?= $m_idx ?>'>
 
-                <input type=hidden name="product_idx" value='<?= $product_idx ?>'>
                 <input type=hidden name="order_date" value='<?= $order_date ?>'>
                 <input type=hidden name="people_adult_cnt" value='<?= $people_adult_cnt ?>'>
                 <input type=hidden name="people_adult_price" value='<?= $people_adult_price ?>'>
@@ -96,9 +96,42 @@
                 <div id="contents">
                     <div class="listWrap_noline">
 
-
                         <div class="listBottom">
                             <div style="font-size:12pt;margin-bottom:10px">■ 주문정보</div>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="*%"/>
+                                    <!-- <col width="*%"/> -->
+                                    <col width="10%"/>
+                                    <col width="10%"/>
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th style="text-align:center">상품명</th>
+                                    <th style="text-align:center">금액이</th>
+                                    <th style="text-align:center; border-right: 1px solid #dddddd;">수량</th>
+                                </tr>
+                                <?php
+                                    foreach ($options as $option) {
+                                ?>
+                                    <tr>
+                                        <td style="text-align:center">
+                                            <?=$option["op_product_name"]?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=number_format($option["option_price"])?>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <?=$option["option_qty"]?>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
                                 <caption>
                                 </caption>
@@ -110,13 +143,13 @@
                                 </colgroup>
                                 <tbody>
                                 <tr>
-                                    <th>상품명</th>
+                                    <!-- <th>상품명</th>
                                     <td>
                                         <?= $product_name ?><br><?= $tours_subject ?>
                                         <input type=hidden name="product_name" value='<?= $product_name ?>'>
-                                    </td>
+                                    </td> -->
                                     <th>주문번호</th>
-                                    <td>
+                                    <td colspan="3">
                                         <?= $order_no ?>
                                     </td>
                                 </tr>
@@ -139,32 +172,16 @@
                                         <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                    <!-- <th>해외 전화번호</th>
-                                    <td>
-                                        <input type="text" id="local_phone" name="local_phone"
-                                               value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
-                                    </td> -->
                                     <th>담당자</th>
                                     <td>
                                         <input type="text" id="manager_name" name="manager_name"
-                                               value="<?= $row['manager_name'] ?>" class="input_txt" style="width:20%"/>
+                                               value="<?= $manager_name ?>" class="input_txt" style="width:20%"/>
                                         <input type="text" id="manager_phone" name="manager_phone"
-                                               value="<?= $row['manager_phone'] ?>" class="input_txt"
+                                               value="<?= $manager_phone ?>" class="input_txt"
                                                style="width:20%"/>
                                         <input type="text" id="manager_email" name="manager_email"
-                                               value="<?= $row['manager_email'] ?>" class="input_txt"
+                                               value="<?= $manager_email ?>" class="input_txt"
                                                style="width:20%"/>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <th>객실 수</th>
-                                    <td>
-                                        <?= $order_room_cnt ?>
-                                    </td>
-                                    <th>숙박일</th>
-                                    <td>
-                                        <?= $order_day_cnt ?>     
                                     </td>
                                 </tr>
 
@@ -196,9 +213,9 @@
                                     <td>
                                         <?php
                                             $total_price = 0;
-                                            $total_price = $inital_price * $order_room_cnt * $order_day_cnt;
+                                            $total_price = $inital_price
                                         ?>   
-                                        <?= number_format($inital_price * $order_room_cnt * $order_day_cnt) ?>원    
+                                        <?= number_format($inital_price) ?>원    
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
@@ -325,13 +342,6 @@
                                     }
                                 </script>
 
-                                <!-- <tr>
-                                    <th>합계</th>
-                                    <td colspan="3">
-                                        <input type="text" id="total_price" name="total_price" value=""
-                                               class="input_txt" readonly style="width:150px; border: none	;"/>
-                                    </td>
-                                </tr> -->
                                 <?php if ($order_status == "Y") { ?>
                                     <tr>
                                         <th>부여된마일리지</th>
@@ -361,55 +371,7 @@
                                 </tbody>
 
                             </table>
-
-                            <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 인원정보</div>
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="7%"/>
-                                    <!-- <col width="*%"/> -->
-                                    <col width="*%"/>
-                                    <col width="40%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th style="text-align:center">구분</th>
-                                    <!-- <th style="text-align:center">한글명</th> -->
-                                    <th style="text-align:center">영문성</th>
-                                    <th style="text-align:center">영문이름</th>
-                                </tr>
-                                <?php
-                                    foreach ($fresult as $frow) {
-                                ?>
-                                    <tr>
-                                        <td style="text-align:center">
-                                            <input type="hidden" name="gl_idx[]" value="<?= $frow["gl_idx"] ?>">
-                                            <input type="hidden" name="order_gubun[]"
-                                                   value="<?= $frow["order_gubun"] ?>">
-                                            <?php
-
-                                                if(!empty($frow["number_room"])){
-                                                    echo "객실" . $frow["number_room"];
-                                                }
-                                            ?>
-                                        </td>
-                                        <!-- <td style="text-align:center"><input type="text" name="order_name_kor[]"
-                                                                             value="<?= $frow["order_name_kor"] ?>"
-                                                                             class="order_name_kor input_txt"
-                                                                             style="width:90%"/></td> -->
-                                        <td style="text-align:center"><input type="text" name="order_first_name[]"
-                                                                             value="<?= $frow["order_first_name"] ?>"
-                                                                             class="order_first_name input_txt"
-                                                                             style="width:90%"/></td>
-                                        <td style="text-align:center"><input type="text" name="order_last_name[]"
-                                                                             value="<?= $frow["order_last_name"] ?>"
-                                                                             class="order_last_name input_txt"
-                                                                             style="width:90%"/></td>
-                                    </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
+                            
                         </div>
                         <!-- // listBottom -->
 
@@ -550,7 +512,7 @@
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "delete",
+                url: "/AdmMaster/_reservation/delete",
                 type: "POST",
                 data: "order_idx[]=<?=$order_idx?>",
                 error: function (request, status, error) {
@@ -573,7 +535,7 @@
 
         function fn_comment() {
 
-            <? if ($_SESSION["member"]["id"] != "") { ?>
+            <?php if ($_SESSION["member"]["id"] != "") { ?>
             if ($("#comment").val() == "") {
                 alert("댓글을 입력해주세요.");
                 return;
@@ -593,9 +555,9 @@
                     }
                 }
             });
-            <? } else { ?>
+            <?php } else { ?>
             alert("로그인을 해주세요.");
-            <? } ?>
+            <?php } ?>
         }
 
         function fn_comment_list() {
@@ -677,13 +639,6 @@
                 closeText: '닫기',
                 prevText: '이전',
                 nextText: '다음'
-                // ,minDate: 1
-                <?php if ($str_guide != "") { ?>,
-                    beforeShowDay: function (date) {
-                        var day = date.getDay();
-                        return [(<?= $str_guide ?>)];
-                    }
-                <?php } ?>
             });
 
             $('img.ui-datepicker-trigger').css({
