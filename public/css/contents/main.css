@@ -378,28 +378,25 @@
 
 .main_hot__search {
     display: flex;
-    align-items: end;
-    justify-content: end;
-    gap: 10px;
-    margin-bottom: 40px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
 }
 
 .main_hot__search form.form_search_ {
-    display: flex;
-    align-items: end;
-    justify-content: end;
+
 }
 
-.main_hot__search form.form_search_ input {
-    height: 50px;
-    width: 100%;
+.main_hot__search input {
+    font-size: 20px;
 }
 
-.main_hot__search form.form_search_ button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
+.main_hot__search .search-icon {
+    font-size: 20px;
+}
+
+.main_hot__search button {
+
 }
 
 .main_hot__head {
