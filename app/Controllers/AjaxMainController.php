@@ -11,8 +11,8 @@ class AjaxMainController extends BaseController {
 
     public function get_best() 
 	{
-        $code  = $this->request->getPost('list');
-        $depth = $this->request->getPost('code');
+        $list  = $this->request->getPost('list');
+        $code  = $this->request->getPost('code');
         $db    = \Config\Database::connect();
 /*
         $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$code' AND depth = '$depth' order by onum desc";
