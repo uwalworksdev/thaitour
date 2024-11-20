@@ -153,9 +153,9 @@ $list5 = $MainDisp->List("2905")->findAll();
                     <button class="main_section3__place_btn" data-list="4">치양마이</button>
                 </div>
                 <div class="main_section3__type">
-                    <button class="main_section3__type_btn active">호텔</button>
-                    <button class="main_section3__type_btn">골프</button>
-                    <button class="main_section3__type_btn">투어</button>
+                    <button class="main_section3__type_btn active" data-code="1">호텔</button>
+                    <button class="main_section3__type_btn" data-code="2">골프</button>
+                    <button class="main_section3__type_btn" data-code="3">투어</button>
                 </div>
             </div>
             <div>
@@ -437,6 +437,16 @@ $list5 = $MainDisp->List("2905")->findAll();
             </div>
         </div>
     </section>
+
+    <script>
+        $(document).ready(function () {
+            // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
+            $('.main_section3__type_btn').on('click', function () {
+                var code = $(this).data('code'); // 'John'
+				alert(code);
+            });
+        });
+    </script>
 
     <script>
         $('.words_list_item').click(function () {
