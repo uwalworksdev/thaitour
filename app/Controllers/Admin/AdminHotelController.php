@@ -326,7 +326,7 @@ class AdminHotelController extends BaseController
 
                 // 상품 테이블 변경
                 $this->productModel->update($product_idx, $data);
-                // write_log("호텔상품수정 : " . $sql);
+                write_log("호텔상품수정 : " . $sql);
 
                 // $db = $this->connect->query($sql);
 
