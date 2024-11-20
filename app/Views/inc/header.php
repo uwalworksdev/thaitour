@@ -78,21 +78,21 @@
                             <option value="">투어</option>
                             <option value="">차량</option>
                         </select>
-<!--                        <select class="select_custom_" name="" id="">-->
-<!--                            <option value="">투어</option>-->
-<!--                        </select>-->
-<!--                        <a class="text_custom_v2_" href="/vehicle-guide/1324">차량</a>-->
+                        <!--                        <select class="select_custom_" name="" id="">-->
+                        <!--                            <option value="">투어</option>-->
+                        <!--                        </select>-->
+                        <!--                        <a class="text_custom_v2_" href="/vehicle-guide/1324">차량</a>-->
                     </div>
                 </div>
             </div>
 
             <div>
                 <div class="icon-menu">
-<!--                    <a href="#" class="icon-menu-item">-->
-<!--                        <img src="/images/ico/icon_calen.png" alt="">-->
-<!--                        <p style="margin-top:5px;">일정표</p>-->
-<!--                    </a>-->
-                    <a href="#" class="icon-menu-item">
+                    <!--                    <a href="#" class="icon-menu-item">-->
+                    <!--                        <img src="/images/ico/icon_calen.png" alt="">-->
+                    <!--                        <p style="margin-top:5px;">일정표</p>-->
+                    <!--                    </a>-->
+                    <a href="/magazines/list" class="icon-menu-item">
                         <img src="/images/ico/icon_note.png" alt="">
                         <p>매거진</p>
                     </a>
@@ -416,10 +416,10 @@
             </div>
             <span class="nav-text text-grey">실시간문의</span>
         </div>
-<!--        <div class="nav-item">-->
-<!--            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">-->
-<!--            <span class="nav-text text-grey">일정표</span>-->
-<!--        </div>-->
+        <!--        <div class="nav-item">-->
+        <!--            <img class="nav-pic" src="/images/ico/quick-header-footer_4.png" alt="quick-header-footer_4">-->
+        <!--            <span class="nav-text text-grey">일정표</span>-->
+        <!--        </div>-->
         <div class="nav-item">
             <img class="nav-pic" src="/images/ico/quick-header-footer_5.png" alt="quick-header-footer_5">
             <span class="nav-text text-grey">찜</span>

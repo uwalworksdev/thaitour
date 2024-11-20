@@ -1,0 +1,284 @@
+.magazines_page_ {
+
+}
+
+.text_truncate_ {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: nowrap;
+    max-height: 4rem;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+/* magazines area */
+.magazines_page_ .magazines_area_ {
+
+}
+
+/* magazines list */
+.magazines_page_ .magazines_area_ .magazines_breadcrumb_ {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.magazines_page_ .magazines_area_ .magazines_breadcrumb_ .breadcrumb_ {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_breadcrumb_ .breadcrumb_item_ {
+    display: flex;
+    align-items: center;
+}
+
+.magazines_page_ .magazines_area_ .magazines_breadcrumb_ a {
+    display: flex;
+    align-items: center;
+}
+
+.magazines_page_ .magazines_area_ .magazines_breadcrumb_ .home_icon_ {
+    width: 14px;
+    height: 12px;
+    object-fit: cover;
+}
+
+.magazines_page_ .magazines_area_ .magazines_breadcrumb_ .circle_direct_ {
+    width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+}
+
+.magazines_page_ .magazines_area_ .magazines_breadcrumb_ span {
+    font-size: 15px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #757575;
+    font-family: "Pretendard";
+    margin-right: 20px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ {
+    margin-top: 40px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_ {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ {
+
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ .total_ {
+    font-size: 17px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: 500;
+    font-family: "Pretendard";
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_left_ .count_ {
+    color: #2a459f;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .form_el_ {
+    display: flex;
+    position: relative;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .select_sort_ {
+    width: 109px;
+    height: 44px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .input_search_ {
+    width: 220px;
+    height: 44px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border: 1px solid #dbdbdb;
+    padding-right: 40px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__top_right_ .icon_search_ {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(50%, -50%);
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__content_ {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_ {
+    width: 585px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_image_ {
+    width: 585px;
+    height: 360px;
+    object-fit: cover;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_title_ {
+    font-size: 24px;
+    letter-spacing: -1px;
+    margin-top: 30px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: bold;
+    font-family: "Pretendard";
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ {
+    opacity: 0.600;
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #252525;
+    font-family: "Pretendard";
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ .src_ {
+
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_desc_ .view_ {
+
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .magazines_list__item_author_ {
+    margin-top: 20px;
+    font-size: 16px;
+    letter-spacing: -1px;
+    color: #454545;
+    font-weight: 500;
+    font-family: "Pretendard";
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .pagination {
+    margin: 32px 0 0px 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .page-link {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.magazines_page_ .magazines_area_ .magazines_list_ .page-link.active {
+    color: var(--bs-point);
+    border-color: var(--bs-point);
+}
+
+/* magazines detail */
+.magazines_page_ .magazines_area_ .magazines_detail_ {
+    padding: 50px 60px 140px 60px;
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__title_ {
+    font-size: 26px;
+    letter-spacing: -1px;
+    line-height: 38px;
+    text-transform: uppercase;
+    color: #252525;
+    font-weight: bold;
+    font-family: "Pretendard";
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__desc_ {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: start;
+    align-items: center;
+    font-size: 16px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    font-family: "Pretendard";
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__desc_ .author_ {
+    color: #252525;
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__desc_ .date_ {
+    color: #757575;
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__desc_ .more_ {
+    color: #757575;
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__desc_ .src_ {
+    color: #757575;
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__content_ {
+    margin-top: 40px;
+    font-size: 17px;
+    letter-spacing: -1px;
+    line-height: 26px;
+    text-transform: uppercase;
+    color: #454545;
+    font-family: "Pretendard";
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__content_ p.title_ {
+    font-size: 20px;
+    letter-spacing: -1px;
+    line-height: 34px;
+    color: #252525;
+    font-weight: bold;
+    font-family: "Pretendard";
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__content_ p {
+    margin-top: 20px;
+}
+
+.magazines_page_ .magazines_area_ .magazines_detail__content_ img:not(:first-child) {
+    margin-top: 40px;
+}
