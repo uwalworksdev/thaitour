@@ -443,23 +443,23 @@ $list5 = $MainDisp->List("2905")->findAll();
     <script>
         $(document).ready(function () {
 
+            var list = "";
+            var code = "";
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
             $('.main_section3__place_btn').on('click', function () {
 
 				$('.main_section3__place_btn').each(function (index) {
 					if ($(this).hasClass('active')) {
-						var list = $(this).data('list');
+						list = $(this).data('list');
 					}
 				});
 
 				$('.main_section3__type_btn').each(function (index) {
 
 					if ($(this).hasClass('active')) {
-						var code = $(this).data('code');
+						code = $(this).data('code');
 					}
 				});
-
-				alert(list+' - '+code);
 
 			});
 
@@ -476,6 +476,8 @@ $list5 = $MainDisp->List("2905")->findAll();
 						var code = $(this).data('code');
 					}
 				});
+
+				alert(list+' - '+code);
 
 			});
 
