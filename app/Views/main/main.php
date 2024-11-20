@@ -161,7 +161,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 </div>
             </div>
             <div>
-                <div class="best_list best_list_1">
+                <div class="best_list best_list_1" id="best_list_1">
                     <?php foreach ($list1_1 as $item1_1): ?>
                         <?php $img_dir = img_link($item1_1['product_code_1']); ?>
                         <?php $prog_link = prog_link($item1_1['product_code_1']); ?>
@@ -488,6 +488,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 				success: function(res) {
 					var message  = res.message;
 					alert(message);
+					$("#best_list_1").html(message);
 				},
 				error: function (xhr, status, error) {
 						console.error(xhr.responseText); // 서버 응답 내용 확인
