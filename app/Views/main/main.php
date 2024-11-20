@@ -486,7 +486,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 					      list : list, 
 					      code : code 
 					  },
-			    dataType: "json",
+			    dataType: "text",
 				success: function(rs) {
 					const data = JSON.parse(rs);
 					var message  = data.msg;
