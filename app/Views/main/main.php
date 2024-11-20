@@ -440,37 +440,41 @@ $list5 = $MainDisp->List("2905")->findAll();
         </div>
     </section>
 
-	<script>
-		$(document).ready(function () {
-			// 모든 '.item' 요소를 순회하며 'active' 클래스가 있는지 확인
-			$('.main_section3__place_btn').each(function (index) {
-				if ($(this).hasClass('active')) {
-					alert('list- '+$(this).data('list'));
-				}
-			});
-
-			$('.main_section3__type_btn').each(function (index) {
-				if ($(this).hasClass('active')) {
-					alert('code- '+$(this).data('code'));
-				}
-			});
-		});
-	</script>
- 
     <script>
         $(document).ready(function () {
 
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
 			$('.main_section3__place_btn').each(function (index) {
-				if ($(this).hasClass('active')) {
-					alert($(this).data('list'));
-				}
+
+				$('.main_section3__place_btn').each(function (index) {
+					if ($(this).hasClass('active')) {
+						alert('list- '+$(this).data('list'));
+					}
+				});
+
+				$('.main_section3__type_btn').each(function (index) {
+
+					if ($(this).hasClass('active')) {
+						alert('code- '+$(this).data('code'));
+					}
+				});
+
 			});
 
-			$('.main_section3__place_btn').each(function (index) {
-				if ($(this).hasClass('active')) {
-					alert($(this).data('list'));
-				}
+			$('.main_section3__type_btn').each(function (index) {
+
+				$('.main_section3__place_btn').each(function (index) {
+					if ($(this).hasClass('active')) {
+						alert('list- '+$(this).data('list'));
+					}
+				});
+
+				$('.main_section3__type_btn').each(function (index) {
+					if ($(this).hasClass('active')) {
+						alert('code- '+$(this).data('code'));
+					}
+				});
+
 			});
 
         });
