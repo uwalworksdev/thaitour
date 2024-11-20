@@ -254,7 +254,7 @@
                                             <?php endforeach; ?>
                                         </select>
 
-                                        <select id="product_code_3" name="product_code_3" class="input_select">
+                                        <select id="country_code_3" name="country_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                         </select>
                                     </td>
@@ -831,13 +831,6 @@
         </div><!-- 인쇄 영역 끝 //-->
     </div>
     <!-- // container -->
-
-	<script>
-	function get_code(code, depth)
-	{
-             alert(code +' - '+ depth);
-    ]
-	</script>
 
     <script>
         $('#check_all_').change(function () {
