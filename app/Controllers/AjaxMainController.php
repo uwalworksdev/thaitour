@@ -29,15 +29,12 @@ class AjaxMainController extends BaseController {
             "data"  => $data,
             "cnt"   => $cnt
         ];
-
+*/
         $msg = $list ." - ". $code ."작업완료";
         $output = [
             "message"  => $msg
         ];
-*/
-        $resultArr['message'] = $msg;
 
-        return json_encode($resultArr);
-        //return $this->response->setJSON($output);
+		return $this->response->setJSON($output);
     }
 }
