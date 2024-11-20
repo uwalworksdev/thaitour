@@ -102,7 +102,12 @@ class TourStayController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $sql = $total_sql . " order by onum desc limit $nFrom, $g_list_rows ";
-        $result = $this->connect->query($sql) or die ($this->connect->error);
+
+		$router = service('router');
+		$currentController = $router->controllerName();
+		write_log($currentController ." - ". $sql);
+
+		$result = $this->connect->query($sql) or die ($this->connect->error);
         $num = $nTotalCount - $nFrom;
         $result = $result->getResultArray();
 
@@ -235,33 +240,34 @@ class TourStayController extends BaseController
             $titleStr = "숙소정보 수정";
         }
 
-        $pq = $country_code_1 ?? '';
+        $pq  = $country_code_1 ?? '';
+        $pq1 = $country_code_2 ?? '';
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='2' order by onum desc, code_idx desc";
+        $fsql     = "select * from tbl_code where code_gubun = 'tour' and code_no = '1303' order by onum desc, code_idx desc";
         $fresult1 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult1 = $fresult1->getResultArray();
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and depth='3' and parent_code_no='" . $pq . "' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun = 'tour' and depth='3' and parent_code_no='" . $pq . "' order by onum desc, code_idx desc";
         $fresult2 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult2 = $fresult2->getResultArray();
 
-        $fsql     = "select * from tbl_code where code_gubun='stay' and depth='2' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and depth='4' and parent_code_no='" . $pq1 . "' order by onum desc, code_idx desc";
         $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
         $fresult3 = $fresult3->getResultArray();
 
-        $sql_f    = "select * from tbl_code where parent_code_no = '24' and depth = '2' and status = 'Y' order by onum desc ";
+        $sql_f = "select * from tbl_code where parent_code_no = '24' and depth = '2' and status = 'Y' order by onum desc ";
         $result_f = $this->connect->query($sql_f) or die ($this->connect->error);
         $fresult4 = $result_f->getResultArray();
 
-        $r_sql   = " SELECT * FROM tbl_room";
+        $r_sql = " SELECT * FROM tbl_room";
         $rresult = $this->connect->query($r_sql);
         $rresult = $rresult->getResultArray();
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='33' order by onum desc, code_idx desc";
         $fresult6 = $this->connect->query($fsql);
         $fresult6 = $fresult6->getResultArray();
 
-        $fsql     = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
+        $fsql = "select * from tbl_code where code_gubun='tour' and parent_code_no='34' order by onum desc, code_idx desc";
         $fresult5 = $this->connect->query($fsql);
         $fresult5 = $fresult5->getResultArray();
 

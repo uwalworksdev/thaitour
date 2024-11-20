@@ -12,10 +12,10 @@
                     </ul>
 
                     <ul class="last">
+                        <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                         <li><a href="write" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-pencil"></span> <span
                                         class="txt">숙박 등록</span></a></li>
-                        <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                     </ul>
 
                 </div>
@@ -185,9 +185,9 @@
                                 <tr style="height:50px">
                                     <td><?= $num-- ?></td>
                                     <td class="tac"><?= $row["code_no"] ?></td>
-                                    <td class="tac"><?= $row["stay_gubun"] ?>
+                                    <td class="tac">호텔
                                         <br><strong
-                                                style="color:blue"><?= $row["country_name_1"] . " " . $row["country_name_2"] ?></strong>
+                                                style="color:blue"><?= $row["stay_city"] . " " . $row["country_name_2"] ?></strong>
                                     </td>
                                     <td class="tac">
                                         <? if ($row["ufile1"] != "") { ?>

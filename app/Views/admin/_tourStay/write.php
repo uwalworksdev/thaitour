@@ -214,8 +214,7 @@
                                 <tr>
                                     <th>분류</th>
                                     <td>
-                                        <select id="country_code_1" name="country_code_1" class="input_select"
-                                                onchange="javascript:get_code(this.value, 3)" style="width:200px">
+                                        <select id="country_code_1" name="country_code_1" class="input_select" onchange="javascript:get_code(this.value, 3)" style="width:200px">
                                             <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult1 as $frow) :
@@ -229,14 +228,13 @@
                                                 }
 
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($s_country_code_1 == $frow["code_no"]) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($row["country_code_1"] == $frow["code_no"]) {
                                                     echo "selected";
                                                 } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
                                             <?php endforeach; ?>
 
                                         </select>
-                                        <select id="country_code_2" name="country_code_2" class="input_select"
-                                                style="width:200px">
+                                        <select id="country_code_2" name="country_code_2" class="input_select" onchange="javascript:get_code(this.value, 4)" style="width:200px">
                                             <option value="">2차분류</option>
                                             <?php
                                             foreach ($fresult2 as $frow) :
@@ -256,14 +254,23 @@
                                             <?php endforeach; ?>
                                         </select>
 
-                                        <select name="stay_code" id="stay_code">
-                                            <option value="">유형선택</option>
+                                        <select id="country_code_3" name="country_code_3" class="input_select">
+                                            <option value="">3차분류</option>
                                             <?php
                                             foreach ($fresult3 as $frow) :
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+
                                                 ?>
-                                                <option value="<?= $frow["code_no"] ?>" <?php if ($stay_code == $frow["code_no"]) {
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($row["country_code_3"] == $frow["code_no"]) {
                                                     echo "selected";
-                                                } ?>><?= $frow["code_name"] ?></option>
+                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
@@ -840,6 +847,7 @@
         </div><!-- 인쇄 영역 끝 //-->
     </div>
     <!-- // container -->
+
     <script>
         $('#check_all_').change(function () {
             if ($(this).is(":checked")) {
