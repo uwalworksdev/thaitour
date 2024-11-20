@@ -831,6 +831,14 @@
         </div><!-- 인쇄 영역 끝 //-->
     </div>
     <!-- // container -->
+
+	<script>
+	function get_code(code, depth)
+	{
+             alert(code +' - '+ depth);
+    ]
+	</script>
+
     <script>
         $('#check_all_').change(function () {
             if ($(this).is(":checked")) {
