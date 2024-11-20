@@ -187,7 +187,7 @@
                                     <td class="tac"><?= $row["code_no"] ?></td>
                                     <td class="tac"><?= $row["stay_gubun"] ?>
                                         <br><strong
-                                                style="color:blue"><?= $row["country_name_1"] . " " . $row["country_name_2"] ?></strong>
+                                                style="color:blue"><?= $row["stay_city"] . " " . $row["country_name_2"] ?></strong>
                                     </td>
                                     <td class="tac">
                                         <? if ($row["ufile1"] != "") { ?>
