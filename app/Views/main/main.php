@@ -444,8 +444,9 @@ $list5 = $MainDisp->List("2905")->findAll();
         $(document).ready(function () {
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
             $('.main_section3__type_btn').on('click', function () {
+				var list = $('.main_section3__place_btn').data('list');
                 var code = $(this).data('code'); // 'John'
-				alert(code);
+				alert(list +' - '+ code);
             });
         });
     </script>
