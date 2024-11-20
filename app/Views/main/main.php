@@ -475,7 +475,7 @@ $list5 = $MainDisp->List("2905")->findAll();
     <script>
 	function set_best(list, code)
 	{
-				alert(list+' - '+code); /ajax/get_best
+			alert(list+' - '+code); 
 
 			var message   = "";
 			$.ajax({
