@@ -179,6 +179,15 @@
                                 </td>
 						    </tr>
                         <?php endif; ?>
+                        <?php if ($parent_code_no === '51') : ?>
+                            <tr>
+                                <th>설명하다</th>
+                                <td>
+                                    <input type="text" id="code_memo" name="code_memo" value="<?= $code_memo ?>"
+                                           class="input_txt"/>
+                                </td>
+						    </tr>
+                        <?php endif; ?>
 						<tr>
 							<th>이미지</th>
 							<td>

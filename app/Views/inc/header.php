@@ -75,11 +75,13 @@
                         <a class="text_custom_" href="#">상세검색</a>
                         <select class="select_custom_ active_" name="" id="">
                             <option value="">호텔</option>
-                        </select>
-                        <select class="select_custom_" name="" id="">
                             <option value="">투어</option>
+                            <option value="">차량</option>
                         </select>
-                        <a class="text_custom_v2_" href="/vehicle-guide/1324">차량</a>
+<!--                        <select class="select_custom_" name="" id="">-->
+<!--                            <option value="">투어</option>-->
+<!--                        </select>-->
+<!--                        <a class="text_custom_v2_" href="/vehicle-guide/1324">차량</a>-->
                     </div>
                 </div>
             </div>

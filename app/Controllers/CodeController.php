@@ -126,6 +126,7 @@ class CodeController extends BaseController
         $code_gubun = $this->request->getPost('code_gubun');
         $code_no = $this->request->getPost('code_no');
         $code_name = $this->request->getPost('code_name');
+        $code_memo = $this->request->getPost('code_memo');
         $parent_code_no = $this->request->getPost('parent_code_no');
         $depth = $this->request->getPost('depth');
         $status = $this->request->getPost('status');
@@ -141,7 +142,6 @@ class CodeController extends BaseController
         $upload = WRITEPATH . '../public/data/code/';
         $uploadpload = ROOTPATH . 'public/data/code/';
 
-
         if ($code_idx) {
             $data = [
                 'code_name' => $code_name,
@@ -151,6 +151,7 @@ class CodeController extends BaseController
                 'is_best' => $is_best,
                 'distance' => $distance,
                 'type' => $type,
+                'code_memo' => $code_memo,
             ];
             $this->CodeModel->update($code_idx, $data);
             write_log("코드수정: " . json_encode($data));
@@ -175,6 +176,7 @@ class CodeController extends BaseController
                 'is_best' => $is_best,
                 'type' => $type,
                 'distance' => $distance,
+                'code_memo' => $code_memo,
             ];
             $this->CodeModel->insert($data);
             $code_idx = $this->CodeModel->insertID();
