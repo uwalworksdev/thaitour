@@ -445,28 +445,37 @@ $list5 = $MainDisp->List("2905")->findAll();
 			// 모든 '.item' 요소를 순회하며 'active' 클래스가 있는지 확인
 			$('.main_section3__place_btn').each(function (index) {
 				if ($(this).hasClass('active')) {
-					alert($(this).data('list'));
+					alert('list- '+$(this).data('list'));
+				}
+			});
+
+			$('.main_section3__type_btn').each(function (index) {
+				if ($(this).hasClass('active')) {
+					alert('code- '+$(this).data('code'));
 				}
 			});
 		});
 	</script>
-<!--
+ 
     <script>
         $(document).ready(function () {
 
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
-            $('.main_section3__place_btn').on('click', function () {
-				var list = $('.main_section3__place_btn').data('list');
-				alert(list);
-            });
+			$('.main_section3__place_btn').each(function (index) {
+				if ($(this).hasClass('active')) {
+					alert($(this).data('list'));
+				}
+			});
 
-            $('.main_section3__type_btn').on('click', function () {
-                var code = $(this).data('code'); // 'John'
-				alert(code);
-            });
+			$('.main_section3__place_btn').each(function (index) {
+				if ($(this).hasClass('active')) {
+					alert($(this).data('list'));
+				}
+			});
+
         });
     </script>
--->
+ 
     <script>
         $('.words_list_item').click(function () {
             window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
