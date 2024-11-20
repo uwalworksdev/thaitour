@@ -144,44 +144,50 @@ class AdminMenus extends BaseConfig
                     'alias' => ['ReservationController::list', 'ReservationController::write']
                 ],
                 [
-                    'name' => '1:1 여행상담',
+                    'name' => '차량ㆍ가이드',
                     'code' => 'E2',
+                    'url' => '/AdmMaster/_reservationCar/list',
+                    'alias' => ['ReservationController::list_car', 'ReservationController::write_car']
+                ],
+                [
+                    'name' => '1:1 여행상담',
+                    'code' => 'E3',
                     'url' => '/AdmMaster/_qna/list',
                     'alias' => ['QnaController::list', 'QnaController::write']
                 ],
                 [
                     'name' => '고객의 소리',
-                    'code' => 'E3',
+                    'code' => 'E4',
                     'url' => '/AdmMaster/_contact/list',
                     'alias' => ['ContactController::list', 'ContactController::write']
                 ],
                 [
                     'name' => '맞춤문의',
-                    'code' => 'E4',
+                    'code' => 'E5',
                     'url' => '/AdmMaster/_inquiry/list',
                     'alias' => ['AdminInquiryController::list', 'AdminInquiryController::write']
                 ],
                 [
                     'name' => '이벤트관리',
-                    'code' => 'E5',
+                    'code' => 'E6',
                     'url' => '/AdmMaster/_bbs/board_list?code=event',
                     'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '쿠폰생성관리',
-                    'code' => 'E6',
+                    'code' => 'E7',
                     'url' => '/AdmMaster/_operator/coupon_setting',
                     'alias' => ['AdminOperatorController::coupon_setting', 'AdminOperatorController::coupon_setting_write']
                 ],
                 [
                     'name' => '쿠폰사용관리',
-                    'code' => 'E7',
+                    'code' => 'E8',
                     'url' => '/AdmMaster/_operator/coupon_list',
                     'alias' => ['AdminOperatorController::coupon_list', 'AdminOperatorController::coupon_write']
                 ],
                 [
                     'name' => '마일리지관리',
-                    'code' => 'E8',
+                    'code' => 'E9',
                     'url' => '/AdmMaster/_mileage/list',
                     'alias' => ['AdminMileageController::list', 'AdminMileageController::write']
                 ],

@@ -2,7 +2,6 @@
 
 <?php $this->section('content'); ?>
 
-<?php $order_gubun = 'ticket' ?>
 <?php echo view("/product/inc/spa_ticket_restaurant/booking.php"); ?>
     <script>
         function completeOrder() {

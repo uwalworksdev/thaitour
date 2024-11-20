@@ -1,7 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<?php $order_gubun = 'spa' ?>
 
 <?php echo view("/product/inc/spa_ticket_restaurant/booking.php"); ?>
 
