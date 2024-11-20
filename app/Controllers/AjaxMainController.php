@@ -30,7 +30,33 @@ class AjaxMainController extends BaseController {
             "cnt"   => $cnt
         ];
 */
-        $msg = $list ." - ". $code ."작업완료";
+    $msg = <<<EOD
+
+<a href="/product-hotel/hotel-detail/1912" class="best_list_item">
+                            <div class="img_box img_box_3">
+                                <img src="/data/hotel/1729498392_26fc8b1964767785461b.png" alt="main">
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb_item">방콕</li>
+                                <li class="breadcrumb_item">시암</li>
+                            </ul>
+                            <div class="prd_name">
+                                테스트 상품                            </div>
+                            <div class="prd_info">
+                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
+                                <span class="star_avg">4.7</span>
+                                <span class="star_review_cnt">(954)</span>
+                            </div>
+                            <div class="prd_price_ko">
+                                240,001 <span>원</span>
+                            </div>
+                            <div class="prd_price_thai">
+                                6,000 <span>바트</span>
+                            </div>
+                        </a>
+EOD;
+
+        //$msg = $list ." - ". $code ."작업완료";
         $output = [
             "message"  => $msg
         ];
