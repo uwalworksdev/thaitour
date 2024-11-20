@@ -1870,6 +1870,7 @@ class Product extends BaseController
         $data['metting_time'] = $this->request->getVar('metting_time');
         $data['description'] = $this->request->getVar('description');
         $data['id_kakao'] = $this->request->getVar('id_kakao');
+        $data['time_line'] = $this->request->getVar('time_line');
         $idx = $this->request->getVar('idx');
         $data['idx'] = explode(',', $idx);
         $data['adult_price_bath'] = round($data['people_adult_price'] / (float)($this->setting['baht_thai'] ?? 0));
@@ -1975,6 +1976,7 @@ class Product extends BaseController
                 'order_idx' => $order_idx,
                 'options_idx' => $optionsIdxString,
                 'product_idx' => $data['product_idx'],
+                'time_line' => $this->request->getPost('time_line'),
                 'start_place' => $this->request->getPost('start_place'),
                 'metting_time' => $this->request->getPost('metting_time'),
                 'id_kakao' => $this->request->getPost('id_kakao'),
@@ -2009,6 +2011,10 @@ class Product extends BaseController
     {
         $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
         $data['product'] = $this->productModel->getProductDetails($product_idx);
+        $timeLine = $data['product']['time_line'];
+        $timeSegments = explode(',', $timeLine);
+        $timeSegments = array_map('trim', $timeSegments);
+        $data['timeSegments'] = $timeSegments;
         $data['imgs'] = [];
         $data['img_names'] = [];
         for ($i = 1; $i <= 7; $i++) {
@@ -2032,6 +2038,25 @@ class Product extends BaseController
                 $data['img_names_tour'][] = $data['product']["tours_ufile" . $i] ?? '';
             }
         }
+
+        if (!empty(session()->get("member")["id"])) {
+            $user_id = session()->get("member")["id"];
+            $c_sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                            , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id . "' 
+                                AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+            $c_result = $this->db->query($c_sql);
+            $data['coupons'] = $c_result->getResultArray();
+        } else {
+            $data['coupons'] = [];
+        }
+
+        foreach ($data['coupons'] as $key => $coupon) {
+            $coupon_price = (float)$coupon['coupon_price'];
+            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $data['coupons'][$key] = $coupon;
+        }
+
 
         $sql_info = "
         SELECT pt.*, pti.*

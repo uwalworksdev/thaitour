@@ -337,9 +337,15 @@
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td> -->
                                     <th>가이드/언어</th>
-                                    <td colspan="3">
+                                    <td>
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= $guide_lang ?>" style="width:20%"/><br/>
+                                    </td>
+                                    <th>예약시간</th>
+                                    <td>
+                                        <input id="time_line" name="time_line" class="input_txt" type="text"
+                                            value="<?= $time_line ?>" style="width:100%"/><br/>
+                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
                                     </td>
                                 </tr>
                                 <!-- <tr>

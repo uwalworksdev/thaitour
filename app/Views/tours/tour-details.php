@@ -155,6 +155,16 @@
                                     <div class="calendar-days"></div>
                                 </div>
                             </div>
+                            <div class="form-below-calendar">
+                                <label class="lb-18" for="">예약시간</label>
+                                <select class="select-time-c">
+                                    <?php foreach ($timeSegments as $time): ?>
+                                        <option value="<?= htmlspecialchars($time); ?>">
+                                            <?= htmlspecialchars($time); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>  
         
                         </div>
         
@@ -256,6 +266,7 @@
                     <input type="hidden" name="people_adult_price" id="people_adult_price" value="">
                     <input type="hidden" name="people_kids_price" id="people_kids_price" value="">
                     <input type="hidden" name="people_baby_price" id="people_baby_price" value="">
+                    <input type="hidden" name="time_line" id="time_line" value="">
                     <div class="sec2-item-card order-form-page" style="display: none">
                         <div class="btn_back flex__c">
                             <img src="/images/ico/arrow_up_icon.png" alt="">
@@ -291,14 +302,17 @@
                                             <th>회원등급 할인</th>
                                             <td>없음</td>
                                         </tr>
-                                        <!-- <tr>
+                                        <tr>
                                             <th>예약시간</th>
-                                            <td>15:00 ~ 18:30</td>
-                                        </tr> -->
-                                        <!-- <tr>
-                                            <th>픽업</th>
-                                            <td>포함 (왕복)</td>
-                                        </tr> -->
+                                            <td class="time_lines" id="time_lines"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>쿠폰 적용</th>
+                                            <td>
+                                                <div class="coupon"></div>
+                                                <button type="button" class="btn_coupon_show" onclick="showCouponPop()">쿠푼적용</button>
+                                            </td>
+                                        </tr>
                                     </table>
                                     <div class="">
                                         <table class="info-table-order info-table-cus-padding">
@@ -567,7 +581,93 @@
             <div class="dim"></div>
         </div>
 
+        <div id="popup_coupon" class="popup" data-price="">
+            <div class="popup-content">
+                <img src="/images/ico/close_icon_popup.png" alt="close_icon" class="close-btn"></img>
+                <h2 class="title-popup">적용가능한 쿠폰 확인</h2>
+                <div class="order-popup">
+                    <?php
+                    $nums_coupon = count($coupons);
+                    ?>
+                    <p class="count-info">사용 가능 쿠폰 <span><?= $nums_coupon ?>장</span></p>
+                    <div class="description-above">
+                        <?php
+                        foreach ($coupons as $coupon) {
+                            if ($coupon["dc_type"] == "P") {
+                                $discount = $coupon["coupon_pe"] . "%";
+                                $dis = $coupon["coupon_pe"];
+                            } else if ($coupon["dc_type"] == "D") {
+                                $discount = number_format($coupon["coupon_price"]) . "원";
+                                $dis = $coupon["coupon_price"];
+                            } else {
+                                $discount = "회원등급에 따름";
+                                $dis = 0;
+                            }
+                            ?>
+                            <div class="item-price-popup" style="cursor: pointer;"
+                                data-idx="<?= $coupon["c_idx"] ?>" data-type="<?= $coupon["dc_type"] ?>"
+                                data-discount="<?= $dis ?>" data-discount_baht="<?= $coupon["coupon_price_baht"] ?>">
+                                <div class="img-container">
+                                    <img src="/images/sub/popup_cash_icon.png" alt="popup_cash_icon">
+                                </div>
+                                <div class="text-con">
+                                    <span class="item_coupon_name"><?= $coupon["coupon_name"] ?></span>
+                                    <span class="text-gray"><?= $discount ?> 할인쿠폰</span>
+                                </div>
+                                <span class="date-sub">~<?= date("Y.m.d", strtotime($coupon["enddate"])) ?></span>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                        <div class="item-price-popup item-price-popup--button active"
+                            data-idx="" data-type="" data-discount="0" data-discount_baht="0">
+                            <span>적용안함</span>
+                        </div>
+                    </div>
+                    <div class="line-gray"></div>
+                    <div class="footer-popup">
+                        <div class="des-above">
+                            <div class="item">
+                                <span class="text-gray">총 주문금액</span>
+                                <span class="text-gray total_price" id="total_price_popup" data-price="">0원</span>
+                            </div>
+                            <div class="item">
+                                <span class="text-gray">할인금액</span>
+                                <span class="text-gray discount" data-price="">0원</span>
+                            </div>
+                        </div>
+                        <div class="des-below">
+                            <div class="price-below">
+                                <span>최종결제금액</span>
+                                <p class="price-popup">
+                                    <span id="last_price_popup">0</span><span
+                                            class="text-gray">원</span>
+                                </p>
+                            </div>
+                        </div>
+                        <button type="button" class="btn_accept_popup btn_accept_coupon">
+                            쿠폰적용
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
+            $(".btn_accept_coupon").click(function () {
+                setCouponArea(true);
+                calculatePrice();
+                $("#popup_coupon").css('display', 'none');
+            })
+
+            function showCouponPop() {
+                $("#popup_coupon").css('display', 'flex');
+            }
+
+            const $closePopupBtn = $('.close-btn');
+            $closePopupBtn.on('click', function() {
+                $("#popup_coupon").css('display', 'none');
+            });
             function closePopup() {
                 $(".popup_wrap").hide();
                 $(".dim").hide();
@@ -802,6 +902,7 @@
                         
                         const firstTourCard = $('.sec2-item-card').first();
                         const tourPriceText = firstTourCard.find('.ps-right').text().trim().replace(/,/g, ''); 
+                        adultTotalPrice = parseFloat(tourPriceText);
                         const tourPrices = parseFloat(tourPriceText) / 10000;
                         const tourPrice = parseFloat(tourPrices.toFixed(1));
 
@@ -867,6 +968,7 @@
                         const tourEndDate = tourDateElement.data('end-date');
 
                         const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
+                        adultTotalPrice = parseFloat(tourPriceText);
                         const tourPrices = parseFloat(tourPriceText) / 10000;
                         const tourPrice = parseFloat(tourPrices.toFixed(1));
 
@@ -909,7 +1011,12 @@
                             var adultTotalPrices = adultTotalPrice;
                             var childTotalPrices = childTotalPrice;
                             var babyTotalPrices = babyTotalPrice;
-                            var tourIdx = 
+                            var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices;
+                            var selectedTime = $('.select-time-c').val();
+                            if (!selectedTime) {
+                                selectedTime = $('.select-time-c option:first').val();
+                            }
+
 
                             $('#order_date').val(formattedDate);
                             $('#people_adult_cnt').val(adultCnt);
@@ -920,10 +1027,16 @@
                             $('#people_baby_price').val(babyTotalPrices);
                             $('#tours_idx').val(currentToursIdx);
                             $('#idx').val(selectedTourIds.join(','));
+                            $('#time_line').val(selectedTime);
+                            $('.time_lines').text(selectedTime);
+                            $("#total_price_popup").text(number_format(last_price) + "원");
                             console.log(selectedTourIds.join(','));
                             console.log(currentToursIdx);
                             console.log(adultTotalPrices);
-                            
+                            console.log(selectedTime);
+                            console.log(adultCnt);
+                            console.log(childCnt);
+                            console.log(babyCnt);
                             
                         }
                     });
