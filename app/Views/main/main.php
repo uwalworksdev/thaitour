@@ -475,7 +475,26 @@ $list5 = $MainDisp->List("2905")->findAll();
     <script>
 	function set_best(list, code)
 	{
-				alert(list+' - '+code);
+				alert(list+' - '+code); /ajax/get_best
+
+			var message   = "";
+			$.ajax({
+
+				url: "/ajax/get_best",
+				type: "POST",
+				data: { 
+					     "list" : list, 
+					     "code" : code 
+					  },
+				success: function(rs) {
+					const data = JSON.parse(rs);
+					var message  = data.msg;
+					alert(message);
+				},
+				error:function(request,status,error){
+					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
 
     }
 	</script>
