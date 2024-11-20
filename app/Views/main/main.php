@@ -474,9 +474,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 				});
 
 				$('.main_section3__type_btn').each(function (index) {
-					if ($(this).hasClass('active')) {
-						code = $(this).data('code');
-					}
+					code = $(this).data('code');
 				});
 
 				alert(list+' - '+code);
