@@ -99,6 +99,9 @@ class Product extends BaseController
 
         $res = $this->getDataBooking();
 
+        $order_gubun = 'ticket';
+        $res['order_gubun'] = $order_gubun;
+
         return $this->renderView('/product/ticket/ticket-booking', $res);
     }
 
@@ -2066,6 +2069,9 @@ class Product extends BaseController
 
         $res = $this->getDataBooking();
 
+        $order_gubun = 'spa';
+        $res['order_gubun'] = $order_gubun;
+
         return $this->renderView('/product/spa/product-booking', $res);
     }
 
@@ -2187,7 +2193,8 @@ class Product extends BaseController
         }
 
         $res = $this->getDataBooking();
-
+        $order_gubun = 'restaurant';
+        $res['order_gubun'] = $order_gubun;
         return $this->renderView('/product/restaurant/restaurant-booking', $res);
     }
 
