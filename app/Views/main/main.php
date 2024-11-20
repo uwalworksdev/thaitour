@@ -461,19 +461,21 @@ $list5 = $MainDisp->List("2905")->findAll();
 					}
 				});
 
+				alert(list+' - '+code);
+
 			});
 
             $('.main_section3__type_btn').on('click', function () {
 
 				$('.main_section3__place_btn').each(function (index) {
 					if ($(this).hasClass('active')) {
-						var list = $(this).data('list');
+						list = $(this).data('list');
 					}
 				});
 
 				$('.main_section3__type_btn').each(function (index) {
 					if ($(this).hasClass('active')) {
-						var code = $(this).data('code');
+						code = $(this).data('code');
 					}
 				});
 
