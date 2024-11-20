@@ -5,6 +5,9 @@ $(function () {
 })
 
 function get_code(strs, depth) {
+
+	alert(strs +' - '+ depth);
+
     $.ajax({
         type: "GET"
         , url: "/ajax/get_code"
