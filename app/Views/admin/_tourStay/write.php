@@ -2,6 +2,8 @@
 <?= $this->section("body") ?>
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="/js/admin/tours/write.js"></script>
+
     <style>
         .tab_title {
             font-size: 16px;
