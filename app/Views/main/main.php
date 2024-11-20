@@ -156,6 +156,8 @@ $list5 = $MainDisp->List("2905")->findAll();
                     <button class="main_section3__type_btn active" data-code="1">호텔</button>
                     <button class="main_section3__type_btn" data-code="2">골프</button>
                     <button class="main_section3__type_btn" data-code="3">투어</button>
+                    <button class="main_section3__type_btn" data-code="4">스파</button>
+                    <button class="main_section3__type_btn" data-code="5">레스토랑</button>
                 </div>
             </div>
             <div>
