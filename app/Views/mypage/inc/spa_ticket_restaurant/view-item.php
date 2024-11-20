@@ -54,8 +54,8 @@
                 <tbody>
                 <tr>
                     <td class="subject">예약번호</td>
-                    <td class="subject">성인 수</td>
-                    <td class="subject">어린이 수</td>
+                    <td class="subject">총인원</td>
+                    <td class="subject">일정</td>
                     <td class="subject">상품 예약금액</td>
                     <td class="subject">쿠폰</td>
                     <td class="subject">실예약금액</td>
@@ -70,12 +70,12 @@
                     </td>
 
                     <td class="content">
-                        <span><?= $row["people_adult_cnt"] ?></span>
+                        <span><?= $row["people_adult_cnt"] + $row["people_kids_cnt"] ?></span>
                     </td>
 
                     <td class="content">
                         <p>
-                            <?= $row["people_kids_cnt"] ?>
+                            <?= $row["order_day"] ?>
                         </p>
                     </td>
                     <td class="content">
@@ -506,7 +506,7 @@
 
         <div class="invoice_table invoice_table_new only_web">
             <h2>
-                투숙객 정보
+                고객 정보
             </h2>
             <table>
                 <colgroup>
