@@ -257,7 +257,7 @@
                                         <select id="country_code_3" name="country_code_3" class="input_select">
                                             <option value="">3차분류</option>
                                             <?php
-                                            foreach ($fresult2 as $frow) :
+                                            foreach ($fresult3 as $frow) :
                                                 $status_txt = "";
                                                 if ($frow["status"] == "Y") {
                                                     $status_txt = "";
