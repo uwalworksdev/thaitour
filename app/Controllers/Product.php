@@ -2331,7 +2331,7 @@ class Product extends BaseController
     {
         try {
 
-            if (empty(session()->get("member")["id"])) {
+            if (!empty(session()->get("member")["id"])) {
                 $parent_code = $this->request->getPost('parent_code') ?? "";
                 $product_code = $this->request->getPost('product_code') ?? "";
                 $product_arr = $this->request->getPost('product_arr') ?? "";
