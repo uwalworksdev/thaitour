@@ -345,7 +345,7 @@ $list5 = $MainDisp->List("2905")->findAll();
         </div>
     </section>
 
-    <section class="main_section5">
+    <section class="main_section5" id="main_section5">
         <div class="body_inner">
             <div class="main_section5__head">
                 <div class="main_section5__head_ttl">
@@ -354,35 +354,31 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="main_section5__head__bar"></div>
             </div>
             <div class="main_section5__words_list">
-                <a href="#!" class="words_list_item">#5성급호텔</a>
-                <a href="#!" class="words_list_item">#호텔투어</a>
-                <a href="#!" class="words_list_item active">#태국호캉스</a>
-                <a href="#!" class="words_list_item">#바닷가라운딩</a>
-                <a href="#!" class="words_list_item">#골프투어</a>
-                <a href="#!" class="words_list_item">#로컬투어</a>
-                <a href="#!" class="words_list_item">#5성급호텔</a>
-                <a href="#!" class="words_list_item">#호텔투어</a>
-                <a href="#!" class="words_list_item">#태국호캉스</a>
-                <a href="#!" class="words_list_item">#바닷가라운딩</a>
-                <a href="#!" class="words_list_item">#호텔투어</a>
-                <!-- <a href="#!" class="words_list_item">#5성급호텔</a>
-                <a href="#!" class="words_list_item">#호텔투어</a> -->
+                <a href="#!" class="words_list_item <?= $keyword == '호텔투어' ? 'active' : '' ?>">#호텔투어</a>
+                <a href="#!" class="words_list_item ">#5성급호텔</a>
+                <a href="#!" class="words_list_item ">#태국호캉스</a>
+                <a href="#!" class="words_list_item ">#바닷가라운딩</a>
+                <a href="#!" class="words_list_item ">#골프투어</a>
+                <a href="#!" class="words_list_item ">#로컬투어</a>
+                <a href="#!" class="words_list_item ">#5성급호텔</a>
+                <a href="#!" class="words_list_item ">#호텔투어</a>
+                <a href="#!" class="words_list_item ">#태국호캉스</a>
+                <a href="#!" class="words_list_item ">#바닷가라운딩</a>
+                <a href="#!" class="words_list_item ">#호텔투어</a>
+                <a href="#!" class="words_list_item ">#5성급호텔</a>
+                <a href="#!" class="words_list_item ">#호텔투어</a>
+            </div>
+
+            <div class="main_hot__search">
+                <div class="main-search-container">
+                    <input id="searchInput" type="text" class="search-input" placeholder="검색어를 입력해 주세요"
+                           value="<?= $keyword ?>">
+                    <i style="cursor: pointer" class="fa fa-search search-icon" id="iconSearchInp"></i>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section class="main_hot">
-        <div class="body_inner">
-            <!--            <div class="main_hot__search">-->
-            <!--                <form action="" method="get" class="form_search_">-->
-            <!--                    <input type="text" name="keyword" id="keyword_inp" class="search_input_" value="-->
-            <?php //= $keyword ?><!--"-->
-            <!--                           placeholder="검색어를 입력해 주세요">-->
-            <!--                    <button class="btn_search">-->
-            <!--                        <i class="fa fa-search search-icon" style="font-size: 20px;"></i>-->
-            <!--                    </button>-->
-            <!--                </form>-->
-            <!--            </div>-->
+        <div class="body_inner" style="margin-top: 80px">
             <div class="main_hot__head">
                 <div class="main_hot__head__left">
                     <div class="main_hot__head_ttl">
@@ -442,10 +438,29 @@ $list5 = $MainDisp->List("2905")->findAll();
         </div>
     </section>
 
+    <script>
+        $('.words_list_item').click(function () {
+            window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
+        })
+
+        $('#searchInput').on('keydown', function (event) {
+            if (event.key === 'Enter' || event.which === 13) {
+                searchData($(this).val());
+            }
+        });
+
+        $('#iconSearchInp').click(function () {
+            searchData($('#searchInput').val());
+        });
+
+        function searchData(keyword) {
+            window.location.href = '<?= base_url() ?>?keyword=' + keyword;
+        }
+    </script>
+
     <section class="main_section7">
         <div class="body_inner">
             <div class="main_section7__banner">
-
                 <?php foreach ($codeBanners as $code): ?>
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
@@ -654,21 +669,21 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="main_section_review__head_ttl">
                     여행을 다녀온 고객님들의 <span>솔직한 후기</span>
                 </div>
-                <a href="#!" class="main_section_review__head__more_review only_web">더보기 +</a>
+                <a href="/review/review_list" class="main_section_review__head__more_review only_web">더보기 +</a>
             </div>
             <div class="only_mo_flex main_section_review_pagi_mo">
                 <div>
 
                 </div>
                 <div>
-                    <a href="#!" class="main_section_review__head__more_review only_mo">더보기 +</a>
+                    <a href="/review/review_list" class="main_section_review__head__more_review only_mo">더보기 +</a>
                 </div>
             </div>
             <div style="position: relative">
                 <div class="main_section_review__list review__list_swiper swiper">
                     <div class="swiper-wrapper swiper-wrapper-cus-top">
                         <div class="swiper-slide">
-                            <div class="review__list__item">
+                            <a href="/review/review_detail?idx=880" class="review__list__item">
                                 <div class="img_box img_box_7">
                                     <img src="/uploads/main/main_review_1.png" alt="main">
                                 </div>
@@ -698,10 +713,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review__list__item">
+                            <a href="/review/review_detail?idx=880" class="review__list__item">
                                 <div class="img_box img_box_7">
                                     <img src="/uploads/main/main_review_2.png" alt="main">
                                 </div>
@@ -731,10 +746,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review__list__item">
+                            <a href="/review/review_detail?idx=880" class="review__list__item">
                                 <div class="img_box img_box_7">
                                     <img src="/uploads/main/main_review_3.png" alt="main">
                                 </div>
@@ -764,10 +779,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review__list__item">
+                            <a href="/review/review_detail?idx=880" class="review__list__item">
                                 <div class="img_box img_box_7">
                                     <img src="/uploads/main/main_review_4.png" alt="main">
                                 </div>
@@ -797,10 +812,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="swiper-slide">
-                            <div class="review__list__item">
+                            <a href="/review/review_detail?idx=880" class="review__list__item">
                                 <div class="img_box img_box_7">
                                     <img src="/uploads/main/main_review_2.png" alt="main">
                                 </div>
@@ -830,7 +845,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -939,14 +954,23 @@ $list5 = $MainDisp->List("2905")->findAll();
 </div>
 
 <script src="/js/main.js"></script>
+<?php if ($keyword) { ?>
+    <script>
+        $(document).ready(function () {
+            scrollToEl('main_section5');
+        });
+    </script>
+<?php } ?>
 <script>
-    <?php if ($keyword) { ?>
-    scrollToEl('keyword_inp');
-    <?php } ?>
     function scrollToEl(elID) {
-        $('html, body').animate({
-            scrollTop: $('#' + elID).offset().top - 250
-        }, 'slow');
+        const el = $('#' + elID);
+        if (el.length) {
+            $('html, body').animate({
+                scrollTop: el.offset().top - 50
+            }, 'slow');
+        } else {
+            console.warn('Element not found: ' + elID);
+        }
     }
 </script>
 
