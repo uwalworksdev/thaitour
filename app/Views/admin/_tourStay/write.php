@@ -216,7 +216,7 @@
                                 <tr>
                                     <th>분류</th>
                                     <td>
-                                        <select id="country_code_1" name="country_code_1" class="input_select" onchange="javascript:get_code(this.value, 3)" style="width:200px">
+                                        <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
                                             <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult1 as $frow) :
@@ -236,7 +236,7 @@
                                             <?php endforeach; ?>
 
                                         </select>
-                                        <select id="country_code_2" name="country_code_2" class="input_select" onchange="javascript:get_code(this.value, 4)" style="width:200px">
+                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
                                             <option value="">2차분류</option>
                                             <?php
                                             foreach ($fresult2 as $frow) :
