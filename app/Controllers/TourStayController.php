@@ -102,7 +102,12 @@ class TourStayController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $sql = $total_sql . " order by onum desc limit $nFrom, $g_list_rows ";
-        $result = $this->connect->query($sql) or die ($this->connect->error);
+
+		$router = service('router');
+		$currentController = $router->controllerName();
+		write_log($currentController ." - ". $sql);
+
+		$result = $this->connect->query($sql) or die ($this->connect->error);
         $num = $nTotalCount - $nFrom;
         $result = $result->getResultArray();
 
