@@ -440,6 +440,17 @@ $list5 = $MainDisp->List("2905")->findAll();
         </div>
     </section>
 
+	<script>
+		$(document).ready(function () {
+			// 모든 '.item' 요소를 순회하며 'active' 클래스가 있는지 확인
+			$('.main_section3__place_btn').each(function (index) {
+				if ($(this).hasClass('active')) {
+					alert($(this).data('list'));
+				}
+			});
+		});
+	</script>
+<!--
     <script>
         $(document).ready(function () {
 
@@ -455,7 +466,7 @@ $list5 = $MainDisp->List("2905")->findAll();
             });
         });
     </script>
-
+-->
     <script>
         $('.words_list_item').click(function () {
             window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
