@@ -35,6 +35,8 @@ class ReviewController extends BaseController
 
         $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, 10);
 
+//        var_dump($resultObj);
+//        die();
         return view("review/review_list", [
             "best_review" => $best_review,
             "visual" => $visual,
@@ -380,7 +382,7 @@ class ReviewController extends BaseController
 
         if ($role == "admin") {
             $user_email = updateSQ($_POST["user_email"] ?? '');
-            $status = updateSQ($_POST["status"] ?? '');
+            $status = updateSQ($_POST["status"] ?? 'Y');
             $is_best = updateSQ($_POST["is_best"] ?? '');
             $display = updateSQ($_POST["display"] ?? '');
             $r_date = updateSQ($_POST["r_date"] ?? '');
@@ -462,6 +464,7 @@ class ReviewController extends BaseController
                 'rfile1' => $r_file_name1,
                 'ufile1' => $r_file_code1,
                 'rfile2' => $r_file_name2,
+                'status' => $status,
                 'number_stars' => $number_stars,
                 'review_type' => $review_type,
                 'ufile2' => $r_file_code2,
