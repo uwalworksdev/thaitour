@@ -2,8 +2,6 @@
 <?= $this->section("body") ?>
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-    <script type="text/javascript" src="/js/admin/tours/write.js"></script>
-
     <style>
         .tab_title {
             font-size: 16px;
@@ -216,8 +214,8 @@
                                 <tr>
                                     <th>분류</th>
                                     <td>
-                                        <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
-                                            <option value="">1차분류..</option>
+                                        <select id="country_code_1" name="country_code_1" class="input_select" onchange="javascript:get_code(this.value, 3)" style="width:200px">
+                                            <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult1 as $frow) :
                                                 $status_txt = "";
@@ -236,8 +234,24 @@
                                             <?php endforeach; ?>
 
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
+                                        <select id="country_code_2" name="country_code_2" class="input_select" onchange="javascript:get_code(this.value, 4)" style="width:200px">
                                             <option value="">2차분류</option>
+                                            <?php
+                                            foreach ($fresult2 as $frow) :
+                                                $status_txt = "";
+                                                if ($frow["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($frow["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($frow["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+
+                                                ?>
+                                                <option value="<?= $frow["code_no"] ?>" <?php if ($row["country_code_2"] == $frow["code_no"]) {
+                                                    echo "selected";
+                                                } ?>><?= $frow["code_name"] ?> <?= $status_txt ?></option>
+                                            <?php endforeach; ?>
                                         </select>
 
                                         <select id="product_code_3" name="product_code_3" class="input_select">
