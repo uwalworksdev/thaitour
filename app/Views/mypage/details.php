@@ -74,7 +74,7 @@
                                 <?php if($s_status == "G"){ echo "active"; }?>"><i></i>예약금</a>
                             <a href="/mypage/details?s_status=R&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
                                 <?php if($s_status == "R"){ echo "active"; }?>"><i></i>중도금</a>
-                            <a href="/mypage/details?s_status=Y&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
+                            <a href="/mypage/travel_review" class="filter_btn flex__c
                                 <?php if($s_status == "Y"){ echo "active"; }?>"><i></i>후기쓰기</a>
                         </div>
                     </div>

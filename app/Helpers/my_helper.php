@@ -861,4 +861,29 @@ function getOption($idx)
     return $fresult;
 }
 
-
+function getUrlFromProduct($product)
+{
+    $product_code_1 = $product['product_code_1'];
+    switch ($product_code_1) {
+        case '1320':
+            $url = '/product-restaurant/restaurant-detail/';
+            break;
+        case '1317':
+            $url = '/ticket/ticket-detail/';
+            break;
+        case '1325':
+            $url = '/product-spa/spa-details/';
+            break;
+        case '1301':
+            $url = '/product-tours/item_view/';
+            break;
+        case '1302':
+            $url = '/product-golf/golf-detail/';
+            break;
+        default:
+            $url = '/product-hotel/hotel-detail/';
+            break;
+    }
+    $url .= $product['product_idx'];
+    return $url;
+}
