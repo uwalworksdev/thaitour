@@ -143,7 +143,7 @@ class AdminHotelController extends BaseController
             $data['product_level'] = updateSQ($_POST["product_level"] ?? '');
             $data['addrs'] = updateSQ($_POST["addrs"] ?? '');
             $data['room_cnt'] = updateSQ($_POST["room_cnt"] ?? '');
-            $data['product_info'] = updateSQ($_POST["product_info"] ?? '');
+            $data['product_info'] = $_POST["product_info"];
             $data['product_best'] = updateSQ($_POST["product_best"] ?? 'N');
             $data['special_price'] = updateSQ($_POST["special_price"] ?? 'N');
             $data['is_view'] = "Y";
@@ -325,7 +325,7 @@ class AdminHotelController extends BaseController
 
 
                 // 상품 테이블 변경
-                //$this->productModel->update($product_idx, $data);
+                $this->productModel->update($product_idx, $data);
                 //write_log("호텔상품수정 : " . $product_idx);
 
                 // $db = $this->connect->query($sql);
