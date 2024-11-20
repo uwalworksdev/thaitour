@@ -11,7 +11,7 @@ class OrdersModel extends Model
     protected $allowedFields = [
         "m_idx", "air_idx", "yoil_idx", "home_depart_date", "away_arrive_date"
         , "away_depart_date", "home_arrive_date", "product_idx", "product_code_1", "product_code_2", "product_code_3"
-        , "product_code_4", "code_name", "product_name", "tours_subject", "order_mileage_yn"
+        , "product_code_4", "product_code_list", "code_name", "product_name", "tours_subject", "order_mileage_yn"
         , "order_gubun", "order_no", "order_date", "order_user_name", "order_user_email", "order_user_mobile", "order_user_phone"
         , "order_memo", "admin_memo", "manager_name", "manager_phone", "manager_email", "start_date", "end_date"
         , "product_period", "tour_period", "people_adult_cnt", "people_adult_price", "people_kids_cnt", "people_kids_price"
@@ -27,7 +27,7 @@ class OrdersModel extends Model
         , "deposit_price_change", "price_confirm_change", "total_price_change", "bbs_no", "transfer_date", "user_id"
         , "kakao_id", "order_name_kor_list", "order_name_eng_list", "order_mobile_list", "order_email_list", "device_type", "ip"
         , "room_op_idx", "order_room_cnt", "order_day_cnt", "order_user_first_name_en", "order_user_last_name_en", "order_gender_list"
-        , "vehicle_time", "departure_point", 'order_day',
+        , "vehicle_time", "departure_point", 'order_day', 'departure_area', 'destination_area', 'meeting_date', 'departure_hotel', 'destination_hotel'
     ];
     protected $encryptedField = ["order_user_name", "order_user_email", "order_user_mobile", "order_user_phone", "local_phone", "order_user_first_name_en", "order_user_last_name_en", "manager_name", "manager_phone", "manager_email",];
 

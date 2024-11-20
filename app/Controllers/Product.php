@@ -2325,7 +2325,6 @@ class Product extends BaseController
         try {
 
             if (empty(session()->get("member")["id"])) {
-
                 $parent_code = $this->request->getPost('parent_code') ?? "";
                 $product_code = $this->request->getPost('product_code') ?? "";
                 $product_arr = $this->request->getPost('product_arr') ?? "";
@@ -2414,7 +2413,7 @@ class Product extends BaseController
                                 "option_price" => $op_price,
                                 "option_qty" => $car_op_cnt[$i],
                             ];
-                            $this->carsSubModel->insert($data_sub);
+                            $this->orderOptionModel->insert($data_sub);
                         }
                     }
 
