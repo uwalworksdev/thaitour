@@ -480,8 +480,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 			var message   = "";
 			$.ajax({
 
-				//url: "/ajax/get_best",
-                url: '<?= base_url('ajax/get_best') ?>', // AJAX 요청 URL
+				url: "/ajax/get_best",
 				type: "POST",
 				data: { 
 					      list : list, 
@@ -493,9 +492,10 @@ $list5 = $MainDisp->List("2905")->findAll();
 					var message  = data.msg;
 					alert(message);
 				},
-				error:function(request,status,error){
-					alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				}
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
 			});
 
     }
