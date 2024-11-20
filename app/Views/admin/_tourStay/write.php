@@ -217,7 +217,7 @@
                                     <th>분류</th>
                                     <td>
                                         <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
-                                            <option value="">1차분류</option>
+                                            <option value="">1차분류..</option>
                                             <?php
                                             foreach ($fresult1 as $frow) :
                                                 $status_txt = "";

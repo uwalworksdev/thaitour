@@ -61,6 +61,7 @@ class AdminTourApi extends BaseController
 
         try {
             $sql = "SELECT * FROM tbl_code WHERE depth = ? AND parent_code_no = ? AND status = 'Y'";
+			write_log("xxxx- ". $sql);
             $query = $this->connect->query($sql, [$depth, $parent_code_no]);
             $results = $query->getResultArray();
 
