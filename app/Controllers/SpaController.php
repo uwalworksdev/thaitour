@@ -156,6 +156,8 @@ class SpaController extends BaseController
 
             $product = $this->productModel->find($product_idx);
 
+            $order_gubun = $this->request->getPost('order_gubun') ?? 'spa';
+
             $data = [
                 'order_user_name' => $order_user_name,
                 'order_user_email' => encryptField($order_user_email, 'encode'),
@@ -184,7 +186,7 @@ class SpaController extends BaseController
             $data['product_code_4'] = $product['product_code_4'];
 
             $data['ip'] = $this->request->getIPAddress();
-            $data['order_gubun'] = "spa";
+            $data['order_gubun'] = $order_gubun;
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
             $data['order_user_name'] = encryptField($dataPost['order_user_name'] ?? '', 'encode');
             $data['order_user_first_name_en'] = encryptField($dataPost['order_user_first_name_en'] ?? '', 'encode');
@@ -230,7 +232,7 @@ class SpaController extends BaseController
                 $countO = count($option_idx);
                 for ($i = 0; $i < $countO; $i++) {
                     $this->orderOptionModel->insert([
-                        'option_type' => 'spa',
+                        'option_type' => $order_gubun,
                         'order_idx' => $order_idx,
                         'product_idx' => $data['product_idx'],
                         'option_idx' => $option_idx[$i],
