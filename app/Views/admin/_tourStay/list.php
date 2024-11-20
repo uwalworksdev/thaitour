@@ -12,10 +12,10 @@
                     </ul>
 
                     <ul class="last">
+                        <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                         <li><a href="write" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-pencil"></span> <span
                                         class="txt">숙박 등록</span></a></li>
-                        <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                     </ul>
 
                 </div>
