@@ -455,7 +455,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 					}
 				});
 
-				alert(list+' - '+code);
+				set_best(list, code);
 			});
 
             $('.main_section3__type_btn').on('click', function () {
@@ -466,12 +466,20 @@ $list5 = $MainDisp->List("2905")->findAll();
 				});
 
 				code = $(this).data('code');
-				alert(list+' - '+code);
+				set_best(list, code);
 			});
 
         });
     </script>
- 
+
+    <script>
+	function set_best(list, code)
+	{
+				alert(list+' - '+code);
+
+    }
+	</script>
+
     <script>
         $('.words_list_item').click(function () {
             window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
