@@ -1,29 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
-<?php
-
-$titleStr = "생성";
-if ($s_parent_code_no == "") {
-    $parent_code_no = "0";
-} else {
-    $parent_code_no = $s_parent_code_no;
-}
-if ($code_idx) {
-    $code_no = $row["code_no"];
-    $code_name = $row["code_name"];
-    $status = $row["status"];
-    $onum = $row["onum"];
-    $rolling_yn = $row["rolling_yn"];
-    $titleStr = "수정";
-} else {
-    $depth = $row["depth"] + 1;
-    $code_gubun = $row["code_gubun"];
-
-    $code_no = $row2["code_no"];
-    $onum = 0;
-}
-?>
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <script type="text/javascript">
         function checkForNumber(str) {
             var key = event.keyCode;
@@ -119,7 +97,7 @@ if ($code_idx) {
                             <ul>
                                 <li class="left"></li>
                                 <li class="right_sub">
-
+                                        <a href="javascript:show_it()" class="btn btn-default">New</a>
                                     <a href="javascript:history.back();" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                                     <?php if ($code_idx == "") { ?>
@@ -136,45 +114,6 @@ if ($code_idx) {
                                     <?php } ?>
                                 </li>
                             </ul>
-                        </div>
-                    </form>
-
-
-                    <form name="frm1" action="file_ok.php" method=post enctype="multipart/form-data"
-                          target="hiddenFrame">
-                        <input type=hidden name="code_no" value='<?= $code_no ?>'>
-                        <input type=hidden name="code_idx" value='<?= $code_idx ?>'>
-                        <h3>배너이미지 </h3>
-                        <div class="listBottom">
-                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                <caption>
-                                </caption>
-                                <colgroup>
-                                    <col width="10%"/>
-                                    <col width="10%"/>
-                                    <col width="90%"/>
-                                </colgroup>
-                                <tbody>
-                                <tr>
-                                    <th>파일첨부</th>
-                                    <td>
-                                        <input type="text" name="onum" class="bbs_inputbox_pixel" style="width:50px"
-                                               value="0"/>
-                                        (우선순위)
-                                    </td>
-                                    <td>
-                                        <input type="text" name="url" class="bbs_inputbox_pixel" style="width:400px"
-                                               value=""
-                                               placeholder="URL을 입력하셔야 합니다."/>
-                                        <input type="file" name="ufile1" class="bbs_inputbox_pixel"
-                                               style="width:400px"/>
-                                        <a href="javascript:file_it()" class="btn btn-default"><span
-                                                    class="glyphicon glyphicon-cog"></span><span
-                                                    class="txt">이미지첨부</span></a>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </form>
                     <div class="listBottom">
@@ -203,29 +142,26 @@ if ($code_idx) {
                                 <form name="frm_<?= $i ?>" action="file_update.php" method=post
                                       enctype="multipart/form-data" target="hiddenFrame">
                                     <input type=hidden name="code_no" value='<?= $code_no ?>'>
-                                    <input type=hidden name="cb_idx" value='<?= $row["cb_idx"] ?>'>
                                     <tbody>
                                     <tr style="height:45px;padding:5px">
                                         <td><?= $i ?></td>
-                                        <td><a href="/data/catebanner/<?= $row["ufile1"] ?>" class="imgpop"><img
-                                                        src="/data/catebanner/<?= $row["ufile1"] ?>"
-                                                        style="max-height:200px"></a></td>
                                         <td>
-                                            <input type="text" name="url" class="bbs_inputbox_pixel" style="width:300px"
-                                                   value="<?= $row["url"] ?>" placeholder="URL을 입력하셔야 합니다."/><br><br>
-                                            <input type="file" name="ufile1" class="bbs_inputbox_pixel"
-                                                   style="width:300px"/></td>
-                                        <td><input type="text" name="onum" class="bbs_inputbox_pixel" style="width:50px"
-                                                   value="<?= $row["onum"] ?>"/></td>
+                                            <a href="/data/catebanner/<?= $row["ufile1"] ?>" class="imgpop">
+                                            <img src="/data/catebanner/<?= $row["ufile1"] ?>" style="max-height:200px"></a>
+                                        </td>
                                         <td>
-                                            <a href="javascript:document.frm_<?= $i ?>.submit();"
-                                               class="btn btn-default"><span
-                                                        class="glyphicon glyphicon-cog"></span><span
-                                                        class="txt">수정</span></a>
-                                            <a href="javascript:file_del_it('<?= $row["cb_idx"] ?>')"
-                                               class="btn btn-default"><span
-                                                        class="glyphicon glyphicon-cog"></span><span
-                                                        class="txt">삭제</span></a>
+                                            <input type="text" name="url" class="bbs_inputbox_pixel" style="width:300px" value="<?= $row["url"] ?>" placeholder="URL을 입력하셔야 합니다."/><br><br>
+                                            <input type="file" name="ufile1" class="bbs_inputbox_pixel" style="width:300px"/></td>
+                                        <td>
+                                            <input type="text" name="onum" class="bbs_inputbox_pixel" style="width:50px" value="<?= $row["onum"] ?>"/>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:document.frm_<?= $i ?>.submit();" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-cog"></span>
+                                            <span class="txt">수정</span></a>
+                                            <a href="javascript:file_del_it('<?= $row["cb_idx"] ?>')" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-cog"></span>
+                                            <span class="txt">삭제</span></a>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -244,7 +180,80 @@ if ($code_idx) {
             </div><!-- 인쇄 영역 끝 //-->
         </div>
         <!-- // container -->
+        <div class="pick_item_pop02" id="item_pop" style="display:none;">
+            <div>
+                <h2>이벤트 상품등록</h2>
+                <div class="listBottom table_box">
+                    <form action="write_ok.php" method="post">
+                    <input type="hidden" name="code_no" value='<?= $code_no ?>'>
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                        <caption>
+                        </caption>
+                        <colgroup>
+                        <col width="10%"/>
+                        <col width="90%"/>
+                        </colgroup>
+                        <tbody>
+                            <input type="hidden" id="code_gubun" name="code_gubun" value="<?= $code_gubun ?>"/>
+                            <tr>
+                                <th>코드명</th>
+                                <td>
+                                    <input type="text" id="code_name" name="code_name" value="<?= $code_name ?>" class="input_txt" style="width:90%"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이미지</th>
+                                <td>
+                                    <input type="file" id="ufile1" name="ufile1" class="input_txt" style="width:20%"/>
+                                    <?php if ($ufile1 && $rfile1) { ?>
+                                        <img src="/data/code/<?= $ufile1 ?>">
+                                        <input type="checkbox" name="del_1" value="Y">
+                                        <a href="/data/code/<?= $ufile1 ?>" class="imgpop cboxElement"><?= $rfile1 ?></a>
+                                    <?php } ?>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>현황</th>
+                                <td>
+                                    <input type="radio" name="status" value="Y" <?php if ($status == "Y" || $status == "") {
+                                        echo "checked";
+                                    } ?>> 사용&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="status" value="C" <?php if ($status == "C") {
+                                        echo "checked";
+                                    } ?>> 마감&nbsp;&nbsp;&nbsp;
+                                    <!--input type="radio" name="status" value="N" <?php if ($status == "N") {
+                                        echo "checked";
+                                    } ?>> 삭제-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>우선순위</th>
+                                <td>
+                                    <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
+                                        style="width:100px"/> (숫자가 높을수록 상위에 노출됩니다.)
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                        </table>
+                    </form>
+                </div>
+                <div class="sel_box">
+                    <button type="button" class="close">닫기</button>
+                    <button type="button" class="select_all">전체선택</button>
+                    <button type="button" onclick="fn_pick_update();" class="search">등록</button>
+                </div>
+                </form>
+            </div>
+        </div>
         <script>
+            function show_it() {
+                $("#item_pop").show();
+            }
+            $(".close").click(function () {
+                $("#item_pop").hide();
+            });
             function file_it() {
                 var frm = document.frm1;
                 if (frm.ufile1.value == "") {

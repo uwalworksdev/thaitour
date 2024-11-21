@@ -276,12 +276,6 @@ class AdminMenus extends BaseConfig
                     'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
-                    'name' => '서브배너관리',
-                    'code' => 'H5',
-                    'url' => '/AdmMaster/_codeBanner/list',
-                    'alias' => ['AdminCodeBannerController::list', 'AdminCodeBannerController::write']
-                ],
-                [
                     'name' => '카테고리배너관리',
                     'code' => 'H6',
                     'url' => '/AdmMaster/_cateBanner/list',

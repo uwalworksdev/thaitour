@@ -94,8 +94,7 @@
                                     <tr style="height:40px">
                                         <th>구분</th>
                                         <td>
-                                            <select name="category" class="input_select"
-                                                    onchange="go_write(this.value);">
+                                            <select name="category" class="input_select">
                                                 <option value="">선택</option>
                                                 <?php
                                                 foreach ($list_category as $frow) {
@@ -1062,12 +1061,6 @@
         }
     </script>
 
-    <script>
-        function go_write(cate) {
-            var code = '<?= $code ?>';
-            location.href = '/AdmMaster/_bbs/board_write.php?code=' + code + '&scategory=' + cate
-        }
-    </script>
     <script>
         let first_select_all = true;
         $(".select_all").click(function () {

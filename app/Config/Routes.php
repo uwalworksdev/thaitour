@@ -324,14 +324,10 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("code_change", "Admin\AdminBbsBannerController::banner_change", ['as' => "admin.api.banner.banner_change"]);
     });
 
-    $routes->group("_codeBanner", static function ($routes) {
-        $routes->get("list", "Admin\AdminCodeBannerController::list");
-        $routes->get("write", "Admin\AdminCodeBannerController::write");
-    });
-
     $routes->group("_cateBanner", static function ($routes) {
         $routes->get("list", "Admin\AdminCateBannerController::list");
         $routes->get("write", "Admin\AdminCateBannerController::write");
+        $routes->post("write_ok", "Admin\AdminCateBannerController::write_ok");
     });
 
     $routes->group("_cms", static function ($routes) {
