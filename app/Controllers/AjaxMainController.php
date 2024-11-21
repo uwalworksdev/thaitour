@@ -87,7 +87,7 @@ class AjaxMainController extends BaseController {
 			$msg .= '<div class="swiper-slide">';
 			$msg .= '<a href="'. getUrlFromProduct($item3) .'" class="hot_product_list__item">';
 			$msg .= '<div class="img_box img_box_2">';
-			$msg .= '<img src="/data/'. $img_dir .'/'. $item2['ufile1'] .'" alt="main">';
+			$msg .= '<img src="/data/'. $img_dir .'/'. $item3['ufile1'] .'" alt="main">';
 			$msg .= '</div>';
 			$msg .= '<div class="prd_name">'. $item3['product_name'] .'</div>';
 			$msg .= '<div class="prd_price_ko">'. number_format($item3['original_price']) .'<span>원</span></div>';
