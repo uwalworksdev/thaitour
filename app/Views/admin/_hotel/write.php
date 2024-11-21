@@ -558,7 +558,7 @@ $links = "list";
                                 }
                             </script>
 
-							<div class="listBottom">
+							            <div class="listBottom">
 											<table cellpadding="0" cellspacing="0" summary="" class="listTable">
 												<caption></caption>
 												<colgroup>
@@ -609,7 +609,36 @@ $links = "list";
 											</table>
 										</div>
 
-							<div class="listBottom">
+										<script>
+											$(function() {
+												// Datepicker에 한국어 설정 적용
+												$.datepicker.setDefaults($.datepicker.regional['ko']);
+												
+												// 시작일과 종료일 초기화
+												var startDatePicker = $("#s_date");
+												var endDatePicker   = $("#s_date");
+												
+												startDatePicker.datepicker({
+													dateFormat: "yy-mm-dd",
+													onClose: function(selectedDate) {
+														if (selectedDate) {
+															endDatePicker.datepicker("option", "minDate", selectedDate);
+														}
+													}
+												});
+
+												endDatePicker.datepicker({
+													dateFormat: "yy-mm-dd",
+													onClose: function(selectedDate) {
+														if (selectedDate) {
+															startDatePicker.datepicker("option", "maxDate", selectedDate);
+														}
+													}
+												});
+											});
+										</script>
+
+							            <div class="listBottom">
 											<table cellpadding="0" cellspacing="0" summary="" class="listTable">
 												<caption></caption>
 												<colgroup>
