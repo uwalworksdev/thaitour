@@ -1217,5 +1217,140 @@ $links = "list";
         </div><!-- 인쇄 영역 끝 //-->
     </div>
 
-    <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
+<script>
+$(document).ready(function() {
+    var startDateTextBox = $('.s_date');
+    var endDateTextBox   = $('.e_date');
+
+    // 시작일 선택 시, 종료일의 최소 선택 가능 날짜를 설정
+    startDateTextBox.datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(selectedDate) {
+            var startDate = $(this).datepicker('getDate');
+            endDateTextBox.datepicker('option', 'minDate', startDate);
+        }
+    });
+
+    // 종료일 선택 시, 시작일의 최대 선택 가능 날짜를 설정
+    endDateTextBox.datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(selectedDate) {
+            var endDate = $(this).datepicker('getDate');
+            startDateTextBox.datepicker('option', 'maxDate', endDate);
+        }
+    });
+});
+</script>
+
+<script>
+$(function() {
+	$.datepicker.regional['ko'] = {
+	showButtonPanel: true,   
+	beforeShow: function( input ) {   
+		setTimeout(function() {   
+			var buttonPane = $( input )   
+			.datepicker( "widget" )   
+			.find( ".ui-datepicker-buttonpane" );   
+			var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');   
+			btn .unbind("click").bind("click", function () {   
+				$.datepicker._clearDate( input );   
+			});   
+			btn.appendTo( buttonPane );   
+		}, 1 );   
+	},
+
+	//onSelect: function(selectedDate) {
+	  // 선택된 날짜를 다른 input에 저장
+	//  $("#charge_date").val(selectedDate);
+	//},
+
+	closeText: '닫기',
+	prevText: '이전',
+	nextText: '다음',
+	monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	dayNames: ['일','월','화','수','목','금','토'],
+	dayNamesShort: ['일','월','화','수','목','금','토'],
+	dayNamesMin: ['일','월','화','수','목','금','토'],
+	weekHeader: 'Wk',
+	dateFormat: 'yy-mm-dd',
+	firstDay: 0,
+	isRTL: false,
+	showMonthAfterYear: true,
+	changeMonth: true,
+	changeYear: true,
+	showMonthAfterYear: true,
+	closeText: '닫기',  // 닫기 버튼 패널
+	currentText: '오늘', // 오늘 버튼 텍스트 설정
+	yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+
+
+	$( "#from" ).datepicker({ 
+		showButtonPanel: true
+		,onClose: function(selectedDate) {
+			// To 날짜 선택기의 최소 날짜를 설정
+			$("#to").datepicker("option", "minDate", selectedDate);
+		}
+		,beforeShow: function( input ) {   
+			setTimeout(function() {   
+				var buttonPane = $( input )   
+				.datepicker( "widget" )   
+				.find( ".ui-datepicker-buttonpane" );   
+				//var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');   
+				btn .unbind("click").bind("click", function () {   
+					$.datepicker._clearDate( input );   
+				});   
+				btn.appendTo( buttonPane );   
+			}, 1 );   
+		}
+		,dateFormat: 'yy-mm-dd'
+		,showOn: "both"
+		,yearRange: "c:c+30"
+		,buttonImage: "/AdmMaster/_images/common/date.png"
+		,buttonImageOnly: true
+		,closeText: '닫기'
+		,currentText: '오늘' // 오늘 버튼 텍스트 설정
+		,prevText: '이전'
+		,nextText: '다음'
+
+	});
+
+
+	$( "#to" ).datepicker({ 
+		showButtonPanel: true
+		,onClose: function(selectedDate) {
+			// To 날짜 선택기의 최소 날짜를 설정
+			$("#from").datepicker("option", "maxDate", selectedDate);
+		}
+		,beforeShow: function( input ) {   
+			setTimeout(function() {   
+				var buttonPane = $( input )   
+				.datepicker( "widget" )   
+				.find( ".ui-datepicker-buttonpane" );   
+				//var btn = $('<BUTTON class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</BUTTON>');   
+				btn .unbind("click").bind("click", function () {   
+					$.datepicker._clearDate( input );   
+				});   
+				btn.appendTo( buttonPane );   
+			}, 1 );   
+		}
+		,dateFormat: 'yy-mm-dd'
+		,showOn: "both"
+		,yearRange: "c-100:c+10"
+		,buttonImage: "/AdmMaster/_images/common/date.png"
+		,buttonImageOnly: true
+		,closeText: '닫기'
+		,currentText: '오늘' // 오늘 버튼 텍스트 설정
+		,prevText: '이전'
+		,nextText: '다음'
+
+	});
+
+});
+</script>
+
+<iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
+
 <?= $this->endSection() ?>
