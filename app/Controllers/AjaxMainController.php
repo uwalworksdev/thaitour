@@ -77,7 +77,7 @@ class AjaxMainController extends BaseController {
 								  WHERE 1=1 ";
         if($type == "golf")       $sql .= " AND a.code_no        = '2901' "; 
         if($type == "hotel")      $sql .= " AND a.code_no        = '2902' "; 
-        $sql .= "AND b.product_code_2 = '$product_code_2 ORDER BY a.onum DESC ";
+        $sql .= "AND b.product_code_2 = '$product_code_2' ORDER BY a.onum DESC ";
         write_log("AjaxMainController- ". $sql);
  
         $rows  = $db->query($sql)->getResultArray();
