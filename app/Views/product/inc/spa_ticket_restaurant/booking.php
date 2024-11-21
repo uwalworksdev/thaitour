@@ -306,11 +306,11 @@
 
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
                                 <span>쿠폰 </span>
-                                <span><span class="discountPrice">0</span>원</span>
+                                <span>- <span class="discountPrice">0</span>원</span>
                             </div>
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
                                 <span>포인트 </span>
-                                <span><span class="pointPrice">0</span>원</span>
+                                <span>- <span class="pointPrice">0</span>원</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
