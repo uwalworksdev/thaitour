@@ -2117,8 +2117,12 @@ class Product extends BaseController
                     'message' => $message
                 ], 400);
             }
+
             $adultQty = $_POST['adultQty'];
+            $adultPrice = $_POST['adultPrice'];
+
             $childrenQty = $_POST['childrenQty'];
+            $childrenPrice = $_POST['childrenPrice'];
 
             $totalPrice = $_POST['totalPrice'];
 
@@ -2134,7 +2138,9 @@ class Product extends BaseController
                 'day_' => $day_,
                 'member_idx' => $member_idx,
                 'adultQty' => $adultQty,
+                'adultPrice' => $adultPrice,
                 'childrenQty' => $childrenQty,
+                'childrenPrice' => $childrenPrice,
                 'totalPrice' => $totalPrice,
                 'option_idx' => $option_idx,
                 'option_qty' => $option_qty,
@@ -2761,7 +2767,9 @@ class Product extends BaseController
         $member_idx = $data['member_idx'];
 
         $adultQty = $data['adultQty'];
+        $adultPrice = $data['adultPrice'];
         $childrenQty = $data['childrenQty'];
+        $childrenPrice = $data['childrenPrice'];
 
         $totalPrice = $data['totalPrice'];
 
@@ -2780,7 +2788,9 @@ class Product extends BaseController
             'member_idx' => $member_idx,
             'moption' => $moption,
             'adultQty' => $adultQty,
+            'adultPrice' => $adultPrice,
             'childrenQty' => $childrenQty,
+            'childrenPrice' => $childrenPrice,
             'totalPrice' => $totalPrice,
             'data' => $data,
         ];

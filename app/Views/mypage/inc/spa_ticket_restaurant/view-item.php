@@ -526,7 +526,7 @@
                 ?>
                 <?php foreach ($listSub as $rowSub) { ?>
                     <tr>
-                        <td>
+                        <td class="content">
                             <?php
 
                             if ($rowSub["order_gubun"] == "kids") {

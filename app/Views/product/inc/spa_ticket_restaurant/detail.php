@@ -112,35 +112,6 @@
                         </thead>
                         <tbody id="price_body_">
 
-                        <!--                            <tr>-->
-                        <!--                                <td>아로마 테라피 마사지(60분)</td>-->
-                        <!--                                <td>매일</td>-->
-                        <!--                                <td>-->
-                        <!--                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">-->
-                        <!--                                        <div class="price">-->
-                        <!--                                            <span class="text_primary">34,304원</span>(800바트)-->
-                        <!--                                        </div>-->
-                        <!--                                        <p class="" style="display: flex; align-items: center; gap: 5px">-->
-                        <!--                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"-->
-                        <!--                                                   onkeyup="chkNum(this)">-->
-                        <!--                                            <span>명</span>-->
-                        <!--                                        </p>-->
-                        <!--                                    </div>-->
-                        <!--                                </td>-->
-                        <!--                                <td>-->
-                        <!--                                    <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">-->
-                        <!--                                        <div class="price">-->
-                        <!--                                            <span class="text_primary">34,304원</span>(800바트)-->
-                        <!--                                        </div>-->
-                        <!--                                        <p class="" style="display: flex; align-items: center; gap: 5px">-->
-                        <!--                                            <input type="text" name="mem_cnt2[]" class="price_in" size="4"-->
-                        <!--                                                   onkeyup="chkNum(this)">-->
-                        <!--                                            <span>명</span>-->
-                        <!--                                        </p>-->
-                        <!--                                    </div>-->
-                        <!--                                </td>-->
-                        <!--                            </tr>-->
-
                         <tr>
                             <td colspan="7">
                                 날짜 선택해주세요!
@@ -670,7 +641,7 @@
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_adults_select_" size="4"
-                                       onkeyup="chkNum(this)">
+                                       data-idx="${item_.charge_idx}" data-type="adults" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
@@ -683,7 +654,7 @@
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_kids}" class="price_in qty_children_select_" size="4"
-                                       onkeyup="chkNum(this)">
+                                       data-idx="${item_.charge_idx}" data-type="kids" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
@@ -713,6 +684,95 @@
         }
 
         showTotalPrice();
+
+        renderItemPrice();
+    }
+
+    function renderItemPrice() {
+        let html_adults = ``;
+        let html_kids = ``;
+
+        let i = 0;
+        $('.qty_adults_select_').each(function () {
+            let price = $(this).data('price');
+            let idx = $(this).data('idx');
+            let type = $(this).data('type');
+            let num = $(this).val();
+            if (num > 0) {
+                if (type === 'adults') {
+                    i++;
+                    html_adults += `<div class="flex_b_c cus-count-input" id="children_adults_${idx}">
+                                <div class="payment">
+                                    <p class="ped_label">성인 ${i}</p>
+                                </div>
+                                <div class="opt_count_box count_box flex__c">
+                                    <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty${idx}"
+                                           value="${num}" readonly="" style="padding: 0; width: 30px">
+                                    <span>명</span>
+                                    <input type="hidden" name="adultPrice[]" id="adultPrice${idx}" value="${price}">
+                                </div>
+                            </div>`;
+                }
+            }
+        })
+
+        let j = 0;
+        $('.qty_children_select_').each(function () {
+            let price = $(this).data('price');
+            let idx = $(this).data('idx');
+            let type = $(this).data('type');
+            let num = $(this).val();
+            if (num > 0) {
+                if (type === 'kids') {
+                    j++;
+                    html_kids += `<div class="flex_b_c cus-count-input" id="children_kids_${idx}">
+                                <div class="payment">
+                                    <p class="ped_label">아동 ${j}</p>
+                                </div>
+                                <div class="opt_count_box count_box flex__c">
+                                    <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+                                           id="childrenQty${idx}" value="${num}"
+                                           readonly="" style="padding: 0; width: 30px">
+                                    <span>명</span>
+                                    <input type="hidden" name="childrenPrice[]" id="childrenPrice${idx}" value="${price}">
+                                </div>
+                            </div>`;
+                }
+            }
+        })
+
+        if (html_kids === ``) {
+            html_kids = `<div class="flex_b_c cus-count-input">
+                                <div class="payment">
+                                    <p class="ped_label">아동</p>
+                                </div>
+                                <div class="opt_count_box count_box flex__c">
+                                    <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+                                           id="childrenQty" value="0"
+                                           readonly="" style="padding: 0; width: 30px">
+                                    <span>명</span>
+                                    <input type="hidden" name="childrenPrice[]" id="childrenPrice">
+                                </div>
+                            </div>`;
+        }
+
+        if (html_adults === ``) {
+            html_adults = `<div class="flex_b_c cus-count-input">
+                                <div class="payment">
+                                    <p class="ped_label">성인 </p>
+                                </div>
+                                <div class="opt_count_box count_box flex__c">
+                                    <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"
+                                           value="0"
+                                           readonly="" style="padding: 0; width: 30px">
+                                    <span>명</span>
+                                    <input type="hidden" name="adultPrice[]" id="adultPrice">
+                                </div>
+                            </div>`;
+        }
+
+        $('#list_number_child_').html(html_kids);
+        $('#list_number_adult_').html(html_adults);
     }
 
     function calcTotalPrice() {

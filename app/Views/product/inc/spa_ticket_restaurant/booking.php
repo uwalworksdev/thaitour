@@ -111,8 +111,13 @@
                             </h3>
                             <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
                             <?php
-                            $adultQty = intval($adultQty);
-                            for ($i = 1; $i <= $adultQty; $i++) {
+
+                            $numAdultQty = 0;
+                            foreach ($adultQty as $num) {
+                                $numAdultQty += intval($num);
+                            }
+
+                            for ($i = 1; $i <= $numAdultQty; $i++) {
                                 ?>
                                 <h3 class="title-sub-c mt-30">성인<?= $i ?></h3>
                                 <div class="form-container" data-group="group<?= $i ?>">
@@ -138,8 +143,13 @@
                             ?>
                             <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
                             <?php
-                            $childrenQty = intval($childrenQty);
-                            for ($i = 1; $i <= $childrenQty; $i++) {
+
+                            $numChildrenQty = 0;
+                            foreach ($childrenQty as $num) {
+                                $numChildrenQty += intval($num);
+                            }
+
+                            for ($i = 1; $i <= $numChildrenQty; $i++) {
                                 ?>
                                 <h3 class="title-sub-c mt-30">아동<?= $i ?></h3>
                                 <div class="form-container" data-group="group<?= $i ?>">
@@ -199,24 +209,29 @@
                                 여행인원 및 예약금액
                             </h3>
                             <div class="list_schedule_">
-                                <div class="schedule">
-                                    <div class="wrap-text">
-                                        <p>성인</p>
+                                <?php foreach ($adultQty as $key => $val) { ?>
+                                    <div class="schedule">
+                                        <div class="wrap-text">
+                                            <p>성인<?= $key + 1 ?> x <?= $val ?></p>
+                                        </div>
+                                        <div class="wrap-btn">
+                                            <span><?= number_format($adultPrice[$key] * $val) ?></span>
+                                            <span>원</span>
+                                        </div>
                                     </div>
-                                    <div class="wrap-btn">
-                                        <span><?= $adultQty ?></span>
-                                        <span>명</span>
+                                <?php } ?>
+
+                                <?php foreach ($childrenQty as $key => $val) { ?>
+                                    <div class="schedule">
+                                        <div class="wrap-text">
+                                            <p>아동<?= $key + 1 ?> x <?= $val ?></p>
+                                        </div>
+                                        <div class="wrap-btn">
+                                            <span><?= number_format($childrenPrice[$key] * $val) ?></span>
+                                            <span>원</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="schedule">
-                                    <div class="wrap-text">
-                                        <p>아동</p>
-                                    </div>
-                                    <div class="wrap-btn">
-                                        <span><?= $childrenQty ?></span>
-                                        <span>명</span>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </div>
 
                             <h3 class="title-r">

@@ -15,33 +15,38 @@
                     <p class="label item_label">예약인원을 확인해주세요.</p>
 
                     <ul class="select_peo">
-                        <li class="flex_b_c cus-count-input">
-                            <div class="payment">
-                                <p class="ped_label">성인 </p>
+                        <li class="" id="list_number_adult_">
+
+                            <div class="flex_b_c cus-count-input">
+                                <div class="payment">
+                                    <p class="ped_label">성인 </p>
+                                </div>
+                                <div class="opt_count_box count_box flex__c">
+                                    <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"
+                                           value="0"
+                                           readonly="" style="padding: 0; width: 30px">
+                                    <span>명</span>
+                                    <input type="hidden" name="adultPrice[]" id="adultPrice">
+                                </div>
                             </div>
-                            <div class="opt_count_box count_box flex__c">
-                                <!--                                <button type="button" class="minus_btn"-->
-                                <!--                                        id="minusAdult"></button>-->
-                                <input type="text" class="input-qty" name="adultQty" id="adultQty" value="0"
-                                       readonly="" style="padding: 0; width: 30px">
-                                <!--                                <button type="button" class="plus_btn"-->
-                                <!--                                        id="addAdult"></button>-->
-                                <span>명</span>
-                            </div>
+
                         </li>
-                        <li class="flex_b_c cus-count-input">
-                            <div class="payment">
-                                <p class="ped_label">아동</p>
+
+                        <li class="" id="list_number_child_">
+
+                            <div class="flex_b_c cus-count-input">
+                                <div class="payment">
+                                    <p class="ped_label">아동</p>
+                                </div>
+                                <div class="opt_count_box count_box flex__c">
+                                    <input type="text" class="input-qty childrenQty" name="childrenQty[]"
+                                           id="childrenQty" value="0"
+                                           readonly="" style="padding: 0; width: 30px">
+                                    <span>명</span>
+                                    <input type="hidden" name="childrenPrice[]" id="childrenPrice">
+                                </div>
                             </div>
-                            <div class="opt_count_box count_box flex__c">
-                                <!--                                <button type="button" class="minus_btn"-->
-                                <!--                                        id="minusAdult2"></button>-->
-                                <input type="text" class="input-qty" name="childrenQty" id="childrenQty" value="0"
-                                       readonly="" style="padding: 0; width: 30px">
-                                <!--                                <button type="button" class="plus_btn"-->
-                                <!--                                        id="addAdult2"></button>-->
-                                <span>명</span>
-                            </div>
+
                         </li>
                     </ul>
 
@@ -77,35 +82,34 @@
                 </div>
 
                 <div class="total_paymemt payment">
-                    <!--p class="ped_label">총 예약금액</p-->
-                    <p class="money"><span
-                                style="margin-right:50px;"><strong>합계</strong></span><strong><span
-                                    id="total_sum" class="total_sum">0</span> 원</strong></p>
+                    <p class="money">
+                        <span style="margin-right:50px;">
+                            <strong>합계</strong>
+                        </span>
+                        <strong>
+                            <span id="total_sum" class="total_sum">0</span> 원
+                        </strong>
+                    </p>
                 </div>
                 <h3 class="title-r label">약관동의</h3>
                 <div class="item-info-check item_check_term_all_">
                     <label for="fullagreement">전체동의</label>
-                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
                     <input type="hidden" value="N" id="fullagreement">
                 </div>
                 <div class="item-info-check item_check_term_">
                     <label for="">이용약관 동의(필수)</label>
-                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
                     <input type="hidden" value="N" id="terms">
                 </div>
                 <div class="item-info-check item_check_term_">
                     <label for="">개인정보 처리방침(필수)</label>
-                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
                     <input type="hidden" value="N" id="policy">
                 </div>
                 <div class="item-info-check item_check_term_">
                     <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
-                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
                     <input type="hidden" value="N" id="information">
                 </div>
                 <div class="item-info-check item_check_term_">
                     <label for="guidelines">여행안전수칙 동의(필수)</label>
-                    <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
                     <input type="hidden" value="N" id="guidelines">
                 </div>
                 <div class="nav_btn_wrap">
@@ -122,6 +126,7 @@
         </div>
     </form>
 </div>
+
 <script>
     $('.item_check_term_').click(function () {
         $(this).toggleClass('checked_');
@@ -244,6 +249,7 @@
 
     function order_it() {
         $("#ajax_loader").removeClass("display-none");
+
         /* Collect values for validation */
         let fullagreement = $("#fullagreement").val().trim();
         let terms = $("#terms").val().trim();
@@ -264,8 +270,8 @@
             return false;
         }
 
-        let $adultQty = $('#adultQty').val().trim();
-        let $childrenQty = $('#childrenQty').val().trim();
+        let $adultQty = $('.adultQty').val().trim();
+        let $childrenQty = $('.childrenQty').val().trim();
         if ($adultQty === 0 && $childrenQty === 0) {
             alert("성인 수를 입력해주세요.");
             return false;
