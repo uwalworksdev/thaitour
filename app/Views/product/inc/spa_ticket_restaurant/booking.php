@@ -296,33 +296,7 @@
                                 18시(한국시간)
                                 이전
                             </p>
-                            <span class="cus-label-r" id="policy_show" style="cursor: pointer">본 예약건 취소규정</span>
-                            <h3 class="title-r">약관동의</h3>
-                            <div class="item-info-check item_check_term_all_">
-                                <label for="fullagreement">전체동의</label>
-                                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                                <input type="hidden" value="N" id="fullagreement">
-                            </div>
-                            <div class="item-info-check item_check_term_">
-                                <label for="">이용약관 동의(필수)</label>
-                                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                                <input type="hidden" value="N" id="terms">
-                            </div>
-                            <div class="item-info-check item_check_term_">
-                                <label for="">개인정보 처리방침(필수)</label>
-                                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                                <input type="hidden" value="N" id="policy">
-                            </div>
-                            <div class="item-info-check item_check_term_">
-                                <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
-                                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                                <input type="hidden" value="N" id="information">
-                            </div>
-                            <div class="item-info-check item_check_term_">
-                                <label for="guidelines">여행안전수칙 동의(필수)</label>
-                                <!--            <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">-->
-                                <input type="hidden" value="N" id="guidelines">
-                            </div>
+
                             <button class="btn-order btnOrder" onclick="completeOrder();" type="button">
                                 예약하기
                             </button>

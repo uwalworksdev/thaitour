@@ -446,57 +446,56 @@ $list5 = $MainDisp->List("2905")->findAll();
             var code = "";
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
             $('.main_section3__place_btn').on('click', function () {
-				list = $(this).data('list');
+                list = $(this).data('list');
 
-				$('.main_section3__type_btn').each(function (index) {
-					if ($(this).hasClass('active')) {
-						code = $(this).data('code');
-					}
-				});
+                $('.main_section3__type_btn').each(function (index) {
+                    if ($(this).hasClass('active')) {
+                        code = $(this).data('code');
+                    }
+                });
 
-				set_best(list, code);
-			});
+                set_best(list, code);
+            });
 
             $('.main_section3__type_btn').on('click', function () {
-				$('.main_section3__place_btn').each(function (index) {
-					if ($(this).hasClass('active')) {
-						list = $(this).data('list');
-					}
-				});
+                $('.main_section3__place_btn').each(function (index) {
+                    if ($(this).hasClass('active')) {
+                        list = $(this).data('list');
+                    }
+                });
 
-				code = $(this).data('code');
-				set_best(list, code);
-			});
+                code = $(this).data('code');
+                set_best(list, code);
+            });
 
         });
     </script>
 
     <script>
-	function set_best(list, code)
-	{
-/*
-			var message   = ""; 
-			$.ajax({
+        function set_best(list, code) {
+            /*
+                        var message   = "";
+                        $.ajax({
 
-				url: "/ajax/get_best",
-				type: "POST",
-				data: { 
-					      list : list, 
-					      code : code 
-					  },
-			    dataType: "json",
-				success: function(res) {
-					var message  = res.message;
-					$("#best_list_"+list).html(message);
-				},
-				error: function (xhr, status, error) {
-						console.error(xhr.responseText); // 서버 응답 내용 확인
-						alert('Error: ' + error);
-				}			
-			});
-*/
-    }
-	</script>
+                            url: "/ajax/get_best",
+                            type: "POST",
+                            data: {
+                                      list : list,
+                                      code : code
+                                  },
+                            dataType: "json",
+                            success: function(res) {
+                                var message  = res.message;
+                                $("#best_list_"+list).html(message);
+                            },
+                            error: function (xhr, status, error) {
+                                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                                    alert('Error: ' + error);
+                            }
+                        });
+            */
+        }
+    </script>
 
     <script>
         $('.words_list_item').click(function () {
@@ -930,81 +929,95 @@ $list5 = $MainDisp->List("2905")->findAll();
             <div class="magazine_swiper swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_1.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                        <a href="/magazines/detail?m_idx=1">
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_1.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_2.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                        <a href="/magazines/detail?m_idx=1">
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_2.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_3.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                        <a href="/magazines/detail?m_idx=1">
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_3.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_4.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                        <a href="/magazines/detail?m_idx=1">
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_4.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_5.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                        <a href="/magazines/detail?m_idx=1">
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_5.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_3.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                        <a href="/magazines/detail?m_idx=1">
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_3.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="swiper-slide">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_4.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                        <a href="/magazines/detail?m_idx=1">
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_4.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <div class="magazine_swiper__pagination"></div>
