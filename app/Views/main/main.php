@@ -6,10 +6,16 @@ $keyword = $_GET['keyword'] ?? '';
 
 // 메인 배너
 $Bbs = model("Bbs");
-$list = $Bbs->List("banner", ["category" => "1"])->findAll();
+$bannerMain = $Bbs->List("banner", ["category" => "1"])->findAll();
+
+// 메인 상단배너
+$bannerTop = $Bbs->List("banner", ["category" => "40"])->findAll();
 
 // 메인 중간 배너
-$list_m = $Bbs->List("banner", ["category" => "16"])->findAll();
+$bannerMid = $Bbs->List("banner", ["category" => "124"])->findAll();
+
+// 메인 하단배너
+$bannerBottom = $Bbs->List("banner", ["category" => "16"])->findAll();
 
 // 취향저격 더투어랩 Best
 $MainDisp = model("MainDispModel"); // 방콕
@@ -57,7 +63,7 @@ $list5 = $MainDisp->List("2905")->findAll();
         <div class="body_inner">
             <div class="relative">
                 <div class="main_visual_slider owl-carousel only_web">
-                    <?php foreach ($list as $item): ?>
+                    <?php foreach ($bannerMain as $item): ?>
                         <div class="img_box img_box_1 only_web">
                             <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
                                  alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
@@ -96,7 +102,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 </div>
                 <div class="swiper-pagination-main">
                     <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span
-                            class="main_total_slide"><?= count($list) ?></span>
+                            class="main_total_slide"><?= count($bannerMain) ?></span>
                     <!-- get total slide from database -->
                 </div>
             </div>
@@ -110,14 +116,13 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="swiper main_swiper2">
                     <div class="swiper-wrapper">
 
-                        <?php foreach ($codes as $code): ?>
+                        <?php foreach ($bannerTop as $banner): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="only_web" src="/data/code/<?= $code['ufile1'] ?>"
-                                         alt="main">
+                                    <img class="only_web" src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>">
                                 </div>
                                 <div class="main_swiper2__text">
-                                    <?= $code['code_name'] ?>
+                                    <?= $banner['subject'] ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -446,27 +451,27 @@ $list5 = $MainDisp->List("2905")->findAll();
             var code = "";
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
             $('.main_section3__place_btn').on('click', function () {
-                list = $(this).data('list');
+				list = $(this).data('list');
 
-                $('.main_section3__type_btn').each(function (index) {
-                    if ($(this).hasClass('active')) {
-                        code = $(this).data('code');
-                    }
-                });
+				$('.main_section3__type_btn').each(function (index) {
+					if ($(this).hasClass('active')) {
+						code = $(this).data('code');
+					}
+				});
 
-                set_best(list, code);
-            });
+				set_best(list, code);
+			});
 
             $('.main_section3__type_btn').on('click', function () {
-                $('.main_section3__place_btn').each(function (index) {
-                    if ($(this).hasClass('active')) {
-                        list = $(this).data('list');
-                    }
-                });
+				$('.main_section3__place_btn').each(function (index) {
+					if ($(this).hasClass('active')) {
+						list = $(this).data('list');
+					}
+				});
 
-                code = $(this).data('code');
-                set_best(list, code);
-            });
+				code = $(this).data('code');
+				set_best(list, code);
+			});
 
         });
     </script>
@@ -474,28 +479,28 @@ $list5 = $MainDisp->List("2905")->findAll();
     <script>
         function set_best(list, code) {
             /*
-                        var message   = "";
-                        $.ajax({
+			var message   = ""; 
+			$.ajax({
 
-                            url: "/ajax/get_best",
-                            type: "POST",
-                            data: {
-                                      list : list,
-                                      code : code
-                                  },
-                            dataType: "json",
-                            success: function(res) {
-                                var message  = res.message;
-                                $("#best_list_"+list).html(message);
-                            },
-                            error: function (xhr, status, error) {
-                                    console.error(xhr.responseText); // 서버 응답 내용 확인
-                                    alert('Error: ' + error);
-                            }
-                        });
+				url: "/ajax/get_best",
+				type: "POST",
+				data: { 
+					      list : list, 
+					      code : code 
+					  },
+			    dataType: "json",
+				success: function(res) {
+					var message  = res.message;
+					$("#best_list_"+list).html(message);
+				},
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
+			});
             */
-        }
-    </script>
+    }
+	</script>
 
     <script>
         $('.words_list_item').click(function () {
@@ -520,14 +525,14 @@ $list5 = $MainDisp->List("2905")->findAll();
     <section class="main_section7">
         <div class="body_inner">
             <div class="main_section7__banner">
-                <?php foreach ($codeBanners as $code): ?>
+                <?php foreach ($bannerMid as $banner): ?>
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
-                            <img src="/data/code/<?= $code['ufile1'] ?>" alt="" class="only_web">
+                            <img src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>" class="only_web">
                         </div>
                         <div class="text-content only_web">
-                            <h3><?= $code['code_name'] ?></h3>
-                            <span><?= $code['code_memo'] ?></span>
+                            <h3><?= viewSQ($banner['subject']) ?></h3>
+                            <!-- <span><?= $code['code_memo'] ?></span> -->
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -605,7 +610,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     <?php
     $seq = 0;
-    foreach ($list_m as $item_m):
+    foreach ($bannerBottom as $item_m):
 
         $seq++;
         if ($seq == 1) $banner_1 = "/uploads/bbs/" . $item_m['ufile5'];
@@ -930,93 +935,93 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_1.png" alt="main">
-                                <div class="img_box__shadow"></div>
+                        <div class="img_box img_box_8 ">
+                            <img src="/uploads/main/main_magazine_1.png" alt="main">
+                            <div class="img_box__shadow"></div>
+                        </div>
+                        <div class="magazine_content">
+                            <div class="magazine_content_txt">
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
+                        </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_2.png" alt="main">
-                                <div class="img_box__shadow"></div>
+                        <div class="img_box img_box_8 ">
+                            <img src="/uploads/main/main_magazine_2.png" alt="main">
+                            <div class="img_box__shadow"></div>
+                        </div>
+                        <div class="magazine_content">
+                            <div class="magazine_content_txt">
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
+                        </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_3.png" alt="main">
-                                <div class="img_box__shadow"></div>
+                        <div class="img_box img_box_8 ">
+                            <img src="/uploads/main/main_magazine_3.png" alt="main">
+                            <div class="img_box__shadow"></div>
+                        </div>
+                        <div class="magazine_content">
+                            <div class="magazine_content_txt">
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
+                        </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_4.png" alt="main">
-                                <div class="img_box__shadow"></div>
+                        <div class="img_box img_box_8 ">
+                            <img src="/uploads/main/main_magazine_4.png" alt="main">
+                            <div class="img_box__shadow"></div>
+                        </div>
+                        <div class="magazine_content">
+                            <div class="magazine_content_txt">
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
+                        </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_5.png" alt="main">
-                                <div class="img_box__shadow"></div>
+                        <div class="img_box img_box_8 ">
+                            <img src="/uploads/main/main_magazine_5.png" alt="main">
+                            <div class="img_box__shadow"></div>
+                        </div>
+                        <div class="magazine_content">
+                            <div class="magazine_content_txt">
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
+                        </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_3.png" alt="main">
-                                <div class="img_box__shadow"></div>
+                        <div class="img_box img_box_8 ">
+                            <img src="/uploads/main/main_magazine_3.png" alt="main">
+                            <div class="img_box__shadow"></div>
+                        </div>
+                        <div class="magazine_content">
+                            <div class="magazine_content_txt">
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
+                        </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_4.png" alt="main">
-                                <div class="img_box__shadow"></div>
+                        <div class="img_box img_box_8 ">
+                            <img src="/uploads/main/main_magazine_4.png" alt="main">
+                            <div class="img_box__shadow"></div>
+                        </div>
+                        <div class="magazine_content">
+                            <div class="magazine_content_txt">
+                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
                             </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
+                        </div>
                         </a>
                     </div>
                 </div>
