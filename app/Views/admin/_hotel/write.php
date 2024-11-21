@@ -609,6 +609,10 @@ $links = "list";
 											</table>
 										</div>
 
+										<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+										<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+										<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.13.2/i18n/datepicker-ko.min.js"></script>
+
 										<script>
 											$(function() {
 												// Datepicker에 한국어 설정 적용
