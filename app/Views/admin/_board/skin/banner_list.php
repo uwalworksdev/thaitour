@@ -72,7 +72,7 @@
                 <td class="tac">1</td>
                 <td class="tac">사용</td>
                 <td>
-                    <a href="/AdmMaster/_bbs/board_write?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&bbs_idx=<?= $row['bbs_idx'] ?>&pg=<?= $pg ?>"
+                    <a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&pg=<?= $pg ?>"
                         class="btn btn-default">수정</a>
                 </td>
             </tr>
