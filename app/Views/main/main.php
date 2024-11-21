@@ -6,16 +6,10 @@ $keyword = $_GET['keyword'] ?? '';
 
 // 메인 배너
 $Bbs = model("Bbs");
-$bannerMain = $Bbs->List("banner", ["category" => "1"])->findAll();
-
-// 메인 상단배너
-$bannerTop = $Bbs->List("banner", ["category" => "40"])->findAll();
+$list = $Bbs->List("banner", ["category" => "1"])->findAll();
 
 // 메인 중간 배너
-$bannerMid = $Bbs->List("banner", ["category" => "124"])->findAll();
-
-// 메인 하단배너
-$bannerBottom = $Bbs->List("banner", ["category" => "16"])->findAll();
+$list_m = $Bbs->List("banner", ["category" => "16"])->findAll();
 
 // 취향저격 더투어랩 Best
 $MainDisp = model("MainDispModel"); // 방콕
@@ -63,7 +57,7 @@ $list5 = $MainDisp->List("2905")->findAll();
         <div class="body_inner">
             <div class="relative">
                 <div class="main_visual_slider owl-carousel only_web">
-                    <?php foreach ($bannerMain as $item): ?>
+                    <?php foreach ($list as $item): ?>
                         <div class="img_box img_box_1 only_web">
                             <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
                                  alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
@@ -102,7 +96,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 </div>
                 <div class="swiper-pagination-main">
                     <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span
-                            class="main_total_slide"><?= count($bannerMain) ?></span>
+                            class="main_total_slide"><?= count($list) ?></span>
                     <!-- get total slide from database -->
                 </div>
             </div>
@@ -116,13 +110,14 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="swiper main_swiper2">
                     <div class="swiper-wrapper">
 
-                        <?php foreach ($bannerTop as $banner): ?>
+                        <?php foreach ($codes as $code): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="only_web" src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>">
+                                    <img class="only_web" src="/data/code/<?= $code['ufile1'] ?>"
+                                         alt="main">
                                 </div>
                                 <div class="main_swiper2__text">
-                                    <?= $banner['subject'] ?>
+                                    <?= $code['code_name'] ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -195,7 +190,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                     <?php endforeach; ?>
                 </div>
 
-                <div class="best_list best_list_2 hidden">
+                <div class="best_list best_list_2 hidden" id="best_list_2">
                     <?php foreach ($list1_2 as $item1_2): ?>
                         <?php $img_dir = img_link($item1_2['product_code_1']); ?>
                         <?php $prog_link = prog_link($item1_2['product_code_1']); ?>
@@ -225,7 +220,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                     <?php endforeach; ?>
                 </div>
 
-                <div class="best_list best_list_3 hidden">
+                <div class="best_list best_list_3 hidden" id="best_list_3">
                     <?php foreach ($list1_3 as $item1_3): ?>
                         <?php $img_dir = img_link($item1_3['product_code_1']); ?>
                         <?php $prog_link = prog_link($item1_3['product_code_1']); ?>
@@ -255,7 +250,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                     <?php endforeach; ?>
                 </div>
 
-                <div class="best_list best_list_4 hidden">
+                <div class="best_list best_list_4 hidden" id="best_list_4">
                     <?php foreach ($list1_4 as $item1_4): ?>
                         <?php $img_dir = img_link($item1_4['product_code_1']); ?>
                         <?php $prog_link = prog_link($item1_4['product_code_1']); ?>
@@ -526,14 +521,14 @@ $list5 = $MainDisp->List("2905")->findAll();
     <section class="main_section7">
         <div class="body_inner">
             <div class="main_section7__banner">
-                <?php foreach ($bannerMid as $banner): ?>
+                <?php foreach ($codeBanners as $code): ?>
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
-                            <img src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>" class="only_web">
+                            <img src="/data/code/<?= $code['ufile1'] ?>" alt="" class="only_web">
                         </div>
                         <div class="text-content only_web">
-                            <h3><?= viewSQ($banner['subject']) ?></h3>
-                            <!-- <span><?= $code['code_memo'] ?></span> -->
+                            <h3><?= $code['code_name'] ?></h3>
+                            <span><?= $code['code_memo'] ?></span>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -611,7 +606,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     <?php
     $seq = 0;
-    foreach ($bannerBottom as $item_m):
+    foreach ($list_m as $item_m):
 
         $seq++;
         if ($seq == 1) $banner_1 = "/uploads/bbs/" . $item_m['ufile5'];
