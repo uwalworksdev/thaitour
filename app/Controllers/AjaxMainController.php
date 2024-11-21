@@ -28,6 +28,7 @@ class AjaxMainController extends BaseController {
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.	product_idx = b.	product_idx 
 								  WHERE a.code_no = '$code' AND b.product_code_1 = '$product_code_1' ORDER BY a.onum DESC";
+        write_log("AjaxMainController- ". $sql);
         $rows  = $db->query($sql)->getResultArray();
 
         $msg   = "";
