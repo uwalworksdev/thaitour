@@ -566,8 +566,8 @@ $links = "list";
                         <col width="10%">
                         <col width="*">
                         <col width="10%">
-                        <col width="10%">
-                        <col width="10%">
+                        <!--col width="10%">
+                        <col width="10%"-->
                         <col width="10%">
                     </colgroup>
                     <thead>
@@ -575,9 +575,9 @@ $links = "list";
                             <th>시작일</th>
                             <th>종료일</th>
                             <th>선택요일</th>
-                            <th>대인가격</th>
-                            <th>소인가격</th>
-                            <th>경로가격</th>
+                            <th>가격</th>
+                            <!--th>소인가격</th>
+                            <th>경로가격</th-->
                             <th>가격추가</th>
                         </tr>
                     </thead>
@@ -599,8 +599,8 @@ $links = "list";
 								<input type="checkbox" name="yoil_6" id="yoil_6" value="Y" class="yoil"> 토요일&nbsp;&nbsp;&nbsp;
 							</td>
 							<td style="text-align:center"><input type="text" name="price1" id="price1" value="0" class="price price1 input_txt" style="width:90%;text-align:right;"></td>
-							<td style="text-align:center"><input type="text" name="price2" id="price2" value="0" class="price price2 input_txt" style="width:90%;text-align:right;"></td>
-							<td style="text-align:center"><input type="text" name="price3" id="price3" value="0" class="price price3 input_txt" style="width:90%;text-align:right;"></td>
+							<!--td style="text-align:center"><input type="text" name="price2" id="price2" value="0" class="price price2 input_txt" style="width:90%;text-align:right;"></td>
+							<td style="text-align:center"><input type="text" name="price3" id="price3" value="0" class="price price3 input_txt" style="width:90%;text-align:right;"></td-->
 							<td>
                                 <a href="#!" onclick="isrt_price();" class="btn btn-default"><span class="glyphicon glyphicon-cog"></span><span class="txt">가격추가</span></a>
 							</td>
