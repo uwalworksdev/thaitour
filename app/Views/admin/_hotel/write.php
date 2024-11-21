@@ -608,39 +608,6 @@ $links = "list";
 											</tbody>
 											</table>
 										</div>
-                                        
-										<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-										<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
-										<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui/1.13.2/i18n/datepicker-ko.min.js"></script>
-
-										<script>
-											$(function() {
-												// Datepicker에 한국어 설정 적용
-												$.datepicker.setDefaults($.datepicker.regional['ko']);
-												
-												// 시작일과 종료일 초기화
-												var startDatePicker = $("#s_date");
-												var endDatePicker   = $("#s_date");
-												
-												startDatePicker.datepicker({
-													dateFormat: "yy-mm-dd",
-													onClose: function(selectedDate) {
-														if (selectedDate) {
-															endDatePicker.datepicker("option", "minDate", selectedDate);
-														}
-													}
-												});
-
-												endDatePicker.datepicker({
-													dateFormat: "yy-mm-dd",
-													onClose: function(selectedDate) {
-														if (selectedDate) {
-															startDatePicker.datepicker("option", "maxDate", selectedDate);
-														}
-													}
-												});
-											});
-										</script>
 
 							            <div class="listBottom">
 											<table cellpadding="0" cellspacing="0" summary="" class="listTable">
