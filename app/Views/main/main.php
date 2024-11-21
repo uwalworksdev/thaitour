@@ -486,6 +486,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 			    dataType: "json",
 				success: function(res) {
 					var message  = res.message;
+					alert(message);
 					$("#best_list_"+list).html(message);
 				},
 				error: function (xhr, status, error) {
