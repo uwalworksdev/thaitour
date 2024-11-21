@@ -96,6 +96,23 @@
     height: 0;
 }
 
+.img_box_ttl_main {
+    font-size: 48px;
+    font-family: "NanumSquare";
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 1.25;
+    position: absolute;
+    left: 100px;
+    top: 80px;
+    z-index: 2;
+}
+
+.img_box_txt_main2 {
+    font-size: 22px;
+    line-height: 3.273;
+}
+
 .swiper-main-tools {
     display: flex;
     justify-content: center;

@@ -67,8 +67,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         <div class="img_box img_box_1 only_web">
                             <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
-                            <p class="img_box_ttl_main"><?= $item['subject'] ?></p>
-                            <p class="img_box_txt_main2"><?= $item['content'] ?></p>
+                            <div class="img_box_ttl_main">
+                                <?= viewSQ($item['subject']) ?>
+                                <p class="img_box_txt_main2"><?= viewSQ($item['describe']) ?></p>
+                            </div>
                         </div>
                     <?php endforeach; ?>
 
