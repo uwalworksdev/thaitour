@@ -2608,6 +2608,29 @@ class Product extends BaseController
         }
     }
 
+    public function sel_coupon()
+    {
+        try {
+            $result = [];
+
+            $idx = $_POST['idx'];
+
+            $sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                            , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE c.c_idx = '" . $idx . "' 
+                                AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+            write_log($sql);
+            $result = $this->db->query($sql)->getRowArray();
+
+            return $this->response->setJSON($result, 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     private function explodeAndTrim($string, $delimiter)
     {
         return array_filter(array_map('trim', explode($delimiter, $string)));
@@ -2782,6 +2805,26 @@ class Product extends BaseController
         $query = $builder->get();
         $moption = $query->getResultArray();
 
+        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+
+        if (!empty(session()->get("member")["id"])) {
+            $user_id = session()->get("member")["id"];
+            $c_sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                            , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id . "' 
+                                AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+            $c_result = $this->db->query($c_sql);
+            $coupons = $c_result->getResultArray();
+        } else {
+            $coupons = [];
+        }
+
+        foreach ($coupons as $key => $coupon) {
+            $coupon_price = (float)$coupon['coupon_price'];
+            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $coupons[$key] = $coupon;
+        }
+
         return [
             'prod' => $prod,
             'day_' => $day_,
@@ -2792,6 +2835,7 @@ class Product extends BaseController
             'childrenQty' => $childrenQty,
             'childrenPrice' => $childrenPrice,
             'totalPrice' => $totalPrice,
+            'coupons' => $coupons,
             'data' => $data,
         ];
     }

@@ -306,15 +306,15 @@
 
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
                                 <span>쿠폰 </span>
-                                <span>0원</span>
+                                <span><span class="discountPrice">0</span>원</span>
                             </div>
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
                                 <span>포인트 </span>
-                                <span>0원</span>
+                                <span><span class="pointPrice">0</span>원</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><span class="textTotalPrice"><?= number_format($totalPrice) ?></span>원</span>
+                                <span><span class="textTotalPrice lastPrice"><?= number_format($totalPrice) ?></span>원</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -348,8 +348,14 @@
                     <input type="hidden" name="totalPrice" id="totalPrice" value="<?= $totalPrice ?>">
                     <input type="hidden" name="order_gubun" id="order_gubun" value="<?= $order_gubun ?>">
 
-                    <!--                        <input type="hidden" name="realTotal" id="realTotal" value="">-->
-                    <!--                        <input type="hidden" name="realTotal" id="realTotal" value="">-->
+                    <input type="hidden" name="discountPrice" id="discountPrice" value="0">
+                    <input type="hidden" name="pointPrice" id="pointPrice" value="0">
+                    <input type="hidden" name="lastPrice" id="lastPrice" value="<?= $totalPrice ?>">
+
+                    <input type="hidden" name="c_idx" id="c_idx" value="">
+                    <input type="hidden" name="all_point" id="all_point" value="0">
+
+                    <input type="hidden" name="coupon_no" id="coupon_no" value="">
                 </div>
             </form>
         </div>
@@ -373,15 +379,10 @@
         <div class="dim"></div>
     </div>
 </div>
+
 <div class="couponplus_pop">
     <div class="coupon_popup">
         <form name="discountForm" id="discountForm">
-            <input type="hidden" name="c_idx" id="c_idx" value="">
-            <input type="hidden" name="ori_total" id="ori_total" value="730000">
-            <input type="hidden" name="dis_coupon" id="dis_coupon" value="0">
-            <input type="hidden" name="last_coupon" id="last_coupon" value="0">
-            <input type="hidden" name="all_point" id="all_point" value="0">
-            <input type="hidden" name="dis_point" id="dis_point" value="0">
 
             <div class="pop_boxs">
                 <div class="cu_head">
@@ -425,7 +426,7 @@
                                     할인 금액
                                 </div>
                                 <div class="price">
-                                    <b><span id="_coupon_amt">원</span></b>
+                                    <b><span id="_coupon_amt">0</span>원</b>
                                 </div>
                             </li>
                             <li>
@@ -433,7 +434,7 @@
                                     쿠폰 적용가
                                 </div>
                                 <div class="price">
-                                    <b><span id="coupon_last">원</span></b>
+                                    <b><span id="coupon_last">0</span>원</b>
                                 </div>
                             </li>
                         </ul>
@@ -443,6 +444,21 @@
                         <div class="culi_wrap">
                             <select name="coupon_grp" class="cpselect" onchange="sel_coupon(this.value);">
                                 <option value="">적용 안함</option>
+                                <?php
+                                foreach ($coupons as $coupon) {
+                                    if ($coupon["dc_type"] == "P") {
+                                        $discount = $coupon["coupon_pe"] . "%";
+                                        $dis = $coupon["coupon_pe"];
+                                    } else if ($coupon["dc_type"] == "D") {
+                                        $discount = number_format($coupon["coupon_price"]) . "원";
+                                        $dis = $coupon["coupon_price"];
+                                    } else {
+                                        $discount = "회원등급에 따름";
+                                        $dis = 0;
+                                    }
+                                    ?>
+                                    <option value="<?= $coupon['c_idx'] ?>"><?= $coupon['coupon_name'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -664,6 +680,11 @@
 
         $('#totalPrice').val(total);
 
+        let discountPrice = $('#discountPrice').val();
+        let pointPrice = $('#pointPrice').val();
+
+        total = Number(total) - Number(discountPrice) - Number(pointPrice);
+
         total = convertNum(total);
         $('.textTotalPrice').html(total);
     }
@@ -691,67 +712,64 @@
     }
 
     function price_account() {
+        let discountPrice = $('#discountPrice').val();
+        let pointPrice = $('#pointPrice').val();
+        let lastPrice = $('#lastPrice').val();
 
+        $('.discountPrice').html(number_format(discountPrice));
+        $('.pointPrice').html(number_format(pointPrice));
+        $('.lastPrice').html(number_format(lastPrice));
     }
 
-    function sel_coupon(idx) {
-        $("#c_idx").val(idx);
-        $("#dis_point").val($("#used_mileage_money").val());
+    async function sel_coupon(idx) {
+        let url = `<?= route_to('api.product.sel_coupon') ?>`;
 
-        let f = document.discountForm;
+        let dis_data = {
+            "idx": idx,
+        };
 
-        let dis_coupon = "";
-        let dis_point = "";
-        let coupon_last = "";
-
-        let real_price = "";
-
-        let url = ``;
-
-        let dis_data = $(f).serialize();
-        let save_result = "";
-        $.ajax({
+        await $.ajax({
             type: "POST",
             data: dis_data,
             url: url,
             cache: false,
             async: false,
             success: function (data, textStatus) {
-                save_result = data;
-                let obj = jQuery.parseJSON(save_result);
-                let dis_coupon = obj.dis_coupon;
-                let dis_point = obj.dis_point;
-                let coupon_last = obj.coupon_last;
-                let coupon_num = obj.coupon_num;
+                console.log(data)
+                let totalPrice = $('#totalPrice').val();
+                let discountPrice = 0;
+                let name = '';
+                let coupon_no = '';
+                let c_idx = '';
+                if (data) {
+                    if (data.coupon_pe && data.coupon_pe !== '') {
+                        discountPrice = Number(totalPrice) * Number(data.coupon_pe) / 100;
+                    } else if (data.coupon_price && data.coupon_price !== '') {
+                        discountPrice = Number(data.coupon_price);
+                    }
 
-                real_price = parseInt($("#order_price").val()) - parseInt(dis_coupon);
-
-                if (parseInt(dis_coupon) > parseInt(real_price)) {
-                    $("#coupon_idx").val('');
-                    alert("ê²°ì œ ê¸ˆì•¡ ë³´ë‹¤ ì¿ í° í• ì¸ì•¡ì´ í´ ê²½ìš° ì¿ í°ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
-                } else {
-                    $("#coupon_idx").val(idx);
-                    $("#dis_coupon").val(dis_coupon);
-                    $("#dis_point").val(dis_point);
-                    $("#last_coupon").val(coupon_last);
-                    $("#used_coupon_no").val(coupon_num);
-                    $("#used_coupon_money").val(dis_coupon);
-
-                    $("#_coupon_amt").text(number_format(dis_coupon) + 'ì›');
-                    $("#coupon_last").text(number_format(coupon_last) + 'ì›');
-                    $("#total_point").text(number_format(dis_coupon + dis_point));
-                    $("#order_price").val(coupon_last);
-                    $("#price_tot").text(number_format(coupon_last));
-                    $("#coupon_price").val(number_format(dis_coupon));
+                    name = data.coupon_name;
+                    coupon_no = data.coupon_num;
+                    c_idx = data.c_idx;
                 }
+
+                let lastPrice = Number(totalPrice) - Number(discountPrice);
+
+                $('#_coupon_amt').html(number_format(discountPrice));
+                $('#coupon_last').html(number_format(lastPrice));
+
+                $('#discountPrice').val(discountPrice);
+                $('#pointPrice').val(0);
+                $('#lastPrice').val(lastPrice);
+
+                $('#coupon_price').val(name);
+                $('#coupon_no').val(coupon_no);
+                $('#c_idx').val(c_idx);
             },
             error: function (request, status, error) {
-                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // ì‹¤íŒ¨ ì‹œ ì²˜ë¦¬
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
             }
         });
-
-        price_account();
-
     }
 
     function number_format(number, decimals = 0, dec_point = '.', thousands_sep = ',') {
@@ -764,6 +782,7 @@
 
     function cal_it() {
         cuPopupClose();
+        price_account();
     }
 
     function cuPopupClose() {
