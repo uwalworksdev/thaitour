@@ -418,10 +418,11 @@ $list5 = $MainDisp->List("2905")->findAll();
                         <?php $seq = 0; ?>
                         <?php foreach ($list2 as $item2): ?>
                             <?php $seq++; ?>
+							<?php $img_dir = img_link($item2['product_code_1']); ?>
                             <div class="swiper-slide">
                                 <a href="<?= getUrlFromProduct($item2) ?>" class="hot_product_list__item">
                                     <div class="img_box img_box_2">
-                                        <img src="/data/product/<?= $item2['ufile1'] ?>" alt="main">
+                                        <img src="/data/<?= $img_dir ?>/<?= $item2['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
                                     <div class="prd_price_ko"><?= number_format($item2['original_price']) ?>
@@ -627,10 +628,11 @@ $list5 = $MainDisp->List("2905")->findAll();
                         <?php $seq = 0; ?>
                         <?php foreach ($list3 as $item3): ?>
                             <?php $seq++; ?>
+							<?php $img_dir = img_link($item3['product_code_1']); ?>
                             <div class="swiper-slide">
                                 <a href="<?= getUrlFromProduct($item3) ?>" class="hot_product_list__item">
                                     <div class="img_box img_box_2">
-                                        <img src="/data/product/<?= $item3['ufile1'] ?>" alt="main">
+                                        <img src="/data/<?=$img_dir?>/<?= $item3['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
                                     <div class="prd_price_ko"><?= number_format($item3['original_price']) ?>

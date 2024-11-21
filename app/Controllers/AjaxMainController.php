@@ -83,10 +83,11 @@ class AjaxMainController extends BaseController {
 		$seq   = 0;
 		foreach ($rows as $item3):
 			$seq++;
+			$img_dir = img_link($item3['product_code_1']);
 			$msg .= '<div class="swiper-slide">';
 			$msg .= '<a href="'. getUrlFromProduct($item3) .'" class="hot_product_list__item">';
 			$msg .= '<div class="img_box img_box_2">';
-			$msg .= '<img src="/data/product/'. $item3['ufile1'] .'" alt="main">';
+			$msg .= '<img src="/data/'. $img_dir .'/'. $item2['ufile1'] .'" alt="main">';
 			$msg .= '</div>';
 			$msg .= '<div class="prd_name">'. $item3['product_name'] .'</div>';
 			$msg .= '<div class="prd_price_ko">'. number_format($item3['original_price']) .'<span>원</span></div>';
