@@ -260,6 +260,8 @@
                     <input type="hidden" name="order_date" id="order_date" value="">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="">
                     <input type="hidden" name="idx" id="idx" value="">
+                    <input type="hidden" id="total_price" value="">
+                    <input type="hidden" id="total_price_baht" value="">
                     <input type="hidden" name="people_adult_cnt" id="people_adult_cnt" value="">
                     <input type="hidden" name="people_kids_cnt" id="people_kids_cnt" value="">
                     <input type="hidden" name="people_baby_cnt" id="people_baby_cnt" value="">
@@ -267,6 +269,8 @@
                     <input type="hidden" name="people_kids_price" id="people_kids_price" value="">
                     <input type="hidden" name="people_baby_price" id="people_baby_price" value="">
                     <input type="hidden" name="time_line" id="time_line" value="">
+                    <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
+                    <input type="hidden" name="final_discount" id="final_discount" value="">
                     <div class="sec2-item-card order-form-page" style="display: none">
                         <div class="btn_back flex__c">
                             <img src="/images/ico/arrow_up_icon.png" alt="">
@@ -308,9 +312,20 @@
                                         </tr>
                                         <tr>
                                             <th>쿠폰 적용</th>
-                                            <td>
-                                                <div class="coupon"></div>
-                                                <button type="button" class="btn_coupon_show" onclick="showCouponPop()">쿠푼적용</button>
+                                            <td class="flex_cou">
+                                                <div class="coupon">
+                                                    <input type="text" name="coupon" value="" class="bs-input discount_spe final_discount" readonly="">
+                                                </div>
+                                                <button type="button" class="btn_coupon_shows flex_c_c" onclick="showCouponPop()">쿠푼적용</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>포인트 사용</th>
+                                            <td class="flex_cou">
+                                                <div class="coupon">
+                                                    <input type="text" name="" id="" value="" class="bs-input discount_spe" readonly="">
+                                                </div>
+                                                <button type="button" class="btn_coupon_shows flex_c_c" onclick="">모두사용</button>
                                             </td>
                                         </tr>
                                     </table>
@@ -654,20 +669,6 @@
         </div>
 
         <script>
-            $(".btn_accept_coupon").click(function () {
-                setCouponArea(true);
-                calculatePrice();
-                $("#popup_coupon").css('display', 'none');
-            })
-
-            function showCouponPop() {
-                $("#popup_coupon").css('display', 'flex');
-            }
-
-            const $closePopupBtn = $('.close-btn');
-            $closePopupBtn.on('click', function() {
-                $("#popup_coupon").css('display', 'none');
-            });
             function closePopup() {
                 $(".popup_wrap").hide();
                 $(".dim").hide();
@@ -849,9 +850,12 @@
                         updateOptionText();
                     });
 
+                    selectedPrice = [];
+
                     function updateOptionText() {
                         var selectedOptions = [];
                         selectedTourIds = [];
+                        selectedPrice = [];
 
                         $('input[type="checkbox"]:checked').each(function() {
                             var optionContainer = $(this).closest('.form-group');
@@ -863,6 +867,7 @@
                             
                             selectedTourIds.push(tourIdx); 
                             selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
+                            selectedPrice.push(optionPrice);
                         });
 
                         var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
@@ -933,7 +938,9 @@
                             const $dayDiv = $('<div/>').text(dayString).addClass('day');
                             const date = new Date(year, month, day);
 
-                            if (date < s_date || date > e_date || !validDays.includes(date.getDay())) {
+                            if (date < currentDate) {
+                                $dayDiv.addClass('disabled').append(`<p>예약마감</p>`); 
+                            } else if (date < s_date || date > e_date || !validDays.includes(date.getDay())) {
                                 $dayDiv.addClass('disabled').append("<p>예약마감</p>");
                             } else {
                                 $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${number_format(productPrice)}만원</p><p class="price2">(${number_format(productPriceBaht)}바트)</p></p>`);
@@ -1011,7 +1018,10 @@
                             var adultTotalPrices = adultTotalPrice;
                             var childTotalPrices = childTotalPrice;
                             var babyTotalPrices = babyTotalPrice;
-                            var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices;
+                            var priceOptionTotal = selectedPrice.length > 0 
+                            ? selectedPrice.reduce((sum, price) => sum + price, 0) 
+                            : 0;
+                            var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
                             var selectedTime = $('.select-time-c').val();
                             if (!selectedTime) {
                                 selectedTime = $('.select-time-c option:first').val();
@@ -1030,18 +1040,85 @@
                             $('#time_line').val(selectedTime);
                             $('.time_lines').text(selectedTime);
                             $("#total_price_popup").text(number_format(last_price) + "원");
+                            $("#total_price").val(last_price);
                             console.log(selectedTourIds.join(','));
                             console.log(currentToursIdx);
                             console.log(adultTotalPrices);
                             console.log(selectedTime);
-                            console.log(adultCnt);
-                            console.log(childCnt);
-                            console.log(babyCnt);
+                            console.log(priceOptionTotal);
                             
+                            function setCouponArea(isAcceptBtn = false) {
+                                const couponActive = $(".item-price-popup.active");
+                                let total_price = $("#total_price").val() || 0;
+                                let total_price_baht = $("#total_price_baht").val() || 0;
+                                const idx = couponActive.data("idx") || 0;
+                                const discount = couponActive.data("discount") || 0;
+                                let discount_baht = couponActive.data("discount_baht") || 0;
+                                const type = couponActive.data("type") || 0;
+
+                                let discount_price = 0;
+                                let discount_price_baht = 0;
+                                if (type === "D") {
+                                    discount_price = discount;
+                                    discount_price_baht = discount_baht;
+                                } else if (type === "P") {
+                                    discount_price = Math.round(total_price * discount / 100);
+                                    discount_price_baht = Math.round(total_price_baht * discount / 100);
+                                }
+
+                                total_price -= discount_price;
+                                total_price_baht -= discount_price_baht;
+
+                                $(".discount").text(number_format(discount_price) + "원");
+                                $("#last_price_popup").text(number_format(total_price));
+
+                                if (isAcceptBtn) {
+                                    $("#final_discount").val(discount_price);
+                                    $(".final_discount").val(number_format(discount_price));
+                                    $("#final_discount_baht").text(number_format(discount_price_baht));
+                                    $("#use_coupon_idx").val(idx);
+                                }
+
+                                return {
+                                    discount_price,
+                                    discount_price_baht
+                                };
+                            }
+
+                            function calculatePrice() {
+                                var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
+                                const discount_price = $("#final_discount").text().replace(/[^0-9]/g, '');
+                                const discount_price_baht = $("#final_discount_baht").text().replace(/[^0-9]/g, '');
+
+                                last_price -= discount_price;
+
+                                $("#last_price").text(number_format(last_price));
+                            }
+
+                            $(".item-price-popup").click(function () {
+                                $(this).addClass("active").siblings().removeClass("active");
+                                setCouponArea();
+                            })
+
+                            $(".btn_accept_coupon").click(function () {
+                                setCouponArea(true);
+                                calculatePrice();
+                                $("#popup_coupon").css('display', 'none');
+                            })
                         }
                     });
 
                     initializeDefaultTour();
+                });
+
+
+                function showCouponPop() {
+                    $("#popup_coupon").css('display', 'flex');
+                }
+
+                const $closePopupBtn = $('.close-btn');
+                $closePopupBtn.on('click', function() {
+                    $("#popup_coupon").css('display', 'none');
                 });
 
 

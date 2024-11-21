@@ -47,7 +47,10 @@
         <input type="hidden" name="description" id="description" value="<?=$description?>">
         <input type="hidden" name="end_place" id="end_place" value="<?=$end_place?>">
         <input type="hidden" name="final_price" id="final_price" value="<?=$final_price?>">
+        <input type="hidden" name="inital_price" id="inital_price" value="<?=$inital_price?>">
         <input type="hidden" name="time_line" id="time_line" value="<?=$time_line?>">
+        <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?=$use_coupon_idx?>">
+        <input type="hidden" name="final_discount" id="final_discount" value="<?=$final_discount?>">
         <div class="main-section tour">
             <div class="body_inner">
                 <div class="container-card">
@@ -245,9 +248,13 @@
                                 </div>
                             <?php endforeach; ?>
                             <div class="item-info-r-line"></div>
-                            <div class="item-info-r">
-                                <span>할인금액</span>
-                                <span>- <?=number_format($discount)?>원 (<?=number_format($discount_baht)?>바트)</span>
+                            <div class="item-info-r red">
+                                <span>쿠폰할인</span>
+                                <span>- <?=number_format($final_discount)?>원 (<?=number_format($final_discount_bath)?>바트)</span>
+                            </div>
+                            <div class="item-info-r red">
+                                <span>포인트</span>
+                                <span>- 0원 (0바트)</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>

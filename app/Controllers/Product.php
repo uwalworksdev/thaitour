@@ -1788,7 +1788,10 @@ class Product extends BaseController
         $data['total_price_product_bath'] = ($data['people_adult_cnt'] * $data['adult_price_bath']) + ($data['people_kids_cnt'] * $data['kids_price_bath']) + ($data['people_baby_cnt'] * $data['baby_price_bath']);
         $data['adult_price_total'] = ($data['people_adult_cnt'] * $data['people_adult_price']);
         $data['kids_price_total'] = ($data['people_kids_cnt'] * $data['people_kids_price']);
-        $data['baby_price_total'] = ($data['people_baby_cnt'] * $data['people_baby_price']);
+        $data['baby_price_total'] = ($data['people_baby_cnt'] * $data['people_baby_price']);        
+        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
+        $data['final_discount'] = $this->request->getVar('final_discount');
+        $data['final_discount_bath'] = round($data['final_discount'] / (float)($this->setting['baht_thai'] ?? 0));
 
         $data['product'] = $this->productModel->find($data['product_idx']);
 
@@ -1806,7 +1809,8 @@ class Product extends BaseController
         $total_option_price_bath = array_sum($data['option_price_bath']);
         $total_option_price = array_sum($data['option_price']);
 
-        $data['final_price'] = $data['total_price_product'] + $total_option_price;
+        $data['final_price'] = $data['total_price_product'] + $total_option_price - $data['final_discount'];
+        $data['inital_price'] = $data['total_price_product'] + $total_option_price ;
         $data['final_price_bath'] = $data['total_price_product_bath'] + $total_option_price_bath;
 
 
@@ -1830,6 +1834,7 @@ class Product extends BaseController
             $data['order_r_date'] = date('Y-m-d H:i:s');
             $data['order_status'] = "W";
 
+            $data['used_coupon_idx'] = $data['use_coupon_idx'];
             $data['ip'] = $this->request->getIPAddress();
             $data['order_gubun'] = "tour";
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
@@ -1846,6 +1851,7 @@ class Product extends BaseController
             $data['people_kids_price'] = $data['people_kids_price'];
             $data['people_baby_price'] = $data['people_baby_price'];
             $data['order_price'] = $data['final_price'];
+            $data['inital_price'] = $data['inital_price'];
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
@@ -1893,6 +1899,26 @@ class Product extends BaseController
                 'r_date' => date('Y-m-d H:i:s'),
             ];
             $this->orderTours->save($orderTourData);
+
+            if (!empty($data['use_coupon_idx'])) {
+                $coupon = $this->coupon->getCouponInfo($data['use_coupon_idx']);
+
+                if ($coupon) {
+                    $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
+
+                    $cou_his = [
+                        "order_idx" => $order_idx,
+                        "product_idx" => $data['product_idx'],
+                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx" => $data['use_coupon_idx'],
+                        "used_coupon_money" => $this->request->getPost('final_discount'),
+                        "ch_r_date" => date('Y-m-d H:i:s'),
+                        "m_idx" => session('member.idx')
+                    ];
+
+                    $this->couponHistory->insert($cou_his);
+                }
+            }
 
 
             return $this->response->setBody("
@@ -2073,7 +2099,61 @@ class Product extends BaseController
 
     public function index9($code_no)
     {
-        return $this->renderView('tours/list-tour');
+        try {
+            $pg = $this->request->getVar('pg') ?? 1;
+            $search_keyword = $this->request->getVar('search_keyword') ?? "";
+
+            $perPage = 5;
+
+            $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
+
+            $parent_code_name = $this->productModel->getCodeName($code_no)["code_name"];
+
+            $arr_code_list = [];
+            foreach ($codes as $code) {
+                array_push($arr_code_list, $code["code_no"]);
+            }
+
+            $product_code_list = implode(",", $arr_code_list);
+
+            $products = $this->productModel->findProductPaging([
+                'product_code_1' => 1301,
+                'product_code_2' => $code_no,
+            ], 10, $pg, ['onum' => 'DESC']);
+
+            foreach ($products['items'] as $key => $product) {
+
+                if (empty($search_keyword) || strpos($search_keyword, 'all') !== false) {
+                    foreach ($arr_code_list as $h_code) {
+
+                        if (strpos($product['product_code_list'], $h_code) !== false) {
+                            $hotel_code = $h_code;
+                            break;
+                        }
+                    }
+                }
+
+                $codeTree = $this->codeModel->getCodeTree($hotel_code);
+                $products['items'][$key]['codeTree'] = $codeTree;
+
+            }
+
+            $data = [
+                'codes' => $codes,
+                'products' => $products,
+                'code_no' => $code_no,
+                'code_name' => $parent_code_name,
+                'perPage' => $perPage,
+                'tab_active' => '1',
+            ];
+
+            return $this->renderView('tours/list-tour', $data);
+        } catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
     }
 
     public function spaDetail($product_idx)
@@ -2608,6 +2688,29 @@ class Product extends BaseController
         }
     }
 
+    public function sel_coupon()
+    {
+        try {
+            $result = [];
+
+            $idx = $_POST['idx'];
+
+            $sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                            , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE c.c_idx = '" . $idx . "' 
+                                AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+            write_log($sql);
+            $result = $this->db->query($sql)->getRowArray();
+
+            return $this->response->setJSON($result, 200);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+    }
+
     private function explodeAndTrim($string, $delimiter)
     {
         return array_filter(array_map('trim', explode($delimiter, $string)));
@@ -2782,6 +2885,26 @@ class Product extends BaseController
         $query = $builder->get();
         $moption = $query->getResultArray();
 
+        $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+
+        if (!empty(session()->get("member")["id"])) {
+            $user_id = session()->get("member")["id"];
+            $c_sql = "SELECT c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate
+                            , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
+                                FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE user_id = '" . $user_id . "' 
+                                AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
+            $c_result = $this->db->query($c_sql);
+            $coupons = $c_result->getResultArray();
+        } else {
+            $coupons = [];
+        }
+
+        foreach ($coupons as $key => $coupon) {
+            $coupon_price = (float)$coupon['coupon_price'];
+            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $coupons[$key] = $coupon;
+        }
+
         return [
             'prod' => $prod,
             'day_' => $day_,
@@ -2792,6 +2915,7 @@ class Product extends BaseController
             'childrenQty' => $childrenQty,
             'childrenPrice' => $childrenPrice,
             'totalPrice' => $totalPrice,
+            'coupons' => $coupons,
             'data' => $data,
         ];
     }

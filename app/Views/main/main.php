@@ -123,7 +123,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                         <?php foreach ($bannerTop as $banner): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="only_web" src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>">
+                                    <img class="" src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>">
                                 </div>
                                 <div class="main_swiper2__text">
                                     <?= $banner['subject'] ?>
