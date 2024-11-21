@@ -11,10 +11,6 @@ $list = $Bbs->List("banner", ["category" => "1"])->findAll();
 // 메인 중간 배너
 $list_m = $Bbs->List("banner", ["category" => "16"])->findAll();
 
-$bannerMid = $Bbs->List("banner", ["category" => "40"])->findAll();
-
-$bannerMid2 = $Bbs->List("banner", ["category" => "124"])->findAll();
-
 // 취향저격 더투어랩 Best
 $MainDisp = model("MainDispModel"); // 방콕
 $list1_1 = $MainDisp->List("290401")->findAll();
@@ -114,13 +110,14 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="swiper main_swiper2">
                     <div class="swiper-wrapper">
 
-                        <?php foreach ($bannerMid as $banner): ?>
+                        <?php foreach ($codes as $code): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="only_web" src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>">
+                                    <img class="only_web" src="/data/code/<?= $code['ufile1'] ?>"
+                                         alt="main">
                                 </div>
                                 <div class="main_swiper2__text">
-                                    <?= $banner['subject'] ?>
+                                    <?= $code['code_name'] ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -489,6 +486,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 			    dataType: "json",
 				success: function(res) {
 					var message  = res.message;
+					alert(message);
 					$("#best_list_"+list).html(message);
 				},
 				error: function (xhr, status, error) {
@@ -523,14 +521,14 @@ $list5 = $MainDisp->List("2905")->findAll();
     <section class="main_section7">
         <div class="body_inner">
             <div class="main_section7__banner">
-                <?php foreach ($bannerMid2 as $banner): ?>
+                <?php foreach ($codeBanners as $code): ?>
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
-                            <img src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>" class="only_web">
+                            <img src="/data/code/<?= $code['ufile1'] ?>" alt="" class="only_web">
                         </div>
                         <div class="text-content only_web">
-                            <h3><?= viewSQ($banner['subject']) ?></h3>
-                            <!-- <span></span> -->
+                            <h3><?= $code['code_name'] ?></h3>
+                            <span><?= $code['code_memo'] ?></span>
                         </div>
                     </div>
                 <?php endforeach; ?>
