@@ -517,7 +517,6 @@ $list5 = $MainDisp->List("2905")->findAll();
 
 	function set_hotel_seq(local)
     {
-            alert('hotel - '+local);
 			$.ajax({
 				url: "/ajax/set_seq",
 				type: "POST",
@@ -539,7 +538,6 @@ $list5 = $MainDisp->List("2905")->findAll();
 
 	function set_golf_seq(local)
     {
-            alert('golf - '+local);
 			$.ajax({
 				url: "/ajax/set_seq",
 				type: "POST",
