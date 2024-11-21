@@ -60,12 +60,10 @@ class AdminCateBannerController extends BaseController
 
         $data = [
             'row'   => $this->codeModel->getCodeByIdx($code_idx),
-            'code_no' => $this->codeModel->getMaxCodeNo($parent_code_no, $s_parent_code_no)['code_no'] ?? '',
             'row3' => $this->cateBannerModel->getByCodeIdx($code_idx),
             's_parent_code_no' => $s_parent_code_no,
             'parent_code_no' => $parent_code_no,
-            'code_idx' => $code_idx ?? '',
-            'ca_idx' => $ca_idx ?? '',
+            'code_idx' => $code_idx,
             'search_category' => $search_category ?? '',
             'search_name' => $search_name ?? '',
         ];
@@ -73,29 +71,45 @@ class AdminCateBannerController extends BaseController
         return view('admin/_cateBanner/write', $data);
     }
 
-    public function write_ok()
+    public function write_ok($cb_idx = null)
     {
 
-        $data = [
-            'code_idx' => $this->request->getPost('code_idx'),
-            'code_no' => $this->request->getPost('code_no'),
-            'url' => $this->request->getPost('url'),
-            'onum' => $this->request->getPost('onum'),
-        ];
+        $data = $this->request->getPost();
+
+        $data['use_yn'] = $data['use_yn'] ? $data['use_yn'] : "N";
 
         $files = $this->request->getFiles();
-        for ($i = 1; $i <= 1; $i++) {
-            $file = $files['ufile' . $i];
-            if ($file->isValid() && !$file->hasMoved()) {
+        for ($i = 1; $i <= 2; $i++) {
+            $file = $files["ufile$i"];
+            if ($file && $file->isValid() && !$file->hasMoved()) {
                 $name = $file->getClientName();
                 $newName = $file->getRandomName();
-                $file->move(ROOTPATH . 'public/data/product', $newName);
-                $data['ufile' . $i] = $newName;
-                $data['rfile' . $i] = $name;
+                $file->move(ROOTPATH . 'public/data/cate_banner', $newName);
+                $data["ufile$i"] = $newName;
+                $data["rfile$i"] = $name;
             }
         }
 
-        $this->cateBannerModel->insertBanner($data);
-        return $this->response->setJSON($_POST);
+        if($cb_idx) {
+            $this->cateBannerModel->updateBanner($cb_idx, $data);
+        } else {
+            $this->cateBannerModel->insertBanner($data);
+        }
+
+        return $this->response->setBody("
+            <script>
+                parent.location.reload();
+            </script>
+        ");
+    }
+
+    public function file_del() {
+        $cb_idx = $this->request->getVar("cb_idx");
+        $this->cateBannerModel->delete($cb_idx);
+        return $this->response->setBody("
+            <script>
+                parent.location.reload();
+            </script>
+        ");
     }
 }
