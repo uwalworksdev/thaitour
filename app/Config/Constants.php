@@ -121,10 +121,10 @@ $winner = [
 ];
 
 $banner = [
-    "titles"        => ["구분", "제목", "링크", "PC 이미지(1200)", "모바일 이미지(660)"],
-    "names"         => ["category", "subject", "url", "ufile6", "ufile5"],
-    "inputTypes"    => ["select", "text", "text", "files", "files" ],
-    "widths"        => ["150px", "100%", ""]
+    "titles"        => ["구분"       , "제목"        , "제목2", "링크"     , "PC 이미지(1200)"  , "모바일 이미지(660)"],
+    "names"         => ["category"  , "subject"     , "describe", "url"     , "ufile6"          , "ufile5"],
+    "inputTypes"    => ["select"    , "text"        , "text", "text"    , "files"           , "files" ],
+    "widths"        => ["150px"     , "100%"        , ""]
 ];
 
 define("BBS_WRITE_CONFIG", [

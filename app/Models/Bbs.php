@@ -15,7 +15,7 @@ class Bbs extends Model
         "code", "category", "category1", "subject", "subject_e", "writer", "email", "user_id", "m_idx", "passwd", "notice_yn", "secure_yn", 
         "recomm_yn", "contents", "simple", "displays", "hit", "cmt_cnt", "country_code", "url", "s_date", "e_date", "reply", "ufile1", "rfile1", 
         "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "b_ref", "b_step", "b_level", 
-        "ip_address", "r_date", "status", "onum", "seq", "encode",
+        "ip_address", "r_date", "status", "onum", "seq", "encode", "describe"
     ];
 
     /**

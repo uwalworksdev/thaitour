@@ -16,6 +16,8 @@ class SpaController extends BaseController
     protected $orderModel;
     protected $orderOptionModel;
     protected $orderSubModel;
+    private $coupon;
+    private $couponHistory;
 
     public function __construct()
     {
@@ -29,6 +31,8 @@ class SpaController extends BaseController
         $this->orderModel = model("OrdersModel");
         $this->orderOptionModel = model("OrderOptionModel");
         $this->orderSubModel = model("OrderSubModel");
+        $this->coupon = model("Coupon");
+        $this->couponHistory = model("CouponHistory");
     }
 
     public function charge_list()
@@ -158,6 +162,12 @@ class SpaController extends BaseController
 
             $order_gubun = $this->request->getPost('order_gubun') ?? 'spa';
 
+            $discountPrice = $this->request->getPost('discountPrice');
+            $pointPrice = $this->request->getPost('pointPrice');
+            $lastPrice = $this->request->getPost('lastPrice');
+            $c_idx = $this->request->getPost('c_idx');
+            $coupon_no = $this->request->getPost('coupon_no');
+
             $people_adult_cnt = 0;
 
             foreach ($adultQty as $key => $value) {
@@ -180,10 +190,15 @@ class SpaController extends BaseController
                 'people_adult_cnt' => $people_adult_cnt,
                 'people_kids_cnt' => $people_kids_cnt,
                 'inital_price' => $totalPrice,
-                'order_price' => $totalPrice,
+                'order_price' => $lastPrice,
                 'order_memo' => $order_memo,
                 'order_date' => Time::now('Asia/Seoul', 'en_US'),
             ];
+
+            $data['used_coupon_idx'] = $c_idx;
+            $data['used_coupon_no'] = $coupon_no;
+            $data['used_coupon_money'] = $discountPrice;
+            $data['used_coupon_point'] = $pointPrice;
 
             $data['order_no'] = $this->orderModel->makeOrderNo();
 
@@ -255,6 +270,25 @@ class SpaController extends BaseController
                         'option_date' => $day_,
                     ]);
                 }
+            }
+
+            $use_coupon_idx = $c_idx;
+            $used_coupon_money = $discountPrice;
+            $m_idx = $member_idx;
+            if (!empty($use_coupon_idx)) {
+                $this->coupon->update($use_coupon_idx, ["status" => "E"]);
+
+                $cou_his = [
+                    "order_idx" => $order_idx,
+                    "product_idx" => $product_idx,
+                    "used_coupon_no" => $coupon["coupon_num"] ?? "",
+                    "used_coupon_idx" => $use_coupon_idx,
+                    "used_coupon_money" => $used_coupon_money,
+                    "ch_r_date" => Time::now('Asia/Seoul', 'en_US'),
+                    "m_idx" => $m_idx
+                ];
+
+                $this->couponHistory->insert($cou_his);
             }
 
             $session->set('data_cart', null);
