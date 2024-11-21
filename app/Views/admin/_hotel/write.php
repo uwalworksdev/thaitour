@@ -948,7 +948,7 @@ $links = "list";
 
                                                         ?>
 
-                                                        <tr>
+                                                        <tr>  
 
                                                             <td>
                                                                 <input type='hidden' name='o_idx[]'
@@ -965,10 +965,10 @@ $links = "list";
                                                             <td>
                                                                 <input type='text' readonly class='datepicker '
                                                                        name='o_sdate[]'
-                                                                       value='<?= $frow3['o_sdate'] ?>' style='width:50%' /> ~
+                                                                       value='<?= $frow3['o_sdate'] ?>' style='width:30%' /> ~
                                                                 <input type='text' readonly class='datepicker '
                                                                        name='o_edate[]'
-                                                                       value='<?= $frow3['o_edate'] ?>' style='width:50%' />
+                                                                       value='<?= $frow3['o_edate'] ?>' style='width:30%' />
                                                             </td>
                                                             <td>
                                                                 <input type='text' class='onlynum' name='o_price1[]'
