@@ -371,7 +371,7 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 });
 
-$routes->group("ajax", static function ($routes) { 
+$routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
     $routes->post("get_travel_types", "AjaxController::get_travel_types");
     $routes->post("get_best", "AjaxMainController::get_best");
@@ -382,6 +382,7 @@ $routes->group("api", static function ($routes) {
     $routes->group("products", static function ($routes) {
         $routes->post("roomPhoto", "Api\ProductApi::roomPhoto");
         $routes->post("hotelPhoto", "Api\ProductApi::hotelPhoto");
+        $routes->post("sel_coupon", "Product::sel_coupon", ['as' => "api.product.sel_coupon"]);
     });
 
     $routes->group("spa_", function ($routes) {
