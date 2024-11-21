@@ -12,10 +12,10 @@ $bannerMain = $Bbs->List("banner", ["category" => "1"])->findAll();
 $bannerTop = $Bbs->List("banner", ["category" => "40"])->findAll();
 
 // 메인 중간 배너
-$bannerMid = $Bbs->List("banner", ["category" => "124"])->findAll();
+$bannerMid = $Bbs->List("banner", ["category" => "16"])->findAll();
 
 // 메인 하단배너
-$bannerBottom = $Bbs->List("banner", ["category" => "16"])->findAll();
+$bannerBottom = $Bbs->List("banner", ["category" => "124"])->findAll();
 
 // 취향저격 더투어랩 Best
 $MainDisp = model("MainDispModel"); // 방콕
