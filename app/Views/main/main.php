@@ -483,6 +483,11 @@ $list5 = $MainDisp->List("2905")->findAll();
 				set_hotel_seq(local);
 			});
 
+            $('.golf').on('click', function () {
+				var local = $(this).data('id');
+				set_golf_seq(local);
+			});
+
         });
     </script>
 
@@ -513,6 +518,11 @@ $list5 = $MainDisp->List("2905")->findAll();
 	function set_hotel_seq(local)
     {
             alert('hotel - '+local);
+    }
+
+	function set_golf_seq(local)
+    {
+            alert('golf - '+local);
     }
 	</script>
 
