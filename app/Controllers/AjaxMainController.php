@@ -68,16 +68,13 @@ class AjaxMainController extends BaseController {
 
     public function set_seq()  
 	{
-        $type  = $this->request->getPost('type');
-        $product_code_2 = $this->request->getPost('local');
+        $type     = $this->request->getPost('type');
+        $code_no  = $this->request->getPost('local');
         $db    = \Config\Database::connect();
  
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
-								  WHERE 1=1 ";
-        if($type == "golf")       $sql .= " AND a.code_no        = '2901' "; 
-        if($type == "hotel")      $sql .= " AND a.code_no        = '2902' "; 
-        $sql .= "AND b.product_code_2 = '$product_code_2' ORDER BY a.onum DESC ";
+								  WHERE a.code_no = '$code_no' ORDER BY a.onum DESC ";
         write_log("AjaxMainController- ". $sql);
  
         $rows  = $db->query($sql)->getResultArray();
