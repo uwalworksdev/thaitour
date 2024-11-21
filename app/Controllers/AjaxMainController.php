@@ -26,7 +26,7 @@ class AjaxMainController extends BaseController {
         if($code == "4") $product_code_1 = "1325";  
 
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
-		                          LEFT JOIN tbl_product_mst b ON a.	product_idx = b.	product_idx 
+		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
 								  WHERE 1=1 ";
         if($code_no)        $sql .= "AND a.code_no        = '$code_no' "; 
 		if($product_code_1) $sql .= "AND b.product_code_1 = '$product_code_1' ": 
