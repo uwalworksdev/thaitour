@@ -65,7 +65,7 @@
                                     </tr>
                                     <?php
                                 }
-                                foreach ($result as $row) {
+                                foreach ($items as $row) {
                                     ?>
                                     <tr style="height:50px">
                                         <td><?= $num-- ?></td>
@@ -102,7 +102,6 @@
                     </form>
 
                     <?php echo ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_cateBanner/list') . "?ca_idx=$ca_idx&search_category=$search_category&search_name=$search_name&pg=") ?>
-
 
                     <div id="headerContainer">
 
