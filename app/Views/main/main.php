@@ -396,10 +396,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         1주일간 예약순위 : <span>호텔</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <a href="#!" class="place_item_hotel active" data-id="290201">방콕</a>
-                        <a href="#!" class="place_item_hotel" data-id="290202">파타야</a>
-                        <a href="#!" class="place_item_hotel" data-id="290203">푸켓</a>
-                        <a href="#!" class="place_item_hotel" data-id="290204">치앙마이</a>
+                        <a href="#!" class="place_item_hotel active" data-id="130301">방콕</a>
+                        <a href="#!" class="place_item_hotel" data-id="130303">파타야</a>
+                        <a href="#!" class="place_item_hotel" data-id="130302">푸켓</a>
+                        <a href="#!" class="place_item_hotel" data-id="130304">치앙마이</a>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -414,7 +414,7 @@ $list5 = $MainDisp->List("2905")->findAll();
             </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" id="hotel_list">
                         <?php $seq = 0; ?>
                         <?php foreach ($list2 as $item2): ?>
                             <?php $seq++; ?>
@@ -495,7 +495,6 @@ $list5 = $MainDisp->List("2905")->findAll();
     function set_best(list, code) {
 			
 			$.ajax({
-
 				url: "/ajax/get_best",
 				type: "POST",
 				data: { 
@@ -518,11 +517,45 @@ $list5 = $MainDisp->List("2905")->findAll();
 	function set_hotel_seq(local)
     {
             alert('hotel - '+local);
+			$.ajax({
+				url: "/ajax/set_seq",
+				type: "POST",
+				data: { 
+					      type : "hotel", 
+					      local : local 
+					  },
+			    dataType: "json",
+				success: function(res) {
+					var message  = res.message;
+					$("#hotel_list").html(message);
+				},
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
+			});
     }
 
 	function set_golf_seq(local)
     {
             alert('golf - '+local);
+			$.ajax({
+				url: "/ajax/set_seq",
+				type: "POST",
+				data: { 
+					      type : "golf", 
+					      local : local 
+					  },
+			    dataType: "json",
+				success: function(res) {
+					var message  = res.message;
+					$("#golf_list").html(message);
+				},
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
+			});
     }
 	</script>
 
@@ -572,10 +605,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         1주일간 예약순위 : <span>골프</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <div class="place_item_golf active" data-id="290101">방콕</div>
-                        <div class="place_item_golf" data-id="290102">파타야</div>
-                        <div class="place_item_golf" data-id="290103">푸켓</div>
-                        <div class="place_item_golf" data-id="290104">치앙마이</div>
+                        <a href="#!" class="place_item_golf active" data-id="130301">방콕</a>
+                        <a href="#!" class="place_item_golf" data-id="130303">파타야</a>
+                        <a href="#!" class="place_item_golf" data-id="130302">푸켓</a>
+                        <a href="#!" class="place_item_golf" data-id="130304">치앙마이</a>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -590,7 +623,7 @@ $list5 = $MainDisp->List("2905")->findAll();
             </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" id="golf_list">
                         <?php $seq = 0; ?>
                         <?php foreach ($list3 as $item3): ?>
                             <?php $seq++; ?>

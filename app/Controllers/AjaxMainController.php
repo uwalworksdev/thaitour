@@ -64,4 +64,45 @@ class AjaxMainController extends BaseController {
 
 		return $this->response->setJSON($output);
     }
+
+
+    public function set_seq()  
+	{
+        $type  = $this->request->getPost('type');
+        $product_code_2 = $this->request->getPost('local');
+        $db    = \Config\Database::connect();
+ 
+		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
+		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
+								  WHERE 1=1 ";
+        if($type == "golf")       $sql .= " AND a.code_no        = '2901' "; 
+        if($type == "hotel")      $sql .= " AND a.code_no        = '2902' "; 
+        $sql .= "AND b.product_code_2 = '$product_code_2 ORDER BY a.onum DESC ";
+        write_log("AjaxMainController- ". $sql);
+ 
+        $rows  = $db->query($sql)->getResultArray();
+
+        $msg   = "";
+		$seq   = 0;
+		foreach ($rows as $item3):
+			$seq++;
+			$msg .= '<div class="swiper-slide">';
+			$msg .= '<a href="'. getUrlFromProduct($item3) .'" class="hot_product_list__item">';
+			$msg .= '<div class="img_box img_box_2">';
+			$msg .= '<img src="/data/product/'. $item3['ufile1'] .'" alt="main">';
+			$msg .= '</div>';
+			$msg .= '<div class="prd_name">'. $item3['product_name'] .'</div>';
+			$msg .= '<div class="prd_price_ko">'. number_format($item3['original_price']) .'<span>원</span></div>';
+			$msg .= '<div class="prd_price_thai">6,000 <span>바트</span></div>';
+			$msg .= '<span class="number_item_label number_one">'. $seq .'</span>';
+			$msg .= '</a>';
+			$msg .= '</div>';
+		endforeach;
+ 
+        $output = [
+            "message"  => $msg
+        ];
+
+		return $this->response->setJSON($output);
+    }
 }
