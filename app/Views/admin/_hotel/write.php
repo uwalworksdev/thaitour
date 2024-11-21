@@ -584,10 +584,10 @@ $links = "list";
 												<tbody>
 													<tr style="height:50px">
 														<td class="tac">
-															<input type="text" name="s_date" value="" id="s_date" class="s_date hasDatepicker" style="text-align: center;background: white; width: 90%;" readonly="">								
+															<input type="text" name="s_date" value="" id="s_date" class="datepicker  hasDatepicker" style="text-align: center;background: white; width: 90%;" readonly="">								
 														</td>
 														<td class="tac">
-															<input type="text" name="e_date" value="" id="e_date" class="e_date hasDatepicker" style="text-align: center;background: white; width: 90%;" readonly="">								
+															<input type="text" name="e_date" value="" id="e_date" class="datepicker  hasDatepicker" style="text-align: center;background: white; width: 90%;" readonly="">								
 														</td>
 														<td class="tac"> 
 															<input type="checkbox" name="yoil_0" id="yoil_0" value="Y" class="yoil"> 일요일&nbsp;&nbsp;&nbsp;
