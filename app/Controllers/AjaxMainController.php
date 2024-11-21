@@ -34,7 +34,7 @@ class AjaxMainController extends BaseController {
 		foreach ($rows as $item): 
 			     $img_dir   = img_link($item['product_code_1']);  
 			     $prog_link = prog_link($item1['product_code_1']);  
-			     $msg .= '<a href="<?= $prog_link ?><?= $item1_1['product_idx'] ?>" class="best_list_item">';
+			     $msg .= '<a href="'. $prog_link . $item1_1['product_idx'] .'" class="best_list_item">';
 				 $msg .= '<div class="img_box img_box_3">';
 				 $msg .= '<img src="/data/'. $img_dir .'/'. $item1_1['ufile1'] .'" alt="main">';
 				 $msg .= '</div>';
