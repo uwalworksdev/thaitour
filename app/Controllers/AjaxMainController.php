@@ -59,7 +59,7 @@ class AjaxMainController extends BaseController {
 		endforeach;
  
         $output = [
-            "message"  => $sql
+            "message"  => $msg
         ];
 
 		return $this->response->setJSON($output);
