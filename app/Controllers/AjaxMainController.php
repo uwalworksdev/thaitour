@@ -9,7 +9,7 @@ class AjaxMainController extends BaseController {
         $this->db = db_connect();
     }
 
-    public function get_best() 
+    public function get_best()  
 	{
         $list  = $this->request->getPost('list');
         $code  = $this->request->getPost('code');
