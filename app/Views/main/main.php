@@ -552,10 +552,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         1주일간 예약순위 : <span>골프</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <div class="place_item active">방콕</div>
-                        <div class="place_item">파타야</div>
-                        <div class="place_item">푸켓</div>
-                        <div class="place_item">치앙마이</div>
+                        <div class="place_item_golf active">방콕</div>
+                        <div class="place_item_golf">파타야</div>
+                        <div class="place_item_golf">푸켓</div>
+                        <div class="place_item_golf">치앙마이</div>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
