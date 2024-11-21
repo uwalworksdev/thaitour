@@ -122,8 +122,8 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '자주하시는질문',
                     'code' => 'D2',
-                    'url' => '/AdmMaster/_bbs/board_list_q?r_code=faq',
-                    'alias' => ['BoardController::index2']
+                    'url' => '/AdmMaster/_bbs/board_list?code=faq',
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '당첨자 발표',
@@ -230,14 +230,14 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '사내게시판',
                     'code' => 'G1',
-                    'url' => '/AdmMaster/_memberBoard/board_list?code=mem_board',
-                    'alias' => ['AdminMemberBoardController::board_list', 'AdminMemberBoardController::board_write']
+                    'url' => '/AdmMaster/_bbs/board_list?code=mem_board',
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '자료실',
                     'code' => 'G2',
-                    'url' => '/AdmMaster/_memberBoard/board_list?code=mem_pds',
-                    'alias' => ['AdminMemberBoardController::board_list', 'AdminMemberBoardController::board_write']
+                    'url' => '/AdmMaster/_bbs/board_list?code=mem_pds',
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '연차관리',
@@ -260,8 +260,8 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '메인/서브비주얼관리',
                     'code' => 'H2',
-                    'url' => '/AdmMaster/_bbsBanner/list?code=banner',
-                    'alias' => ['AdminBbsBannerController::list', 'AdminBbsBannerController::write']
+                    'url' => '/AdmMaster/_bbs/board_list?code=banner',
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '메인이벤트 관리',

@@ -40,20 +40,12 @@ $routes->group("AdmMaster", static function ($routes) {
     });
     $routes->group("_bbs", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
+        $routes->get("board_write/(:segment)", "BoardController::board_write/$1");
         $routes->get("board_write", "BoardController::board_write");
-        $routes->post("ajax_bbs_proc", "BoardController::write_ok");
-        $routes->get("board_list_q", "BoardController::index2");
-        $routes->get("form", "BoardController::form");
+        $routes->post("write_ok/(:segment)", "BoardController::write_ok/$1");
+        $routes->post("write_ok", "BoardController::write_ok");
         $routes->get("view", "BoardController::view");
-        $routes->post("form_ok", "BoardController::form_ok");
-        // $routes->get("email", "AutoMailController::index");
-        // $routes->get("sms", "SmsSettings::index");
-        // $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
-        // $routes->get("list_tours", "TourRegistController::list_admin");
-        // $routes->get("list_golf", "TourRegistController::list_admin");
-        // $routes->get("_tourStay", "TourRegistController::list_admin");
-        // $routes->post("del", "TourRegistController::del");
-        // $routes->post("ajax_del", "TourRegistController::ajax_del");
+        $routes->delete("bbs_del", "BoardController::bbs_del");
     });
 
     $routes->group("_reservation", static function ($routes) {
@@ -308,20 +300,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminMileageController::write");
     });
 
-    $routes->group("_memberBoard", static function ($routes) {
-        $routes->get("board_list", "Admin\AdminMemberBoardController::board_list");
-        $routes->get("board_write", "Admin\AdminMemberBoardController::board_write");
-    });
-
     $routes->group("_memberBreak", static function ($routes) {
         $routes->get("list", "Admin\AdminMemberBreakController::list");
         $routes->get("write", "Admin\AdminMemberBreakController::write");
-    });
-
-    $routes->group("_bbsBanner", static function ($routes) {
-        $routes->get("list", "Admin\AdminBbsBannerController::list");
-        $routes->get("write", "Admin\AdminBbsBannerController::write");
-        $routes->post("code_change", "Admin\AdminBbsBannerController::banner_change", ['as' => "admin.api.banner.banner_change"]);
     });
 
     $routes->group("_cateBanner", static function ($routes) {

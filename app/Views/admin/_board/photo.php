@@ -9,13 +9,6 @@
             } else {
                 $nums = $num;
             }
-            $newStr = "";
-
-            $boardController = new \App\Controllers\BoardController();
-            $newStrCheck = $boardController->listNew(24, $row['r_date']);
-            if ($newStrCheck == 0) {
-                $newStr = "<img src=\"/img_board/new.gif\" style=\"margin:1px 3px 0 5px;\" alt=\"신규게시물\" />";
-            }
 
             $recStr = "";
             if ($row['recomm_yn'] == "Y") {
@@ -48,7 +41,7 @@
             ?>
             <li class="gallery-list" style="width:280px" rel="<?= $row['b_ref'] ?>">
                 <a
-                        href="board_write?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&bbs_idx=<?= $row['bbs_idx'] ?>&pg=<?= $pg ?>">
+                        href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&pg=<?= $pg ?>">
                     <p class="pic" style="width:280px"><img src="<?= $img ?>" alt="<?= $row['subject'] ?>"></p>
                     <p class="pic-info">
                         <input type="checkbox" id="" name="bbs_idx[]" value="<?= $row['bbs_idx'] ?>"

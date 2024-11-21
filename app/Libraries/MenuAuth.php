@@ -57,8 +57,6 @@ class MenuAuth
                     if (in_array($alias, $aliasList)) {
                         $parsedUrl = parse_url($submenu['url']);
                         if (($controller == "AdminBbsController" 
-                                || $controller == "AdminMemberBoardController" 
-                                || $controller == "AdminBbsBannerController"
                                 || $controller == "BoardController"
                                 || $controller == "Member") 
                             && isset($parsedUrl['query']) ) {

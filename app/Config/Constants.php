@@ -98,3 +98,38 @@ define('GOLF_HOLES', [18, 27, 36, 45]);
 define('GOLF_HOURS', ['06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19']);
 
 define('GOLF_MIN', ['00', '12', '24', '36', '48']);
+
+$b2b_notice = [
+    "titles"        => ["작성자", "이메일", "공지글", "등록일", "조회", "제목", "내용"],
+    "names"         => ["writer", "email", "notice_yn", "r_date", "hit", "subject", "contents"],
+    "inputTypes"    => ["text", "text", "checkbox", "text", "text", "text", "summernote"],
+    "widths"        => ["150px"]
+];
+
+$faq = [
+    "titles"        => ["상태", "베스트", "분류", "공지", "제목", "상세정보"],
+    "names"         => ["r_status", "r_flag", "r_category", "r_notice", "r_title", "r_content"],
+    "inputTypes"    => ["select", "checkbox", "select", "checkbox", "text", "summernote"],
+    "widths"        => ["150px", "", "150px"]
+];
+
+$winner = [
+    "titles"        => ["조회", "제목", "내용"],
+    "names"         => ["hit", "subject", "contents"],
+    "inputTypes"    => ["text", "text", "summernote"],
+    "widths"        => ["150px", "100%", ""]
+];
+
+$banner = [
+    "titles"        => ["구분", "제목", "링크", "PC 이미지(1200)", "모바일 이미지(660)"],
+    "names"         => ["category", "subject", "url", "ufile6", "ufile5"],
+    "inputTypes"    => ["select", "text", "text", "files", "files" ],
+    "widths"        => ["150px", "100%", ""]
+];
+
+define("BBS_WRITE_CONFIG", [
+    "b2b_notice" => $b2b_notice,
+    "faq" => $faq,
+    "winner" => $winner,
+    "banner" => $banner
+]);
