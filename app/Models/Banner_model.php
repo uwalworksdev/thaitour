@@ -6,13 +6,9 @@ class Banner_model extends Model
 {
     protected $table = 'tbl_cate_banner';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'cb_idx';
 
-    protected $allowedFields = [
-        'code_no',
-        'ufile1',
-        'onum'
-    ];
+    protected $allowedFields = [ "code_idx", "code_no", "ufile1", "rfile1", "url", "onum", "use_yn", "category"];
 
     public function getBanners($code_no)
     {
@@ -89,6 +85,10 @@ class Banner_model extends Model
 
     public function insertBanner($data) {
         return $this->insert($data);
+    }
+
+    public function updateBanner($cb_idx, $data) {
+        return $this->update($cb_idx, $data);
     }
 }
 ?>

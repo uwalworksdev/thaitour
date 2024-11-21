@@ -27,19 +27,12 @@
                     <h2>카테고리 배너관리 </h2>
                     <div class="menus">
                         <ul>
-                            <li><a href="javascript:history.back();" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
+                            <li>
+                                <a href="javascript:history.back();" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-th-list"></span>
+                                    <span class="txt">리스트</span>
+                                </a>
                             </li>
-                            <?php if ($code_idx) { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                </li>
-                            <?php } else { ?>
-                                <li><a href="javascript:send_it()" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
-                                </li>
-                            <?php } ?>
-
                         </ul>
                     </div>
                 </div>
@@ -50,8 +43,8 @@
 
             <div id="contents">
                 <div class="listWrap_noline">
-                    <form name=frm action="write_ok.php" method=post enctype="multipart/form-data" target="hiddenFrame">
-                        <input type=hidden name="code_no" value='<?= $code_no ?>'>
+                    <div>
+                        <input type=hidden name="code_no" value='<?= $row['code_no'] ?>'>
                         <input type=hidden name="code_idx" value='<?= $code_idx ?>'>
                         <div class="listBottom">
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -62,30 +55,18 @@
                                     <col width="90%"/>
                                 </colgroup>
                                 <tbody>
-
-                                <tr>
-                                    <th>코드NO</th>
-                                    <td>
-                                        <?= $code_no ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>코드명</th>
-                                    <td>
-                                        <?= $code_name ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>롤링현황</th>
-                                    <td>
-                                        <input type="radio" name="rolling_yn" value="Y" <?php if ($rolling_yn == "Y") {
-                                            echo "checked";
-                                        } ?>> 사용&nbsp;&nbsp;&nbsp;
-                                        <input type="radio" name="rolling_yn" value="N" <?php if ($rolling_yn == "N") {
-                                            echo "checked";
-                                        } ?>> 미사용&nbsp;&nbsp;&nbsp;
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <th>코드NO</th>
+                                        <td>
+                                            <?= $row['code_no'] ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>코드명</th>
+                                        <td>
+                                            <?= $row['code_name'] ?>
+                                        </td>
+                                    </tr>
                                 </tbody>
 
                             </table>
@@ -97,41 +78,45 @@
                             <ul>
                                 <li class="left"></li>
                                 <li class="right_sub">
-                                        <a href="javascript:show_it()" class="btn btn-default">New</a>
-                                    <a href="javascript:history.back();" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
-                                    <?php if ($code_idx == "") { ?>
-                                        <a href="javascript:send_it()" class="btn btn-default"><span
-                                                    class="glyphicon glyphicon-cog"></span><span
-                                                    class="txt">등록</span></a>
-                                    <?php } else { ?>
-                                        <a href="javascript:send_it()" class="btn btn-default"><span
-                                                    class="glyphicon glyphicon-cog"></span><span
-                                                    class="txt">수정</span></a>
-                                        <!--
-                                        <a href="javascript:del_it()" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
-                                        -->
-                                    <?php } ?>
+                                    <a href="javascript:show_it()" class="btn btn-default">등록</a>
+                                    <a href="javascript:history.back();" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-th-list"></span>
+                                        <span class="txt">리스트</span>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
-                    </form>
+                    </div>
+                    <style>
+                        div.listBottom table.listTable tbody td {
+                            padding: 5px;
+                        }
+                        #input_file_ko {
+                            width: 200px;
+                        }
+                    </style>
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable">
                             <caption></caption>
                             <colgroup>
                                 <col width="70px"/>
-                                <col width="*"/>
-                                <col width="350px"/>
+                                <col width="300px"/>
                                 <col width="100px"/>
                                 <col width="100px"/>
+                                <col width="100px"/>
+                                <col width="100px"/>
+                                <col width="100px"/>
+                                <col width="200px"/>
                             </colgroup>
                             <thead>
                             <tr>
                                 <th>No</th>
                                 <th>이미지</th>
+                                <th>구분</th>
+                                <th>URL</th>
                                 <th>파일첨부</th>
                                 <th>우선순위</th>
+                                <th>현황</th>
                                 <th>관리</th>
                             </tr>
                             </thead>
@@ -139,38 +124,50 @@
                             $i = 1;
                             foreach ($row3 as $row) {
                                 ?>
-                                <form name="frm_<?= $i ?>" action="file_update.php" method=post
-                                      enctype="multipart/form-data" target="hiddenFrame">
-                                    <input type=hidden name="code_no" value='<?= $code_no ?>'>
+                                <form name="frm_<?= $i ?>" action="/AdmMaster/_cateBanner/write_ok/<?=$row['cb_idx']?>" method="post" enctype="multipart/form-data" target="hiddenFrame">
                                     <tbody>
-                                    <tr style="height:45px;padding:5px">
-                                        <td><?= $i ?></td>
-                                        <td>
-                                            <a href="/data/catebanner/<?= $row["ufile1"] ?>" class="imgpop">
-                                            <img src="/data/catebanner/<?= $row["ufile1"] ?>" style="max-height:200px"></a>
-                                        </td>
-                                        <td>
-                                            <input type="text" name="url" class="bbs_inputbox_pixel" style="width:300px" value="<?= $row["url"] ?>" placeholder="URL을 입력하셔야 합니다."/><br><br>
-                                            <input type="file" name="ufile1" class="bbs_inputbox_pixel" style="width:300px"/></td>
-                                        <td>
-                                            <input type="text" name="onum" class="bbs_inputbox_pixel" style="width:50px" value="<?= $row["onum"] ?>"/>
-                                        </td>
-                                        <td>
-                                            <a href="javascript:document.frm_<?= $i ?>.submit();" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-cog"></span>
-                                            <span class="txt">수정</span></a>
-                                            <a href="javascript:file_del_it('<?= $row["cb_idx"] ?>')" class="btn btn-default">
-                                            <span class="glyphicon glyphicon-cog"></span>
-                                            <span class="txt">삭제</span></a>
-                                        </td>
-                                    </tr>
+                                        <tr style="height:45px;">
+                                            <td><?= $i ?></td>
+                                            <td>
+                                                <a href="/data/cate_banner/<?= $row["ufile1"] ?>" class="imgpop">
+                                                <img src="/data/cate_banner/<?= $row["ufile1"] ?>" style="max-height:200px;max-width:200px"></a>
+                                            </td>
+                                            <td>
+                                                <select name="category" id="category">
+                                                    <option value="">선택</option>
+                                                    <option value="top" <?=$row['category'] == "top" ? "selected" : ""?>>상단배너</option>
+                                                    <option value="middle" <?=$row['category'] == "middle" ? "selected" : ""?>>중간배너</option>
+                                                    <option value="bottom" <?=$row['category'] == "bottom" ? "selected" : ""?>>하단배너</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="url" value="<?= $row["url"] ?>" style="width: 200px;">
+                                            </td>
+                                            <td>
+                                                <input type="file" name="ufile1" class="bbs_inputbox_pixel" style="width:200px"/></td>
+                                            <td>
+                                                <input type="text" name="onum" class="bbs_inputbox_pixel" style="width:50px" value="<?= $row["onum"] ?>"/>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="use_yn" value="Y" <?= $row["use_yn"] == "Y" ? "checked" : ""?>>
+                                            </td>
+                                            <td>
+                                                <a href="javascript:document.frm_<?= $i ?>.submit();" class="btn btn-default">
+                                                    <span class="glyphicon glyphicon-cog"></span>
+                                                    <span class="txt">수정</span>
+                                                </a>
+                                                <a href="javascript:file_del_it('<?= $row["cb_idx"] ?>')" class="btn btn-default">
+                                                    <span class="glyphicon glyphicon-cog"></span>
+                                                    <span class="txt">삭제</span>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </form>
                                 <?php
                                 $i = $i + 1;
                             } ?>
                         </table>
-
 
                     </div>
                     <!-- // listWrap -->
@@ -184,95 +181,86 @@
             <div>
                 <h2>이벤트 상품등록</h2>
                 <div class="listBottom table_box">
-                    <form action="write_ok.php" method="post">
-                    <input type="hidden" name="code_no" value='<?= $code_no ?>'>
+                    <form action="write_ok" method="post" name="write_frm" id="write_frm" enctype="multipart/form-data" target="hiddenFrame">
+                        <input type="hidden" name="code_no" value="<?=$row['code_no']?>">
+                        <input type="hidden" name="code_idx" value="<?=$code_idx?>">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                        <caption>
-                        </caption>
-                        <colgroup>
-                        <col width="10%"/>
-                        <col width="90%"/>
-                        </colgroup>
-                        <tbody>
-                            <input type="hidden" id="code_gubun" name="code_gubun" value="<?= $code_gubun ?>"/>
-                            <tr>
-                                <th>코드명</th>
-                                <td>
-                                    <input type="text" id="code_name" name="code_name" value="<?= $code_name ?>" class="input_txt" style="width:90%"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>이미지</th>
-                                <td>
-                                    <input type="file" id="ufile1" name="ufile1" class="input_txt" style="width:20%"/>
-                                    <?php if ($ufile1 && $rfile1) { ?>
-                                        <img src="/data/code/<?= $ufile1 ?>">
-                                        <input type="checkbox" name="del_1" value="Y">
-                                        <a href="/data/code/<?= $ufile1 ?>" class="imgpop cboxElement"><?= $rfile1 ?></a>
-                                    <?php } ?>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>현황</th>
-                                <td>
-                                    <input type="radio" name="status" value="Y" <?php if ($status == "Y" || $status == "") {
-                                        echo "checked";
-                                    } ?>> 사용&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="status" value="C" <?php if ($status == "C") {
-                                        echo "checked";
-                                    } ?>> 마감&nbsp;&nbsp;&nbsp;
-                                    <!--input type="radio" name="status" value="N" <?php if ($status == "N") {
-                                        echo "checked";
-                                    } ?>> 삭제-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>우선순위</th>
-                                <td>
-                                    <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
-                                        style="width:100px"/> (숫자가 높을수록 상위에 노출됩니다.)
-                                </td>
-                            </tr>
-                        </tbody>
+                            <colgroup>
+                            <col width="10%"/>
+                            <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+                                <!-- <tr>
+                                    <th>코드명</th>
+                                    <td>
+                                        <input type="text" id="code_name" name="code_name" class="input_txt" style="width:90%"/>
+                                    </td>
+                                </tr> -->
+                                <tr>
+                                    <th>구분</th>
+                                    <td>
+                                        <select name="category" id="category">
+                                            <option value="">선택</option>
+                                            <option value="top">상단배너</option>
+                                            <option value="middle">중간배너</option>
+                                            <option value="bottom">하단배너</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>URL</th>
+                                    <td>
+                                        <input type="text" id="url" name="url" class="input_txt" style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>이미지</th>
+                                    <td>
+                                        <input type="file" id="ufile1" name="ufile1" class="input_txt" style="width:20%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>현황</th>
+                                    <td>
+                                        <input type="radio" name="use_yn" value="Y"> 사용&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="use_yn" value="N"> 마감&nbsp;&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>우선순위</th>
+                                    <td>
+                                        <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt" style="width:100px"/> (숫자가 높을수록 상위에 노출됩니다.)
+                                    </td>
+                                </tr>
+                            </tbody>
                         
                         </table>
                     </form>
                 </div>
                 <div class="sel_box">
                     <button type="button" class="close">닫기</button>
-                    <button type="button" class="select_all">전체선택</button>
-                    <button type="button" onclick="fn_pick_update();" class="search">등록</button>
+                    <button type="submit" form="write_frm" class="search">등록</button>
                 </div>
-                </form>
             </div>
         </div>
         <script>
-            function show_it() {
+
+            function show_it(cb_idx = null) {
                 $("#item_pop").show();
             }
             $(".close").click(function () {
                 $("#item_pop").hide();
             });
-            function file_it() {
-                var frm = document.frm1;
-                if (frm.ufile1.value == "") {
-                    alert("파일을 첨부해주셔야 합니다.");
-                    return;
-                }
-                frm.submit();
-            }
-
-            function del_it() {
-                if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-                    hiddenFrame.location.href = "del.php?code_idx[]=<?=$code_idx?>&mode=view&s_ca_idx=<?=$ca_idx?>";
-                }
-
-            }
 
             function file_del_it(cb_idx) {
                 if (confirm(" 삭제후 복구하실수 없습니다. \n\n 삭제하시겠습니까?")) {
-                    hiddenFrame.location.href = "file_del.php?cb_idx=" + cb_idx;
+                    $.ajax({
+                        url: "file_del?cb_idx=" + cb_idx,
+                        type: "DELETE",
+                        success: function () {
+                            location.reload();
+                        }
+                    })
                 }
 
             }

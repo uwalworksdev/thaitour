@@ -308,7 +308,9 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_cateBanner", static function ($routes) {
         $routes->get("list", "Admin\AdminCateBannerController::list");
         $routes->get("write", "Admin\AdminCateBannerController::write");
+        $routes->post("write_ok/(:segment)", "Admin\AdminCateBannerController::write_ok/$1");
         $routes->post("write_ok", "Admin\AdminCateBannerController::write_ok");
+        $routes->delete("file_del", "Admin\AdminCateBannerController::file_del");
     });
 
     $routes->group("_cms", static function ($routes) {
