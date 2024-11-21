@@ -141,12 +141,7 @@ const swiper1 = new Swiper(".main_swiper2", {
     },
   },
   slidesPerView: 2,
-  pagination: {
-    el: ".swiper_pagination_main_swiper2",
-    clickable: true,
-    type: "bullets",
-    // dynamicBullets: true
-  },
+  pagination: false,
   spaceBetween: 20,
   navigation: {
     nextEl: ".main_swiper2_btn_next",
