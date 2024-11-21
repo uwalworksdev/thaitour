@@ -1,21 +1,5 @@
 <link rel="stylesheet" href="/css/tour/spa.css">
-<style>
-    .input_qty {
-        width: 50px !important;
-        height: 40px;
-        border: 1px solid #e5e5e5;
-        border-radius: 5px;
-        padding: 10px !important;
-    }
-
-    .schedule .wrap-text {
-        width: 50%;
-    }
-
-    .schedule .wrap-btn {
-        width: 50%;
-    }
-</style>
+<link rel="stylesheet" href="/css/tour/booking_spa.css">
 <div class="customer-form-page">
     <div class="navigation-section">
         <div class="body_inner">
@@ -175,6 +159,33 @@
                             ?>
                         </div>
 
+                        <div class="card-left card-left-2 coupon_area_">
+                            <h3 class="label">할인혜택</h3>
+
+                            <div class="use_coupon flex__c">
+                                <p class="ttl">쿠폰 사용</p>
+                                <div class="val input-row">
+                                    <input type="text" name="coupon" id="coupon_price" class="bs-input" readonly="">
+                                </div>
+                                <div class="flex__c">
+                                    <button type="button" onclick="openCouPon();">쿠폰조회</button>
+                                    <p class="note">사용 (사용가능 쿠폰 : 0 장)</p>
+                                </div>
+                            </div>
+
+                            <div class="use_point flex__c">
+                                <p class="ttl">포인트 사용</p>
+                                <div class="val input-row">
+                                    <input type="text" name="point" id="point_price" class="bs-input"
+                                           onkeyup="point_acnt();">
+                                </div>
+                                <div class="flex__c">
+                                    <button type="button" onclick="point_all();">모두사용</button>
+                                    <p class="note">(사용가능 포인트 : 0 점 / 5,000 포인트 이상부터 사용가능)</p>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card-left2 card_left_bottom_">
                             <h3 class="title-main-c">
                                 별도 요청
@@ -293,9 +304,17 @@
                                 ?>
                             </div>
 
+                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
+                                <span>쿠폰 </span>
+                                <span>0원</span>
+                            </div>
+                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
+                                <span>포인트 </span>
+                                <span>0원</span>
+                            </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><span id="textTotalPrice"><?= number_format($totalPrice) ?></span>원</span>
+                                <span><span class="textTotalPrice"><?= number_format($totalPrice) ?></span>원</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -352,6 +371,85 @@
             </div>
         </div>
         <div class="dim"></div>
+    </div>
+</div>
+<div class="couponplus_pop">
+    <div class="coupon_popup">
+        <form name="discountForm" id="discountForm">
+            <input type="hidden" name="c_idx" id="c_idx" value="">
+            <input type="hidden" name="ori_total" id="ori_total" value="730000">
+            <input type="hidden" name="dis_coupon" id="dis_coupon" value="0">
+            <input type="hidden" name="last_coupon" id="last_coupon" value="0">
+            <input type="hidden" name="all_point" id="all_point" value="0">
+            <input type="hidden" name="dis_point" id="dis_point" value="0">
+
+            <div class="pop_boxs">
+                <div class="cu_head">
+                    <h2>쿠폰할인 적용</h2>
+                    <button type="button" onclick="cuPopupClose()">
+                        <img src="/images/ico/close_icon_popup.png" alt="닫기 버튼">
+                    </button>
+                </div>
+                <div class="cu_body">
+                    <div class="cu_item_wrap">
+                        <div class="item_info">
+                            <div class="info_wrap">
+                                <div class="thumb">
+                                    <span>
+                                        <img alt="" src="/data/hotel/<?= $prod['ufile1'] ?>">
+                                    </span>
+                                </div>
+                                <div class="info_box">
+                                    <div class="subject">
+                                        <?= $prod['product_name'] ?>
+                                    </div>
+                                    <div class="otp">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="cal_box">
+                            <li>
+                                <div class="label">
+                                    상품 판매가
+                                </div>
+                                <div class="price">
+                                    <strong>
+                                        <span class="total_product_price textTotalPrice"><?= number_format($totalPrice) ?></span>원
+                                    </strong>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="label">
+                                    할인 금액
+                                </div>
+                                <div class="price">
+                                    <b><span id="_coupon_amt">원</span></b>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="label">
+                                    쿠폰 적용가
+                                </div>
+                                <div class="price">
+                                    <b><span id="coupon_last">원</span></b>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="culi_tit">
+                            적용가능 쿠폰
+                        </div>
+                        <div class="culi_wrap">
+                            <select name="coupon_grp" class="cpselect" onchange="sel_coupon(this.value);">
+                                <option value="">적용 안함</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="cal_it();" class="cu_btn">적용하기</button>
+            </div>
+        </form>
     </div>
 </div>
 <script>
@@ -567,7 +665,7 @@
         $('#totalPrice').val(total);
 
         total = convertNum(total);
-        $('#textTotalPrice').text(total);
+        $('.textTotalPrice').html(total);
     }
 
     getMainTotal();
@@ -585,10 +683,102 @@
             optionTotal += total;
         })
 
-        let mainTotal = $('#textTotalPrice').text();
+        let mainTotal = $('.textTotalPrice').html();
         mainTotal = mainTotal.replaceAll(',', '');
         realTotal = mainTotal - optionTotal;
 
         $('#realTotal').val(realTotal);
+    }
+
+    function price_account() {
+
+    }
+
+    function sel_coupon(idx) {
+        $("#c_idx").val(idx);
+        $("#dis_point").val($("#used_mileage_money").val());
+
+        let f = document.discountForm;
+
+        let dis_coupon = "";
+        let dis_point = "";
+        let coupon_last = "";
+
+        let real_price = "";
+
+        let url = ``;
+
+        let dis_data = $(f).serialize();
+        let save_result = "";
+        $.ajax({
+            type: "POST",
+            data: dis_data,
+            url: url,
+            cache: false,
+            async: false,
+            success: function (data, textStatus) {
+                save_result = data;
+                let obj = jQuery.parseJSON(save_result);
+                let dis_coupon = obj.dis_coupon;
+                let dis_point = obj.dis_point;
+                let coupon_last = obj.coupon_last;
+                let coupon_num = obj.coupon_num;
+
+                real_price = parseInt($("#order_price").val()) - parseInt(dis_coupon);
+
+                if (parseInt(dis_coupon) > parseInt(real_price)) {
+                    $("#coupon_idx").val('');
+                    alert("ê²°ì œ ê¸ˆì•¡ ë³´ë‹¤ ì¿ í° í• ì¸ì•¡ì´ í´ ê²½ìš° ì¿ í°ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+                } else {
+                    $("#coupon_idx").val(idx);
+                    $("#dis_coupon").val(dis_coupon);
+                    $("#dis_point").val(dis_point);
+                    $("#last_coupon").val(coupon_last);
+                    $("#used_coupon_no").val(coupon_num);
+                    $("#used_coupon_money").val(dis_coupon);
+
+                    $("#_coupon_amt").text(number_format(dis_coupon) + 'ì›');
+                    $("#coupon_last").text(number_format(coupon_last) + 'ì›');
+                    $("#total_point").text(number_format(dis_coupon + dis_point));
+                    $("#order_price").val(coupon_last);
+                    $("#price_tot").text(number_format(coupon_last));
+                    $("#coupon_price").val(number_format(dis_coupon));
+                }
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // ì‹¤íŒ¨ ì‹œ ì²˜ë¦¬
+            }
+        });
+
+        price_account();
+
+    }
+
+    function number_format(number, decimals = 0, dec_point = '.', thousands_sep = ',') {
+        number = parseFloat(number).toFixed(decimals);
+        number = number.toString().replace('.', dec_point);
+        let parts = number.split(dec_point);
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
+        return parts.join(dec_point);
+    }
+
+    function cal_it() {
+        cuPopupClose();
+    }
+
+    function cuPopupClose() {
+        $('.couponplus_pop').hide();
+    }
+
+    function openCouPon() {
+        $('.couponplus_pop').show();
+    }
+
+    function point_acnt() {
+
+    }
+
+    function point_all() {
+        alert('point_acnt all');
     }
 </script>

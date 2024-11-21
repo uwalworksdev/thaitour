@@ -531,6 +531,7 @@ $routes->group("center", static function ($routes) {
     $routes->get("tourterms", "CustomerCenterController::tourterms");
     $routes->get("terms", "CustomerCenterController::terms");
     $routes->get("privacy", "CustomerCenterController::privacy");
+    $routes->get("reservation", "CustomerCenterController::reservation");
 });
 $routes->group("custom_travel", static function ($routes) {
     $routes->get("item_list", "CustomTravelController::item_list");
