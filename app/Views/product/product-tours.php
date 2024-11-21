@@ -112,12 +112,14 @@
                         <!--                        </div>-->
                         <?php foreach ($sub_codes as $item): ?>
                             <div class="swiper-slide">
-                                <div class="img_box">
-                                    <img src="/data/code/<?= $item['ufile1'] ?>" alt="main">
-                                </div>
-                                <div class="sub_swiper2__text">
-                                    <?= $item['code_name'] ?> <img src="/images/ico/ico_arrow_right_1.svg" alt="">
-                                </div>
+                                <a href="/product-tours/tours-list/<?= $item['code_no'] ?>">
+                                    <div class="img_box">
+                                        <img src="/data/code/<?= $item['ufile1'] ?>" alt="main">
+                                    </div>
+                                    <div class="sub_swiper2__text">
+                                        <?= $item['code_name'] ?> <img src="/images/ico/ico_arrow_right_1.svg" alt="">
+                                    </div>
+                                </a>
                             </div>
                         <?php endforeach; ?>
                     </div>

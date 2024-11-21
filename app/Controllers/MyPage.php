@@ -363,6 +363,11 @@ class MyPage extends BaseController
                         $data['total_price'] += $optionDetail['option_price'];
                     }
                 }
+
+                $sql_cou = " select * from tbl_coupon_history where order_idx='" . $order_idx . "'";
+                $result_cou = $connect->query($sql_cou);
+                $row_cou = $result_cou->getRowArray();
+                $data['row_cou'] = $row_cou;
             }
 
             return view("mypage/invoice_view_item_{$gubun}", $data);

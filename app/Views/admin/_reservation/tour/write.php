@@ -210,7 +210,7 @@
                                         </td>
                                         <th>쿠폰금액</th>
                                         <td>
-                                            <?= number_format($used_coupon_money) ?>원
+                                        <?= number_format($row_cou['used_coupon_money']) ?>원
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -237,9 +237,11 @@
                                         +
                                         <?= number_format($total_price) ?>
                                         옵션
+                                        - 
+                                        <?= number_format($row_cou['used_coupon_money'])?>원(할인쿠폰)
                                         = <?= number_format( ($people_adult_price * $people_adult_cnt) +
                                                                 ($people_kids_price * $people_kids_cnt) +
-                                                                ($people_baby_price * $people_baby_cnt) + $total_price ) ?>
+                                                                ($people_baby_price * $people_baby_cnt) + $total_price - $row_cou['used_coupon_money'] ) ?>
                                         원
 
                                     </td>
