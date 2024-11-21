@@ -604,10 +604,10 @@
     // });
     // });
 
-    $(document).on('click', '.allowBtn', function () {
+    $(document).on('click', '.allowDate', function () {
         $('.sel_date').removeClass('active_');
-        $(this).parent().parent().addClass('active_');
-        let day_ = $(this).parent().parent().data('date');
+        $(this).addClass('active_');
+        let day_ = $(this).data('date');
         spaCharge(day_);
     });
 

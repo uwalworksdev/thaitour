@@ -17,6 +17,8 @@ class MyPage extends BaseController
     private $orderSubModel;
     private $golfOptionModel;
     private $orderOptionModel;
+    private $orderTours;
+    private $optionTours;
 
     public function __construct()
     {
@@ -25,6 +27,8 @@ class MyPage extends BaseController
         $this->member = model('Member');
         $this->travel_contact = model('TravelContactModel');
         $this->travel_qna = model('TravelQnaModel');
+        $this->orderTours = model("OrderTourModel");
+        $this->optionTours = model("OptionTourModel");
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->ordersModel = new \App\Models\OrdersModel();
@@ -342,6 +346,23 @@ class MyPage extends BaseController
 
             if ($gubun == "spa") {
                 $data['option_order'] = $this->orderOptionModel->getOption($order_idx, 'spa');
+            }
+
+            if ($gubun == "tour") {
+                $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
+                $optionsIdx = $data['tour_orders']['options_idx'];
+    
+                $options_idx = explode(',', $optionsIdx);
+    
+                $data['tour_option'] = [];
+                $data['total_price'] = 0;
+                foreach ($options_idx as $idx) {
+                    $optionDetail = $this->optionTours->find($idx);
+                    if ($optionDetail) {
+                        $data['tour_option'][] = $optionDetail;
+                        $data['total_price'] += $optionDetail['option_price'];
+                    }
+                }
             }
 
             return view("mypage/invoice_view_item_{$gubun}", $data);

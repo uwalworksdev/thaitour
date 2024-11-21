@@ -3,7 +3,7 @@
 use CodeIgniter\Router\RouteCollection;
 
 /**
- * @var RouteCollection $routes 
+ * @var RouteCollection $routes
  */
 
 
@@ -149,7 +149,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del_cars_option", "Admin\AdminCarsController::del_cars_option", ['as' => "admin._cars.del_cars_option"]);
         $routes->post("cars_sub_ok", "Admin\AdminCarsController::cars_sub_ok");
         $routes->post("cars_sub_del", "Admin\AdminCarsController::cars_sub_del");
-    }); 
+    });
 
     $routes->group("_tours", static function ($routes) {
         $routes->post("write_ok", "Admin\AdminTourController::write_ok", ['as' => "admin._tours.write_ok"]);
@@ -244,7 +244,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminRoomController::write", ['as' => "admin.room.write"]);
         $routes->post("write_ok", "Admin\AdminRoomController::write_ok", ['as' => "admin.room.write_ok"]);
         $routes->post("del", "Admin\AdminRoomController::del", ['as' => "admin.room.del"]);
-    });  
+    });
 
     // 2024-11-17 수정  
     //$routes->group("_tourSuggestion", static function ($routes) {
@@ -252,8 +252,8 @@ $routes->group("AdmMaster", static function ($routes) {
     //    $routes->get("write", "TourSuggestionController::write");
     //});
 
-    $routes->group("_tourSuggestion", static function ($routes) {  
-        $routes->get("list", "TourSuggestionController::list");  
+    $routes->group("_tourSuggestion", static function ($routes) {
+        $routes->get("list", "TourSuggestionController::list");
         $routes->get("write", "TourSuggestionController::write");
         $routes->get("prd_list", "TourSuggestionController::prd_list");
         $routes->get("goods_find", "TourSuggestionController::goods_find");
@@ -393,6 +393,7 @@ $routes->group("AdmMaster", static function ($routes) {
 $routes->group("ajax", static function ($routes) {
     $routes->post("uploader", "AjaxController::uploader");
     $routes->post("get_travel_types", "AjaxController::get_travel_types");
+    $routes->post("get_best", "AjaxMainController::get_best");
     $routes->get("get_code", "CodeController::ajaxGet");
 });
 
@@ -535,6 +536,11 @@ $routes->group("custom_travel", static function ($routes) {
     $routes->get("item_list", "CustomTravelController::item_list");
     $routes->get("item_write", "CustomTravelController::item_write");
     $routes->post("inquiry_ok", "CustomTravelController::inquiry_ok");
+});
+
+$routes->group("magazines", static function ($routes) {
+    $routes->get("list", "MagazineController::list");
+    $routes->get("detail", "MagazineController::detail");
 });
 
 // $routes->group("/package", static function($routes){

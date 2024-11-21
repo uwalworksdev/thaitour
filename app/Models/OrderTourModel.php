@@ -8,7 +8,7 @@ class OrderTourModel extends Model
 
     protected $primaryKey = 'idx';
 
-    protected $allowedFields = ['order_idx', 'product_idx', 'tours_idx', 'options_idx', 'start_place', 'metting_time', 'id_kakao', 'description', 'end_place', 'r_date'];
+    protected $allowedFields = ['order_idx', 'product_idx', 'tours_idx', 'options_idx', 'time_line', 'start_place', 'metting_time', 'id_kakao', 'description', 'end_place', 'r_date'];
 
     public function findByOrderIdx($order_idx)
     {

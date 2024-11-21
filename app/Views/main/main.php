@@ -156,13 +156,15 @@ $list5 = $MainDisp->List("2905")->findAll();
                     <button class="main_section3__place_btn" data-list="4">치양마이</button>
                 </div>
                 <div class="main_section3__type">
-                    <button class="main_section3__type_btn active">호텔</button>
-                    <button class="main_section3__type_btn">골프</button>
-                    <button class="main_section3__type_btn">투어</button>
+                    <button class="main_section3__type_btn" data-code="1">호텔</button>
+                    <button class="main_section3__type_btn" data-code="2">골프</button>
+                    <button class="main_section3__type_btn" data-code="3">투어</button>
+                    <button class="main_section3__type_btn" data-code="4">스파</button>
+                    <button class="main_section3__type_btn" data-code="5">레스토랑</button>
                 </div>
             </div>
             <div>
-                <div class="best_list best_list_1">
+                <div class="best_list best_list_1" id="best_list_1">
                     <?php foreach ($list1_1 as $item1_1): ?>
                         <?php $img_dir = img_link($item1_1['product_code_1']); ?>
                         <?php $prog_link = prog_link($item1_1['product_code_1']); ?>
@@ -440,6 +442,64 @@ $list5 = $MainDisp->List("2905")->findAll();
             </div>
         </div>
     </section>
+
+    <script>
+        $(document).ready(function () {
+
+            var list = "";
+            var code = "";
+            // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
+            $('.main_section3__place_btn').on('click', function () {
+				list = $(this).data('list');
+
+				$('.main_section3__type_btn').each(function (index) {
+					if ($(this).hasClass('active')) {
+						code = $(this).data('code');
+					}
+				});
+
+				set_best(list, code);
+			});
+
+            $('.main_section3__type_btn').on('click', function () {
+				$('.main_section3__place_btn').each(function (index) {
+					if ($(this).hasClass('active')) {
+						list = $(this).data('list');
+					}
+				});
+
+				code = $(this).data('code');
+				set_best(list, code);
+			});
+
+        });
+    </script>
+
+    <script>
+	function set_best(list, code)
+	{
+			var message   = "";
+			$.ajax({
+
+				url: "/ajax/get_best",
+				type: "POST",
+				data: { 
+					      list : list, 
+					      code : code 
+					  },
+			    dataType: "json",
+				success: function(res) {
+					var message  = res.message;
+					$("#best_list_"+list).html(message);
+				},
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
+			});
+
+    }
+	</script>
 
     <script>
         $('.words_list_item').click(function () {
@@ -868,7 +928,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="main_section_magazine__head__ttl">
                     더투어랩 <span>매거진</span>
                 </div>
-                <a href="#!" class="main_section_magazine__head__more">더보기 +</a>
+                <a href="/magazines/list" class="main_section_magazine__head__more">더보기 +</a>
             </div>
             <div class="magazine_swiper swiper">
                 <div class="swiper-wrapper">

@@ -93,7 +93,6 @@
             <input type=hidden name="paydate" value='<?= $paydate ?>'>
             <input type=hidden name="order_day" value='<?= $order_day ?>'>
 
-
             <div id="contents">
                 <div class="listWrap_noline">
                     <div class="listBottom">
@@ -163,13 +162,13 @@
                             </tr>
 
                             <tr>
-                                <th>등록일</th>
+                                <th>일정</th>
                                 <td>
                                     <?= $order_day ?>
                                 </td>
-                                <th>총할인 금액</th>
+                                <th>등록일</th>
                                 <td>
-                                    <?= number_format($used_coupon_money + $used_mileage_money) ?>원
+                                    <?= $order_r_date ?>
                                 </td>
                             </tr>
 
@@ -177,18 +176,18 @@
                                 <th>총 결제금액</th>
                                 <td>
                                     <?php
-                                    $total_price = 0;
-                                    $total_price = $inital_price * $order_room_cnt * $order_day_cnt;
+                                    $total_price = $order_price;
+                                    $discounted_price = $total_price - $used_coupon_money - $used_mileage_money;
                                     ?>
-                                    <?= number_format($inital_price * $order_room_cnt * $order_day_cnt) ?>원
+                                    <?= number_format($total_price) ?>원
                                     -
                                     <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                     -
                                     <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                    = <?= number_format($total_price - $used_coupon_money - $used_mileage_money) ?>
-                                    원
-
+                                    =
+                                    <?= number_format($discounted_price) ?>원
                                 </td>
+
                                 <th>선금</th>
                                 <td>
                                     <input type="text" id="deposit_price" name="deposit_price"

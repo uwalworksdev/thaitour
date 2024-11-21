@@ -47,6 +47,7 @@
         <input type="hidden" name="description" id="description" value="<?=$description?>">
         <input type="hidden" name="end_place" id="end_place" value="<?=$end_place?>">
         <input type="hidden" name="final_price" id="final_price" value="<?=$final_price?>">
+        <input type="hidden" name="time_line" id="time_line" value="<?=$time_line?>">
         <div class="main-section tour">
             <div class="body_inner">
                 <div class="container-card">

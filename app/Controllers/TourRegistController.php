@@ -729,6 +729,7 @@ class TourRegistController extends BaseController
             $tours_join = $row["tours_join"];
             $tours_hour = $row["tours_hour"];
             $tours_total_hour = $row["tours_total_hour"];
+            $time_line = $row["time_line"];
 
             $product_type = $row["product_type"];
 
@@ -896,6 +897,7 @@ class TourRegistController extends BaseController
             "tours_join" => $tours_join ?? '',
             "tours_hour" => $tours_hour ?? '',
             "tours_total_hour" => $tours_total_hour ?? '',
+            "time_line" => $time_line ?? '',
             "product_points" => $product_points ?? '',
             "product_type" => $product_type ?? '',
             "code_utilities" => $code_utilities ?? '',
