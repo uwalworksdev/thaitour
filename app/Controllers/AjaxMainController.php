@@ -28,16 +28,15 @@ class AjaxMainController extends BaseController {
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.	product_idx = b.	product_idx 
 								  WHERE a.code_no = '$code_no' AND b.product_code_1 = '$product_code_1' ORDER BY a.onum DESC ";
-        write_log("AjaxMainController- ". $sql);
         $rows  = $db->query($sql)->getResultArray();
 
         $msg   = "";
 		foreach ($rows as $item): 
 			     $img_dir   = img_link($item['product_code_1']);  
-			     $prog_link = prog_link($item1['product_code_1']);  
-			     $msg .= '<a href="'. $prog_link . $item1_1['product_idx'] .'" class="best_list_item">';
+			     $prog_link = prog_link($item['product_code_1']);  
+			     $msg .= '<a href="'. $prog_link . $item['product_idx'] .'" class="best_list_item">';
 				 $msg .= '<div class="img_box img_box_3">';
-				 $msg .= '<img src="/data/'. $img_dir .'/'. $item1_1['ufile1'] .'" alt="main">';
+				 $msg .= '<img src="/data/'. $img_dir .'/'. $item['ufile1'] .'" alt="main">';
 				 $msg .= '</div>';
 				 $msg .= '<ul class="breadcrumb">';
 				 $msg .= '<li class="breadcrumb_item">방콕</li>';
@@ -53,8 +52,10 @@ class AjaxMainController extends BaseController {
 			     $msg .= '</a>';
 		endforeach;
 
+        write_log("AjaxMainController- ". $msg);
+
         $output = [
-            "message"  => $sql
+            "message"  => $msg
         ];
 
 		return $this->response->setJSON($output);
