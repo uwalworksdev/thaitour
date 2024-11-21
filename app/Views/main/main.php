@@ -478,11 +478,16 @@ $list5 = $MainDisp->List("2905")->findAll();
 				set_best(list, code);
 			});
 
+            $('.hotel').on('click', function () {
+				var local = $(this).data('id');
+				set_hotel_seq(local);
+			});
+
         });
     </script>
 
     <script>
-        function set_best(list, code) {
+    function set_best(list, code) {
 			
 			$.ajax({
 
@@ -503,6 +508,11 @@ $list5 = $MainDisp->List("2905")->findAll();
 				}			
 			});
 
+    }
+
+	function set_hotel_seq(local);
+    {
+            alert('hotel - '+local);
     }
 	</script>
 
