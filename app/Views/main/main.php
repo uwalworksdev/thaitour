@@ -515,7 +515,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     }
 
-	function set_hotel_seq(local)
+	function set_hotel_seq(local) 
     {
 			$.ajax({
 				url: "/ajax/set_seq",
