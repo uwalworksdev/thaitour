@@ -8,17 +8,6 @@
         function completeOrder() {
             $("#ajax_loader").removeClass("display-none");
 
-            let fullagreement = $("#fullagreement").val().trim();
-            let terms = $("#terms").val().trim();
-            let policy = $("#policy").val().trim();
-            let information = $("#information").val().trim();
-            let guidelines = $("#guidelines").val().trim();
-
-            if ([fullagreement, terms, policy, information, guidelines].includes("N")) {
-                alert("모든 약관에 동의해야 합니다.");
-                return false;
-            }
-
             let formData = new FormData($('#formOrder')[0]);
 
             let url = `<?= route_to('api.spa_.handleBooking') ?>`;
@@ -34,7 +23,7 @@
                 success: function (data, textStatus) {
                     console.log(data);
                     alert(data.message);
-                    window.location.href = "/product-restaurant/completed-order";
+                    // window.location.href = "/product-restaurant/completed-order";
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
