@@ -1351,6 +1351,173 @@ $(function() {
 });
 </script>
 
+
+<script>
+function go_write() {
+    var message  = "";
+    var yoil_idx = "";
+    $.ajax({
+
+        url: "/ajax/ajax.charge_insert_new.php",
+        type: "POST",
+        data: {
+            "product_idx" : '<?=$product_idx?>',
+            "price1"      : $("#price1").val(),
+            "price2"      : $("#price2").val(),
+            "price3"      : $("#price3").val(),
+        },
+        dataType: "json",
+        async: false,
+        cache: false,
+        success: function(data, textStatus) {
+            message = data.message;
+            yoil_idx = data.yoil_idx;
+            $('input[name="yoil_idx"]').val(yoil_idx);
+            alert(message);
+            //$("#priceForm").submit();
+			location.reload();
+        },
+        error: function(request, status, error) {
+            alert("code = " + request.status + " message = " + request.responseText + " error = " +
+                error); // 실패 시 처리
+        }
+
+    });
+
+}
+
+$(document).ready(function() {
+    const $popup = $('#popup');
+
+    $('#open-popup-btn').on('click', function() {
+        $popup.removeClass('hidden');
+    });
+
+    $('#action-popup-btn,#action-popup-btn-n ').on('click', function() {
+        $popup.addClass('hidden');
+		window.location.reload();
+    });
+
+    $('#close-popup-btn').on('click', function() {
+        $popup.addClass('hidden');
+    });
+
+    $('#seat-setting-btn, #seat-setting-btn-n').on('click', function() {
+
+            var f = document.frm;
+
+            var seat_data   = $(f).serialize();
+            var save_result = "";
+            $.ajax({
+                type: "POST",
+                data: seat_data,
+                url: "/ajax/ajax.seat_update.php",
+                cache: false,
+                async: false,
+                success: function (data, textStatus) {
+                    save_result = data;
+                    var obj = jQuery.parseJSON(save_result);
+                    var message = obj.message;
+                    alert(message); 
+                    //location.href = '/AdmMaster/_confirm/write.php?conf_no=' + $("#conf_no").val();
+                    // 응답 데이터로 행 추가
+                    /*
+                    $('#conf_no').val(confNo);
+                    $('#comp_name').val(comp_name);
+                    $('#user_name').val(user_name);
+                    $('#user_phone').val(user_phone);
+                    $('#user_email').val(user_email);
+                    $('#confTableBody').html(addRow);
+                    */
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+    });
+
+    $('#seat-all-setting').on('click', function() {
+
+
+		if ($("#from").val() == "") {
+			alert('시작일자를 선택해 주세요.');
+			$("#from").focus();
+			return false;
+		}        
+
+		if ($("#to").val() == "") {
+			alert('종료일자를 선택해 주세요.');
+			$("#to").focus();
+			return false;
+		}        
+
+        var seat_cnt = $('.seat_1').length;
+		if(seat_cnt == 0) {
+			alert('해당기간을 검색 후 진행주세요.');
+			return false;
+		}        
+
+		if (!confirm("일괄적용하면 기존의 자료가 변경 됩니다.\n계속 진행 하시겠습니까? "))
+			return false;
+
+        $('.seat_1').val($("#available_cnt").val());
+/*
+		$.ajax({
+            url: '/ajax/ajax.seat_setting.php',  // 데이터를 전송할 서버의 URL
+            type: 'POST',  // HTTP 요청 방식
+            data: {
+                "product_idx" : $("#product_idx").val(),
+                "from_date"   : $("#from").val(),
+                "to_date"     : $("#to").val()
+            },
+            success: function (rs) {  // 요청 성공 시 실행되는 함수
+                const data   = JSON.parse(rs);
+                var   addRow = data.addRow;
+                $('#reservation-table').html(addRow);
+            },
+            error: function (xhr, status, error) {  // 요청 실패 시 실행되는 함수
+                $('#response').html('<p>오류가 발생했습니다. 다시 시도해 주세요.</p>');
+            }
+        });
+*/
+    });
+
+    $(window).on('click', function(event) {
+        if ($(event.target).is($popup)) {
+            $popup.addClass('hidden');
+        }
+    });
+
+    // Get the first day of the current month
+    const startOfMonth = moment().startOf('month');
+    // Get the current date
+    const currentDate = moment();
+
+    $("#start-date").daterangepicker({
+        singleDatePicker: true,
+        startDate: moment().startOf('month'),
+        autoApply: true
+    });
+
+    $("#end-date").daterangepicker({
+        singleDatePicker: true,
+        startDate: moment(),
+        autoApply: true
+    });
+
+    // Optional: Synchronize date ranges between start and end
+    $("#start-date").on('apply.daterangepicker', function(ev, picker) {
+        var startDate = picker.startDate;
+        $("#end-date").daterangepicker({
+            singleDatePicker: true,
+            minDate: startDate,
+            startDate: startDate,
+            autoApply: true
+        });
+    });
+});
+</script>
+
 <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 
 <?= $this->endSection() ?>
