@@ -27,7 +27,7 @@ class AjaxMainController extends BaseController {
 
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.	product_idx = b.	product_idx 
-								  WHERE a.code_no = '$code_no' AND b.product_code_1 = '$product_code_1' ORDER BY a.onum DESC";
+								  WHERE a.code_no = '$code_no' AND b.product_code_1 = '$product_code_1' ORDER BY a.onum DESC ";
         write_log("AjaxMainController- ". $sql);
         $rows  = $db->query($sql)->getResultArray();
 
@@ -54,7 +54,7 @@ class AjaxMainController extends BaseController {
 		endforeach;
 
         $output = [
-            "message"  => $msg
+            "message"  => $sql
         ];
 
 		return $this->response->setJSON($output);
