@@ -3999,6 +3999,10 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     align-content: center;
 }
 
+.customer-form-page .container-card .item-info-r.red {
+    color: red;
+}
+
 .customer-form-page .container-card .item-info-r span:first-child {
     width: 130px;
     line-height: 1.3rem;
@@ -4157,6 +4161,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .customer-form-page .container-card .item-info-r.font-bold-cus {
     font-weight: bold;
+    font-size: 18px;
 }
 
 .customer-form-page .container-card .below-des-price {
@@ -4739,6 +4744,32 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     color: #999999;
     margin-top: 5px;
     display: block;
+}
+
+.order-form-page .discount_spe {
+    max-width: 150px;
+}
+
+.order-form-page .flex_cou .btn_coupon_shows {
+    height: 52px;
+    width: 100px;
+    border: 1px solid #757575;
+    border-radius: 2px;
+    margin-right: 20px;
+    font-size: 18px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.order-form-page .flex_cou {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.order-form-page .flex_cou .note {
+    color: #454545;
 }
 
 .order-form-page .two-table-tb .lb-tb-cus {

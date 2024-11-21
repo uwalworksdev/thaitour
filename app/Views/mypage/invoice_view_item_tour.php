@@ -66,11 +66,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="15%" class="subject">예약시간</td>
+						<td col width="10%" class="subject">예약시간</td>
 						<td col width="25%" class="subject">홀수</td>
-						<td col width="15%" class="subject">전체 옵션</td>
+						<td col width="25%" class="subject">전체 옵션</td>
 						<td col width="15%" class="subject">총 결제금액</td>
-						<td col width="15%" class="subject">실예약금액</td>
+						<td col width="10%" class="subject">실예약금액</td>
 
 					</tr>
 					<tr>
@@ -117,9 +117,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								+
 								<?= number_format($total_price) ?>
 								옵션
+								- 
+                                <?= number_format($row_cou['used_coupon_money'])?>원(할인쿠폰)
 								= <?= number_format( ($people_adult_price * $people_adult_cnt) +
 														($people_kids_price * $people_kids_cnt) +
-														($people_baby_price * $people_baby_cnt) + $total_price ) ?>
+														($people_baby_price * $people_baby_cnt) + $total_price - $row_cou['used_coupon_money'] ) ?>
 								원
 							</p>
 						</td>
