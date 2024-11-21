@@ -33,6 +33,7 @@ class AjaxMainController extends BaseController {
 
 		$sql  .= "ORDER BY a.onum DESC ";
         write_log("AjaxMainController- ". $sql);
+/*
         $rows  = $db->query($sql)->getResultArray();
 
         $msg   = "";
@@ -56,9 +57,9 @@ class AjaxMainController extends BaseController {
 				 $msg .= '<div class="prd_price_thai">6,000 <span>바트</span></div>';
 			     $msg .= '</a>';
 		endforeach;
-
+*/
         $output = [
-            "message"  => $msg
+            "message"  => $sql
         ];
 
 		return $this->response->setJSON($output);
