@@ -228,7 +228,7 @@
                 overflow: unset;
             }
         </style>
-        <section class="sub_section3 thailand_hotel_ sub_section5_">
+        <section class="sub_section3 thailand_hotel_ sub_section5_ custom-hotel-mo">
             <div class="body_inner">
                 <div class="sub_section3__head">
                     <div class="sub_section3__head__ttl">
