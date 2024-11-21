@@ -423,7 +423,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                                     <div class="img_box img_box_2">
                                         <img src="/data/product/<?= $item2['ufile1'] ?>" alt="main">
                                     </div>
-                                    <div class="prd_name"><?= $item2['product_name'] ?></div>
+                                    <div class="prd_name"><?= $item3['product_name'] ?></div>
                                     <div class="prd_price_ko"><?= number_format($item2['original_price']) ?>
                                         <span>원</span></div>
                                     <div class="prd_price_thai">6,000 <span>바트</span></div>
