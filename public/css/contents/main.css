@@ -467,6 +467,49 @@
     color: #17469E;
 }
 
+.place_item_golf {
+    border-width: 1px;
+    border-color: #dbdbdb;
+    border-style: solid;
+    height: 34px;
+    font-size: 16px;
+    font-family: "Pretendard";
+    color: #757575;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.place_item_golf.active {
+    border-color: #17469E;
+    color: #17469E;
+}
+
+
+.place_item_hotel {
+    border-width: 1px;
+    border-color: #dbdbdb;
+    border-style: solid;
+    height: 34px;
+    font-size: 16px;
+    font-family: "Pretendard";
+    color: #757575;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.place_item_hotel.active {
+    border-color: #17469E;
+    color: #17469E;
+}
+
 .main_hot__head__right {
 
 }

@@ -396,10 +396,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         1주일간 예약순위 : <span>호텔</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <a href="#!" class="place_item hotel active" data-id="290201">방콕</a>
-                        <a href="#!" class="place_item hotel" data-id="290202">파타야</a>
-                        <a href="#!" class="place_item hotel" data-id="290203">푸켓</a>
-                        <a href="#!" class="place_item hotel" data-id="290204">치앙마이</a>
+                        <a href="#!" class="place_item_hotel active" data-id="290201">방콕</a>
+                        <a href="#!" class="place_item_hotel" data-id="290202">파타야</a>
+                        <a href="#!" class="place_item_hotel" data-id="290203">푸켓</a>
+                        <a href="#!" class="place_item_hotel" data-id="290204">치앙마이</a>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -478,12 +478,12 @@ $list5 = $MainDisp->List("2905")->findAll();
 				set_best(list, code);
 			});
 
-            $('.hotel').on('click', function () {
+            $('.place_item_hotel').on('click', function () {
 				var local = $(this).data('id');
 				set_hotel_seq(local);
 			});
 
-            $('.golf').on('click', function () {
+            $('.place_item_golf').on('click', function () {
 				var local = $(this).data('id');
 				set_golf_seq(local);
 			});
@@ -572,10 +572,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         1주일간 예약순위 : <span>골프</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <div class="place_item golf active" data-id="290101">방콕</div>
-                        <div class="place_item golf" data-id="290102">파타야</div>
-                        <div class="place_item golf" data-id="290103">푸켓</div>
-                        <div class="place_item golf" data-id="290104">치앙마이</div>
+                        <div class="place_item_golf active" data-id="290101">방콕</div>
+                        <div class="place_item_golf" data-id="290102">파타야</div>
+                        <div class="place_item_golf" data-id="290103">푸켓</div>
+                        <div class="place_item_golf" data-id="290104">치앙마이</div>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
