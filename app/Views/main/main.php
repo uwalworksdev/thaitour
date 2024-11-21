@@ -482,8 +482,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     <script>
         function set_best(list, code) {
-            /*
-			var message   = ""; 
+			
 			$.ajax({
 
 				url: "/ajax/get_best",
@@ -502,7 +501,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 						alert('Error: ' + error);
 				}			
 			});
-            */
+
     }
 	</script>
 
