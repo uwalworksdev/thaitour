@@ -158,6 +158,17 @@ class SpaController extends BaseController
 
             $order_gubun = $this->request->getPost('order_gubun') ?? 'spa';
 
+            $people_adult_cnt = 0;
+
+            foreach ($adultQty as $key => $value) {
+                $people_adult_cnt += intval($value);
+            }
+
+            $people_kids_cnt = 0;
+            foreach ($childrenQty as $key => $value) {
+                $people_kids_cnt += intval($value);
+            }
+
             $data = [
                 'order_user_name' => $order_user_name,
                 'order_user_email' => encryptField($order_user_email, 'encode'),
@@ -166,8 +177,8 @@ class SpaController extends BaseController
                 'user_id' => $member_idx,
                 'm_idx' => $member_idx,
                 'order_day' => $day_,
-                'people_adult_cnt' => $adultQty,
-                'people_kids_cnt' => $childrenQty,
+                'people_adult_cnt' => $people_adult_cnt,
+                'people_kids_cnt' => $people_kids_cnt,
                 'inital_price' => $totalPrice,
                 'order_price' => $totalPrice,
                 'order_memo' => $order_memo,

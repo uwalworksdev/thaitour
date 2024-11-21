@@ -138,7 +138,7 @@
                 </div>
                 <div>
                     <ul class="flex_header_top">
-                        <li><a href="/center/insurance">여행자 보험</a></li>
+                        <li><a href="#">여행자 보험</a></li>
                         <li><a href="/event/event_list">이벤트</a></li>
                         <li><a href="/mypage/discount">여행 쿠폰</a></li>
                         <li><a href="/community/main">태국뉴스</a></li>
@@ -393,10 +393,10 @@
         </div>
     </div>
     <div class="flex_header_mo_bots mtb font-26 only_web">
-        <a href="">여행자 보험 </a>
-        <a href="">이벤트</a>
-        <a href="">여행 쿠폰</a>
-        <a href="">태국뉴스</a>
+        <a href="#">여행자 보험 </a>
+        <a href="#">이벤트</a>
+        <a href="#">여행 쿠폰</a>
+        <a href="#">태국뉴스</a>
         <a href="#">여행후기</a>
     </div>
 </header>
