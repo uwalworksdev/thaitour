@@ -28,8 +28,8 @@ class AjaxMainController extends BaseController {
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
 								  WHERE 1=1 ";
-        if($code_no)        $sql .= "AND a.code_no        = '$code_no' "; 
-		if($product_code_1) $sql .= "AND b.product_code_1 = '$product_code_1' ": 
+        if($code_no)        $sql .= " AND a.code_no        = '$code_no' "; 
+		if($product_code_1) $sql .= " AND b.product_code_1 = '$product_code_1' ": 
 
 		$sql  .= "ORDER BY a.onum DESC ";
         write_log("AjaxMainController- ". $sql);
