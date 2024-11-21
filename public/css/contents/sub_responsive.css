@@ -1999,4 +1999,8 @@
   .custom-hotel-mo .prd_info {
     flex-wrap: wrap;
   }
+
+  .main_page_01 .banner_section_main_page .box-text {
+    text-shadow: 0.2rem 0.2rem #000;
+  }
 }
