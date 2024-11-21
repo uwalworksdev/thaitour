@@ -558,7 +558,7 @@ $links = "list";
                                 }
                             </script>
 
-                            <tr>
+                            <tr> 
                                     <td colspan="4">
                                         가격
                                     </td>
