@@ -7,10 +7,10 @@
 </head>
 <body>
     <label for="start-date">시작일: </label>
-    <input type="text" id="start-date" placeholder="YYYY-MM-DD">
+    <input type="text" id="s_date" placeholder="YYYY-MM-DD">
     
     <label for="end-date">종료일: </label>
-    <input type="text" id="end-date" placeholder="YYYY-MM-DD">
+    <input type="text" id="e_date" placeholder="YYYY-MM-DD">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
@@ -21,8 +21,8 @@
             $.datepicker.setDefaults($.datepicker.regional['ko']);
             
             // 시작일과 종료일 초기화
-            var startDatePicker = $("#start-date");
-            var endDatePicker = $("#end-date");
+            var startDatePicker = $("#s_date");
+            var endDatePicker = $("#e_date");
             
             startDatePicker.datepicker({
                 dateFormat: "yy-mm-dd",
