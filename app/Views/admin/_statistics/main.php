@@ -346,7 +346,7 @@
       <li>
         <div class="ttl">
           <strong>공지사항</strong
-          ><a href="/AdmMaster/_bbs/board_list.php?code=b2b_notice">더보기 <i> &gt;</i></a>
+          ><a href="/AdmMaster/_bbs/board_list?code=b2b_notice">더보기 <i> &gt;</i></a>
         </div>
         <ul class="bod_list">
 		<?php

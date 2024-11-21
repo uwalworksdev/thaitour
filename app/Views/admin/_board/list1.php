@@ -91,7 +91,7 @@
                         <td><img src="../../data/bbs/<?= $row['ufile1'] ?: "panda.jpg" ?>" /></td>
                     <?php endif; ?>
                     <td class="<?= $code != "hashtag" ? "tal" : "" ?> bold txt_black">
-                        <?= $rstr ?><a href="board_write?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&bbs_idx=<?= $row['bbs_idx'] ?>&pg=<?= $pg ?>">
+                        <?= $rstr ?><a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&pg=<?= $pg ?>">
                             <?= $recStr ?> <?= $row['subject'] ?> <?= $secureStr ?> <?= $c_cnt ?>
                         </a>
                     </td>
@@ -104,7 +104,7 @@
                         <td><?= $row['r_date'] ?></td>
                     <?php endif; ?>
                     <td>
-                        <a href="board_write?code=<?= esc($code) ?>&bbs_idx=<?= $row['bbs_idx'] ?>"><img src="/images/admin/common/ico_setting2.png"></a>
+                        <a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?code=<?= esc($code) ?>"><img src="/images/admin/common/ico_setting2.png"></a>
                         <a href="javascript:del_it('<?= $row['bbs_idx'] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>
                     </td>
                 </tr>

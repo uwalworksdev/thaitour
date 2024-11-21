@@ -11,12 +11,12 @@ class Bbs extends Model
 
     protected $primaryKey = 'bbs_idx';
 
-    protected $allowedFields = [];
-
-    protected function initialize()
-    {
-
-    }
+    protected $allowedFields = [
+        "code", "category", "category1", "subject", "subject_e", "writer", "email", "user_id", "m_idx", "passwd", "notice_yn", "secure_yn", 
+        "recomm_yn", "contents", "simple", "displays", "hit", "cmt_cnt", "country_code", "url", "s_date", "e_date", "reply", "ufile1", "rfile1", 
+        "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "b_ref", "b_step", "b_level", 
+        "ip_address", "r_date", "status", "onum", "seq", "encode",
+    ];
 
     /**
      * 게시글 출력
@@ -88,82 +88,22 @@ class Bbs extends Model
     /**
      * 게시글 등록
      */
-    public function InfoInsert($code, $data)
+    public function InfoInsert($data)
     {
-        try {
-            switch ($code) {
-                case in_array($code, ['license', 'certified', 'brochure']):
-                    $this->allowedFields = ['title', 'code', 'category', 'lan'];
-                    break;
-                case in_array($code, ['ultrapure', 'waterTreatment', 'wasteWater', 'seaWater', 'report', 'notice']):
-                    $this->allowedFields = ['code', 'topic1', 'topic2', 'topic3', 'content', 'title', 'writer', 'url', 'lan'];
-                    if ($code == 'report') {
-                        $this->allowedFields[] = 'reg_date';
-                    }
-                    break;
-                case in_array($code, ['notice', 'publicNotice']):
-                    $this->allowedFields = ['code', 'content', 'title', 'writer', 'lan'];
-                    break;
-                default:
-                    throw new Exception("게시글 코드가 없습니다.");
-                    break;
-            }
-            $insertId = $this->insert($data);
-            $resultArr['result'] = true;
-            $resultArr['insertId'] = $insertId;
-        } catch (Exception $err) {
-            $resultArr['result'] = false;
-            $resultArr['message'] = $err->getMessage();
-        } finally {
-            return $resultArr;
-        }
+        $insertId = $this->insert($data);
+        $resultArr['result'] = true;
+        $resultArr['insertId'] = $insertId;
     }
     /**
      * 게시글 업데이트
      * @param int $idx 게시글 식별번호
      * @param string $code 게시글 코드
      * @param array $data 업데이트할 정보
-     * @return array 
+     * @return boolean 
      */
-    public function InfoUpdate($idx, $code, $data)
+    public function InfoUpdate($idx, $data)
     {
-        try {
-            switch ($code) {
-                case in_array($code, ['license', 'certified', 'brochure']):
-                    $this->allowedFields = ['title', 'category', 'lan'];
-                    $updateResult = $this->update($idx, $data);
-                    if (!$updateResult) {
-                        throw new Exception("수정 과정 중 오류가 발생했습니다.");
-                    }
-                    break;
-                case in_array($code, ['ultrapure', 'waterTreatment', 'wasteWater', 'seaWater', 'report', 'notice']):
-                    $this->allowedFields = ['code', 'topic1', 'topic2', 'topic3', 'content', 'title', 'url', 'lan'];
-                    if ($code == 'report') {
-                        $this->allowedFields[] = 'reg_date';
-                    }
-                    $updateResult = $this->update($idx, $data);
-                    if (!$updateResult) {
-                        throw new Exception("수정 과정 중 오류가 발생했습니다.");
-                    }
-                    break;
-                case in_array($code, ['notice', 'publicNotice']):
-                    $this->allowedFields = ['content', 'title'];
-                    $updateResult = $this->update($idx, $data);
-                    if (!$updateResult) {
-                        throw new Exception("수정 과정 중 오류가 발생했습니다.");
-                    }
-                    break;
-                default:
-                    throw new Exception("게시글 코드가 없습니다.");
-                    break;
-            }
-            $resultArr['result'] = true;
-        } catch (Exception $err) {
-            $resultArr['result'] = false;
-            $resultArr['message'] = $err->getMessage();
-        } finally {
-            return $resultArr;
-        }
+        return $this->update($idx, $data);
     }
     /**
      * 이미지 경로 치환된 내용 재 업데이트
