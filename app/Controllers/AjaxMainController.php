@@ -34,10 +34,10 @@ class AjaxMainController extends BaseController {
         $msg   = "";
 		foreach ($rows as $item): 
 			     $img_dir   = img_link($item['product_code_1']);  
-			     $prog_link = prog_link($item1['product_code_1']);  
-			     $msg .= '<a href="'. $prog_link . $item1_1['product_idx'] .'" class="best_list_item">';
+			     $prog_link = prog_link($item['product_code_1']);  
+			     $msg .= '<a href="'. $prog_link . $item['product_idx'] .'" class="best_list_item">';
 				 $msg .= '<div class="img_box img_box_3">';
-				 $msg .= '<img src="/data/'. $img_dir .'/'. $item1_1['ufile1'] .'" alt="main">';
+				 $msg .= '<img src="/data/'. $img_dir .'/'. $item['ufile1'] .'" alt="main">';
 				 $msg .= '</div>';
 				 $msg .= '<ul class="breadcrumb">';
 				 $msg .= '<li class="breadcrumb_item">방콕</li>';
@@ -54,7 +54,7 @@ class AjaxMainController extends BaseController {
 		endforeach;
 
         $output = [
-            "message"  => $sql
+            "message"  => $msg
         ];
 
 		return $this->response->setJSON($output);
