@@ -1784,13 +1784,13 @@ class Product extends BaseController
         $data['adult_price_bath'] = round($data['people_adult_price'] / (float)($this->setting['baht_thai'] ?? 0));
         $data['kids_price_bath'] = round($data['people_kids_price'] / (float)($this->setting['baht_thai'] ?? 0));
         $data['baby_price_bath'] = round($data['people_baby_price'] / (float)($this->setting['baht_thai'] ?? 0));
-        $data['total_price_product'] = ($data['people_adult_cnt'] * $data['people_adult_price']) + ($data['people_kids_cnt'] * $data['people_kids_price']) + ($data['people_baby_cnt'] * $data['people_baby_price']);
-        $data['total_price_product_bath'] = ($data['people_adult_cnt'] * $data['adult_price_bath']) + ($data['people_kids_cnt'] * $data['kids_price_bath']) + ($data['people_baby_cnt'] * $data['baby_price_bath']);
-        $data['adult_price_total'] = ($data['people_adult_cnt'] * $data['people_adult_price']);
-        $data['kids_price_total'] = ($data['people_kids_cnt'] * $data['people_kids_price']);
-        $data['baby_price_total'] = ($data['people_baby_cnt'] * $data['people_baby_price']);        
+        $data['total_price_product'] = $data['people_adult_price'] + $data['people_kids_price'] + $data['people_baby_price'];
+        $data['total_price_product_bath'] = ( $data['adult_price_bath']) + ($data['kids_price_bath']) + ($data['baby_price_bath']);
+        $data['adult_price_total'] = ( $data['people_adult_price']);
+        $data['kids_price_total'] = ($data['people_kids_price']);
+        $data['baby_price_total'] = ($data['people_baby_price']);        
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
-        $data['final_discount'] = $this->request->getVar('final_discount');
+        $data['final_discount'] = (float)($this->request->getVar('final_discount') ?? 0);
         $data['final_discount_bath'] = round($data['final_discount'] / (float)($this->setting['baht_thai'] ?? 0));
 
         $data['product'] = $this->productModel->find($data['product_idx']);
