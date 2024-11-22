@@ -1817,13 +1817,13 @@ class Product extends BaseController
         $data['adult_price_bath'] = round($data['people_adult_price'] / (float)($this->setting['baht_thai'] ?? 0));
         $data['kids_price_bath'] = round($data['people_kids_price'] / (float)($this->setting['baht_thai'] ?? 0));
         $data['baby_price_bath'] = round($data['people_baby_price'] / (float)($this->setting['baht_thai'] ?? 0));
-        $data['total_price_product'] = ($data['people_adult_cnt'] * $data['people_adult_price']) + ($data['people_kids_cnt'] * $data['people_kids_price']) + ($data['people_baby_cnt'] * $data['people_baby_price']);
-        $data['total_price_product_bath'] = ($data['people_adult_cnt'] * $data['adult_price_bath']) + ($data['people_kids_cnt'] * $data['kids_price_bath']) + ($data['people_baby_cnt'] * $data['baby_price_bath']);
-        $data['adult_price_total'] = ($data['people_adult_cnt'] * $data['people_adult_price']);
-        $data['kids_price_total'] = ($data['people_kids_cnt'] * $data['people_kids_price']);
-        $data['baby_price_total'] = ($data['people_baby_cnt'] * $data['people_baby_price']);        
+        $data['total_price_product'] = $data['people_adult_price'] + $data['people_kids_price'] + $data['people_baby_price'];
+        $data['total_price_product_bath'] = ( $data['adult_price_bath']) + ($data['kids_price_bath']) + ($data['baby_price_bath']);
+        $data['adult_price_total'] = ( $data['people_adult_price']);
+        $data['kids_price_total'] = ($data['people_kids_price']);
+        $data['baby_price_total'] = ($data['people_baby_price']);        
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
-        $data['final_discount'] = $this->request->getVar('final_discount');
+        $data['final_discount'] = (float)($this->request->getVar('final_discount') ?? 0);
         $data['final_discount_bath'] = round($data['final_discount'] / (float)($this->setting['baht_thai'] ?? 0));
 
         $data['product'] = $this->productModel->find($data['product_idx']);
@@ -2135,7 +2135,7 @@ class Product extends BaseController
         try {
             $pg = $this->request->getVar('pg') ?? 1;
             $search_keyword = $this->request->getVar('search_keyword') ?? "";
-
+            $search_word = $this->request->getVar('search_word') ?? "";
             $perPage = 5;
 
             $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
@@ -2156,20 +2156,60 @@ class Product extends BaseController
 
             foreach ($products['items'] as $key => $product) {
 
-                if (empty($search_keyword) || strpos($search_keyword, 'all') !== false) {
-                    foreach ($arr_code_list as $h_code) {
-
-                        if (strpos($product['product_code_list'], $h_code) !== false) {
-                            $hotel_code = $h_code;
-                            break;
-                        }
-                    }
-                }
-
-                $codeTree = $this->codeModel->getCodeTree($hotel_code);
+                $code = $product['product_code_1'];
+                if ($product['product_code_2']) $code = $product['product_code_2'];
+                if ($product['product_code_3']) $code = $product['product_code_3'];
+    
+                $codeTree = $this->codeModel->getCodeTree($product['product_code_1']);
+    
                 $products['items'][$key]['codeTree'] = $codeTree;
-
+    
+                $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+    
+                $products['items'][$key]['total_review'] = $productReview['total_review'];
+                $products['items'][$key]['review_average'] = $productReview['avg'];
             }
+
+            if (!empty($search_keyword) && $search_keyword !== "all") {
+                $keywords = explode(',', $search_keyword);
+                $filteredProducts = array_filter($products['items'], function ($product) use ($keywords) {
+                    $productKeywords = explode(',', $product['keyword']);
+                    return array_intersect($keywords, $productKeywords);
+                });
+                $products['items'] = $filteredProducts;
+            }
+
+
+            $keyWordAll = $this->productModel->getKeyWordAll(1301);
+
+            $keyWordActive = array_search($search_keyword, $keyWordAll) ?? 0;
+
+            $productByKeyword = $this->productModel->findProductPaging([
+                'product_code_1' => 1301,
+                'search_txt' => $keyWordAll[$keyWordActive] ?? "",
+                'search_category' => 'keyword'
+            ], $this->scale, 1);
+
+            foreach ($productByKeyword['items'] as $key => $product) {
+
+                $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+                $fresult9 = $this->db->query($fsql9);
+                $fresult9 = $fresult9->getRowArray();
+
+                $productByKeyword['items'][$key]['level_name'] = $fresult9['code_name'];
+            }
+
+            if (!empty($search_word)) {
+                $products['items'] = array_filter($products['items'], function ($product) use ($search_word) {
+                    $search_word = strtolower($search_word);
+                    $product_name = strtolower($product['product_name'] ?? "");
+                    $product_keywords = strtolower($product['keyword'] ?? "");
+            
+                    return strpos($product_name, $search_word) !== false || strpos($product_keywords, $search_word) !== false;
+                });
+            }
+
+            $products['nTotalCount'] = count($products['items']);
 
             $data = [
                 'codes' => $codes,
@@ -2178,6 +2218,11 @@ class Product extends BaseController
                 'code_name' => $parent_code_name,
                 'perPage' => $perPage,
                 'tab_active' => '1',
+                'keyWordAll' => $keyWordAll,
+                'search_keyword' => $search_keyword,
+                'keyWordActive' => $keyWordAll[$keyWordActive],
+                'productByKeyword' => $productByKeyword,
+                'search_word' => $search_word,
             ];
 
             return $this->renderView('tours/list-tour', $data);

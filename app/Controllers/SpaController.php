@@ -233,26 +233,37 @@ class SpaController extends BaseController
 
             $order_idx = $this->orderModel->getInsertID();
 
-            $countA = count($order_a_first_name);
-            for ($i = 0; $i < $countA; $i++) {
-                $this->orderSubModel->insert([
-                    'order_gubun' => 'adult',
-                    'order_idx' => $order_idx,
-                    'product_idx' => $data['product_idx'],
-                    'order_first_name' => encryptField($order_a_first_name[$i], 'encode'),
-                    'order_last_name' => $order_a_last_name[$i],
-                ]);
+//            $ORDER = $this->orderModel->getOrderInfo($order_idx);
+//
+//            return $this->response->setJSON([
+//                'result' => false,
+//                'message' => $ORDER['inital_price']
+//            ])->setStatusCode(400);
+
+            if ($order_a_first_name) {
+                $countA = count($order_a_first_name);
+                for ($i = 0; $i < $countA; $i++) {
+                    $this->orderSubModel->insert([
+                        'order_gubun' => 'adult',
+                        'order_idx' => $order_idx,
+                        'product_idx' => $data['product_idx'],
+                        'order_first_name' => encryptField($order_a_first_name[$i], 'encode'),
+                        'order_last_name' => encryptField($order_a_last_name[$i], 'encode'),
+                    ]);
+                }
             }
 
-            $countC = count($order_c_first_name);
-            for ($i = 0; $i < $countC; $i++) {
-                $this->orderSubModel->insert([
-                    'order_gubun' => 'kids',
-                    'order_idx' => $order_idx,
-                    'product_idx' => $data['product_idx'],
-                    'order_first_name' => encryptField($order_c_first_name[$i], 'encode'),
-                    'order_last_name' => encryptField($order_c_last_name[$i], 'encode'),
-                ]);
+            if ($order_c_first_name) {
+                $countC = count($order_c_first_name);
+                for ($i = 0; $i < $countC; $i++) {
+                    $this->orderSubModel->insert([
+                        'order_gubun' => 'kids',
+                        'order_idx' => $order_idx,
+                        'product_idx' => $data['product_idx'],
+                        'order_first_name' => encryptField($order_c_first_name[$i], 'encode'),
+                        'order_last_name' => encryptField($order_c_last_name[$i], 'encode'),
+                    ]);
+                }
             }
 
             if (isset($option_idx)) {
