@@ -81,6 +81,10 @@
 }
 
 .search_words_list li {
+}
+
+.search_words_list li a {
+    display: block;
     padding: 13px 20px;
     cursor: pointer;
 }
