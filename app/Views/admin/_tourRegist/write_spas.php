@@ -1685,19 +1685,15 @@
         }
 
         function del_it(idx) {
-            let uri = `<?= route_to('admin.api.spa_.del') ?>`
-
             if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
                 return false;
 
             let message = "";
             $.ajax({
 
-                url: uri,
-                type: "POST",
-                data: {
-                    "product_idx": idx
-                },
+                url: "/AdmMaster/_tourRegist/del_product",
+                type: "DELETE",
+                data: "product_idx[]=" + idx,
                 dataType: "json",
                 async: false,
                 cache: false,

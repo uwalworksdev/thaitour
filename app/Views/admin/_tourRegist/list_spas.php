@@ -608,15 +608,14 @@
         }
 
         function del_it(product_idx) {
-            let url = "<?= route_to('admin.api.spa_.del') ?>";
-
             if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
                 return;
             }
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: url,
-                type: "POST",
+                url: "/AdmMaster/_tourRegist/del_product",
+                type: "DELETE",
+                dataType: "json",
                 data: "product_idx[]=" + product_idx,
                 error: function (request, status, error) {
                     //통신 에러 발생시 처리

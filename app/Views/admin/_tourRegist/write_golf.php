@@ -458,7 +458,7 @@
                                         var message = "";
                                         $.ajax({
 
-                                            url: "./ajax.prod_copy_golf.php",
+                                            url: "/AdmMaster/_tourRegist/prod_copy",
                                             type: "POST",
                                             data: {
                                                 "product_idx": idx
@@ -467,9 +467,12 @@
                                             async: false,
                                             cache: false,
                                             success: function (data, textStatus) {
-                                                message = data.message;
-                                                alert(message);
-                                                location.reload();
+                                                alert(data.message);
+                                                if (data.status == "success") {
+                                                    const searchParams = new URLSearchParams(window.location.search);
+                                                    searchParams.set('product_idx', data.newProductIdx);
+                                                    location.href = window.location.pathname + '?' + searchParams.toString();
+                                                }
                                             },
                                             error: function (request, status, error) {
                                                 alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
@@ -1238,11 +1241,9 @@
                 var message = "";
                 $.ajax({
 
-                    url: "./ajax.prod_del.php",
-                    type: "POST",
-                    data: {
-                        "product_idx": idx
-                    },
+                    url: "/AdmMaster/_tourRegist/del_product",
+                    type: "delete",
+                    data: "product_idx[]=" + idx,
                     dataType: "json",
                     async: false,
                     cache: false,

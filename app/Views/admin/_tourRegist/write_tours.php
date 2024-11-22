@@ -1853,11 +1853,9 @@
             var message = "";
             $.ajax({
 
-                url: "./ajax.prod_del.php",
-                type: "POST",
-                data: {
-                    "product_idx": idx
-                },
+                url: "/AdmMaster/_tourRegist/del_product",
+                type: "DELETE",
+                data: "product_idx[]=" + idx,
                 dataType: "json",
                 async: false,
                 cache: false,
@@ -1952,7 +1950,7 @@
     </script>
     <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
-    <form id="listForm" action="./list_tours.php">
+    <form id="listForm" action="/AdmMaster/_tourRegist/list_tours">
         <input type="hidden" name="orderBy" value="<?= $orderBy ?>">
         <input type="hidden" name="pg" value="<?= $pg ?>">
         <input type="hidden" name="product_idx" value="<?= $product_idx ?>">

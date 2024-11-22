@@ -71,4 +71,12 @@ class GolfInfoModel extends Model
 
         return $this->where("product_idx", $id)->set($filteredData)->update();
     }
+
+    public function copyInfo($originProductIdx, $targetProductIdx)
+    {
+        $info = $this->where("product_idx", $originProductIdx)->get()->getRowArray();
+        $info["product_idx"] = $targetProductIdx;
+        unset($info["info_idx"]);
+        $this->insert($info);
+    }
 }

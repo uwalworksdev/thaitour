@@ -1391,7 +1391,9 @@ class Product extends BaseController
         $facilities = array_filter(explode(",", $facilities));
 
         $products = $this->productModel->findProductGolfPaging([
+            'is_view' => 'Y',
             'product_code_1' => 1302,
+            'product_code_2' => $code_no,
             'green_peas' => $green_peas,
             'sports_days' => $sports_days,
             'slots' => $slots,
