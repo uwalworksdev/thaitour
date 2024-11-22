@@ -225,6 +225,7 @@ class AdminController extends BaseController
 														   , AES_DECRYPT(UNHEX('{$row['zip']}'),          '$private_key') AS zip
 														   , AES_DECRYPT(UNHEX('{$row['addr1']}'),        '$private_key') AS addr1
 														   , AES_DECRYPT(UNHEX('{$row['addr2']}'),        '$private_key') AS addr2 ";
+        write_log($sql_d);
         $result_d = $this->connect->query($sql_d);
         $row_d = $result_d->getRowArray();
         return $row_d;
