@@ -450,7 +450,6 @@ $list5 = $MainDisp->List("2905")->findAll();
         </div>
     </section>
 
-    <!--
     <script>
 	$(document).ready(function() {
 			$.ajax({
@@ -467,9 +466,25 @@ $list5 = $MainDisp->List("2905")->findAll();
 						alert('Error: ' + error);
 				}			
 			});
+
+			$('.words_list_item').click(function () {
+				$(this).toggleClass('active');
+
+				var hashTxt  = "";
+				var searhTxt = "";
+
+				$('.words_list_item').each(function (index) {
+					if ($(this).hasClass('active')) {
+						hashTxt  += $(this).text().replace('#', '')+',';
+						//searhTxt = $("#searchInput").val() + hashTxt;
+					}
+				});
+				$("#searchInput").val(hashTxt);
+
+				//window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
+			})
 	});
 	</script>
-    -->
 
     <script>
         $(document).ready(function () {
@@ -580,23 +595,6 @@ $list5 = $MainDisp->List("2905")->findAll();
 	</script>
 
     <script>
-        $('.words_list_item').click(function () {
-			$(this).toggleClass('active');
-
-			var hashTxt  = "";
-			var searhTxt = "";
-
-			$('.words_list_item').each(function (index) {
-				if ($(this).hasClass('active')) {
-					hashTxt  += $(this).text().replace('#', '')+',';
-					//searhTxt = $("#searchInput").val() + hashTxt;
-				}
-			});
-			$("#searchInput").val(hashTxt);
-
-            //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
-        })
-
         $('#searchInput').on('keydown', function (event) {
             if (event.key === 'Enter' || event.which === 13) {
                 searchData($(this).val());
