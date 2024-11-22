@@ -79,7 +79,7 @@
                     </td>
                     <td class="content">
                         <p><strong><span id="price_tot">
-									<?= number_format($row['order_price']) ?>
+									<?= number_format($row['inital_price']) ?>
 								</span></strong> 원</p>
                     </td>
                     <td class="content">
