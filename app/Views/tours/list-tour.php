@@ -7,7 +7,7 @@
                 <div class="navigation-container-prev">
                     <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
                     <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                    <span>호텔</span>
+                    <span>투어</span>
                 </div>
                 <div class="navigation-container-next">
                     <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
@@ -21,7 +21,7 @@
             <form name="frmSearch" id="frmSearch">
                 <div class="sub-hotel-container">
                     <input type="hidden" name="search_keyword" id="search_keyword"
-                           value="<?= $products["search_keyword"] ?>">
+                           value="<?= $search_keyword ?>">
                     <input type="hidden" name="pg" id="pg" value="<?= $products["pg"] ?>">
 
                     <div class="category-left only_web">
@@ -29,30 +29,25 @@
                         <div class="category-left-list">
                             <div class="category-left-item">
                                 <div class="subtitle">
-                                    <span>세부지역</span>
+                                    <span>키워드</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
                                 <div class="tab_box_area_">
                                     <ul class="tab_box_show_">
                                         <li class="tab_box_element_ tab_box_js p--20 border
-                                        <?php if (strpos($products["search_keyword"], "all") !== false
-                                            || empty($products["search_keyword"])) {
-                                            echo "tab_active_";
-                                        } ?>"
-                                            data-code="all" data-type="category">전체
+                                            <?php if ($search_keyword == "all" || empty($search_keyword)): ?>
+                                                tab_active_
+                                            <?php elseif ($search_keyword == $item): ?>
+                                                tab_active_
+                                            <?php endif; ?>" 
+                                            data-keyword="all" data-type="keyword">전체
                                         </li>
-                                        <?php
-                                        foreach ($codes as $code) {
-                                            ?>
+                                        <?php foreach ($keyWordAll as $key => $item): ?>
                                             <li class="tab_box_element_ tab_box_js p--20 border
-                                            <?php if (strpos($products["search_keyword"], $code["code_no"]) !== false) {
-                                                echo "tab_active_";
-                                            } ?>"
-                                                data-code="<?= $code["code_no"] ?>"
-                                                data-type="category"><?= $code["code_name"] ?></li>
-                                            <?php
-                                        }
-                                        ?>
+                                                <?= ($search_keyword == $item) ? 'tab_active_' : '' ?>" 
+                                                data-keyword="<?= $item ?>" data-type="keyword">#<?= $item ?>
+                                            </li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </div>
@@ -80,11 +75,19 @@
                             <div class="total_number">
                                 <p>총 상품 <span><?= $products["nTotalCount"] ?></span></p>
                             </div>
-                            <div class="two-way-arrow-content">
-                                <a href="#" class="">
-                                    <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">
-                                    <span class="text-primary">추천순</span>
-                                </a>
+                            <div class="search_keyword flex__c">
+                                <div class="two-way-arrow-content">
+                                    <a href="#" class="">
+                                        <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">
+                                        <span class="text-primary">추천순</span>
+                                    </a>
+                                </div>
+                                <form name="frm" method="GET" action="/search">
+                                    <div class="btn_search flex_b_c">
+                                        <input type="text" class="txt" id="top_search" name="search_word" value="<?= $search_word ?>" placeholder="여행을 검색해 주세요.">
+                                        <button type="submit" class="search_words" style="cursor:pointer;"></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                         <?php
@@ -97,13 +100,13 @@
                             ?>
                             <div class="product-card-item-container">
                                 <div class="product-card-item-left">
-                                    <a href="/product-hotel/hotel-detail/<?= $product["product_idx"] ?>">
+                                    <a href="/product-tours/item_view/<?= $product["product_idx"] ?>">
                                         <img src="<?= $src ?>" alt="sub_hotel_1">
                                     </a>
                                 </div>
                                 <div class="product-card-item-right">
                                     <div class="title-container">
-                                        <a href="/product-hotel/hotel-detail/<?= $product["product_idx"] ?>">
+                                        <a href="/product-tours/item_view/<?= $product["product_idx"] ?>">
                                             <h2><?= viewSQ($product['product_name']) ?></h2>
                                         </a>
                                         <div class="only_web">
@@ -119,11 +122,36 @@
                                         </div>
                                     </div>
                                     <div class="d_flex align_items_center justify_content_between">
-                                        <div class="sub-title">
-                                          
+                                        <div class="sub-title tour">
+                                            <?php $num = count($product['codeTree']);
+                                                foreach ($product['codeTree'] as $key => $code):
+                                                    ?>
+                                                    <span><?=$code['code_name']?></span>
+                                                    <?php if ($key < $num - 1): ?>
+                                                        <img class="only_web" src="/uploads/icons/arrow_right.png"
+                                                            alt="arrow_right">
+                                                        <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                                            alt="arrow_right_mo">
+                                                    <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </div>
-                                        <div class="level-content">
-                                            <span class="text-primary"><?= $product['level_name'] ?></span>
+                                    </div>
+                                    <div class="list-item-info">
+                                        <div class="item-info">
+                                            <div class="item-info-label text-gray flex_tour">
+                                                <?php
+                                                    $arr_keyword = explode(",", $product['keyword']);
+                                                    $arr_keyword = array_filter($arr_keyword);
+                                                ?>
+                                                <?php foreach ($arr_keyword as $keyword): ?>
+                                                <p>#<?= $keyword?></p>
+                                                <?php endforeach;?>
+                                            </div>
+                                        </div>
+                                        <div class="item-info">
+                                            <div class="item-price-info"><span class="main"><?=number_format($product['product_price'])?></span class="text-gray">원 ~
+                                                <span class="sub text-gray"><?=number_format($product['product_price_baht'])?>바트~</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -137,194 +165,7 @@
                     </div>
                 </div>
             </form>
-            <script>
-                function search_it() {
-                    var frm = document.frmSearch;
-                    frm.submit();
-                }
-            </script>
         </div>
-        <section class="popup" style="display: none;">
-            <div class="popup__content">
-                <div class="header-con-p">
-                    <h3 class="title-header">호텔 상세검색</h3>
-                    <img class="close_popup" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
-                </div>
-                <div class="popup_inner">
-                    <div class="category-left-list">
-                        <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>세부지역</span>
-
-                            </div>
-                            <div class="tab_box_area_">
-                                <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_mo_js p--20 border
-                                 <?php if (strpos($products["search_product_category"], "all") !== false
-                                        || empty($products["search_product_category"])) {
-                                        echo "tab_active_";
-                                    } ?>" data-code="all" data-type="category">전체
-                                    </li>
-                                    <?php
-                                    foreach ($codes as $code) {
-                                        ?>
-                                        <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if (strpos($products["search_product_category"], $code["code_no"]) !== false) {
-                                            echo "tab_active_";
-                                        } ?>"
-                                            data-code="<?= $code["code_no"] ?>"
-                                            data-type="category"><?= $code["code_name"] ?></li>
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>호텔타입</span>
-
-                            </div>
-                            <div class="tab_box_area_">
-                                <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_mo_js p--20 border
-                                <?php if (strpos($products["search_product_hotel"], "all") !== false
-                                        || empty($products["search_product_hotel"])) {
-                                        echo "tab_active_";
-                                    } ?>" data-code="all" data-type="hotel">전체
-                                    </li>
-                                    <?php
-                                    foreach ($types_hotel as $code) {
-                                        ?>
-                                        <li class="tab_box_element_ tab_box_mo_js p--20 border
-                                    <?php if (strpos($products["search_product_hotel"], $code["code_no"]) !== false) {
-                                            echo "tab_active_";
-                                        } ?>" data-code="<?= $code["code_no"] ?>"
-                                            data-type="hotel"><?= $code["code_name"] ?></li>
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>호텔등급</span>
-
-                            </div>
-                            <div class="tab_box_area_">
-                                <ul class="tab_box_show_">
-                                    <li class="tab_box_element_ tab_box_mo_js p--20 border
-                                <?php if (strpos($products["search_product_rating"], "all") !== false
-                                        || empty($products["search_product_rating"])) {
-                                        echo "tab_active_";
-                                    } ?>" data-code="all" data-type="rating">전체
-                                    </li>
-                                    <?php
-                                    foreach ($ratings as $code) {
-                                        ?>
-                                        <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if (strpos($products["search_product_rating"], $code["code_no"]) !== false) {
-                                            echo "tab_active_";
-                                        } ?>"
-                                            data-code="<?= $code["code_no"] ?>"
-                                            data-type="rating"><?= $code["code_name"] ?></li>
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>1박 평균가격</span>
-
-                            </div>
-                            <div class="slider-container only_mo">
-                                <div class="slider-background"></div>
-                                <div class="slider-track" id="slider-track" style="left: 25%; width: 50%;"></div>
-                                <input type="range" min="0" max="500000" value="<?= $products["price_min"] ?>"
-                                       name="price_min" class="slider" id="slider-min">
-                                <input type="range" min="0" max="500000" value="<?= $products["price_max"] ?>"
-                                       name="price_max" class="slider" id="slider-max">
-                            </div>
-                            <div class="value-container">
-                                <span><i class="price_min">10,000</i>원</span>
-                                <span><i class="price_max">500,000</i>원 이상</span>
-                            </div>
-                            <p class="tab-currency">
-                                <span class="currency active">원</span>
-                                <span class="currency">바트</span>
-                            </p>
-                        </div>
-                        <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>프로모션</span>
-
-                            </div>
-                            <div class="tab_box_area_">
-                                <ul class="tab_box_show_">
-                                    <?php
-                                    foreach ($promotions as $code) {
-                                        ?>
-                                        <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if (strpos($products["search_product_promotion"], $code["code_no"]) !== false) {
-                                            echo "tab_active_";
-                                        } ?>"
-                                            data-code="<?= $code["code_no"] ?>"
-                                            data-type="promotion"><?= $code["code_name"] ?></li>
-                                        <?php
-                                    }
-                                    ?>
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>테마</span>
-
-                            </div>
-                            <div class="tab_box_area_">
-                                <ul class="tab_box_show_">
-                                    <?php
-                                    foreach ($topics as $code) {
-                                        ?>
-                                        <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if (strpos($products["search_product_topic"], $code["code_no"]) !== false) {
-                                            echo "tab_active_";
-                                        } ?>"
-                                            data-code="<?= $code["code_no"] ?>"
-                                            data-type="topic"><?= $code["code_name"] ?></li>
-                                        <?php
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="category-left-item">
-                            <div class="subtitle">
-                                <span>침실수</span>
-
-                            </div>
-                            <div class="tab_box_area_">
-                                <ul class="tab_box_show_">
-                                    <?php
-                                    foreach ($bedrooms as $code) {
-                                        ?>
-                                        <li class="tab_box_element_ tab_box_mo_js p--20 border <?php if (strpos($products["search_product_bedroom"], $code["code_no"]) !== false) {
-                                            echo "tab_active_";
-                                        } ?>"
-                                            data-code="<?= $code["code_no"] ?>"
-                                            data-type="bedroom"><?= $code["code_name"] ?></li>
-                                        <?php
-                                    }
-                                    ?>
-                                    <li class="tab_box_element_ tab_box_mo_js p--20 border " rel="tab2">3 베드룸~(성인6인~)
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </div>
     <script>
         $(".arrow_menu").click(function () {
@@ -339,209 +180,107 @@
             }
         });
 
-        $(document).ready(function () {
-            function formatDate(date) {
-                if (date) {
-                    var d = new Date(date);
 
-                    var month = '' + (d.getMonth() + 1);
-                    var day = '' + d.getDate();
-                    var year = d.getFullYear();
+        function update_search_keyword() {
+            let keywords = [];
 
-                    if (month.length < 2) month = '0' + month;
-                    if (day.length < 2) day = '0' + day;
-
-                    return [year, month, day].join('/');
-                } else {
-                    return "";
-                }
-
-            }
-
-            $("#checkin, #checkout").datepicker({
-                dateFormat: 'yy-mm-dd',
-                onSelect: function (dateText, inst) {
-                    var date = $(this).datepicker('getDate');
-                    $(this).val(formatDate(date));
+            $(".tab_box_js.tab_active_").each(function () {
+                if ($(this).data("keyword") !== "all") {
+                    keywords.push($(this).data("keyword"));
                 }
             });
 
-            $('#checkin').val(formatDate('<?=$products["checkin"]?>'));
-            $('#checkout').val(formatDate('<?=$products["checkout"]?>'));
-        });
-
-        var category = [];
-        var hotel = [];
-        var rating = [];
-        var promotion = [];
-        var topic = [];
-        var bedroom = [];
-
-        function filter_product() {
-            category = [];
-            hotel = [];
-            rating = [];
-            promotion = [];
-            topic = [];
-            bedroom = [];
-
-            if ($(window).width() > 850) {
-                $(".tab_box_js.tab_active_").each(function () {
-                    if ($(this).data("type") == "category") {
-                        category.push($(this).data("code"));
-                    } else if ($(this).data("type") == "hotel") {
-                        hotel.push($(this).data("code"));
-                    } else if ($(this).data("type") == "rating") {
-                        rating.push($(this).data("code"));
-                    } else if ($(this).data("type") == "promotion") {
-                        promotion.push($(this).data("code"));
-                    } else if ($(this).data("type") == "topic") {
-                        topic.push($(this).data("code"));
-                    } else if ($(this).data("type") == "bedroom") {
-                        bedroom.push($(this).data("code"));
-                    }
-                });
-            } else {
-                $(".tab_box_mo_js.tab_active_").each(function () {
-                    if ($(this).data("type") == "category") {
-                        category.push($(this).data("code"));
-                    } else if ($(this).data("type") == "hotel") {
-                        hotel.push($(this).data("code"));
-                    } else if ($(this).data("type") == "rating") {
-                        rating.push($(this).data("code"));
-                    } else if ($(this).data("type") == "promotion") {
-                        promotion.push($(this).data("code"));
-                    } else if ($(this).data("type") == "topic") {
-                        topic.push($(this).data("code"));
-                    } else if ($(this).data("type") == "bedroom") {
-                        bedroom.push($(this).data("code"));
-                    }
-                });
+            if (keywords.length === 0) {
+                keywords.push("all");
             }
 
-            $("#search_product_category").val(category.join(","));
-            $("#search_product_hotel").val(hotel.join(","));
-            $("#search_product_rating").val(rating.join(","));
-            $("#search_product_promotion").val(promotion.join(","));
-            $("#search_product_topic").val(topic.join(","));
-            $("#search_product_bedroom").val(bedroom.join(","));
+            $("#search_keyword").val(keywords.join(","));
+            
+            update_tags(keywords);
         }
 
-        filter_product();
-
-        $(window).resize(function () {
-            filter_product();
+        function update_tags(keywords) {
             $('.list-tag').empty();
-
-            $('.tab_box_js.tab_active_').each(function () {
-                let tabText = $(this).text();
-                let type = $(this).data("type");
+            
+            keywords.forEach(function(keyword) {
+                let tabText = (keyword === "all") ? "전체" : keyword;
                 $('.list-tag').append(
                     '<div class="tag-item">' +
-                    '<span data-type=' + type + '>' + tabText + '</span>' +
+                    '<span data-type="keyword">' + tabText + '</span>' +
                     '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
                     '</div>'
                 );
             });
-        });
+        }
 
-        $('.tab_box_js.tab_active_').each(function () {
-            let tabText = $(this).text();
-            let type = $(this).data("type");
-            $('.list-tag').append(
-                '<div class="tag-item">' +
-                '<span data-type=' + type + '>' + tabText + '</span>' +
-                '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
-                '</div>'
-            );
-        });
-
-        $('.tab_box_js, .tab_box_mo_js').click(function () {
+        $('.tab_box_js').click(function () {
             let group = $(this).closest('.tab_box_area_');
-            let tabText = $(this).text();
-            let type = $(this).data("type");
-            let activeTab = group.find('.tab_box_js.tab_active_').text();
-
-            // if (activeTab) {
-            //     $('.list-tag .tag-item span').each(function() {
-            //         if ($(this).text() === activeTab) {
-            //             $(this).text(tabText);
-            //             return false;
-            //         }
-            //     });
-            // } else {
-            //     $('.list-tag').append(
-            //         '<div class="tag-item">' +
-            //         '<span>' + tabText + '</span>' +
-            //         '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
-            //         '</div>'
-            //     );
-            // }
-
-            if ($(this).data("code") === "all") {
-                $(this).siblings('[data-code]:not([data-code="all"])').removeClass('tab_active_');
-                $('.list-tag .tag-item span').each(function () {
-                    if ($(this).text() !== tabText && type == $(this).data("type")) {
-                        $(this).closest(".tag-item").remove();
-                    }
-                });
-            } else {
-                let allBtn = $(this).siblings('[data-code="all"]');
-                allBtn.removeClass('tab_active_');
-                $('.list-tag .tag-item span').each(function () {
-                    if ($(this).text() === allBtn.text() && type == $(this).data("type")) {
-                        $(this).closest(".tag-item").remove();
-                    }
-                });
-            }
-
-            if ($(this).hasClass('tab_active_')) {
-                $(this).removeClass('tab_active_');
-                $('.list-tag .tag-item span').each(function () {
-                    if ($(this).text() === tabText && type == $(this).data("type")) {
-                        $(this).closest(".tag-item").remove();
-                    }
-                });
-            } else {
+            
+            if ($(this).data("keyword") === "all") {
+                group.find('.tab_box_js').not(this).removeClass('tab_active_');
                 $(this).addClass('tab_active_');
-                $('.list-tag').append(
-                    '<div class="tag-item">' +
-                    '<span data-type=' + type + '>' + tabText + '</span>' +
-                    '<img class="close_icon" src="/uploads/icons/close_icon.png" alt="close_icon">' +
-                    '</div>'
-                );
+            } else {
+                $(this).toggleClass('tab_active_');
+                if ($(this).hasClass('tab_active_')) {
+                    group.find('[data-keyword="all"]').removeClass('tab_active_');
+                }
             }
 
-            filter_product();
-
-            // group.find('.tab_box_js').removeClass('tab_active_');
-            // $(this).addClass('tab_active_');
+            update_search_keyword();
         });
 
-        $(document).on('click', '.close_icon', function () {
-            let tagItem = $(this).parent('.tag-item');
-            let tagText = tagItem.find('span').text();
-            let type = tagItem.find('span').data("type");
-            // Remove the active class from the corresponding tab
-            $('.tab_box_js, .tab_box_mo_js').each(function () {
-                if ($(this).text() === tagText && type === $(this).data("type")) {
+        $('.list-tag').on('click', '.tag-item .close_icon', function () {
+            let text = $(this).closest('.tag-item').find('span').text();
+            let keywords = $("#search_keyword").val().split(",");
+
+            keywords = keywords.filter(function(keyword) {
+                return keyword !== text && keyword !== "All";
+            });
+
+            if (keywords.length === 0) {
+                keywords.push("all"); 
+            }
+
+            $("#search_keyword").val(keywords.join(","));
+
+            update_tags(keywords);
+
+            $(".tab_box_js").each(function () {
+                if ($(this).data("keyword") === text) {
                     $(this).removeClass('tab_active_');
                 }
             });
-
-            // Remove the tag item
-            tagItem.remove();
-
-            filter_product();
-
         });
 
         $('#delete_all').click(function () {
             $('.list-tag .tag-item').remove();
-            $('.tab_box_js, .tab_box_mo_js').removeClass('tab_active_');
-
-            filter_product();
+            $("#search_keyword").val("all");
+            $(".tab_box_js").removeClass('tab_active_');
+            update_search_keyword();
         });
+
+        $(window).resize(function () {
+            update_search_keyword();
+        });
+
+        $(document).ready(function() {
+            let keywords = $("#search_keyword").val().split(",");
+            
+            update_tags(keywords);
+            
+            keywords.forEach(function(keyword) {
+                if (keyword !== "all") {
+                    $(".tab_box_js[data-keyword='" + keyword + "']").addClass('tab_active_');
+                } else {
+                    $(".tab_box_js[data-keyword='all']").addClass('tab_active_');
+                }
+            });
+        });
+
+    function search_it() {
+        let frm = document.frmSearch;
+        frm.submit();
+    }
 
         // $('.tab_box_mo_js').click(function() {
         //     var $this = $(this); // The clicked tab element
@@ -593,6 +332,7 @@
         $(".close_popup").click(function () {
             $(".popup").hide();
         });
+
     </script>
 
 <?php $this->endSection(); ?>
