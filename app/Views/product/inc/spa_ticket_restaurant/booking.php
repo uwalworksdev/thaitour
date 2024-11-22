@@ -226,7 +226,7 @@
                                             <p>성인<?= $key + 1 ?> x <?= $val ?></p>
                                         </div>
                                         <div class="wrap-btn">
-                                            <span><?= number_format($adultPrice[$key] * $val) ?></span>
+                                            <span><?= number_format((int)$adultPrice[$key] * (int)$val) ?></span>
                                             <span>원</span>
                                         </div>
                                     </div>
@@ -238,7 +238,7 @@
                                             <p>아동<?= $key + 1 ?> x <?= $val ?></p>
                                         </div>
                                         <div class="wrap-btn">
-                                            <span><?= number_format($childrenPrice[$key] * $val) ?></span>
+                                            <span><?= number_format((int)$childrenPrice[$key] * (int)$val) ?></span>
                                             <span>원</span>
                                         </div>
                                     </div>
@@ -334,7 +334,9 @@
                             <button class="btn-order btnOrder" onclick="completeOrder();" type="button">
                                 예약하기
                             </button>
-                            <button class="btn-cancel btnCancel" type="button">취소하기</button>
+                            <button class="btn-cancel btnCancel" onclick="cancelOrder();" type="button">
+                                취소하기
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -343,8 +345,8 @@
 
                     <input type="hidden" name="product_idx" id="product_idx" value="<?= $data['product_idx'] ?>">
                     <input type="hidden" name="day_" id="day_" value="<?= $day_ ?>">
-                    <input type="hidden" name="adultQty" id="adultQty" value="<?= $adultQty ?>">
-                    <input type="hidden" name="childrenQty" id="childrenQty" value="<?= $childrenQty ?>">
+                    <input type="hidden" name="adultQty" id="adultQty" value="<?= implode(',', $adultQty) ?>">
+                    <input type="hidden" name="childrenQty" id="childrenQty" value="<?= implode(',', $childrenQty) ?>">
                     <input type="hidden" name="totalPrice" id="totalPrice" value="<?= $totalPrice ?>">
                     <input type="hidden" name="order_gubun" id="order_gubun" value="<?= $order_gubun ?>">
 
@@ -795,6 +797,10 @@
 
     function point_acnt() {
 
+    }
+
+    function cancelOrder() {
+        window.history.back();
     }
 
     function point_all() {

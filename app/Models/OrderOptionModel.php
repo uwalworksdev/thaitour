@@ -26,4 +26,23 @@ class OrderOptionModel extends Model
     {
         return $this->where('order_idx', $order_idx)->where('option_type', $option_type)->findAll();
     }
+
+    public function insertData($data)
+    {
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields) {
+                return in_array($key, $allowedFields);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        foreach ($filteredData as $key => $value) {
+            $filteredData[$key] = updateSQ($value);
+        }
+
+        return $this->insert($filteredData);
+    }
 }

@@ -59,7 +59,6 @@
                     <td class="subject">상품 예약금액</td>
                     <td class="subject">쿠폰</td>
                     <td class="subject">실예약금액</td>
-
                 </tr>
                 <tr>
 
