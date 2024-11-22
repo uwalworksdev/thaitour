@@ -563,15 +563,15 @@ $list5 = $MainDisp->List("2905")->findAll();
 			$(this).toggleClass('active');
 
 			var hashTxt  = "";
-			var searTxt  = "";
+			var searhTxt = "";
 
 			$('.words_list_item').each(function (index) {
 				if ($(this).hasClass('active')) {
-					hashTxt  = $(this).text().replace('#', '')+',';
-					searTxt  = $("#searchInput").val() + hashTxt;
+					hashTxt  += $(this).text().replace('#', '')+',';
+					//searhTxt = $("#searchInput").val() + hashTxt;
 				}
 			});
-			$("#searchInput").val(searTxt);
+			$("#searchInput").val(hashTxt);
 
             //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
