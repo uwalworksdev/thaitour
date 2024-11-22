@@ -117,16 +117,23 @@ $(document).ready(function () {
     $(this).addClass("active");
   });
 
-  $(".words_list_item").on("click", function (event) {
+  //$(".words_list_item").on("click", function (event) {
+  //  event.preventDefault();
+
+//    $(".words_list_item").removeClass("active");
+
+  //  $(this).addClass("active");
+  //});
+
+  $(".place_item_golf").on("click", function (event) {
     event.preventDefault();
-
-    $(".words_list_item").removeClass("active");
-
+    $(".place_item_golf").removeClass("active");
     $(this).addClass("active");
   });
-  $(".place_item").on("click", function (event) {
+
+  $(".place_item_hotel").on("click", function (event) {
     event.preventDefault();
-    $(".place_item").removeClass("active");
+    $(".place_item_hotel").removeClass("active");
     $(this).addClass("active");
   });
   

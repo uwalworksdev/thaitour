@@ -64,9 +64,9 @@
         <?php //include ('../inc/sub_header_common.php'); ?>
         <div class="inner">
             <div class="title">
-                <h1>호주여행후기</h1>
+                <h1>여행후기</h1>
             </div>
-            <form action="evaluate_write_ajax.php" name="frm" id="frm" method="post" enctype="multipart/form-data">
+            <form action="#" name="frm" id="frm" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="r_name" value="<?= $row_m["user_name"] ?>">
                 <input type="text" name="product_idx" id="" hidden value="<?= $product_idx ?>">
                 <?php if ($idx || $product_idx) { ?>
@@ -87,22 +87,18 @@
                             <div class="travel_box_child" style="display: flex;gap: 10px;">
                                 <?php if ($idx || $product_idx) { ?>
                                     <input type="text" name="" value="<?= $travel_type_name ?>" disabled>
-                                    </input>
                                     <input type="text" name="travel_type_2" value="<?= $travel_type_name_2 ?>" disabled>
-                                    </input>
                                     <?php if ($travel_type_name_3) { ?>
-                                        <input type="text" name="travel_type_3" value="<?= $travel_type_name_3 ?>" disabled>
+                                        <input type="text" name="travel_type_3" value="<?= $travel_type_name_3 ?>"
+                                               disabled>
                                     <?php } ?>
-                                    </input>
                                     <input type="text" name="" id="products" class="in_pro" value="<?= $product_name ?>"
                                            disabled>
-                                    </input>
                                 <?php } else {
                                     ?>
                                     <select name="travel_type" id="travel_type_1">
                                         <option value="">선택</option>
                                         <?php
-
 
                                         foreach ($list_code as $row0) {
                                             ?>
@@ -115,9 +111,9 @@
                                     <select style="display: none;" name="travel_type_2" id="travel_type_2">
                                         <option value="">선택</option>
                                     </select>
-                                    <select style="display: none;" name="travel_type_3" id="travel_type_3">
-                                        <option value="">선택</option>
-                                    </select>
+                                    <!--                                    <select style="display: none;" name="travel_type_3" id="travel_type_3">-->
+                                    <!--                                        <option value="">선택</option>-->
+                                    <!--                                    </select>-->
                                     <select style="display: none;" name="product_idx" id="products">
                                         <option value="">선택</option>
                                     </select>
@@ -145,7 +141,9 @@
                         <td class="subject">평가 구분</td>
                         <td class="input_box">
                             <?php foreach ($list_code_type as $item) : ?>
+                                <?php $review_type_arr = explode('|', $review_type); ?>
                                 <input type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
+                                    <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
                                        name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
                                 <label for="input_checkbox<?= $item['code_no'] ?>"
                                        style="margin-right: 10px"><?= $item['code_name'] ?></label>
@@ -279,7 +277,6 @@
                                 });
                             </script>
                         </td>
-                        <!-- <td class="m_input_box input_box"><textarea style="resize:none" class="m_contents" name="m_contents"></textarea></td> -->
                     </tr>
 
                     <tr>
@@ -348,7 +345,7 @@
                     <input type="hidden" value="" id="hidden_captcha"/>
 
                     <button class="re_btn" type="button" onclick="reloadCaptcha()">
-                        <img class="re_cap" src="../assets/img/reload.png" alt="">
+                        <img class="re_cap" src="/images/ico/reloadicon.png" alt="">
                         <p>새로고침</p>
                     </button>
 
@@ -360,7 +357,7 @@
                 </div>
                 <div class="write_container">
                     <div class="btn-wrap">
-                        <a href="./evaluate.php" type="button" class="btn btn-lg btn_cancel">취소하기</a>
+                        <a href="/review/review_list" type="button" class="btn btn-lg btn_cancel">취소하기</a>
                         <button type="button" onclick="send_it(event)"
                                 class="btn btn-lg btn-point btn_submit"><?= ($idx ? "수정하기" : "등록하기") ?></button>
                     </div>
@@ -519,7 +516,7 @@
             })
 
             if (arr.length == 0) {
-                alert("카테고리를 선택해주세요!");
+                alert("평가구분을 선택해주세요!");
                 return;
             }
 
@@ -557,11 +554,7 @@
             var s2 = document.getElementById(s2);
 
             s2.value = s1.value;
-
         }
-
-
-        //file
 
         $('.file_box #ufile1').change(function () {
             var fileName = $(this).prop('files')[0].name;
@@ -638,12 +631,12 @@
                     const data = JSON.parse(res);
                     if (data.cnt == 0) {
                         $("#travel_type_2").hide();
-                        $("#travel_type_3").hide();
+                        // $("#travel_type_3").hide();
                         $("#products").hide();
                     } else {
                         $("#travel_type_2").html(data.data);
                         $("#travel_type_2").show();
-                        $("#travel_type_3").show();
+                        // $("#travel_type_3").show();
                         $("#products").show();
                     }
                 }
@@ -653,35 +646,37 @@
 
         $("#travel_type_2").on("change", function (event) {
             $.ajax({
-                url: "/tools/get_travel_types",
-                type: "POST",
-                data: {
-                    code: event.target.value,
-                    depth: 4
-                },
-                success: function (res) {
-                    const data = JSON.parse(res);
-                    $("#travel_type_3").html(data.data)
-                }
-            })
-        })
-
-        $("#travel_type_3").on("change", function (event) {
-            $.ajax({
                 url: "/tools/get_list_product",
                 type: "POST",
                 data: {
-                    product_code: event.target.value
+                    product_code: event.target.value,
+                    // depth: 4
                 },
                 dataType: 'json',
                 success: function (res) {
+                    // const data = JSON.parse(res);
+                    // $("#travel_type_3").html(data.data)
                     $("#products").html(res.data)
                 }
             })
         })
 
+        // $("#travel_type_3").on("change", function (event) {
+        //     $.ajax({
+        //         url: "/tools/get_list_product",
+        //         type: "POST",
+        //         data: {
+        //             product_code: event.target.value
+        //         },
+        //         dataType: 'json',
+        //         success: function (res) {
+        //             $("#products").html(res.data)
+        //         }
+        //     })
+        // })
+
         function handleUnload(event) {
-            var confirmationMessage = '사이트를 새로고침하시겠습니까?';
+            let confirmationMessage = '사이트를 새로고침하시겠습니까?';
 
             if (typeof event === 'undefined') {
                 event = window.event;

@@ -162,6 +162,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                     <button class="main_section3__place_btn" data-list="4">치양마이</button>
                 </div>
                 <div class="main_section3__type">
+                    <button class="main_section3__type_btn active" data-code="">전체</button>
                     <button class="main_section3__type_btn" data-code="1">호텔</button>
                     <button class="main_section3__type_btn" data-code="2">골프</button>
                     <button class="main_section3__type_btn" data-code="3">투어</button>
@@ -364,7 +365,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="main_section5__head__bar"></div>
             </div>
             <div class="main_section5__words_list">
-                <a href="#!" class="words_list_item <?= $keyword == '호텔투어' ? 'active' : '' ?>">#호텔투어</a>
+                <a href="#!" class="words_list_item ">#호텔투어</a>
                 <a href="#!" class="words_list_item ">#5성급호텔</a>
                 <a href="#!" class="words_list_item ">#태국호캉스</a>
                 <a href="#!" class="words_list_item ">#바닷가라운딩</a>
@@ -395,10 +396,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         1주일간 예약순위 : <span>호텔</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <a href="#!" class="place_item active">방콕</a>
-                        <a href="#!" class="place_item">파타야</a>
-                        <a href="#!" class="place_item">푸켓</a>
-                        <a href="#!" class="place_item">치앙마이</a>
+                        <a href="#!" class="place_item_hotel active" data-id="290201">방콕</a>
+                        <a href="#!" class="place_item_hotel" data-id="290202">파타야</a>
+                        <a href="#!" class="place_item_hotel" data-id="290203">푸켓</a>
+                        <a href="#!" class="place_item_hotel" data-id="290204">치앙마이</a>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -413,16 +414,17 @@ $list5 = $MainDisp->List("2905")->findAll();
             </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_1 swiper">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" id="hotel_list">
                         <?php $seq = 0; ?>
                         <?php foreach ($list2 as $item2): ?>
                             <?php $seq++; ?>
+							<?php $img_dir = img_link($item2['product_code_1']); ?>
                             <div class="swiper-slide">
                                 <a href="<?= getUrlFromProduct($item2) ?>" class="hot_product_list__item">
                                     <div class="img_box img_box_2">
-                                        <img src="/data/product/<?= $item2['ufile1'] ?>" alt="main">
+                                        <img src="/data/<?= $img_dir ?>/<?= $item2['ufile1'] ?>" alt="main">
                                     </div>
-                                    <div class="prd_name"><?= $item2['product_name'] ?></div>
+                                    <div class="prd_name"><?= $item3['product_name'] ?></div>
                                     <div class="prd_price_ko"><?= number_format($item2['original_price']) ?>
                                         <span>원</span></div>
                                     <div class="prd_price_thai">6,000 <span>바트</span></div>
@@ -477,15 +479,23 @@ $list5 = $MainDisp->List("2905")->findAll();
 				set_best(list, code);
 			});
 
+            $('.place_item_hotel').on('click', function () {
+				var local = $(this).data('id');
+				set_hotel_seq(local);
+			});
+
+            $('.place_item_golf').on('click', function () {
+				var local = $(this).data('id');
+				set_golf_seq(local);
+			});
+
         });
     </script>
 
     <script>
-        function set_best(list, code) {
-            /*
-			var message   = ""; 
+    function set_best(list, code) {
+			
 			$.ajax({
-
 				url: "/ajax/get_best",
 				type: "POST",
 				data: { 
@@ -502,13 +512,59 @@ $list5 = $MainDisp->List("2905")->findAll();
 						alert('Error: ' + error);
 				}			
 			});
-            */
+
+    }
+
+	function set_hotel_seq(local) 
+    {
+			$.ajax({
+				url: "/ajax/set_seq",
+				type: "POST",
+				data: { 
+					      type : "hotel", 
+					      local : local 
+					  },
+			    dataType: "json",
+				success: function(res) {
+					var message  = res.message;
+					$("#hotel_list").html(message);
+				},
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
+			});
+    }
+
+	function set_golf_seq(local)
+    {
+			$.ajax({
+				url: "/ajax/set_seq",
+				type: "POST",
+				data: { 
+					      type : "golf", 
+					      local : local 
+					  },
+			    dataType: "json",
+				success: function(res) {
+					var message  = res.message;
+					$("#golf_list").html(message);
+				},
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
+			});
     }
 	</script>
 
     <script>
         $('.words_list_item').click(function () {
-            window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
+			$(this).toggleClass('active');
+			var hashTxt  = $(this).text().replace('#', '')+',';
+			var searTxt  = $("#searchInput").val() + hashTxt;
+			$("#searchInput").val(searTxt);
+            //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
 
         $('#searchInput').on('keydown', function (event) {
@@ -552,10 +608,10 @@ $list5 = $MainDisp->List("2905")->findAll();
                         1주일간 예약순위 : <span>골프</span>
                     </div>
                     <div class="main_hot__head__place only_web_flex">
-                        <div class="place_item active">방콕</div>
-                        <div class="place_item">파타야</div>
-                        <div class="place_item">푸켓</div>
-                        <div class="place_item">치앙마이</div>
+                        <a href="#!" class="place_item_golf active" data-id="290101">방콕</a>
+                        <a href="#!" class="place_item_golf" data-id="290102">파타야</a>
+                        <a href="#!" class="place_item_golf" data-id="290103">푸켓</a>
+                        <a href="#!" class="place_item_golf" data-id="290104">치앙마이</a>
                     </div>
                 </div>
                 <div class="main_hot__head__right">
@@ -570,14 +626,15 @@ $list5 = $MainDisp->List("2905")->findAll();
             </div>
             <div class="relative">
                 <div class="hot_product_list hot_product_list_swiper_2 swiper">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" id="golf_list">
                         <?php $seq = 0; ?>
                         <?php foreach ($list3 as $item3): ?>
                             <?php $seq++; ?>
+							<?php $img_dir = img_link($item3['product_code_1']); ?>
                             <div class="swiper-slide">
                                 <a href="<?= getUrlFromProduct($item3) ?>" class="hot_product_list__item">
                                     <div class="img_box img_box_2">
-                                        <img src="/data/product/<?= $item3['ufile1'] ?>" alt="main">
+                                        <img src="/data/<?=$img_dir?>/<?= $item3['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
                                     <div class="prd_price_ko"><?= number_format($item3['original_price']) ?>

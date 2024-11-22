@@ -28,8 +28,8 @@ class AjaxMainController extends BaseController {
 		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
 		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
 								  WHERE 1=1 ";
-        if($code_no)        $sql .= "AND a.code_no        = '$code_no' "; 
-		if($product_code_1) $sql .= "AND b.product_code_1 = '$product_code_1' ": 
+        if($code_no)        $sql .= " AND a.code_no        = '$code_no' "; 
+		if($product_code_1) $sql .= " AND b.product_code_1 = '$product_code_1' ";
 
 		$sql  .= "ORDER BY a.onum DESC ";
         write_log("AjaxMainController- ". $sql);
@@ -59,7 +59,46 @@ class AjaxMainController extends BaseController {
 		endforeach;
  
         $output = [
-            "message"  => $sql
+            "message"  => $msg
+        ];
+
+		return $this->response->setJSON($output);
+    }
+
+
+    public function set_seq()  
+	{
+        $type     = $this->request->getPost('type');
+        $code_no  = $this->request->getPost('local');
+        $db    = \Config\Database::connect();
+ 
+		$sql   = "SELECT a.*, b.* FROM tbl_main_disp a
+		                          LEFT JOIN tbl_product_mst b ON a.product_idx = b.product_idx 
+								  WHERE a.code_no = '$code_no' ORDER BY a.onum DESC ";
+        write_log("AjaxMainController- ". $sql);
+ 
+        $rows  = $db->query($sql)->getResultArray();
+
+        $msg   = "";
+		$seq   = 0;
+		foreach ($rows as $item3):
+			$seq++;
+			$img_dir = img_link($item3['product_code_1']);
+			$msg .= '<div class="swiper-slide">';
+			$msg .= '<a href="'. getUrlFromProduct($item3) .'" class="hot_product_list__item">';
+			$msg .= '<div class="img_box img_box_2">';
+			$msg .= '<img src="/data/'. $img_dir .'/'. $item3['ufile1'] .'" alt="main">';
+			$msg .= '</div>';
+			$msg .= '<div class="prd_name">'. $item3['product_name'] .'</div>';
+			$msg .= '<div class="prd_price_ko">'. number_format($item3['original_price']) .'<span>원</span></div>';
+			$msg .= '<div class="prd_price_thai">6,000 <span>바트</span></div>';
+			$msg .= '<span class="number_item_label number_one">'. $seq .'</span>';
+			$msg .= '</a>';
+			$msg .= '</div>';
+		endforeach;
+ 
+        $output = [
+            "message"  => $msg
         ];
 
 		return $this->response->setJSON($output);

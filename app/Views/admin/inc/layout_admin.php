@@ -40,6 +40,33 @@
         }, 100);
     });
 
+	$(function() {
+		// Datepicker에 한국어 설정 적용
+		$.datepicker.setDefaults($.datepicker.regional['ko']);
+		
+		// 시작일과 종료일 초기화
+		var startDatePicker = $("#s_date");
+		var endDatePicker   = $("#e_date");
+		
+		startDatePicker.datepicker({
+			dateFormat: "yy-mm-dd",
+			onClose: function(selectedDate) {
+				if (selectedDate) {
+					endDatePicker.datepicker("option", "minDate", selectedDate);
+				}
+			}
+		});
+
+		endDatePicker.datepicker({
+			dateFormat: "yy-mm-dd",
+			onClose: function(selectedDate) {
+				if (selectedDate) {
+					startDatePicker.datepicker("option", "maxDate", selectedDate);
+				}
+			}
+		});
+	});
+
 </script>
 
 <script type="text/javascript" src="/lib/jquery/jquery.easing.min.js" charset="utf-8"></script>
