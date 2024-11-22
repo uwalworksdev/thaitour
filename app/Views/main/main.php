@@ -560,11 +560,11 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     <script>
         $('.words_list_item').click(function () {
-            window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
+			alert($(this).text()); // 클릭된 요소의 텍스트를 가져옴);
+            //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
 
         $('#searchInput').on('keydown', function (event) {
-				alert('enter');
             if (event.key === 'Enter' || event.which === 13) {
                 searchData($(this).val());
             }
