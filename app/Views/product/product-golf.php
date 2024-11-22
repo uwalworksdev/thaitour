@@ -105,7 +105,7 @@
                 <h2 class="son-title">
                     <?=viewSQ($bannerTop['title'])?>
                 </h2>
-                <p class="son-des"><?=viewSQ($bannerTop['subtile'])?></p>
+                <p class="son-des"><?=viewSQ($bannerTop['subtitle'])?></p>
             </div>
         </section>
         <?php endif; ?>
