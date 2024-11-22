@@ -44,12 +44,12 @@
             <div class="navigation-container-prev">
                 <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
                 <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                <span>호텔</span>
+                <span>골프</span>
             </div>
             <div class="navigation-container-next">
                 <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
                 <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                <span class="font-bold">방콕</span>
+                <span class="font-bold"><?=$code_info['code_name']?></span>
             </div>
             <div class="navigation-container-next">
                 <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
@@ -58,7 +58,7 @@
         <div class="sub-hotel-container">
             <div class="category-left golf_filter">
                 <img class="close_popup only_mo" src="/uploads/icons/pop_close_icon.png" alt="close_icon">
-                <h1 class="title">방콕</h1>
+                <h1 class="title"><?=$code_info['code_name']?></h1>
                 <div class="category-left-list">
                     <?php foreach ($filters as $key => $filter) {
                         $type = $filter['filter_name'] == "travel_times" ? 2 : 1;
@@ -76,7 +76,7 @@
             </div>
             <div class="content-right">
                 <div class="only_mo category-mo-cus">
-                    <span class="title-cate">방콕</span>
+                    <span class="title-cate"><?=$code_info['code_name']?></span>
                     <div class="img-div">
                         <img src="/uploads/icons/hotel_filter_icon.png" alt="hotel_filter_icon">
                     </div>
