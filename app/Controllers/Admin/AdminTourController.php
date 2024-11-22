@@ -649,7 +649,7 @@ class AdminTourController extends BaseController
         $product_idx = $this->request->getPost('product_idx');
 
         try {
-            if ($this->productModel->where('product_idx', $product_idx)->delete()) {
+            if ($this->productModel->where('product_idx', $product_idx)->set('product_status', 'D')->update()) {
                 $msg = "정상적으로 삭제되었습니다.";
             } else {
                 $msg = "오류가 발생하였습니다!";

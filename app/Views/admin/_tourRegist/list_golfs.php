@@ -631,9 +631,10 @@
         }
         $("#ajax_loader").removeClass("display-none");
         $.ajax({
-            url: "del.php",
-            type: "POST",
+            url: "/AdmMaster/_tourRegist/del_product",
+            type: "DELETE",
             data: "product_idx[]=" + product_idx,
+            dataType: "json",
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
                 alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
@@ -643,15 +644,8 @@
 //				$("#ajax_loader").addClass("display-none");
             }
             , success: function (response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 삭제되었습니다.");
-                    location.reload();
-                    return;
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                    return;
-                }
+                alert(response.message);
+                location.reload();
             }
         });
 

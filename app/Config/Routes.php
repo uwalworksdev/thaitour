@@ -90,6 +90,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list_tours", "TourRegistController::list_tours");
         $routes->get("list_golf", "TourRegistController::list_golfs");
         $routes->get("write", "TourRegistController::write");
+        $routes->delete("del_product", "TourRegistController::delProduct");
         $routes->get("write_all", "TourRegistController::write_all");
         $routes->get("write_honeymoon", "TourRegistController::write_honeymoon");
         $routes->get("write_golf", "TourRegistController::write_golf");
@@ -108,6 +109,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("write_tours/updOption", "TourRegistController::updOption");
         $routes->post("write_tours/delOption", "TourRegistController::delOption");
         $routes->get("_tourStay", "TourRegistController::list");
+        $routes->post("prod_copy", "TourRegistController::copyProduct");
         $routes->group('golf_vehicles', function ($routes) {
             $routes->get('/', 'GolfVehicleController::list');
             $routes->get('write', 'GolfVehicleController::write');

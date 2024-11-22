@@ -1122,4 +1122,20 @@ class ProductModel extends Model
         write_log($sql);
         return $this->db->query($sql);
     }
+
+    public function copyProduct($product_idx)
+    {
+        $info = $this->where("product_idx", $product_idx)->get()->getRowArray();
+
+        unset($info['product_idx']);
+        $info['r_date'] = date("Y-m-d H:i:s");
+        $info['product_name'] .= "(COPY)";
+        $info['product_code'] .= "_COPY";
+        $insert_id = $this->insert($info);
+
+        return [
+            'insert_id' => $insert_id,
+            'info' => $info
+        ];
+    }
 }

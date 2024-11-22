@@ -158,7 +158,7 @@ class TourRegistController extends BaseController
         $total_sql = " 
 					SELECT p1.*, c1.code_name AS product_code_name_1, c2.code_name AS product_code_name_2 FROM tbl_product_mst AS p1 
 						LEFT JOIN tbl_code AS c1 ON p1.product_code_1 = c1.code_no
-						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 $strSql group by p1.product_idx ";
+						LEFT JOIN tbl_code AS c2 ON c2.code_no = p1.product_code_2  where 1=1 and p1.product_status != 'D' $strSql group by p1.product_idx ";
 
 
         $result = $this->connect->query($total_sql) or die ($this->connect->error);
@@ -1258,5 +1258,43 @@ class TourRegistController extends BaseController
         ];
 
         return view('admin/_tourRegist/write_tour_info', $data);
+    }
+
+    public function delProduct() {
+        $product_idx = $this->request->getRawInput()['product_idx'];
+        if(is_array($product_idx)) {
+            $result = $this->productModel->where('product_idx', $product_idx)->set('product_status', 'D')->update();
+        }
+        if ($result) {
+            $msg = "삭제 완료";
+        } else {
+            $msg = "삭제 오류";
+        }
+        return $this->response->setJSON(['message' => $msg]);
+    }
+
+    public function copyProduct() {
+        $product_idx = $this->request->getPost("product_idx");
+
+        $result = $this->productModel->copyProduct($product_idx);
+
+        $newProductIdx = $result['insert_id'];
+
+        $info = $result['info'];
+
+        if($info['product_code_1'] == 1302) {
+
+            $this->golfInfoModel->copyInfo($product_idx, $newProductIdx);
+
+            $this->golfOptionModel->copyOption($product_idx, $newProductIdx);
+
+        }
+
+        return $this->response->setJSON([
+            "status" => "success",
+            'message' => "제품복사 완료",
+            'newProductIdx' => $newProductIdx
+        ]);
+
     }
 }

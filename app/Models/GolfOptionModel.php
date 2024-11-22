@@ -63,4 +63,12 @@ class GolfOptionModel extends Model
             return false;
         }
     }
+    public function copyOption($originProductIdx, $targetProductIdx)
+    {
+        $options = $this->where("product_idx", $originProductIdx)->findAll();
+        foreach ($options as $option) {
+            $option["product_idx"] = $targetProductIdx;
+            $this->insert($option);
+        }
+    }
 }

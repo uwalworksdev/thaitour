@@ -560,8 +560,6 @@
             $(".tag-js2").eq(0).trigger("click");
             $("#people_adult_cnt").find("option").eq(1).prop("selected", true);
             $("#people_adult_cnt").trigger("change");
-            $(".final_date").text(formatDate(new Date(), "."));
-            $("#order_date").val(formatDate(new Date(), "-"));
         })
 
         function setListVehicle() {
@@ -891,6 +889,9 @@
         let currentDate = new Date();
         let currentMonth = currentDate.getMonth() + 1;
         let currentYear = currentDate.getFullYear();
+
+        const today = new Date();
+
         let swiper01 = new Swiper('.calendar-swiper-container', {
             slidesPerView: 22,
             spaceBetween: 2,
@@ -928,10 +929,9 @@
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
 
                 var idx = -1;
-                for (var i = 0; i < arrDate.length; i++) {
-                    if (arrDate[i] == calDate) {
-                        idx = i;
-                    }
+                
+                if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
+                    idx = arrDate.indexOf(calDate);
                 }
 
                 if (idx == -1) {
@@ -948,7 +948,7 @@
                 <div class="swiper-slide">
                     <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
                     <div class="day ${active}" day_${e.dayOfMonth}">
-                        <a class="${calDate === to_Day ? 'on' : ''}" href='${href}'>
+                        <a href='${href}' data-date="${calDate}">
                             ${e.dayOfMonth}
                         </a>
                         <p class="txt">${selAmt}</p>
@@ -984,6 +984,12 @@
         }
 
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
+
+        const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+        $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
+
+        $(".final_date").text(formatDate(new Date(initDate), "."));
+        $("#order_date").val(formatDate(new Date(initDate), "-"));
 
         function nextMonth() {
             var yy = $("#year").text();

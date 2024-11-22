@@ -11,16 +11,20 @@
                 <?php switch ($type) {
                     case 1: $arr = ${"{$filter['filter_name']}"} ?? []; ?>
                     <ul class="tab_box_show_">
+                        <li class="tab_box_element_ tab_box_js <?= count($arr) == 0 ? 'tab_active_' : '' ?> p--20 border" data-group="<?=$filter['filter_name']?>" data-idx="0">전체</li>
                         <?php foreach ($filter['children'] as $item) { ?>
-                            <li class="tab_box_element_ tab_box_js <?= in_array($item['code_no'], $arr) ? 'tab_active_' : '' ?> p--20 border" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>"><?=$item['code_name']?></li>
+                            <li class="tab_box_element_ tab_box_js <?= in_array($item['code_no'], $arr) || count($arr) == 0 ? 'tab_active_' : '' ?> p--20 border" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>"><?=$item['code_name']?></li>
                         <?php } ?>
                     </ul>
                     <?php break;
                     case 2: $arr = ${"{$filter['filter_name']}"} ?? []; ?>
                     <div class="checkbox-group-golf-category">
                         <form>
+                            <div class="form-group tab_box_js <?= count($arr) == 0 ? 'tab_active_' : '' ?>" data-group="<?=$filter['filter_name']?>" data-idx="0">
+                                <label for="time1">전체</label>
+                            </div>
                             <?php foreach ($filter['children'] as $item) { ?>
-                                <div class="form-group tab_box_js <?= in_array($item['code_no'], $arr) ? 'tab_active_' : '' ?>" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>">
+                                <div class="form-group tab_box_js <?= in_array($item['code_no'], $arr) || count($arr) == 0 ? 'tab_active_' : '' ?>" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>">
                                     <label for="time1"><?=$item['code_name']?></label>
                                 </div>
                             <?php } ?>
@@ -134,9 +138,9 @@
                                     <span><?=$code['code_name']?></span>
                                     <?php if ($key < $num - 1): ?>
                                         <img class="only_web" src="/uploads/icons/arrow_right.png"
-                                             alt="arrow_right">
+                                            alt="arrow_right">
                                         <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                             alt="arrow_right_mo">
+                                            alt="arrow_right_mo">
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </div>
@@ -206,9 +210,38 @@
             $('#checkin').val(formatDate('2024/07/09'));
             $('#checkout').val(formatDate('2024/07/10'));
         });
+
+        function updateSelectedGroup(group, idx) {
+            const tabs = $(`.tab_box_js[data-group="${group}"]`);
+
+            const tabAll = $(`.tab_box_js[data-group="${group}"][data-idx="0"]`);
+
+            const tabsNotAll = tabs.not(tabAll);
+
+            if (idx == 0) {
+                if (tabAll.hasClass('tab_active_')) {
+                    tabsNotAll.addClass('tab_active_');
+                } else {
+                    tabsNotAll.removeClass('tab_active_');
+                }
+            } else {
+                const tabsNotAllActive = tabsNotAll.filter('.tab_active_');
+                if (tabsNotAllActive.length == tabsNotAll.length) {
+                    tabAll.addClass('tab_active_');
+                } else {
+                    tabAll.removeClass('tab_active_');
+                }
+            }
+            
+        }
+
         function updateSelected() {
             $('.list-tag').empty();
-            $('.tab_box_js.tab_active_').each(function() {
+            $('.tab_box_js.tab_active_[data-idx!="0"]').filter(function () {
+                const siblings = $(this).siblings();
+                const hasInvalidSibling = siblings.is('[data-idx="0"].tab_active_');
+                return !hasInvalidSibling;
+            }).each(function() {
                 var tabText = $(this).text();
                 $('.list-tag').append(
                     '<div class="tag-item" data-idx="' + $(this).data('idx') + '" data-group="' + $(this).data('group') + '">' +
@@ -222,6 +255,7 @@
             updateSelected();
             $('.tab_box_js').click(function() {
                 $(this).toggleClass('tab_active_');
+                updateSelectedGroup($(this).data('group'), $(this).data('idx'));
                 updateSelected();
             });
 
