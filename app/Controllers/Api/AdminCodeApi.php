@@ -276,10 +276,10 @@ class AdminCodeApi extends BaseController
     public function search_insert()
     {
         try {
-            $tbc_idx = $_POST['tbc_idx'] ?? [];
-            $subject = $_POST['subject'] ?? [];
-            $url     = $_POST['url'] ?? [];
-            $onum    = $_POST['onum'] ?? [];
+            $tbc_idx = $_POST['tbc_idx'];
+            $subject = $_POST['subject'];
+            $url     = $_POST['url'];
+            $onum    = $_POST['onum'];
 
             if (empty($subject)) {
                 return $this->response
