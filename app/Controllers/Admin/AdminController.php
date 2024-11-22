@@ -103,7 +103,7 @@ class AdminController extends BaseController
         return view('admin/_home/write', $data);
     }
 
-    public function search_wordx()
+    public function search_word()
     {
         $private_key = private_key();
         $g_list_rows = 100;
