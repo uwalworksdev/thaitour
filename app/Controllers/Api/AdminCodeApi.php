@@ -276,6 +276,7 @@ class AdminCodeApi extends BaseController
     public function search_insert()
     {
         try {
+            $tbc_idx = $_POST['tbc_idx'] ?? [];
             $subject = $_POST['subject'] ?? [];
             $url     = $_POST['url'] ?? [];
             $onum    = $_POST['onum'] ?? [];
@@ -289,9 +290,16 @@ class AdminCodeApi extends BaseController
                     ]);
             }
 
-			$sql    = " insert into tbl_search set subject = '". $subject."'
-			                                      ,onum    = '". $onum ."' 
-			                                      ,url     = '". $url ."' "; 
+            if($tbc_idx) {
+				$sql    = " update tbl_search set subject = '". $subject."'
+												 ,onum    = '". $onum ."' 
+												 ,url     = '". $url ."' where tbc_idx = '". $tbc_idx ."' " ; 
+            } else { 
+				$sql    = " insert into tbl_search set subject = '". $subject."'
+													  ,onum    = '". $onum ."' 
+													  ,url     = '". $url ."' "; 
+            }
+
 			$result = $this->connect->query($sql);
 
             if (isset($result) && $result) {
