@@ -117,13 +117,13 @@ $(document).ready(function () {
     $(this).addClass("active");
   });
 
-  $(".words_list_item").on("click", function (event) {
-    event.preventDefault();
+  //$(".words_list_item").on("click", function (event) {
+  //  event.preventDefault();
 
-    $(".words_list_item").removeClass("active");
+//    $(".words_list_item").removeClass("active");
 
-    $(this).addClass("active");
-  });
+  //  $(this).addClass("active");
+  //});
 
   $(".place_item_golf").on("click", function (event) {
     event.preventDefault();
