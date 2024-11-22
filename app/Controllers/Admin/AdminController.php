@@ -145,6 +145,48 @@ class AdminController extends BaseController
         return view('admin/_home/search_word', $data);
     }
 
+
+    public function search_list()
+    {
+        $g_list_rows = 100;
+        $ca_idx = $_GET['ca_idx'] ?? '';
+        $search_category = $_GET['search_category'] ?? '';
+        $search_name = $_GET['search_name'] ?? '';
+        $pg = $_GET['pg'] ?? '';
+
+        $total_sql = " select *	from tbl_search where 1=1 ";
+        $result = $this->connect->query($total_sql);
+        $row = $result->getRowArray();
+        $nTotalCount = $result->getNumRows();
+        $tbc_idx = $row['tbc_idx'];
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $sql = $total_sql . " order by onum desc limit $nFrom, $g_list_rows ";
+        $result = $this->connect->query($sql);
+        $result = $result->getResultArray();
+        $num = $nTotalCount - $nFrom;
+
+        $data = [
+            'nTotalCount' => $nTotalCount,
+            'tbc_idx' => $tbc_idx,
+            'private_key' => $private_key,
+            'g_list_rows' => $g_list_rows,
+            'row' => $row,
+            'num' => $num,
+            'pg' => $pg,
+            'nPage' => $nPage,
+            'search_name' => $search_name,
+            'search_category' => $search_category,
+            'ca_idx' => $ca_idx,
+            'result' => $result
+        ];
+
+        return view('admin/_home/search_word', $data);
+    }
+
     public function search_write()
     {
         $tbc_idx = updateSQ($_GET["tbc_idx"] ?? '');
