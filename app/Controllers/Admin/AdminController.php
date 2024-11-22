@@ -105,7 +105,6 @@ class AdminController extends BaseController
 
     public function search_word()
     {
-		/*
         $private_key = private_key();
         $g_list_rows = 100;
         $ca_idx = $_GET['ca_idx'] ?? '';
@@ -142,8 +141,8 @@ class AdminController extends BaseController
             'ca_idx' => $ca_idx,
             'result' => $result
         ];
-*/
-        return view('admin/_home/search_word', "");
+
+        return view('admin/_home/search_word', $data);
     }
 
     public function search_write()
@@ -226,7 +225,6 @@ class AdminController extends BaseController
 														   , AES_DECRYPT(UNHEX('{$row['zip']}'),          '$private_key') AS zip
 														   , AES_DECRYPT(UNHEX('{$row['addr1']}'),        '$private_key') AS addr1
 														   , AES_DECRYPT(UNHEX('{$row['addr2']}'),        '$private_key') AS addr2 ";
-        write_log($sql_d);
         $result_d = $this->connect->query($sql_d);
         $row_d = $result_d->getRowArray();
         return $row_d;
