@@ -41,6 +41,11 @@ $list4 = $MainDisp->List("2903")->findAll();
 
 // 태국에서 즐기는 골프의 특별함
 $list5 = $MainDisp->List("2905")->findAll();
+
+// 검색어
+$SearchText = model("SearchText");
+$searchTxt  = $SearchText->List()->findAll();
+
 ?>
 
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
@@ -365,7 +370,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="main_section5__head__bar"></div>
             </div>
             <div class="main_section5__words_list" id="searchTxt">
-                <a href="#!" class="words_list_item ">#호텔투어</a>
+                <!--a href="#!" class="words_list_item ">#호텔투어</a>
                 <a href="#!" class="words_list_item ">#5성급호텔</a>
                 <a href="#!" class="words_list_item ">#태국호캉스</a>
                 <a href="#!" class="words_list_item ">#바닷가라운딩</a>
@@ -377,7 +382,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <a href="#!" class="words_list_item ">#바닷가라운딩</a>
                 <a href="#!" class="words_list_item ">#호텔투어</a>
                 <a href="#!" class="words_list_item ">#5성급호텔</a>
-                <a href="#!" class="words_list_item ">#호텔투어</a>
+                <a href="#!" class="words_list_item ">#호텔투어</a-->
             </div>
 
             <div class="main_hot__search">
@@ -450,6 +455,7 @@ $list5 = $MainDisp->List("2905")->findAll();
         </div>
     </section>
 
+    <!--
     <script>
 	$(document).ready(function() {
 			$.ajax({
@@ -466,25 +472,9 @@ $list5 = $MainDisp->List("2905")->findAll();
 						alert('Error: ' + error);
 				}			
 			});
-
-			$('.words_list_item').click(function () {
-				$(this).toggleClass('active');
-
-				var hashTxt  = "";
-				var searhTxt = "";
-
-				$('.words_list_item').each(function (index) {
-					if ($(this).hasClass('active')) {
-						hashTxt  += $(this).text().replace('#', '')+',';
-						//searhTxt = $("#searchInput").val() + hashTxt;
-					}
-				});
-				$("#searchInput").val(hashTxt);
-
-				//window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
-			})
 	});
 	</script>
+    -->
 
     <script>
         $(document).ready(function () {
@@ -595,6 +585,23 @@ $list5 = $MainDisp->List("2905")->findAll();
 	</script>
 
     <script>
+        $('.words_list_item').click(function () {
+			$(this).toggleClass('active');
+
+			var hashTxt  = "";
+			var searhTxt = "";
+
+			$('.words_list_item').each(function (index) {
+				if ($(this).hasClass('active')) {
+					hashTxt  += $(this).text().replace('#', '')+',';
+					//searhTxt = $("#searchInput").val() + hashTxt;
+				}
+			});
+			$("#searchInput").val(hashTxt);
+
+            //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
+        })
+
         $('#searchInput').on('keydown', function (event) {
             if (event.key === 'Enter' || event.which === 13) {
                 searchData($(this).val());
