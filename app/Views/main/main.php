@@ -382,7 +382,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
             <div class="main_hot__search">
                 <div class="main-search-container">
-                    <input id="searchInput" type="hidden" class="search-input" placeholder="검색어를 선택해 주세요" value="">
+                    <input id="searchInput" type="text" class="search-input" placeholder="검색어를 선택해 주세요" value="">
                     <!--i style="cursor: pointer" class="fa fa-search search-icon" id="iconSearchInp"></i-->
 					<button type="button" id="search_go">검색하기</button>
                 </div>
