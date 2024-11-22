@@ -797,7 +797,6 @@ figure.cover_img img {
   position: relative;
   overflow: hidden;
   padding: 0 calc((100% - 1200px) / 2);
-  max-width: calc(100% - 40px);
   margin: auto;
 }
 
