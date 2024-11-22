@@ -681,6 +681,7 @@
         let total = Number(realTotal) + Number(optionTotal);
 
         $('#totalPrice').val(total);
+        $('#lastPrice').val(total);
 
         let discountPrice = $('#discountPrice').val();
         let pointPrice = $('#pointPrice').val();
