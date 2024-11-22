@@ -105,6 +105,7 @@ class AdminController extends BaseController
 
     public function search_word()
     {
+		/*
         $private_key = private_key();
         $g_list_rows = 100;
         $ca_idx = $_GET['ca_idx'] ?? '';
@@ -141,8 +142,8 @@ class AdminController extends BaseController
             'ca_idx' => $ca_idx,
             'result' => $result
         ];
-
-        return view('admin/_home/search_word', $data);
+*/
+        return view('admin/_home/search_word', "");
     }
 
     public function search_write()
