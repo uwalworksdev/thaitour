@@ -22,7 +22,7 @@
                             $img_url = "";
 
                             if (!$img_url and $value['ufile1']) {
-                                $img_url = "/data/review/" . $value['ufile1'];
+                                $img_url = "/uploads/review/" . $value['ufile1'];
                             }
 
                             $pattern = '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i';
@@ -33,12 +33,12 @@
 
                             if (!$img_url) {
                                 if ($value['product_img']) {
-                                    $img_url = "/data/review/" . $value['product_img'];
+                                    $img_url = "/uploads/review/" . $value['product_img'];
                                 }
                             }
 
                             if (!$img_url) {
-                                $img_url = "https://casino02.cafe24.com/img/noimg_customer.png";
+                                $img_url = "/images/product/noimg.png";
                             }
 
                             ?>
@@ -79,7 +79,7 @@
         <section class="evaluate_section_2">
             <div class="inner">
                 <div class="sect_ttl_box">
-                    <h2>호주 여행후기</h2>
+                    <h2>여행후기</h2>
                     <div class="common_tab_wrap flex_b_c">
                         <ul class="common_tab flex_c_c">
                             <li class="<?= $category != "best" ? "active" : "" ?>"><a href="./review_list">전체</a></li>
