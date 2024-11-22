@@ -258,7 +258,7 @@ class AdminController extends BaseController
         return view('admin/_home/block_ip_list', $data);
     }
 
-    public function getData($row, $private_key)
+    public function getData($private_key)
     {
         $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name 
 														   , AES_DECRYPT(UNHEX('{$row['user_email']}'),   '$private_key') AS user_email 
