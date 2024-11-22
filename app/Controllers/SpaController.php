@@ -169,13 +169,14 @@ class SpaController extends BaseController
             $coupon_no = $this->request->getPost('coupon_no');
 
             $people_adult_cnt = 0;
-
-            foreach ($adultQty as $key => $value) {
+            $adultQty = explode(',', $adultQty);
+            foreach ($adultQty as $value) {
                 $people_adult_cnt += intval($value);
             }
 
             $people_kids_cnt = 0;
-            foreach ($childrenQty as $key => $value) {
+            $childrenQty = explode(',', $childrenQty);
+            foreach ($childrenQty as $value) {
                 $people_kids_cnt += intval($value);
             }
 
@@ -256,17 +257,19 @@ class SpaController extends BaseController
 
             if (isset($option_idx)) {
                 $countO = count($option_idx);
+
                 for ($i = 0; $i < $countO; $i++) {
+
                     $this->orderOptionModel->insert([
                         'option_type' => $order_gubun,
                         'order_idx' => $order_idx,
                         'product_idx' => $data['product_idx'],
-                        'option_idx' => $option_idx[$i],
-                        'option_name' => $option_name[$i],
-                        'option_cnt' => $option_cnt[$i],
-                        'option_price' => $option_price[$i],
-                        'option_qty' => $option_qty[$i],
-                        'option_tot' => $option_tot[$i],
+                        'option_idx' => $option_idx[$i] ?? 0,
+                        'option_name' => $option_name[$i] ?? '',
+                        'option_cnt' => $option_cnt[$i] ?? 0,
+                        'option_price' => $option_price[$i] ?? 0,
+                        'option_qty' => $option_qty[$i] ?? 0,
+                        'option_tot' => $option_tot[$i] ?? 0,
                         'option_date' => $day_,
                     ]);
                 }
@@ -301,7 +304,7 @@ class SpaController extends BaseController
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
-            ]);
+            ])->setStatusCode(400);
         }
     }
 }

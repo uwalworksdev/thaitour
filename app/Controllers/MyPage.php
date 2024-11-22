@@ -344,16 +344,16 @@ class MyPage extends BaseController
                 $data['option'] = $this->golfOptionModel->getByIdx($option_idx);
             }
 
-            if ($gubun == "spa") {
-                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, 'spa');
+            if ($gubun == "spa" || $gubun == "ticket" || $gubun == "restaurant") {
+                $data['option_order'] = $this->orderOptionModel->getOption($order_idx, $gubun);
             }
 
             if ($gubun == "tour") {
                 $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
                 $optionsIdx = $data['tour_orders']['options_idx'];
-    
+
                 $options_idx = explode(',', $optionsIdx);
-    
+
                 $data['tour_option'] = [];
                 $data['total_price'] = 0;
                 foreach ($options_idx as $idx) {
