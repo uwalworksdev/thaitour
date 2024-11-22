@@ -541,7 +541,7 @@
                         location.href = `/review/review_detail?idx=${$("#idx").val()}`;
                     } else {
                         alert("정상적으로 등록되었습니다!");
-                        // location.href = '/review/review_list';
+                        location.href = '/review/review_list';
                     }
                 }
             })
