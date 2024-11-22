@@ -450,6 +450,7 @@ $list5 = $MainDisp->List("2905")->findAll();
         </div>
     </section>
 
+    <!--
     <script>
 	$(document).ready(function() {
 			$.ajax({
@@ -468,6 +469,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 			});
 	});
 	</script>
+    -->
 
     <script>
         $(document).ready(function () {
