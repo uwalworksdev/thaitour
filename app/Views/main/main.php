@@ -365,7 +365,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 <div class="main_section5__head__bar"></div>
             </div>
             <div class="main_section5__words_list">
-                <a href="#!" class="words_list_item <?= $keyword == '호텔투어' ? 'active' : '' ?>">#호텔투어</a>
+                <a href="#!" class="words_list_item ">#호텔투어</a>
                 <a href="#!" class="words_list_item ">#5성급호텔</a>
                 <a href="#!" class="words_list_item ">#태국호캉스</a>
                 <a href="#!" class="words_list_item ">#바닷가라운딩</a>
