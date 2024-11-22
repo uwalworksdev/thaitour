@@ -155,7 +155,7 @@
             var message = "";
             $.ajax({
 
-                url: "./ajax.code_delete.php",
+                url: "/AdmMaster/api/code_/search_delete",
                 type: "POST",
                 data: {
                     "tbc_idx": idx
@@ -166,7 +166,7 @@
                 success: function (data, textStatus) {
                     message = data.message;
                     alert(message);
-                    location.href = '/AdmMaster/_adminrator/search_word.php';
+                    location.reload();
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
