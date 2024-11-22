@@ -459,26 +459,13 @@ $searchTxt  = $SearchText->List()->findAll();
         </div>
     </section>
 
-    <!--
     <script>
 	$(document).ready(function() {
-			$.ajax({
-				url: "/ajax/set_search_txt",
-				type: "POST",
-				data: {   },
-			    dataType: "json",
-				success: function(res) {
-					var message  = res.message;
-					$("#searchTxt").html(message);
-				},
-				error: function (xhr, status, error) {
-						console.error(xhr.responseText); // 서버 응답 내용 확인
-						alert('Error: ' + error);
-				}			
-			});
+		$("#search_go").click(function() {
+			alert($("#searchInput").val());
+		});
 	});
 	</script>
-    -->
 
     <script>
         $(document).ready(function () {
