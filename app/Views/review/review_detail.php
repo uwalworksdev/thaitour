@@ -54,7 +54,7 @@ $reg_m_idx = $review["reg_m_idx"];
                         <li class="view_content-file file">
                             <h4>첨부파일</h4>
                             <div class="view_content-info icon">
-                                <a href='/data/review/<?= $ufile2 ?>' download='<?= $rfile2 ?>'><?= $rfile2 ?><i></i></a>
+                                <a href='/uploads/review/<?= $ufile2 ?>' download='<?= $rfile2 ?>'><?= $rfile2 ?><i></i></a>
                             </div>
                         </li>
                     <?php }
