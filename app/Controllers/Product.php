@@ -67,6 +67,38 @@ class Product extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
+    public function productSearch() {
+        $search_name = $this->request->getVar("search_name");
+
+        $data['search_name'] = $search_name;
+
+        $listHotel = $this->productModel->findProductHotelPaging([
+            'product_code_1' => 1303,
+            'search_product_name' => $search_name,
+            'product_status' => 'sale'
+        ], 10, 1, [])['items'];
+
+        $listGolf = $this->productModel->findProductGolfPaging([
+            'is_view' => 'Y',
+            'product_code_1' => 1302,
+            'search_txt' => $search_name,
+            'search_category' => 'product_name'
+        ], 10, 1, [])['items'];
+
+        $data['list'] = [
+            'hotel' => [
+                'title' => "호텔",
+                'items' => $listHotel
+            ],
+            'golf' => [
+                'title' => "골프",
+                'items' => $listGolf
+            ]
+        ];
+
+        return $this->renderView('product/product_search', $data);
+    }
+
     public function showTicket($code_no)
     {
         try {

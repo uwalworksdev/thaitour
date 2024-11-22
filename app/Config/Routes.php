@@ -542,6 +542,7 @@ $routes->group("magazines", static function ($routes) {
 // });
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
+$routes->get('product_search', 'Product::productSearch');
 $routes->get('ticket/completed-order', 'Product::ticketCompleted');
 $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');

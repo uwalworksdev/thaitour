@@ -68,8 +68,13 @@
                 <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container">
-                        <input type="text" class="search-input" placeholder="검색어를 입력해 주세요">
+                        <input type="text" class="search-input" id="search_input" placeholder="검색어를 입력해 주세요">
                         <i class="fa fa-search search-icon"></i>
+                        <ul class="search_words_list" id="search_words_list_pc">
+                            <li><a href="/product_search?search_name=검색어1">#검색어1</a></li>
+                            <li><a href="/product_search?search_name=검색어2">#검색어2</a></li>
+                            <li><a href="/product_search?search_name=검색어3">#검색어3</a></li>
+                        </ul>
                     </div>
                     <div class="custom_select_rounded">
                         <a class="text_custom_" href="#">상세검색</a>
@@ -436,6 +441,15 @@
     //         $("#menu_mobile").hide();
     //     }
     // });
+
+    $("#search_input").focus(function () {
+        $("#search_words_list_pc").slideDown(200);
+    })
+
+    $("#search_input").blur(function () {
+        $("#search_words_list_pc").slideUp(200);
+    })
+
     $("#search-mobile").click(function () {
         $("#popup_search_mo").show();
     });
