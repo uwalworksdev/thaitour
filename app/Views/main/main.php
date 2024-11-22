@@ -560,7 +560,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     <script>
         $('.words_list_item').click(function () {
-			$(this).addClass('active');
+			$(this).toggleClass('active');
 			var hashTxt  = $(this).text().replace('#', '')+',';
 			var searTxt  = $("#searchInput").val() + hashTxt;
 			$("#searchInput").val(searTxt);
