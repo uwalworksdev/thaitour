@@ -35,8 +35,6 @@ class ReviewController extends BaseController
 
         $resultObj = $this->ReviewModel->getReviews($s_txt, $search_category, $category, $page, 10);
 
-//        var_dump($resultObj);
-//        die();
         return view("review/review_list", [
             "best_review" => $best_review,
             "visual" => $visual,
@@ -197,9 +195,9 @@ class ReviewController extends BaseController
                     alert('삭제처리되었습니다.');
                     parent.history.back();
                   </script>");
-        } else {
-            return $this->response->setBody('OK');
         }
+
+        return $this->response->setBody('OK');
     }
 
     public function ajax_del()
@@ -228,12 +226,12 @@ class ReviewController extends BaseController
             $review = $this->db->query($total_sql)->getRowArray();
             if ($review) {
                 return view("review/review_detail", ["review" => $review, "idx" => $idx]);
-            } else {
-                return view("errors/html/error_404", ["message" => "<a href='/'>마이페이지에 접속된 것가 없는 모든 것이 있습니다. </a>"]);
             }
-        } else {
-            return view("errors/html/error_404");
+
+            return view("errors/html/error_404", ["message" => "<a href='/'>마이페이지에 접속된 것가 없는 모든 것이 있습니다. </a>"]);
         }
+
+        return view("errors/html/error_404");
     }
 
     public function write_review()
@@ -460,41 +458,41 @@ class ReviewController extends BaseController
 
             $this->calcReview($product_idx);
             return alert_msg("정상적으로 수정되었습니다.", "/review/review_list");
-        } else {
-            $dataToInsert = [
-                'user_name' => sqlSecretConver($user_name, 'encode'),
-                'user_email' => sqlSecretConver($user_email, 'encode'),
-                'reg_m_idx' => $session->get('member.idx'),
-                'rfile1' => $r_file_name1,
-                'ufile1' => $r_file_code1,
-                'rfile2' => $r_file_name2,
-                'status' => $status,
-                'number_stars' => $number_stars,
-                'review_type' => $review_type,
-                'ufile2' => $r_file_code2,
-                'product_idx' => $product_idx ?? 0,
-                'travel_type' => $travel_type,
-                'travel_type_2' => $travel_type_2 ?? 0,
-                'travel_type_3' => $travel_type_3 ?? 0,
-                'title' => $title,
-                'contents' => $contents,
-                'r_date' => $r_date ?? date("Y-m-d H:i:s"),
-                'passwd' => $pass,
-                'user_id' => $user_id,
-                'user_ip' => $_SERVER['REMOTE_ADDR']
-            ];
-
-            if ($role == "admin") {
-                $dataToInsert['status'] = $status;
-                $dataToInsert['is_best'] = $is_best;
-                $dataToInsert['display'] = $display;
-                $dataToInsert['user_phone'] = $user_phone;
-            }
-
-            $this->ReviewModel->insert($dataToInsert);
-            $this->calcReview($product_idx);
-            return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
         }
+
+        $dataToInsert = [
+            'user_name' => sqlSecretConver($user_name, 'encode'),
+            'user_email' => sqlSecretConver($user_email, 'encode'),
+            'reg_m_idx' => $session->get('member.idx'),
+            'rfile1' => $r_file_name1,
+            'ufile1' => $r_file_code1,
+            'rfile2' => $r_file_name2,
+            'status' => $status,
+            'number_stars' => $number_stars,
+            'review_type' => $review_type,
+            'ufile2' => $r_file_code2,
+            'product_idx' => $product_idx ?? 0,
+            'travel_type' => $travel_type,
+            'travel_type_2' => $travel_type_2 ?? 0,
+            'travel_type_3' => $travel_type_3 ?? 0,
+            'title' => $title,
+            'contents' => $contents,
+            'r_date' => $r_date ?? date("Y-m-d H:i:s"),
+            'passwd' => $pass,
+            'user_id' => $user_id,
+            'user_ip' => $_SERVER['REMOTE_ADDR']
+        ];
+
+        if ($role == "admin") {
+            $dataToInsert['status'] = $status;
+            $dataToInsert['is_best'] = $is_best;
+            $dataToInsert['display'] = $display;
+            $dataToInsert['user_phone'] = $user_phone;
+        }
+
+        $this->ReviewModel->insert($dataToInsert);
+        $this->calcReview($product_idx);
+        return alert_msg("정상적으로 등록되었습니다.", "/review/review_list");
     }
 
     public function review_delete()
