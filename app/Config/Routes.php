@@ -340,28 +340,6 @@ $routes->group("AdmMaster", static function ($routes) {
         // 사이트 기본설정
         $routes->get("setting", "Setting::writeView");
         $routes->post("update", "Setting::writeUpdate");
-        // 팝업
-        $routes->group("popup", static function ($routes) {
-            $routes->get("list", "Popup::ListView");
-            $routes->get("write", "Popup::WriteView");
-            $routes->get("write/(:segment)", "Popup::WriteView/$1");
-
-            $routes->post("insert", "Popup::WriteInsert");
-            $routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
-            $routes->get("delete", "Popup::ItemDelete");
-            $routes->post("status/change", "Popup::ListStatusChangeAjax");
-        });
-
-        $routes->group("block_ip", static function ($routes) {
-            $routes->get("list", "Popup::ListView");
-            $routes->get("write", "Popup::WriteView");
-            $routes->get("write/(:segment)", "Popup::WriteView/$1");
-
-            $routes->post("insert", "Popup::WriteInsert");
-            $routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
-            $routes->get("delete", "Popup::ItemDelete");
-            $routes->post("status/change", "Popup::ListStatusChangeAjax");
-        });
 
         $routes->get("policy", "Policy::WriteView");
 
@@ -370,6 +348,31 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("search_word", "Admin\AdminController::search_word");
         $routes->get("search_write", "Admin\AdminController::search_write");
         $routes->get("block_ip_list", "Admin\AdminController::block_ip_list");
+
+	// 팝업
+	$routes->group("popup", static function ($routes) {
+		$routes->get("list", "Popup::ListView");
+		$routes->get("write", "Popup::WriteView");
+		$routes->get("write/(:segment)", "Popup::WriteView/$1");
+
+		$routes->post("insert", "Popup::WriteInsert");
+		$routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
+		$routes->get("delete", "Popup::ItemDelete");
+		$routes->post("status/change", "Popup::ListStatusChangeAjax");
+	});
+
+	$routes->group("block_ip", static function ($routes) {
+		$routes->get("list", "Popup::ListView");
+		$routes->get("write", "Popup::WriteView");
+		$routes->get("write/(:segment)", "Popup::WriteView/$1");
+
+		$routes->post("insert", "Popup::WriteInsert");
+		$routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
+		$routes->get("delete", "Popup::ItemDelete");
+		$routes->post("status/change", "Popup::ListStatusChangeAjax");
+	});
+
+
     });
 });
 
