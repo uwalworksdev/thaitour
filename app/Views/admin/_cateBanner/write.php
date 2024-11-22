@@ -100,21 +100,22 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="70px"/>
-                                <col width="300px"/>
+                                <col width="100px"/>
+                                <col width="70px"/>
                                 <col width="100px"/>
                                 <col width="100px"/>
                                 <col width="100px"/>
-                                <col width="100px"/>
-                                <col width="100px"/>
-                                <col width="200px"/>
+                                <col width="70px"/>
+                                <col width="50px"/>
+                                <col width="150px"/>
                             </colgroup>
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>이미지</th>
                                 <th>구분</th>
-                                <th>URL</th>
-                                <th>파일첨부</th>
+                                <th colspan="2">기본 설치</th>
+                                <th>PC 이미지</th>
+                                <th>모바일 이미지</th>
                                 <th>우선순위</th>
                                 <th>현황</th>
                                 <th>관리</th>
@@ -127,12 +128,8 @@
                                 <form name="frm_<?= $i ?>" action="/AdmMaster/_cateBanner/write_ok/<?=$row['cb_idx']?>" method="post" enctype="multipart/form-data" target="hiddenFrame">
                                     <tbody>
                                         <tr style="height:45px;">
-                                            <td><?= $i ?></td>
-                                            <td>
-                                                <a href="/data/cate_banner/<?= $row["ufile1"] ?>" class="imgpop">
-                                                <img src="/data/cate_banner/<?= $row["ufile1"] ?>" style="max-height:200px;max-width:200px"></a>
-                                            </td>
-                                            <td>
+                                            <td rowspan="3"><?= $i ?></td>
+                                            <td rowspan="3">
                                                 <select name="category" id="category">
                                                     <option value="">선택</option>
                                                     <option value="top" <?=$row['category'] == "top" ? "selected" : ""?>>상단배너</option>
@@ -140,18 +137,27 @@
                                                     <option value="bottom" <?=$row['category'] == "bottom" ? "selected" : ""?>>하단배너</option>
                                                 </select>
                                             </td>
+                                            <td>URL</td>
                                             <td>
                                                 <input type="text" name="url" value="<?= $row["url"] ?>" style="width: 200px;">
                                             </td>
-                                            <td>
-                                                <input type="file" name="ufile1" class="bbs_inputbox_pixel" style="width:200px"/></td>
-                                            <td>
+                                            <td rowspan="3" style="vertical-align: top;">
+                                                <input type="file" name="ufile1" class="bbs_inputbox_pixel" style="width:200px"/>
+                                                <a href="/data/cate_banner/<?= $row["ufile1"] ?>" class="imgpop">
+                                                <img src="/data/cate_banner/<?= $row["ufile1"] ?>" style="max-height:200px;max-width:200px"></a>
+                                            </td>
+                                            <td rowspan="3" style="vertical-align: top;">
+                                                <input type="file" name="ufile2" class="bbs_inputbox_pixel" style="width:200px"/>
+                                                <a href="/data/cate_banner/<?= $row["ufile12"] ?>" class="imgpop">
+                                                <img src="/data/cate_banner/<?= $row["ufile2"] ?>" style="max-height:200px;max-width:200px"></a>
+                                            </td>
+                                            <td rowspan="3">
                                                 <input type="text" name="onum" class="bbs_inputbox_pixel" style="width:50px" value="<?= $row["onum"] ?>"/>
                                             </td>
-                                            <td>
+                                            <td rowspan="3">
                                                 <input type="checkbox" name="use_yn" value="Y" <?= $row["use_yn"] == "Y" ? "checked" : ""?>>
                                             </td>
-                                            <td>
+                                            <td rowspan="3">
                                                 <a href="javascript:document.frm_<?= $i ?>.submit();" class="btn btn-default">
                                                     <span class="glyphicon glyphicon-cog"></span>
                                                     <span class="txt">수정</span>
@@ -160,6 +166,18 @@
                                                     <span class="glyphicon glyphicon-cog"></span>
                                                     <span class="txt">삭제</span>
                                                 </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>제목</td>
+                                            <td>
+                                                <input type="text" name="title" value="<?= $row["title"] ?>" style="width: 200px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>서브제목</td>
+                                            <td>
+                                                <input type="text" name="subtitle" value="<?= $row["subtitle"] ?>" style="width: 200px;">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -214,15 +232,33 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>이미지</th>
+                                    <th>제목</th>
+                                    <td>
+                                        <input type="text" id="title" name="title" class="input_txt" style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>서브제목</th>
+                                    <td>
+                                        <input type="text" id="subtitle" name="subtitle" class="input_txt" style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>PC 이미지</th>
                                     <td>
                                         <input type="file" id="ufile1" name="ufile1" class="input_txt" style="width:20%"/>
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>모바일 이미지</th>
+                                    <td>
+                                        <input type="file" id="ufile2" name="ufile2" class="input_txt" style="width:20%"/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>현황</th>
                                     <td>
-                                        <input type="radio" name="use_yn" value="Y"> 사용&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" name="use_yn" value="Y" checked> 사용&nbsp;&nbsp;&nbsp;
                                         <input type="radio" name="use_yn" value="N"> 마감&nbsp;&nbsp;&nbsp;
                                     </td>
                                 </tr>

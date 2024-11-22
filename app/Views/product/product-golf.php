@@ -99,14 +99,16 @@
                 </div>
             </div>
         </section>
+        <?php if($bannerTop): ?>
         <section class="banner-middle-tour">
             <div class="container-middle-tour">
                 <h2 class="son-title">
-                    내 일정에 딱 맞는 맞춤형 골프여행
+                    <?=viewSQ($bannerTop['title'])?>
                 </h2>
-                <p class="son-des">문의 주시면 빠르게 답변 드리겠습니다.</p>
+                <p class="son-des"><?=viewSQ($bannerTop['subtile'])?></p>
             </div>
         </section>
+        <?php endif; ?>
         <section class="sub_section3 thailand_hotel_">
             <div class="sub_section3__head">
                 <div class="sub_section3__head__ttl">

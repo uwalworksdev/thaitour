@@ -36,21 +36,13 @@
                 <div class="sub_tour_right">
                     <div class="swiper sub_swiper1">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="img_box img_box_9">
-                                    <img src="/images/sub/Layer2.png" alt="main">
+                            <?php foreach ($bannerTop as $banner) : ?>
+                                <div class="swiper-slide">
+                                    <div class="img_box img_box_9">
+                                        <img src="/data/cate_banner/<?= $banner['ufile1'] ?>" alt="main">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="img_box img_box_9">
-                                    <img src="/images/sub/Layer3.jpg" alt="main">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="img_box img_box_9">
-                                    <img src="/images/sub/Layer4.png" alt="main">
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -62,54 +54,6 @@
             <div style="position: relative;">
                 <div class="swiper sub_swiper2">
                     <div class="swiper-wrapper">
-                        <!--                        <div class="swiper-slide">-->
-                        <!--                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">-->
-                        <!--                                <img src="/uploads/sub/tour_slide_1.png" alt="main">-->
-                        <!--                            </div>-->
-                        <!--                            <div class="sub_swiper2__text">-->
-                        <!--                                방콕 <img src="/images/ico/ico_arrow_right_1.svg" alt="">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="swiper-slide">-->
-                        <!--                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">-->
-                        <!--                                <img src="/uploads/sub/tour_slide_2.png" alt="main">-->
-                        <!--                            </div>-->
-                        <!--                            <div class="sub_swiper2__text">-->
-                        <!--                                파타야 <img src="/images/ico/ico_arrow_right_1.svg" alt="">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="swiper-slide">-->
-                        <!--                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">-->
-                        <!--                                <img src="/uploads/sub/tour_slide_3.png" alt="main">-->
-                        <!--                            </div>-->
-                        <!--                            <div class="sub_swiper2__text">-->
-                        <!--                                푸켓 <img src="/images/ico/ico_arrow_right_1.svg" alt="">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="swiper-slide">-->
-                        <!--                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">-->
-                        <!--                                <img src="/uploads/sub/tour_slide_4.png" alt="main">-->
-                        <!--                            </div>-->
-                        <!--                            <div class="sub_swiper2__text">-->
-                        <!--                                치앙마이 <img src="/images/ico/ico_arrow_right_1.svg" alt="">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="swiper-slide">-->
-                        <!--                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">-->
-                        <!--                                <img src="/uploads/sub/tour_slide_5.png" alt="main">-->
-                        <!--                            </div>-->
-                        <!--                            <div class="sub_swiper2__text">-->
-                        <!--                                끄라비 <img src="/images/ico/ico_arrow_right_1.svg" alt="">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                        <!--                        <div class="swiper-slide">-->
-                        <!--                            <div class="img_box" onclick="window.location.href='/product-tours/item_view/item_view/1325/2';">-->
-                        <!--                                <img src="/uploads/sub/tour_slide_3.png" alt="main">-->
-                        <!--                            </div>-->
-                        <!--                            <div class="sub_swiper2__text">-->
-                        <!--                                카오락 <img src="/images/ico/ico_arrow_right_1.svg" alt="">-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
                         <?php foreach ($sub_codes as $item): ?>
                             <div class="swiper-slide">
                                 <a href="/product-tours/tours-list/<?= $item['code_no'] ?>">
@@ -191,16 +135,28 @@
             </div>
         </div>
     </section>
-    <section class="banner_section_main_page">
-        <div class="body_inner">
-            <div class="banner_section_image" style="position: relative;">
-                <div class="box-text">
-                    <h3 class="title-box">여름휴가쿠폰대잔치</h3>
-                    <p class="des-box">다운로드 기간 : 2024. 05. 22 ~ 07. 31</p>
-                </div>
+    <?php if($bannerMiddle) : ?>
+        <style>
+            .tour-main-page .banner_section_main_page .banner_section_image {
+                background-image: url('/data/cate_banner/<?=$bannerMiddle['ufile1']?>');
+            }
+            @media screen and (max-width: 850px) {
+                .tour-main-page .banner_section_main_page .banner_section_image {
+                    background-image: url('/data/cate_banner/<?=$bannerMiddle['ufile2']?>');
+                }
+            }
+        </style>
+        <section class="banner_section_main_page">
+            <div class="body_inner">
+                <a href="<?=$bannerMiddle['url']?>" class="banner_section_image" style="position: relative;">
+                    <div class="box-text">
+                        <h3 class="title-box"><?=viewSQ($bannerMiddle['title'])?></h3>
+                        <p class="des-box"><?=viewSQ($bannerMiddle['subtitle'])?></p>
+                    </div>
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
+    <?php endif; ?>
     <section class="sub_tour_section5">
         <div class="body_inner">
             <div class="sub_tour_section5__head">
@@ -567,14 +523,14 @@
         <div class="body_inner">
             <div class="sub_tour_section8__banners">
                 <div class="sub_tour_section8__banner">
-                    <div class="img_box img_box_13 ">
-                        <img src="/uploads/sub/banner_tour_2.png" alt="">
-                    </div>
+                    <a href="<?=$bannerBottom[0]['url']?>" target="_blank" class="img_box img_box_13 ">
+                        <img src="/data/cate_banner/<?=$bannerBottom[0]['ufile1']?>" alt="">
+                    </a>
                 </div>
                 <div class="sub_tour_section8__banner">
-                    <div class="img_box img_box_13">
-                        <img src="/uploads/sub/banner_tour_3.png" alt="">
-                    </div>
+                    <a href="<?=$bannerBottom[1]['url']?>" target="_blank" class="img_box img_box_13">
+                        <img src="/data/cate_banner/<?=$bannerBottom[1]['ufile1']?>" alt="">
+                    </a>
                 </div>
             </div>
         </div>

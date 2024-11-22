@@ -33,8 +33,8 @@
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
     <div class="main_page_01 page_share_ page_product_list_">
         <section class="sub_top_visual">
-            <img class="only_web" src="/images/banner/main_visual_banner.png" alt="">
-            <img class="only_mo" src="/images/banner/main_visual_banner_m.png" alt="">
+            <img class="only_web" src="/data/cate_banner/<?=$bannerTop['ufile1']?>" alt="">
+            <img class="only_mo" src="/data/cate_banner/<?=$bannerTop['ufile2']?>" alt="">
             <div class="main_visual_content_">
                 <div class="text_title">지금, 바로 떠날 수 있는 이유</div>
                 <div class="form_search">
@@ -45,8 +45,7 @@
                         </div>
                         <div class="form_input_">
                             <label for="input_hotel">호텔명(미입력 시 전체)</label>
-                            <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
-                                   placeholder="호텔명을 입력해주세요.">
+                            <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_" placeholder="호텔명을 입력해주세요.">
                         </div>
                         <button type="button" onclick="search_list();" class="btn_search_">
                             검색
@@ -205,16 +204,28 @@
                 </div>
             </div>
         </section>
-        <section class="banner_section_main_page">
-            <div class="body_inner">
-                <div class="banner_section_image" style="position: relative;">
-                    <div class="box-text">
-                        <h3 class="title-box">여름휴가쿠폰대잔치</h3>
-                        <p class="des-box">다운로드 기간 : 2024. 05. 22 ~ 07. 31</p>
-                    </div>
+        <?php if($bannerMiddle) : ?>
+            <style>
+                .main_page_01 .banner_section_main_page .banner_section_image {
+                    background-image: url('/data/cate_banner/<?=$bannerMiddle['ufile1']?>');
+                }
+                @media screen and (max-width: 850px) {
+                    .main_page_01 .banner_section_main_page .banner_section_image {
+                        background-image: url('/data/cate_banner/<?=$bannerMiddle['ufile2']?>');
+                    }
+                }
+            </style>
+            <section class="banner_section_main_page">
+                <div class="body_inner">
+                    <a href="<?=$bannerMiddle['url']?>" class="banner_section_image" style="position: relative;">
+                        <div class="box-text">
+                            <h3 class="title-box"><?=viewSQ($bannerMiddle['title'])?></h3>
+                            <p class="des-box"><?=viewSQ($bannerMiddle['subtitle'])?></p>
+                        </div>
+                    </a>
                 </div>
-            </div>
-        </section>
+            </section>
+        <?php endif; ?>
         <style>
             .best_tour_section5__hotel {
                 height: 100%;
@@ -347,14 +358,14 @@
             <div class="body_inner">
                 <div class="sub_tour_section8__banners">
                     <div class="sub_tour_section8__banner">
-                        <div class="img_box img_box_13 ">
-                            <img src="/uploads/sub/banner_tour_2.png" alt="">
-                        </div>
+                        <a href="<?=$bannerBottom[0]['url']?>" target="_blank" class="img_box img_box_13 ">
+                            <img src="/data/cate_banner/<?=$bannerBottom[0]['ufile1']?>" alt="">
+                        </a>
                     </div>
                     <div class="sub_tour_section8__banner">
-                        <div class="img_box img_box_13">
-                            <img src="/uploads/sub/banner_tour_3.png" alt="">
-                        </div>
+                        <a href="<?=$bannerBottom[1]['url']?>" target="_blank" class="img_box img_box_13">
+                            <img src="/data/cate_banner/<?=$bannerBottom[1]['ufile1']?>" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
