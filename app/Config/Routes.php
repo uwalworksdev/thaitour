@@ -191,6 +191,7 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("code_change", "Api\AdminCodeApi::code_change", ['as' => "admin.api.code.code_change"]);
             $routes->post("search_change", "Api\AdminCodeApi::search_change", ['as' => "admin.api.search.search_change"]);
             $routes->post("search_delete", "Api\AdminCodeApi::search_delete", ['as' => "admin.api.search.search_delete"]);
+            $routes->post("search_insert", "Api\AdminCodeApi::search_insert", ['as' => "admin.api.search.search_insert"]);
         });
 
         $routes->group("product_", function ($routes) {

@@ -272,4 +272,48 @@ class AdminCodeApi extends BaseController
                 ]);
         }
     }
+
+    public function search_insert()
+    {
+        try {
+            $subject = $_POST['subject'] ?? [];
+            $url     = $_POST['url'] ?? [];
+            $onum    = $_POST['onum'] ?? [];
+
+            if (empty($subject)) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON([
+                        'status'  => 'error',
+                        'message' => 'No code_idx provided'
+                    ]);
+            }
+
+			$sql    = " insert into tbl_search set subject = '". $subject."'
+			                                      ,onum    = '". $onum ."' 
+			                                      ,url     = '". $url ."' "; 
+			$result = $this->connect->query($sql);
+
+            if (isset($result) && $result) {
+                $msg = "검색어 등록완료";
+            } else {
+                $msg = "검색어 등록오류";
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
 }

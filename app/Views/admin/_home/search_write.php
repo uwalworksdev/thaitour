@@ -13,11 +13,35 @@
             }
         }
 
-        function send_it() {
-            var frm = document.frm;
+        //function send_it() {
+        //    var frm = document.frm;
 
-            frm.submit();
-        }
+        //    frm.submit();
+        //}
+
+		function send_it()
+		{
+				let f = document.frm;
+
+				let url = '/AdmMaster/api/code_/search_insert'
+				let prod_data = $(f).serialize();
+				$.ajax({
+					type: "POST",
+					data: prod_data,
+					url: url,
+					cache: false,
+					async: false,
+					success: function (data, textStatus) {
+						let message = data.message;
+						alert(message);
+						location.href='/AdmMaster/_adminrator/search_word';
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
+
+		 }
     </script>
 
     <div id="container">
