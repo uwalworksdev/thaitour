@@ -1423,6 +1423,7 @@ class Product extends BaseController
         return $this->renderView('product/golf/list-golf', [
             'filters' => $filters,
             'code_no' => $code_no,
+            'code_info' => $this->codeModel->getByCodeNo($code_no),
             'green_peas' => $green_peas,
             'sports_days' => $sports_days,
             'slots' => $slots,
