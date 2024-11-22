@@ -196,7 +196,7 @@ class AdminCodeApi extends BaseController
             $tbc_idx  = $_POST['tbc_idx'] ?? [];
             $onum     = $_POST['onum'] ?? [];
 
-            if (empty($code_idx)) {
+            if (empty($tbc_idx)) {
                 return $this->response
                     ->setStatusCode(400)
                     ->setJSON([
@@ -205,7 +205,7 @@ class AdminCodeApi extends BaseController
                     ]);
             }
 
-            $tot = count($code_idx);
+            $tot = count($tbc_idx);
             for ($j = 0; $j < $tot; $j++) {
 
                 $sql    = " update tbl_search set onum='" . $onum[$j] . "' where tbc_idx='" . $tbc_idx[$j] . "'";
