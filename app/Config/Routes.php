@@ -386,6 +386,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("get_travel_types", "AjaxController::get_travel_types");
     $routes->post("get_best", "AjaxMainController::get_best");
     $routes->post("set_seq", "AjaxMainController::set_seq");
+    $routes->post("set_search_txt", "AjaxMainController::set_search_txt");
     $routes->get("get_code", "CodeController::ajaxGet");
 });
 

@@ -103,4 +103,24 @@ class AjaxMainController extends BaseController {
 
 		return $this->response->setJSON($output);
     }
+
+    public function set_search_txt()  
+	{
+        $db    = \Config\Database::connect();
+ 
+		$sql   = "SELECT * FROM tbl_search ORDER BY onum DESC ";
+        write_log("AjaxMainController- ". $sql);
+        $rows  = $db->query($sql)->getResultArray();
+
+        $msg   = "";
+		foreach ($rows as $item):
+			$msg .= '<a href="#!" class="words_list_item ">#'. $item['subject'] .'</a>';
+		endforeach;
+ 
+        $output = [
+            "message"  => $msg
+        ];
+
+		return $this->response->setJSON($output);
+    }
 }

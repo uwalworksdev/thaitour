@@ -364,7 +364,7 @@ $list5 = $MainDisp->List("2905")->findAll();
                 </div>
                 <div class="main_section5__head__bar"></div>
             </div>
-            <div class="main_section5__words_list">
+            <div class="main_section5__words_list" id="searchTxt">
                 <a href="#!" class="words_list_item ">#호텔투어</a>
                 <a href="#!" class="words_list_item ">#5성급호텔</a>
                 <a href="#!" class="words_list_item ">#태국호캉스</a>
@@ -452,7 +452,20 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     <script>
 	$(document).ready(function() {
-		alert("DOM is ready.");
+			$.ajax({
+				url: "/ajax/set_search_txt",
+				type: "POST",
+				data: {   },
+			    dataType: "json",
+				success: function(res) {
+					var message  = res.message;
+					$("#searchTxt").html(message);
+				},
+				error: function (xhr, status, error) {
+						console.error(xhr.responseText); // 서버 응답 내용 확인
+						alert('Error: ' + error);
+				}			
+			});
 	});
 	</script>
 
