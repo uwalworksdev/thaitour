@@ -248,7 +248,7 @@ class SpaController extends BaseController
                         'order_idx' => $order_idx,
                         'product_idx' => $data['product_idx'],
                         'order_first_name' => encryptField($order_a_first_name[$i], 'encode'),
-                        'order_last_name' => $order_a_last_name[$i],
+                        'order_last_name' => encryptField($order_a_last_name[$i], 'encode'),
                     ]);
                 }
             }
