@@ -561,6 +561,7 @@ $list5 = $MainDisp->List("2905")->findAll();
     <script>
         $('.words_list_item').click(function () {
 			alert($(this).text()); // 클릭된 요소의 텍스트를 가져옴);
+			$(this).addClass("active");
             //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
 
