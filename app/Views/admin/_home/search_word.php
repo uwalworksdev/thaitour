@@ -80,11 +80,8 @@
                                         </td>
                                         <td class="tac"><?= $row["url"] ?></td>
                                         <td class="tac">
-                                            <input type="text" name="onum[]" value="<?= $row["onum"] ?>"
-                                                   class="input_txt"
-                                                   style="width:50px"/>
-                                            <input type="hidden" name="tbc_idx[]" value="<?= $row["tbc_idx"] ?>"
-                                                   class="input_txt"/>
+                                            <input type="text" name="onum[]" value="<?= $row["onum"] ?>" class="input_txt" style="width:50px"/>
+                                            <input type="hidden" name="tbc_idx[]" value="<?= $row["tbc_idx"] ?>" class="input_txt"/>
                                         </td>
                                         <td>
                                             <a href="#!" onclick="code_delete('<?= $row["tbc_idx"] ?>');"
@@ -171,32 +168,29 @@
 
         }
 
-        function change_it() {
-            $.ajax({
-                url: "search_change.php",
-                type: "POST",
-                data: $("#frm").serialize(),
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
-                    if (response == "OK") {
-                        alert_("정상적으로 변경되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-                        alert(response);
-                        alert_("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
-        }
+		function change_it()
+		{
+				let f = document.frm;
+
+				let url = '/AdmMaster/api/code_/search_change'
+				let prod_data = $(f).serialize();
+				$.ajax({
+					type: "POST",
+					data: prod_data,
+					url: url,
+					cache: false,
+					async: false,
+					success: function (data, textStatus) {
+						let message = data.message;
+						alert(message);
+						location.reload();
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
+
+		 }
 
         function SELECT_DELETE() {
             if ($(".code_idx").is(":checked") == false) {

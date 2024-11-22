@@ -189,4 +189,48 @@ class AdminCodeApi extends BaseController
         }
     }
 
+
+    public function search_change()
+    {
+        try {
+            $tbc_idx  = $_POST['tbc_idx'] ?? [];
+            $onum     = $_POST['onum'] ?? [];
+
+            if (empty($code_idx)) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON([
+                        'status'  => 'error',
+                        'message' => 'No code_idx provided'
+                    ]);
+            }
+
+            $tot = count($code_idx);
+            for ($j = 0; $j < $tot; $j++) {
+
+                $sql    = " update tbl_search set onum='" . $onum[$j] . "' where tbc_idx='" . $tbc_idx[$j] . "'";
+                $result = $this->connect->query($sql);
+            }
+
+            if (isset($result) && $result) {
+                $msg = "순위변경 완료";
+            } else {
+                $msg = "순위변경 오류";
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
 }
