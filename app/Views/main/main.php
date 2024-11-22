@@ -370,6 +370,10 @@ $searchTxt  = $SearchText->List()->findAll();
                 <div class="main_section5__head__bar"></div>
             </div>
             <div class="main_section5__words_list" id="searchTxt">
+                <?php foreach ($searchTxt as $item): ?>
+                <a href="#!" class="words_list_item ">#<?=$item['subject']?></a>
+                <?php endforeach; ?>
+
                 <!--a href="#!" class="words_list_item ">#호텔투어</a>
                 <a href="#!" class="words_list_item ">#5성급호텔</a>
                 <a href="#!" class="words_list_item ">#태국호캉스</a>
