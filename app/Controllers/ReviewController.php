@@ -399,7 +399,7 @@ class ReviewController extends BaseController
         $user_phone_string = implode(explode("-", $user_phone));
         $pass = substr($user_phone_string, -4);
 
-        $upload = WRITEPATH . 'uploads/review/';
+        $upload = WRITEPATH . '../public/uploads/review/';
 
         $r_file_name1 = $r_file_code1 = $r_file_name2 = $r_file_code2 = null;
 

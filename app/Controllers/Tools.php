@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Libraries\SessionChk;
-use Exception;
 
 class Tools extends BaseController
 {
@@ -12,6 +11,7 @@ class Tools extends BaseController
     protected $ProductModel;
     protected $sessionLib;
     protected $sessionChk;
+
     public function __construct()
     {
         helper(['html']);
@@ -22,12 +22,14 @@ class Tools extends BaseController
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
     }
+
     public function generate_captcha()
     {
         header('Content-Type: application/json');
         $captcha_info = createAndUpdateCaptcha();
         return json_encode($captcha_info);
     }
+
     public function get_travel_types()
     {
         $code = $_POST['code'];
@@ -44,12 +46,13 @@ class Tools extends BaseController
             "cnt" => $cnt
         ]);
     }
+
     public function get_list_product()
     {
         $product_code = $_POST['product_code'];
 
         $result = $this->ProductModel
-            ->where('product_code_3', $product_code)
+            ->where('product_code_2', $product_code)
             ->orLike('product_code_list', "|$product_code|")
             ->findAll();
 
@@ -68,6 +71,7 @@ class Tools extends BaseController
             "cnt" => $cnt
         ]);
     }
+
     public function wish_set()
     {
         $product_idx = $_POST["product_idx"];
@@ -99,7 +103,9 @@ class Tools extends BaseController
 
         return "{\"message\":\"$msg\"}";
     }
-    public function del_wish() {
+
+    public function del_wish()
+    {
         $idx = $_POST["idx"];
         if (is_array($idx)) {
             $this->WishModel->deleteWish($idx);
