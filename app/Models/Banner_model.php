@@ -8,13 +8,21 @@ class Banner_model extends Model
 
     protected $primaryKey = 'cb_idx';
 
-    protected $allowedFields = [ "code_idx", "code_no", "ufile1", "rfile1", "url", "onum", "use_yn", "category"];
+    protected $allowedFields = [ 
+        "code_idx", "code_no", "ufile1", "rfile1", "ufile2", "rfile2", "url", "onum", "use_yn", "category",
+        "title", "subtitle"
+    ];
 
-    public function getBanners($code_no)
+    public function getBanners($code_no, $category = null)
     {
+
+        if($category){
+            $this->where('category', $category);
+        }
+
         return $this->where('code_no', $code_no)
             ->orderBy('onum', 'ASC')
-            ->findAll(2);
+            ->findAll();
     }
     public function getList($where = [], $g_list_rows = 10, $pg = 1)
     {

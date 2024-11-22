@@ -71,6 +71,7 @@ class Product extends BaseController
     {
         try {
             $data = $this->viewData($code_no);
+            $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
             return $this->renderView('product/show-ticket', $data);
         } catch (Exception $e) {
@@ -161,6 +162,9 @@ class Product extends BaseController
             ], $this->scale, 1, ['r_date' => 'DESC']);
 
             $data = [
+                'bannerTop' => $this->bannerModel->getBanners($code_no, "top"),
+                'bannerMiddle' => $this->bannerModel->getBanners($code_no, "middle")[0],
+                'bannerBottom' => $this->bannerModel->getBanners($code_no, "bottom"),
                 'code_no' => $code_no,
                 'products' => $products,
                 'codes' => $codes,
@@ -194,9 +198,6 @@ class Product extends BaseController
             $keyword = $this->request->getVar('keyword') ?? '';
             $s = $this->request->getVar('s') ? $this->request->getVar('s') : 1;
             $perPage = 5;
-
-            $banners = $this->bannerModel->getBanners($code_no);
-            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
 
             $products = $this->productModel->findProductPaging([
                 'product_code_1' => 1303,
@@ -299,8 +300,9 @@ class Product extends BaseController
             }
 
             $data = [
-                'banners' => $banners,
-                'codeBanners' => $codeBanners,
+                'bannerTop' => $this->bannerModel->getBanners($code_no, "top")[0],
+                'bannerMiddle' => $this->bannerModel->getBanners($code_no, "middle")[0],
+                'bannerBottom' => $this->bannerModel->getBanners($code_no, "bottom"),
                 'theme_products' => $theme_products,
                 'products' => $products,
                 'code_no' => $code_no,
@@ -550,10 +552,6 @@ class Product extends BaseController
             $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
             $perPage = 16;
 
-            $banners = $this->bannerModel->getBanners($code_no);
-
-            $codeBanners = $this->bannerModel->getCodeBanners($code_no);
-
             $suggestedProducts = $this->productModel->getSuggestedProducts($code_no);
 
             $bestProducts = $this->productModel->getBestProducts(1302);
@@ -610,8 +608,7 @@ class Product extends BaseController
             }
 
             $data = [
-                'banners' => $banners,
-                'codeBanners' => $codeBanners,
+                'bannerTop' => $this->bannerModel->getBanners($code_no, "top")[0],
                 'suggestedProducts' => $suggestedProducts,
                 'code_no' => $code_no,
                 's' => $s,
@@ -760,6 +757,7 @@ class Product extends BaseController
     {
         try {
             $data = $this->viewData($code_no);
+            $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
             return $this->renderView('product/product-spa', $data);
         } catch (Exception $e) {
@@ -2277,6 +2275,7 @@ class Product extends BaseController
     {
         try {
             $data = $this->viewData($code_no);
+            $data['bannerTop'] = $this->bannerModel->getBanners($code_no, "top")[0];
 
             return $this->renderView('/product/restaurant/product-restaurant', $data);
         } catch (Exception $e) {
@@ -2340,7 +2339,8 @@ class Product extends BaseController
                 'parent_code' => $code_no,
                 'codes' => $codes,
                 'place_start_list' => $place_start_list,
-                'place_end_list' => $place_end_list
+                'place_end_list' => $place_end_list,
+                'bannerTop' => $this->bannerModel->getBanners($code_no, "top")
             ];
 
             return $this->renderView('product/vehicle-guide', $data);

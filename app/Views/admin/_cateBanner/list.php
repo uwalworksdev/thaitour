@@ -74,8 +74,10 @@
                                                 <img src="/data/catebanner/<?= $row["img"] ?>" style="height:100px">
                                             <?php } ?>
                                         </td>
-                                        <td class="tal"><a
-                                                    href="write.php?code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>"><?= $row["code_name"] ?></a>
+                                        <td class="tal">
+                                            <a href="write?code_idx=<?= $row["code_idx"] ?>&s_parent_code_no=<?= $s_parent_code_no ?>">
+                                                <?= $row["code_name"] ?>
+                                            </a>
                                         </td>
                                         <td class="tac"><?= $row["cnt"] ?></td>
                                         <td class="tac">

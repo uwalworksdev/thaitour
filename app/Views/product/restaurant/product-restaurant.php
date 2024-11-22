@@ -157,8 +157,12 @@
             </div>
         </div>
         <div class="mid-banner-ticket">
-            <img class="only_web" src="<?= base_url('/uploads/products/ticket-mid-banner.png') ?>" alt="">
-            <img class="only_mo" src="<?= base_url('/uploads/products/ticket-mid-banner-m.png') ?>" alt="">
+            <div class="box-text">
+                <h3 class="title-box"><?=viewSQ($bannerTop['title'])?></h3>
+                <p class="des-box"><?=viewSQ($bannerTop['subtitle'])?></p>
+            </div>
+            <img class="only_web" src="/data/cate_banner/<?=$bannerTop['ufile1']?>" alt="">
+            <img class="only_mo" src="/data/cate_banner/<?=$bannerTop['ufile2']?>" alt="">
         </div>
         <div class="ticket-list">
             <div class="ticket-tool">

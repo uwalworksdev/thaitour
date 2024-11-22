@@ -45,7 +45,7 @@ class TourRegistController extends BaseController
 
     public function list_hotel()
     {
-        $data = $this->get_list_('1303');
+        $data = $this->get_list_('1303', '', '', '', '');
         return view("admin/_tourRegist/list", $data);
     }
 

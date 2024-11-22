@@ -772,6 +772,7 @@ figure.cover_img img {
   position: relative;
   padding-top: 100%;
   overflow: hidden;
+  display: block;
 }
 
 .img_box>img, .img_box__img {

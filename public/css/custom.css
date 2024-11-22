@@ -841,6 +841,7 @@
     background: url(/images/sub/banner__hotel01.png) no-repeat center;
     background-size: cover;
     height: 150px;
+    display: block;
 }
 
 .main_page_01 .banner_section_main_page .box-text {
