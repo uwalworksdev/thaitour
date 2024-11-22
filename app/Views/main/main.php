@@ -463,6 +463,7 @@ $searchTxt  = $SearchText->List()->findAll();
 	$(document).ready(function() {
 		$("#search_go").click(function() {
 			alert($("#searchInput").val());
+			location.href='/product_search?search_name='+$("#searchInput").val();
 		});
 	});
 	</script>
