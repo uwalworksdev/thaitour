@@ -451,6 +451,12 @@ $list5 = $MainDisp->List("2905")->findAll();
     </section>
 
     <script>
+	$(document).ready(function() {
+		alert("DOM is ready.");
+	});
+	</script>
+
+    <script>
         $(document).ready(function () {
 
             var list = "";
