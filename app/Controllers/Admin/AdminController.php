@@ -123,6 +123,7 @@ class AdminController extends BaseController
         $nFrom = ($pg - 1) * $g_list_rows;
 
         $sql = $total_sql . " order by onum desc limit $nFrom, $g_list_rows ";
+		write_log($sql);
         $result = $this->connect->query($sql);
         $result = $result->getResultArray();
         $num = $nTotalCount - $nFrom;
@@ -142,7 +143,7 @@ class AdminController extends BaseController
             'result' => $result
         ];
 
-        return view('admin/_home/search_word', $sql);
+        return view('admin/_home/search_word', $data);
     }
 
     public function search_write()
