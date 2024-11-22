@@ -119,6 +119,7 @@ class ReviewController extends BaseController
             $title = $row['title'];
             $contents = $row["contents"];
             $display = $row["display"];
+            $review_type = $row["review_type"];
         }
         return view("admin/_review/write", [
             "row" => $row,
@@ -142,6 +143,7 @@ class ReviewController extends BaseController
             "travel_type_3" => $travel_type_3 ?? '',
             "str_guide" => $str_guide ?? '',
             "guide_e_date" => $guide_e_date ?? '',
+            "review_type" => $review_type ?? '',
         ]);
     }
 
@@ -309,6 +311,7 @@ class ReviewController extends BaseController
             $travel_type_name_2 = $info['travel_type_name_2'];
             $travel_type_name_3 = $info['travel_type_name_3'];
             $product_name = $info['product_name'];
+            $review_type = $info["review_type"];
         } else if ($product_idx) {
             $sql_r = "select a.product_idx,a.product_name, b.code_no as travel_type, c.code_no as travel_type_2, d.code_no as travel_type_3, 
             b.code_name as travel_type_name, c.code_name as travel_type_name_2, d.code_name as travel_type_name_3 
@@ -352,6 +355,7 @@ class ReviewController extends BaseController
             "third_paties" => $third_paties,
             "list_code" => $list_code,
             "list_code_type" => $list_code_type,
+            "review_type" => $review_type ?? '',
         ];
 
         return view("review/review_write", $data);
