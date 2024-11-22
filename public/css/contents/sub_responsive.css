@@ -774,6 +774,7 @@
   .body_inner {
     padding: 0 2rem;
     margin: 0 auto;
+    max-width: unset;
   }
 
   .main_page_01 .body_inner {
