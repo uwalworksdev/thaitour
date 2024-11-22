@@ -387,9 +387,9 @@ if ($row) {
 
             let idx = [];
             idx.push(<?=$idx?>);
-           let data = {
-               idx: idx
-           }
+            let data = {
+                idx: idx
+            }
             await $.ajax({
                 url: "del",
                 type: "POST",
