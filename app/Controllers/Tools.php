@@ -53,7 +53,7 @@ class Tools extends BaseController
 
         $result = $this->ProductModel
             ->where('product_code_2', $product_code)
-            ->orLike('product_code_list', "|$product_code|")
+            ->orLike('product_code_list', "$product_code|")
             ->findAll();
 
         $cnt = count($result);
