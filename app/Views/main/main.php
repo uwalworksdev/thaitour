@@ -560,7 +560,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
     <script>
         $('.words_list_item').click(function () {
-            window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
+            //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
 
         $('#searchInput').on('keydown', function (event) {
