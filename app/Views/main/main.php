@@ -563,6 +563,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 			var hashTxt  = $(this).text().replace('#', '')+',';
 			var searTxt  = $("#searchInput").val() + hashTxt;
 			$("#searchInput").val(searTxt);
+			$(this).addClass('active'):
             //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
 
