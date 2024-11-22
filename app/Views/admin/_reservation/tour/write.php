@@ -229,19 +229,19 @@
                                     <th>총 결제금액</th>
                                     <td>
 
-                                        <?= number_format($people_adult_price * $people_adult_cnt) ?>원(성인)
+                                        <?= number_format($people_adult_price) ?>원(성인)
                                         +
-                                        <?= number_format($people_kids_price * $people_kids_cnt) ?>원(아동)
+                                        <?= number_format($people_kids_price) ?>원(아동)
                                         +
-                                        <?= number_format($people_baby_price * $people_baby_cnt) ?>원(유아)
+                                        <?= number_format($people_baby_price) ?>원(유아)
                                         +
                                         <?= number_format($total_price) ?>
                                         옵션
                                         - 
                                         <?= number_format($row_cou['used_coupon_money'])?>원(할인쿠폰)
-                                        = <?= number_format( ($people_adult_price * $people_adult_cnt) +
-                                                                ($people_kids_price * $people_kids_cnt) +
-                                                                ($people_baby_price * $people_baby_cnt) + $total_price - $row_cou['used_coupon_money'] ) ?>
+                                        = <?= number_format( ($people_adult_price) +
+                                                                ($people_kids_price) +
+                                                                ($people_baby_price) + $total_price - $row_cou['used_coupon_money'] ) ?>
                                         원
 
                                     </td>
