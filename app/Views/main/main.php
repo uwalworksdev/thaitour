@@ -565,6 +565,7 @@ $list5 = $MainDisp->List("2905")->findAll();
 
         $('#searchInput').on('keydown', function (event) {
             if (event.key === 'Enter' || event.which === 13) {
+				alert('enter');
                 searchData($(this).val());
             }
         });
