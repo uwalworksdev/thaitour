@@ -345,7 +345,7 @@ $routes->group("AdmMaster", static function ($routes) {
 
         $routes->get("store_config_admin", "Admin\AdminController::store_config_admin");
         $routes->get("write", "Admin\AdminController::write");
-        $routes->get("search_word", "Admin\AdminController::search_word");
+        $routes->get("search_list", "Admin\AdminController::search_list");
         $routes->get("search_write", "Admin\AdminController::search_write");
         $routes->get("block_ip_list", "Admin\AdminController::block_ip_list");
 
