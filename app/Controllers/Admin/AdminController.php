@@ -142,7 +142,7 @@ class AdminController extends BaseController
             'result' => $result
         ];
 
-        return view('admin/_home/search_word', $data);
+        return view('admin/_home/search_word', $sql);
     }
 
     public function search_write()
