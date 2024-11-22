@@ -189,7 +189,6 @@ class AdminCodeApi extends BaseController
         }
     }
 
-
     public function search_change()
     {
         try {
@@ -216,6 +215,46 @@ class AdminCodeApi extends BaseController
                 $msg = "순위변경 완료";
             } else {
                 $msg = "순위변경 오류";
+            }
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => $msg
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
+
+    public function search_delete()
+    {
+        try {
+            $tbc_idx  = $_POST['tbc_idx'] ?? [];
+
+            if (empty($tbc_idx)) {
+                return $this->response
+                    ->setStatusCode(400)
+                    ->setJSON([
+                        'status'  => 'error',
+                        'message' => 'No code_idx provided'
+                    ]);
+            }
+
+			$sql    = " delete from tbl_search where tbc_idx='" . $tbc_idx . "'";
+			$result = $this->connect->query($sql);
+
+            if (isset($result) && $result) {
+                $msg = "검색어 삭제완료";
+            } else {
+                $msg = "검색어 삭제오류";
             }
 
             return $this->response

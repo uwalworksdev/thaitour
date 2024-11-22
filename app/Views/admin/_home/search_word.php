@@ -84,8 +84,7 @@
                                             <input type="hidden" name="tbc_idx[]" value="<?= $row["tbc_idx"] ?>" class="input_txt"/>
                                         </td>
                                         <td>
-                                            <a href="#!" onclick="code_delete('<?= $row["tbc_idx"] ?>');"
-                                               class="btn btn-default">코드삭제</a>
+                                            <a href="#!" onclick="code_delete('<?= $row["tbc_idx"] ?>');" class="btn btn-default">코드삭제</a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -135,7 +134,7 @@
             var message = "";
             $.ajax({
 
-                url: "./ajax.code_delete.php",
+                url: "/AdmMaster/api/code_/search_delete",
                 type: "POST",
                 data: {
                     "tbc_idx": idx
