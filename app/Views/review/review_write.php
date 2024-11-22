@@ -111,9 +111,9 @@
                                     <select style="display: none;" name="travel_type_2" id="travel_type_2">
                                         <option value="">선택</option>
                                     </select>
-<!--                                    <select style="display: none;" name="travel_type_3" id="travel_type_3">-->
-<!--                                        <option value="">선택</option>-->
-<!--                                    </select>-->
+                                    <!--                                    <select style="display: none;" name="travel_type_3" id="travel_type_3">-->
+                                    <!--                                        <option value="">선택</option>-->
+                                    <!--                                    </select>-->
                                     <select style="display: none;" name="product_idx" id="products">
                                         <option value="">선택</option>
                                     </select>
@@ -141,7 +141,9 @@
                         <td class="subject">평가 구분</td>
                         <td class="input_box">
                             <?php foreach ($list_code_type as $item) : ?>
+                                <?php $review_type_arr = explode('|', $review_type); ?>
                                 <input type="checkbox" class="input_checkbox" value="<?= $item['code_no'] ?>"
+                                    <?= in_array($item['code_no'], $review_type_arr) ? 'checked' : '' ?>
                                        name="input_checkbox" id="input_checkbox<?= $item['code_no'] ?>">
                                 <label for="input_checkbox<?= $item['code_no'] ?>"
                                        style="margin-right: 10px"><?= $item['code_name'] ?></label>
@@ -514,7 +516,7 @@
             })
 
             if (arr.length == 0) {
-                alert("카테고리를 선택해주세요!");
+                alert("평가구분을 선택해주세요!");
                 return;
             }
 
