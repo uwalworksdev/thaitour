@@ -78,7 +78,7 @@ class AjaxController extends BaseController {
     }
 
 
-	public function fnAddIp_insert() 
+	public function fnAddIp_insert()   
     {
         $db    = \Config\Database::connect();
 
