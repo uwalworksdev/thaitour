@@ -116,6 +116,6 @@ class AjaxController extends BaseController {
                     'status' => 'error',
                     'message' => $e->getMessage()
                 ]);
-        }
+        }   
     } 
 }
