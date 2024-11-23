@@ -184,35 +184,25 @@
 
         function del_it(m_idx) {
 
-            if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-                return;
-            }
-            $("#ajax_loader").removeClass("display-none");
-            $.ajax({
-                url: "ip_del.php",
-                type: "POST",
-                data: "m_idx[]=" + m_idx,
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-                    //				$("#ajax_loader").addClass("display-none");
-                }
-                , success: function (response, status, request) {
+				if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
+					return;
+				}
 
-                    if (response.trim() == "OK") {
-                        alert_("정상적으로 삭제되었습니다.");
-                        location.reload();
-                        return;
-                    } else {
-
-                        alert("오류가 발생하였습니다!!");
-                        return;
-                    }
-                }
-            });
+				$.ajax({
+					type: "POST",
+					data: {  "m_idx" : m_idx  },
+					url: "/ajax/fnAddIp_delete",
+					cache: false,
+					async: false,
+					success: function (data, textStatus) {
+						let message = data.message;
+						alert(message);
+						location.reload();
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
 
         }
 

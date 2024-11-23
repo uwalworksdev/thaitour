@@ -389,6 +389,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("set_search_txt", "AjaxMainController::set_search_txt");
     $routes->get("get_code", "CodeController::ajaxGet");
     $routes->post("fnAddIp_insert", "AjaxController::fnAddIp_insert");
+    $routes->post("fnAddIp_delete", "AjaxController::fnAddIp_delete");
 	
 });
 
