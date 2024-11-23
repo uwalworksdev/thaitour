@@ -117,5 +117,5 @@ class AjaxController extends BaseController {
                     'message' => $e->getMessage()
                 ]);
         }
-    }
+    } 
 }
