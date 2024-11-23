@@ -47,7 +47,7 @@
                                         class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
                         </div>
                         <div class="ipright">
-                            IP 추가 <input type="text" name="blockip" name="blockip" style="width:140px;height:30px;"> 
+                            IP 추가 <input type="text" name="blockip" id="blockip" style="width:140px;height:30px;"> 
 							<a href="javascript:fnAddIp()" class="btn btn-primary">추 가</a>
                         </div>
                     </header><!-- // headerContents -->
