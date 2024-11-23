@@ -232,7 +232,7 @@
 				$.ajax({
 					type: "POST",
 					data: {  "ip" : $("#blockip").val()  },
-					url: "'/ajax/fnAddIp_insert'",
+					url: "/ajax/fnAddIp_insert",
 					cache: false,
 					async: false,
 					success: function (data, textStatus) {
