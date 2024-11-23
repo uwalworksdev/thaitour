@@ -96,7 +96,7 @@ class AjaxController extends BaseController {
 
             $sql = "insert into tbl_block_ip set ip = '$blockip', reg_date = now() ";
 			write_log($sql);
-			$result = $this->connect->query($sql);
+			$result = $db->query($sql);
 
             if (isset($result) && $result) {
                 $msg = "아이피 등록완료";
