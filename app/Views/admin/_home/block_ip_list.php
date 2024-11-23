@@ -102,8 +102,7 @@
                                         <td class="tac"><?= $row['ip'] ?></td>
                                         <td class="tac"><?= $row['reg_date'] ?></td>
                                         <td>
-                                            <a href="javascript:del_it('<?= $row['m_idx'] ?>');"><img
-                                                        src="/AdmMaster/_images/common/ico_error.png" alt="에러"></a>
+                                            <a href="javascript:del_it('<?= $row['m_idx'] ?>');">삭제</a>
                                         </td>
                                     </tr>
                                 <?php } ?>
