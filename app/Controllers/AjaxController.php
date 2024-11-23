@@ -82,40 +82,30 @@ class AjaxController extends BaseController {
     {
         $db    = \Config\Database::connect();
 
-        try {
-            $blockip = $_POST["ip"];
+		$blockip = $_POST["ip"];
 
-            if (empty($blockip)) {
-                return $this->response
-                    ->setStatusCode(400)
-                    ->setJSON([
-                        'status'  => 'error',
-                        'message' => 'No IP provided'
-                    ]);
-            }
+		if (empty($blockip)) {
+			return $this->response
+				->setStatusCode(400)
+				->setJSON([
+					'status'  => 'error',
+					'message' => 'No IP provided'
+				]);
+		}
 
-            $sql = "insert into tbl_block_ip(ip) values (?) on duplicate key update cnt = cnt + 1";
-			$result = $this->connect->query($sql);
+		$sql = "insert into tbl_block_ip(ip) values (?) on duplicate key update cnt = cnt + 1";
+		$result = $this->connect->query($sql);
 
-            if (isset($result) && $result) {
-                $msg = "아이피 등록완료";
-            } else {
-                $msg = "아이피 등록오류";
-            }
+		if (isset($result) && $result) {
+			$msg = "아이피 등록완료";
+		} else {
+			$msg = "아이피 등록오류";
+		}
 
-            return $this->response
-                ->setStatusCode(200)
-                ->setJSON([
-                    'status' => 'success',
-                    'message' => $msg
-                ]);
-        } catch (\Exception $e) {
-            return $this->response
-                ->setStatusCode(400)
-                ->setJSON([
-                    'status' => 'error',
-                    'message' => $e->getMessage()
-                ]);
-        }
-    } 
+		return $this->response
+			->setStatusCode(200)
+			->setJSON([
+				'status' => 'success',
+				'message' => $msg
+			]);
 }
