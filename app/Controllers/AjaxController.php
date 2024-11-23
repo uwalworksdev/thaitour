@@ -83,14 +83,14 @@ class AjaxController extends BaseController {
         $db    = \Config\Database::connect();
 
         try {
-            $blockip = $_GET["ip"];
+            $blockip = $_POST["ip"];
 
             if (empty($blockip)) {
                 return $this->response
                     ->setStatusCode(400)
                     ->setJSON([
                         'status'  => 'error',
-                        'message' => 'No code_idx provided'
+                        'message' => 'No IP provided'
                     ]);
             }
 
