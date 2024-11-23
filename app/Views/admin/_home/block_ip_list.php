@@ -47,8 +47,8 @@
                                         class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
                         </div>
                         <div class="ipright">
-                            IP 추가 <input type="text" name="blockip" style="width:140px;height:30px;"> <a
-                                    href="javascript:fnAddIp()" class="btn btn-primary">추 가</a>
+                            IP 추가 <input type="text" name="blockip" name="blockip" style="width:140px;height:30px;"> 
+							<a href="javascript:fnAddIp()" class="btn btn-primary">추 가</a>
                         </div>
                     </header><!-- // headerContents -->
                 </form>
@@ -227,24 +227,25 @@
             frm.submit();
         }
 
-        async function fnAddIp() {
+        function fnAddIp() {
 
-            document.search.search_name.value = "";
-
-            if (document.search.blockip.value == "") {
-                alert("등록할 IP 를 입력 하세요");
-                return;
-            }
-
-            let url = "ipAdd.php?ip=" + document.search.blockip.value;
-
-            const response = await fetch(url);
-            const result = await response.text();
-
-            if (result != "OK") {
-                alert("오류 발생!")
-            }
-            location.reload();
+				let url = '/ajax/fnAddIp_insert'
+				let prod_data = $(f).serialize();
+				$.ajax({
+					type: "POST",
+					data: {  "ip" : $("#blockip").val()  },
+					url: url,
+					cache: false,
+					async: false,
+					success: function (data, textStatus) {
+						let message = data.message;
+						alert(message);
+						location.reload();
+					},
+					error: function (request, status, error) {
+						alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+					}
+				});
         }
 
     </script>

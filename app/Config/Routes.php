@@ -388,6 +388,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("set_seq", "AjaxMainController::set_seq");
     $routes->post("set_search_txt", "AjaxMainController::set_search_txt");
     $routes->get("get_code", "CodeController::ajaxGet");
+    $routes->post("fnAddIp_insert", "AjaxController::fnAddIp_insert");
+	
 });
 
 $routes->group("api", static function ($routes) {
