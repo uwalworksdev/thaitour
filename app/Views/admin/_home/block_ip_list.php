@@ -229,12 +229,10 @@
 
         function fnAddIp() {
 
-				let url = '/ajax/fnAddIp_insert'
-				let prod_data = $(f).serialize();
 				$.ajax({
 					type: "POST",
 					data: {  "ip" : $("#blockip").val()  },
-					url: url,
+					url: "'/ajax/fnAddIp_insert'",
 					cache: false,
 					async: false,
 					success: function (data, textStatus) {
