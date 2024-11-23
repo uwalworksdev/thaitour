@@ -272,44 +272,4 @@ class AdminController extends BaseController
         return $row_d;
     }
 
-	public function fnAddIp_insert()
-    {
-        $db    = \Config\Database::connect();
-
-        try {
-            $blockip = $_GET["ip"];
-
-            if (empty($blockip)) {
-                return $this->response
-                    ->setStatusCode(400)
-                    ->setJSON([
-                        'status'  => 'error',
-                        'message' => 'No code_idx provided'
-                    ]);
-            }
-
-            $sql = "insert into tbl_block_ip(ip) values (?) on duplicate key update cnt = cnt + 1";
-			$result = $this->connect->query($sql);
-
-            if (isset($result) && $result) {
-                $msg = "아이피 등록완료";
-            } else {
-                $msg = "아이피 등록오류";
-            }
-
-            return $this->response
-                ->setStatusCode(200)
-                ->setJSON([
-                    'status' => 'success',
-                    'message' => $msg
-                ]);
-        } catch (\Exception $e) {
-            return $this->response
-                ->setStatusCode(400)
-                ->setJSON([
-                    'status' => 'error',
-                    'message' => $e->getMessage()
-                ]);
-        }
-    }
 }
