@@ -95,6 +95,7 @@ class AjaxController extends BaseController {
             }
 
             $sql = "insert into tbl_block_ip(ip) values (?) on duplicate key update cnt = cnt + 1";
+			write_log($sql);
 			$result = $this->connect->query($sql);
 
             if (isset($result) && $result) {
