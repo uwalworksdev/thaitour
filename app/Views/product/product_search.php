@@ -68,8 +68,10 @@
 
 		<div class="body_inner">
 			<div class="travel_desc">
+             <?php $seq = 0;?>
              <?php foreach ($list as $key => $item): ?>
-                    <div class="travel_slider active01 active">
+			        <?php $seq++;?>
+                    <div class="travel_slider active0<?=$seq?> active">
                     <?php foreach ($item['items'] as $item1_1): ?>
                         <?php $img_dir = img_link($item1_1['product_code_1']); ?>
                         <?php $prog_link = prog_link($item1_1['product_code_1']); ?>
