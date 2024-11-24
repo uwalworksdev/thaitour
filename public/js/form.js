@@ -150,7 +150,7 @@ alert('3333333');
 		error: function(xhr, textStatus, Thrown){ // ajax 오류
 			console.log("go_regist (error) : "+textStatus+" -> "+Thrown);
 		}
-	})
+	}).submit();
 }
 
 // 현재 적용된 템플릿
