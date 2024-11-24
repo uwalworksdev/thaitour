@@ -9,8 +9,8 @@
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web wish" >
-                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo_web wish">
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web wish_click" >
+                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo_web wish_click">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
@@ -153,7 +153,7 @@
                     </div>
 
                     <script>
-					$(".wish").click(function () {
+					$(".wish_click").click(function () {
 						alert("클래스가 클릭되었습니다!");
 					});
 					</script>
