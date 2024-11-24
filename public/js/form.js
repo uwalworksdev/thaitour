@@ -27,32 +27,130 @@ function go_form(r_idx){
 
 // 등록
 function go_regist(cmd){
-			// 삭제
-			if(cmd == "del_ok"){
-				if(!confirm("삭제하시겠습니까?")){
-					return;
-				}
+	// 삭제
+	if(cmd == "del_ok"){
+		if(!confirm("삭제하시겠습니까?")){
+			return;
+		}
+	}
+
+	var r_idx = $("#frm_form input[name='r_idx']").val();
+	var tr    = $("#tbl_list tr[data-idx='"+r_idx+"']");
+	var no    = tr.find(".td_no").html();
+
+	// 입력값 검사
+	var check = true;
+	$("#frm_form .must").each(function(){
+		//console.log($(this).attr("name")+" : " +$(this).val());
+		var type = $(this).attr("type");
+		if(type == "checkbox"){
+			if(!$(this).prop("checked")){
+				alert("["+$(this).attr("title")+"] 항목을 체크해 주세요.");
+				$(this).focus();
+				check = false;
+				return false; // break
 			}
+		}
+		else if($(this).val() == ""){
+			alert("["+$(this).attr("title")+"] 항목의 값을 입력해 주세요.");
+			$(this).focus();
+			check = false;
+			return false; // break
+		}
+	});
+	if(!check)
+		return false;
 
-			let f = document.frm_form;
+	// 신규 구분 추가
+	if($("#frm_form [name='r_type']").val() == "add_new_type"){
+		var new_type_key = $("#frm_form [name='new_type_key']").val();
+		if(new_type_key == ""){
+			alert("새로 추가하는 구분의 코드를 입력해 주세요.");
+			$("#frm_form [name='new_type_key']").focus();
+			return false;
+		}
+		if($("#frm_form [name='r_type'] option[value='"+new_type_key+"']").length > 0){
+			alert("새로 추가하는 구분의 코드와 동일한 코드가 있습니다. 다른 값을 입력해 주세요.");
+			$("#frm_form [name='new_type_key']").focus();
+			return false;
+		}
 
-			let url = '/ajax/popup_update'
-			let popup_data = $(f).serialize();
-			$.ajax({
-				type: "POST",
-				data: popup_data,
-				url: url,
-				cache: false,
-				async: false,
-				success: function (data, textStatus) {
-					let message = data.message;
-					alert(message);
-					location.reload();
-				},
-				error: function (request, status, error) {
-					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-				}
-			});
+		var new_type_val = $("#frm_form [name='new_type_val']").val();
+		if(new_type_val == ""){
+			alert("새로 추가하는 구분의 제목을 입력해 주세요.");
+			$("#frm_form [name='new_type_val']").focus();
+			return false;
+		}
+		if($("#frm_form [name='r_type'] option[text='"+new_type_val+"']").length > 0){
+			alert("새로 추가하는 구분의 제목과 동일한 제목이 있습니다. 다른 값을 입력해 주세요.");
+			$("#frm_form [name='new_type_val']").focus();
+			return false;
+		}
+	}
+
+	// 열기 옵션 취합
+	var open = {};
+	$(".open").each(function(){
+		open[$(this).attr("data-item")] = $(this).val();
+	});
+	$("#frm_form input[name='r_open']").val(JSON.stringify(open));
+
+
+	// 스마트에디터 -> 폼 필드
+	if(use_editor == "Y"){
+		oEditors.getById["r_content"].exec("UPDATE_CONTENTS_FIELD", []);
+		if($("#frm_form [name='r_content']").val() == "<p>&nbsp;</p>")
+		   $("#frm_form [name='r_content']").val("");
+
+		//document.frm_form.r_content.value = CKEDITOR.instances.r_content.getData();
+	}
+
+	// 파일 첨부
+	var is_stop = false;
+	$("#ul_file [type='file']").each(function(){
+		if($(this).val() == ""){
+			if($("#ul_file li").length < 1)
+				$(this).closest("li").remove();
+
+			return; // continue
+		}
+	});
+	if(is_stop) return false;
+
+	// 명령 지정
+	$("#frm_form input[name='cmd']").val(cmd);
+
+	// 입력 폼 값
+	var args = $('#frm_form').serialize();
+	//console.log("args : " + args);
+
+	$("#frm_form").ajaxForm({
+		type: "POST", // GET, POST
+		dataType: "text", // json, text
+		url: "/ajax/popup_update",
+		data: args,
+		success: function(data, textStatus){
+			//console.log("go_regist:"+data);
+			data = JSON.parse(data); // text -> json
+
+			if(data.status == "Y"){ // 작업 성공
+				if(data.msg != "") alert(data.msg); // 안내 메시지
+
+				// 목록으로 이동
+				//go_list();
+				//document.location.reload();
+				go_form(data.r_idx);
+			}
+			else{
+				if(data.msg != "") alert(data.msg); // 안내 메시지
+				if(data.item != "" && data.item != undefined)
+					$("#frm_form [name='"+data.item+"']").focus();
+			}
+		},
+		error: function(xhr, textStatus, Thrown){ // ajax 오류
+			console.log("go_regist (error) : "+textStatus+" -> "+Thrown);
+		}
+	})
 }
 
 // 현재 적용된 템플릿

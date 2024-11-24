@@ -207,29 +207,65 @@ class AjaxController extends BaseController {
     {
             $db    = \Config\Database::connect();
 
+			$r_idx      = $_POST['r_idx'];
+			$r_status   = $_POST['r_status'];
+			$r_s_date_d = $_POST['r_s_date_d'];
+			$r_s_date_h = $_POST['r_s_date_h'];
+			$r_s_date_i = $_POST['r_s_date_i'];
+			$r_s_date_s = $_POST['r_s_date_s'];
+			$r_s_date   = $r_s_date_d ." ". $r_s_date_h .":". $r_s_date_h .":". $r_s_date_s;
+
+			$r_e_date_d = $_POST['r_e_date_d'];
+			$r_e_date_h = $_POST['r_e_date_h'];
+			$r_e_date_i = $_POST['r_e_date_i'];
+			$r_e_date_s = $_POST['r_e_date_s'];
+			$r_e_date   = $r_e_date_d ." ". $r_e_date_h .":". $r_e_date_h .":". $r_e_date_s;
+
+			$r_open     = $_POST['r_open'];
+			$r_close    = $_POST['r_close'];
+			$r_title    = $_POST['r_title'];
+			$r_content  = $_POST['r_content'];
+			$r_url      = $_POST['r_url'];
+
 			write_log("popup update");
-/*
-            $m_idx = $_POST['m_idx'] ?? [];
 
-			if ($m_idx[$j]) {
-				$sql = "delete from tbl_block_ip where m_idx = '". $m_idx[$j] ."'  ";
-				write_log($sql);
-				$result = $db->query($sql);
+			if ($r_idx == "") {
+				$sql = "insert into tbl_cms set r_status  = '$r_status'  
+			                                   ,r_s_date  = '$r_s_date'
+			                                   ,r_e_date  = '$r_e_date'
+			                                   ,r_open    = '$r_open'
+											   ,r_close   = '$r_close'
+											   ,r_title   = '$r_title'
+											   ,r_content = '$r_content'
+											   ,r_url     = '$r_url' ";
+            } else {
+				$sql = "update      tbl_cms set r_status  = '$r_status'  
+			                                   ,r_s_date  = '$r_s_date'
+			                                   ,r_e_date  = '$r_e_date'
+			                                   ,r_open    = '$r_open'
+											   ,r_close   = '$r_close'
+											   ,r_title   = '$r_title'
+											   ,r_content = '$r_content'
+											   ,r_url     = '$r_url' where r_idx = '$r_idx' ";
+            }
+			
+			write_log($sql);
+			$result = $db->query($sql);
 
-				if (isset($result) && $result) {
-					$msg = "아이피 삭제완료";
-				} else {
-					$msg = "아이피 삭제오류";
-				}
-
-				return $this->response
-					->setStatusCode(200)
-					->setJSON([
-						'status' => 'success',
-						'message' => $msg
-					]);
-
+			if (isset($result) && $result) {
+				$msg = "팝업 등록완료";
+			} else {
+				$msg = "팝업 등록오류";
 			}
-*/
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'Y',
+					'message' => $msg
+				]);
+ 
+			}
+ 
     }
 }
