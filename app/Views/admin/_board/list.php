@@ -15,7 +15,7 @@
                     </ul>
                     <ul class="last">
                         <?php if ($code == "banner" || $code == "event" || $code == "main_event" || $code == "awards") { ?>
-                            <li><a href="javascript:change_it()" class="btn btn-success">순위변경...</a></li>
+                            <li><a href="javascript:change_it()" class="btn btn-success">순위변경</a></li>
                         <?php } ?>
                         <li>
                             <a href="/AdmMaster/_bbs/board_write?code=<?= esc($code) ?>&scategory=<?= esc($scategory) ?>" class="btn btn-primary">
