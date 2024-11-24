@@ -172,9 +172,9 @@ class AjaxController extends BaseController {
             $m_idx = $_POST['m_idx'] ?? [];
             $tot   = count($m_idx);
 
-            for($j=0;$j<$tot:$j++)
+            for($j=0;$j<$tot;$j++)
             {
-					if ($m_idx[$i]) {
+					if ($m_idx[$j]) {
 						$sql = "delete from tbl_block_ip where m_idx = '". $m_idx[$j] ."'  ";
 						write_log($sql);
 						$result = $db->query($sql);
