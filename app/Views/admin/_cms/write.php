@@ -38,8 +38,25 @@
     </script>
     <script src="/js/form.js"></script>
 
+    <script>
+	$(function () {
+		var startDate, endDate;
+		$("#startDate").datepicker({
+			dateFormat: "yy-mm-dd",
+			onSelect: function (selectedDate) {
+				endDate.datepicker("option", "minDate", selectedDate);
+			}
+		});
+		endDate = $("#endDate").datepicker({
+			dateFormat: "yy-mm-dd",
+			onSelect: function (selectedDate) {
+				startDate.datepicker("option", "maxDate", selectedDate);
+			}
+		});
+	});
+    </script>
 
-    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
 
 
     <style>
@@ -264,7 +281,7 @@
                                     <th>시작일시</th>
                                     <td>
                                         <input type="hidden" name="r_s_date" value="<?= $form_data['r_s_date']; ?>">
-                                        <input type="text" name="r_s_date_d"
+                                        <input type="text" name="r_s_date_d" id="startDate"
                                                value="<?= substr($form_data['r_s_date'], 0, 10); ?>"
                                                class="date_pic">
                                         &nbsp;
@@ -285,7 +302,7 @@
                                     <th>종료일시</th>
                                     <td>
                                         <input type="hidden" name="r_e_date" value="<?= $form_data['r_e_date']; ?>">
-                                        <input type="text" name="r_e_date_d"
+                                        <input type="text" name="r_e_date_d" id="endDate"
                                                value="<?= substr($form_data['r_e_date'], 0, 10); ?>"
                                                class="date_pic">
                                         &nbsp;
