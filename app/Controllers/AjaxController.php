@@ -162,4 +162,43 @@ class AjaxController extends BaseController {
                 ]);
         }   
     } 
+
+
+	public function fnAddIp_sel_delete()   
+    {
+        $db    = \Config\Database::connect();
+
+        try {
+            $idx = $_POST["m_idx"];
+
+            for($i=0;$i<count($idx):$i++)
+            {
+					if ($idx[$i]) {
+						$sql = "delete from tbl_block_ip where m_idx = '". $m_idx[$i] ."'  ";
+						write_log($sql);
+						$result = $db->query($sql);
+
+						if (isset($result) && $result) {
+							$msg = "아이피 삭제완료";
+						} else {
+							$msg = "아이피 삭제오류";
+						}
+                    }
+            }
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }   
+    } 
 }
