@@ -9,8 +9,8 @@
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web" onclick="javascript:wish_it('<?= $product_idx ?>')" >
-                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo_web" onclick="javascript:wish_it('<?= $product_idx ?>')" >
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
+                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
@@ -152,40 +152,7 @@
                         <?php endforeach; ?>
                     </div>
 
-
-					<script>
-					  function wish_it() {
-
-						if ($("#member_Id").val() == "") {
-						  alert("로그인 하셔야 합니다.");
-						  location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
-						} else {
-
-						  var message = "";
-						  $.ajax({
-
-							url: "/item/ajax.wish_set.php",
-							type: "POST",
-							data: {
-							  "product_idx": '<?= $product_idx ?>'
-							},
-							dataType: "json",
-							async: false,
-							cache: false,
-							success: function (data, textStatus) {
-							  message = data.message;
-							  alert(message);
-							  location.reload();
-							},
-							error: function (request, status, error) {
-							  alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-							}
-						  });
-						}
-					  }
-					</script>
-
-					<script>
+                    <script>
                         function go_category_room(code) {
                             let currentUrl = new URL(window.location.href);
                             currentUrl.searchParams.set('s_category_room', code);
@@ -1070,6 +1037,39 @@
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
                 </div>
+
+				<script>
+				  function wish_it() {
+
+					if ($("#member_Id").val() == "") {
+					  alert("로그인 하셔야 합니다.");
+					  location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+					} else {
+
+					  var message = "";
+					  $.ajax({
+
+						url: "/item/ajax.wish_set.php",
+						type: "POST",
+						data: {
+						  "product_idx": '<?= $product_idx ?>'
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function (data, textStatus) {
+						  message = data.message;
+						  alert(message);
+						  location.reload();
+						},
+						error: function (request, status, error) {
+						  alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					  });
+					}
+				  }
+				</script>
+
                 <script>
                     $('.btnReadMore').click(function () {
                         let room_option_ = $(this).parent().prev();
