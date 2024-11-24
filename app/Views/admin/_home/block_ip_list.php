@@ -148,7 +148,7 @@
 			alert($('.m_idx:checked').length);
 			if ($('.m_idx:checked').length == 0) {
                 alert_("삭제할 내용을 선택하셔야 합니다.");
-                return;
+                return false;
             }
 
 			if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
