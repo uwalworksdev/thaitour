@@ -145,10 +145,8 @@
 
         function SELECT_DELETE() {
 			var tmpChkCnt = $('.m_idx:checked').length;
-alert(tmpChkCnt);
-
-			if (tmpChkCnt == "0") {
-                alert_("삭제할 내용을 선택하셔야 합니다.");
+			if (tmpChkCnt == 0) {
+                alert("삭제할 내용을 선택하셔야 합니다.");
                 return false;
             }
 
