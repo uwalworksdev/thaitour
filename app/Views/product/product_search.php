@@ -68,37 +68,11 @@
 
 		<div class="body_inner">
 			<div class="travel_desc">
-             <?php foreach ($list as $key => $item): ?>
+                <?php foreach ($list as  $item): ?>
                     <div class="travel_slider active01 active">
-                    <?php foreach ($item['items'] as $item1_1): ?>
-                        <?php $img_dir = img_link($item1_1['product_code_1']); ?>
-                        <?php $prog_link = prog_link($item1_1['product_code_1']); ?>
-                        <a href="<?= $prog_link ?><?= $item1_1['product_idx'] ?>" class="best_list_item">
-                            <div class="img_box img_box_3">
-                                <img src="/data/<?= $img_dir ?>/<?= $item1_1['ufile1'] ?>" alt="main">
-                            </div>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb_item">방콕</li>
-                                <li class="breadcrumb_item">시암</li>
-                            </ul>
-                            <div class="prd_name">
-                                <?= $item1_1['product_name'] ?>
-                            </div>
-                            <div class="prd_info">
-                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                <span class="star_avg">4.7</span>
-                                <span class="star_review_cnt">(954)</span>
-                            </div>
-                            <div class="prd_price_ko">
-                                <?= number_format($item1_1['original_price']) ?> <span>원</span>
-                            </div>
-                            <div class="prd_price_thai">
-                                6,000 <span>바트</span>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>                        
+                        
                     </div>
-            <?php endforeach; ?>                        
+                <?php endforeach; ?>
 			</div>
 		</div>
 	</div>
