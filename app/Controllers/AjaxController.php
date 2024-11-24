@@ -213,13 +213,13 @@ class AjaxController extends BaseController {
 			$r_s_date_h = $_POST['r_s_date_h'];
 			$r_s_date_i = $_POST['r_s_date_i'];
 			$r_s_date_s = $_POST['r_s_date_s'];
-			$r_s_date   = $r_s_date_d ." ". $r_s_date_h .":". $r_s_date_h .":". $r_s_date_s;
+			$r_s_date   = $r_s_date_d ." ". $r_s_date_h .":". $r_s_date_i .":". $r_s_date_s;
 
 			$r_e_date_d = $_POST['r_e_date_d'];
 			$r_e_date_h = $_POST['r_e_date_h'];
 			$r_e_date_i = $_POST['r_e_date_i'];
 			$r_e_date_s = $_POST['r_e_date_s'];
-			$r_e_date   = $r_e_date_d ." ". $r_e_date_h .":". $r_e_date_h .":". $r_e_date_s;
+			$r_e_date   = $r_e_date_d ." ". $r_e_date_h .":". $r_e_date_i .":". $r_e_date_s;
 
 			$r_open     = $_POST['r_open'];
 			$r_close    = $_POST['r_close'];
