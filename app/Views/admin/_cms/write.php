@@ -195,7 +195,7 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="#!" class="btn btn-default" onClick="go_list();"><span
+                                <a href="/AdmMaster/_cms/index?r_code=popup" class="btn btn-default" onClick="go_list();"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                                 <?php if ($r_idx == "") { ?>
                                     <a href="#!" class="btn btn-success" onClick="go_regist('new_ok');"><span
