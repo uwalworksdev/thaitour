@@ -9,7 +9,7 @@
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web" onclick="wish_it('<?= $hotel['product_idx'] ?>')" >
                         <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
