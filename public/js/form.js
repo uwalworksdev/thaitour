@@ -104,7 +104,7 @@ function go_regist(cmd){
 
 		//document.frm_form.r_content.value = CKEDITOR.instances.r_content.getData();
 	}
-
+alert('1111111111');
 	// 파일 첨부
 	var is_stop = false;
 	$("#ul_file [type='file']").each(function(){
@@ -116,6 +116,7 @@ function go_regist(cmd){
 		}
 	});
 	if(is_stop) return false;
+alert('2222222222');
 
 	// 명령 지정
 	$("#frm_form input[name='cmd']").val(cmd);
