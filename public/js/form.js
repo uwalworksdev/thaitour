@@ -134,7 +134,7 @@ function go_regist(cmd){
 			data = JSON.parse(data); // text -> json
 
 			if(data.status == "Y"){ // 작업 성공
-				if(data.msg != "") alert(data.msg); // 안내 메시지
+				if(data.message != "") alert(data.message); // 안내 메시지
 
 				// 목록으로 이동
 				//go_list();
@@ -142,7 +142,7 @@ function go_regist(cmd){
 				location.href='/AdmMaster/_cms/index?r_code=popup';
 			}
 			else{
-				if(data.msg != "") alert(data.msg); // 안내 메시지
+				if(data.message != "") alert(data.message); // 안내 메시지
 				if(data.item != "" && data.item != undefined)
 					$("#frm_form [name='"+data.item+"']").focus();
 			}
