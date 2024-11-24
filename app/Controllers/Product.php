@@ -74,14 +74,14 @@ class Product extends BaseController
 
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
-            'search_product_name' => $search_name,
+            //'search_product_name' => $search_name,
             'product_status' => 'sale'
         ], 10, 1, [])['items'];
 
         $listGolf = $this->productModel->findProductGolfPaging([
             'is_view' => 'Y',
             'product_code_1' => 1302,
-            'search_txt' => $search_name,
+            //'search_txt' => $search_name,
             'search_category' => 'product_name'
         ], 10, 1, [])['items'];
 
