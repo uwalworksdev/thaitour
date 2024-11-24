@@ -144,7 +144,7 @@
         }
 
         function SELECT_DELETE() {
-			if ($('.m_idx:checked').length > 0) {
+			if ($('.m_idx:checked').length == 0) {
                 alert_("삭제할 내용을 선택하셔야 합니다.");
                 return;
             }
