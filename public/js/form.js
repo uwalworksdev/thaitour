@@ -123,7 +123,7 @@ function go_regist(cmd){
 	// 입력 폼 값
 	var args = $('#frm_form').serialize();
 	//console.log("args : " + args);
-alert('3333333');
+ 
 	$("#frm_form").ajaxForm({
 		type: "POST", // GET, POST
 		dataType: "text", // json, text
@@ -139,7 +139,7 @@ alert('3333333');
 				// 목록으로 이동
 				//go_list();
 				//document.location.reload();
-				go_form(data.r_idx);
+				location.href='/AdmMaster/_cms/index?r_code=popup';
 			}
 			else{
 				if(data.msg != "") alert(data.msg); // 안내 메시지
