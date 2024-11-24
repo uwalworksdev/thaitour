@@ -35,8 +35,9 @@ function go_regist(cmd){
 	}
 
 	var r_idx = $("#frm_form input[name='r_idx']").val();
-	var tr = $("#tbl_list tr[data-idx='"+r_idx+"']");
-	var no = tr.find(".td_no").html();
+	alert('r_idx- '+r_idx)
+	var tr    = $("#tbl_list tr[data-idx='"+r_idx+"']");
+	var no    = tr.find(".td_no").html();
 
 	// 입력값 검사
 	var check = true;
