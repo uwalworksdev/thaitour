@@ -95,8 +95,7 @@
 
                                     ?>
                                     <tr>
-                                        <td><input type="checkbox" name="m_idx[]" class="m_idx"
-                                                   value="<?= $row['m_idx'] ?>">
+                                        <td><input type="checkbox" name="m_idx[]" class="m_idx" value="<?= $row['m_idx'] ?>">
                                         </td>
                                         <td><?= $row['m_idx'] ?></td>
                                         <td class="tac"><?= $row['ip'] ?></td>
