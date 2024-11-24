@@ -14,7 +14,7 @@
                                    class="btn btn-success">전체선택</a></li>
                             <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), false)"
                                    class="btn btn-success">선택해체</a></li>
-                            <li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
+                            <li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제..</a></li>
                         </ul>
 
                     </div>
@@ -145,11 +145,11 @@
 
         function SELECT_DELETE() {
 
-			var tmpChkCnt = 0;
+			var tmpChkCnt = $('.m_idx:checked').length;
 
 			if (tmpChkCnt == 0) {
                 alert_("삭제할 내용을 선택하셔야 합니다.");
-                return;
+                return false;
             }
 
 			if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
