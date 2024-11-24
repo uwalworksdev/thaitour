@@ -14,7 +14,7 @@
                                    class="btn btn-success">전체선택</a></li>
                             <li><a href="javascript:CheckAll(document.getElementsByName('m_idx[]'), false)"
                                    class="btn btn-success">선택해체</a></li>
-                            <li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제..</a></li>
+                            <li><a href="javascript:SELECT_DELETE()" class="btn btn-danger">선택삭제</a></li>
                         </ul>
 
                     </div>
