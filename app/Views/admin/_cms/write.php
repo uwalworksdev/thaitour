@@ -36,7 +36,7 @@
         var sch_param = "<?=$Cms->sch_param;?>"; // 검색 조건
         var sort_param = "<?=$Cms->sort_param;?>"; // 정렬 조건
     </script>
-    <script src="form.js"></script>
+    <script src="/js/form.js"></script>
 
 
     <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
