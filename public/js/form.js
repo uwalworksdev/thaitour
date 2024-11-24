@@ -130,7 +130,7 @@ function go_regist(cmd){
 		url: "/ajax/popup_update",
 		data: args,
 		success: function(data, textStatus){
-			alert("go_regist:"+data);
+
 			data = JSON.parse(data); // text -> json
 
 			if(data.status == "Y"){ // 작업 성공
