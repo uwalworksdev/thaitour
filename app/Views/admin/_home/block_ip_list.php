@@ -144,7 +144,7 @@
         }
 
         function SELECT_DELETE() {
-			var tmpChkCnt = $('.m_idx:checked').length;
+			var tmpChkCnt = $('.m_idx:checked').length *1;
 alert(tmpChkCnt);
 
 			if (tmpChkCnt == 0) {
