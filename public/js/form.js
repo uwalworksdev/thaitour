@@ -27,13 +27,32 @@ function go_form(r_idx){
 
 // 등록
 function go_regist(cmd){
-	// 삭제
-	if(cmd == "del_ok"){
-		if(!confirm("삭제하시겠습니까?")){
-			return;
-		}
-	}
+			// 삭제
+			if(cmd == "del_ok"){
+				if(!confirm("삭제하시겠습니까?")){
+					return;
+				}
+			}
 
+			let f = document.frm_form;
+
+			let url = '/ajax/popup_update'
+			let popup_data = $(f).serialize();
+			$.ajax({
+				type: "POST",
+				data: popup_data,
+				url: url,
+				cache: false,
+				async: false,
+				success: function (data, textStatus) {
+					let message = data.message;
+					alert(message);
+					location.reload();
+				},
+				error: function (request, status, error) {
+					alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+				}
+			});
 }
 
 // 현재 적용된 템플릿

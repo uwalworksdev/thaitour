@@ -201,5 +201,35 @@ class AjaxController extends BaseController {
                     'message' => $e->getMessage()
                 ]);
         }  
-    }		
+    }
+
+	public function popup_update()   
+    {
+            $db    = \Config\Database::connect();
+
+			write_log("popup update");
+/*
+            $m_idx = $_POST['m_idx'] ?? [];
+
+			if ($m_idx[$j]) {
+				$sql = "delete from tbl_block_ip where m_idx = '". $m_idx[$j] ."'  ";
+				write_log($sql);
+				$result = $db->query($sql);
+
+				if (isset($result) && $result) {
+					$msg = "아이피 삭제완료";
+				} else {
+					$msg = "아이피 삭제오류";
+				}
+
+				return $this->response
+					->setStatusCode(200)
+					->setJSON([
+						'status' => 'success',
+						'message' => $msg
+					]);
+
+			}
+*/
+    }
 }
