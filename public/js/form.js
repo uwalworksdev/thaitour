@@ -104,7 +104,7 @@ function go_regist(cmd){
 
 		//document.frm_form.r_content.value = CKEDITOR.instances.r_content.getData();
 	}
-alert('1111111111');
+
 	// 파일 첨부
 	var is_stop = false;
 	$("#ul_file [type='file']").each(function(){
@@ -116,7 +116,6 @@ alert('1111111111');
 		}
 	});
 	if(is_stop) return false;
-alert('2222222222');
 
 	// 명령 지정
 	$("#frm_form input[name='cmd']").val(cmd);
@@ -124,14 +123,14 @@ alert('2222222222');
 	// 입력 폼 값
 	var args = $('#frm_form').serialize();
 	//console.log("args : " + args);
-
+alert('3333333');
 	$("#frm_form").ajaxForm({
 		type: "POST", // GET, POST
 		dataType: "text", // json, text
 		url: "/ajax/popup_update",
 		data: args,
 		success: function(data, textStatus){
-			//console.log("go_regist:"+data);
+			alert("go_regist:"+data);
 			data = JSON.parse(data); // text -> json
 
 			if(data.status == "Y"){ // 작업 성공
