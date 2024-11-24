@@ -68,6 +68,7 @@
 
 		<div class="body_inner">
 			<div class="travel_desc">
+             <?php foreach ($list as $key => $item): ?>
                     <div class="travel_slider active01 active">
                     <?php foreach ($item['items'] as $item1_1): ?>
                         <?php $img_dir = img_link($item1_1['product_code_1']); ?>
@@ -97,6 +98,7 @@
                         </a>
                     <?php endforeach; ?>                        
                     </div>
+            <?php endforeach; ?>                        
 			</div>
 		</div>
 	</div>
