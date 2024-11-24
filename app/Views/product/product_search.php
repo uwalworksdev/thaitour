@@ -56,8 +56,10 @@
 		<div class="body_inner travel_tab flex">
 			<div class="slide_tab">
 				<div class="swiper-wrapper">
+                    <?php $seq = 0;?>
                     <?php foreach ($list as $key => $item): ?>
-                        <button type="button" value="active01" class="travel_btn">
+					<?php $seq++;?>   
+                        <button type="button" value="active0<?=$seq?>" class="travel_btn">
                             <?=$item['title']?>(<?=count($item['items'])?>)
                         </button>
                     <?php endforeach; ?>
