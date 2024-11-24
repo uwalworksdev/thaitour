@@ -265,7 +265,6 @@ class AjaxController extends BaseController {
 					'message' => $msg
 				]);
  
-			}
  
     }
 }
