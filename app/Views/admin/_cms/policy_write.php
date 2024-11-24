@@ -17,7 +17,7 @@
                     <h2>약관 및 정책</h2>
                     <div class="menus">
                         <ul>
-                            <li><a href="./policy_list" class="btn btn-default"><span
+                            <li><a href="/AdmMaster/_cms/index?r_code=popup" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
                             <?php if ($p_idx) { ?>
