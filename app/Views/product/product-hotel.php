@@ -124,6 +124,16 @@
         .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
             border: hidden;
         }
+
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
+            left: unset;
+            right: 20px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
+            text-align: end;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
@@ -150,7 +160,7 @@
                                 <p>
                                     <span id="countDay" class="count">1</span>박
                                 </p>
-                                <div class="form_input_ form_gr_item_">
+                                <div class="form_input_ form_gr_item_ form_gr_item_flex_">
                                     <label for="input_day">체크아웃</label>
                                     <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
                                            placeholder="체크아웃 선택해주세요." readonly>
@@ -212,6 +222,28 @@
                 renderPrice(picker);
             }).on('showCalendar.daterangepicker', function (ev, picker) {
                 renderPrice(picker);
+            }).on({
+                'show.daterangepicker': function (ev, picker) {
+                    console.log("Hiển thị datepicker");
+                },
+                'hide.daterangepicker': function (ev, picker) {
+                    console.log("Ẩn datepicker");
+                },
+                'showCalendar.daterangepicker': function (ev, picker) {
+                    console.log("Hiển thị lịch");
+                },
+                'hideCalendar.daterangepicker': function (ev, picker) {
+                    console.log("Ẩn lịch");
+                },
+                'apply.daterangepicker': function (ev, picker) {
+                    console.log("Áp dụng: " + picker.startDate.format('YYYY-MM-DD') + " - " + picker.endDate.format('YYYY-MM-DD'));
+                },
+                'cancel.daterangepicker': function (ev, picker) {
+                    console.log("Hủy bỏ lựa chọn");
+                },
+                'outsideClick.daterangepicker': function (ev, picker) {
+                    console.log("Click ra ngoài");
+                }
             });
 
             function calcDistanceDay() {
