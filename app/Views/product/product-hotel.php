@@ -380,23 +380,45 @@
 
     <style>
         .hotel_popup_ {
-
+            display: block;
         }
 
         .hotel_popup_content_ {
-
+            background: #fff;
+            border: 1px solid #dadfe6;
+            border-radius: 8px;
+            width: 624px;
         }
 
         .hotel_popup_ttl_ {
-
+            background: #f7f7fb;
+            color: #666;
+            font-size: 14px;
+            font-weight: 700;
+            height: 32px;
+            line-height: 32px;
         }
 
         .list_popup_list_ {
-
+            align-items: flex-start;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 8px;
         }
 
         .list_popup_item_ {
-
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 14px;
+            overflow: hidden;
+            padding: 10px 16px;
+            text-overflow: ellipsis;
+            width: 20%;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            border-radius: 4px;
+            word-break: break-word;
         }
     </style>
 
