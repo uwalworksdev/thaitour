@@ -690,6 +690,29 @@ async function delOption2(idx, el) {
     }
 }
 
+$(document).ready(function() {
+    var startDateTextBox = $('.s_date');
+    var endDateTextBox   = $('.e_date');
+
+    // 시작일 선택 시, 종료일의 최소 선택 가능 날짜를 설정
+    startDateTextBox.datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(selectedDate) {
+            var startDate = $(this).datepicker('getDate');
+            endDateTextBox.datepicker('option', 'minDate', startDate);
+        }
+    });
+
+    // 종료일 선택 시, 시작일의 최대 선택 가능 날짜를 설정
+    endDateTextBox.datepicker({
+        dateFormat: 'yy-mm-dd',
+        onSelect: function(selectedDate) {
+            var endDate = $(this).datepicker('getDate');
+            startDateTextBox.datepicker('option', 'maxDate', endDate);
+        }
+    });
+});
+
 $(document).ready(function () {
 
 

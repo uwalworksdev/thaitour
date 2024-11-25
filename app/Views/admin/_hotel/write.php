@@ -852,12 +852,8 @@ $links = "list";
                                                                       data-id="<?= $frow3['o_room'] ?>"><?= $frow3['goods_name'] ?></span>
                                                             </td>
                                                             <td>
-                                                                <input type='text' readonly class='datepicker '
-                                                                       name='o_sdate[]'
-                                                                       value='<?= $frow3['o_sdate'] ?>' style='width:40%' /> ~
-                                                                <input type='text' readonly class='datepicker '
-                                                                       name='o_edate[]'
-                                                                       value='<?= $frow3['o_edate'] ?>' style='width:40%' />
+                                                                <input type='text' readonly class='s_date datepicker' name='o_sdate[]' value='<?= $frow3['o_sdate'] ?>' style='width:40%' /> ~
+                                                                <input type='text' readonly class='e_date datepicker' name='o_edate[]' value='<?= $frow3['o_edate'] ?>' style='width:40%' />
                                                             </td>
                                                             <td>
                                                                 <input type='text' class='onlynum' name='o_price1[]'
