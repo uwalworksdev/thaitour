@@ -791,8 +791,8 @@ $(document).ready(function () {
         addOption += "  <span class='room_option_' data-id='" + g_idx + "'>" + roomName + "</span>";
         addOption += "	</td>																  ";
         addOption += "	<td class='flex_td' style='display: flex; align-items: center'>																  ";
-        addOption += "		<input type='text' class='datepicker' readonly name='o_sdate[]'  value='' /> ~ ";
-        addOption += "		<input type='text' class='datepicker' readonly name='o_edate[]'  value='' /> ";
+        addOption += "		<input type='text' class='s_date datepicker' readonly name='o_sdate[]'  value='' /> ~ ";
+        addOption += "		<input type='text' class='e_date datepicker' readonly name='o_edate[]'  value='' /> ";
         addOption += "	</td>																  ";
         addOption += "	<td>																  ";
         addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
