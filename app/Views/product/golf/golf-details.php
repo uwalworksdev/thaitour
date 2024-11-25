@@ -60,7 +60,7 @@
                         <a class="short_link" data-target="qna" href="#qna">상품 Q&A</a>
                     </div>
                     <div class="btn-container">
-                        <a class="w-100" href="/product-golf/customer-form/1324">
+                        <a class="w-100" href="#!" data-target="#booking_area" onclick="handleShowBookingArea(this)">
                             <button type="button">
                                 상품예약
                             </button>
@@ -232,7 +232,7 @@
                         <button class="btn-price-content-normal" type="button"
                             onclick="showCouponPop()">쿠푼적용</button>
                     </div>
-                    <div class="right-main">
+                    <div class="right-main" id="booking_area">
                         <div class="item-right">
                             <div class="list-text">
                                 <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em>원
@@ -554,6 +554,11 @@
         </div>
     </div>
     <script>
+
+        function handleShowBookingArea(elm) {
+            const target = $(elm).data('target');
+            $(window).scrollTop($(target).offset().top - 100, 'slow');
+        }
 
         $(function () {
             $(".tag-js").eq(0).trigger("click");
