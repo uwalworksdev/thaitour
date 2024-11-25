@@ -41,7 +41,7 @@
                     <div class="form_element_">
                         <div class="form_input_">
                             <label for="input_day">여행지</label>
-                            <input type="text" id="" class="input_text_" placeholder="호텔 지역을 입력해주세요!">
+                            <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
                         </div>
                         <div class="form_input_">
                             <label for="input_day">체크인/체크아웃 날짜</label>
@@ -378,6 +378,46 @@
         </section>
     </div>
 
+    <style>
+        .hotel_popup_ {
+
+        }
+
+        .hotel_popup_content_ {
+
+        }
+
+        .hotel_popup_ttl_ {
+
+        }
+
+        .list_popup_list_ {
+
+        }
+
+        .list_popup_item_ {
+
+        }
+    </style>
+
+    <div class="hotel_popup_">
+        <div class="hotel_popup_content_">
+            <div class="hotel_popup_ttl_">인기 여행지</div>
+            <div class="list_popup_list_">
+                <div class="list_popup_item_">서울</div>
+                <div class="list_popup_item_">도쿄</div>
+                <div class="list_popup_item_">후쿠오카</div>
+                <div class="list_popup_item_">오사카</div>
+                <div class="list_popup_item_">부산</div>
+                <div class="list_popup_item_">제주</div>
+                <div class="list_popup_item_">방콕</div>
+                <div class="list_popup_item_">다낭</div>
+                <div class="list_popup_item_">나트랑</div>
+                <div class="list_popup_item_">마카오</div>
+            </div>
+        </div>
+    </div>
+
     <script>
         function search_list() {
             let dates = $("#input_day").val().split(' -> ') ?? [];
@@ -657,5 +697,12 @@
                 $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
             });
         });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#input_keyword_').on('input', function () {
+
+            });
+        })
     </script>
 <?php $this->endSection(); ?>
