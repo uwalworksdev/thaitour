@@ -5,7 +5,7 @@
             <div class="inner">
                 <a href="<?= $visual['url'] ?>" id="myLink">
                     <div class="sub_visual"
-                         style="background-image: url(<?= $visual['ufile6'] ? "/data/bbs/" . $visual['ufile6'] : '' ?>);"></div>
+                         style="background-image: url(/images/mypage/review_bg.png);"></div>
                 </a>
                 <div class="sect_ttl_box">
                     <h2>Best 여행후기</h2>
