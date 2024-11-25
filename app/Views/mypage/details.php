@@ -92,7 +92,7 @@
                                 <th>예약일</th>
                                 <th>구분</th>
                                 <th>상품</th>
-                                <th>일정</th>
+                                <th>상세보기</th>
                                 <th>상태</th>
                                 <?=($is_allow_payment ? "<th>결제</th>" : "")?>
                             </tr>
@@ -120,7 +120,7 @@
                                         <td class="des"><span>
                                                 <?= (html_entity_decode($row["product_name"])) ?>
                                             </span></td>
-                                        <td class="schedule"><a href="../mypage/<?=$row['order_gubun']?>/invoice_view_item?order_idx=<?= $row['order_idx'] ?>&pg=<?= $pg ?>"><i></i>일정</a>
+                                        <td class="schedule"><a href="../mypage/<?=$row['order_gubun']?>/invoice_view_item?order_idx=<?= $row['order_idx'] ?>&pg=<?= $pg ?>"><i></i>보기</a>
                                         </td>
                                         <?php if ($row["order_status"] == "W") {
                                             $color = '#e5001a';
