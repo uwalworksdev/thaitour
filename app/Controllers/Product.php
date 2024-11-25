@@ -95,7 +95,7 @@ class Product extends BaseController
         $sort = $this->request->getVar("sort") ?: "recommended";
 
         $data['search_name'] = $search_name;
-        $data['tab'] = $tab ?: $search_cate;
+        $data['tab'] = $tab ?: $search_cate ?: "hotel";
         $data['sort'] = $sort;
         $data['search_cate'] = $search_cate;
 
