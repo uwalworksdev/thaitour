@@ -123,6 +123,7 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_hotel", static function ($routes) {
         $routes->get("list", "Admin\AdminHotelController::list");
         $routes->get("write", "Admin\AdminHotelController::write");
+        $routes->get("write_options", "Admin\AdminHotelController::write_options");
         $routes->get("get_room", "Admin\AdminHotelController::get_room", ['as' => "admin._hotel.get_room"]);
         $routes->post("write_ok", "Admin\AdminHotelController::write_ok", ['as' => "admin._hotel.write_ok"]);
         $routes->post("write_ok/(:segment)", "Admin\AdminHotelController::write_ok/$1", ['as' => "admin._hotel.write_ok.id"]);

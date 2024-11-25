@@ -11,6 +11,8 @@ class AdminHotelController extends BaseController
 {
     protected $connect;
     protected $productModel;
+    protected $hotelOptionModel;
+
 
     public function __construct()
     {
@@ -18,6 +20,7 @@ class AdminHotelController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $this->productModel = model("ProductModel");
+        $this->hotelOptionModel = model("HotelOptionModel");
     }
 
     public function list()
@@ -126,6 +129,28 @@ class AdminHotelController extends BaseController
             'ppromotions' => $product_promotions,
         ];
         return view("admin/_hotel/write", $data);
+    }
+
+    public function write_options() {
+        $o_idx = $this->request->getVar("o_idx");
+        $product_idx = $this->request->getVar("product_idx");
+
+        $row = $this->productModel->getById($product_idx);
+        $product_name = viewSQ($row["product_name"]);
+
+        $option = $this->hotelOptionModel->getByIdx($o_idx);
+        $o_sdate = $option["o_sdate"];
+        $o_edate = $option["o_edate"];
+
+        $data = [
+            'o_idx' => $o_idx,
+            'product_idx' => $product_idx,
+            'product_name' => $product_name,
+            'o_sdate' => $o_sdate,
+            'o_edate' => $o_edate,
+        ];
+
+        return view("admin/_hotel/write_options", $data);
     }
 
     public function write_ok($product_idx = null)
