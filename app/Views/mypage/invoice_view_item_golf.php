@@ -470,7 +470,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                                     <?= $sub['order_full_name'] ?>
                                 </td>
 								<td class="content">
-									<?= $sub['order_sex'] == "M" ? "MR" : "MS" ?>
+									<?= $sub['order_sex'] == "M" ? "남성" : "여성" ?>
 								</td>
                             </tr>
                         <?php	

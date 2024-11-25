@@ -85,10 +85,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="gender<?=$i?>">성별(MR/MS)*</label>
+                                            <label for="gender<?=$i?>">성별(남성/여성)*</label>
                                             <select name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" class="select-width" id="">
-                                                <option value="M">MR</option>
-                                                <option value="F">MS</option>
+                                                <option value="M">남성</option>
+                                                <option value="F">여성</option>
                                             </select>
                                         </div>
                                     </div>
@@ -136,10 +136,10 @@
                                     </div>
                                     <div class="con-form mb-40">
                                         <div class="form-group">
-                                            <label for="gender<?=$i?>">성별(MR/MS)*</label>
+                                            <label for="gender<?=$i?>">성별(남성/여성)*</label>
                                             <select name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" class="select-width" id="">
-                                                <option value="M">MR</option>
-                                                <option value="F">MS</option>
+                                                <option value="M">남성</option>
+                                                <option value="F">여성</option>
                                             </select>
                                         </div>
                                     </div>
@@ -159,10 +159,10 @@
                                     </div>
                                     <div class="con-form mb-40">
                                         <div class="form-group">
-                                            <label for="gender<?=$i?>">성별(MR/MS)*</label>
+                                            <label for="gender<?=$i?>">성별(남성/여성)*</label>
                                             <select name="companion_gender[]" id="gender<?=$i?>" required data-label="성별" class="select-width" id="">
-                                                <option value="M">MR</option>
-                                                <option value="F">MS</option>
+                                                <option value="M">남성</option>
+                                                <option value="F">여성</option>
                                             </select>
                                         </div>
                                     </div>

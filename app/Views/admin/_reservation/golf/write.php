@@ -403,8 +403,8 @@
                                         </td>
                                         <td style="text-align:center">
                                             <select name="order_sex[]" id="" style="width:100px">
-                                                <option value="M" <?= $frow["order_sex"] == "M" ? "selected" : ""?>>MR</option>
-                                                <option value="F" <?= $frow["order_sex"] == "F" ? "selected" : ""?>>MS</option>
+                                                <option value="M" <?= $frow["order_sex"] == "M" ? "selected" : ""?>>남성</option>
+                                                <option value="F" <?= $frow["order_sex"] == "F" ? "selected" : ""?>>여성</option>
                                             </select>
                                         </td>
                                     </tr>
