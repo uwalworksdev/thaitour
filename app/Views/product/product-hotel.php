@@ -3,6 +3,10 @@
 <?php $this->section('content'); ?>
 
     <style>
+        .main_page_01 .main_visual_content_ {
+            z-index: 5;
+        }
+
         @media screen and (max-width: 850px) {
 
             .sub_tour_section5_item {
@@ -27,6 +31,79 @@
                 margin-left: 0.3846rem;
             }
         }
+
+        .hotel_popup_ {
+            display: none;
+            position: absolute;
+            top: 215px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .hotel_popup_.show {
+            display: block;
+        }
+
+        .hotel_popup_content_ {
+            background: #fff;
+            border: 1px solid #dadfe6;
+            border-radius: 8px;
+            width: 420px;
+            padding: 5px;
+        }
+
+        .hotel_popup_ttl_ {
+            background: #f7f7fb;
+            color: #666;
+            font-size: 14px;
+            font-weight: 700;
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .list_popup_list_ {
+            align-items: flex-start;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 8px;
+        }
+
+        .list_popup_item_ {
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 14px;
+            overflow: hidden;
+            padding: 10px 16px;
+            text-overflow: ellipsis;
+            width: 20%;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            border-radius: 4px;
+            word-break: break-word;
+        }
+
+        .price-tag {
+            color: #999999;
+        }
+
+        .drp-calendar td.has-price {
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .drp-calendar td.has-price::after {
+            content: attr(data-price);
+            display: block;
+            font-size: 12px;
+            color: #007bff;
+            margin-top: 5px;
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
@@ -40,7 +117,7 @@
                 <div class="form_search">
                     <div class="form_element_">
                         <div class="form_input_">
-                            <label for="input_day">여행지</label>
+                            <label for="input_keyword_">여행지</label>
                             <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
                         </div>
                         <div class="form_input_">
@@ -55,6 +132,17 @@
                         <button type="button" onclick="search_list();" class="btn_search_">
                             검색
                         </button>
+                    </div>
+
+                    <div class="hotel_popup_">
+                        <div class="hotel_popup_content_">
+                            <div class="hotel_popup_ttl_">인기 여행지</div>
+                            <div class="list_popup_list_">
+                                <?php foreach ($sub_codes as $code_item) : ?>
+                                    <div class="list_popup_item_"><?= $code_item['code_name'] ?></div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -378,68 +466,6 @@
         </section>
     </div>
 
-    <style>
-        .hotel_popup_ {
-            display: block;
-        }
-
-        .hotel_popup_content_ {
-            background: #fff;
-            border: 1px solid #dadfe6;
-            border-radius: 8px;
-            width: 624px;
-        }
-
-        .hotel_popup_ttl_ {
-            background: #f7f7fb;
-            color: #666;
-            font-size: 14px;
-            font-weight: 700;
-            height: 32px;
-            line-height: 32px;
-        }
-
-        .list_popup_list_ {
-            align-items: flex-start;
-            display: flex;
-            flex-wrap: wrap;
-            padding: 8px;
-        }
-
-        .list_popup_item_ {
-            box-sizing: border-box;
-            cursor: pointer;
-            font-size: 14px;
-            overflow: hidden;
-            padding: 10px 16px;
-            text-overflow: ellipsis;
-            width: 20%;
-            -webkit-box-orient: vertical;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            border-radius: 4px;
-            word-break: break-word;
-        }
-    </style>
-
-    <div class="hotel_popup_">
-        <div class="hotel_popup_content_">
-            <div class="hotel_popup_ttl_">인기 여행지</div>
-            <div class="list_popup_list_">
-                <div class="list_popup_item_">서울</div>
-                <div class="list_popup_item_">도쿄</div>
-                <div class="list_popup_item_">후쿠오카</div>
-                <div class="list_popup_item_">오사카</div>
-                <div class="list_popup_item_">부산</div>
-                <div class="list_popup_item_">제주</div>
-                <div class="list_popup_item_">방콕</div>
-                <div class="list_popup_item_">다낭</div>
-                <div class="list_popup_item_">나트랑</div>
-                <div class="list_popup_item_">마카오</div>
-            </div>
-        </div>
-    </div>
-
     <script>
         function search_list() {
             let dates = $("#input_day").val().split(' -> ') ?? [];
@@ -713,18 +739,63 @@
                     monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
                     firstDay: 1
                 }
+            }).on('apply.daterangepicker', function (ev, picker) {
+                const prices = {
+                    "2024-11-25": "10만",
+                    "2024-11-26": "15만",
+                    "2024-11-27": "20만",
+                    "2024-11-28": "18만",
+                    "2024-11-29": "12만"
+                };
+
+                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
+                renderPrice(picker, prices);
+
+            }).on('show.daterangepicker', function (ev, picker) {
+                const prices = {
+                    "2024-11-25": "10만",
+                    "2024-11-26": "15만",
+                    "2024-11-27": "20만",
+                    "2024-11-28": "18만",
+                    "2024-11-29": "12만"
+                };
+
+                renderPrice(picker, prices)
             });
 
-            $('#input_day').on('apply.daterangepicker', function (ev, picker) {
-                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
-            });
         });
+
+        function renderPrice(picker, prices) {
+            $('.drp-calendar td.available').each(function () {
+                const day = $(this).text().trim();
+                if (!day) return;
+
+                const currentYear = picker.startDate.year();
+                const currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
+                const fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
+
+                const price = prices[fullDate] || "0만";
+
+                $(this).append(`<div class="price-tag">${price}</div>`);
+            });
+        }
     </script>
     <script>
         $(document).ready(function () {
-            $('#input_keyword_').on('input', function () {
-
+            $('#input_keyword_').on('click', function () {
+                $('.hotel_popup_').addClass('show');
             });
         })
+
+        $(document).on('click', function (event) {
+            const $popup = $('.hotel_popup_');
+            const $input_keyword_ = $('#input_keyword_');
+            if ($popup.has(event.target).length > 0 || $popup.is(event.target) || $input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
+                $popup.addClass('show');
+            } else {
+                $popup.removeClass('show');
+            }
+        });
+
     </script>
 <?php $this->endSection(); ?>
