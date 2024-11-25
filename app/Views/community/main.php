@@ -49,8 +49,8 @@
                 </section>
                 <section class="notice_sect">
                     <div class="cont_ttl flex_b_c">
-                        <h3>공지사항</h3>
-                        <a class="more_btn" href="/community/customer_center">
+                        <h3>태국뉴스 및 공지사항</h3>
+                        <a class="more_btn" href="/community/customer_center/list_notify">
                             더보기 <i></i>
                         </a>
                     </div>
