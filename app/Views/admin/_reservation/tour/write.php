@@ -195,10 +195,10 @@
                                         $first = true; 
                                         foreach ($tour_option as $option): ?>
                                             <?php if (!$first): ?> + <?php endif; ?>
-                                            <?= $option['option_name']?>: <?= number_format($option['option_price']) ?>명
+                                            <?= $option['option_name']?>: <?= number_format($option['option_price']) ?>원
                                             <?php $first = false; ?>
                                         <?php endforeach; ?>
-                                        = <?= number_format($total_price) ?>명
+                                        = <?= number_format($total_price) ?>원
                                     <?php endif; ?>
                                 </tr>
 
