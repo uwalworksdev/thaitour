@@ -23,7 +23,7 @@
                 success: function (data, textStatus) {
                     console.log(data);
                     alert(data.message);
-                    // window.location.href = "/product-restaurant/completed-order";
+                    window.location.href = "/product-restaurant/completed-order";
                 },
                 error: function (request, status, error) {
                     alert("code = " + request.status + " message = " + request.responseText + " error = " + error);
