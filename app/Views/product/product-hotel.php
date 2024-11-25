@@ -117,6 +117,8 @@
 
         .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
             max-width: unset;
+            max-height: 75px;
+            overflow: hidden;
         }
 
         .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
@@ -183,6 +185,7 @@
                 $('.list_popup_item_').click(function () {
                     let ttl = $(this).text();
                     $('#input_keyword_').val(ttl);
+                    $('.hotel_popup_').removeClass('show');
                 })
             })
 
@@ -859,7 +862,7 @@
         $(document).on('click', function (event) {
             const $popup = $('.hotel_popup_');
             const $input_keyword_ = $('#input_keyword_');
-            if ($popup.has(event.target).length > 0 || $popup.is(event.target) || $input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
+            if ($input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
                 $popup.addClass('show');
             } else {
                 $popup.removeClass('show');
