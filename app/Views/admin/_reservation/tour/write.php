@@ -168,12 +168,12 @@
                                         <?= $people_adult_cnt ?>명
                                         X
                                         <?= number_format($people_adult_price) ?>원
-                                        = <?= number_format($people_adult_price * $people_adult_cnt) ?>원
+                                        = <?= number_format($people_adult_price) ?>원
                                     </td>
                                     <th>아동신청</th>
                                     <td>
                                         <?php if ($people_kids_price > 0) { ?>
-                                            <?= $people_kids_cnt ?>명    X <?= number_format($people_kids_price) ?>원 = <?= number_format($people_kids_price * $people_kids_cnt) ?>원
+                                            <?= $people_kids_cnt ?>명    X <?= number_format($people_kids_price) ?>원 = <?= number_format($people_kids_price) ?>원
                                         <?php } else { ?>
                                             0원
                                         <?php } ?>
@@ -186,7 +186,7 @@
                                         <?= $people_baby_cnt ?>명
                                         X
                                         <?= number_format($people_baby_price) ?>원
-                                        = <?= number_format($people_baby_price * $people_baby_cnt) ?>원
+                                        = <?= number_format($people_baby_price) ?>원
                                     </td>
                                     <th>전체 옵션</th>
                                     <td>
