@@ -7,6 +7,15 @@
             z-index: 5;
         }
 
+        .daterangepicker {
+            width: 800px !important;
+        }
+
+        .daterangepicker .drp-calendar {
+            width: 50%;
+            max-width: unset !important;
+        }
+
         @media screen and (max-width: 850px) {
 
             .sub_tour_section5_item {
@@ -124,6 +133,15 @@
         .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
             border: hidden;
         }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
+            left: unset;
+            right: 20px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
+            text-align: end;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
@@ -148,9 +166,9 @@
                                            placeholder="체크인 선택해주세요." readonly>
                                 </div>
                                 <p>
-                                    <span id="countDay" class="count">1</span>박
+                                    <span id="countDay" class="count">0</span>박
                                 </p>
-                                <div class="form_input_ form_gr_item_">
+                                <div class="form_input_ form_gr_item_ form_gr_item_flex_">
                                     <label for="input_day">체크아웃</label>
                                     <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
                                            placeholder="체크아웃 선택해주세요." readonly>
@@ -191,9 +209,10 @@
 
             $('#input_day_start_, #input_day_end_').daterangepicker({
                 autoUpdateInput: false,
+                opens: "center",
                 locale: {
                     format: 'YYYY-MM-DD',
-                    separator: ' -> ',
+                    separator: ' - ',
                     applyLabel: "적용",
                     cancelLabel: "취소",
                     fromLabel: "시작일",
@@ -208,11 +227,29 @@
                 $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
                 $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
                 calcDistanceDay();
+                renderPriceData(picker);
             }).on('show.daterangepicker', function (ev, picker) {
-                renderPrice(picker);
+                renderPriceData(picker);
             }).on('showCalendar.daterangepicker', function (ev, picker) {
-                renderPrice(picker);
+                renderPriceData(picker);
             });
+
+            function renderPriceData(picker) {
+                $('.drp-calendar td.available').each(function () {
+                    const day = $(this).text().trim();
+                    if (!day) return;
+
+                    const currentYear = picker.startDate.year();
+                    const currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
+                    const fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
+
+                    const price = prices[fullDate] || "0만";
+
+                    if (!$(this).find('.price-tag').length) {
+                        $(this).append(`<div class="price-tag">${price}</div>`);
+                    }
+                });
+            }
 
             function calcDistanceDay() {
                 let input_day_start_ = $('#input_day_start_').val();
@@ -831,6 +868,8 @@
                 $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
                 renderPrice(picker);
             }).on('show.daterangepicker', function (ev, picker) {
+                renderPrice(picker);
+            }).on('callback.daterangepicker', function (ev, picker) {
                 renderPrice(picker);
             });
         });
