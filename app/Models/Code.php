@@ -41,6 +41,7 @@ class Code extends Model
     {
         return $this->select('*')
             ->where('parent_code_no', $parent_code_no)
+            ->where('status', 'Y')
             ->orderBy('onum', 'DESC')
             // ->orderBy('code_idx', 'ASC')
             ->get();
