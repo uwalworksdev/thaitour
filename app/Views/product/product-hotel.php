@@ -7,6 +7,15 @@
             z-index: 5;
         }
 
+        .daterangepicker {
+            width: 800px !important;
+        }
+
+        .daterangepicker .drp-calendar {
+            width: 50%;
+            max-width: unset !important;
+        }
+
         @media screen and (max-width: 850px) {
 
             .sub_tour_section5_item {
@@ -125,7 +134,6 @@
             border: hidden;
         }
 
-
         .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
             left: unset;
             right: 20px;
@@ -158,7 +166,7 @@
                                            placeholder="체크인 선택해주세요." readonly>
                                 </div>
                                 <p>
-                                    <span id="countDay" class="count">1</span>박
+                                    <span id="countDay" class="count">0</span>박
                                 </p>
                                 <div class="form_input_ form_gr_item_ form_gr_item_flex_">
                                     <label for="input_day">체크아웃</label>
@@ -201,9 +209,10 @@
 
             $('#input_day_start_, #input_day_end_').daterangepicker({
                 autoUpdateInput: false,
+                opens: "center",
                 locale: {
                     format: 'YYYY-MM-DD',
-                    separator: ' -> ',
+                    separator: ' - ',
                     applyLabel: "적용",
                     cancelLabel: "취소",
                     fromLabel: "시작일",
@@ -218,33 +227,29 @@
                 $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
                 $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
                 calcDistanceDay();
+                renderPriceData(picker);
             }).on('show.daterangepicker', function (ev, picker) {
-                renderPrice(picker);
+                renderPriceData(picker);
             }).on('showCalendar.daterangepicker', function (ev, picker) {
-                renderPrice(picker);
-            }).on({
-                'show.daterangepicker': function (ev, picker) {
-                    console.log("Hiển thị datepicker");
-                },
-                'hide.daterangepicker': function (ev, picker) {
-                    console.log("Ẩn datepicker");
-                },
-                'showCalendar.daterangepicker': function (ev, picker) {
-                    console.log("Hiển thị lịch");
-                },
-                'hideCalendar.daterangepicker': function (ev, picker) {
-                    console.log("Ẩn lịch");
-                },
-                'apply.daterangepicker': function (ev, picker) {
-                    console.log("Áp dụng: " + picker.startDate.format('YYYY-MM-DD') + " - " + picker.endDate.format('YYYY-MM-DD'));
-                },
-                'cancel.daterangepicker': function (ev, picker) {
-                    console.log("Hủy bỏ lựa chọn");
-                },
-                'outsideClick.daterangepicker': function (ev, picker) {
-                    console.log("Click ra ngoài");
-                }
+                renderPriceData(picker);
             });
+
+            function renderPriceData(picker) {
+                $('.drp-calendar td.available').each(function () {
+                    const day = $(this).text().trim();
+                    if (!day) return;
+
+                    const currentYear = picker.startDate.year();
+                    const currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
+                    const fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
+
+                    const price = prices[fullDate] || "0만";
+
+                    if (!$(this).find('.price-tag').length) {
+                        $(this).append(`<div class="price-tag">${price}</div>`);
+                    }
+                });
+            }
 
             function calcDistanceDay() {
                 let input_day_start_ = $('#input_day_start_').val();
@@ -863,6 +868,8 @@
                 $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
                 renderPrice(picker);
             }).on('show.daterangepicker', function (ev, picker) {
+                renderPrice(picker);
+            }).on('callback.daterangepicker', function (ev, picker) {
                 renderPrice(picker);
             });
         });
