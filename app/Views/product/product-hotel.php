@@ -3,6 +3,10 @@
 <?php $this->section('content'); ?>
 
     <style>
+        .main_page_01 .main_visual_content_ {
+            z-index: 5;
+        }
+
         @media screen and (max-width: 850px) {
 
             .sub_tour_section5_item {
@@ -26,6 +30,57 @@
                 display: block;
                 margin-left: 0.3846rem;
             }
+        }
+
+        .hotel_popup_ {
+            display: none;
+            position: absolute;
+            top: 215px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .hotel_popup_.show {
+            display: block;
+        }
+
+        .hotel_popup_content_ {
+            background: #fff;
+            border: 1px solid #dadfe6;
+            border-radius: 8px;
+            width: 624px;
+            padding: 5px;
+        }
+
+        .hotel_popup_ttl_ {
+            background: #f7f7fb;
+            color: #666;
+            font-size: 14px;
+            font-weight: 700;
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .list_popup_list_ {
+            align-items: flex-start;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 8px;
+        }
+
+        .list_popup_item_ {
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 14px;
+            overflow: hidden;
+            padding: 10px 16px;
+            text-overflow: ellipsis;
+            width: 20%;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            border-radius: 4px;
+            word-break: break-word;
         }
     </style>
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
@@ -55,6 +110,24 @@
                         <button type="button" onclick="search_list();" class="btn_search_">
                             검색
                         </button>
+                    </div>
+
+                    <div class="hotel_popup_">
+                        <div class="hotel_popup_content_">
+                            <div class="hotel_popup_ttl_">인기 여행지</div>
+                            <div class="list_popup_list_">
+                                <div class="list_popup_item_">서울</div>
+                                <div class="list_popup_item_">도쿄</div>
+                                <div class="list_popup_item_">후쿠오카</div>
+                                <div class="list_popup_item_">오사카</div>
+                                <div class="list_popup_item_">부산</div>
+                                <div class="list_popup_item_">제주</div>
+                                <div class="list_popup_item_">방콕</div>
+                                <div class="list_popup_item_">다낭</div>
+                                <div class="list_popup_item_">나트랑</div>
+                                <div class="list_popup_item_">마카오</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -376,77 +449,6 @@
                 </div>
             </div>
         </section>
-    </div>
-
-    <style>
-        .hotel_popup_ {
-            display: none;
-            position: absolute;
-            top: 540px;
-            left: 475px;
-            z-index: 10;
-        }
-
-        .hotel_popup_.show {
-            display: block;
-        }
-
-        .hotel_popup_content_ {
-            background: #fff;
-            border: 1px solid #dadfe6;
-            border-radius: 8px;
-            width: 624px;
-            padding: 5px;
-        }
-
-        .hotel_popup_ttl_ {
-            background: #f7f7fb;
-            color: #666;
-            font-size: 14px;
-            font-weight: 700;
-            height: 32px;
-            line-height: 32px;
-        }
-
-        .list_popup_list_ {
-            align-items: flex-start;
-            display: flex;
-            flex-wrap: wrap;
-            padding: 8px;
-        }
-
-        .list_popup_item_ {
-            box-sizing: border-box;
-            cursor: pointer;
-            font-size: 14px;
-            overflow: hidden;
-            padding: 10px 16px;
-            text-overflow: ellipsis;
-            width: 20%;
-            -webkit-box-orient: vertical;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            border-radius: 4px;
-            word-break: break-word;
-        }
-    </style>
-
-    <div class="hotel_popup_">
-        <div class="hotel_popup_content_">
-            <div class="hotel_popup_ttl_">인기 여행지</div>
-            <div class="list_popup_list_">
-                <div class="list_popup_item_">서울</div>
-                <div class="list_popup_item_">도쿄</div>
-                <div class="list_popup_item_">후쿠오카</div>
-                <div class="list_popup_item_">오사카</div>
-                <div class="list_popup_item_">부산</div>
-                <div class="list_popup_item_">제주</div>
-                <div class="list_popup_item_">방콕</div>
-                <div class="list_popup_item_">다낭</div>
-                <div class="list_popup_item_">나트랑</div>
-                <div class="list_popup_item_">마카오</div>
-            </div>
-        </div>
     </div>
 
     <script>
