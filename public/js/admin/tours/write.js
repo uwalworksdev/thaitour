@@ -694,7 +694,7 @@ $(function () {
   // 시작일자와 종료일자를 연결
   $(".s_date").each(function (index) {
     const startDateInput = $(this);
-    const endDateInput = $(".e_date").eq(index);
+    const endDateInput   = $(".e_date").eq(index);
 
     // 시작일자 설정
     startDateInput.datepicker({
