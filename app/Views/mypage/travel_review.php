@@ -39,8 +39,8 @@ $page = $_GET['pg'];
 
                 $g_list_rows = 10;
                 $page_cnt = 10; // 페이지 목록에 표시되는 페이지의 수
-                $total_cnt = $connect->query($sql)->getNumRows();
-                $total_page = ceil($total_cnt / $g_list_rows);
+                $totalCount = $connect->query($sql)->getNumRows();
+                $total_page = ceil($totalCount / $g_list_rows);
 
                 ?>
 

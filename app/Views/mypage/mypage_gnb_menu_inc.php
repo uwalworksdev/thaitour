@@ -25,7 +25,7 @@
                 <img class="btn_togle up" src="/images/ico/gnb_menu_list_w.svg" alt="">
             </div>
             <div class="menu_level_2 flex" style="display:none">
-                <a class="<?= $tab_6_1 ?>" href="../mypage/custom_travel">맞춤여행</a>
+                <!-- <a class="<?= $tab_6_1 ?>" href="../mypage/custom_travel">맞춤여행</a> -->
                 <a class="<?= $tab_6_2 ?>" href="../mypage/contact">문의하기</a>
                 <a class="<?= $tab_6_3 ?>" href="../mypage/consultation">1:1 여행상담</a>
             </div>

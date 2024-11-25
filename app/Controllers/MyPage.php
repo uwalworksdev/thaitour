@@ -44,7 +44,7 @@ class MyPage extends BaseController
     {
         $clientIP = $this->request->getIPAddress();
         $is_allow_payment = $clientIP == "220.86.61.165" || $clientIP == "113.160.96.156" || $clientIP == "58.150.52.107" || $clientIP == "14.137.74.11";
-        $pg = "";
+        $pg = $this->request->getVar("pg");
         $search_word = trim($this->request->getVar('search_word'));
         $s_status = $this->request->getVar('s_status');
         $g_list_rows = 10;

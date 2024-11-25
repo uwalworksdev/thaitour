@@ -84,6 +84,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                     <?php
                     $sql = "SELECT t.idx, c.code_name, c.code_no, t.product_name, t.title, t.`status`, t.r_date FROM tbl_travel_contact t
                         left join tbl_code c on t.travel_type_1 = c.code_no where t.reg_m_idx = '" . $_SESSION["member"]["mIdx"] . "'   ";
+                    
                     $talCount_wish_cnt = $connect->query($sql)->getNumRows();
                     $g_list_rows = 10;
                     $nPage = ceil($talCount_wish_cnt / $g_list_rows);

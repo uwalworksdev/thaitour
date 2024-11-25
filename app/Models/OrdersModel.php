@@ -95,6 +95,10 @@ class OrdersModel extends Model
             $builder->like("CONVERT(AES_DECRYPT(UNHEX($search_category),'$private_key') USING utf8)", $s_txt);
         }
 
+        if ($s_txt && $search_category == 'product_name') {
+            $builder->like("s2.product_name", $s_txt);
+        }
+
         $nTotalCount = $builder->countAllResults(false);
 
         $nPage = ceil($nTotalCount / $g_list_rows);
