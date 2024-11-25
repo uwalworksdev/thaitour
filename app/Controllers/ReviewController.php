@@ -225,7 +225,16 @@ class ReviewController extends BaseController
                         where a.idx='" . $idx . "'";
             $review = $this->db->query($total_sql)->getRowArray();
             if ($review) {
-                return view("review/review_detail", ["review" => $review, "idx" => $idx]);
+                $review_type = $review['review_type'];
+
+                $_arr_review_types = explode("|", $review_type);
+
+                $list__review_types = rtrim(implode(',', $_arr_review_types), ',');
+
+                $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 AND code_no IN ($list__review_types) ORDER BY onum ";
+                $list_code_type = $this->db->query($sql)->getResultArray();
+
+                return view("review/review_detail", ["review" => $review, "idx" => $idx, "list_code_type" => $list_code_type]);
             }
 
             return view("errors/html/error_404", ["message" => "<a href='/'>마이페이지에 접속된 것가 없는 모든 것이 있습니다. </a>"]);
@@ -310,6 +319,7 @@ class ReviewController extends BaseController
             $travel_type_name_3 = $info['travel_type_name_3'];
             $product_name = $info['product_name'];
             $review_type = $info["review_type"];
+            $number_stars = $info["number_stars"];
         } else if ($product_idx) {
             $sql_r = "select a.product_idx,a.product_name, b.code_no as travel_type, c.code_no as travel_type_2, d.code_no as travel_type_3, 
             b.code_name as travel_type_name, c.code_name as travel_type_name_2, d.code_name as travel_type_name_3 
@@ -354,6 +364,7 @@ class ReviewController extends BaseController
             "list_code" => $list_code,
             "list_code_type" => $list_code_type,
             "review_type" => $review_type ?? '',
+            "number_stars" => $number_stars ?? '',
         ];
 
         return view("review/review_write", $data);

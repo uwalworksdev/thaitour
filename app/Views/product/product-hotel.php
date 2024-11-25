@@ -9,6 +9,9 @@
 
         .daterangepicker {
             width: 800px !important;
+            top: 512px !important;
+            left: 605px !important;
+            right: auto;
         }
 
         .daterangepicker .drp-calendar {
@@ -222,7 +225,8 @@
                     daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
                     monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
                     firstDay: 1
-                }
+                },
+                linkedCalendars: false
             }).on('apply.daterangepicker', function (ev, picker) {
                 $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
                 $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
@@ -236,14 +240,14 @@
 
             function renderPriceData(picker) {
                 $('.drp-calendar td.available').each(function () {
-                    const day = $(this).text().trim();
+                    let day = $(this).text().trim();
                     if (!day) return;
 
-                    const currentYear = picker.startDate.year();
-                    const currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
-                    const fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
+                    let currentYear = picker.startDate.year();
+                    let currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
+                    let fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
 
-                    const price = prices[fullDate] || "0만";
+                    let price = prices[fullDate] || "0만";
 
                     if (!$(this).find('.price-tag').length) {
                         $(this).append(`<div class="price-tag">${price}</div>`);
