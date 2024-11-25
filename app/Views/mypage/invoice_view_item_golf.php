@@ -490,7 +490,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td class="subject">요청사항</td>
 						<td class="content">
-							<?= $info['order_memo'] ?>
+							<?= $info['custom_req'] ?>
 						</td>
 					</tr>
 				</tbody>
