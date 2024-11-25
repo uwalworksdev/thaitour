@@ -810,27 +810,6 @@ $(document).ready(function () {
 
         $(".datepicker").datepicker();
 
-		  // 시작일자와 종료일자를 연결
-		  $(".s_date").each(function (index) {
-			const startDateInput = $(this);
-			const endDateInput   = $(".e_date").eq(index);
-
-			// 시작일자 설정
-			startDateInput.datepicker({
-			  dateFormat: "yy-mm-dd",
-			  onSelect: function (selectedDate) {
-				// 종료일자 최소 날짜를 설정
-				const minDate = $(this).datepicker("getDate");
-				endDateInput.datepicker("option", "minDate", minDate);
-			  },
-			});
-
-			// 종료일자 설정
-			endDateInput.datepicker({
-			  dateFormat: "yy-mm-dd",
-			});
-		  });
-
         renderRoom();
     });
 
