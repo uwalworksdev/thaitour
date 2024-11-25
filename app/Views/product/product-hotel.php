@@ -380,6 +380,14 @@
 
     <style>
         .hotel_popup_ {
+            display: none;
+            position: absolute;
+            top: 540px;
+            left: 475px;
+            z-index: 10;
+        }
+
+        .hotel_popup_.show {
             display: block;
         }
 
@@ -388,6 +396,7 @@
             border: 1px solid #dadfe6;
             border-radius: 8px;
             width: 624px;
+            padding: 5px;
         }
 
         .hotel_popup_ttl_ {
@@ -722,9 +731,20 @@
     </script>
     <script>
         $(document).ready(function () {
-            $('#input_keyword_').on('input', function () {
-
+            $('#input_keyword_').on('click', function () {
+                $('.hotel_popup_').addClass('show');
             });
         })
+
+        $(document).on('click', function (event) {
+            const $popup = $('.hotel_popup_');
+            const $input_keyword_ = $('#input_keyword_');
+            if ($popup.has(event.target).length > 0 || $popup.is(event.target) || $input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
+                $popup.addClass('show');
+            } else {
+                $popup.removeClass('show');
+            }
+        });
+
     </script>
 <?php $this->endSection(); ?>
