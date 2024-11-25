@@ -9,6 +9,9 @@
 
         .daterangepicker {
             width: 800px !important;
+            top: 512px !important;
+            left: 605px !important;
+            right: auto;
         }
 
         .daterangepicker .drp-calendar {
@@ -222,8 +225,10 @@
                     daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
                     monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
                     firstDay: 1
-                }
+                },
+                linkedCalendars: false
             }).on('apply.daterangepicker', function (ev, picker) {
+                // Cập nhật giá trị ngày vào các input khi người dùng chọn ngày
                 $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
                 $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
                 calcDistanceDay();
