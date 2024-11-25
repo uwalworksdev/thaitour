@@ -346,8 +346,8 @@
                 <div class="sub_tour_section7_product_list sub_tour_section7_product_list_custom swiper swiper_product_list_">
                     <div class="swiper-wrapper">
                         <?php foreach ($theme_products['items'] as $theme_product):
-                            if (is_file(ROOTPATH . "/public/data/hotel/" . $theme_product['ufile1'])) {
-                                $src = "/data/hotel/" . $theme_product['ufile1'];
+                            if (is_file(ROOTPATH . "/public/data/product/" . $theme_product['ufile1'])) {
+                                $src = "/data/product/" . $theme_product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
                             }
@@ -420,8 +420,8 @@
                 <div class="best_tour_section5_ best_tour_section5__hotel">
                     <?php $i2 = 1;
                     foreach ($bestValueProduct as $product):
-                        if (is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
-                            $src = "/data/hotel/" . $product['ufile1'];
+                        if (is_file(ROOTPATH . "/public/data/product/" . $product['ufile1'])) {
+                            $src = "/data/product/" . $product['ufile1'];
                         } else {
                             $src = "/images/product/noimg.png";
                         }

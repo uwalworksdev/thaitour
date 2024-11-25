@@ -33,7 +33,7 @@
                     <div class="hotel-image-container-1">
                         <img class="imageDetailMain_"
                              onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                             src="/data/hotel/<?= $hotel['ufile1'] ?>"
+                             src="/data/product/<?= $hotel['ufile1'] ?>"
                              alt="<?= $hotel['product_name'] ?>"
                              onerror="this.src='/images/share/noimg.png'">
                     </div>
@@ -42,14 +42,14 @@
                             ?>
                             <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                                  class="grid_2_2_size imageDetailSup_"
-                                 src="/data/hotel/<?= $hotel['ufile' . $j] ?>"
+                                 src="/data/product/<?= $hotel['ufile' . $j] ?>"
                                  alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                         <?php } ?>
                         <div class="grid_2_2_sub"
                              onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                              style="position: relative; cursor: pointer;">
                             <img class="custom_button imageDetailSup_"
-                                 src="/data/hotel/<?= $hotel['ufile5'] ?>"
+                                 src="/data/product/<?= $hotel['ufile5'] ?>"
                                  alt="<?= $hotel['product_name'] ?>"
                                  onerror="this.src='/images/share/noimg.png'">
                             <div class="button-show-detail-image">
@@ -988,7 +988,7 @@
                                    style="width: 393.333px; margin-right: 10px;">
 
                                     <div class="img_box img_box_12">
-                                        <img src="/data/hotel/<?= $item['ufile1'] ?>" alt="main"
+                                        <img src="/data/product/<?= $item['ufile1'] ?>" alt="main"
                                              onerror="this.src='/images/product/noimg.png'" loading="lazy">
                                     </div>
                                     <?php

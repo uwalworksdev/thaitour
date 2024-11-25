@@ -42,7 +42,7 @@
                 <div class="hotel-image-container-1">
                     <img class="imageDetailMain_"
                          onclick="img_pops('<?= $data_['product_idx'] ?>')"
-                         src="/data/hotel/<?= $data_['ufile1'] ?>"
+                         src="/data/product/<?= $data_['ufile1'] ?>"
                          alt="<?= $data_['product_name'] ?>"
                          onerror="this.src='/images/share/noimg.png'">
                 </div>
@@ -50,13 +50,13 @@
                     <?php for ($j = 2; $j < 5; $j++) { ?>
                         <img onclick="img_pops('<?= $data_['product_idx'] ?>')"
                              class="grid_2_2_size imageDetailSup_"
-                             src="/data/hotel/<?= $data_['ufile' . $j] ?>"
+                             src="/data/product/<?= $data_['ufile' . $j] ?>"
                              alt="<?= $data_['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                     <?php } ?>
                     <div class="grid_2_2_sub" onclick="img_pops('<?= $data_['product_idx'] ?>')"
                          style="position: relative; cursor: pointer;">
                         <img class="custom_button imageDetailSup_"
-                             src="/data/hotel/<?= $data_['ufile5'] ?>"
+                             src="/data/product/<?= $data_['ufile5'] ?>"
                              alt="<?= $data_['product_name'] ?>"
                              onerror="this.src='/images/share/noimg.png'">
                         <div class="button-show-detail-image">

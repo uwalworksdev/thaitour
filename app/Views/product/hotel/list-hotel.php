@@ -296,8 +296,8 @@
                         </div>
                         <?php
                         foreach ($products["items"] as $product) {
-                            if (is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
-                                $src = "/data/hotel/" . $product['ufile1'];
+                            if (is_file(ROOTPATH . "/public/data/product/" . $product['ufile1'])) {
+                                $src = "/data/product/" . $product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
                             }

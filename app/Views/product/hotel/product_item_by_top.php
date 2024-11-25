@@ -1,6 +1,6 @@
 <?php
-if (is_file(ROOTPATH . "/public/data/hotel/" . $item['ufile1'])) {
-    $src = "/data/hotel/" . $item['ufile1'];
+if (is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
+    $src = "/data/product/" . $item['ufile1'];
 } else {
     $src = "/images/product/noimg.png";
 }

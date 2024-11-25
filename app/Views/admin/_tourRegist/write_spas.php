@@ -192,7 +192,7 @@
                                             <?php if (${"ufile" . $i} != "") { ?><br>파일삭제:<input type=checkbox
                                                                                                  name="del_<?= $i ?>"
                                                                                                  value='Y'><a
-                                                    href="/data/hotel/<?= ${"ufile" . $i} ?>"
+                                                    href="/data/product/<?= ${"ufile" . $i} ?>"
                                                     class="imgpop"><?= ${"rfile" . $i} ?></a><br><br><?php } ?>
                                         <?php } ?>
                                     </td>

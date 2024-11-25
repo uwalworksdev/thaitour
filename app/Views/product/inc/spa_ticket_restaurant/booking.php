@@ -202,7 +202,7 @@
                     </div>
                     <div class="">
                         <div class="card-right">
-                            <img src="/data/hotel/<?= $prod['ufile1'] ?>" alt="customer-form.png">
+                            <img src="/data/product/<?= $prod['ufile1'] ?>" alt="customer-form.png">
                             <div class="below-right">
                                 <h3 class="title-r"><?= $prod['product_name'] ?></h3>
                                 <p class="title-sub-r text-gray">
@@ -399,7 +399,7 @@
                             <div class="info_wrap">
                                 <div class="thumb">
                                     <span>
-                                        <img alt="" src="/data/hotel/<?= $prod['ufile1'] ?>">
+                                        <img alt="" src="/data/product/<?= $prod['ufile1'] ?>">
                                     </span>
                                 </div>
                                 <div class="info_box">
