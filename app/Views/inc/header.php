@@ -68,12 +68,12 @@
                 <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container">
-                        <input type="text" class="search-input" id="search_input" placeholder="검색어를 입력해 주세요">
-                        <i class="fa fa-search search-icon"></i>
+                        <input type="text" class="search-input" id="search_input_pc" placeholder="검색어를 입력해 주세요" autocomplete="off">
+                        <i class="fa fa-search search-icon" id="search_icon_pc"></i>
                         <ul class="search_words_list" id="search_words_list_pc">
-                            <li><a href="/product_search?search_name=검색어1">#검색어1</a></li>
-                            <li><a href="/product_search?search_name=검색어2">#검색어2</a></li>
-                            <li><a href="/product_search?search_name=검색어3">#검색어3</a></li>
+                            <?php foreach ($searchTxtRecommend as $item): ?>
+                                <li><a href="<?=$item['url']?>">#<?= $item['subject'] ?></a></li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="custom_select_rounded">
@@ -442,11 +442,11 @@
     //     }
     // });
 
-    $("#search_input").focus(function () {
+    $("#search_input_pc").focus(function () {
         $("#search_words_list_pc").slideDown(200);
     })
 
-    $("#search_input").blur(function () {
+    $("#search_input_pc").blur(function () {
         $("#search_words_list_pc").slideUp(200);
     })
 
@@ -512,7 +512,7 @@
         });
     });
     $(document).ready(function () {
-        var lastScrollTop = 0;
+        var lastScrollTop = $(window).scrollTop();
         var topPart = $('#header_tools');
 
         $(window).scroll(function (event) {
@@ -542,6 +542,11 @@
 
             lastScrollTop = st;
         });
+
+        $("#search_icon_pc").click(function () {
+            location.href = "/product_search?search_name=" + $("#search_input_pc").val();
+        });
+
     });
 
     const swiperHeaderMenu = new Swiper(".hot_product_menu_swiper", {

@@ -239,7 +239,7 @@ class AdminHotelController extends BaseController
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();
                     $data["ufile$i"] = $file->getRandomName();
-                    $publicPath = ROOTPATH . '/public/data/hotel/';
+                    $publicPath = ROOTPATH . '/public/data/product/';
                     $file->move($publicPath, $data["ufile$i"]);
                 }
             }

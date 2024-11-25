@@ -1,111 +1,152 @@
 <?php $this->extend('inc/layout_index'); ?>
-
 <?php $this->section('content'); ?>
-
-<style>
-    .travel .travel_slider {
-    display: none;
-    }
-
-    .travel_tab {
-        display: flex;
-    }
-
-    .travel .travel_tab .slide_tab {
-    width: 100%;
-}
-.travel .travel_slider.active {
-    display: block;
-}
-
-.travel .travel_tab .travel_btn {
-    height: 60px;
-    width: 100%;
-    flex-basis: 20%;
-    font-size: 18px;
-    border: 1px solid #dbdbdb;
-    border-bottom: 1px solid;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.travel .travel_tab .travel_btn.active {
-    color: #e5001a;
-    border-bottom: unset;
-    border: unset;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-}
-.item_search_section_1 .title {
-    font-size: 30px;
-    line-height: 42px;
-    font-weight: 700;
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 60px;
-}
-</style>
-<section class="item_search_section_1 travel">
-	<div class="body_inner">
-		<h1 class="title"><span class="red_text">‘<?=$search_name?>’</span> 검색결과</h1>
-	</div>
-	<div class="travel_box">
-		<div class="body_inner travel_tab flex">
-			<div class="slide_tab">
-				<div class="swiper-wrapper">
-                    <?php $seq = 0;?>
-                    <?php foreach ($list as $key => $item): ?>
-					<?php $seq++;?>   
-                        <button type="button" value="active0<?=$seq?>" class="travel_btn">
-                            <?=$item['title']?>(<?=count($item['items'])?>)
+<section class="item_search_section">
+    <div class="body_inner">
+        <div class="search__summary">
+            <span>“<?=$search_name?>”</span> 검색어 결과로 총 <span><?=$total?> 건</span>이 검색되었습니다.
+        </div>
+        <div class="search__box">
+            <!-- <select id="search_cate" class="search__type">
+                <option value="">통합검색</option>
+                <?php foreach ($list as $key => $item): ?>
+                    <option value="<?=$key?>"><?=$item['title']?></option>
+                <?php endforeach; ?>
+            </select> -->
+            <input type="text" class="search__input" value="<?=$search_name?>">
+            <button class="search__btn" onclick="search_it()">검색</button>
+        </div>
+        <div class="search__tabs">
+            <ul>
+                <?php foreach ($list as $key => $item): ?>
+                    <li class="search__tab search__tab_<?=$key?> <?=$key == $tab ? 'active' : ''?>" data-tab="<?=$key?>">
+                        <button type="button">
+                            <?=$item['title']?> <?=$item['result']['nTotalCount']?>건
                         </button>
-                    <?php endforeach; ?>
-					<div class="last only_web"></div>
-				</div>
-			</div>
-		</div>
-
-		<div class="body_inner">
-			<div class="travel_desc">
-             <?php $seq = 0;?>
-             <?php foreach ($list as $key => $item): ?>
-			        <?php $seq++;?>
-                    <div class="travel_slider active0<?=$seq?> active">
-                    <?php foreach ($item['items'] as $item1_1): ?>
-                        <?php $img_dir = img_link($item1_1['product_code_1']); ?>
-                        <?php $prog_link = prog_link($item1_1['product_code_1']); ?>
-                        <a href="<?= $prog_link ?><?= $item1_1['product_idx'] ?>" class="best_list_item">
-                            <div class="img_box img_box_3">
-                                <img src="/data/<?= $img_dir ?>/<?= $item1_1['ufile1'] ?>" alt="main">
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <?php foreach ($list as $key => $item): ?>
+        <div class="search__result <?=$key == $tab ? 'show' : ''?>" id="search__result_<?=$key?>">
+            <div class="search__result__head">
+                <h1 class="ttl"><?=$item['title']?><span>(<?=$item['result']['nTotalCount']?>)</span></h1>
+                <ul class="search__result__sort">
+                    <li><a href="#!" data-sort="recommended"    class="sort <?=$sort == "recommended"    ? "active" : ""?>">추천순</a></li>
+                    <li><a href="#!" data-sort="reservation"    class="sort <?=$sort == "reservation"    ? "active" : ""?>">예약순</a></li>
+                    <li><a href="#!" data-sort="rating"         class="sort <?=$sort == "rating"         ? "active" : ""?>">평점순</a></li>
+                    <li><a href="#!" data-sort="highest_price"  class="sort <?=$sort == "highest_price"  ? "active" : ""?>">높은가격순</a></li>
+                    <li><a href="#!" data-sort="lowest_price"   class="sort <?=$sort == "lowest_price"   ? "active" : ""?>">낮은가격순</a></li>
+                </ul>
+            </div>
+            <div class="search__result__list">
+                <?php foreach ($item['result']['items'] as $item1_1):
+                    switch ($key) {
+                        case "hotel":
+                            $href = "/product-hotel/hotel-detail/{$item1_1['product_idx']}";
+                            break;
+                        case "golf":
+                            $href = "/product-golf/golf-detail/{$item1_1['product_idx']}";
+                            break;
+                        case "tour":
+                            $href = "/product-tours/item_view/{$item1_1['product_idx']}";
+                            break;
+                        default:
+                            $href = "#!";
+                    }
+                    ?>
+                    <a href="<?=$href?>" class="product-card-item-container">
+                        <div class="product-card-item-left">
+                            <span>
+                                <img src="<?=getImage("/data/product/{$item1_1['ufile1']}")?>" alt="sub_hotel_1">
+                            </span>
+                        </div>
+                        <div class="product-card-item-right">
+                            <div class="title-container">
+                                <span>
+                                    <h2><?=$item1_1['product_name']?></h2>
+                                </span>
+                                <div class="only_web">
+                                    <div class="star-container">
+                                        <div class="">
+                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
+                                            <span><?=$item1_1['review_average']?></span>
+                                        </div>
+                                        <div class="star-content">
+                                            <span class="text-primary">생생리뷰 <strong>(<?=$item1_1['total_review']?>)</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb_item">방콕</li>
-                                <li class="breadcrumb_item">시암</li>
-                            </ul>
-                            <div class="prd_name">
-                                <?= $item1_1['product_name'] ?>
+                            <div class="sub-title">
+                                <?php $num = count($item1_1['codeTree']);
+                                foreach ($item1_1['codeTree'] as $key => $code):
+                                    ?>
+                                    <span><?=$code['code_name']?></span>
+                                    <?php if ($key < $num - 1): ?>
+                                        <img class="only_web" src="/uploads/icons/arrow_right.png"
+                                            alt="arrow_right">
+                                        <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                            alt="arrow_right_mo">
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </div>
-                            <div class="prd_info">
-                                <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-                                <span class="star_avg">4.7</span>
-                                <span class="star_review_cnt">(954)</span>
+                            <div class="only_mo">
+                                <div class="star-container">
+                                    <div class="star-left">
+                                        <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
+                                        <span><?=$item1_1['review_average']?></span>
+                                    </div>
+                                    <div class="star-content">
+                                        <span class="text-primary">생생리뷰 <strong>(<?=$item1_1['total_review']?>)</strong></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="prd_price_ko">
-                                <?= number_format($item1_1['original_price']) ?> <span>원</span>
+                            <div class="list-item-info">
+                                <div class="item-info">
+                                    <div class="item-info-label text-gray">
+                                        <?php
+                                            $arr_keyword = explode(",", $item1_1['keyword']);
+                                            $arr_keyword = array_filter($arr_keyword);
+                                        ?>
+                                        <?php foreach ($arr_keyword as $key => $keyword): ?>
+                                            <?=$key > 0 ? '&nbsp;&nbsp;' : ''?>
+                                            #<?= $keyword?>
+                                        <?php endforeach;?>
+                                        <!-- ✓ 장거리 이동도 편안하게! 22인승 럭셔리 리무진 탑승<br>
+                                        ✓ 미서부 핵심 3대 도시 + 4대캐년 관광 -->
+                                    </div>
+                                </div>
+                                <div class="item-info">
+                                    <div class="item-price-info"><span class="main"><?=number_format($item1_1['product_price'])?></span class="text-gray">원 ~
+                                        <span class="sub text-gray"><?=number_format($item1_1['product_price_baht'])?>바트</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="prd_price_thai">
-                                6,000 <span>바트</span>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>                        
-                    </div>
-            <?php endforeach; ?>                        
-			</div>
-		</div>
-	</div>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
 </section>
-
+<script>
+    $(".search__tabs ul li button").on("click", function () {
+        var idx = $(this).parent().index();
+        $(".search__tabs ul li").removeClass("active");
+        $(this).parent().addClass("active");
+        $(".search__result").removeClass("show");
+        $(".search__result").eq(idx).addClass("show");
+    });
+    $(".sort").on("click", function () {
+        var sort = $(this).data("sort");
+        var tab = $(".search__tab.active").data("tab");
+        var search_name = $(".search__input").val();
+        location.href = "/product_search?sort=" + sort + "&tab=" + tab + "&search_name=" + search_name;
+    });
+    function search_it() {
+        var search_name = $(".search__input").val();
+        location.href = "/product_search?search_name=" + search_name;
+    }
+</script>
 <?php $this->endSection(); ?>

@@ -104,6 +104,26 @@
             right: 0;
             text-align: center;
         }
+
+        .form_gr_ {
+            width: 500px;
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
+            max-width: unset;
+            max-height: 75px;
+            overflow: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
+            border: hidden;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
@@ -120,9 +140,22 @@
                             <label for="input_keyword_">여행지</label>
                             <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
                         </div>
-                        <div class="form_input_">
-                            <label for="input_day">체크인/체크아웃 날짜</label>
-                            <input type="text" id="input_day" class="input_custom_" placeholder="날짜를 선택해주세요." readonly>
+                        <div class="form_input_multi_">
+                            <div class="form_gr_">
+                                <div class="form_input_ form_gr_item_">
+                                    <label for="input_day">체크인</label>
+                                    <input type="text" id="input_day_start_" class="input_custom_ input_ranger_date_"
+                                           placeholder="체크인 선택해주세요." readonly>
+                                </div>
+                                <p>
+                                    <span id="countDay" class="count">1</span>박
+                                </p>
+                                <div class="form_input_ form_gr_item_">
+                                    <label for="input_day">체크아웃</label>
+                                    <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
+                                           placeholder="체크아웃 선택해주세요." readonly>
+                                </div>
+                            </div>
                         </div>
                         <div class="form_input_">
                             <label for="input_hotel">호텔명(미입력 시 전체)</label>
@@ -147,6 +180,53 @@
                 </div>
             </div>
         </section>
+        <script>
+            $(document).ready(function () {
+                $('.list_popup_item_').click(function () {
+                    let ttl = $(this).text();
+                    $('#input_keyword_').val(ttl);
+                    $('.hotel_popup_').removeClass('show');
+                })
+            })
+
+            $('#input_day_start_, #input_day_end_').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    format: 'YYYY-MM-DD',
+                    separator: ' -> ',
+                    applyLabel: "적용",
+                    cancelLabel: "취소",
+                    fromLabel: "시작일",
+                    toLabel: "종료일",
+                    customRangeLabel: "사용자 정의",
+                    weekLabel: "주",
+                    daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+                    monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                    firstDay: 1
+                }
+            }).on('apply.daterangepicker', function (ev, picker) {
+                $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
+                $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
+                calcDistanceDay();
+            }).on('show.daterangepicker', function (ev, picker) {
+                renderPrice(picker);
+            }).on('showCalendar.daterangepicker', function (ev, picker) {
+                renderPrice(picker);
+            });
+
+            function calcDistanceDay() {
+                let input_day_start_ = $('#input_day_start_').val();
+                let input_day_end_ = $('#input_day_end_').val();
+
+                let start = new Date(input_day_start_);
+                let end = new Date(input_day_end_);
+
+                let diffInMilliseconds = end - start;
+                let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
+
+                $('#countDay').text(diffInDays);
+            }
+        </script>
         <section class="sub_tour_section2">
             <div class="body_inner">
                 <div style="position: relative;">
@@ -269,8 +349,8 @@
                 <div class="sub_tour_section7_product_list sub_tour_section7_product_list_custom swiper swiper_product_list_">
                     <div class="swiper-wrapper">
                         <?php foreach ($theme_products['items'] as $theme_product):
-                            if (is_file(ROOTPATH . "/public/data/hotel/" . $theme_product['ufile1'])) {
-                                $src = "/data/hotel/" . $theme_product['ufile1'];
+                            if (is_file(ROOTPATH . "/public/data/product/" . $theme_product['ufile1'])) {
+                                $src = "/data/product/" . $theme_product['ufile1'];
                             } else {
                                 $src = "/images/product/noimg.png";
                             }
@@ -343,8 +423,8 @@
                 <div class="best_tour_section5_ best_tour_section5__hotel">
                     <?php $i2 = 1;
                     foreach ($bestValueProduct as $product):
-                        if (is_file(ROOTPATH . "/public/data/hotel/" . $product['ufile1'])) {
-                            $src = "/data/hotel/" . $product['ufile1'];
+                        if (is_file(ROOTPATH . "/public/data/product/" . $product['ufile1'])) {
+                            $src = "/data/product/" . $product['ufile1'];
                         } else {
                             $src = "/images/product/noimg.png";
                         }
@@ -723,8 +803,16 @@
         //         location.reload();
         //     }, 2000);
         // });
+        const prices = {
+            "2024-11-25": "10만",
+            "2024-11-26": "15만",
+            "2024-11-27": "20만",
+            "2024-11-28": "18만",
+            "2024-11-29": "12만"
+        };
+
         $(function () {
-            $('#input_day').daterangepicker({
+            $('#input_day2').daterangepicker({
                 autoUpdateInput: false,
                 locale: {
                     format: 'YYYY-MM-DD',
@@ -740,32 +828,14 @@
                     firstDay: 1
                 }
             }).on('apply.daterangepicker', function (ev, picker) {
-                const prices = {
-                    "2024-11-25": "10만",
-                    "2024-11-26": "15만",
-                    "2024-11-27": "20만",
-                    "2024-11-28": "18만",
-                    "2024-11-29": "12만"
-                };
-
                 $(this).val(picker.startDate.format('YYYY-MM-DD') + ' -> ' + picker.endDate.format('YYYY-MM-DD'));
-                renderPrice(picker, prices);
-
+                renderPrice(picker);
             }).on('show.daterangepicker', function (ev, picker) {
-                const prices = {
-                    "2024-11-25": "10만",
-                    "2024-11-26": "15만",
-                    "2024-11-27": "20만",
-                    "2024-11-28": "18만",
-                    "2024-11-29": "12만"
-                };
-
-                renderPrice(picker, prices)
+                renderPrice(picker);
             });
-
         });
 
-        function renderPrice(picker, prices) {
+        function renderPrice(picker) {
             $('.drp-calendar td.available').each(function () {
                 const day = $(this).text().trim();
                 if (!day) return;
@@ -776,7 +846,9 @@
 
                 const price = prices[fullDate] || "0만";
 
-                $(this).append(`<div class="price-tag">${price}</div>`);
+                if (!$(this).find('.price-tag').length) {
+                    $(this).append(`<div class="price-tag">${price}</div>`);
+                }
             });
         }
     </script>
@@ -790,7 +862,7 @@
         $(document).on('click', function (event) {
             const $popup = $('.hotel_popup_');
             const $input_keyword_ = $('#input_keyword_');
-            if ($popup.has(event.target).length > 0 || $popup.is(event.target) || $input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
+            if ($input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
                 $popup.addClass('show');
             } else {
                 $popup.removeClass('show');
