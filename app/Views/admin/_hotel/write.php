@@ -822,7 +822,7 @@ $links = "list";
                                                     <thead>
                                                     <tr>
                                                         <th>객실명</th>
-                                                        <th>기간</th>
+                                                        <th>기간.</th>
                                                         <th>가격</th>
                                                         <th>마감날짜</th>
                                                         <th>삭제</th>
