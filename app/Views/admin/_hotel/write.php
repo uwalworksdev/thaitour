@@ -854,6 +854,8 @@ $links = "list";
                                                             <td>
                                                                 <input type='text' readonly class='s_date datepicker' name='o_sdate[]' value='<?= $frow3['o_sdate'] ?>' style='width:40%' /> ~
                                                                 <input type='text' readonly class='e_date datepicker' name='o_edate[]' value='<?= $frow3['o_edate'] ?>' style='width:40%' />
+
+                                                                <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>" class="btn_01">수정</a>
                                                             </td>
                                                             <td>
                                                                 <input type='text' class='onlynum' name='o_price1[]'

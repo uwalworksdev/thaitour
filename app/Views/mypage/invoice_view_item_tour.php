@@ -66,10 +66,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="10%" class="subject">예약시간</td>
-						<td col width="25%" class="subject">홀수</td>
+						<td col width="10%" class="subject">일정</td>
 						<td col width="25%" class="subject">전체 옵션</td>
-						<td col width="15%" class="subject">총 결제금액</td>
+						<td col width="25%" class="subject">총 결제금액</td>
+						<td col width="15%" class="subject">상품 예약금액</td>
 						<td col width="10%" class="subject">실예약금액</td>
 
 					</tr>
@@ -100,10 +100,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$first = true; 
 								foreach ($tour_option as $option): ?>
 									<?php if (!$first): ?> + <?php endif; ?>
-									<?= $option['option_name']?>: <?= number_format($option['option_price']) ?>명
+									<?= $option['option_name']?>: <?= number_format($option['option_price']) ?>원
 									<?php $first = false; ?>
 								<?php endforeach; ?>
-								= <?= number_format($total_price) ?>명
+								= <?= number_format($total_price) ?>원
 							<?php endif; ?>
 						</td>
 
@@ -158,7 +158,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<tbody>
 					<tr>
 						<td class="subject">미팅장소</td>
-						<td col width="23%" class="subject">일정</td>
+						<td col width="23%" class="subject">예약시간</td>
 						<td col width="*%" class="subject">미팅 시간</td>
 						<td col width="15%" class="subject">종료 후 내리실 곳</td>
 						<td col width="15%" class="subject">카카오톡 아이디</td>

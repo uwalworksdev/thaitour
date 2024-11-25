@@ -11,7 +11,7 @@
                     <div class="itembar">
                         <a href="/community/customer_center">자주 찾는 질문</a>
                     </div>
-                    <div class="itembar active"><a href="/community/customer_center/list_notify">공지사항</a></div>
+                    <div class="itembar active"><a href="/community/customer_center/list_notify">태국뉴스 및 공지사항</a></div>
                     <div class="itembar"><a href="/community/customer_center/notify_table">1 : 1 게시판</a></div>
                     <div class="itembar"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="menu">
                     <div class="menu-header">
                         <h3 class="title-menu">
-                            공지사항
+                            태국뉴스 및 공지사항
                         </h3>
                     </div>
                     <div class="item1">

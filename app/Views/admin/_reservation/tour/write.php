@@ -167,13 +167,13 @@
                                     <td>
                                         <?= $people_adult_cnt ?>명
                                         X
-                                        <?= number_format($people_adult_price) ?>원
-                                        = <?= number_format($people_adult_price * $people_adult_cnt) ?>원
+                                        <?= number_format($people_adult_price / $people_adult_cnt) ?>원
+                                        = <?= number_format($people_adult_price) ?>원
                                     </td>
                                     <th>아동신청</th>
                                     <td>
                                         <?php if ($people_kids_price > 0) { ?>
-                                            <?= $people_kids_cnt ?>명    X <?= number_format($people_kids_price) ?>원 = <?= number_format($people_kids_price * $people_kids_cnt) ?>원
+                                            <?= $people_kids_cnt ?>명    X <?= number_format($people_kids_price / $people_kids_cnt) ?>원 = <?= number_format($people_kids_price) ?>원
                                         <?php } else { ?>
                                             0원
                                         <?php } ?>
@@ -185,8 +185,8 @@
                                     <td>
                                         <?= $people_baby_cnt ?>명
                                         X
-                                        <?= number_format($people_baby_price) ?>원
-                                        = <?= number_format($people_baby_price * $people_baby_cnt) ?>원
+                                        <?= number_format($people_baby_price / $people_baby_cn) ?>원
+                                        = <?= number_format($people_baby_price) ?>원
                                     </td>
                                     <th>전체 옵션</th>
                                     <td>
@@ -195,10 +195,10 @@
                                         $first = true; 
                                         foreach ($tour_option as $option): ?>
                                             <?php if (!$first): ?> + <?php endif; ?>
-                                            <?= $option['option_name']?>: <?= number_format($option['option_price']) ?>명
+                                            <?= $option['option_name']?>: <?= number_format($option['option_price']) ?>원
                                             <?php $first = false; ?>
                                         <?php endforeach; ?>
-                                        = <?= number_format($total_price) ?>명
+                                        = <?= number_format($total_price) ?>원
                                     <?php endif; ?>
                                 </tr>
 
