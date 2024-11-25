@@ -73,11 +73,13 @@ $page = $_GET['pg'];
                     $index = 0;
                     $num = $totalCount - $nFrom;
                     $j = $totalCount;
+                    $num = 0;
                     foreach ($fresult as $frow) {
                         $index++;
+                        $num++;
                         ?>
                         <tr>
-                            <td class="no"><span><?= $j ?></span></td>
+                            <td class="no"><span><?= $num ?></span></td>
                             <td class="num"><?= $frow['code_name'] ?></td>
                             <td class="des"><a
                                         href="../review/review_detail?idx=<?= $frow['idx'] ?>"><?= $frow['title'] ?></a>
