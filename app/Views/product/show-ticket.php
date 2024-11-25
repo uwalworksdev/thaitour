@@ -94,9 +94,9 @@
                                 if ($product["ufile1"] != "") {
                                 ?>
                                     <img class="only_web"
-                                        src="<?= base_url('/data/hotel/') . $product['ufile1'] ?>" alt="">
+                                        src="<?= base_url('/data/product/') . $product['ufile1'] ?>" alt="">
                                     <img class="only_mo img_box_re_img"
-                                        src="<?= base_url('/data/hotel/') . $product['ufile1'] ?>" alt="">
+                                        src="<?= base_url('/data/product/') . $product['ufile1'] ?>" alt="">
                                 <?php } else {
                                 ?>
                                     <img class="only_web"
@@ -216,9 +216,9 @@
                                 if ($product["ufile1"] != "") {
                                 ?>
                                     <img class="only_web"
-                                        src="<?= base_url('/data/hotel/') . $product['ufile1'] ?>" alt="">
+                                        src="<?= base_url('/data/product/') . $product['ufile1'] ?>" alt="">
                                     <img class="only_mo img_box_re_img"
-                                        src="<?= base_url('/data/hotel/') . $product['ufile1'] ?>" alt="">
+                                        src="<?= base_url('/data/product/') . $product['ufile1'] ?>" alt="">
                                 <?php } else {
                                 ?>
                                     <img class="only_web"

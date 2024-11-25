@@ -367,8 +367,8 @@
                                             <?php
                                             if ($row["ufile1"] != "") {
                                                 ?>
-                                                <a href="/data/hotel/<?= $row["ufile1"] ?>" class="imgpop">
-                                                    <img src="/data/hotel/<?= $row["ufile1"] ?>"
+                                                <a href="/data/product/<?= $row["ufile1"] ?>" class="imgpop">
+                                                    <img src="/data/product/<?= $row["ufile1"] ?>"
                                                          style="max-width:150px;max-height:100px" loading="lazy"
                                                     ></a>
                                             <?php } else {

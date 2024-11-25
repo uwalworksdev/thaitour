@@ -63,6 +63,7 @@
 .search-icon {
     margin-left: -35px;
     color: #333;
+    cursor: pointer;
 }
 
 .search_words_list {

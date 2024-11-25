@@ -155,7 +155,7 @@
                         <div class="card-right">
                             <?php
                             if (!empty($hotel['ufile1'])) {
-                                $img = "/data/hotel/" . $hotel['ufile1'];
+                                $img = "/data/product/" . $hotel['ufile1'];
                             } else {
                                 $img = "";
                             }

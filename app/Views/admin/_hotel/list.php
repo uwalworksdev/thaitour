@@ -264,8 +264,8 @@
                                     <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
                                     <td class="tac">
                                         <?php
-                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/hotel/" . $row["ufile1"])) {
-                                            $src = "/data/hotel/" . $row["ufile1"];
+                                        if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
+                                            $src = "/data/product/" . $row["ufile1"];
                                         } else {
                                             $src = "/data/product/noimg.png";
                                         }

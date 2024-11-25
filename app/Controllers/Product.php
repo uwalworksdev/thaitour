@@ -70,31 +70,94 @@ class Product extends BaseController
     public function productSearch() {
         $search_name = $this->request->getVar("search_name");
 
+        $tab = $this->request->getVar("tab") ?: "hotel";
+
+        $sort = $this->request->getVar("sort") ?: "recommended";
+
         $data['search_name'] = $search_name;
+        $data['tab'] = $tab;
+        $data['sort'] = $sort;
+
 
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
-            //'search_product_name' => $search_name,
+            'search_product_name' => $search_name,
             'product_status' => 'sale'
-        ], 10, 1, [])['items'];
+        ], 10, 1, []);
+
+        foreach ($listHotel['items'] as $key => $product) {
+            $hotel_codes = explode("|", $product['product_code_list']);
+            $hotel_codes = array_values(array_filter($hotel_codes));
+
+            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+            $listHotel['items'][$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $listHotel['items'][$key]['total_review'] = $productReview['total_review'];
+            $listHotel['items'][$key]['review_average'] = $productReview['avg'];
+        }
 
         $listGolf = $this->productModel->findProductGolfPaging([
             'is_view' => 'Y',
             'product_code_1' => 1302,
-            //'search_txt' => $search_name,
+            'search_txt' => $search_name,
             'search_category' => 'product_name'
-        ], 10, 1, [])['items'];
+        ], 10, 1, []);
+
+        foreach ($listGolf['items'] as $key => $product) {
+            $hotel_codes = explode("|", $product['product_code_list']);
+            $hotel_codes = array_values(array_filter($hotel_codes));
+
+            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+            $listGolf['items'][$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $listGolf['items'][$key]['total_review'] = $productReview['total_review'];
+            $listGolf['items'][$key]['review_average'] = $productReview['avg'];
+        }
+
+        $listTour = $this->productModel->findProductPaging([
+            'product_code_1' => 1301,
+            'search_category' => 'product_name',
+            'search_txt' => $search_name
+        ], 10, 1, ['onum' => 'DESC']);
+
+        foreach ($listTour['items'] as $key => $product) {
+
+            $code = $product['product_code_1'];
+            if ($product['product_code_2']) $code = $product['product_code_2'];
+            if ($product['product_code_3']) $code = $product['product_code_3'];
+
+            $codeTree = $this->codeModel->getCodeTree($code);
+
+            $listTour['items'][$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $listTour['items'][$key]['total_review'] = $productReview['total_review'];
+            $listTour['items'][$key]['review_average'] = $productReview['avg'];
+        }
 
         $data['list'] = [
             'hotel' => [
                 'title' => "호텔",
-                'items' => $listHotel
+                'result' => $listHotel
             ],
             'golf' => [
                 'title' => "골프",
-                'items' => $listGolf
+                'result' => $listGolf
+            ],
+            'tour' => [
+                'title' => "토어",
+                'result' => $listTour
             ]
         ];
+
+        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'];
 
         return $this->renderView('product/product_search', $data);
     }

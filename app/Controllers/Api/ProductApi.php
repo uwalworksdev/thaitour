@@ -81,7 +81,7 @@ class ProductApi extends BaseController
 
                     if (isset(${"ufile" . $i}) && ${"ufile" . $i} != "") {
 
-                        $html .= "<li><img src='/data/hotel/" . ${"ufile" . $i} . "' alt='' /></li>";
+                        $html .= "<li><img src='/data/product/" . ${"ufile" . $i} . "' alt='' /></li>";
                     }
                 }
             }

@@ -1018,9 +1018,9 @@ $links = "list";
                                         <?php if (isset($ufile1) && $ufile1 !== "") { ?><br>파일삭제:<input type=checkbox
                                                                                                         name="del_1"
                                                                                                         value='Y'><a
-                                                href="/data/hotel/<?= $ufile1 ?>"
+                                                href="/data/product/<?= $ufile1 ?>"
                                                 class="imgpop"><?= $rfile1 ?></a><br><br>
-                                            <img src="/data/hotel/<?= $ufile1 ?>" width="200px"/>
+                                            <img src="/data/product/<?= $ufile1 ?>" width="200px"/>
                                         <?php } ?>
 
                                     </td>
@@ -1038,9 +1038,9 @@ $links = "list";
                                                 <input type=checkbox
                                                        name="del_<?= $i ?>"
                                                        value='Y'><a
-                                                        href="/data/hotel/<?= ${"ufile" . $i} ?>"
+                                                        href="/data/product/<?= ${"ufile" . $i} ?>"
                                                         class="imgpop"><?= ${"rfile" . $i} ?></a><br><br>
-                                                <img src="/data/hotel/<?= ${"ufile" . $i} ?>" width="200px"/>
+                                                <img src="/data/product/<?= ${"ufile" . $i} ?>" width="200px"/>
                                             <?php } ?>
 
                                         </td>
