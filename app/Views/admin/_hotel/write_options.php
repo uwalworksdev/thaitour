@@ -281,29 +281,35 @@
         while (startDate <= endDate) {
             let dateStr = startDate.toISOString().split('T')[0];
 
-            html += `
-                    <tr style="height:40px">
-                        <td style="text-align:center">
-                            ${dateStr}
-                        </td>
-                        <td style="text-align:center">
-                            <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
-                        </td>
-                        <td style="text-align:center">
-                            <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
-                        </td>
-                        <td style="text-align:center;">
-                            <div class="" style="display: flex; gap: 10px">
-                                <button style="height: 30px" type="button"
-                                        class="chargeUpdate">수정
-                                </button>
-                                <button style="height: 30px" type="button"
-                                        class="chargeDelete">삭제
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-            `;
+            
+            let issetDate = $('.option_date .date[data-value="' + dateStr + '"]');
+
+            if(issetDate.length <= 0){
+                html += `
+                        <tr class="option_date" style="height:40px">
+                            <td class="date" style="text-align:center" data-value="${dateStr}">
+                                ${dateStr}
+                            </td>
+                            <td style="text-align:center">
+                                <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
+                            </td>
+                            <td style="text-align:center">
+                                <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
+                            </td>
+                            <td style="text-align:center;">
+                                <div class="" style="display: flex; gap: 10px">
+                                    <button style="height: 30px" type="button"
+                                            class="chargeUpdate">수정
+                                    </button>
+                                    <button style="height: 30px" type="button"
+                                            class="chargeDelete">삭제
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                `;
+            }
+
             startDate.setDate(startDate.getDate() + 1);
         }
 
