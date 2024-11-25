@@ -15,9 +15,6 @@
 <link href="/css/mypage/mypage_reponsive.css" rel="stylesheet" type="text/css" />
 <link href="/css/community/community.css" rel="stylesheet" type="text/css" />
 
-<!--
-<script src="/mypage/mypage.js" type="text/javascript"></script>
--->
 <style>
     .mypage_container .content .details_table tbody tr .date {
         padding: 0 15px;
