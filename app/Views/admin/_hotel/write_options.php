@@ -123,6 +123,7 @@
                                             <col width="30%">
                                             <col width="30%">
                                             <col width="15%">
+                                            <col width="15%">
                                         </colgroup>
                                         <tbody id="charge">
                                             <tr style="height:40px">
@@ -133,7 +134,10 @@
                                                     가격
                                                 </td>
                                                 <td style="text-align:center">
-                                                    판매가
+                                                    우대가격
+                                                </td>
+                                                <td style="text-align:center">
+                                                    마감
                                                 </td>
                                                 <td style="text-align:center">
                                                     처리
