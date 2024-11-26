@@ -1226,6 +1226,7 @@ input[type="text"],
 input[type="password"] {
 	font-family:'Nanum Gothic';
 	font-size:13px;
+	text-align:right;
 	vertical-align:middle;
 }
 
