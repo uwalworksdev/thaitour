@@ -162,7 +162,7 @@
 												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 						                    <td style="text-align:center;">
-						                        <input type="checkbox" class="deadline" name="deadline[]" id="deadline_720" value="2024-11-11">
+						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
 						                    </td> 
 						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
 						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
@@ -302,7 +302,11 @@
 						 return false;
 
 					var idx      = $(this).val();
-					var message  = "";
+                    var use_yn   = ""; 
+					if ($("#use_yn_"+idx).prop('checked')) {
+						var use_yn = "N";
+                    }
+
 					$.ajax({
 
 						url: "/ajax/hotel_price_update",
@@ -311,14 +315,15 @@
 
 								"idx"           : idx,
 								"goods_price1"  : $("#goods_price1_"+idx).val(),
-								"goods_price2"  : $("#goods_price2_"+idx).val() 
+								"goods_price2"  : $("#goods_price2_"+idx).val(), 
+								"use_yn"        : use_yn 
 
 						},
 						dataType: "json",
 						async: false,
 						cache: false,
 						success: function(data, textStatus) {
-							message  = data.message;
+							var message  = data.message;
 							alert(message);
 							location.reload();
 						},
