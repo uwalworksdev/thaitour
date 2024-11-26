@@ -281,7 +281,7 @@ class AdminHotelController extends BaseController
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
                             $result_opt = $this->connect->query($sql_su);
-							$option_idx = $mysqli->insert_id;
+							$option_idx = $this->connect->insert_id;
 
 							$dateRange = getDateRange($item_sdate, $item_edate);
 
@@ -409,7 +409,7 @@ class AdminHotelController extends BaseController
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
 					$result_opt = $this->connect->query($sql_su);
-					$option_idx = $mysqli->insert_id;
+					$option_idx = $this->connect->insert_id;
 
 					$dateRange = getDateRange($item_sdate, $item_edate);
 
