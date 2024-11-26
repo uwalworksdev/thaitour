@@ -775,7 +775,7 @@ $(document).ready(function () {
         addOption += "	</td>                                                           	  ";
         addOption += "	<td>																  ";
         addOption += "		<input type='text' class='onlynum' name='o_price2[]'  value='' /> ";
-        addOption += "	</td>  
+        addOption += "	</td>                                                                 ";  
         //addOption += "	<td>																  ";
         //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
         //addOption += "	</td>																  ";
