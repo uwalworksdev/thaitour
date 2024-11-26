@@ -9,9 +9,13 @@
             z-index: 5;
         }
 
+        .main_page_01 .main_visual_content_ .form_element_ {
+            margin-top: 40px;
+        }
+
         .daterangepicker {
             width: 800px !important;
-            top: 400px !important;
+            top: 360px !important;
             left: 390px !important;
             right: auto;
         }
@@ -49,7 +53,7 @@
         .hotel_popup_ {
             display: none;
             position: absolute;
-            top: 190px;
+            top: 150px;
             left: 20px;
             z-index: 10;
         }
@@ -287,7 +291,7 @@
                     $('#countDay').text(diffInDays);
                 }
             </script>
-            <div style="margin-top: 300px" class="section1">
+            <div style="margin-top: 200px" class="section1">
                 <div class="title-container">
                     <h2><?= $hotel['product_name'] ?> </h2>
                     <div class="list-icon">
