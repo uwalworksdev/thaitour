@@ -98,12 +98,10 @@
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
-                                            시작일: <input type="text" name="s_date" value="<?= $o_sdate ?>" id="s_date"
-                                                        style="text-align: center;background: white; width: 120px;" readonly>
+                                            시작일: <?= $o_sdate ?>
                                         </div>
                                         <div style="text-align:left;text-wrap: nowrap; margin-left: 30px;">
-                                            종료일: <input type="text" name="e_date" value="<?= $o_edate ?>" id="e_date"
-                                                        style="text-align: center; background: white; width: 120px;" readonly>
+                                            종료일: <?= $o_edate ?>
                                         </div>
 
                                         <div style="margin:10px">
