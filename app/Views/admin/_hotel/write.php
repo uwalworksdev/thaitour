@@ -838,7 +838,6 @@ $links = "list";
                                                         ?>
 
                                                         <tr>  
-
                                                             <td>
                                                                 <input type='hidden' name='o_idx[]'
                                                                        value='<?= $frow3['idx'] ?>'/>
@@ -858,12 +857,12 @@ $links = "list";
                                                                 <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>" class="btn_01">수정</a>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum' name='o_price1[]'
+                                                                <input type='text' class='onlynum' name='o_price1[]' style="text-align:right;"
                                                                        id=''
                                                                        value="<?= $frow3['goods_price1'] ?>"/>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum' name='o_price2[]'
+                                                                <input type='text' class='onlynum' name='o_price2[]' style="text-align:right;"
                                                                        id=''
                                                                        value="<?= $frow3['goods_price2'] ?>"/>
                                                             </td>
