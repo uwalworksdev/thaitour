@@ -113,49 +113,13 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <th>요금정보</th>
-                                <td>
-                                    
-                                    <table style="width:100%" id="chargeTable">
-                                        <colgroup>
-                                            <col width="*">
-                                            <col width="30%">
-                                            <col width="30%">
-                                            <col width="15%">
-                                            <col width="15%">
-                                        </colgroup>
-                                        <tbody id="charge">
-                                            <tr style="height:40px">
-                                                <td style="text-align:center">
-                                                    적용일자
-                                                </td>
-                                                <td style="text-align:center">
-                                                    가격
-                                                </td>
-                                                <td style="text-align:center">
-                                                    우대가격
-                                                </td>
-                                                <td style="text-align:center">
-                                                    마감
-                                                </td>
-                                                <td style="text-align:center">
-                                                    처리
-                                                </td>
-                                            </tr>
-                                        
-                                            
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
 
                             </tbody>
 
                         </table>
                     </div>
 
-<div class="listBottom">
+                    <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
 									<col width="*">
