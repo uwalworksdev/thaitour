@@ -282,8 +282,11 @@ class AdminHotelController extends BaseController
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
                             write_log("1- ". $sql_su);
-                            $result_opt = $this->connect->query($sql_su);
-					        $option_idx = $this->connect->insert_id;
+                            $this->connect->query($sql_su);
+							$result_opt = $this->connect->query("SELECT LAST_INSERT_ID() AS last_id");
+							$row = $result_opt->fetch_assoc();
+
+					        $option_idx = $row['last_id'];
 write_log("1 option_idx- ". $option_idx);
 
 							$dateRange = getDateRange($item_sdate, $item_edate);
@@ -415,7 +418,7 @@ write_log("1 option_idx- ". $option_idx);
 
 					$result_opt = $this->connect->query($sql_su);
 					$option_idx = $this->connect->insert_id;
-write_log("2- option_idx- ". $option_idx);
+
 					$dateRange = getDateRange($item_sdate, $item_edate);
 
 					$ii = -1;
