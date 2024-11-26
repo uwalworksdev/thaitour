@@ -156,10 +156,10 @@
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 												<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
-												<input type="text" name="goods_price1[]" id="goods_price1_<?=$item['idx']?>" value="<?=$item['goods_price1']?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
+												<input type="text" name="goods_price1[]" id="goods_price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=$item['goods_price2']?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
+												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 						                    <td style="text-align:center;">
 						                        <input type="checkbox" class="deadline" name="deadline[]" id="deadline_720" value="2024-11-11">
