@@ -91,21 +91,22 @@
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">검색
+                        <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
+                            필터
                         </button>
-                        <button id="delete_all">전체삭제</button>
+                        <button type="button" id="delete_all">전체삭제</button>
                     </div>
                 </div>
                 <div class="below-filter-content">
                     <div class="total_number">
                         <p>총 상품 <span><?=$products["nTotalCount"]?></span></p>
                     </div>
-                    <div class="two-way-arrow-content">
-                        <a href="#" class="">
-                            <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">
-                            <span class="text-primary">추천순</span>
-                        </a>
-                    </div>
+<!--                    <div class="two-way-arrow-content">-->
+<!--                        <a href="#" class="">-->
+<!--                            <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">-->
+<!--                            <span class="text-primary">추천순</span>-->
+<!--                        </a>-->
+<!--                    </div>-->
                 </div>
                 <?php foreach ($products['items'] as $key => $product): ?>
                     <div class="product-card-item-container">

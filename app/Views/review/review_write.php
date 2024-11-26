@@ -128,11 +128,11 @@
                             <div class="rating">
                                 <input id="ratingValue" type="number" name="number_stars" value='' hidden>
                                 <input id="review_type" type="text" name="review_type" value="" hidden>
-                                <?php for ($i = 0; $i < $number_stars; $i++) { ?>
+                                <?php for ($i = 0; $i < (int)$number_stars; $i++) { ?>
                                     <i class='bx bx-star bxs-star star active' style="--i: <?= $i + 1; ?>;"></i>
                                 <?php } ?>
 
-                                <?php for ($i = $number_stars + 1; $i <= 5; $i++) { ?>
+                                <?php for ($i = (int)$number_stars + 1; $i <= 5; $i++) { ?>
                                     <i class='bx bx-star star' style="--i: <?= $i; ?>;"></i>
                                 <?php } ?>
 
