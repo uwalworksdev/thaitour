@@ -875,7 +875,7 @@ $links = "list";
                                                             </td-->
                                                             <td>
                                                                 <button type="button"
-                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)">
+                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)" class="btn_02">
                                                                     삭제
                                                                 </button>
                                                             </td>
