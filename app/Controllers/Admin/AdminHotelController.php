@@ -64,10 +64,10 @@ class AdminHotelController extends BaseController
 
     public function write()
     {
-        $product_idx = updateSQ($_GET["product_idx"] ?? '');
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_name = updateSQ($_GET["search_name"] ?? '');
-        $search_category = updateSQ($_GET["search_category"] ?? '');
+        $product_idx      = updateSQ($_GET["product_idx"] ?? '');
+        $pg               = updateSQ($_GET["pg"] ?? '');
+        $search_name      = updateSQ($_GET["search_name"] ?? '');
+        $search_category  = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
@@ -212,14 +212,15 @@ class AdminHotelController extends BaseController
 
             $data['product_more'] = $dataProductMore;
 
-            $o_idx = $_POST["o_idx"] ?? [];
-            $o_name = $_POST["o_name"] ?? [];
-            $o_price1 = $_POST["o_price1"] ?? [];
-            $o_sdate = $_POST["o_sdate"] ?? [];
-            $o_edate = $_POST["o_edate"] ?? [];
-            $o_room = $_POST["o_room"] ?? [];
+            $o_idx       = $_POST["o_idx"] ?? [];
+            $o_name      = $_POST["o_name"] ?? [];
+            $o_price1    = $_POST["o_price1"] ?? [];
+            $o_price2    = $_POST["o_price2"] ?? [];
+            $o_sdate     = $_POST["o_sdate"] ?? [];
+            $o_edate     = $_POST["o_edate"] ?? [];
+            $o_room      = $_POST["o_room"] ?? [];
             $option_type = $_POST["option_type"] ?? [];
-            $o_soldout = $_POST["o_soldout"] ?? [];
+            $o_soldout   = $_POST["o_soldout"] ?? [];
 
             $rop_idx = $_POST["rop_idx"] ?? [];
             $sup_room__idx = $_POST["sup_room__idx"] ?? [];
