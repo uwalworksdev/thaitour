@@ -149,6 +149,8 @@
 												처리
 											</td>
 										</tr>
+
+										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center">2024-11-11</td>
 											<td style="text-align:center">
@@ -168,7 +170,9 @@
 												<button type="button" class="chargeUpdate" value="720">수정</button>
 												<button type="button" class="chargeDelete" value="720">삭제</button>
 						                    </td> 
-                                        </tr>										
+                                        </tr>
+					                    <?php endforeach; ?>
+
 									</tbody>
 								</table>
 			</div>
