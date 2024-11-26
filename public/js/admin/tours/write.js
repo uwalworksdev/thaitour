@@ -742,7 +742,7 @@ $(document).ready(function () {
             addTable += "			<th>객실명</th>";
             addTable += "			<th>기간</th>";
             addTable += "			<th>가격</th>";
-            addTable += "			<th>마감날짜</th>";
+            addTable += "			<th>마감날짜.</th>";
             addTable += "			<th>삭제</th>";
             addTable += "		</tr>";
             addTable += "	</thead>";
