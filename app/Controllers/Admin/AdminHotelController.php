@@ -283,6 +283,7 @@ class AdminHotelController extends BaseController
                                 ";
                             $result_opt = $this->connect->query($sql_su);
 					        $option_idx = $this->connect->insert_id;
+write_log("1 option_idx- ". $option_idx);
 
 							$dateRange = getDateRange($item_sdate, $item_edate);
 
@@ -411,7 +412,7 @@ class AdminHotelController extends BaseController
                             ";
 					$result_opt = $this->connect->query($sql_su);
 					$option_idx = $this->connect->insert_id;
-
+write_log("2- option_idx- ". $option_idx);
 					$dateRange = getDateRange($item_sdate, $item_edate);
 
 					$ii = -1;
