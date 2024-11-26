@@ -9,24 +9,36 @@
             z-index: 5;
         }
 
-        .main_page_01 .main_visual_content_ .form_element_ {
-            margin-top: 40px;
+        .form_gr_ {
+            width: 500px;
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
         }
 
-        .daterangepicker {
-            width: 800px !important;
-            top: 360px !important;
-            left: 390px !important;
-            right: auto;
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
+            max-width: unset;
+            max-height: 75px;
+            overflow: hidden;
         }
 
-        .daterangepicker .drp-calendar {
-            width: 50%;
-            max-width: unset !important;
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
+            border: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
+            left: unset;
+            right: 20px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
+            text-align: end;
         }
 
         @media screen and (max-width: 850px) {
-
             .sub_tour_section5_item {
                 width: calc((100% - 2rem) / 2);
             }
@@ -53,7 +65,7 @@
         .hotel_popup_ {
             display: none;
             position: absolute;
-            top: 150px;
+            top: 215px;
             left: 20px;
             z-index: 10;
         }
@@ -100,57 +112,6 @@
             border-radius: 4px;
             word-break: break-word;
         }
-
-        .price-tag {
-            color: #999999;
-        }
-
-        .drp-calendar td.has-price {
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .drp-calendar td.has-price::after {
-            content: attr(data-price);
-            display: block;
-            font-size: 12px;
-            color: #007bff;
-            margin-top: 5px;
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            right: 0;
-            text-align: center;
-        }
-
-        .form_gr_ {
-            width: 500px;
-            gap: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #dbdbdb;
-            border-radius: 6px;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
-            max-width: unset;
-            max-height: 75px;
-            overflow: hidden;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
-            border: hidden;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
-            left: unset;
-            right: 20px;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
-            text-align: end;
-        }
     </style>
     <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
         <div class="body_inner">
@@ -166,7 +127,8 @@
                                 <div class="form_gr_">
                                     <div class="form_input_ form_gr_item_">
                                         <label for="input_day">체크인</label>
-                                        <input type="text" id="input_day_start_" class="input_custom_ input_ranger_date_"
+                                        <input type="text" id="input_day_start_"
+                                               class="input_custom_ input_ranger_date_"
                                                placeholder="체크인 선택해주세요." readonly>
                                     </div>
                                     <p>
@@ -199,6 +161,10 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- popup -->
+                        <?= $is_check = 123 ?>
+                        <?php echo view("/product/inc/hotel/init_day_popup_.php", ["is_check" => $is_check]); ?>
                     </div>
                 </div>
             </section>
@@ -233,7 +199,7 @@
                     }
                 });
 
-                $('#input_day_start_, #input_day_end_').daterangepicker({
+                /*$('#input_day_start_, #input_day_end_').daterangepicker({
                     autoUpdateInput: false,
                     opens: "center",
                     locale: {
@@ -259,7 +225,7 @@
                     // renderPriceData(picker);
                 }).on('showCalendar.daterangepicker', function (ev, picker) {
                     // renderPriceData(picker);
-                });
+                });*/
 
                 function renderPriceData(picker) {
                     $('.drp-calendar td.available').each(function () {
@@ -297,8 +263,10 @@
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web" onclick="wish_it('<?= $hotel['product_idx'] ?>')" >
-                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo" onclick="wish_it('<?= $hotel['product_idx'] ?>')" >
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
@@ -1326,37 +1294,37 @@
                     </div>
                 </div>
 
-				<script>
-				  function wish_it() {
+                <script>
+                    function wish_it() {
 
-					if ($("#member_Id").val() == "") {
-					  alert("로그인 하셔야 합니다.");
-					  location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
-					} else {
+                        if ($("#member_Id").val() == "") {
+                            alert("로그인 하셔야 합니다.");
+                            location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+                        } else {
 
-					  var message = "";
-					  $.ajax({
+                            var message = "";
+                            $.ajax({
 
-						url: "/item/ajax.wish_set.php",
-						type: "POST",
-						data: {
-						  "product_idx": '<?= $product_idx ?>'
-						},
-						dataType: "json",
-						async: false,
-						cache: false,
-						success: function (data, textStatus) {
-						  message = data.message;
-						  alert(message);
-						  location.reload();
-						},
-						error: function (request, status, error) {
-						  alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-						}
-					  });
-					}
-				  }
-				</script>
+                                url: "/item/ajax.wish_set.php",
+                                type: "POST",
+                                data: {
+                                    "product_idx": '<?= $product_idx ?>'
+                                },
+                                dataType: "json",
+                                async: false,
+                                cache: false,
+                                success: function (data, textStatus) {
+                                    message = data.message;
+                                    alert(message);
+                                    location.reload();
+                                },
+                                error: function (request, status, error) {
+                                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                }
+                            });
+                        }
+                    }
+                </script>
 
                 <script>
                     $('.btnReadMore').click(function () {
