@@ -132,22 +132,27 @@ class AdminHotelController extends BaseController
     }
 
     public function write_options() {
-        $o_idx = $this->request->getVar("o_idx");
-        $product_idx = $this->request->getVar("product_idx");
+        $o_idx        = $this->request->getVar("o_idx");
+        $product_idx  = $this->request->getVar("product_idx");
 
-        $row = $this->productModel->getById($product_idx);
+        $row          = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        $option = $this->hotelOptionModel->getByIdx($o_idx);
-        $o_sdate = $option["o_sdate"];
-        $o_edate = $option["o_edate"];
+        $option       = $this->hotelOptionModel->getByIdx($o_idx);
+        $o_sdate      = $option["o_sdate"];
+        $o_edate      = $option["o_edate"];
+
+        $fsql     = "select * from tbl_hotel_price where o_idx = '". $o_idx ."' order by goods_date asc";
+        $roresult = $this->connect->query($fsql);
+        $roresult = $roresult->getResultArray();
 
         $data = [
-            'o_idx' => $o_idx,
-            'product_idx' => $product_idx,
+			'roresult'     => $roresult,
+            'o_idx'        => $o_idx,
+            'product_idx'  => $product_idx,
             'product_name' => $product_name,
-            'o_sdate' => $o_sdate,
-            'o_edate' => $o_edate,
+            'o_sdate'      => $o_sdate,
+            'o_edate'      => $o_edate,
         ];
 
         return view("admin/_hotel/write_options", $data);
