@@ -70,4 +70,74 @@ class Contact extends BaseController
             'currentUri' => $currentUri
         ]);
     }
+
+    // public function write() {
+    //     $private_key = private_key();
+
+    //     $sql_m = "SELECT birthday
+    //                 , AES_DECRYPT(UNHEX(user_name),   '$private_key') AS user_name
+    //                 , AES_DECRYPT(UNHEX(user_mobile), '$private_key') AS user_mobile
+    //                 , AES_DECRYPT(UNHEX(user_email),  '$private_key') AS user_email
+    //                 , AES_DECRYPT(UNHEX(zip),         '$private_key') AS zip
+    //                 , AES_DECRYPT(UNHEX(addr1),       '$private_key') AS addr1
+    //                 , AES_DECRYPT(UNHEX(addr2),       '$private_key') AS addr2
+    //       FROM tbl_member 
+    //       WHERE m_Idx = '$member_Id' 
+    //     ";
+    //     $row_m = $this->db->query($sql_m)->getRowArray();
+
+    //     $email  = explode("@", $row_m['user_email']);
+    //     $idx = $_GET['idx'];
+    //     $product_idx = updateSQ($_GET["product_idx"]);
+
+    //     if(isset($idx)) {
+
+    //         $sql = "select * from tbl_travel_contact where idx = '$idx'";
+    //         $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+    //         $row = mysqli_fetch_array($result);
+    //         $user_email = sqlSecretConver($row["user_email"], 'decode');
+    //         $travel_type_1     	= $row["travel_type_1"];
+    //         $travel_type_2     	= $row["travel_type_2"];
+    //         $travel_type_3     	= $row["travel_type_3"];
+    //         $departure_date		= $row["departure_date"];	
+    //         $arrival_date		= $row["arrival_date"];	
+    //         $status				= $row["status"];	
+    //         $ufile1				= $row["ufile1"];	
+    //         $rfile1				= $row["rfile1"];	
+    //         $r_date				= $row["r_date"];	
+            
+    //         $consultation_time		= $row['consultation_time'];
+    //         $product_name = $row['product_name'];
+    //         $title 	= $row['title'];
+    //         $contents	= $row["contents"];	
+    //     }
+
+    //     if ($product_idx) {
+
+    //         $sql_r		= " select  a.product_idx,
+    //                                 a.product_name, 
+    //                                 b.code_no as travel_type, 
+    //                                 c.code_no as travel_type_2, 
+    //                                 d.code_no as travel_type_3, 
+    //                                 b.code_name as travel_type_name, 
+    //                                 c.code_name as travel_type_name_2, 
+    //                                 d.code_name as travel_type_name_3
+    //                         from tbl_product_mst a
+    //                         left join tbl_code b on a.product_code_1 = b.code_no
+    //                         left join tbl_code c on a.product_code_2 = c.code_no
+    //                         left join tbl_code d on a.product_code_3 = d.code_no
+    //                         where a.product_idx = '{$product_idx}' 
+    //         ";
+
+    //         $result_r			= mysqli_query($connect, $sql_r) or die (mysqli_error($connect));
+    //         $row_r			    = mysqli_fetch_array($result_r);
+    //         $travel_type        = $row_r["travel_type"];
+    //         $travel_type_2      = $row_r["travel_type_2"];
+    //         $travel_type_3      = $row_r["travel_type_3"];
+    //         $travel_type_name   = $row_r['travel_type_name'];
+    //         $travel_type_name_2 = $row_r['travel_type_name_2'];
+    //         $travel_type_name_3 = $row_r['travel_type_name_3'];
+    //         $product_name       = $row_r['product_name'];
+    //     }
+    // }
 }

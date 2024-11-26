@@ -500,6 +500,7 @@ $routes->group("community", static function ($routes) {
 });
 $routes->group("contact", static function ($routes) {
     $routes->get("main", "Contact::main");
+    $routes->get("write", "Contact::write");
 });
 $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");

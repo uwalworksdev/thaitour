@@ -71,8 +71,10 @@
                                 <?php if($s_status == "G"){ echo "active"; }?>"><i></i>예약금</a>
                             <a href="/mypage/details?s_status=R&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
                                 <?php if($s_status == "R"){ echo "active"; }?>"><i></i>중도금</a>
-                            <a href="/mypage/travel_review" class="filter_btn flex__c
+                            <a href="/mypage/details?s_status=Y&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
                                 <?php if($s_status == "Y"){ echo "active"; }?>"><i></i>후기쓰기</a>
+                            <a href="/mypage/details?s_status=C&search_word=<?=$search_word?>&pg=<?=$pg?>" class="filter_btn flex__c
+                                <?php if($s_status == "C"){ echo "active"; }?>"><i></i>예약취소</a>
                         </div>
                     </div>
                     <table class="details_table">
@@ -132,7 +134,7 @@
                                         <td class="pay_btn pay_btn_1" style="<?=($is_allow_payment ? "" : "display: none;")?>">
                                             <?php
                                             if ($row["order_status"] == "W") { ?>
-                                                <span class="no_click" data_order_idx="">예약 준비중</span>
+                                                <span class="no_click" data_order_idx="">결제준비중</span>
                                             <?php } else if ($row["order_status"] == "G") { ?>
                                                 <a href="#!" class="btn pops_btn btn_cash" data_order_idx="<?= $row["order_idx"] ?>" data_order_gubun="deposit">결제하기</a>
                                             <?php } elseif ($row["order_status"] == "R") { ?>

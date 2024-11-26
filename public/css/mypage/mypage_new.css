@@ -306,7 +306,7 @@ table-layout: fixed;
 }
 
 .mypage_container .content .details_table tbody tr .pay_btn.pay_btn_1 a {
-    margin: 0 15px;
+    margin: 0 auto;
     height: 34px;
     line-height: 32px;
 }
