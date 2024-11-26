@@ -152,23 +152,23 @@
 
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
-											<td style="text-align:center">2024-11-11</td>
+											<td style="text-align:center"><?=$item['goods_date']?></td>
 											<td style="text-align:center">
-												<input type="hidden" name="p_idx[]" id="p_idx_720" value="720">
-												<input type="hidden" name="price_date[]" id="price_date_720" value="2024-11-11">
-												<input type="text" name="goods_price1[]" id="goods_price1_720" value="1400000" class="price goods_price input_txt" numberonly="true" style="text-align:right">
+												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
+												<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
+												<input type="text" name="goods_price1[]" id="goods_price1_<?=$item['idx']?>" value="<?=$item['goods_price1']?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="goods_price2[]" id="goods_price2_720" value="0" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
+												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=$item['goods_price2']?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 						                    <td style="text-align:center;">
 						                        <input type="checkbox" class="deadline" name="deadline[]" id="deadline_720" value="2024-11-11">
 						                    </td> 
-						                    <td style="text-align:center;">2024-11-27 02:48:42</td> 
-						                    <td style="text-align:center;">0000-00-00 00:00:00</td> 
+						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
+						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
 						                    <td style="text-align:center;">
-												<button type="button" class="chargeUpdate" value="720">수정</button>
-												<button type="button" class="chargeDelete" value="720">삭제</button>
+												<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
+												<button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button>
 						                    </td> 
                                         </tr>
 					                    <?php endforeach; ?>
