@@ -281,6 +281,7 @@ class AdminHotelController extends BaseController
                                         ,option_type	= '" . $item_type . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
+                            write_log("1- ". $sql_su);
                             $result_opt = $this->connect->query($sql_su);
 					        $option_idx = $this->connect->insert_id;
 write_log("1 option_idx- ". $option_idx);
@@ -410,6 +411,8 @@ write_log("1 option_idx- ". $option_idx);
                                     ,option_type	= '" . $item_type . "'
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
+                    write_log("2- ". $sql_su);
+
 					$result_opt = $this->connect->query($sql_su);
 					$option_idx = $this->connect->insert_id;
 write_log("2- option_idx- ". $option_idx);
