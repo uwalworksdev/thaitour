@@ -802,7 +802,7 @@ $(document).ready(function () {
         addOption += "	</td>																  ";
 
         addOption += "	<td>																  ";
-        addOption += '		<button type="button" onclick="delOption(\'\',this)" >삭제</button>	  ';
+        addOption += '		<button type="button" onclick="delOption(\'\',this)" class="btn_02" >삭제</button>	  ';
         addOption += "	</td>																  ";
         addOption += "</tr>																	  ";
 
