@@ -308,7 +308,7 @@ write_log("1 option_idx- ". $option_idx);
 																	 ,o_sdate 	   = '". $item_sdate ."'
 																	 ,o_edate      = '". $item_edate ."'
 																	 ,reg_date     = now() ";
-								write_log("가격정보 : ".$sql_c);
+								write_log("가격정보-1 : ".$sql_c);
 								$this->connect->query($sql_c);
 							}  
                         } else {
@@ -438,7 +438,7 @@ write_log("2- option_idx- ". $option_idx);
 															 ,o_sdate 	   = '". $item_sdate ."'
 															 ,o_edate      = '". $item_edate ."'
 															 ,reg_date     = now() ";
-						write_log("가격정보 : ".$sql_c);
+						write_log("가격정보-2 : ".$sql_c);
 						$this->connect->query($sql_c);
 					}  
 
