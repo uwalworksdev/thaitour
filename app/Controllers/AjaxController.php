@@ -278,7 +278,7 @@ class AjaxController extends BaseController {
 			$goods_price1 = str_replace(',', '', $_POST['goods_price1']);
 			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
 
-			$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1 ."', goods_price2 = '". $goods_price1 ."' WHERE idx = '". $idx ."'  ";
+			$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1 ."', goods_price2 = '". $goods_price2 ."' WHERE idx = '". $idx ."'  ";
 			write_log($sql);
 			$result = $db->query($sql);
 
