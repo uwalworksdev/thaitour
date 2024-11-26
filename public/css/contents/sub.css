@@ -5362,6 +5362,8 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     font-weight: 300;
 }
 
+/* item_search_section */
+
 .item_search_section {
     padding-top: 100px;
 }
@@ -5387,18 +5389,14 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     margin: auto;
 }
 .search__type {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #dbdbdb;
+    border: 1px solid #dbdbdb;
     border-radius: 6px;
     background-color: #ffffff;
     width: 160px;
     height: 46px;
 }
 .search__input {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #dbdbdb;
+    border: 1px solid #dbdbdb;
     border-radius: 6px;
     background-color: #ffffff;
     height: 46px;
@@ -5500,6 +5498,10 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
 }
 
+.search__result__list .product-card-item-container:last-child {
+    border-bottom: none;
+}
+
 .search__result__list .product-card-item-left {
     width: 285px;
     height: 210px;
@@ -5518,6 +5520,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 .search__result__list .product-card-item-right .title-container {
     display: flex;
     justify-content: space-between;
+    border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
 }
 
 .search__result__list .product-card-item-right .title-container h2 {
@@ -5528,13 +5531,18 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     text-overflow: ellipsis;
 }
 
-.search__result__list .product-card-item-right .title-container .star-container {
+.search__result__list .product-card-item-right .star-container {
     display: flex;
     gap: 16px;
 }
 
-.search__result__list .product-card-item-right .star-container div:first-child {
+.search__result__list .product-card-item-right .star-container .star-left {
     font-weight: bold;
+}
+
+.search__result__list .product-card-item-right .star-container .star-left img {
+    width: 14px;
+    height: 13px;
 }
 
 .search__result__list .product-card-item-right .star-content span {
@@ -5545,7 +5553,6 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 .search__result__list .product-card-item-right .sub-title {
     margin-top: 16px;
     padding-bottom: 16px;
-    border-bottom: 0.5px solid rgba(204, 204, 204, 0.3);
     display: flex;
     align-items: center;
     gap: 4px;
@@ -5604,6 +5611,8 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 .search__result__list .list-item-info .item-info-label span {
     color: var(--bs-point);
 }
+
+/* item_search_section */
 
 @media screen and (max-width: 1200px) {
     .only_tb {

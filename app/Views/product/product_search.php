@@ -21,7 +21,7 @@
             <ul>
                 <?php foreach ($list as $key => $item): ?>
                     <li class="search__tab search__tab_<?=$key?> <?= $key == $tab ? 'active' : ''?>" data-tab="<?=$key?>">
-                        <button type="button">
+                        <button type="button" data-tab="<?=$key?>">
                             <?=$item['title']?> <?=$item['result']['nTotalCount']?>건
                         </button>
                     </li>
@@ -33,12 +33,19 @@
             <div class="search__result__head">
                 <h1 class="ttl"><?=$item['title']?><span>(<?=$item['result']['nTotalCount']?>)</span></h1>
                 <ul class="search__result__sort">
-                    <li><a href="#!" data-sort="recommended"    class="sort <?=$sort == "recommended"    ? "active" : ""?>">추천순</a></li>
-                    <li><a href="#!" data-sort="reservation"    class="sort <?=$sort == "reservation"    ? "active" : ""?>">예약순</a></li>
-                    <li><a href="#!" data-sort="rating"         class="sort <?=$sort == "rating"         ? "active" : ""?>">평점순</a></li>
-                    <li><a href="#!" data-sort="highest_price"  class="sort <?=$sort == "highest_price"  ? "active" : ""?>">높은가격순</a></li>
-                    <li><a href="#!" data-sort="lowest_price"   class="sort <?=$sort == "lowest_price"   ? "active" : ""?>">낮은가격순</a></li>
+                    <li><a href="#!" onclick="sort_it('recommended')" class="<?=$sort == "recommended"    ? "active" : ""?>">추천순</a></li>
+                    <li><a href="#!" onclick="sort_it('reservation')" class="<?=$sort == "reservation"    ? "active" : ""?>">예약순</a></li>
+                    <li><a href="#!" onclick="sort_it('rating')" class="<?=$sort == "rating"         ? "active" : ""?>">평점순</a></li>
+                    <li><a href="#!" onclick="sort_it('highest_price')" class="<?=$sort == "highest_price"  ? "active" : ""?>">높은가격순</a></li>
+                    <li><a href="#!" onclick="sort_it('lowest_price')" class="<?=$sort == "lowest_price"   ? "active" : ""?>">낮은가격순</a></li>
                 </ul>
+                <select class="search__result__sort__select only_mo" onchange="sort_it(this.value)">
+                    <option value="recommended" <?=$sort == "recommended" ? "selected" : ""?>>추천순</option>
+                    <option value="reservation" <?=$sort == "reservation" ? "selected" : ""?>>예약순</option>
+                    <option value="rating" <?=$sort == "rating" ? "selected" : ""?>>평점순</option>
+                    <option value="highest_price" <?=$sort == "highest_price" ? "selected" : ""?>>높은가격순</option>
+                    <option value="lowest_price" <?=$sort == "lowest_price" ? "selected" : ""?>>낮은가격순</option>
+                </select>
             </div>
             <div class="search__result__list">
                 <?php foreach ($item['result']['items'] as $item1_1):
@@ -76,35 +83,22 @@
                         </div>
                         <div class="product-card-item-right">
                             <div class="title-container">
-                                <span>
+                                <div>
                                     <h2><?=$item1_1['product_name']?></h2>
-                                </span>
-                                <div class="only_web">
-                                    <div class="star-container">
-                                        <div class="">
-                                            <img src="/uploads/icons/star_icon.png" alt="star_icon">
-                                            <span><?=$item1_1['review_average']?></span>
-                                        </div>
-                                        <div class="star-content">
-                                            <span class="text-primary">생생리뷰 <strong>(<?=$item1_1['total_review']?>)</strong></span>
-                                        </div>
+                                    <div class="sub-title">
+                                        <?php $num = count($item1_1['codeTree']);
+                                        foreach ($item1_1['codeTree'] as $key => $code):
+                                            ?>
+                                            <span><?=$code['code_name']?></span>
+                                            <?php if ($key < $num - 1): ?>
+                                                <img class="only_web" src="/uploads/icons/arrow_right.png"
+                                                    alt="arrow_right">
+                                                <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
+                                                    alt="arrow_right_mo">
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="sub-title">
-                                <?php $num = count($item1_1['codeTree']);
-                                foreach ($item1_1['codeTree'] as $key => $code):
-                                    ?>
-                                    <span><?=$code['code_name']?></span>
-                                    <?php if ($key < $num - 1): ?>
-                                        <img class="only_web" src="/uploads/icons/arrow_right.png"
-                                            alt="arrow_right">
-                                        <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                            alt="arrow_right_mo">
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="only_mo">
                                 <div class="star-container">
                                     <div class="star-left">
                                         <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo">
@@ -156,13 +150,12 @@
         $(".search__result").removeClass("show");
         $(".search__result").eq(idx).addClass("show");
     });
-    $(".sort").on("click", function () {
-        var sort = $(this).data("sort");
+    function sort_it(sort) {
         var tab = $(".search__tab.active").data("tab");
         var search_name = $("#search__input").val();
         var search_cate = $("#search_cate").val();
         location.href = "/product_search?sort=" + sort + "&tab=" + tab + "&search_name=" + search_name + "&search_cate=" + search_cate;
-    });
+    }
     function search_it() {
         var search_name = $("#search__input").val();
         var search_cate = $("#search_cate").val();

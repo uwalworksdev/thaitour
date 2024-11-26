@@ -72,7 +72,12 @@ class Product extends BaseController
             $hotel_codes = explode("|", $item['product_code_list']);
             $hotel_codes = array_values(array_filter($hotel_codes));
 
-            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+            if($hotel_codes['0']) $code = $hotel_codes['0'];
+            if(!$code)  $code = $item['product_code_3'];
+            if(!$code)  $code = $item['product_code_2'];
+            if(!$code)  $code = $item['product_code_1'];
+
+            $codeTree = $this->codeModel->getCodeTree($code);
 
             $items[$key]['codeTree'] = $codeTree;
 
