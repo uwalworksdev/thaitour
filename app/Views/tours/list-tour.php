@@ -6,7 +6,7 @@
             padding: 8px 12px;
             background-color: #fff;
             color: #252525;
-            font-weight: 600;
+            /*font-weight: 600;*/
         }
     </style>
     <div class="content-sub-product-hotel">

@@ -1,14 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-    <style>
-        #delete_all {
-            padding: 8px 12px;
-            background-color: #fff;
-            color: #252525;
-            font-weight: 600;
-        }
-    </style>
     <div class="content-sub-product-hotel">
         <div class="body_inner">
             <div class="sub-hotel-navigation-container">
