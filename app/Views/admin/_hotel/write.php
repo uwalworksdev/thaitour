@@ -971,11 +971,11 @@ $links = "list";
                                                                    value="<?= $row['r_val'] ?>"/>
                                                         </td>
                                                         <td>
-                                                            <input type='text' class='onlynum' name='sup__price[]' id=''
+                                                            <input type='text' class='onlynum' name='sup__price[]' id='' style="text-align:right;"
                                                                    value="<?= $row['r_price'] ?>"/>
                                                         </td>
                                                         <td>
-                                                            <input type='text' class='onlynum' name='sup__price_sale[]'
+                                                            <input type='text' class='onlynum' name='sup__price_sale[]' style="text-align:right;"
                                                                    id=''
                                                                    value="<?= $row['r_sale_price'] ?>"/>
                                                         </td>
