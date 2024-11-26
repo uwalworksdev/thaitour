@@ -155,6 +155,7 @@ class AdminHotelController extends BaseController
 
     public function write_ok($product_idx = null)
     {
+		$connect = $this->connect;
         try {
             $files = $this->request->getFiles();
             $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
@@ -281,7 +282,7 @@ class AdminHotelController extends BaseController
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
                             $result_opt = $this->connect->query($sql_su);
-							$option_idx = $this->connect->insert_id;
+							$option_idx = $connect->insert_id;
 
 							$dateRange = getDateRange($item_sdate, $item_edate);
 
@@ -409,7 +410,7 @@ class AdminHotelController extends BaseController
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
 					$result_opt = $this->connect->query($sql_su);
-					$option_idx = $this->connect->insert_id;
+					$option_idx = $connect->insert_id;
 
 					$dateRange = getDateRange($item_sdate, $item_edate);
 
