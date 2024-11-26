@@ -288,8 +288,6 @@ class AdminHotelController extends BaseController
                             $option     = $this->connect->query($sql_opt)->getRowArray();
                             $option_idx = $option['last_id'];
 
-write_log("1 option_idx- ". $option_idx);
-
 							$dateRange = getDateRange($item_sdate, $item_edate);
 
 							$ii = -1;
@@ -417,8 +415,11 @@ write_log("1 option_idx- ". $option_idx);
                             ";
                     write_log("2- ". $sql_su);
 
-					$result_opt = $this->connect->query($sql_su);
-					$option_idx = $this->connect->insert_id;
+					$this->connect->query($sql_su);
+
+					$sql_opt    = "SELECT LAST_INSERT_ID() AS last_id";
+					$option     = $this->connect->query($sql_opt)->getRowArray();
+					$option_idx = $option['last_id'];
 
 					$dateRange = getDateRange($item_sdate, $item_edate);
 
