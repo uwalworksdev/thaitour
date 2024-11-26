@@ -734,7 +734,7 @@ $(document).ready(function () {
             addTable += "		<col width='*'></col>";
             addTable += "		<col width='25%'></col>";
             addTable += "		<col width='10%'></col>";
-            addTable += "		<col width='30%'></col>";
+            addTable += "		<col width='10%'></col>";
             addTable += "		<col width='10%'></col>";
             addTable += "	</colgroup>";
             addTable += "	<thead>";
