@@ -873,7 +873,7 @@ function get_rand_num($size)
 
 function img_link($code)
 {
-	if($code == "1303") $link = "hotel";
+	if($code == "1303") $link = "product";
 	if($code == "1325") $link = "hotel";
 	if($code == "1317") $link = "hotel";
 	if($code == "1320") $link = "hotel";
