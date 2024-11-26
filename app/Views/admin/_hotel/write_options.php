@@ -98,10 +98,10 @@
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
-                                            시작일: <?= $o_sdate ?>
+                                            <?= $o_sdate ?> ~
                                         </div>
                                         <div style="text-align:left;text-wrap: nowrap; margin-left: 30px;">
-                                            종료일: <?= $o_edate ?>
+                                            <?= $o_edate ?>
                                         </div>
 
                                         <!--div style="margin:10px">
