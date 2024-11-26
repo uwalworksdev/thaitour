@@ -152,7 +152,7 @@
 
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
-											<td style="text-align:center"><?=$item['goods_date']?>[<?=$item['dow']?>]</td>
+											<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 												<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
