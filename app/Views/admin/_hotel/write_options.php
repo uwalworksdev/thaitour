@@ -104,9 +104,9 @@
                                             종료일: <?= $o_edate ?>
                                         </div>
 
-                                        <div style="margin:10px">
+                                        <!--div style="margin:10px">
                                             <a href="javascript:addOption();" id="addcharge" class="btn btn-primary">조회</a>
-                                        </div>
+                                        </div-->
                                     </div>
                                 </td>
                             </tr>
