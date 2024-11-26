@@ -280,7 +280,6 @@ class AdminHotelController extends BaseController
                                         ,option_type	= '" . $item_type . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
-
                             $this->connect->query($sql_su);
 
                         } else {
@@ -383,8 +382,34 @@ class AdminHotelController extends BaseController
                                     ,option_type	= '" . $item_type . "'
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
-
                     $this->connect->query($sql_su);
+                    $option_idx = $this->connect->insert_id;
+
+					$dateRange = getDateRange($item_sdate, $item_edate);
+
+					$i = -1;
+					foreach ($dateRange as $date) 
+					{ 
+						$i++;
+				 
+						$goods_date = $dateRange[$i];
+						$dow        = dateToYoil($price_date);
+
+						$sql_c = "INSERT INTO tbl_golf_price  SET  
+															  o_idx        = '' 	
+															 ,goods_code   = '$data['product_code']' 	
+															 ,goods_name   = '$item_name'
+															 ,goods_date   = '$goods_date'
+															 ,dow 	       = '$dow'
+															 ,goods_price1 = '$item_price1' 
+															 ,goods_price2 = '$item_price2'
+															 ,use_yn       = ''
+															 ,o_sdate 	   = '$item_sdate'
+															 ,o_edate      = '$item_edate'
+															 ,reg_date     = now() ";
+						write_log("가격정보 : ".$sql_c);
+						$this->connect->query($sql_c);
+					}  
 
                 }
 
