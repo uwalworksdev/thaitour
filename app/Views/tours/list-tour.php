@@ -1,6 +1,14 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+    <style>
+        #delete_all {
+            padding: 8px 12px;
+            background-color: #fff;
+            color: #252525;
+            font-weight: 600;
+        }
+    </style>
     <div class="content-sub-product-hotel">
         <div class="body_inner">
             <div class="sub-hotel-navigation-container">
@@ -76,12 +84,12 @@
                                 <p>총 상품 <span><?= $products["nTotalCount"] ?></span></p>
                             </div>
                             <div class="search_keyword flex__c">
-                                <div class="two-way-arrow-content">
-                                    <a href="#" class="">
-                                        <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">
-                                        <span class="text-primary">추천순</span>
-                                    </a>
-                                </div>
+<!--                                <div class="two-way-arrow-content">-->
+<!--                                    <a href="#" class="">-->
+<!--                                        <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">-->
+<!--                                        <span class="text-primary">추천순</span>-->
+<!--                                    </a>-->
+<!--                                </div>-->
                                 <form name="frm" method="GET" action="/search">
                                     <div class="btn_search flex_b_c">
                                         <input type="text" class="txt" id="top_search" name="search_word" value="<?= $search_word ?>" placeholder="여행을 검색해 주세요.">
