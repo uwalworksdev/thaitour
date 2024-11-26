@@ -305,15 +305,13 @@
 					var message  = "";
 					$.ajax({
 
-						url: "/ajax/ajax.charge_update.php",
+						url: "/ajax/hotel_price_update",
 						type: "POST",
 						data: {
 
-								"charge_idx"        : idx,
-								"s_station"         : $("#s_station_"+idx).val(),
-								"tour_price"        : $("#tour_price_"+idx).val(),
-								"tour_price_kids"   : $("#tour_price_kids_"+idx).val(),
-								"tour_price_senior" : $("#tour_price_senior_"+idx).val() 
+								"idx"           : idx,
+								"goods_price1"  : $("#goods_price1_"+idx).val(),
+								"goods_price2"  : $("#goods_price2_"+idx).val() 
 
 						},
 						dataType: "json",
