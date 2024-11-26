@@ -258,12 +258,13 @@ class AdminHotelController extends BaseController
 
                     if ($row_chk) {
                         // 이미 등록된 옵션이 아니라면...
-                        $item_name = $o_name[$key] ?? '';
-                        $item_price1 = $o_price1[$key] ?? '';
-                        $item_sdate = $o_sdate[$key] ?? '';
-                        $item_edate = $o_edate[$key] ?? '';
-                        $item_room = $o_room[$key] ?? '';
-                        $item_type = $option_type[$key] ?? '';
+                        $item_name    = $o_name[$key] ?? '';
+                        $item_price1  = $o_price1[$key] ?? '';
+                        $item_price2  = $o_price2[$key] ?? '';
+                        $item_sdate   = $o_sdate[$key] ?? '';
+                        $item_edate   = $o_edate[$key] ?? '';
+                        $item_room    = $o_room[$key] ?? '';
+                        $item_type    = $option_type[$key] ?? '';
                         $item_soldout = $o_soldout[$key] ?? '';
 
                         if ($row_chk['cnts'] < 1) {
@@ -271,6 +272,7 @@ class AdminHotelController extends BaseController
                                          goods_code		= '" . $data['product_code'] . "'
                                         ,goods_name		= '" . $item_name . "'
                                         ,goods_price1	= '" . $item_price1 . "'
+                                        ,goods_price2	= '" . $item_price2 . "'
                                         ,o_sdate		= '" . $item_sdate . "'
                                         ,o_edate		= '" . $item_edate . "'
                                         ,o_room			= '" . $item_room . "'
@@ -284,6 +286,7 @@ class AdminHotelController extends BaseController
                             $sql_su = "update tbl_hotel_option SET 
                                          goods_name		= '" . $item_name . "'
                                         ,goods_price1	= '" . $item_price1 . "'
+                                        ,goods_price2	= '" . $item_price2 . "'
                                         ,o_sdate		= '" . $item_sdate . "'
                                         ,o_edate		= '" . $item_edate . "'
                                         ,o_room			= '" . $item_room . "'
@@ -359,18 +362,20 @@ class AdminHotelController extends BaseController
             } else {
                 // 옵션 등록
                 foreach ($o_idx as $key => $val) {
-                    $item_name = $o_name[$key] ?? '';
-                    $item_price1 = $o_price1[$key] ?? '';
-                    $item_sdate = $o_sdate[$key] ?? '';
-                    $item_edate = $o_edate[$key] ?? '';
-                    $item_room = $o_room[$key] ?? '';
-                    $item_type = $option_type[$key] ?? '';
+                    $item_name    = $o_name[$key] ?? '';
+                    $item_price1  = $o_price1[$key] ?? '';
+                    $item_price2  = $o_price2[$key] ?? '';
+                    $item_sdate   = $o_sdate[$key] ?? '';
+                    $item_edate   = $o_edate[$key] ?? '';
+                    $item_room    = $o_room[$key] ?? '';
+                    $item_type    = $option_type[$key] ?? '';
                     $item_soldout = $o_soldout[$key] ?? '';
 
                     $sql_su = "insert into tbl_hotel_option SET
                                      goods_code		= '" . $data['product_code'] . "'
                                     ,goods_name		= '" . $item_name . "'
                                     ,goods_price1	= '" . $item_price1 . "'
+                                    ,goods_price2	= '" . $item_price2 . "'
                                     ,o_sdate		= '" . $item_sdate . "'
                                     ,o_edate		= '" . $item_edate . "'
                                     ,o_room			= '" . $item_room . "'
