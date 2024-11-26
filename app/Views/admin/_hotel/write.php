@@ -823,8 +823,8 @@ $links = "list";
                                                     <tr>
                                                         <th>객실명</th>
                                                         <th>기간</th>
-                                                        <th>정상가격</th>
-                                                        <th>할인가격</th>
+                                                        <th>가격</th>
+                                                        <th>우대가격</th>
                                                         <th>삭제</th>
                                                     </tr>
                                                     </thead>
