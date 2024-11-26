@@ -1046,9 +1046,24 @@ function fn_chgRoom(gidx) {
                 }
             }
         });
-
-
     }
 
+	$(function () {
+		// 시작 날짜
+		$(".s_date").datepicker({
+			dateFormat: "yy-mm-dd",
+			onClose: function (selectedDate) {
+				$(".e_date").datepicker("option", "minDate", selectedDate);
+			}
+		});
+
+		// 종료 날짜
+		$(".e_date").datepicker({
+			dateFormat: "yy-mm-dd",
+			onClose: function (selectedDate) {
+				$(".s_date").datepicker("option", "maxDate", selectedDate);
+			}
+		});
+	});
 
 }
