@@ -175,7 +175,7 @@
 
 									</tbody>
 								</table>
-			</div>
+			        </div>
                     <!-- // listBottom -->
 
                     <script>
@@ -293,56 +293,139 @@
 </div>
 <!-- // container -->
 
-<script>
-    $(document).on('click', '.chargeDelete', function () {
-        $(this).closest("tr").remove();
-    });
+			<script>
+			$(document).ready(function() {
+				// 차량정보 확인버튼 클릭 이벤트
+                $(".chargeUpdate").click(function() {
 
+					if (!confirm("가격정보를 수정 하시겠습니까?"))
+						 return false;
 
-    function addOption() {
-        let startDate = new Date($("#s_date").val());
-        let endDate = new Date($("#e_date").val());
+					var idx      = $(this).val();
+					var message  = "";
+					$.ajax({
 
-        let html = ``;
-        while (startDate <= endDate) {
-            let dateStr = startDate.toISOString().split('T')[0];
+						url: "/ajax/ajax.charge_update.php",
+						type: "POST",
+						data: {
 
-            
-            let issetDate = $('.option_date .date[data-value="' + dateStr + '"]');
+								"charge_idx"        : idx,
+								"s_station"         : $("#s_station_"+idx).val(),
+								"tour_price"        : $("#tour_price_"+idx).val(),
+								"tour_price_kids"   : $("#tour_price_kids_"+idx).val(),
+								"tour_price_senior" : $("#tour_price_senior_"+idx).val() 
 
-            if(issetDate.length <= 0){
-                html += `
-                        <tr class="option_date" style="height:40px">
-                            <td class="date" style="text-align:center" data-value="${dateStr}">
-                                ${dateStr}
-                            </td>
-                            <td style="text-align:center">
-                                <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
-                            </td>
-                            <td style="text-align:center">
-                                <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
-                            </td>
-                            <td style="text-align:center;">
-                                <div class="" style="display: flex; gap: 10px">
-                                    <button style="height: 30px" type="button"
-                                            class="chargeUpdate">수정
-                                    </button>
-                                    <button style="height: 30px" type="button"
-                                            class="chargeDelete">삭제
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                `;
-            }
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							message  = data.message;
+							alert(message);
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
 
-            startDate.setDate(startDate.getDate() + 1);
-        }
+                $(".chargeOpen").click(function() {
 
-        $("#charge").append(html);
+					if (!confirm("가격정보를 오픈 하시겠습니까?"))
+						 return false;
 
-    }
-</script>
+					var idx      = $(this).val();
+					var message  = "";
+					$.ajax({
+
+						url: "/ajax/ajax.open_update.php",
+						type: "POST",
+						data: {
+
+								"charge_idx" : idx 
+
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							message  = data.message;
+							alert(message);
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
+
+                $(".chargeClose").click(function() {
+
+					if (!confirm("가격정보를 마감 하시겠습니까?"))
+						 return false;
+
+					var idx      = $(this).val();
+					var message  = "";
+					$.ajax({
+
+						url: "/ajax/ajax.close_update.php",
+						type: "POST",
+						data: {
+
+								"charge_idx" : idx 
+
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							message  = data.message;
+							alert(message);
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
+			});			
+            </script>
+
+			<script>
+			$(document).ready(function() {
+				// 차량정보 삭제버튼 클릭 이벤트
+                $(".chargeDelete").click(function() {
+
+					if (!confirm("가격정보를 삭제 하시겠습니까?"))
+						 return false;
+
+					var idx      = $(this).val();
+					var message  = "";
+					$.ajax({
+
+						url: "/ajax/ajax_date_charge_delete.php",
+						type: "POST",
+						data: {
+
+								"charge_idx" : idx
+
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							message  = data.message;
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
+			});			
+            </script>
+
 
 <script>
     function go_list() {
