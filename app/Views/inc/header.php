@@ -68,7 +68,7 @@
                 <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container">
-                        <input type="text" class="search-input" id="search_input_pc" placeholder="검색어를 입력해 주세요" autocomplete="off">
+                        <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요" autocomplete="off">
                         <i class="fa fa-search search-icon" id="search_icon_pc"></i>
                         <ul class="search_words_list" id="search_words_list_pc">
                             <?php foreach ($searchTxtRecommend as $item): ?>
@@ -78,15 +78,16 @@
                     </div>
                     <div class="custom_select_rounded">
                         <a class="text_custom_" href="#">상세검색</a>
-                        <select class="select_custom_ active_" name="" id="">
-                            <option value="">호텔</option>
-                            <option value="">투어</option>
-                            <option value="">차량</option>
+                        <select class="select_custom_ active_" name="" id="search_cate_pc__header">
+                            <option value="">전체</option>
+                            <option value="hotel">호텔</option>
+                            <option value="golf">골프</option>
+                            <option value="tour">투어</option>
+                            <option value="spa">스파</option>
+                            <option value="show_ticket">쇼ㆍ입장권</option>
+                            <option value="restaurant">레스토랑</option>
+                            <option value="vehicle">차량ㆍ가이드</option>
                         </select>
-                        <!--                        <select class="select_custom_" name="" id="">-->
-                        <!--                            <option value="">투어</option>-->
-                        <!--                        </select>-->
-                        <!--                        <a class="text_custom_v2_" href="/vehicle-guide/1324">차량</a>-->
                     </div>
                 </div>
             </div>
@@ -442,12 +443,19 @@
     //     }
     // });
 
-    $("#search_input_pc").focus(function () {
+    $("#search_input_pc__header").focus(function () {
         $("#search_words_list_pc").slideDown(200);
     })
 
-    $("#search_input_pc").blur(function () {
+    $("#search_input_pc__header").blur(function () {
         $("#search_words_list_pc").slideUp(200);
+    })
+
+    $("#search_input_pc__header").keyup(function (event) {
+        var search_name = $(this).val();
+        if (event.keyCode == 13) {
+            location.href = "/product_search?search_name=" + search_name;
+        }
     })
 
     $("#search-mobile").click(function () {
@@ -544,7 +552,9 @@
         });
 
         $("#search_icon_pc").click(function () {
-            location.href = "/product_search?search_name=" + $("#search_input_pc").val();
+            var search_name = $("#search_input_pc__header").val();
+            var search_cate = $("#search_cate_pc__header").val();
+            location.href = "/product_search?search_name=" + search_name + "&search_cate=" + search_cate;
         });
 
     });

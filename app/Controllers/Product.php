@@ -67,80 +67,116 @@ class Product extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
+    private function getSubInfo($items) {
+        foreach ($items as $key => $item) {
+            $hotel_codes = explode("|", $item['product_code_list']);
+            $hotel_codes = array_values(array_filter($hotel_codes));
+
+            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+            $items[$key]['codeTree'] = $codeTree;
+
+            $itemReview = $this->reviewModel->getProductReview($item['product_idx']);
+
+            $items[$key]['total_review'] = $itemReview['total_review'];
+            $items[$key]['review_average'] = $itemReview['avg'];
+        }
+
+        return $items;
+    }
+
     public function productSearch() {
         $search_name = $this->request->getVar("search_name");
 
-        $tab = $this->request->getVar("tab") ?: "hotel";
+        $search_cate = $this->request->getVar("search_cate");
+
+        $tab = $this->request->getVar("tab");
 
         $sort = $this->request->getVar("sort") ?: "recommended";
 
         $data['search_name'] = $search_name;
-        $data['tab'] = $tab;
+        $data['tab'] = $tab ?: $search_cate ?: "hotel";
         $data['sort'] = $sort;
+        $data['search_cate'] = $search_cate;
+
+        switch ($sort) {
+            case "recommended":
+                $orderBy = [ 'wish_cnt' => 'DESC' ];
+                break;
+            case "reservation":
+                $orderBy = [ 'order_cnt' => 'DESC' ];
+                break;
+            case "rating":
+                $orderBy = [ 'point' => 'DESC' ];
+                break;
+            case "highest_price":
+                $orderBy = [ 'product_price' => 'DESC' ];
+                break;
+            case "lowest_price":
+                $orderBy = [ 'product_price' => 'ASC' ];
+                break;
+            default:
+                $orderBy = [];
+                break;
+        }
 
 
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
             'search_product_name' => $search_name,
             'product_status' => 'sale'
-        ], 10, 1, []);
+        ], 10, 1, $orderBy);
 
-        foreach ($listHotel['items'] as $key => $product) {
-            $hotel_codes = explode("|", $product['product_code_list']);
-            $hotel_codes = array_values(array_filter($hotel_codes));
-
-            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
-
-            $listHotel['items'][$key]['codeTree'] = $codeTree;
-
-            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
-
-            $listHotel['items'][$key]['total_review'] = $productReview['total_review'];
-            $listHotel['items'][$key]['review_average'] = $productReview['avg'];
-        }
+        $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
         $listGolf = $this->productModel->findProductGolfPaging([
             'is_view' => 'Y',
             'product_code_1' => 1302,
             'search_txt' => $search_name,
             'search_category' => 'product_name'
-        ], 10, 1, []);
+        ], 10, 1, $orderBy);
 
-        foreach ($listGolf['items'] as $key => $product) {
-            $hotel_codes = explode("|", $product['product_code_list']);
-            $hotel_codes = array_values(array_filter($hotel_codes));
-
-            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
-
-            $listGolf['items'][$key]['codeTree'] = $codeTree;
-
-            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
-
-            $listGolf['items'][$key]['total_review'] = $productReview['total_review'];
-            $listGolf['items'][$key]['review_average'] = $productReview['avg'];
-        }
+        $listGolf['items'] = $this->getSubInfo($listGolf['items']);
 
         $listTour = $this->productModel->findProductPaging([
             'product_code_1' => 1301,
             'search_category' => 'product_name',
             'search_txt' => $search_name
-        ], 10, 1, ['onum' => 'DESC']);
+        ], 10, 1, $orderBy);
 
-        foreach ($listTour['items'] as $key => $product) {
+        $listTour['items'] = $this->getSubInfo($listTour['items']);
 
-            $code = $product['product_code_1'];
-            if ($product['product_code_2']) $code = $product['product_code_2'];
-            if ($product['product_code_3']) $code = $product['product_code_3'];
+        $listSpa = $this->productModel->findProductPaging([
+            'product_code_1' => 1325,
+            'search_category' => 'product_name',
+            'search_txt' => $search_name
+        ], 10, 1, $orderBy);
 
-            $codeTree = $this->codeModel->getCodeTree($code);
+        $listSpa['items'] = $this->getSubInfo($listSpa['items']);
 
-            $listTour['items'][$key]['codeTree'] = $codeTree;
+        $listShowTicket = $this->productModel->findProductPaging([
+            'product_code_1' => 1317,
+            'search_category' => 'product_name',
+            'search_txt' => $search_name
+        ], 10, 1, $orderBy);
 
-            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+        $listShowTicket['items'] = $this->getSubInfo($listShowTicket['items']);
 
-            $listTour['items'][$key]['total_review'] = $productReview['total_review'];
-            $listTour['items'][$key]['review_average'] = $productReview['avg'];
-        }
+        $listRestaurant = $this->productModel->findProductPaging([
+            'product_code_1' => 1320,
+            'search_category' => 'product_name',
+            'search_txt' => $search_name
+        ], 10, 1, $orderBy);
+
+        $listRestaurant['items'] = $this->getSubInfo($listRestaurant['items']);
+
+        $listVehicle = $this->productModel->findProductPaging([
+            'product_code_1' => 1324,
+            'search_category' => 'product_name',
+            'search_txt' => $search_name
+        ], 10, 1, $orderBy);
+
+        $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
         $data['list'] = [
             'hotel' => [
@@ -152,8 +188,24 @@ class Product extends BaseController
                 'result' => $listGolf
             ],
             'tour' => [
-                'title' => "토어",
+                'title' => "투어",
                 'result' => $listTour
+            ],
+            'spa' => [
+                'title' => "스파",
+                'result' => $listSpa
+            ],
+            'show_ticket' => [
+                'title' => "쇼ㆍ입장권",
+                'result' => $listShowTicket
+            ],
+            'restaurant' => [
+                'title' => "레스토랑",
+                'result' => $listRestaurant
+            ],
+            'vehicle' => [
+                'title' => "차량ㆍ가이드",
+                'result' => $listVehicle
             ]
         ];
 
@@ -2945,22 +2997,18 @@ class Product extends BaseController
         $search_product_name = $this->request->getVar('keyword') ?? "";
         $product_code_2 = $this->request->getVar('product_code_2') ?? "";
 
-        $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' ORDER BY onum DESC, product_idx DESC";
-        $products = $this->db->query($sql);
-        $products = $products->getResultArray();
+        $products = $this->productModel->findProductPaging([
+            'product_code_1' => $code_no,
+            'is_view' => 'Y',
+        ], 10, 1, ['onum' => 'DESC'])['items'];
 
-        $strSql = '';
-
-        if ($search_product_name && $search_product_name != "") {
-            $strSql = $strSql . " AND product_name LIKE '%$search_product_name%'";
-        }
-        if ($product_code_2 && $product_code_2 != "") {
-            $strSql = $strSql . " AND product_code_2 = " . $product_code_2;
-        }
-
-        $sql = "SELECT * FROM tbl_product_mst WHERE product_code_1 = " . $code_no . " AND is_view='Y' $strSql ORDER BY onum DESC, product_idx DESC";
-        $productResults = $this->db->query($sql);
-        $productResults = $productResults->getResultArray();
+        $productResults = $this->productModel->findProductPaging([
+            'product_code_1' => $code_no,
+            'is_view' => 'Y',
+            'product_code_2' => $product_code_2,
+            'search_category' => "product_name",
+            'search_txt' => $search_product_name
+        ], 1000, 1, ['onum' => 'DESC', 'product_idx' => 'DESC'])['items'];
 
         foreach ($productResults as $key => $product) {
             $hotel_codes = explode("|", $product['product_code_list']);
@@ -2976,18 +3024,15 @@ class Product extends BaseController
             $productResults[$key]['review_average'] = $productReview['avg'];
         }
 
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no= $code_no AND status='Y' ORDER BY onum DESC, code_idx DESC";
-        $codes = $this->db->query($sql);
-        $codes = $codes->getResultArray();
+        $codes = $this->codeModel->getByParentCode($code_no)->getResultArray();
 
         foreach ($codes as $key => $code) {
-            $strSql2 = '';
-            if ($search_product_name && $search_product_name != "") {
-                $strSql2 = $strSql2 . " AND product_name LIKE '%$search_product_name%'";
-            }
-            $sql = "SELECT * FROM tbl_product_mst WHERE product_code_2 = " . $code['code_no'] . " AND is_view='Y' $strSql2 ORDER BY onum DESC, product_idx DESC";
-            $sProducts = $this->db->query($sql);
-            $sProducts = $sProducts->getNumRows();
+            $sProducts = $this->productModel->findProductPaging([
+                'product_code_2' => $code['code_no'],
+                'is_view' => 'Y',
+                'search_category' => "product_name",
+                'search_txt' => $search_product_name
+            ], 1000, 1)['nTotalCount'];
 
             $codes[$key]['count'] = $sProducts;
         }

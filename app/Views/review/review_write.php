@@ -128,11 +128,18 @@
                             <div class="rating">
                                 <input id="ratingValue" type="number" name="number_stars" value='' hidden>
                                 <input id="review_type" type="text" name="review_type" value="" hidden>
-                                <i class='bx bx-star star' style="--i: 0;"></i>
-                                <i class='bx bx-star star' style="--i: 1;"></i>
-                                <i class='bx bx-star star' style="--i: 2;"></i>
-                                <i class='bx bx-star star' style="--i: 3;"></i>
-                                <i class='bx bx-star star' style="--i: 4;"></i>
+                                <?php for ($i = 0; $i < $number_stars; $i++) { ?>
+                                    <i class='bx bx-star bxs-star star active' style="--i: <?= $i + 1; ?>;"></i>
+                                <?php } ?>
+
+                                <?php for ($i = $number_stars + 1; $i <= 5; $i++) { ?>
+                                    <i class='bx bx-star star' style="--i: <?= $i; ?>;"></i>
+                                <?php } ?>
+
+                                <!--                                <i class='bx bx-star star' style="--i: 1;"></i>-->
+                                <!--                                <i class='bx bx-star star' style="--i: 2;"></i>-->
+                                <!--                                <i class='bx bx-star star' style="--i: 3;"></i>-->
+                                <!--                                <i class='bx bx-star star' style="--i: 4;"></i>-->
                             </div>
                         </td>
                     </tr>
@@ -432,7 +439,7 @@
 
             form = form.frm;
 
-            data = new FormData(form);
+            let data = new FormData(form);
 
             data.append("file", files);
 
@@ -441,7 +448,7 @@
             }
 
             $.ajax({
-                url: "/ajax/uploader.php",
+                url: "/ajax/uploader",
                 data: data,
                 cache: false,
                 contentType: false,
@@ -496,7 +503,7 @@
                 return;
             }
             if (userInputCaptcha !== captchaValue) {
-                alert("보안문자 일치지않습니다.");
+                alert("보안문자 일치하지 않습니다.");
                 $("#captcha_input").focus();
                 reloadCaptcha();
                 return false;
@@ -711,7 +718,6 @@
                     }
                 }
             })
-
         })
     </script>
 

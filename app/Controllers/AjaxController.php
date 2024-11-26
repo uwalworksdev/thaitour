@@ -11,9 +11,11 @@ class AjaxController extends BaseController {
 
     public function uploader() {
         $r_reg_m_idx = $this->request->getPost('r_reg_m_idx');
-        $r_code = $this->request->getPost('r_code');
-        $path = "/uploads/data/editor_img/$r_code/";
+        $r_code = $this->request->getPost('r_code') ?? '000';
+        $path = "../public/uploads/data/editor_img/$r_code/";
         $uploadPath = WRITEPATH . $path;
+
+        $pathView = "/uploads/data/editor_img/$r_code/";
 
         if ($this->request->getFile('file')->getSize() > 5242880) {
             $output = [
@@ -41,7 +43,7 @@ class AjaxController extends BaseController {
 
             $ufile = fileCheckImgUpload($r_reg_m_idx, $fileName, $tempPath, $uploadPath, "N");
 
-            $resultMsg = $path . $ufile;
+            $resultMsg = $pathView . $ufile;
         } else {
             $resultMsg = 'Your upload triggered the following error: ' . $file->getErrorString();
         }
