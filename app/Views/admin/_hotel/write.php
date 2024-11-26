@@ -814,7 +814,7 @@ $links = "list";
                                                         </col>
                                                         <col width="10%">
                                                         </col>
-                                                        <col width="30%">
+                                                        <col width="10%">
                                                         </col>
                                                         <col width="10%">
                                                         </col>
@@ -862,12 +862,17 @@ $links = "list";
                                                                        id=''
                                                                        value="<?= $frow3['goods_price1'] ?>"/>
                                                             </td>
-
                                                             <td>
+                                                                <input type='text' class='onlynum' name='o_price2[]'
+                                                                       id=''
+                                                                       value="<?= $frow3['goods_price2'] ?>"/>
+                                                            </td>
+
+                                                            <!--td>
                                                                 <input type='text' class='' name='o_soldout[]' id=''
                                                                        style='width:100%;'
                                                                        value="<?= $frow3['o_soldout'] ?>"/>
-                                                            </td>
+                                                            </td-->
                                                             <td>
                                                                 <button type="button"
                                                                         onclick="delOption('<?= $frow3['idx'] ?>',this)">
