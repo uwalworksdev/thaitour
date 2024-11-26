@@ -894,3 +894,28 @@ function prog_link($code)
     return $link;
 
 }
+
+function getDateRange($startDate, $endDate) {
+    $dateList = []; // 날짜를 저장할 배열
+    $start    = new DateTime($startDate); // 시작 날짜
+    $end      = new DateTime($endDate); // 종료 날짜
+    $end->modify('+1 day'); // 종료일 포함
+
+    $interval   = new DateInterval('P1D'); // 하루 간격
+    $datePeriod = new DatePeriod($start, $interval, $end);
+
+    foreach ($datePeriod as $date) {
+        $dateList[] = $date->format('Y-m-d'); // 원하는 형식으로 저장
+    }
+
+    return $dateList;
+}
+
+function dateToYoil($strdate)
+{
+	$yoil = array("일", "월", "화", "수", "목", "금", "토");
+	$date = $strdate;
+
+	return $yoil[date('w', strtotime($date))];
+
+}
