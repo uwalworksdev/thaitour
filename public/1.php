@@ -10,9 +10,14 @@
 </head>
 <body>
     <label for="start_date">Start Date:</label>
-    <input type="text" id="start_date" class="start_date">
+    <input type="text" name="start_date[]" class="start_date">
     <label for="end_date">End Date:</label>
-    <input type="text" id="end_date" class="end_date">
+    <input type="text" name="end_date[]" class="end_date">
+
+    <label for="start_date">Start Date:</label>
+    <input type="text" name="start_date[]" class="start_date">
+    <label for="end_date">End Date:</label>
+    <input type="text" name="end_date[]" class="end_date">
 
     <script>
         $(function () {
