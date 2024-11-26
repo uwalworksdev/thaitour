@@ -280,8 +280,8 @@ class AdminHotelController extends BaseController
                                         ,option_type	= '" . $item_type . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
-                            $this->connect->query($sql_su);
-							$option_idx = $connect->insert_id;
+                            $result_opt = $this->connect->query($sql_su);
+							$option_idx = $result_opt->insert_id;
 
 							$dateRange = getDateRange($item_sdate, $item_edate);
 
@@ -408,8 +408,8 @@ class AdminHotelController extends BaseController
                                     ,option_type	= '" . $item_type . "'
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
-                    $this->connect->query($sql_su);
-                    $option_idx = $this->connect->insert_id;
+					$result_opt = $this->connect->query($sql_su);
+					$option_idx = $result_opt->insert_id;
 
 					$dateRange = getDateRange($item_sdate, $item_edate);
 
