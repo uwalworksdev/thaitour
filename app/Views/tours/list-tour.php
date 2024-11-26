@@ -47,12 +47,12 @@
                                                 tab_active_
                                             <?php elseif ($search_keyword == $item): ?>
                                                 tab_active_
-                                            <?php endif; ?>" 
+                                            <?php endif; ?>"
                                             data-keyword="all" data-type="keyword">전체
                                         </li>
                                         <?php foreach ($keyWordAll as $key => $item): ?>
                                             <li class="tab_box_element_ tab_box_js p--20 border
-                                                <?= ($search_keyword == $item) ? 'tab_active_' : '' ?>" 
+                                                <?= ($search_keyword == $item) ? 'tab_active_' : '' ?>"
                                                 data-keyword="<?= $item ?>" data-type="keyword">#<?= $item ?>
                                             </li>
                                         <?php endforeach; ?>
@@ -85,15 +85,16 @@
                                 <p>총 상품 <span><?= $products["nTotalCount"] ?></span></p>
                             </div>
                             <div class="search_keyword flex__c">
-<!--                                <div class="two-way-arrow-content">-->
-<!--                                    <a href="#" class="">-->
-<!--                                        <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">-->
-<!--                                        <span class="text-primary">추천순</span>-->
-<!--                                    </a>-->
-<!--                                </div>-->
+                                <!--                                <div class="two-way-arrow-content">-->
+                                <!--                                    <a href="#" class="">-->
+                                <!--                                        <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">-->
+                                <!--                                        <span class="text-primary">추천순</span>-->
+                                <!--                                    </a>-->
+                                <!--                                </div>-->
                                 <form name="frm" method="GET" action="/search">
                                     <div class="btn_search flex_b_c">
-                                        <input type="text" class="txt" id="top_search" name="search_word" value="<?= $search_word ?>" placeholder="여행을 검색해 주세요.">
+                                        <input type="text" class="txt" id="top_search" name="search_word"
+                                               value="<?= $search_word ?>" placeholder="여행을 검색해 주세요.">
                                         <button type="submit" class="search_words" style="cursor:pointer;"></button>
                                     </div>
                                 </form>
@@ -133,15 +134,16 @@
                                     <div class="d_flex align_items_center justify_content_between">
                                         <div class="sub-title tour">
                                             <?php $num = count($product['codeTree']);
-                                                foreach ($product['codeTree'] as $key => $code):
-                                                    ?>
-                                                    <span><?=$code['code_name']?></span>
-                                                    <?php if ($key < $num - 1): ?>
-                                                        <img class="only_web" src="/uploads/icons/arrow_right.png"
-                                                            alt="arrow_right">
-                                                        <img class="only_mo arrow_right_mo" src="/uploads/icons/arrow_right_mo.png"
-                                                            alt="arrow_right_mo">
-                                                    <?php endif; ?>
+                                            foreach ($product['codeTree'] as $key => $code):
+                                                ?>
+                                                <span><?= $code['code_name'] ?></span>
+                                                <?php if ($key < $num - 1): ?>
+                                                <img class="only_web" src="/uploads/icons/arrow_right.png"
+                                                     alt="arrow_right">
+                                                <img class="only_mo arrow_right_mo"
+                                                     src="/uploads/icons/arrow_right_mo.png"
+                                                     alt="arrow_right_mo">
+                                            <?php endif; ?>
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
@@ -149,17 +151,19 @@
                                         <div class="item-info">
                                             <div class="item-info-label text-gray flex_tour">
                                                 <?php
-                                                    $arr_keyword = explode(",", $product['keyword']);
-                                                    $arr_keyword = array_filter($arr_keyword);
+                                                $arr_keyword = explode(",", $product['keyword']);
+                                                $arr_keyword = array_filter($arr_keyword);
                                                 ?>
                                                 <?php foreach ($arr_keyword as $keyword): ?>
-                                                <p>#<?= $keyword?></p>
-                                                <?php endforeach;?>
+                                                    <p>#<?= $keyword ?></p>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
                                         <div class="item-info">
-                                            <div class="item-price-info"><span class="main"><?=number_format($product['product_price'])?></span class="text-gray">원 ~
-                                                <span class="sub text-gray"><?=number_format($product['product_price_baht'])?>바트~</span>
+                                            <div class="item-price-info"><span
+                                                        class="main"><?= number_format($product['product_price']) ?></span class="text-gray">원
+                                                ~
+                                                <span class="sub text-gray"><?= number_format($product['product_price_baht']) ?>바트~</span>
                                             </div>
                                         </div>
                                     </div>
@@ -204,15 +208,18 @@
             }
 
             $("#search_keyword").val(keywords.join(","));
-            
+
             update_tags(keywords);
         }
 
         function update_tags(keywords) {
             $('.list-tag').empty();
-            
-            keywords.forEach(function(keyword) {
+
+            keywords.forEach(function (keyword) {
                 let tabText = (keyword === "all") ? "전체" : keyword;
+                if (!tabText) {
+                    tabText = "전체";
+                }
                 $('.list-tag').append(
                     '<div class="tag-item">' +
                     '<span data-type="keyword">' + tabText + '</span>' +
@@ -224,7 +231,7 @@
 
         $('.tab_box_js').click(function () {
             let group = $(this).closest('.tab_box_area_');
-            
+
             if ($(this).data("keyword") === "all") {
                 group.find('.tab_box_js').not(this).removeClass('tab_active_');
                 $(this).addClass('tab_active_');
@@ -242,12 +249,12 @@
             let text = $(this).closest('.tag-item').find('span').text();
             let keywords = $("#search_keyword").val().split(",");
 
-            keywords = keywords.filter(function(keyword) {
+            keywords = keywords.filter(function (keyword) {
                 return keyword !== text && keyword !== "All";
             });
 
             if (keywords.length === 0) {
-                keywords.push("all"); 
+                keywords.push("all");
             }
 
             $("#search_keyword").val(keywords.join(","));
@@ -272,12 +279,12 @@
             update_search_keyword();
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             let keywords = $("#search_keyword").val().split(",");
-            
+
             update_tags(keywords);
-            
-            keywords.forEach(function(keyword) {
+
+            keywords.forEach(function (keyword) {
                 if (keyword !== "all") {
                     $(".tab_box_js[data-keyword='" + keyword + "']").addClass('tab_active_');
                 } else {
@@ -286,10 +293,10 @@
             });
         });
 
-    function search_it() {
-        let frm = document.frmSearch;
-        frm.submit();
-    }
+        function search_it() {
+            let frm = document.frmSearch;
+            frm.submit();
+        }
 
         // $('.tab_box_mo_js').click(function() {
         //     var $this = $(this); // The clicked tab element
