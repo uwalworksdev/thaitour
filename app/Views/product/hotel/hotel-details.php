@@ -158,10 +158,10 @@
                 <div class="main_visual_content_">
                     <div class="form_search">
                         <div class="form_element_">
-                            <div class="form_input_">
+                            <!--div class="form_input_">
                                 <label for="input_keyword_">여행지</label>
                                 <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
-                            </div>
+                            </div-->
                             <div class="form_input_multi_">
                                 <div class="form_gr_">
                                     <div class="form_input_ form_gr_item_">
@@ -179,13 +179,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form_input_">
+                            <!--div class="form_input_">
                                 <label for="input_hotel">호텔명(미입력 시 전체)</label>
                                 <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
                                        placeholder="호텔명을 입력해주세요.">
-                            </div>
+                            </div-->
                             <button type="button" onclick="search_list();" class="btn_search_">
-                                검색
+                                확인
                             </button>
                         </div>
 
