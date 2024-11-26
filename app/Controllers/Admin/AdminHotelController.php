@@ -285,15 +285,15 @@ class AdminHotelController extends BaseController
 
 							$dateRange = getDateRange($item_sdate, $item_edate);
 
-							$i = -1;
+							$ii = -1;
 							foreach ($dateRange as $date) 
 							{ 
-								$i++;
+								$ii++;
 						 
-								$goods_date = $dateRange[$i];
-								$dow        = dateToYoil($price_date);
+								$goods_date = $dateRange[$ii];
+								$dow        = dateToYoil($goods_date);
 
-								$sql_c = "INSERT INTO tbl_golf_price  SET  
+								$sql_c = "INSERT INTO tbl_hotel_price  SET  
 																	  o_idx        = '". $option_idx ."' 	
 																	 ,goods_code   = '". $data['product_code'] ."' 	
 																	 ,goods_name   = '". $item_name ."'
@@ -413,15 +413,15 @@ class AdminHotelController extends BaseController
 
 					$dateRange = getDateRange($item_sdate, $item_edate);
 
-					$i = -1;
+					$ii = -1;
 					foreach ($dateRange as $date) 
 					{ 
-						$i++;
+						$ii++;
 				 
-						$goods_date = $dateRange[$i];
-						$dow        = dateToYoil($price_date);
+						$goods_date = $dateRange[$ii];
+						$dow        = dateToYoil($goods_date);
 
-						$sql_c = "INSERT INTO tbl_golf_price  SET  
+						$sql_c = "INSERT INTO tbl_hotel_price  SET  
 															  o_idx        = '". $option_idx ."' 	
 															 ,goods_code   = '". $data['product_code'] ."' 	
 															 ,goods_name   = '". $item_name ."'
