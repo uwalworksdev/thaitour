@@ -128,7 +128,7 @@
                                         <tbody id="charge">
                                             <tr style="height:40px">
                                                 <td style="text-align:center">
-                                                    날짜
+                                                    적용일자
                                                 </td>
                                                 <td style="text-align:center">
                                                     가격
