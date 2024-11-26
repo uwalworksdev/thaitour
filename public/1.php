@@ -10,25 +10,25 @@
 </head>
 <body>
     <label for="start_date">Start Date:</label>
-    <input type="text" id="start_date">
+    <input type="text" id="start_date" class="start_date">
     <label for="end_date">End Date:</label>
-    <input type="text" id="end_date">
+    <input type="text" id="end_date" class="end_date">
 
     <script>
         $(function () {
             // 시작 날짜
-            $("#start_date").datepicker({
+            $(".start_date").datepicker({
                 dateFormat: "yy-mm-dd",
                 onClose: function (selectedDate) {
-                    $("#end_date").datepicker("option", "minDate", selectedDate);
+                    $(".end_date").datepicker("option", "minDate", selectedDate);
                 }
             });
 
             // 종료 날짜
-            $("#end_date").datepicker({
+            $(".end_date").datepicker({
                 dateFormat: "yy-mm-dd",
                 onClose: function (selectedDate) {
-                    $("#start_date").datepicker("option", "maxDate", selectedDate);
+                    $(".start_date").datepicker("option", "maxDate", selectedDate);
                 }
             });
         });
