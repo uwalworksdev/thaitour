@@ -742,7 +742,7 @@ $(document).ready(function () {
             addTable += "			<th>객실명</th>";
             addTable += "			<th>기간</th>";
             addTable += "			<th>가격</th>";
-            addTable += "			<th>마감날짜.</th>";
+            addTable += "			<th>우대가격</th>";
             addTable += "			<th>삭제</th>";
             addTable += "		</tr>";
             addTable += "	</thead>";
@@ -772,10 +772,13 @@ $(document).ready(function () {
         addOption += "	</td>																  ";
         addOption += "	<td>																  ";
         addOption += "		<input type='text' class='onlynum' name='o_price1[]'  value='' /> ";
-        addOption += "	</td>																  ";
+        addOption += "	</td>                                                           	  ";
         addOption += "	<td>																  ";
-        addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
-        addOption += "	</td>																  ";
+        addOption += "		<input type='text' class='onlynum' name='o_price2[]'  value='' /> ";
+        addOption += "	</td>  
+        //addOption += "	<td>																  ";
+        //addOption += "		<input type='text' class='onlynum' name='o_soldout[]'  value='' style='width:100%;' /> ";
+        //addOption += "	</td>																  ";
 
         addOption += "	<td>																  ";
         addOption += '		<button type="button" onclick="delOption(\'\',this)" class="btn_02" >삭제</button>	  ';
