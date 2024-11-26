@@ -407,11 +407,11 @@
 					var message  = "";
 					$.ajax({
 
-						url: "/ajax/ajax_date_charge_delete.php",
+						url: "/ajax/hotel_price_delete",
 						type: "POST",
 						data: {
 
-								"charge_idx" : idx
+								"idx" : idx
 
 						},
 						dataType: "json",

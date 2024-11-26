@@ -394,6 +394,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("fnAddIp_sel_delete", "AjaxController::fnAddIp_sel_delete");
     $routes->post("popup_update", "AjaxController::popup_update");
     $routes->post("hotel_price_update", "AjaxController::hotel_price_update");
+    $routes->post("hotel_price_delete", "AjaxController::hotel_price_delete");
 	
 });
 

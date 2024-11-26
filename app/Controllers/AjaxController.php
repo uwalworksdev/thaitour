@@ -298,4 +298,29 @@ class AjaxController extends BaseController {
 					'message' => $msg
 				]);
     }
+	
+	public function hotel_price_delete()   
+    {
+        $db    = \Config\Database::connect();
+
+            $idx          = $_POST['idx'];
+			
+			$sql = "DELETE FROM tbl_hotel_price WHERE idx = '". $idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
+
+			if (isset($result) && $result) {
+				$msg = "가격 삭제완료";
+			} else {
+				$msg = "가격 식제오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+
 }
