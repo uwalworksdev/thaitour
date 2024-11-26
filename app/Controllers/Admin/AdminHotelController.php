@@ -25,17 +25,17 @@ class AdminHotelController extends BaseController
 
     public function list()
     {
-        $g_list_rows = 10;
-        $pg = updateSQ($_GET["pg"] ?? '');
-        $search_txt = updateSQ($_GET["search_txt"] ?? '');
+        $g_list_rows     = 10;
+        $pg              = updateSQ($_GET["pg"] ?? '');
+        $search_txt      = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
-        $orderBy = $_GET["orderBy"] ?? "";
+        $orderBy         = $_GET["orderBy"] ?? "";
 
         $where = [
-            'search_txt' => $search_txt,
+            'search_txt'      => $search_txt,
             'search_category' => $search_category,
-            'orderBy' => $orderBy,
-            'product_code_1' => 1303,
+            'orderBy'         => $orderBy,
+            'product_code_1'  => 1303,
         ];
 
         $orderByArr = [];
