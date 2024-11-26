@@ -275,8 +275,8 @@ class AjaxController extends BaseController {
         $db    = \Config\Database::connect();
 
             $idx          = $_POST['idx'];
-			$goods_price1 = $_POST['goods_price1'];
-			$goods_price2 = $_POST['goods_price2'];
+			$goods_price1 = str_replace(',', '', $_POST['goods_price1']);
+			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
 
 			$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1 ."', goods_price2 = '". $goods_price1 ."' WHERE idx = '". $idx ."'  ";
 			write_log($sql);
