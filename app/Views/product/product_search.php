@@ -149,6 +149,10 @@
         $(this).parent().addClass("active");
         $(".search__result").removeClass("show");
         $(".search__result").eq(idx).addClass("show");
+        const currentUrl = new URL(window.location);
+        var tab = $(this).data("tab");
+        currentUrl.searchParams.set("tab", tab);
+        history.replaceState(null, null, currentUrl.toString());
     });
     function sort_it(sort) {
         var tab = $(".search__tab.active").data("tab");
