@@ -17,7 +17,7 @@ class Contact extends BaseController
     protected $travelContact;
     protected $policy;
     protected $code;
-    private $uploadPath = FCPATH . "data/inquiry/";
+    private $uploadPath = FCPATH . "data/contact/";
 
 
     public function __construct()
@@ -96,6 +96,28 @@ class Contact extends BaseController
             'list_code' => $list_code,
             'privacy' => $privacy,
             'third_paties' => $third_paties
+        ]);
+    }
+
+    public function view() {
+        $idx = $this->request->getVar('idx');
+        $builder = $this->db->table('tbl_travel_contact a')
+                                ->select('a.*, b.code_name')
+                                ->join('tbl_code b', 'a.travel_type_1 = b.code_no', 'left')
+                                ->where('a.idx', $idx);
+        $contact = $builder->get()->getRowArray();
+
+        $travel_type_1 = $this->code->getByCodeNo($contact['travel_type_1']);
+        $travel_type_2 = $this->code->getByCodeNo($contact['travel_type_2']);
+        $travel_type_3 = $this->code->getByCodeNo($contact['travel_type_3']);
+
+        return view("contact/view", [
+            "idx" => $idx,
+            "contact" => $contact,
+            "r_code" => "contact",
+            "travel_type_1" => $travel_type_1,
+            "travel_type_2" => $travel_type_2,
+            "travel_type_3" => $travel_type_3
         ]);
     }
 

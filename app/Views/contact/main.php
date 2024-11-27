@@ -83,7 +83,7 @@
                             if ((session('member.idx') && $row["reg_m_idx"] == session('member.idx')) 
                                     || (session('member.idx') && session('member.id') == 'admin')
                                     || (session('member.idx') && session('member.level') <= 2)) {
-                                echo "<a href='./inquiry_view?idx=$row[idx]'>$row[title]</a> <span class='red'>($row[cmt_cnt])</span>";
+                                echo "<a href='/contact/view?idx=$row[idx]'>$row[title]</a> <span class='red'>($row[cmt_cnt])</span>";
                             } else {
                                 $message = !session('member.idx') ? "로그인을 해주세요!" : "내가쓴글만 열람이 가능합니다.";
                                 echo "<a href='#' onclick='alert(`$message`);'>$row[title]</a><span class='red'>($row[cmt_cnt])</span><i></i>";
