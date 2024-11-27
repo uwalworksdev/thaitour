@@ -112,6 +112,10 @@
             border-radius: 4px;
             word-break: break-word;
         }
+
+        .main_page_01 .main_visual_content_ .form_element_ {
+            justify-content: center;
+        }
     </style>
     <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
         <div class="body_inner">
@@ -163,7 +167,7 @@
                         </div>
 
                         <!-- popup -->
-                        <?= $is_check = 123 ?>
+                        <?php $is_check = 123 ?>
                         <?php echo view("/product/inc/hotel/init_day_popup_.php", ["is_check" => $is_check]); ?>
                     </div>
                 </div>
