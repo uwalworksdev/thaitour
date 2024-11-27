@@ -856,9 +856,9 @@
 			var selectName    = "";
 			$(".item_4503").each(function () {
 				selectedValue = $(this).val();
-				if(selectedValue == "오전") selectName = "오전";
-				if(selectedValue == "오후") selectName = "오후";
-                $("#moption_hour").append('<option value="'+selectedValue+'">'+selectName+'</option>');
+				if(selectedValue == "450301") selectName = "오전";
+				if(selectedValue == "450302") selectName = "오후";
+                $("#moption_hour").append('<option value="'+selectName+'">'+selectName+'</option>');
 			});
 		});
 		</script>
