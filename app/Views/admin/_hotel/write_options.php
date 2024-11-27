@@ -51,7 +51,7 @@
                         </li>
                         <?php if ($o_idx) { ?>
                             <li><a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정..</span></a>
                             </li>
                             <li><a href="#" class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
