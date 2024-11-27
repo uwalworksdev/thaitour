@@ -444,8 +444,8 @@
     }
 
     function renderTimeStart() {
-        let reject_day_ = '2024-11-27||2024-11-28||||2025-02-01||2025-02-16';
-        let allow_day_ = '2024-11-01||2033-01-31';
+        let reject_day_ = '2024-11-20||2024-11-28||||2025-02-01||2025-02-16';
+        let allow_day_  = '2024-11-01||2033-01-31';
 
         let daysHTML = renderTimeData(reject_day_, '', allow_day_, 'start');
         $("#start_day_area_").html(daysHTML);
@@ -453,7 +453,7 @@
 
     function renderDateEnd(sup_reject_day_) {
         let reject_day_ = '2024-12-25||2024-12-29||||2025-01-01||2025-01-11';
-        let allow_day_ = '2024-11-01||2033-01-31';
+        let allow_day_  = '2024-11-01||2033-01-31';
 
         let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
         $("#end_day_area_").html(daysHTML);
@@ -478,7 +478,7 @@
         if (type_ === 'end') {
             m__yy = $("#e_yy");
             m__mm = $("#e_mm");
-            sel_ = $("#sel_e_date");
+            sel_  = $("#sel_e_date");
         }
 
         let s_yy = parseInt(m__yy.text().trim());
