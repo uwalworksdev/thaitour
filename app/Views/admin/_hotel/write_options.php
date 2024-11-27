@@ -446,8 +446,7 @@
                         $("#o_soldout").val(o_soldout.join("||"));
                         $("#chk_idx").val(chk_idx.join(","));
 
- /*
-						let f = document.chargeForm;
+  						let f = document.chargeForm;
 
 						let url = "/ajax/hotel_price_allupdate"
 						let price_data = $(f).serialize();
@@ -466,7 +465,7 @@
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 							}
 						});
- */
+  
 
             }				  
 			</script>
