@@ -203,7 +203,7 @@
                                 nextText: '다음',
                                 yearRange: "c:c+10",
                                 minDate: new Date(),
-                                maxDate: "+99D",
+                                maxDate: "+99Y",
                                 onClose: function (selectedDate) {
                                     $("#e_date").datepicker("option", "minDate", selectedDate);
                                 },
