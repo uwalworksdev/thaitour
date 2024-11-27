@@ -47,7 +47,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+        margin-top: 10px;
     }
 
     .hotel_day_popup_ .header p {
