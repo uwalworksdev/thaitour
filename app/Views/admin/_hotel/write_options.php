@@ -442,7 +442,7 @@
 						});
 
 						console.log(o_soldout); // 체크된 값 출력
- 
+ /*
 						let f = document.chargeForm;
 
 						let url = "/ajax/hotel_price_allupdate"
@@ -462,7 +462,7 @@
 								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 							}
 						});
- 
+ */
 
             }				  
 			</script>
