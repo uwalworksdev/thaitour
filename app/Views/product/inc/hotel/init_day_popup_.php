@@ -27,7 +27,7 @@
     .list_day_popup_list_ {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: start;
     }
 
     .hotel_day_popup_ .day_area_ {
@@ -462,7 +462,7 @@
     }
 
     function renderDateEnd(sup_reject_day_) {
-        let reject_day_ = '2024-12-16||2024-12-18||||2025-01-01||2025-01-11||||2025-02-02||2025-02-12||||2025-03-03||2025-03-13||||2025-04-04||2025-04-15||||2025-06-06||2025-06-11||||2025-09-08||2025-09-11';
+        let reject_day_ = '2024-12-16||2024-12-18||||2025-01-01||2025-01-11||||2025-01-22||2025-01-24||||2025-02-02||2025-02-12||||2025-03-03||2025-03-13||||2025-04-04||2025-04-15||||2025-06-06||2025-06-11||||2025-09-08||2025-09-11';
         let allow_day_ = '2024-11-01||2033-01-31';
 
         let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
