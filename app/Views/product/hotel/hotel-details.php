@@ -116,6 +116,10 @@
         .main_page_01 .main_visual_content_ .form_element_ {
             justify-content: center;
         }
+
+        .hotel_day_popup_ {
+            top: 185px !important;
+        }
     </style>
     <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
         <div class="body_inner">
