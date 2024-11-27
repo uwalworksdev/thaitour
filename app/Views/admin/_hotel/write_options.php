@@ -74,6 +74,7 @@
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
             <input type=text name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
             <input type=text name="o_soldout" value='' id='o_soldout'>
+            <input type=text name="chk_idx"   value='' id='chk_idx'>
 
 			<div id="contents">
                 <div class="listWrap_noline">
@@ -163,7 +164,7 @@
 												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 						                    <td style="text-align:center;">
-						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" value="<?=$item['idx']?>:<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
+						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
 						                    </td> 
 						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
 						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
@@ -434,15 +435,17 @@
 			function send_it(idx)
 			{
 						var o_soldout = [];
+						var chk_idx   = [];
 
 						// 선택된 체크박스의 값을 배열에 추가
 						$(".use_yn:checked").each(function () {
 							o_soldout.push($(this).val());
+							chk_idx.push($(this).data("idx"));
 						});
 
                         $("#o_soldout").val(o_soldout.join("||"));
+                        $("#chk_idx").val(chk_idx.join(","));
 
-						console.log(o_soldout); // 체크된 값 출력
  /*
 						let f = document.chargeForm;
 
