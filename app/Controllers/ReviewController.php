@@ -8,6 +8,7 @@ class ReviewController extends BaseController
 {
     private $ReviewModel;
     private $Bbs;
+    private $db;
 
     public function __construct()
     {

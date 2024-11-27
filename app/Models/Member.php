@@ -15,7 +15,6 @@ class Member extends Model
         $private_key = private_key();
         return $this->select("* , AES_DECRYPT(UNHEX(user_name),     '$private_key') AS user_name
                                 , AES_DECRYPT(UNHEX(user_email),    '$private_key') AS user_email
-                                , AES_DECRYPT(UNHEX(user_email),    '$private_key') AS user_email
                                 , AES_DECRYPT(UNHEX(user_mobile),   '$private_key') AS user_mobile
                                 , AES_DECRYPT(UNHEX(zip),           '$private_key') AS zip
                                 , AES_DECRYPT(UNHEX(addr1),         '$private_key') AS addr1 

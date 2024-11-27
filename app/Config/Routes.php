@@ -389,6 +389,8 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("set_seq", "AjaxMainController::set_seq");
     $routes->post("set_search_txt", "AjaxMainController::set_search_txt");
     $routes->get("get_code", "CodeController::ajaxGet");
+    $routes->get("get_sub_code", "CodeController::get_sub_code");
+    $routes->get("get_list_product", "CodeController::get_list_product");
     $routes->post("fnAddIp_insert", "AjaxController::fnAddIp_insert");
     $routes->post("fnAddIp_delete", "AjaxController::fnAddIp_delete");
     $routes->post("fnAddIp_sel_delete", "AjaxController::fnAddIp_sel_delete");
@@ -501,6 +503,7 @@ $routes->group("community", static function ($routes) {
 $routes->group("contact", static function ($routes) {
     $routes->get("main", "Contact::main");
     $routes->get("write", "Contact::write");
+    $routes->post("write_ok", "Contact::write_ok");
 });
 $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");

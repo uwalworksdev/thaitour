@@ -102,7 +102,7 @@
     
             <div class="paging_wrap">
                 <?php echo ipageListing2($page, $total_page, 10, $currentUri."?page=",$deviceType) ?>
-                <a href="./inquiry_write.php" class="btn btn-lg btn-point contact_btn">문의하기</a>
+                <a href="/contact/write" class="btn btn-lg btn-point contact_btn">문의하기</a>
             </div>
     
             <div class="popup_wrap edit_input_pop">

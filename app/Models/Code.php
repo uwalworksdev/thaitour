@@ -148,6 +148,15 @@ class Code extends Model
             ->findAll();
     }
 
+    public function getCodesByParentCodeAndStatus($parent_code_no, $depth)
+    {
+        return $this->where('parent_code_no', $parent_code_no)
+            ->where('depth', $depth)
+            ->where('status', 'Y')
+            ->orderBy('onum', 'DESC')
+            ->findAll();
+    }
+
     public function getCodesByGubunDepthAndStatusExclude($code_gubun, $depth, $exclude)
     {
         return $this->where('code_gubun', $code_gubun)

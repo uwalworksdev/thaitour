@@ -4,16 +4,31 @@ namespace App\Controllers;
 
 use App\Libraries\SessionChk;
 use Exception;
+use CodeIgniter\I18n\Time;
 
 class Contact extends BaseController
 {
-    private $comment;
-
-    protected $sessionLib;
+    protected $bbs;
+    protected $db;
     protected $sessionChk;
+    protected $sessionLib;
+    protected $member;
+    protected $product;
+    protected $travelContact;
+    protected $policy;
+    protected $code;
+    private $uploadPath = FCPATH . "data/inquiry/";
+
+
     public function __construct()
     {
         $this->bbs = model("Bbs");
+        $this->member = model("Member");
+        $this->product = model("ProductModel");
+        $this->travelContact = model("TravelContactModel");
+        $this->code = model("Code");
+        $this->policy = model("PolicyModel");
+
         helper(['html']);
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
@@ -23,40 +38,28 @@ class Contact extends BaseController
     }
     public function main()
     {
-        $private_key = private_key();
         $deviceType = get_device();
         $currentUri = $this->request->getUri()->getPath();
         $page = $this->request->getVar('page');
         $search_category = $this->request->getVar('search_category');
         $s_txt = $this->request->getVar('s_txt');
-        $strSql = "";
-        if ($s_txt and ($search_category == "user_name")) {
-            $strSql = $strSql . " and replace(CONVERT( AES_DECRYPT( UNHEX( FROM_BASE64(" . $search_category . ") ), '" . $private_key . "') using UTF8),'-','') like '%" . str_replace("-", "", $s_txt) . "%' ";
-        }
-        if ($s_txt and ($search_category == "title" || $search_category == "contents")) {
-            $strSql = $strSql . " and $search_category like '%" . str_replace("-", "", $s_txt) . "%' ";
-        }
+
         $s_code  =  '116';  
-        $sql_s     = "select * from tbl_bbs_list where code = 'banner' and category = '$s_code' ";
-        $visual     = $this->db->query($sql_s)->getRowArray();
+        $visual     = $this->bbs->where("code", "banner")->where("category", $s_code)->first();
+
         $scale = 10;
-    
 
-        $total_sql = " SELECT A.*, COUNT(B.r_idx) AS cmt_cnt
-                        FROM tbl_travel_contact A
-                        LEFT JOIN tbl_bbs_cmt B ON A.idx = B.r_idx AND B.r_code = 'contact' AND B.r_status = 'Y' AND B.r_delYN = 'N'
-                        WHERE 1=1 $strSql 
-                        GROUP BY A.idx
-                        ";
-        $total_cnt = $this->db->query($total_sql)->getNumRows();
+        if ($page == ""){ 
+            $page = 1;
+        }
 
-        $total_page = ceil($total_cnt / $scale);
-        if ($page == "") $page = 1;
-        $start = ($page - 1) * $scale;
+        $contact = $this->travelContact->getContact($s_txt, $search_category, $page, $scale);
 
-        $sql    = $total_sql . " order by A.r_date desc,  A.idx desc limit $start, $scale ";
-        $result = $this->db->query($sql)->getResultArray();
-        $no=$total_cnt - $start;
+        $result = $contact["travel_contact"];
+        $no = $contact["num"];
+        $total_page = $contact["nPage"];
+        $total_cnt = $contact["nTotalCount"];
+
         return view("contact/main", [
             'list_contact' => $result,
             'no' => $no,
@@ -71,73 +74,115 @@ class Contact extends BaseController
         ]);
     }
 
-    // public function write() {
-    //     $private_key = private_key();
+    public function write() {
 
-    //     $sql_m = "SELECT birthday
-    //                 , AES_DECRYPT(UNHEX(user_name),   '$private_key') AS user_name
-    //                 , AES_DECRYPT(UNHEX(user_mobile), '$private_key') AS user_mobile
-    //                 , AES_DECRYPT(UNHEX(user_email),  '$private_key') AS user_email
-    //                 , AES_DECRYPT(UNHEX(zip),         '$private_key') AS zip
-    //                 , AES_DECRYPT(UNHEX(addr1),       '$private_key') AS addr1
-    //                 , AES_DECRYPT(UNHEX(addr2),       '$private_key') AS addr2
-    //       FROM tbl_member 
-    //       WHERE m_Idx = '$member_Id' 
-    //     ";
-    //     $row_m = $this->db->query($sql_m)->getRowArray();
+        $idx = $_GET['idx'];
+        $product_idx = updateSQ($_GET["product_idx"]);
 
-    //     $email  = explode("@", $row_m['user_email']);
-    //     $idx = $_GET['idx'];
-    //     $product_idx = updateSQ($_GET["product_idx"]);
+        $privacy = $this->policy->getByCode("privacy");
+        $third_paties = $this->policy->getByCode("third_paties");
 
-    //     if(isset($idx)) {
+        $row_m = $this->member->getByIdx(session()->get("member")["idx"]);
 
-    //         $sql = "select * from tbl_travel_contact where idx = '$idx'";
-    //         $result = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-    //         $row = mysqli_fetch_array($result);
-    //         $user_email = sqlSecretConver($row["user_email"], 'decode');
-    //         $travel_type_1     	= $row["travel_type_1"];
-    //         $travel_type_2     	= $row["travel_type_2"];
-    //         $travel_type_3     	= $row["travel_type_3"];
-    //         $departure_date		= $row["departure_date"];	
-    //         $arrival_date		= $row["arrival_date"];	
-    //         $status				= $row["status"];	
-    //         $ufile1				= $row["ufile1"];	
-    //         $rfile1				= $row["rfile1"];	
-    //         $r_date				= $row["r_date"];	
-            
-    //         $consultation_time		= $row['consultation_time'];
-    //         $product_name = $row['product_name'];
-    //         $title 	= $row['title'];
-    //         $contents	= $row["contents"];	
-    //     }
+        $list_code = $this->code->getCodesByParentCodeAndStatus(13, 2);
 
-    //     if ($product_idx) {
+        if(isset($idx)) {
+            $row = $this->travelContact->find($idx);
+        }
 
-    //         $sql_r		= " select  a.product_idx,
-    //                                 a.product_name, 
-    //                                 b.code_no as travel_type, 
-    //                                 c.code_no as travel_type_2, 
-    //                                 d.code_no as travel_type_3, 
-    //                                 b.code_name as travel_type_name, 
-    //                                 c.code_name as travel_type_name_2, 
-    //                                 d.code_name as travel_type_name_3
-    //                         from tbl_product_mst a
-    //                         left join tbl_code b on a.product_code_1 = b.code_no
-    //                         left join tbl_code c on a.product_code_2 = c.code_no
-    //                         left join tbl_code d on a.product_code_3 = d.code_no
-    //                         where a.product_idx = '{$product_idx}' 
-    //         ";
+        return view("contact/write", [
+            'row' => $row,
+            'row_m' => $row_m,
+            'list_code' => $list_code,
+            'privacy' => $privacy,
+            'third_paties' => $third_paties
+        ]);
+    }
 
-    //         $result_r			= mysqli_query($connect, $sql_r) or die (mysqli_error($connect));
-    //         $row_r			    = mysqli_fetch_array($result_r);
-    //         $travel_type        = $row_r["travel_type"];
-    //         $travel_type_2      = $row_r["travel_type_2"];
-    //         $travel_type_3      = $row_r["travel_type_3"];
-    //         $travel_type_name   = $row_r['travel_type_name'];
-    //         $travel_type_name_2 = $row_r['travel_type_name_2'];
-    //         $travel_type_name_3 = $row_r['travel_type_name_3'];
-    //         $product_name       = $row_r['product_name'];
-    //     }
-    // }
+    public function write_ok() {
+
+        try {
+
+            $uploadPath = $this->uploadPath;
+
+            $files = $this->request->getFiles();
+
+            $data = $this->request->getPost();
+
+            $idx = $this->request->getPost("idx");
+            $user_name = $this->request->getPost("user_name");
+            $user_phone = $this->request->getPost("user_phone");
+            $mail1 = $this->request->getPost("mail1");
+            $mail2 = $this->request->getPost("mail2");
+
+            $user_email = $mail1 . "@" . $mail2;
+            $user_email = sqlSecretConver($user_email, "encode");
+            $user_name = sqlSecretConver($user_name, "encode");
+            $user_phone = sqlSecretConver($user_phone, "encode");
+            $data["user_name"] = $user_name;
+            $data["user_phone"] = $user_phone;
+            $data["user_email"] = $user_email;
+
+            for ($i = 1; $i <= 1; $i++) {
+                if ($this->request->getPost("del$i") == "Y") {
+                    $data["ufile$i"] = "";
+                    $data["rfile$i"] = "";
+
+                } elseif ($files["ufile$i"]) {
+                    $file = $files["ufile$i"];
+
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $fileName = $file->getClientName();
+                        $data["rfile$i"] = $fileName;
+
+                        if (no_file_ext($fileName) == "Y") {
+                            $microtime = microtime(true);
+                            $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
+                            $date = date('YmdHis');
+                            $ext = explode(".", strtolower($fileName));
+                            $newName = $date . $timestamp . '.' . $ext[1];
+                            $data["ufile$i"] = $newName; 
+                            $file->move($uploadPath, $newName);
+                        }
+                    }
+                }
+            }
+
+            if($idx){
+                $data["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+                $result = $this->travelContact->updateData($idx, $data);
+
+                if($result){
+                    return $this->response->setJSON([
+                        'result' => true,
+                        'status' => 'update',
+                        'message' => "업데이트되었습니다."
+                    ], 200);
+                }
+            }else{
+                $data["reg_m_idx"] = session()->get("member")["idx"];
+                $data["status"] = "W";
+                $data["user_ip"] = $this->request->getIPAddress();
+                $data["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+                $insertId = $this->travelContact->insertData($data);
+
+                if($insertId){
+                    return $this->response->setJSON([
+                        'result' => true,
+                        'status' => 'insert',
+                        'message' => "성공적으로 추가되었습니다"
+                    ], 200);
+                }
+            }
+
+        }catch(\Exception $e){
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
+        
+
+    }
 }

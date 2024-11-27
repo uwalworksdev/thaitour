@@ -19,22 +19,21 @@ class TravelContactModel extends Model
 
         $builder = $this->db->table('tbl_travel_contact as A')
                             ->select('A.*, COUNT(B.r_idx) AS cmt_cnt')
-                            ->join('tbl_bbs_cmt B', "A.idx = B.r_idx", 'left')
-                            ->where('B.r_code =', 'contact')
-                            ->where('B.r_status =', 'Y')
-                            ->where('B.r_delYN !=', 'N');
+                            ->join('tbl_bbs_cmt B', "A.idx = B.r_idx AND B.r_code = 'contact' AND B.r_status = 'Y' AND B.r_delYN = 'N'", 'left');
 
         if ($where) {
             $builder->where($where);
         }
 
-        if ($s_txt) {
+        if (!empty($s_txt)) {
             if ($search_category === 'user_name') {
                 $builder->where("REPLACE(CONVERT(AES_DECRYPT(UNHEX(FROM_BASE64($search_category)), '$private_key') USING UTF8), '-', '') LIKE", '%' . str_replace("-", "", $s_txt) . '%');
             } elseif (in_array($search_category, ['title', 'contents'])) {
                 $builder->like($search_category, str_replace("-", "", $s_txt));
             }
         }
+
+        $builder->groupBy('A.idx');
 
         $nTotalCount = $builder->countAllResults(false);
 
@@ -44,16 +43,47 @@ class TravelContactModel extends Model
         }
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $builder->orderBy('A.r_date desc', 'desc')
-            ->orderBy('A.idx desc', 'desc')
+        $builder->orderBy('A.r_date', 'desc')
+            ->orderBy('A.idx', 'desc')
             ->limit($g_list_rows, $nFrom);
 
-        $order_list = $builder->get()->getResultArray();
+        $travel_contact = $builder->get()->getResultArray();
 
         $num = $nTotalCount - $nFrom;
 
         return [
-            'order_list' => $order_list,
+            'travel_contact' => $travel_contact,
+            'nTotalCount' => $nTotalCount,
+            'pg' => $pg,
+            'nPage' => $nPage,
+            'g_list_rows' => $g_list_rows,
+            'num' => $num,
+        ];
+    }
+
+    function getContactAndCode($m_idx, $pg = 1, $g_list_rows = 10) {
+        $builder = $this->db->table('tbl_travel_contact t')
+                            ->select('t.idx, c.code_name, c.code_no, t.product_name, t.title, t.status, t.r_date')
+                            ->join('tbl_code c', 't.travel_type_1 = c.code_no', 'left')
+                            ->where('t.reg_m_idx', $_SESSION['member']['mIdx']);
+
+        $nTotalCount = $builder->countAllResults(false);
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") {
+            $pg = 1;
+        }
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $builder->orderBy('t.r_date', 'desc')
+                ->limit($g_list_rows, $nFrom);
+
+        $travel_contact = $builder->get()->getResultArray();
+
+        $num = $nTotalCount - $nFrom;
+
+        return [
+            'travel_contact' => $travel_contact,
             'nTotalCount' => $nTotalCount,
             'pg' => $pg,
             'nPage' => $nPage,
@@ -68,13 +98,33 @@ class TravelContactModel extends Model
         return $this->delete($idx);
     }
 
-    public function updateContact($id, $data)
+    public function insertData($data)
     {
-        return $this->update($id, $data);
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields, $data) {
+                return in_array($key, $allowedFields) && is_string($data[$key]);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->insert($filteredData);
     }
 
-    public function insertContact($data)
+    public function updateData($id, $data)
     {
-        return $this->insert($data);
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields, $data) {
+                return in_array($key, $allowedFields) && is_string($data[$key]);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->update($id, $filteredData);
     }
 }

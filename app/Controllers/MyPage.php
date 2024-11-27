@@ -90,7 +90,17 @@ class MyPage extends BaseController
 
     public function contact()
     {
-        return view('mypage/contact');
+        $page = $this->request->getVar('page');
+
+        $contact = $this->travel_contact->getContactAndCode(session()->get("member")["idx"], $page, 10);
+
+        return view('mypage/contact', [
+            "fresult" => $contact["travel_contact"],
+            "nTotalCount" => $contact["nTotalCount"],
+            "page" => $page,
+            "nPage" => $contact["nPage"],
+            "g_list_rows" => $contact["g_list_rows"]
+        ]);
     }
 
     public function contactDel()
