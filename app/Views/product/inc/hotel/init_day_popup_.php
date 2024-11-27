@@ -1,8 +1,4 @@
 <style>
-    .main_page_01 .main_visual_content_ .form_element_ {
-        gap: 5px;
-    }
-
     .hotel_day_popup_ {
         display: none;
         position: absolute;
@@ -448,7 +444,7 @@
     }
 
     function renderTimeStart() {
-        let reject_day_ = '2024-11-20||2024-11-28||||2025-02-01||2025-02-16';
+        let reject_day_ = '2024-11-27||2024-11-28||||2025-02-01||2025-02-16';
         let allow_day_  = '2024-11-01||2033-01-31';
 
         let daysHTML = renderTimeData(reject_day_, '', allow_day_, 'start');
