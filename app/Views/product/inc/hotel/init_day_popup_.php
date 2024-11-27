@@ -67,6 +67,7 @@
         display: flex;
         justify-content: space-between;
         padding: 14px 0;
+        margin-right: 12px;
     }
 
     .hotel_day_popup_ .canl_tabel .heading p {
@@ -81,7 +82,7 @@
 
     .hotel_day_popup_ .canl_tabel .body .day {
         position: relative;
-        width: 50px;
+        width: 52px;
         height: 50px;
         border-top: 1px solid #aaa;
         border-right: 1px solid #aaa;
@@ -180,11 +181,10 @@
     .hotel_day_popup_ .canl_tabel .body .day span.price {
         color: black;
         margin-top: 20px;
-
     }
 
     .sel_date.active_ {
-        background-color: #FFCB08;
+        background-color: #FFCB08 !important;
     }
 
     .hotel_day_popup_ .allow-text {
@@ -376,6 +376,8 @@
         }
 
         $('#countDay').text(validDaysCount);
+
+
     }
 
     renderTimeStart();
@@ -444,7 +446,7 @@
     }
 
     function renderTimeStart() {
-        let reject_day_ = '2024-11-27||2024-11-28||||2025-02-01||2025-02-16';
+        let reject_day_ = '2025-01-01||2025-01-11';
         let allow_day_ = '2024-11-01||2033-01-31';
 
         let daysHTML = renderTimeData(reject_day_, '', allow_day_, 'start');
@@ -452,7 +454,7 @@
     }
 
     function renderDateEnd(sup_reject_day_) {
-        let reject_day_ = '2024-12-25||2024-12-29||||2025-01-01||2025-01-11';
+        let reject_day_ = '2025-01-01||2025-01-11';
         let allow_day_ = '2024-11-01||2033-01-31';
 
         let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
@@ -516,7 +518,7 @@
             let isDeadline = "";
             let checkDate = `${s_yy}-${String(s_mm).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 
-            if (checkDate < currDate) {
+            if (checkDate <= currDate) {
                 <?php if (isset($is_check) && $is_check) { ?>
                 priceLabel = '<span class="label sold-out-text">마감</span>';
                 <?php } ?>
