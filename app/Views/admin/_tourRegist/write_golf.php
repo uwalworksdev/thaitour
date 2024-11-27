@@ -741,9 +741,11 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;
                                         <select name="moption_hour" id="moption_hour">
+										    <!--
                                             <?php foreach(GOLF_HOURS as $hour) : ?>
                                                 <option value="<?=$hour?>"><?=$hour?>시</option>
                                             <?php endforeach; ?>
+											-->
                                         </select>&nbsp;
                                         <!--select name="moption_minute" id="moption_minute">
                                             <?php foreach(GOLF_MIN as $minute) : ?>
