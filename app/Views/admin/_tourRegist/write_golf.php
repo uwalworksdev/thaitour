@@ -682,7 +682,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="4">
-                                        제품정보
+                                        제품정보...
                                     </td>
                                 </tr>
                                 <?php foreach ($filters as $key => $filter) { ?>
