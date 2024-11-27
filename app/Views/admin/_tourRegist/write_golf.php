@@ -850,8 +850,11 @@
 		$('select[name="filter_4503"]').change(function () {
 
 			var selectedValue = "";
+			var selectName    = "";
 			$(".item_4503").each(function () {
 				selectedValue = $(this).val();
+				if(selectedValue == "450301") selectName = "오전";
+				if(selectedValue == "450302") selectName = "오후";
                 $("#moption_hour").append('<option value="'+selectedValue+'">'+selectName+'</option>');
 			});
 		});
