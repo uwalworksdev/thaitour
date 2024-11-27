@@ -210,7 +210,7 @@
                                                class="input_txt">
                                     </td>
                                     <td class="tac">
-                                        <?
+                                        <?php
                                         for ($i = 1; $i <= floor($row["stay_level"]); $i++) {
                                             echo '★';
                                         }
