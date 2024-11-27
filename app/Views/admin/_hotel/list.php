@@ -313,7 +313,7 @@
                                         <?= $row["room_cnt"] ?>
                                     </td>
                                     <td>
-                                        <?= $row["reg_date"] ?>
+                                        <?= substr($row["r_date"],0,10) ?>
                                     </td>
                                     <td>
                                         <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
