@@ -104,8 +104,8 @@
                                         </div>
 
 										<div style="text-align:left;">
-											<input type="text" name="s_date" id="in_s_date" value="" style="text-align: center;background: white; width: 120px;" readonly> ~
-											<input type="text" name="e_date" id="in_e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
+											<input type="text" name="s_date" id="s_date" value="" style="text-align: center;background: white; width: 120px;" readonly> ~
+											<input type="text" name="e_date" id="e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
@@ -186,8 +186,8 @@
 
 					<script>
 						$("#inqCharge").one("click", function () {
-							$("#s_date").val($("#in_s_date").val());
-							$("#e_date").val($("#in_e_date").val());
+							$("#in_s_date").val($("#s_date").val());
+							$("#in_e_date").val($("#e_date").val());
 							$("#priceForm").submit();
 						});
 					</script>
@@ -490,8 +490,8 @@
         <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_hotel/write_options">
             <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
             <input type="hidden" name="o_idx"       value="<?= $o_idx ?>" >
-			<input type="hidden" name="s_date"      value="" id="s_date" >
-			<input type="hidden" name="e_date"      value="" id="e_date" >
+			<input type="hidden" name="s_date"      value="" id="in_s_date" >
+			<input type="hidden" name="e_date"      value="" id="in_e_date" >
         </form>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
