@@ -745,11 +745,11 @@
                                                 <option value="<?=$hour?>"><?=$hour?>시</option>
                                             <?php endforeach; ?>
                                         </select>&nbsp;
-                                        <select name="moption_minute" id="moption_minute">
+                                        <!--select name="moption_minute" id="moption_minute">
                                             <?php foreach(GOLF_MIN as $minute) : ?>
                                                 <option value="<?=$minute?>"><?=$minute?>분</option>
                                             <?php endforeach; ?>
-                                        </select>&nbsp;
+                                        </select>&nbsp;-->
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
                                     </div>
                                 </td>
