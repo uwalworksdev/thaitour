@@ -849,6 +849,7 @@
 		// name 속성을 가진 select 요소에 change 이벤트 등록
 		$('select[name="filter_4503"]').change(function () {
 			const selectedValue = $(this).val();
+			alert(selectedValue);
 			$("#output").text("선택된 값: " + selectedValue);
 		});
 		</script>
