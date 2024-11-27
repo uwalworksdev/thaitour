@@ -119,9 +119,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
                 //통신 에러 발생시 처리
                 alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             },
-            complete: function (request, status, error) {
-                //				$("#ajax_loader").addClass("display-none");
-            },
             success: function (res, status, request) {
                 let response = res.message;
                 if (response == "OK") {

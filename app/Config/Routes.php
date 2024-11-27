@@ -469,6 +469,7 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("info_option", "MyPage::info_option");
     $routes->get("info_change", "MyPage::info_change");
     $routes->get("user_mange", "MyPage::user_mange");
+    $routes->post("user_mange_ok", "MyPage::user_mange_ok");
     $routes->get("money", "MyPage::money");
     $routes->get("(:segment)/invoice_view_item", "MyPage::invoice_view_item/$1");
     $routes->post("money_ok", "MyPage::money_ok");

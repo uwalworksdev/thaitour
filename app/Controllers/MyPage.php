@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Libraries\SessionChk;
 use Config\CustomConstants as ConfigCustomConstants;
+use CodeIgniter\I18n\Time;
+
 
 class MyPage extends BaseController
 {
@@ -19,6 +21,8 @@ class MyPage extends BaseController
     private $orderOptionModel;
     private $orderTours;
     private $optionTours;
+    private $memberBank;
+    private $code;
 
     public function __construct()
     {
@@ -29,6 +33,8 @@ class MyPage extends BaseController
         $this->travel_qna = model('TravelQnaModel');
         $this->orderTours = model("OrderTourModel");
         $this->optionTours = model("OptionTourModel");
+        $this->memberBank = model("MemberBank");
+        $this->code = model("Code");
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->ordersModel = new \App\Models\OrdersModel();
@@ -186,7 +192,45 @@ class MyPage extends BaseController
 
     public function user_mange()
     {
-        return view('mypage/user_mange');
+        $m_idx = session()->get("member")["idx"];
+        $row_bank = $this->memberBank->where("m_idx", $m_idx)->first();
+        $bank_list = $this->code->getCodesByGubunDepthAndStatus("bank", 2);
+        return view('mypage/user_mange',[
+            "row_bank" => $row_bank,
+            "bank_list" => $bank_list
+        ]);
+    }
+
+    public function user_mange_ok()
+    {
+        $data = $this->request->getPost();
+        $mb_idx = $this->request->getPost("mb_idx");
+        $data["ip_address"] = $this->request->getIPAddress();
+        $data["m_idx"] = session()->get("member")["idx"];
+        
+        if(!empty($mb_idx)) {
+            $data["m_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+            $result = $this->memberBank->updateData($mb_idx, $data);
+
+            if($result) {
+                $message = "수정되었습니다.";
+                return "<script>
+                            alert('$message');
+                            location.href='/mypage/user_mange';
+                        </script>";
+            }
+        }else {
+            $data["r_date"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
+
+            $isertId = $this->memberBank->insertData($data);
+            if($isertId) {
+                $message = "등록되었습니다.";
+                return "<script>
+                            alert('$message');
+                            location.href='/mypage/user_mange';
+                        </script>";
+            }
+        }
     }
 
     public function money()
@@ -202,12 +246,10 @@ class MyPage extends BaseController
             $m_idx = updateSQ($_SESSION["member"]["mIdx"]);
             $user_pw = updateSQ($_POST["user_pw"]);
             $user_mobile = updateSQ($_POST["mobile1"]) . "-" . updateSQ($_POST["mobile2"]) . "-" . updateSQ($_POST["mobile3"]);
-            // $out_code				= updateSQ($_POST["reason"]);
             $out_etc = updateSQ($_POST["out_etc"]);
             $out_reason = updateSQ($_POST["out_reason"]);
 
             $total_sql = " select * from tbl_member where m_idx = '" . $m_idx . "' ";
-            // echo $total_sql;
             $result = $this->db->query($total_sql);
             $row = $result->getRowArray();
             $user_name = $row["user_name"];
@@ -392,7 +434,7 @@ class MyPage extends BaseController
         $user_id = updateSQ($_POST["user_id"]);
         $user_pw = updateSQ($_POST["user_pw"]);
 
-        $total_sql = " select *, SHA1(MD5('" . $user_pw . "')) as user_pw2 from tbl_member where user_id = '" . $user_id . "' ";
+        $total_sql = " select * from tbl_member where user_id = '" . $user_id . "' ";
         $row = $this->db->query($total_sql)->getRowArray();
 
         if ($_SESSION["member"]["mIdx"] == "") {
@@ -400,7 +442,7 @@ class MyPage extends BaseController
         }
         if ($row["user_id"] == "") {
             return "NOUSER";
-        } else if ($row["user_pw2"] != $row["user_pw"]) {
+        } else if (!password_verify($user_pw, $row["user_pw"])) {
             return "NOPASS";
         }
 
@@ -436,14 +478,12 @@ class MyPage extends BaseController
             exit();
         }
 
-
         if ($user_pw != "") {
             $sql = " update tbl_member set 
-                    user_pw			= SHA1(MD5('" . $user_pw . "'))
+                    user_pw			= '" . password_hash($user_pw, PASSWORD_BCRYPT) . "'
                     where m_idx  = '" . $_SESSION["member"]["mIdx"] . "'
                 ";
             $this->db->query($sql);
-            // write_log("본인패스워드수정:".$sql);
         }
         $sql = " update tbl_member set 
                     birthday	   = '" . $birthday . "' 
