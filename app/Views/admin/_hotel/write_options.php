@@ -50,7 +50,7 @@
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
                         <?php if ($o_idx) { ?>
-                            <li><a href="javascript:send_it()" class="btn btn-default"><span
+                            <li><a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
                             <li><a href="#" class="btn btn-default"><span
@@ -429,12 +429,18 @@
 			});			
             </script>
 
+            <script>
+			function send_it(idx)
+			{
+                     alert(idx);
+            }				  
+			</script>
 
-<script>
-    function go_list() {
-        window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
-    }
-</script>
+			<script>
+				function go_list() {
+					window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
+				}
+			</script>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
