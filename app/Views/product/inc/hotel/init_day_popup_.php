@@ -126,6 +126,10 @@
         right: 15px;
     }
 
+    .hotel_day_popup_ .day.sel_date {
+        background-color: rgb(242, 246, 253);
+    }
+
     .hotel_day_popup_ .day.deadline {
         cursor: unset !important;
         background-color: rgb(237, 237, 237);
@@ -137,7 +141,7 @@
     }
 
     .hotel_day_popup_ .day.current-day {
-        background-color: rgb(242, 246, 253);
+        background-color: rgba(195, 216, 250, 0.75);
     }
 
     .hotel_day_popup_ .week .day:hover {
