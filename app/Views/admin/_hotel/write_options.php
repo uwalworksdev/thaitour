@@ -70,7 +70,7 @@
         </header>
         <!-- // headerContainer -->
 
-        <form name="chargeForm" id="chargeForm" method="post" action="/AdmMaster/_hotel/write_options">
+        <form name="chargeForm" id="chargeForm" method="get" action="/AdmMaster/_hotel/write_options">
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
             <input type=hidden name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
             <input type=hidden name="o_soldout" value='' id='o_soldout'>
