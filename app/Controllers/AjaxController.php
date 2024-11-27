@@ -327,10 +327,18 @@ class AjaxController extends BaseController {
     {
             $db    = \Config\Database::connect();
 
+            $o_idx        = $_POST['o_idx'];
             $idx          = $_POST['idx'];
 			$goods_date   = $_POST['goods_date'];
 			$goods_price1 = str_replace(',', '', $_POST['goods_price1']);
 			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
+
+            $o_soldout    = $_POST['o_soldout'];
+            $chk_idx      = explode(",", $_POST['chk_idx']);
+
+			$sql = "UPDATE tbl_hotel_option SET o_soldout = '". $o_soldout ."' WHERE idx = '". $o_idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
 
             for($i=0;$i<count($idx);$i++)
 		    {
