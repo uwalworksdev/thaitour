@@ -214,6 +214,41 @@
         font-size: 12px;
         border-radius: 5px;
     }
+
+    .hotel_day_popup_ .hotel_day_popup_content_ .list_btn_ {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        gap: 20px;
+    }
+
+    .hotel_day_popup_ .hotel_day_popup_content_ .list_btn_ .btn_cancel_ {
+        font-size: 16px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        border-radius: 5px;
+        text-align: center;
+        line-height: unset !important;
+        padding: 8px 12px;
+        background-color: #fff;
+        color: #252525;
+        font-weight: bold;
+        border: 1px solid #ccc;
+    }
+
+    .hotel_day_popup_ .hotel_day_popup_content_ .list_btn_ .btn_apply {
+        font-size: 16px;
+        letter-spacing: -1px;
+        text-transform: uppercase;
+        border-radius: 5px;
+        text-align: center;
+        line-height: unset !important;
+        padding: 8px 12px;
+        color: #fff;
+        background-color: #17469E;
+        font-weight: 400;
+    }
 </style>
 
 <div class="hotel_day_popup_">
@@ -282,6 +317,10 @@
                 </div>
             </div>
         </div>
+        <div class="list_btn_">
+            <button class="btn_cancel_" onclick="closePopup();" type="button">취소</button>
+            <button class="btn_apply" onclick="processDate();" type="button">적용</button>
+        </div>
     </div>
 </div>
 
@@ -292,146 +331,131 @@
         });
     })
 
-    renderTimeStart();
-    renderDateEnd();
+    function closePopup() {
+        $('.hotel_day_popup_').removeClass('show');
+    }
 
-    function fn_click_start_be() {
-        let s_yy = parseInt($("#s_yy").text().trim());
-        let s_mm = parseInt($("#s_mm").text().trim());
+    function processDate() {
+        $('.hotel_day_popup_').removeClass('show');
 
-        let s_yy2 = s_yy;
-        let s_mm2 = s_mm;
+        let input_day_start_ = $('#input_day_start_').val();
+        let input_day_end_ = $('#input_day_end_').val();
 
-        if (s_mm === 1) {
-            s_mm = 12;
-            s_yy = s_yy - 1;
-        } else {
-            s_mm = s_mm - 1;
+        let reject_day_ = '2024-12-25||2024-12-29||||2025-01-01||2025-01-11';
+
+        let array_day = reject_day_.split('||||').filter(function (el) {
+            return el != null && el != '';
+        });
+
+        let rejectDates = [];
+        array_day.forEach(item => {
+            let [start_, end_] = item.split('||');
+            let start_date = new Date(start_);
+            let end_date = new Date(end_);
+
+            // Generate all dates in the range
+            for (let d = new Date(start_date); d <= end_date; d.setDate(d.getDate() + 1)) {
+                rejectDates.push(d.toISOString().split('T')[0]); // Add as YYYY-MM-DD
+            }
+        });
+
+        let start = new Date(input_day_start_);
+        let end = new Date(input_day_end_);
+
+        let validDaysCount = 0;
+
+        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+            let currentDate = d.toISOString().split('T')[0];
+            if (!rejectDates.includes(currentDate)) {
+                validDaysCount++;
+            }
         }
 
-        s_mm = s_mm < 10 ? "0" + s_mm : s_mm;
+        $('#countDay').text(validDaysCount);
+    }
 
-        $("#s_yy").text(s_yy);
-        $("#s_mm").text(s_mm);
+    renderTimeStart();
+    renderDateEnd('');
 
-        if (parseInt($("#s_yy").text().trim()) !== s_yy) {
-            $("#s_yy").text(s_yy2);
-            $("#s_mm").text(s_mm2);
+    function updateDate(type, direction) {
+        const yearElement = $(`#${type}_yy`);
+        const monthElement = $(`#${type}_mm`);
+        let year = parseInt(yearElement.text().trim());
+        let month = parseInt(monthElement.text().trim());
+
+        const originalYear = year;
+        const originalMonth = month;
+
+        if (direction === "prev") {
+            if (month === 1) {
+                month = 12;
+                year -= 1;
+            } else {
+                month -= 1;
+            }
+        } else if (direction === "next") {
+            if (month === 12) {
+                month = 1;
+                year += 1;
+            } else {
+                month += 1;
+            }
+        }
+
+        month = month < 10 ? "0" + month : month;
+
+        yearElement.text(year);
+        monthElement.text(month);
+
+        if (parseInt(yearElement.text().trim()) !== year) {
+            yearElement.text(originalYear);
+            monthElement.text(originalMonth);
             return false;
         }
 
-        $("#select_date").text('');
-        $("#sel_date").val('');
-        renderTimeStart();
+        $(`#select_${type}_date`).text('');
+        $(`#sel_${type}_date`).val('');
+
+        if (type === "s") {
+            renderTimeStart();
+        } else if (type === "e") {
+            renderDateEnd('');
+        }
+    }
+
+    function fn_click_start_be() {
+        updateDate("s", "prev");
     }
 
     function fn_click_end_be() {
-        let s_yy = parseInt($("#s_yy").text().trim());
-        let s_mm = parseInt($("#s_mm").text().trim());
-
-        let s_yy2 = s_yy;
-        let s_mm2 = s_mm;
-
-        if (s_mm === 12) {
-            s_mm = 1;
-            s_yy = s_yy + 1;
-        } else {
-            s_mm = s_mm + 1;
-        }
-
-        s_mm = s_mm < 10 ? "0" + s_mm : s_mm;
-
-        $("#s_yy").text(s_yy);
-        $("#s_mm").text(s_mm);
-
-        if (parseInt($("#s_yy").text().trim()) !== s_yy) {
-            $("#s_yy").text(s_yy2);
-            $("#s_mm").text(s_mm2);
-            return false;
-        }
-
-        $("#select_date").text('');
-        $("#sel_date").val('');
-        renderTimeStart();
-    }
-
-    function fn_click_end_fe() {
-        let e_yy = parseInt($("#e_yy").text().trim());
-        let e_mm = parseInt($("#e_mm").text().trim());
-
-        let e_yy2 = e_yy;
-        let e_mm2 = e_mm;
-
-        if (e_mm === 12) {
-            e_mm = 1;
-            e_yy = e_yy + 1;
-        } else {
-            e_mm = e_mm + 1;
-        }
-
-        e_mm = e_mm < 10 ? "0" + e_mm : e_mm;
-
-        $("#e_yy").text(e_yy);
-        $("#e_mm").text(e_mm);
-
-        if (parseInt($("#e_yy").text().trim()) !== e_yy) {
-            $("#e_yy").text(e_yy2);
-            $("#e_mm").text(e_mm2);
-            return false;
-        }
-
-        $("#select_e_date").text('');
-        $("#sel_e_date").val('');
-        renderDateEnd();
+        updateDate("s", "next");
     }
 
     function fn_click_start_fe() {
-        let e_yy = parseInt($("#e_yy").text().trim());
-        let e_mm = parseInt($("#e_mm").text().trim());
+        updateDate("e", "prev");
+    }
 
-        let e_yy2 = e_yy;
-        let e_mm2 = e_mm;
-
-        if (e_mm === 1) {
-            e_mm = 12;
-            e_yy = e_yy - 1;
-        } else {
-            e_mm = e_mm - 1;
-        }
-
-        e_mm = e_mm < 10 ? "0" + e_mm : e_mm;
-
-        $("#e_yy").text(e_yy);
-        $("#e_mm").text(e_mm);
-
-        if (parseInt($("#e_yy").text().trim()) !== e_yy) {
-            $("#e_yy").text(e_yy2);
-            $("#e_mm").text(e_mm2);
-            return false;
-        }
-
-        $("#select_e_date").text('');
-        $("#sel_e_date").val('');
-        renderDateEnd();
+    function fn_click_end_fe() {
+        updateDate("e", "next");
     }
 
     function renderTimeStart() {
         let reject_day_ = '2024-11-27||2024-11-28||||2025-02-01||2025-02-16';
         let allow_day_ = '2024-11-01||2033-01-31';
 
-        let daysHTML = renderTimeData(reject_day_, allow_day_, 'start');
+        let daysHTML = renderTimeData(reject_day_, '', allow_day_, 'start');
         $("#start_day_area_").html(daysHTML);
     }
 
-    function renderDateEnd() {
+    function renderDateEnd(sup_reject_day_) {
         let reject_day_ = '2024-12-25||2024-12-29||||2025-01-01||2025-01-11';
         let allow_day_ = '2024-11-01||2033-01-31';
 
-        let daysHTML = renderTimeData(reject_day_, allow_day_, 'end');
+        let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
         $("#end_day_area_").html(daysHTML);
     }
 
-    function renderTimeData(reject_day_, allow_day_, type_) {
+    function renderTimeData(reject_day_, sup_reject_day_, allow_day_, type_) {
         let array_day = reject_day_.split('||||');
 
         array_day = array_day.filter(function (el) {
@@ -475,6 +499,11 @@
             daysHTML += "<p class='day'><span>&nbsp;</span></p>";
         }
 
+        let input_day_start_ = $('#input_day_start_').val();
+        if (input_day_start_ && input_day_start_ != '') {
+            [currentYear, currentMonth, currentDay] = input_day_start_.split('-');
+        }
+
         let currDate = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(currentDay).padStart(2, '0')}`;
 
         for (let day = 1; day <= lastDayOfMonth; day++) {
@@ -514,6 +543,16 @@
                     priceLabel = '<span class="label sold-out-text">마감</span>';
                     isDeadline = " deadline";
                 }
+                <?php } else {?>
+                if (!is_valid) {
+                    if (is_check) {
+                        isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
+                    } else {
+                        isDeadline = " deadline";
+                    }
+                } else {
+                    isDeadline = " deadline";
+                }
                 <?php } ?>
             }
 
@@ -525,7 +564,7 @@
             } else if (isDeadline) {
                 daysHTML += `<p class='day deadline sel_date' data-date='${selDate}' style='cursor: none;'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
             } else {
-                daysHTML += `<p class='day${isToday} allowDate sel_date' data-day="${day}" data-date='${selDate}'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
+                daysHTML += `<p class='day${isToday} allowDate sel_date' data-type='${type_}' data-day="${day}" data-date='${selDate}'><span class='date_number sel_date' data-date='${selDate}'>${day}</span><br><span class='label sel_date' data-date='${selDate}'>${priceLabel}</span></p>`;
             }
 
             if ((startDay + day) % 7 === 0) {
@@ -546,8 +585,17 @@
     }
 
     $(document).on('click', '.allowDate', function () {
-        $('.sel_date').removeClass('active_');
+        $(this).closest('.canl_tabel').find('.sel_date').removeClass('active_');
         $(this).addClass('active_');
         let day_ = $(this).data('date');
+        let type_ = $(this).data('type');
+
+        if (type_ === 'start') {
+            $('#input_day_start_').val(day_);
+            renderDateEnd(day_);
+            $('#input_day_end_').val('');
+        } else {
+            $('#input_day_end_').val(day_);
+        }
     });
 </script>
