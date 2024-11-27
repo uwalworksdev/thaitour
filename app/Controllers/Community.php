@@ -21,6 +21,10 @@ class Community extends BaseController
     protected $sessionLib;
     protected $sessionChk;
 
+    private $OrdersModel;
+
+    private $OrdersSub;
+
     public function __construct()
     {
         $this->bbs = model("Bbs");
@@ -32,6 +36,8 @@ class Community extends BaseController
         $this->sessionChk = $this->sessionLib->infoChk();
         helper('my_helper');
         helper('comment_helper');
+        $this->OrdersModel = model("OrdersModel");
+        $this->OrdersSub = model("OrderSubModel");
 
         $this->currentTime = Time::now('Asia/Seoul')->toDateTimeString();
 
@@ -58,20 +64,38 @@ class Community extends BaseController
                                             from tbl_order_mst s1 where s1.is_modify='N' and s1.isDelete != 'Y' and s1.order_gubun='tour' and s1.order_status != 'D'";
         $total_order = $this->db->query($total_sql)->getNumRows();
         $sql = $total_sql . " order by s1.order_r_date desc, s1.order_idx desc limit 0, 5 ";
-        $order_list = $this->db->query($sql)->getResultArray();
+        // $order_list = $this->db->query($sql)->getResultArray();
+
+        // foreach ($order_list as $key => $row) {
+        //     $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') order_user_name";
+        //     $row_d = $this->db->query($sql_d)->getRowArray();
+        //     $row['order_user_name'] = $row_d['order_user_name'];
+
+        //     $sql_p = "SELECT s2.code_name from tbl_product_mst s1 inner join tbl_code s2 on s1.product_code_1 = s2.code_no where s1.product_idx = '{$row['product_idx']}' ";
+        //     $row_p = $this->db->query($sql_p)->getRowArray();
+        //     $row['code_name'] = $row_p['code_name'];
+
+        //     $sql_c = "SELECT count(r_idx) as cmt_cnt from tbl_bbs_cmt where r_idx = '{$row['order_idx']}' and r_code = 'order' ";
+        //     $row_c = $this->db->query($sql_c)->getRowArray();
+        //     $row['cmt_cnt'] = $row_c['cmt_cnt'];
+        //     $order_list[$key] = $row;
+        // }
+        $pg = $this->request->getVar('pg');
+        $s_txt = $this->request->getVar('s_txt');
+        $search_category = $this->request->getVar('search_category');
+        $ordersObj = $this->OrdersModel->getOrders($s_txt, $search_category, $pg, 5);
+
+        $order_list = $ordersObj['order_list'];
+        $nTotalCount = $ordersObj['nTotalCount'];
+        $nPage = $ordersObj['nPage'];
+        $num = $ordersObj['num'];
+        $pg = $ordersObj['pg'];
 
         foreach ($order_list as $key => $row) {
             $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),   '$private_key') order_user_name";
             $row_d = $this->db->query($sql_d)->getRowArray();
             $row['order_user_name'] = $row_d['order_user_name'];
-
-            $sql_p = "SELECT s2.code_name from tbl_product_mst s1 inner join tbl_code s2 on s1.product_code_1 = s2.code_no where s1.product_idx = '{$row['product_idx']}' ";
-            $row_p = $this->db->query($sql_p)->getRowArray();
-            $row['code_name'] = $row_p['code_name'];
-
-            $sql_c = "SELECT count(r_idx) as cmt_cnt from tbl_bbs_cmt where r_idx = '{$row['order_idx']}' and r_code = 'order' ";
-            $row_c = $this->db->query($sql_c)->getRowArray();
-            $row['cmt_cnt'] = $row_c['cmt_cnt'];
+            $row['cnt'] = count($this->OrdersSub->getOrderSub($row['order_idx']));
             $order_list[$key] = $row;
         }
 
@@ -81,7 +105,11 @@ class Community extends BaseController
             'event_list' => $event_list,
             'winner_list' => $winner_list,
             'total_order' => $total_order,
-            'order_list' => $order_list
+            'order_list' => $order_list,
+            "num" => $num,
+            "nTotalCount" => $nTotalCount,
+            "nPage" => $nPage,
+            "pg" => $pg,
         ]);
 
     }
