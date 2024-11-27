@@ -452,8 +452,8 @@
     }
 
     function renderDateEnd(sup_reject_day_) {
-        let reject_day_ = '2024-12-25||2024-12-29||||2025-01-01||2025-01-11';
-        let allow_day_  = '2024-11-01||2033-01-31';
+        let reject_day_ = '';
+        let allow_day_  = '';
 
         let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
         $("#end_day_area_").html(daysHTML);
