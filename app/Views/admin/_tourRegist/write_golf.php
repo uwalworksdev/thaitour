@@ -781,7 +781,7 @@
                                             <?php foreach ($options as $m) { ?>
                                                 <tr id="option_<?= $m['idx'] ?>">
                                                     <td>
-                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
+                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분...</span>
                                                     </td>
                                                     <td>
                                                         <div class="flex_c_c">
