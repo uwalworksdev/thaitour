@@ -1,26 +1,41 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-
     <style>
         .main_page_01 .main_visual_content_ {
             z-index: 5;
         }
 
-        .daterangepicker {
-            width: 800px !important;
-            top: 512px !important;
-            left: 605px !important;
-            right: auto;
+        .form_gr_ {
+            width: 500px;
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
         }
 
-        .daterangepicker .drp-calendar {
-            width: 50%;
-            max-width: unset !important;
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
+            max-width: unset;
+            max-height: 75px;
+            overflow: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
+            border: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
+            left: unset;
+            right: 20px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
+            text-align: end;
         }
 
         @media screen and (max-width: 850px) {
-
             .sub_tour_section5_item {
                 width: calc((100% - 2rem) / 2);
             }
@@ -94,57 +109,6 @@
             border-radius: 4px;
             word-break: break-word;
         }
-
-        .price-tag {
-            color: #999999;
-        }
-
-        .drp-calendar td.has-price {
-            position: relative;
-            padding-bottom: 20px;
-        }
-
-        .drp-calendar td.has-price::after {
-            content: attr(data-price);
-            display: block;
-            font-size: 12px;
-            color: #007bff;
-            margin-top: 5px;
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            right: 0;
-            text-align: center;
-        }
-
-        .form_gr_ {
-            width: 500px;
-            gap: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #dbdbdb;
-            border-radius: 6px;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
-            max-width: unset;
-            max-height: 75px;
-            overflow: hidden;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
-            border: hidden;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
-            left: unset;
-            right: 20px;
-        }
-
-        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
-            text-align: end;
-        }
     </style>
     <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
@@ -198,6 +162,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <?php echo view("/product/inc/hotel/init_day_popup_.php"); ?>
                 </div>
             </div>
         </section>
@@ -210,7 +176,7 @@
                 })
             })
 
-            $('#input_day_start_, #input_day_end_').daterangepicker({
+            /* $('#input_day_start_, #input_day_end_').daterangepicker({
                 autoUpdateInput: false,
                 opens: "center",
                 locale: {
@@ -231,12 +197,12 @@
                 $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
                 $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
                 calcDistanceDay();
-                // renderPriceData(picker);
+                renderPriceData(picker);
             }).on('show.daterangepicker', function (ev, picker) {
-                // renderPriceData(picker);
+                renderPriceData(picker);
             }).on('showCalendar.daterangepicker', function (ev, picker) {
-                // renderPriceData(picker);
-            });
+                renderPriceData(picker);
+            }); */
 
             function renderPriceData(picker) {
                 $('.drp-calendar td.available').each(function () {
