@@ -195,6 +195,17 @@ class ProductModel extends Model
             ->getResultArray();
     }
 
+    public function getAllProductsBySubCode($code)
+    {
+        return $this->where('product_code_3', $code)
+                    ->orLike('product_code_list', $code)
+                    ->where('product_status !=', "D")
+                    ->orderBy('onum', 'desc')
+                    ->orderBy('product_idx', 'desc')
+                    ->get()
+                    ->getResultArray();
+    }
+
     public function getTotalProducts($suggest_code)
     {
         return $this->db->table('tbl_product_mst a')

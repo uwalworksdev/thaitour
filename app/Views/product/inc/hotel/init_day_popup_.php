@@ -1,4 +1,8 @@
 <style>
+    .main_page_01 .main_visual_content_ .form_element_ {
+        gap: 5px;
+    }
+
     .hotel_day_popup_ {
         display: none;
         position: absolute;

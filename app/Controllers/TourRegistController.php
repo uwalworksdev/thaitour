@@ -321,6 +321,7 @@ class TourRegistController extends BaseController
         }
         if ($product_idx) {
             $data['m_date'] = date("Y-m-d H:i:s");
+            $data['product_code'] = 'T' . str_pad($product_idx, 5, "0", STR_PAD_LEFT);
             $this->productModel->updateData($product_idx, $data);
 
             if (!$this->golfInfoModel->getGolfInfo($product_idx)) {

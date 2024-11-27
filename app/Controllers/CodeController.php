@@ -7,13 +7,17 @@ use Config\CustomConstants as ConfigCustomConstants;
 class CodeController extends BaseController
 {
     private $CodeModel;
+    private $productModel;
     private $Bbs;
+
+    private $db;
     private $ProductAirModel;
 
     public function __construct()
     {
         $this->db = db_connect();
         $this->CodeModel = model("Code");
+        $this->productModel = model("ProductModel");
         $this->ProductAirModel = model("ProductAirModel");
         $this->Bbs = model("Bbs");
         helper('my_helper');
@@ -227,5 +231,28 @@ class CodeController extends BaseController
         $parent_code_no = $this->request->getVar('parent_code_no');
         $results = $this->CodeModel->getByParentAndDepth($parent_code_no, $depth)->getResultArray();
         return $this->response->setJSON($results);
+    }
+
+    public function get_sub_code() {
+        $depth = $this->request->getVar('depth');
+        $parent_code_no = $this->request->getVar('code');
+        $results = $this->CodeModel->getByParentAndDepth($parent_code_no, $depth)->getResultArray();
+        $cnt = count($results);
+        $data = [
+            "results" => $results,
+            "cnt" => $cnt
+        ];
+        return $this->response->setJSON($data);
+    }
+
+    public function get_list_product() {
+        $code_no = $this->request->getVar('product_code');
+        $results = $this->productModel->getAllProductsBySubCode($code_no);
+        $cnt = count($results);
+        $data = [
+            "results" => $results,
+            "cnt" => $cnt
+        ];
+        return $this->response->setJSON($data);
     }
 }
