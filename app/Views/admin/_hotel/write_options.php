@@ -103,12 +103,10 @@
                                             <?= $o_sdate ?> ~ <?= $o_edate ?>
                                         </div>
 
-										<div style="text-align:left;magrin-left:40px;">
-											시작일: <input type="text" name="s_date" value="" id="s_date"
-													   style="text-align: center;background: white; width: 120px;" readonly>
-										</div>
-										<div style="text-align:left;text-wrap: nowrap; margin-left: 30px;">
-											종료일: <input type="text" name="e_date" value="" id="e_date"
+										<div style="text-align:left;">
+											<input type="text" name="s_date" value="" id="s_date"
+													   style="text-align: center;background: white; width: 120px;" readonly> ~
+											<input type="text" name="e_date" value="" id="e_date"
 													   style="text-align: center; background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
