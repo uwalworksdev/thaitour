@@ -129,7 +129,7 @@ class Product extends BaseController
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
             'search_category' => 'product_name',
-            'search_txt' => $search_name
+            'search_txt' => $search_name,
             'product_status' => 'sale'
         ], 10, 1, $orderBy);
 
