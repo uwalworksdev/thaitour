@@ -103,8 +103,8 @@
                 $_url .= "&response_type=" . $response_type;
                 $_url .= "&state=OK";
                 // 네이버 로그인 접근토큰 요청 예제
-                $client_id = "nEJfS5h48JVMBwecw1NJ";
-                $redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/include/naver.php");
+                $client_id = getenv('NAVER_CLIENT_ID');
+                $redirectURI = urlencode("https://" . $_SERVER["HTTP_HOST"] . "/member/login_naver");
                 $state = md5(microtime() . mt_rand()) . "log";
                 $_SESSION['naver_state'] = $state;
                 $apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" . $client_id . "&redirect_uri=" . $redirectURI . "&state=" . $state;

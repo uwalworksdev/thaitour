@@ -8,14 +8,16 @@ use Exception;
 class Qna extends BaseController
 {
     private $qna;
+    protected $product;
     private $code;
-
+    private $db;
     protected $sessionLib;
     protected $sessionChk;
     public function __construct()
     {
         $this->code = model("Code");
         $this->qna = model("Qna");
+        $this->product = model("ProductModel");
         helper(['html']);
         $this->db = db_connect();
         $this->sessionLib = new SessionChk();
@@ -122,19 +124,24 @@ class Qna extends BaseController
         $user_name = $row_m['user_name'];
 
         $idx = updateSQ($_GET["idx"]);
-        $sql = "select * from tbl_travel_qna where idx = '$idx'";
-        $qna_item = $this->db->query($sql)->getRowArray();
-        $travel_type_1 = $qna_item["travel_type_1"];
-        $travel_type_2 = $qna_item["travel_type_2"];
-
-        $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no = 13 AND depth = '2' order by onum";
-        $result0 = $this->db->query($sql0)->getResultArray();
-
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$travel_type_1' AND depth = '3' ";
-        $result1 = $this->db->query($sql)->getResultArray();
-
-        $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$travel_type_2' AND depth = '4' ";
-        $result2 = $this->db->query($sql)->getResultArray();
+        if(!empty($idx)){
+            $sql = "select * from tbl_travel_qna where idx = '$idx'";
+            $qna_item = $this->db->query($sql)->getRowArray();
+            $travel_type_1 = $qna_item["travel_type_1"];
+            $travel_type_2 = $qna_item["travel_type_2"];
+            $travel_type_3 = $qna_item["travel_type_3"];
+    
+            $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no = 13 AND depth = '2' order by onum";
+            $result0 = $this->db->query($sql0)->getResultArray();
+    
+            $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$travel_type_1' AND depth = '3' ";
+            $result1 = $this->db->query($sql)->getResultArray();
+    
+            $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$travel_type_2' AND depth = '4' ";
+            $result2 = $this->db->query($sql)->getResultArray();
+    
+            $products = $this->product->getAllProductsBySubCode($travel_type_3);
+        }
 
         $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'privacy'";
         $privacy = $this->db->query($sql)->getRowArray();
@@ -147,6 +154,7 @@ class Qna extends BaseController
             'result0' => $result0,
             'result1' => $result1,
             'result2' => $result2,
+            'products' => $products,
             'user_name' => $user_name,
             'privacy' => $privacy,
             'third_paties' => $third_paties
@@ -210,5 +218,38 @@ class Qna extends BaseController
         }
 
         return "OK";
+    }
+
+    public function delete() {
+
+        try {
+            $idx = $this->request->getPost("idx");
+            if(!empty($idx)){
+                $result = $this->qna->deleteQna($idx);
+
+                if($result) {
+                    return $this->response->setJSON([
+                        'result' => true,
+                        'message' => "정상적으로 삭제되었습니다."
+                    ], 200);
+                }else{
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => "오류가 발생하였습니다!!"
+                    ], 400);
+                }
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "오류가 발생하였습니다!!"
+                ], 400);
+            }
+
+        }catch(\Exception $e){
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 }

@@ -153,7 +153,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
                             <label for="agree10"></label>
                         </div> -->
                     <button type="button" onclick="delete_selected()">선택삭제</button>
-                    <a href="/travel/travel_write.php" class="btn btn-lg btn-point contact_btn"
+                    <a href="/qna/write" class="btn btn-lg btn-point contact_btn"
                        style="position: relative">문의하기</a>
                 </div>
                 <?php echo ipageListing2($page, $total_page, 10, $_SERVER['PHP_SELF'] . "?scategory=$scategory&page=") ?>

@@ -77,7 +77,6 @@ class Contact extends BaseController
     public function write() {
 
         $idx = $_GET['idx'];
-        $product_idx = updateSQ($_GET["product_idx"]);
 
         $privacy = $this->policy->getByCode("privacy");
         $third_paties = $this->policy->getByCode("third_paties");
@@ -88,14 +87,22 @@ class Contact extends BaseController
 
         if(isset($idx)) {
             $row = $this->travelContact->find($idx);
+
+            $code_child_1 = $this->code->getByParentCode($row["travel_type_1"])->getResultArray();
+            $code_child_2 = $this->code->getByParentCode($row["travel_type_2"])->getResultArray();
+            $products = $this->product->getAllProductsBySubCode($row["travel_type_3"]);
         }
 
         return view("contact/write", [
+            'idx' => $idx,
             'row' => $row,
             'row_m' => $row_m,
             'list_code' => $list_code,
             'privacy' => $privacy,
-            'third_paties' => $third_paties
+            'third_paties' => $third_paties,
+            'code_child_1' => $code_child_1 ?? [],
+            'code_child_2' => $code_child_2 ?? [],
+            'products' => $products ?? [],
         ]);
     }
 
@@ -204,7 +211,39 @@ class Contact extends BaseController
                 'message' => $e->getMessage()
             ], 400);
         }
-        
+    
+    }
 
+    public function delete() {
+
+        try {
+            $idx = $this->request->getPost("idx");
+            if(!empty($idx)){
+                $result = $this->travelContact->deleteTravelContact($idx);
+
+                if($result) {
+                    return $this->response->setJSON([
+                        'result' => true,
+                        'message' => "정상적으로 삭제되었습니다."
+                    ], 200);
+                }else{
+                    return $this->response->setJSON([
+                        'result' => false,
+                        'message' => "오류가 발생하였습니다!!"
+                    ], 400);
+                }
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "오류가 발생하였습니다!!"
+                ], 400);
+            }
+
+        }catch(\Exception $e){
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ], 400);
+        }
     }
 }
