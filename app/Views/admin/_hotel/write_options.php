@@ -72,9 +72,9 @@
 
         <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
-            <input type=text name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
-            <input type=text name="o_soldout" value='' id='o_soldout'>
-            <input type=text name="chk_idx"   value='' id='chk_idx'>
+            <input type=hidden name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
+            <input type=hidden name="o_soldout" value='' id='o_soldout'>
+            <input type=hidden name="chk_idx"   value='' id='chk_idx'>
 
 			<div id="contents">
                 <div class="listWrap_noline">
@@ -103,9 +103,17 @@
                                             <?= $o_sdate ?> ~ <?= $o_edate ?>
                                         </div>
 
-                                        <!--div style="margin:10px">
+                                            <div style="text-align:left;">
+                                                시작일: <input type="text" name="s_date" value="<?= $o_sdate ?>" id="s_date"
+                                                           style="text-align: center;background: white; width: 120px;" readonly>
+                                            </div>
+                                            <div style="text-align:left;text-wrap: nowrap; margin-left: 30px;">
+                                                종료일: <input type="text" name="e_date" value="<?= $o_edate ?>" id="e_date"
+                                                           style="text-align: center; background: white; width: 120px;" readonly>
+                                            </div>
+                                        <div style="margin:10px">
                                             <a href="javascript:addOption();" id="addcharge" class="btn btn-primary">조회</a>
-                                        </div-->
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

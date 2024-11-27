@@ -427,6 +427,8 @@ $routes->group("tools", static function ($routes) {
 });
 $routes->group("member", static function ($routes) {
     $routes->get("login", "Member::LoginForm");
+    $routes->get("login_naver", "SocialLoginController::naverLogin");
+    $routes->get("callback_login_naver", "SocialLoginController::naverCallback");
     $routes->post("login_check", "Member::LoginCheck");
     $routes->get("login_find_id", "Member::LoginFindId");
     $routes->get("login_find_pw", "Member::LoginFindPw");
