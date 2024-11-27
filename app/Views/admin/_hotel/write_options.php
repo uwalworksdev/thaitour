@@ -163,7 +163,7 @@
 												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 						                    <td style="text-align:center;">
-						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
+						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" value="<?=$item['idx']?>:<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
 						                    </td> 
 						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
 						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
@@ -433,8 +433,6 @@
             <script>
 			function send_it(idx)
 			{
-                     alert(idx);
-
 						var o_soldout = [];
 
 						// 선택된 체크박스의 값을 배열에 추가
