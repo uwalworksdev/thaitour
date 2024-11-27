@@ -250,7 +250,7 @@
                                 , prevText: '이전'
                                 , nextText: '다음'
                                 , minDate: new Date() 
-                                , maxDate: '<?=$o_edate?>'
+                                , maxDate: "+99Y"
                             });
                         });
                         
