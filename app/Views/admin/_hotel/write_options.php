@@ -103,7 +103,7 @@
                                             <?= $o_sdate ?> ~ <?= $o_edate ?>
                                         </div>
 
-										<div style="text-align:left;">
+										<div style="text-align:left;magrin-left:40px;">
 											시작일: <input type="text" name="s_date" value="" id="s_date"
 													   style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
