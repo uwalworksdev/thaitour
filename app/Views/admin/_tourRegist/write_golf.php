@@ -852,7 +852,7 @@
             const selectName    = $(this).attr("name"); // select의 name 속성 값 가져오기
             const selectedValue = $(this).val();    // 선택된 값 가져오기
 			alert(selectName+' - '+selectedValue);
-			$("#output").text("선택된 값: " + selectedValue);
+            $("#moption_hour").append('<option value="'+selectedValue+'">'+selectName+'</option>');
 		});
 		</script>
 
