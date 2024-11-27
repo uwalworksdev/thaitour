@@ -850,7 +850,7 @@
 		$('select[name="filter_4503"]').change(function () {
 
 			$(".item_4503").each(function () {
-				alert$(this).val());
+				alert($(this).val());
 			});
             //$("#moption_hour").append('<option value="'+selectedValue+'">'+selectName+'</option>');
 		});
