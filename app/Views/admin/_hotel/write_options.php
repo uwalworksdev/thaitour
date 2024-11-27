@@ -70,7 +70,7 @@
         </header>
         <!-- // headerContainer -->
 
-        <form name="chargeForm" id="chargeForm" method="get" action="/AdmMaster/_hotel/write_options">
+        <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
             <input type=hidden name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
             <input type=hidden name="o_soldout" value='' id='o_soldout'>
@@ -104,10 +104,8 @@
                                         </div>
 
 										<div style="text-align:left;">
-											<input type="text" name="s_date" value="" id="s_date"
-													   style="text-align: center;background: white; width: 120px;" readonly> ~
-											<input type="text" name="e_date" value="" id="e_date"
-													   style="text-align: center; background: white; width: 120px;" readonly>
+											<input type="text" name="s_date" id="in_s_date" value="" style="text-align: center;background: white; width: 120px;" readonly> ~
+											<input type="text" name="e_date" id="in_e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
@@ -188,7 +186,9 @@
 
 					<script>
 						$("#inqCharge").one("click", function () {
-							$("#chargeForm").submit();
+							$("#s_date").val($("#in_s_date").val());
+							$("#e_date").val($("#in_e_date").val());
+							$("#priceForm").submit();
 						});
 					</script>
 
@@ -486,6 +486,13 @@
 					window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
 				}
 			</script>
+
+        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_hotel/write_options">
+            <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
+            <input type="hidden" name="o_idx"       value="<?= $o_idx ?>" >
+			<input type="hidden" name="s_date"      value="" id="s_date" >
+			<input type="hidden" name="e_date"      value="" id="e_date" >
+        </form>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 
