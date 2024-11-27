@@ -442,7 +442,7 @@
 							o_soldout.push($(this).val());
 						});
 
-                        $("#o_soldout").val("체크된 값: " + o_soldout.join(", "));
+                        $("#o_soldout").val(o_soldout.join(", "));
 
 						console.log(o_soldout); // 체크된 값 출력
  /*
