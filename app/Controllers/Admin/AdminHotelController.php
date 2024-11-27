@@ -142,7 +142,11 @@ class AdminHotelController extends BaseController
         $o_sdate      = $option["o_sdate"];
         $o_edate      = $option["o_edate"];
 
-        $fsql     = "select * from tbl_hotel_price where o_idx = '". $o_idx ."' order by goods_date asc";
+        if($o_sdate && $o_edate) {
+			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' AND goods_date BETWEEN '$o_sdate' AND '$o_edate' order by goods_date asc";
+        } else {
+			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' order by goods_date asc";
+        }
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
