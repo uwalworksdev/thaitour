@@ -33,6 +33,7 @@ class Code extends Model
         return $this->select('*')
             ->where('parent_code_no', $parent_code_no)
             ->where('depth', $depth)
+            ->where('status', 'Y')
             ->orderBy('onum', 'DESC')
             ->get();
     }
