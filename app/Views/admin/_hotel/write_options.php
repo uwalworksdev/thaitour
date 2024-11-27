@@ -72,9 +72,9 @@
 
         <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
-            <input type=text name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
-            <input type=text name="o_soldout" value='' id='o_soldout'>
-            <input type=text name="chk_idx"   value='' id='chk_idx'>
+            <input type=hidden name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
+            <input type=hidden name="o_soldout" value='' id='o_soldout'>
+            <input type=hidden name="chk_idx"   value='' id='chk_idx'>
 
 			<div id="contents">
                 <div class="listWrap_noline">
