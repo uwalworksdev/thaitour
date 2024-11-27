@@ -330,11 +330,11 @@ class AjaxController extends BaseController {
             $idx          = $_POST['idx'];
 			$goods_date   = $_POST['goods_date'];
 			$goods_price1 = $_POST['goods_price1'];
-			$goods_price1 = $_POST['goods_price1'];
+			$goods_price2 = $_POST['goods_price2'];
 
             for($i=0;$i<count($idx);$i++)
 		    {
-					$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1 ."', goods_price2 = '". $goods_price1 ."' WHERE idx = '". $idx[$i] ."'  ";
+					$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1[$i] ."', goods_price2 = '". $goods_price2[$i] ."' WHERE idx = '". $idx[$i] ."'  ";
 					write_log($sql);
 					$result = $db->query($sql);
             }
