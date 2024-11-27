@@ -254,11 +254,11 @@
                     $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
                     $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
                     calcDistanceDay();
-                    renderPriceData(picker);
+                    // renderPriceData(picker);
                 }).on('show.daterangepicker', function (ev, picker) {
-                    renderPriceData(picker);
+                    // renderPriceData(picker);
                 }).on('showCalendar.daterangepicker', function (ev, picker) {
-                    renderPriceData(picker);
+                    // renderPriceData(picker);
                 });
 
                 function renderPriceData(picker) {
