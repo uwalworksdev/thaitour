@@ -37,14 +37,37 @@ $links = "list";
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                             </li>
                             <?php if ($product_idx) { ?>
-                                <li><a href="javascript:copy_it()" class="btn btn-default"><span
+                                <li><a href="javascript:prod_copy('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">제품복사</span></a>
                                 </li>
                                 <script>
-                                    function copy_it() {
-                                        if (confirm("제품을 복사하시겠습니까?")) {
-                                            location.href = "copy2?product_idx=<?= $product_idx ?>";
-                                        }
+                                    function prod_copy(idx) {
+                                        if (!confirm("선택한 상품을 복사 하시겠습니까?"))
+                                            return false;
+
+                                        var message = "";
+                                        $.ajax({
+
+                                            url: "/AdmMaster/_tourRegist/prod_copy",
+                                            type: "POST",
+                                            data: {
+                                                "product_idx": idx
+                                            },
+                                            dataType: "json",
+                                            async: false,
+                                            cache: false,
+                                            success: function (data, textStatus) {
+                                                alert(data.message);
+                                                if (data.status == "success") {
+                                                    const searchParams = new URLSearchParams(window.location.search);
+                                                    searchParams.set('product_idx', data.newProductIdx);
+                                                    location.href = window.location.pathname + '?' + searchParams.toString();
+                                                }
+                                            },
+                                            error: function (request, status, error) {
+                                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                            }
+                                        });
                                     }
                                 </script>
                             <?php } ?>
