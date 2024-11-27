@@ -95,12 +95,12 @@ class Product extends BaseController
 
         $search_cate = $this->request->getVar("search_cate");
 
-        $tab = $this->request->getVar("tab");
+        $tab = $this->request->getVar("tab") ?: $search_cate ?: "hotel";
 
         $sort = $this->request->getVar("sort") ?: "recommended";
 
         $data['search_name'] = $search_name;
-        $data['tab'] = $tab ?: $search_cate ?: "hotel";
+        $data['tab'] = $tab;
         $data['sort'] = $sort;
         $data['search_cate'] = $search_cate;
 
@@ -129,57 +129,63 @@ class Product extends BaseController
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
             'search_product_name' => $search_name,
-            'product_status' => 'sale'
-        ], 10, 1, $orderBy);
+            'product_status' => 'sale',
+            'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
+        ], 1000, 1, $orderBy);
 
         $listHotel['items'] = $this->getSubInfo($listHotel['items']);
 
         $listGolf = $this->productModel->findProductGolfPaging([
-            'is_view' => 'Y',
+            'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1302,
             'search_txt' => $search_name,
             'search_category' => 'product_name'
-        ], 10, 1, $orderBy);
+        ], 1000, 1, $orderBy);
 
         $listGolf['items'] = $this->getSubInfo($listGolf['items']);
 
         $listTour = $this->productModel->findProductPaging([
+            'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1301,
             'search_category' => 'product_name',
             'search_txt' => $search_name
-        ], 10, 1, $orderBy);
+        ], 1000, 1, $orderBy);
 
         $listTour['items'] = $this->getSubInfo($listTour['items']);
 
         $listSpa = $this->productModel->findProductPaging([
+            'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1325,
             'search_category' => 'product_name',
             'search_txt' => $search_name
-        ], 10, 1, $orderBy);
+        ], 1000, 1, $orderBy);
 
         $listSpa['items'] = $this->getSubInfo($listSpa['items']);
 
         $listShowTicket = $this->productModel->findProductPaging([
+            'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1317,
             'search_category' => 'product_name',
             'search_txt' => $search_name
-        ], 10, 1, $orderBy);
+        ], 1000, 1, $orderBy);
 
         $listShowTicket['items'] = $this->getSubInfo($listShowTicket['items']);
 
         $listRestaurant = $this->productModel->findProductPaging([
+            'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1320,
             'search_category' => 'product_name',
             'search_txt' => $search_name
-        ], 10, 1, $orderBy);
+        ], 1000, 1, $orderBy);
 
         $listRestaurant['items'] = $this->getSubInfo($listRestaurant['items']);
 
         $listVehicle = $this->productModel->findProductPaging([
+            'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1324,
             'search_category' => 'product_name',
             'search_txt' => $search_name
-        ], 10, 1, $orderBy);
+        ], 1000, 1, $orderBy);
 
         $listVehicle['items'] = $this->getSubInfo($listVehicle['items']);
 
