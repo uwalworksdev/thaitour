@@ -202,8 +202,8 @@
                                 prevText: '이전',
                                 nextText: '다음',
                                 yearRange: "c:c+10",
-                                minDate: '<?=$o_sdate?>',
-                                maxDate: '<?=$o_edate?>',
+                                minDate: new Date(),
+                                maxDate: "+1M +10D",
                                 onClose: function (selectedDate) {
                                     $("#e_date").datepicker("option", "minDate", selectedDate);
                                 },
@@ -249,7 +249,7 @@
                                 , currentText: '오늘' // 오늘 버튼 텍스트 설정
                                 , prevText: '이전'
                                 , nextText: '다음'
-                                , minDate: '<?=$o_sdate?>'
+                                , minDate: new Date() 
                                 , maxDate: '<?=$o_edate?>'
                             });
                         });
