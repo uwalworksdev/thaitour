@@ -336,25 +336,21 @@ class AjaxController extends BaseController {
             $o_soldout    = $_POST['o_soldout'];
             $chk_idx      = explode(",", $_POST['chk_idx']);
 
-			$sql = "UPDATE tbl_hotel_option SET o_soldout = '". $o_soldout ."' WHERE idx = '". $o_idx ."'  ";
-			write_log($sql);
+			$sql    = "UPDATE tbl_hotel_option SET o_soldout = '". $o_soldout ."' WHERE idx = '". $o_idx ."'  ";
 			$result = $db->query($sql);
 
-			$sql = "UPDATE tbl_hotel_price SET use_yn = '' WHERE o_idx = '". $o_idx ."'  ";
-			write_log($sql);
+			$sql    = "UPDATE tbl_hotel_price SET use_yn = '' WHERE o_idx = '". $o_idx ."'  ";
 			$result = $db->query($sql);
 
             for($i=0;$i<count($chk_idx);$i++)
 		    {
-					$sql = "UPDATE tbl_hotel_price SET use_yn = 'N' WHERE idx = '". $chk_idx[$i] ."'  ";
-					write_log($sql);
+					$sql    = "UPDATE tbl_hotel_price SET use_yn = 'N' WHERE idx = '". $chk_idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
 
             for($i=0;$i<count($idx);$i++)
 		    {
-					$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1[$i] ."', goods_price2 = '". $goods_price2[$i] ."' WHERE idx = '". $idx[$i] ."'  ";
-					write_log($sql);
+					$sql    = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1[$i] ."', goods_price2 = '". $goods_price2[$i] ."' WHERE idx = '". $idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
 
