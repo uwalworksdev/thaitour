@@ -444,7 +444,7 @@
 						});
 
                         $("#o_soldout").val(o_soldout.join("||"));
-                        $("#chk_idx").val(chk_idx.join(","));
+                        $("#chk_idx").val(chk_idx);
 
   						let f = document.chargeForm;
 
