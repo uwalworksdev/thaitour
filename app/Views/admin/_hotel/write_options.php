@@ -110,7 +110,7 @@
 													   style="text-align: center; background: white; width: 120px;" readonly>
 										</div>
                                         <div style="margin:10px">
-                                            <a href="#!" id="addcharge" class="btn btn-primary">조회</a>
+                                            <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
                                         </div>
                                     </div>
                                 </td>
@@ -186,8 +186,13 @@
 			        </div>
                     <!-- // listBottom -->
 
-                    <script>
+					<script>
+						$("#inqCharge").one("click", function () {
+							$("#chargeForm").submit();
+						});
+					</script>
 
+					<script>
                         $(function () {
 
                             $("#s_date").datepicker({
