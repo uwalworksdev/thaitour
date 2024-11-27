@@ -73,8 +73,9 @@
         <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
             <input type=hidden name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
+            <input type=text name="o_soldout" value='' id='o_soldout'>
 
-            <div id="contents">
+			<div id="contents">
                 <div class="listWrap_noline">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -440,6 +441,8 @@
 						$(".use_yn:checked").each(function () {
 							o_soldout.push($(this).val());
 						});
+
+                        $("#o_soldout").val("체크된 값: " + o_soldout.join(", "));
 
 						console.log(o_soldout); // 체크된 값 출력
  /*
