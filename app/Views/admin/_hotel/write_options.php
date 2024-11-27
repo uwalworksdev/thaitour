@@ -103,6 +103,14 @@
                                             <?= $o_sdate ?> ~ <?= $o_edate ?>
                                         </div>
 
+                                            <div style="text-align:left;">
+                                                시작일: <input type="text" name="s_date" value="<?= $o_sdate ?>" id="s_date"
+                                                           style="text-align: center;background: white; width: 120px;" readonly>
+                                            </div>
+                                            <div style="text-align:left;text-wrap: nowrap; margin-left: 30px;">
+                                                종료일: <input type="text" name="e_date" value="<?= $o_edate ?>" id="e_date"
+                                                           style="text-align: center; background: white; width: 120px;" readonly>
+                                            </div>
                                         <div style="margin:10px">
                                             <a href="javascript:addOption();" id="addcharge" class="btn btn-primary">조회</a>
                                         </div>
