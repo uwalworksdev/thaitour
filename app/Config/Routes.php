@@ -505,6 +505,7 @@ $routes->group("community", static function ($routes) {
 });
 $routes->group("contact", static function ($routes) {
     $routes->get("main", "Contact::main");
+    $routes->get("view", "Contact::view");
     $routes->get("write", "Contact::write");
     $routes->post("write_ok", "Contact::write_ok");
 });

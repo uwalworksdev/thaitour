@@ -94,7 +94,7 @@
                                 <?php echo $row['code_name'] ?>
                             </td>
                             <td class="des">
-                                <a href="../mypage/inquiry_view?idx=<?= $row['idx'] ?>">
+                                <a href="/contact/view?idx=<?= $row['idx'] ?>">
                                     <?php echo $row['title'] ?>
                                 </a>
                             </td>

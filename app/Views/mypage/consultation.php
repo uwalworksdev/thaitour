@@ -114,8 +114,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
                             <td class="no"><span><?= $stt ?></span></td>
                             <td class="num"><?= $row['code_name'] ?></td>
                             </td>
-                            <td class="des"><a
-                                        href="../travel/travel_view?idx=<?= $row["idx"] ?>"><?= $row['title'] ?></a>
+                            <td class="des">
+                                <a href="/qna/view?idx=<?= $row["idx"] ?>"><?= $row['title'] ?></a>
                             </td>
                             <td class="stt">
 
