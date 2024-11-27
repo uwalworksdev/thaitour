@@ -256,12 +256,10 @@
                                 <tr style="height:50px" data-idx="<?= $row['product_idx']; ?>">
                                     <td rowspan="2"><?= $num-- ?></td>
                                     <td rowspan="2" class="tac">
-                                        <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a>
-                                        <br>
                                         <a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>"
                                            class="product_view" target="_blank">[<span>상품상세</span>]</a>
                                     </td>
-                                    <td rowspan="2" class="tac"><?= $row["goods_code"] ?></td>
+                                    <td rowspan="2" class="tac"><a target="_blank" href="/product-hotel/hotel-detail/<?= $row["product_idx"] ?>" ><?= $row["product_code"] ?></a></td>
                                     <td class="tac">
                                         <?php
                                         if ($row["ufile1"] != "" && is_file(ROOTPATH . "/public/data/product/" . $row["ufile1"])) {
@@ -315,7 +313,7 @@
                                         <?= $row["room_cnt"] ?>
                                     </td>
                                     <td>
-                                        <?= $row["reg_date"] ?>
+                                        <?= substr($row["r_date"],0,10) ?>
                                     </td>
                                     <td>
                                         <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img

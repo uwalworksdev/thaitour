@@ -1,16 +1,280 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-    <div class="content-sub-hotel-detail">
+    <link rel="stylesheet" type="text/css" href="/lib/daterangepicker/daterangepicker.css"/>
+    <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
+    <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
+    <style>
+        .main_page_01 .main_visual_content_ {
+            z-index: 5;
+        }
+
+        .form_gr_ {
+            width: 500px;
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #dbdbdb;
+            border-radius: 6px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ {
+            max-width: unset;
+            max-height: 75px;
+            overflow: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_ input {
+            border: hidden;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ label {
+            left: unset;
+            right: 20px;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ .form_gr_item_flex_ input {
+            text-align: end;
+        }
+
+        @media screen and (max-width: 850px) {
+            .sub_tour_section5_item {
+                width: calc((100% - 2rem) / 2);
+            }
+
+            .thailand_hotel_ .prd_keywords {
+                flex-wrap: nowrap;
+            }
+
+            .prd_keywords .prd_keywords_cus_span {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                white-space: nowrap;
+            }
+
+            .prd_keywords .prd_keywords_cus_span:last-child {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                margin-left: 0.3846rem;
+            }
+        }
+
+        .hotel_popup_ {
+            display: none;
+            position: absolute;
+            top: 215px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .hotel_popup_.show {
+            display: block;
+        }
+
+        .hotel_popup_content_ {
+            background: #fff;
+            border: 1px solid #dadfe6;
+            border-radius: 8px;
+            width: 420px;
+            padding: 5px;
+        }
+
+        .hotel_popup_ttl_ {
+            background: #f7f7fb;
+            color: #666;
+            font-size: 14px;
+            font-weight: 700;
+            height: 32px;
+            line-height: 32px;
+        }
+
+        .list_popup_list_ {
+            align-items: flex-start;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 8px;
+        }
+
+        .list_popup_item_ {
+            box-sizing: border-box;
+            cursor: pointer;
+            font-size: 14px;
+            overflow: hidden;
+            padding: 10px 16px;
+            text-overflow: ellipsis;
+            width: 20%;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            border-radius: 4px;
+            word-break: break-word;
+        }
+
+        .main_page_01 .main_visual_content_ .form_element_ {
+            justify-content: center;
+        }
+
+        .hotel_day_popup_ {
+            top: 185px !important;
+        }
+    </style>
+    <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
         <div class="body_inner">
-            <div class="section1">
+            <section class="sub_top_visual">
+                <div class="main_visual_content_">
+                    <div class="form_search">
+                        <div class="form_element_">
+                            <!--div class="form_input_">
+                                <label for="input_keyword_">여행지</label>
+                                <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
+                            </div-->
+                            <div class="form_input_multi_">
+                                <div class="form_gr_">
+                                    <div class="form_input_ form_gr_item_">
+                                        <label for="input_day">체크인</label>
+                                        <input type="text" id="input_day_start_"
+                                               class="input_custom_ input_ranger_date_"
+                                               placeholder="체크인 선택해주세요." readonly>
+                                    </div>
+                                    <p>
+                                        <span id="countDay" class="count">0</span>박
+                                    </p>
+                                    <div class="form_input_ form_gr_item_ form_gr_item_flex_">
+                                        <label for="input_day">체크아웃</label>
+                                        <input type="text" id="input_day_end_" class="input_custom_ input_ranger_date_"
+                                               placeholder="체크아웃 선택해주세요." readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--div class="form_input_">
+                                <label for="input_hotel">호텔명(미입력 시 전체)</label>
+                                <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
+                                       placeholder="호텔명을 입력해주세요.">
+                            </div-->
+                            <button type="button" onclick="search_list();" class="btn_search_">
+                                확인
+                            </button>
+                        </div>
+
+                        <div class="hotel_popup_">
+                            <div class="hotel_popup_content_">
+                                <div class="hotel_popup_ttl_">인기 여행지</div>
+                                <div class="list_popup_list_">
+                                    <?php foreach ($sub_codes as $code_item) : ?>
+                                        <div class="list_popup_item_"><?= $code_item['code_name'] ?></div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- popup -->
+                        <?php $is_check = 123 ?>
+                        <?php echo view("/product/inc/hotel/init_day_popup_.php", ["is_check" => $is_check]); ?>
+                    </div>
+                </div>
+            </section>
+            <script>
+                const prices = {
+                    "2024-11-25": "11만",
+                    "2024-11-26": "15만",
+                    "2024-11-27": "20만",
+                    "2024-11-28": "18만",
+                    "2024-11-29": "12만"
+                };
+
+                $(document).ready(function () {
+                    $('.list_popup_item_').click(function () {
+                        let ttl = $(this).text();
+                        $('#input_keyword_').val(ttl);
+                        $('.hotel_popup_').removeClass('show');
+                    })
+
+                    $('#input_keyword_').on('click', function () {
+                        $('.hotel_popup_').addClass('show');
+                    });
+                })
+
+                $(document).on('click', function (event) {
+                    const $popup = $('.hotel_popup_');
+                    const $input_keyword_ = $('#input_keyword_');
+                    if ($input_keyword_.has(event.target).length > 0 || $input_keyword_.is(event.target)) {
+                        $popup.addClass('show');
+                    } else {
+                        $popup.removeClass('show');
+                    }
+                });
+
+                /*$('#input_day_start_, #input_day_end_').daterangepicker({
+                    autoUpdateInput: false,
+                    opens: "center",
+                    locale: {
+                        format: 'YYYY-MM-DD',
+                        separator: ' - ',
+                        applyLabel: "적용",
+                        cancelLabel: "취소",
+                        fromLabel: "시작일",
+                        toLabel: "종료일",
+                        customRangeLabel: "사용자 정의",
+                        weekLabel: "주",
+                        daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
+                        monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+                        firstDay: 1
+                    },
+                    linkedCalendars: false
+                }).on('apply.daterangepicker', function (ev, picker) {
+                    $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
+                    $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
+                    calcDistanceDay();
+                    // renderPriceData(picker);
+                }).on('show.daterangepicker', function (ev, picker) {
+                    // renderPriceData(picker);
+                }).on('showCalendar.daterangepicker', function (ev, picker) {
+                    // renderPriceData(picker);
+                });*/
+
+                function renderPriceData(picker) {
+                    $('.drp-calendar td.available').each(function () {
+                        let day = $(this).text().trim();
+                        if (!day) return;
+
+                        let currentYear = picker.startDate.year();
+                        let currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
+                        let fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
+
+                        let price = prices[fullDate] || "0만";
+
+                        if (!$(this).find('.price-tag').length) {
+                            $(this).append(`<div class="price-tag">${price}</div>`);
+                        }
+                    });
+                }
+
+                function calcDistanceDay() {
+                    let input_day_start_ = $('#input_day_start_').val();
+                    let input_day_end_ = $('#input_day_end_').val();
+
+                    let start = new Date(input_day_start_);
+                    let end = new Date(input_day_end_);
+
+                    let diffInMilliseconds = end - start;
+                    let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
+
+                    $('#countDay').text(diffInDays);
+                }
+            </script>
+            <div style="margin-top: 200px" class="section1">
                 <div class="title-container">
                     <h2><?= $hotel['product_name'] ?> </h2>
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web" onclick="wish_it('<?= $hotel['product_idx'] ?>')" >
-                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo" onclick="wish_it('<?= $hotel['product_idx'] ?>')" >
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
@@ -1038,37 +1302,37 @@
                     </div>
                 </div>
 
-				<script>
-				  function wish_it() {
+                <script>
+                    function wish_it() {
 
-					if ($("#member_Id").val() == "") {
-					  alert("로그인 하셔야 합니다.");
-					  location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
-					} else {
+                        if ($("#member_Id").val() == "") {
+                            alert("로그인 하셔야 합니다.");
+                            location.href = '/member/login.php?returnUrl=' + $("#req_url").val();
+                        } else {
 
-					  var message = "";
-					  $.ajax({
+                            var message = "";
+                            $.ajax({
 
-						url: "/item/ajax.wish_set.php",
-						type: "POST",
-						data: {
-						  "product_idx": '<?= $product_idx ?>'
-						},
-						dataType: "json",
-						async: false,
-						cache: false,
-						success: function (data, textStatus) {
-						  message = data.message;
-						  alert(message);
-						  location.reload();
-						},
-						error: function (request, status, error) {
-						  alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-						}
-					  });
-					}
-				  }
-				</script>
+                                url: "/item/ajax.wish_set.php",
+                                type: "POST",
+                                data: {
+                                    "product_idx": '<?= $product_idx ?>'
+                                },
+                                dataType: "json",
+                                async: false,
+                                cache: false,
+                                success: function (data, textStatus) {
+                                    message = data.message;
+                                    alert(message);
+                                    location.reload();
+                                },
+                                error: function (request, status, error) {
+                                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                }
+                            });
+                        }
+                    }
+                </script>
 
                 <script>
                     $('.btnReadMore').click(function () {

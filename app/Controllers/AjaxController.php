@@ -269,4 +269,104 @@ class AjaxController extends BaseController {
  
  
     }
+	
+	public function hotel_price_update()   
+    {
+        $db    = \Config\Database::connect();
+
+            $idx          = $_POST['idx'];
+			$goods_price1 = str_replace(',', '', $_POST['goods_price1']);
+			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
+            $use_yn       = $_POST['use_yn'];
+			
+			$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1 ."'
+			                                 , goods_price2 = '". $goods_price2 ."'
+											 , use_yn       = '". $use_yn ."' WHERE idx = '". $idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
+
+			if (isset($result) && $result) {
+				$msg = "가격 수정완료";
+			} else {
+				$msg = "가격 수정오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+	
+	public function hotel_price_delete()   
+    {
+        $db    = \Config\Database::connect();
+
+            $idx          = $_POST['idx'];
+			
+			$sql = "DELETE FROM tbl_hotel_price WHERE idx = '". $idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
+
+			if (isset($result) && $result) {
+				$msg = "가격 삭제완료";
+			} else {
+				$msg = "가격 식제오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+
+	public function hotel_price_allupdate()   
+    {
+            $db    = \Config\Database::connect();
+
+            $o_idx        = $_POST['o_idx'];
+            $idx          = $_POST['idx'];
+			$goods_date   = $_POST['goods_date'];
+			$goods_price1 = str_replace(',', '', $_POST['goods_price1']);
+			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
+
+            $o_soldout    = $_POST['o_soldout'];
+            $chk_idx      = explode(",", $_POST['chk_idx']);
+
+			$sql    = "UPDATE tbl_hotel_option SET o_soldout = '". $o_soldout ."' WHERE idx = '". $o_idx ."'  ";
+			$result = $db->query($sql);
+
+			$sql    = "UPDATE tbl_hotel_price SET use_yn = '' WHERE o_idx = '". $o_idx ."'  ";
+			$result = $db->query($sql);
+
+            for($i=0;$i<count($chk_idx);$i++)
+		    {
+					$sql    = "UPDATE tbl_hotel_price SET use_yn = 'N' WHERE idx = '". $chk_idx[$i] ."'  ";
+					$result = $db->query($sql);
+            }
+
+            for($i=0;$i<count($idx);$i++)
+		    {
+					$sql    = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1[$i] ."', goods_price2 = '". $goods_price2[$i] ."' WHERE idx = '". $idx[$i] ."'  ";
+					$result = $db->query($sql);
+            }
+
+			if (isset($result) && $result) {
+				$msg = "가격 등록완료";
+			} else {
+				$msg = "가격 등록오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+
+
 }

@@ -72,7 +72,12 @@ class Product extends BaseController
             $hotel_codes = explode("|", $item['product_code_list']);
             $hotel_codes = array_values(array_filter($hotel_codes));
 
-            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+            if($hotel_codes['0']) $code = $hotel_codes['0'];
+            if(!$code)  $code = $item['product_code_3'];
+            if(!$code)  $code = $item['product_code_2'];
+            if(!$code)  $code = $item['product_code_1'];
+
+            $codeTree = $this->codeModel->getCodeTree($code);
 
             $items[$key]['codeTree'] = $codeTree;
 
@@ -1301,6 +1306,8 @@ class Product extends BaseController
             $fresult9 = $this->db->query($fsql9);
             $fresult9 = $fresult9->getRowArray();
 
+            $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
+
             $data = [
                 'hotel' => $hotel,
                 'fresult9' => $fresult9,
@@ -1310,6 +1317,7 @@ class Product extends BaseController
                 'fresult5' => $fresult5 ?? [],
                 'fresult8' => $fresult8 ?? [],
                 'rresult' => $rresult ?? [],
+                'sub_codes' => $sub_codes ?? [],
                 'reviewCategories' => $reviewCategories ?? [],
                 'reviews' => $reviews ?? [],
                 'reviewCount' => $reviewCount,

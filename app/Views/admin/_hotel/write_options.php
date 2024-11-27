@@ -46,11 +46,11 @@
                 <h2>상품요금정보 </h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="javascript:go_list();" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
                         <?php if ($o_idx) { ?>
-                            <li><a href="javascript:send_it()" class="btn btn-default"><span
+                            <li><a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
                             <li><a href="#" class="btn btn-default"><span
@@ -72,9 +72,11 @@
 
         <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
-            <input type=hidden name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
+            <input type=text name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
+            <input type=text name="o_soldout" value='' id='o_soldout'>
+            <input type=text name="chk_idx"   value='' id='chk_idx'>
 
-            <div id="contents">
+			<div id="contents">
                 <div class="listWrap_noline">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
@@ -98,58 +100,84 @@
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
-                                            시작일: <input type="text" name="s_date" value="<?= $o_sdate ?>" id="s_date"
-                                                        style="text-align: center;background: white; width: 120px;" readonly>
-                                        </div>
-                                        <div style="text-align:left;text-wrap: nowrap; margin-left: 30px;">
-                                            종료일: <input type="text" name="e_date" value="<?= $o_edate ?>" id="e_date"
-                                                        style="text-align: center; background: white; width: 120px;" readonly>
+                                            <?= $o_sdate ?> ~ <?= $o_edate ?>
                                         </div>
 
-                                        <div style="margin:10px">
+                                        <!--div style="margin:10px">
                                             <a href="javascript:addOption();" id="addcharge" class="btn btn-primary">조회</a>
-                                        </div>
+                                        </div-->
                                     </div>
                                 </td>
                             </tr>
 
-                            <tr>
-                                <th>요금정보</th>
-                                <td>
-                                    
-                                    <table style="width:100%" id="chargeTable">
-                                        <colgroup>
-                                            <col width="*">
-                                            <col width="30%">
-                                            <col width="30%">
-                                            <col width="15%">
-                                        </colgroup>
-                                        <tbody id="charge">
-                                            <tr style="height:40px">
-                                                <td style="text-align:center">
-                                                    날짜
-                                                </td>
-                                                <td style="text-align:center">
-                                                    가격
-                                                </td>
-                                                <td style="text-align:center">
-                                                    판매가
-                                                </td>
-                                                <td style="text-align:center">
-                                                    처리
-                                                </td>
-                                            </tr>
-                                        
-                                            
-                                        </tbody>
-                                    </table>
-                                </td>
-                            </tr>
 
                             </tbody>
 
                         </table>
                     </div>
+
+                    <div class="listBottom">
+         				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+									<colgroup>
+									<col width="*">
+									<col width="20%">
+									<col width="20%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="15%">
+									</colgroup>
+					                <tbody id="charge">
+										<tr style="height:40px">
+											<td style="text-align:center">
+												일자
+											</td>
+											<td style="text-align:center">
+												가격(원)
+											</td>
+											<td style="text-align:center">
+												우대가격(원)
+											</td>
+											<td style="text-align:center">
+												마감
+											</td>
+											<td style="text-align:center">
+												등록일
+											</td>
+											<td style="text-align:center">
+												수정일
+											</td>
+											<td style="text-align:center">
+												처리
+											</td>
+										</tr>
+
+										<?php foreach ($roresult as $item): ?>
+										<tr style="height:40px">
+											<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+											<td style="text-align:center">
+												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
+												<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
+												<input type="text" name="goods_price1[]" id="goods_price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
+											</td>
+											<td style="text-align:center">
+												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
+											</td>
+						                    <td style="text-align:center;">
+						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
+						                    </td> 
+						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
+						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
+						                    <td style="text-align:center;">
+												<button type="button" class="chargeUpdate" value="<?=$item['idx']?>">수정</button>
+												<button type="button" class="chargeDelete" value="<?=$item['idx']?>">삭제</button>
+						                    </td> 
+                                        </tr>
+					                    <?php endforeach; ?>
+
+									</tbody>
+								</table>
+			        </div>
                     <!-- // listBottom -->
 
                     <script>
@@ -249,7 +277,7 @@
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
+                                    <a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">수정</span></a>
                                     <a href="#" class="btn btn-default"><span
@@ -267,62 +295,186 @@
 </div>
 <!-- // container -->
 
-<script>
-    $(document).on('click', '.chargeDelete', function () {
-        $(this).closest("tr").remove();
-    });
+			<script>
+			$(document).ready(function() {
+				// 차량정보 확인버튼 클릭 이벤트
+                $(".chargeUpdate").click(function() {
 
+					if (!confirm("가격정보를 수정 하시겠습니까?"))
+						 return false;
 
-    function addOption() {
-        let startDate = new Date($("#s_date").val());
-        let endDate = new Date($("#e_date").val());
+					var idx      = $(this).val();
+                    var use_yn   = ""; 
+					if ($("#use_yn_"+idx).prop('checked')) {
+						var use_yn = "N";
+                    }
 
-        let html = ``;
-        while (startDate <= endDate) {
-            let dateStr = startDate.toISOString().split('T')[0];
+					$.ajax({
 
-            
-            let issetDate = $('.option_date .date[data-value="' + dateStr + '"]');
+						url: "/ajax/hotel_price_update",
+						type: "POST",
+						data: {
 
-            if(issetDate.length <= 0){
-                html += `
-                        <tr class="option_date" style="height:40px">
-                            <td class="date" style="text-align:center" data-value="${dateStr}">
-                                ${dateStr}
-                            </td>
-                            <td style="text-align:center">
-                                <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
-                            </td>
-                            <td style="text-align:center">
-                                <input type="text" class="price tour_price input_txt only_number" style="text-align:right"/>
-                            </td>
-                            <td style="text-align:center;">
-                                <div class="" style="display: flex; gap: 10px">
-                                    <button style="height: 30px" type="button"
-                                            class="chargeUpdate">수정
-                                    </button>
-                                    <button style="height: 30px" type="button"
-                                            class="chargeDelete">삭제
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                `;
-            }
+								"idx"           : idx,
+								"goods_price1"  : $("#goods_price1_"+idx).val(),
+								"goods_price2"  : $("#goods_price2_"+idx).val(), 
+								"use_yn"        : use_yn 
 
-            startDate.setDate(startDate.getDate() + 1);
-        }
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							var message  = data.message;
+							alert(message);
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
 
-        $("#charge").append(html);
+                $(".chargeOpen").click(function() {
 
-    }
-</script>
+					if (!confirm("가격정보를 오픈 하시겠습니까?"))
+						 return false;
 
-<script>
-    function go_list() {
-        window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
-    }
-</script>
+					var idx      = $(this).val();
+					var message  = "";
+					$.ajax({
+
+						url: "/ajax/ajax.open_update.php",
+						type: "POST",
+						data: {
+
+								"charge_idx" : idx 
+
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							message  = data.message;
+							alert(message);
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
+
+                $(".chargeClose").click(function() {
+
+					if (!confirm("가격정보를 마감 하시겠습니까?"))
+						 return false;
+
+					var idx      = $(this).val();
+					var message  = "";
+					$.ajax({
+
+						url: "/ajax/ajax.close_update.php",
+						type: "POST",
+						data: {
+
+								"charge_idx" : idx 
+
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							message  = data.message;
+							alert(message);
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
+			});			
+            </script>
+
+			<script>
+			$(document).ready(function() {
+				// 차량정보 삭제버튼 클릭 이벤트
+                $(".chargeDelete").click(function() {
+
+					if (!confirm("가격정보를 삭제 하시겠습니까?"))
+						 return false;
+
+					var idx      = $(this).val();
+					var message  = "";
+					$.ajax({
+
+						url: "/ajax/hotel_price_delete",
+						type: "POST",
+						data: {
+
+								"idx" : idx
+
+						},
+						dataType: "json",
+						async: false,
+						cache: false,
+						success: function(data, textStatus) {
+							message  = data.message;
+							location.reload();
+						},
+						error:function(request,status,error){
+							alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+						}
+					});
+				});
+			});			
+            </script>
+
+            <script>
+			function send_it(idx)
+			{
+						var o_soldout = [];
+						var chk_idx   = "";
+
+						// 선택된 체크박스의 값을 배열에 추가
+						$(".use_yn:checked").each(function () {
+							o_soldout.push($(this).val());
+							chk_idx += $(this).data("idx")+',';
+						});
+
+                        $("#o_soldout").val(o_soldout.join("||"));
+                        $("#chk_idx").val(chk_idx);
+
+  						let f = document.chargeForm;
+
+						let url = "/ajax/hotel_price_allupdate"
+						let price_data = $(f).serialize();
+						$.ajax({
+							type: "POST",
+							data: price_data,
+							url: url,
+							cache: false,
+							async: false,
+							success: function (data, textStatus) {
+								let message = data.message;
+								alert(message);
+								location.reload();
+							},
+							error: function (request, status, error) {
+								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+							}
+						});
+  
+
+            }				  
+			</script>
+
+			<script>
+				function go_list() {
+					window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
+				}
+			</script>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 

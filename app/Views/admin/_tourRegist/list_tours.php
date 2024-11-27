@@ -5,7 +5,7 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>자유여행 상품관리</h2>
+                    <h2>투어 상품관리</h2>
                     <div class="menus">
                         <ul class="first">
                         </ul>
@@ -429,7 +429,7 @@
                                 <tr>
                                     <th>번호</th>
                                     <th>메인/상품분류</th>
-                                    <th>상품코드/지역</th>
+                                    <th>상품코드</th>
                                     <th>썸네일이미지</th>
                                     <th>타이틀</th>
 

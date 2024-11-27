@@ -80,7 +80,7 @@
         <div id="print_this"><!-- 인쇄영역 시작 //-->
             <header id="headerContainer">
                 <div class="inner">
-                    <h2>자유여행 상품관리 정보입력 <?= $titleStr ?> </h2>
+                    <h2>투어 상품관리 정보입력 <?= $titleStr ?> </h2>
                     <div class="menus">
                         <ul>
                             <li>

@@ -814,7 +814,7 @@ $links = "list";
                                                         </col>
                                                         <col width="10%">
                                                         </col>
-                                                        <col width="30%">
+                                                        <col width="10%">
                                                         </col>
                                                         <col width="10%">
                                                         </col>
@@ -824,7 +824,7 @@ $links = "list";
                                                         <th>객실명</th>
                                                         <th>기간</th>
                                                         <th>가격</th>
-                                                        <th>마감날짜</th>
+                                                        <th>우대가격</th>
                                                         <th>삭제</th>
                                                     </tr>
                                                     </thead>
@@ -838,7 +838,6 @@ $links = "list";
                                                         ?>
 
                                                         <tr>  
-
                                                             <td>
                                                                 <input type='hidden' name='o_idx[]'
                                                                        value='<?= $frow3['idx'] ?>'/>
@@ -858,19 +857,24 @@ $links = "list";
                                                                 <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>" class="btn_01">수정</a>
                                                             </td>
                                                             <td>
-                                                                <input type='text' class='onlynum' name='o_price1[]'
+                                                                <input type='text' class='onlynum' name='o_price1[]' style="text-align:right;"
                                                                        id=''
                                                                        value="<?= $frow3['goods_price1'] ?>"/>
                                                             </td>
-
                                                             <td>
+                                                                <input type='text' class='onlynum' name='o_price2[]' style="text-align:right;"
+                                                                       id=''
+                                                                       value="<?= $frow3['goods_price2'] ?>"/>
+                                                            </td>
+
+                                                            <!--td>
                                                                 <input type='text' class='' name='o_soldout[]' id=''
                                                                        style='width:100%;'
                                                                        value="<?= $frow3['o_soldout'] ?>"/>
-                                                            </td>
+                                                            </td-->
                                                             <td>
                                                                 <button type="button"
-                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)">
+                                                                        onclick="delOption('<?= $frow3['idx'] ?>',this)" class="btn_02">
                                                                     삭제
                                                                 </button>
                                                             </td>
@@ -967,11 +971,11 @@ $links = "list";
                                                                    value="<?= $row['r_val'] ?>"/>
                                                         </td>
                                                         <td>
-                                                            <input type='text' class='onlynum' name='sup__price[]' id=''
+                                                            <input type='text' class='onlynum' name='sup__price[]' id='' style="text-align:right;"
                                                                    value="<?= $row['r_price'] ?>"/>
                                                         </td>
                                                         <td>
-                                                            <input type='text' class='onlynum' name='sup__price_sale[]'
+                                                            <input type='text' class='onlynum' name='sup__price_sale[]' style="text-align:right;"
                                                                    id=''
                                                                    value="<?= $row['r_sale_price'] ?>"/>
                                                         </td>
