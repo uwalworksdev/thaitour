@@ -181,7 +181,7 @@
             <div class="contact_main_bot main_section_3">
                 <div class="cont_ttl flex_b_c">
                     <h3>예약현황</h3>
-                    <a class="more_btn" href="/invoice/invoice_list">
+                    <a class="more_btn" href="/invoice/list">
                         더보기 <i></i>
                     </a>
                 </div>
@@ -198,8 +198,8 @@
                         foreach ($order_list as $row) {
                             ?>
                             <tr>
-                                <td class="num"><span><?= number_format($total_order--) ?></span></td>
-                                <td class="ttl"><span><?= $row['code_name'] ?></span></td>
+                                <td class="num"><span><?= $num--; ?></span></td>
+                                <td class="ttl code_name"><span><?= $row['code_name'] ?></span></td>
                                 <td class="subject">
                                     <?php
                                     if ($row['m_idx'] == session('member.mIdx')) {
