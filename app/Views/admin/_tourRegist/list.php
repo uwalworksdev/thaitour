@@ -6,7 +6,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>호텔 상품관리</h2>
+                <h2>스파/쇼·입장권/레스토 상품관리</h2>
                 <div class="menus">
                     <ul class="first">
                     </ul>
