@@ -92,7 +92,7 @@
                     </div>
                     <div>
                         <button type="button" class="btn_search_" id="filter_product" onclick="search_it()">
-                            필터
+                            검색
                         </button>
                         <button type="button" id="delete_all">전체삭제</button>
                     </div>

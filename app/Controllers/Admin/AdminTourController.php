@@ -216,6 +216,7 @@ class AdminTourController extends BaseController
 
                 $sql = "update tbl_product_mst SET 
                             product_idx				= '" . $product_idx . "'
+                            ,product_code           = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
                             ,product_code_1			= '" . $product_code_1 . "'
                             ,product_code_2			= '" . $product_code_2 . "'
                             ,product_code_3			= '" . $product_code_3 . "'
@@ -458,11 +459,11 @@ class AdminTourController extends BaseController
                 $connect->query($sql);
 
                 $product_idx = $connect->insert_id;
-                $product_code = 'T' . $product_idx;
-                $sql_pro = "update tbl_product_mst SET 
-                            product_code = '" . $product_code . "'
+
+                $sql_pro = "UPDATE tbl_product_mst SET 
+                            product_code = 'T" . str_pad($product_idx, 5, "0", STR_PAD_LEFT) . "'
                             where product_idx = '" . $product_idx . "'
-                    ";
+                            ";
 
                 $connect->query($sql_pro);
             }
