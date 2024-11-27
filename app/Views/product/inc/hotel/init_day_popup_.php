@@ -381,7 +381,10 @@
 
         $('#countDay').text(validDaysCount);
 
-
+        $('.input_day_qty').each(function () {
+            $(this).val(validDaysCount);
+            changeDataOptionPrice(this)
+        })
     }
 
     renderTimeStart();
