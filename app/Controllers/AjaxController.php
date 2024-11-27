@@ -323,4 +323,35 @@ class AjaxController extends BaseController {
 				]);
     }
 
+	public function hotel_price_allupdate()   
+    {
+            $db    = \Config\Database::connect();
+
+            $idx          = $_POST['idx'];
+			$goods_date   = $_POST['goods_date'];
+			$goods_price1 = $_POST['goods_price1'];
+			$goods_price1 = $_POST['goods_price1'];
+
+            for($i=0;$i<count($idx);$i++)
+		    {
+					$sql = "UPDATE tbl_hotel_price SET goods_price1 = '". $goods_price1 ."', goods_price2 = '". $goods_price1 ."' WHERE idx = '". $idx[$i] ."'  ";
+					write_log($sql);
+					$result = $db->query($sql);
+            }
+
+			if (isset($result) && $result) {
+				$msg = "가격 등록완료";
+			} else {
+				$msg = "가격 등록오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+
+
 }

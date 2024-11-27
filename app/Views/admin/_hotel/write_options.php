@@ -51,7 +51,7 @@
                         </li>
                         <?php if ($o_idx) { ?>
                             <li><a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
-                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정..</span></a>
+                                            class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
                             <li><a href="#" class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
@@ -433,6 +433,37 @@
 			function send_it(idx)
 			{
                      alert(idx);
+
+						var o_soldout = [];
+
+						// 선택된 체크박스의 값을 배열에 추가
+						$(".use_yn:checked").each(function () {
+							o_soldout.push($(this).val());
+						});
+
+						console.log(o_soldout); // 체크된 값 출력
+ 
+						let f = document.chargeForm;
+
+						let url = "/ajax/hotel_price_allupdate"
+						let price_data = $(f).serialize();
+						$.ajax({
+							type: "POST",
+							data: price_data,
+							url: url,
+							cache: false,
+							async: false,
+							success: function (data, textStatus) {
+								let message = data.message;
+								alert(message);
+								location.reload();
+							},
+							error: function (request, status, error) {
+								alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+							}
+						});
+ 
+
             }				  
 			</script>
 
