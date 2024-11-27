@@ -518,7 +518,7 @@
 
             if (checkDate < currDate) {
                 <?php if (isset($is_check) && $is_check) { ?>
-                priceLabel = '<span class="label sold-out-text">마감.</span>';
+                priceLabel = '<span class="label sold-out-text">마감</span>';
                 <?php } ?>
                 isDeadline = " deadline";
             } else {
