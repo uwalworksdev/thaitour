@@ -508,6 +508,7 @@ $routes->group("contact", static function ($routes) {
     $routes->get("view", "Contact::view");
     $routes->get("write", "Contact::write");
     $routes->post("write_ok", "Contact::write_ok");
+    $routes->post("delete", "Contact::delete");
 });
 $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");
@@ -517,6 +518,7 @@ $routes->group("qna", static function ($routes) {
     $routes->get("view", "Qna::view");
     $routes->get("write", "Qna::write");
     $routes->post("write_ok", "Qna::write_ok");
+    $routes->post("delete", "Qna::delete");
 });
 $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");

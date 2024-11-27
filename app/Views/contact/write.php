@@ -15,6 +15,14 @@
         die();
     }
 
+    $user_name = sqlSecretConver($row["user_name"], "decode");
+    $user_phone = sqlSecretConver($row["user_phone"], "decode");
+    $user_email = sqlSecretConver($row["user_email"], "decode");
+
+    $user_name = !empty($user_name) ? $user_name : $row_m["user_name"];
+    $user_phone = !empty($user_phone) ? $user_phone : $row_m["user_mobile"];
+    $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
+
 ?>
 <div id="container" class="sub write_container">
     <section class="write_sect">
@@ -23,7 +31,7 @@
                 <h2>여행 문의하기</h2>
             </div>
             <form name="frm" id="frm">
-                <input type="text" name="idx" id="<?=$idx?>" hidden value="">
+                <input type="text" name="idx" value="<?=$idx?>" hidden>
                 <table class="bs_table row">
                 <colgroup>
                     <col width="190px">
@@ -33,19 +41,19 @@
                         <tr>
                             <th>이름*</th>
                             <td>
-                                <input class="bs-input mx-sm" name="user_name" id="user_name" value="<?=$row_m["user_name"]?>" type="text">
+                                <input class="bs-input mx-sm" name="user_name" id="user_name" value="<?= $user_name?>" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th>연락처*</th>
                             <td>
-                                <input class="bs-input mx-md" value="<?=$row_m["user_mobile"]?>" name="user_phone" maxlength="13" oninput="this.value = formatPhoneNumber(this.value.replace(/[^0-9]/g, ''))" id="user_phone" type="text">
+                                <input class="bs-input mx-md" value="<?=$user_phone?>" name="user_phone" maxlength="13" oninput="this.value = formatPhoneNumber(this.value.replace(/[^0-9]/g, ''))" id="user_phone" type="text">
                             </td>
                         </tr>
                         <tr>
                             <th>이메일*</th>
-                            <?
-                                $arr_email = explode('@', $row_m["user_email"]);
+                            <?php
+                                $arr_email = explode('@', $user_email);
                             ?>
                             <td>
                                 <div class="email_row">
@@ -78,11 +86,11 @@
                             <td>
                                 <div class="datepick_wrap flex__c">
                                     <div class="datepick">
-                                       <input name="departure_date" id="departure_date" value="" class="bs-input mx-sm" type="text">
+                                       <input name="departure_date" id="departure_date" value="<?=$row["departure_date"] ?? ""?>" class="bs-input mx-sm" type="text">
                                     </div>
                                     <span>~</span>
                                     <div class="datepick">
-                                        <input name="arrival_date" id="arrival_date" class="bs-input mx-sm" type="text" value="">
+                                        <input name="arrival_date" id="arrival_date" class="bs-input mx-sm" type="text" value="<?=$row["arrival_date"] ?? ""?>">
                                     </div>
                                 </div>
                             </td>
@@ -96,42 +104,102 @@
                                         <?php
                                             foreach($list_code as $code){
                                         ?>
-                                            <option value="<?=$code['code_no']?>"><?=$code['code_name']?></option>
+                                            <option value="<?=$code['code_no']?>"
+                                                <?php if($row["travel_type_1"] == $code["code_no"]){ echo "selected"; }?>>
+                                                <?=$code['code_name']?>
+                                            </option>
                                         <?php
                                             }
                                         ?>
                                     </select>
-                                    <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm">
-                                        <option value="">선택</option>
-                                    </select>
-                                    <select name="travel_type_3" id="travel_type_3" class="bs-select mx-sm">
-                                        <option value="">선택</option>
-                                    </select>
+                                    <?php
+                                        if(!empty($idx)){
+                                    ?>
+                                        <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm">
+                                            <option value="">선택</option>
+                                            <?php
+                                                foreach($code_child_1 as $code){
+                                            ?>
+                                                <option value="<?=$code["code_no"]?>"
+                                                    <?php if($code["code_no"] == $row["travel_type_2"]){ echo "selected"; } ?>>
+                                                    <?=$code["code_name"]?>
+                                                </option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select>
+                                        <select name="travel_type_3" id="travel_type_3" class="bs-select mx-sm">
+                                            <option value="">선택</option>
+                                            <?php
+                                                foreach($code_child_2 as $code){
+                                            ?>
+                                                <option value="<?=$code["code_no"]?>"
+                                                    <?php if($code["code_no"] == $row["travel_type_3"]){ echo "selected"; } ?>>
+                                                    <?=$code["code_name"]?>
+                                                </option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select>
+                                    <?php 
+                                        }else{
+                                    ?>
+                                        <select name="travel_type_2" id="travel_type_2" class="bs-select mx-sm">
+                                            <option value="">선택</option>
+                                        </select>
+                                        <select name="travel_type_3" id="travel_type_3" class="bs-select mx-sm">
+                                            <option value="">선택</option>
+                                        </select>
+                                    <?php
+                                        }
+                                    ?>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th>상담가능시간</th>
-                            <td><input class="bs-input" name="consultation_time" id="consultation_time" type="text" value=""></td>
+                            <td><input class="bs-input" name="consultation_time" id="consultation_time" type="text" value="<?=$row["consultation_time"] ?? ""?>"></td>
                         </tr>
                         <tr>
                             <th>상품명</th>
                             <td>
-                                <select name="product_name" id="product_name" class="bs-select mx-sm">
-                                    <option value="">선택</option>
-                                </select>
+                                <?php
+                                    if(!empty($idx)){
+                                ?>
+                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
+                                        <option value="">선택</option>
+                                        <?php
+                                            foreach($products as $product){
+                                        ?>
+                                            <option value="<?=$product["product_name"]?>" 
+                                                <?php if($product["product_name"] == $row["product_name"]){ echo "selected"; }?>>
+                                                <?=$product["product_name"]?>
+                                            </option>
+                                        <?php 
+                                            }
+                                        ?>
+                                    </select>
+                                <?php 
+                                    }else{
+                                ?>
+                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
+                                        <option value="">선택</option>
+                                    </select>
+                                <?php 
+                                    }
+                                ?>
                             </td>
                         </tr>
                         <tr>
                             <th>제목*</th>
                             <td>
-                                <input class="bs-input" name="title" id="title" type="text" value="">
+                                <input class="bs-input" name="title" id="title" type="text" value="<?=$row["title"] ?? ""?>">
                             </td>
                         </tr>
                         <tr>
                             <th>내용</th>
                             <td>
-                                <textarea style="resize:none" name="contents" id="contents" class="bs-input contents"></textarea>
+                                <textarea style="resize:none" name="contents" id="contents" class="bs-input contents"><?=$row["contents"] ?? ""?></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -145,7 +213,7 @@
                                     </div>
                                 </div>
                                 <div class="file_name">
-                                    <input type="text" value='' class="bs-input" disabled>
+                                    <input type="text" value='<?=viewSQ($row["ufile1"])?>' class="bs-input" disabled>
                                     <i></i>
                                 </div>
                                 <span class="file_size">0kb</span>
@@ -268,7 +336,7 @@
         $(".datepick input").datepicker({
             dateFormat: 'yy-mm-dd',
             showOn: "both",
-            buttonImage: '../assets/img/ico/datepicker_ico.png',
+            buttonImage: '/images/ico/datepicker_ico.png',
             showMonthAfterYear: true,
             buttonImageOnly: true,
             monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
@@ -349,14 +417,18 @@
                         alert(response.message);
                         if (response.result) {
                             $(window).off('beforeunload', handleUnload);
-                            location.reload();
+                            if(response.status == "update"){
+                                location.reload();
+                            }else if(response.status == "insert") {
+                                location.href = '/contact/main';
+                            }
                         }
                     }catch (e) {
                         alert("오류가 발생 하였습니다.");
                     }
                 }
             })
-        })
+        });
 
 
         $("#travel_type_1").on("change", function(event) {
@@ -384,7 +456,7 @@
                     }
                 }
             })
-        })
+        });
 
         
         $("#travel_type_2").on("change", function(event) {
@@ -408,7 +480,7 @@
                     }
                 }
             })
-        })
+        });
 
         $("#travel_type_3").on("change", function(event) {
             $.ajax({
@@ -426,7 +498,7 @@
                     $("#product_name").html(html);
                 }
             })
-        })
+        });
 
     });
 

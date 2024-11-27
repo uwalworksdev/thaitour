@@ -41,4 +41,9 @@ class Qna extends Model
     {
         return $this->insert($data);
     }
+
+    public function deleteQna($idx)
+    {
+        return $this->delete($idx);
+    }
 }
