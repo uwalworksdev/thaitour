@@ -275,7 +275,7 @@
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="javascript:send_it()" class="btn btn-default"><span
+                                    <a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">수정</span></a>
                                     <a href="#" class="btn btn-default"><span
