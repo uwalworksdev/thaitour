@@ -6,7 +6,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2>숙소정보 리스트</h2>
+                <h2>숙박정보 관리</h2>
                 <div class="menus">
                     <ul class="first">
                     </ul>
