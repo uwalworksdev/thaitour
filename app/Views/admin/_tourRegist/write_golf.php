@@ -849,10 +849,10 @@
 		// name 속성을 가진 select 요소에 change 이벤트 등록
 		$('select[name="filter_4503"]').change(function () {
 
-            const selectName    = $(this).attr("name"); // select의 name 속성 값 가져오기
-            const selectedValue = $(this).val();    // 선택된 값 가져오기
-			alert(selectName+' - '+selectedValue);
-            $("#moption_hour").append('<option value="'+selectedValue+'">'+selectName+'</option>');
+			$(".item_4503").each(function () {
+				alert$(this).val());
+			});
+            //$("#moption_hour").append('<option value="'+selectedValue+'">'+selectName+'</option>');
 		});
 		</script>
 
