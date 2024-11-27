@@ -5,7 +5,7 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>자유여행 상품관리</h2>
+                    <h2>투어 상품관리</h2>
                     <div class="menus">
                         <ul class="first">
                         </ul>
