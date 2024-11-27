@@ -435,12 +435,12 @@
 			function send_it(idx)
 			{
 						var o_soldout = [];
-						var chk_idx   = [];
+						var chk_idx   = "";
 
 						// 선택된 체크박스의 값을 배열에 추가
 						$(".use_yn:checked").each(function () {
 							o_soldout.push($(this).val());
-							chk_idx.push($(this).data("idx"));
+							chk_idx += $(this).data("idx")+',';
 						});
 
                         $("#o_soldout").val(o_soldout.join("||"));

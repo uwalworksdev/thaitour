@@ -334,7 +334,7 @@ class AjaxController extends BaseController {
 			$goods_price2 = str_replace(',', '', $_POST['goods_price2']);
 
             $o_soldout    = $_POST['o_soldout'];
-            $chk_idx      = $_POST['chk_idx'];
+            $chk_idx      = explode(",", $_POST['chk_idx']);
 
 			$sql = "UPDATE tbl_hotel_option SET o_soldout = '". $o_soldout ."' WHERE idx = '". $o_idx ."'  ";
 			write_log($sql);
