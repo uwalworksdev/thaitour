@@ -111,13 +111,6 @@
                                 <li><a href="javascript:del_it('<?= $product_idx ?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-trash"></span><span
                                                 class="txt">완전삭제</span></a></li>
-                                <script>
-                                    function copy_it() {
-                                        if (confirm("제품을 복사하시겠습니까?")) {
-                                            location.href = "copy.php?product_idx=<?=$product_idx?>";
-                                        }
-                                    }
-                                </script>
                             <?php } else { ?>
 
                                 <li><a href="javascript:send_it()" class="btn btn-default"><span

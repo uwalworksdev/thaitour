@@ -5,7 +5,7 @@
             <header id="headerContainer">
 
                 <div class="inner">
-                    <h2>자유여행 상품관리</h2>
+                    <h2>스파/쇼·입장권/레스토랑 상품</h2>
                     <div class="menus">
                         <ul class="first">
                         </ul>
