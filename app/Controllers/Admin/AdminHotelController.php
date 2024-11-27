@@ -144,6 +144,9 @@ class AdminHotelController extends BaseController
         $o_sdate      = $option["o_sdate"];
         $o_edate      = $option["o_edate"];
 
+        if($s_date) $o_sdate = $s_date;
+        if($e_date) $o_edate = $e_date;
+
         if($s_date && $e_date) {
 			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' AND goods_date BETWEEN '$s_date' AND '$e_date' order by goods_date asc";
         } else {
