@@ -1,4 +1,8 @@
 <style>
+    .form_gr_ {
+        width: 483px;
+    }
+
     .hotel_day_popup_ {
         display: none;
         position: absolute;
