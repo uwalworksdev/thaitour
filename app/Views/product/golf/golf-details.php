@@ -236,7 +236,7 @@
                             <span class="l-label2"><em class="final_people_cnt">0</em>인</span>
                         </p>
                         <button class="btn-price-content-normal" type="button"
-                            onclick="showCouponPop()">쿠푼적용</button>
+                            onclick="showCouponPop()">쿠폰적용</button>
                     </div>
                     <div class="right-main" id="booking_area">
                         <div class="item-right">
