@@ -790,12 +790,12 @@
                                                         <div class="flex_c_c">
                                                             <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
                                                             <input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
-                                                            <input type="text" name="option_price2[]" style="text-align:right;" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
-                                                            <input type="text" name="option_price3[]" style="text-align:right;" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
-                                                            <input type="text" name="option_price4[]" style="text-align:right;" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
-                                                            <input type="text" name="option_price5[]" style="text-align:right;" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
-                                                            <input type="text" name="option_price6[]" style="text-align:right;" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
-                                                            <input type="text" name="option_price7[]" style="text-align:right;" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
+                                                            <input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
+                                                            <input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
+                                                            <input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
+                                                            <input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
+                                                            <input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
+                                                            <input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
                                                         </div>
                                                     </td>
                                                     <td>
