@@ -478,6 +478,11 @@ class TourRegistController extends BaseController
         return $this->response->setJSON(['message' => '수정되었습니다']);
     }
 
+    public function write_golf_price()
+    {
+
+    }
+
     public function del_moption($idx)
     {
         $this->golfOptionModel->delete($idx);

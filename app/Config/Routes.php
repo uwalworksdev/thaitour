@@ -89,6 +89,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         $routes->get("list_tours", "TourRegistController::list_tours");
         $routes->get("list_golf", "TourRegistController::list_golfs");
+        $routes->get("write_golf_price", "TourRegistController::write_golf_price");
         $routes->get("write", "TourRegistController::write");
         $routes->delete("del_product", "TourRegistController::delProduct");
         $routes->get("write_all", "TourRegistController::write_all");
@@ -411,12 +412,6 @@ $routes->group("api", static function ($routes) {
     $routes->group("spa_", function ($routes) {
         $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
         $routes->post("handleBooking", "SpaController::handleBooking", ['as' => "api.spa_.handleBooking"]);
-    });
-
-    $routes->group("hotel_", function ($routes) {
-        $routes->get("get_data", "Api\ProductApi::getDataHotel", ['as' => "api.hotel_.get_data"]);
-        $routes->get("get_option", "Api\ProductApi::getDataOption", ['as' => "api.hotel_.get_option"]);
-        $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
     });
 });
 
