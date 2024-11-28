@@ -499,6 +499,7 @@ class TourRegistController extends BaseController
         } else {
 			$fsql     = "SELECT * FROM tbl_golf_price WHERE o_idx = '". $o_idx ."' order by golf_date asc";
         }
+		write_log($fsql);
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
