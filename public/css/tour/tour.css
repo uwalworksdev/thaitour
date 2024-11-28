@@ -3667,6 +3667,11 @@
     color: rgb(37, 37, 37);
     font-weight: normal;
     margin-top: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .thailand_hotel_list_top_ {

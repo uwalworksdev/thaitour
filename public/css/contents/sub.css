@@ -3790,6 +3790,11 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     bottom: 30px;
     left: 30px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .prd_name {

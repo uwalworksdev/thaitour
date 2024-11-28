@@ -841,7 +841,7 @@ $links = "list";
                                                     <colgroup>
                                                         <col width="*">
                                                         </col>
-                                                        <col width="25%">
+                                                        <col width="30%">
                                                         </col>
                                                         <col width="10%">
                                                         </col>
