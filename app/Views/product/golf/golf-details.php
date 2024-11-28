@@ -780,9 +780,8 @@
         }
 
         jQuery(document).ready(function () {
-			alert('1111111111');
-            var dim = $('#dim');
-            var popup = $('#popupRoom');
+            var dim       = $('#dim');
+            var popup     = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
 
             var popup2 = $('#popup_img');
@@ -869,7 +868,7 @@
         });
 
         var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
-        
+        alert('sel_Date- '+sel_Date);
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
 
