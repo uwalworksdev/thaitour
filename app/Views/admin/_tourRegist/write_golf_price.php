@@ -46,7 +46,7 @@
                 <h2>상품요금정보 </h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
                         <?php if ($o_idx) { ?>
@@ -281,7 +281,7 @@
                             <li class="left"></li>
                             <li class="right_sub">
 
-                                <a href="javascript:go_list();" class="btn btn-default"><span
+                                <a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                                 <?php if ($o_idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
