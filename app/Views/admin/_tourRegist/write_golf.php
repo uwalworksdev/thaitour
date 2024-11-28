@@ -757,6 +757,8 @@
                                         </select>&nbsp;-->  
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption();">일자별 수정</button>
+										<a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>" class="btn_01">일자별 수정</a>
+
                                     </div>
                                 </td>
                             </tr>
