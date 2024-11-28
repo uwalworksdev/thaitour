@@ -438,7 +438,8 @@ class AjaxController extends BaseController {
 
             for($i=0;$i<count($chk_idx);$i++)
 		    {
-					$sql    = "UPDATE tbl_golf_price SET use_yn = 'N' WHERE idx = '". $chk_idx[$i] ."'  ";
+				    $temp   =  explode(":", $chk_idx[$i]);
+					$sql    = "UPDATE tbl_golf_price SET use_yn = '". $temp[1] ."' WHERE idx = '". $temp[0] ."'  ";
 					$result = $db->query($sql);
             }
 
