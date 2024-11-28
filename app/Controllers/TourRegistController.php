@@ -743,6 +743,7 @@ class TourRegistController extends BaseController
 
             $product_more = $row["product_more"];
             $product_contents_m = $row["product_contents_m"];
+            $product_status = $row["product_status"];
 
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -909,6 +910,7 @@ class TourRegistController extends BaseController
             "deadline_time" => $deadline_time ?? '',
             "product_more" => $product_more ?? '',
             "product_contents_m" => $product_contents_m ?? '',
+            "product_status" => $product_status ?? '',
         ];
 
         return $data;

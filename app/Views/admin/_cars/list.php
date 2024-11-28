@@ -185,18 +185,12 @@
 
                                     </td>
                                     <td class="tac">
-                                        <select name="product_status" id="product_status_<?= $row["product_idx"] ?>">
-                                            <option value="sale" <?php if (isset($row['product_status']) && $row['product_status'] === "sale") {
-                                                echo "selected";
-                                            } ?>>판매중
+                                        <select name="is_view[]" id="is_view_<?= $row["product_idx"] ?>">
+                                            <option value="Y" <?php if ($row["is_view"] == "Y") echo "selected"; ?> >
+                                                사용
                                             </option>
-                                            <option value="stop" <?php if (isset($row['product_status']) && $row['product_status'] === "stop") {
-                                                echo "selected";
-                                            } ?>>판매중지
-                                            </option>
-                                            <option value="plan" <?php if (isset($row['product_status']) && $row['product_status'] === "plan") {
-                                                echo "selected";
-                                            } ?>>등록예정
+                                            <option value="N" <?php if ($row["is_view"] != "Y") echo "selected"; ?> >
+                                                사용안함
                                             </option>
                                         </select>
                                     </td>
@@ -265,7 +259,7 @@
     function prod_update(idx) {
         let onum = $("#onum_" + idx).val();
 
-        let product_status = $("#product_status_" + idx).val();
+        let is_view = $("#is_view_" + idx).val();
 
         let url = '/AdmMaster/prod_update/' + idx;
 
@@ -278,7 +272,7 @@
         $.ajax({
             url: url,
             type: "POST",
-            data: { product_best, onum, product_status },
+            data: { product_best, onum, is_view },
             dataType: "json",
             async: false,
             cache: false,
