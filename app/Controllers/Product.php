@@ -1711,6 +1711,7 @@ class Product extends BaseController
             return in_array($value, $hole_cnt_arr);
         });
 
+        write_log('GOLF_HOURS- '+GOLF_HOURS);
         $data['hour_arr'] = array_filter(GOLF_HOURS, function ($value) use ($hour_arr) {
             return in_array($value, $hour_arr);
         });
