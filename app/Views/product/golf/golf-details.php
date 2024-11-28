@@ -608,16 +608,14 @@
         function setOptionArea() {
 
             const optionActive = $("#final_option_list .card-item.active_2");
-            //const price = optionActive.data("option_price") || 0;
-            const price = $("#firstPrice").val();
-			alert('price- '+price);
-            const caddy_fee = optionActive.data("caddy_fee") || "그린피에 포함";
+            const price        = optionActive.data("option_price") || 0;
+            const caddy_fee    = optionActive.data("caddy_fee") || "그린피에 포함";
             const cart_pie_fee = optionActive.data("cart_pie_fee") || "그린피에 포함";
-            const price_baht = optionActive.data("option_price_baht") || 0;
-            const people_cnt = $("#people_adult_cnt").val() || 0;
-            const final_price = Math.round(price * people_cnt);
+            const price_baht   = optionActive.data("option_price_baht") || 0;
+            const people_cnt   = $("#people_adult_cnt").val() || 0;
+            const final_price  = Math.round(price * people_cnt);
             const final_price_baht = Math.round(price_baht * people_cnt);
-            const minute = optionActive.data("minute") || "00";
+            const minute       = optionActive.data("minute") || "00";
 
             $("#option_idx").val(optionActive.data("idx"));
             $("#final_option_price").text(number_format(price));
