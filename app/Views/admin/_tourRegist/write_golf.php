@@ -829,7 +829,7 @@
                                                         <div class="flex_c_c"><input type="text" id="cart_pie_fee_<?= $m['idx'] ?>" name="cart_pie_fee[]" value='<?= $m['cart_pie_fee'] ?>'></div>
                                                     </td>
                                                     <td class="tac">
-                                                        &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
+                                                        <!--&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button-->
                                                         &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
                                                     </td>
                                                 </tr>
