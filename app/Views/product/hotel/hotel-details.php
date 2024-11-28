@@ -1723,7 +1723,7 @@
                     let main_price = item.find('span.totalPrice').attr('data-price');
 
                     let price_day = item.find('input.input_day_qty').data('sale_price');
-
+                    console.log(price_day);
                     let total_price = qty_room * parseInt(main_price);
                     total_price += Number(price_day) + total_price;
                     if (use_coupon_room == room_op_idx && coupon_type && coupon_discount) {
