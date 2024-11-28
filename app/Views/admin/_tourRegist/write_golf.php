@@ -766,7 +766,7 @@
                                     <table>
                                         <colgroup>
                                             <col width="8%"/>
-                                            <col width="7%"/>
+                                            <col width="8%"/>
                                             <col width="8%"/>
                                             <col width="8%"/>
                                             <col width="8%"/>
