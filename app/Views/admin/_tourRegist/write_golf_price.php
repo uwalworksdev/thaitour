@@ -334,13 +334,14 @@
 
 					$.ajax({
 
-						url: "/ajax/hotel_price_update",
+						url: "/ajax/golf_price_update",
 						type: "POST",
 						data: {
 
 								"idx"           : idx,
-								"goods_price1"  : $("#goods_price1_"+idx).val(),
-								"goods_price2"  : $("#goods_price2_"+idx).val(), 
+								"option_price"  : $("#option_price_"+idx).val(),
+								"caddy_fee"     : $("#caddy_fee_"+idx).val(), 
+								"cart_pie_fee"  : $("#cart_pie_fee_"+idx).val(), 
 								"use_yn"        : use_yn 
 
 						},
@@ -432,7 +433,7 @@
 					var message  = "";
 					$.ajax({
 
-						url: "/ajax/hotel_price_delete",
+						url: "/ajax/golf_price_delete",
 						type: "POST",
 						data: {
 
