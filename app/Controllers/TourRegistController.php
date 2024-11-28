@@ -337,7 +337,7 @@ class TourRegistController extends BaseController
             $data['m_date'] = date("Y-m-d H:i:s");
             $this->productModel->insertData($data);
             $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
-            $html = '<script>alert("등록되었습니다.");</script>';
+            $html  = '<script>alert("등록되었습니다.");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
