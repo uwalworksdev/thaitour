@@ -396,13 +396,13 @@ class TourRegistController extends BaseController
         $html .= '<td>
                     <div class="flex_c_c">
                         <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
-                        <input type="text" name="option_price1[]" id="option_price1_' . $insertId . '" value="0">
-                        <input type="text" name="option_price2[]" id="option_price2_' . $insertId . '" value="0">
-                        <input type="text" name="option_price3[]" id="option_price3_' . $insertId . '" value="0">
-                        <input type="text" name="option_price4[]" id="option_price4_' . $insertId . '" value="0">
-                        <input type="text" name="option_price5[]" id="option_price5_' . $insertId . '" value="0">
-                        <input type="text" name="option_price6[]" id="option_price6_' . $insertId . '" value="0">
-                        <input type="text" name="option_price7[]" id="option_price7_' . $insertId . '" value="0">
+                        <input type="text" name="option_price1[]" style="text-align:right;" id="option_price1_' . $insertId . '" value="0">
+                        <input type="text" name="option_price2[]" style="text-align:right;" id="option_price2_' . $insertId . '" value="0">
+                        <input type="text" name="option_price3[]" style="text-align:right;" id="option_price3_' . $insertId . '" value="0">
+                        <input type="text" name="option_price4[]" style="text-align:right;" id="option_price4_' . $insertId . '" value="0">
+                        <input type="text" name="option_price5[]" style="text-align:right;" id="option_price5_' . $insertId . '" value="0">
+                        <input type="text" name="option_price6[]" style="text-align:right;" id="option_price6_' . $insertId . '" value="0">
+                        <input type="text" name="option_price7[]" style="text-align:right;" id="option_price7_' . $insertId . '" value="0">
                     </div>
                 </td>';
         $html .= '<td>
@@ -756,7 +756,6 @@ class TourRegistController extends BaseController
 
             $product_more = $row["product_more"];
             $product_contents_m = $row["product_contents_m"];
-            $product_status = $row["product_status"];
 
             $fsql = "select * from tbl_code where depth='4' and parent_code_no='" . $product_code_2 . "' and status='Y'  order by onum desc, code_idx desc";
             $fresult3 = $this->connect->query($fsql) or die ($this->connect->error);
@@ -923,7 +922,6 @@ class TourRegistController extends BaseController
             "deadline_time" => $deadline_time ?? '',
             "product_more" => $product_more ?? '',
             "product_contents_m" => $product_contents_m ?? '',
-            "product_status" => $product_status ?? '',
         ];
 
         return $data;
