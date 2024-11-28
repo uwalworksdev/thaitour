@@ -266,6 +266,14 @@ $links = "list";
                                             } ?>>등록예정
                                             </option>
                                         </select>
+                                        <select name="is_view" id="is_view">
+                                            <option value="Y" <?php if ($is_view == "Y") echo "selected"; ?> >
+                                                사용
+                                            </option>
+                                            <option value="N" <?php if ($is_view != "Y") echo "selected"; ?> >
+                                                사용안함
+                                            </option>
+                                        </select>
                                     </td>
                                 </tr>
                                 <tr>

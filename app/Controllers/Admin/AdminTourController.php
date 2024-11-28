@@ -55,6 +55,7 @@ class AdminTourController extends BaseController
             $product_schedule = updateSQ($_POST["product_schedule" ?? '']);
             $product_country = updateSQ($_POST["product_country" ?? '']);
             $is_view = updateSQ($_POST["is_view" ?? '']);
+            $product_status = updateSQ($_POST["product_status" ?? '']);
             $product_period = updateSQ($_POST["product_period" ?? '']);
             $product_manager = updateSQ($_POST["product_manager" ?? '']);
             $product_manager_id = updateSQ($_POST["product_manager_id" ?? '']);
@@ -231,6 +232,7 @@ class AdminTourController extends BaseController
                             ,product_schedule		= '" . $product_schedule . "'
                             ,product_country		= '" . $product_country . "'
                             ,is_view				= '" . $is_view . "'
+                            ,product_status			= '" . $product_status . "'
                             ,product_period			= '" . $product_period . "'
                             ,product_manager		= '" . $product_manager . "'
                             ,product_manager_id		= '" . $product_manager_id . "'		
@@ -380,6 +382,7 @@ class AdminTourController extends BaseController
                             ,tours_ufile6		    = '" . $data["tours_ufile6"] . "'
                             
                             ,is_view				= '" . $is_view . "'
+                            ,product_status			= '" . $product_status . "'
                             ,product_period			= '" . $product_period . "'
                             ,product_manager		= '" . $product_manager . "'
                             ,product_manager_id		= '" . $product_manager_id . "'		

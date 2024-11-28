@@ -103,4 +103,32 @@ class ProductApi extends BaseController
                 ]);
         }
     }
+
+    public function getDataHotel()
+    {
+        try {
+            $product_idx = updateSQ($_GET['product_idx']);
+
+
+
+            $data = null;
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $data
+                ]);
+
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'data' => null,
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
 }
