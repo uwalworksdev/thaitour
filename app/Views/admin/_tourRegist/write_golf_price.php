@@ -472,7 +472,7 @@
 
   						let f = document.chargeForm;
 
-						let url = "/ajax/hotel_price_allupdate"
+						let url = "/ajax/golf_price_allupdate"
 						let price_data = $(f).serialize();
 						$.ajax({
 							type: "POST",
