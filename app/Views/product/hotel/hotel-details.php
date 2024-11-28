@@ -1215,16 +1215,16 @@
 
                             foreach ($reviews as $review) : ?>
                                 <?php if ($i < 3) : ?>
-                                    <div style="cursor: pointer;" onclick="goDetail('<?= $review['idx'] ?>');" class="recommemded-item" data-id="<?= $review['idx'] ?>">
-                                        <div class="container-head">
-                                            <img src="<?= isset($review['avt']) && $review['avt'] ? '/data/user/' . $review['avt'] : '/uploads/icons/avatar_user_1.png' ?>"
+                                    <div class="recommemded-item" data-id="<?= $review['idx'] ?>">
+                                        <div class="container-head" style="cursor: pointer;" onclick="goDetail('<?= $review['idx'] ?>');">
+                                            <img src="<?= isset($review['avt']) && $review['avt'] ? '/data/user/' . $review['avt'] : '/images/profile/avatar.png' ?>"
                                                  alt="avatar_user_1">
                                             <div class="name">
                                                 <span><?= maskString(sqlSecretConver($review['user_name'] ?? '', 'decode')); ?></span>
                                                 <p><?= $formattedDate = (new DateTime($review['r_date']))->format('Y.m.d'); ?></p>
                                             </div>
                                         </div>
-                                        <h2><?= $review['title']; ?></h2>
+                                        <h2 style="cursor: pointer;" onclick="goDetail('<?= $review['idx'] ?>');"><?= $review['title']; ?></h2>
                                         <div class="custom_paragraph">
                                             <?= viewSQ($review['contents']); ?>
                                         </div>

@@ -109,6 +109,8 @@ class ProductApi extends BaseController
         try {
             $product_idx = updateSQ($_GET['product_idx']);
 
+
+
             $data = null;
 
             return $this->response
