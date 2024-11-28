@@ -503,12 +503,17 @@ class TourRegistController extends BaseController
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
+		// 첫 번째 값
+		$firstValue = reset($roresult); // 배열의 첫 번째 값
+		// 마지막 값
+		$lastValue  = end($roresult); // 배열의 마지막 값
+
         $data = [
 			'roresult'     => $roresult,
             'product_idx'  => $product_idx,
             'product_name' => $product_name,
-            'o_sdate'      => $o_sdate,
-            'o_edate'      => $o_edate,
+            'o_sdate'      => $firstValue['golf_date'],
+            'o_edate'      => $lastValue['golf_date']
         ];
 
         return view("admin/_tourRegist/write_golf_price", $data);
