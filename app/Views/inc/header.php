@@ -145,10 +145,11 @@
                 <div>
                     <ul class="flex_header_top">
                         <li><a href="#">여행자 보험</a></li>
-                        <li><a href="/event/event_list">이벤트</a></li>
-                        <li><a href="/mypage/discount">여행 쿠폰</a></li>
-                        <li><a href="/community/customer_center/list_notify">태국뉴스</a></li>
-                        <li><a href="/review/review_list">여행후기</a></li>
+                        <li><a href="/event/event_list" class="link_top">이벤트</a></li>
+                        <!-- <li><a href="/mypage/discount">여행 쿠폰</a></li> -->
+                        <li><a href="/coupon/list" class="link_top">여행 쿠폰</a></li>
+                        <li><a href="/community/customer_center/list_notify" class="link_top">태국뉴스</a></li>
+                        <li><a href="/review/review_list" class="link_top">여행후기</a></li>
                     </ul>
                 </div>
 
@@ -572,4 +573,13 @@
             el: ".hot_product_menu_swiper_pagination",
         },
     });
+
+    const links = document.querySelectorAll('.link_top');
+        links.forEach(button => {
+            button.addEventListener('click', () => {
+                links.forEach(btn => btn.classList.remove('active_'));
+                button.classList.add('active_)');
+            });
+        });
+
 </script>
