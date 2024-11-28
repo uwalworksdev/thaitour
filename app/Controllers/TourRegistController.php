@@ -396,13 +396,13 @@ class TourRegistController extends BaseController
         $html .= '<td>
                     <div class="flex_c_c">
                         <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
-                        <input type="text" name="option_price1[]" style="text-align:right;" id="option_price1_' . $insertId . '" value="0">
-                        <input type="text" name="option_price2[]" style="text-align:right;" id="option_price2_' . $insertId . '" value="0">
-                        <input type="text" name="option_price3[]" style="text-align:right;" id="option_price3_' . $insertId . '" value="0">
-                        <input type="text" name="option_price4[]" style="text-align:right;" id="option_price4_' . $insertId . '" value="0">
-                        <input type="text" name="option_price5[]" style="text-align:right;" id="option_price5_' . $insertId . '" value="0">
-                        <input type="text" name="option_price6[]" style="text-align:right;" id="option_price6_' . $insertId . '" value="0">
-                        <input type="text" name="option_price7[]" style="text-align:right;" id="option_price7_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_' . $insertId . '" value="0">
                     </div>
                 </td>';
         $html .= '<td>
