@@ -1748,8 +1748,8 @@ class Product extends BaseController
         $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
-            $option_price = (float)$value['option_price'];
-            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price      = (float)$value['option_price'];
+            $baht_thai         = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_baht = round($option_price / $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
