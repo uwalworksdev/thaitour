@@ -1705,7 +1705,7 @@ class Product extends BaseController
         $options = $this->golfOptionModel->getOptions($product_idx);
 
         $hole_cnt_arr = array_column($options, 'hole_cnt');
-        $hour_arr = array_column($options, 'hour');
+        $hour_arr     = array_column($options, 'hour');
 
         $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
             return in_array($value, $hole_cnt_arr);
@@ -1721,8 +1721,8 @@ class Product extends BaseController
     public function optionList($product_idx)
     {
         $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour = $this->request->getVar('hour');
-        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+        $hour     = $this->request->getVar('hour');
+        $options  = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
