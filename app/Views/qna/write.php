@@ -38,8 +38,8 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
             </div>
 
             <form action="" name="frm" id="frm">
-                <?php if ($qna_item) { ?>
-                    <input type="text" name="idx" id="" hidden value="<?= $qna_item ?>">
+                <?php if ($idx) { ?>
+                    <input type="text" name="idx" id="" hidden value="<?= $idx ?>">
                 <?php } ?>
                 <table class="bs_table row">
                     <colgroup>
@@ -454,7 +454,17 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
             success: function (response) {
                 alert("여행문의 신청되었습니다!");
                 $(window).off('beforeunload', handleUnload);
-                location.href = '/qna/list';
+                <?php 
+                    if(!empty($idx)){
+                ?>  
+                    location.reload();
+                <?php
+                    }else{
+                ?>
+                    location.href = '/qna/list';
+                <?php
+                    }
+                ?>
             }
         })
     })

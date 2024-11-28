@@ -149,6 +149,7 @@ class Qna extends BaseController
         $third_paties = $this->db->query($sql)->getRowArray();
 
         return view("qna/write", [
+            "idx" => $idx,
             'qna_item' => $qna_item,
             'row_m' => $row_m,
             'result0' => $result0,
