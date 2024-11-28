@@ -818,6 +818,9 @@
                 return false;
             });
 
+            $("#final_option_price").text(number_format($("#firstPrice").val()));
+
+
         });
         $('.tag-list .tag-js').on('click', function() {
             $('.tag-list .tag-js').removeClass('active');
