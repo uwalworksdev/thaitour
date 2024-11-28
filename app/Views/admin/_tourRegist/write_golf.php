@@ -756,6 +756,7 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;-->  
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
+                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">일자별 수정</button>
                                     </div>
                                 </td>
                             </tr>
