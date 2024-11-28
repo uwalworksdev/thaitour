@@ -610,6 +610,7 @@
             const optionActive = $("#final_option_list .card-item.active_2");
             const price = optionActive.data("option_price") || 0;
 			alert('price- '+price);
+			if(price == 0) price = $("#firstPrice").val();
             const caddy_fee = optionActive.data("caddy_fee") || "그린피에 포함";
             const cart_pie_fee = optionActive.data("cart_pie_fee") || "그린피에 포함";
             const price_baht = optionActive.data("option_price_baht") || 0;
