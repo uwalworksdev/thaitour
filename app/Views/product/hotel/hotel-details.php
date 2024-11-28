@@ -532,7 +532,7 @@
                                                     <div class="room_qty">
                                                         <p>객실 수 </p>
                                                         <div class="room_activity">
-                                                            <button class="btnMinus">
+                                                            <button type="button" class="btnMinus">
                                                                 -
                                                             </button>
                                                             <input type="text" class="input_room_qty onlynum" value="1"
@@ -540,7 +540,7 @@
                                                                    id="input_room_qty_<?= $item['idx'] ?>"
                                                                    data-op="<?= $item['idx'] ?>"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
-                                                            <button class="btnPlus">
+                                                            <button type="button" class="btnPlus">
                                                                 +
                                                             </button>
                                                         </div>
@@ -548,17 +548,20 @@
                                                     <div class="day_qty">
                                                         <p>숙박일 </p>
                                                         <div class="day_activity">
-                                                            <button class="btnMinus">
-                                                                -
-                                                            </button>
+                                                            <!--                                                            <button type="button" class="btnMinus">-->
+                                                            <!--                                                                --->
+                                                            <!--                                                            </button>-->
                                                             <input type="text" class="input_day_qty onlynum" value="1"
-                                                                   style="text-align: center" readonly
+                                                                   style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
+                                                                   readonly
                                                                    id="input_day_qty_<?= $item['idx'] ?>"
                                                                    data-op="<?= $item['idx'] ?>"
+                                                                   data-price="<?= $room_op['r_price'] ?>"
+                                                                   data-sale_price="<?= $room_op['r_sale_price'] ?>"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
-                                                            <button class="btnPlus">
-                                                                +
-                                                            </button>
+                                                            <!--                                                            <button type="button" class="btnPlus">-->
+                                                            <!--                                                                +-->
+                                                            <!--                                                            </button>-->
                                                         </div>
                                                     </div>
                                                 </td>
@@ -884,14 +887,14 @@
                                                             <div class="room_qty">
                                                                 <p>객실 수 </p>
                                                                 <div class="room_activity">
-                                                                    <button class="btnMinus">
+                                                                    <button type="button" class="btnMinus">
                                                                         -
                                                                     </button>
                                                                     <input type="text" class="input_room_qty onlynum"
                                                                            value="1"
                                                                            style="text-align: center"
                                                                            data-id="<?= $room_op['rop_idx'] ?>">
-                                                                    <button class="btnPlus">
+                                                                    <button type="button" class="btnPlus">
                                                                         +
                                                                     </button>
                                                                 </div>
@@ -899,16 +902,13 @@
                                                             <div class="day_qty">
                                                                 <p>숙박일 </p>
                                                                 <div class="day_activity">
-                                                                    <button class="btnMinus">
-                                                                        -
-                                                                    </button>
                                                                     <input type="text" class="input_day_qty onlynum"
                                                                            value="1"
-                                                                           style="text-align: center"
+                                                                           data-price="<?= $room_op['r_price'] ?>"
+                                                                           data-sale_price="<?= $room_op['r_sale_price'] ?>"
+                                                                           style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
+                                                                           readonly
                                                                            data-id="<?= $room_op['rop_idx'] ?>">
-                                                                    <button class="btnPlus">
-                                                                        +
-                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -1687,25 +1687,25 @@
                 });
 
                 $('.btnMinus').click(function () {
-                    // let inp = $(this).next();
-                    //
-                    // let qty = inp.val();
-                    // qty = parseInt(qty);
-                    // if (qty > 1) {
-                    //     qty--;
-                    // }
-                    // inp.val(qty);
-                    //
-                    // changeDataOptionPrice(inp);
+                    let inp = $(this).next();
+
+                    let qty = inp.val();
+                    qty = parseInt(qty);
+                    if (qty > 1) {
+                        qty--;
+                    }
+                    inp.val(qty);
+
+                    changeDataOptionPriceBk(inp);
                 });
 
                 $('.btnPlus').click(function () {
-                    // let inp = $(this).prev();
-                    // let qty = inp.val();
-                    // qty = parseInt(qty);
-                    // qty++;
-                    // inp.val(qty);
-                    // changeDataOptionPrice(inp);
+                    let inp = $(this).prev();
+                    let qty = inp.val();
+                    qty = parseInt(qty);
+                    qty++;
+                    inp.val(qty);
+                    changeDataOptionPriceBk(inp);
                 });
 
                 function changeDataOptionPriceBk(input) {
@@ -1723,7 +1723,6 @@
                     let main_price = item.find('span.totalPrice').attr('data-price');
 
                     let price_day = item.find('input.input_day_qty').data('sale_price');
-                    console.log(price_day);
                     let total_price = qty_room * parseInt(main_price);
                     total_price += Number(price_day) + total_price;
                     if (use_coupon_room == room_op_idx && coupon_type && coupon_discount) {

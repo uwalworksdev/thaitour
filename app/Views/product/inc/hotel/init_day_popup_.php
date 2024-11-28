@@ -538,6 +538,8 @@
             allow_day_ = allow_day_hotel_;
         }
 
+        reject_day_ = "";
+
         let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
         $("#end_day_area_").html(daysHTML);
     }
