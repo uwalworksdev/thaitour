@@ -561,6 +561,10 @@ $routes->group("magazines", static function ($routes) {
     $routes->get("detail", "MagazineController::detail");
 });
 
+$routes->group("coupon", static function ($routes) {
+    $routes->get("list", "CouponController::list");
+});
+
 // $routes->group("/package", static function($routes){
 //     $routes->get("", "Package::Main");
 //     // $routes->get("(:segment)/view/(:segment)", "Promotion::View/$1/$2");
