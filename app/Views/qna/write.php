@@ -2,8 +2,7 @@
 <?php $this->section('content'); ?>
 <?php
 if ($qna_item) {
-    $user_email = sqlSecretConver($qna_item["user_email"], 'decode');
-    $user_phone = sqlSecretConver($qna_item["user_phone"], 'decode');
+
     $travel_type_1 = $qna_item["travel_type_1"];
     $travel_type_2 = $qna_item["travel_type_2"];
     $travel_type_3 = $qna_item["travel_type_3"];
@@ -18,6 +17,14 @@ if ($qna_item) {
     $title = $qna_item['title'];
     $contents = $qna_item["contents"];
 }
+
+$user_name = sqlSecretConver($qna_item["user_name"], "decode");
+$user_phone = sqlSecretConver($qna_item["user_phone"], "decode");
+$user_email = sqlSecretConver($qna_item["user_email"], "decode");
+
+$user_name = !empty($user_name) ? $user_name : $row_m["user_name"];
+$user_phone = !empty($user_phone) ? $user_phone : $row_m["user_mobile"];
+$user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
 ?>
 
 <link href="/css/qna/travel.css" rel="stylesheet" type="text/css" />
@@ -57,7 +64,7 @@ if ($qna_item) {
                         </tr>
                         <tr>
                             <td>이메일*</td>
-                            <?
+                            <?php
                             $arr_email = explode('@', $user_email);
                             ?>
                             <td class="email_row">

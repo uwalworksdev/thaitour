@@ -121,8 +121,6 @@ class Qna extends BaseController
                         FROM tbl_member WHERE m_Idx = '$member_Id' ";
         $row_m = $this->db->query($sql_m)->getRowArray();
 
-        $user_name = $row_m['user_name'];
-
         $idx = updateSQ($_GET["idx"]);
 
         $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no = 13 AND depth = '2' order by onum";
@@ -152,11 +150,11 @@ class Qna extends BaseController
 
         return view("qna/write", [
             'qna_item' => $qna_item,
+            'row_m' => $row_m,
             'result0' => $result0,
             'result1' => $result1,
             'result2' => $result2,
             'products' => $products,
-            'user_name' => $user_name,
             'privacy' => $privacy,
             'third_paties' => $third_paties
         ]);

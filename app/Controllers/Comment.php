@@ -9,9 +9,9 @@ class Comment extends BaseController
 {
 
     private $comment;
-
     protected $sessionLib;
     protected $sessionChk;
+    protected $db;
 
     public function __construct()
     {

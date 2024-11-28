@@ -20,7 +20,7 @@ function displayComments($list, $r_code, $r_idx, $parentCommentId = 0, $level = 
         } else if ($comment['avt_new'] != '' && $comment['user_level'] == 2) {
             $avt_img = '/data/member/' . $comment['avt_new'];
         } else {
-            $avt_img = '/assets/img/event/user_2.png';
+            $avt_img = '/images/profile/avatar.png';
         }
         $html .= '<img src="' . $avt_img . '" alt="">';
         $html .= '</div>';
