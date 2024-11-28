@@ -1,6 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+   
 <div class="content-sub-hotel-detail custom-golf-detail">
     <div class="body_inner">
         <div>
@@ -11,8 +12,10 @@
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
-                <input type="hidden" id="firstDate" value="<?=date('Y-m-d')?>">
-				
+                <?php <?php foreach($golf_price as $price) : ?> 
+                <input type="hidden" id="firstDate" value="<?=$price['golf_date']?>">
+                <?php endforeach; ?>
+ 				
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
