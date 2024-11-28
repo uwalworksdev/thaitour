@@ -741,7 +741,9 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;
                                         <select name="moption_hour" id="moption_hour">
-										    <!--
+											<option value="오전">오전</option>										     
+											<option value="오후">오후</option>										     
+                                            <!--
                                             <?php foreach(GOLF_HOURS as $hour) : ?>
                                                 <option value="<?=$hour?>"><?=$hour?>시</option>
                                             <?php endforeach; ?>
