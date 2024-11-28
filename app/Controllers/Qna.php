@@ -124,15 +124,16 @@ class Qna extends BaseController
         $user_name = $row_m['user_name'];
 
         $idx = updateSQ($_GET["idx"]);
+
+        $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no = 13 AND depth = '2' order by onum";
+        $result0 = $this->db->query($sql0)->getResultArray();
+
         if(!empty($idx)){
             $sql = "select * from tbl_travel_qna where idx = '$idx'";
             $qna_item = $this->db->query($sql)->getRowArray();
             $travel_type_1 = $qna_item["travel_type_1"];
             $travel_type_2 = $qna_item["travel_type_2"];
             $travel_type_3 = $qna_item["travel_type_3"];
-    
-            $sql0 = "SELECT * FROM tbl_code WHERE parent_code_no = 13 AND depth = '2' order by onum";
-            $result0 = $this->db->query($sql0)->getResultArray();
     
             $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$travel_type_1' AND depth = '3' ";
             $result1 = $this->db->query($sql)->getResultArray();
