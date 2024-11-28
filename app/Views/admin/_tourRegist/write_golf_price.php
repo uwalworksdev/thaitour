@@ -53,9 +53,9 @@
                             <li><a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
-                            <li><a href="#" class="btn btn-default"><span
+                            <!--li><a href="#" class="btn btn-default"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
-                            </li>
+                            </li-->
                         <?php } else { ?>
                             <li><a href="javascript:send_it()" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
@@ -303,8 +303,8 @@
                                     <a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">수정</span></a>
-                                    <a href="#" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
+                                    <!--a href="#" class="btn btn-default"><span
+                                                class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a-->
                                 <?php } ?>
                             </li>
                         </ul>
@@ -466,7 +466,7 @@
 							o_soldout.push($(this).val());
 							chk_idx += $(this).data("idx")+',';
 						});
-alert(chk_idx);
+ 
                         $("#o_soldout").val(o_soldout.join("||"));
                         $("#chk_idx").val(chk_idx);
 
