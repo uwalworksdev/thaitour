@@ -499,7 +499,7 @@
 				}
 			</script>
 
-        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_hotel/write_options">
+        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/write_golf">
             <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
             <input type="hidden" name="o_idx"       value="<?= $o_idx ?>" >
 			<input type="hidden" name="s_date"      value="" id="in_s_date" >
