@@ -756,8 +756,7 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;-->  
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
-                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption();">일자별 수정</button>
-										<a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>" class="btn_01">일자별 수정</a>
+                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption('<?=$product_idx?>');">일자별 수정</button>
 
                                     </div>
                                 </td>
@@ -1077,8 +1076,9 @@
                 });
             }
 
-            function date_moption() {
+            function date_moption(idx) {
 				    alert('date_moption'); 
+					location.href="/AdmMaster/_golf/write_options?product_idx="+idx;
             }
 
             function del_moption(code_idx) {
