@@ -466,7 +466,7 @@
 							o_soldout.push($(this).val());
 							chk_idx += $(this).data("idx")+',';
 						});
-
+alert(chk_idx);
                         $("#o_soldout").val(o_soldout.join("||"));
                         $("#chk_idx").val(chk_idx);
 

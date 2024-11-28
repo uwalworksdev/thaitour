@@ -430,9 +430,9 @@ class AjaxController extends BaseController {
             $db    = \Config\Database::connect();
 
             $idx          = $_POST['idx'];
-			$golf_date   = $_POST['golf_date'];
+			$golf_date    = $_POST['golf_date'];
 			$option_price = str_replace(',', '', $_POST['option_price']);
-			$caddy_fee = $_POST['caddy_fee'];
+			$caddy_fee    = $_POST['caddy_fee'];
 			$cart_pie_fee = $_POST['cart_pie_fee'];
             $chk_idx      = explode(",", $_POST['chk_idx']);
 
