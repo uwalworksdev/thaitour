@@ -867,9 +867,8 @@
             return { s_date: new Date(s_date), e_date: new Date(e_date) };
         });
 
-        var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
-        alert('sel_Date- '+sel_Date);
-        const arrDate = sel_Date.split("|");
+        var sel_Date   = getAvailableDates(s_date, e_date, deadline_date_arr);
+        const arrDate  = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
 
         function getMonthDatesWithWeekdays(month, year) {
