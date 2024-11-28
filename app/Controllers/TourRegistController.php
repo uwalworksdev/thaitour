@@ -363,7 +363,7 @@ class TourRegistController extends BaseController
         $sql_o       = " select * from tbl_golf_option where product_idx = '". $product_idx ."' "; 
 		write_log("1- ". $sql_o);
         $result_o    = $this->connect->query($sql_o);
-        $golfOoption = $result_o->getRowArray();
+        $golfOoption = $result_o->getResultArray();
         
 		foreach ($golfOoption as $row_o) 
         {
