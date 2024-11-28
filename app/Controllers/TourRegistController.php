@@ -379,7 +379,7 @@ class TourRegistController extends BaseController
 								
 								$ii++;
 								$golf_date = $dateRange[$ii];
-								$dow       = dateToYoil($goods_date);
+								$dow       = dateToYoil($golf_date);
 								
 								if($dow == "일") $option_price = $row_o['option_price1'];
 								if($dow == "월") $option_price = $row_o['option_price2'];
