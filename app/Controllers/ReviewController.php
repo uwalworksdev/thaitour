@@ -232,8 +232,13 @@ class ReviewController extends BaseController
 
                 $list__review_types = rtrim(implode(',', $_arr_review_types), ',');
 
-                $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 AND code_no IN ($list__review_types) ORDER BY onum ";
-                $list_code_type = $this->db->query($sql)->getResultArray();
+                $list_code_type = [];
+                if (count($_arr_review_types) > 0) {
+                    if ($list__review_types && $list__review_types != "") {
+                        $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 AND code_no IN ($list__review_types) ORDER BY onum ";
+                        $list_code_type = $this->db->query($sql)->getResultArray();
+                    }
+                }
 
                 return view("review/review_detail", ["review" => $review, "idx" => $idx, "list_code_type" => $list_code_type]);
             }

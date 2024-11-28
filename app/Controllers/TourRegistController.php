@@ -344,9 +344,16 @@ class TourRegistController extends BaseController
         if ($data['option_idx']) {
             foreach ($data['option_idx'] as $key => $value) {
                 $this->golfOptionModel->update($value, [
-                    'option_price' => $data['option_price'][$key],
-                    'caddy_fee' => $data['caddy_fee'][$key],
-                    'cart_pie_fee' => $data['cart_pie_fee'][$key],
+                    'option_price'  => $data['option_price'][$key],
+                    'option_price1' => $data['option_price1'][$key],
+                    'option_price2' => $data['option_price2'][$key],
+                    'option_price3' => $data['option_price3'][$key],
+                    'option_price4' => $data['option_price4'][$key],
+                    'option_price5' => $data['option_price5'][$key],
+                    'option_price6' => $data['option_price6'][$key],
+                    'option_price7' => $data['option_price7'][$key],
+                    'caddy_fee'     => $data['caddy_fee'][$key],
+                    'cart_pie_fee'  => $data['cart_pie_fee'][$key],
                 ]);
             }
         }
@@ -389,13 +396,13 @@ class TourRegistController extends BaseController
         $html .= '<td>
                     <div class="flex_c_c">
                         <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
-                        <input type="text" name="option_price1[]" id="option_price1_' . $insertId . '" value="0">
-                        <input type="text" name="option_price2[]" id="option_price2_' . $insertId . '" value="0">
-                        <input type="text" name="option_price3[]" id="option_price3_' . $insertId . '" value="0">
-                        <input type="text" name="option_price4[]" id="option_price4_' . $insertId . '" value="0">
-                        <input type="text" name="option_price5[]" id="option_price5_' . $insertId . '" value="0">
-                        <input type="text" name="option_price6[]" id="option_price6_' . $insertId . '" value="0">
-                        <input type="text" name="option_price7[]" id="option_price7_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_' . $insertId . '" value="0">
+                        <input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_' . $insertId . '" value="0">
                     </div>
                 </td>';
         $html .= '<td>

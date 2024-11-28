@@ -756,6 +756,7 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;-->  
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
+                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption();">일자별 수정</button>
                                     </div>
                                 </td>
                             </tr>
@@ -765,15 +766,27 @@
                                     <table>
                                         <colgroup>
                                             <col width="8%"/>
-                                            <col width="*"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
                                             <col width="10%"/>
-                                            <col width="10%"/>
+                                            <col width="9%"/>
                                             <col width="17%"/>
                                         </colgroup>
                                         <thead>
                                             <tr>
                                                 <th>옵션명</th>
-                                                <th>일/월/화/수/목/금/토 가격(원)</th>
+                                                <th>일</th>
+                                                <th>월</th>
+                                                <th>화</th>
+                                                <th>수</th>
+                                                <th>목</th>
+                                                <th>금</th>
+                                                <th>토</th>
                                                 <th>캐디피</th>
                                                 <th>카트피</th>
                                                 <th>관리</th>
@@ -786,17 +799,27 @@
                                                         <!--span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분...</span-->
                                                         <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;</span>
                                                     </td>
+                                                    <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
                                                     <td>
-                                                        <div class="flex_c_c">
-                                                            <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
-                                                            <input type="text" name="option_price1[]" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
-                                                            <input type="text" name="option_price2[]" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
-                                                            <input type="text" name="option_price3[]" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
-                                                            <input type="text" name="option_price4[]" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
-                                                            <input type="text" name="option_price5[]" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
-                                                            <input type="text" name="option_price6[]" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
-                                                            <input type="text" name="option_price7[]" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
-                                                        </div>
+                                                            <input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                            <input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
                                                     </td>
                                                     <td>
                                                         <div class="flex_c_c"><input type="text" id="caddy_fee_<?= $m['idx'] ?>" name="caddy_fee[]" value='<?= $m['caddy_fee'] ?>'></div>
@@ -857,6 +880,14 @@
             </div>
         </div>
 
+        <script>
+		$(document).ready(function () {
+		  // 숫자 전용 입력 처리
+		  $('.numberOnly').on('input', function () {
+			// 입력값에서 숫자가 아닌 문자는 제거
+			$(this).val($(this).val().replace(/[^0-9]/g, ''));
+		  });
+		});
         <script>
             function del_tours(idx) {
                 if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
@@ -997,9 +1028,16 @@
                     url: "/AdmMaster/_tourRegist/write_golf/upd_moption/" + code_idx,
                     type: "PUT",
                     data: {
-                        "option_price": $("#option_price_" + code_idx).val(),
-                        "caddy_fee": $("#caddy_fee_" + code_idx).val(),
-                        "cart_pie_fee": $("#cart_pie_fee_" + code_idx).val(),
+                        "option_price" : $("#option_price_"  + code_idx).val(),
+                        "option_price1": $("#option_price1_" + code_idx).val(),
+                        "option_price2": $("#option_price2_" + code_idx).val(),
+                        "option_price3": $("#option_price3_" + code_idx).val(),
+                        "option_price4": $("#option_price4_" + code_idx).val(),
+                        "option_price5": $("#option_price5_" + code_idx).val(),
+                        "option_price6": $("#option_price6_" + code_idx).val(),
+                        "option_price7": $("#option_price7_" + code_idx).val(),
+                        "caddy_fee"    : $("#caddy_fee_" + code_idx).val(),
+                        "cart_pie_fee" : $("#cart_pie_fee_" + code_idx).val(),
                     },
                     dataType: "json",
                     async: false,
@@ -1035,6 +1073,10 @@
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                     }
                 });
+            }
+
+            function date_moption() {
+				    alert('date_moption'); 
             }
 
             function del_moption(code_idx) {
