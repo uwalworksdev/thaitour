@@ -1215,7 +1215,7 @@
 
                             foreach ($reviews as $review) : ?>
                                 <?php if ($i < 3) : ?>
-                                    <div class="recommemded-item">
+                                    <div style="cursor: pointer;" onclick="goDetail('<?= $review['idx'] ?>');" class="recommemded-item" data-id="<?= $review['idx'] ?>">
                                         <div class="container-head">
                                             <img src="<?= isset($review['avt']) && $review['avt'] ? '/data/user/' . $review['avt'] : '/uploads/icons/avatar_user_1.png' ?>"
                                                  alt="avatar_user_1">
@@ -1228,7 +1228,9 @@
                                         <div class="custom_paragraph">
                                             <?= viewSQ($review['contents']); ?>
                                         </div>
-                                        <button>더보기</button>
+                                        <button type="button" onclick="goList();">
+                                            더보기
+                                        </button>
                                     </div>
                                 <?php endif;
                                 $i++; ?>
@@ -1236,6 +1238,15 @@
                         </div>
                     </div>
 
+                    <script>
+                        function goList() {
+                            window.location.href = '/review/review_list';
+                        }
+
+                        function goDetail(idx) {
+                            window.location.href = '/review/review_detail?idx=' + idx;
+                        }
+                    </script>
                 </div>
                 <div class="section7">
                     <div class="d_flex justify_content_end">
