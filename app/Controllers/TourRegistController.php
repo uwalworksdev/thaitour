@@ -360,17 +360,19 @@ class TourRegistController extends BaseController
 
         // 골프 옵션 -> 일자별 가격 설정
 
-        $sql_o       = " select * from tbl_golf_option where product_idx = ' ". $product_idx ."' "; 
+        $sql_o       = " select * from tbl_golf_option where product_idx = '". $product_idx ."' "; 
+		write_log("1- ". $sql_o);
         $result_o    = $this->connect->query($sql_o);
         $golfOoption = $result_o->getRowArray();
         
-		foreach ($golfOoption as $row_o):
-
+		foreach ($golfOoption as $row_o) 
+        {
 			$ii = -1;
 		    $dateRange   = getDateRange($data['s_date'], $data['e_date']);
 			foreach ($dateRange as $date) 
 			{ 
 				$sql_opt    = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '". $row_o['idx'] ."' ";
+		        write_log("2- ". $sql_opt);
 				$option     = $this->connect->query($sql_opt)->getRowArray();
 				if($option['cnt'] == 0) 
                 {
@@ -405,8 +407,8 @@ class TourRegistController extends BaseController
 			    } 
             }
 
-		endforeach; 
-
+		} 
+    
         return $this->response->setBody($html);
     }
 
