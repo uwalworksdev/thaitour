@@ -794,6 +794,10 @@
             var popup2 = $('#popup_img');
             var closedBtn2 = $('#popup_img .closed_btn');
 
+alert($("#firstPrice").val());
+            $("#final_option_price").text(number_format($("#firstPrice").val()));
+
+
             /* closed btn*/
             closedBtn.click(function () {
                 popup.hide();
@@ -818,9 +822,6 @@
                 }, 'slow');
                 return false;
             });
-alert($("#firstPrice").val());
-            $("#final_option_price").text(number_format($("#firstPrice").val()));
-
 
         });
         $('.tag-list .tag-js').on('click', function() {
