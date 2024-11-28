@@ -798,11 +798,7 @@
                                                         <!--span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분...</span-->
                                                         <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;</span>
                                                     </td>
-                                                    <td>
-                                                        <div class="flex_c_c">
-                                                            <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
-                                                        </div>
-                                                    </td>
+                                                    <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
                                                     <td>
                                                         <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
@@ -826,6 +822,9 @@
                                                     <td>
                                                         <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
                                                         </div>
                                                     </td>
