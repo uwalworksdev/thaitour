@@ -807,7 +807,7 @@
                                                         &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
                                                     </td>
                                                 </tr>
-                                            <?php } ?>
+                                            <?php } ?> 
                                         </tbody>
                                     </table>
                                 </td>
