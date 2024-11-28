@@ -325,9 +325,9 @@ class TourRegistController extends BaseController
             $this->productModel->updateData($product_idx, $data);
 
             if (!$this->golfInfoModel->getGolfInfo($product_idx)) {
-                $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
+                 $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
             } else {
-                $this->golfInfoModel->updateData($product_idx, $data);
+                 $this->golfInfoModel->updateData($product_idx, $data);
             }
 
             $html = '<script>alert("수정되었습니다.");</script>';
