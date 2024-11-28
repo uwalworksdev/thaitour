@@ -857,21 +857,6 @@
             </div>
         </div>
 
-		<script>
-		// name 속성을 가진 select 요소에 change 이벤트 등록
-		$('select[name="filter_4503"]').change(function () {
-
-			var selectedValue = "";
-			var selectName    = "";
-			$(".item_4503").each(function () {
-				selectedValue = $(this).val();
-				if(selectedValue == "450301") selectName = "오전";
-				if(selectedValue == "450302") selectName = "오후";
-                $("#moption_hour").append('<option value="'+selectName+'">'+selectName+'</option>');
-			});
-		});
-		</script>
-
         <script>
             function del_tours(idx) {
                 if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
