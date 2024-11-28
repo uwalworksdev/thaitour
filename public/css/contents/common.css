@@ -1082,6 +1082,7 @@ figure.cover_img img {
   gap: 4px;
   align-items: center;
   margin-top: 10px;
+  flex-wrap: wrap;
 }
 .prd_info__right__ttl {
   color: #757575;

@@ -325,19 +325,19 @@ class TourRegistController extends BaseController
             $this->productModel->updateData($product_idx, $data);
 
             if (!$this->golfInfoModel->getGolfInfo($product_idx)) {
-                $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
+                 $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $product_idx]));
             } else {
-                $this->golfInfoModel->updateData($product_idx, $data);
+                 $this->golfInfoModel->updateData($product_idx, $data);
             }
 
-            $html = '<script>alert("수정되었습니다.");</script>';
+            $html  = '<script>alert("수정되었습니다.");</script>';
             $html .= '<script>parent.location.reload();</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
             $data['m_date'] = date("Y-m-d H:i:s");
             $this->productModel->insertData($data);
             $this->golfInfoModel->insertData(array_merge($data, ['product_idx' => $this->db->insertID()]));
-            $html = '<script>alert("등록되었습니다.");</script>';
+            $html  = '<script>alert("등록되었습니다.");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
 
@@ -358,6 +358,7 @@ class TourRegistController extends BaseController
             }
         }
 
+        // 골프 옵션 -> 일자별 가격 설정
 
         return $this->response->setBody($html);
     }
