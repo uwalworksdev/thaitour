@@ -123,6 +123,7 @@
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
+									<col width="10%">
 									<col width="*">
 									<col width="20%">
 									<col width="20%">
@@ -137,10 +138,16 @@
 												일자
 											</td>
 											<td style="text-align:center">
+												옵션명
+											</td>
+											<td style="text-align:center">
 												가격(원)
 											</td>
 											<td style="text-align:center">
-												우대가격(원)
+												캐디피(원)
+											</td>
+											<td style="text-align:center">
+												카트피(원)
 											</td>
 											<td style="text-align:center">
 												마감
@@ -159,13 +166,17 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
+											<td style="text-align:center"><?=$item['hole_cnt']?> [<?=$item['hour']?>]</td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 												<input type="hidden" name="golf_date[]" id="golf_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
 												<input type="text" name="option_price[]" id="option_price_<?=$item['idx']?>" value="<?=number_format($item['option_price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
+												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_discount_price input_txt" >
+											</td>
+											<td style="text-align:center">
+												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_discount_price input_txt" >
 											</td>
 						                    <td style="text-align:center;">
 						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['golf_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
