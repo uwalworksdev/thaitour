@@ -385,7 +385,7 @@ class TourRegistController extends BaseController
         $insertId = $this->db->insertID();
 
         $html = '<tr id="moption_' . $insertId . '">';
-        $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}시</span>&nbsp;/&nbsp;<span>{$moption_minute}분</span></td>";
+        $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}</span>&nbsp;&nbsp;<span>{$moption_minute}</span></td>";
         $html .= '<td>
                     <div class="flex_c_c">
                         <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
