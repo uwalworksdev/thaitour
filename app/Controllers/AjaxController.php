@@ -368,5 +368,96 @@ class AjaxController extends BaseController {
 				]);
     }
 
+	
+	public function golf_price_update()   
+    {
+        $db    = \Config\Database::connect();
+            $idx          = $_POST['idx'];
+			$option_price = str_replace(',', '', $_POST['option_price']);
+			$caddy_fee    = $_POST['caddy_fee'];
+			$cart_pie_fee = $_POST['cart_pie_fee'];
+            $use_yn       = $_POST['use_yn'];
+			
+			$sql = "UPDATE tbl_golf_price SET option_price  = '". $option_price ."'
+			                                 , caddy_fee    = '". $caddy_fee ."'
+			                                 , cart_pie_fee = '". $cart_pie_fee ."'
+											 , use_yn       = '". $use_yn ."' WHERE idx = '". $idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
+
+			if (isset($result) && $result) {
+				$msg = "가격 수정완료";
+			} else {
+				$msg = "가격 수정오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+	
+	public function golf_price_delete()   
+    {
+        $db    = \Config\Database::connect();
+
+            $idx          = $_POST['idx'];
+			
+			$sql = "DELETE FROM tbl_golf_price WHERE idx = '". $idx ."'  ";
+			write_log($sql);
+			$result = $db->query($sql);
+
+			if (isset($result) && $result) {
+				$msg = "가격 삭제완료";
+			} else {
+				$msg = "가격 식제오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
+
+	public function golf_price_allupdate()   
+    {
+            $db    = \Config\Database::connect();
+
+            $idx          = $_POST['idx'];
+			$golf_date   = $_POST['golf_date'];
+			$option_price = str_replace(',', '', $_POST['option_price']);
+			$caddy_fee = $_POST['caddy_fee'];
+			$cart_pie_fee = $_POST['cart_pie_fee'];
+            $chk_idx      = explode(",", $_POST['chk_idx']);
+
+            for($i=0;$i<count($chk_idx);$i++)
+		    {
+					$sql    = "UPDATE tbl_golf_price SET use_yn = 'N' WHERE idx = '". $chk_idx[$i] ."'  ";
+					$result = $db->query($sql);
+            }
+
+            for($i=0;$i<count($idx);$i++)
+		    {
+					$sql    = "UPDATE tbl_golf_price SET goods_price1 = '". $goods_price1[$i] ."', goods_price2 = '". $goods_price2[$i] ."' WHERE idx = '". $idx[$i] ."'  ";
+					$result = $db->query($sql);
+            }
+
+			if (isset($result) && $result) {
+				$msg = "가격 등록완료";
+			} else {
+				$msg = "가격 등록오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+    }
 
 }
