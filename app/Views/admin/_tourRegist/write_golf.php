@@ -1077,7 +1077,6 @@
             }
 
             function date_moption(idx) {
-				    alert('date_moption'); 
 					location.href="/AdmMaster/_tourRegist/write_golf_price?product_idx="+idx;
             }
 
