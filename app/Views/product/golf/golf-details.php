@@ -11,6 +11,8 @@
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
+                <input type="hidden" id="firstDate" value="<?=date('Y-m-d')?>">
+				
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
@@ -989,7 +991,8 @@
 
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
-        const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+        //const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+        const initDate = $("#firstDate").val();
 		alert('initDate- '+initDate);
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
 
