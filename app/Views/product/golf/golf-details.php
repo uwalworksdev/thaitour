@@ -910,6 +910,7 @@
         });
 
         function sel_date(day, date = null) {
+			alert(date);
             if (date) {
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
