@@ -1726,9 +1726,10 @@ class Product extends BaseController
 
     public function optionList($product_idx)
     {
-        $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour     = $this->request->getVar('hour');
-        $options  = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+        $golf_date = $this->request->getVar('golf_date');
+        $hole_cnt  = $this->request->getVar('hole_cnt');
+        $hour      = $this->request->getVar('hour');
+        $options   = $this->golfOptionModel->getOptions($product_idx, $golf_date, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
