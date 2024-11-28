@@ -171,7 +171,7 @@
                         <span class="label">시간대</span>
                         <div class="tag-list">
                             <?php foreach($hour_arr as $hour) : ?>
-                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?>시</span>
+                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?></span>
                             <?php endforeach; ?>
                         </div>
                     </div>
