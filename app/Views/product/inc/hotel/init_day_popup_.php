@@ -362,9 +362,8 @@
             let start_date = new Date(start_);
             let end_date = new Date(end_);
 
-            // Generate all dates in the range
             for (let d = new Date(start_date); d <= end_date; d.setDate(d.getDate() + 1)) {
-                rejectDates.push(d.toISOString().split('T')[0]); // Add as YYYY-MM-DD
+                rejectDates.push(d.toISOString().split('T')[0]);
             }
         });
 
@@ -382,14 +381,71 @@
 
         $('#countDay').text(validDaysCount);
 
-        $('.input_day_qty').each(function () {
-            $(this).val(validDaysCount);
-            changeDataOptionPrice(this)
-        })
+        getPriceHotel(input_day_start_, input_day_end_);
     }
 
-    renderTimeStart();
-    renderDateEnd('');
+    async function getPriceHotel(start_day, end_day) {
+        let apiUrl = `<?= route_to('api.hotel_.get_price') ?>?product_idx=<?= $hotel['product_idx'] ?>&start_day=${start_day}&end_day=${end_day}`;
+        try {
+            let response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            let res = await response.json();
+            renderInputDay(res.data);
+        } catch (error) {
+            console.error('Error fetching hotel data:', error);
+        }
+    }
+
+    function renderInputDay(result) {
+        for (let i = 0; i < result.length; i++) {
+            let item = result[i];
+
+            let price = item.price;
+            let sale_price = item.sale_price;
+            let idx = item.idx;
+            let day = item.day;
+
+            console.log(day + ' : ' + price + ' : ' + sale_price);
+
+            if (Number(day) > 0) {
+                console.log(day + ' : ' + price + ' : ' + sale_price);
+                $('#input_day_qty_' + idx).val(day).data('price', price).data('sale_price', sale_price);
+            }
+        }
+        changeDataOptionPriceBk();
+    }
+
+    async function getDateHotel() {
+        <?php if ($is_check) { ?>
+        let apiUrl = `<?= route_to('api.hotel_.get_data') ?>?product_idx=<?= $hotel['product_idx'] ?>`;
+        try {
+            let response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            let data = await response.json();
+            saveDataHotel(data.data);
+        } catch (error) {
+            console.error('Error fetching hotel data:', error);
+        }
+        <?php } ?>
+    }
+
+    function saveDataHotel(data) {
+        let reject_day_ = data.available_dates?.join('||||') || '';
+        let apply_day_ = `${data.min_date || ''}||${data.max_date || ''}`;
+
+        localStorage.setItem('reject_day_', reject_day_);
+        localStorage.setItem('apply_day_', apply_day_);
+    }
+
+    async function mainListFn() {
+        await getDateHotel();
+        await renderTimeStart();
+        await renderDateEnd('');
+    }
+
+    mainListFn();
 
     function updateDate(type, direction) {
         const yearElement = $(`#${type}_yy`);
@@ -457,6 +513,17 @@
         let reject_day_ = '2025-01-01||2025-01-11||||2024-12-12||2024-12-14||||2025-05-05||2025-05-11||||2025-07-05||2025-07-10';
         let allow_day_ = '2024-11-01||2033-01-31';
 
+        let reject_day_hotel_ = localStorage.getItem('reject_day_');
+        let allow_day_hotel_ = localStorage.getItem('apply_day_');
+
+        if (reject_day_hotel_ && reject_day_hotel_ !== 'null' && reject_day_hotel_ !== 'undefined' && reject_day_hotel_ !== '') {
+            reject_day_ = reject_day_hotel_;
+        }
+
+        if (allow_day_hotel_ && allow_day_hotel_ !== 'null' && allow_day_hotel_ !== 'undefined' && allow_day_hotel_ !== '') {
+            allow_day_ = allow_day_hotel_;
+        }
+
         let daysHTML = renderTimeData(reject_day_, '', allow_day_, 'start');
         $("#start_day_area_").html(daysHTML);
     }
@@ -464,6 +531,17 @@
     function renderDateEnd(sup_reject_day_) {
         let reject_day_ = '2024-12-16||2024-12-18||||2025-01-01||2025-01-11||||2025-01-22||2025-01-24||||2025-02-02||2025-02-12||||2025-03-03||2025-03-13||||2025-04-04||2025-04-15||||2025-06-06||2025-06-11||||2025-09-08||2025-09-11';
         let allow_day_ = '2024-11-01||2033-01-31';
+
+        let reject_day_hotel_ = localStorage.getItem('reject_day_');
+        let allow_day_hotel_ = localStorage.getItem('apply_day_');
+
+        if (reject_day_hotel_ && reject_day_hotel_ !== 'null' && reject_day_hotel_ !== 'undefined' && reject_day_hotel_ !== '') {
+            reject_day_ = reject_day_hotel_;
+        }
+
+        if (allow_day_hotel_ && allow_day_hotel_ !== 'null' && allow_day_hotel_ !== 'undefined' && allow_day_hotel_ !== '') {
+            allow_day_ = allow_day_hotel_;
+        }
 
         let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
         $("#end_day_area_").html(daysHTML);
@@ -513,9 +591,11 @@
             daysHTML += "<p class='day'><span>&nbsp;</span></p>";
         }
 
+        let currDate2 = '';
         let input_day_start_ = $('#input_day_start_').val();
         if (input_day_start_ && input_day_start_ != '') {
-            [currentYear, currentMonth, currentDay] = input_day_start_.split('-');
+            let [currentYear2, currentMonth2, currentDay2] = input_day_start_.split('-');
+            currDate2 = `${currentYear2}-${String(currentMonth2).padStart(2, '0')}-${String(currentDay2).padStart(2, '0')}`;
         }
 
         let currDate = `${currentYear}-${String(currentMonth).padStart(2, '0')}-${String(currentDay).padStart(2, '0')}`;
@@ -532,42 +612,49 @@
                 <?php } ?>
                 isDeadline = " deadline";
             } else {
-                let is_valid = array_day.some(item => {
-                    let [start_, end_] = item.split('||');
-                    let start_date = new Date(start_);
-                    let end_date = new Date(end_);
-                    let checkDate_ = new Date(checkDate);
+                if (checkDate < currDate2) {
+                    <?php if (isset($is_check) && $is_check) { ?>
+                    priceLabel = '<span class="label sold-out-text">마감</span>';
+                    <?php } ?>
+                    isDeadline = " deadline";
+                } else {
+                    let is_valid = array_day.some(item => {
+                        let [start_, end_] = item.split('||');
+                        let start_date = new Date(start_);
+                        let end_date = new Date(end_);
+                        let checkDate_ = new Date(checkDate);
 
-                    return start_date <= checkDate_ && checkDate_ <= end_date;
-                });
+                        return start_date <= checkDate_ && checkDate_ <= end_date;
+                    });
 
-                let [start_, end_] = allow_day_.split('||');
-                let is_check = new Date(start_) <= new Date(checkDate) && new Date(checkDate) <= new Date(end_);
+                    let [start_, end_] = allow_day_.split('||');
+                    let is_check = new Date(start_) <= new Date(checkDate) && new Date(checkDate) <= new Date(end_);
 
-                <?php if (isset($is_check) && $is_check) { ?>
-                if (!is_valid) {
-                    if (is_check) {
-                        isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
-                        priceLabel = `<span data-day="${day}" class="label allowBtn allow-text">예약</span>`;
+                    <?php if (isset($is_check) && $is_check) { ?>
+                    if (!is_valid) {
+                        if (is_check) {
+                            isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
+                            priceLabel = `<span data-day="${day}" class="label allowBtn allow-text">예약</span>`;
+                        } else {
+                            priceLabel = '<span class="label sold-out-text">마감</span>';
+                            isDeadline = " deadline";
+                        }
                     } else {
                         priceLabel = '<span class="label sold-out-text">마감</span>';
                         isDeadline = " deadline";
                     }
-                } else {
-                    priceLabel = '<span class="label sold-out-text">마감</span>';
-                    isDeadline = " deadline";
-                }
-                <?php } else {?>
-                if (!is_valid) {
-                    if (is_check) {
-                        isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
+                    <?php } else {?>
+                    if (!is_valid) {
+                        if (is_check) {
+                            isToday = (day === currentDay && s_mm === currentMonth && s_yy === currentYear) ? " current-day" : "";
+                        } else {
+                            isDeadline = " deadline";
+                        }
                     } else {
                         isDeadline = " deadline";
                     }
-                } else {
-                    isDeadline = " deadline";
+                    <?php } ?>
                 }
-                <?php } ?>
             }
 
             let s_dd = day < 10 ? "0" + day : day;
