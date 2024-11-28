@@ -1637,9 +1637,15 @@ class Product extends BaseController
         if (!$data['product']) {
             return view('errors/html/error_404');
         }
-        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
+
+		// 예약가능한 일자 및 금액 데이터 조회
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn = '' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
+		$result_p = $this->db->query($sql_p);
+		$data['golf_price'] = $result_p->getResultArray();
+
+        $data['info']  = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
-        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['total_review']   = $productReview['total_review'];
         $data['product']['review_average'] = $productReview['avg'];
 
         $data['imgs'] = [];
