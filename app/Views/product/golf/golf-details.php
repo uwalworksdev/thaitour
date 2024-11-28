@@ -13,7 +13,8 @@
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <?php foreach($golf_price as $price) { ?> 
-                <input type="hidden" id="firstDate" value="<?=$price['golf_date']?>">
+                <input type="hidden" id="firstDate"  value="<?=$price['golf_date']?>">
+                <input type="hidden" id="firstPrice" value="<?=$price['option_price']?>">
                 <?php } ?>
  				
                 <div class="title-container">
@@ -996,7 +997,6 @@
 
         //const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
         const initDate = $("#firstDate").val();
-		alert('initDate- '+initDate);
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
 
 		$(".final_date").text(formatDate(new Date(initDate), "."));
