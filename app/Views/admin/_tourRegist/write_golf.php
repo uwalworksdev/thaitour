@@ -766,7 +766,7 @@
                                             <col width="*"/>
                                             <col width="10%"/>
                                             <col width="10%"/>
-                                            <col width="15%"/>
+                                            <col width="17%"/>
                                         </colgroup>
                                         <thead>
                                             <tr>
