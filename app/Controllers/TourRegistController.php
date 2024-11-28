@@ -358,6 +358,7 @@ class TourRegistController extends BaseController
             }
         }
 
+        // 골프 옵션 -> 일자별 가격 설정
 
         return $this->response->setBody($html);
     }
