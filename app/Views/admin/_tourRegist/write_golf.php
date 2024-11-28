@@ -787,7 +787,13 @@
                                                     <td>
                                                         <div class="flex_c_c">
                                                             <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
-                                                            <input type="text" name="option_price[]" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원
+                                                            <input type="text" name="option_price1[]" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>원
+                                                            <input type="text" name="option_price2[]" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>원
+                                                            <input type="text" name="option_price3[]" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>원
+                                                            <input type="text" name="option_price4[]" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>원
+                                                            <input type="text" name="option_price5[]" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>원
+                                                            <input type="text" name="option_price6[]" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>원
+                                                            <input type="text" name="option_price7[]" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>원
                                                         </div>
                                                     </td>
                                                     <td>
