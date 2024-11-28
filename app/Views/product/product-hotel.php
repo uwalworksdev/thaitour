@@ -1,6 +1,10 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+    <script>
+        localStorage.setItem('reject_day_', null);
+        localStorage.setItem('apply_day_', null);
+    </script>
     <style>
         .main_page_01 .main_visual_content_ {
             z-index: 5;
