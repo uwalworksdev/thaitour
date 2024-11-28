@@ -444,7 +444,9 @@ class AjaxController extends BaseController {
 
             for($i=0;$i<count($idx);$i++)
 		    {
-					$sql    = "UPDATE tbl_golf_price SET goods_price1 = '". $goods_price1[$i] ."', goods_price2 = '". $goods_price2[$i] ."' WHERE idx = '". $idx[$i] ."'  ";
+					$sql    = "UPDATE tbl_golf_price SET option_price = '". $option_price[$i] ."'
+					                                   , caddy_fee    = '". $caddy_fee[$i] ."' 
+					                                   , cart_pie_fee = '". $cart_pie_fee[$i] ."' WHERE idx = '". $idx[$i] ."'  ";
 					$result = $db->query($sql);
             }
 
