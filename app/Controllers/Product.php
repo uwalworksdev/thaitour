@@ -1740,6 +1740,23 @@ class Product extends BaseController
         return view('product/golf/option_list', ['options' => $options]);
     }
 
+    public function optionPrice($product_idx)
+    {
+        $golf_date = $this->request->getVar('golf_date');
+        $hole_cnt  = $this->request->getVar('hole_cnt');
+        $hour      = $this->request->getVar('hour');
+        $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+
+        foreach ($options as $key => $value) {
+            $option_price = (float)$value['option_price'];
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price_baht = round($option_price / $baht_thai);
+            $options[$key]['option_price_baht'] = $option_price_baht;
+        }
+
+        return view('product/golf/option_list', ['options' => $options]);
+    }
+
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
     {
 

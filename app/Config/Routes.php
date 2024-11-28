@@ -594,6 +594,7 @@ $routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
+$routes->get('product-golf/option-price/(:any)', 'Product::optionPrice/$1');
 $routes->get('product-golf/completed-order', 'Product::golfCompletedOrder/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');
