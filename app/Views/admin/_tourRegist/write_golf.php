@@ -789,7 +789,7 @@
                                                     <td>
                                                         <div class="flex_c_c">
                                                             <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
-                                                            <input type="text" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
+                                                            <input type="text" class="numberOnly" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
                                                             <input type="text" name="option_price2[]" style="text-align:right;" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
                                                             <input type="text" name="option_price3[]" style="text-align:right;" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
                                                             <input type="text" name="option_price4[]" style="text-align:right;" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
@@ -857,6 +857,14 @@
             </div>
         </div>
 
+        <script>
+		$(document).ready(function () {
+		  // 숫자 전용 입력 처리
+		  $('.numberOnly').on('input', function () {
+			// 입력값에서 숫자가 아닌 문자는 제거
+			$(this).val($(this).val().replace(/[^0-9]/g, ''));
+		  });
+		});
         <script>
             function del_tours(idx) {
                 if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
