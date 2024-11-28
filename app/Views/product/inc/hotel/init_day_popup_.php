@@ -391,29 +391,24 @@
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
             let res = await response.json();
-            renderInputDay(res.data);
+            renderInputDay(res.data.data);
         } catch (error) {
             console.error('Error fetching hotel data:', error);
         }
     }
 
     function renderInputDay(result) {
-        for (let i = 0; i < result.length; i++) {
-            let item = result[i];
+        console.log(result);
+        result.forEach(item => {
+            const {price, sale_price, idx, day} = item;
 
-            let price = item.price;
-            let sale_price = item.sale_price;
-            let idx = item.idx;
-            let day = item.day;
+            if (day > 0 && price > 0) {
+                let inputElem = $(`#input_day_qty_${idx}`);
 
-            console.log(day + ' : ' + price + ' : ' + sale_price);
-
-            if (Number(day) > 0) {
-                console.log(day + ' : ' + price + ' : ' + sale_price);
-                $('#input_day_qty_' + idx).val(day).data('price', price).data('sale_price', sale_price);
+                inputElem.val(day).data('price', price).data('sale_price', sale_price);
+                changeDataOptionPriceBk(inputElem);
             }
-        }
-        changeDataOptionPriceBk();
+        });
     }
 
     async function getDateHotel() {
@@ -542,6 +537,8 @@
         if (allow_day_hotel_ && allow_day_hotel_ !== 'null' && allow_day_hotel_ !== 'undefined' && allow_day_hotel_ !== '') {
             allow_day_ = allow_day_hotel_;
         }
+
+        reject_day_ = "";
 
         let daysHTML = renderTimeData(reject_day_, sup_reject_day_, allow_day_, 'end');
         $("#end_day_area_").html(daysHTML);

@@ -214,12 +214,13 @@ class ProductApi extends BaseController
 
             $data = [];
 
-            $day = 0;
+            $sql_status = " and use_yn != 'N' ";
 
             foreach ($gresult as $item) {
+                $day = 0;
                 $o_idx = $item['idx'];
 
-                $fsql = "select * from tbl_hotel_price where o_idx = '" . $o_idx . "' and use_yn != 'N' and goods_date between '" . $start_day . "' and '" . $end_day . "' order by goods_date asc";
+                $fsql = "select * from tbl_hotel_price where o_idx = '" . $o_idx . "' and goods_date between '" . $start_day . "' and '" . $end_day . "' order by goods_date asc";
 
                 $roresult = $this->connect->query($fsql);
                 $roresult = $roresult->getResultArray();
