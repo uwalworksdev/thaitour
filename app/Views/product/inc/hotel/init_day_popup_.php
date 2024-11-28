@@ -362,9 +362,8 @@
             let start_date = new Date(start_);
             let end_date = new Date(end_);
 
-            // Generate all dates in the range
             for (let d = new Date(start_date); d <= end_date; d.setDate(d.getDate() + 1)) {
-                rejectDates.push(d.toISOString().split('T')[0]); // Add as YYYY-MM-DD
+                rejectDates.push(d.toISOString().split('T')[0]);
             }
         });
 
@@ -382,20 +381,49 @@
 
         $('#countDay').text(validDaysCount);
 
-        $('.input_day_qty').each(function () {
-            $(this).val(validDaysCount);
-            changeDataOptionPrice(this)
-        })
+        getPriceHotel(input_day_start_, input_day_end_);
+    }
+
+    async function getPriceHotel(start_day, end_day) {
+        let apiUrl = `<?= route_to('api.hotel_.get_price') ?>?product_idx=<?= $hotel['product_idx'] ?>&start_day=${start_day}&end_day=${end_day}`;
+        try {
+            let response = await fetch(apiUrl);
+            if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+            let res = await response.json();
+            renderInputDay(res.data);
+        } catch (error) {
+            console.error('Error fetching hotel data:', error);
+        }
+    }
+
+    function renderInputDay(result) {
+        for (let i = 0; i < result.length; i++) {
+            let item = result[i];
+
+            let price = item.price;
+            let sale_price = item.sale_price;
+            let idx = item.idx;
+            let day = item.day;
+
+            console.log(day + ' : ' + price + ' : ' + sale_price);
+
+            if (Number(day) > 0) {
+                console.log(day + ' : ' + price + ' : ' + sale_price);
+                $('#input_day_qty_' + idx).val(day).data('price', price).data('sale_price', sale_price);
+            }
+        }
+        changeDataOptionPriceBk();
     }
 
     async function getDateHotel() {
         <?php if ($is_check) { ?>
         let apiUrl = `<?= route_to('api.hotel_.get_data') ?>?product_idx=<?= $hotel['product_idx'] ?>`;
         try {
-            const response = await fetch(apiUrl);
+            let response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
-            const data = await response.json();
+            let data = await response.json();
             saveDataHotel(data.data);
         } catch (error) {
             console.error('Error fetching hotel data:', error);
@@ -562,7 +590,6 @@
         for (let i = 0; i < startDay; i++) {
             daysHTML += "<p class='day'><span>&nbsp;</span></p>";
         }
-
 
         let currDate2 = '';
         let input_day_start_ = $('#input_day_start_').val();

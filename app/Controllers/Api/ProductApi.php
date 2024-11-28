@@ -193,13 +193,107 @@ class ProductApi extends BaseController
         }
     }
 
-    public function getDataOptionBy()
+    public function getPriceByDate()
     {
         try {
             $product_idx = updateSQ($_GET['product_idx']);
+            $start_day = $_GET['start_day'];
+            $end_day = $_GET['end_day'];
+
+            $product = $this->productModel->find($product_idx);
+
+            $product_code = $product['product_code'];
+
+            $gsql = "SELECT * 
+                 FROM tbl_hotel_option 
+                 WHERE option_type = 'M' 
+                 AND goods_code='" . $product_code . "' 
+                 ORDER BY o_room ASC 
+            ";
+            $gresult = $this->connect->query($gsql)->getResultArray();
+
+            $data = [];
+
+            $day = 0;
+
+            foreach ($gresult as $item) {
+                $o_idx = $item['idx'];
+
+                $fsql = "select * from tbl_hotel_price where o_idx = '" . $o_idx . "' and use_yn != 'N' and goods_date between '" . $start_day . "' and '" . $end_day . "' order by goods_date asc";
+
+                $roresult = $this->connect->query($fsql);
+                $roresult = $roresult->getResultArray();
+
+                $price = 0;
+                $sale_price = 0;
+
+                $lst = [];
+                foreach ($roresult as $it) {
+                    $price += $it['goods_price1'];
+                    $sale_price += $it['goods_price2'];
+                    $day++;
+
+                    $vst['date'] = $it['goods_date'];
+                    $vst['price'] = $it['goods_price1'];
+                    $vst['sale_price'] = $it['goods_price2'];
+
+                    $lst[] = $vst;
+                }
+
+                $rs['price'] = $price;
+                $rs['sale_price'] = $sale_price;
+                $rs['idx'] = $o_idx;
+                $rs['day'] = $day;
+                $rs['items'] = $lst;
+
+                $data[] = $rs;
+            }
+
+            $res = [
+                'data' => $data
+            ];
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $res
+                ]);
+
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'data' => null,
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
+    public function getDataOption()
+    {
+        try {
+            $option_type = updateSQ($_GET['option_type']);
             $o_idx = updateSQ($_GET['o_idx']);
 
-            $fsql = "select * from tbl_hotel_price where o_idx = '" . $o_idx . "' order by goods_date asc";
+            $day = $_GET['day'];
+
+            $fsql = "SELECT * FROM tbl_hotel_price WHERE o_idx = '" . $o_idx . "' ";
+
+            if ($option_type == 'N') {
+                $fsql .= "AND use_yn = 'N' ";
+            } elseif ($option_type == 'Y') {
+                $fsql .= "AND use_yn != 'N' ";
+            }
+
+            if ($day) {
+                $fsql .= "AND goods_date = '" . $day . "' ";
+            }
+
+            $fsql .= "ORDER BY goods_date ASC";
+
             $roresult = $this->connect->query($fsql);
             $roresult = $roresult->getResultArray();
 

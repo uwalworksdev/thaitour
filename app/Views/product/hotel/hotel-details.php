@@ -536,7 +536,9 @@
                                                                 -
                                                             </button>
                                                             <input type="text" class="input_room_qty onlynum" value="1"
-                                                                   style="text-align: center"
+                                                                   style="text-align: center" readonly
+                                                                   id="input_room_qty_<?= $item['idx'] ?>"
+                                                                   data-op="<?= $item['idx'] ?>"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
@@ -550,7 +552,9 @@
                                                                 -
                                                             </button>
                                                             <input type="text" class="input_day_qty onlynum" value="1"
-                                                                   style="text-align: center"
+                                                                   style="text-align: center" readonly
+                                                                   id="input_day_qty_<?= $item['idx'] ?>"
+                                                                   data-op="<?= $item['idx'] ?>"
                                                                    data-id="<?= $room_op['rop_idx'] ?>">
                                                             <button class="btnPlus">
                                                                 +
@@ -1216,7 +1220,8 @@
                             foreach ($reviews as $review) : ?>
                                 <?php if ($i < 3) : ?>
                                     <div class="recommemded-item" data-id="<?= $review['idx'] ?>">
-                                        <div class="container-head" style="cursor: pointer;" onclick="goDetail('<?= $review['idx'] ?>');">
+                                        <div class="container-head" style="cursor: pointer;"
+                                             onclick="goDetail('<?= $review['idx'] ?>');">
                                             <img src="<?= isset($review['avt']) && $review['avt'] ? '/data/user/' . $review['avt'] : '/images/profile/avatar.png' ?>"
                                                  alt="avatar_user_1">
                                             <div class="name">
@@ -1224,7 +1229,8 @@
                                                 <p><?= $formattedDate = (new DateTime($review['r_date']))->format('Y.m.d'); ?></p>
                                             </div>
                                         </div>
-                                        <h2 style="cursor: pointer;" onclick="goDetail('<?= $review['idx'] ?>');"><?= $review['title']; ?></h2>
+                                        <h2 style="cursor: pointer;"
+                                            onclick="goDetail('<?= $review['idx'] ?>');"><?= $review['title']; ?></h2>
                                         <div class="custom_paragraph">
                                             <?= viewSQ($review['contents']); ?>
                                         </div>
@@ -1681,27 +1687,57 @@
                 });
 
                 $('.btnMinus').click(function () {
-                    let inp = $(this).next();
-
-                    let qty = inp.val();
-                    qty = parseInt(qty);
-                    if (qty > 1) {
-                        qty--;
-                    }
-                    inp.val(qty);
-
-                    changeDataOptionPrice(inp);
+                    // let inp = $(this).next();
+                    //
+                    // let qty = inp.val();
+                    // qty = parseInt(qty);
+                    // if (qty > 1) {
+                    //     qty--;
+                    // }
+                    // inp.val(qty);
+                    //
+                    // changeDataOptionPrice(inp);
                 });
 
                 $('.btnPlus').click(function () {
-                    let inp = $(this).prev();
-                    let qty = inp.val();
-                    qty = parseInt(qty);
-                    qty++;
-                    inp.val(qty);
-                    changeDataOptionPrice(inp);
+                    // let inp = $(this).prev();
+                    // let qty = inp.val();
+                    // qty = parseInt(qty);
+                    // qty++;
+                    // inp.val(qty);
+                    // changeDataOptionPrice(inp);
                 });
 
+                function changeDataOptionPriceBk(input) {
+                    let item = $(input).closest('tr.room_op_');
+
+                    let room_op_idx = item.attr('data-room');
+                    let qty_room = item.find('input.input_room_qty').val();
+                    let qty_day = item.find('input.input_day_qty').val();
+                    let coupon_discount = Number($("#coupon_discount").val());
+                    let coupon_type = $("#coupon_type").val();
+                    let use_coupon_room = Number($("#use_coupon_room").val());
+
+                    item.find('span.count_room').text(qty_room);
+                    item.find('span.count_day').text(qty_day);
+                    let main_price = item.find('span.totalPrice').attr('data-price');
+
+                    let price_day = item.find('input.input_day_qty').data('sale_price');
+
+                    let total_price = qty_room * parseInt(main_price);
+                    total_price += Number(price_day) + total_price;
+                    if (use_coupon_room == room_op_idx && coupon_type && coupon_discount) {
+                        if (coupon_type == "P") {
+                            total_price = Math.round(total_price - total_price * Number(coupon_discount) / 100);
+                        } else {
+                            total_price = total_price - coupon_discount;
+                        }
+                    }
+                    let formattedNumber = total_price.toLocaleString('en-US');
+                    item.find('span.totalPrice').text(formattedNumber);
+
+                    $("#total_last_price").val(total_price);
+                }
 
                 function changeDataOptionPrice(input) {
                     let item = $(input).closest('tr.room_op_');
