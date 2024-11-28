@@ -464,9 +464,13 @@
 						// 선택된 체크박스의 값을 배열에 추가
 						$(".use_yn:checked").each(function () {
 							o_soldout.push($(this).val());
-							chk_idx += $(this).data("idx")+',';
+							chk_idx += $(this).data("idx")+':'+'N,';
 						});
  
+                        $('.use_yn:not(:checked)').each(function () {
+							chk_idx += $(this).data("idx")+':'+'Y,';
+						});
+alert(chk_idx);
                         $("#o_soldout").val(o_soldout.join("||"));
                         $("#chk_idx").val(chk_idx);
 
