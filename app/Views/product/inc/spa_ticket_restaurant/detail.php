@@ -173,7 +173,7 @@
                     $productMoreData = json_decode($product_more, true);
 
                     if (json_last_error() !== JSON_ERROR_NONE) {
-                        var_dump("Lỗi giải mã JSON: " . json_last_error_msg());
+//                        var_dump("Lỗi giải mã JSON: " . json_last_error_msg());
                     }
                     $breakfast_data = '';
                     if ($productMoreData) {
