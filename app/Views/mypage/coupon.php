@@ -1,39 +1,11 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$connect = db_connect();
 
-if ($_SESSION["member"]["mIdx"] == "") {
-    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-    exit();
-}
-
-$coupon_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price
-                        from tbl_coupon c
-                        left outer join tbl_coupon_setting s
-                        on c.coupon_type = s.idx
-                        left outer join tbl_coupon_history h
-                        on c.c_idx = h.used_coupon_idx
-                        where 1=1 and c.status != 'C' and c.enddate > curdate() and c.usedate = '' and c.get_issued_yn = 'Y' and h.used_coupon_idx is null and c.user_id = '{$_SESSION["member"]["id"]}' 
-                        group by c.c_idx ";
-$c_nTotalCount = $connect->query($coupon_sql)->getNumRows();
-
-
-$total_sql = " select * from tbl_member where m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-$row = $connect->query($total_sql)->getRowArray();
-$mileage = number_format($row["mileage"]);
-
-$s_date = updateSQ($_GET["s_date"]);
-$e_date = updateSQ($_GET["e_date"]);
-
-
-$pg = $_GET['pg'];
-
-$search_val = "";
-
-if (isset($s_date) && isset($e_date)) {
-    $search_val = "AND DATE_FORMAT(ch_r_date, '%Y-%m-%d') >= '$s_date' AND DATE_FORMAT(ch_r_date, '%Y-%m-%d') <= '$e_date'";
-}
+    if ($_SESSION["member"]["mIdx"] == "") {
+        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+        exit();
+    }
 ?>
 
 
@@ -47,7 +19,7 @@ if (isset($s_date) && isset($e_date)) {
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-            echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_2" => "on"]);
+                echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_2" => "on"]);
             ?>
             <div class="content">
                 <div class="top_content">
@@ -59,12 +31,12 @@ if (isset($s_date) && isset($e_date)) {
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 포인트</p>
-                                    <p class="num"><?= $mileage ?> <span>P</span></p>
+                                    <p class="num"><?= number_format($mileage) ?> <span>P</span></p>
                                 </div>
                             </div>
                             <div class="discount flex__c">
-                                <div class="discount_ico"><img src="../assets/img/mypage/mypage_discount_ico_w.png"
-                                                               alt="">
+                                <div class="discount_ico">
+                                    <img src="../assets/img/mypage/mypage_discount_ico_w.png" alt="">
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 쿠폰</p>
@@ -85,10 +57,10 @@ if (isset($s_date) && isset($e_date)) {
                     </div>
                     <div class="filter flex_b_c">
                         <div class="left flex__c">
-                            <button class="m_filter active">전체</button>
-                            <button class="m_filter">최근 1개월</button>
-                            <button class="m_filter">3개월</button>
-                            <button class="m_filter">6개월</button>
+                            <button rel="<?=date('Y-m-d')?>" class="m_filter active">전체</button>
+                            <button rel="<?=date('Y-m-d', strtotime('-1 month'));?>" class="m_filter">최근 1개월</button>
+                            <button rel="<?=date('Y-m-d', strtotime('-3 month'));?>" class="m_filter">3개월</button>
+                            <button rel="<?=date('Y-m-d', strtotime('-6 month'));?>" class="m_filter">6개월</button>
                         </div>
                         <form name="search" id="search">
                             <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
@@ -96,10 +68,8 @@ if (isset($s_date) && isset($e_date)) {
                                 <div class="depart flex__c">
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="s_date" id="departure_date1" placeholder=""
+                                            <input type="text" name="s_date" id="s_date" value="<?=$s_date?>"
                                                    class="date_pic">
-                                            <!-- <img class="ui-datepicker-trigger" src="/images/ico/datepicker_ico.png"
-                                                alt="..." title="..."> -->
                                         </div>
                                     </div>
                                     <div>
@@ -107,10 +77,8 @@ if (isset($s_date) && isset($e_date)) {
                                     </div>
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="e_date" id="departure_date2" placeholder=""
+                                            <input type="text" name="e_date" id="e_date" value="<?=$e_date?>"
                                                    class="date_pic">
-                                            <!-- <img class="ui-datepicker-trigger" src="/images/ico/datepicker_ico.png"
-                                                alt="..." title="..."> -->
                                         </div>
                                     </div>
                                 </div>
@@ -135,57 +103,31 @@ if (isset($s_date) && isset($e_date)) {
                             <tbody>
                             <?php
 
-                            $ngayHienTai = date('Y-m-d');
+                                $index = 0;
 
-                            // Lấy ngày 1 tháng trước
-                            $ngayMotThangTruoc = date('Y-m-d', strtotime($ngayHienTai . ' -1 month'));
-                            $index = 0;
-                            $g_list_rows = 100;
-
-                            $total_sql = "
-                                        select DATE_FORMAT(ch_r_date, '%Y-%m-%d') as ch_r_date_new, a.*, b.*, s.* from tbl_coupon a 
-                                            left join tbl_coupon_history b ON a.c_idx = b.used_coupon_idx 
-                                            left join tbl_coupon_setting s ON a.coupon_type = s.idx
-                                            where m_idx = '" . $_SESSION["member"]["mIdx"] . "' $search_val
-                                    ";
-
-                            $nTotalCount = $connect->query($total_sql)->getNumRows();
-
-                            $nPage = ceil($nTotalCount / $g_list_rows);
-                            if ($pg == "") $pg = 1;
-                            $nFrom = ($pg - 1) * $g_list_rows;
-
-                            $sql = $total_sql . " order by ch_idx desc limit $nFrom, $g_list_rows ";
-
-                            // echo $sql;
-
-                            $result = $connect->query($sql)->getResultArray();
-                            $num = $nTotalCount - $nFrom;
-                            if ($nTotalCount == 0) {
-                                ?>
+                                if ($nTotalCount == 0) {
+                            ?>
                                 <tr style="text-align: center; vertical-align: middle">
                                     <td colspan=6
                                         style="text-align:center;height:100px; display: flex; align-items: center;">검색된
                                         결과가 없습니다.
                                     </td>
                                 </tr>
-                                <?php
-                            }
+                            <?php
+                                }
 
-                            $coupon_type_arr = array("percent" => "%", "won" => "원");
-
-                            foreach ($result as $row) {
-                                $index++;
-                                ?>
+                                foreach ($coupon_list as $row) {
+                                    $index++;
+                            ?>
                                 <tr>
                                     <td class="date_s"><?= date("Y.m.d", strtotime($row['regdate'])) ?></td>
-                                    <td class="des"><span><?= $row['coupon_name'] ?></span></td>
+                                    <td class="des" style="text-align: center;"><span><?= $row['coupon_name'] ?></span></td>
                                     <td class="date_e"><?= date("Y.m.d", strtotime($row['enddate'])) ?></td>
                                 </tr>
                             <?php } ?>
                             </tbody>
                         </table>
-                        <?php echo ipageListing2($pg, $nFrom, $g_list_rows, $_SERVER['PHP_SELF'] . "?scategory=$scategory&pg=") ?>
+                        <?php echo ipageListing2($pg, $nFrom, $g_list_rows, $_SERVER['PHP_SELF'] . "?s_date=$s_date&e_date=$e_date&pg=") ?>
                     </div>
                 </div>
             </div>
@@ -217,7 +159,6 @@ if (isset($s_date) && isset($e_date)) {
         </div>
     </div>
     <div class="bg"></div>
-    <!-- </div> -->
 </div>
 <script>
     const currentYear = (new Date()).getFullYear();
@@ -252,37 +193,40 @@ if (isset($s_date) && isset($e_date)) {
 
     $(document).ready(function () {
         $('.date_pic').datepicker(datePickerConfig)
-        // .datepicker('widget').wrap('<div class="ll-skin-melon"/>');
+    });
+
+    $(".m_filter").click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        let date1 = $(this).attr("rel");
+        let date2 = $.datepicker.formatDate('yy-mm-dd',new Date());
+
+        $("#s_date").val(date1);
+        $("#e_date").val(date2);
     });
 
     function search_it() {
         var frm = document.search;
-        // if (frm.search_name.value == "검색어 입력")
-        // {
-        //     frm.search_name.value = "";
-        // }
         frm.submit();
     }
 
-    $('.m_filter').on('click', function () {
-        $(this).addClass('active').siblings().removeClass('active')
-        let value = $(this).text();
+    // $('.m_filter').on('click', function () {
+    //     $(this).addClass('active').siblings().removeClass('active')
+    //     let value = $(this).text();
 
-        console.log(value);
+    //     console.log(value);
 
-        $.ajax({
-            url: "ajax.coupon_filter.php",
-            type: "POST",
-            data: {
-                'time': value,
-                url: '<?= $_SERVER['PHP_SELF'] ?>'
-            },
-            success: function (data) {
-                // alert(data);
-                $(".board_list").html(data);
-            }
-        })
-    })
+    //     $.ajax({
+    //         url: "ajax.coupon_filter.php",
+    //         type: "POST",
+    //         data: {
+    //             'time': value,
+    //             url: '<?= $_SERVER['PHP_SELF'] ?>'
+    //         },
+    //         success: function (data) {
+    //             $(".board_list").html(data);
+    //         }
+    //     });
+    // });
 
     $('.show_popup').on('click', function () {
         $('.agree_pop').show();

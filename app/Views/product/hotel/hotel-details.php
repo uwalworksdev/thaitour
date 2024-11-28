@@ -453,20 +453,20 @@
                                                 <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
                                                      style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
                                                      onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                     onerror="this.src='/images/share/noimg.png"
+                                                     onerror="this.src='/images/share/noimg.png'"
                                                      alt="<?= $room['roomName'] ?>">
                                                 <div class=""
                                                      style="display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%">
                                                     <img class="imageDetailOption_"
                                                          src="<?= isset($room['ufile2']) && $room['ufile2'] ? '/uploads/rooms/' . $room['ufile2'] : '/images/share/noimg.png' ?>"
                                                          onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                         onerror="this.src='/images/share/noimg.png"
+                                                         onerror="this.src='/images/share/noimg.png'"
                                                          alt="<?= $room['roomName'] ?>">
 
                                                     <img class="imageDetailOption_"
                                                          src="<?= isset($room['ufile3']) && $room['ufile3'] ? '/uploads/rooms/' . $room['ufile3'] : '/images/share/noimg.png' ?>"
                                                          onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                         onerror="this.src='/images/share/noimg.png"
+                                                         onerror="this.src='/images/share/noimg.png'"
                                                          alt="<?= $room['roomName'] ?>">
                                                 </div>
                                             </div>
@@ -799,7 +799,7 @@
                                                 <div class="only_web">
                                                     <div class="grid2_2_1">
                                                         <img src="/uploads/rooms/<?= $room['ufile1'] ?>"
-                                                             onerror="this.src='/images/share/noimg.png"
+                                                             onerror="this.src='/images/share/noimg.png'"
                                                              style="width: 285px; border: 1px solid #dbdbdb; height: 190px"
                                                              onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
                                                              alt="<?= $room['roomName'] ?>">
@@ -809,13 +809,13 @@
                                                             <img class="imageDetailOption_"
                                                                  src="<?= isset($room['ufile2']) && $room['ufile2'] ? '/uploads/rooms/' . $room['ufile2'] : '/images/share/noimg.png' ?>"
                                                                  onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                                 onerror="this.src='/images/share/noimg.png"
+                                                                 onerror="this.src='/images/share/noimg.png'"
                                                                  alt="<?= $room['roomName'] ?>">
 
                                                             <img class="imageDetailOption_"
                                                                  src="<?= isset($room['ufile3']) && $room['ufile3'] ? '/uploads/rooms/' . $room['ufile3'] : '/images/share/noimg.png' ?>"
                                                                  onclick="fn_pops('<?= $room['g_idx'] ?>', '<?= $room['roomName'] ?>')"
-                                                                 onerror="this.src='/images/share/noimg.png"
+                                                                 onerror="this.src='/images/share/noimg.png'"
                                                                  alt="<?= $room['roomName'] ?>">
                                                         </div>
                                                     </div>

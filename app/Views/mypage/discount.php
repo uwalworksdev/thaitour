@@ -1,12 +1,12 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$connect = db_connect();
+    $connect = db_connect();
 
-if ($_SESSION["member"]["mIdx"] == "") {
-    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-    exit();
-}
+    if ($_SESSION["member"]["mIdx"] == "") {
+        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+        exit();
+    }
 ?>
 
 
@@ -26,7 +26,7 @@ $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.
                     on c.coupon_type = s.idx
                     left outer join tbl_coupon_history h
                     on c.c_idx = h.used_coupon_idx
-                    where 1=1 and c.status != 'C' and c.enddate > curdate() and c.usedate = '' and c.get_issued_yn = 'Y' and h.used_coupon_idx is null and c.user_id = '{$_SESSION["member"]["id"]}' 
+                    where 1=1 and c.status != 'C' and c.enddate > curdate() and c.usedate = '' and h.used_coupon_idx is null and c.user_id = '{$_SESSION["member"]["id"]}' 
                     group by c.c_idx ";
 
 $nTotalCount = $connect->query($total_sql)->getNumRows();

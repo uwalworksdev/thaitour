@@ -31,5 +31,72 @@ class Coupon extends Model
 
         return $c_result;
     }
+    public function getCountCouponMember() {
+        $date = new DateTime('now', new DateTimeZone('Asia/Seoul'));
+        $koreaDate = $date->format('Y-m-d');
+        $builder = $this->db->table('tbl_coupon c');
+        $builder->select('
+                        c.c_idx, 
+                        c.coupon_num, 
+                        c.user_id, 
+                        c.regdate, 
+                        c.enddate, 
+                        c.usedate, 
+                        c.status, 
+                        c.types, 
+                        s.coupon_name, 
+                        s.dc_type, 
+                        s.coupon_pe, 
+                        s.coupon_price
+                    ');
+        $builder->join('tbl_coupon_setting s', 'c.coupon_type = s.idx', 'left');
+        $builder->join('tbl_coupon_history h', 'c.c_idx = h.used_coupon_idx', 'left');
+        $builder->where('c.status !=', 'C');
+        $builder->where('c.enddate >', $koreaDate);
+        $builder->where('c.usedate', '');
+        $builder->where('h.used_coupon_idx', null);
+        $builder->where('c.user_id', $_SESSION['member']['id']);
+        $builder->groupBy('c.c_idx');
 
+        $result = $builder->get()->getResultArray();
+        return $result;
+    }
+    
+    public function getUseCouponMember($s_date = null, $e_date = null, $pg = 1, $g_list_rows = 10) {
+        $builder = $this->db->table('tbl_coupon a')
+                            ->select("DATE_FORMAT(ch_r_date, '%Y-%m-%d') as ch_r_date_new")
+                            ->select('a.*, b.*, s.*')
+                            ->join('tbl_coupon_history b', 'a.c_idx = b.used_coupon_idx', 'left')
+                            ->join('tbl_coupon_setting s', 'a.coupon_type = s.idx', 'left')
+                            ->where('m_idx', $_SESSION['member']['mIdx']);
+
+        if(!empty($s_date) && !empty($e_date)){
+            $builder->where("DATE_FORMAT(ch_r_date, '%Y-%m-%d') >=", $s_date);
+            $builder->where("DATE_FORMAT(ch_r_date, '%Y-%m-%d') <=", $e_date);
+        }
+
+        $nTotalCount = $builder->countAllResults(false);
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") {
+            $pg = 1;
+        }
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $builder->orderBy('ch_idx', 'desc')
+            ->limit($g_list_rows, $nFrom);
+
+        $coupon_list = $builder->get()->getResultArray();
+
+        $num = $nTotalCount - $nFrom;
+
+        return [
+            'coupon_list' => $coupon_list,
+            'nTotalCount' => $nTotalCount,
+            'pg' => $pg,
+            'nPage' => $nPage,
+            'g_list_rows' => $g_list_rows,
+            'num' => $num,
+        ];
+    }
 }
