@@ -344,9 +344,16 @@ class TourRegistController extends BaseController
         if ($data['option_idx']) {
             foreach ($data['option_idx'] as $key => $value) {
                 $this->golfOptionModel->update($value, [
-                    'option_price' => $data['option_price'][$key],
-                    'caddy_fee' => $data['caddy_fee'][$key],
-                    'cart_pie_fee' => $data['cart_pie_fee'][$key],
+                    'option_price'  => $data['option_price'][$key],
+                    'option_price1' => $data['option_price1'][$key],
+                    'option_price2' => $data['option_price2'][$key],
+                    'option_price3' => $data['option_price3'][$key],
+                    'option_price4' => $data['option_price4'][$key],
+                    'option_price5' => $data['option_price5'][$key],
+                    'option_price6' => $data['option_price6'][$key],
+                    'option_price7' => $data['option_price7'][$key],
+                    'caddy_fee'     => $data['caddy_fee'][$key],
+                    'cart_pie_fee'  => $data['cart_pie_fee'][$key],
                 ]);
             }
         }
