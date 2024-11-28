@@ -167,7 +167,7 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center"><?=$item['hole_cnt']?> /<?=$item['hour']?></td>
+											<td style="text-align:center"><?=$item['hole_cnt']?> / <?=$item['hour']?></td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 												<input type="hidden" name="golf_date[]" id="golf_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
