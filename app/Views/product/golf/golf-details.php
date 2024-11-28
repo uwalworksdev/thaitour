@@ -13,8 +13,8 @@
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <?php foreach($golf_price as $price) { ?> 
-                <input type="hidden" id="firstDate"  value="<?=$price['golf_date']?>">
-                <input type="hidden" id="firstPrice" value="<?=$price['option_price']?>">
+                <input type="text" id="firstDate"  value="<?=$price['golf_date']?>">
+                <input type="text" id="firstPrice" value="<?=$price['option_price']?>">
                 <?php } ?>
  				
                 <div class="title-container">
@@ -793,10 +793,6 @@
 
             var popup2 = $('#popup_img');
             var closedBtn2 = $('#popup_img .closed_btn');
-
-alert($("#firstPrice").val());
-            $("#final_option_price").text(number_format($("#firstPrice").val()));
-
 
             /* closed btn*/
             closedBtn.click(function () {
