@@ -780,6 +780,7 @@
         }
 
         jQuery(document).ready(function () {
+			alert('1111111111');
             var dim = $('#dim');
             var popup = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
