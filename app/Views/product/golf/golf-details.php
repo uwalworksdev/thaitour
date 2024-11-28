@@ -693,6 +693,7 @@
         }
 
         function getOptions() {
+			alert('1111111');
             const hole_cnt = $('.tag-js.active').data('tab');
             const hour = $('.tag-js2.active').data('tab');
             if(!hole_cnt || !hour) {
