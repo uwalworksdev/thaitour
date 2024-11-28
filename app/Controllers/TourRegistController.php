@@ -480,7 +480,6 @@ class TourRegistController extends BaseController
 
     public function write_golf_price()
     {
-        $o_idx        = $this->request->getVar("o_idx");
         $product_idx  = $this->request->getVar("product_idx");
         $s_date       = $this->request->getVar("s_date");
         $e_date       = $this->request->getVar("e_date");
@@ -488,7 +487,7 @@ class TourRegistController extends BaseController
         $row          = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        $option       = $this->hotelOptionModel->getByIdx($o_idx);
+        $option       = $this->golfOptionModel->getByIdx($product_idx);
         $o_sdate      = $option["o_sdate"];
         $o_edate      = $option["o_edate"];
 
@@ -496,16 +495,15 @@ class TourRegistController extends BaseController
         if($e_date) $o_edate = $e_date;
 
         if($s_date && $e_date) {
-			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' AND goods_date BETWEEN '$s_date' AND '$e_date' order by goods_date asc";
+			$fsql     = "SELECT * FROM tbl_golf_price WHERE o_idx = '". $o_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' order by golf_date asc";
         } else {
-			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' order by goods_date asc";
+			$fsql     = "SELECT * FROM tbl_golf_price WHERE o_idx = '". $o_idx ."' order by golf_date asc";
         }
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
         $data = [
 			'roresult'     => $roresult,
-            'o_idx'        => $o_idx,
             'product_idx'  => $product_idx,
             'product_name' => $product_name,
             'o_sdate'      => $o_sdate,
