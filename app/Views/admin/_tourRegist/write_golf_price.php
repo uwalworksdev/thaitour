@@ -49,7 +49,7 @@
                         <li><a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
-                        <?php if ($o_idx) { ?>
+                        <?php if ($product_idx) { ?>
                             <li><a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
@@ -295,7 +295,7 @@
 
                                 <a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
-                                <?php if ($o_idx == "") { ?>
+                                <?php if ($product_idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">등록</span></a>
