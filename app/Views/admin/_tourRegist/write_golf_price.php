@@ -139,7 +139,7 @@
 												일자
 											</td>
 											<td style="text-align:center">
-												홀수/시간대
+												홀수 / 시간대
 											</td>
 											<td style="text-align:center">
 												가격(원)
