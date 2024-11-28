@@ -991,8 +991,8 @@
 
         const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
-alert('xxxxxxxx');
-        $(".final_date").text(formatDate(new Date(initDate), "."));
+
+		$(".final_date").text('2024-11-01'));
         $("#order_date").val(formatDate(new Date(initDate), "-"));
 
         function nextMonth() {
