@@ -415,6 +415,8 @@ $routes->group("api", static function ($routes) {
 
     $routes->group("hotel_", function ($routes) {
         $routes->get("get_data", "Api\ProductApi::getDataHotel", ['as' => "api.hotel_.get_data"]);
+        $routes->get("get_option", "Api\ProductApi::getDataOption", ['as' => "api.hotel_.get_option"]);
+        $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
     });
 });
 
