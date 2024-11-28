@@ -767,15 +767,15 @@
                                         <colgroup>
                                             <col width="8%"/>
                                             <col width="7%"/>
-                                            <col width="7%"/>
-                                            <col width="7%"/>
-                                            <col width="7%"/>
-                                            <col width="7%"/>
-                                            <col width="7%"/>
-                                            <col width="7%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
+                                            <col width="8%"/>
                                             <col width="10%"/>
                                             <col width="10%"/>
-                                            <col width="17%"/>
+                                            <col width="16%"/>
                                         </colgroup>
                                         <thead>
                                             <tr>
