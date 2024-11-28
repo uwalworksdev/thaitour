@@ -55,13 +55,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<p>- 회원명과 동일 예금주명의 계좌로만 인증이 가능합니다.</p>
 					</div> -->
 					<div class="imfor_tb">
-						<?php
-						$total_sql = " select * from tbl_member_bank where m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-						// $result = mysqli_query($connect, $total_sql) or die(mysqli_error($connect));
-						$row = $connect->query($total_sql)->getRowArray();
-						?>
-						<form action="user_mange_ok" name="frm" method="post">
-							<input type="hidden" name="mb_idx" value="<?= $row["mb_idx"] ?>">
+						<form action="/mypage/user_mange_ok" name="frm" method="post">
+							<input type="hidden" name="mb_idx" value="<?= $row_bank["mb_idx"] ?>">
 							<fieldset>
 								<legend>환불 정보 관리</legend>
 								<table>
@@ -79,15 +74,13 @@ if ($_SESSION["member"]["mIdx"] == "") {
 												<select id="mange_la01" name="bank_code"><!-- style="width:200px" -->
 													<option value="">은행선택</option>
 													<?php
-													$fsql = "select * from tbl_code where code_gubun='bank' and depth='2' and status='Y' order by code_name asc";
-													$fresult = $connect->query($fsql)->getResultArray();
-													foreach ($fresult as $frow) {
-														?>
-														<option value="<?= $frow["code_no"] ?>" <?php if ($row["bank_code"] == $frow["code_no"]) {
+														foreach ($bank_list as $frow) {
+													?>
+														<option value="<?= $frow["code_no"] ?>" <?php if ($row_bank["bank_code"] == $frow["code_no"]) {
 															  echo "selected";
 														  } ?>><?= $frow["code_name"] ?></option>
-														<?php
-													}
+													<?php
+														}
 													?>
 												</select>
 											</td>
@@ -97,7 +90,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 											<label for="mange_la02">계좌번호</label>
 										</th>
 										<td>
-											<input type="text" name="bank_num" value="<?= $row["bank_num"] ?>"
+											<input type="text" name="bank_num" value="<?= $row_bank["bank_num"] ?>"
 												class="account_write" placeholder="‘ - ’ 없이 숫자만 입력 하세요"
 												onfocus="this.placeholder=''"
 												onblur="this.placeholder='- 없이 숫자로만 입력하세요'" id="mange_la02"
@@ -111,7 +104,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 											</th>
 											<td>
 												<input type="text" name="bank_user" placeholder="예금주명"
-													class="holder_write" value="<?= $row["bank_user"] ?>"
+													class="holder_write" value="<?= $row_bank["bank_user"] ?>"
 													id="mange_la03" maxlength="10">
 											</td>
 										</tr>
@@ -122,7 +115,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<div class="color_btn_box flex">
 							<button type="button" class="gray_btn"
 								onclick="javascript:location.href='/'">취소</button>
-							<?php if ($row["mb_idx"] != "") { ?>
+							<?php if ($row_bank["mb_idx"] != "") { ?>
 								<button type="button" class="btn_submit mar_r" onclick="javascript:send_it()">확인</button>
 							<?php } else { ?>
 								<button type="button" class="btn_submit mar_r" onclick="javascript:send_it()">등록하기</button>

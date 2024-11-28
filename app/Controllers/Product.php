@@ -67,15 +67,16 @@ class Product extends BaseController
         $constants = new ConfigCustomConstants();
     }
 
-    private function getSubInfo($items) {
+    private function getSubInfo($items)
+    {
         foreach ($items as $key => $item) {
             $hotel_codes = explode("|", $item['product_code_list']);
             $hotel_codes = array_values(array_filter($hotel_codes));
 
-            if($hotel_codes['0']) $code = $hotel_codes['0'];
-            if(!$code)  $code = $item['product_code_3'];
-            if(!$code)  $code = $item['product_code_2'];
-            if(!$code)  $code = $item['product_code_1'];
+            if ($hotel_codes['0']) $code = $hotel_codes['0'];
+            if (!$code) $code = $item['product_code_3'];
+            if (!$code) $code = $item['product_code_2'];
+            if (!$code) $code = $item['product_code_1'];
 
             $codeTree = $this->codeModel->getCodeTree($code);
 
@@ -90,7 +91,8 @@ class Product extends BaseController
         return $items;
     }
 
-    public function productSearch() {
+    public function productSearch()
+    {
         $search_name = $this->request->getVar("search_name");
 
         $search_cate = $this->request->getVar("search_cate");
@@ -106,19 +108,19 @@ class Product extends BaseController
 
         switch ($sort) {
             case "recommended":
-                $orderBy = [ 'wish_cnt' => 'DESC' ];
+                $orderBy = ['wish_cnt' => 'DESC'];
                 break;
             case "reservation":
-                $orderBy = [ 'order_cnt' => 'DESC' ];
+                $orderBy = ['order_cnt' => 'DESC'];
                 break;
             case "rating":
-                $orderBy = [ 'point' => 'DESC' ];
+                $orderBy = ['point' => 'DESC'];
                 break;
             case "highest_price":
-                $orderBy = [ 'product_price' => 'DESC' ];
+                $orderBy = ['product_price' => 'DESC'];
                 break;
             case "lowest_price":
-                $orderBy = [ 'product_price' => 'ASC' ];
+                $orderBy = ['product_price' => 'ASC'];
                 break;
             default:
                 $orderBy = [];
@@ -1257,6 +1259,37 @@ class Product extends BaseController
             $rresult = $this->db->query($fsql) or die($this->db->error);
             $rresult = $rresult->getResultArray();
 
+//            $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $idx . " AND is_best = 'Y' ORDER BY onum DESC, idx DESC";
+//            $reviews = $this->db->query($sql)->getResultArray();
+//            $reviews = array_map(function ($item) use ($idx) {
+//                $review = (array)$item;
+//
+//                $sql = "SELECT * FROM tbl_member WHERE m_idx = " . $item['user_id'];
+//                $result = $this->db->query($sql)->getRowArray();
+//                $review['avt'] = $result ? $result['ufile1'] : "";
+//
+//                return $review;
+//            }, $reviews);
+//            $sql = "
+//                    SELECT
+//                        r.*,
+//                        m.ufile1 AS avt
+//                    FROM
+//                        tbl_travel_review AS r
+//                    LEFT JOIN
+//                        tbl_member AS m
+//                    ON
+//                        r.user_id = m.m_idx
+//                    WHERE
+//                        r.product_idx = $idx
+//                        AND r.is_best = 'Y'
+//                    ORDER BY
+//                        r.onum DESC, r.idx DESC
+//                ";
+//
+//            $query = $this->db->query($sql);
+//            $reviews = $query->getResultArray();
+
             $sql = "SELECT a.*, b.ufile1 as avt
                     FROM tbl_travel_review a 
                     INNER JOIN tbl_member b ON a.user_id = b.m_idx 
@@ -1947,10 +1980,10 @@ class Product extends BaseController
         $data['kids_price_bath'] = round($data['people_kids_price'] / (float)($this->setting['baht_thai'] ?? 0));
         $data['baby_price_bath'] = round($data['people_baby_price'] / (float)($this->setting['baht_thai'] ?? 0));
         $data['total_price_product'] = $data['people_adult_price'] + $data['people_kids_price'] + $data['people_baby_price'];
-        $data['total_price_product_bath'] = ( $data['adult_price_bath']) + ($data['kids_price_bath']) + ($data['baby_price_bath']);
-        $data['adult_price_total'] = ( $data['people_adult_price']);
+        $data['total_price_product_bath'] = ($data['adult_price_bath']) + ($data['kids_price_bath']) + ($data['baby_price_bath']);
+        $data['adult_price_total'] = ($data['people_adult_price']);
         $data['kids_price_total'] = ($data['people_kids_price']);
-        $data['baby_price_total'] = ($data['people_baby_price']);        
+        $data['baby_price_total'] = ($data['people_baby_price']);
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
         $data['final_discount'] = (float)($this->request->getVar('final_discount') ?? 0);
         $data['final_discount_bath'] = round($data['final_discount'] / (float)($this->setting['baht_thai'] ?? 0));
@@ -1972,7 +2005,7 @@ class Product extends BaseController
         $total_option_price = array_sum($data['option_price']);
 
         $data['final_price'] = $data['total_price_product'] + $total_option_price - $data['final_discount'];
-        $data['inital_price'] = $data['total_price_product'] + $total_option_price ;
+        $data['inital_price'] = $data['total_price_product'] + $total_option_price;
         $data['final_price_bath'] = $data['total_price_product_bath'] + $total_option_price_bath;
 
 
@@ -2288,13 +2321,13 @@ class Product extends BaseController
                 $code = $product['product_code_1'];
                 if ($product['product_code_2']) $code = $product['product_code_2'];
                 if ($product['product_code_3']) $code = $product['product_code_3'];
-    
+
                 $codeTree = $this->codeModel->getCodeTree($product['product_code_1']);
-    
+
                 $products['items'][$key]['codeTree'] = $codeTree;
-    
+
                 $productReview = $this->reviewModel->getProductReview($product['product_idx']);
-    
+
                 $products['items'][$key]['total_review'] = $productReview['total_review'];
                 $products['items'][$key]['review_average'] = $productReview['avg'];
             }
@@ -2333,7 +2366,7 @@ class Product extends BaseController
                     $search_word = strtolower($search_word);
                     $product_name = strtolower($product['product_name'] ?? "");
                     $product_keywords = strtolower($product['keyword'] ?? "");
-            
+
                     return strpos($product_name, $search_word) !== false || strpos($product_keywords, $search_word) !== false;
                 });
             }

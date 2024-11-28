@@ -9,8 +9,8 @@ class Member extends BaseController
 {
 
     private $member;
-
     protected $sessionLib;
+    protected $db;
     protected $sessionChk;
 
     public function __construct()

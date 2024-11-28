@@ -202,8 +202,33 @@ if ($qna_item) {
                         </tr>
                         <tr>
                             <td>상품명</td>
-                            <td><input name="product_name" id="product_name" class="bs-input" type="text"
-                                    value="<?= $product_name ?>"></td>
+                            <td>
+                                <?php
+                                    if(!empty($idx)){
+                                ?>
+                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
+                                        <option value="">선택</option>
+                                        <?php
+                                            foreach($products as $product){
+                                        ?>
+                                            <option value="<?=$product["product_name"]?>" 
+                                                <?php if($product["product_name"] == $product_name){ echo "selected"; }?>>
+                                                <?=$product["product_name"]?>
+                                            </option>
+                                        <?php 
+                                            }
+                                        ?>
+                                    </select>
+                                <?php 
+                                    }else{
+                                ?>
+                                    <select name="product_name" id="product_name" class="bs-select mx-sm">
+                                        <option value="">선택</option>
+                                    </select>
+                                <?php 
+                                    }
+                                ?>
+                            </td>
                         </tr>
                         <tr>
                             <td>제목*</td>
@@ -446,7 +471,7 @@ if ($qna_item) {
                 }
             }
         })
-    })
+    });
 
 
     $("#travel_type_2").on("change", function (event) {
@@ -466,7 +491,25 @@ if ($qna_item) {
                 }
             }
         })
-    })
+    });
+
+    $("#travel_type_3").on("change", function(event) {
+        $.ajax({
+            url: "/ajax/get_list_product",
+            type: "GET",
+            data: {
+                product_code: event.target.value
+            },
+            success: function(res) {
+                let data = res.results;
+                let html = `<option value=''>선택</option>`;
+                data.forEach(element => {
+                    html += `<option value='${element["product_name"]}'>${element["product_name"]}</option>`;
+                });
+                $("#product_name").html(html);
+            }
+        })
+    });
 
     function formatPhoneNumber(input) {
         const numericString = input.replace(/\D/g, '');

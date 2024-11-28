@@ -385,11 +385,17 @@ class TourRegistController extends BaseController
         $insertId = $this->db->insertID();
 
         $html = '<tr id="moption_' . $insertId . '">';
-        $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}시</span>&nbsp;/&nbsp;<span>{$moption_minute}분</span></td>";
+        $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}</span>&nbsp;&nbsp;<span>{$moption_minute}</span></td>";
         $html .= '<td>
                     <div class="flex_c_c">
                         <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
-                        <input type="text" name="option_price[]" id="option_price_' . $insertId . '" value="0">원
+                        <input type="text" name="option_price1[]" id="option_price1_' . $insertId . '" value="0">
+                        <input type="text" name="option_price2[]" id="option_price2_' . $insertId . '" value="0">
+                        <input type="text" name="option_price3[]" id="option_price3_' . $insertId . '" value="0">
+                        <input type="text" name="option_price4[]" id="option_price4_' . $insertId . '" value="0">
+                        <input type="text" name="option_price5[]" id="option_price5_' . $insertId . '" value="0">
+                        <input type="text" name="option_price6[]" id="option_price6_' . $insertId . '" value="0">
+                        <input type="text" name="option_price7[]" id="option_price7_' . $insertId . '" value="0">
                     </div>
                 </td>';
         $html .= '<td>

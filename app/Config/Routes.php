@@ -412,6 +412,10 @@ $routes->group("api", static function ($routes) {
         $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
         $routes->post("handleBooking", "SpaController::handleBooking", ['as' => "api.spa_.handleBooking"]);
     });
+
+    $routes->group("hotel_", function ($routes) {
+        $routes->get("get_data", "Api\ProductApi::getDataHotel", ['as' => "api.hotel_.get_data"]);
+    });
 });
 
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
@@ -427,6 +431,8 @@ $routes->group("tools", static function ($routes) {
 });
 $routes->group("member", static function ($routes) {
     $routes->get("login", "Member::LoginForm");
+    $routes->get("login_naver", "SocialLoginController::naverLogin");
+    $routes->get("callback_login_naver", "SocialLoginController::naverCallback");
     $routes->post("login_check", "Member::LoginCheck");
     $routes->get("login_find_id", "Member::LoginFindId");
     $routes->get("login_find_pw", "Member::LoginFindPw");
@@ -469,6 +475,7 @@ $routes->group("mypage", static function ($routes) {
     $routes->get("info_option", "MyPage::info_option");
     $routes->get("info_change", "MyPage::info_change");
     $routes->get("user_mange", "MyPage::user_mange");
+    $routes->post("user_mange_ok", "MyPage::user_mange_ok");
     $routes->get("money", "MyPage::money");
     $routes->get("(:segment)/invoice_view_item", "MyPage::invoice_view_item/$1");
     $routes->post("money_ok", "MyPage::money_ok");
@@ -508,6 +515,7 @@ $routes->group("contact", static function ($routes) {
     $routes->get("view", "Contact::view");
     $routes->get("write", "Contact::write");
     $routes->post("write_ok", "Contact::write_ok");
+    $routes->post("delete", "Contact::delete");
 });
 $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");
@@ -517,6 +525,7 @@ $routes->group("qna", static function ($routes) {
     $routes->get("view", "Qna::view");
     $routes->get("write", "Qna::write");
     $routes->post("write_ok", "Qna::write_ok");
+    $routes->post("delete", "Qna::delete");
 });
 $routes->group("invoice", static function ($routes) {
     $routes->get("list", "Orders::list_invoice");

@@ -134,6 +134,8 @@ class AdminHotelController extends BaseController
     public function write_options() {
         $o_idx        = $this->request->getVar("o_idx");
         $product_idx  = $this->request->getVar("product_idx");
+        $s_date       = $this->request->getVar("s_date");
+        $e_date       = $this->request->getVar("e_date");
 
         $row          = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
@@ -142,7 +144,14 @@ class AdminHotelController extends BaseController
         $o_sdate      = $option["o_sdate"];
         $o_edate      = $option["o_edate"];
 
-        $fsql     = "select * from tbl_hotel_price where o_idx = '". $o_idx ."' order by goods_date asc";
+        if($s_date) $o_sdate = $s_date;
+        if($e_date) $o_edate = $e_date;
+
+        if($s_date && $e_date) {
+			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' AND goods_date BETWEEN '$s_date' AND '$e_date' order by goods_date asc";
+        } else {
+			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' order by goods_date asc";
+        }
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 

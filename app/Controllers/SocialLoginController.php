@@ -8,4 +8,9 @@ class SocialLoginController extends BaseController
     {
 
     }
+
+    public function naverCallback()
+    {
+
+    }
 }

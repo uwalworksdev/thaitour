@@ -72,9 +72,9 @@
 
         <form name="chargeForm" id="chargeForm" method="post">
             <input type=hidden name="product_idx" value='<?= $product_idx ?>' id="product_idx">
-            <input type=text name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
-            <input type=text name="o_soldout" value='' id='o_soldout'>
-            <input type=text name="chk_idx"   value='' id='chk_idx'>
+            <input type=hidden name="o_idx" value='<?= $o_idx ?>' id='o_idx'>
+            <input type=hidden name="o_soldout" value='' id='o_soldout'>
+            <input type=hidden name="chk_idx"   value='' id='chk_idx'>
 
 			<div id="contents">
                 <div class="listWrap_noline">
@@ -103,9 +103,13 @@
                                             <?= $o_sdate ?> ~ <?= $o_edate ?>
                                         </div>
 
-                                        <!--div style="margin:10px">
-                                            <a href="javascript:addOption();" id="addcharge" class="btn btn-primary">조회</a>
-                                        </div-->
+										<div style="text-align:left;">
+											<input type="text" name="s_date" id="s_date" value="" style="text-align: center;background: white; width: 120px;" readonly> ~
+											<input type="text" name="e_date" id="e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
+										</div>
+                                        <div style="margin:10px">
+                                            <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -180,8 +184,15 @@
 			        </div>
                     <!-- // listBottom -->
 
-                    <script>
+					<script>
+						$("#inqCharge").one("click", function () {
+							$("#in_s_date").val($("#s_date").val());
+							$("#in_e_date").val($("#e_date").val());
+							$("#priceForm").submit();
+						});
+					</script>
 
+					<script>
                         $(function () {
 
                             $("#s_date").datepicker({
@@ -194,8 +205,8 @@
                                 prevText: '이전',
                                 nextText: '다음',
                                 yearRange: "c:c+10",
-                                minDate: '<?=$o_sdate?>',
-                                maxDate: '<?=$o_edate?>',
+                                minDate: new Date(),
+                                maxDate: "+99Y",
                                 onClose: function (selectedDate) {
                                     $("#e_date").datepicker("option", "minDate", selectedDate);
                                 },
@@ -241,8 +252,8 @@
                                 , currentText: '오늘' // 오늘 버튼 텍스트 설정
                                 , prevText: '이전'
                                 , nextText: '다음'
-                                , minDate: '<?=$o_sdate?>'
-                                , maxDate: '<?=$o_edate?>'
+                                , minDate: new Date() 
+                                , maxDate: "+99Y"
                             });
                         });
                         
@@ -475,6 +486,13 @@
 					window.location.href = "AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>";
 				}
 			</script>
+
+        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_hotel/write_options">
+            <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
+            <input type="hidden" name="o_idx"       value="<?= $o_idx ?>" >
+			<input type="hidden" name="s_date"      value="" id="in_s_date" >
+			<input type="hidden" name="e_date"      value="" id="in_e_date" >
+        </form>
 
 <iframe width="300" height="300" name="hiddenFrame" id="hiddenFrame" src="" style="display:none"></iframe>
 

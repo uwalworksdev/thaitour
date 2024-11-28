@@ -164,25 +164,19 @@ if ($qna) {
             return;
         }
         $.ajax({
-            url: "del.php",
+            url: "/qna/delete",
             type: "POST",
             data: "idx=" + idx,
             error: function (request, status, error) {
                 //통신 에러 발생시 처리
-                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-            },
-            complete: function (request, status, error) {
-
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
             },
             success: function (response, status, request) {
-                if (response == "OK") {
-                    alert("정상적으로 삭제되었습니다.");
-                    location.href = "/travel/travel_list.php";
-                    return;
-                } else {
-                    alert("오류가 발생하였습니다!!");
-                    return;
+                alert(response.message);
+                if (response.result == true) {
+                    location.href = "/qna/list";
                 }
+                return;
             }
         });
 

@@ -755,15 +755,20 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;
                                         <select name="moption_hour" id="moption_hour">
+											<option value="오전">오전</option>										     
+											<option value="오후">오후</option>										     
+                                            <!--
                                             <?php foreach(GOLF_HOURS as $hour) : ?>
                                                 <option value="<?=$hour?>"><?=$hour?>시</option>
                                             <?php endforeach; ?>
+											-->
                                         </select>&nbsp;
-                                        <select name="moption_minute" id="moption_minute">
+                                        <input type="hidden" name="moption_minute" id="moption_minute">
+                                        <!--select name="moption_minute" id="moption_minute">
                                             <?php foreach(GOLF_MIN as $minute) : ?>
                                                 <option value="<?=$minute?>"><?=$minute?>분</option>
                                             <?php endforeach; ?>
-                                        </select>&nbsp;
+                                        </select>&nbsp;-->  
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
                                     </div>
                                 </td>
@@ -773,16 +778,16 @@
                                 <td>
                                     <table>
                                         <colgroup>
-                                            <col width="20%"/>
-                                            <col width="20%"/>
-                                            <col width="20%"/>
-                                            <col width="20%"/>
-                                            <col width="20%"/>
+                                            <col width="8%"/>
+                                            <col width="*"/>
+                                            <col width="10%"/>
+                                            <col width="10%"/>
+                                            <col width="17%"/>
                                         </colgroup>
                                         <thead>
                                             <tr>
                                                 <th>옵션명</th>
-                                                <th>가격</th>
+                                                <th>일/월/화/수/목/금/토 가격(원)</th>
                                                 <th>캐디피</th>
                                                 <th>카트피</th>
                                                 <th>관리</th>
@@ -792,12 +797,19 @@
                                             <?php foreach ($options as $m) { ?>
                                                 <tr id="option_<?= $m['idx'] ?>">
                                                     <td>
-                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?>시</span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
+                                                        <!--span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분...</span-->
+                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;</span>
                                                     </td>
                                                     <td>
                                                         <div class="flex_c_c">
                                                             <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
-                                                            <input type="text" name="option_price[]" id="option_price_<?= $m['idx'] ?>" value='<?= $m['option_price'] ?>'>원
+                                                            <input type="text" name="option_price1[]" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
+                                                            <input type="text" name="option_price2[]" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
+                                                            <input type="text" name="option_price3[]" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
+                                                            <input type="text" name="option_price4[]" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
+                                                            <input type="text" name="option_price5[]" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
+                                                            <input type="text" name="option_price6[]" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
+                                                            <input type="text" name="option_price7[]" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -811,7 +823,7 @@
                                                         &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
                                                     </td>
                                                 </tr>
-                                            <?php } ?>
+                                            <?php } ?> 
                                         </tbody>
                                     </table>
                                 </td>
@@ -858,6 +870,7 @@
                 </div>
             </div>
         </div>
+
         <script>
             function del_tours(idx) {
                 if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
@@ -1025,7 +1038,7 @@
                         "product_idx": '<?=$product_idx?>',
                         "moption_hole": $("#moption_hole").val(),
                         "moption_hour": $("#moption_hour").val(),
-                        "moption_minute": $("#moption_minute").val(),
+                        "moption_minute": $("#moption_minute").val() 
                     },
                     async: false,
                     cache: false,
