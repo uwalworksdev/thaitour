@@ -330,7 +330,7 @@ class TourRegistController extends BaseController
                  $this->golfInfoModel->updateData($product_idx, $data);
             }
 
-            $html  = '<script>alert("수정되었습니다....");</script>';
+            $html  = '<script>alert("수정되었습니다.");</script>';
             $html .= '<script>parent.location.reload();</script>';
         } else {
             $data['r_date'] = date("Y-m-d H:i:s");
