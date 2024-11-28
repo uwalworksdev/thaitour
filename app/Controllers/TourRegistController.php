@@ -360,6 +360,53 @@ class TourRegistController extends BaseController
 
         // 골프 옵션 -> 일자별 가격 설정
 
+        $sql_o       = " select * from tbl_golf_option where product_idx = ' ". $product_idx ."' "; 
+        $result_o    = $this->connect->query($sql_o);
+        $golfOoption = $result_o->getRowArray();
+        
+		foreach ($golfOoption as $row_o):
+
+			$ii = -1;
+		    $dateRange   = getDateRange($data['s_date'], $data['e_date']);
+			foreach ($dateRange as $date) 
+			{ 
+				$sql_opt    = "SELECT count(*) AS cnt FROM tbl_golf_price WHERE o_idx = '". $row_o['idx'] ."' ";
+				$option     = $this->connect->query($sql_opt)->getRowArray();
+				if($option['cnt'] == 0) 
+                {
+						
+						$ii++;
+						$golf_date = $dateRange[$ii];
+						$dow       = dateToYoil($goods_date);
+                        
+						if($dow == "일") $option_price = $row_o['option_price1'];
+						if($dow == "월") $option_price = $row_o['option_price2'];
+						if($dow == "화") $option_price = $row_o['option_price3'];
+						if($dow == "수") $option_price = $row_o['option_price4'];
+						if($dow == "목") $option_price = $row_o['option_price5'];
+						if($dow == "금") $option_price = $row_o['option_price6'];
+						if($dow == "토") $option_price = $row_o['option_price7'];
+
+						$sql_c = "INSERT INTO tbl_golf_price  SET  
+															  o_idx        = '". $row_o['idx'] ."' 	
+															 ,golf_date    = '". $golf_date ."'
+															 ,dow          = '". $dow."'
+															 ,product_idx  = '". $product_idx ."'
+															 ,hole_cnt     = '". $row_o['hole_cnt'] ."' 	
+															 ,hour         = '". $row_o['hour'] ."' 	
+															 ,minute       = '". $row_o['minute'] ."' 	
+															 ,option_price = '". $option_price ."' 	
+															 ,use_yn       = ''	
+															 ,caddy_fee    = '". $row_o['caddy_fee'] ."' 	
+															 ,cart_pie_fee = '". $row_o['cart_pie_fee'] ."' 	
+															 ,reg_date     = now() ";
+						write_log("골프가격정보-1 : ".$sql_c);
+						$this->connect->query($sql_c);
+			    } 
+            }
+
+		endforeach; 
+
         return $this->response->setBody($html);
     }
 
