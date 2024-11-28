@@ -179,7 +179,7 @@
                 </div>
                 <div class="date-text-2">
                     <div class="result_select">
-                        <p class="final_date">xxxxxx</p> / 
+                        <p class="final_date"></p> / 
                         <p class="final_hole">0</p><span>홀수</span> / 
                         <p class="final_hour">00</p><span></span> / 
                         <p class="final_people_cnt">0</p><span>인</span>
@@ -991,7 +991,7 @@
 
         const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
-
+alert('xxxxxxxx');
         $(".final_date").text(formatDate(new Date(initDate), "."));
         $("#order_date").val(formatDate(new Date(initDate), "-"));
 
