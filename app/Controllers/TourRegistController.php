@@ -365,8 +365,8 @@ class TourRegistController extends BaseController
         $result_o    = $this->connect->query($sql_o);
         $golfOoption = $result_o->getRowArray();
         
-		foreach ($golfOoption as $row_o):
-
+		foreach ($golfOoption as $row_o) 
+        {
 			$ii = -1;
 		    $dateRange   = getDateRange($data['s_date'], $data['e_date']);
 			foreach ($dateRange as $date) 
@@ -407,8 +407,8 @@ class TourRegistController extends BaseController
 			    } 
             }
 
-		endforeach; 
-
+		} 
+    
         return $this->response->setBody($html);
     }
 
