@@ -617,6 +617,7 @@
 
 .prd__item__right {
     flex: 1;
+    max-width: calc(100% - 175px);
 }
 
 .prd__item__info {
