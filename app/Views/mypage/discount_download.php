@@ -1,14 +1,13 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$connect = db_connect();
+    $connect = db_connect();
 
-if ($_SESSION["member"]["mIdx"] == "") {
-    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-    exit();
-}
+    if ($_SESSION["member"]["mIdx"] == "") {
+        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+        exit();
+    }
 ?>
-
 
 <link href="/css/mypage/mypage_new.css" rel="stylesheet" type="text/css"/>
 <link href="/css/mypage/mypage_reponsive_new.css" rel="stylesheet" type="text/css"/>
@@ -17,22 +16,21 @@ if ($_SESSION["member"]["mIdx"] == "") {
 -->
 <?php
 
-$g_list_rows = 10;
+    $g_list_rows = 10;
 
-
-$total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price, s.etc_memo
-                from tbl_coupon c
-                left outer join tbl_coupon_setting s
-                on c.coupon_type = s.idx
-            where 1=1 and c.status != 'C' and c.enddate > curdate() and c.get_issued_yn != 'Y' ";
-$nTotalCount = $connect->query($total_sql)->getNumRows();
+    $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price, s.etc_memo
+                        from tbl_coupon c
+                        left outer join tbl_coupon_setting s
+                        on c.coupon_type = s.idx
+                    where 1=1 and c.status != 'C' and c.enddate > curdate() and c.get_issued_yn != 'Y' ";
+    $nTotalCount = $connect->query($total_sql)->getNumRows();
 
 ?>
 <section class="mypage_container">
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-            echo view("/mypage/mypage_gnb_menu_inc", ["tab_5" => "on", "tab_5_3" => "on"]);
+                echo view("/mypage/mypage_gnb_menu_inc", ["tab_5" => "on", "tab_5_3" => "on"]);
             ?>
             <div class="content">
                 <h1 class="ttl_table_discount">쿠폰함</h1>
@@ -60,46 +58,50 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
                     </thead>
                     <tbody>
                     <?php
-                    $nPage = ceil($nTotalCount / $g_list_rows);
-                    if ($pg == "") $pg = 1;
-                    $nFrom = ($pg - 1) * $g_list_rows;
+                        $nPage = ceil($nTotalCount / $g_list_rows);
+                        if ($pg == "") $pg = 1;
+                        $nFrom = ($pg - 1) * $g_list_rows;
 
-                    $sql = $total_sql . " order by c_idx desc limit $nFrom, $g_list_rows ";
-                    //echo $sql;
-                    $result = $connect->query($sql)->getResultArray();
-                    $num = $nTotalCount - $nFrom;
-                    if ($nTotalCount == 0) {
-                        ?>
+                        $sql = $total_sql . " order by c_idx desc limit $nFrom, $g_list_rows ";
+                        //echo $sql;
+                        $result = $connect->query($sql)->getResultArray();
+                        $num = $nTotalCount - $nFrom;
+                        if ($nTotalCount == 0) {
+                    ?>
                         <tr style="text-align: center; vertical-align: middle">
                             <td colspan="4">검색된 결과가 없습니다.</td>
                         </tr>
-                        <?php
-                    }
-                    foreach ($result as $row) {
-                        ?>
+                    <?php
+                        }
+                        foreach ($result as $row) {
+                    ?>
                         <tr>
                             <td class="coupon">
                                 <div class="flex_c_c">
                                     <p class="cp_logo">coupon</p>
-                                    <p class="price"><?
-                                        if ($row['dc_type'] == "P") {
-                                            echo "{$row['coupon_pe']}<span>% 할인</span>";
-                                        } else if ($row['dc_type'] == "D") {
-                                            echo number_format($row["coupon_price"]) . "<span>원</span>";
-                                        }
-                                        ?></p>
+                                    <p class="price">
+                                        <?php
+                                            if ($row['dc_type'] == "P") {
+                                                echo "{$row['coupon_pe']}<span>% 할인</span>";
+                                            } else if ($row['dc_type'] == "D") {
+                                                echo number_format($row["coupon_price"]) . "<span>원</span>";
+                                            }
+                                        ?>
+                                    </p>
                                 </div>
                             </td>
                             <td class="des">
                                 <p><?= $row['coupon_name'] ?><br>
                                     <?= nl2br($row['etc_memo']) ?></p>
-                                <p class="note"><?
-                                    if ($row['dc_type'] == "P") {
-                                        echo "할인율 {$row['coupon_pe']}%";
-                                    } else if ($row['dc_type'] == "D") {
-                                        echo "할인가격 " . number_format($row["coupon_price"]) . "원";
-                                    }
-                                    ?></p>
+                                <p class="note">
+                                    <?php
+                                        if ($row['dc_type'] == "P") {
+                                            echo "할인율 {$row['coupon_pe']}%";
+                                        } else if ($row['dc_type'] == "D") {
+                                            echo "할인가격 " . number_format($row["coupon_price"]) . "원";
+                                        }
+                                    ?>
+                                    </p>
                             </td>
                             <td class="date"><span><?= (date("Y.m.d", strtotime($row['enddate']))) ?></span></td>
                             <td class="down">
@@ -139,7 +141,6 @@ $nTotalCount = $connect->query($total_sql)->getNumRows();
         </div>
     </div>
     <div class="bg"></div>
-    <!-- </div> -->
 </div>
 <script>
     $('.show_popup').on('click', function () {

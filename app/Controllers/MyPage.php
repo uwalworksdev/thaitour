@@ -23,6 +23,9 @@ class MyPage extends BaseController
     private $optionTours;
     private $memberBank;
     private $code;
+    private $coupon;
+    private $orderMileage;
+
 
     public function __construct()
     {
@@ -34,7 +37,10 @@ class MyPage extends BaseController
         $this->orderTours = model("OrderTourModel");
         $this->optionTours = model("OptionTourModel");
         $this->memberBank = model("MemberBank");
+        $this->coupon = model("Coupon");
         $this->code = model("Code");
+        $this->orderMileage = model("OrderMileage");
+
         $this->sessionLib = new SessionChk();
         $this->sessionChk = $this->sessionLib->infoChk();
         $this->ordersModel = new \App\Models\OrdersModel();
@@ -150,12 +156,53 @@ class MyPage extends BaseController
 
     public function point()
     {
-        return view('mypage/point');
+        $pg = $this->request->getVar("pg") ?? 1;
+        $s_date = $this->request->getVar("s_date") ?? "";
+        $e_date = $this->request->getVar("e_date") ?? "";
+
+        $c_nTotalCount = count($this->coupon->getCountCouponMember());
+        $mileage = $this->member->getByIdx(session()->get("member")["idx"])["mileage"];
+
+        $point = $this->orderMileage->getPoint($s_date, $e_date, $pg, 100);
+
+        return view('mypage/point',
+        [
+            "c_nTotalCount" => $c_nTotalCount,
+            "mileage" => $mileage,
+            "point_list" => $point["point_list"],
+            "nTotalCount" => $point["nTotalCount"],
+            "pg" => $pg,
+            "nPage" => $point["nPage"],
+            "g_list_rows" => $point["g_list_rows"],
+            "num" => $point["num"],
+            "s_date" => $s_date,
+            "e_date" => $e_date
+        ]);
     }
 
     public function coupon()
     {
-        return view('mypage/coupon');
+        $pg = $this->request->getVar("pg") ?? 1;
+        $s_date = $this->request->getVar("s_date") ?? "";
+        $e_date = $this->request->getVar("e_date") ?? "";
+
+        $c_nTotalCount = count($this->coupon->getCountCouponMember());
+        $mileage = $this->member->getByIdx(session()->get("member")["idx"])["mileage"];
+
+        $coupon = $this->coupon->getUseCouponMember($s_date, $e_date, $pg, 100);
+
+        return view('mypage/coupon',[
+            "c_nTotalCount" => $c_nTotalCount,
+            "mileage" => $mileage,
+            "coupon_list" => $coupon["coupon_list"],
+            "nTotalCount" => $coupon["nTotalCount"],
+            "pg" => $pg,
+            "nPage" => $coupon["nPage"],
+            "g_list_rows" => $coupon["g_list_rows"],
+            "num" => $coupon["num"],
+            "s_date" => $s_date,
+            "e_date" => $e_date
+        ]);
     }
 
     public function discount()

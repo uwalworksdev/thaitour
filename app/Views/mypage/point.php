@@ -1,39 +1,14 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
 <?php
-$connect = db_connect();
-$private_key = private_key();
 
-if ($_SESSION["member"]["mIdx"] == "") {
-    alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
-    exit();
-}
+    if ($_SESSION["member"]["mIdx"] == "") {
+        alert_msg("", "/member/login?returnUrl=" . urlencode($_SERVER['REQUEST_URI']));
+        exit();
+    }
 
-$coupon_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price
-                        from tbl_coupon c
-                        left outer join tbl_coupon_setting s
-                        on c.coupon_type = s.idx
-                        left outer join tbl_coupon_history h
-                        on c.c_idx = h.used_coupon_idx
-                        where 1=1 and c.status != 'C' and c.enddate > curdate() and c.usedate = '' and c.get_issued_yn = 'Y' and h.used_coupon_idx is null and c.user_id = '{$_SESSION["member"]["id"]}' 
-                        group by c.c_idx ";
-$c_nTotalCount = $connect->query($coupon_sql)->getNumRows();
+    helper('my_helper');
 
-
-$total_sql = " select * from tbl_member where m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
-$row = $connect->query($total_sql)->getRowArray();
-$mileage = number_format($row["mileage"]);
-
-$s_date = updateSQ($_GET["s_date"]);
-$e_date = updateSQ($_GET["e_date"]);
-
-$pg = $_GET['pg'];
-
-$search_val = "";
-
-if (isset($s_date) && isset($e_date)) {
-    $search_val = "AND DATE_FORMAT(mi_r_date, '%Y-%m-%d') >= '$s_date' AND DATE_FORMAT(mi_r_date, '%Y-%m-%d') <= '$e_date'";
-}
 ?>
 
 
@@ -43,7 +18,7 @@ if (isset($s_date) && isset($e_date)) {
     <div class="inner">
         <div class="mypage_wrap">
             <?php
-            echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_1" => "on"]);
+                echo view("/mypage/mypage_gnb_menu_inc", ["tab_4" => "on", "tab_4_1" => "on"]);
             ?>
             <div class="content">
                 <div class="top_content">
@@ -55,7 +30,7 @@ if (isset($s_date) && isset($e_date)) {
                                 </div>
                                 <div>
                                     <p class="ttl">사용 가능한 포인트</p>
-                                    <p class="num"><?= $mileage ?> <span>P</span></p>
+                                    <p class="num"><?= number_format($mileage) ?> <span>P</span></p>
                                 </div>
                             </div>
                             <div class="discount flex__c">
@@ -81,10 +56,10 @@ if (isset($s_date) && isset($e_date)) {
                     </div>
                     <div class="filter flex_b_c">
                         <div class="left flex__c">
-                            <button class="m_filter active">전체</button>
-                            <button class="m_filter">최근 1개월</button>
-                            <button class="m_filter">3개월</button>
-                            <button class="m_filter">6개월</button>
+                            <button rel="<?=date('Y-m-d')?>" class="m_filter active">전체</button>
+                            <button rel="<?=date('Y-m-d', strtotime('-1 month'));?>" class="m_filter">최근 1개월</button>
+                            <button rel="<?=date('Y-m-d', strtotime('-3 month'));?>" class="m_filter">3개월</button>
+                            <button rel="<?=date('Y-m-d', strtotime('-6 month'));?>" class="m_filter">6개월</button>
                         </div>
                         <form name="search" id="search">
                             <input type="hidden" name="pg" id="pg" value="<?= $pg ?>">
@@ -92,7 +67,7 @@ if (isset($s_date) && isset($e_date)) {
                                 <div class="depart flex__c">
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="s_date" id="departure_date1" placeholder=""
+                                            <input type="text" name="s_date" id="s_date" placeholder="<?=$s_date?>"
                                                    class="date_pic">
                                         </div>
                                     </div>
@@ -101,7 +76,7 @@ if (isset($s_date) && isset($e_date)) {
                                     </div>
                                     <div class="departure_date">
                                         <div class="flex__c">
-                                            <input type="text" name="e_date" id="departure_date2" placeholder=""
+                                            <input type="text" name="e_date" id="e_date" placeholder="<?=$e_date?>"
                                                    class="date_pic">
                                         </div>
                                     </div>
@@ -128,20 +103,10 @@ if (isset($s_date) && isset($e_date)) {
                             </thead>
                             <tbody>
                             <?php
-                            $g_list_rows = 100;
-
-                            $history_sql = "select *
-                                        from tbl_order_mileage where m_idx= '" . $_SESSION["member"]["mIdx"] . "' $search_val";
-                            // $result1 = mysqli_query($connect, $history_sql) or die(mysqli_error($connect));
-                            $nTotalCount = $connect->query($history_sql)->getNumRows();
-
-                            $nPage = ceil($nTotalCount / $g_list_rows);
-                            if ($pg == "") $pg = 1;
-                            $nFrom = ($pg - 1) * $g_list_rows;
+                            
                             $index = 0;
-                            $sql = $history_sql . " order by mi_idx desc limit $nFrom, $g_list_rows ";
-                            $result1 = $connect->query($sql)->getResultArray();
-                            foreach ($result1 as $row) {
+                           
+                            foreach ($point_list as $row) {
                                 $index++;
                                 $order_gubun = get_mileage_name($row["order_gubun"]);
                                 $order_mileage_str = "";
@@ -151,11 +116,7 @@ if (isset($s_date) && isset($e_date)) {
                                     $order_mileage_str = "적립";
                                 }
 
-                                $sql_d = "SELECT  AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name ";
-                                $result_d = mysqli_query($connect, $sql_d) or die(mysqli_error($connect));
-                                $row_d = mysqli_fetch_array($result_d);
-                                $row['user_name'] = $row_d['user_name'];
-                                ?>
+                            ?>
                                 <tr>
                                     <td class="date"><?= date("Y.m.d", strtotime($row["mi_r_date"])) ?></td>
                                     <td class="history"><span><?= $row["mi_title"] ?></span></td>
@@ -245,34 +206,39 @@ if (isset($s_date) && isset($e_date)) {
 
     $(document).ready(function () {
         $('.date_pic').datepicker(datePickerConfig)
-        // .datepicker('widget').wrap('<div class="ll-skin-melon"/>');
     });
 
     function search_it() {
         var frm = document.search;
-        // if (frm.search_name.value == "검색어 입력")
-        // {
-        //     frm.search_name.value = "";
-        // }
         frm.submit();
     }
 
-    $('.m_filter').on('click', function () {
-        $(this).addClass('active').siblings().removeClass('active')
-        let value = $(this).text();
-        $.ajax({
-            url: "ajax.point_filter.php",
-            type: "POST",
-            data: {
-                'time': value,
-                url: '<?= $_SERVER['PHP_SELF'] ?>'
-            },
-            success: function (data) {
-                // alert(data);
-                $(".point_list").html(data);
-            }
-        })
-    })
+    $(".m_filter").click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        let date1 = $(this).attr("rel");
+        let date2 = $.datepicker.formatDate('yy-mm-dd',new Date());
+
+        $("#s_date").val(date1);
+        $("#e_date").val(date2);
+    });
+
+
+    // $('.m_filter').on('click', function () {
+    //     $(this).addClass('active').siblings().removeClass('active')
+    //     let value = $(this).text();
+    //     $.ajax({
+    //         url: "ajax.point_filter.php",
+    //         type: "POST",
+    //         data: {
+    //             'time': value,
+    //             url: '<?= $_SERVER['PHP_SELF'] ?>'
+    //         },
+    //         success: function (data) {
+    //             // alert(data);
+    //             $(".point_list").html(data);
+    //         }
+    //     })
+    // })
 
     $('.show_popup').on('click', function () {
         $('.agree_pop').show();
