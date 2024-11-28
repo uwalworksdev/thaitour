@@ -125,13 +125,13 @@
 									<colgroup>
 									<col width="10%">
 									<col width="*">
-									<col width="15%">
+									<col width="10%">
 									<col width="15%">
 									<col width="15%">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
-									<col width="10%">
+									<col width="15%">
 									</colgroup>
 					                <tbody id="charge">
 										<tr style="height:40px">
