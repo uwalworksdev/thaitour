@@ -765,7 +765,13 @@
                                     <table>
                                         <colgroup>
                                             <col width="8%"/>
-                                            <col width="*"/>
+                                            <col width="7%"/>
+                                            <col width="7%"/>
+                                            <col width="7%"/>
+                                            <col width="7%"/>
+                                            <col width="7%"/>
+                                            <col width="7%"/>
+                                            <col width="7%"/>
                                             <col width="10%"/>
                                             <col width="10%"/>
                                             <col width="17%"/>
@@ -773,7 +779,13 @@
                                         <thead>
                                             <tr>
                                                 <th>옵션명</th>
-                                                <th>일/월/화/수/목/금/토 가격(원)</th>
+                                                <th>일</th>
+                                                <th>월</th>
+                                                <th>화</th>
+                                                <th>수</th>
+                                                <th>목</th>
+                                                <th>금</th>
+                                                <th>토</th>
                                                 <th>캐디피</th>
                                                 <th>카트피</th>
                                                 <th>관리</th>
@@ -789,11 +801,30 @@
                                                     <td>
                                                         <div class="flex_c_c">
                                                             <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_<?= $m['idx'] ?>" value='<?= $m['option_price1'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_<?= $m['idx'] ?>" value='<?= $m['option_price2'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_<?= $m['idx'] ?>" value='<?= $m['option_price3'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_<?= $m['idx'] ?>" value='<?= $m['option_price4'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_<?= $m['idx'] ?>" value='<?= $m['option_price5'] ?>'>
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex_c_c">
                                                             <input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_<?= $m['idx'] ?>" value='<?= $m['option_price6'] ?>'>
                                                             <input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_<?= $m['idx'] ?>" value='<?= $m['option_price7'] ?>'>
                                                         </div>
