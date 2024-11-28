@@ -817,7 +817,7 @@
                 }, 'slow');
                 return false;
             });
-
+alert($("#firstPrice").val());
             $("#final_option_price").text(number_format($("#firstPrice").val()));
 
 
