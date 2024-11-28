@@ -756,7 +756,7 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;-->  
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
-                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">일자별 수정</button>
+                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption();">일자별 수정</button>
                                     </div>
                                 </td>
                             </tr>
@@ -1081,6 +1081,10 @@
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                     }
                 });
+            }
+
+            function date_moption() {
+				    alert('date_moption'); 
             }
 
             function del_moption(code_idx) {
