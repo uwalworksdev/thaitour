@@ -1,7 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
     <script>
         var use_editor = "<?=$code_info['r_use_content_editor'];?>"; // 상세정보 에디터 사용여부(Y)
 
@@ -13,7 +13,7 @@
         var editor_option = {
             oAppRef: oEditors,
             elPlaceHolder: "",
-            sSkinURI: "/smarteditor/SmartEditor2Skin.html",
+            sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
             htParams: {
                 bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
                 bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -49,9 +49,6 @@
 		});
 	});
     </script>
-
-	<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
-
 
     <style>
         .btn_mod, .btn_del {
@@ -312,14 +309,6 @@
                                     <td>
                                         <?php $tmp = json_decode($form_data['r_open'], true); ?>
                                         <input type="hidden" name="r_open" value="">
-                                        <select class="open" data-item="type">
-                                            <option value="popup" <?php if ($tmp['type'] == "popup") echo "selected"; ?> >
-                                                팝업
-                                            </option>
-                                            <option value="layer" <?php if ($tmp['type'] == "layer") echo "selected"; ?> >
-                                                레이어
-                                            </option>
-                                        </select>
                                         Top : <input type="text" class="open" data-item="top"
                                                      value="<?= $tmp['top']; ?>"
                                                      style="width:50px;">px &nbsp;
@@ -331,9 +320,7 @@
                                                        style="width:50px;">px &nbsp;
                                         Height : <input type="text" class="open" data-item="height"
                                                         value="<?= $tmp['height']; ?>"
-                                                        style="width:50px;">px &nbsp;
-                                        추가 : <input type="text" class="open" data-item="etc" value="<?= $tmp['etc']; ?>"
-                                                    style="width:300px;">
+                                                        style="width:50px;">px
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -441,8 +428,7 @@
                                 <tr>
                                     <th>요약정보</th>
                                     <td>
-                                        <textarea name="r_desc" id="r_desc"
-                                                  style="height:150px"><?= $form_data['r_desc']; ?></textarea>
+                                        <textarea name="r_desc" id="r_desc" style="height:150px"><?= $form_data['r_desc']; ?></textarea>
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -784,6 +770,8 @@
             });
             $("#frm_form input[name='r_open']").val(JSON.stringify(open));
 
+            oEditors.getById["r_content"].exec("UPDATE_CONTENTS_FIELD", []);
+
             var form = document.frm_form;
             $.ajax({
                 url: form.action,
@@ -794,6 +782,7 @@
                 cache: false,
                 processData: false,
                 success: function (res) {
+                    alert(res.msg);
                     if (res.result == "success") {
                         <?php if($r_idx): ?>
                             location.reload();
