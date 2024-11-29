@@ -1477,7 +1477,7 @@
     border: none;
     width: 56px;
     line-height: 28px;
-    height: 28px;
+    height: 25px;
     text-align: center;
 }
 
@@ -5397,6 +5397,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     max-width: 680px;
     margin: auto;
 }
+
 .search__type {
     border: 1px solid #dbdbdb;
     border-radius: 6px;
@@ -5404,12 +5405,14 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     width: 160px;
     height: 46px;
 }
+
 .search__input {
     border: 1px solid #dbdbdb;
     border-radius: 6px;
     background-color: #ffffff;
     height: 46px;
 }
+
 .search__btn {
     border-radius: 6px;
     background-color: #2a459f;
@@ -5436,7 +5439,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     color: #454545;
     line-height: 1.625;
     border-radius: 999px;
-    padding: 3px 20px;  
+    padding: 3px 20px;
 }
 
 .search__tabs ul li.active button {
@@ -5459,6 +5462,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     justify-content: space-between;
     align-items: center;
 }
+
 .search__result__head .ttl {
     font-size: 24px;
     font-family: "Pretendard";
@@ -5472,6 +5476,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     font-weight: normal;
     margin-left: 10px;
 }
+
 .search__result__sort {
     display: flex;
     gap: 10px;
@@ -5709,7 +5714,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     overflow: hidden;
 }
 
-.coupon_list .coupon_content .card_cou .card:hover .images img{
+.coupon_list .coupon_content .card_cou .card:hover .images img {
     transform: scale(1.2);
 }
 
@@ -5740,10 +5745,10 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     letter-spacing: -1px;
     color: #252525;
     line-height: 1.3;
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-    display: -webkit-box; 
-    -webkit-line-clamp: 2; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
@@ -5989,7 +5994,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 
 .popup_coupon .leaflet-popup-content-wrapper {
     width: 100%;
-  }
+}
 
 #map {
     /* min-width: 818px; */

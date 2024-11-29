@@ -214,7 +214,9 @@
                 <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel["product_idx"] ?>">
                 <input type="hidden" name="room_op_idx" id="room_op_idx" value="<?= $room_op_idx ?>">
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?= $use_coupon_idx ?>">
+                <input type="hidden" name="use_op_type" id="use_op_type" value="<?= $use_op_type ?>">
                 <input type="hidden" name="used_coupon_money" id="used_coupon_money" value="<?= $used_coupon_money ?>">
+                <input type="hidden" name="room_op_price_sale" id="room_op_price_sale" value="<?= $room_op_price_sale ?>">
                 <input type="hidden" name="inital_price" id="inital_price" value="<?= $inital_price ?>">
                 <input type="hidden" name="last_price" id="last_price" value="<?= $last_price ?>">
                 <input type="hidden" name="order_price" id="order_price" value="<?= $order_price ?>">

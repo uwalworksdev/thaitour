@@ -889,7 +889,7 @@
 			$(this).val($(this).val().replace(/[^0-9]/g, ''));
 		  });
 		});
-        <script>
+        
             function del_tours(idx) {
                 if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
                     return false;
@@ -1261,22 +1261,26 @@
                     frm.product_name.focus();
                     return;
                 }
-
+ 
                 var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
                     option += '|' + $(this).val();
                 });
+ 
                 option += '|';
                 $("#product_option").val(option);
+ 
 
                 var tours_cate = "";
                 $("input:checkbox[name='_tours_cate']:checked").each(function () {
                     tours_cate += '|' + $(this).val();
                 });
+ 
                 option += '|';
                 $("#tours_cate").val(tours_cate);
 
                 // formSubmitted = true;
+ 
 
                 frm.submit();
             }
@@ -1384,7 +1388,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Data:', data);
+                    //console.log('Data:', data);
                     let html = '';
                     if(data.results.length > 0){
                         data.results.forEach(element => {

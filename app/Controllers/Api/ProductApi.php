@@ -9,11 +9,13 @@ class ProductApi extends BaseController
 {
     protected $connect;
     protected $productModel;
+    private $codeModel;
 
     public function __construct()
     {
         $this->connect = Config::connect();
         $this->productModel = model("ProductModel");
+        $this->codeModel = model("Code");
         helper('my_helper');
         helper('alert_helper');
     }
@@ -300,6 +302,55 @@ class ProductApi extends BaseController
 
             $res = [
                 'data' => $roresult
+            ];
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => 'success',
+                    'data' => $res
+                ]);
+
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'data' => null,
+                    'message' => $e->getMessage()
+                ]);
+        }
+    }
+
+    public function getCode()
+    {
+        try {
+            $code = updateSQ($_GET['code']);
+
+            $sub_codes = $this->codeModel->where('parent_code_no', $code)->orderBy('onum', 'DESC')->findAll();
+
+            $tabLinks = [
+                1303 => "/product-hotel/list-hotel/",
+                1302 => "/product-golf/list-golf/",
+                1301 => "/product-tours/tours-list/",
+            ];
+
+            $sub_codes = array_map(function ($item) use ($tabLinks) {
+                $rs = (array)$item;
+
+                $code_no = $rs['code_no'];
+                $parent_code_no = $rs['parent_code_no'];
+
+                $link = $tabLinks[$parent_code_no] . $code_no ?? "!#";
+
+                $rs['link_'] = $link;
+
+                return $rs;
+            }, $sub_codes);
+
+            $res = [
+                'data' => $sub_codes
             ];
 
             return $this->response

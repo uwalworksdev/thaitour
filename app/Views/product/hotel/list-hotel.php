@@ -3,21 +3,7 @@
 <?php $this->section('content'); ?>
     <div class="content-sub-product-hotel">
         <div class="body_inner">
-            <div class="sub-hotel-navigation-container">
-                <div class="navigation-container-prev">
-                    <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
-                    <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                    <span>호텔</span>
-                </div>
-                <div class="navigation-container-next">
-                    <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
-                    <img class="bread_arrow_right" src="/uploads/icons/bread_arrow_right.png" alt="bread_arrow_right">
-                    <span class="font-bold">방콕</span>
-                </div>
-                <div class="navigation-container-next">
-                    <img class="ball_dot_icon" src="/uploads/icons/ball_dot_icon.png" alt="ball_dot_icon">
-                </div>
-            </div>
+            <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1303, "code_name" => $code_name, "code_no" => $code_no]); ?>
             <form name="frmSearch" id="frmSearch">
                 <div class="sub-hotel-container">
                     <input type="hidden" name="search_product_category" id="search_product_category"
@@ -288,12 +274,12 @@
                             <div class="total_number">
                                 <p>총 상품 <span><?= $products["nTotalCount"] ?></span></p>
                             </div>
-<!--                            <div class="two-way-arrow-content">-->
-<!--                                <a href="#" class="">-->
-<!--                                    <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">-->
-<!--                                    <span class="text-primary">추천순</span>-->
-<!--                                </a>-->
-<!--                            </div>-->
+                            <!--                            <div class="two-way-arrow-content">-->
+                            <!--                                <a href="#" class="">-->
+                            <!--                                    <img class="two-way_arrow" src="/uploads/icons/2-way_arrow.png" alt="two-way_arrow">-->
+                            <!--                                    <span class="text-primary">추천순</span>-->
+                            <!--                                </a>-->
+                            <!--                            </div>-->
                         </div>
                         <?php
                         foreach ($products["items"] as $product) {
