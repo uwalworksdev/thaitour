@@ -214,8 +214,7 @@
             </div>
             <p>※ 아래 요금은 1인당 가격입니다.</p>
         </div>
-        <div class="card-content" id="final_option_list">
-        </div>
+        <div class="card-content" id="final_option_list"></div>
         <div class="section1-sub">
             <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
         </div>
@@ -311,108 +310,9 @@
             <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
             <span class="text-gray"><?= $product['addrs'] ?></span>
         </div>
-        <div class="section6">
-            <?php echo view("/product/inc/review_product"); ?>
 
-            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(516)</h2>
-            <div class="qa-section">
-                <div class="custom-area-text">
-                    <label class="custom-label" for="qa-comment">
-                            <textarea name="qa-comment" id="qa-comment"
-                                      class="custom-main-input-style textarea autoExpand"
-                                      placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
-                    </label>
-                    <div type="submit" class="qa-submit-btn">등록</div>
-                </div>
+        <?php echo view("/product/inc/review_product"); ?>
 
-
-                <ul class="qa-list">
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">124</span>
-                            <span class="qa-tag normal-style">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">123</span>
-                            <span class="qa-tag">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">결제 시점은 언제인가요?</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">122</span>
-                            <span class="qa-tag normal-style">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">121</span>
-                            <span class="qa-tag normal-style">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                    <li class="qa-item">
-                        <div class="qa-question">
-                            <span class="qa-number">120</span>
-                            <span class="qa-tag">답변대기중</span>
-                            <div class="con-cus-mo-qa">
-                                <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
-                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                            </div>
-                        </div>
-                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                    </li>
-                </ul>
-                <div class="additional-info">
-                    <span class="load-more">더투어랩</span>
-                    <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
-                    </p>
-                    <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
-                </div>
-            </div>
-            <div class="pagination">
-                <a href="#" class="page-link">
-                    <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
-                    <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
-                </a>
-                <a href="#" class="page-link cus-padding mr">
-                    <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
-                    <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
-                </a>
-                <a href="#" class="page-link active">1</a>
-                <a href="#" class="page-link">2</a>
-                <a href="#" class="page-link">3</a>
-                <a href="#" class="page-link cus-padding ml">
-                    <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
-                    <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
-                </a>
-                <a href="#" class="page-link">
-                    <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
-                    <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
-                </a>
-            </div>
-        </div>
-        </d>
     </div>
     <div id="dim"></div>
     <div id="popup_img" class="on">

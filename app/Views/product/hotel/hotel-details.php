@@ -267,54 +267,54 @@
             </script>
             <div style="margin-top: 200px" class="section1">
                 <div class="title-container">
-                    <h2><?= $product['product_name'] ?> </h2>
+                    <h2><?= $hotel['product_name'] ?> </h2>
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
-                             onclick="wish_it('<?= $product['product_idx'] ?>')">
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                         <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
-                             onclick="wish_it('<?= $product['product_idx'] ?>')">
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
                         <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
                         <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
                     </div>
                 </div>
                 <div class="location-container">
                     <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span class="text-gray"> <?= $product['addrs'] ?> </span>
+                    <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
                 </div>
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
-                    <span><strong> <?= $product['review_average'] ?></strong></span>
+                    <span><strong> <?= $hotel['review_average'] ?></strong></span>
                     <span class="page_">생생리뷰 <strong style="color: #000;">(0)</strong></span>
                     <span class="page_"><?= $fresult9['code_name'] ?></span>
                 </div>
                 <?php
-                $i3 = count(array_filter(range(1, 7), fn($t) => !empty($product["ufile$t"])));
+                $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));
                 ?>
 
                 <div class="hotel-image-container">
                     <div class="hotel-image-container-1">
                         <img class="imageDetailMain_"
-                             onclick="img_pops('<?= $product['product_idx'] ?>')"
-                             src="/data/product/<?= $product['ufile1'] ?>"
-                             alt="<?= $product['product_name'] ?>"
+                             onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                             src="/data/product/<?= $hotel['ufile1'] ?>"
+                             alt="<?= $hotel['product_name'] ?>"
                              onerror="this.src='/images/share/noimg.png'">
                     </div>
                     <div class="grid_2_2">
                         <?php for ($j = 2; $j < 5; $j++) {
                             ?>
-                            <img onclick="img_pops('<?= $product['product_idx'] ?>')"
+                            <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                                  class="grid_2_2_size imageDetailSup_"
-                                 src="/data/product/<?= $product['ufile' . $j] ?>"
-                                 alt="<?= $product['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
+                                 src="/data/product/<?= $hotel['ufile' . $j] ?>"
+                                 alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
                         <?php } ?>
                         <div class="grid_2_2_sub"
-                             onclick="img_pops('<?= $product['product_idx'] ?>')"
+                             onclick="img_pops('<?= $hotel['product_idx'] ?>')"
                              style="position: relative; cursor: pointer;">
                             <img class="custom_button imageDetailSup_"
-                                 src="/data/product/<?= $product['ufile5'] ?>"
-                                 alt="<?= $product['product_name'] ?>"
+                                 src="/data/product/<?= $hotel['ufile5'] ?>"
+                                 alt="<?= $hotel['product_name'] ?>"
                                  onerror="this.src='/images/share/noimg.png'">
                             <div class="button-show-detail-image">
                                 <img class="only_web" src="/uploads/icons/image_detail_icon.png"
@@ -355,7 +355,7 @@
                     추천 포인트
                 </h3>
                 <p class="description-sec2" style="letter-spacing: 1px">
-                    <?= viewSQ($product['product_info']) ?>
+                    <?= viewSQ($hotel['product_info']) ?>
                 </p>
                 <div class="tag-list-icon mt-20">
                     <?php foreach ($fresult4 as $row) : ?>
@@ -423,7 +423,7 @@
                             window.location.href = currentUrl.toString();
                         }
                     </script>
-                    <?php foreach ($product_options as $item) : ?>
+                    <?php foreach ($hotel_options as $item) : ?>
                         <?php $room = $item['room']; ?>
                         <?php $room_options = $room['room_option']; ?>
                         <?php $room_facil = $room['room_facil']; ?>
@@ -553,11 +553,11 @@
                                                         <div class="day_qty">
                                                             <p>숙박일 </p>
                                                             <div class="day_activity">
-                                                                <input type="text" class="input_day_qty onlynum"
+                                                                <input type="text"
+                                                                       class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                        value="1"
                                                                        style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                        readonly
-                                                                       id="input_day_qty_<?= $item['idx'] ?>"
                                                                        data-op="<?= $item['idx'] ?>"
                                                                        data-price="<?= $room_op['r_price'] ?>"
                                                                        data-sale_price="<?= $room_op['r_sale_price'] ?>"
@@ -583,6 +583,18 @@
                                                     ?>
                                                     <td>
                                                         <div class="price-details">
+
+                                                            <div class="price-strike-container">
+                                                                옵션금액: <span class="room_price_day"
+                                                                            data-price="<?= $room_op['r_price'] ?>"></span>
+                                                                <span class="room_price_day_sale"
+                                                                      data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span>원
+                                                            </div>
+                                                            <span class="total">
+                                                                객실금액: <span class="price-strike hotel_price_day"
+                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
+                                                            </span>
                                                             <?php if ($isSale) { ?>
                                                                 <div class="discount">
                                                                     <span class="label">특별할인</span>
@@ -590,17 +602,6 @@
                                                                                 class="hotel_price_percent"><?= $percent ?></i>%할인</span>
                                                                 </div>
                                                             <?php } ?>
-                                                            <div class="price-strike-container">
-                                                                옵션금액: <span class="price-strike room_price_day"
-                                                                            data-price="<?= $room_op['r_price'] ?>"><?= number_format($room_op['r_price']) ?></span>원
-                                                                <span class="room_price_day_sale"
-                                                                      data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span>원
-                                                            </div>
-                                                            <span class="total">
-                                                                금액금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
-                                                            </span>
                                                             <span class="details">객실 <span
                                                                         class="count_room"
                                                                         id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
@@ -664,10 +665,11 @@
                                                     <div class="day_qty">
                                                         <p>숙박일 </p>
                                                         <div class="day_activity">
-                                                            <input type="text" class="input_day_qty onlynum" value="1"
+                                                            <input type="text"
+                                                                   class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
+                                                                   value="1"
                                                                    style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                    readonly
-                                                                   id="input_day_qty_<?= $item['idx'] ?>"
                                                                    data-op="<?= $item['idx'] ?>"
                                                                    data-price="<?= $item['goods_price1'] ?>"
                                                                    data-sale_price="<?= $item['goods_price2'] ?>"
@@ -693,6 +695,12 @@
                                                 ?>
                                                 <td>
                                                     <div class="price-details">
+
+                                                            <span class="total">
+                                                                객실금액: <span class="price-strike hotel_price_day"
+                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
+                                                            </span>
                                                         <?php if ($isSale) { ?>
                                                             <div class="discount">
                                                                 <span class="label">특별할인</span>
@@ -700,11 +708,6 @@
                                                                             class="hotel_price_percent"><?= $percent ?></i>%할인</span>
                                                             </div>
                                                         <?php } ?>
-                                                        <span class="total">
-                                                                금액금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
-                                                            </span>
                                                         <span class="details">객실 <span
                                                                     class="count_room"
                                                                     id="<?= $item['idx'] ?>">1</span>개 × <span
@@ -1024,9 +1027,9 @@
                                                                 <div class="day_qty">
                                                                     <p>숙박일 </p>
                                                                     <div class="day_activity">
-                                                                        <input type="text" class="input_day_qty onlynum"
+                                                                        <input type="text"
+                                                                               class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                                value="1"
-                                                                               id="input_day_qty_<?= $item['idx'] ?>"
                                                                                data-op="<?= $item['idx'] ?>"
                                                                                data-price="<?= $room_op['r_price'] ?>"
                                                                                data-sale_price="<?= $room_op['r_sale_price'] ?>"
@@ -1054,6 +1057,18 @@
                                                             ?>
                                                             <td>
                                                                 <div class="price-details">
+
+                                                                    <div class="price-strike-container">
+                                                                        옵션금액: <span class="price-strike room_price_day"
+                                                                                    data-price="<?= $room_op['r_price'] ?>"></span>
+                                                                        <span class="room_price_day_sale"
+                                                                              data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span>원
+                                                                    </div>
+                                                                    <span class="total">
+                                                                        객실금액: <span class="price-strike hotel_price_day"
+                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
+                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
+                                                                    </span>
                                                                     <?php if ($isSale) { ?>
                                                                         <div class="discount">
                                                                             <span class="label">특별할인</span>
@@ -1061,17 +1076,6 @@
                                                                                         class="hotel_price_percent"><?= $percent ?></i>%할인</span>
                                                                         </div>
                                                                     <?php } ?>
-                                                                    <div class="price-strike-container">
-                                                                        옵션금액: <span class="price-strike room_price_day"
-                                                                                    data-price="<?= $room_op['r_price'] ?>"><?= number_format($room_op['r_price']) ?></span>원
-                                                                        <span class="room_price_day_sale"
-                                                                              data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span>원
-                                                                    </div>
-                                                                    <span class="total">
-                                                                        금액금액: <span class="price-strike hotel_price_day"
-                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
-                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
-                                                                    </span>
                                                                     <span class="details">객실 <span
                                                                                 class="count_room"
                                                                                 id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
@@ -1148,9 +1152,9 @@
                                                             <div class="day_qty">
                                                                 <p>숙박일 </p>
                                                                 <div class="day_activity">
-                                                                    <input type="text" class="input_day_qty onlynum"
+                                                                    <input type="text"
+                                                                           class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                            value="1"
-                                                                           id="input_day_qty_<?= $item['idx'] ?>"
                                                                            data-op="<?= $item['idx'] ?>"
                                                                            data-price="<?= $item['goods_price1'] ?>"
                                                                            data-sale_price="<?= $item['goods_price2'] ?>"
@@ -1178,6 +1182,12 @@
                                                         ?>
                                                         <td>
                                                             <div class="price-details">
+
+                                                                    <span class="total">
+                                                                        객실금액: <span class="price-strike hotel_price_day"
+                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
+                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
+                                                                    </span>
                                                                 <?php if ($isSale) { ?>
                                                                     <div class="discount">
                                                                         <span class="label">특별할인</span>
@@ -1185,12 +1195,6 @@
                                                                                     class="hotel_price_percent"><?= $percent ?></i>%할인</span>
                                                                     </div>
                                                                 <?php } ?>
-
-                                                                <span class="total">
-                                                                        금액금액: <span class="price-strike hotel_price_day"
-                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>원</span>
-                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
-                                                                    </span>
                                                                 <span class="details">객실 <span
                                                                             class="count_room"
                                                                             id="<?= $item['idx'] ?>">1</span>개 × <span
@@ -1320,7 +1324,7 @@
                     </div>
                 </div>
                 <?php
-                $product_more = $product['product_more'];
+                $product_more = $hotel['product_more'];
                 $breakfast_data_arr2 = [];
                 if ($product_more) {
                     $productMoreData = json_decode($product_more, true);
@@ -1460,9 +1464,9 @@
                                              onerror="this.src='/images/product/noimg.png'" loading="lazy">
                                     </div>
                                     <?php
-                                    $product_code_name = $item['array_hotel_code_name'];
+                                    $hotel_code_name = $item['array_hotel_code_name'];
 
-                                    $num = count($product_code_name);
+                                    $num = count($hotel_code_name);
                                     ?>
                                     <div class="prd_keywords">
                                         <?php if ($num === 0): ?>
@@ -1471,7 +1475,7 @@
                                         </span>
                                         <?php endif; ?>
                                         <?php $i = 0;
-                                        foreach ($product_code_name as $itemName): ?>
+                                        foreach ($hotel_code_name as $itemName): ?>
                                             <span class="prd_keywords_cus_span"> <?= $itemName ?>
                                                 <?php if ($i < $num - 1): ?>
                                                     <img src="/images/ico/arrow_right_icon.png"
@@ -1563,7 +1567,7 @@
             <input type="hidden" name="use_coupon_idx" id="use_coupon_idx">
             <input type="hidden" name="number_room" id="number_room">
             <input type="hidden" name="number_day" id="number_day">
-            <input type="hidden" name="product_idx" id="product_idx" value="<?= $product['product_idx'] ?>">
+            <input type="hidden" name="product_idx" id="product_idx" value="<?= $hotel['product_idx'] ?>">
 
             <div id="popup" class="popup" data-roop="" data-opId="" data-opType="" data-price="">
                 <div class="popup-content">

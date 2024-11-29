@@ -288,6 +288,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminInquiryController::write");
     });
 
+    $routes->group("_coupon", static function ($routes) {
+        $routes->get("list", "AdminCouponController::list");
+        $routes->get("write", "AdminCouponController::write");
+        $routes->post("write_ok", "AdminCouponController::write_ok");
+        $routes->post("del", "AdminCouponController::delete");
+    });
+
     $routes->group("_operator", static function ($routes) {
         $routes->get("coupon_setting", "Admin\AdminOperatorController::coupon_setting");
         $routes->get("coupon_setting_write", "Admin\AdminOperatorController::coupon_setting_write");
@@ -323,6 +330,9 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_cms", static function ($routes) {
         $routes->get("index", "Admin\AdminCmsController::index");
         $routes->get("write", "Admin\AdminCmsController::write");
+        $routes->post("write_ok/(:segment)", "Admin\AdminCmsController::write_ok/$1");
+        $routes->post("write_ok", "Admin\AdminCmsController::write_ok");
+        $routes->delete("del_ok", "Admin\AdminCmsController::del_ok");
         $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
         $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
         $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");
