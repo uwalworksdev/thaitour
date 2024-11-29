@@ -36,6 +36,9 @@
             $('#' + depth).toggleClass('active_');
         })
 
+        let name = $('.depth_1_item_.active_').text();
+        $('#depth_1_tool_title_').text(name);
+
         $('.depth_1_item_').click(function () {
             let code = $(this).data("code");
             let href = $(this).data("href");
