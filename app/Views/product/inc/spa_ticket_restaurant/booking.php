@@ -97,13 +97,17 @@
                             <?php
 
                             $numAdultQty = 0;
-                            foreach ($adultQty as $num) {
+                            $s_station_arr = [];
+                            foreach ($adultQty as $key => $num) {
                                 $numAdultQty += intval($num);
+                                for ($i = 1; $i <= intval($num); $i++) {
+                                    $s_station_arr[] = $s_station[$key];
+                                }
                             }
 
                             for ($i = 1; $i <= $numAdultQty; $i++) {
                                 ?>
-                                <h3 class="title-sub-c mt-30">성인<?= $i ?></h3>
+                                <h3 class="title-sub-c mt-30">성인<?= $i ?> <span class="text_divider"></span> <?=$s_station_arr[$i - 1]?></h3>
                                 <div class="form-container" data-group="group<?= $i ?>">
                                     <div class="con-form mb-40">
                                         <div class="parent-form-group">
@@ -221,7 +225,7 @@
                             </h3>
                             <div class="list_schedule_">
                                 <?php foreach ($adultQty as $key => $val) { ?>
-                                    <div class="schedule">
+                                    <div class="schedule schedule_booking">
                                         <div class="wrap-text">
                                             <p>성인<?= $key + 1 ?> x <?= $val ?></p>
                                         </div>

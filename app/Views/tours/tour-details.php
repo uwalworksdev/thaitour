@@ -155,16 +155,15 @@
                                     <div class="calendar-days"></div>
                                 </div>
                             </div>
-                            <div class="form-below-calendar">
-                                <label class="lb-18" for="">예약시간</label>
-                                <select class="select-time-c">
-                                    <?php foreach ($timeSegments as $time): ?>
-                                        <option value="<?= htmlspecialchars($time); ?>">
-                                            <?= htmlspecialchars($time); ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>  
+                            <div class="des-below text-gray spe">
+                                <p>
+                                    ※ 본 상품은 1인 이상 예약 가능합니다.
+                                </p>
+                                <p>
+                                    ※ 최소 4인 이상 모객시 출발 가능한 상품입니다. 출발 하루전까지 최소 인원 미달시
+                                </p>
+                                <p>취소될 수 있습니다. 출발이 불가능할 경우 개별 연락을 통해 일정 변경/취소 안내드립니다.</p>
+                            </div>
         
                         </div>
         
@@ -222,14 +221,8 @@
                             <?php endforeach; ?>
 
                             <h3 class="title-second">선택옵션</h3>
-                            <form>
-                                <?php foreach ($options as $row_option): ?>
-                                    <?php foreach ($row_option['additional_options'] as $option): 
-                                                    $baht_thai = (float)($setting['baht_thai'] ?? 0);
-                                                    $option_price = (float)$option['option_price'];
-                                                    $price_baht_option = round($option_price / $baht_thai);
-                                    ?>
-                                        <div class="form-group">
+                                <form>
+                                        <!-- <div class="form-group">
                                             <div class="above">
                                                 <input type="checkbox" id="<?=$option['idx']?>">
                                                 <label for="<?=$option['idx']?>"><?=$option['option_name']?></label>
@@ -238,19 +231,42 @@
                                                 <span class="price"><?=$option['option_price']?>원</span>
                                                 <span class="currency"><?= $price_baht_option?>바트</span>
                                             </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                                <option value="">옵션선택</option>
+                                                    <?php foreach ($options as $row_option): ?>
+                                                        <?php 
+                                                        // foreach ($row_option['additional_options'] as $option): 
+                                                        //                 $baht_thai = (float)($setting['baht_thai'] ?? 0);
+                                                        //                 $option_price = (float)$option['option_price'];
+                                                        //                 $price_baht_option = round($option_price / $baht_thai);
+                                                        ?>
+                                                        <option value="<?=$row_option['code_idx']?>">
+                                                            <?=$row_option['moption_name'] ?>
+                                                        </option>
+                                                        <?php endforeach; ?>
+                                                    <?php 
+                                                        // endforeach; 
+                                                    ?>
+                                            </select>
+                                            <div class="opt_select disabled sel_option" id="sel_option">
+                                                <select name="option" id="option" onchange="sel_option(this.value);">";
+                                                    <option value="">옵션 선택</option>
+                                                </select>
+                                            </div>
                                         </div>
+                                </form>
+                            <div class="form-below-calendar">
+                                <label class="lb-18" for="">예약시간</label>
+                                <select class="select-time-c">
+                                    <?php foreach ($timeSegments as $time): ?>
+                                        <option value="<?= htmlspecialchars($time); ?>">
+                                            <?= htmlspecialchars($time); ?>
+                                        </option>
                                     <?php endforeach; ?>
-                                <?php endforeach; ?>
-                            </form>
-                            <div class="des-below text-gray">
-                                <p>
-                                    ※ 본 상품은 1인 이상 예약 가능합니다.
-                                </p>
-                                <p>
-                                    ※ 최소 4인 이상 모객시 출발 가능한 상품입니다. 출발 하루전까지 최소 인원 미달시
-                                </p>
-                                <p>취소될 수 있습니다. 출발이 불가능할 경우 개별 연락을 통해 일정 변경/취소 안내드립니다.</p>
-                            </div>
+                                </select>
+                            </div>  
                         </div>
                     </div>
                     <button type="button" class="primary-btn-calendar tour">견적/예약하기</button>
@@ -711,6 +727,86 @@
                     el: ".swiper-tour_content-pagination",
                 },
             });
+
+            function sel_moption(code_idx) {
+            let url = `<?= route_to('api.product.sel_moption') ?>`;
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    "product_idx": '<?= $product['product_idx'] ?>',
+                    "code_idx": code_idx
+                },
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    $("#sel_option").html(data);
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        }
+
+        function sel_option(code_idx) {
+            let url = `<?= route_to('api.product.sel_option') ?>`;
+            let idx = code_idx.split("|")[0];
+
+            let moption = $("#moption").val();
+
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    "idx": idx,
+                    "moption": moption
+                },
+                async: false,
+                cache: false,
+                success: function (data, textStatus) {
+                    let parent_name = data.parent_name;
+
+                    let option_name = data.option_name;
+                    let option_price = data.option_price;
+                    let idx = data.idx;
+                    let option_tot = data.option_tot ?? 0;
+                    let option_cnt = data.option_cnt;
+
+                    let htm_ = `<div class="schedule" id="schedule_${idx}">
+                                        <div class="wrap-text">
+                                            <span>${parent_name}</span>
+                                            <p>${option_name}</p>
+                                        </div>
+                                        <div class="wrap-btn">
+                                            <img onclick="minusQty(this)" class="minusQty" src="/images/sub/minus-ic.png" alt="">
+                                            <span>
+                                                <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty"
+                                                        name="option_qty[]" id="input_qty" value="1">
+                                            </span>
+                                            <img onclick="plusQty(this)" class="plusQty" src="/images/sub/plus-ic.png" alt="">
+                                        </div>
+                                    </div>
+
+                                <div class="" style="display: none">
+                                        <input type="hidden" name="option_name[]" value="${option_name}">
+                                        <input type="hidden" name="option_idx[]" value="${idx}">
+                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                        <input type="hidden" name="option_price[]" value="${option_price}">
+                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                                </div>
+                            </li>`;
+
+                    let sel_option_ = $('#schedule_' + idx);
+                    if (!sel_option_.length > 0) {
+                        $("#option_list_").append(htm_);
+                    }
+                },
+                error: function (request, status, error) {
+                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                }
+            });
+        }
 
             document.addEventListener('DOMContentLoaded', function() {
                     let currentToursIdx = null;

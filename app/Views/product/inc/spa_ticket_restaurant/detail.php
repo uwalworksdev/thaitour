@@ -268,65 +268,7 @@
                     </div>
                 </div>
 
-                <div class="section6" id="section6">
-                    <h2 class="title-sec6"><span>생생리뷰</span>(516)</h2>
-                    <div class="rating-content">
-                        <div class="rating-left">
-                            <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
-                            <strong>0/5</strong>
-                        </div>
-                        <span class="rating-right text-gray">0개 고객기준</span>
-                    </div>
-                    <div class="list-label-tag">
-                        <div class="label-tag-item">
-                            <img class="square" src="/data/code/1729571645_fb53d1d73b0b13dcf6c2.png" alt="청결">
-                            <div class="label-tag-item-text">
-                                <strong>청결</strong>
-                                <p><strong>0</strong> 최고좋음</p>
-                            </div>
-                        </div>
-                        <div class="label-tag-item">
-                            <img class="square" src="/data/code/1729571657_b1cb8c4fb89a788c1351.png" alt="시설">
-                            <div class="label-tag-item-text">
-                                <strong>시설</strong>
-                                <p><strong>0</strong> 최고좋음</p>
-                            </div>
-                        </div>
-                        <div class="label-tag-item">
-                            <img class="square" src="/data/code/1729571664_f42ea530f35c89161075.png" alt="위치">
-                            <div class="label-tag-item-text">
-                                <strong>위치</strong>
-                                <p><strong>0</strong> 최고좋음</p>
-                            </div>
-                        </div>
-                        <div class="label-tag-item">
-                            <img class="square" src="/data/code/1729571671_ae94a9dbd753c419c162.png" alt="직원친절도">
-                            <div class="label-tag-item-text">
-                                <strong>직원친절도</strong>
-                                <p><strong>0</strong> 최고좋음</p>
-                            </div>
-                        </div>
-                        <div class="label-tag-item">
-                            <img class="square" src="/data/code/1729571681_6b866f4a413112dac498.png" alt="가성비">
-                            <div class="label-tag-item-text">
-                                <strong>가성비</strong>
-                                <p><strong>0</strong> 최고좋음</p>
-                            </div>
-                        </div>
-                        <div class="label-tag-item">
-                            <img class="square" src="/data/code/1729571686_6eb5cc9b65925faeb2d7.png" alt="편안함">
-                            <div class="label-tag-item-text">
-                                <strong>편안함</strong>
-                                <p><strong>0</strong> 최고좋음</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-list-flex">
-                        <div class="card-list-recommemded">
-                        </div>
-                    </div>
-
-                </div>
+                <?php echo view("/product/inc/review_product"); ?>
 
                 <div class="custom-golf-detail">
                     <div class="section6" id="section8">
@@ -641,7 +583,7 @@
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_adults_select_" size="4"
-                                       data-idx="${item_.charge_idx}" data-type="adults" onkeyup="chkNum(this)">
+                                       data-idx="${item_.charge_idx}" data-s_station="${item_.s_station}" data-type="adults" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
@@ -697,15 +639,17 @@
             let price = $(this).data('price');
             let idx = $(this).data('idx');
             let type = $(this).data('type');
+            let s_station = $(this).data('s_station');
             let num = $(this).val();
             if (num > 0) {
                 if (type === 'adults') {
                     i++;
                     html_adults += `<div class="flex_b_c cus-count-input" id="children_adults_${idx}">
                                 <div class="payment">
-                                    <p class="ped_label">성인 ${i}</p>
+                                    <p class="ped_label ped_label__booking">성인 ${i}</p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
+                                    <input type="hidden" name="s_station[]" id="s_station${idx}" value="${s_station}">
                                     <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty${idx}"
                                            value="${num}" readonly="" style="padding: 0; width: 30px">
                                     <span>명</span>
@@ -727,7 +671,7 @@
                     j++;
                     html_kids += `<div class="flex_b_c cus-count-input" id="children_kids_${idx}">
                                 <div class="payment">
-                                    <p class="ped_label">아동 ${j}</p>
+                                    <p class="ped_label ped_label__booking">아동 ${j}</p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty childrenQty" name="childrenQty[]"
@@ -744,7 +688,7 @@
         if (html_kids === ``) {
             html_kids = `<div class="flex_b_c cus-count-input">
                                 <div class="payment">
-                                    <p class="ped_label">아동</p>
+                                    <p class="ped_label ped_label__booking">아동</p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty childrenQty" name="childrenQty[]"
@@ -759,7 +703,7 @@
         if (html_adults === ``) {
             html_adults = `<div class="flex_b_c cus-count-input">
                                 <div class="payment">
-                                    <p class="ped_label">성인 </p>
+                                    <p class="ped_label ped_label__booking">성인 </p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"

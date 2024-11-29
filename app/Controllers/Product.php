@@ -1125,6 +1125,9 @@ class Product extends BaseController
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
 
+//            var_dump($totalReview, $reviewAverage);
+//            die();
+
             $suggestHotels = $this->getSuggestedHotels($hotel['product_idx'], $hotel['array_hotel_code'][0] ?? '', '1303');
 
             $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx ASC';
@@ -1259,75 +1262,8 @@ class Product extends BaseController
             $rresult = $this->db->query($fsql) or die($this->db->error);
             $rresult = $rresult->getResultArray();
 
-//            $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $idx . " AND is_best = 'Y' ORDER BY onum DESC, idx DESC";
-//            $reviews = $this->db->query($sql)->getResultArray();
-//            $reviews = array_map(function ($item) use ($idx) {
-//                $review = (array)$item;
-//
-//                $sql = "SELECT * FROM tbl_member WHERE m_idx = " . $item['user_id'];
-//                $result = $this->db->query($sql)->getRowArray();
-//                $review['avt'] = $result ? $result['ufile1'] : "";
-//
-//                return $review;
-//            }, $reviews);
-//            $sql = "
-//                    SELECT
-//                        r.*,
-//                        m.ufile1 AS avt
-//                    FROM
-//                        tbl_travel_review AS r
-//                    LEFT JOIN
-//                        tbl_member AS m
-//                    ON
-//                        r.user_id = m.m_idx
-//                    WHERE
-//                        r.product_idx = $idx
-//                        AND r.is_best = 'Y'
-//                    ORDER BY
-//                        r.onum DESC, r.idx DESC
-//                ";
-//
-//            $query = $this->db->query($sql);
-//            $reviews = $query->getResultArray();
-
-            $sql = "SELECT a.*, b.ufile1 as avt
-                    FROM tbl_travel_review a 
-                    INNER JOIN tbl_member b ON a.user_id = b.m_idx 
-                    WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
-
-            $reviews = $this->db->query($sql) or die($this->db->error);
-            $reviewCount = $reviews->getNumRows();
-            $reviews = $reviews->getResultArray();
-
-            $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
-            $reviewCategories = $this->db->query($sql) or die($this->db->error);
-            $reviewCategories = $reviewCategories->getResultArray();
-
-            $reviewCategories = array_map(function ($item) use ($idx) {
-                $reviewCategory = (array)$item;
-
-                $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($idx) .
-                    " AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
-                $results = $this->db->query($sql);
-                $count = $results->getNumRows();
-                $results = $results->getResultArray();
-
-                if ($count == 0) {
-                    $average = 0;
-                } else {
-                    $total = 0;
-                    foreach ($results as $item2) {
-                        $total += (int)$item2['number_stars'];
-                    }
-
-                    $average = number_format($total / $count, 1);
-                }
-
-                $reviewCategory['average'] = $average;
-                $reviewCategory['total'] = $count;
-
-                return $reviewCategory;
-            }, $reviewCategories);
+            $reviewCategories = $this->getReviewCategories($idx);
+            $review_data = $this->getReviewProduct($idx);
 
             if (!empty($session->get("member")["id"])) {
                 $user_id = $session->get("member")["id"];
@@ -1348,7 +1284,7 @@ class Product extends BaseController
             $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
 
             $data = [
-                'hotel' => $hotel,
+                'product' => $hotel,
                 'fresult9' => $fresult9,
                 's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
@@ -1359,12 +1295,14 @@ class Product extends BaseController
                 'sub_codes' => $sub_codes ?? [],
                 'reviewCategories' => $reviewCategories ?? [],
                 'reviews' => $reviews ?? [],
-                'reviewCount' => $reviewCount,
+                'reviewCount' => $reviewCount ?? 0,
                 'room_categories' => $room_categories_convert,
-                'hotel_options' => $hotel_option_convert,
+                'product_options' => $hotel_option_convert,
                 'coupons' => $c_row,
                 'suggestHotel' => $suggestHotels,
             ];
+
+            $data = array_merge($data, $review_data);
 
             return $this->renderView('product/hotel/hotel-details', $data);
         } catch (Exception $e) {
@@ -1642,14 +1580,14 @@ class Product extends BaseController
             return view('errors/html/error_404');
         }
 
-		// 예약가능한 일자 및 금액 데이터 조회
-		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn != 'N' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
-		$result_p = $this->db->query($sql_p);
-		$data['golf_price'] = $result_p->getResultArray();
+        // 예약가능한 일자 및 금액 데이터 조회
+        $sql_p = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn != 'N' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
+        $result_p = $this->db->query($sql_p);
+        $data['golf_price'] = $result_p->getResultArray();
 
-        $data['info']  = $this->golfInfoModel->getGolfInfo($product_idx);
+        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
-        $data['product']['total_review']   = $productReview['total_review'];
+        $data['product']['total_review'] = $productReview['total_review'];
         $data['product']['review_average'] = $productReview['avg'];
 
         $data['imgs'] = [];
@@ -1715,7 +1653,7 @@ class Product extends BaseController
         $options = $this->golfOptionModel->getOptions($product_idx);
 
         $hole_cnt_arr = array_column($options, 'hole_cnt');
-        $hour_arr     = array_column($options, 'hour');
+        $hour_arr = array_column($options, 'hour');
 
         $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
             return in_array($value, $hole_cnt_arr);
@@ -1725,14 +1663,18 @@ class Product extends BaseController
             return in_array($value, $hour_arr);
         });
 
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+
+        $review_data = $this->getReviewProduct($product_idx);
+        $data = array_merge($data, $review_data);
         return $this->renderView('product/golf/golf-details', $data);
     }
 
     public function optionList($product_idx)
     {
-        $hole_cnt  = $this->request->getVar('hole_cnt');
-        $hour      = $this->request->getVar('hour');
-        $options   = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
+        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
@@ -1747,13 +1689,13 @@ class Product extends BaseController
     public function optionPrice($product_idx)
     {
         $golf_date = $this->request->getVar('golf_date');
-        $hole_cnt  = $this->request->getVar('hole_cnt');
-        $hour      = $this->request->getVar('hour');
-        $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
+        $options = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
-            $option_price      = (float)$value['option_price'];
-            $baht_thai         = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price = (float)$value['option_price'];
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_baht = round($option_price / $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
@@ -2316,6 +2258,16 @@ class Product extends BaseController
 
         $data['options'] = $options;
 
+        $productReview = $this->reviewModel->getProductReview($product_idx);
+
+        $product['total_review'] = $productReview['total_review'];
+        $product['review_average'] = $productReview['avg'];
+
+        $data_reviews = $this->getReviewProduct($product_idx) ?? [];
+        $data = array_merge($data, $data_reviews);
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['product'] = $product;
+
         return $this->renderView('tours/tour-details', $data);
     }
 
@@ -2466,6 +2418,7 @@ class Product extends BaseController
             }
 
             $adultQty = $_POST['adultQty'];
+            $s_station = $_POST['s_station'];
             $adultPrice = $_POST['adultPrice'];
 
             $childrenQty = $_POST['childrenQty'];
@@ -2485,6 +2438,7 @@ class Product extends BaseController
                 'day_' => $day_,
                 'member_idx' => $member_idx,
                 'adultQty' => $adultQty,
+                's_station' => $s_station,
                 'adultPrice' => $adultPrice,
                 'childrenQty' => $childrenQty,
                 'childrenPrice' => $childrenPrice,
@@ -2532,6 +2486,17 @@ class Product extends BaseController
                 $data['img_names'][] = "";
             }
         }
+
+        $productReview = $this->reviewModel->getProductReview($product_idx);
+
+        $product['total_review'] = $productReview['total_review'];
+        $product['review_average'] = $productReview['avg'];
+
+        $data_reviews = $this->getReviewProduct($product_idx) ?? [];
+        $data = array_merge($data, $data_reviews);
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
+        $data['product'] = $product;
+
         return $this->renderView('tours/location-info', $data);
     }
 
@@ -3017,9 +2982,62 @@ class Product extends BaseController
             return [0, 0];
         }
 
-        $reviewAverage = array_sum(array_column($reviews, 'number_stars')) / $totalReview;
+        $total = 0;
+        foreach ($reviews as $review) {
+            $total += (int)$review['number_stars'];
+        }
+
+        $reviewAverage = $total / $totalReview;
 
         return [$totalReview, round($reviewAverage, 1)];
+    }
+
+    private function getReviewCategories($idx)
+    {
+        $sql = "SELECT * FROM tbl_code WHERE parent_code_no=42 ORDER BY onum ";
+        $reviewCategories = $this->db->query($sql) or die($this->db->error);
+        $reviewCategories = $reviewCategories->getResultArray();
+
+        $reviewCategories = array_map(function ($item) use ($idx) {
+            $reviewCategory = (array)$item;
+
+            $sql = "SELECT * FROM tbl_travel_review WHERE product_idx = " . $this->db->escape($idx) .
+                " AND review_type LIKE '%" . $this->db->escapeLikeString($item['code_no']) . "%'";
+            $results = $this->db->query($sql);
+            $count = $results->getNumRows();
+            $results = $results->getResultArray();
+
+            if ($count == 0) {
+                $average = 0;
+            } else {
+                $total = 0;
+                foreach ($results as $item2) {
+                    $total += (int)$item2['number_stars'];
+                }
+
+                $average = number_format($total / $count, 1);
+            }
+
+            $reviewCategory['average'] = $average;
+            $reviewCategory['total'] = $count;
+
+            return $reviewCategory;
+        }, $reviewCategories);
+
+        return $reviewCategories;
+    }
+
+    private function getReviewProduct($idx)
+    {
+        $sql = "SELECT a.*, b.ufile1 as avt
+                    FROM tbl_travel_review a 
+                    INNER JOIN tbl_member b ON a.user_id = b.m_idx 
+                    WHERE a.product_idx = " . $idx . " AND a.is_best = 'Y' ORDER BY a.onum DESC, a.idx DESC";
+
+        $reviews = $this->db->query($sql) or die($this->db->error);
+        $reviewCount = $reviews->getNumRows();
+        $reviews = $reviews->getResultArray();
+        return ['reviews' => $reviews, 'reviewCount' => $reviewCount];
     }
 
     private function getSuggestedHotels($currentHotelId, $currentHotelCode, $productCode1 = null)
@@ -3132,6 +3150,7 @@ class Product extends BaseController
         $member_idx = $data['member_idx'];
 
         $adultQty = $data['adultQty'];
+        $s_station = $data['s_station'];
         $adultPrice = $data['adultPrice'];
         $childrenQty = $data['childrenQty'];
         $childrenPrice = $data['childrenPrice'];
@@ -3173,6 +3192,7 @@ class Product extends BaseController
             'member_idx' => $member_idx,
             'moption' => $moption,
             'adultQty' => $adultQty,
+            's_station' => $s_station,
             'adultPrice' => $adultPrice,
             'childrenQty' => $childrenQty,
             'childrenPrice' => $childrenPrice,
@@ -3200,6 +3220,9 @@ class Product extends BaseController
 
         $rowData['total_review'] = $productReview['total_review'];
         $rowData['review_average'] = $productReview['avg'];
+
+        $product['total_review'] = $productReview['total_review'];
+        $product['review_average'] = $productReview['avg'];
 
         $code_utilities = $rowData['code_utilities'];
         $_arr_utilities = explode("|", $code_utilities);
@@ -3277,7 +3300,13 @@ class Product extends BaseController
             'bresult4' => $bresult4,
             'fresult5' => $fresult5,
             'fresult8' => $fresult8,
+            'product' => $product,
         ];
+
+
+        $data_reviews = $this->getReviewProduct($product_idx) ?? [];
+        $data = array_merge($data, $data_reviews);
+        $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
 
         return $data;
     }

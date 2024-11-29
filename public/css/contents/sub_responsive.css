@@ -2269,7 +2269,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 66rem;
-    height: 70rem;
+    height: 90rem;
     z-index: 2;
     padding: 4rem;
     background-color: #fff;
@@ -2349,8 +2349,8 @@
     letter-spacing: -1px;
     color: #555555;
     font-weight: bold;
-    position: relative;
-    padding-left: 1rem;
+    /* position: relative;
+    padding-left: 1rem; */
     text-wrap: nowrap;
     line-height: 1.3;
   }
