@@ -622,8 +622,8 @@
                                     ?>
                                         <table class="room-table only_web">
                                             <colgroup>
+                                                <col width="10%">
                                                 <col width="*%">
-                                                <col width="30%">
                                                 <col width="45%">
                                             </colgroup>
                                             <thead>
@@ -1079,14 +1079,12 @@
                                             ?>
                                                 <table class="room-table only_web">
                                                     <colgroup>
-                                                        <col width="35%">
-                                                        <col width="20%">
                                                         <col width="10%">
+                                                        <col width="*%">
                                                         <col width="35%">
                                                     </colgroup>
                                                     <thead>
                                                     <tr>
-                                                        <th>옵션 상세</th>
                                                         <th>수량</th>
                                                         <th>쿠폰</th>
                                                         <th>객실 요금</th>
