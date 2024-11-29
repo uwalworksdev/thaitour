@@ -13,8 +13,8 @@
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <?php foreach($golf_price as $price) { ?> 
-                <input type="hidden" id="firstDate"  value="<?=$price['golf_date']?>">
-                <input type="hidden" id="firstPrice" value="<?=$price['option_price']?>">
+                <input type="text" id="firstDate"  value="<?=$price['golf_date']?>">
+                <input type="text" id="firstPrice" value="<?=$price['option_price']?>">
                 <?php } ?>
  				
                 <div class="title-container">
@@ -173,8 +173,6 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item-tag item-tag-mo-cus">
-                        <span class="label">시간대</span>
                         <div class="tag-list">
                             <?php //foreach($hour_arr as $hour) : ?>
                                 <span class="tag tag-js2" data-tab="06">06시</span>
@@ -197,7 +195,7 @@
                     <div class="result_select">
                         <p class="final_date"></p> / 
                         <p class="final_hole">0</p><span>홀수</span> / 
-                        <p class="final_hour">00</p><span>시</span> / 
+                        <p class="final_hour">00</p><span></span> / 
                         <p class="final_people_cnt">0</p><span>인</span>
                     </div>
                     <p>※ 아래 요금은 1인당 가격입니다.</p>
