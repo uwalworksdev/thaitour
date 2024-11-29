@@ -42,6 +42,7 @@ class GolfOptionModel extends Model
     public function getOptions($product_idx, $hole_cnt = null, $hour = null, $minute = null)
     {
 		//$this->table = 'tbl_golf_price'; 
+		/*
         $options = $this->where("product_idx", $product_idx);
         if ($hole_cnt) {
             $options = $options->where("hole_cnt", $hole_cnt);
@@ -54,6 +55,26 @@ class GolfOptionModel extends Model
         }
 
         return $options->findAll();
+        */
+		// 예약가능한 일자 및 금액 데이터 조회
+
+        $where = "";
+		if ($hole_cnt) {
+            $where .= " AND hole_cnt = '$hole_cnt' ";
+        }
+        if ($hour) {
+            $where .= " AND hour = '$hour' ";
+        }
+        if ($minute) {
+            $where .= " AND minute = '$minute' ";
+        }
+
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' $where' AND use_yn != 'N' ";
+		write_log($sql_p);
+		$result_p = $this->db->query($sql_p);
+		$options  = $result_p->getResultArray();
+      
+	    return $options;
 
     }
 
