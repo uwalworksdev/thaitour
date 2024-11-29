@@ -741,20 +741,18 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;
                                         <select name="moption_hour" id="moption_hour">
-											<option value="오전">오전</option>										     
-											<option value="오후">오후</option>										     
-                                            <!--
+											<!--option value="오전">오전</option>										     
+											<option value="오후">오후</option-->										     
                                             <?php foreach(GOLF_HOURS as $hour) : ?>
                                                 <option value="<?=$hour?>"><?=$hour?>시</option>
                                             <?php endforeach; ?>
-											-->
                                         </select>&nbsp;
                                         <input type="hidden" name="moption_minute" id="moption_minute">
-                                        <!--select name="moption_minute" id="moption_minute">
+                                        <select name="moption_minute" id="moption_minute">
                                             <?php foreach(GOLF_MIN as $minute) : ?>
                                                 <option value="<?=$minute?>"><?=$minute?>분</option>
                                             <?php endforeach; ?>
-                                        </select>&nbsp;-->  
+                                        </select>&nbsp; 
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption('<?=$product_idx?>');">일자별 수정</button>
 
