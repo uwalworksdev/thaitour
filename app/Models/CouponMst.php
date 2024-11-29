@@ -11,20 +11,14 @@ class CouponMst extends Model
         , "exp_start_day", "exp_end_day", "etc_memo", "state", "regdate"
     ];
 
-    public function getCouponList($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $where = [])
+    public function getCouponList($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10)
     {
 
         $builder = $this;
-        $builder->where('state !=', 'C')
-            ->where('s1.isDelete !=', 'Y')
-            ->where('s1.order_status !=', 'D');
+        $builder->where('state !=', 'C');
 
-        if ($where) {
-            $builder->where($where);
-        }
-
-        if ($s_txt && $search_category == 'product_name') {
-            $builder->like("s2.product_name", $s_txt);
+        if ($s_txt && $search_category) {
+            $builder->like($search_category, $s_txt);
         }
 
         $nTotalCount = $builder->countAllResults(false);
@@ -35,16 +29,15 @@ class CouponMst extends Model
         }
         $nFrom = ($pg - 1) * $g_list_rows;
 
-        $builder->orderBy('s1.order_r_date', 'desc')
-            ->orderBy('s1.order_idx', 'desc')
+        $builder->orderBy('idx', 'desc')
             ->limit($g_list_rows, $nFrom);
 
-        $order_list = $builder->get()->getResultArray();
+        $coupon_list = $builder->get()->getResultArray();
 
         $num = $nTotalCount - $nFrom;
 
         return [
-            'order_list' => $order_list,
+            'coupon_list' => $coupon_list,
             'nTotalCount' => $nTotalCount,
             'pg' => $pg,
             'nPage' => $nPage,

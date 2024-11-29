@@ -197,6 +197,12 @@ class AdminMenus extends BaseConfig
                     'url' => '/AdmMaster/_mileage/list',
                     'alias' => ['AdminMileageController::list', 'AdminMileageController::write']
                 ],
+                [
+                    'name' => '쿠폰생성관리',
+                    'code' => 'E10',
+                    'url' => '/AdmMaster/_coupon/list',
+                    'alias' => ['AdminCouponController::list', 'AdminCouponController::write']
+                ],
             ]
         ],
         [
