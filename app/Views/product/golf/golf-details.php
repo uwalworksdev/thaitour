@@ -1,6 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+   
 <div class="content-sub-hotel-detail custom-golf-detail">
     <div class="body_inner">
         <div>
@@ -15,7 +16,8 @@
                 <input type="hidden" id="firstDate"  value="<?=$price['golf_date']?>">
                 <input type="hidden" id="firstPrice" value="<?=$price['option_price']?>">
                 <?php } ?>
-				<div class="title-container">
+ 				
+                <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
@@ -185,16 +187,17 @@
                                 <span class="tag tag-js2" data-tab="13">13시</span>
                                 <span class="tag tag-js2" data-tab="14">14시</span>
                                 <span class="tag tag-js2" data-tab="15">14시</span>
-                                <span class="tag tag-js2" data-tab="16">06시</span>
+                                <span class="tag tag-js2" data-tab="16">16시</span>
                             <?php //endforeach; ?>
                         </div>
                     </div>
+
                 </div>
                 <div class="date-text-2">
                     <div class="result_select">
                         <p class="final_date"></p> / 
                         <p class="final_hole">0</p><span>홀수</span> / 
-                        <p class="final_hour">00</p><span>시</span> / 
+                        <p class="final_hour">00</p><span></span> / 
                         <p class="final_people_cnt">0</p><span>인</span>
                     </div>
                     <p>※ 아래 요금은 1인당 가격입니다.</p>
@@ -236,14 +239,14 @@
                         </p>
                         <p>
                             <span class="l-label">티오프시간</span>
-                            <span class="l-label2"><em class="final_hour">00</em>시 <em class="final_minute">00</em>분</span>
+                            <span class="l-label2"><em class="final_hour">00</em> <!--em class="final_minute">00</em>분--></span>
                         </p>
                         <p>
                             <span class="l-label">인원</span>
                             <span class="l-label2"><em class="final_people_cnt">0</em>인</span>
                         </p>
                         <button class="btn-price-content-normal" type="button"
-                            onclick="showCouponPop()">쿠푼적용</button>
+                            onclick="showCouponPop()">쿠폰적용</button>
                     </div>
                     <div class="right-main" id="booking_area">
                         <div class="item-right">
@@ -615,14 +618,14 @@
         function setOptionArea() {
 
             const optionActive = $("#final_option_list .card-item.active_2");
-            const price = optionActive.data("option_price") || 0;
-            const caddy_fee = optionActive.data("caddy_fee") || "그린피에 포함";
+            const price        = optionActive.data("option_price") || 0;
+            const caddy_fee    = optionActive.data("caddy_fee") || "그린피에 포함";
             const cart_pie_fee = optionActive.data("cart_pie_fee") || "그린피에 포함";
-            const price_baht = optionActive.data("option_price_baht") || 0;
-            const people_cnt = $("#people_adult_cnt").val() || 0;
-            const final_price = Math.round(price * people_cnt);
+            const price_baht   = optionActive.data("option_price_baht") || 0;
+            const people_cnt   = $("#people_adult_cnt").val() || 0;
+            const final_price  = Math.round(price * people_cnt);
             const final_price_baht = Math.round(price_baht * people_cnt);
-            const minute = optionActive.data("minute") || "00";
+            const minute       = optionActive.data("minute") || "00";
 
             $("#option_idx").val(optionActive.data("idx"));
             $("#final_option_price").text(number_format(price));
@@ -706,8 +709,9 @@
         }
 
         function getOptions() {
-            const hole_cnt = $('.tag-js.active').data('tab');
-            const hour = $('.tag-js2.active').data('tab');
+			const golf_date = $("#order_date").val();
+            const hole_cnt  = $('.tag-js.active').data('tab');
+            const hour      = $('.tag-js2.active').data('tab');
             if(!hole_cnt || !hour) {
                 return false;
             }
@@ -715,6 +719,7 @@
                 type: "GET",
                 url: "/product-golf/option-price/<?= $product['product_idx']?>",
                 data: {
+					golf_date,
                     hole_cnt,
                     hour,
                 },
@@ -793,8 +798,8 @@
         }
 
         jQuery(document).ready(function () {
-            var dim = $('#dim');
-            var popup = $('#popupRoom');
+            var dim       = $('#dim');
+            var popup     = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
 
             var popup2 = $('#popup_img');
@@ -880,9 +885,8 @@
             return { s_date: new Date(s_date), e_date: new Date(e_date) };
         });
 
-        var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
-        
-        const arrDate = sel_Date.split("|");
+        var sel_Date   = getAvailableDates(s_date, e_date, deadline_date_arr);
+        const arrDate  = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
 
         function getMonthDatesWithWeekdays(month, year) {
@@ -1003,10 +1007,11 @@
 
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
-        const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+        //const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+        const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
 
-        $(".final_date").text(formatDate(new Date(initDate), "."));
+		$(".final_date").text(formatDate(new Date(initDate), "."));
         $("#order_date").val(formatDate(new Date(initDate), "-"));
 
         function nextMonth() {
