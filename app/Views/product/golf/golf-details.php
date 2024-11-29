@@ -177,7 +177,7 @@
                         <span class="label">시간대</span>
                         <div class="tag-list">
                             <?php foreach($hour_arr as $hour) : ?>
-                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?></span>
+                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?>시</span>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -229,7 +229,7 @@
                         </p>
                         <p>
                             <span class="l-label">티오프시간</span>
-                            <span class="l-label2"><em class="final_hour">00</em> <!--em class="final_minute">00</em>분--></span>
+                            <span class="l-label2"><em class="final_hour">00</em> <em class="final_minute">00</em>분></span>
                         </p>
                         <p>
                             <span class="l-label">인원</span>
