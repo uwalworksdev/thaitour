@@ -176,9 +176,9 @@
                     <div class="item-tag item-tag-mo-cus">
                         <span class="label">시간대</span>
                         <div class="tag-list">
-                            <?php foreach($hour_arr as $hour) : ?>
-                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?>시</span>
-                            <?php endforeach; ?>
+                            <?php //foreach($hour_arr as $hour) : ?>
+                                <span class="tag tag-js2" data-tab="06">06시</span>
+                            <?php //endforeach; ?>
                         </div>
                     </div>
 

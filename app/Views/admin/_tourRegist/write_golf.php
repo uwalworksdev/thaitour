@@ -1277,7 +1277,7 @@
                 });
  
                 option += '|';
-                $("#tours_cate").val('xxxxxxxxx');
+                $("#tours_cate").val(tours_cate);
 
                 // formSubmitted = true;
  
