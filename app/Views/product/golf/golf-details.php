@@ -713,7 +713,7 @@
             }
             $.ajax({
                 type: "GET",
-                url: "/product-golf/option-list/<?= $product['product_idx']?>",
+                url: "/product-golf/option-price/<?= $product['product_idx']?>",
                 data: {
                     hole_cnt,
                     hour,
