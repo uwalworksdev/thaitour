@@ -340,7 +340,7 @@ class TourRegistController extends BaseController
             $html  = '<script>alert("등록되었습니다.");</script>';
             $html .= '<script>parent.location.href = "/AdmMaster/_tourRegist/list_golf";</script>';
         }
-
+/*
         if ($data['option_idx']) {
             foreach ($data['option_idx'] as $key => $value) {
                 $this->golfOptionModel->update($value, [
@@ -408,7 +408,7 @@ class TourRegistController extends BaseController
 			}
 
 		} 
-    
+    */
         return $this->response->setBody($html);
     }
 
