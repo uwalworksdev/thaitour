@@ -218,7 +218,7 @@
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
                                         +
-                                        <?= number_format( $extra_cost) ?>
+                                        <?= number_format( $extra_cost) ?>원
                                         = <?= number_format( $total_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
 
@@ -694,12 +694,6 @@
                 prevText: '이전',
                 nextText: '다음'
                 // ,minDate: 1
-                <?php if ($str_guide != "") { ?>,
-                    beforeShowDay: function (date) {
-                        var day = date.getDay();
-                        return [(<?= $str_guide ?>)];
-                    }
-                <?php } ?>
             });
 
             $('img.ui-datepicker-trigger').css({

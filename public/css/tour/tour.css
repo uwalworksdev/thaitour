@@ -1554,6 +1554,14 @@
     margin-bottom: 5px;
 }
 
+.content-sub-hotel-detail .room_price_day_sale {
+    font-weight: bold;
+}
+
+.content-sub-hotel-detail .hotel_price_day_sale {
+    font-weight: bold;
+}
+
 .content-sub-hotel-detail .price-details .price {
     color: #333;
     font-weight: bold;
