@@ -200,7 +200,7 @@
                     </div>
                     <p>※ 아래 요금은 1인당 가격입니다.</p>
                 </div>
-                <div class="card-content" id="final_option_list">
+                <div class="card-content" id="final_option_listx">
 
 <div class="card-item active_2" data-hole="18" data-hour="06" data-minute="" data-idx="28" data-option_price="500000" data-option_price_baht="11790" data-caddy_fee="그린피에 포함" data-cart_pie_fee="피지에 포함" onclick="selectOption(this)">
         <div class="header">
