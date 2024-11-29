@@ -540,7 +540,7 @@
                                                                 </button>
                                                                 <input type="text" class="input_room_qty onlynum" value="1"
                                                                     style="text-align: center" readonly
-                                                                    id="input_room_qty_<?= $item['idx'] ?>"
+                                                                    id="input_room_qty_<?= $room_op['rop_idx'] ?>"
                                                                     data-op="<?= $item['idx'] ?>"
                                                                     data-id="<?= $room_op['rop_idx'] ?>">
                                                                 <button type="button" class="btnPlus">
@@ -554,7 +554,7 @@
                                                                 <input type="text" class="input_day_qty onlynum" value="1"
                                                                     style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                     readonly
-                                                                    id="input_day_qty_<?= $item['idx'] ?>"
+                                                                    id="input_day_qty_<?= $room_op['rop_idx'] ?>"
                                                                     data-op="<?= $item['idx'] ?>"
                                                                     data-price="<?= $room_op['r_price'] ?>"
                                                                     data-sale_price="<?= $room_op['r_sale_price'] ?>"
@@ -1000,7 +1000,7 @@
                                                                         <input type="text" class="input_room_qty onlynum"
                                                                             value="1"
                                                                             style="text-align: center"
-                                                                            id="input_room_qty_<?= $item['idx'] ?>"
+                                                                            id="input_room_qty_<?= $room_op['rop_idx'] ?>"
                                                                             data-op="<?= $item['idx'] ?>"
                                                                             data-id="<?= $room_op['rop_idx'] ?>">
                                                                         <button type="button" class="btnPlus">
@@ -1013,7 +1013,7 @@
                                                                     <div class="day_activity">
                                                                         <input type="text" class="input_day_qty onlynum"
                                                                             value="1"
-                                                                            id="input_day_qty_<?= $item['idx'] ?>"
+                                                                            id="input_day_qty_<?= $room_op['rop_idx'] ?>"
                                                                             data-op="<?= $item['idx'] ?>"
                                                                             data-price="<?= $room_op['r_price'] ?>"
                                                                             data-sale_price="<?= $room_op['r_sale_price'] ?>"
@@ -1916,7 +1916,8 @@
                         used_coupon_money: used_coupon_money,
                         use_coupon_room: use_coupon_room,
                         use_op_type: use_op_type,
-                        inital_price: total_price,
+                        room_op_price_sale: room_op_price_sale,
+                        inital_price: inital_price,
                         coupon_discount: coupon_discount,
                         coupon_type: coupon_type,
                         last_price: last_price,

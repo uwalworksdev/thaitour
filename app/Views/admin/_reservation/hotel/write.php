@@ -195,10 +195,24 @@
                                     <th>총 결제금액</th>
                                     <td>
                                         <?php
+                                            $setting = homeSetInfo();
+                                            $extra_cost = 0;
+                                
+                                            $type_extra_cost = $setting["type_extra_cost"];
+                                            
                                             $total_price = 0;
-                                            $total_price = $inital_price * $order_room_cnt * $order_day_cnt;
+                                            $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
+
+                                            if (!empty($setting["extra_cost"])) {
+                                                if ($type_extra_cost == "P") {
+                                                    $extra_cost = round(intval($total_price) * floatval($setting["extra_cost"]) / 100);
+                                                } else {
+                                                    $extra_cost = $setting["extra_cost"];
+                                                }
+                                            }
+
                                         ?>   
-                                        <?= number_format($inital_price * $order_room_cnt * $order_day_cnt) ?>원    
+                                        <?= number_format( $room_op_price_sale + $inital_price * $order_room_cnt) ?>원    
                                         -
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
