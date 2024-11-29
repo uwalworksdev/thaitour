@@ -929,6 +929,8 @@
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
+				$("#final_option_list").empty();
+
             }
             $('.day a').removeClass("on");
             $('.day a').eq(day - 1).addClass("on");
