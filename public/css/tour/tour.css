@@ -1532,6 +1532,10 @@
     font-size: 13px;
 }
 
+.content-sub-hotel-detail .price-strike-container {
+    font-size: 14px;
+}
+
 .content-sub-hotel-detail .discount span.label {
     background-color: #FAEAEB;
     color: red;

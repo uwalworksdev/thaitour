@@ -1,6 +1,6 @@
 <style>
     .form_gr_ {
-        width: 483px;
+        width: 535px;
     }
 
     .hotel_day_popup_ {
