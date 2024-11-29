@@ -1389,7 +1389,6 @@ class Product extends BaseController
             $product_idx = $cart_arr["product_idx"] ?? 0;
             $room_op_idx = $cart_arr["room_op_idx"] ?? 0;
             $use_coupon_idx = $cart_arr["use_coupon_idx"] ?? 0;
-            $use_op_type = $cart_arr["use_op_type"] ?? "";
             $used_coupon_money = $cart_arr["used_coupon_money"] ?? 0;
             $coupon_discount = $cart_arr["coupon_discount"] ?? 0;
             $inital_price = $cart_arr["inital_price"] ?? 0;
@@ -1419,7 +1418,6 @@ class Product extends BaseController
                 'number_room' => $number_room,
                 'number_day' => $number_day,
                 'use_coupon_idx' => $use_coupon_idx,
-                'use_op_type' => $use_op_type,
                 'room_op_idx' => $room_op_idx,
                 'coupon_discount' => $coupon_discount,
                 'used_coupon_money' => $used_coupon_money,
@@ -1439,7 +1437,6 @@ class Product extends BaseController
             $product_idx = $this->request->getPost('product_idx') ?? 0;
             $room_op_idx = $this->request->getPost('room_op_idx') ?? 0;
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
-            $use_op_type = $this->request->getPost('use_op_type') ?? "";
             $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
             $inital_price = $this->request->getPost('inital_price') ?? 0;
             $room_op_price_sale = $this->request->getPost('room_op_price_sale') ?? 0;
@@ -1483,7 +1480,6 @@ class Product extends BaseController
                 "inital_price" => $inital_price,
                 "order_price" => $order_price,
                 "order_date" => Time::now('Asia/Seoul', 'en_US'),
-                "used_op_type" => $use_op_type,
                 "used_coupon_idx" => $use_coupon_idx,
                 "used_coupon_money" => $used_coupon_money,
                 "room_op_idx" => $room_op_idx,
@@ -1647,7 +1643,7 @@ class Product extends BaseController
         }
 
 		// 예약가능한 일자 및 금액 데이터 조회
-		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn = '' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn != 'N' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
 		$result_p = $this->db->query($sql_p);
 		$data['golf_price'] = $result_p->getResultArray();
 

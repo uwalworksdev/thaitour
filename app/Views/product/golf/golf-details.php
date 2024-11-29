@@ -20,7 +20,7 @@
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
-                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web"> 
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
                         <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
@@ -195,7 +195,7 @@
                     <div class="result_select">
                         <p class="final_date"></p> / 
                         <p class="final_hole">0</p><span>홀수</span> / 
-                        <p class="final_hour">00</p><span></span> / 
+                        <p class="final_hour">00</p><span>시</span> / 
                         <p class="final_people_cnt">0</p><span>인</span>
                     </div>
                     <p>※ 아래 요금은 1인당 가격입니다.</p>
