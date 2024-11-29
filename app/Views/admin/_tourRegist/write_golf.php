@@ -772,8 +772,8 @@
                                             <col width="8%"/>
                                             <col width="8%"/>
                                             <col width="8%"/>
-                                            <col width="13%"/>
-                                            <col width="13%"/>
+                                            <col width="12%"/>
+                                            <col width="12%"/>
                                             <col width="10%"/>
                                         </colgroup>
                                         <thead>
