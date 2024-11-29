@@ -16,10 +16,9 @@ foreach ($options as $option) { ?>
                 <img class="only_mo" src="/uploads/icons/timer_gray_icon_mo.png" alt="timer_gray_icon_mo">
                 <p><?=$option['hour']?>:<?=$option['minute']?></p>
             </div>
-            <p class="cus-text">캐디피 : <?=$option['caddy_fee']?></p>
-            <p class="cus-text">카트피 : <?=$option['cart_pie_fee']?></p>
-            <p class="cus-text">그린피 : <span class="font-bold"><?=number_format($option['option_price'])?>원(<?=number_format($option['option_price_baht'])?>바트)</span></p>
+            <p class="cus-text">캐디피x : <?=$option['caddy_fee']?></p>
+            <p class="cus-text">카트피x : <?=$option['cart_pie_fee']?></p>
+            <p class="cus-text">그린피x : <span class="font-bold"><?=number_format($option['option_price'])?>원(<?=number_format($option['option_price_baht'])?>바트)</span></p>
         </div>
     </div>
-    <?php
-}
+<?php } ?>
