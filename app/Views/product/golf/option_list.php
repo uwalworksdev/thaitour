@@ -1,4 +1,3 @@
-<?php for($i=0;$i<5;$i++) { ?>
 <?php foreach ($options as $option) { ?>
     <div class="card-item" 
         data-hole="<?=$option['hole_cnt']?>" 
@@ -21,5 +20,4 @@
             <p class="cus-text">그린피 : <span class="font-bold"><?=number_format($option['option_price'])?>원(<?=number_format($option['option_price_baht'])?>바트)</span></p>
         </div>
     </div>
-<?php } ?>
 <?php } ?>
