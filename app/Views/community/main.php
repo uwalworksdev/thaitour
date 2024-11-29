@@ -112,7 +112,7 @@
                             <picture>
                                 <source media="(max-width:850px)" srcset="/images/community/info_detail_4_m.png">
                                 <img src="/images/community/info_detail_4.png" alt="">
-                            </picture>호주여행후기
+                            </picture>여행후기
                         </a>
                     </div>
                 </div>
