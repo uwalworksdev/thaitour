@@ -150,6 +150,67 @@ function getHeaderTab()
     return $html;
 }
 
+function getHeaderTabSub($code_no = '')
+{
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getResultArray();
+
+    $tabLinks = [
+        1303 => "/product-hotel/1303",
+        1302 => "/product-golf/1302/1",
+        1301 => "/product-tours/1301",
+        1325 => "/product-spa/1325",
+        1317 => "/show-ticket/1317",
+        1320 => "/product-restaurant/1320",
+        1324 => "/vehicle-guide/1324"
+    ];
+
+    $html = "";
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        $link = $tabLinks[$tab_] ?? "/product-hotel/1303";
+
+        $activeClass = ($code_no === $tab_) ? "active_" : "";
+
+        $html .= "<li class='depth_1_item_ $activeClass' data-code='" . $tab_ . "' data-href='$link'>";
+        $html .= "<p class=''>" . $frow['code_name'] . "</p>";
+        $html .= "</li>";
+    }
+
+    return $html;
+}
+
+function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
+{
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$parent_code_no' AND status = 'Y' ORDER BY onum DESC";
+    $fresult = db_connect()->query($fsql);
+    $fresult = $fresult->getResultArray();
+
+    $html = "";
+
+    $tabLinks = [
+        1303 => "/product-hotel/list-hotel/",
+        1302 => "/product-golf/list-golf/",
+        1301 => "/product-tours/tours-list/",
+    ];
+
+    foreach ($fresult as $frow) {
+        $tab_ = $frow['code_no'];
+
+        $activeClass = ($code_no === $tab_) ? "active_" : "";
+
+        $link = $tabLinks[$parent_code_no] . $tab_ ?? "!#";
+
+        $html .= "<li class='depth_2_item_ $activeClass' data-code='" . $tab_ . "'>";
+        $html .= "<a href='$link' class=''>" . $frow['code_name'] . "</a>";
+        $html .= "</li>";
+    }
+
+    return $html;
+}
+
 function getHeaderTabMobile()
 {
     $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
