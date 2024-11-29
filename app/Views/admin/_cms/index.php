@@ -1,18 +1,5 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-
-    <script>
-        var r_code = "<?=$r_code;?>";
-
-        var total_cnt = <?=$total_cnt * 1;?>; // 검색된 전체 갯수
-        var scale = <?=$scale * 1;?>; // 검색된 전체 갯수
-        var page = <?=$page * 1;?>; // 현재 페이지 번호
-
-        var sch_param = "<?=$Cms->sch_param;?>"; // 검색 조건
-        var sort_param = "<?=$Cms->sort_param;?>"; // 정렬 조건
-    </script>
-    <script src="/js/admin/cms/index.js"></script>
-
     <style>
         .date_pic {
             width: 100px;
@@ -86,13 +73,13 @@
                             <li><a href="#!" class="btn btn-default" onClick="check_all(false);"><span
                                             class="glyphicon glyphicon-remove"></span><span class="txt">선택해체</span></a>
                             </li>
-                            <li><a href="#!" class="btn btn-danger" onClick="go_del_ok('checked');"><span
+                            <li><a href="#!" class="btn btn-danger" onClick="del_it('checked');"><span
                                             class="glyphicon glyphicon-trash"></span><span class="txt">선택삭제</span></a>
                             </li>
                         </ul>
 
                         <ul class="last">
-                            <li><a href="#!" class="btn btn-primary" onClick="go_form('');"><span
+                            <li><a href="/AdmMaster/_cms/write?r_code=<?= $code_info['r_code']; ?>" class="btn btn-primary""><span
                                             class="glyphicon glyphicon-pencil"></span> <span class="txt">글 등록</span></a>
                             </li>
                         </ul>
@@ -114,21 +101,9 @@
                         </div>
 
                         <div class="right">
-                            <form name="search" id="frm_sch" method="get" action="<?= $_SERVER['PHP_SELF']; ?>">
-                                <!-- ajax 호출용 -->
-                                <input type="hidden" name="call_type" value="ajax">
-                                <input type="hidden" name="data_type" value="json">
-                                <input type="hidden" name="cmd" value="ajax_get_list">
-
-                                <!-- 정렬 -->
-                                <input type="hidden" name="sort_item" value="">
-                                <input type="hidden" name="sort_dir" value="">
-
-                                <!-- 페이지 -->
-                                <input type="hidden" name="start" value="0">
-                                <input type="hidden" name="scale" value="<?= $scale; ?>">
+                            <form name="search" id="frm_sch">
+                                <input type="hidden" name="r_code" value="<?= $code_info['r_code']; ?>">
                                 <input type="hidden" name="page" value="<?= $page; ?>">
-
                                 <header id="headerContents">
                                     <select name="scale" id="scale">
                                         <option <?php if ($scale == "25") echo "selected"; ?> value="25">25개씩 표시</option>
@@ -145,7 +120,7 @@
                                     </select>
                                     &nbsp;
                                     <select name="sch_item" style="height:30px;">
-                                        <option <?php if ($sch_item == "all") echo "selected"; ?> value="all">전체</option>
+                                        <option <?php if ($sch_item == "") echo "selected"; ?> value="">전체</option>
                                         <?php if ($code_info['r_use_name'] == "Y") { ?>
                                             <option <?php if ($sch_item == "r_name") echo "selected"; ?> value="r_name">
                                                 작성자
@@ -170,8 +145,10 @@
                                     <input type="text" name="sch_value" value="<?= $sch_value ?>"
                                            class="input_txt placeHolder" rel="" style="width:150px; line-height:28px;"/>
 
-                                    <a href="javascript:go_sch();" class="btn btn-default"><span
-                                                class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+                                    <button type="submit" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                        <span class="txt">검색하기</span>
+                                    </button>
                                 </header><!-- // headerContents -->
                             </form>
                         </div>
@@ -208,7 +185,7 @@
                             </colgroup>
                             <thead>
                             <tr>
-                                <th><input type="checkbox" onClick="check_all(this.checked);"></th>
+                                <th><input type="checkbox" class="check_all" onClick="check_all(this.checked);"></th>
                                 <th>No</th>
                                 <?php if ($code_info['r_use_content'] == "Y") { ?>
                                     <th data-item="T.r_content">이미지</th>
@@ -236,12 +213,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php for ($i = 0, $no = $total_cnt - $start; $i < $list_cnt; $i++, $no--) {
-                                $row = $list_arr[$i]; ?>
+                            <?php foreach ($list_arr as $key => $row) { ?>
                                 <tr data-idx="<?= $row['r_idx']; ?>">
                                     <td class="td_check"><input type="checkbox" class="check_idx"
                                                                 value="<?= $row['r_idx']; ?>"></td>
-                                    <td class="td_no"><?= $no; ?></td>
+                                    <td class="td_no"><?= $num; ?></td>
                                     <?php
                                     $htmlContent = $row['r_content'];
                                     preg_match('/<img[^>]+>/i', $htmlContent, $matches);
@@ -283,41 +259,20 @@
                                     <td class="td_date"
                                         title="<?= $row['r_date']; ?>"><?= substr($row['r_date'], 0, 10); ?></td>
                                     <td class="td_control">
-                                        <img src="/images/admin/common/ico_setting2.png" class="btn_mod" alt="관리">
-                                        <img src="/images/admin/common/ico_error.png" class="btn_del" alt="삭제">
+                                        <a href="/AdmMaster/_cms/write?r_code=<?= $code_info['r_code']; ?>&r_idx=<?= $row['r_idx']; ?>">
+                                            <img src="/images/admin/common/ico_setting2.png" alt="관리">
+                                        </a>
+                                        <a href="javascript:del_it('<?= $row['r_idx']; ?>')">
+                                            <img src="/images/admin/common/ico_error.png" alt="삭제">
+                                        </a>
                                     </td>
                                 </tr>
-                            <?php } ?>
+                            <?php $num--; } ?>
                             </tbody>
                         </table>
 
                     </div>
-                    <?php
-                    // 페이지 목록
-                    $start_page = (floor(($page - 1) / $page_cnt) * $page_cnt) + 1;
-                    $end_page = $start_page + $page_cnt - 1;
-                    if ($end_page > $total_page) $end_page = $total_page;
-
-                    $prev_page = ($start_page > 1) ? $start_page - 1 : 1;
-                    $next_page = ($end_page < $total_page) ? $end_page + 1 : $total_page;
-                    ?>
-                    <div class='paging mt30'>
-                        <ul>
-                            <li class='first'><a href='javascript: go_page(1);' title='Go to next page'>&lt;&lt; 처음</a>
-                            </li>
-                            <li class='prev'><a href='javascript: go_page(<?= $prev_page; ?>);'
-                                                title='Go to first page'>&lt; 이전</a></li>
-                            <?php for ($p = $start_page; $p <= $end_page; $p++) { ?>
-                                <li class="<?php if ($p == $page) echo "active"; ?>"><a
-                                            href="javascript: go_page(<?= $p; ?>);"
-                                            title='Go to <?= $p; ?> page'><?= $p; ?></a></li>
-                            <?php } ?>
-                            <li class='next'><a href='javascript: go_page(<?= $next_page; ?>);' title='Go to next page'>다음
-                                    &gt;</a></li>
-                            <li class='last'><a href='javascript: go_page(<?= $total_page; ?>);'
-                                                title='Go to last page'>맨끝 &gt;&gt;</a></li>
-                        </ul>
-                    </div>
+                    <?= ipageListing($page, $nPage, $scale, current_url() . "?scategory=$scategory&search_mode=$search_mode&search_word=$search_word&code=$code&pg=") ?>
                     <br>
                     <br>
 
@@ -331,7 +286,7 @@
                                     <li><a href="#!" class="btn btn-default" onClick="check_all(false);"><span
                                                     class="glyphicon glyphicon-remove"></span><span
                                                     class="txt">선택해체</span></a></li>
-                                    <li><a href="#!" class="btn btn-danger" onClick="go_del_ok('checked');"><span
+                                    <li><a href="#!" class="btn btn-danger" onClick="del_it('checked');"><span
                                                     class="glyphicon glyphicon-trash"></span><span
                                                     class="txt">선택삭제</span></a></li>
                                 </ul>
@@ -351,4 +306,45 @@
         </div><!-- print_this -->
     </div><!-- container -->
 
+<script>
+
+    function check_all(checked) {
+        if(checked) {
+            $("input.check_idx, .check_all").prop("checked", true);
+        } else {
+            $("input.check_idx, .check_all").prop("checked", false);
+        }
+    }
+
+    function del_it(r_idx) {
+        const r_idx_arr = [];
+        if(r_idx == "checked") {
+            $("input.check_idx:checked").each(function(){
+                r_idx_arr.push($(this).val());
+            });
+        } else if(r_idx != "") {
+            r_idx_arr.push(r_idx);
+        }
+        if(r_idx_arr.length == 0)
+            return alert("대상이 지정되지 않았습니다.");
+
+        if(!confirm("삭제하시겠습니까??"))
+            return;
+
+        $.ajax({
+            url: "/AdmMaster/_cms/del_ok",
+            type: "DELETE",
+            dataType: "json",
+            data: { r_idx: r_idx_arr },
+            success: function (data) {
+                if (data.result == "success") {
+                    location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+</script>
+    
 <?= $this->endSection() ?>

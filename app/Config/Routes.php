@@ -323,6 +323,9 @@ $routes->group("AdmMaster", static function ($routes) {
     $routes->group("_cms", static function ($routes) {
         $routes->get("index", "Admin\AdminCmsController::index");
         $routes->get("write", "Admin\AdminCmsController::write");
+        $routes->post("write_ok/(:segment)", "Admin\AdminCmsController::write_ok/$1");
+        $routes->post("write_ok", "Admin\AdminCmsController::write_ok");
+        $routes->delete("del_ok", "Admin\AdminCmsController::del_ok");
         $routes->get("policy_list", "Admin\AdminCmsController::policy_list");
         $routes->get("policy_write", "Admin\AdminCmsController::policy_write");
         $routes->post("policy_ok", "Admin\AdminCmsController::policy_ok");

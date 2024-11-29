@@ -3,7 +3,7 @@
 
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
     <script>
-        var use_editor = "<?=$Cms->code_info['r_use_content_editor'];?>"; // 상세정보 에디터 사용여부(Y)
+        var use_editor = "<?=$code_info['r_use_content_editor'];?>"; // 상세정보 에디터 사용여부(Y)
 
 
         // 스마트 에디터
@@ -30,13 +30,7 @@
             fCreator: "createSEditor2"
         };
 
-
-        var total_cnt = 0; // 검색된 전체 갯수
-        var page = <?=$page * 1;?>; // 현재 페이지 번호
-        var sch_param = "<?=$Cms->sch_param;?>"; // 검색 조건
-        var sort_param = "<?=$Cms->sort_param;?>"; // 정렬 조건
     </script>
-    <script src="/js/form.js"></script>
 
     <script>
 	$(function () {
@@ -212,15 +206,15 @@
                     <div class="menus">
                         <ul>
                             <li>
-                                <a href="/AdmMaster/_cms/index?r_code=popup" class="btn btn-default" onClick="go_list();"><span
+                                <a href="/AdmMaster/_cms/index?r_code=<?= $code_info['r_code']; ?>" class="btn btn-default" onClick="go_list();"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                                 <?php if ($r_idx == "") { ?>
-                                    <a href="#!" class="btn btn-success" onClick="go_regist('new_ok');"><span
+                                    <a href="#!" class="btn btn-success" onClick="send_it();"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">등록</span></a>
                                 <?php } else { ?>
-                                    <a href="#!" class="btn btn-success" onClick="go_regist('mod_ok');"><span
+                                    <a href="#!" class="btn btn-success" onClick="send_it();"><span
                                                 class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
-                                    <!-- <a href="#!" class="btn btn-danger" onClick="go_regist('del_ok');"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a> -->
+                                    <a href="#!" class="btn btn-danger" onClick="send_it();"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                 <?php } ?>
                             </li>
                         </ul>
@@ -245,13 +239,8 @@
                 </div>
                 <div class="div_content">
 
-                    <form name="frm_form" id="frm_form" onSubmit="return false;" method="post"
-                          enctype="multipart/form-data">
-                        <input type="hidden" name="call_type" value="ajax">
-                        <input type="hidden" name="data_type" value="json">
+                    <form name="frm_form" id="frm_form" action="/AdmMaster/_cms/write_ok<?= $r_idx ? "/$r_idx" : ""?>" onSubmit="return false;" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="r_code" value="<?= $r_code; ?>">
-                        <input type="hidden" name="r_idx" value="<?= $r_idx; ?>">
-                        <input type="hidden" name="cmd" value="regist">
 
                         <table>
                             <tr>
@@ -259,8 +248,8 @@
                                 <td>
                                     <select name="r_status">
                                         <option value="">선택</option>
-                                        <?php foreach ($Cms->status_arr as $key => $val) {
-                                            if ($key == $Cms->status_del) continue; ?>
+                                        <?php foreach ($status_arr as $key => $val) {
+                                            if ($key == "D") continue; ?>
                                             <option <?php if ($form_data['r_status'] == $key) echo "selected"; ?>
                                                     value="<?= $key; ?>"><?= $val; ?></option>
                                         <?php } ?>
@@ -271,8 +260,7 @@
                                 <tr>
                                     <th>순서</th>
                                     <td>
-                                        <input type="text" name="r_order" value="<?= $form_data['r_order']; ?>"
-                                               style="width:50px;">
+                                        <input type="text" name="r_order" value="<?= $form_data['r_order']; ?>" style="width:50px;">
                                     </td>
                                 </tr>
                             <?php } ?>
@@ -323,7 +311,7 @@
                                     <th>열기 옵션</th>
                                     <td>
                                         <?php $tmp = json_decode($form_data['r_open'], true); ?>
-                                        <input type="hidden" name="r_open" value="<?= $form_data['r_open']; ?>">
+                                        <input type="hidden" name="r_open" value="">
                                         <select class="open" data-item="type">
                                             <option value="popup" <?php if ($tmp['type'] == "popup") echo "selected"; ?> >
                                                 팝업
@@ -355,7 +343,7 @@
                                     <td>
                                         <select name="r_close">
                                             <option value="">선택</option>
-                                            <?php foreach ($Cms->close_arr as $key => $val) { ?>
+                                            <?php foreach ($close_arr as $key => $val) { ?>
                                                 <option value="<?= $key; ?>" <?php if ($form_data['r_close'] == $key) echo "selected"; ?> ><?= $val; ?></option>
                                             <?php } ?>
                                         </select>
@@ -597,17 +585,17 @@
                             <ul>
                                 <li class="left"></li>
                                 <li class="right_sub">
-                                    <a href="/AdmMaster/_cms/index?r_code=popup" class="btn btn-default" onClick="go_list();"><span
+                                    <a href="/AdmMaster/_cms/index?r_code=<?= $code_info['r_code']; ?>" class="btn btn-default" onClick="go_list();"><span
                                                 class="glyphicon glyphicon-th-list"></span><span class="txt">리스트</span></a>
                                     <?php if ($r_idx == "") { ?>
-                                        <a href="#!" class="btn btn-success" onClick="go_regist('new_ok');"><span
+                                        <a href="#!" class="btn btn-success" onClick="send_it();"><span
                                                     class="glyphicon glyphicon-cog"></span><span
                                                     class="txt">등록</span></a>
                                     <?php } else { ?>
-                                        <a href="#!" class="btn btn-success" onClick="go_regist('mod_ok');"><span
+                                        <a href="#!" class="btn btn-success" onClick="send_it();"><span
                                                     class="glyphicon glyphicon-cog"></span><span
                                                     class="txt">수정</span></a>
-                                        <!-- <a href="#!" class="btn btn-danger" onClick="go_regist('del_ok');"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a> -->
+                                        <a href="#!" class="btn btn-danger" onClick="send_it();"><span class="glyphicon glyphicon-trash"></span><span class="txt">삭제</span></a>
                                     <?php } ?>
                                 </li>
                             </ul>
@@ -786,6 +774,37 @@
                 del_product(idx);
             });
         });
+    
+        function send_it() {
+
+            // 열기 옵션 취합
+            var open = {};
+            $(".open").each(function(){
+                open[$(this).attr("data-item")] = $(this).val();
+            });
+            $("#frm_form input[name='r_open']").val(JSON.stringify(open));
+
+            var form = document.frm_form;
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                dataType: "json",
+                data: new FormData(form),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (res) {
+                    if (res.result == "success") {
+                        <?php if($r_idx): ?>
+                            location.reload();
+                        <?php else: ?>
+                            location.href = "/AdmMaster/_cms/index?r_code=<?=$r_code?>";
+                        <?php endif; ?>
+                    }
+                }
+            })
+        }
+        
     </script>
 
 
