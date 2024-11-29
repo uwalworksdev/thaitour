@@ -1275,7 +1275,7 @@ alert('33333333');
                 $("input:checkbox[name='_tours_cate']:checked").each(function () {
                     tours_cate += '|' + $(this).val();
                 });
-alert('444444');
+alert('444444'+tours_cate);
                 option += '|';
                 $("#tours_cate").val(tours_cate);
 
