@@ -174,8 +174,9 @@
                         </select>
                     </div>
                         <div class="tag-list">
-                            <?php //foreach($hour_arr as $hour) : ?>
-                                <span class="tag tag-js2" data-tab="06">06시</span>
+                            <?php foreach($hour_arr as $hour) : ?>
+                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?>시</span>
+                                <!--span class="tag tag-js2" data-tab="06">06시</span>
                                 <span class="tag tag-js2" data-tab="07">07시</span>
                                 <span class="tag tag-js2" data-tab="08">08시</span>
                                 <span class="tag tag-js2" data-tab="09">09시</span>
@@ -185,8 +186,8 @@
                                 <span class="tag tag-js2" data-tab="13">13시</span>
                                 <span class="tag tag-js2" data-tab="14">14시</span>
                                 <span class="tag tag-js2" data-tab="15">14시</span>
-                                <span class="tag tag-js2" data-tab="16">16시</span>
-                            <?php //endforeach; ?>
+                                <span class="tag tag-js2" data-tab="16">16시</span-->
+                            <?php endforeach; ?>
                         </div>
                     </div>
 
