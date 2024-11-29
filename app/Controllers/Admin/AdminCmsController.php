@@ -11,11 +11,21 @@ class AdminCmsController extends BaseController
 {
     protected $connect;
     protected $policyModel;
+    protected $cmsModel;
+    protected $cmsConfModel;
+    protected $status_arr = ['Y' => '사용', 'N' => '중지', 'D' => '삭제'];
+
+    protected $close_arr = array(
+        "today" => "오늘 그만보기",
+        "never" => "더이상 보이지 않기"
+    );
 
     public function __construct()
     {
         $this->connect = Config::connect();
         $this->policyModel = model("PolicyModel");
+        $this->cmsModel = model("CmsModel");
+        $this->cmsConfModel = model("CmsConfModel");
         helper('my_helper');
         helper('alert_helper');
         helper('JkCms_helper');
@@ -23,101 +33,75 @@ class AdminCmsController extends BaseController
 
     public function index()
     {
-        $r_code = $_GET['r_code'] ?? '';
-        if ($r_code == "") $r_code = "banner";
+        $r_code = $this->request->getVar('r_code') ?: 'popup';
 
-// 클래스
-        $Cms = new JkCms($r_code);
+        $sch_status = $this->request->getVar('sch_status') ?? '';
+        $sch_item = $this->request->getVar('sch_item') ?? '';
+        $sch_value = $this->request->getVar('sch_value') ?? '';
+        $scale = $this->request->getVar('scale') ?? 25;
 
-        $code_info = $Cms->get_code_info();
-        $type_arr = $Cms->type_arr;
+        $page = $this->request->getVar('page') ?? 1;
 
-        $scale = 25; // 목록에 표시되는 정보의 수
-        $page_cnt = 10; // 페이지 목록에 표시되는 페이지의 수
-
-        $total_cnt = $Cms->get_total_cnt();
-        $total_page = ceil($total_cnt / $scale);
-
-        $page = $_GET['page'] ?? 1;
-        if ($page > $total_page) $page = $total_page;
-        if ($page < 1) $page = 1;
-
-        $start = ($page - 1) * $scale;
-        $Cms->input['start'] = $start;
-        $Cms->input['scale'] = $scale;
-
-        $list_arr = $Cms->get_list();
-        $list_cnt = count($list_arr);
+        $result = $this->cmsModel->getPaging([
+            'r_code' => $r_code,
+            'sch_status' => $sch_status,
+            'sch_item' => $sch_item,
+            'sch_value' => $sch_value
+        ], $scale, $page);
 
         $data = [
-            'code_info' => $code_info,
-            'type_arr' => $type_arr,
-            'list_arr' => $list_arr,
-            'list_cnt' => $list_cnt,
+            'code_info' => $this->cmsConfModel->find($r_code),
+            'list_arr' => $result['items'],
             'page' => $page,
-            'total_page' => $total_page,
-            'total_cnt' => $total_cnt,
-            'page_cnt' => $page_cnt,
+            'nPage' => $result['nPage'],
             'r_code' => $r_code,
-            'Cms' => $Cms,
             'scale' => $scale,
-            'start' => $start,
-            'sch_status' => $sch_status ?? '',
-            'sch_item' => $sch_item ?? '',
-            'sch_value' => $sch_value ?? '',
+            'num' => $result['num'],
+            'sch_status' => $sch_status,
+            'sch_item' => $sch_item,
+            'sch_value' => $sch_value,
         ];
         return view('admin/_cms/index', $data);
     }
 
     public function write()
     {
-        // 공용 클래스 (+관리자 인증)
-
-        // 메뉴 구분
         $r_code = $_GET['r_code'] ?? '';
-
-        // 클래스
-        $Cms = new JkCms($r_code);
-
-        $code_info = $Cms->get_code_info($r_code);
-        $type_arr = $Cms->type_arr;
-        $template_arr = $Cms->template_arr;
-
-        $r_idx = $_GET['r_idx'];
-        if ($r_idx != "") {
-            $form_data = $Cms->get_form_data($r_idx);
-            $file_arr = json_decode($form_data['r_file_list'], true);
-            $file_cnt = count($file_arr);
-        } else {
-            $form_data = array();
-            foreach ($Cms->new_default_arr as $key => $val)
-                $form_data[$key] = $val;
-        }
-
-        $product_arr = $Cms->get_product_arr();
-
-        // 헤더 (관리자 기본 설정 및 인증)
+        $r_idx = $this->request->getVar('r_idx') ?? '';
 
         $data = [
-            'page' => $_GET['page'] ?? 1,
-            'code_info' => $code_info,
-            'type_arr' => $type_arr,
-            'template_arr' => $template_arr,
-            'form_data' => $form_data,
-            'product_arr' => $product_arr,
-            'Cms' => $Cms,
+            'code_info' => $this->cmsConfModel->find($r_code),
             'r_idx' => $r_idx,
-            'file_cnt' => $file_cnt ?? '',
-            'file_arr' => $file_arr ?? '',
-            'scale' => $scale ?? '',
-            'start' => $start ?? '',
-            'sch_status' => $sch_status ?? '',
-            'sch_item' => $sch_item ?? '',
-            'sch_value' => $sch_value ?? '',
-            'r_code' => $r_code ?? '',
-            'cmd' => $cmd ?? '',
+            'r_code' => $r_code,
+            'form_data' => $this->cmsModel->find($r_idx),
+            'status_arr' => $this->status_arr,
+            'close_arr' => $this->close_arr,
         ];
         return view('admin/_cms/write', $data);
+    }
+
+    public function write_ok($r_idx = null)
+    {
+
+        $data = $this->request->getPost();
+
+        $data['r_s_date'] = $data['r_s_date_d'] . ' ' . $data['r_s_date_h'] . ':' . $data['r_s_date_m'] . ':' . $data['r_s_date_s'];
+        $data['r_e_date'] = $data['r_e_date_d'] . ' ' . $data['r_e_date_h'] . ':' . $data['r_e_date_m'] . ':' . $data['r_e_date_s'];
+
+        if($r_idx) {
+            $this->cmsModel->update($r_idx, $data);
+            return $this->response->setJSON(['result' => 'success', 'msg' => '수정 완료']);
+        } else {
+            $this->cmsModel->insert($data);
+            return $this->response->setJSON(['result' => 'success', 'msg' => '등록 완료']);
+        }
+
+    }
+
+    public function del_ok() {
+        $r_idx = $this->request->getRawInput()['r_idx'];
+        $this->cmsModel->where('r_idx', $r_idx)->set(['r_status' => 'D'])->update();
+        return $this->response->setJSON(['result' => 'success', 'msg' => '삭제 완료']);
     }
 
     public function policy_list()

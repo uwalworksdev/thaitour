@@ -20,8 +20,13 @@ class AdminMagazineController extends BaseController
         $this->magazineModel = model("Magazines.php");
     }
 
-    public function index()
+    public function list()
     {
-        //
+        return view('admin/magazines/list');
+    }
+
+    public function write()
+    {
+        return view('admin/magazines/list');
     }
 }

@@ -1392,6 +1392,7 @@ class Product extends BaseController
             $used_coupon_money = $cart_arr["used_coupon_money"] ?? 0;
             $coupon_discount = $cart_arr["coupon_discount"] ?? 0;
             $inital_price = $cart_arr["inital_price"] ?? 0;
+            $room_op_price_sale = $cart_arr["room_op_price_sale"] ?? 0;
             $last_price = $cart_arr["last_price"] ?? 0;
             $number_room = $cart_arr["number_room"] ?? 0;
             $number_day = $cart_arr["number_day"] ?? 0;
@@ -1413,6 +1414,7 @@ class Product extends BaseController
             $data = [
                 'hotel' => $hotel,
                 'inital_price' => $inital_price,
+                'room_op_price_sale' => $room_op_price_sale,
                 'number_room' => $number_room,
                 'number_day' => $number_day,
                 'use_coupon_idx' => $use_coupon_idx,
@@ -1437,6 +1439,7 @@ class Product extends BaseController
             $use_coupon_idx = $this->request->getPost('use_coupon_idx') ?? 0;
             $used_coupon_money = $this->request->getPost('used_coupon_money') ?? 0;
             $inital_price = $this->request->getPost('inital_price') ?? 0;
+            $room_op_price_sale = $this->request->getPost('room_op_price_sale') ?? 0;
             $order_price = $this->request->getPost('order_price') ?? 0;
             $number_room = $this->request->getPost('number_room') ?? 0;
             $number_day = $this->request->getPost('number_day') ?? 0;
@@ -1473,6 +1476,7 @@ class Product extends BaseController
                 "order_user_mobile" => encryptField($order_user_mobile, "encode"),
                 "order_user_email" => encryptField($order_user_email, "encode"),
                 "order_memo" => $order_memo,
+                "room_op_price_sale" => $room_op_price_sale,
                 "inital_price" => $inital_price,
                 "order_price" => $order_price,
                 "order_date" => Time::now('Asia/Seoul', 'en_US'),

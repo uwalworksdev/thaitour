@@ -1,6 +1,7 @@
 <!-- app/Views/main/home.php -->
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
+<?=view("inc/popup_main")?>
 <?php
 $keyword = $_GET['keyword'] ?? '';
 
@@ -47,7 +48,6 @@ $SearchText = model("SearchText");
 $searchTxt  = $SearchText->List()->findAll();
 
 ?>
-
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.carousel.min.css">
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.theme.default.min.css">
