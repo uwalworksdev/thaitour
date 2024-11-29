@@ -141,20 +141,20 @@
                         <p class="title">서울 비비큐 보이(Seoul BBQ Boy) 20% 할인 쿠폰</p>
                         <div class="list_des">
                             <div class="des flex">
-                                <p>대상 :</p>
+                                <p>ㆍ대상 :</p>
                                 <span>더투어랩을 통해 예약하신 모든 회원</span>
                             </div>
                             <div class="des flex">
-                                <p>사용처 :</p>
+                                <p>ㆍ사용처 :</p>
                                 <span>프라카농 지점</span>
                             </div>
                             <div class="des flex">
-                                <p>유의사항 :</p>
+                                <p>ㆍ유의사항 :</p>
                                 <span>서울 비비큐 보이(Seoul BBQ Boy) 1,000바트 이상 매장내 식사 또는
                                 방문포장시 20% 할인 쿠폰 (주류, 부가세 제외금액)</span>
                             </div>
                             <div class="des flex">
-                                <p>유효기간 :</p>
+                                <p>ㆍ유효기간 :</p>
                                 <span>2023-04-11(화) ~ 2033-06-30(목)</span>
                             </div>
                         </div>
