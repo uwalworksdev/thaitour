@@ -200,6 +200,8 @@
                     </div>
                     <p>※ 아래 요금은 1인당 가격입니다.</p>
                 </div>
+                <div class="card-content" id="final_option_list">
+
 <div class="card-item active_2" data-hole="18" data-hour="06" data-minute="" data-idx="28" data-option_price="500000" data-option_price_baht="11790" data-caddy_fee="그린피에 포함" data-cart_pie_fee="피지에 포함" onclick="selectOption(this)">
         <div class="header">
             <div class="header-con">
@@ -223,6 +225,7 @@
             <p class="cus-text">그린피 : <span class="font-bold">500,000원(11,790바트)</span></p>
         </div>
     </div>
+                </div>
                 <div class="section1-sub">
                     <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
                 </div>
