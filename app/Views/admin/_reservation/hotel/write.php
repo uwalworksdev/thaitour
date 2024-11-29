@@ -202,10 +202,10 @@
                                             
                                             $total_price = 0;
                                             $total_price = $room_op_price_sale + $inital_price * $order_room_cnt;
-
+                                            $total_last_price = $total_price - $used_coupon_money - $used_mileage_money;
                                             if (!empty($setting["extra_cost"])) {
                                                 if ($type_extra_cost == "P") {
-                                                    $extra_cost = round(intval($total_price) * floatval($setting["extra_cost"]) / 100);
+                                                    $extra_cost = round(intval($total_last_price) * floatval($setting["extra_cost"]) / 100);
                                                 } else {
                                                     $extra_cost = $setting["extra_cost"];
                                                 }
@@ -217,7 +217,7 @@
                                         <?= number_format($used_coupon_money) ?>원(할인쿠폰)
                                         -
                                         <?= number_format($used_mileage_money) ?>원(마일리지사용)
-                                        = <?= number_format( $total_price- $used_coupon_money - $used_mileage_money) ?>
+                                        = <?= number_format( $total_price - $used_coupon_money - $used_mileage_money + $extra_cost) ?>
                                         원
 
                                     </td>
