@@ -2332,6 +2332,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin: 0 auto;
   }
 
   .popup_coupon .popup .content .infomation .txt_info .list_des .des {
