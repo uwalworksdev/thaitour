@@ -309,14 +309,6 @@
                                     <td>
                                         <?php $tmp = json_decode($form_data['r_open'], true); ?>
                                         <input type="hidden" name="r_open" value="">
-                                        <select class="open" data-item="type">
-                                            <option value="popup" <?php if ($tmp['type'] == "popup") echo "selected"; ?> >
-                                                팝업
-                                            </option>
-                                            <option value="layer" <?php if ($tmp['type'] == "layer") echo "selected"; ?> >
-                                                레이어
-                                            </option>
-                                        </select>
                                         Top : <input type="text" class="open" data-item="top"
                                                      value="<?= $tmp['top']; ?>"
                                                      style="width:50px;">px &nbsp;
@@ -328,9 +320,7 @@
                                                        style="width:50px;">px &nbsp;
                                         Height : <input type="text" class="open" data-item="height"
                                                         value="<?= $tmp['height']; ?>"
-                                                        style="width:50px;">px &nbsp;
-                                        추가 : <input type="text" class="open" data-item="etc" value="<?= $tmp['etc']; ?>"
-                                                    style="width:300px;">
+                                                        style="width:50px;">px
                                     </td>
                                 </tr>
                             <?php } ?>
