@@ -119,7 +119,7 @@ class ReviewModel extends Model
 
             $sum = 0;
             foreach ($result as $key => $value) {
-                $sum += $value['star'];
+                $sum += $value['number_stars'];
             }
             $avg = $sum / $total_review;
             $avg = round($avg, 1);
