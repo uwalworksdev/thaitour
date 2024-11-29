@@ -139,7 +139,7 @@
 												일자
 											</td>
 											<td style="text-align:center">
-												홀수 / 시간대
+												홀수 / 시 / 분
 											</td>
 											<td style="text-align:center">
 												가격(원)
@@ -167,7 +167,7 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center"><?=$item['hole_cnt']?> / <?=$item['hour']?></td>
+											<td style="text-align:center"><?=$item['hole_cnt']?> / <?=$item['hour']?> / <?=$item['minute']?></td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 												<input type="hidden" name="golf_date[]" id="golf_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
