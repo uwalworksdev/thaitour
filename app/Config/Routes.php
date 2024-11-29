@@ -288,6 +288,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("write", "Admin\AdminInquiryController::write");
     });
 
+    $routes->group("_coupon", static function ($routes) {
+        $routes->get("list", "AdminCouponController::list");
+        $routes->get("write", "AdminCouponController::write");
+        $routes->post("write_ok", "AdminCouponController::write_ok");
+        $routes->post("del", "AdminCouponController::delete");
+    });
+
     $routes->group("_operator", static function ($routes) {
         $routes->get("coupon_setting", "Admin\AdminOperatorController::coupon_setting");
         $routes->get("coupon_setting_write", "Admin\AdminOperatorController::coupon_setting_write");

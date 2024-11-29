@@ -579,20 +579,21 @@
                                                     ?>
                                                     <td>
                                                         <div class="price-details">
-                                                            <?php if ($isSale) { ?>
-                                                                <div class="discount">
-                                                                    <span class="label">특별할인</span>
-                                                                    <span class="price_content"><i class="hotel_price_percent"><?= $percent ?></i>%할인</span>
-                                                                </div>
-                                                            <?php } ?>
+                                                            
                                                             <div class="price-strike-container">
-                                                                옵션금액: <span class="price-strike room_price_day" data-price="<?=$room_op['r_price']?>"><?= number_format($room_op['r_price']) ?></span>원
+                                                                옵션금액: <span class="room_price_day" data-price="<?=$room_op['r_price']?>"></span>
                                                                 <span class="room_price_day_sale" data-price="<?=$room_op['r_sale_price']?>"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                             </div>
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                 <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                             </span>
+                                                            <?php if ($isSale) { ?>
+                                                                <div class="discount">
+                                                                    <span class="label">특별할인</span>
+                                                                    <span class="price_content"><i class="hotel_price_percent"><?= $percent ?></i>%할인</span>
+                                                                </div>
+                                                            <?php } ?>
                                                             <span class="details">객실 <span
                                                                         class="count_room"
                                                                         id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
@@ -683,16 +684,17 @@
                                                     ?>
                                                     <td>
                                                         <div class="price-details">
+                                                            
+                                                            <span class="total">
+                                                                객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
+                                                            </span>
                                                             <?php if ($isSale) { ?>
                                                                 <div class="discount">
                                                                     <span class="label">특별할인</span>
                                                                     <span class="price_content"><i class="hotel_price_percent"><?= $percent ?></i>%할인</span>
                                                                 </div>
                                                             <?php } ?>
-                                                            <span class="total">
-                                                                객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
-                                                            </span>
                                                             <span class="details">객실 <span
                                                                         class="count_room"
                                                                         id="<?= $item['idx'] ?>">1</span>개 × <span
@@ -1038,20 +1040,21 @@
                                                             ?>
                                                             <td>
                                                                 <div class="price-details">
-                                                                    <?php if ($isSale) { ?>
-                                                                        <div class="discount">
-                                                                            <span class="label">특별할인</span>
-                                                                            <span class="price_content"><i class="hotel_price_percent"><?= $percent ?></i>%할인</span>
-                                                                        </div>
-                                                                    <?php } ?>
+                                                                    
                                                                     <div class="price-strike-container">
-                                                                        옵션금액: <span class="price-strike room_price_day" data-price="<?=$room_op['r_price']?>"><?= number_format($room_op['r_price']) ?></span>원
+                                                                        옵션금액: <span class="price-strike room_price_day" data-price="<?=$room_op['r_price']?>"></span>
                                                                         <span class="room_price_day_sale" data-price="<?=$room_op['r_sale_price']?>"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                                     </div>
                                                                     <span class="total">
                                                                         객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                         <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                                     </span>
+                                                                    <?php if ($isSale) { ?>
+                                                                        <div class="discount">
+                                                                            <span class="label">특별할인</span>
+                                                                            <span class="price_content"><i class="hotel_price_percent"><?= $percent ?></i>%할인</span>
+                                                                        </div>
+                                                                    <?php } ?>
                                                                     <span class="details">객실 <span
                                                                                 class="count_room"
                                                                                 id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
@@ -1154,18 +1157,18 @@
                                                                 }
                                                             ?>
                                                             <td>
-                                                                <div class="price-details">
+                                                                <div class="price-details">  
+
+                                                                    <span class="total">
+                                                                        객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
+                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
+                                                                    </span>
                                                                     <?php if ($isSale) { ?>
                                                                         <div class="discount">
                                                                             <span class="label">특별할인</span>
                                                                             <span class="price_content"><i class="hotel_price_percent"><?= $percent ?></i>%할인</span>
                                                                         </div>
                                                                     <?php } ?>
-
-                                                                    <span class="total">
-                                                                        객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
-                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
-                                                                    </span>
                                                                     <span class="details">객실 <span
                                                                         class="count_room"
                                                                         id="<?= $item['idx'] ?>">1</span>개 × <span
