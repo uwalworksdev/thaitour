@@ -13,8 +13,8 @@
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
                 <?php foreach($golf_price as $price) { ?> 
-                <input type="hidden" id="firstDate"  value="<?=$price['golf_date']?>">
-                <input type="hidden" id="firstPrice" value="<?=$price['option_price']?>">
+                <input type="text" id="firstDate"  value="<?=$price['golf_date']?>">
+                <input type="text" id="firstPrice" value="<?=$price['option_price']?>">
                 <?php } ?>
  				
                 <div class="title-container">
@@ -173,12 +173,20 @@
                             ?>
                         </select>
                     </div>
-                    <div class="item-tag item-tag-mo-cus">
-                        <span class="label">시간대</span>
                         <div class="tag-list">
-                            <?php foreach($hour_arr as $hour) : ?>
-                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?></span>
-                            <?php endforeach; ?>
+                            <?php //foreach($hour_arr as $hour) : ?>
+                                <span class="tag tag-js2" data-tab="06">06시</span>
+                                <span class="tag tag-js2" data-tab="07">07시</span>
+                                <span class="tag tag-js2" data-tab="08">08시</span>
+                                <span class="tag tag-js2" data-tab="09">09시</span>
+                                <span class="tag tag-js2" data-tab="10">10시</span>
+                                <span class="tag tag-js2" data-tab="11">11시</span>
+                                <span class="tag tag-js2" data-tab="12">12시</span>
+                                <span class="tag tag-js2" data-tab="13">13시</span>
+                                <span class="tag tag-js2" data-tab="14">14시</span>
+                                <span class="tag tag-js2" data-tab="15">14시</span>
+                                <span class="tag tag-js2" data-tab="16">16시</span>
+                            <?php //endforeach; ?>
                         </div>
                     </div>
 

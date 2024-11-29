@@ -5778,10 +5778,10 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1000px;
-    height: 640px;
+    width: 840px;
+    height: 740px;
     z-index: 2;
-    padding: 28px 60px;
+    padding: 28px 30px;
     background-color: #fff;
     border-radius: 16px;
 }
@@ -5814,15 +5814,15 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .popup_coupon .popup .content .infomation {
-    padding: 38px 45px;
+    padding: 38px 20px;
     border-radius: 3px;
     background-color: #f7f7f7;
     gap: 45px;
 }
 
 .popup_coupon .popup .content .infomation .avatar_info {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 100px;
     background-color: #000000;
 }
@@ -5839,7 +5839,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .popup_coupon .popup .content .infomation .txt_info .title {
-    font-size: 26px;
+    font-size: 24px;
     letter-spacing: -1px;
     line-height: 1.3;
     color: #222222;
@@ -5902,7 +5902,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .popup_coupon .popup .content .infomation_slide img {
-    height: 512px;
+    height: 400px;
     width: 100%;
     object-fit: cover;
 }
@@ -5965,6 +5965,8 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     border: 1px solid #dbdbdb;
     border-radius: 6px;
     margin-bottom: 65px;
+    position: relative;
+    width: 100%;
 }
 
 .popup_coupon .popup .content .infomation_map .text {
@@ -5984,15 +5986,22 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     margin-top: 10px;
 }
 
+.popup_coupon .leaflet-popup-content-wrapper {
+    width: 100%;
+  }
+
 #map {
-    min-width: 818px;
+    /* min-width: 818px; */
 }
 
 .map_info {
-    padding-top: 40px;
+    margin-top: 40px;
     border-radius: 10px;
 }
 
+.popup_coupon .swiper-pagination {
+    opacity: 0;
+}
 
 
 /* item_search_section */

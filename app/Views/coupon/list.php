@@ -3,7 +3,8 @@
 <section class="coupon_list">
     <div class="inner">
         <div class="coupon_visual">
-            <img src="/images/sub/coupon_main.png" alt="">
+            <img src="/images/sub/coupon_main.png" alt="" class="only_w">
+            <img src="/images/sub/coupon_main_mo.png" alt="" class="only_m">
             <div class="visual_txt">
                 <p>할인쿠폰 전체 출력</p>
                 <span>전체 쿠폰 출력을 원하시면 클릭해주세요.</span>
@@ -159,7 +160,8 @@
                         </div>
                         <div class="info_download">
                             <button class="btn_down flex_c_c" type="button">
-                                <img src="/images/sub/ic_download.png" alt="">
+                                <img src="/images/sub/ic_download.png" alt="" class="only_w">
+                                <img src="/images/sub/ic_download_m.png" alt="" class="only_m">
                                 <p>쿠폰 다운받기</p>
                             </button>
                         </div>
@@ -180,6 +182,7 @@
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
                     </div>
                 </div>
                 <div class="infomation_detail">
@@ -197,17 +200,21 @@
                         <p>주소 : 4091 Rama IV Rd, Phra Khanong, Khlong Toei, Bangkok 10110</p>
                         <p>전화 : 097-005-0138</p>
                     </div>
-                    <div id="map" class="map_info" style="width: 100%; height: 400px;"></div>
+                    <div id="map" class="map_info" style="width: 100%; height: 300px;"></div>
                     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
                     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
                     <script>
-                        var lat = 7.8842334 || 13.7563;
-                        var lng = 98.3761857 || 100.5018;
-                        var map = L.map('map').setView([lat, lng], 17);
-                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                            attribution: 'The Tour Lab'
-                        }).addTo(map);
-                        L.marker([lat, lng]).addTo(map);
+                             var lat = '20.7011147' || 13.7563;
+                            var lng = '106.7859727' || 100.5018;
+                            var map = L.map('map').setView([lat, lng], 17);
+                            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: 'The Tour Lab'
+                            }).addTo(map);
+                            L.marker([lat, lng]).addTo(map)
+
+                            setTimeout(() => {
+                                map.invalidateSize();
+                            }, 500);
                     </script>
                 </div>
             </div>
@@ -226,6 +233,9 @@
 
         $('.card').on('click', function () {
                 $('.popup_coupon').show();
+                setTimeout(() => {
+                    map.invalidateSize();
+                }, 300)
             });
 
             $('.popup_coupon .close, .popup_coupon .bg').on('click', function () {
@@ -237,6 +247,9 @@
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
       },
     });
 </script>
