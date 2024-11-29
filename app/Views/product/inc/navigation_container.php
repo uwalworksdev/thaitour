@@ -1,4 +1,3 @@
-
 <div class="sub-hotel-navigation-container">
     <div class="navigation-container-prev">
         <img class="icon_home" src="/uploads/icons/icon_home.png" alt="icon_home">
@@ -39,14 +38,17 @@
 
         $('.depth_1_item_').click(function () {
             let code = $(this).data("code");
+            let href = $(this).data("href");
             let name = $(this).text();
 
             $('#depth_1_tool_title_').text(name);
-            getCodeDepth(code);
+            // getCodeDepth(code);
 
             $('.depth_1_item_').removeClass('active_');
             $(this).addClass('active_');
             $('#depth_1_tools_').removeClass('active_');
+
+            window.location.href = href;
         })
 
         $(window).on('click', function (event) {
