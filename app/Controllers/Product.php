@@ -1747,7 +1747,7 @@ class Product extends BaseController
         $hour      = $this->request->getVar('hour');
         $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
-        for($i=0;$i<5;$++)
+        for($i=0;$i<5;$i++)
         {
 			foreach ($options as $key => $value) {
 				$option_price      = (float)$value['option_price'];
