@@ -969,7 +969,7 @@
                 $(".calendar-swiper-wrapper").append(`
                 <div class="swiper-slide">
                     <div style="color:${e.weekday === 6 || e.weekday === 0 ? "red" : "black"}">${daysOfWeek[e.weekday]}</div>
-                    <div class="day ${active}" day_${e.dayOfMonth}">
+                    <div class="tag tag-js day ${active}" day_${e.dayOfMonth}">
                         <a href='${href}' data-date="${calDate}">
                             ${e.dayOfMonth}
                         </a>
