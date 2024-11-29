@@ -414,9 +414,9 @@ class TourRegistController extends BaseController
 
     public function add_moption()
     {
-        $product_idx = updateSQ($this->request->getPost('product_idx'));
-        $moption_hole = $this->request->getPost('moption_hole');
-        $moption_hour = $this->request->getPost('moption_hour');
+        $product_idx    = updateSQ($this->request->getPost('product_idx'));
+        $moption_hole   = $this->request->getPost('moption_hole');
+        $moption_hour   = $this->request->getPost('moption_hour');
         $moption_minute = $this->request->getPost('moption_minute');
 
         $optionExist = $this->golfOptionModel->checkOptionExist($product_idx, $moption_hole, $moption_hour, $moption_minute);
@@ -426,23 +426,23 @@ class TourRegistController extends BaseController
         }
 
         $newData = [
-            'product_idx' => $product_idx,
-            'hole_cnt' => $moption_hole,
-            'hour' => $moption_hour,
-            'minute' => $moption_minute,
+            'product_idx'  => $product_idx,
+            'hole_cnt'     => $moption_hole,
+            'hour'         => $moption_hour,
+            'minute'       => $moption_minute,
             'option_price' => 0,
-            'option_cnt' => 0,
-            'use_yn' => 'Y',
-            'option_type' => 'M',
-            'caddy_fee' => '그린피에 포함',
+            'option_cnt'   => 0,
+            'use_yn'       => 'Y',
+            'option_type'  => 'M',
+            'caddy_fee'    => '그린피에 포함',
             'cart_pie_fee' => '피지에 포함',
-            'rdate' => date('Y-m-d H:i:s')
+            'rdate'        => date('Y-m-d H:i:s')
         ];
         $this->golfOptionModel->insert($newData);
         $insertId = $this->db->insertID();
 
         $html = '<tr id="moption_' . $insertId . '">';
-        $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}</span>&nbsp;&nbsp;<span>{$moption_minute}</span></td>";
+        $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}시</span>&nbsp;&nbsp;<span>{$moption_minute}분</span></td>";
         $html .= '<input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
                   <td>
 					<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_' . $insertId . '" value="0">

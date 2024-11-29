@@ -1058,10 +1058,10 @@
                     url: "/AdmMaster/_tourRegist/write_golf/add_moption",
                     type: "POST",
                     data: {
-                        "product_idx": '<?=$product_idx?>',
-                        "moption_hole": $("#moption_hole").val(),
-                        "moption_hour": $("#moption_hour").val(),
-                        "moption_minute": $("#moption_minute").val() 
+                        "product_idx"    : '<?=$product_idx?>',
+                        "moption_hole"   : $("#moption_hole").val(),
+                        "moption_hour"   : $("#moption_hour").val(),
+                        "moption_minute" : $("#moption_minute").val() 
                     },
                     async: false,
                     cache: false,
