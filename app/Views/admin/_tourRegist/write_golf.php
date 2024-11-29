@@ -795,8 +795,8 @@
                                             <?php foreach ($options as $m) { ?>
                                                 <tr id="option_<?= $m['idx'] ?>">
                                                     <td>
-                                                        <!--span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분...</span-->
-                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;</span>
+                                                        <span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;/&nbsp;<span><?= $m['minute'] ?>분</span>
+                                                        <!--span><?= $m['hole_cnt'] ?>홀</span>&nbsp;/&nbsp;<span><?= $m['hour'] ?></span>&nbsp;</span-->
                                                     </td>
                                                     <input type="hidden" name="option_idx[]" id="option_idx_<?= $m['idx'] ?>" value='<?= $m['idx'] ?>'>
                                                     <td>
