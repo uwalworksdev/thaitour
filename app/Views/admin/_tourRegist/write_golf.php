@@ -760,7 +760,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>옵션추가</th>
+                                <th>주간요금</th>
                                 <td>
                                     <table>
                                         <colgroup>
