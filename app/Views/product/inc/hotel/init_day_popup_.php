@@ -379,7 +379,7 @@
             }
         }
 
-        $('#countDay').text(validDaysCount);
+        $('#countDay').text(validDaysCount - 1);
 
         getPriceHotel(input_day_start_, input_day_end_);
     }
@@ -403,13 +403,15 @@
             const {price, sale_price, idx, day} = item;
 
             if (day > 0 && price > 0) {
-                let inputElem = $(`#input_day_qty_${idx}`);
-                inputElem.closest(".room_op_").find(".hotel_price_day").text(price.toLocaleString('en-US'));
-                inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price);
-                inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price.toLocaleString('en-US'));
-                inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price);
-                inputElem.val(day).attr('data-price', price).attr('data-sale_price', sale_price);
-                changeDataOptionPriceBk(inputElem);
+                $(`.input_day_qty_${idx}`).each(function() {
+                    let inputElem = $(this);
+                    inputElem.closest(".room_op_").find(".hotel_price_day").text(price.toLocaleString('en-US'));
+                    inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price);
+                    inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price.toLocaleString('en-US'));
+                    inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price);
+                    inputElem.val(day).attr('data-price', price).attr('data-sale_price', sale_price);
+                    changeDataOptionPriceBk(inputElem);
+                });
             }
         });
     }
@@ -612,7 +614,7 @@
                 <?php } ?>
                 isDeadline = " deadline";
             } else {
-                if (checkDate < currDate2) {
+                if (checkDate <= currDate2) {
                     <?php if (isset($is_check) && $is_check) { ?>
                     priceLabel = '<span class="label sold-out-text">마감</span>';
                     <?php } ?>
