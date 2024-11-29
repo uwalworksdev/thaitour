@@ -19,7 +19,7 @@
 
                             <div class="flex_b_c cus-count-input">
                                 <div class="payment">
-                                    <p class="ped_label">성인 </p>
+                                    <p class="ped_label ped_label__booking">성인 </p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"
@@ -36,7 +36,7 @@
 
                             <div class="flex_b_c cus-count-input">
                                 <div class="payment">
-                                    <p class="ped_label">아동</p>
+                                    <p class="ped_label ped_label__booking">아동</p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty childrenQty" name="childrenQty[]"

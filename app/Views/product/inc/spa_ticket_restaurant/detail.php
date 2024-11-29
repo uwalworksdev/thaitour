@@ -583,7 +583,7 @@
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_adults_select_" size="4"
-                                       data-idx="${item_.charge_idx}" data-type="adults" onkeyup="chkNum(this)">
+                                       data-idx="${item_.charge_idx}" data-s_station="${item_.s_station}" data-type="adults" onkeyup="chkNum(this)">
                                 <span>명</span>
                             </p>
                         </div>
@@ -639,15 +639,17 @@
             let price = $(this).data('price');
             let idx = $(this).data('idx');
             let type = $(this).data('type');
+            let s_station = $(this).data('s_station');
             let num = $(this).val();
             if (num > 0) {
                 if (type === 'adults') {
                     i++;
                     html_adults += `<div class="flex_b_c cus-count-input" id="children_adults_${idx}">
                                 <div class="payment">
-                                    <p class="ped_label">성인 ${i}</p>
+                                    <p class="ped_label ped_label__booking">성인 ${i}</p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
+                                    <input type="hidden" name="s_station[]" id="s_station${idx}" value="${s_station}">
                                     <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty${idx}"
                                            value="${num}" readonly="" style="padding: 0; width: 30px">
                                     <span>명</span>
@@ -669,7 +671,7 @@
                     j++;
                     html_kids += `<div class="flex_b_c cus-count-input" id="children_kids_${idx}">
                                 <div class="payment">
-                                    <p class="ped_label">아동 ${j}</p>
+                                    <p class="ped_label ped_label__booking">아동 ${j}</p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty childrenQty" name="childrenQty[]"
@@ -686,7 +688,7 @@
         if (html_kids === ``) {
             html_kids = `<div class="flex_b_c cus-count-input">
                                 <div class="payment">
-                                    <p class="ped_label">아동</p>
+                                    <p class="ped_label ped_label__booking">아동</p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty childrenQty" name="childrenQty[]"
@@ -701,7 +703,7 @@
         if (html_adults === ``) {
             html_adults = `<div class="flex_b_c cus-count-input">
                                 <div class="payment">
-                                    <p class="ped_label">성인 </p>
+                                    <p class="ped_label ped_label__booking">성인 </p>
                                 </div>
                                 <div class="opt_count_box count_box flex__c">
                                     <input type="text" class="input-qty adultQty" name="adultQty[]" id="adultQty"

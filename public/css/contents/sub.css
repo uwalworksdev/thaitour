@@ -1370,6 +1370,10 @@
     margin-bottom: 6px;
 }
 
+.view_nav .ped_label.ped_label__booking {
+    margin-bottom: 0;
+}
+
 .payment_option {
     padding: 20px 0;
 }
@@ -4051,6 +4055,14 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 .customer-form-page .title-sub-c {
     font-size: 18px;
     margin-bottom: 30px;
+}
+
+.text_divider {
+    height: 12px;
+    width: 2px;
+    background-color: #dbdbdb;
+    margin: 0 15px;
+    display: inline-block;
 }
 
 .customer-form-page .form-group label {

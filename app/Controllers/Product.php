@@ -2418,6 +2418,7 @@ class Product extends BaseController
             }
 
             $adultQty = $_POST['adultQty'];
+            $s_station = $_POST['s_station'];
             $adultPrice = $_POST['adultPrice'];
 
             $childrenQty = $_POST['childrenQty'];
@@ -2437,6 +2438,7 @@ class Product extends BaseController
                 'day_' => $day_,
                 'member_idx' => $member_idx,
                 'adultQty' => $adultQty,
+                's_station' => $s_station,
                 'adultPrice' => $adultPrice,
                 'childrenQty' => $childrenQty,
                 'childrenPrice' => $childrenPrice,
@@ -3148,6 +3150,7 @@ class Product extends BaseController
         $member_idx = $data['member_idx'];
 
         $adultQty = $data['adultQty'];
+        $s_station = $data['s_station'];
         $adultPrice = $data['adultPrice'];
         $childrenQty = $data['childrenQty'];
         $childrenPrice = $data['childrenPrice'];
@@ -3189,6 +3192,7 @@ class Product extends BaseController
             'member_idx' => $member_idx,
             'moption' => $moption,
             'adultQty' => $adultQty,
+            's_station' => $s_station,
             'adultPrice' => $adultPrice,
             'childrenQty' => $childrenQty,
             'childrenPrice' => $childrenPrice,
