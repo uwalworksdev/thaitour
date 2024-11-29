@@ -1,5 +1,13 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+
+
+    <?php if(session()->getFlashdata('success')): ?>
+        <script>
+            alert('<?= session()->getFlashdata('success')?>');
+        </script>
+    <?php endif; ?>
+
     <style type="text/css">
         .radio_sel span {
             margin-right: 15px;
