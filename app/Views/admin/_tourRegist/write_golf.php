@@ -1261,26 +1261,26 @@
                     frm.product_name.focus();
                     return;
                 }
-alert('11111111');
+ 
                 var option = "";
                 $("input:checkbox[name='_option']:checked").each(function () {
                     option += '|' + $(this).val();
                 });
-alert('22222');
+ 
                 option += '|';
                 $("#product_option").val(option);
-alert('33333333');
+ 
 
                 var tours_cate = "";
                 $("input:checkbox[name='_tours_cate']:checked").each(function () {
                     tours_cate += '|' + $(this).val();
                 });
-alert('444444'+tours_cate);
+ 
                 option += '|';
                 $("#tours_cate").val(tours_cate);
 
                 // formSubmitted = true;
-alert('55555555');
+ 
 
                 frm.submit();
             }
