@@ -1640,6 +1640,7 @@ class Product extends BaseController
 
 		// 예약가능한 일자 및 금액 데이터 조회
 		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn = '' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
+		write_log($sql_p);
 		$result_p = $this->db->query($sql_p);
 		$data['golf_price'] = $result_p->getResultArray();
 
