@@ -20,7 +20,15 @@ class AdminCouponController extends BaseController
     }
 
     public function list(){
-        
+        $coupon = $this->couponMst->getCouponList();
+        return view('admin/_coupon/list', [
+            "coupon_list" => $coupon["coupon_list"],
+            "nTotalCount" => $coupon["nTotalCount"],
+            "pg" => $coupon["pg"],
+            "nPage" => $coupon["nPage"],
+            "g_list_rows" => $coupon["g_list_rows"],
+            "num" => $coupon["num"]
+        ]);
     }
 
     public function write() {

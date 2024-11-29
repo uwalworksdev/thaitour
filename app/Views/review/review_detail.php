@@ -25,34 +25,48 @@ $number_stars = $review["number_stars"];
         .inquiry_view_section .inquiry_table .subject {
             word-break: break-all;
         }
+
+        .view_top {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+        }
+
+        .main_info {
+            gap: 20px;
+        }
+
+        .font_bold_ {
+            font-weight: bold !important;
+        }
     </style>
     <div id="container" class="sub view_container ">
         <section class="view_sect">
             <div class="inner">
-                <div class="view_top" style="padding-bottom: 0">
-                    <div class="sect_ttl_box">
-                        <h2><?= $review['title'] ?></h2>
+                <div class="view_top">
+                    <div class="title_" style="padding-bottom: 0">
+                        <div class="sect_ttl_box">
+                            <h2><?= $review['title'] ?></h2>
+                        </div>
+                    </div>
+                    <div class="main_info flex">
+                        <p><?= $user_name ?></p>
+                        <p class="date"><?= date("Y.m.d", strtotime($r_date)) ?></p>
                     </div>
                 </div>
                 <div class="view_content-top">
                     <ul class="line flex_b_c">
                         <li>
-                            <h4>여행형태</h4>
+                            <h4 class="font_bold_">여행형태: </h4>
                             <div class="view_content-info">
                                 <?= $code_name ?>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="main_info flex">
-                                <p><?= $user_name ?></p>
-                                <p class="date"><?= date("Y.m.d", strtotime($r_date)) ?></p>
                             </div>
                         </li>
                         <?php
                         if ($ufile2) {
                             ?>
                             <li class="view_content-file file">
-                                <h4>첨부파일</h4>
+                                <h4 class="font_bold_">첨부파일: </h4>
                                 <div class="view_content-info icon">
                                     <a href='/uploads/review/<?= $ufile2 ?>' download='<?= $rfile2 ?>'><?= $rfile2 ?>
                                         <i></i></a>
@@ -65,7 +79,17 @@ $number_stars = $review["number_stars"];
                 <div class="view_content-top">
                     <ul class="line flex_b_c">
                         <li>
-                            <h4>평가 구분</h4>
+                            <h4 class="font_bold_">여행형태: </h4>
+                            <div class="view_content-info">
+                                <?= $product_name ?>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="view_content-top">
+                    <ul class="line flex_b_c">
+                        <li>
+                            <h4 class="font_bold_">평가 구분: </h4>
                             <div class="view_content-info">
                                 <p style="display: flex; gap: 10px">
                                     <?php foreach ($list_code_type as $code): ?>
@@ -75,7 +99,8 @@ $number_stars = $review["number_stars"];
                             </div>
                         </li>
                         <li>
-                            <div class="main_info">
+                            <div class="main_info flex" style="gap: 10px">
+                                <p class="font_bold_">평점: </p>
                                 <?= $number_stars ?>
                                 <i class="bx bx-star star" style="color: #f0ad4e"></i>
                             </div>

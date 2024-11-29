@@ -1295,7 +1295,7 @@ class Product extends BaseController
                 'sub_codes' => $sub_codes ?? [],
                 'reviewCategories' => $reviewCategories ?? [],
                 'reviews' => $reviews ?? [],
-                'reviewCount' => $reviewCount,
+                'reviewCount' => $reviewCount ?? 0,
                 'room_categories' => $room_categories_convert,
                 'product_options' => $hotel_option_convert,
                 'coupons' => $c_row,

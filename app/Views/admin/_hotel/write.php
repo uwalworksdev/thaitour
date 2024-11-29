@@ -5,8 +5,10 @@ use App\Controllers\Admin\AdminHotelController;
 $formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
 
 ?>
+
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <style>
         .btn_01 {
             height: 32px !important;
@@ -812,7 +814,14 @@ $links = "list";
                                                         echo "selected"; ?>>
                                                     <?= $frow["stay_name_eng"] ?></option>
                                             <?php } ?>
-                                        </select> <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        </select> 
+                                        <!-- <div style="position: relative; width: 285px">
+                                            <input type="text" id="hotel_code" name="hotel_code" class="input_select">
+                                            <div class="search_hotel" style="position: absolute; top: 5px; right: 5px;">
+                                                <img src="/images/ico/keyword_ic.png" alt="" style="width: 80%">
+                                            </div>
+                                        </div> -->
+                                            <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
                                     </td>
                                 </tr>
 
@@ -1101,6 +1110,48 @@ $links = "list";
                             <div class="btn_box">
                                 <p class="ok_btn">사용</p><span>|</span>
                                 <p class="close_btn">닫기</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="popup_hotel" class="popup pick_item_pop02">
+                        <div>
+                            <div class="search_box">
+                                <form name="pick_item_search" id="pick_item_search" onsubmit="return false">
+                                    <input type="text" id="search_txt" onkeyup="press_it()" name="search_txt" value="" class="input_txt placeHolder" placeholder="검색어 입력" style="width:240px">
+                                    <a href="javascript:search_it()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> <span class="txt">검색하기</span></a>
+                                </form>
+                            </div>
+                            <div class="table_box" style="height: calc(100% - 72px);">
+                                <form method="post" name="select_pick_frm" id="select_pick_frm">
+                                    <input type="hidden" name="isrt_code" id="isrt_code" value="">
+                                    <table>
+                                        <caption>상품찾기</caption>
+                                        <colgroup>
+                                            <col style="width: 30%;">
+                                            <col style="width: 50%">
+                                            <col style="width: 20%;">
+                                        </colgroup>
+                                        <thead>
+                                        <tr>
+                                            <th>선택</th>
+                                            <th>주소</th>
+                                            <th>전택</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="id_content">
+                                        <?php
+                                            foreach ($fresult3 as $frow) {
+                                        ?>
+                                        <tr>
+                                            <td class="text-center"><?= $frow["code_no"]?></td>
+                                            <td class="text-center"><?= $frow["stay_name_eng"] ?></td>
+                                            <td class="text-center"> <p onclick="fn_chgRoom('<?= $frow["code_no"] ?>')">[선택]</p></td>
+                                        </tr>
+                                        <?php }?>
+                                        </tbody>
+                                    </table>
+                                </form>
                             </div>
                         </div>
                     </div>
