@@ -69,7 +69,7 @@ class GolfOptionModel extends Model
             $where .= " AND minute = '$minute' ";
         }
 
-		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' $where' AND use_yn != 'N' ";
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' $where AND use_yn != 'N' ";
 		write_log($sql_p);
 		$result_p = $this->db->query($sql_p);
 		$options  = $result_p->getResultArray();
