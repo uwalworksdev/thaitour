@@ -2441,6 +2441,27 @@
     margin-top: 20px;
 }
 
+.tours-detail .opt_select {
+    margin-top: 20px;
+}
+
+.tours-detail .des-below.spe {
+    margin-top: 40px;
+}
+
+.tours-detail .option_list {
+    margin-top: 20px;
+}
+
+.tours-detail .option_list .option_item {
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.tours-detail .option_list .option_item + .option_item {
+    margin-top: 10px;
+}
+
 .tours-detail .primary-btn-calendar {
     position: absolute;
     bottom: -12%;

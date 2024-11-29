@@ -1045,4 +1045,23 @@ function fn_chgRoom(gidx) {
 		});
 	});
 
+    $("#popup_hotel").fadeOut();
+
 }
+
+$(document).ready(function () {
+    $(".search_hotel").on("click", function () {
+        $("#popup_hotel").fadeIn();
+        $(".pooup_bg").fadeIn();
+    });
+
+    $(".pooup_bg").on("click", function () {
+        $("#popup_hotel").fadeOut();
+        $(".pooup_bg").fadeOut();   
+    });
+
+    $("#popup_hotel").on("click", ".close-popup", function () {
+        $("#popup_hotel").fadeOut();
+        $(".pooup_bg").fadeOut();
+    });
+});

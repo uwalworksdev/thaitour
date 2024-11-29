@@ -5860,8 +5860,8 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     letter-spacing: -1px;
     color: #555555;
     font-weight: bold;
-    position: relative;
-    padding-left: 10px;
+    /* position: relative; */
+    /* padding-left: 10px; */
     text-wrap: nowrap;
     line-height: 1.3;
 }
@@ -5875,6 +5875,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     height: 3px;
     border-radius: 50%;
     background-color: #222222;
+    display: none;
 }
 
 .popup_coupon .popup .content .infomation .txt_info .list_des .des span {
@@ -5979,7 +5980,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     letter-spacing: -1px;
     line-height: 1.3;
     color: #757575;
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 
 .popup_coupon .popup .content .infomation_map .text p + p {
