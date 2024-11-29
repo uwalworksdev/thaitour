@@ -551,10 +551,9 @@
                                                         <div class="day_qty">
                                                             <p>숙박일 </p>
                                                             <div class="day_activity">
-                                                                <input type="text" class="input_day_qty onlynum" value="1"
+                                                                <input type="text" class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>" value="1"
                                                                     style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                     readonly
-                                                                    id="input_day_qty_<?= $item['idx'] ?>"
                                                                     data-op="<?= $item['idx'] ?>"
                                                                     data-price="<?= $room_op['r_price'] ?>"
                                                                     data-sale_price="<?= $room_op['r_sale_price'] ?>"
@@ -656,10 +655,9 @@
                                                         <div class="day_qty">
                                                             <p>숙박일 </p>
                                                             <div class="day_activity">
-                                                                <input type="text" class="input_day_qty onlynum" value="1"
+                                                                <input type="text" class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>" value="1"
                                                                     style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                     readonly
-                                                                    id="input_day_qty_<?= $item['idx'] ?>"
                                                                     data-op="<?= $item['idx'] ?>"
                                                                     data-price="<?= $item['goods_price1'] ?>"
                                                                     data-sale_price="<?= $item['goods_price2'] ?>"
@@ -1011,9 +1009,8 @@
                                                                 <div class="day_qty">
                                                                     <p>숙박일 </p>
                                                                     <div class="day_activity">
-                                                                        <input type="text" class="input_day_qty onlynum"
+                                                                        <input type="text" class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                             value="1"
-                                                                            id="input_day_qty_<?= $item['idx'] ?>"
                                                                             data-op="<?= $item['idx'] ?>"
                                                                             data-price="<?= $room_op['r_price'] ?>"
                                                                             data-sale_price="<?= $room_op['r_sale_price'] ?>"
@@ -1129,9 +1126,8 @@
                                                                 <div class="day_qty">
                                                                     <p>숙박일 </p>
                                                                     <div class="day_activity">
-                                                                        <input type="text" class="input_day_qty onlynum"
+                                                                        <input type="text" class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                             value="1"
-                                                                            id="input_day_qty_<?= $item['idx'] ?>"
                                                                             data-op="<?= $item['idx'] ?>"
                                                                             data-price="<?= $item['goods_price1'] ?>"
                                                                             data-sale_price="<?= $item['goods_price2'] ?>"
