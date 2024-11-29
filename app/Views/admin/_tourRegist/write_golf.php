@@ -1060,7 +1060,7 @@
                     data: {
                         "product_idx": '<?=$product_idx?>',
                         "moption_hole": $("#moption_hole").val(),
-                        //"moption_hour": $("#moption_hour").val(),
+                        "moption_hour": $("#moption_hour").val(),
                         "moption_minute": $("#moption_minute").val() 
                     },
                     async: false,
