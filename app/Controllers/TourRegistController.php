@@ -262,7 +262,7 @@ class TourRegistController extends BaseController
         $filters = $this->codeModel->getByParentAndDepth(45, 2)->getResultArray();
 
         foreach ($filters as $key => $filter) {
-            $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_no'], 3)->getResultArray();
+            $filters[$key]['children'] = $this->codeModel->getByParentAndDepth($filter['code_name'], 3)->getResultArray();
             if ($filter['code_no'] == 4501) $filters[$key]['filter_name'] = "green_peas";
             if ($filter['code_no'] == 4502) $filters[$key]['filter_name'] = "sports_days";
             if ($filter['code_no'] == 4503) $filters[$key]['filter_name'] = "slots";
