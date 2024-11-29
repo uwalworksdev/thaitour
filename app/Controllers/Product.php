@@ -1637,9 +1637,15 @@ class Product extends BaseController
         if (!$data['product']) {
             return view('errors/html/error_404');
         }
-        $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
+
+		// 예약가능한 일자 및 금액 데이터 조회
+		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn = '' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
+		$result_p = $this->db->query($sql_p);
+		$data['golf_price'] = $result_p->getResultArray();
+
+        $data['info']  = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
-        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['total_review']   = $productReview['total_review'];
         $data['product']['review_average'] = $productReview['avg'];
 
         $data['imgs'] = [];
@@ -1705,7 +1711,7 @@ class Product extends BaseController
         $options = $this->golfOptionModel->getOptions($product_idx);
 
         $hole_cnt_arr = array_column($options, 'hole_cnt');
-        $hour_arr = array_column($options, 'hour');
+        $hour_arr     = array_column($options, 'hour');
 
         $data['hole_cnt_arr'] = array_filter(GOLF_HOLES, function ($value) use ($hole_cnt_arr) {
             return in_array($value, $hole_cnt_arr);
@@ -1720,13 +1726,30 @@ class Product extends BaseController
 
     public function optionList($product_idx)
     {
-        $hole_cnt = $this->request->getVar('hole_cnt');
-        $hour = $this->request->getVar('hour');
-        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+        $hole_cnt  = $this->request->getVar('hole_cnt');
+        $hour      = $this->request->getVar('hour');
+        $options   = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
             $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price_baht = round($option_price / $baht_thai);
+            $options[$key]['option_price_baht'] = $option_price_baht;
+        }
+
+        return view('product/golf/option_list', ['options' => $options]);
+    }
+
+    public function optionPrice($product_idx)
+    {
+        $golf_date = $this->request->getVar('golf_date');
+        $hole_cnt  = $this->request->getVar('hole_cnt');
+        $hour      = $this->request->getVar('hour');
+        $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+
+        foreach ($options as $key => $value) {
+            $option_price      = (float)$value['option_price'];
+            $baht_thai         = (float)($this->setting['baht_thai'] ?? 0);
             $option_price_baht = round($option_price / $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }

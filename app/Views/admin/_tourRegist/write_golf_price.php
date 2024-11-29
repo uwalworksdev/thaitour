@@ -43,13 +43,13 @@
 
         <header id="headerContainer">
             <div class="inner">
-                <h2>상품요금정보 </h2>
+                <h2>골프 요금정보 </h2>
                 <div class="menus">
                     <ul>
-                        <li><a href="/AdmMaster/_hotel/write?search_category=&search_txt=&pg=&product_idx=<?=$product_idx?>" class="btn btn-default"><span
+                        <li><a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                         class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
                         </li>
-                        <?php if ($o_idx) { ?>
+                        <?php if ($product_idx) { ?>
                             <li><a href="javascript:send_it('<?=$o_idx?>')" class="btn btn-default"><span
                                             class="glyphicon glyphicon-cog"></span><span class="txt">수정</span></a>
                             </li>
@@ -123,10 +123,12 @@
                     <div class="listBottom">
          				<table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
 									<colgroup>
-									<col width="*">
-									<col width="20%">
-									<col width="20%">
 									<col width="10%">
+									<col width="*">
+									<col width="10%">
+									<col width="15%">
+									<col width="15%">
+									<col width="5%">
 									<col width="10%">
 									<col width="10%">
 									<col width="15%">
@@ -137,10 +139,16 @@
 												일자
 											</td>
 											<td style="text-align:center">
+												홀수 / 시간대
+											</td>
+											<td style="text-align:center">
 												가격(원)
 											</td>
 											<td style="text-align:center">
-												우대가격(원)
+												캐디피(원)
+											</td>
+											<td style="text-align:center">
+												카트피(원)
 											</td>
 											<td style="text-align:center">
 												마감
@@ -158,17 +166,21 @@
 
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
-											<td style="text-align:center"><?=$item['goods_date']?> [<?=$item['dow']?>]</td>
+											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
+											<td style="text-align:center"><?=$item['hole_cnt']?> / <?=$item['hour']?></td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
-												<input type="hidden" name="goods_date[]" id="goods_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
-												<input type="text" name="goods_price1[]" id="goods_price1_<?=$item['idx']?>" value="<?=number_format($item['goods_price1'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
+												<input type="hidden" name="golf_date[]" id="golf_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
+												<input type="text" name="option_price[]" id="option_price_<?=$item['idx']?>" value="<?=number_format($item['option_price'])?>" class="price goods_price input_txt" numberonly="true" style="text-align:right">
 											</td>
 											<td style="text-align:center">
-												<input type="text" name="goods_price2[]" id="goods_price2_<?=$item['idx']?>" value="<?=number_format($item['goods_price2'])?>" class="price goods_discount_price input_txt" numberonly="true" style="text-align:right">
+												<input type="text" name="caddy_fee[]" id="caddy_fee_<?=$item['idx']?>" value="<?=$item['caddy_fee']?>" class="price goods_discount_price input_txt" >
+											</td>
+											<td style="text-align:center">
+												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_discount_price input_txt" >
 											</td>
 						                    <td style="text-align:center;">
-						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['goods_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
+						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['golf_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
 						                    </td> 
 						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
 						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
@@ -281,9 +293,9 @@
                             <li class="left"></li>
                             <li class="right_sub">
 
-                                <a href="javascript:go_list();" class="btn btn-default"><span
+                                <a href="/AdmMaster/_tourRegist/write_golf?product_idx=<?=$product_idx?>" class="btn btn-default"><span
                                             class="glyphicon glyphicon-th-list"></span><span class="txt">상품보기</span></a>
-                                <?php if ($o_idx == "") { ?>
+                                <?php if ($product_idx == "") { ?>
                                     <a href="javascript:send_it()" class="btn btn-default"><span
                                                 class="glyphicon glyphicon-cog"></span><span
                                                 class="txt">등록</span></a>
@@ -322,13 +334,14 @@
 
 					$.ajax({
 
-						url: "/ajax/hotel_price_update",
+						url: "/ajax/golf_price_update",
 						type: "POST",
 						data: {
 
 								"idx"           : idx,
-								"goods_price1"  : $("#goods_price1_"+idx).val(),
-								"goods_price2"  : $("#goods_price2_"+idx).val(), 
+								"option_price"  : $("#option_price_"+idx).val(),
+								"caddy_fee"     : $("#caddy_fee_"+idx).val(), 
+								"cart_pie_fee"  : $("#cart_pie_fee_"+idx).val(), 
 								"use_yn"        : use_yn 
 
 						},
@@ -420,7 +433,7 @@
 					var message  = "";
 					$.ajax({
 
-						url: "/ajax/hotel_price_delete",
+						url: "/ajax/golf_price_delete",
 						type: "POST",
 						data: {
 
@@ -451,7 +464,11 @@
 						// 선택된 체크박스의 값을 배열에 추가
 						$(".use_yn:checked").each(function () {
 							o_soldout.push($(this).val());
-							chk_idx += $(this).data("idx")+',';
+							chk_idx += $(this).data("idx")+':'+'N,';
+						});
+ 
+                        $('.use_yn:not(:checked)').each(function () {
+							chk_idx += $(this).data("idx")+':'+'Y,';
 						});
 
                         $("#o_soldout").val(o_soldout.join("||"));
@@ -459,7 +476,7 @@
 
   						let f = document.chargeForm;
 
-						let url = "/ajax/hotel_price_allupdate"
+						let url = "/ajax/golf_price_allupdate"
 						let price_data = $(f).serialize();
 						$.ajax({
 							type: "POST",
@@ -487,7 +504,7 @@
 				}
 			</script>
 
-        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_hotel/write_options">
+        <form name="priceForm" id="priceForm" method="get" action="/AdmMaster/_tourRegist/write_golf_price">
             <input type="hidden" name="product_idx" value='<?= $product_idx ?>' >
             <input type="hidden" name="o_idx"       value="<?= $o_idx ?>" >
 			<input type="hidden" name="s_date"      value="" id="in_s_date" >

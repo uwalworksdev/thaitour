@@ -443,18 +443,28 @@ class TourRegistController extends BaseController
 
         $html = '<tr id="moption_' . $insertId . '">';
         $html .= "<td><span>{$moption_hole}홀</span>&nbsp;/&nbsp;<span>{$moption_hour}</span>&nbsp;&nbsp;<span>{$moption_minute}</span></td>";
-        $html .= '<td>
-                    <div class="flex_c_c">
-                        <input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
-                        <input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_' . $insertId . '" value="0">
-                        <input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_' . $insertId . '" value="0">
-                        <input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_' . $insertId . '" value="0">
-                        <input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_' . $insertId . '" value="0">
-                        <input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_' . $insertId . '" value="0">
-                        <input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_' . $insertId . '" value="0">
-                        <input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_' . $insertId . '" value="0">
-                    </div>
-                </td>';
+        $html .= '<input type="hidden" name="option_idx[]" id="option_idx_' . $insertId . '" value=' . $insertId . '>
+                  <td>
+					<input type="text" numberonly="true" name="option_price1[]" style="text-align:right;" id="option_price1_' . $insertId . '" value="0">
+                  </td>
+                  <td>
+					<input type="text" numberonly="true" name="option_price2[]" style="text-align:right;" id="option_price2_' . $insertId . '" value="0">
+                  </td>
+                  <td>
+					<input type="text" numberonly="true" name="option_price3[]" style="text-align:right;" id="option_price3_' . $insertId . '" value="0">
+                  </td>
+                  <td>
+					<input type="text" numberonly="true" name="option_price4[]" style="text-align:right;" id="option_price4_' . $insertId . '" value="0">
+                  </td>
+                  <td>
+					<input type="text" numberonly="true" name="option_price5[]" style="text-align:right;" id="option_price5_' . $insertId . '" value="0">
+                  </td>
+                  <td>
+					<input type="text" numberonly="true" name="option_price6[]" style="text-align:right;" id="option_price6_' . $insertId . '" value="0">
+                  </td>
+                  <td>
+					<input type="text" numberonly="true" name="option_price7[]" style="text-align:right;" id="option_price7_' . $insertId . '" value="0">
+                  </td>';
         $html .= '<td>
                     <div class="flex_c_c">
                         <input type="text" name="caddy_fee[]" id="caddy_fee_' . $insertId . '" value="그린피에 포함">
@@ -476,6 +486,47 @@ class TourRegistController extends BaseController
     {
         $this->golfOptionModel->update($idx, $this->request->getRawInputVar());
         return $this->response->setJSON(['message' => '수정되었습니다']);
+    }
+
+    public function write_golf_price()
+    {
+        $product_idx  = $this->request->getVar("product_idx");
+        $s_date       = $this->request->getVar("s_date");
+        $e_date       = $this->request->getVar("e_date");
+
+        $row          = $this->productModel->getById($product_idx);
+        $product_name = viewSQ($row["product_name"]);
+
+        $option       = $this->golfOptionModel->getByIdx($product_idx);
+        $o_sdate      = $option["o_sdate"];
+        $o_edate      = $option["o_edate"];
+
+        if($s_date) $o_sdate = $s_date;
+        if($e_date) $o_edate = $e_date;
+
+        if($s_date && $e_date) {
+			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' order by golf_date, hole_cnt, hour asc";
+        } else {
+			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' order by golf_date, hole_cnt, hour asc";
+        }
+		write_log($fsql);
+        $roresult = $this->connect->query($fsql);
+        $roresult = $roresult->getResultArray();
+
+		// 첫 번째 값
+		$firstValue = reset($roresult); // 배열의 첫 번째 값
+		// 마지막 값
+		$lastValue  = end($roresult); // 배열의 마지막 값
+
+        $data = [
+			'roresult'     => $roresult,
+            'product_idx'  => $product_idx,
+            'product_name' => $product_name,
+            'o_sdate'      => $firstValue['golf_date'],
+            'o_edate'      => $lastValue['golf_date']
+        ];
+
+        return view("admin/_tourRegist/write_golf_price", $data);
     }
 
     public function del_moption($idx)

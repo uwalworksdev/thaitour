@@ -89,6 +89,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("list_honeymoon", "TourRegistController::list_honeymoon");
         $routes->get("list_tours", "TourRegistController::list_tours");
         $routes->get("list_golf", "TourRegistController::list_golfs");
+        $routes->get("write_golf_price", "TourRegistController::write_golf_price");
         $routes->get("write", "TourRegistController::write");
         $routes->delete("del_product", "TourRegistController::delProduct");
         $routes->get("write_all", "TourRegistController::write_all");
@@ -398,6 +399,9 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("hotel_price_update", "AjaxController::hotel_price_update");
     $routes->post("hotel_price_delete", "AjaxController::hotel_price_delete");
     $routes->post("hotel_price_allupdate", "AjaxController::hotel_price_allupdate");
+    $routes->post("golf_price_update", "AjaxController::golf_price_update");
+    $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
+    $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
 	
 });
 
@@ -411,12 +415,6 @@ $routes->group("api", static function ($routes) {
     $routes->group("spa_", function ($routes) {
         $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
         $routes->post("handleBooking", "SpaController::handleBooking", ['as' => "api.spa_.handleBooking"]);
-    });
-
-    $routes->group("hotel_", function ($routes) {
-        $routes->get("get_data", "Api\ProductApi::getDataHotel", ['as' => "api.hotel_.get_data"]);
-        $routes->get("get_option", "Api\ProductApi::getDataOption", ['as' => "api.hotel_.get_option"]);
-        $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
     });
 });
 
@@ -563,6 +561,10 @@ $routes->group("magazines", static function ($routes) {
     $routes->get("detail", "MagazineController::detail");
 });
 
+$routes->group("coupon", static function ($routes) {
+    $routes->get("list", "CouponController::list");
+});
+
 // $routes->group("/package", static function($routes){
 //     $routes->get("", "Package::Main");
 //     // $routes->get("(:segment)/view/(:segment)", "Promotion::View/$1/$2");
@@ -592,6 +594,7 @@ $routes->get('product-golf/customer-form', 'Product::customerForm');
 $routes->get('product-golf/list-golf/(:any)', 'Product::golfList/$1');
 $routes->get('product-golf/golf-detail/(:any)', 'Product::golfDetail/$1');
 $routes->get('product-golf/option-list/(:any)', 'Product::optionList/$1');
+$routes->get('product-golf/option-price/(:any)', 'Product::optionPrice/$1');
 $routes->get('product-golf/completed-order', 'Product::golfCompletedOrder/$1');
 $routes->get('product-golf/(:any)/(:any)', 'Product::index2/$1/$2');
 $routes->post('product-golf/customer-form-ok', 'Product::customerFormOk');

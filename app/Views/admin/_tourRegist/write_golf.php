@@ -756,8 +756,7 @@
                                             <?php endforeach; ?>
                                         </select>&nbsp;-->  
                                         <button style="margin: 0px;" type="button" class="btn_01" onclick="add_moption();">추가</button>
-                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption();">일자별 수정</button>
-										<a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>" class="btn_01">일자별 수정</a>
+                                        <button style="margin: 0px;" type="button" class="btn_01" onclick="date_moption('<?=$product_idx?>');">일자별 수정</button>
 
                                     </div>
                                 </td>
@@ -767,6 +766,7 @@
                                 <td>
                                     <table>
                                         <colgroup>
+                                            <col width="*"/>
                                             <col width="8%"/>
                                             <col width="8%"/>
                                             <col width="8%"/>
@@ -774,10 +774,9 @@
                                             <col width="8%"/>
                                             <col width="8%"/>
                                             <col width="8%"/>
-                                            <col width="8%"/>
+                                            <col width="13%"/>
+                                            <col width="13%"/>
                                             <col width="10%"/>
-                                            <col width="9%"/>
-                                            <col width="17%"/>
                                         </colgroup>
                                         <thead>
                                             <tr>
@@ -830,7 +829,7 @@
                                                         <div class="flex_c_c"><input type="text" id="cart_pie_fee_<?= $m['idx'] ?>" name="cart_pie_fee[]" value='<?= $m['cart_pie_fee'] ?>'></div>
                                                     </td>
                                                     <td class="tac">
-                                                        &nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button>
+                                                        <!--&nbsp;<button style="margin: 0;" type="button" class="btn_01" onclick="upd_moption(<?= $m['idx'] ?>);">수정</button-->
                                                         &nbsp;<button style="margin: 0;" type="button" class="btn_02" onclick="del_moption(<?= $m['idx'] ?>);">삭제</button>
                                                     </td>
                                                 </tr>
@@ -890,7 +889,7 @@
 			$(this).val($(this).val().replace(/[^0-9]/g, ''));
 		  });
 		});
-        <script>
+        
             function del_tours(idx) {
                 if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
                     return false;
@@ -1077,8 +1076,8 @@
                 });
             }
 
-            function date_moption() {
-				    alert('date_moption'); 
+            function date_moption(idx) {
+					location.href="/AdmMaster/_tourRegist/write_golf_price?product_idx="+idx;
             }
 
             function del_moption(code_idx) {
@@ -1385,7 +1384,7 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Data:', data);
+                    //console.log('Data:', data);
                     let html = '';
                     if(data.results.length > 0){
                         data.results.forEach(element => {
