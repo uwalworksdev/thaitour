@@ -747,7 +747,7 @@
                                                 <option value="<?=$hour?>"><?=$hour?>시</option>
                                             <?php endforeach; ?>
                                         </select>&nbsp;
-                                        <input type="hidden" name="moption_minute" id="moption_minute">
+                                        <!--input type="hidden" name="moption_minute" id="moption_minute"-->
                                         <select name="moption_minute" id="moption_minute">
                                             <?php foreach(GOLF_MIN as $minute) : ?>
                                                 <option value="<?=$minute?>"><?=$minute?>분</option>
