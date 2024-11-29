@@ -404,8 +404,10 @@
 
             if (day > 0 && price > 0) {
                 let inputElem = $(`#input_day_qty_${idx}`);
-
-                inputElem.val(day).data('price', price).data('sale_price', sale_price);
+                inputElem.closest(".room_op_").find(".hotel_price_day").text(price.toLocaleString('en-US'));
+                inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price.toLocaleString('en-US'));
+                inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price);
+                inputElem.val(day).attr('data-price', price).attr('data-sale_price', sale_price);
                 changeDataOptionPriceBk(inputElem);
             }
         });
