@@ -229,7 +229,7 @@
                         </p>
                         <p>
                             <span class="l-label">티오프시간</span>
-                            <span class="l-label2"><em class="final_hour">00</em> <em class="final_minute">00</em>분></span>
+                            <span class="l-label2"><em class="final_hour">00</em>시<em class="final_minute">00</em>분</span>
                         </p>
                         <p>
                             <span class="l-label">인원</span>
