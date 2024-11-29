@@ -110,7 +110,7 @@ class AdminMenus extends BaseConfig
             ]
         ],
         [
-            'name' => '고객센터 관리',
+            'name' => '게시판관리',
             'code' => 'D',
             'submenus' => [
                 [
@@ -130,6 +130,18 @@ class AdminMenus extends BaseConfig
                     'code' => 'D3',
                     'url' => '/AdmMaster/_bbs/board_list?code=winner',
                     'alias' => ['BoardController::index', 'BoardController::board_write']
+                ],
+                [
+                    'name' => '이벤트관리',
+                    'code' => 'D4',
+                    'url' => '/AdmMaster/_bbs/board_list?code=event',
+                    'alias' => ['BoardController::index', 'BoardController::board_write']
+                ],
+                [
+                    'name' => '매거진 관리',
+                    'code' => 'D5',
+                    'url' => '/AdmMaster/_magazines/list',
+                    'alias' => ['AdminMagazineController::list', 'AdminMagazineController::write']
                 ],
             ]
         ],
@@ -166,12 +178,6 @@ class AdminMenus extends BaseConfig
                     'code' => 'E5',
                     'url' => '/AdmMaster/_inquiry/list',
                     'alias' => ['AdminInquiryController::list', 'AdminInquiryController::write']
-                ],
-                [
-                    'name' => '이벤트관리',
-                    'code' => 'E6',
-                    'url' => '/AdmMaster/_bbs/board_list?code=event',
-                    'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
                 [
                     'name' => '쿠폰생성관리',
