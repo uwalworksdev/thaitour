@@ -65,19 +65,20 @@
     <div id="header_tools">
         <div class="inner flex_header_top">
             <div class="flex_header_top">
-                <a href="/"><img src="/images/sub/logo_w.png" alt=""></a>
+                <a href="/"><img style="width: 90%;" src="/images/sub/logo_w.png" alt=""></a>
                 <div class="search-container">
                     <div class="main-search-container">
-                        <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요" autocomplete="off">
+                        <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
+                               autocomplete="off">
                         <i class="fa fa-search search-icon" id="search_icon_pc"></i>
                         <ul class="search_words_list" id="search_words_list_pc">
                             <?php foreach ($searchTxtRecommend as $item): ?>
-                                <li><a href="<?=$item['url']?>">#<?= $item['subject'] ?></a></li>
+                                <li><a href="<?= $item['url'] ?>">#<?= $item['subject'] ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="custom_select_rounded">
-                        <a class="text_custom_" href="#">상세검색</a>
+                        <!--                        <a class="text_custom_" href="#">상세검색</a>-->
                         <select class="select_custom_ active_" name="" id="search_cate_pc__header">
                             <option value="">전체</option>
                             <option value="hotel">호텔</option>
@@ -575,11 +576,11 @@
     });
 
     const links = document.querySelectorAll('.link_top');
-        links.forEach(button => {
-            button.addEventListener('click', () => {
-                links.forEach(btn => btn.classList.remove('active_'));
-                button.classList.add('active_)');
-            });
+    links.forEach(button => {
+        button.addEventListener('click', () => {
+            links.forEach(btn => btn.classList.remove('active_'));
+            button.classList.add('active_)');
         });
+    });
 
 </script>

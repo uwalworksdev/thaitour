@@ -356,30 +356,34 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("search_write", "Admin\AdminController::search_write");
         $routes->get("block_ip_list", "Admin\AdminController::block_ip_list");
 
-	// 팝업
-	$routes->group("popup", static function ($routes) {
-		$routes->get("list", "Popup::ListView");
-		$routes->get("write", "Popup::WriteView");
-		$routes->get("write/(:segment)", "Popup::WriteView/$1");
+        // 팝업
+        $routes->group("popup", static function ($routes) {
+            $routes->get("list", "Popup::ListView");
+            $routes->get("write", "Popup::WriteView");
+            $routes->get("write/(:segment)", "Popup::WriteView/$1");
 
-		$routes->post("insert", "Popup::WriteInsert");
-		$routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
-		$routes->get("delete", "Popup::ItemDelete");
-		$routes->post("status/change", "Popup::ListStatusChangeAjax");
-	});
+            $routes->post("insert", "Popup::WriteInsert");
+            $routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
+            $routes->get("delete", "Popup::ItemDelete");
+            $routes->post("status/change", "Popup::ListStatusChangeAjax");
+        });
 
-	$routes->group("block_ip", static function ($routes) {
-		$routes->get("list", "Popup::ListView");
-		$routes->get("write", "Popup::WriteView");
-		$routes->get("write/(:segment)", "Popup::WriteView/$1");
+        $routes->group("block_ip", static function ($routes) {
+            $routes->get("list", "Popup::ListView");
+            $routes->get("write", "Popup::WriteView");
+            $routes->get("write/(:segment)", "Popup::WriteView/$1");
 
-		$routes->post("insert", "Popup::WriteInsert");
-		$routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
-		$routes->get("delete", "Popup::ItemDelete");
-		$routes->post("status/change", "Popup::ListStatusChangeAjax");
-	});
+            $routes->post("insert", "Popup::WriteInsert");
+            $routes->post("update/(:segment)", "Popup::WriteUpdate/$1");
+            $routes->get("delete", "Popup::ItemDelete");
+            $routes->post("status/change", "Popup::ListStatusChangeAjax");
+        });
+    });
 
-
+    // Nested group for '_magazine'
+    $routes->group("_magazines", function ($routes) {
+        $routes->get("list", "Admin\AdminMagazineController::list", ['as' => "admin._magazines.list"]);
+        $routes->get("write", "Admin\AdminMagazineController::write", ['as' => "admin._magazines.write"]);
     });
 });
 
@@ -402,7 +406,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
     $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
-	
+
 });
 
 $routes->group("api", static function ($routes) {
