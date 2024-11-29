@@ -416,6 +416,12 @@ $routes->group("api", static function ($routes) {
         $routes->get("charge_list", "SpaController::charge_list", ['as' => "api.spa_.charge_list"]);
         $routes->post("handleBooking", "SpaController::handleBooking", ['as' => "api.spa_.handleBooking"]);
     });
+
+    $routes->group("hotel_", function ($routes) {
+        $routes->get("get_data", "Api\ProductApi::getDataHotel", ['as' => "api.hotel_.get_data"]);
+        $routes->get("get_option", "Api\ProductApi::getDataOption", ['as' => "api.hotel_.get_option"]);
+        $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
+    });
 });
 
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
