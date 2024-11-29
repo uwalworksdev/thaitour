@@ -11,7 +11,7 @@
     </style>
     <div class="content-sub-product-hotel">
         <div class="body_inner">
-            <?php echo view("/product/inc/navigation_container.php", ["parent_code" => '1302', "code_name" => $code_name, "code_no" => $code_no]); ?>
+            <?php echo view("/product/inc/navigation_container.php", ["parent_code" => 1301, "code_name" => $code_name, "code_no" => $code_no]); ?>
             <form name="frmSearch" id="frmSearch">
                 <div class="sub-hotel-container">
                     <input type="hidden" name="search_keyword" id="search_keyword"

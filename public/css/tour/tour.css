@@ -1558,7 +1558,7 @@
 }
 
 .content-sub-hotel-detail .total {
-    color: #888;
+    /* color: #888; */
     margin-bottom: 5px;
     font-size: 14px;
 }

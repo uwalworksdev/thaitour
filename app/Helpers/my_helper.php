@@ -152,27 +152,28 @@ function getHeaderTab()
 
 function getHeaderTabSub($code_no = '')
 {
-    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND status = 'Y' ORDER BY onum DESC";
+    $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '13' AND code_no IN (1303, 1302, 1301) AND status = 'Y' ORDER BY onum DESC";
     $fresult = db_connect()->query($fsql);
     $fresult = $fresult->getResultArray();
 
     $tabLinks = [
-        1303 => "/product-hotel/1303",
-        1302 => "/product-golf/1302/1",
-        1301 => "/product-tours/1301",
-        1325 => "/product-spa/1325",
-        1317 => "/show-ticket/1317",
-        1320 => "/product-restaurant/1320",
-        1324 => "/vehicle-guide/1324"
+        1303 => "/product-hotel/list-hotel/",
+        1302 => "/product-golf/list-golf/",
+        1301 => "/product-tours/tours-list/",
     ];
+
 
     $html = "";
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];
 
-        $link = $tabLinks[$tab_] ?? "/product-hotel/1303";
+        $fsql = "SELECT * FROM tbl_code WHERE code_gubun = 'tour' AND parent_code_no = '$tab_' AND status = 'Y' ORDER BY code_no ASC ";
+        $fresult = db_connect()->query($fsql);
+        $fresult = $fresult->getRowArray();
 
-        $activeClass = ($code_no === $tab_) ? "active_" : "";
+        $link = $tabLinks[$tab_] . $fresult['code_no'] ?? "!#";
+
+        $activeClass = ($code_no == $tab_) ? "active_" : "";
 
         $html .= "<li class='depth_1_item_ $activeClass' data-code='" . $tab_ . "' data-href='$link'>";
         $html .= "<p class=''>" . $frow['code_name'] . "</p>";
@@ -199,7 +200,7 @@ function getHeaderTabSubChild($parent_code_no = '', $code_no = '')
     foreach ($fresult as $frow) {
         $tab_ = $frow['code_no'];
 
-        $activeClass = ($code_no === $tab_) ? "active_" : "";
+        $activeClass = ($code_no == $tab_) ? "active_" : "";
 
         $link = $tabLinks[$parent_code_no] . $tab_ ?? "!#";
 

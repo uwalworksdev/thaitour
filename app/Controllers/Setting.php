@@ -147,7 +147,7 @@ class Setting extends BaseController {
             }
             
             $this->Setting->infoUpdate(1, $data);
-            return redirect()->to('AdmMaster/_adminrator/setting');
+            return redirect()->to('AdmMaster/_adminrator/setting')->with('success', '수정되었습니다.');
         }
     }
 }
