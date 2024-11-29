@@ -20,7 +20,7 @@ class FileUpload extends BaseController
             if (!in_array($filename_ext, $allow_file)) {
                 $url .= '&errstr=' . $name;
             } else {
-                $uploadDir = WRITEPATH . 'uploads/editor/';
+                $uploadDir = FCPATH . 'data/editor/';
 
                 if (!is_dir($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
@@ -28,7 +28,7 @@ class FileUpload extends BaseController
                 if ($file->move($uploadDir, $name)) {
                     $url .= "&bNewLine=true";
                     $url .= "&sFileName=" . $name;
-                    $url .= "&sFileURL=/uploads/editor/" . $name;
+                    $url .= "&sFileURL=/data/editor/" . $name;
                 }
             }
         }

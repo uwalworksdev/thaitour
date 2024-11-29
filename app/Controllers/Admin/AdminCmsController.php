@@ -85,19 +85,23 @@ class AdminCmsController extends BaseController
 
         $data = $this->request->getPost();
 
+        $data['r_s_date'] = $data['r_s_date_d'] . ' ' . $data['r_s_date_h'] . ':' . $data['r_s_date_m'] . ':' . $data['r_s_date_s'];
+        $data['r_e_date'] = $data['r_e_date_d'] . ' ' . $data['r_e_date_h'] . ':' . $data['r_e_date_m'] . ':' . $data['r_e_date_s'];
+
         if($r_idx) {
             $this->cmsModel->update($r_idx, $data);
+            return $this->response->setJSON(['result' => 'success', 'msg' => '수정 완료']);
         } else {
             $this->cmsModel->insert($data);
+            return $this->response->setJSON(['result' => 'success', 'msg' => '등록 완료']);
         }
 
-        return $this->response->setJSON(['result' => 'success']);
     }
 
     public function del_ok() {
         $r_idx = $this->request->getRawInput()['r_idx'];
         $this->cmsModel->where('r_idx', $r_idx)->set(['r_status' => 'D'])->update();
-        return $this->response->setJSON(['result' => 'success']);
+        return $this->response->setJSON(['result' => 'success', 'msg' => '삭제 완료']);
     }
 
     public function policy_list()

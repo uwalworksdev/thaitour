@@ -337,10 +337,9 @@
             dataType: "json",
             data: { r_idx: r_idx_arr },
             success: function (data) {
+                alert(data.msg);
                 if (data.result == "success") {
                     location.reload();
-                } else {
-                    alert(data.msg);
                 }
             }
         });
