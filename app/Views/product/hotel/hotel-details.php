@@ -591,7 +591,7 @@
                                                                 <span class="room_price_day_sale" data-price="<?=$room_op['r_sale_price']?>"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                             </div>
                                                             <span class="total">
-                                                                금액금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
+                                                                객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                 <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                             </span>
                                                             <span class="details">객실 <span
@@ -692,7 +692,7 @@
                                                                 </div>
                                                             <?php } ?>
                                                             <span class="total">
-                                                                금액금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
+                                                                객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                 <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                             </span>
                                                             <span class="details">객실 <span
@@ -1052,7 +1052,7 @@
                                                                         <span class="room_price_day_sale" data-price="<?=$room_op['r_sale_price']?>"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                                     </div>
                                                                     <span class="total">
-                                                                        금액금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
+                                                                        객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                         <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                                     </span>
                                                                     <span class="details">객실 <span
@@ -1167,7 +1167,7 @@
                                                                     <?php } ?>
 
                                                                     <span class="total">
-                                                                        금액금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
+                                                                        객실금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                         <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                                     </span>
                                                                     <span class="details">객실 <span
