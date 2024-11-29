@@ -41,7 +41,7 @@ class GolfOptionModel extends Model
 
     public function getOptions($product_idx, $hole_cnt = null, $hour = null, $minute = null)
     {
-		$this->table = 'tbl_golf_price'; 
+		//$this->table = 'tbl_golf_price'; 
         $options = $this->where("product_idx", $product_idx);
         if ($hole_cnt) {
             $options = $options->where("hole_cnt", $hole_cnt);
