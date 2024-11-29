@@ -587,14 +587,14 @@
                                                                 </div>
                                                             <?php } ?>
                                                             <div class="price-strike-container">
-                                                                옵션: <span class="price-strike room_price_day" data-price="<?=$room_op['r_price']?>"><?= number_format($room_op['r_price']) ?></span>원
+                                                                옵션금액: <span class="price-strike room_price_day" data-price="<?=$room_op['r_price']?>"><?= number_format($room_op['r_price']) ?></span>원
                                                                 <span class="room_price_day_sale" data-price="<?=$room_op['r_sale_price']?>"><?= number_format($room_op['r_sale_price']) ?></span>원
                                                             </div>
                                                             <span class="total">
-                                                                객실: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
+                                                                금액금액: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                 <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                             </span>
-                                                            <span class="details">금액 <span
+                                                            <span class="details">객실 <span
                                                                         class="count_room"
                                                                         id="<?= $room_op['rop_idx'] ?>">1</span>개 × <span
                                                                         class="count_day"
@@ -695,7 +695,7 @@
                                                                 객실: <span class="price-strike hotel_price_day" data-price="<?=$item['goods_price1']?>"><?= number_format($item['goods_price1']) ?>원</span> 
                                                                 <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>원
                                                             </span>
-                                                            <span class="details">금액 <span
+                                                            <span class="details">객실 <span
                                                                         class="count_room"
                                                                         id="<?= $item['idx'] ?>">1</span>개 × <span
                                                                         class="count_day"
