@@ -39,7 +39,7 @@ class GolfOptionModel extends Model
 
     protected $useSoftDeletes = false;
 
-    public function getOptions($product_idx)
+    public function getOptions($product_idx, $hole_cnt = null, $hour = null, $minute = null)
     {
 		 
         $options = $this->where("product_idx", $product_idx);
