@@ -11,7 +11,11 @@
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
-                <div class="title-container">
+                <?php foreach($golf_price as $price) { ?> 
+                <input type="hidden" id="firstDate"  value="<?=$price['golf_date']?>">
+                <input type="hidden" id="firstPrice" value="<?=$price['option_price']?>">
+                <?php } ?>
+				<div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
