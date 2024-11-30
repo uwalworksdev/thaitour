@@ -803,6 +803,8 @@
             var popup2 = $('#popup_img');
             var closedBtn2 = $('#popup_img .closed_btn');
 
+            $("#year").text('9999');
+
             /* closed btn*/
             closedBtn.click(function () {
                 popup.hide();
