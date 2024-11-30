@@ -490,6 +490,11 @@ class TourRegistController extends BaseController
 
     public function write_golf_price()
     {
+
+        $g_list_rows = 10;
+        $pg = updateSQ($_GET["pg"] ?? "");
+        if ($pg == "") $pg = 1;
+
         $product_idx  = $this->request->getVar("product_idx");
         $s_date       = $this->request->getVar("s_date");
         $e_date       = $this->request->getVar("e_date");
