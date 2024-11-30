@@ -50,7 +50,7 @@
                         </li>
                     </ul>
 
-                    <div class="item_option">
+                    <div class="item_option" style="display: none">
                         <!-- opt_list -->
                         <div class="opt_list">
                             <strong class="label">옵션선택</strong>
