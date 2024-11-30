@@ -2024,8 +2024,8 @@ class Product extends BaseController
                 $data['option_price_bath'][] = round($tourOption['option_price'] / (float)($this->setting['baht_thai'] ?? 0));;
             }
         }
-        $total_option_price_bath = array_sum($data['option_price_bath']);
-        $total_option_price = array_sum($data['option_price']);
+        $total_option_price_bath = array_sum($data['option_price_bath'] ?? []);
+        $total_option_price = array_sum($data['option_price'] ?? []);
 
         $data['final_price'] = $data['total_price_product'] + $total_option_price - $data['final_discount'];
         $data['inital_price'] = $data['total_price_product'] + $total_option_price;

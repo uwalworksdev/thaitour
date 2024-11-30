@@ -2012,6 +2012,202 @@
 .tours-detail .section2 .sec2-item-card .btn_back {
     gap: 8px;
     cursor: pointer;
+    width: fit-content;
+}
+
+.tours-detail .section2 .sec2-item-card .text_title {
+    margin: 0 auto;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.tours-detail .section2 .form-group input {
+    padding: 0 0.9375em;
+    height: var(--bs-input-height);
+    width: 100%;
+    margin-bottom: unset;
+    display: block;
+    cursor: pointer;
+}
+
+.tours-detail .section2 .form-group label:before {
+    display: none;
+}
+
+.tours-detail .sec2-item-card.card-left2 .form-group {
+    display: block;
+    padding: unset;
+    border-bottom: unset;
+    width: 100%;
+}
+
+.tours-detail .sec2-item-card.card-left2 .form-group.spe .form-group-cus-4input {
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.tours-detail .section2 .card-left2 {
+    width: 100%;
+    padding: 40px 30px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-top: 80px;
+    margin-right: 20px;
+    /*margin-bottom: 190px;*/
+}
+
+.tours-detail .section2 .title-main-c {
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+
+.tours-detail .section2 .title-sub-c {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.tours-detail .section2 .mb-30 {
+    margin-bottom: 30px;
+}
+
+.tours-detail .section2 .form-group label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.tours-detail .section2 .con-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.tours-detail .card-left2 .cus-select-group input {
+    width: 230px;
+}
+
+.tours-detail .card-left2 .email-group {
+    position: relative;
+}
+
+.tours-detail .card-left2 .cus-select-group input {
+    width: 230px;
+}
+
+.tours-detail .email-group input {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.tours-detail .card-left2 .cus-select-group select {
+    width: 280px;
+}
+
+.tours-detail .card-left2 .cus-select-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.phone_wrap {
+    display: flex
+;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.phone_wrap_item {
+    flex: 1;
+}
+
+.tours-detail .card-left2 [type="radio"]:checked, .tours-detail .card-left2 [type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+.tours-detail .card-left2 .form-group label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.tours-detail .card-left2 [type="radio"]:checked + label, .tours-detail .card-left2 [type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+
+.tours-detail .card-left2 [type="radio"]:checked + label:before, .tours-detail .card-left2 [type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+    display: block;
+    padding: 0;
+}
+
+.tours-detail .card-left2 [type="radio"]:checked + label:after, .tours-detail .card-left2 [type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--bs-point);
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.tours-detail .card-left2 [type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.tours-detail .form-group-cus-4input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.tours-detail .form-group-cus-4input input:nth-child(1) {
+    width: 91px;
+}
+
+.tours-detail .form-group-cus-4input input:nth-child(2), .tours-detail .form-group-cus-4input input:nth-child(3) {
+    width: 120px;
+}
+
+.tours-detail .card-left2 .form-group-flex {
+    display: flex
+;
+    gap: 10px;
+    align-content: center;
+}
+
+.tours-detail .card-left2 .form-group-flex select {
+    width: 120px;
+}
+
+.tours-detail .card-left2 .form-group-flex input {
+    width: 190px;
 }
 
 .tours-detail .section2 .sec2-item-card .btn_back img {
