@@ -515,9 +515,9 @@ class TourRegistController extends BaseController
 			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' order by golf_date, hole_cnt, hour asc";
         }
 		write_log($fsql);
-        $roresult    = $this->connect->query($fsql);
-        $roresult    = $roresult->getResultArray();
-        //$nTotalCount = $roresult->getNumRows();
+        $result      = $this->connect->query($fsql);
+        $roresult    = $result->getResultArray();
+        $nTotalCount = $result->getNumRows();
 
 		// 첫 번째 값
 		$firstValue = reset($roresult); // 배열의 첫 번째 값
