@@ -213,7 +213,7 @@
 
 					<script>
 						$("#addCharge").one("click", function () {
-								if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
+								if (!confirm("일정을 추가 하시겠습니까?"))
 									return false;
 
 								var days     = $("#days").val();
