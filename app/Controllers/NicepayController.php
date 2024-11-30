@@ -17,7 +17,7 @@
 				$pay->price       = '1000';  // 상품 가격
 				$pay->buyerName   = '홍길동';
 				$pay->buyerEmail  = 'test@example.com';
-				$pay->returnUrl   = 'https://yourdomain.com/nicepay/return';
+				$pay->returnUrl   = 'https://thetourlab.com/nicepay/return';
 
 				// 결제 요청 URL 생성
 				$payRequestURL = $pay->requestAction();
