@@ -492,7 +492,7 @@ class TourRegistController extends BaseController
     {
 
         $g_list_rows = 20;
-        $pg = updateSQ($_GET["pg"] ?? "");
+        $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
         $product_idx  = $this->request->getVar("product_idx");
