@@ -286,7 +286,7 @@
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
                     <span><strong> <?= $hotel['review_average'] ?></strong></span>
-                    <span class="page_">생생리뷰 <strong style="color: #000;">(0)</strong></span>
+                    <span class="page_">생생리뷰 <strong style="color: #000;">(<?= $hotel['total_review'] ?>)</strong></span>
                     <span class="page_"><?= $fresult9['code_name'] ?></span>
                 </div>
                 <?php
@@ -333,7 +333,7 @@
                         <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">객실</p>
                         <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">시설&서비스</p>
                         <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
-                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(159개)</p>
+                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(<?= $hotel['total_review'] ?>개)</p>
                     </div>
                     <div class="btn-container only_web">
                         <button type="button" onclick="scrollToEl('section3')">
