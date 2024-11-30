@@ -8,7 +8,8 @@ class CouponMst extends Model
     protected $primaryKey = 'idx';
     protected $allowedFields = [
         "coupon_name", "publish_type", "dc_type", "coupon_pe", "coupon_price"
-        , "exp_start_day", "exp_end_day", "etc_memo", "state", "regdate"
+        , "exp_start_day", "exp_end_day", "etc_memo", "state", "member_grade", "contents", "regdate"
+        , "ufile1", "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "ufile7", "rfile7"
     ];
 
     public function getCouponList($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10)

@@ -42,6 +42,7 @@
                             <caption></caption>
                             <colgroup>
                                 <col width="5%"/>
+                                <col width="10%"/>
                                 <col width="*"/>
                                 <col width="10%"/>
                                 <col width="10%"/>
@@ -53,6 +54,7 @@
                             <thead>
                             <tr>
                                 <th>번호</th>
+                                <th>이미지</th>
                                 <th>쿠폰명</th>
                                 <th>발행타입</th>
                                 <th>할인타입</th>
@@ -75,6 +77,15 @@
                             ?>
                                 <tr>
                                     <td><?= $num-- ?></td>
+                                    <td class="tac">
+                                        <?php
+                                            if(!empty($row["ufile1"])){
+                                        ?>
+                                            <img src="/data/coupon/<?=$row["ufile1"]?>" alt="<?=$row["rfile1"]?>">
+                                        <?php
+                                            }
+                                        ?>
+                                    </td>
                                     <td class="tac">
                                         <a href="write?idx=<?= $row['idx'] ?>"><?= $row["coupon_name"] ?></a>
                                     </td>

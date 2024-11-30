@@ -1,5 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
+<script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 <?php
 
     $titleStr = "생성";
@@ -61,6 +63,47 @@
                                 <col width="90%"/>
                             </colgroup>
                             <tbody>
+                                <tr>
+                                    <th>카테고리선택</th>
+                                    <td colspan="3">
+                                        <select id="product_code_1" name="product_code_1" class="input_select" onchange="get_code(this.value, 3)">
+                                            <option value="">1차분류</option>
+                                            <?php
+                                            foreach ($code_list as $code) {
+                                                $status_txt = "";
+                                                if ($code["status"] == "Y") {
+                                                    $status_txt = "";
+                                                } elseif ($code["status"] == "N") {
+                                                    $status_txt = "[삭제]";
+                                                } elseif ($code["status"] == "C") {
+                                                    $status_txt = "[마감]";
+                                                }
+                                                ?>
+                                                <option value="<?= $code["code_no"] ?>"><?= $code["code_name"] ?>
+                                                    <?= $status_txt ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
+                                            <option value="">2차분류</option>
+                                        </select>
+                                        <select id="product_code_3" name="product_code_3" class="input_select">
+                                            <option value="">3차분류</option>
+                                        </select>
+                                        <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
+                                    </td>
+                                </tr>
+                                <?php
+                                    // $_product_code_arr = explode("|", $product_code_list);
+                                    // $_product_code_arr = array_filter($_product_code_arr);
+                                ?>
+                                <tr>
+                                    <th>등록된 카테고리</th>
+                                    <td colspan="3">
+                                        <ul id="reg_cate">
+                                            
+                                        </ul>
+                                    </td>
+                                </tr>
 
                                 <tr>
                                     <th>쿠폰명</th>
@@ -68,6 +111,23 @@
                                         <input type="text" id="coupon_name" name="coupon_name"
                                                 value="<?= isset($coupon_name) ? $coupon_name : '' ?>"
                                                 class="input_txt" style="width:30%"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>대상</th>
+                                    <td>
+                                        <select name="member_grade" id="member_grade">
+                                            <?php
+                                                foreach($grade_list as $grade){
+                                            ?>
+                                                <option value="<?=$grade["g_idx"]?>" <?php if (isset($member_grade) && $grade["g_idx"] == $member_grade){ echo "selected"; } ?> >
+                                                    <?=$grade["grade_name"]?>
+                                                </option>
+                                            <?php
+                                                }
+                                            ?>
+                                        </select>
                                     </td>
                                 </tr>
 
@@ -132,6 +192,40 @@
                                                 중지
                                             </option>
                                         </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>상태설정</th>
+                                    <td>
+                                        <!-- <textarea name="contents" id="contents" rows="10" cols="100" class="input_txt"
+                                            style="width:100%; height:400px; display:none;"><?= viewSQ($contents) ?></textarea>
+                                            <script type="text/javascript">
+                                                var oEditors = [];
+
+                                                // 추가 글꼴 목록
+                                                //var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+
+                                                nhn.husky.EZCreator.createInIFrame({
+                                                    oAppRef: oEditors,
+                                                    elPlaceHolder: "contents",
+                                                    sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
+                                                    htParams: {
+                                                        bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                        bUseVerticalResizer: true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+                                                        bUseModeChanger: true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+                                                        //aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+                                                        fOnBeforeUnload: function () {
+                                                            //alert("완료!");
+                                                        }
+                                                    }, //boolean
+                                                    fOnAppLoad: function () {
+                                                        //예제 코드
+                                                        //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+                                                    },
+                                                    fCreator: "createSEditor2"
+                                                });
+                                        </script> -->
                                     </td>
                                 </tr>
 
@@ -299,6 +393,10 @@
         $("#ajax_loader").removeClass("display-none");
 
         var frm = document.frm;
+
+        // if(typeof oEditors != "undefined") {
+        //     oEditors?.getById["contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
+        // }
 
         if (frm.coupon_name.value == "") {
             frm.coupon_name.focus();

@@ -9,11 +9,16 @@ use Exception;
 class AdminCouponController extends BaseController
 {
     private $couponMst;
+    private $memberGrade;
+    private $code;
     private $db;
+    private $uploadPath = FCPATH . "data/coupon/";
 
     public function __construct()
     {
         $this->couponMst = model("CouponMst");
+        $this->memberGrade = model("MemberGrade");
+        $this->code = model("Code");
         helper(['html']);
         $this->db = db_connect();
         helper('my_helper');
@@ -41,13 +46,19 @@ class AdminCouponController extends BaseController
     public function write() {
         $idx = updateSQ($this->request->getVar("idx") ?? '');
         $row = null;
+        $grade_list = $this->memberGrade->where("status", "Y")
+                                        ->orderBy("onum", "desc")
+                                        ->orderBy("g_idx", "asc")->findAll();
+        $code_list = $this->code->getByParentCode("13")->getResultArray();
 
         if ($idx) {
             $row = $this->couponMst->find($idx);
         }
         return view('admin/_coupon/write', [
             "row" => $row,
-            "idx" => $idx
+            "idx" => $idx,
+            "grade_list" => $grade_list,
+            "code_list" => $code_list
         ]);
     }
 
@@ -55,6 +66,34 @@ class AdminCouponController extends BaseController
         try {
             $idx = updateSQ($this->request->getPost("idx"));
             $data = $this->request->getPost();
+            $uploadPath = $this->uploadPath;
+
+            $files = $this->request->getFiles();
+
+            for ($i = 1; $i <= 7; $i++) {
+                if ($this->request->getPost("del_$i") == "Y") {
+                    $data["ufile$i"] = "";
+                    $data["rfile$i"] = "";
+
+                } elseif ($files["ufile$i"]) {
+                    $file = $files["ufile$i"];
+
+                    if ($file->isValid() && !$file->hasMoved()) {
+                        $fileName = $file->getClientName();
+                        $data["rfile$i"] = $fileName;
+
+                        if (no_file_ext($fileName) == "Y") {
+                            $microtime = microtime(true);
+                            $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
+                            $date = date('YmdHis');
+                            $ext = explode(".", strtolower($fileName));
+                            $newName = $date . $timestamp . '.' . $ext[1];
+                            $data["ufile$i"] = $newName; 
+                            $file->move($uploadPath, $newName);
+                        }
+                    }
+                }
+            }
 
             if ($idx) {
                 $result = $this->couponMst->updateData($idx, $data);
