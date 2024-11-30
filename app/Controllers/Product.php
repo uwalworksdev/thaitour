@@ -2260,13 +2260,12 @@ class Product extends BaseController
 
         $productReview = $this->reviewModel->getProductReview($product_idx);
 
-        $product['total_review'] = $productReview['total_review'];
-        $product['review_average'] = $productReview['avg'];
+        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['review_average'] = $productReview['avg'];
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
         $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
-        $data['product'] = $product;
 
         return $this->renderView('tours/tour-details', $data);
     }
@@ -2489,13 +2488,12 @@ class Product extends BaseController
 
         $productReview = $this->reviewModel->getProductReview($product_idx);
 
-        $product['total_review'] = $productReview['total_review'];
-        $product['review_average'] = $productReview['avg'];
+        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['review_average'] = $productReview['avg'];
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
         $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
-        $data['product'] = $product;
 
         return $this->renderView('tours/location-info', $data);
     }
