@@ -56,8 +56,6 @@
                 <div class="listWrap_noline">
                     <div class="listBottom">
                         <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                            <caption>
-                            </caption>
                             <colgroup>
                                 <col width="10%"/>
                                 <col width="90%"/>
@@ -68,7 +66,7 @@
                                     <th>쿠폰명</th>
                                     <td>
                                         <input type="text" id="coupon_name" name="coupon_name"
-                                                value="<?= isset($row) ? $row['coupon_name'] : '' ?>"
+                                                value="<?= isset($coupon_name) ? $coupon_name : '' ?>"
                                                 class="input_txt" style="width:30%"/>
                                     </td>
                                 </tr>
@@ -77,10 +75,10 @@
                                     <th>할인방법</th>
                                     <td>
                                         <select name="dc_type" id="dc_type">
-                                            <option value="P" <?php if (isset($row['dc_type']) && $row['dc_type'] == "P") echo "selected"; ?> >
+                                            <option value="P" <?php if (isset($dc_type) && $dc_type == "P") echo "selected"; ?> >
                                                 할인율
                                             </option>
-                                            <option value="D" <?php if (isset($row['dc_type']) && $row['dc_type'] == "D") echo "selected"; ?> >
+                                            <option value="D" <?php if (isset($dc_type) && $dc_type == "D") echo "selected"; ?> >
                                                 가격할인
                                             </option>
                                         </select>
@@ -91,7 +89,7 @@
                                     <th>할인율 설정</th>
                                     <td>
                                         <input type="text" id="coupon_pe" name="coupon_pe"
-                                                value="<?= isset($row) ? $row['coupon_pe'] : '' ?>"
+                                                value="<?= isset($coupon_pe) ? $coupon_pe : '' ?>"
                                                 style="width:100px;" class="input_txt onlynum" maxlength="3"/> %
                                     </td>
                                 </tr>
@@ -100,7 +98,7 @@
                                     <th>할인가격</th>
                                     <td>
                                         <input type="text" id="coupon_price" name="coupon_price"
-                                                value="<?= isset($row) ? $row['coupon_price'] : '' ?>"
+                                                value="<?= isset($coupon_price) ? $coupon_price : '' ?>"
                                                 style="width:100px;" class="input_txt onlynum"/> 원
                                     </td>
                                 </tr>
@@ -108,10 +106,10 @@
                                 <tr>
                                     <th>발행일수</th>
                                     <td>
-                                        <input type="text" id="exp_days" name="exp_days"
-                                                value="<?= isset($row) ? $row['exp_days'] : '' ?>"
-                                                style="width:100px;" class="input_txt onlynum" maxlength="4"/> 일 <span
-                                                style="color:red;margin-left:10px;">발행일수를 기준으로 사용 유효기간 설정.</span>
+                                        <div style="text-align:left;">
+											<input type="text" name="exp_start_day" id="exp_start_day" value="<?=isset($exp_start_day) ? date("Y-m-d", strtotime($exp_start_day)) : ''?>" style="text-align: center;background: white; width: 120px;" readonly> ~
+											<input type="text" name="exp_end_day" id="exp_end_day" value="<?=isset($exp_end_day) ? date("Y-m-d", strtotime($exp_end_day)) : ''?>" style="text-align: center;background: white; width: 120px;" readonly>
+										</div>
                                     </td>
                                 </tr>
 
@@ -119,7 +117,7 @@
                                     <th>쿠폰설명</th>
                                     <td>
                                 <textarea name="etc_memo" id="etc_memo" rows="10" cols="100" class="input_txt"
-                                            style="width:100%; height:100px;"><?= viewSQ(isset($row) ? $row['etc_memo'] : ''); ?></textarea>
+                                            style="width:100%; height:100px;"><?= viewSQ(isset($etc_memo) ? $etc_memo : ''); ?></textarea>
                                     </td>
                                 </tr>
 
@@ -127,10 +125,10 @@
                                     <th>상태설정</th>
                                     <td>
                                         <select name="state" id="state">
-                                            <option value="Y" <?php if (isset($row['state']) && $row['state'] == "Y") echo "selected"; ?> >
+                                            <option value="Y" <?php if (isset($state) && $state == "Y") echo "selected"; ?> >
                                                 사용
                                             </option>
-                                            <option value="N" <?php if (isset($row['state']) && $row['state'] == "N") echo "selected"; ?> >
+                                            <option value="N" <?php if (isset($state) && $state == "N") echo "selected"; ?> >
                                                 중지
                                             </option>
                                         </select>
@@ -139,6 +137,59 @@
 
                             </tbody>
 
+                        </table>
+
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+                            
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
+
+                                <tr>
+                                    <td colspan="2">
+                                        이미지 등록
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>대표이미지(600X400)</th>
+                                    <td colspan="3">
+
+                                        <input type="file" name="ufile1" class="bbs_inputbox_pixel"
+                                                style="width:500px;margin-bottom:10px"/>
+                                        <?php if (isset($ufile1) && $ufile1 !== "") { ?>
+                                            <br>파일삭제:<input type="checkbox" name="del_1" value='Y'>
+                                            <a href="/data/coupon/<?= $ufile1 ?>"
+                                                class="imgpop"><?= $rfile1 ?></a>
+                                                <br>
+                                                <br>
+                                            <img src="/data/coupon/<?= $ufile1 ?>" width="200px"/>
+                                        <?php } ?>
+
+                                    </td>
+                                </tr>
+
+                                <?php for ($i = 2; $i <= 7; $i++) { ?>
+                                    <tr>
+                                        <th>서브이미지<?= $i - 1 ?>(600X400)</th>
+                                        <td colspan="3">
+
+                                            <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
+                                                    style="width:500px;margin-bottom:10px"/>
+                                            <?php if (isset(${"ufile" . $i}) && ${"ufile" . $i} !== "") { ?>
+                                                <br>파일삭제: <input type=checkbox name="del_<?= $i ?>" value='Y'>
+                                                <a href="/data/coupon/<?= ${"ufile" . $i} ?>" class="imgpop"><?= ${"rfile" . $i} ?></a>
+                                                <br>
+                                                <br>
+                                                <img src="/data/coupon/<?= ${"ufile" . $i} ?>" width="200px"/>
+                                            <?php } ?>
+
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
                         </table>
                     </div>
                     <!-- // listBottom -->
@@ -176,6 +227,71 @@
     </div><!-- 인쇄 영역 끝 //-->
 </div>
 <!-- // container -->
+<script>
+    $(function () {
+
+        $("#exp_start_day").datepicker({
+            dateFormat: 'yy-mm-dd',
+            showOn: "both",
+            buttonImage: "/images/admin/common/date.png",
+            buttonImageOnly: true,
+            closeText: '닫기',
+            currentText: '오늘',
+            prevText: '이전',
+            nextText: '다음',
+            yearRange: "c:c+10",
+            minDate: new Date(),
+            maxDate: "+99Y",
+            onClose: function (selectedDate) {
+                $("#exp_end_day").datepicker("option", "minDate", selectedDate);
+            },
+            beforeShow: function (input) {
+                setTimeout(function () {
+                    var buttonPane = $(input)
+                        .datepicker("widget")
+                        .find(".ui-datepicker-buttonpane");
+                    var btn = $('<button class="ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all">Clear</button>');
+                    btn.unbind("click").bind("click", function () {
+                        $.datepicker._clearDate(input);
+                    });
+                    btn.appendTo(buttonPane);
+                }, 1);
+            }
+        });
+
+
+        $("#exp_end_day").datepicker({
+            showButtonPanel: true
+            , onClose: function (selectedDate) {
+                // To 날짜 선택기의 최소 날짜를 설정
+                $("#exp_start_day").datepicker("option", "maxDate", selectedDate);
+            }
+            , beforeShow: function (input) {
+                setTimeout(function () {
+                    var buttonPane = $(input)
+                        .datepicker("widget")
+                        .find(".ui-datepicker-buttonpane");
+                    btn.unbind("click").bind("click", function () {
+                        $.datepicker._clearDate(input);
+                    });
+                    btn.appendTo(buttonPane);
+                }, 1);
+            }
+            , dateFormat: 'yy-mm-dd'
+            , showOn: "both"
+            , yearRange: "c:c+30"
+            , buttonImage: "/images/admin/common/date.png"
+            , buttonImageOnly: true
+            , closeText: '닫기'
+            , currentText: '오늘' // 오늘 버튼 텍스트 설정
+            , prevText: '이전'
+            , nextText: '다음'
+            , minDate: new Date() 
+            , maxDate: "+99Y"
+        });
+    });
+    
+</script>
 <script type="text/javascript">
 
     function send_it() {
@@ -204,8 +320,14 @@
             }
         }
 
-        if (frm.exp_days.value == "") {
-            frm.exp_days.focus();
+        if (frm.exp_start_day.value == "") {
+            frm.exp_start_day.focus();
+            alert("발행일수를 입력하셔야 합니다.");
+            return;
+        }
+
+        if (frm.exp_end_day.value == "") {
+            frm.exp_end_day.focus();
             alert("발행일수를 입력하셔야 합니다.");
             return;
         }

@@ -711,7 +711,7 @@ $links = "list";
                                         <textarea name="breakfast" id="breakfast"
                                                   style="width:90%;height:100px;"><?= $breakfast ?? "" ?></textarea>
                                         <div class="" style="margin-top: 10px">
-                                            <button type="button" class="btnAddBreakfast">수정</button>
+                                            <button type="button" class="btnAddBreakfast">추가</button>
                                         </div>
                                         <table style="width:90%">
                                             <tbody id="tBodyTblBreakfast">
