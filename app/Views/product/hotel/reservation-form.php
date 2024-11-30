@@ -116,22 +116,22 @@
                                             </div>
                                         </div>
 
-                                        <div class="button-action-con">
-                                            <div class="conn-icon add-item" data-group="group<?= $i ?>">
-                                                <img class="only_web" src="/uploads/icons/add_item_icon.png"
-                                                     alt="add_item_icon">
-                                                <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png"
-                                                     alt="add_item_icon">
-                                                <span>투숙객 추가</span>
-                                            </div>
-                                            <div class="conn-icon remove-item" data-group="group<?= $i ?>">
-                                                <img class="only_web" src="/uploads/icons/remove-item_icon.png"
-                                                     alt="remove_item_icon">
-                                                <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png"
-                                                     alt="add_item_icon">
-                                                <span>투숙객 삭제</span>
-                                            </div>
-                                        </div>
+<!--                                        <div class="button-action-con">-->
+<!--                                            <div class="conn-icon add-item" data-group="group--><?php //= $i ?><!--">-->
+<!--                                                <img class="only_web" src="/uploads/icons/add_item_icon.png"-->
+<!--                                                     alt="add_item_icon">-->
+<!--                                                <img class="only_mo" src="/uploads/icons/add_item_icon_mo.png"-->
+<!--                                                     alt="add_item_icon">-->
+<!--                                                <span>투숙객 추가</span>-->
+<!--                                            </div>-->
+<!--                                            <div class="conn-icon remove-item" data-group="group--><?php //= $i ?><!--">-->
+<!--                                                <img class="only_web" src="/uploads/icons/remove-item_icon.png"-->
+<!--                                                     alt="remove_item_icon">-->
+<!--                                                <img class="only_mo" src="/uploads/icons/remove-item_icon_mo.png"-->
+<!--                                                     alt="add_item_icon">-->
+<!--                                                <span>투숙객 삭제</span>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                                 <?php

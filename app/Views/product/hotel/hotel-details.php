@@ -123,6 +123,130 @@
     </style>
     <div class="main_page_01 page_share_ page_product_list_ content-sub-hotel-detail">
         <div class="body_inner">
+            <div class="section1">
+                <div class="title-container">
+                    <h2><?= $hotel['product_name'] ?> </h2>
+                    <div class="list-icon">
+                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
+                        <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
+                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
+                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
+                        <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
+                        <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
+                    </div>
+                </div>
+                <div class="location-container">
+                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+                    <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
+                </div>
+                <div class="rating-container">
+                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
+                    <span><strong> <?= $hotel['review_average'] ?></strong></span>
+                    <span class="page_">생생리뷰 <strong style="color: #000;">(<?= $hotel['total_review'] ?>)</strong></span>
+                    <span class="page_"><?= $fresult9['code_name'] ?></span>
+                </div>
+                <?php
+                $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));
+                ?>
+
+                <div class="hotel-image-container">
+                    <div class="hotel-image-container-1">
+                        <img class="imageDetailMain_"
+                             onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                             src="/data/product/<?= $hotel['ufile1'] ?>"
+                             alt="<?= $hotel['product_name'] ?>"
+                             onerror="this.src='/images/share/noimg.png'">
+                    </div>
+                    <div class="grid_2_2">
+                        <?php for ($j = 2; $j < 5; $j++) {
+                            ?>
+                            <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                                 class="grid_2_2_size imageDetailSup_"
+                                 src="/data/product/<?= $hotel['ufile' . $j] ?>"
+                                 alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
+                        <?php } ?>
+                        <div class="grid_2_2_sub"
+                             onclick="img_pops('<?= $hotel['product_idx'] ?>')"
+                             style="position: relative; cursor: pointer;">
+                            <img class="custom_button imageDetailSup_"
+                                 src="/data/product/<?= $hotel['ufile5'] ?>"
+                                 alt="<?= $hotel['product_name'] ?>"
+                                 onerror="this.src='/images/share/noimg.png'">
+                            <div class="button-show-detail-image">
+                                <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                     alt="image_detail_icon">
+                                <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                     alt="image_detail_icon_m">
+                                <span>사진 모두 보기</span>
+                                <span>(<?= $i3 ?>장)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sub-header-hotel-detail">
+                    <div class="main nav-list">
+                        <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
+                        <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">객실</p>
+                        <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">시설&서비스</p>
+                        <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
+                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(<?= $hotel['total_review'] ?>개)</p>
+                    </div>
+                    <div class="btn-container only_web">
+                        <button type="button" onclick="scrollToEl('section3')">
+                            객실선택
+                        </button>
+                    </div>
+                </div>
+                <div class="btn-container cus-mb only_mo">
+                    <button type="button" onclick="scrollToEl('section3')">
+                        객실선택
+                    </button>
+                </div>
+            </div>
+            <div class="section2" id="section2">
+                <h2 class="title-sec2">
+                    숙소개요
+                </h2>
+                <h3 class="sub-title-sec2">
+                    추천 포인트
+                </h3>
+                <p class="description-sec2" style="letter-spacing: 1px">
+                    <?= viewSQ($hotel['product_info']) ?>
+                </p>
+                <div class="tag-list-icon mt-20">
+                    <?php foreach ($fresult4 as $row) : ?>
+                        <div class="item-tag">
+                            <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
+                            <span><?= $row['code_name'] ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <h2 class="sub-title-sec2">
+                    인기 시설 및 서비스
+                </h2>
+                <div class="tag_list_done">
+                    <?php foreach ($bresult4 as $row) : ?>
+                        <div class="item_done">
+                            <img src="/uploads/icons/done_icon.png" alt="done_icon">
+                            <span><?= $row['code_name'] ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <h2 class="sub-title-sec2">
+                    호텔주변 추천명소
+                </h2>
+                <div class="post-list-sec2">
+                    <?php foreach ($fresult8 as $row) : ?>
+                        <div class="">
+                            <img src="/data/code/<?= $row['ufile1'] ?>" alt="hotel_thumbnai_1">
+                            <span><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['code_name'] ?>(<?= $row['distance'] ?>)</span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
             <section class="sub_top_visual">
                 <div class="main_visual_content_">
                     <div class="form_search">
@@ -265,130 +389,8 @@
                     $('#countDay').text(diffInDays);
                 }
             </script>
-            <div style="margin-top: 200px" class="section1">
-                <div class="title-container">
-                    <h2><?= $hotel['product_name'] ?> </h2>
-                    <div class="list-icon">
-                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
-                        <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
-                        <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web"
-                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
-                        <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo"
-                             onclick="wish_it('<?= $hotel['product_idx'] ?>')">
-                        <img src="/uploads/icons/share_icon.png" alt="share_icon" class="only_web">
-                        <img src="/uploads/icons/share_icon_mo.png" alt="share_icon_mo" class="only_mo">
-                    </div>
-                </div>
-                <div class="location-container">
-                    <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span class="text-gray"> <?= $hotel['addrs'] ?> </span>
-                </div>
-                <div class="rating-container">
-                    <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
-                    <span><strong> <?= $hotel['review_average'] ?></strong></span>
-                    <span class="page_">생생리뷰 <strong style="color: #000;">(<?= $hotel['total_review'] ?>)</strong></span>
-                    <span class="page_"><?= $fresult9['code_name'] ?></span>
-                </div>
-                <?php
-                $i3 = count(array_filter(range(1, 7), fn($t) => !empty($hotel["ufile$t"])));
-                ?>
 
-                <div class="hotel-image-container">
-                    <div class="hotel-image-container-1">
-                        <img class="imageDetailMain_"
-                             onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                             src="/data/product/<?= $hotel['ufile1'] ?>"
-                             alt="<?= $hotel['product_name'] ?>"
-                             onerror="this.src='/images/share/noimg.png'">
-                    </div>
-                    <div class="grid_2_2">
-                        <?php for ($j = 2; $j < 5; $j++) {
-                            ?>
-                            <img onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                                 class="grid_2_2_size imageDetailSup_"
-                                 src="/data/product/<?= $hotel['ufile' . $j] ?>"
-                                 alt="<?= $hotel['product_name'] ?>" onerror="this.src='/images/share/noimg.png'">
-                        <?php } ?>
-                        <div class="grid_2_2_sub"
-                             onclick="img_pops('<?= $hotel['product_idx'] ?>')"
-                             style="position: relative; cursor: pointer;">
-                            <img class="custom_button imageDetailSup_"
-                                 src="/data/product/<?= $hotel['ufile5'] ?>"
-                                 alt="<?= $hotel['product_name'] ?>"
-                                 onerror="this.src='/images/share/noimg.png'">
-                            <div class="button-show-detail-image">
-                                <img class="only_web" src="/uploads/icons/image_detail_icon.png"
-                                     alt="image_detail_icon">
-                                <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
-                                     alt="image_detail_icon_m">
-                                <span>사진 모두 보기</span>
-                                <span>(<?= $i3 ?>장)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sub-header-hotel-detail">
-                    <div class="main nav-list">
-                        <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">숙소개요</p>
-                        <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">객실</p>
-                        <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">시설&서비스</p>
-                        <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
-                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(<?= $hotel['total_review'] ?>개)</p>
-                    </div>
-                    <div class="btn-container only_web">
-                        <button type="button" onclick="scrollToEl('section3')">
-                            객실선택
-                        </button>
-                    </div>
-                </div>
-                <div class="btn-container cus-mb only_mo">
-                    <button type="button" onclick="scrollToEl('section3')">
-                        객실선택
-                    </button>
-                </div>
-            </div>
-            <div class="section2" id="section2">
-                <h2 class="title-sec2">
-                    숙소개요
-                </h2>
-                <h3 class="sub-title-sec2">
-                    추천 포인트
-                </h3>
-                <p class="description-sec2" style="letter-spacing: 1px">
-                    <?= viewSQ($hotel['product_info']) ?>
-                </p>
-                <div class="tag-list-icon mt-20">
-                    <?php foreach ($fresult4 as $row) : ?>
-                        <div class="item-tag">
-                            <img src="/data/code/<?= $row['ufile1'] ?>" alt="<?= $row['code_name'] ?>">
-                            <span><?= $row['code_name'] ?></span>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <h2 class="sub-title-sec2">
-                    인기 시설 및 서비스
-                </h2>
-                <div class="tag_list_done">
-                    <?php foreach ($bresult4 as $row) : ?>
-                        <div class="item_done">
-                            <img src="/uploads/icons/done_icon.png" alt="done_icon">
-                            <span><?= $row['code_name'] ?></span>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                <h2 class="sub-title-sec2">
-                    호텔주변 추천명소
-                </h2>
-                <div class="post-list-sec2">
-                    <?php foreach ($fresult8 as $row) : ?>
-                        <div class="">
-                            <img src="/data/code/<?= $row['ufile1'] ?>" alt="hotel_thumbnai_1">
-                            <span><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['code_name'] ?>(<?= $row['distance'] ?>)</span>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="section3" id="section3">
+            <div class="section3" id="section3" style="margin-top: 200px">
                 <h3 class="title-sec3">
                     객실을 선택하세요
                 </h3>
@@ -503,14 +505,14 @@
                                             <colgroup>
                                                 <col width="35%">
                                                 <col width="10%">
-                                                <col width="10%">
-                                                <col width="45%">
+<!--                                                <col width="10%">-->
+                                                <col width="x">
                                             </colgroup>
                                             <thead>
                                             <tr>
                                                 <th>옵션 상세</th>
                                                 <th>수량</th>
-                                                <th>쿠폰</th>
+<!--                                                <th>쿠폰</th>-->
                                                 <th>객실 요금</th>
                                             </tr>
                                             </thead>
@@ -565,11 +567,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                        <div class="occupancy">
-                                                            <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                                        </div>
-                                                    </td>
+<!--                                                    <td>-->
+<!--                                                        <div class="occupancy">-->
+<!--                                                            <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+<!--                                                        </div>-->
+<!--                                                    </td>-->
                                                     <?php
                                                     $isSale = true;
                                                     if ($room_op['r_sale_price'] == $room_op['r_price']) {
@@ -632,12 +634,12 @@
                                             <colgroup>
                                                 <col width="10%">
                                                 <col width="*%">
-                                                <col width="45%">
+<!--                                                <col width="45%">-->
                                             </colgroup>
                                             <thead>
                                             <tr>
                                                 <th>수량</th>
-                                                <th>쿠폰</th>
+<!--                                                <th>쿠폰</th>-->
                                                 <th>객실 요금</th>
                                             </tr>
                                             </thead>
@@ -677,11 +679,11 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <div class="occupancy">
-                                                        <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                                    </div>
-                                                </td>
+<!--                                                <td>-->
+<!--                                                    <div class="occupancy">-->
+<!--                                                        <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+<!--                                                    </div>-->
+<!--                                                </td>-->
                                                 <?php
                                                 $isSale = true;
                                                 if ($item['goods_price1'] == $item['goods_price2']) {
@@ -974,14 +976,14 @@
                                                     <colgroup>
                                                         <col width="35%">
                                                         <col width="20%">
-                                                        <col width="10%">
-                                                        <col width="35%">
+<!--                                                        <col width="10%">-->
+                                                        <col width="x">
                                                     </colgroup>
                                                     <thead>
                                                     <tr>
                                                         <th>옵션 상세</th>
                                                         <th>수량</th>
-                                                        <th>쿠폰</th>
+<!--                                                        <th>쿠폰</th>-->
                                                         <th>객실 요금</th>
                                                     </tr>
                                                     </thead>
@@ -1039,11 +1041,11 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td>
-                                                                <div class="occupancy">
-                                                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                                                </div>
-                                                            </td>
+<!--                                                            <td>-->
+<!--                                                                <div class="occupancy">-->
+<!--                                                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+<!--                                                                </div>-->
+<!--                                                            </td>-->
                                                             <?php
                                                             $isSale = true;
                                                             if ($room_op['r_sale_price'] == $room_op['r_price']) {
@@ -1103,12 +1105,12 @@
                                                     <colgroup>
                                                         <col width="10%">
                                                         <col width="*%">
-                                                        <col width="35%">
+<!--                                                        <col width="35%">-->
                                                     </colgroup>
                                                     <thead>
                                                     <tr>
                                                         <th>수량</th>
-                                                        <th>쿠폰</th>
+<!--                                                        <th>쿠폰</th>-->
                                                         <th>객실 요금</th>
                                                     </tr>
                                                     </thead>
@@ -1162,11 +1164,11 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            <div class="occupancy">
-                                                                <span class="occupancy_button openPopupBtn">쿠폰적용</span>
-                                                            </div>
-                                                        </td>
+<!--                                                        <td>-->
+<!--                                                            <div class="occupancy">-->
+<!--                                                                <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+<!--                                                            </div>-->
+<!--                                                        </td>-->
                                                         <?php
                                                         $isSale = true;
                                                         if ($item['goods_price1'] == $item['goods_price2']) {

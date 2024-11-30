@@ -89,7 +89,7 @@
                             </script>
                         </div>
 
-                        <div class="card-left card-left-2">
+                        <div class="card-left card-left-2" style="display:  none">
                             <h3 class="title-main-c">
                                 고객정보
                             </h3>
@@ -163,7 +163,7 @@
                             ?>
                         </div>
 
-                        <div class="card-left card-left-2 coupon_area_">
+                        <div class="card-left card-left-2 coupon_area_" style="display:  none">
                             <h3 class="label">할인혜택</h3>
 
                             <div class="use_coupon flex__c">

@@ -637,6 +637,10 @@ class Product extends BaseController
                 if ($item['product_code_3']) $code = $item['product_code_3'];
             }
 
+            $productReview = $this->reviewModel->getProductReview($item['product_idx']);
+
+            $item['total_review'] = $productReview['total_review'];
+            $item['review_average'] = $productReview['avg'];
 
             $codeTree = $this->codeModel->getCodeTree($code);
 
