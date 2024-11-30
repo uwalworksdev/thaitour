@@ -806,6 +806,7 @@
 			var order_date = $("#order_date").val();
             var temp = order_date.split("-"); 
             $("#year").text(temp[0]);
+            $("#motn").text(temp[1]);
             
             /* closed btn*/
             closedBtn.click(function () {
