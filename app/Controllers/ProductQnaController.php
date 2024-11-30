@@ -22,6 +22,8 @@ class ProductQnaController extends BaseController
     public function list()
     {
         try {
+
+
             return $this->response->setJSON([
                 'result' => true,
                 'message' => ""
