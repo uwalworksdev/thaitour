@@ -32,7 +32,7 @@
             <form action="#" class="formOrder" id="formOrder">
                 <div class="container-card">
                     <div class="form_booking_spa_">
-                        <div class="card-left">
+                        <div class="card-left2">
                             <h3 class="title-main-c">
                                 예약확정서 정보 입력
                             </h3>
@@ -45,7 +45,8 @@
                                 </div>
                                 <div class="form-group" style="width: 50%">
                                     <label for="gender1">성별(남성/여성)*</label>
-                                    <select name="companion_gender[]" id="gender1" style="width: 100%" required="" data-label="성별"
+                                    <select name="companion_gender[]" id="gender1" style="width: 100%" required=""
+                                            data-label="성별"
                                             class="select-width">
                                         <option value="M">남성</option>
                                         <option value="F">여성</option>
@@ -123,7 +124,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mo_mt-30" >
+                            <div class="form-group mo_mt-30">
                                 <label for="passport-name2">여행시 현지 연락처</label>
                                 <div class="form-group-flex" style="display: flex; align-items: center; gap: 20px">
                                     <select id="car-time-hour" class="select-width" style="width: 200px">
@@ -521,6 +522,109 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+
+        $(".phone").on("input", function () {
+            $(this).val($(this).val().replace(/[^0-9]/g, ""));
+        });
+
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2) month = '0' + month;
+            if (day.length < 2) day = '0' + day;
+
+            return [year, month, day].join('/');
+        }
+
+        $("#checkin, #checkout").datepicker({
+            dateFormat: 'yy/mm/dd',
+            onSelect: function (dateText, inst) {
+                var date = $(this).datepicker('getDate');
+                $(this).val(formatDate(date));
+            }
+        });
+
+        $('#checkin').val(formatDate('2024/07/09'));
+        $('#checkout').val(formatDate('2024/07/10'));
+
+
+        $('.tab_box_element_').on('click', function () {
+
+            $('.tab_box_element_').removeClass('tab_active_');
+
+
+            $(this).addClass('tab_active_');
+
+
+            const tabId = $(this).attr('rel');
+            $('.tab_content').hide();
+            $('#' + tabId).show();
+        });
+
+        $(".item-clause-all").click(function () {
+            if ($(this).hasClass("click")) {
+                $(this).removeClass("click");
+                $('.item-clause-item').each(function () {
+                    $(this).removeClass("acti");
+                    $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
+                })
+            } else {
+                $(this).addClass("click");
+                $('.item-clause-item').each(function () {
+                    $(this).addClass("acti");
+                    $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
+                })
+            }
+        });
+
+        $(".item-clause-item").click(function () {
+            if ($(this).hasClass("acti")) {
+                $(this).removeClass("acti");
+                $(this).find("img").attr("src", "/uploads/icons/form_check_icon.png");
+            } else {
+                $(this).addClass("acti");
+                $(this).find("img").attr("src", "/images/btn/clause-check-black.png");
+            }
+
+            var allHaveActi = true;
+
+            $('.item-clause-item').each(function () {
+                if (!$(this).hasClass('acti')) {
+                    allHaveActi = false;
+                    return false;
+                }
+            });
+            if (allHaveActi) {
+                $(".item-clause-all").addClass("click")
+            } else {
+                $(".item-clause-all").removeClass("click")
+            }
+        });
+
+        $("input[name='radio_phone'").change(function () {
+            if ($(this).val() == 'kor') {
+                $(".phone_kor").attr("disabled", false).eq(0).focus();
+                $(".phone_thai").attr("disabled", true);
+            } else {
+                $(".phone_thai").attr("disabled", false).focus();
+                $(".phone_kor").attr("disabled", true);
+            }
+        })
+    });
+
+    function handleEmail(email) {
+        if (email == '1') {
+            $("#email_2").val('').prop('readonly', false).focus();
+        } else {
+            $("#email_2").val(email).prop('readonly', true);
+        }
+    }
+</script>
 <script>
     function closePopup() {
         $(".popup_wrap").hide();

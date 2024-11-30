@@ -38,7 +38,7 @@
             <div class="body_inner">
                 <div class="container-card">
                     <div class="">
-                        <div class="card-left">
+                        <div class="card-left card-left2">
                             <h3 class="title-main-c">
                                 예약확정서 정보 입력
                             </h3>
