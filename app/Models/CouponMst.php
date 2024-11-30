@@ -75,4 +75,9 @@ class CouponMst extends Model
 
         return $this->update($id, $filteredData);
     }
+
+    public function deleteData($id)
+    {
+        return $this->delete($id);
+    }
 }

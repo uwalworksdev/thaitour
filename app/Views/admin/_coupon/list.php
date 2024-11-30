@@ -19,9 +19,7 @@
                             </a>
                         </li>
                     </ul>
-
                 </div>
-
             </div><!-- // inner -->
 
         </header><!-- // headerContainer -->
@@ -31,14 +29,12 @@
             <div class="listWrap">
                 <!-- 안내 문구 필요시 구성 //-->
 
-
                 <div class="listTop">
                     <div class="left">
                         <p class="schTxt">■ 총 <?= $nTotalCount ?>개의 목록이 있습니다.</p>
                     </div>
 
                 </div><!-- // listTop -->
-
 
                 <form name="frm" id="frm">
                     <div class="listBottom">
@@ -148,7 +144,6 @@
 
                 <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_coupon/list') . "?search_category=$search_category&search_name=$search_name&pg=") ?>
 
-
                 <div id="headerContainer">
 
                     <div class="inner">
@@ -158,11 +153,13 @@
 
                             <ul class="last">
 
-                                <li><a href="coupon_setting_write" class="btn btn-primary"><span
-                                                class="glyphicon glyphicon-pencil"></span> <span
-                                                class="txt">신규 등록</span></a></li>
+                                <li>
+                                    <a href="coupon_setting_write" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-pencil"></span> 
+                                        <span class="txt">신규 등록</span>
+                                    </a>
+                                </li>
                             </ul>
-
                         </div>
 
                     </div><!-- // inner -->
@@ -171,7 +168,6 @@
             </div><!-- // listWrap -->
 
         </div><!-- // contents -->
-
 
     </div><!-- 인쇄 영역 끝 //-->
 </div><!-- // container -->
@@ -190,60 +186,21 @@
 
     }
 
-    function SELECT_DELETE() {
-        if ($(".code_idx").is(":checked") == false) {
-            alert_("삭제할 내용을 선택하셔야 합니다.");
-            return;
-        }
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-            return;
-        }
-
-        $("#ajax_loader").removeClass("display-none");
-
-        $.ajax({
-            url: "del.php",
-            type: "POST",
-            data: $("#frm").serialize(),
-            error: function (request, status, error) {
-                //통신 에러 발생시 처리
-                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                $("#ajax_loader").addClass("display-none");
-            }
-            , complete: function (request, status, error) {
-//				$("#ajax_loader").addClass("display-none");
-            }
-            , success: function (response, status, request) {
-                if (response == "OK") {
-                    alert_("정상적으로 삭제되었습니다.");
-                    location.reload();
-                    return;
-                } else {
-                    alert(response);
-                    alert_("오류가 발생하였습니다!!");
-                    return;
-                }
-            }
-        });
-
-    }
-
-    function del_it(code_idx) {
+    function del_it(idx) {
         if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.")) {
-            handleDel(code_idx);
+            handleDel(idx);
         }
     }
 
-    async function handleDel(code_idx) {
-        console.log(code_idx)
-        let uri = `<?= route_to('admin.operator.coupon_setting_del') ?>`;
+    async function handleDel(idx) {
+        let uri = `<?= route_to('admin.coupon.delete') ?>`;
 
         $("#ajax_loader").removeClass("display-none");
 
         $.ajax({
             url: uri,
             type: "POST",
-            data: "idx[]=" + code_idx,
+            data: "idx[]=" + idx,
             async: false,
             cache: false,
             error: function (request, status, error) {
@@ -254,42 +211,11 @@
             , success: function (response, status, request) {
                 $("#ajax_loader").addClass("display-none");
                 alert("정상적으로 삭제되었습니다.");
-                window.location.href = '/AdmMaster/_operator/coupon_setting';
+                window.location.href = '/AdmMaster/_coupon/list';
                 return;
             }
         });
     }
-
-    function del_it2(code_idx) {
-
-        if (confirm("삭제 하시겠습니까?\n삭제후에는 복구가 불가능합니다.") == false) {
-            return;
-        }
-        $("#ajax_loader").removeClass("display-none");
-        $.ajax({
-            url: "coupon_setting_del2.php",
-            type: "POST",
-            data: "idx[]=" + code_idx,
-            error: function (request, status, error) {
-                //통신 에러 발생시 처리
-                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                $("#ajax_loader").addClass("display-none");
-            }
-            , success: function (response, status, request) {
-                if (response == "OK") {
-                    alert("정상적으로 삭제되었습니다.");
-                    location.reload();
-                    return;
-                } else {
-                    alert(response);
-                    // alert("오류가 발생하였습니다!!");
-                    return;
-                }
-            }
-        });
-
-    }
-
 
 </script>
 
