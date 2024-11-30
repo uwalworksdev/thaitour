@@ -255,7 +255,48 @@
                                                     <option value="">옵션 선택</option>
                                                 </select>
                                             </div>
+                                        <div class="list_schedule_" id="option_list_">
+                                            <?php
+                                            if (isset($data['option_idx'])) {
+                                                $num = count($data['option_idx']);
+                                                for ($i = 0; $i < $num; $i++) {
+                                                    $item = $data['option_idx'][$i];
+                                                    ?>
+                                                    <div class="schedule cus-count-input" id="schedule_<?= $item ?>">
+                                                        <div class="wrap-text">
+                                                            <span>옵션</span>
+                                                            <p><?= $data['option_name'][$i] ?></p>
+                                                        </div>
+                                                        <div class="wrap-btn opt_count_box count_box flex__c">
+                                                            <img onclick="minusQty(this)" class="minusQty"
+                                                                src="/images/sub/minus-ic.png"
+                                                                alt="">
+                                                            <span>
+                                                            <input style="text-align: center;" type="text"
+                                                                class="form-control input_qty" name="option_qty[]"
+                                                                data-price="<?= $data['option_price'][$i] ?>"
+                                                                id="input_qty" readonly value="<?= $data['option_qty'][$i] ?>">
+                                                            </span>
+                                                            <img onclick="plusQty(this)" class="plusQty"
+                                                                src="/images/sub/plus-ic.png"
+                                                                alt="">
+                                                        </div>
+                                                        <div class="" style="display: none">
+                                                            <input type="hidden" name="option_idx[]" value="<?= $item ?>">
+                                                            <input type="hidden" name="option_name[]"
+                                                                value="<?= $data['option_name'][$i] ?>">
+                                                            <input type="hidden" name="option_price[]"
+                                                                value="<?= $data['option_price'][$i] ?>">
+                                                            <input type="hidden" name="option_tot[]" value="0">
+                                                            <input type="hidden" name="option_cnt[]" value="0">
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </div>
+                                    </div>
                                 </form>
                             <div class="form-below-calendar">
                                 <label class="lb-18" for="">예약시간</label>
@@ -750,63 +791,86 @@
         }
 
         function sel_option(code_idx) {
-            let url = `<?= route_to('api.product.sel_option') ?>`;
-            let idx = code_idx.split("|")[0];
+                let url = `<?= route_to('api.product.sel_option') ?>`;
+                let idx = code_idx.split("|")[0];
 
-            let moption = $("#moption").val();
+                let moption = $("#moption").val();
 
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: {
-                    "idx": idx,
-                    "moption": moption
-                },
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    let parent_name = data.parent_name;
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        "idx": idx,
+                        "moption": moption
+                    },
+                    async: false,
+                    cache: false,
+                    success: function (data, textStatus) {
+                        let parent_name = data.parent_name;
 
-                    let option_name = data.option_name;
-                    let option_price = data.option_price;
-                    let idx = data.idx;
-                    let option_tot = data.option_tot ?? 0;
-                    let option_cnt = data.option_cnt;
+                        let option_name = data.option_name;
+                        let option_price = data.option_price;
+                        let idx = data.idx;
+                        let option_tot = data.option_tot ?? 0;
+                        let option_cnt = data.option_cnt;
 
-                    let htm_ = `<div class="schedule" id="schedule_${idx}">
-                                        <div class="wrap-text">
-                                            <span>${parent_name}</span>
-                                            <p>${option_name}</p>
+                        console.log(option_name);
+                        console.log(option_price);
+                        console.log(idx);
+
+                        let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" style="margin-top: 20px">
+                                            <div class="wrap-text">
+                                                <span>${parent_name}</span>
+                                                <p>${option_name}</p>
+                                            </div>
+                                            <div class="wrap-btn opt_count_box count_box flex__c">
+                                                <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
+                                                <input style="text-align: center; display: block; width: 56px" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
+                                                            name="option_qty[]" id="input_qty" value="1">
+                                                <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
+                                            </div>
                                         </div>
-                                        <div class="wrap-btn">
-                                            <img onclick="minusQty(this)" class="minusQty" src="/images/sub/minus-ic.png" alt="">
-                                            <span>
-                                                <input style="text-align: center" data-price="${option_price}" readonly type="text" class="form-control input_qty"
-                                                        name="option_qty[]" id="input_qty" value="1">
-                                            </span>
-                                            <img onclick="plusQty(this)" class="plusQty" src="/images/sub/plus-ic.png" alt="">
-                                        </div>
+
+                                    <div class="" style="display: none">
+                                            <input type="hidden" name="option_name[]" value="${option_name}">
+                                            <input type="hidden" name="option_idx[]" value="${idx}">
+                                            <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                            <input type="hidden" name="option_price[]" value="${option_price}">
+                                            <input type="hidden" name="option_cnt[]" value="${option_cnt}">
                                     </div>
+                                </li>`;
 
-                                <div class="" style="display: none">
-                                        <input type="hidden" name="option_name[]" value="${option_name}">
-                                        <input type="hidden" name="option_idx[]" value="${idx}">
-                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
-                                        <input type="hidden" name="option_price[]" value="${option_price}">
-                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                                </div>
-                            </li>`;
-
-                    let sel_option_ = $('#schedule_' + idx);
-                    if (!sel_option_.length > 0) {
-                        $("#option_list_").append(htm_);
+                        let sel_option_ = $('#schedule_' + idx);
+                        if (!sel_option_.length > 0) {
+                            $("#option_list_").append(htm_);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                     }
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                });
+            }
+
+            function minusQty(el) {
+                let inp = $(el).parent().find('input.input_qty');
+
+                let num = inp.val();
+                if (Number(num) > 1) {
+                    num = Number(num) - 1;
+                    inp.val(num);
+                } else {
+                    if (confirm('선택 항목을 지우시겠습니까?')) {
+                        $(el).closest('.schedule').remove();
+                    }
                 }
-            });
-        }
+            }
+
+            function plusQty(el) {
+                let inp = $(el).parent().find('input.input_qty');
+                let num = inp.val();
+                num = Number(num) + 1;
+                inp.val(num);
+            }
 
             document.addEventListener('DOMContentLoaded', function() {
                     let currentToursIdx = null;
@@ -986,14 +1050,17 @@
                     let productPrice = null;
                     let productPriceBaht = null;
                     const currentDate = new Date();
+                    currentDate.setHours(0, 0, 0, 0);
                     let selectedDate = null;
+                    let validDays = []
 
-                    const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDays) => {
+                    const setTourDatesAndPrice = (startDate, endDate, price, priceBaht, validDaysParam) => {
                         s_date = new Date(startDate);
                         e_date = new Date(endDate);
                         productPrice = price;
                         productPriceBaht = priceBaht;
-                        renderCalendar(validDays);
+                        validDays = validDaysParam; 
+                        renderCalendar(validDays); 
                     };
 
                     const initializeDefaultTour = () => {
@@ -1016,8 +1083,12 @@
 
                     const renderCalendar = (validDays) => {
                         $calendarDays.empty();
+
                         const month = currentDate.getMonth();
                         const year = currentDate.getFullYear();
+
+                        const currentDateInMonth = new Date(year, month, currentDate.getDate());
+                        currentDateInMonth.setHours(0, 0, 0, 0); 
 
                         const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
                         $monthYear.text(`${year}년 ${monthNames[month]}`);
@@ -1032,14 +1103,25 @@
                         for (let day = 1; day <= lastDate; day++) {
                             const dayString = day.toString().padStart(2, '0');
                             const $dayDiv = $('<div/>').text(dayString).addClass('day');
-                            const date = new Date(year, month, day);
+                            let date = new Date(year, month, day);
+                            
+                            date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-                            if (date < currentDate) {
-                                $dayDiv.addClass('disabled').append(`<p>예약마감</p>`); 
-                            } else if (date < s_date || date > e_date || !validDays.includes(date.getDay())) {
+                            const isWithinDateRange = date >= s_date && date <= e_date;
+                            const isValidDay = validDays.includes(date.getDay());
+
+                            if (date.toISOString() < currentDateInMonth.toISOString()) {
+                                $dayDiv.addClass('disabled').append(`<p>예약마감</p>`);
+                            } else if (!isWithinDateRange || !isValidDay) {
                                 $dayDiv.addClass('disabled').append("<p>예약마감</p>");
                             } else {
-                                $dayDiv.addClass('selectable').html(`<p class="selectable-day">${dayString}<p class="price1">${number_format(productPrice)}만원</p><p class="price2">(${number_format(productPriceBaht)}바트)</p></p>`);
+                                $dayDiv.addClass('selectable').html(`
+                                    <p class="selectable-day">
+                                        ${dayString}
+                                        <p class="price1">${number_format(productPrice)}만원</p>
+                                        <p class="price2">(${number_format(productPriceBaht)}바트)</p>
+                                    </p>
+                                `);
 
                                 $dayDiv.click(() => {
                                     $('.day').removeClass('active');
@@ -1071,26 +1153,32 @@
                         const tourEndDate = tourDateElement.data('end-date');
 
                         const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
-                        adultTotalPrice = parseFloat(tourPriceText);
                         const tourPrices = parseFloat(tourPriceText) / 10000;
                         const tourPrice = parseFloat(tourPrices.toFixed(1));
 
-                        const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, ''); 
+                        const tourPriceTextBaht = tourCard.find('.ps-left').text().trim().replace(/,/g, '');
                         const tourPriceBaht = parseFloat(tourPriceTextBaht);
 
-                        const validDays = $(this).data('valid-days').split(',').map(Number);
-                        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDays);
+                        const validDaysParam = $(this).data('valid-days').split(',').map(Number);
+                        setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDaysParam);
                     });
 
                     $prevMonthBtn.click(() => {
                         currentDate.setMonth(currentDate.getMonth() - 1);
-                        renderCalendar();
+                        currentDate.setDate(1); 
+                        renderCalendar(validDays);
                     });
 
                     $nextMonthBtn.click(() => {
                         currentDate.setMonth(currentDate.getMonth() + 1);
-                        renderCalendar();
+                        currentDate.setDate(1); 
+                        renderCalendar(validDays);
                     });
+
+                    const getValidDaysForMonth = (date) => {
+
+                        return validDays; 
+                    };
 
                     function checkDateSelected() {
                         if (!selectedDate) {
