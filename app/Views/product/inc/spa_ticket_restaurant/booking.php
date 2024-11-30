@@ -89,78 +89,100 @@
                             </script>
                         </div>
 
-                        <div class="card-left card-left-2" style="display:  none">
+                        <div class="card-left card-left-2">
                             <h3 class="title-main-c">
                                 고객정보
                             </h3>
                             <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
-                            <?php
 
-                            $numAdultQty = 0;
-                            $s_station_arr = [];
-                            foreach ($adultQty as $key => $num) {
-                                $numAdultQty += intval($num);
-                                for ($i = 1; $i <= intval($num); $i++) {
-                                    $s_station_arr[] = $s_station[$key];
-                                }
-                            }
-
-                            for ($i = 1; $i <= $numAdultQty; $i++) {
-                                ?>
-                                <h3 class="title-sub-c mt-30">성인<?= $i ?> <span class="text_divider"></span> <?=$s_station_arr[$i - 1]?></h3>
-                                <div class="form-container" data-group="group<?= $i ?>">
-                                    <div class="con-form mb-40">
-                                        <div class="parent-form-group">
-                                            <div class="form-group">
-                                                <label for="first-a-name-<?= $i ?>">영문 이름(First Name) *</label>
-                                                <input type="text" id="first-a-name-<?= $i ?>"
-                                                       name="order_a_first_name[]"
-                                                       placeholder="영어로 작성해주세요."/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="last-a-name-<?= $i ?>">영문 성(Last Name) *</label>
-                                                <input type="text" id="last-a-name-<?= $i ?>"
-                                                       name="order_a_last_name[]"
-                                                       placeholder="영어로 작성해주세요."/>
-                                            </div>
+                            <div class="form-container" data-group="group0">
+                                <div class="con-form mb-40">
+                                    <div class="parent-form-group">
+                                        <div class="form-group">
+                                            <label for="first-a-name-1">영문 이름(First Name) *</label>
+                                            <input type="text" id="first-a-name-1"
+                                                   name="order_a_first_name[]"
+                                                   placeholder="영어로 작성해주세요."/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="last-a-name-1>">영문 성(Last Name) *</label>
+                                            <input type="text" id="last-a-name-1"
+                                                   name="order_a_last_name[]"
+                                                   placeholder="영어로 작성해주세요."/>
                                         </div>
                                     </div>
                                 </div>
-                                <?php
-                            }
-                            ?>
-                            <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
-                            <?php
+                            </div>
 
-                            $numChildrenQty = 0;
-                            foreach ($childrenQty as $num) {
-                                $numChildrenQty += intval($num);
-                            }
+                            <div class=""  style="display:  none">
+                               <?php
 
-                            for ($i = 1; $i <= $numChildrenQty; $i++) {
-                                ?>
-                                <h3 class="title-sub-c mt-30">아동<?= $i ?></h3>
-                                <div class="form-container" data-group="group<?= $i ?>">
-                                    <div class="con-form mb-40">
-                                        <div class="parent-form-group">
-                                            <div class="form-group">
-                                                <label for="first-c-name-<?= $i ?>">영문 이름(First Name) *</label>
-                                                <input type="text" id="first-c-name-<?= $i ?>>"
-                                                       name="order_c_first_name[]"
-                                                       placeholder="영어로 작성해주세요."/>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="last-c-name-<?= $i ?>">영문 성(Last Name) *</label>
-                                                <input type="text" id="last-c-name-<?= $i ?>"
-                                                       name="order_c_last_name[]"
-                                                       placeholder="영어로 작성해주세요."/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                            }
-                            ?>
+                               $numAdultQty = 0;
+                               $s_station_arr = [];
+                               foreach ($adultQty as $key => $num) {
+                                   $numAdultQty += intval($num);
+                                   for ($i = 1; $i <= intval($num); $i++) {
+                                       $s_station_arr[] = $s_station[$key];
+                                   }
+                               }
+
+                               for ($i = 1; $i <= $numAdultQty; $i++) {
+                                   ?>
+                                   <h3 class="title-sub-c mt-30">성인<?= $i ?> <span class="text_divider"></span> <?=$s_station_arr[$i - 1]?></h3>
+                                   <div class="form-container" data-group="group<?= $i ?>">
+                                       <div class="con-form mb-40">
+                                           <div class="parent-form-group">
+                                               <div class="form-group">
+                                                   <label for="first-a-name-<?= $i ?>">영문 이름(First Name) *</label>
+                                                   <input type="text" id="first-a-name-<?= $i ?>"
+                                                          name="order_a_first_name[]"
+                                                          placeholder="영어로 작성해주세요."/>
+                                               </div>
+                                               <div class="form-group">
+                                                   <label for="last-a-name-<?= $i ?>">영문 성(Last Name) *</label>
+                                                   <input type="text" id="last-a-name-<?= $i ?>"
+                                                          name="order_a_last_name[]"
+                                                          placeholder="영어로 작성해주세요."/>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <?php
+                               }
+                               ?>
+                               <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
+                               <?php
+
+                               $numChildrenQty = 0;
+                               foreach ($childrenQty as $num) {
+                                   $numChildrenQty += intval($num);
+                               }
+
+                               for ($i = 1; $i <= $numChildrenQty; $i++) {
+                                   ?>
+                                   <h3 class="title-sub-c mt-30">아동<?= $i ?></h3>
+                                   <div class="form-container" data-group="group<?= $i ?>">
+                                       <div class="con-form mb-40">
+                                           <div class="parent-form-group">
+                                               <div class="form-group">
+                                                   <label for="first-c-name-<?= $i ?>">영문 이름(First Name) *</label>
+                                                   <input type="text" id="first-c-name-<?= $i ?>>"
+                                                          name="order_c_first_name[]"
+                                                          placeholder="영어로 작성해주세요."/>
+                                               </div>
+                                               <div class="form-group">
+                                                   <label for="last-c-name-<?= $i ?>">영문 성(Last Name) *</label>
+                                                   <input type="text" id="last-c-name-<?= $i ?>"
+                                                          name="order_c_last_name[]"
+                                                          placeholder="영어로 작성해주세요."/>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <?php
+                               }
+                               ?>
+                           </div>
                         </div>
 
                         <div class="card-left card-left-2 coupon_area_" style="display:  none">
