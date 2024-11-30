@@ -893,6 +893,7 @@
         const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
 
         function getMonthDatesWithWeekdays(month, year) {
+			alert(month+' - '+year);
             const monthDatesWithWeekdays = [];
             const daysInMonth = new Date(year, month, 0).getDate();
 
