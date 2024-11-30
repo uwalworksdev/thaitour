@@ -482,10 +482,10 @@
                                                     <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <th>미팅 시간</th>
                                                 <td><input type="text" name="metting_time" id="metting_time"></td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <th>종료 후 내리실 곳</th>
                                                 <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
