@@ -491,7 +491,7 @@ class TourRegistController extends BaseController
     public function write_golf_price()
     {
 
-        $g_list_rows = 10;
+        $g_list_rows = 20;
         $pg = updateSQ($_GET["pg"] ?? "");
         if ($pg == "") $pg = 1;
 
@@ -515,19 +515,24 @@ class TourRegistController extends BaseController
 			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' order by golf_date, hole_cnt, hour asc";
         }
 		write_log($fsql);
-        $roresult = $this->connect->query($fsql);
-        $roresult = $roresult->getResultArray();
+        $roresult    = $this->connect->query($fsql);
+        $roresult    = $roresult->getResultArray();
+        $nTotalCount = $roresult->getNumRows();
 
 		// 첫 번째 값
 		$firstValue = reset($roresult); // 배열의 첫 번째 값
 		// 마지막 값
 		$lastValue  = end($roresult); // 배열의 마지막 값
 
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
         $data = [
             "num"          => $num,
             "nPage"        => $nPage,
             "pg"           => $pg,
-            "g_list_rows"  => 20,
+            "g_list_rows"  => $g_list_rows,
             "search_val"   => $search_val,
             "nTotalCount"  => $nTotalCount,
 			'roresult'     => $roresult,
