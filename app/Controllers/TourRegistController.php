@@ -519,6 +519,12 @@ class TourRegistController extends BaseController
 		$lastValue  = end($roresult); // 배열의 마지막 값
 
         $data = [
+            "num"          => $num,
+            "nPage"        => $nPage,
+            "pg"           => $pg,
+            "g_list_rows"  => 20,
+            "search_val"   => $search_val,
+            "nTotalCount"  => $nTotalCount,
 			'roresult'     => $roresult,
             'product_idx'  => $product_idx,
             'product_name' => $product_name,
