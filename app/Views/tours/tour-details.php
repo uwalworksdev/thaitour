@@ -312,7 +312,7 @@
                     </div>
                     <button type="button" class="primary-btn-calendar tour">견적/예약하기</button>
                 </div>
-                <form name="frm" id="frm" action="/product-tours/customer-form" class="section1">
+                <form name="frm" id="frm" action="/product-tours/customer-form" class="">
                     <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                     <input type="hidden" name="order_date" id="order_date" value="">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="">
@@ -328,10 +328,97 @@
                     <input type="hidden" name="time_line" id="time_line" value="">
                     <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                     <input type="hidden" name="final_discount" id="final_discount" value="">
+                    <div class="sec2-item-card card-left2" style="display: none">
+                        <h3 class="title-main-c">
+                            예약확정서 정보 입력
+                        </h3>
+                        <h3 class="title-sub-c">예약확정서 이름</h3>
+                        <div class="form-group mb-30">
+                            <label for="order_user_name">한국이름</label>
+                            <input type="text" id="order_user_name" name="order_user_name" required data-label="한국이름" placeholder="한국이름 작성해주세요." />
+                        </div>
+                        <div class="con-form mb-40">
+                            <div class="form-group">
+                                <label for="order_user_first_name_en">영문 이름(First Name) *</label>
+                                <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" required data-label="영문 이름" placeholder="영어로 작성해주세요." />
+                            </div>
+                            <div class="form-group">
+                                <label for="order_user_last_name_en">영문 성(Last Name) *</label>
+                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required data-label="영문 성" placeholder="영어로 작성해주세요." />
+                            </div>
+                        </div>
+                        <h3 class="title-sub-c">연락처</h3>
+                        <div class="form-group form-cus-select">
+                            <label for="passport-name2">이메일 주소*</label>
+                            <div class="cus-select-group">
+                                <input type="text" id="email_1" name="email_1" required data-label="이메일" placeholder="이메일" />
+                                <span>@</span>
+                                <div class="email-group">
+                                    <input type="text" name="email_2" id="email_2" required data-label="이메일" placeholder="" readonly>
+                                    <select id="" class="select-width" onchange="handleEmail(this.value)">
+                                        <option value="">선택</option>
+                                        <option value="naver.com">naver.com</option>
+                                        <option value="hanmail.net">hanmail.net</option>
+                                        <option value="hotmail.com">hotmail.com</option>
+                                        <option value="nate.com">nate.com</option>
+                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                        <option value="empas.com">empas.com</option>
+                                        <option value="dreamwiz.com">dreamwiz.com</option>
+                                        <option value="freechal.com">freechal.com</option>
+                                        <option value="lycos.co.kr">lycos.co.kr</option>
+                                        <option value="korea.com">korea.com</option>
+                                        <option value="gmail.com">gmail.com</option>
+                                        <option value="hanmir.com">hanmir.com</option>
+                                        <option value="paran.com">paran.com</option>
+                                        <option value="1">직접입력</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="phone_wrap">
+                            <div class="phone_wrap_item form-group spe">
+                                <p>
+                                    <input type="radio" id="test1" name="radio_phone" value="kor" checked>
+                                    <label for="test1">한국번호*</label>
+                                </p>
+                                <div class="form-group form-group-cus-4input">
+                                    <input name="phone_1" maxlength="3" class="phone_kor phone" type="text" id="phone_1" required data-label="한국번호" />
+                                    <span> - </span>
+                                    <input name="phone_2" maxlength="4" class="phone_kor phone" type="text" id="phone_2" required data-label="한국번호" />
+                                    <span> - </span>
+                                    <input name="phone_3" maxlength="4" class="phone_kor phone" type="text" id="phone_3" required data-label="한국번호" />
+                                </div>
+                            </div>
+                            <div class="phone_wrap_item form-group">
+                                <p>
+                                    <input type="radio" id="test2" name="radio_phone" value="thai">
+                                    <label for="test2">태국번호 *</label>
+                                </p>
+                                <div class="form-group">
+                                    <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text" id="phone_thai" disabled required data-label="한국번호" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mo_mt-30">
+                            <label for="passport-name2">여행시 현지 연락처</label>
+                            <div class="form-group-flex">
+                                <select id="car-time-hour" class="select-width">
+                                    <option value="01">TH</option>
+                                </select>
+                                <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
                     <div class="sec2-item-card order-form-page" style="display: none">
-                        <div class="btn_back flex__c">
-                            <img src="/images/ico/arrow_up_icon.png" alt="">
-                            <p>뒤로가기</p>
+                        <div class="top_order flex">
+                            <div class="btn_back flex__c">
+                                <img src="/images/ico/arrow_up_icon.png" alt="">
+                                <p>뒤로가기</p>
+                            </div>
+                            <div class="text_title">
+                                <h2><?= viewSQ($product['product_name']) ?></h2>
+                            </div>
                         </div>
                         <div class="container-calendar">
                             <div class="main-order-form">
@@ -367,7 +454,7 @@
                                             <th>예약시간</th>
                                             <td class="time_lines" id="time_lines"></td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>쿠폰 적용</th>
                                             <td class="flex_cou">
                                                 <div class="coupon">
@@ -384,7 +471,7 @@
                                                 </div>
                                                 <button type="button" class="btn_coupon_shows flex_c_c" onclick="">모두사용</button>
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                     </table>
                                     <div class="">
                                         <table class="info-table-order info-table-cus-padding">
@@ -1190,8 +1277,9 @@
 
                     $('.primary-btn-calendar.tour').click(function() {
                         if (checkDateSelected()) {
-                            $('.sec2-item-card.tour_calendar').hide();
-                            $('.sec2-item-card.order-form-page').show();
+                            $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').hide();
+                            $('.section1').hide();
+                            $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').show();
 
                             var selectedDateText = $('#days_choose').text();
                             var dateParts = selectedDateText.split('(')[0].trim();
@@ -1312,8 +1400,9 @@
             }
 
             $('.btn_back').click(function() {
-                $('.sec2-item-card.tour_calendar').show();
-                $('.sec2-item-card.order-form-page').hide();
+                $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').show();
+                $('.section1').show();
+                $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').hide();
             });
 
         </script>
