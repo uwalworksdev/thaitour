@@ -82,7 +82,7 @@
                         <p class="nav-item active" onclick="scrollToEl('section2')" style="cursor: pointer">상품선택</p>
                         <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">소개&시설</p>
                         <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">스파정책</p>
-                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(503)</p>
+                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(<?= $data_['total_review'] ?>)</p>
                         <p class="nav-item" onclick="scrollToEl('section8')" style="cursor: pointer">상품문의(FAQ)</p>
                     </div>
                 </div>

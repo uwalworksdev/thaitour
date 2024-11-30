@@ -18,8 +18,8 @@
         </div>
         <div class="rating-container">
             <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
-            <span><strong> 4.7</strong></span>
-            <span>생생리뷰 <strong>(124)</strong></span>
+            <span><strong> <?= $product['review_average'] ?></strong></span>
+            <span>생생리뷰 <strong>(<?= $product['total_review'] ?>)</strong></span>
         </div>
         <div class="list-icon only_mo">
             <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -82,6 +82,84 @@
     </div>
 
     <?php echo view("/product/inc/review_product"); ?>
+
+    <div class="qa-section">
+        <div class="custom-area-text">
+            <label class="custom-label" for="qa-comment">
+                            <textarea name="qa-comment" id="qa-comment"
+                                      class="custom-main-input-style textarea autoExpand"
+                                      placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
+            </label>
+            <div type="submit" class="qa-submit-btn">등록</div>
+        </div>
+
+
+        <ul class="qa-list">
+            <li class="qa-item">
+                <div class="qa-question">
+                    <span class="qa-number">124</span>
+                    <span class="qa-tag normal-style">답변대기중</span>
+                    <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                </div>
+                <div class="qa-meta text-gray">2024.07.24 09:39</div>
+            </li>
+            <li class="qa-item">
+                <div class="qa-question">
+                    <span class="qa-number">123</span>
+                    <span class="qa-tag">답변대기중</span>
+                    <p class="qa-text">결제 시점은 언제인가요?</p>
+                </div>
+                <div class="qa-meta text-gray">2024.07.24 09:39</div>
+            </li>
+            <li class="qa-item">
+                <div class="qa-question">
+                    <span class="qa-number">122</span>
+                    <span class="qa-tag normal-style">답변대기중</span>
+                    <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
+                </div>
+                <div class="qa-meta text-gray">2024.07.24 09:39</div>
+            </li>
+            <li class="qa-item">
+                <div class="qa-question">
+                    <span class="qa-number">121</span>
+                    <span class="qa-tag normal-style">답변대기중</span>
+                    <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
+                </div>
+                <div class="qa-meta text-gray">2024.07.24 09:39</div>
+            </li>
+            <li class="qa-item">
+                <div class="qa-question">
+                    <span class="qa-number">120</span>
+                    <span class="qa-tag">답변대기중</span>
+                    <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                </div>
+                <div class="qa-meta text-gray">2024.07.24 09:39</div>
+            </li>
+        </ul>
+        <div class="additional-info">
+            <span class="load-more">더투어랩</span>
+            <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
+            </p>
+            <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
+        </div>
+    </div>
+    <div class="pagination">
+        <a href="#" class="page-link">
+            <img src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+        </a>
+        <a href="#" class="page-link" style="margin-right: 24px;">
+            <img src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+        </a>
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link" style="margin-left: 24px;">
+            <img src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+        </a>
+        <a href="#" class="page-link">
+            <img src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+        </a>
+    </div>
 
     <script>
         let swiper = new Swiper(".swiper_product_list_", {

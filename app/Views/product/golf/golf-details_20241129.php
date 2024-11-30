@@ -70,7 +70,7 @@
                         <a class="short_link" data-target="pickup" href="#pickup">상품예약</a>
                         <a class="short_link" data-target="product_des" href="#product_des">상품설명</a>
                         <a class="short_link" data-target="location" href="#location">위치정보</a>
-                        <a class="short_link" data-target="review" href="#review">생생리뷰(<?= $product['total_review'] ?>개)</a>
+                        <a class="short_link" data-target="review" href="#review">생생리뷰(159개)</a>
                         <a class="short_link" data-target="qna" href="#qna">상품 Q&A</a>
                     </div>
                     <div class="btn-container">
@@ -313,10 +313,98 @@
             <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
             <span class="text-gray"><?= $product['addrs'] ?></span>
         </div>
-
-        <?php echo view("/product/inc/review_product"); ?>
-
         <div class="section6">
+            <h2 class="title-sec6" id="review"><span>생생리뷰</span>(516)</h2>
+            <div class="rating-content">
+                <div class="rating-left">
+                    <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
+                    <strong>4.5/5</strong>
+                </div>
+                <span class="rating-right">928개 고객기준</span>
+            </div>
+            <div class="list-label-tag">
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_1.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_1_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>페어웨이/그린</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
+                    </div>
+                </div>
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_2.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_2_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>플레이속도</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
+                    </div>
+                </div>
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_3.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_3_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>캐디</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
+                    </div>
+                </div>
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_4.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_4_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>부대시설</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
+                    </div>
+                </div>
+            </div>
+            <h2 class="sub-title-sec6">BEST 생생리뷰</h2>
+            <div class="card-list-flex">
+                <div class="card-list-recommemded">
+                    <div class="recommemded-item">
+                        <div class="container-head">
+                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
+                            <div class="name">
+                                <span>woras******</span>
+                                <p>2024.08.09</p>
+                            </div>
+                        </div>
+                        <h2>깨끗하고 편안하며 BTS chidlom과 가깝습니다.</h2>
+                        <p class="custom_paragraph">아침조식.. 가짓수는 좀 있으나 모든음식과 음료의 수준은 수준이하, 과일쥬스는 과일향 첨가한 물같고, 일본김밥은
+                            밥이
+                            떡같고 빵도
+                            질감이 너무 떨어지고. 무엇보다 모든 돼지 고기요리에서 냄새가 심하게 나서 3일머무는동안 힘들었음</p>
+                        <button type="button">더보기</button>
+                    </div>
+                    <div class="recommemded-item">
+                        <div class="container-head">
+                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
+                            <div class="name">
+                                <span>craz******</span>
+                                <p>2024.08.09</p>
+                            </div>
+                        </div>
+                        <h2>역시 신상호텔 답네요!</h2>
+                        <p class="custom_paragraph">역시 신상호텔 답네요! 공항과 접근성이 가장 좋은 이점이고요 부대시설도 아주 마음에 들었어요! 호캉스하기에 정말
+                            좋습니
+                            다!
+                            단점이라고 굳이 말하자면 호텔 주변이 조금 심심한거랑 조 식이 아주 조금 아쉬웠습니다! 그래도 다시 온다면 여기서</p>
+                        <button type="button">더보기</button>
+                    </div>
+                    <div class="recommemded-item">
+                        <div class="container-head">
+                            <img src="/uploads/icons/avatar_user_1.png" alt="avatar_user_1">
+                            <div class="name">
+                                <span>mh8******</span>
+                                <p>2024.08.09</p>
+                            </div>
+                        </div>
+                        <h2>I'M SO DAMN SLEEPY</h2>
+                        <p class="custom_paragraph">직원분들도 모두 친절하고, 숙소 위생상태도 합격이었습니다~ 위치는 지하철역과도 가깝고 주변에 마사지샵이나 스타벅스
+                            세븐일레븐도
+                            있어서 너무 좋았어요</p>
+                        <button type="button">더보기</button>
+                    </div>
+                </div>
+            </div>
             <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(516)</h2>
             <div class="qa-section">
                 <div class="custom-area-text">
@@ -415,6 +503,7 @@
                 </a>
             </div>
         </div>
+        </d>
     </div>
     <div id="dim"></div>
     <div id="popup_img" class="on">

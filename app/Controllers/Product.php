@@ -1284,7 +1284,7 @@ class Product extends BaseController
             $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
 
             $data = [
-                'product' => $hotel,
+                'hotel' => $hotel,
                 'fresult9' => $fresult9,
                 's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
@@ -1297,7 +1297,7 @@ class Product extends BaseController
                 'reviews' => $reviews ?? [],
                 'reviewCount' => $reviewCount ?? 0,
                 'room_categories' => $room_categories_convert,
-                'product_options' => $hotel_option_convert,
+                'hotel_options' => $hotel_option_convert,
                 'coupons' => $c_row,
                 'suggestHotel' => $suggestHotels,
             ];
@@ -2260,13 +2260,12 @@ class Product extends BaseController
 
         $productReview = $this->reviewModel->getProductReview($product_idx);
 
-        $product['total_review'] = $productReview['total_review'];
-        $product['review_average'] = $productReview['avg'];
+        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['review_average'] = $productReview['avg'];
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
         $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
-        $data['product'] = $product;
 
         return $this->renderView('tours/tour-details', $data);
     }
@@ -2489,13 +2488,12 @@ class Product extends BaseController
 
         $productReview = $this->reviewModel->getProductReview($product_idx);
 
-        $product['total_review'] = $productReview['total_review'];
-        $product['review_average'] = $productReview['avg'];
+        $data['product']['total_review'] = $productReview['total_review'];
+        $data['product']['review_average'] = $productReview['avg'];
 
         $data_reviews = $this->getReviewProduct($product_idx) ?? [];
         $data = array_merge($data, $data_reviews);
         $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
-        $data['product'] = $product;
 
         return $this->renderView('tours/location-info', $data);
     }
