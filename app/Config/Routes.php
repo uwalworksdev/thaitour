@@ -647,9 +647,7 @@ $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.produ
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 
-$routes->group("nicepay", static function ($routes) {
-	$routes->get('request', 'NicepayController::request');
-	$routes->post('return', 'NicepayController::return');
-});
+$routes->get('/nicepay/request', 'NicepayController::request');
+$routes->get('/nicepay/return',  'NicepayController::rturn');
 
 ?>
