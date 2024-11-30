@@ -79,7 +79,7 @@ $number_stars = $review["number_stars"];
                 <div class="view_content-top">
                     <ul class="line flex_b_c">
                         <li>
-                            <h4 class="font_bold_">여행형태: </h4>
+                            <h4 class="font_bold_">상품명: </h4>
                             <div class="view_content-info">
                                 <?= $product_name ?>
                             </div>
