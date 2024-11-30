@@ -26,7 +26,7 @@
             function maskString($str)
             {
                 $start = substr($str, 0, 3);
-                $masked = str_repeat('*', 6);
+                $masked = str_repeat('*', 3);
                 return $start . $masked;
             }
 

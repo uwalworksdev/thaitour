@@ -43,6 +43,20 @@ class ProductQna extends Model
     protected $beforeDelete = [];
     protected $afterDelete = [];
 
+    public function getList()
+    {
+        $sql = " select * from tbl_product_qna where status = 'Y' and parent_idx = null order by idx desc";
+        write_log($sql);
+        return $this->db->query($sql)->getResultArray();
+    }
+
+    public function getListChild($parent_idx)
+    {
+        $sql = " select * from tbl_product_qna where status = 'Y' and parent_idx = $parent_idx order by idx desc";
+        write_log($sql);
+        return $this->db->query($sql)->getResultArray();
+    }
+
     public function getById($idx)
     {
         $sql = " select * from tbl_product_qna where idx = '" . $idx . "'";
@@ -92,7 +106,7 @@ class ProductQna extends Model
     {
         $sql = " select * from tbl_product_qna where product_idx = '" . $product_idx . "' and status = 'Y' and parent_idx = null order by idx desc";
         write_log($sql);
-        $questions = $this->db->query($sql)->getRowArray();
+        $questions = $this->db->query($sql)->getResultArray();
 
         $questions = array_map(function ($item) use ($product_idx) {
             $rs = (array)$item;
@@ -101,7 +115,7 @@ class ProductQna extends Model
 
             $sql = " select * from tbl_product_qna where product_idx = '" . $product_idx . "' and status = 'Y' and parent_idx = $parent_idx order by idx desc";
             write_log($sql);
-            $answers = $this->db->query($sql)->getRowArray();
+            $answers = $this->db->query($sql)->getResultArray();
 
             $rs['answers'] = $answers;
 

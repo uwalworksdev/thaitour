@@ -311,6 +311,9 @@
                     </div>
                 </div>
                 <!-- // listWrap -->
+
+                <?= ipageListing($pg, $nPage, $g_list_rows, site_url('/AdmMaster/_tourRegist/write_golf_price?product_idx='.$product_idx) . $search_val . "&pg=") ?>
+
             </div>
             <!-- // contents -->
         </form>

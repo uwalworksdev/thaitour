@@ -490,6 +490,15 @@ class TourRegistController extends BaseController
 
     public function write_golf_price()
     {
+
+        $g_list_rows = 20;
+        $pg = $this->request->getVar("pg");
+        if ($pg == "") $pg = 1;
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
         $product_idx  = $this->request->getVar("product_idx");
         $s_date       = $this->request->getVar("s_date");
         $e_date       = $this->request->getVar("e_date");
@@ -505,13 +514,14 @@ class TourRegistController extends BaseController
         if($e_date) $o_edate = $e_date;
 
         if($s_date && $e_date) {
-			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' order by golf_date, hole_cnt, hour asc";
+			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' order by golf_date, hole_cnt, hour asc limit $nFrom, $g_list_rows";
         } else {
-			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' order by golf_date, hole_cnt, hour asc";
+			$fsql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' order by golf_date, hole_cnt, hour asc limit $nFrom, $g_list_rows";
         }
 		write_log($fsql);
-        $roresult = $this->connect->query($fsql);
-        $roresult = $roresult->getResultArray();
+        $result      = $this->connect->query($fsql);
+        $roresult    = $result->getResultArray();
+        $nTotalCount = $result->getNumRows();
 
 		// 첫 번째 값
 		$firstValue = reset($roresult); // 배열의 첫 번째 값
@@ -519,6 +529,12 @@ class TourRegistController extends BaseController
 		$lastValue  = end($roresult); // 배열의 마지막 값
 
         $data = [
+            "num"          => $num,
+            "nPage"        => $nPage,
+            "pg"           => $pg,
+            "g_list_rows"  => $g_list_rows,
+            "search_val"   => $search_val,
+            "nTotalCount"  => $nTotalCount,
 			'roresult'     => $roresult,
             'product_idx'  => $product_idx,
             'product_name' => $product_name,

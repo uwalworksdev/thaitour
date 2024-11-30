@@ -23,10 +23,11 @@ class AdminProductQnaController extends BaseController
     public function list()
     {
         try {
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => ""
-            ], 200);
+            $questions = $this->productQna->getList();
+
+            return view('', [
+                'questions' => $questions
+            ]);
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -35,13 +36,15 @@ class AdminProductQnaController extends BaseController
         }
     }
 
-    public function listByProduct()
+    public function listChild()
     {
         try {
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => ""
-            ], 200);
+            $parent_idx = $this->request->getVar('parent_idx');
+            $answers = $this->productQna->getListChild($parent_idx);
+
+            return view('', [
+                'answers' => $answers
+            ]);
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -53,10 +56,19 @@ class AdminProductQnaController extends BaseController
     public function detail()
     {
         try {
-            return $this->response->setJSON([
-                'result' => true,
-                'message' => ""
-            ], 200);
+            $idx = $this->request->getVar('idx');
+            $data = $this->productQna->getById($idx);
+
+            if (empty($data)) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "상세정보를 찾을 수 없습니다."
+                ])->setStatusCode(404);
+            }
+
+            return view('', [
+                'data' => $data
+            ]);
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
@@ -83,9 +95,22 @@ class AdminProductQnaController extends BaseController
     public function delete()
     {
         try {
+            $idx = $this->request->getVar('idx');
+            $data = $this->productQna->getById($idx);
+
+            if (empty($data)) {
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "상세정보를 찾을 수 없습니다."
+                ])->setStatusCode(404);
+            }
+
+            $this->productQna->updateData($idx, ['status' => 'N']);
+
             return $this->response->setJSON([
                 'result' => true,
-                'message' => ""
+                'message' => "성공적으로 삭제되었습니다.",
+                'data' => $data
             ], 200);
         } catch (\Exception $e) {
             return $this->response->setJSON([
