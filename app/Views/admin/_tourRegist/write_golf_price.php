@@ -100,7 +100,7 @@
                                 <td>
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;">
-                                            <?= $o_sdate ?> ~ <?= $o_edate ?>
+                                            <span style="right-margin:20px;"><?= $o_sdate ?> ~ <?= $o_edate ?></span>
                                         </div>
 
 										<div style="text-align:left;">
