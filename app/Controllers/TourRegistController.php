@@ -517,7 +517,7 @@ class TourRegistController extends BaseController
 		write_log($fsql);
         $roresult    = $this->connect->query($fsql);
         $roresult    = $roresult->getResultArray();
-        $nTotalCount = $roresult->getNumRows();
+        //$nTotalCount = $roresult->getNumRows();
 
 		// 첫 번째 값
 		$firstValue = reset($roresult); // 배열의 첫 번째 값
