@@ -329,9 +329,15 @@
                     <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                     <input type="hidden" name="final_discount" id="final_discount" value="">
                     <div class="sec2-item-card card-left2" style="display: none">
-                        <h3 class="title-main-c">
-                            예약확정서 정보 입력
-                        </h3>
+                        <div class="flex" style="gap: 20px">
+                            <h3 class="title-main-c">
+                                예약확정서 정보 입력
+                            </h3>
+                            <div class="bs-input-check">
+                                <input type="checkbox" id="save_id" name="save_id" value="Y">
+                                <label for="save_id"> 회원정보와 동일</label>
+                            </div>
+                        </div>
                         <h3 class="title-sub-c">예약확정서 이름</h3>
                         <div class="form-group mb-30">
                             <label for="order_user_name">한국이름</label>
