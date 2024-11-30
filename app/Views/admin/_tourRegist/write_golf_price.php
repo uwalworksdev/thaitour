@@ -112,7 +112,7 @@
                                         </div>
 
 										<div style="text-align:left;">
-											<input type="text" name="days" id="days" value="" style="text-align: center;background: white; width: 120px;">일
+											<input type="text" name="days" id="days" value="" numberonly="true" style="text-align:center;background: white; width: 120px;">일
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="assCharge" class="btn btn-primary">추가</a>
