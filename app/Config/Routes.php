@@ -289,10 +289,10 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_coupon", static function ($routes) {
-        $routes->get("list", "Admin\AdminCouponController::list", ['as' => "admin.coupon.list"]);
-        $routes->get("write", "Admin\AdminCouponController::write", ['as' => "admin.coupon.write"]);
-        $routes->post("write_ok", "Admin\AdminCouponController::write_ok", ['as' => "admin.coupon.write_ok"]);
-        $routes->post("delete", "Admin\AdminCouponController::delete", ['as' => "admin.coupon.delete"]);
+        $routes->get("list", "Admin\AdminCouponController::list");
+        $routes->get("write", "Admin\AdminCouponController::write");
+        $routes->post("write_ok", "Admin\AdminCouponController::write_ok");
+        $routes->post("del", "Admin\AdminCouponController::delete");
     });
 
     $routes->group("_operator", static function ($routes) {
@@ -647,7 +647,9 @@ $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.produ
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 
-$routes->get('/nicepay/request', 'NicepayController::request');
-$routes->post('/nicepay/return', 'NicepayController::return');
+$routes->group("nicepay", static function ($routes) {
+	$routes->get('request', 'NicepayController::request');
+	$routes->post('return', 'NicepayController::return');
+});
 
 ?>
