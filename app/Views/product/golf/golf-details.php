@@ -1,8 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-   
-<div class="content-sub-hotel-detail custom-golf-detail">
+
+    <div class="content-sub-hotel-detail custom-golf-detail">
     <div class="body_inner">
         <div>
             <form name="frm" id="frm" action="/product-golf/customer-form" class="section1">
@@ -12,15 +12,15 @@
                 <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                 <input type="hidden" id="total_price" value="">
                 <input type="hidden" id="total_price_baht" value="">
-                <?php foreach($golf_price as $price) { ?> 
-                <input type="hidden" id="firstDate"  value="<?=$price['golf_date']?>">
-                <input type="hidden" id="firstPrice" value="<?=$price['option_price']?>">
+                <?php foreach ($golf_price as $price) { ?>
+                    <input type="hidden" id="firstDate" value="<?= $price['golf_date'] ?>">
+                    <input type="hidden" id="firstPrice" value="<?= $price['option_price'] ?>">
                 <?php } ?>
- 				
+
                 <div class="title-container">
                     <h2><?= viewSQ($product['product_name']) ?></h2>
                     <div class="list-icon">
-                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web"> 
+                        <img src="/uploads/icons/print_icon.png" alt="print_icon" class="only_web">
                         <img src="/uploads/icons/print_icon_mo.png" alt="print_icon_mo" class="only_mo">
                         <img src="/uploads/icons/heart_icon.png" alt="heart_icon" class="only_web">
                         <img src="/uploads/icons/heart_icon_mo.png" alt="heart_icon_mo" class="only_mo">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="location-container">
                     <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                    <span><?=$product['addrs']?></span>
+                    <span><?= $product['addrs'] ?></span>
                 </div>
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
@@ -42,14 +42,22 @@
                         <img src="<?= $imgs[0] ?>" alt="<?= $img_names[0] ?>">
                     </div>
                     <div class="grid_2_2">
-                        <img class="grid_2_2_size" src="<?= $imgs[1] ?>" alt="<?= $img_names[1] ?>" style="<?= $imgs[1] == '' ? 'visibility: hidden' : '' ?>">
-                        <img class="grid_2_2_size" src="<?= $imgs[2] ?>" alt="<?= $img_names[2] ?>" style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
-                        <img class="grid_2_2_size" src="<?= $imgs[3] ?>" alt="<?= $img_names[3] ?>" style="<?= $imgs[3] == '' ? 'visibility: hidden' : '' ?>">
-                        <div class="grid_2_2_sub" style="position: relative; cursor: pointer;<?= $imgs[4] == '' ? 'visibility: hidden;' : '' ?>" onclick="img_pops('<?= $product['product_idx'] ?>')">
+                        <img class="grid_2_2_size" src="<?= $imgs[1] ?>" alt="<?= $img_names[1] ?>"
+                             style="<?= $imgs[1] == '' ? 'visibility: hidden' : '' ?>">
+                        <img class="grid_2_2_size" src="<?= $imgs[2] ?>" alt="<?= $img_names[2] ?>"
+                             style="<?= $imgs[2] == '' ? 'visibility: hidden' : '' ?>">
+                        <img class="grid_2_2_size" src="<?= $imgs[3] ?>" alt="<?= $img_names[3] ?>"
+                             style="<?= $imgs[3] == '' ? 'visibility: hidden' : '' ?>">
+                        <div class="grid_2_2_sub"
+                             style="position: relative; cursor: pointer;<?= $imgs[4] == '' ? 'visibility: hidden;' : '' ?>"
+                             onclick="img_pops('<?= $product['product_idx'] ?>')">
                             <img class="custom_button" src="<?= $imgs[4] ?>" alt="<?= $img_names[4] ?>">
-                            <div class="button-show-detail-image" style="<?= $imgs[5] == '' ? 'visibility: hidden' : '' ?>">
-                                <img class="only_web" src="/uploads/icons/image_detail_icon.png" alt="image_detail_icon">
-                                <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png" alt="image_detail_icon_m">
+                            <div class="button-show-detail-image"
+                                 style="<?= $imgs[5] == '' ? 'visibility: hidden' : '' ?>">
+                                <img class="only_web" src="/uploads/icons/image_detail_icon.png"
+                                     alt="image_detail_icon">
+                                <img class="only_mo" src="/uploads/icons/image_detail_icon_m.png"
+                                     alt="image_detail_icon_m">
                                 <span>사진 모두 보기</span>
                                 <span>(<?= count($imgs) - 5 ?>장)</span>
                             </div>
@@ -76,62 +84,67 @@
                 <h3 class="title-size-24" id="product_info">상품 정보</h3>
                 <table class="golf-table">
                     <thead>
-                        <tr>
-                            <th>더투어랩 평가 등급</th>
-                            <th>
-                                <div class="rating-list">
-                                    <?php if($info['star_level'] > 0) { ?><img src="/uploads/icons/star_icon.png" alt="star_icon"><?php } ?>
-                                    <?php if($info['star_level'] > 1) { ?><img src="/uploads/icons/star_icon.png" alt="star_icon"><?php } ?>
-                                    <?php if($info['star_level'] > 2) { ?><img src="/uploads/icons/star_icon.png" alt="star_icon"><?php } ?>
-                                    <?php if($info['star_level'] > 3) { ?><img src="/uploads/icons/star_icon.png" alt="star_icon"><?php } ?>
-                                    <?php if($info['star_level'] > 4) { ?><img src="/uploads/icons/star_icon.png" alt="star_icon"><?php } ?>
-                                </div>
-                            </th>
-                            <th>총홀수</th>
-                            <th><?=$info['holes_number']?></th>
-                            <th>휴무일</th>
-                            <th><?=$info['holidays']?></th>
-                        </tr>
+                    <tr>
+                        <th>더투어랩 평가 등급</th>
+                        <th>
+                            <div class="rating-list">
+                                <?php if ($info['star_level'] > 0) { ?><img src="/uploads/icons/star_icon.png"
+                                                                            alt="star_icon"><?php } ?>
+                                <?php if ($info['star_level'] > 1) { ?><img src="/uploads/icons/star_icon.png"
+                                                                            alt="star_icon"><?php } ?>
+                                <?php if ($info['star_level'] > 2) { ?><img src="/uploads/icons/star_icon.png"
+                                                                            alt="star_icon"><?php } ?>
+                                <?php if ($info['star_level'] > 3) { ?><img src="/uploads/icons/star_icon.png"
+                                                                            alt="star_icon"><?php } ?>
+                                <?php if ($info['star_level'] > 4) { ?><img src="/uploads/icons/star_icon.png"
+                                                                            alt="star_icon"><?php } ?>
+                            </div>
+                        </th>
+                        <th>총홀수</th>
+                        <th><?= $info['holes_number'] ?></th>
+                        <th>휴무일</th>
+                        <th><?= $info['holidays'] ?></th>
+                    </tr>
                     </thead>
                     <tbody class="text-gray">
-                        <tr>
-                            <td>시내에서 거리 및 이동기간</td>
-                            <td><?=$info['distance_from_center']?></td>
-                            <td>공항에서 거리 및 이동시간</td>
-                            <td><?=$info['distance_from_airport']?></td>
-                            <td>팀당 라운딩 인원</td>
-                            <td><?=$info['num_of_players']?></td>
-                        </tr>
-                        <tr>
-                            <td>전동카트</td>
-                            <td colspan="5"><?=$info['electric_car']?></td>
-                        </tr>
-                        <tr>
-                            <td>갤러리피</td>
-                            <td colspan="5"><?=$info['caddy']?></td>
-                        </tr>
-                        <tr>
-                            <td>장비렌탈</td>
-                            <td colspan="5"><?=$info['equipment_rent']?></td>
-                        </tr>
-                        <tr>
-                            <td>스포츠데이</td>
-                            <td colspan="5"><?=$info['sports_day']?></td>
-                        </tr>
+                    <tr>
+                        <td>시내에서 거리 및 이동기간</td>
+                        <td><?= $info['distance_from_center'] ?></td>
+                        <td>공항에서 거리 및 이동시간</td>
+                        <td><?= $info['distance_from_airport'] ?></td>
+                        <td>팀당 라운딩 인원</td>
+                        <td><?= $info['num_of_players'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>전동카트</td>
+                        <td colspan="5"><?= $info['electric_car'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>갤러리피</td>
+                        <td colspan="5"><?= $info['caddy'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>장비렌탈</td>
+                        <td colspan="5"><?= $info['equipment_rent'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>스포츠데이</td>
+                        <td colspan="5"><?= $info['sports_day'] ?></td>
+                    </tr>
                     </tbody>
                 </table>
                 <h3 id="pickup" class="title-size-24 text-parent">상품 예약<span>날짜 · 홀수 ·인원 ·시간대를 먼저 선택해 주세요.</span></h3>
                 <div class="calendar">
                     <div class="year">
                         <img src="/uploads/icons/year_prev_icon.png" alt="year_prev_icon" srcset="" id="prev_icon"
-                            class="only_web">
+                             class="only_web">
                         <img src="/uploads/icons/year_prev_icon_mo.png" alt="year_prev_icon" srcset="" id="prev_icon"
-                            class="only_mo">
+                             class="only_mo">
                         <span><span id="year"></span>년 <span id="month"></span>월</span>
                         <img src="/uploads/icons/year_next_icon.png" alt="next_icon" srcset="" id="next_icon"
-                            class="only_web">
+                             class="only_web">
                         <img src="/uploads/icons/year_next_icon_mo.png" alt="next_icon" srcset="" id="next_icon"
-                            class="only_mo">
+                             class="only_mo">
                     </div>
                     <div class="dates">
                         <div class="swiper-button-next swiper-button swiper-button-custom">
@@ -152,336 +165,344 @@
                     </div>
                 </div>
                 <div class="tag-con-below-calendar">
-                    <div class="item-tag">
-                        <span class="label">홀수</span>
-                        <div class="tag-list">
-                            <?php foreach($hole_cnt_arr as $hole) : ?>
-                                <span class="tag tag-js" data-tab="<?=$hole?>"><?=$hole?>홀</span>
-                            <?php endforeach; ?>
+                    <div class="flex" style="justify-content: space-between">
+                        <div class="item-tag">
+                            <span class="label">홀수</span>
+                            <div class="tag-list">
+                                <?php foreach ($hole_cnt_arr as $hole) : ?>
+                                    <span class="tag tag-js" data-tab="<?= $hole ?>"><?= $hole ?>홀</span>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-tag">
-                        <span class="label">인원</span>
-                        <select class="select_custom_ active_ cus-width" onchange="changePeople()" name="people_adult_cnt" id="people_adult_cnt">
-                            <option value="">선택해주세요.</option>
-                            <?php
-                            $min = floatval($product['minium_people_cnt']);
-                            $max = floatval($product['total_people_cnt']);
-                            for ($i = $min; $i <= $max; $i++) {
-                                echo '<option value="' . $i . '">' . $i . '인</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                        <div class="tag-list">
-                            <?php foreach($hour_arr as $hour) : ?>
-                                <span class="tag tag-js2" data-tab="<?=$hour?>"><?=$hour?>시</span>
-                                <!--span class="tag tag-js2" data-tab="06">06시</span>
-                                <span class="tag tag-js2" data-tab="07">07시</span>
-                                <span class="tag tag-js2" data-tab="08">08시</span>
-                                <span class="tag tag-js2" data-tab="09">09시</span>
-                                <span class="tag tag-js2" data-tab="10">10시</span>
-                                <span class="tag tag-js2" data-tab="11">11시</span>
-                                <span class="tag tag-js2" data-tab="12">12시</span>
-                                <span class="tag tag-js2" data-tab="13">13시</span>
-                                <span class="tag tag-js2" data-tab="14">14시</span>
-                                <span class="tag tag-js2" data-tab="15">14시</span>
-                                <span class="tag tag-js2" data-tab="16">16시</span-->
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="date-text-2">
-                    <div class="result_select">
-                        <p class="final_date"></p> / 
-                        <p class="final_hole">0</p><span>홀수</span> / 
-                        <p class="final_hour">00</p><span>시</span> / 
-                        <p class="final_people_cnt">0</p><span>인</span>
-                    </div>
-                    <p>※ 아래 요금은 1인당 가격입니다.</p>
-                </div>
-                <div class="card-content" id="final_option_list"></div>
-                <div class="section1-sub">
-                    <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
-                </div>
-                <div class="list-select-element">
-                    <?php foreach ($golfVehicles as $value) : ?>
-                        <div class="item-select">
-                            <span class="label"><?= $value['code_name'] ?></span>
-                            <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
-                            <select
-                                data-name="<?= $value['code_name'] ?>"
-                                data-price="<?= $value['price'] ?>"
-                                data-price_baht="<?= $value['price_baht'] ?>"
-                                class="vehicle_select select_custom_ active_ cus-width" 
-                                name="vehicle_cnt[]">
+                        <div class="item-tag">
+                            <span class="label">인원</span>
+                            <select class="select_custom_ active_ cus-width" onchange="changePeople()"
+                                    name="people_adult_cnt" id="people_adult_cnt">
                                 <option value="">선택해주세요.</option>
-                                <?php for($i = $value['min_cnt']; $i <= $value['max_cnt']; $i++) : ?>
-                                    <option value="<?= $i ?>"><?= $i ?>개</option>
-                                <?php endfor; ?>
+                                <?php
+                                $min = floatval($product['minium_people_cnt']);
+                                $max = floatval($product['total_people_cnt']);
+                                for ($i = $min; $i <= $max; $i++) {
+                                    echo '<option value="' . $i . '">' . $i . '인</option>';
+                                }
+                                ?>
                             </select>
                         </div>
-                    <?php endforeach; ?>
-                </div>
-                <div class="section2-sub">
-                    <div class="left-main">
-                        <h3 class="tit-left">피닉스 골드 골프 방콕 (구 · 수완나품 컨트리클럽) </h3>
-                        <p>
-                            <span class="l-label">일정</span>
-                            <span class="l-label2 final_date"></span>
-                        </p>
-                        <p>
-                            <span class="l-label">홀수</span>
-                            <span class="l-label2"><em class="final_hole">0</em>홀</span>
-                        </p>
-                        <p>
-                            <span class="l-label">티오프시간</span>
-                            <span class="l-label2"><em class="final_hour">00</em>시 <em class="final_minute">00</em>분</span>
-                        </p>
-                        <p>
-                            <span class="l-label">인원</span>
-                            <span class="l-label2"><em class="final_people_cnt">0</em>인</span>
-                        </p>
-                        <button class="btn-price-content-normal" type="button"
-                            onclick="showCouponPop()">쿠폰적용</button>
                     </div>
-                    <div class="right-main" id="booking_area">
-                        <div class="item-right">
-                            <div class="list-text">
-                                <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em>원
-                                (1인 <em id="final_option_price_baht">0</em>바트 X <em class="final_people_cnt">0</em>인)</p>
-                                <p><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
-                                <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
-                            </div>
-                            <span class="price-text text-gray"><em id="total_final_option_price">0</em>원 (<em id="total_final_option_price_baht">0</em>바트)</span>
-                        </div>
-                        <div class="vehicle_list_result" id="vehicle_list_result">
-                        </div>
-                        <div class="item-right cus-border">
-                            <p><span class="">쿠폰 적용</span></p>
-                            <span class="price-text">- <em id="final_discount">0</em>원 (<em id="final_discount_baht">0</em>바트)</span>
-                        </div>
-                        <div class="item-last-right">
-                            <p>합계</p>
-                            <p class="price-text"><em id="last_price">0</em><span>원(<em id="last_price_baht">0</em>바트)</span></p>
-                        </div>
-                        <button class="btn-price-content" type="button"
-                            onclick="handleSubmit()">예약하기</button>
+                    <div class="tag-list">
+                        <?php foreach ($hour_arr as $hour) : ?>
+                            <span class="tag tag-js2" data-tab="<?= $hour ?>"><?= $hour ?>시</span>
+                            <!--span class="tag tag-js2" data-tab="06">06시</span>
+                            <span class="tag tag-js2" data-tab="07">07시</span>
+                            <span class="tag tag-js2" data-tab="08">08시</span>
+                            <span class="tag tag-js2" data-tab="09">09시</span>
+                            <span class="tag tag-js2" data-tab="10">10시</span>
+                            <span class="tag tag-js2" data-tab="11">11시</span>
+                            <span class="tag tag-js2" data-tab="12">12시</span>
+                            <span class="tag tag-js2" data-tab="13">13시</span>
+                            <span class="tag tag-js2" data-tab="14">14시</span>
+                            <span class="tag tag-js2" data-tab="15">14시</span>
+                            <span class="tag tag-js2" data-tab="16">16시</span-->
+                        <?php endforeach; ?>
                     </div>
                 </div>
-            </form>
-            <h3 class="title-size-24" id="product_des">상품설명</h3>
-            <div class="container-big-text">
-                <?= viewSQ($product['tour_info']) ?>
+
+        </div>
+        <div class="date-text-2">
+            <div class="result_select">
+                <p class="final_date"></p> /
+                <p class="final_hole">0</p><span>홀수</span> /
+                <p class="final_hour">00</p><span>시</span> /
+                <p class="final_people_cnt">0</p><span>인</span>
             </div>
-            <h3 class="title-size-24" id="location">위치정보</h3>
-            <div id="map" style="width: 100%; height: 450px;"></div>
-            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-            <script>
-                var lat = '<?= $product['latitude'] ?>' || 13.7563;
-                var lng = '<?= $product['longitude'] ?>' || 100.5018;
-                var map = L.map('map').setView([lat, lng], 17);
-                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: 'The Tour Lab'
-                }).addTo(map);
-                L.marker([lat, lng]).addTo(map)
-            </script>
-            <div class="location-container">
-                <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
-                <span class="text-gray"><?= $product['addrs'] ?></span>
+            <p>※ 아래 요금은 1인당 가격입니다.</p>
+        </div>
+        <div class="card-content" id="final_option_list"></div>
+        <div class="section1-sub">
+            <h3 class="title-size-24 text-parent">골프장 왕복 픽업 차량<span>※선택 옵션입니다. 추가 원하시면 선택해 주세요.</span></h3>
+        </div>
+        <div class="list-select-element">
+            <?php foreach ($golfVehicles as $value) : ?>
+                <div class="item-select">
+                    <span class="label"><?= $value['code_name'] ?></span>
+                    <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
+                    <select
+                            data-name="<?= $value['code_name'] ?>"
+                            data-price="<?= $value['price'] ?>"
+                            data-price_baht="<?= $value['price_baht'] ?>"
+                            class="vehicle_select select_custom_ active_ cus-width"
+                            name="vehicle_cnt[]">
+                        <option value="">선택해주세요.</option>
+                        <?php for ($i = $value['min_cnt']; $i <= $value['max_cnt']; $i++) : ?>
+                            <option value="<?= $i ?>"><?= $i ?>개</option>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div class="section2-sub">
+            <div class="left-main">
+                <h3 class="tit-left">피닉스 골드 골프 방콕 (구 · 수완나품 컨트리클럽) </h3>
+                <p>
+                    <span class="l-label">일정</span>
+                    <span class="l-label2 final_date"></span>
+                </p>
+                <p>
+                    <span class="l-label">홀수</span>
+                    <span class="l-label2"><em class="final_hole">0</em>홀</span>
+                </p>
+                <p>
+                    <span class="l-label">티오프시간</span>
+                    <span class="l-label2"><em class="final_hour">00</em>시 <em class="final_minute">00</em>분</span>
+                </p>
+                <p>
+                    <span class="l-label">인원</span>
+                    <span class="l-label2"><em class="final_people_cnt">0</em>인</span>
+                </p>
+                <button class="btn-price-content-normal" type="button"
+                        onclick="showCouponPop()">쿠폰적용
+                </button>
             </div>
-            <div class="section6">
-                <h2 class="title-sec6" id="review"><span>생생리뷰</span>(516)</h2>
-                <div class="rating-content">
-                    <div class="rating-left">
-                        <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
-                        <strong>4.5/5</strong>
+            <div class="right-main" id="booking_area">
+                <div class="item-right">
+                    <div class="list-text">
+                        <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em>원
+                            (1인 <em id="final_option_price_baht">0</em>바트 X <em class="final_people_cnt">0</em>인)</p>
+                        <p><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
+                        <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
                     </div>
-                    <span class="rating-right">928개 고객기준</span>
+                    <span class="price-text text-gray"><em id="total_final_option_price">0</em>원 (<em
+                                id="total_final_option_price_baht">0</em>바트)</span>
                 </div>
-                <div class="list-label-tag">
-                    <div class="label-tag-item">
-                        <img class="square only_web" src="/uploads/sub/golf_item_rated_1.png" alt="golf_item_rated_1">
-                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_1_mo.png" alt="golf_item_rated_1">
-                        <div class="label-tag-item-text">
-                            <strong>페어웨이/그린</strong>
-                            <p><strong>4.2</strong> 최고좋음</p>
-                        </div>
-                    </div>
-                    <div class="label-tag-item">
-                        <img class="square only_web" src="/uploads/sub/golf_item_rated_2.png" alt="golf_item_rated_1">
-                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_2_mo.png" alt="golf_item_rated_1">
-                        <div class="label-tag-item-text">
-                            <strong>플레이속도</strong>
-                            <p><strong>4.2</strong> 최고좋음</p>
-                        </div>
-                    </div>
-                    <div class="label-tag-item">
-                        <img class="square only_web" src="/uploads/sub/golf_item_rated_3.png" alt="golf_item_rated_1">
-                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_3_mo.png" alt="golf_item_rated_1">
-                        <div class="label-tag-item-text">
-                            <strong>캐디</strong>
-                            <p><strong>4.2</strong> 최고좋음</p>
-                        </div>
-                    </div>
-                    <div class="label-tag-item">
-                        <img class="square only_web" src="/uploads/sub/golf_item_rated_4.png" alt="golf_item_rated_1">
-                        <img class="square only_mo" src="/uploads/sub/golf_item_rated_4_mo.png" alt="golf_item_rated_1">
-                        <div class="label-tag-item-text">
-                            <strong>부대시설</strong>
-                            <p><strong>4.2</strong> 최고좋음</p>
-                        </div>
-                    </div>
+                <div class="vehicle_list_result" id="vehicle_list_result">
                 </div>
-                <h2 class="sub-title-sec6">BEST 생생리뷰</h2>
-                <div class="card-list-flex">
-                    <div class="card-list-recommemded">
-                        <div class="recommemded-item">
-                            <div class="container-head">
-                                <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
-                                <div class="name">
-                                    <span>woras******</span>
-                                    <p>2024.08.09</p>
-                                </div>
-                            </div>
-                            <h2>깨끗하고 편안하며 BTS chidlom과 가깝습니다.</h2>
-                            <p class="custom_paragraph">아침조식.. 가짓수는 좀 있으나 모든음식과 음료의 수준은 수준이하, 과일쥬스는 과일향 첨가한 물같고, 일본김밥은
-                                밥이
-                                떡같고 빵도
-                                질감이 너무 떨어지고. 무엇보다 모든 돼지 고기요리에서 냄새가 심하게 나서 3일머무는동안 힘들었음</p>
-                            <button type="button">더보기</button>
-                        </div>
-                        <div class="recommemded-item">
-                            <div class="container-head">
-                                <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
-                                <div class="name">
-                                    <span>craz******</span>
-                                    <p>2024.08.09</p>
-                                </div>
-                            </div>
-                            <h2>역시 신상호텔 답네요!</h2>
-                            <p class="custom_paragraph">역시 신상호텔 답네요! 공항과 접근성이 가장 좋은 이점이고요 부대시설도 아주 마음에 들었어요! 호캉스하기에 정말
-                                좋습니
-                                다!
-                                단점이라고 굳이 말하자면 호텔 주변이 조금 심심한거랑 조 식이 아주 조금 아쉬웠습니다! 그래도 다시 온다면 여기서</p>
-                            <button type="button">더보기</button>
-                        </div>
-                        <div class="recommemded-item">
-                            <div class="container-head">
-                                <img src="/uploads/icons/avatar_user_1.png" alt="avatar_user_1">
-                                <div class="name">
-                                    <span>mh8******</span>
-                                    <p>2024.08.09</p>
-                                </div>
-                            </div>
-                            <h2>I'M SO DAMN SLEEPY</h2>
-                            <p class="custom_paragraph">직원분들도 모두 친절하고, 숙소 위생상태도 합격이었습니다~ 위치는 지하철역과도 가깝고 주변에 마사지샵이나 스타벅스
-                                세븐일레븐도
-                                있어서 너무 좋았어요</p>
-                            <button type="button">더보기</button>
-                        </div>
+                <div class="item-right cus-border">
+                    <p><span class="">쿠폰 적용</span></p>
+                    <span class="price-text">- <em id="final_discount">0</em>원 (<em
+                                id="final_discount_baht">0</em>바트)</span>
+                </div>
+                <div class="item-last-right">
+                    <p>합계</p>
+                    <p class="price-text"><em id="last_price">0</em><span>원(<em id="last_price_baht">0</em>바트)</span>
+                    </p>
+                </div>
+                <button class="btn-price-content" type="button"
+                        onclick="handleSubmit()">예약하기
+                </button>
+            </div>
+        </div>
+        </form>
+        <h3 class="title-size-24" id="product_des">상품설명</h3>
+        <div class="container-big-text">
+            <?= viewSQ($product['tour_info']) ?>
+        </div>
+        <h3 class="title-size-24" id="location">위치정보</h3>
+        <div id="map" style="width: 100%; height: 450px;"></div>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+        <script>
+            var lat = '<?= $product['latitude'] ?>' || 13.7563;
+            var lng = '<?= $product['longitude'] ?>' || 100.5018;
+            var map = L.map('map').setView([lat, lng], 17);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'The Tour Lab'
+            }).addTo(map);
+            L.marker([lat, lng]).addTo(map)
+        </script>
+        <div class="location-container">
+            <img src="/uploads/icons/location_blue_icon.png" alt="location_blue_icon">
+            <span class="text-gray"><?= $product['addrs'] ?></span>
+        </div>
+        <div class="section6">
+            <h2 class="title-sec6" id="review"><span>생생리뷰</span>(516)</h2>
+            <div class="rating-content">
+                <div class="rating-left">
+                    <img src="/uploads/icons/start_big_icon.png" alt="start_big_icon">
+                    <strong>4.5/5</strong>
+                </div>
+                <span class="rating-right">928개 고객기준</span>
+            </div>
+            <div class="list-label-tag">
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_1.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_1_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>페어웨이/그린</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
                     </div>
                 </div>
-                <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(516)</h2>
-                <div class="qa-section">
-                    <div class="custom-area-text">
-                        <label class="custom-label" for="qa-comment">
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_2.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_2_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>플레이속도</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
+                    </div>
+                </div>
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_3.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_3_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>캐디</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
+                    </div>
+                </div>
+                <div class="label-tag-item">
+                    <img class="square only_web" src="/uploads/sub/golf_item_rated_4.png" alt="golf_item_rated_1">
+                    <img class="square only_mo" src="/uploads/sub/golf_item_rated_4_mo.png" alt="golf_item_rated_1">
+                    <div class="label-tag-item-text">
+                        <strong>부대시설</strong>
+                        <p><strong>4.2</strong> 최고좋음</p>
+                    </div>
+                </div>
+            </div>
+            <h2 class="sub-title-sec6">BEST 생생리뷰</h2>
+            <div class="card-list-flex">
+                <div class="card-list-recommemded">
+                    <div class="recommemded-item">
+                        <div class="container-head">
+                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
+                            <div class="name">
+                                <span>woras******</span>
+                                <p>2024.08.09</p>
+                            </div>
+                        </div>
+                        <h2>깨끗하고 편안하며 BTS chidlom과 가깝습니다.</h2>
+                        <p class="custom_paragraph">아침조식.. 가짓수는 좀 있으나 모든음식과 음료의 수준은 수준이하, 과일쥬스는 과일향 첨가한 물같고, 일본김밥은
+                            밥이
+                            떡같고 빵도
+                            질감이 너무 떨어지고. 무엇보다 모든 돼지 고기요리에서 냄새가 심하게 나서 3일머무는동안 힘들었음</p>
+                        <button type="button">더보기</button>
+                    </div>
+                    <div class="recommemded-item">
+                        <div class="container-head">
+                            <img src="/uploads/icons/avatar_default_icon.png" alt="avatar_default_icon">
+                            <div class="name">
+                                <span>craz******</span>
+                                <p>2024.08.09</p>
+                            </div>
+                        </div>
+                        <h2>역시 신상호텔 답네요!</h2>
+                        <p class="custom_paragraph">역시 신상호텔 답네요! 공항과 접근성이 가장 좋은 이점이고요 부대시설도 아주 마음에 들었어요! 호캉스하기에 정말
+                            좋습니
+                            다!
+                            단점이라고 굳이 말하자면 호텔 주변이 조금 심심한거랑 조 식이 아주 조금 아쉬웠습니다! 그래도 다시 온다면 여기서</p>
+                        <button type="button">더보기</button>
+                    </div>
+                    <div class="recommemded-item">
+                        <div class="container-head">
+                            <img src="/uploads/icons/avatar_user_1.png" alt="avatar_user_1">
+                            <div class="name">
+                                <span>mh8******</span>
+                                <p>2024.08.09</p>
+                            </div>
+                        </div>
+                        <h2>I'M SO DAMN SLEEPY</h2>
+                        <p class="custom_paragraph">직원분들도 모두 친절하고, 숙소 위생상태도 합격이었습니다~ 위치는 지하철역과도 가깝고 주변에 마사지샵이나 스타벅스
+                            세븐일레븐도
+                            있어서 너무 좋았어요</p>
+                        <button type="button">더보기</button>
+                    </div>
+                </div>
+            </div>
+            <h2 class="title-sec6" id="qna"><span>상품 Q&A</span>(516)</h2>
+            <div class="qa-section">
+                <div class="custom-area-text">
+                    <label class="custom-label" for="qa-comment">
                             <textarea name="qa-comment" id="qa-comment"
-                                class="custom-main-input-style textarea autoExpand"
-                                placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
-                        </label>
-                        <div type="submit" class="qa-submit-btn">등록</div>
-                    </div>
-
-
-                    <ul class="qa-list">
-                        <li class="qa-item">
-                            <div class="qa-question">
-                                <span class="qa-number">124</span>
-                                <span class="qa-tag normal-style">답변대기중</span>
-                                <div class="con-cus-mo-qa">
-                                    <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
-                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                                </div>
-                            </div>
-                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                        </li>
-                        <li class="qa-item">
-                            <div class="qa-question">
-                                <span class="qa-number">123</span>
-                                <span class="qa-tag">답변대기중</span>
-                                <div class="con-cus-mo-qa">
-                                    <p class="qa-text">결제 시점은 언제인가요?</p>
-                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                                </div>
-                            </div>
-                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                        </li>
-                        <li class="qa-item">
-                            <div class="qa-question">
-                                <span class="qa-number">122</span>
-                                <span class="qa-tag normal-style">답변대기중</span>
-                                <div class="con-cus-mo-qa">
-                                    <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
-                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                                </div>
-                            </div>
-                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                        </li>
-                        <li class="qa-item">
-                            <div class="qa-question">
-                                <span class="qa-number">121</span>
-                                <span class="qa-tag normal-style">답변대기중</span>
-                                <div class="con-cus-mo-qa">
-                                    <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
-                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                                </div>
-                            </div>
-                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                        </li>
-                        <li class="qa-item">
-                            <div class="qa-question">
-                                <span class="qa-number">120</span>
-                                <span class="qa-tag">답변대기중</span>
-                                <div class="con-cus-mo-qa">
-                                    <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
-                                    <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
-                                </div>
-                            </div>
-                            <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
-                        </li>
-                    </ul>
-                    <div class="additional-info">
-                        <span class="load-more">더투어랩</span>
-                        <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
-                        </p>
-                        <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
-                    </div>
+                                      class="custom-main-input-style textarea autoExpand"
+                                      placeholder="상품에 대해 궁금한 점을 물어보세요."></textarea>
+                    </label>
+                    <div type="submit" class="qa-submit-btn">등록</div>
                 </div>
-                <div class="pagination">
-                    <a href="#" class="page-link">
-                        <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
-                        <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
-                    </a>
-                    <a href="#" class="page-link cus-padding mr">
-                        <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
-                        <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
-                    </a>
-                    <a href="#" class="page-link active">1</a>
-                    <a href="#" class="page-link">2</a>
-                    <a href="#" class="page-link">3</a>
-                    <a href="#" class="page-link cus-padding ml">
-                        <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
-                        <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
-                    </a>
-                    <a href="#" class="page-link">
-                        <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
-                        <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
-                    </a>
+
+
+                <ul class="qa-list">
+                    <li class="qa-item">
+                        <div class="qa-question">
+                            <span class="qa-number">124</span>
+                            <span class="qa-tag normal-style">답변대기중</span>
+                            <div class="con-cus-mo-qa">
+                                <p class="qa-text">티켓은 어떻게 예약할 수 있나요?</p>
+                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                            </div>
+                        </div>
+                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                    </li>
+                    <li class="qa-item">
+                        <div class="qa-question">
+                            <span class="qa-number">123</span>
+                            <span class="qa-tag">답변대기중</span>
+                            <div class="con-cus-mo-qa">
+                                <p class="qa-text">결제 시점은 언제인가요?</p>
+                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                            </div>
+                        </div>
+                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                    </li>
+                    <li class="qa-item">
+                        <div class="qa-question">
+                            <span class="qa-number">122</span>
+                            <span class="qa-tag normal-style">답변대기중</span>
+                            <div class="con-cus-mo-qa">
+                                <p class="qa-text">2월23일 성인 8명, 어린이 2명으로 예약하면 10명인데요. 통로역 근처인 저희 호텔로 외주실수...</p>
+                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                            </div>
+                        </div>
+                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                    </li>
+                    <li class="qa-item">
+                        <div class="qa-question">
+                            <span class="qa-number">121</span>
+                            <span class="qa-tag normal-style">답변대기중</span>
+                            <div class="con-cus-mo-qa">
+                                <p class="qa-text">오늘 투어인데 아유타야에 있어서요. 혹시 아유타야에서 도중에 만나서 일정만 소화하고 아유타야에서...</p>
+                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                            </div>
+                        </div>
+                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                    </li>
+                    <li class="qa-item">
+                        <div class="qa-question">
+                            <span class="qa-number">120</span>
+                            <span class="qa-tag">답변대기중</span>
+                            <div class="con-cus-mo-qa">
+                                <p class="qa-text">입금 했습니다. 아직 확정 전이라고 떠서 확인부탁드려요.</p>
+                                <div class="qa-meta text-gray only_mo">2024.07.24 09:39</div>
+                            </div>
+                        </div>
+                        <div class="qa-meta text-gray only_web">2024.07.24 09:39</div>
+                    </li>
+                </ul>
+                <div class="additional-info">
+                    <span class="load-more">더투어랩</span>
+                    <p>조인투어로 전환 시 정해진 미팅장소에서 가이드님과 만나실 수 있습니다.<br>아유타야는 넓기 때문에 다른 장소에서 미팅은 어려운 점 예약 시 참고해주시기 바랍니다.
+                    </p>
+                    <p class="mt-36">만약 투어 종료 후 개별 이동을 원하시면 당일 가이드님께 말씀해주시면 됩니다.</p>
                 </div>
             </div>
+            <div class="pagination">
+                <a href="#" class="page-link">
+                    <img class="only_web" src="/uploads/icons/arrow_prev_step.png" alt="arrow_prev_step">
+                    <img class="only_mo" src="/uploads/icons/arrow_prev_step_mo.png" alt="arrow_prev_step_mo">
+                </a>
+                <a href="#" class="page-link cus-padding mr">
+                    <img class="only_web" src="/uploads/icons/arrow_prev_all.png" alt="arrow_prev_all">
+                    <img class="only_mo" src="/uploads/icons/arrow_prev_all_mo.png" alt="arrow_prev_all_mo">
+                </a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link cus-padding ml">
+                    <img class="only_web" src="/uploads/icons/arrow_next_all.png" alt="arrow_next_step">
+                    <img class="only_mo" src="/uploads/icons/arrow_next_all_mo.png" alt="arrow_next_step_mo">
+                </a>
+                <a href="#" class="page-link">
+                    <img class="only_web" src="/uploads/icons/arrow_next_step.png" alt="arrow_next_step">
+                    <img class="only_mo" src="/uploads/icons/arrow_next_step_mo.png" alt="arrow_next_step">
+                </a>
+            </div>
+        </div>
         </d>
     </div>
     <div id="dim"></div>
@@ -591,7 +612,7 @@
                             <span class="price-text text-gray">[price]원 ([price_baht]바트)</span>
                         </div>`;
 
-            const html2 = $(".vehicle_select").filter(function() {
+            const html2 = $(".vehicle_select").filter(function () {
                 return $(this).val() !== "";
             }).map(function () {
                 const p_name = $(this).data('name');
@@ -601,9 +622,9 @@
                 total_vehicle_price += price;
                 total_vehicle_price_baht += price_baht;
                 return html.replace("[name]", p_name)
-                .replace("[cnt]", cnt)
-                .replace("[price]", number_format(price))
-                .replace("[price_baht]", number_format(price_baht));
+                    .replace("[cnt]", cnt)
+                    .replace("[price]", number_format(price))
+                    .replace("[price_baht]", number_format(price_baht));
             }).get().join('');
             $("#vehicle_list_result").html(html2);
 
@@ -616,14 +637,14 @@
         function setOptionArea() {
 
             const optionActive = $("#final_option_list .card-item.active_2");
-            const price        = optionActive.data("option_price") || 0;
-            const caddy_fee    = optionActive.data("caddy_fee") || "그린피에 포함";
+            const price = optionActive.data("option_price") || 0;
+            const caddy_fee = optionActive.data("caddy_fee") || "그린피에 포함";
             const cart_pie_fee = optionActive.data("cart_pie_fee") || "그린피에 포함";
-            const price_baht   = optionActive.data("option_price_baht") || 0;
-            const people_cnt   = $("#people_adult_cnt").val() || 0;
-            const final_price  = Math.round(price * people_cnt);
+            const price_baht = optionActive.data("option_price_baht") || 0;
+            const people_cnt = $("#people_adult_cnt").val() || 0;
+            const final_price = Math.round(price * people_cnt);
             const final_price_baht = Math.round(price_baht * people_cnt);
-            const minute       = optionActive.data("minute") || "00";
+            const minute = optionActive.data("minute") || "00";
 
             $("#option_idx").val(optionActive.data("idx"));
             $("#final_option_price").text(number_format(price));
@@ -677,10 +698,10 @@
                 discount_price_baht
             };
         }
-        
+
         function calculatePrice() {
             const vehiclePrice = setListVehicle();
-            
+
             const optionPrice = setOptionArea();
 
             let last_price = vehiclePrice.total_vehicle_price + optionPrice.final_price;
@@ -707,17 +728,17 @@
         }
 
         function getOptions() {
-			const golf_date = $("#order_date").val();
-            const hole_cnt  = $('.tag-js.active').data('tab');
-            const hour      = $('.tag-js2.active').data('tab');
-            if(!hole_cnt || !hour) {
+            const golf_date = $("#order_date").val();
+            const hole_cnt = $('.tag-js.active').data('tab');
+            const hour = $('.tag-js2.active').data('tab');
+            if (!hole_cnt || !hour) {
                 return false;
             }
             $.ajax({
                 type: "GET",
                 url: "/product-golf/option-price/<?= $product['product_idx']?>",
                 data: {
-					golf_date,
+                    golf_date,
                     hole_cnt,
                     hour,
                 },
@@ -784,7 +805,7 @@
             const allDates = getDatesInRange(s_date, e_date);
 
             allDates.forEach(date => {
-                let isBlocked = deadline_date_arr.some(deadline => 
+                let isBlocked = deadline_date_arr.some(deadline =>
                     isDateInRange(date, deadline.s_date, deadline.e_date)
                 );
                 if (!isBlocked) {
@@ -796,18 +817,18 @@
         }
 
         jQuery(document).ready(function () {
-            var dim       = $('#dim');
-            var popup     = $('#popupRoom');
+            var dim = $('#dim');
+            var popup = $('#popupRoom');
             var closedBtn = $('#popupRoom .closed_btn');
 
             var popup2 = $('#popup_img');
             var closedBtn2 = $('#popup_img .closed_btn');
-            
-			var order_date = $("#order_date").val();
-            var temp = order_date.split("-"); 
+
+            var order_date = $("#order_date").val();
+            var temp = order_date.split("-");
             $("#year").text(temp[0]);
             $("#motn").text(temp[1]);
-            
+
             /* closed btn*/
             closedBtn.click(function () {
                 popup.hide();
@@ -823,7 +844,7 @@
                 return false;
             });
 
-            $(".short_link").on('click', function(evt) {
+            $(".short_link").on('click', function (evt) {
                 evt.preventDefault();
                 var target = $(this).data('target');
                 // $(window).scrollTop($('#' + target).offset().top - 100, 300);
@@ -834,14 +855,14 @@
             });
 
         });
-        $('.tag-list .tag-js').on('click', function() {
+        $('.tag-list .tag-js').on('click', function () {
             $('.tag-list .tag-js').removeClass('active');
             $(".final_hole").text($(this).data('tab'));
             $(this).addClass('active');
             getOptions();
         });
 
-        $('.tag-list .tag-js2').on('click', function() {
+        $('.tag-list .tag-js2').on('click', function () {
             $('.tag-list .tag-js2').removeClass('active');
             $(".final_hour").text($(this).data('tab'));
             $(this).addClass('active');
@@ -867,7 +888,7 @@
         // Get the popup, open button, close button elements
         const $closePopupBtn = $('.close-btn');
 
-        $('.list-icon img[alt="heart_icon"]').click(function() {
+        $('.list-icon img[alt="heart_icon"]').click(function () {
             if ($(this).attr('src') === '/uploads/icons/heart_icon.png') {
                 $(this).attr('src', '/uploads/icons/heart_on_icon.png');
             } else {
@@ -876,7 +897,7 @@
         });
 
         // Close the popup when the "Close" button or the "x" is clicked
-        $closePopupBtn.on('click', function() {
+        $closePopupBtn.on('click', function () {
             $("#popup_coupon").css('display', 'none');
         });
 
@@ -884,12 +905,12 @@
         const e_date = new Date('<?=$info['e_date']?>');
         const deadline_date = '<?=$info['deadline_date']?>';
         const deadline_date_arr = deadline_date.split(',').map(function (date) {
-            const [s_date, e_date] = date.split('~').map(x=>x.trim());
-            return { s_date: new Date(s_date), e_date: new Date(e_date) };
+            const [s_date, e_date] = date.split('~').map(x => x.trim());
+            return {s_date: new Date(s_date), e_date: new Date(e_date)};
         });
 
-        var sel_Date   = getAvailableDates(s_date, e_date, deadline_date_arr);
-        const arrDate  = sel_Date.split("|");
+        var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
+        const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
 
         function getMonthDatesWithWeekdays(month, year) {
@@ -934,14 +955,14 @@
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
                 $("#order_date").val(date);
-				$("#final_option_list").empty();
-				getOptions();
+                $("#final_option_list").empty();
+                getOptions();
 
             }
             $('.day a').removeClass("on");
             $('.day a').eq(day - 1).addClass("on");
         }
-        
+
         function setSlide(currentMonth, currentYear) {
             const currentDay = `0${currentDate.getDate()}`.slice(-2);
             let to_Day = currentYear + '-' + currentMonth + '-' + currentDay;
@@ -951,13 +972,13 @@
             swiper01.destroy();
             const daysInCurrentMonth = getMonthDatesWithWeekdays(currentMonth, currentYear);
             $(".calendar-swiper-wrapper").empty();
-            
+
             daysInCurrentMonth.forEach(e => {
 
                 var calDate = currentYear + '-' + currentMonth + '-' + `0${e.dayOfMonth}`.slice(-2);
 
                 var idx = -1;
-                
+
                 if (arrDate.includes(calDate) && new Date(calDate).getTime() > today.getTime()) {
                     idx = arrDate.indexOf(calDate);
                 }
@@ -1017,7 +1038,7 @@
         const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
 
-		$(".final_date").text(formatDate(new Date(initDate), "."));
+        $(".final_date").text(formatDate(new Date(initDate), "."));
         $("#order_date").val(formatDate(new Date(initDate), "-"));
 
         function nextMonth() {
@@ -1047,7 +1068,7 @@
             currentDate.setMonth(currentDate.getMonth() - 1);
             currentDate.setDate(1);
             currentMonth = currentDate.getMonth() + 1;
-            currentYear  = currentDate.getFullYear();
+            currentYear = currentDate.getFullYear();
             setSlide(`0${currentMonth}`.slice(-2), currentYear)
         }
 
@@ -1061,19 +1082,19 @@
             var popup = $('#popup_img');
 
             popup.show();
-                    dim.fadeIn();
+            dim.fadeIn();
 
-                    $('.multiple-items').slick({
-                        slidesToShow: 1,
-                        initialSlide: 0,
-                        slidesToScroll: 1,
-                        autoplay: true,
-                        autoplaySpeed: 2000,
-                        dots: true,
-                        focusOnSelect: true
-                    });
+            $('.multiple-items').slick({
+                slidesToShow: 1,
+                initialSlide: 0,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                dots: true,
+                focusOnSelect: true
+            });
         }
 
     </script>
 
-    <?php $this->endSection(); ?>
+<?php $this->endSection(); ?>
