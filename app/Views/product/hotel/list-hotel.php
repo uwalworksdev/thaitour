@@ -70,7 +70,7 @@
                             </div>
                             <div class="category-left-item">
                                 <div class="subtitle">
-                                    <span>호텔타입</span>
+                                    <span>숙박유형</span>
                                     <img src="/uploads/icons/arrow_up_icon.png" class="arrow_menu" alt="arrow_up">
                                 </div>
                                 <div class="tab_box_area_">
@@ -1138,7 +1138,7 @@
                         </div>
                         <div class="category-left-item">
                             <div class="subtitle">
-                                <span>호텔타입</span>
+                                <span>숙박유형</span>
 
                             </div>
                             <div class="tab_box_area_">
