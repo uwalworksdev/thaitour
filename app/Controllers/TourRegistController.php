@@ -495,10 +495,6 @@ class TourRegistController extends BaseController
         $pg = $this->request->getVar("pg");
         if ($pg == "") $pg = 1;
 
-        $nPage = ceil($nTotalCount / $g_list_rows);
-        if ($pg == "") $pg = 1;
-        $nFrom = ($pg - 1) * $g_list_rows;
-
         $product_idx  = $this->request->getVar("product_idx");
         $s_date       = $this->request->getVar("s_date");
         $e_date       = $this->request->getVar("e_date");
