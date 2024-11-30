@@ -115,7 +115,7 @@
 											<input type="text" name="days" id="days" value="" numberonly="true" style="text-align:center;background: white; width: 70px;">일
 										</div>
                                         <div style="margin:10px">
-                                            <a href="#!" id="assCharge" class="btn btn-primary">추가</a>
+                                            <a href="#!" id="addCharge" class="btn btn-primary">추가</a>
                                         </div>
                                     </div>
                                 </td>
@@ -208,6 +208,35 @@
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
 							$("#priceForm").submit();
+						});
+					</script>
+
+					<script>
+						$("#addCharge").one("click", function () {
+								if (!confirm("선택한 상품을 정말 삭제하시겠습니까?\n\n한번 삭제한 자료는 복구할 수 없습니다."))
+									return false;
+
+								var days     = $("#days").val();
+								$.ajax({
+
+									url: "/ajax/ajax.golf_price_add",
+									type: "POST",
+									data: {
+
+											"days" : days 
+									      },
+									dataType: "json",
+									async: false,
+									cache: false,
+									success: function(data, textStatus) {
+										message  = data.message;
+										alert(message);
+										location.reload();
+									},
+									error:function(request,status,error){
+										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+									}
+								});
 						});
 					</script>
 
