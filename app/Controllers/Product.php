@@ -321,6 +321,10 @@ class Product extends BaseController
                 'special_price' => 'Y',
             ], $this->scale, 1, ['r_date' => 'DESC']);
 
+            $products = $this->groupData($products);
+            $productStep2ByRecommended = $this->groupData($productStep2ByRecommended);
+            $productByPopular = $this->groupData($productByPopular);
+
             $data = [
                 'bannerTop' => $this->bannerModel->getBanners($code_no, "top"),
                 'bannerMiddle' => $this->bannerModel->getBanners($code_no, "middle")[0],
@@ -633,6 +637,10 @@ class Product extends BaseController
                 if ($item['product_code_3']) $code = $item['product_code_3'];
             }
 
+            $productReview = $this->reviewModel->getProductReview($item['product_idx']);
+
+            $item['total_review'] = $productReview['total_review'];
+            $item['review_average'] = $productReview['avg'];
 
             $codeTree = $this->codeModel->getCodeTree($code);
 
@@ -1580,10 +1588,10 @@ class Product extends BaseController
             return view('errors/html/error_404');
         }
 
-		// 예약가능한 일자 및 금액 데이터 조회
-		$sql_p    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn != 'N' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
-		$result_p = $this->db->query($sql_p);
-		$data['golf_price'] = $result_p->getResultArray();
+        // 예약가능한 일자 및 금액 데이터 조회
+        $sql_p = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' AND golf_date >= CURDATE() AND use_yn != 'N' ORDER BY golf_date, hole_cnt ASC LIMIT 0,1 ";
+        $result_p = $this->db->query($sql_p);
+        $data['golf_price'] = $result_p->getResultArray();
 
         $data['info'] = $this->golfInfoModel->getGolfInfo($product_idx);
         $productReview = $this->reviewModel->getProductReview($product_idx);
@@ -1672,9 +1680,9 @@ class Product extends BaseController
 
     public function optionList($product_idx)
     {
-        $hole_cnt  = $this->request->getVar('hole_cnt');
-        $hour      = $this->request->getVar('hour');
-        $options   = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
+        $options = $this->golfOptionModel->getOptions($product_idx, $hole_cnt, $hour);
 
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
@@ -1689,18 +1697,18 @@ class Product extends BaseController
     public function optionPrice($product_idx)
     {
         $golf_date = $this->request->getVar('golf_date');
-        $hole_cnt  = $this->request->getVar('hole_cnt');
-        $hour      = $this->request->getVar('hour');
-        $options   = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
+        $hole_cnt = $this->request->getVar('hole_cnt');
+        $hour = $this->request->getVar('hour');
+        $options = $this->golfOptionModel->getGolfPrice($product_idx, $golf_date, $hole_cnt, $hour);
 
-		foreach ($options as $key => $value) {
-			$option_price      = (float)$value['option_price'];
-			$baht_thai         = (float)($this->setting['baht_thai'] ?? 0);
-			$option_price_baht = round($option_price / $baht_thai);
-			$options[$key]['option_price_baht'] = $option_price_baht;
-		}
+        foreach ($options as $key => $value) {
+            $option_price = (float)$value['option_price'];
+            $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
+            $option_price_baht = round($option_price / $baht_thai);
+            $options[$key]['option_price_baht'] = $option_price_baht;
+        }
 
-		return view('product/golf/option_list', ['options' => $options]);
+        return view('product/golf/option_list', ['options' => $options]);
     }
 
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
@@ -2941,6 +2949,32 @@ class Product extends BaseController
                 'message' => $e->getMessage()
             ], 400);
         }
+    }
+
+    private function groupData($arr)
+    {
+        foreach ($arr['items'] as $key => $product) {
+
+            $hotel_codes = explode("|", $product['product_code_list']);
+            $hotel_codes = array_values(array_filter($hotel_codes));
+
+            $codeTree = $this->codeModel->getCodeTree($hotel_codes['0']);
+
+            $arr['items'][$key]['codeTree'] = $codeTree;
+
+            $productReview = $this->reviewModel->getProductReview($product['product_idx']);
+
+            $arr['items'][$key]['total_review'] = $productReview['total_review'];
+            $arr['items'][$key]['review_average'] = $productReview['avg'];
+
+            $fsql9 = "select * from tbl_code where parent_code_no='30' and code_no='" . $product['product_level'] . "' order by onum desc, code_idx desc";
+            $fresult9 = $this->db->query($fsql9);
+            $fresult9 = $fresult9->getRowArray();
+
+            $arr['items'][$key]['level_name'] = $fresult9['code_name'];
+        }
+
+        return $arr;
     }
 
     private function explodeAndTrim($string, $delimiter)

@@ -16,13 +16,12 @@
     <div class="prd_info">
         <div class="prd_info__left">
             <img class="ico_star" src="/images/ico/ico_star.svg" alt="">
-            <span class="star_avg">4.7</span>
-            <span class="star_review_cnt">(954)</span>
+            <span class="star_avg"><?= $item['review_average'] ?></span>
         </div>
         <span style="color: #eeeeee; line-height: 10px;overflow: hidden">|</span>
         <div class="prd_info__right">
             <span class="prd_info__right__ttl">생생리뷰</span>
-            <span class="new_review_cnt">(0)</span>
+            <span class="new_review_cnt">(<?= $item['total_review'] ?>)</span>
         </div>
     </div>
     <div class="prd_price_ko">
