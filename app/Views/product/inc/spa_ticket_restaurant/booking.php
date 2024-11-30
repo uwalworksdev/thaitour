@@ -33,156 +33,179 @@
                 <div class="container-card">
                     <div class="form_booking_spa_">
                         <div class="card-left">
-                            <h3 class="title-main-c title-main-2">
+                            <h3 class="title-main-c">
                                 예약확정서 정보 입력
                             </h3>
                             <h3 class="title-sub-c">예약확정서 이름</h3>
-                            <div class="form-group mb-30">
-                                <label for="order_user_name">이름</label>
-                                <input type="text" id="order_user_name" name="order_user_name"/>
-                            </div>
-                            <h3 class="title-sub-c">연락처</h3>
-                            <div class="form-group form-cus-select mb-30">
-                                <label for="email_name">이메일 주소*</label>
-                                <div class="cus-select-group">
-                                    <input type="text" id="email_name" name="email_name" placeholder="이메일">
-                                    <span>@</span>
-                                    <select id="email_host" name="email_host" class="select-width">
-                                        <option value="">선택해주세요.</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="hanmail.net">hanmail.net</option>
-                                        <option value="hotmail.com">hotmail.com</option>
-                                        <option value="nate.com">nate.com</option>
-                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                        <option value="empas.com">empas.com</option>
-                                        <option value="dreamwiz.com">dreamwiz.com</option>
-                                        <option value="freechal.com">freechal.com</option>
-                                        <option value="lycos.co.kr">lycos.co.kr</option>
-                                        <option value="korea.com">korea.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="hanmir.com">hanmir.com</option>
-                                        <option value="paran.com">paran.com</option>
+                            <div class="con-form mb-40">
+                                <div class="form-group">
+                                    <label for="order_user_name">한국이름</label>
+                                    <input type="text" id="order_user_name" name="order_user_name" required=""
+                                           data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                </div>
+                                <div class="form-group" style="width: 50%">
+                                    <label for="gender1">성별(남성/여성)*</label>
+                                    <select name="companion_gender[]" id="gender1" style="width: 100%" required="" data-label="성별"
+                                            class="select-width">
+                                        <option value="M">남성</option>
+                                        <option value="F">여성</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="con-form mb-40">
-                                <div class="parent-form-group">
-                                    <div class="form-group">
-                                        <label for="order_user_mobile">휴대폰번호</label>
-                                        <input type="text" id="order_user_mobile" name="order_user_mobile"
-                                               placeholder="번호를 입력해주세요."/>
+                                <div class="form-group">
+                                    <label for="order_user_first_name_en">영문 이름(First Name) *</label>
+                                    <input type="text" id="order_user_first_name_en" name="order_user_first_name_en"
+                                           required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                </div>
+                                <div class="form-group">
+                                    <label for="order_user_last_name_en">영문 성(Last Name) *</label>
+                                    <input type="text" id="order_user_last_name_en" name="order_user_last_name_en"
+                                           required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
+                                </div>
+                            </div>
+                            <h3 class="title-sub-c">연락처</h3>
+                            <div class="form-group form-cus-select">
+                                <label for="passport-name2">이메일 주소*</label>
+                                <div class="cus-select-group">
+                                    <input type="text" id="email_1" name="email_1" required="" data-label="이메일"
+                                           placeholder="이메일">
+                                    <span>@</span>
+                                    <div class="email-group">
+                                        <input type="text" name="email_2" id="email_2" required="" data-label="이메일"
+                                               placeholder="" readonly="">
+                                        <select id="" class="select-width" onchange="handleEmail(this.value)">
+                                            <option value="">선택</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="hanmail.net">hanmail.net</option>
+                                            <option value="hotmail.com">hotmail.com</option>
+                                            <option value="nate.com">nate.com</option>
+                                            <option value="yahoo.co.kr">yahoo.co.kr</option>
+                                            <option value="empas.com">empas.com</option>
+                                            <option value="dreamwiz.com">dreamwiz.com</option>
+                                            <option value="freechal.com">freechal.com</option>
+                                            <option value="lycos.co.kr">lycos.co.kr</option>
+                                            <option value="korea.com">korea.com</option>
+                                            <option value="gmail.com">gmail.com</option>
+                                            <option value="hanmir.com">hanmir.com</option>
+                                            <option value="paran.com">paran.com</option>
+                                            <option value="1">직접입력</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <script>
-                                document.getElementById('order_user_mobile').addEventListener('input', function (e) {
-                                    let phone = e.target.value.replace(/\D/g, '');
+                            <div class="phone_wrap mb-30">
+                                <div class="phone_wrap_item form-group">
+                                    <p>
+                                        <input type="radio" id="test1" name="radio_phone" value="kor" checked="">
+                                        <label for="test1">한국번호*</label>
+                                    </p>
+                                    <div class="form-group form-group-cus-4input">
+                                        <input name="phone_1" maxlength="3" class="phone_kor phone" type="text"
+                                               id="phone_1" required="" data-label="한국번호">
+                                        <span> - </span>
+                                        <input name="phone_2" maxlength="4" class="phone_kor phone" type="text"
+                                               id="phone_2" required="" data-label="한국번호">
+                                        <span> - </span>
+                                        <input name="phone_3" maxlength="4" class="phone_kor phone" type="text"
+                                               id="phone_3" required="" data-label="한국번호">
+                                    </div>
+                                </div>
+                                <div class="phone_wrap_item form-group">
+                                    <p>
+                                        <input type="radio" id="test2" name="radio_phone" value="thai">
+                                        <label for="test2">태국번호 *</label>
+                                    </p>
+                                    <div class="form-group">
+                                        <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text"
+                                               id="phone_thai" disabled="" required="" data-label="한국번호">
+                                    </div>
+                                </div>
+                            </div>
 
-                                    if (phone.length <= 3) {
-                                        e.target.value = phone;
-                                    } else if (phone.length <= 7) {
-                                        e.target.value = `${phone.slice(0, 3)}-${phone.slice(3)}`;
-                                    } else {
-                                        e.target.value = `${phone.slice(0, 3)}-${phone.slice(3, 7)}-${phone.slice(7, 11)}`;
-                                    }
-                                });
-                            </script>
+                            <div class="form-group mo_mt-30" >
+                                <label for="passport-name2">여행시 현지 연락처</label>
+                                <div class="form-group-flex" style="display: flex; align-items: center; gap: 20px">
+                                    <select id="car-time-hour" class="select-width" style="width: 200px">
+                                        <option value="01">TH</option>
+                                    </select>
+                                    <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone"
+                                           placeholder="">
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="card-left card-left-2">
-                            <h3 class="title-main-c">
-                                고객정보
-                            </h3>
-                            <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
+                        <div class="card-left card-left-2" style="display:  none">
+                            <div class="" style="display:  none">
+                                <?php
 
-                            <div class="form-container" data-group="group0">
-                                <div class="con-form mb-40">
-                                    <div class="parent-form-group">
-                                        <div class="form-group">
-                                            <label for="first-a-name-1">영문 이름(First Name) *</label>
-                                            <input type="text" id="first-a-name-1"
-                                                   name="order_a_first_name[]"
-                                                   placeholder="영어로 작성해주세요."/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="last-a-name-1>">영문 성(Last Name) *</label>
-                                            <input type="text" id="last-a-name-1"
-                                                   name="order_a_last_name[]"
-                                                   placeholder="영어로 작성해주세요."/>
+                                $numAdultQty = 0;
+                                $s_station_arr = [];
+                                foreach ($adultQty as $key => $num) {
+                                    $numAdultQty += intval($num);
+                                    for ($i = 1; $i <= intval($num); $i++) {
+                                        $s_station_arr[] = $s_station[$key];
+                                    }
+                                }
+
+                                for ($i = 1; $i <= $numAdultQty; $i++) {
+                                    ?>
+                                    <h3 class="title-sub-c mt-30">성인<?= $i ?> <span
+                                                class="text_divider"></span> <?= $s_station_arr[$i - 1] ?></h3>
+                                    <div class="form-container" data-group="group<?= $i ?>">
+                                        <div class="con-form mb-40">
+                                            <div class="parent-form-group">
+                                                <div class="form-group">
+                                                    <label for="first-a-name-<?= $i ?>">영문 이름(First Name) *</label>
+                                                    <input type="text" id="first-a-name-<?= $i ?>"
+                                                           name="order_a_first_name[]"
+                                                           placeholder="영어로 작성해주세요."/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="last-a-name-<?= $i ?>">영문 성(Last Name) *</label>
+                                                    <input type="text" id="last-a-name-<?= $i ?>"
+                                                           name="order_a_last_name[]"
+                                                           placeholder="영어로 작성해주세요."/>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <?php
+                                }
+                                ?>
+                                <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
+                                <?php
+
+                                $numChildrenQty = 0;
+                                foreach ($childrenQty as $num) {
+                                    $numChildrenQty += intval($num);
+                                }
+
+                                for ($i = 1; $i <= $numChildrenQty; $i++) {
+                                    ?>
+                                    <h3 class="title-sub-c mt-30">아동<?= $i ?></h3>
+                                    <div class="form-container" data-group="group<?= $i ?>">
+                                        <div class="con-form mb-40">
+                                            <div class="parent-form-group">
+                                                <div class="form-group">
+                                                    <label for="first-c-name-<?= $i ?>">영문 이름(First Name) *</label>
+                                                    <input type="text" id="first-c-name-<?= $i ?>>"
+                                                           name="order_c_first_name[]"
+                                                           placeholder="영어로 작성해주세요."/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="last-c-name-<?= $i ?>">영문 성(Last Name) *</label>
+                                                    <input type="text" id="last-c-name-<?= $i ?>"
+                                                           name="order_c_last_name[]"
+                                                           placeholder="영어로 작성해주세요."/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
-
-                            <div class=""  style="display:  none">
-                               <?php
-
-                               $numAdultQty = 0;
-                               $s_station_arr = [];
-                               foreach ($adultQty as $key => $num) {
-                                   $numAdultQty += intval($num);
-                                   for ($i = 1; $i <= intval($num); $i++) {
-                                       $s_station_arr[] = $s_station[$key];
-                                   }
-                               }
-
-                               for ($i = 1; $i <= $numAdultQty; $i++) {
-                                   ?>
-                                   <h3 class="title-sub-c mt-30">성인<?= $i ?> <span class="text_divider"></span> <?=$s_station_arr[$i - 1]?></h3>
-                                   <div class="form-container" data-group="group<?= $i ?>">
-                                       <div class="con-form mb-40">
-                                           <div class="parent-form-group">
-                                               <div class="form-group">
-                                                   <label for="first-a-name-<?= $i ?>">영문 이름(First Name) *</label>
-                                                   <input type="text" id="first-a-name-<?= $i ?>"
-                                                          name="order_a_first_name[]"
-                                                          placeholder="영어로 작성해주세요."/>
-                                               </div>
-                                               <div class="form-group">
-                                                   <label for="last-a-name-<?= $i ?>">영문 성(Last Name) *</label>
-                                                   <input type="text" id="last-a-name-<?= $i ?>"
-                                                          name="order_a_last_name[]"
-                                                          placeholder="영어로 작성해주세요."/>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <?php
-                               }
-                               ?>
-                               <!--                        <p class="title-sub-below">투숙객 이름은 체크인 시 제시할 유효한 신분증 이름과 정확히 일치해야 합니다.</p>-->
-                               <?php
-
-                               $numChildrenQty = 0;
-                               foreach ($childrenQty as $num) {
-                                   $numChildrenQty += intval($num);
-                               }
-
-                               for ($i = 1; $i <= $numChildrenQty; $i++) {
-                                   ?>
-                                   <h3 class="title-sub-c mt-30">아동<?= $i ?></h3>
-                                   <div class="form-container" data-group="group<?= $i ?>">
-                                       <div class="con-form mb-40">
-                                           <div class="parent-form-group">
-                                               <div class="form-group">
-                                                   <label for="first-c-name-<?= $i ?>">영문 이름(First Name) *</label>
-                                                   <input type="text" id="first-c-name-<?= $i ?>>"
-                                                          name="order_c_first_name[]"
-                                                          placeholder="영어로 작성해주세요."/>
-                                               </div>
-                                               <div class="form-group">
-                                                   <label for="last-c-name-<?= $i ?>">영문 성(Last Name) *</label>
-                                                   <input type="text" id="last-c-name-<?= $i ?>"
-                                                          name="order_c_last_name[]"
-                                                          placeholder="영어로 작성해주세요."/>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <?php
-                               }
-                               ?>
-                           </div>
                         </div>
 
                         <div class="card-left card-left-2 coupon_area_" style="display:  none">
@@ -271,20 +294,22 @@
                                 <?php } ?>
                             </div>
 
-                            <h3 class="title-r">
-                                옵션선택
-                            </h3>
-                            <div class="select-wrap">
-                                <select name="moption" id="moption" onchange="sel_moption(this.value);">
-                                    <option value="">옵션선택</option>
-                                    <?php foreach ($moption as $op) { ?>
-                                        <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
-                                    <?php } ?>
-                                </select>
-                                <div class="opt_select disabled sel_option" id="sel_option">
-                                    <select name="option" id="option" onchange="sel_option(this.value);">";
-                                        <option value="">옵션 선택</option>
+                            <div style="display: none">
+                                <h3 class="title-r">
+                                    옵션선택
+                                </h3>
+                                <div class="select-wrap">
+                                    <select name="moption" id="moption" onchange="sel_moption(this.value);">
+                                        <option value="">옵션선택</option>
+                                        <?php foreach ($moption as $op) { ?>
+                                            <option value="<?= $op['code_idx'] ?>"><?= $op['moption_name'] ?></option>
+                                        <?php } ?>
                                     </select>
+                                    <div class="opt_select disabled sel_option" id="sel_option">
+                                        <select name="option" id="option" onchange="sel_option(this.value);">";
+                                            <option value="">옵션 선택</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
@@ -330,11 +355,11 @@
                                 ?>
                             </div>
 
-                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
+                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
                                 <span>쿠폰 </span>
                                 <span>- <span class="discountPrice">0</span>원</span>
                             </div>
-                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75)">
+                            <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
                                 <span>포인트 </span>
                                 <span>- <span class="pointPrice">0</span>원</span>
                             </div>
