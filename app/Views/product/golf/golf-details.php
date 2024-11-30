@@ -802,9 +802,11 @@
 
             var popup2 = $('#popup_img');
             var closedBtn2 = $('#popup_img .closed_btn');
-
-            $("#year").text('9999');
-
+            
+			var order_date = $("#order_date").val();
+            var temp = order_date.split("-"); 
+            $("#year").text(temp[0]);
+            
             /* closed btn*/
             closedBtn.click(function () {
                 popup.hide();
