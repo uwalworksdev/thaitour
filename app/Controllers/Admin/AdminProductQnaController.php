@@ -80,6 +80,36 @@ class AdminProductQnaController extends BaseController
     public function write()
     {
         try {
+            $idx = $this->request->getPost('idx');
+            $title = $this->request->getPost('title');
+            $parent_idx = $this->request->getPost('parent_idx') ?? null;
+            $product_idx = $this->request->getPost('product_idx');
+            $user_name = $_SESSION['member']['name'];
+            $user_id = $_SESSION['member']['idx'];
+            $ipAddress = $this->request->getIPAddress();
+            $status = 'Y';
+            $r_date = date('Y-m-d H:i:s');
+            $m_date = date('Y-m-d H:i:s');
+
+            $data = [
+                'title' => $title,
+                'parent_idx' => $parent_idx,
+                'product_idx' => $product_idx,
+                'user_name' => $user_name,
+                'user_id' => $user_id,
+                'user_ip' => $ipAddress,
+                'status' => $status,
+            ];
+
+            if (!empty($idx)) {
+                $data['idx'] = $idx;
+                $data['m_date'] = $m_date;
+                $this->productQna->updateData($idx, $data);
+            } else {
+                $data['r_date'] = $r_date;
+                $this->productQna->insertData($data);
+            }
+
             return $this->response->setJSON([
                 'result' => true,
                 'message' => ""

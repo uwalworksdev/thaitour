@@ -635,6 +635,8 @@ class ProductModel extends Model
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
             $product_price_baht = $product_price / $baht_thai;
             $items[$key]['product_price_baht'] = $product_price_baht;
+
+
         }
         $data = [
             'items' => $items,

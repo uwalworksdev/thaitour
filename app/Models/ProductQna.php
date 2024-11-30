@@ -13,7 +13,7 @@ class ProductQna extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
-        'title', 'parent_idx', 'user_name', 'user_email', 'user_phone', 'product_idx',
+        'title', 'parent_idx', 'user_name', 'user_email', 'user_id', 'product_idx',
         'status', 'is_best', 'user_ip', 'r_date', 'm_date'
     ];
 
