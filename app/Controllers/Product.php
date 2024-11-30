@@ -1284,7 +1284,7 @@ class Product extends BaseController
             $sub_codes = $this->codeModel->where('parent_code_no', 1303)->orderBy('onum', 'DESC')->findAll();
 
             $data = [
-                'product' => $hotel,
+                'hotel' => $hotel,
                 'fresult9' => $fresult9,
                 's_category_room' => $s_category_room,
                 'fresult4' => $fresult4 ?? [],
@@ -1297,7 +1297,7 @@ class Product extends BaseController
                 'reviews' => $reviews ?? [],
                 'reviewCount' => $reviewCount ?? 0,
                 'room_categories' => $room_categories_convert,
-                'product_options' => $hotel_option_convert,
+                'hotel_options' => $hotel_option_convert,
                 'coupons' => $c_row,
                 'suggestHotel' => $suggestHotels,
             ];
