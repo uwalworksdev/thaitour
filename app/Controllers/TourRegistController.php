@@ -510,13 +510,18 @@ class TourRegistController extends BaseController
         if($e_date) $o_edate = $e_date;
 
         if($s_date && $e_date) {
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ORDER BY golf_date ";
         } else {
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ";
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY golf_date ";
         }
         $result      = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
         $result      = $result->getResultArray();
+
+        $row         = $result->getFirstRow();
+		$firstDate   = $row->golf_date; 
+        $row         = $result->getLastRow();
+		$lastDate   = $row->golf_date; 
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
@@ -543,8 +548,8 @@ class TourRegistController extends BaseController
 			'roresult'     => $roresult,
             'product_idx'  => $product_idx,
             'product_name' => $product_name,
-            'o_sdate'      => $firstValue['golf_date'],
-            'o_edate'      => $lastValue['golf_date'],
+            'o_sdate'      => $firstDate,
+            'o_edate'      => $lastDate,
             's_date'       => $s_date,
             'e_date'       => $e_date,
         ];
