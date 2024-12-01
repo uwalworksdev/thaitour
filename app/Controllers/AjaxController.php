@@ -483,6 +483,7 @@ class AjaxController extends BaseController {
 		    }
 
 			// 결과 출력
+            $from_date   = day_after($from_date, 1);
             $to_date     = day_after($from_date, $days);
 			$dateRange   = getDateRange($from_date, $to_date);
 
