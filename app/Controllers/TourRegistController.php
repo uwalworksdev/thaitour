@@ -516,6 +516,7 @@ class TourRegistController extends BaseController
         }
         $result      = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
+        $result      = $result->getResultArray();
 
         $nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
@@ -528,9 +529,9 @@ class TourRegistController extends BaseController
 
 
 		// 첫 번째 값
-		$firstValue = reset($roresult); // 배열의 첫 번째 값
+		$firstValue = reset($result); // 배열의 첫 번째 값
 		// 마지막 값
-		$lastValue  = end($roresult); // 배열의 마지막 값
+		$lastValue  = end($result);   // 배열의 마지막 값
 
         $data = [
             "num"          => $num,
