@@ -110,7 +110,7 @@
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
-                                            <a href="#!" id="inqCharge" class="btn btn-primary">전체조회</a>
+                                            <a href="#!" id="allCharge" class="btn btn-primary">전체조회</a>
                                         </div>
 
 										<div style="text-align:left;">
@@ -210,6 +210,12 @@
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
 							$("#priceForm").submit();
+						});
+					</script>
+
+					<script>
+						$("#allCharge").one("click", function () {
+							location.hretf='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val();
 						});
 					</script>
 
