@@ -472,17 +472,13 @@ class AjaxController extends BaseController {
 		    $product_idx = $_POST['product_idx'];
 		    $days        = $_POST['days'];
 
-			$row_price = $db->table('tbl_golf_price')
-				->where('product_idx', $product_idx)
-				->orderBy('golf_date', 'DESC')
-				->limit(1)
-				->get()
-				->getResultArray();
-
-			foreach ($row_price as $row): 
-						$o_idx       = $row['o_idx'];
-						$from_date   = $row['golf_date'];
-			endforeach; 
+			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' ORDER BY golf_date desc limit 0,1 ";
+			$result = $db->query($sql)->getResultArray();
+			foreach($result as $row)
+		    { 
+					  $o_idx       = $row['o_idx'];
+					  $from_date   = $row['golf_date'];  
+		    }
 
 			// 결과 출력
             $to_date     = day_after($from_date, $days);
