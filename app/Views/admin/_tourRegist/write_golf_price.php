@@ -212,7 +212,19 @@
 												?>
 											    </select>
                                             </td>
-											<td style="text-align:center"><?=$item['minute']?></td>
+											<td style="text-align:center">
+											    <select name="minute" id="minute_<?=$item['idx']?>">
+												<?php
+													foreach (GOLF_MIN as $minute) {
+														if($item['minute'] == $minute) {
+														   echo "<option value='". $minute ."' selected>". $minute;
+														} else {
+														   echo "<option value='". $minute ."'>". $minute;
+														}
+													}
+												?>
+											    </select>
+                                            </td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
 												<input type="hidden" name="golf_date[]" id="golf_date_<?=$item['idx']?>" value="<?=$item['goods_date']?>">
