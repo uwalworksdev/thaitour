@@ -479,8 +479,10 @@ class AjaxController extends BaseController {
 				->get()
 				->getResultArray();
 
-			$o_idx       = $row_price['o_idx'];
-			$from_date   = $row_price['golf_date'];
+			foreach ($row_price as $row): 
+						$o_idx       = $row['o_idx'];
+						$from_date   = $row['golf_date'];
+			endforeach; 
 
 			// 결과 출력
             $to_date     = day_after($from_date, $days);
