@@ -4,7 +4,7 @@
 			$date = new DateTime($from_date);
 
 			// 일 추가
-			$date->modify('+ $days days');
+			$date->modify('+'. $days .'days');
 
 			// 결과 출력
 			$to_date   = $date->format('Y-m-d'); // 2024-12-10
