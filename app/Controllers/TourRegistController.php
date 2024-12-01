@@ -545,7 +545,6 @@ class TourRegistController extends BaseController
             'product_name' => $product_name,
             'o_sdate'      => $firstValue['golf_date'],
             'o_edate'      => $lastValue['golf_date'],
-            'o_sdate'      => $firstValue['golf_date'],
             's_date'       => $s_date,
             'e_date'       => $e_date,
         ];
