@@ -101,7 +101,11 @@
 								    
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;margin-right: 20px;">
+										    <?php if($s_date == "" && $e_date == "") { ?>
+                                            <?= $o_sdate ?> ~ <?= $o_edate ?>
+											<?php } else { ?>
                                             <?= $s_date ?> ~ <?= $e_date ?>
+											<?php } ?>
                                         </div>
 
 										<div style="text-align:left;">
