@@ -226,14 +226,15 @@
 								if (!confirm("일정을 추가 하시겠습니까?"))
 									return false;
 
-								var days     = $("#days").val();
+								var days = $("#days").val();
 								$.ajax({
 
 									url: "/ajax/golf_price_add",
 									type: "POST",
 									data: {
 
-											"days" : days 
+											"product_idx" : $("#product_idx").val(), 
+											"days"        : days 
 									      },
 									dataType: "json",
 									async: false,

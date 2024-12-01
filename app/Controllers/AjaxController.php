@@ -467,6 +467,41 @@ class AjaxController extends BaseController {
 
 	public function golf_price_add()
     {
+		    $product_idx = $_POST['product_idx'];
+		    $days        = $_POST['days'];
+
+			$sql_price   = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' ORDER BY golf_date DESC LIMIT 0,1";
+			$row_price   = $this->connect->query($sql_price)->getRowArray();
+			$o_idx       = $row_price['o_idx'];
+			$from_date   = $row_price['gilf_date'];
+
+			$date = new DateTime($from_date);
+
+			// 일 추가
+			$date->modify('+'. $days .'days');
+
+			// 결과 출력
+			$to_date   = $date->format('Y-m-d'); // 2024-12-10
+			$dateRange = getDateRange($from_date, $to_date);
+
+			$ii = -1;
+			foreach ($dateRange as $date) 
+			{ 
+				$ii++;
+		 
+				$golf_date = $dateRange[$ii];
+				$dow       = dateToYoil($golf_date);
+
+				$sql_p = "INSERT INTO tbl_golf_price  SET  
+													  o_idx        = '". $_idx ."' 	
+													 ,golf_date    = '". $golf_date ."' 	
+													 ,dow 	       = '". $dow ."'
+													 ,product_idx  = '". $product_idx ."' 
+													 ,reg_date     = now() ";
+				write_log("일정추가 : ".$sql_p);
+				$this->connect->query($sql_p);
+			} 
+
 			if (isset($result) && $result) {
 				$msg = "일정 추가완료";
 			} else {
