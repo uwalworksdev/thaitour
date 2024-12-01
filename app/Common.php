@@ -918,4 +918,17 @@ function dateToYoil($strdate)
 
 	return $yoil[date('w', strtotime($date))];
 
+function day_after($from_date, $days)
+{
+	$date = new DateTime($from_date);
+
+	// 종료일 생성
+	$date->modify('+'. $days .'days');
+
+	// 결과 출력
+	$to_date   = $date->format('Y-m-d'); // 2024-12-10
+
+	return $to_date;
 }
+
+?>

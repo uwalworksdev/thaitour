@@ -480,16 +480,11 @@ class AjaxController extends BaseController {
 				->getRowArray();
 
 			$o_idx       = $row_price['o_idx'];
-			$from_date   = $row_price['gilf_date'];
-
-			$date = new DateTime($from_date);
-
-			// 일 추가
-			$date->modify('+'. $days .'days');
+			$from_date   = $row_price['golf_date'];
 
 			// 결과 출력
-			$to_date   = $date->format('Y-m-d'); // 2024-12-10
-			$dateRange = getDateRange($from_date, $to_date);
+            $to_date     = day_after($from_date, $days);
+			$dateRange   = getDateRange($from_date, $to_date);
 
 			$ii = -1;
 			foreach ($dateRange as $date) 
