@@ -98,14 +98,15 @@
                             <tr>
                                 <th>날짜지정</th>
                                 <td>
+								    
                                     <div class="container_date flex__c" style="margin: 0">
                                         <div style="text-align:left;margin-right: 20px;">
                                             <?= $o_sdate ?> ~ <?= $o_edate ?>
                                         </div>
 
 										<div style="text-align:left;">
-											<input type="text" name="s_date" id="s_date" value="" style="text-align: center;background: white; width: 120px;" readonly> ~
-											<input type="text" name="e_date" id="e_date" value="" style="text-align: center;background: white; width: 120px;" readonly>
+											<input type="text" name="s_date" id="s_date" value="<?=$s_sdate?>" style="text-align: center;background: white; width: 120px;" > ~
+											<input type="text" name="e_date" id="e_date" value="<?=$e_sdate?>" style="text-align: center;background: white; width: 120px;" >
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
