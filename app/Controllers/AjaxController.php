@@ -477,7 +477,7 @@ class AjaxController extends BaseController {
 				->orderBy('golf_date', 'DESC')
 				->limit(1)
 				->get()
-				->getRowArray();
+				->getResultArray();
 
 			$o_idx       = $row_price['o_idx'];
 			$from_date   = $row_price['golf_date'];
