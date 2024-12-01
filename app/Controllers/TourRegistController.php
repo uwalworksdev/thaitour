@@ -510,9 +510,9 @@ class TourRegistController extends BaseController
         if($e_date) $o_edate = $e_date;
 
         if($s_date && $e_date) {
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ORDER BY golf_date ";
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' AND golf_date BETWEEN '$s_date' AND '$e_date' ";
         } else {
-			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY golf_date ";
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."'  ";
         }
         $result      = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
