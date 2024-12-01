@@ -917,6 +917,7 @@ function dateToYoil($strdate)
 	$date = $strdate;
 
 	return $yoil[date('w', strtotime($date))];
+}
 
 function day_after($from_date, $days)
 {
