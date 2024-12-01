@@ -103,8 +103,6 @@
                                         <div style="text-align:left;margin-right: 20px;">
 										    <?php if($s_date == "" && $e_date == "") { ?>
                                             <?= $o_sdate ?> ~ <?= $o_edate ?>
-											<?php } else { ?>
-                                            <?= $s_date ?> ~ <?= $e_date ?>
 											<?php } ?>
                                         </div>
 
