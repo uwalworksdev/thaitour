@@ -390,7 +390,7 @@ class AjaxController extends BaseController {
 																 hour        = '". $hour        ."' AND  
 																 minute      = '". $minute     ."' ";
             write_log("1- ". $sal);
-            $result       = $this->connect->query($sql);
+            $result       = $db->query($sql);
             $nTotalCount  = $result->getNumRows();
 
 		    if($nTotalCount == 0) {
@@ -419,7 +419,7 @@ class AjaxController extends BaseController {
 				$result = $db->query($sql);
 
 				$sql_opt    = "SELECT LAST_INSERT_ID() AS last_id";
-				$option     = $this->connect->query($sql_opt)->getRowArray();
+				$option     = $db->query($sql_opt)->getRowArray();
 				$o_idx      = $option['last_id'];
             } else {
 				$o_idx      = "";
