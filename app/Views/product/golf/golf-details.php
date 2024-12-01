@@ -259,8 +259,11 @@
                     <span class="l-label">인원</span>
                     <span class="l-label2"><em class="final_people_cnt">0</em>인</span>
                 </p>
-                <button class="btn-price-content-normal" type="button"
+                <!--button class="btn-price-content-normal" type="button"
                         onclick="showCouponPop()">쿠폰적용
+                </button-->
+                <button class="btn-price-content-normal" type="button"
+                        onclick="showCouponPop()">장바구니 담기
                 </button>
             </div>
             <div class="right-main" id="booking_area">
