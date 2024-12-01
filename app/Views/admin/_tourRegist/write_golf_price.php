@@ -188,18 +188,30 @@
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
 											<td style="text-align:center">
 											    <select name="hole_cnt" id="hole_cnt_<?=$item['idx']?>">
-                                            <?php
-												foreach (GOLF_HOLES as $hole) {
-													if($item['hole_cnt'] == $hole) {
-													   echo "<option value='". $hole ."' selected>". $hole;
-                                                    } else {
-													   echo "<option value='". $hole ."'>". $hole;
-                                                    }
-												}
-											?>
+												<?php
+													foreach (GOLF_HOLES as $hole) {
+														if($item['hole_cnt'] == $hole) {
+														   echo "<option value='". $hole ."' selected>". $hole;
+														} else {
+														   echo "<option value='". $hole ."'>". $hole;
+														}
+													}
+												?>
 											    </select>
                                             </td>
-											<td style="text-align:center"><?=$item['hour']?></td>
+											<td style="text-align:center">
+											    <select name="hour" id="hour_<?=$item['idx']?>">
+												<?php
+													foreach (GOLF_HOURS as $hour) {
+														if($item['hour'] == $hour) {
+														   echo "<option value='". $hour ."' selected>". $hour;
+														} else {
+														   echo "<option value='". $hour ."'>". $hour;
+														}
+													}
+												?>
+											    </select>
+                                            </td>
 											<td style="text-align:center"><?=$item['minute']?></td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
