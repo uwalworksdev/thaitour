@@ -389,6 +389,7 @@ class AjaxController extends BaseController {
   			                                                     hole_cnt    = '". $hole_cnt    ."' AND
 																 hour        = '". $hour        ."' AND  
 																 minute      = '". $minute     ."' ";
+            write_log("1- ". $sal);
             $result       = $this->connect->query($sql);
             $nTotalCount  = $result->getNumRows();
 
