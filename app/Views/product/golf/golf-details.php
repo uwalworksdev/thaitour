@@ -492,8 +492,11 @@
                             </p>
                         </div>
                     </div>
-                    <button type="button" class="btn_accept_popup btn_accept_coupon">
+                    <!--button type="button" class="btn_accept_popup btn_accept_coupon">
                         쿠폰적용
+                    </button-->
+                    <button type="button" class="btn_accept_popup btn_accept_coupon">
+                        장바구니 담기
                     </button>
                 </div>
             </div>
