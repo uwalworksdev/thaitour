@@ -471,6 +471,7 @@ class AjaxController extends BaseController {
 		    $days        = $_POST['days'];
 
 			$sql_price   = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' ORDER BY golf_date DESC LIMIT 0,1";
+			write_log($sql_price);
             $row_price   = $db->query($sql_price)->getResultArray();
 
 			$o_idx       = $row_price['o_idx'];
