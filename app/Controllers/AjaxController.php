@@ -521,8 +521,10 @@ class AjaxController extends BaseController {
 			return $this->response
 				->setStatusCode(200)
 				->setJSON([
-					'status' => 'success',
-					'message' => $msg
+					'status'  => 'success',
+					'message' => $msg,
+					's_date'  => $from_date,
+					'e_date'  => $to_date
 				]);
 
     }
