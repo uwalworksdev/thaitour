@@ -827,7 +827,6 @@
         });
 
         var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
-		alert(sel_Date);
         const arrDate = sel_Date.split("|");
         const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
 
