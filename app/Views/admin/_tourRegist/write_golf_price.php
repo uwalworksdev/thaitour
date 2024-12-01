@@ -215,7 +215,7 @@
 
 					<script>
 						$("#allCharge").one("click", function () {
-							location.hretf='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val();
+							location.href='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val();
 						});
 					</script>
 
