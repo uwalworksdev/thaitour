@@ -197,6 +197,8 @@
                                                     }
 												}
 											?>
+											    </select>
+                                            </td>
 											<td style="text-align:center"><?=$item['hour']?></td>
 											<td style="text-align:center"><?=$item['minute']?></td>
 											<td style="text-align:center">
