@@ -473,9 +473,11 @@ class AjaxController extends BaseController {
 		    $days        = $_POST['days'];
 
 			$sql    = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' ORDER BY golf_date desc limit 0,1 ";
+			write_log($sql);
 			$result = $db->query($sql)->getResultArray();
 			foreach($result as $row)
 		    { 
+				      write_log($row['o_idx'] ." - ". $row['golf_date']); 
 					  $o_idx       = $row['o_idx'];
 					  $from_date   = $row['golf_date'];  
 		    }
