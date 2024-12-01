@@ -500,9 +500,16 @@ class AjaxController extends BaseController {
 													 ,golf_date    = '". $golf_date ."' 	
 													 ,dow 	       = '". $dow ."'
 													 ,product_idx  = '". $product_idx ."' 
+                                                     ,hole_cnt     = ''
+                                                     ,hour         = ''	
+                                                     ,minute	   = ''
+                                                     ,option_price = '0'
+                                                     ,use_yn	   = ''
+                                                     ,caddy_fee	   = ''	
+                                                     ,cart_pie_fee = ''
 													 ,reg_date     = now() ";
 				write_log("일정추가 : ".$sql_p);
-				//$this->connect->query($sql_p);
+				$this->connect->query($sql_p);
 			} 
 
 			if (isset($result) && $result) {
