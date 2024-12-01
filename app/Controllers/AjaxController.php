@@ -495,7 +495,7 @@ class AjaxController extends BaseController {
 				$dow       = dateToYoil($golf_date);
 
 				$sql_p = "INSERT INTO tbl_golf_price  SET  
-													  o_idx        = '". $_idx ."' 	
+													  o_idx        = '". $o_idx ."' 	
 													 ,golf_date    = '". $golf_date ."' 	
 													 ,dow 	       = '". $dow ."'
 													 ,product_idx  = '". $product_idx ."' 
