@@ -110,6 +110,7 @@
 										</div>
                                         <div style="margin:10px">
                                             <a href="#!" id="inqCharge" class="btn btn-primary">조회</a>
+                                            <a href="#!" id="inqCharge" class="btn btn-primary">전체조회</a>
                                         </div>
 
 										<div style="text-align:left;">
