@@ -434,7 +434,11 @@
 						type: "POST",
 						data: {
 
+								"product_idx"   : $("#product_idx").val(),
 								"idx"           : idx,
+								"hole_cnt"      : $("#hole_cnt_"+idx).val(),
+								"hour"          : $("#hour_"+idx).val(),
+								"minute"        : $("#minute_"+idx).val(),
 								"option_price"  : $("#option_price_"+idx).val(),
 								"caddy_fee"     : $("#caddy_fee_"+idx).val(), 
 								"cart_pie_fee"  : $("#cart_pie_fee_"+idx).val(), 

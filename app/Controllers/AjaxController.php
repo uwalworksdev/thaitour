@@ -372,18 +372,79 @@ class AjaxController extends BaseController {
 	
 	public function golf_price_update()   
     {
-        $db    = \Config\Database::connect();
-            $idx          = $_POST['idx'];
+            $db           = \Config\Database::connect();
+            
+			$product_idx  = $_POST['product_idx'];
+			$idx          = $_POST['idx'];
+			$hole_cnt     = $_POST['hole_cnt'];
+			$hour         = $_POST['hour'];
+			$minute       = $_POST['minute'];
+
 			$option_price = str_replace(',', '', $_POST['option_price']);
 			$caddy_fee    = $_POST['caddy_fee'];
 			$cart_pie_fee = $_POST['cart_pie_fee'];
             $use_yn       = $_POST['use_yn'];
-			
-			$sql = "UPDATE tbl_golf_price SET option_price  = '". $option_price ."'
-			                                 , caddy_fee    = '". $caddy_fee ."'
-			                                 , cart_pie_fee = '". $cart_pie_fee ."'
-											 , use_yn       = '". $use_yn ."'
-											 , upd_date     = now() WHERE idx = '". $idx ."'  ";
+
+			$sql          = "SELECT * FROM tbl_golf_option WHERE product_idx = '". $product_idx ."' AND
+  			                                                     hole_cnt    = '". $hole_cnt    ."' AND
+																 hour        = '". $hour        ."' AND  
+																 minute      = '". $minute     ."' ";
+            $result       = $this->connect->query($sql);
+            $nTotalCount  = $result->getNumRows();
+
+		    if($nTotalCount == 0) {
+				$sql = "INSERT INTO tbl_golf_option SET product_idx	  = '". $product_idx ."'	
+  			                                           ,hole_cnt      = '". $hole_cnt    ."'  
+													   ,hour          = '". $hour        ."'  
+													   ,minute        = '". $minute     ."'  
+													   ,option_price  = '0'	
+													   ,option_price1 = '0'
+													   ,option_price2 = '0'	
+													   ,option_price3 = '0'	
+													   ,option_price4 = '0'	
+													   ,option_price5 = '0'	
+													   ,option_price6 = '0'	
+													   ,option_price7 = '0'	
+													   ,option_cnt	  = '0'
+													   ,use_yn	      = 'Y'	
+													   ,afile	      = ''
+													   ,bfile	      = ''	
+													   ,option_type	  = 'M'	
+													   ,onum	      = '0'	
+													   ,rdate	      = now()	
+													   ,caddy_fee	  = ''
+													   ,cart_pie_fee  = '' ";
+				write_log($sql);
+				$result = $db->query($sql);
+
+				$sql_opt    = "SELECT LAST_INSERT_ID() AS last_id";
+				$option     = $this->connect->query($sql_opt)->getRowArray();
+				$o_idx      = $option['last_id'];
+            } else {
+				$o_idx      = "";
+            }
+
+            if($o_idx) {
+				$sql = "UPDATE tbl_golf_price SET  o_idx        = '". $o_idx    ."'    
+												 , hole_cnt     = '". $hole_cnt    ."'  
+												 , hour         = '". $hour        ."'  
+												 , minute       = '". $minute     ."'  
+												 , option_price = '". $option_price ."'
+												 , caddy_fee    = '". $caddy_fee ."'
+												 , cart_pie_fee = '". $cart_pie_fee ."'
+												 , use_yn       = '". $use_yn ."'
+												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
+			} else {
+				$sql = "UPDATE tbl_golf_price SET  hole_cnt     = '". $hole_cnt    ."'  
+												 , hour         = '". $hour        ."'  
+												 , minute       = '". $minute     ."'  
+												 , option_price = '". $option_price ."'
+												 , caddy_fee    = '". $caddy_fee ."'
+												 , cart_pie_fee = '". $cart_pie_fee ."'
+												 , use_yn       = '". $use_yn ."'
+												 , upd_date     = now() WHERE idx = '". $idx ."'  ";
+			}
+
 			write_log($sql);
 			$result = $db->query($sql);
 
@@ -403,7 +464,7 @@ class AjaxController extends BaseController {
 	
 	public function golf_price_delete()   
     {
-        $db    = \Config\Database::connect();
+            $db    = \Config\Database::connect();
 
             $idx          = $_POST['idx'];
 			
