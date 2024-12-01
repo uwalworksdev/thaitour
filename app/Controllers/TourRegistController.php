@@ -516,14 +516,8 @@ class TourRegistController extends BaseController
         }
         $result      = $this->connect->query($sql);
         $nTotalCount = $result->getNumRows();
-        $result      = $result->getResultArray();
 
-        $row         = $result->getFirstRow();
-		$firstDate   = $row->golf_date; 
-        $row         = $result->getLastRow();
-		$lastDate   = $row->golf_date; 
-
-        $nPage = ceil($nTotalCount / $g_list_rows);
+		$nPage = ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
@@ -548,8 +542,6 @@ class TourRegistController extends BaseController
 			'roresult'     => $roresult,
             'product_idx'  => $product_idx,
             'product_name' => $product_name,
-            'o_sdate'      => $firstDate,
-            'o_edate'      => $lastDate,
             's_date'       => $s_date,
             'e_date'       => $e_date,
         ];
