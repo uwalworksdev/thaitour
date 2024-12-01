@@ -467,6 +467,8 @@ class AjaxController extends BaseController {
 
 	public function golf_price_add()
     {
+		    $db = \Config\Database::connect(); // 데이터베이스 연결
+
 		    $product_idx = $_POST['product_idx'];
 		    $days        = $_POST['days'];
 
