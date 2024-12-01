@@ -276,11 +276,11 @@
                 </div>
                 <div class="vehicle_list_result" id="vehicle_list_result">
                 </div>
-                <div class="item-right cus-border">
+                <!--div class="item-right cus-border">
                     <p><span class="">쿠폰 적용</span></p>
                     <span class="price-text">- <em id="final_discount">0</em>원 (<em
                                 id="final_discount_baht">0</em>바트)</span>
-                </div>
+                </div-->
                 <div class="item-last-right">
                     <p>합계</p>
                     <p class="price-text"><em id="last_price">0</em><span>원(<em id="last_price_baht">0</em>바트)</span>
