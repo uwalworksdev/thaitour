@@ -219,7 +219,7 @@
 								var days     = $("#days").val();
 								$.ajax({
 
-									url: "/ajax/ajax.golf_price_add",
+									url: "/ajax/golf_price_add",
 									type: "POST",
 									data: {
 

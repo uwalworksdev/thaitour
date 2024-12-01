@@ -465,4 +465,20 @@ class AjaxController extends BaseController {
 				]);
     }
 
+	public function golf_price_add()
+    {
+			if (isset($result) && $result) {
+				$msg = "일정 추가완료";
+			} else {
+				$msg = "일정 추가오류";
+			}
+
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status' => 'success',
+					'message' => $msg
+				]);
+
+    }
 }

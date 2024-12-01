@@ -416,6 +416,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
     $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
+    $routes->post("golf_price_add", "AjaxController::golf_price_add");
 
 });
 
