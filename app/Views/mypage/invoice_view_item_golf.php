@@ -124,14 +124,15 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			<h2>옵션 정보</h2>
 			<table>
 				<colgroup>
-					<col width="15%">
 					<col width="*">
+					<col width="15%">
+					<col width="15%">
 				</colgroup>
 				<tbody>
 					<tr>
 						<td class="subject">옵션내역</td>
-						<td col width="*%" class="subject">옵션수량</td>
-						<td col width="15%" class="subject">옵션금액(원)</td>
+						<td class="subject">옵션수량</td>
+						<td class="subject">옵션금액(원)</td>
 					</tr>
 				    <?php foreach ($vehicle as $item) { ?>
 					<tr>
