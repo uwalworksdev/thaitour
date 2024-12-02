@@ -195,9 +195,9 @@ class ProductModel extends Model
             ->getResultArray();
     }
 
-    public function getAllProductsBySubCode($code)
+    public function getAllProductsBySubCode($field, $code)
     {
-        return $this->where('product_code_3', $code)
+        return $this->where($field, $code)
                     ->orLike('product_code_list', $code)
                     ->where('product_status !=', "D")
                     ->orderBy('onum', 'desc')
@@ -633,8 +633,8 @@ class ProductModel extends Model
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
-            $product_price_baht = $product_price / $baht_thai;
-            $items[$key]['product_price_baht'] = $product_price_baht;
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
 
 
         }
@@ -853,8 +853,8 @@ class ProductModel extends Model
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
-            $product_price_baht = $product_price / $baht_thai;
-            $items[$key]['product_price_baht'] = $product_price_baht;
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
         }
         $data = [
             'items' => $items,
@@ -962,8 +962,8 @@ class ProductModel extends Model
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
 
             $product_price = (float)$value['product_price'];
-            $product_price_baht = $product_price / $baht_thai;
-            $items[$key]['product_price_baht'] = $product_price_baht;
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
 
             $car_price = (float)$value['car_price'];
             $car_price_baht = $car_price / $baht_thai;
@@ -1052,8 +1052,8 @@ class ProductModel extends Model
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
-            $product_price_baht = $product_price / $baht_thai;
-            $items[$key]['product_price_baht'] = $product_price_baht;
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
         }
         $data = [
             'items' => $items,

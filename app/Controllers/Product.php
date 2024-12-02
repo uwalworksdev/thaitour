@@ -2563,17 +2563,6 @@ class Product extends BaseController
 
             $place_end_list = $this->codeModel->getByParentCode(49)->getResultArray();
 
-            // foreach($products as $key => $value){
-            //     $osql = "select * from tbl_cars_option where product_code = '" . $value["product_code"] . "'";
-            //     $oresult = $this->db->query($osql);
-            //     $oresult = $oresult->getResultArray();
-            //     $products[$key]["options"] = $oresult;
-            //     $product_price = (float)$value['product_price'];
-            //     $baht_thai = (float)($setting['baht_thai'] ?? 0);
-            //     $product_price_baht = $product_price / $baht_thai;
-            //     $products[$key]['product_price_baht'] = $product_price_baht;
-            // }
-
             $data = [
                 'tab_active' => '7',
                 'parent_code' => $code_no,
@@ -3074,6 +3063,10 @@ class Product extends BaseController
 
     private function getSuggestedHotels($currentHotelId, $currentHotelCode, $productCode1 = null)
     {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+
         if (!$productCode1) {
             $productCode1 = 1303;
         }
@@ -3084,7 +3077,7 @@ class Product extends BaseController
             ->get()
             ->getResultArray();
 
-        return array_map(function ($hotel) use ($currentHotelCode) {
+        return array_map(function ($hotel) use ($currentHotelCode, $baht_thai) {
             $hotel['array_hotel_code'] = $this->explodeAndTrim($hotel['product_code'], '|');
             $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['product_code'], ',');
 
@@ -3093,6 +3086,10 @@ class Product extends BaseController
             list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['product_idx'], $currentHotelCode);
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
+
+            $product_price = (float)$hotel['product_price'];
+            $product_price_won = $product_price * $baht_thai;
+            $hotel['product_price_won'] = $product_price_won;
 
             return $hotel;
         }, $suggestHotels);

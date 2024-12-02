@@ -289,10 +289,10 @@ $routes->group("AdmMaster", static function ($routes) {
     });
 
     $routes->group("_coupon", static function ($routes) {
-        $routes->get("list", "Admin\AdminCouponController::list");
-        $routes->get("write", "Admin\AdminCouponController::write");
-        $routes->post("write_ok", "Admin\AdminCouponController::write_ok");
-        $routes->post("del", "Admin\AdminCouponController::delete");
+        $routes->get("list", "Admin\AdminCouponController::list", ['as' => "admin.coupon.list"]);
+        $routes->get("write", "Admin\AdminCouponController::write", ['as' => "admin.coupon.write"]);
+        $routes->post("write_ok", "Admin\AdminCouponController::write_ok", ['as' => "admin.coupon.write_ok"]);
+        $routes->post("delete", "Admin\AdminCouponController::delete", ['as' => "admin.coupon.delete"]);
     });
 
     $routes->group("_operator", static function ($routes) {
@@ -416,7 +416,6 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_update", "AjaxController::golf_price_update");
     $routes->post("golf_price_delete", "AjaxController::golf_price_delete");
     $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
-    $routes->post("golf_price_add", "AjaxController::golf_price_add");
 
 });
 
@@ -647,8 +646,4 @@ $routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour')
 $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.product.sel_moption"]);
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
-
-$routes->get('/nicepay/request', 'NicepayController::request');
-$routes->get('/nicepay/return',  'NicepayController::rturn');
-
 ?>

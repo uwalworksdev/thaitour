@@ -247,7 +247,8 @@ class CodeController extends BaseController
 
     public function get_list_product() {
         $code_no = $this->request->getVar('product_code');
-        $results = $this->productModel->getAllProductsBySubCode($code_no);
+        $field = $this->request->getVar('field');
+        $results = $this->productModel->getAllProductsBySubCode($field ,$code_no);
         $cnt = count($results);
         $data = [
             "results" => $results,

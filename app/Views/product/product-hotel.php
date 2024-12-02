@@ -477,10 +477,10 @@
                                 </div>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($product['product_price']) ?> <span>원 ~</span> <span
+                                <?= number_format($product['product_price']) ?> <span>바트~</span> <span
                                         class="prd_price_thai">
-                                <?= number_format($product['product_price_baht']) ?>
-                                <span>바트</span></span>
+                                <?= number_format($product['product_price_won']) ?>
+                                <span>원</span></span>
                             </div>
                         </a>
                     <?php endforeach; ?>

@@ -41,8 +41,8 @@ class MainDispModel extends Model
         foreach ($items as $key => $value) {
             $product_price = (float)$value['product_price'];
             $baht_thai = (float)($setting['baht_thai'] ?? 0);
-            $product_price_baht = $product_price / $baht_thai;
-            $items[$key]['product_price_baht'] = $product_price_baht;
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
         }
 
         $data = [

@@ -487,6 +487,7 @@
                 url: "/ajax/get_list_product",
                 type: "GET",
                 data: {
+                    field: "product_code_3",
                     product_code: event.target.value
                 },
                 success: function(res) {

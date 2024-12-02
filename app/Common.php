@@ -72,6 +72,15 @@ function convertToBath($product_price): float
     return round($product_price_baht, 2);
 }
 
+function convertToWon($product_price): float
+{
+    $setting = homeSetInfo();
+    $product_price = (float)$product_price;
+    $baht_thai = (float)($setting['baht_thai'] ?? 0);
+    $product_price_won = $product_price * $baht_thai;
+    return round($product_price_won, 2);
+}
+
 function no_file_ext($filename)
 {
 
