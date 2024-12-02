@@ -94,7 +94,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 						<td class="content">
 							<p>
-							<?= $option['hour'] ?>시<?= $option['minute'] ?>분
+							<?= $option['option_name'] ?>시<?= $option['minute'] ?>분
 							</p>
 						</td>
 						<td class="content">
