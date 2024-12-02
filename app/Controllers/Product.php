@@ -1735,6 +1735,7 @@ class Product extends BaseController
 			     $option_price = $data['option_price'];     
 		}
 
+        $data['hole_cnt'] = "xxxxxxxx";
         $data['total_price']      = $option_price * $people_adult_cnt;
         $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
 

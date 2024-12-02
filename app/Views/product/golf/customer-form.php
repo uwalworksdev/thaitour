@@ -224,7 +224,7 @@
                                 </div>
                                 <div class="item-info">
                                     <span>홀수</span>
-                                    <span><?= $option['hole_cnt'] ?>홀</span>
+                                    <span><?= $hole_cnt ?>홀</span>
                                 </div>
                                 <div class="item-info">
                                     <span>티오프시간</span>
