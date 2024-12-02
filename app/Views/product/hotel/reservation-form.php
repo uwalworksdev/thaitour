@@ -1,6 +1,65 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+    <style>
+        .item-info-check-first.click {
+            background-color: #686868;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .item-info-check-first {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 14px;
+            border-radius: 6px;
+            background-color: #f3f3f3;
+            margin-bottom: 20px;
+        }
+
+        .item-info-check-first img {
+            width: 25px;
+            height: 17px;
+        }
+
+        .item-info-check img {
+            width: 25px;
+            height: 17px;
+        }
+
+        .item-info-check {
+            display: flex;
+            justify-content: space-between;
+            border-radius: 6px;
+            padding: 16px 14px;
+            margin: 0 !important;
+            font-size: 15px;
+        }
+
+        .item_check_term_all_,
+        .item_check_term_ {
+            background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
+            background-size: 23px 15px;
+        }
+
+        .item_check_term_all_.checked_,
+        .item_check_term_.checked_ {
+            background: url(/images/ico/check_2.png) no-repeat right 50% #fff;
+            background-size: 23px 15px;
+        }
+
+        .item_check_term_all_ label,
+        .item_check_term_ label {
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        .item-info-check:hover {
+            background-color: #f3f3f3;
+            cursor: pointer;
+        }
+    </style>
     <div class="customer-form-page reservation-form-cus">
     <div class="navigation-section">
         <div class="body_inner">
@@ -194,25 +253,24 @@
                                 체크아웃 시간은 06:00~12:00입니다.<br>· 온수 (지정시간 제공)
                             </p>
                             <h3 class="title-r">약관동의</h3>
-                            <div class="item-info-check-first item-clause-all">
-                                <span>전체동의</span>
-                                <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                            <div class="item-info-check item_check_term_all_">
+                                <label for="fullagreement">전체동의</label>
+                                <input type="hidden" value="N" id="fullagreement">
                             </div>
-                            <div class="item-info-check item-clause-item">
-                                <span>이용약관 동의(필수)</span>
-                                <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                            <div class="item-info-check item_check_term_">
+                                <label for="">이용약관 동의(필수)</label>
+                                <input type="hidden" value="N" id="terms">
                             </div>
-                            <div class="item-info-check item-clause-item">
-                                <span>개인정보 처리방침(필수)</span>
-                                <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 처리방침(필수)</label>
+                                <input type="hidden" value="N" id="policy">
                             </div>
-                            <div class="item-info-check item-clause-item">
-                                <span>개인정보 처리방침(필수)</span>
-                                <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
+                            <div class="item-info-check item_check_term_">
+                                <label for="">개인정보 처리방침(필수)</label>
+                                <input type="hidden" value="N" id="information">
                             </div>
                             <button type="button" class="btn-order">예약하기</button>
                             <button type="button" class="btn-default cart">장바구니</button>
-                            <!-- onclick="location.href='/product/completed-order'" -->
                         </div>
                     </div>
                 </div>
@@ -233,6 +291,42 @@
     </div>
     <script>
         $(document).ready(function () {
+            $('.item_check_term_').click(function () {
+                $(this).toggleClass('checked_');
+                let input = $(this).find('input');
+                input.val($(this).hasClass('checked_') ? 'Y' : 'N');
+
+                checkOrUncheckAll();
+            });
+
+            function checkOrUncheckAll() {
+                let allChecked = true;
+
+                $('.item_check_term_').each(function () {
+                    let input = $(this).find('input');
+                    if (input.val() !== 'Y') {
+                        allChecked = false;
+                        return false;
+                    }
+                });
+
+                let allCheckbox = $('.item_check_term_all_');
+                let allInput = allCheckbox.find('input');
+                allCheckbox.toggleClass('checked_', allChecked);
+                allInput.val(allChecked ? 'Y' : 'N');
+            }
+
+            $('.item_check_term_all_').click(function () {
+                $(this).toggleClass('checked_');
+                let allChecked = $(this).hasClass('checked_');
+                let value = allChecked ? 'Y' : 'N';
+                $(this).find('input').val(value);
+
+                $('.item_check_term_').each(function () {
+                    $(this).toggleClass('checked_', allChecked);
+                    $(this).find('input').val(value);
+                });
+            });
 
             $(".phone").on("input", function () {
                 $(this).val($(this).val().replace(/[^0-9]/g, ""));
