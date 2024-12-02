@@ -2180,6 +2180,12 @@
     transform: scale(1);
 }
 
+.tours-detail .card-left2 [type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
 .tours-detail .form-group-cus-4input {
     display: flex;
     align-items: center;
