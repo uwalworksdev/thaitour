@@ -13,7 +13,7 @@
                     <ul class="tab_box_show_">
                         <li class="tab_box_element_ tab_box_js <?= count($arr) == 0 ? 'tab_active_' : '' ?> p--20 border" data-group="<?=$filter['filter_name']?>" data-idx="0">전체</li>
                         <?php foreach ($filter['children'] as $item) { ?>
-                            <li class="tab_box_element_ tab_box_js <?= in_array($item['code_no'], $arr) || count($arr) == 0 ? 'tab_active_' : '' ?> p--20 border" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>"><?=$item['code_name']?></li>
+                            <li class="tab_box_element_ tab_box_js <?= in_array($item['code_no'], $arr) ? 'tab_active_' : '' ?> p--20 border" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>"><?=$item['code_name']?></li>
                         <?php } ?>
                     </ul>
                     <?php break;
@@ -24,7 +24,7 @@
                                 <label for="time1">전체</label>
                             </div>
                             <?php foreach ($filter['children'] as $item) { ?>
-                                <div class="form-group tab_box_js <?= in_array($item['code_no'], $arr) || count($arr) == 0 ? 'tab_active_' : '' ?>" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>">
+                                <div class="form-group tab_box_js <?= in_array($item['code_no'], $arr) ? 'tab_active_' : '' ?>" data-group="<?=$filter['filter_name']?>" data-idx="<?=$item['code_no']?>">
                                     <label for="time1"><?=$item['code_name']?></label>
                                 </div>
                             <?php } ?>

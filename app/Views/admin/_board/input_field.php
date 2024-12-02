@@ -2,9 +2,6 @@
 $name = BBS_WRITE_CONFIG[$code]['names'][$key];
 $inputType = BBS_WRITE_CONFIG[$code]['inputTypes'][$key];
 $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
-
-
-
 ?>
 
 <?php if ($inputType == "text"): ?>
@@ -52,7 +49,10 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
                 </option>
             <?php
             }
-        } ?>
+        } else if($name == "status") { ?>
+            <option value="Y" <?= ($info[$name] == "Y") ? "selected" : ""?> >사용</option>
+            <option value="N" <?= ($info[$name] == "N") ? "selected" : ""?> >중지</option>
+        <?php } ?>
     </select>
 <?php endif; ?>
 
