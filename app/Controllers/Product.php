@@ -1715,12 +1715,17 @@ class Product extends BaseController
     {
         //$data['option'] = $this->golfPriceModel->find($option_idx);
 
-		$sql = "SELECT * FROM tbl_golf_price WHERE idx = '". $option_idx ."'";
+		$sql    = "SELECT * FROM tbl_golf_price WHERE idx = '". $option_idx ."'";
 		$result = $this->db->query($sql);
-		$data['option'] = $result->getResultArray();
+		$option = $result->getResultArray();
 
-        $data['total_price'] = $data['option']['option_price'] * $people_adult_cnt;
-        write_log($data['total_price'] ." - ". $data['option']['option_price']);
+		foreach ($option as $data) 
+		{
+			     $option_price = $data['option_price'];     
+		}
+
+        $data['total_price'] = $option_price * $people_adult_cnt;
+        write_log($data['total_price'] ." - ". $option_price);
 
         $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
 
