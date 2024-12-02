@@ -68,7 +68,7 @@ class GolfOptionModel extends Model
 		$options  = $result_p->getResultArray();
       
 	    return $options;
-*/
+*/  
     }
 
     public function getGolfPrice($product_idx, $golf_date = null, $hole_cnt = null, $hour = null, $minute = null)
