@@ -912,7 +912,7 @@
                                     let option_tot = data.option_tot ?? 0;
                                     let option_cnt = data.option_cnt;
 
-                                    let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" style="margin-top: 20px">
+                                    let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" data-idx="${idx}" style="margin-top: 20px">
                                                         <div class="wrap-text">
                                                             <span>${parent_name}</span>
                                                             <p>${option_name}</p>
@@ -978,10 +978,16 @@
                             let qty = parseInt($(this).val());
                             let price = parseFloat($(this).data('price')); 
                             let optionName = $(this).closest('.schedule').find('p').text(); 
+                            let idx = $(this).closest('.schedule').data('idx');
                             
                             if (qty > 0) {
                                 let totalPrice = qty * price;
                                 totalCost += totalPrice;
+                                if (!selectedTourIds.includes(idx)) {
+                                    selectedTourIds.push(idx);
+                                    console.log(selectedTourIds);
+                                    
+                                }
                                 selectedOption.push(`${optionName}: ${qty} x ${price.toLocaleString()} = ${totalPrice.toLocaleString()}원`);
                             }
                         });
@@ -1129,12 +1135,12 @@
 
                     updateTotalPeopleDisplay();
 
-                    var selectedTourIds = [];
-                    $('input[type="checkbox"]').change(function() {
-                        updateOptionText();
-                    });
+                    // var selectedTourIds = [];
+                    // $('input[type="checkbox"]').change(function() {
+                    //     updateOptionText();
+                    // });
 
-                    selectedPrice = [];
+                    // selectedPrice = [];
 
                     // function updateOptionText() {
                     //     var selectedOptions = [];
@@ -1331,9 +1337,7 @@
                             var adultTotalPrices = adultTotalPrice;
                             var childTotalPrices = childTotalPrice;
                             var babyTotalPrices = babyTotalPrice;
-                            var priceOptionTotal = selectedPrice.length > 0 
-                            ? selectedPrice.reduce((sum, price) => sum + price, 0) 
-                            : 0;
+                            var priceOptionTotal = 0;
                             var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
                             var selectedTime = $('.select-time-c').val();
                             if (!selectedTime) {
@@ -1349,13 +1353,13 @@
                             $('#people_kids_price').val(childTotalPrices);
                             $('#people_baby_price').val(babyTotalPrices);
                             $('#tours_idx').val(currentToursIdx);
-                            $('#idx').val(selectedOption.join(','));
+                            $('#idx').val(selectedTourIds.join(','));
                             $('#time_line').val(selectedTime);
                             $('.time_lines').text(selectedTime);
                             $("#total_price_popup").text(number_format(last_price) + "원");
                             $("#total_price").val(last_price);
                             $("#total_pay").text(number_format(last_price) + "원");
-                            console.log(selectedOption.join(','));
+                            console.log(selectedTourIds.join(','));
                             console.log(currentToursIdx);
                             console.log(adultTotalPrices);
                             console.log(selectedTime);
