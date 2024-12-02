@@ -244,7 +244,7 @@ class Product extends BaseController
 
     public function ticketDetail($product_idx)
     {
-        $data = $this->getDataDetail($product_idx, '1317');
+        $data = $this->getDataDetail($product_idx, '1317') ;
 
         return $this->renderView('/product/ticket/ticket-detail', $data);
     }
