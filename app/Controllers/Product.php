@@ -1724,9 +1724,7 @@ class Product extends BaseController
 			     $option_price = $data['option_price'];     
 		}
 
-        $data['total_price'] = $option_price * $people_adult_cnt;
-        write_log($data['total_price'] ." - ". $option_price);
-
+        $data['total_price']      = $option_price * $people_adult_cnt;
         $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
 
         $total_vehicle_price = 0;
