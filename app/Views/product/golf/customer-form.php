@@ -30,6 +30,8 @@
     </div>
     <form action="/product-golf/customer-form-ok" name="order_frm" id="order_frm" method="post" target="hiddenFrame">
         <input type="hidden" name="product_idx" value="<?= $product_idx ?>">
+        <input type="text" name="product_code_1" value="<?= $product['product_code_1'] ?>">
+        <input type="text" name="product_code_2" value="<?= $product['product_code_2'] ?>">
         <input type="hidden" name="people_adult_cnt" value="<?= $people_adult_cnt ?>">
         <input type="hidden" name="order_date" id="order_date" value="<?= $order_date ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
