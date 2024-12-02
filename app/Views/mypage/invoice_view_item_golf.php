@@ -125,6 +125,42 @@ if ($_SESSION["member"]["mIdx"] == "") {
 			</table>
 		</div>
 
+		<div class="invoice_table invoice_table_new">
+			<h2>옵션 정보</h2>
+			<table>
+				<colgroup>
+					<col width="15%">
+					<col width="*">
+				</colgroup>
+				<tbody>
+					<tr>
+						<td class="subject">옵션내역</td>
+						<td col width="*%" class="subject">옵션수량</td>
+						<td col width="15%" class="subject">옵션금액</td>
+					</tr>
+					<tr>
+
+						<td col width="15%" class="content">
+							<span>
+								<?= $order_no ?>
+							</span>
+						</td>
+
+						<td class="content">
+							<span><?= $option['hole_cnt'] ?>홀</span>
+						</td>
+
+						<td class="content">
+							<p>
+								<?= $people_adult_cnt ?>인
+							</p>
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 		<!-- 예약정보 모바일 -->
 
 		<div class="invoice_table invoice_table_new reservation">
