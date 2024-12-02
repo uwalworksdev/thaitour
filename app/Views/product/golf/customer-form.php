@@ -50,8 +50,8 @@
                             </div>
                             <h3 class="title-sub-c">예약확정서 이름</h3>
 
-                            <?php for ($i = 1; $i <= $people_adult_cnt; $i++) { ?>
-                                <h3 class="title-sub-c">인원<?= $i ?></h3>
+                            <?php //for ($i = 1; $i <= $people_adult_cnt; $i++) { ?>
+                                <h3 class="title-sub-c">인원</h3>
 
                                 <div class="con-form mb-40">
                                     <div class="form-group">
@@ -61,15 +61,15 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="gender<?= $i ?>">성별(남성/여성)*</label>
-                                        <select name="companion_gender[]" id="gender<?= $i ?>" required
+                                        <label for="gender">성별(남성/여성)*</label>
+                                        <select name="companion_gender[]" id="gender" required
                                                 data-label="성별" class="select-width" id="">
                                             <option value="M">남성</option>
                                             <option value="F">여성</option>
                                         </select>
                                     </div>
                                 </div>
-                            <?php } ?>
+                            <?php //} ?>
 
                             <div class="con-form mb-40">
                                 <div class="form-group">
