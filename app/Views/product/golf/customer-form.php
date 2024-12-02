@@ -228,7 +228,7 @@
                                 </div>
                                 <div class="item-info">
                                     <span>티오프시간</span>
-                                    <span><?= $option['hour'] ?>시 <?= $option['minute'] ?>분</span>
+                                    <span><?= $hour ?>시 <?= $minute ?>분</span>
                                 </div>
                                 <div class="item-info">
                                     <span>인원</span>

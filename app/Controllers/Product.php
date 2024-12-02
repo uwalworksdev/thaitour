@@ -1733,9 +1733,14 @@ class Product extends BaseController
 		foreach ($option as $data) 
 		{
 			     $option_price = $data['option_price'];     
+			     $hole_cnt     = $data['hole_cnt'];     
+			     $hour         = $data['hour'];     
+			     $minute       = $data['minute'];     
 		}
 
-        $data['hole_cnt'] = "xxxxxxxx";
+        $data['hole_cnt']         = $hole_cnt;
+        $data['hour']             = $hour;
+        $data['minute']           = $minute;
         $data['total_price']      = $option_price * $people_adult_cnt;
         $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
 
