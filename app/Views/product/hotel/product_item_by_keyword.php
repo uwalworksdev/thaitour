@@ -11,7 +11,7 @@ if (is_file(ROOTPATH . "/public/data/product/" . $item['ufile1'])) {
     </div>
     <div class="sub_hotel_section7_product_item__name"><?= viewSQ($item['product_name']) ?></div>
     <div class="prd_price_ko">
-        <?= number_format($item['product_price']) ?> <span>바트 ~</span> <span class="prd_price_thai">
+        <?= number_format($item['product_price']) ?> <span> 바트 ~</span> <span class="prd_price_thai">
         <?=number_format($item['product_price_won'])?>
             <span>원</span></span>
     </div>

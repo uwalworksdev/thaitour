@@ -273,3 +273,8 @@ define("BBS_LIST_CONFIG", [
     "main_event" => $main_event_list,
     "hashtag" => $hashtag_list
 ]);
+
+
+$baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off'  ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/';
+
+defined('BASE_URL') OR define('BASE_URL', $baseUrl);
