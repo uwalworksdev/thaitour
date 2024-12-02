@@ -139,7 +139,7 @@ class Qna extends BaseController
             $sql = "SELECT * FROM tbl_code WHERE parent_code_no = '$travel_type_2' AND depth = '4' ";
             $result2 = $this->db->query($sql)->getResultArray();
     
-            $products = $this->product->getAllProductsBySubCode($travel_type_3);
+            $products = $this->product->getAllProductsBySubCode("product_code_3", $travel_type_3);
         }
 
         $sql = "SELECT * FROM tbl_policy_info WHERE policy_code = 'privacy'";

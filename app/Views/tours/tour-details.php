@@ -437,8 +437,11 @@
                                 <div class="two-table-tb">
                                     <table class="info-table-order">
                                         <tr>
-                                            <th>이용일</th>
-                                            <td class="days_choose" id="days_choose"></td>
+                                            <th>이용일시</th>
+                                            <td class="flex_day">
+                                                <p class="days_choose" id="days_choose"></p>
+                                                <p class="time_lines" id="time_lines"></p>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>상품명</th>
@@ -446,7 +449,9 @@
                                         </tr>
                                         <tr>
                                             <th>선택옵션</th>
-                                            <td class="option" id="product_option"></td>
+                                            <td >
+                                                <div class="options" id="product_options"></div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>총인원</th>
@@ -457,8 +462,8 @@
                                             <td>없음</td>
                                         </tr>
                                         <tr>
-                                            <th>예약시간</th>
-                                            <td class="time_lines" id="time_lines"></td>
+                                            <th>총금액</th>
+                                            <td class="total_pay" id="total_pay"></td>
                                         </tr>
                                         <!-- <tr>
                                             <th>쿠폰 적용</th>
@@ -862,7 +867,7 @@
                 },
             });
 
-            function sel_moption(code_idx) {
+        function sel_moption(code_idx) {
             let url = `<?= route_to('api.product.sel_moption') ?>`;
 
             $.ajax({
@@ -1128,6 +1133,36 @@
                         
                     }
 
+                    function updateProductOption() {
+                        let selectedOptions = [];
+                        let totalCost = 0;
+
+                        $('input.input_qty').each(function() {
+                            let qty = parseInt($(this).val());
+                            let price = parseFloat($(this).data('price')); 
+                            let optionName = $(this).closest('.schedule').find('p').text(); 
+                            
+                            if (qty > 0) {
+                                let totalPrice = qty * price;
+                                totalCost += totalPrice;
+                                selectedOptions.push(`${optionName}: ${qty} x ${price.toLocaleString()} = ${totalPrice.toLocaleString()}원`);
+                            }
+                        });
+                        console.log(optionName);
+                        console.log(price);
+                        
+                        
+
+                        if (selectedOptions.length > 0) {
+                            $('#product_options').html(
+                                selectedOptions.join('<br>') +
+                                `<br><strong>${totalCost.toLocaleString()}원</strong>`
+                            );
+                        } else {
+                            $('#product_options').html("선택된 옵션이 없습니다.");
+                        }
+                    }
+
                     function number_format(number) {
                         return number.toLocaleString('ko-KR');
                     }
@@ -1180,8 +1215,11 @@
                         const month = currentDate.getMonth();
                         const year = currentDate.getFullYear();
 
-                        const currentDateInMonth = new Date(year, month, currentDate.getDate());
-                        currentDateInMonth.setHours(0, 0, 0, 0); 
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0); 
+
+                        const currentMonthDate = new Date(year, month, today.getDate());
+                        currentMonthDate.setHours(0, 0, 0, 0);
 
                         const monthNames = ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
                         $monthYear.text(`${year}년 ${monthNames[month]}`);
@@ -1197,13 +1235,14 @@
                             const dayString = day.toString().padStart(2, '0');
                             const $dayDiv = $('<div/>').text(dayString).addClass('day');
                             let date = new Date(year, month, day);
-                            
+
                             date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
                             const isWithinDateRange = date >= s_date && date <= e_date;
                             const isValidDay = validDays.includes(date.getDay());
+                            const isPastDate = date < today; 
 
-                            if (date.toISOString() < currentDateInMonth.toISOString()) {
+                            if (isPastDate) {
                                 $dayDiv.addClass('disabled').append(`<p>예약마감</p>`);
                             } else if (!isWithinDateRange || !isValidDay) {
                                 $dayDiv.addClass('disabled').append("<p>예약마감</p>");
@@ -1222,7 +1261,7 @@
                                     selectedDate = date;
 
                                     const formattedDate = formatSelectedDate(date);
-                                    $('td.days_choose').text(formattedDate);
+                                    $('.days_choose').text(formattedDate);
                                     $('.calendar_txt').text(formattedDate);
                                 });
                             }
@@ -1319,6 +1358,7 @@
                             $('.time_lines').text(selectedTime);
                             $("#total_price_popup").text(number_format(last_price) + "원");
                             $("#total_price").val(last_price);
+                            $("#total_pay").text(number_format(last_price) + "원");
                             console.log(selectedTourIds.join(','));
                             console.log(currentToursIdx);
                             console.log(adultTotalPrices);
@@ -1467,6 +1507,19 @@
             }
         </script>
         <script>
+             $(".phone").on("input", function () {
+                $(this).val($(this).val().replace(/[^0-9]/g, ""));
+            });
+
+            $("input[name='radio_phone'").change(function () {
+                if ($(this).val() == 'kor') {
+                    $(".phone_kor").attr("disabled", false).eq(0).focus();
+                    $(".phone_thai").attr("disabled", true);
+                } else {
+                    $(".phone_thai").attr("disabled", false).focus();
+                    $(".phone_kor").attr("disabled", true);
+                }
+            })
             // document.addEventListener('DOMContentLoaded', function() {
             //     const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
             //     const sec2Items = document.querySelectorAll('.sec2-item-card');

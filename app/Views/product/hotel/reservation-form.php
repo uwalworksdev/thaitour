@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group" style="width: 50%">
                                     <label for="gender1">성별(남성/여성)*</label>
-                                    <select name="companion_gender[]" id="gender1" style="width: 100%" required=""
+                                    <select name="companion_gender" id="gender1" style="width: 100%" required=""
                                             data-label="성별"
                                             class="select-width">
                                         <option value="M">남성</option>
@@ -179,15 +179,15 @@
                             ?>
                             <div class="item-info-r">
                                 <span>객실 <?= $number_room ?>개 X <?= $number_day ?>박</span>
-                                <span class="font-bold"><?= number_format($last_price) ?>원</span>
+                                <span class="font-bold"><?= number_format($last_price) ?>바트</span>
                             </div>
                             <div class="item-info-r item-info-r-border-b">
                                 <span>세금&서비스비용</span>
-                                <span class="font-bold"><?= number_format($extra_cost) ?>원</span>
+                                <span class="font-bold"><?= number_format($extra_cost) ?>바트</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><?= number_format($order_price) ?>원</span>
+                                <span><?= number_format($order_price) ?>바트</span>
                             </div>
                             <p class="below-des-price">
                                 · 체크인하시려면 3일 전에 숙소로 연락해 주세요<br>· 선택하신 객실 유형의 체크인 시간은 14:00~24:00 사이,
@@ -211,6 +211,7 @@
                                 <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                             </div>
                             <button type="button" class="btn-order">예약하기</button>
+                            <button type="button" class="btn-default cart">상담 문의하기</button>
                             <!-- onclick="location.href='/product/completed-order'" -->
                         </div>
                     </div>
@@ -492,10 +493,10 @@
                     return false;
                 }
 
-                if (!($(".item-clause-all").hasClass("click"))) {
-                    alert("이용약관 동의(필수)를 선택하십시오.");
-                    return false;
-                }
+                // if (!($(".item-clause-all").hasClass("click"))) {
+                //     alert("이용약관 동의(필수)를 선택하십시오.");
+                //     return false;
+                // }
 
                 // var fieldBool = true;
 

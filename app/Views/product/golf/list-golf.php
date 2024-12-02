@@ -150,8 +150,8 @@
                                     </div>
                                 </div>
                                 <div class="item-info">
-                                    <div class="item-price-info"><span class="main"><?=number_format($product['product_price'])?></span class="text-gray">원 ~
-                                        <span class="sub text-gray"><?=number_format($product['product_price_baht'])?>바트~</span>
+                                    <div class="item-price-info"><span class="main"><?=number_format($product['product_price'])?></span class="text-gray">바트 ~
+                                        <span class="sub text-gray"><?=number_format($product['product_price_won'])?>원~</span>
                                     </div>
                                 </div>
                             </div>

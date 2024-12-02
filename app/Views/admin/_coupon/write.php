@@ -53,6 +53,7 @@
             <input type="hidden" name="idx" value='<?= $idx ?>'>
             <input type="hidden" name="publish_type" value='N'>
             <input type="hidden" name="coupon_type" id="coupon_type" value="both">
+            <input type="hidden" name="product_code_list" id="product_code_list" value="">
 
             <div id="contents">
                 <div class="listWrap_noline">
@@ -83,10 +84,10 @@
                                                     <?= $status_txt ?></option>
                                             <?php } ?>
                                         </select>
-                                        <select id="product_code_2" name="product_code_2" class="input_select" onchange="get_code(this.value, 4)">
+                                        <select id="product_code_2" name="product_code_2" class="input_select">
                                             <option value="">2차분류</option>
                                         </select>
-                                        <select id="product_code_3" name="product_code_3" class="input_select">
+                                        <select id="product_idx" name="product_idx" class="input_select">
                                             <option value="">3차분류</option>
                                         </select>
                                         <button type="button" id="btn_reg_cate" class="btn_01">등록</button>
@@ -387,6 +388,159 @@
     
 </script>
 <script type="text/javascript">
+    function get_code(strs, depth) {
+        $.ajax({
+            type: "GET"
+            , url: "/ajax/get_code"
+            , dataType: "html" //전송받을 데이터의 타입
+            , timeout: 30000 //제한시간 지정
+            , cache: false  //true, false
+            , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
+            , error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            }
+            , success: function (json) {
+                if (depth <= 3) {
+                    $("#product_code_2").find('option').each(function () {
+                        $(this).remove();
+                    });
+                    $("#product_code_2").append("<option value=''>2차분류</option>");
+                }
+
+                var list = $.parseJSON(json);
+                var listLen = list.length;
+                var contentStr = "";
+                for (var i = 0; i < listLen; i++) {
+                    contentStr = "";
+                    if (list[i].code_status == "C") {
+                        contentStr = "[마감]";
+                    } else if (list[i].code_status == "N") {
+                        contentStr = "[사용안함]";
+                    }
+                    $("#product_code_" + (parseInt(depth - 1))).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
+                }
+            }
+        });
+    }
+
+    $("#product_code_2").on("change", function(event) {
+        $.ajax({
+            url: "/ajax/get_list_product",
+            type: "GET",
+            data: {
+                field: "product_code_2",
+                product_code: event.target.value
+            },
+            success: function(res) {
+                let data = res.results;
+                let html = `<option value=''>선택</option>`;
+                data.forEach(element => {
+                    html += `<option value='${element["product_idx"]}'>${element["product_name"]}</option>`;
+                });
+                $("#product_idx").html(html);
+            }
+        })
+    });
+
+    $("#btn_reg_cate").click(function () {
+
+        let tmp_code = "";
+        let tmp_code_txt = "";
+
+        let cate_code1 = $("#product_code_1").val();
+        let cate_text1 = $("#product_code_1 option:selected").text();
+
+        if (cate_code1 !== "") {
+            tmp_code_txt += cate_text1;
+        }
+
+        let cate_code2 = $("#product_code_2").val();
+        let cate_text2 = $("#product_code_2 option:selected").text();
+
+        if (cate_code2 !== "") {
+            tmp_code_txt += " > " + cate_text2;
+        }
+
+        let product_idx = $("#product_idx").val();
+        let product_name = $("#product_idx option:selected").text();
+
+        if (product_idx !== "") {
+            tmp_code_txt += " > " + product_name;
+        }
+
+        if (product_idx === "") {
+            alert("카테고리를 선택해주세요.");
+            return false;
+        }
+
+        addCategory(cate_code1, cate_code2, product_idx, tmp_code_txt);
+
+    });
+
+    function addCategory(cate_code1, cate_code2, product_idx, cateText) {
+        // 코드 추가 부분
+        if (chkCategory(cate_code1, cate_code2, product_idx)) {
+            alert("이미 등록된 카테고리입니다.");
+            return false;
+        }
+        var tmp_product_code = $("#product_code_list").val();
+        ;
+        tmp_product_code = tmp_product_code + "|" + cate_code1 + "," + cate_code2 + "," + product_idx + "|";
+        $("#product_code_list").val(tmp_product_code);
+
+        var newList = "<li>[" + product_idx + "] " + cateText + " <span onclick=\"delCategory('" + cate_code1 + "', '" + cate_code2 + "', '" + product_idx + "', this);\" >삭제</span></li>";
+        $("#reg_cate").append(newList);
+    }
+
+    // 카테고리 삭제 함수
+    function delCategory(cate_code1, cate_code2, product_idx, obj) {
+
+        if (chkCategory(cate_code1, cate_code2, product_idx)) {
+
+            var tmp_product_code = $("#product_code_list").val();
+            var re_tmp_product_code = tmp_product_code.substr(1, tmp_product_code.length - 2);
+
+            var code_array = re_tmp_product_code.split('||');
+
+            var tmp_product_code_re = "";
+
+            $.each(code_array, function (key, val) {
+                let arr = val.split(",");
+                
+                console.log(arr);
+                if(arr[0] != cate_code1 && arr[1] != cate_code2 && arr[2] != product_idx){
+                    tmp_product_code_re = tmp_product_code_re + "|" + arr[0] + "," + arr[1] + "," + arr[2] + "|";
+                }
+
+            });
+
+            $("#product_code_list").val(tmp_product_code_re);
+            obj.closest("li").remove();
+
+        }
+    }
+
+    function chkCategory(cate_code1, cate_code2, product_idx) {
+        var tmp_product_code = $("#product_code_list").val();
+        var re_tmp_product_code = tmp_product_code.substr(1, tmp_product_code.length - 2);
+
+        var code_array = re_tmp_product_code.split('||');
+        let check = false;
+        
+        for(let i = 0; i < code_array.length; i++){
+            
+            if(code_array[i]){
+                let arr = code_array[i].split(",");
+                if(arr[0] == cate_code1 && arr[1] == cate_code2 && arr[2] == product_idx){
+                    check = true;
+                    break;
+                }
+            }
+        }
+        return check;
+        // return ($.inArray(chkcode, code_array));
+    }
 
     function send_it() {
 

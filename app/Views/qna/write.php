@@ -515,6 +515,7 @@ $user_email = !empty($user_email) ? $user_email : $row_m["user_email"];
             url: "/ajax/get_list_product",
             type: "GET",
             data: {
+                field: "product_code_3",
                 product_code: event.target.value
             },
             success: function(res) {

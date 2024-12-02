@@ -246,7 +246,7 @@ class ProductApi extends BaseController
                 $rs['price'] = $price;
                 $rs['sale_price'] = $sale_price;
                 $rs['idx'] = $o_idx;
-                $rs['day'] = $day;
+                $rs['day'] = $day - 1;
                 $rs['items'] = $lst;
 
                 $data[] = $rs;

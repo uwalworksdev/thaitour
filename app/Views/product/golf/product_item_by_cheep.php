@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="prd_price_ko">
-        <?=number_format($item['product_price'])?><span>원</span>
-        <span class="prd_price_ko_sub"><?=number_format($item['product_price_baht'])?>바트</span>
+        <?=number_format($item['product_price'])?><span>바트</span>
+        <span class="prd_price_ko_sub"><?=number_format($item['product_price_won'])?>원</span>
     </div>
 </a>

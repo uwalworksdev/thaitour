@@ -1582,6 +1582,10 @@
     box-shadow: 0px 8px 8px 0.96px rgba(82, 103, 204, 0.28);
 }
 
+.view_nav .nav_btn_wrap .cart {
+    margin-bottom: 10px;
+}
+
 .view_nav .nav_btn_wrap .wish_btn {
     display: flex;
     align-items: center;
@@ -4274,6 +4278,18 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     height: 66px;
 }
 
+.customer-form-page .container-card .cart {
+    font-size: 22px;
+    border-radius: 5px;
+    padding: 12px 50px;
+    width: 100%;
+    margin-top: 10px;
+    font-weight: bold;
+    height: 66px;
+    color: var(--bs-point);
+    border: 1px solid var(--bs-point);
+}
+
 .customer-form-page .form-group-radio {
     display: flex;
     align-items: center;
@@ -4711,6 +4727,11 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     padding: 20px;
     font-size: 15px;
     line-height: 1.5rem;
+}
+
+.order-form-page .info-table-order td.flex_day {
+    display: flex;
+    gap: 15px;
 }
 
 .order-form-page .two-table-tb {

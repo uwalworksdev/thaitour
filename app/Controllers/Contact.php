@@ -90,7 +90,7 @@ class Contact extends BaseController
 
             $code_child_1 = $this->code->getByParentCode($row["travel_type_1"])->getResultArray();
             $code_child_2 = $this->code->getByParentCode($row["travel_type_2"])->getResultArray();
-            $products = $this->product->getAllProductsBySubCode($row["travel_type_3"]);
+            $products = $this->product->getAllProductsBySubCode("product_code_3", $row["travel_type_3"]);
         }
 
         return view("contact/write", [
