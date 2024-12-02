@@ -1892,7 +1892,6 @@ class Product extends BaseController
 
 			// 골프 그린 데이터 조회
 			$sql_opt     = "SELECT * FROM tbl_golf_price WHERE idx = '". $data['option_idx'] ."' ";
-			write_log("sql_opt- ". $sql_opt);
 			$result_opt  = $this->db->query($sql_opt);
 			$golf_opt    = $result_opt->getResultArray();
             foreach ($golf_opt as $item)

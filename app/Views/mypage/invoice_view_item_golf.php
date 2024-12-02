@@ -66,7 +66,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 				<tbody>
 					<tr>
 						<td class="subject">예약번호</td>
-						<td col width="*%" class="subject">홀수</td>
 						<td col width="15%" class="subject">인원</td>
 						<td col width="15%" class="subject">티오프시간</td>
 						<td col width="15%" class="subject">상품 예약금액</td>
@@ -83,10 +82,6 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						</td>
 
 						<td class="content">
-							<span><?= $option['hole_cnt'] ?>홀</span>
-						</td>
-
-						<td class="content">
 							<p>
 								<?= $people_adult_cnt ?>인
 							</p>
@@ -94,7 +89,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 						<td class="content">
 							<p>
-							<?= $option['option_name'] ?>시<?= $option['minute'] ?>분
+							<?= $option['option_name'] ?>
 							</p>
 						</td>
 						<td class="content">
