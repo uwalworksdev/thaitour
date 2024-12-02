@@ -1390,12 +1390,10 @@ class Product extends BaseController
             $number_room = $this->request->getPost('number_room') ?? 0;
             $number_day = $this->request->getPost('number_day') ?? 0;
             $order_memo = $this->request->getPost('order_memo') ?? "";
-            $email_name = $this->request->getPost('email_1') ?? "";
-            $email_host = $this->request->getPost('email_2') ?? "";
-            $order_gender_list = $this->request->getPost('companion_gender') ?? "";
+            $email_name = $this->request->getPost('email_name') ?? "";
+            $email_host = $this->request->getPost('email_host') ?? "";
             $order_user_name = $this->request->getPost('order_user_name') ?? "";
-            $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
-            $order_user_last_name_en = $this->request->getPost('order_user_last_name_en') ?? "";
+            $order_user_mobile = $this->request->getPost('order_user_mobile') ?? "";
             $order_user_email = $email_name . "@" . $email_host;
             $hotel = $this->productModel->find($product_idx);
             $m_idx = session()->get("member")["idx"];
@@ -1403,17 +1401,6 @@ class Product extends BaseController
             $ipAddress = $this->request->getIPAddress();
             $device_type = get_device();
             $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
-            $radio_phone = $this->request->getPost('radio_phone') ?? "";
-            $phone_1 = $this->request->getPost('phone_1') ?? "";
-            $phone_2 = $this->request->getPost('phone_2') ?? "";
-            $phone_3 = $this->request->getPost('phone_3') ?? "";
-            $phone_thai = $this->request->getPost('phone_thai') ?? "";
-            $local_phone = $this->request->getPost('local_phone') ?? "";
-            if ($radio_phone == "kor") {
-                $order_user_phone = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
-            } else {
-                $order_user_phone = $phone_thai;
-            }
 
             if (!empty($use_coupon_idx)) {
                 $coupon = $this->coupon->find($use_coupon_idx);
@@ -1432,12 +1419,8 @@ class Product extends BaseController
                 "code_name" => $code_name,
                 "order_gubun" => "hotel",
                 "order_user_name" => encryptField($order_user_name, "encode"),
-                "order_user_mobile" => encryptField($order_user_phone, "encode"),
-                "local_phone" => encryptField($local_phone, "encode"),
+                "order_user_mobile" => encryptField($order_user_mobile, "encode"),
                 "order_user_email" => encryptField($order_user_email, "encode"),
-                "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode"),
-                "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode"),
-                "order_gender_list" => $order_gender_list,
                 "order_memo" => $order_memo,
                 "room_op_price_sale" => $room_op_price_sale,
                 "inital_price" => $inital_price,
@@ -1730,7 +1713,11 @@ class Product extends BaseController
 
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
     {
-        $data['option'] = $this->golfPriceModel->find($option_idx);
+        //$data['option'] = $this->golfPriceModel->find($option_idx);
+
+		$sql = "SELECT * FROM tbl_golf_price WHERE idx = '". $option_idx ."'";
+		$result = $this->db->query($sql);
+		$data['option'] = $result->getResultArray();
 
         $data['total_price'] = $data['option']['option_price'] * $people_adult_cnt;
 
@@ -2579,6 +2566,17 @@ class Product extends BaseController
 
             $place_end_list = $this->codeModel->getByParentCode(49)->getResultArray();
 
+            // foreach($products as $key => $value){
+            //     $osql = "select * from tbl_cars_option where product_code = '" . $value["product_code"] . "'";
+            //     $oresult = $this->db->query($osql);
+            //     $oresult = $oresult->getResultArray();
+            //     $products[$key]["options"] = $oresult;
+            //     $product_price = (float)$value['product_price'];
+            //     $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            //     $product_price_baht = $product_price / $baht_thai;
+            //     $products[$key]['product_price_baht'] = $product_price_baht;
+            // }
+
             $data = [
                 'tab_active' => '7',
                 'parent_code' => $code_no,
@@ -3079,10 +3077,6 @@ class Product extends BaseController
 
     private function getSuggestedHotels($currentHotelId, $currentHotelCode, $productCode1 = null)
     {
-        helper(['setting']);
-        $setting = homeSetInfo();
-        $baht_thai = (float)($setting['baht_thai'] ?? 0);
-
         if (!$productCode1) {
             $productCode1 = 1303;
         }
@@ -3093,7 +3087,7 @@ class Product extends BaseController
             ->get()
             ->getResultArray();
 
-        return array_map(function ($hotel) use ($currentHotelCode, $baht_thai) {
+        return array_map(function ($hotel) use ($currentHotelCode) {
             $hotel['array_hotel_code'] = $this->explodeAndTrim($hotel['product_code'], '|');
             $hotel['array_goods_code'] = $this->explodeAndTrim($hotel['product_code'], ',');
 
@@ -3102,10 +3096,6 @@ class Product extends BaseController
             list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['product_idx'], $currentHotelCode);
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
-
-            $product_price = (float)$hotel['product_price'];
-            $product_price_won = $product_price * $baht_thai;
-            $hotel['product_price_won'] = $product_price_won;
 
             return $hotel;
         }, $suggestHotels);
