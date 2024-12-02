@@ -141,7 +141,7 @@
 									<col width="10%">
 									<col width="15%">
 									<col width="15%">
-									<col width="5%">
+									<!--col width="5%"-->
 									<col width="10%">
 									<col width="10%">
 									<col width="15%">
@@ -169,9 +169,9 @@
 											<td style="text-align:center">
 												카트피(원)
 											</td>
-											<td style="text-align:center">
+											<!--td style="text-align:center">
 												마감
-											</td>
+											</td-->
 											<td style="text-align:center">
 												등록일
 											</td>
@@ -236,9 +236,9 @@
 											<td style="text-align:center">
 												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_discount_price input_txt" >
 											</td>
-						                    <td style="text-align:center;">
+						                    <!--td style="text-align:center;">
 						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['golf_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
-						                    </td> 
+						                    </td--> 
 						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
 						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
 						                    <td style="text-align:center;">
