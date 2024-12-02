@@ -1878,10 +1878,6 @@ class Product extends BaseController
 
             $this->orderModel->save($data);
 
-$db = \Config\Database::connect();
-echo "<pre>";
-print_r($db->getLastQuery()); // 마지막 쿼리 확인
-echo "</pre>";
             $order_idx = $this->orderModel->getInsertID();
 
             foreach ($data['companion_name'] as $key => $value) {
@@ -1894,11 +1890,22 @@ echo "</pre>";
                 ]);
             }
 
+			// 골프 그린 데이터 조회
+			$sql_opt     = "SELECT * FROM tbl_golf_price WHERE idx = '". $data['option_idx'] ."' ";
+			$result_opt  = $this->db->query($sql_opt);
+			$golf_opt    = $result_opt->getResultArray();
+            foreach ($golf_opt as $item)
+            {
+                     $hole_cnt = $item['hole_cnt'];      
+                     $hour     = $item['hour'];      
+                     $minute   = $item['minute'];      
+            }
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
                 'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
-                'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
+                //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
+                'option_name' => $hole_cnt . "홀 / " . $hour . "시간 / " . $minute . "분",
                 'option_idx'  => $data['option_idx'],
                 'option_tot'  => $priceCalculate['total_price'],
                 'option_cnt'  => $data['people_adult_cnt'],
