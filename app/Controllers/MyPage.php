@@ -446,7 +446,7 @@ class MyPage extends BaseController
                 //$option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
                 //$data['option'] = $this->golfOptionModel->getByIdx($option_idx);
 
-				$sql_golf = " select * from tbl_order_option where order_idx = '". $order_idx ."' and order_type = 'main' ";
+				$sql_golf = " select * from tbl_order_option where order_idx = '". $order_idx ."' and option_type = 'main' ";
 				$data['option']   = $this->db->query($sql_golf)->getRowArray();
 
             }
