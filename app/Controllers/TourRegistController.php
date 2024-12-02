@@ -272,13 +272,34 @@ class TourRegistController extends BaseController
             if ($filter['code_no'] == 4507) $filters[$key]['filter_name'] = "facilities";
         }
 
+        // 골프가격 시작일
+		$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' ORDER BY golf_date ASC LIMIT 0,1";
+        $result  = $this->connect->query($sql);
+        $result  = $result->getResultArray();
+        foreach ($result as $row) 
+        {
+                 $s_date = $row['s_date']; 
+        }
+
+        // 골프가격 종료일
+		$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '$product_idx' ORDER BY golf_date DESC LIMIT 0,1";
+        $result  = $this->connect->query($sql);
+        $result  = $result->getResultArray();
+        foreach ($result as $row) 
+        {
+                 $e_date = $row['e_date']; 
+        }
+
+
         $new_data = [
             'product_idx' => $product_idx,
-            'codes' => $fresult_c,
-            'options' => $options,
-            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
-            'vehicles' => $vehicles,
-            'filters' => $filters
+            'codes'       => $fresult_c,
+            'options'     => $options,
+            "golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles'    => $vehicles,
+            'g_s_date'    => $s_date,
+            'g_e_date'    => $e_date,
+            'filters'     => $filters
         ];
 
         $data = array_merge($data, $new_data);

@@ -578,11 +578,11 @@
                                 <tr>
                                         <th>시작일</th>
                                         <td>
-                                            <input type="text" name="s_date" value="<?=$golf_info["s_date"]?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
+                                            <input type="text" name="s_date" value="<?=$data['g_s_date']?>" id="datepicker1" style="text-align: center;background: white; width: 231px;" readonly>
                                         </td>
                                         <th>종료일</th>
                                         <td>
-                                            <input type="text" name="e_date" value="<?=$golf_info["e_date"]?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
+                                            <input type="text" name="e_date" value="<?=$data['g_e_date']?>" id="datepicker2" style="text-align: center; background: white; white; width: 231px;" readonly>
                                         </td>
                                 </tr>
                                 <tr>
