@@ -1792,13 +1792,6 @@ class Product extends BaseController
     public function customerForm()
     {
         $data['product_idx']      = $this->request->getVar('product_idx');
-		$data['product_code_1']   = $this->request->getPost('product_code_1');
-		$data['product_code_2']   = $this->request->getPost('product_code_2');
-		$data['product_code_3']   = $this->request->getPost('product_code_3') ?? 'default_value'; // 기본값 설정
-if (!$data['product_code_3']) {
-    echo "product_code_3 is missing!";
-}
-
         $data['order_date']       = $this->request->getVar('order_date');
         $data['option_idx']       = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
@@ -1885,6 +1878,10 @@ if (!$data['product_code_3']) {
 
             $this->orderModel->save($data);
 
+$db = \Config\Database::connect();
+echo "<pre>";
+print_r($db->getLastQuery()); // 마지막 쿼리 확인
+echo "</pre>";
             $order_idx = $this->orderModel->getInsertID();
 
             foreach ($data['companion_name'] as $key => $value) {
