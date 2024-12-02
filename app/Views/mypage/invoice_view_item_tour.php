@@ -100,46 +100,46 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$first = true; 
 								foreach ($tour_option as $option): ?>
 									<?php if (!$first): ?> + <?php endif; ?>
-									<?= $option['option_name']?>: <?= number_format($option['option_price']) ?>원
+									<?= $option['option_name']?>: <?= number_format($option['option_price']) ?> 바트
 									<?php $first = false; ?>
 								<?php endforeach; ?>
-								= <?= number_format($total_price) ?>원
+								= <?= number_format($total_price) ?> 바트
 							<?php endif; ?>
 						</td>
 
 						<td class="content">
 							<p>
-								<?= number_format($people_adult_price) ?>원(성인)
+								<?= number_format($people_adult_price) ?> 바트(성인)
 								+
-								<?= number_format($people_kids_price) ?>원(아동)
+								<?= number_format($people_kids_price) ?> 바트(아동)
 								+
-								<?= number_format($people_baby_price) ?>원(유아)
+								<?= number_format($people_baby_price) ?> 바트(유아)
 								+
 								<?= number_format($total_price) ?>
 								옵션
 								- 
-                                <?= number_format($row_cou['used_coupon_money'])?>원(할인쿠폰)
+                                <?= number_format($row_cou['used_coupon_money'])?> 바트(할인쿠폰)
 								= <?= number_format( ($people_adult_price) +
 														($people_kids_price) +
 														($people_baby_price) + $total_price - $row_cou['used_coupon_money'] ) ?>
-								원
+								바트
 							</p>
 						</td>
 						<td class="content">
 							<p><strong><span id="price_tot">
 									<?= number_format($order_price) ?>
-								</span></strong> 원</p>
+								</span></strong> 바트</p>
 						</td>
 						<td class="content">
 							<?php if ($used_coupon_money > 0) { ?>
 								<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($used_coupon_money) ?>원
+											<?= number_format($used_coupon_money) ?> 바트
 										</span></strong></p>
 							<?php } ?>
 
 							<?php if ($used_mileage_money > 0) { ?>
 								<p><strong style="color:red">포인트 <span id="point_amt">
-											<?= number_format($used_mileage_money) ?>원
+											<?= number_format($used_mileage_money) ?> 바트
 										</span></strong></p>
 							<?php } ?>
 						</td>
@@ -291,9 +291,9 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 							<td class="content">
 								<?php if ($deposit_method == "무통장입금") { ?>
-									<?= number_format($deposit_price) ?>원
+									<?= number_format($deposit_price) ?> 바트
 								<?php } else { ?>
-									<?= number_format($deposit_price) ?>원
+									<?= number_format($deposit_price) ?> 바트
 								<?php }
 								?>
 							</td>
@@ -323,7 +323,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							</td>
 
 							<td class="content">
-								<?= number_format($order_confirm_price) ?>원
+								<?= number_format($order_confirm_price) ?> 바트
 							</td>
 
 							<td class="content">
@@ -349,10 +349,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 							</td>
 							<td class="content">
 								<?php if ($deposit_method == "무통장입금") { ?>
-									<?= number_format($deposit_price) ?>원
+									<?= number_format($deposit_price) ?> 바트
 								<?php } else { ?>
-									<!-- <?= number_format($Amt_1) ?>원 -->
-									<?= number_format($deposit_price) ?>원
+									<!-- <?= number_format($Amt_1) ?> 바트 -->
+									<?= number_format($deposit_price) ?> 바트
 								<?php } ?>
 							</td>
 
@@ -385,10 +385,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 							<td class="content">
 								<?php if ($confirm_method == "무통장입금") { ?>
-									<?= number_format($order_confirm_price) ?>원
+									<?= number_format($order_confirm_price) ?> 바트
 								<?php } else { ?>
-									<!-- <?= number_format($Amt_2) ?>원 -->
-									<?= number_format($order_confirm_price) ?>원
+									<!-- <?= number_format($Amt_2) ?> 바트 -->
+									<?= number_format($order_confirm_price) ?> 바트
 								<?php } ?>
 							</td>
 

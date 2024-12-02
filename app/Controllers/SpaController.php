@@ -54,15 +54,15 @@ class SpaController extends BaseController
                         $rs = (array)$item;
 
                         $tour_price = $rs['tour_price'];
-                        $tour_price_baht = convertToBath($tour_price);
+                        $tour_price_baht = convertToWon($tour_price);
                         $rs['tour_price_baht'] = $tour_price_baht;
 
                         $tour_price_kids = $rs['tour_price_kids'];
-                        $tour_price_kids_baht = convertToBath($tour_price_kids);
+                        $tour_price_kids_baht = convertToWon($tour_price_kids);
                         $rs['tour_price_kids_baht'] = $tour_price_kids_baht;
 
                         $tour_price_senior = $rs['tour_price_senior'];
-                        $tour_price_senior_baht = convertToBath($tour_price_senior);
+                        $tour_price_senior_baht = convertToWon($tour_price_senior);
                         $rs['tour_price_senior_baht'] = $tour_price_senior_baht;
 
                         return $rs;

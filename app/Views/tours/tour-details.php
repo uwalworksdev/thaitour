@@ -111,13 +111,13 @@
                         <div class="sec2-item-card" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
                                 <h3><?= $tour['tours_subject'] ?></h3>
-                                <del class="text-grey"><?= $info['info']['tour_info_price']?>원</del>
+                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'])?> 바트</del>
                             </div>
                             <div class="text-content-2">
                                     <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                                 <div class="price-sub">
-                                    <span class="ps-left text-grey"><?= $tour['price_baht']?>바트</span>
-                                    <span class="ps-right"><?= number_format($tour['tour_price']) ?></span> <span class="text-grey">원</span>
+                                    <span class="ps-left text-grey"><?= number_format($tour['price_baht'])?>원</span>
+                                    <span class="ps-right"><?= number_format($tour['tour_price']) ?></span> <span class="text-grey"> 바트</span>
                                 </div>
                             </div>
                             <div class="text-content-3">
@@ -176,10 +176,10 @@
                                         <div class="quantity-container-fa" data-tour-index="<?= $tour['tours_idx'] ?>" style="<?= $tourIndex === 0 ? 'display: block;' : 'display: none;' ?>">
                                             <div class="quantity-container">
                                                 <div class="quantity-info-con">
-                                                    <span class="des">성인, Adult (키 120cm 이상)</span>
+                                                    <span class="des">성인, Adult (키 120cm 이상1)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?>원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['price_baht'] ?>"><?= number_format($tour['price_baht']) ?>바트</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?> 바트</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht'] ?>"><?= number_format($tour['price_baht']) ?>원</span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
@@ -192,8 +192,8 @@
                                                 <div class="quantity-info-con">
                                                     <span class="des">아동, Child (키 91~119cm)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?>원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_kids'] ?>"><?= number_format($tour['price_baht_kids']) ?>바트</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 바트</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_kids'] ?>"><?= number_format($tour['price_baht_kids']) ?>원</span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
@@ -206,8 +206,8 @@
                                                 <div class="quantity-info-con">
                                                     <span class="des">유아, baby (키 90cm 이하)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?>원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_baby'] ?>"><?= number_format($tour['price_baht_baby']) ?>바트</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 바트</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_baby'] ?>"><?= number_format($tour['price_baht_baby']) ?>원</span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
@@ -1124,8 +1124,8 @@
                             var totalPrice = quantity * pricePerUnit;
                             var totalPriceBaht = quantity * priceBahtPerUnit;
 
-                            $price.text(number_format(totalPrice) + '원');
-                            $currency.text(number_format(totalPriceBaht) + '바트');
+                            $price.text(number_format(totalPrice) + ' 바트');
+                            $currency.text(number_format(totalPriceBaht) + '원');
                         }
                     });
 
@@ -1356,9 +1356,9 @@
                             $('#idx').val(selectedTourIds.join(','));
                             $('#time_line').val(selectedTime);
                             $('.time_lines').text(selectedTime);
-                            $("#total_price_popup").text(number_format(last_price) + "원");
+                            $("#total_price_popup").text(number_format(last_price) + " 바트");
                             $("#total_price").val(last_price);
-                            $("#total_pay").text(number_format(last_price) + "원");
+                            $("#total_pay").text(number_format(last_price) + " 바트");
                             console.log(selectedTourIds.join(','));
                             console.log(currentToursIdx);
                             console.log(adultTotalPrices);
@@ -1387,7 +1387,7 @@
                                 total_price -= discount_price;
                                 total_price_baht -= discount_price_baht;
 
-                                $(".discount").text(number_format(discount_price) + "원");
+                                $(".discount").text(number_format(discount_price) + " 바트");
                                 $("#last_price_popup").text(number_format(total_price));
 
                                 if (isAcceptBtn) {

@@ -268,13 +268,13 @@
             <div class="right-main" id="booking_area">
                 <div class="item-right">
                     <div class="list-text">
-                        <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em>원
-                            (1인 <em id="final_option_price_baht">0</em>바트 X <em class="final_people_cnt">0</em>인)</p>
+                        <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em> 바트
+                            (1인 <em id="final_option_price_baht">0</em>원 X <em class="final_people_cnt">0</em>인)</p>
                         <p><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
                         <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
                     </div>
-                    <span class="price-text text-gray"><em id="total_final_option_price">0</em>원 (<em
-                                id="total_final_option_price_baht">0</em>바트)</span>
+                    <span class="price-text text-gray"><em id="total_final_option_price">0</em> 바트 (<em
+                                id="total_final_option_price_baht">0</em>원)</span>
                 </div>
                 <div class="vehicle_list_result" id="vehicle_list_result">
                 </div>
@@ -285,7 +285,7 @@
                 </div-->
                 <div class="item-last-right">
                     <p>합계</p>
-                    <p class="price-text"><em id="last_price">0</em><span>원(<em id="last_price_baht">0</em>바트)</span>
+                    <p class="price-text"><em id="last_price">0</em><span> 바트(<em id="last_price_baht">0</em>원)</span>
                     </p>
                 </div>
                 <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
@@ -523,7 +523,7 @@
 
             let html = `<div class="item-right">
                             <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>[name] x [cnt]대</p>
-                            <span class="price-text text-gray">[price]원 ([price_baht]바트)</span>
+                            <span class="price-text text-gray">[price] 바트 ([price_baht]원)</span>
                         </div>`;
 
             const html2 = $(".vehicle_select").filter(function () {

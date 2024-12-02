@@ -283,7 +283,7 @@
                                         </div>
                                         <div class="wrap-btn">
                                             <span><?= number_format((int)$adultPrice[$key] * (int)$val) ?></span>
-                                            <span>원</span>
+                                            <span> 바트</span>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -295,7 +295,7 @@
                                         </div>
                                         <div class="wrap-btn">
                                             <span><?= number_format((int)$childrenPrice[$key] * (int)$val) ?></span>
-                                            <span>원</span>
+                                            <span> 바트</span>
                                         </div>
                                     </div>
                                 <?php } ?>
@@ -364,15 +364,15 @@
 
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
                                 <span>쿠폰 </span>
-                                <span>- <span class="discountPrice">0</span>원</span>
+                                <span>- <span class="discountPrice">0</span> 바트</span>
                             </div>
                             <div class="item-info-r font-bold-cus" style="color: rgba(255,0,0,0.75); display: none">
                                 <span>포인트 </span>
-                                <span>- <span class="pointPrice">0</span>원</span>
+                                <span>- <span class="pointPrice">0</span> 바트</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><span class="textTotalPrice lastPrice"><?= number_format($totalPrice) ?></span>원</span>
+                                <span><span class="textTotalPrice lastPrice"><?= number_format($totalPrice) ?></span> 바트</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
@@ -477,7 +477,7 @@
                                 </div>
                                 <div class="price">
                                     <strong>
-                                        <span class="total_product_price textTotalPrice"><?= number_format($totalPrice) ?></span>원
+                                        <span class="total_product_price textTotalPrice"><?= number_format($totalPrice) ?></span> 바트
                                     </strong>
                                 </div>
                             </li>
@@ -486,7 +486,7 @@
                                     할인 금액
                                 </div>
                                 <div class="price">
-                                    <b><span id="_coupon_amt">0</span>원</b>
+                                    <b><span id="_coupon_amt">0</span> 바트</b>
                                 </div>
                             </li>
                             <li>
@@ -494,7 +494,7 @@
                                     쿠폰 적용가
                                 </div>
                                 <div class="price">
-                                    <b><span id="coupon_last">0</span>원</b>
+                                    <b><span id="coupon_last">0</span> 바트</b>
                                 </div>
                             </li>
                         </ul>
@@ -510,7 +510,7 @@
                                         $discount = $coupon["coupon_pe"] . "%";
                                         $dis = $coupon["coupon_pe"];
                                     } else if ($coupon["dc_type"] == "D") {
-                                        $discount = number_format($coupon["coupon_price"]) . "원";
+                                        $discount = number_format($coupon["coupon_price"]) . " 바트";
                                         $dis = $coupon["coupon_price"];
                                     } else {
                                         $discount = "회원등급에 따름";

@@ -966,8 +966,8 @@ class ProductModel extends Model
             $items[$key]['product_price_won'] = $product_price_won;
 
             $car_price = (float)$value['car_price'];
-            $car_price_baht = $car_price / $baht_thai;
-            $items[$key]['car_price_baht'] = $car_price_baht;
+            $car_price_won = $car_price * $baht_thai;
+            $items[$key]['car_price_won'] = $car_price_won;
         }
         $data = [
             'items' => $items,

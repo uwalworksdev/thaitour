@@ -119,25 +119,25 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<p><strong><span id="price_tot">
 									<?= number_format($row['order_price']) ?>
-								</span></strong> 원</p>
+								</span></strong> 바트</p>
 						</td>
 						<td class="content">
 							<?php if ($row['used_coupon_money'] > 0) { ?>
 								<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?>원
+											<?= number_format($row['used_coupon_money']) ?> 바트
 										</span></strong></p>
 							<?php } ?>
 
 							<?php if ($row['used_mileage_money'] > 0) { ?>
 								<p><strong style="color:red">포인트 <span id="point_amt">
-											<?= number_format($row['used_mileage_money']) ?>원
+											<?= number_format($row['used_mileage_money']) ?> 바트
 										</span></strong></p>
 							<?php } ?>
 						</td>
 						<td class="content">
 							<p><strong><span id="price_tot">
 										<?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-								</span> 원</p>
+								</span> 바트</p>
 						</td>
 					</tr>
 				</tbody>
@@ -183,7 +183,7 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<p><strong><span id="price_tot">
 										<?= number_format($row['order_price']) ?>
-									</span></strong> 원</p>
+									</span></strong> 바트</p>
 						</td>
 					</tr>
 					<tr>
@@ -192,7 +192,7 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<p><strong><span id="price_tot">
 										<?= number_format($row['order_price']) ?>
-									</span></strong> 원</p>
+									</span></strong> 바트</p>
 						</td>
 					</tr>
 					<tr>
@@ -201,13 +201,13 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<?php if ($row['used_coupon_money'] > 0) { ?>
 								<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?>원
+											<?= number_format($row['used_coupon_money']) ?> 바트
 										</span></strong></p>
 							<?php } ?>
 
 							<?php if ($row['used_mileage_money'] > 0) { ?>
 								<p><strong style="color:red">포인트 <span id="point_amt">
-											<?= number_format($row['used_mileage_money']) ?>원
+											<?= number_format($row['used_mileage_money']) ?> 바트
 										</span></strong></p>
 							<?php } ?>
 						</td>
@@ -218,14 +218,14 @@ $start_date = $row['start_date'];
 						<td class="content">
 							<?php if ($row['used_coupon_money'] > 0) { ?>
 								<p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?>원
+											<?= number_format($row['used_coupon_money']) ?> 바트
 										</span></strong></p>
 							<?php } ?>
 
 							<?php if ($row['used_mileage_money'] > 0) { ?>
 								<p><strong><span id="price_tot">
 										<?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-								</span> 원</p>
+								</span> 바트</p>
 							<?php } ?>
 						</td>
 					</tr>
@@ -322,9 +322,9 @@ $start_date = $row['start_date'];
 
 							<td class="content">
 								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= number_format($row['deposit_price']) ?>원
+									<?= number_format($row['deposit_price']) ?> 바트
 								<?php } else { ?>
-									<?= number_format($row['deposit_price']) ?>원
+									<?= number_format($row['deposit_price']) ?> 바트
 								<?php }
 								?>
 							</td>
@@ -354,7 +354,7 @@ $start_date = $row['start_date'];
 							</td>
 
 							<td class="content">
-								<?= number_format($row['order_confirm_price']) ?>원
+								<?= number_format($row['order_confirm_price']) ?> 바트
 							</td>
 
 							<td class="content">
@@ -380,10 +380,10 @@ $start_date = $row['start_date'];
 							</td>
 							<td class="content">
 								<?php if ($row['deposit_method'] == "무통장입금") { ?>
-									<?= number_format($row['deposit_price']) ?>원
+									<?= number_format($row['deposit_price']) ?> 바트
 								<?php } else { ?>
-									<!-- <?= number_format($row['Amt_1']) ?>원 -->
-									<?= number_format($row['deposit_price']) ?>원
+									<!-- <?= number_format($row['Amt_1']) ?> 바트 -->
+									<?= number_format($row['deposit_price']) ?> 바트
 								<?php } ?>
 							</td>
 
@@ -416,10 +416,10 @@ $start_date = $row['start_date'];
 
 							<td class="content">
 								<?php if ($row['confirm_method'] == "무통장입금") { ?>
-									<?= number_format($row['order_confirm_price']) ?>원
+									<?= number_format($row['order_confirm_price']) ?> 바트
 								<?php } else { ?>
-									<!-- <?= number_format($row['Amt_2']) ?>원 -->
-									<?= number_format($row['order_confirm_price']) ?>원
+									<!-- <?= number_format($row['Amt_2']) ?> 바트 -->
+									<?= number_format($row['order_confirm_price']) ?> 바트
 								<?php } ?>
 							</td>
 
