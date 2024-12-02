@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="form-group" style="width: 50%">
                                     <label for="gender1">성별(남성/여성)*</label>
-                                    <select name="companion_gender[]" id="gender1" style="width: 100%" required=""
+                                    <select name="companion_gender" id="gender1" style="width: 100%" required=""
                                             data-label="성별"
                                             class="select-width">
                                         <option value="M">남성</option>

@@ -129,18 +129,18 @@ class SpaController extends BaseController
 
             $dataPost = $this->request->getPost();
 
-            $order_user_name = $this->request->getPost('order_user_name');
-            $email_name = $this->request->getPost('email_name');
-            $email_host = $this->request->getPost('email_host');
-            $order_user_mobile = $this->request->getPost('order_user_mobile');
+            $order_user_name = $this->request->getPost('order_user_name') ?? '';
+            $email_name = $this->request->getPost('email_1') ?? '';
+            $email_host = $this->request->getPost('email_2') ?? '';
+            $order_user_mobile = $this->request->getPost('order_user_mobile' ?? '');
 
             $product_idx = $this->request->getPost('product_idx');
 
-            $order_a_first_name = $this->request->getPost('order_a_first_name');
-            $order_a_last_name = $this->request->getPost('order_a_last_name');
+            $order_a_first_name = $this->request->getPost('order_a_first_name') ?? '';
+            $order_a_last_name = $this->request->getPost('order_a_last_name') ?? '';
 
-            $order_c_first_name = $this->request->getPost('order_c_first_name');
-            $order_c_last_name = $this->request->getPost('order_c_last_name');
+            $order_c_first_name = $this->request->getPost('order_c_first_name') ?? '';
+            $order_c_last_name = $this->request->getPost('order_c_last_name' ?? '');
 
             $order_memo = $this->request->getPost('order_memo');
 
@@ -155,6 +155,7 @@ class SpaController extends BaseController
             $option_cnt = $this->request->getPost('option_cnt');
             $option_price = $this->request->getPost('option_price');
             $option_name = $this->request->getPost('option_name');
+            $order_gender_list = $this->request->getPost('companion_gender') ?? "";
 
             $order_user_email = $email_name . '@' . $email_host;
 
@@ -183,7 +184,7 @@ class SpaController extends BaseController
             $data = [
                 'order_user_name' => $order_user_name,
                 'order_user_email' => encryptField($order_user_email, 'encode'),
-                'order_user_phone' => encryptField($order_user_mobile, 'encode'),
+                "order_gender_list" => $order_gender_list,
                 'product_idx' => $product_idx,
                 'user_id' => $member_idx,
                 'm_idx' => $member_idx,

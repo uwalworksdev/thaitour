@@ -435,27 +435,37 @@
                 <tbody>
                 <tr>
                     <td class="subject">이름</td>
-                    <td class="subject">생년월일</td>
-                    <td class="subject">휴대번호</td>
-                    <td class="subject">이메일</td>
+                    <td col width="8%" class="subject">영문 이름(First Name)</td>
+                    <td col width="8%" class="subject">영문 성(Last Name)</td>
+                    <td col width="12%" class="subject">휴대번호</td>
+                    <td col width="12%" class="subject">이메일</td>
+                    <td col width="12%" class="subject">해외 전화번호 </td>
 
                 </tr>
                 <tr>
-                    <td class="content">
-                        <?= $row_d['user_name'] ?>
-                    </td>
+                        <td col width="8%" class="content">
+							<?= $row_d['order_user_name'] ?>
+						</td>
 
-                    <td class="content">
-                        <?= $row['birthday'] ?>
-                    </td>
+						<td class="content">
+							<?= $row_d['order_user_first_name_en'] ?>
+						</td>
 
-                    <td class="content">
-                        <?= $row_d['order_user_mobile'] ?>
-                    </td>
+						<td class="content">
+							<?= $row_d['order_user_last_name_en'] ?>
+						</td>
 
-                    <td class="content">
-                        <?= $row_d['order_user_email'] ?>
-                    </td>
+						<td class="content">
+							<?= $row_d['order_user_mobile'] ?>
+						</td>
+
+						<td class="content">
+							<?= $row_d['order_user_email'] ?>
+						</td>
+
+						<td class="content">
+							<?= ($row_d['local_phone']) ?>
+						</td>
 
                 </tbody>
             </table>
@@ -503,7 +513,7 @@
             </table>
         </div>
 
-        <div class="invoice_table invoice_table_new only_web">
+        <!-- <div class="invoice_table invoice_table_new only_web">
             <h2>
                 고객 정보
             </h2>
@@ -547,7 +557,7 @@
                 <?php } ?>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
         <div class="invoice_table invoice_table_new only_mo">
             <h2>여행자</h2>

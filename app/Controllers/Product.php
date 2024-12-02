@@ -1390,10 +1390,12 @@ class Product extends BaseController
             $number_room = $this->request->getPost('number_room') ?? 0;
             $number_day = $this->request->getPost('number_day') ?? 0;
             $order_memo = $this->request->getPost('order_memo') ?? "";
-            $email_name = $this->request->getPost('email_name') ?? "";
-            $email_host = $this->request->getPost('email_host') ?? "";
+            $email_name = $this->request->getPost('email_1') ?? "";
+            $email_host = $this->request->getPost('email_2') ?? "";
+            $order_gender_list = $this->request->getPost('companion_gender') ?? "";
             $order_user_name = $this->request->getPost('order_user_name') ?? "";
-            $order_user_mobile = $this->request->getPost('order_user_mobile') ?? "";
+            $order_user_first_name_en = $this->request->getPost('order_user_first_name_en') ?? "";
+            $order_user_last_name_en = $this->request->getPost('order_user_last_name_en') ?? "";
             $order_user_email = $email_name . "@" . $email_host;
             $hotel = $this->productModel->find($product_idx);
             $m_idx = session()->get("member")["idx"];
@@ -1401,6 +1403,17 @@ class Product extends BaseController
             $ipAddress = $this->request->getIPAddress();
             $device_type = get_device();
             $code_name = $this->codeModel->getCodeName($hotel["product_code_1"]);
+            $radio_phone = $this->request->getPost('radio_phone') ?? "";
+            $phone_1 = $this->request->getPost('phone_1') ?? "";
+            $phone_2 = $this->request->getPost('phone_2') ?? "";
+            $phone_3 = $this->request->getPost('phone_3') ?? "";
+            $phone_thai = $this->request->getPost('phone_thai') ?? "";
+            $local_phone = $this->request->getPost('local_phone') ?? "";
+            if ($radio_phone == "kor") {
+                $order_user_phone = $phone_1 . "-" . $phone_2 . "-" . $phone_3;
+            } else {
+                $order_user_phone = $phone_thai;
+            }
 
             if (!empty($use_coupon_idx)) {
                 $coupon = $this->coupon->find($use_coupon_idx);
@@ -1419,8 +1432,12 @@ class Product extends BaseController
                 "code_name" => $code_name,
                 "order_gubun" => "hotel",
                 "order_user_name" => encryptField($order_user_name, "encode"),
-                "order_user_mobile" => encryptField($order_user_mobile, "encode"),
+                "order_user_mobile" => encryptField($order_user_phone, "encode"),
+                "local_phone" => encryptField($local_phone, "encode"),
                 "order_user_email" => encryptField($order_user_email, "encode"),
+                "order_user_first_name_en" => encryptField($order_user_first_name_en, "encode"),
+                "order_user_last_name_en" => encryptField($order_user_last_name_en, "encode"),
+                "order_gender_list" => $order_gender_list,
                 "order_memo" => $order_memo,
                 "room_op_price_sale" => $room_op_price_sale,
                 "inital_price" => $inital_price,

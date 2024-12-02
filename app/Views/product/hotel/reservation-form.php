@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="form-group" style="width: 50%">
                                     <label for="gender1">성별(남성/여성)*</label>
-                                    <select name="companion_gender[]" id="gender1" style="width: 100%" required=""
+                                    <select name="companion_gender" id="gender1" style="width: 100%" required=""
                                             data-label="성별"
                                             class="select-width">
                                         <option value="M">남성</option>
@@ -211,6 +211,7 @@
                                 <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                             </div>
                             <button type="button" class="btn-order">예약하기</button>
+                            <button type="button" class="btn-default cart">상담 문의하기</button>
                             <!-- onclick="location.href='/product/completed-order'" -->
                         </div>
                     </div>
@@ -492,10 +493,10 @@
                     return false;
                 }
 
-                if (!($(".item-clause-all").hasClass("click"))) {
-                    alert("이용약관 동의(필수)를 선택하십시오.");
-                    return false;
-                }
+                // if (!($(".item-clause-all").hasClass("click"))) {
+                //     alert("이용약관 동의(필수)를 선택하십시오.");
+                //     return false;
+                // }
 
                 // var fieldBool = true;
 
