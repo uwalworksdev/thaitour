@@ -11,14 +11,19 @@ class AdminCouponController extends BaseController
     private $couponMst;
     private $memberGrade;
     private $code;
+    private $product;
+
+    private $couponProduct;
     private $db;
     private $uploadPath = FCPATH . "data/coupon/";
 
     public function __construct()
     {
         $this->couponMst = model("CouponMst");
+        $this->couponProduct = model("CouponProduct");
         $this->memberGrade = model("MemberGrade");
         $this->code = model("Code");
+        $this->product = model("ProductModel");
         helper(['html']);
         $this->db = db_connect();
         helper('my_helper');
@@ -50,21 +55,35 @@ class AdminCouponController extends BaseController
                                         ->orderBy("onum", "desc")
                                         ->orderBy("g_idx", "asc")->findAll();
         $code_list = $this->code->getByParentCode("13")->getResultArray();
+        $product_code_list = "";
 
         if ($idx) {
             $row = $this->couponMst->find($idx);
+            $coupon_category_list = $this->couponProduct->where("coupon_idx", $idx)->findAll();
+            foreach($coupon_category_list as $key => $value){
+                $coupon_category_list[$key]["product_code_name_1"] = $this->code->getCodeName($value["product_code_1"]);
+                $coupon_category_list[$key]["product_code_name_2"] = $this->code->getCodeName($value["product_code_2"]);
+                $coupon_category_list[$key]["product_name"] = $this->product->getById($value["product_idx"])["product_name"];
+                $product_code_list .= "|";
+                $product_code_list .= $value["product_code_1"] . ",";
+                $product_code_list .= $value["product_code_2"] . ",";
+                $product_code_list .= $value["product_idx"] . "|";
+            }
         }
         return view('admin/_coupon/write', [
             "row" => $row,
             "idx" => $idx,
             "grade_list" => $grade_list,
-            "code_list" => $code_list
+            "code_list" => $code_list,
+            "coupon_category_list" => $coupon_category_list,
+            "product_code_list" => $product_code_list
         ]);
     }
 
     public function write_ok() {
         try {
             $idx = updateSQ($this->request->getPost("idx"));
+            $product_code_list = $this->request->getPost("product_code_list");
             $data = $this->request->getPost();
             $uploadPath = $this->uploadPath;
 
@@ -97,6 +116,28 @@ class AdminCouponController extends BaseController
 
             if ($idx) {
                 $result = $this->couponMst->updateData($idx, $data);
+
+                $this->couponProduct->where("coupon_idx", $idx)->delete();
+
+                if(!empty($product_code_list)){
+                    $str_code = substr($product_code_list, 1, strlen($product_code_list) - 2);
+                    $arr_code = explode("||", $str_code);
+                    foreach($arr_code as $code){
+                        if(!empty($code)){
+                            $arr = explode(",", $code);
+                            $product_code_1 = $arr[0];
+                            $product_code_2 = $arr[1];
+                            $product_idx = $arr[2];
+                            $this->couponProduct->insertData([
+                                "coupon_idx" => $idx,
+                                "product_idx" => $product_idx,
+                                "product_code_1" => $product_code_1,
+                                "product_code_2" => $product_code_2,
+                            ]);
+                        }
+                    }
+                }
+
                 if($result) {
                     $message = "수정되었습니다.";
                     return "<script>
@@ -108,6 +149,25 @@ class AdminCouponController extends BaseController
                 $data["regdate"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
                 $insertId = $this->couponMst->insertData($data);
                 if($insertId){
+                    if(!empty($product_code_list)){
+                        $str_code = substr($product_code_list, 1, strlen($product_code_list) - 2);
+                        $arr_code = explode("||", $str_code);
+                        foreach($arr_code as $code){
+                            if(!empty($code)){
+                                $arr = explode(",", $code);
+                                $product_code_1 = $arr[0];
+                                $product_code_2 = $arr[1];
+                                $product_idx = $arr[2];
+                                $this->couponProduct->insertData([
+                                    "coupon_idx" => $insertId,
+                                    "product_idx" => $product_idx,
+                                    "product_code_1" => $product_code_1,
+                                    "product_code_2" => $product_code_2,
+                                ]);
+                            }
+                        }
+                    }
+
                     $message = "등록되었습니다.";
                     return "<script>
                                 alert('$message');

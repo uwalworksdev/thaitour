@@ -123,7 +123,7 @@
                                     </div>
                                 </div>
                                 <div class="item-info">
-                                    <div class="item-price-info"><span class="main"><?=number_format($item1_1['product_price'])?></span class="text-gray">바트 ~
+                                    <div class="item-price-info"><span class="main"><?=number_format($item1_1['product_price'])?></span class="text-gray"> 바트 ~
                                         <span class="sub text-gray"><?=number_format($item1_1['product_price_won'])?>원</span>
                                     </div>
                                 </div>
