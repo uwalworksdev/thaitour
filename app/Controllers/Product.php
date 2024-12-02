@@ -1785,13 +1785,13 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx'] = $this->request->getVar('product_idx');
-        $data['order_date'] = $this->request->getVar('order_date');
-        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['product_idx']      = $this->request->getVar('product_idx');
+        $data['order_date']       = $this->request->getVar('order_date');
+        $data['option_idx']       = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
+        $data['vehicle_idx']      = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt']      = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx']   = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
