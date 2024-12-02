@@ -579,7 +579,7 @@
             </table>
         </div>
 
-        <div class="invoice_table invoice_table_new only_web">
+        <!-- <div class="invoice_table invoice_table_new only_web">
             <h2>
                 선택 정보
             </h2>
@@ -612,7 +612,7 @@
                 <?php } ?>
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
         <div class="invoice_table">
             <h2>요청사항</h2>

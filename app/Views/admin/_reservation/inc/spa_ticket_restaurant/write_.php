@@ -397,8 +397,8 @@
                             </tbody>
                         </table>
 
-                        <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 선택 정보</div>
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                        <!-- <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 선택 정보</div> -->
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="display: none">
                             <caption>
                             </caption>
                             <colgroup>
