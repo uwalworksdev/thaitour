@@ -137,7 +137,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td col width="15%" class="content">
 							<span>
+							    <?php if($item['option_type'] == "main") { ?>
+								그린피: <?= $item['option_name'] ?>
+								<?php } else { ?>
 								<?= $item['option_name'] ?>
+								<?php } ?>
 							</span>
 						</td>
 						<td class="content">
