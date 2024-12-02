@@ -912,10 +912,6 @@
                         let option_tot = data.option_tot ?? 0;
                         let option_cnt = data.option_cnt;
 
-                        console.log(option_name);
-                        console.log(option_price);
-                        console.log(idx);
-
                         let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" style="margin-top: 20px">
                                             <div class="wrap-text">
                                                 <span>${parent_name}</span>
@@ -947,27 +943,6 @@
                         alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
                     }
                 });
-            }
-
-            function minusQty(el) {
-                let inp = $(el).parent().find('input.input_qty');
-
-                let num = inp.val();
-                if (Number(num) > 1) {
-                    num = Number(num) - 1;
-                    inp.val(num);
-                } else {
-                    if (confirm('선택 항목을 지우시겠습니까?')) {
-                        $(el).closest('.schedule').remove();
-                    }
-                }
-            }
-
-            function plusQty(el) {
-                let inp = $(el).parent().find('input.input_qty');
-                let num = inp.val();
-                num = Number(num) + 1;
-                inp.val(num);
             }
 
             document.addEventListener('DOMContentLoaded', function() {
@@ -1148,10 +1123,6 @@
                                 selectedOptions.push(`${optionName}: ${qty} x ${price.toLocaleString()} = ${totalPrice.toLocaleString()}원`);
                             }
                         });
-                        console.log(optionName);
-                        console.log(price);
-                        
-                        
 
                         if (selectedOptions.length > 0) {
                             $('#product_options').html(
@@ -1161,6 +1132,28 @@
                         } else {
                             $('#product_options').html("선택된 옵션이 없습니다.");
                         }
+                    }
+
+                    function minusQty(el) {
+                        let inp = $(el).parent().find('input.input_qty');
+                        let num = inp.val();
+                        if (Number(num) > 1) {
+                            num = Number(num) - 1;
+                            inp.val(num);
+                        } else {
+                            if (confirm('선택 항목을 지우시겠습니까?')) {
+                                $(el).closest('.schedule').remove();
+                            }
+                        }
+                        updateProductOption(); 
+                    }
+
+                    function plusQty(el) {
+                        let inp = $(el).parent().find('input.input_qty');
+                        let num = inp.val();
+                        num = Number(num) + 1;
+                        inp.val(num);
+                        updateProductOption();
                     }
 
                     function number_format(number) {
