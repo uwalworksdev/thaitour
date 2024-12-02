@@ -67,13 +67,13 @@
             <div class="flex_header_top">
                 <a href="/"><img style="width: 90%;" src="/images/sub/logo_w.png" alt=""></a>
                 <div class="search-container">
-                    <div class="main-search-container">
+                    <div class="main-search-container" id="main-search-container">
                         <input type="text" class="search-input" id="search_input_pc__header" placeholder="검색어를 입력해 주세요"
                                autocomplete="off">
                         <i class="fa fa-search search-icon" id="search_icon_pc"></i>
                         <ul class="search_words_list" id="search_words_list_pc">
                             <?php foreach ($searchTxtRecommend as $item): ?>
-                                <li><a href="<?= $item['url'] ?>">#<?= $item['subject'] ?></a></li>
+                                <li><a href="/product_search?search_name=<?= $item ?>">#<?= $item ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -449,8 +449,11 @@
         $("#search_words_list_pc").slideDown(200);
     })
 
-    $("#search_input_pc__header").blur(function () {
-        $("#search_words_list_pc").slideUp(200);
+    $(document).click(function (e) {
+        var container = $("#main-search-container");
+        if (!container[0].contains(e.target)) {
+            $("#search_words_list_pc").slideUp(200);
+        }
     })
 
     $("#search_input_pc__header").keyup(function (event) {

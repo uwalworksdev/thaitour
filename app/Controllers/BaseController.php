@@ -65,10 +65,11 @@ abstract class BaseController extends Controller
         $this->data['notice_list_footer'] = $model->List('b2b_notice')->get()->getResultArray();
         $this->setting = $settingModel->info(1);
 
+        $productModel = new \App\Models\ProductModel();
+
 
         // 검색어
-        $SearchText = new \App\Models\SearchText();
-        $searchTxt  = $SearchText->List()->findAll();
+        $searchTxt  = $productModel->getKeyWordAll();
 
         $this->data['searchTxtRecommend'] = $searchTxt;
 
