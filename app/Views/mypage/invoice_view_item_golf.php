@@ -131,22 +131,22 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td class="subject">옵션내역</td>
 						<td col width="*%" class="subject">옵션수량</td>
-						<td col width="15%" class="subject">옵션금액</td>
+						<td col width="15%" class="subject">옵션금액(원)</td>
 					</tr>
 				    <?php foreach ($vehicle as $item) { ?>
 					<tr>
 						<td col width="15%" class="content">
 							<span>
-								<?= $order_no ?>
+								<?= $item['option_name'] ?>
 							</span>
 						</td>
 						<td class="content">
-							<span><?= $option['hole_cnt'] ?>홀</span>
+							<span><?= $item['option_cnt'] ?></span>
 						</td>
 
 						<td class="content">
 							<p>
-								<?= $people_adult_cnt ?>인
+								<?= number_format($item['option_tot']) ?>
 							</p>
 						</td>
 					</tr>
