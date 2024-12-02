@@ -574,6 +574,29 @@ class AjaxController extends BaseController {
 				$result = $db->query($sql_p);
 			} 
 
+			// 골프가격 시작일
+			$sql     = "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY golf_date ASC LIMIT 0,1";
+			$result  = $db->query($sql);
+			$result  = $result->getResultArray();
+			foreach ($result as $row) 
+			{
+					 $s_date = $row['s_date']; 
+			}
+
+			// 골프가격 종료일
+			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY golf_date DESC LIMIT 0,1";
+			$result  = $this->connect->query($sql);
+			$result  = $result->getResultArray();
+			foreach ($result as $row) 
+			{
+					 $e_date = $row['e_date']; 
+			}
+
+			$sql_o = "UPDATE tbl_golf_info  SET s_date = '". $s_date."'   
+										  	  , e_date = '". $e_date ."' WHERE product_idx = '". $product_idx ."' "; 	
+			write_log("일정추가 : ".$sql_o);
+			$result = $db->query($sql_o);
+
 			if (isset($result) && $result) {
 				$msg = "일정 추가완료";
 			} else {
