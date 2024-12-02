@@ -547,6 +547,10 @@
     margin-bottom: 25px;
 }
 
+.form_notify_ .form_el_flex {
+    justify-content: space-between;
+}
+
 .form_notify_ .form_input_ {
     height: 52px;
     border-radius: 3px;
@@ -564,9 +568,13 @@
     width: 450px;
 }
 
+.form_notify_ input.form_input_.full {
+    width: 100%;
+}
+
 .form_notify_ .form_textarea_ {
     width: 920px;
-    height: 440px;
+    height: 240px;
     border-radius: 3px;
     background-color: #ffffff;
     border: 1px solid #dbdbdb;

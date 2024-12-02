@@ -1975,6 +1975,24 @@ class Product extends BaseController
         $data['description'] = $this->request->getVar('description');
         $data['id_kakao'] = $this->request->getVar('id_kakao');
         $data['time_line'] = $this->request->getVar('time_line');
+        $data['email_name'] = $this->request->getPost('email_1') ?? "";
+        $data['email_host'] = $this->request->getPost('email_2') ?? "";
+        $data['order_gender_list'] = $this->request->getPost('companion_gender') ?? "";
+        $data['order_user_name'] = $this->request->getPost('order_user_name') ?? "";
+        $data['order_user_first_name_en'] = $this->request->getPost('order_user_first_name_en') ?? "";
+        $data['order_user_last_name_en'] = $this->request->getPost('order_user_last_name_en') ?? "";
+        $data['order_user_email'] = $data['email_name'] . "@" . $data['email_host'];
+        $data['radio_phone'] = $this->request->getPost('radio_phone') ?? "";
+        $data['phone_1'] = $this->request->getPost('phone_1') ?? "";
+        $data['phone_2'] = $this->request->getPost('phone_2') ?? "";
+        $data['phone_3'] = $this->request->getPost('phone_3') ?? "";
+        $data['phone_thai'] = $this->request->getPost('phone_thai') ?? "";
+        $data['local_phone'] = $this->request->getPost('local_phone') ?? "";
+        if ($data['radio_phone'] == "kor") {
+            $data['order_user_phone'] = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+        } else {
+            $data['order_user_phone'] = $data['phone_thai'];
+        }
         $idx = $this->request->getVar('idx');
         $data['idx'] = explode(',', $idx);
         $data['adult_price_bath'] = round($data['people_adult_price'] / (float)($this->setting['baht_thai'] ?? 0));
@@ -1994,12 +2012,24 @@ class Product extends BaseController
         $data['tour_product'] = $this->tourProducts->find($data['tours_idx']);
         $data['tour_info'] = $this->infoProducts->find($data['tour_product']['info_idx']);
         $data['tour_option'] = [];
-        foreach ($data['idx'] as $id) {
-            $tourOption = $this->optionTours->find(trim($id));
+        $data['option_price'] = [];
+        $data['option_price_bath'] = [];
+        $idxPairs = explode(',', $idx);
+
+        foreach ($idxPairs as $pair) {
+
+            list($id, $qty) = explode(':', trim($pair));
+            $id = trim($id); 
+            $qty = (int)trim($qty);
+            
+            $tourOption = $this->optionTours->find($id);
             if ($tourOption) {
+                $tourOption['qty'] = $qty;
                 $data['tour_option'][] = $tourOption;
-                $data['option_price'][] = $tourOption['option_price'];
-                $data['option_price_bath'][] = round($tourOption['option_price'] / (float)($this->setting['baht_thai'] ?? 0));;
+                $data['option_price'][] = $tourOption['option_price'] * $qty;
+                $data['option_price_bath'][] = round(
+                    ($tourOption['option_price'] * $qty) / (float)($this->setting['baht_thai'] ?? 1)
+                );
             }
         }
         $total_option_price_bath = array_sum($data['option_price_bath'] ?? []);
@@ -2025,8 +2055,7 @@ class Product extends BaseController
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
             $data['order_no'] = $this->orderModel->makeOrderNo();
-            $order_user_email = $data['email_1'][0] . "@" . $data['email_2'][0];
-            $data['order_user_email'] = encryptField($order_user_email, 'encode');
+            $data['order_user_email'] = encryptField($data['order_user_email'], 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
             $data['order_status'] = "W";
 
@@ -2034,10 +2063,11 @@ class Product extends BaseController
             $data['ip'] = $this->request->getIPAddress();
             $data['order_gubun'] = "tour";
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_name'] = encryptField($data['companion_name'][0], 'encode');
-
-            $order_user_mobile = $data['phone_1'][0] . "-" . $data['phone_2'][0] . "-" . $data['phone_3'][0];
-            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
+            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
+            $data['order_user_mobile'] = encryptField($data['order_user_phone'], 'encode');
+            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
+            $data['local_phone'] = encryptField($data['local_phone'], 'encode');
 
             $data['people_adult_cnt'] = $data['people_adult_cnt'];
             $data['people_kids_cnt'] = $data['people_kids_cnt'];
@@ -2914,7 +2944,7 @@ class Product extends BaseController
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
-                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price']) . "원</option>";
+                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price']) . "바트</option>";
             }
 
             $msg .= "</select>";
