@@ -53,7 +53,7 @@
             <input type="hidden" name="idx" value='<?= $idx ?>'>
             <input type="hidden" name="publish_type" value='N'>
             <input type="hidden" name="coupon_type" id="coupon_type" value="both">
-            <input type="hidden" name="product_code_list" id="product_code_list" value="">
+            <input type="hidden" name="product_code_list" id="product_code_list" value="<?=$product_code_list?>">
 
             <div id="contents">
                 <div class="listWrap_noline">
@@ -101,7 +101,15 @@
                                     <th>등록된 카테고리</th>
                                     <td colspan="3">
                                         <ul id="reg_cate">
-                                            
+                                            <?php
+                                                foreach($coupon_category_list as $cat){
+                                            ?> 
+                                                <li>[<?= $cat["product_idx"] ?>] <?php echo $cat["product_code_name_1"] . " > " . $cat["product_code_name_2"] . " > " . $cat["product_name"];?> 
+                                                <span onclick="delCategory('<?= $cat['product_code_1'] ?>', '<?= $cat['product_code_2'] ?>', '<?= $cat['product_idx'] ?>', this);">삭제</span>
+                                                </li>       
+                                            <?php
+                                                }
+                                            ?>
                                         </ul>
                                     </td>
                                 </tr>
@@ -496,6 +504,7 @@
     // 카테고리 삭제 함수
     function delCategory(cate_code1, cate_code2, product_idx, obj) {
 
+        
         if (chkCategory(cate_code1, cate_code2, product_idx)) {
 
             var tmp_product_code = $("#product_code_list").val();
@@ -508,8 +517,7 @@
             $.each(code_array, function (key, val) {
                 let arr = val.split(",");
                 
-                console.log(arr);
-                if(arr[0] != cate_code1 && arr[1] != cate_code2 && arr[2] != product_idx){
+                if(arr[0] != cate_code1 || arr[1] != cate_code2 || arr[2] != product_idx){
                     tmp_product_code_re = tmp_product_code_re + "|" + arr[0] + "," + arr[1] + "," + arr[2] + "|";
                 }
 

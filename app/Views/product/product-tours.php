@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="prd_price_ko">
-                                    <?= number_format($row['product_price']) ?> <span>바트</span> <span class="prd_price_thai">(<?= number_format($row['product_price_won']) ?> <span>원)</span></span>
+                                    <?= number_format($row['product_price']) ?> <span> 바트</span> <span class="prd_price_thai">(<?= number_format($row['product_price_won']) ?> <span>원)</span></span>
                                 </div>
                             </a>
                         <?php endforeach; ?>
