@@ -438,7 +438,7 @@ class Product extends BaseController
                 $bestValueProduct[$key]['level_name'] = $fresult9['code_name'];
             }
 
-            $keyWordAll = $this->productModel->getKeyWordAll(1303);
+            $keyWordAll = $this->productModel->getKeyWordAll(1303, 20);
 
             $keyWordActive = array_search($keyword, $keyWordAll) ?? 0;
 

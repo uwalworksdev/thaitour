@@ -1088,7 +1088,7 @@ class ProductModel extends Model
     }
 
 
-    public function getKeyWordAll($code_no = null)
+    public function getKeyWordAll($code_no = null, $g_list_rows = 1000)
     {
         $keyWords = $this->select("keyword");
 
@@ -1115,7 +1115,7 @@ class ProductModel extends Model
         $uniqueArray = array_keys($countedArray);
 
 
-        return array_slice($uniqueArray, 0, 20);
+        return array_slice($uniqueArray, 0, $g_list_rows);
     }
 
     public function batchUpdate(array $data)

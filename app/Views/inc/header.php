@@ -61,6 +61,12 @@
             $tab_active = 1;
             break;
     }
+    
+    $productModel = new \App\Models\ProductModel();
+
+    // 검색어
+    $searchTxtRecommend  = $productModel->getKeyWordAll();
+
     ?>
     <div id="header_tools">
         <div class="inner flex_header_top">
