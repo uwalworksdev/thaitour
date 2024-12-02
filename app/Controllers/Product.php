@@ -1795,6 +1795,9 @@ class Product extends BaseController
 		$data['product_code_1']   = $this->request->getPost('product_code_1');
 		$data['product_code_2']   = $this->request->getPost('product_code_2');
 		$data['product_code_3']   = $this->request->getPost('product_code_3') ?? 'default_value'; // 기본값 설정
+if (!$data['product_code_3']) {
+    echo "product_code_3 is missing!";
+}
 
         $data['order_date']       = $this->request->getVar('order_date');
         $data['option_idx']       = $this->request->getVar('option_idx');
