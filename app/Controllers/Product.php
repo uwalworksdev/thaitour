@@ -1492,7 +1492,7 @@ class Product extends BaseController
 
                 return $this->response->setJSON([
                     'result' => true,
-                    'message' => "주문되었습니다."
+                    'message' => "에약되었습니다."
                 ], 200);
             }
 
@@ -1950,7 +1950,7 @@ class Product extends BaseController
 
             return $this->response->setBody("
                 <script>
-                    alert('주문되었습니다');
+                    alert('예약되었습니다');
                     parent.location.href = '/product-golf/completed-order';
                 </script>
             ");
@@ -2160,14 +2160,14 @@ class Product extends BaseController
 
             return $this->response->setBody("
                 <script>
-                    alert('주문되었습니다');
+                    alert('예약되었습니다');
                     parent.location.href = '/product-tours/completed-order';
                 </script>
             ");
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
-                        alert('주문되지 않습니다');
+                        alert('예약되지 않습니다');
                     </script>
                 ");
         }
@@ -2842,7 +2842,7 @@ class Product extends BaseController
 
                     return $this->response->setJSON([
                         'result' => true,
-                        'message' => "주문되었습니다."
+                        'message' => "예약되었습니다."
                     ], 200);
                 }
 
@@ -2853,7 +2853,7 @@ class Product extends BaseController
             } else {
                 return $this->response->setJSON([
                     'result' => false,
-                    'message' => "주문하시려면 로그인해주세요"
+                    'message' => "예약하시려면 로그인해주세요"
                 ]);
             }
 
