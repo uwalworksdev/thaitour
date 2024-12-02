@@ -262,8 +262,7 @@
                 <!--button class="btn-price-content-normal" type="button"
                         onclick="showCouponPop()">쿠폰적용
                 </button-->
-                <button class="btn-price-content-normal" type="button"
-                        onclick="showCouponPop()">장바구니 담기
+                <button class="btn-price-content-normal" type="button" onclick="cartAdd()">장바구니 담기
                 </button>
             </div>
             <div class="right-main" id="booking_area">
@@ -289,9 +288,7 @@
                     <p class="price-text"><em id="last_price">0</em><span>원(<em id="last_price_baht">0</em>바트)</span>
                     </p>
                 </div>
-                <button class="btn-price-content" type="button"
-                        onclick="handleSubmit()">예약하기
-                </button>
+                <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
             </div>
         </div>
         </form>
@@ -695,6 +692,11 @@
         $(".vehicle_select").change(function () {
             calculatePrice();
         })
+
+        function cartAdd() {
+            alert('장바구니 담기');
+        }
+
 
         function formatDate(date, separate = "-") {
             const year = date.getFullYear();
