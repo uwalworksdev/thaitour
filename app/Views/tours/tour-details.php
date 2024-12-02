@@ -126,7 +126,7 @@
                         </div>
                     <?php endforeach; ?>
                 <?php endforeach;?>
-                <div class="sec2-item-card tour_calendar">
+                <div class="sec2-item-card tour_calendar" id="tour_calendar">
                     <div class="container-calendar tour">
                         <div class="calendar-left">
                             <h3 class="title-left calendar_txt">
@@ -455,7 +455,12 @@
                                         </tr>
                                         <tr>
                                             <th>총인원</th>
-                                            <td class="num_people" id="num_people"></td>
+                                            <td>
+                                                <div class="flex new">
+                                                    <div class="num_people" id="num_people"></div>
+                                                    <div class="total_price_product"></div>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>회원등급 할인</th>
@@ -463,7 +468,7 @@
                                         </tr>
                                         <tr>
                                             <th>총금액</th>
-                                            <td class="total_pay" id="total_pay"></td>
+                                            <td><div class="total_pay" id="total_pay"></div></td>
                                         </tr>
                                         <!-- <tr>
                                             <th>쿠폰 적용</th>
@@ -970,10 +975,12 @@
 
                     var selectedOption = [];
                     var selectedTourIds = [];
+                    var totalCost = 0;
+                    var selectedTourQuantities = {};
                     function updateProductOption() {
-                        var selectedOption = [];
-                        var totalCost = 0;
-
+                        selectedOption = [];
+                        totalCost = 0;
+                        selectedTourQuantities = {};
                         $('input.input_qty').each(function() {
                             let qty = parseInt($(this).val());
                             let price = parseFloat($(this).data('price')); 
@@ -985,17 +992,15 @@
                                 totalCost += totalPrice;
                                 if (!selectedTourIds.includes(idx)) {
                                     selectedTourIds.push(idx);
-                                    console.log(selectedTourIds);
-                                    
                                 }
-                                selectedOption.push(`${optionName}: ${qty} x ${price.toLocaleString()} = ${totalPrice.toLocaleString()}원`);
+                                selectedTourQuantities[idx] = qty;
+                                selectedOption.push(`<div class='flex_op flex'>${optionName} <p class='product_option_pay'>${totalPrice.toLocaleString()}바트</p></div>`);
                             }
                         });
 
                         if (selectedOption.length > 0) {
                             $('#product_options').html(
-                                selectedOption.join('<br>') +
-                                `<br><strong>${totalCost.toLocaleString()}원</strong>`
+                                selectedOption.join('<br>')
                             );
                         } else {
                             $('#product_options').html("선택된 옵션이 없습니다.");
@@ -1295,6 +1300,9 @@
 
                         const validDaysParam = $(this).data('valid-days').split(',').map(Number);
                         setTourDatesAndPrice(tourStartDate, tourEndDate, tourPrice, tourPriceBaht, validDaysParam);
+                        $('html, body').animate({
+                            scrollTop: $('#tour_calendar').offset().top
+                        }, 500);
                     });
 
                     $prevMonthBtn.click(() => {
@@ -1337,12 +1345,13 @@
                             var adultTotalPrices = adultTotalPrice;
                             var childTotalPrices = childTotalPrice;
                             var babyTotalPrices = babyTotalPrice;
-                            var priceOptionTotal = 0;
+                            var priceOptionTotal = totalCost;
                             var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
                             var selectedTime = $('.select-time-c').val();
                             if (!selectedTime) {
                                 selectedTime = $('.select-time-c option:first').val();
                             }
+                            const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
 
                             $('#order_date').val(formattedDate);
@@ -1353,7 +1362,7 @@
                             $('#people_kids_price').val(childTotalPrices);
                             $('#people_baby_price').val(babyTotalPrices);
                             $('#tours_idx').val(currentToursIdx);
-                            $('#idx').val(selectedTourIds.join(','));
+                            $('#idx').val(idxWithQuantities);
                             $('#time_line').val(selectedTime);
                             $('.time_lines').text(selectedTime);
                             $("#total_price_popup").text(number_format(last_price) + " 바트");
@@ -1387,7 +1396,7 @@
                                 total_price -= discount_price;
                                 total_price_baht -= discount_price_baht;
 
-                                $(".discount").text(number_format(discount_price) + " 바트");
+                                $(".discount").text(number_format(discount_price) + "원");
                                 $("#last_price_popup").text(number_format(total_price));
 
                                 if (isAcceptBtn) {
@@ -1427,7 +1436,6 @@
                     });
 
                     initializeDefaultTour();
-                // });
 
 
                 function showCouponPop() {
@@ -1442,6 +1450,42 @@
 
 
             function handleSubmit() {
+                const frm = document.frm;
+                if ($("#order_user_name").val() === "") {
+                    alert("한국이름을 입력해주세요.");
+                    $("#order_user_name").focus();
+                    return false;
+                }
+                if ($("#order_user_first_name_en").val() === "") {
+                    alert("영문 이름(First Name)을 입력해주세요.");
+                    $("#order_user_first_name_en").focus();
+                    return false;
+                }
+
+                if ($("#order_user_last_name_en").val() === "") {
+                    alert("영문 성(Last Name)을 입력해주세요.");
+                    $("#order_user_last_name_en").focus();
+                    return false;
+                }
+
+                if ($("#email_1").val() === "" || $("#email_2").val() === "") {
+                    alert("이메일 주소를 입력해주세요.");
+                    $("#email_1").focus();
+                    return false;
+                }
+
+                if ($("input[name='radio_phone']:checked").val() === "kor") {
+                    if ($("#phone_1").val() === "" || $("#phone_2").val() === "" || $("#phone_3").val() === "") {
+                        alert("한국번호를 입력해주세요.");
+                        return false;
+                    }
+                } else if ($("input[name='radio_phone']:checked").val() === "thai") {
+                    if ($("#phone_thai").val() === "") {
+                        alert("태국번호를 입력해주세요.");
+                        return false;
+                    }
+                }
+
                 $("#frm").submit();
             }
 
@@ -1520,6 +1564,14 @@
                     $(".phone_kor").attr("disabled", true);
                 }
             })
+
+            function handleEmail(email) {
+            if (email == '1') {
+                $("#email_2").val('').prop('readonly', false).focus();
+            } else {
+                $("#email_2").val(email).prop('readonly', true);
+            }
+        }
             // document.addEventListener('DOMContentLoaded', function() {
             //     const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
             //     const sec2Items = document.querySelectorAll('.sec2-item-card');

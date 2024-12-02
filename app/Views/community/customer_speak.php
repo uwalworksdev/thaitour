@@ -12,7 +12,7 @@
                             <a href="/community/customer_center">자주 찾는 질문</a>
                         </div>
                         <div class="itembar"><a href="/community/customer_center/list_notify">태국뉴스 및 공지사항</a></div>
-                        <div class="itembar"><a href="/community/customer_center/notify_table">1 : 1 게시판</a></div>
+                        <div class="itembar"><a href="/qna/list">1 : 1 게시판</a></div>
                         <div class="itembar active"><a href="/community/customer_center/customer_speak">고객의 소리</a></div>
                     </div>
                 </div>
@@ -37,61 +37,63 @@
                         <form class="form_notify_" name=frm id=frm action="/community/customer_center/notify_table_ok" method=post enctype="multipart/form-data">
                             <input type="hidden" name="star" id="star" value="5">
                             <div class="form_el">
-                                <label class="form_label_" for="user_name">더투어랩 직원 이름 또는 별명*</label>
-                                <input class="form_input_" type="text" id="user_name" name="user_name" placeholder="">
+                                <label class="form_label_" for="user_name">제목*</label>
+                                <input class="form_input_ full" type="text" id="user_name" name="user_name" placeholder="">
                             </div>
-                            <div class="form_el">
-                                <label class="form_label_" for="accuracy">정확성*</label>
-                                <select class="form_input_" name="accuracy" id="accuracy">
-                                    <option value="">선택해주세요.</option>
-                                    <option value="test1">test1</option>
-                                    <option value="test2">test2</option>
-                                </select>
-                            </div>
-                            <div class="form_el">
-                                <label class="form_label_" for="speed">신속성*</label>
-                                <select class="form_input_" name="speed" id="speed">
-                                    <option value="">선택해주세요.</option>
-                                    <option value="test1">test1</option>
-                                    <option value="test2">test2</option>
-                                </select>
-                            </div>
-
-                            <div class="form_el">
-                                <div class="form_label_">친절도*</div>
-                                <div class="custom-select">
-                                    <div class="select-selected form_input_">
-                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                        <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                    </div>
-                                    <div class="select-items select-hide">
-                                        <div data-value="5" class="star-rating">
+                            <div class="form_el_flex flex">
+                                <div class="form_el">
+                                    <label class="form_label_" for="accuracy">정확성*</label>
+                                    <select class="form_input_" name="accuracy" id="accuracy">
+                                        <option value="">선택해주세요.</option>
+                                        <option value="test1">test1</option>
+                                        <option value="test2">test2</option>
+                                    </select>
+                                </div>
+                                <div class="form_el">
+                                    <label class="form_label_" for="speed">신속성*</label>
+                                    <select class="form_input_" name="speed" id="speed">
+                                        <option value="">선택해주세요.</option>
+                                        <option value="test1">test1</option>
+                                        <option value="test2">test2</option>
+                                    </select>
+                                </div>
+    
+                                <div class="form_el">
+                                    <div class="form_label_">친절도*</div>
+                                    <div class="custom-select">
+                                        <div class="select-selected form_input_">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                             <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
                                         </div>
-                                        <div data-value="4" class="star-rating">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                        </div>
-                                        <div data-value="3" class="star-rating">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                        </div>
-                                        <div data-value="2" class="star-rating">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
-                                        </div>
-                                        <div data-value="1" class="star-rating">
-                                            <img src="/images/ico/star_yellow_icon.png" alt="5 stars" loading="lazy">
+                                        <div class="select-items select-hide">
+                                            <div data-value="5" class="star-rating">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            </div>
+                                            <div data-value="4" class="star-rating">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            </div>
+                                            <div data-value="3" class="star-rating">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            </div>
+                                            <div data-value="2" class="star-rating">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="1 star" loading="lazy">
+                                            </div>
+                                            <div data-value="1" class="star-rating">
+                                                <img src="/images/ico/star_yellow_icon.png" alt="5 stars" loading="lazy">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
