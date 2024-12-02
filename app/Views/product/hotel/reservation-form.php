@@ -587,10 +587,17 @@
                     return false;
                 }
 
-                // if (!($(".item-clause-all").hasClass("click"))) {
-                //     alert("이용약관 동의(필수)를 선택하십시오.");
-                //     return false;
-                // }
+                /* Collect values for validation */
+                let fullagreement = $("#fullagreement").val().trim();
+                let terms = $("#terms").val().trim();
+                let policy = $("#policy").val().trim();
+                let information = $("#information").val().trim();
+
+                /* Check for agreement validation */
+                if ([fullagreement, terms, policy, information].includes("N")) {
+                    alert("모든 약관에 동의해야 합니다.");
+                    return false;
+                }
 
                 // var fieldBool = true;
 
