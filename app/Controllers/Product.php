@@ -1713,8 +1713,7 @@ class Product extends BaseController
 
     private function golfPriceCalculate($option_idx, $people_adult_cnt, $vehicle_cnt, $vehicle_idx, $use_coupon_idx)
     {
-        write_log($option_idx .":". $people_adult_cnt .":". $vehicle_cnt .":". $vehicle_idx .":". $use_coupon_idx);
-        $data['option'] = $this->golfOptionModel->find($option_idx);
+        $data['option'] = $this->golfPriceModel->find($option_idx);
 
         $data['total_price'] = $data['option']['option_price'] * $people_adult_cnt;
 
