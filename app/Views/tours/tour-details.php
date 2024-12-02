@@ -867,110 +867,136 @@
                 },
             });
 
-        function sel_moption(code_idx) {
-            let url = `<?= route_to('api.product.sel_moption') ?>`;
+                function sel_moption(code_idx) {
+                        let url = `<?= route_to('api.product.sel_moption') ?>`;
 
-            $.ajax({
-                url: url,
-                type: "POST",
-                data: {
-                    "product_idx": '<?= $product['product_idx'] ?>',
-                    "code_idx": code_idx
-                },
-                async: false,
-                cache: false,
-                success: function (data, textStatus) {
-                    $("#sel_option").html(data);
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-        }
+                        $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: {
+                                "product_idx": '<?= $product['product_idx'] ?>',
+                                "code_idx": code_idx
+                            },
+                            async: false,
+                            cache: false,
+                            success: function (data, textStatus) {
+                                $("#sel_option").html(data);
+                            },
+                            error: function (request, status, error) {
+                                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                            }
+                        });
+                    }
 
-        function sel_option(code_idx) {
-                let url = `<?= route_to('api.product.sel_option') ?>`;
-                let idx = code_idx.split("|")[0];
+                    function sel_option(code_idx) {
+                            let url = `<?= route_to('api.product.sel_option') ?>`;
+                            let idx = code_idx.split("|")[0];
 
-                let moption = $("#moption").val();
+                            let moption = $("#moption").val();
 
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: {
-                        "idx": idx,
-                        "moption": moption
-                    },
-                    async: false,
-                    cache: false,
-                    success: function (data, textStatus) {
-                        let parent_name = data.parent_name;
+                            $.ajax({
+                                url: url,
+                                type: "POST",
+                                data: {
+                                    "idx": idx,
+                                    "moption": moption
+                                },
+                                async: false,
+                                cache: false,
+                                success: function (data, textStatus) {
+                                    let parent_name = data.parent_name;
 
-                        let option_name = data.option_name;
-                        let option_price = data.option_price;
-                        let idx = data.idx;
-                        let option_tot = data.option_tot ?? 0;
-                        let option_cnt = data.option_cnt;
+                                    let option_name = data.option_name;
+                                    let option_price = data.option_price;
+                                    let idx = data.idx;
+                                    let option_tot = data.option_tot ?? 0;
+                                    let option_cnt = data.option_cnt;
 
-                        console.log(option_name);
-                        console.log(option_price);
-                        console.log(idx);
+                                    let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" style="margin-top: 20px">
+                                                        <div class="wrap-text">
+                                                            <span>${parent_name}</span>
+                                                            <p>${option_name}</p>
+                                                        </div>
+                                                        <div class="wrap-btn opt_count_box count_box flex__c">
+                                                            <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
+                                                            <input style="text-align: center; display: block; width: 56px" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
+                                                                        name="option_qty[]" id="input_qty" value="1">
+                                                            <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
+                                                        </div>
+                                                    </div>
 
-                        let htm_ = `<div class="schedule cus-count-input flex_b_c" id="schedule_${idx}" style="margin-top: 20px">
-                                            <div class="wrap-text">
-                                                <span>${parent_name}</span>
-                                                <p>${option_name}</p>
-                                            </div>
-                                            <div class="wrap-btn opt_count_box count_box flex__c">
-                                                <button type="button" onclick="minusQty(this);" class="minus_btn" id="minusAdult"></button>
-                                                <input style="text-align: center; display: block; width: 56px" data-price="${option_price}" readonly type="text" class="input-qty input_qty"
-                                                            name="option_qty[]" id="input_qty" value="1">
-                                                <button type="button" onclick="plusQty(this);" class="plus_btn" id="addAdult"></button>
-                                            </div>
-                                        </div>
+                                                <div class="" style="display: none">
+                                                        <input type="hidden" name="option_name[]" value="${option_name}">
+                                                        <input type="hidden" name="option_idx[]" value="${idx}">
+                                                        <input type="hidden" name="option_tot[]" value="${option_tot}">
+                                                        <input type="hidden" name="option_price[]" value="${option_price}">
+                                                        <input type="hidden" name="option_cnt[]" value="${option_cnt}">
+                                                </div>
+                                            </li>`;
 
-                                    <div class="" style="display: none">
-                                            <input type="hidden" name="option_name[]" value="${option_name}">
-                                            <input type="hidden" name="option_idx[]" value="${idx}">
-                                            <input type="hidden" name="option_tot[]" value="${option_tot}">
-                                            <input type="hidden" name="option_price[]" value="${option_price}">
-                                            <input type="hidden" name="option_cnt[]" value="${option_cnt}">
-                                    </div>
-                                </li>`;
-
-                        let sel_option_ = $('#schedule_' + idx);
-                        if (!sel_option_.length > 0) {
-                            $("#option_list_").append(htm_);
+                                    let sel_option_ = $('#schedule_' + idx);
+                                    if (!sel_option_.length > 0) {
+                                        $("#option_list_").append(htm_);
+                                    }
+                                },
+                                error: function (request, status, error) {
+                                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+                                }
+                            });
+                            updateProductOption();
                         }
-                    },
-                    error: function (request, status, error) {
-                        alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+
+                    function minusQty(el) {
+                        let inp = $(el).parent().find('input.input_qty');
+                        let num = inp.val();
+                        if (Number(num) > 1) {
+                            num = Number(num) - 1;
+                            inp.val(num);
+                        } else {
+                            if (confirm('선택 항목을 지우시겠습니까?')) {
+                                $(el).closest('.schedule').remove();
+                            }
+                        }
+                        updateProductOption(); 
                     }
-                });
-            }
 
-            function minusQty(el) {
-                let inp = $(el).parent().find('input.input_qty');
-
-                let num = inp.val();
-                if (Number(num) > 1) {
-                    num = Number(num) - 1;
-                    inp.val(num);
-                } else {
-                    if (confirm('선택 항목을 지우시겠습니까?')) {
-                        $(el).closest('.schedule').remove();
+                    function plusQty(el) {
+                        let inp = $(el).parent().find('input.input_qty');
+                        let num = inp.val();
+                        num = Number(num) + 1;
+                        inp.val(num);
+                        updateProductOption();
                     }
-                }
-            }
 
-            function plusQty(el) {
-                let inp = $(el).parent().find('input.input_qty');
-                let num = inp.val();
-                num = Number(num) + 1;
-                inp.val(num);
-            }
+                    var selectedOption = [];
+                    var selectedTourIds = [];
+                    function updateProductOption() {
+                        var selectedOption = [];
+                        var totalCost = 0;
 
-            document.addEventListener('DOMContentLoaded', function() {
+                        $('input.input_qty').each(function() {
+                            let qty = parseInt($(this).val());
+                            let price = parseFloat($(this).data('price')); 
+                            let optionName = $(this).closest('.schedule').find('p').text(); 
+                            
+                            if (qty > 0) {
+                                let totalPrice = qty * price;
+                                totalCost += totalPrice;
+                                selectedOption.push(`${optionName}: ${qty} x ${price.toLocaleString()} = ${totalPrice.toLocaleString()}원`);
+                            }
+                        });
+
+                        if (selectedOption.length > 0) {
+                            $('#product_options').html(
+                                selectedOption.join('<br>') +
+                                `<br><strong>${totalCost.toLocaleString()}원</strong>`
+                            );
+                        } else {
+                            $('#product_options').html("선택된 옵션이 없습니다.");
+                        }
+                    }
+
+
                     let currentToursIdx = null;
                     const allContainers = document.querySelectorAll('.calendar-right .quantity-container-fa');
                     const sec2Items = document.querySelectorAll('.sec2-item-card');
@@ -1110,58 +1136,28 @@
 
                     selectedPrice = [];
 
-                    function updateOptionText() {
-                        var selectedOptions = [];
-                        selectedTourIds = [];
-                        selectedPrice = [];
+                    // function updateOptionText() {
+                    //     var selectedOptions = [];
+                    //     selectedTourIds = [];
+                    //     selectedPrice = [];
 
-                        $('input[type="checkbox"]:checked').each(function() {
-                            var optionContainer = $(this).closest('.form-group');
-                            var optionName = optionContainer.find('label').text();
-                            var optionPrice = parseFloat(optionContainer.find('.price').text().replace('원', '').replace(',', ''));
-                            var optionBaht = parseFloat(optionContainer.find('.currency').text().replace('바트', '').replace(',', ''));
+                    //     $('input[type="checkbox"]:checked').each(function() {
+                    //         var optionContainer = $(this).closest('.form-group');
+                    //         var optionName = optionContainer.find('label').text();
+                    //         var optionPrice = parseFloat(optionContainer.find('.price').text().replace('원', '').replace(',', ''));
+                    //         var optionBaht = parseFloat(optionContainer.find('.currency').text().replace('바트', '').replace(',', ''));
 
-                            var tourIdx = $(this).attr('id');
+                    //         var tourIdx = $(this).attr('id');
                             
-                            selectedTourIds.push(tourIdx); 
-                            selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
-                            selectedPrice.push(optionPrice);
-                        });
+                    //         selectedTourIds.push(tourIdx); 
+                    //         selectedOptions.push(`${optionName} ${number_format(optionPrice)}원 (${number_format(optionBaht)}바트)`);
+                    //         selectedPrice.push(optionPrice);
+                    //     });
 
-                        var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
-                        $('td.option').text(optionText);
+                    //     var optionText = selectedOptions.length > 0 ? selectedOptions.join(' + ') : "선택된 옵션이 없습니다.";
+                    //     $('td.option').text(optionText);
                         
-                    }
-
-                    function updateProductOption() {
-                        let selectedOptions = [];
-                        let totalCost = 0;
-
-                        $('input.input_qty').each(function() {
-                            let qty = parseInt($(this).val());
-                            let price = parseFloat($(this).data('price')); 
-                            let optionName = $(this).closest('.schedule').find('p').text(); 
-                            
-                            if (qty > 0) {
-                                let totalPrice = qty * price;
-                                totalCost += totalPrice;
-                                selectedOptions.push(`${optionName}: ${qty} x ${price.toLocaleString()} = ${totalPrice.toLocaleString()}원`);
-                            }
-                        });
-                        console.log(optionName);
-                        console.log(price);
-                        
-                        
-
-                        if (selectedOptions.length > 0) {
-                            $('#product_options').html(
-                                selectedOptions.join('<br>') +
-                                `<br><strong>${totalCost.toLocaleString()}원</strong>`
-                            );
-                        } else {
-                            $('#product_options').html("선택된 옵션이 없습니다.");
-                        }
-                    }
+                    // }
 
                     function number_format(number) {
                         return number.toLocaleString('ko-KR');
@@ -1353,13 +1349,13 @@
                             $('#people_kids_price').val(childTotalPrices);
                             $('#people_baby_price').val(babyTotalPrices);
                             $('#tours_idx').val(currentToursIdx);
-                            $('#idx').val(selectedTourIds.join(','));
+                            $('#idx').val(selectedOption.join(','));
                             $('#time_line').val(selectedTime);
                             $('.time_lines').text(selectedTime);
                             $("#total_price_popup").text(number_format(last_price) + "원");
                             $("#total_price").val(last_price);
                             $("#total_pay").text(number_format(last_price) + "원");
-                            console.log(selectedTourIds.join(','));
+                            console.log(selectedOption.join(','));
                             console.log(currentToursIdx);
                             console.log(adultTotalPrices);
                             console.log(selectedTime);
@@ -1427,7 +1423,7 @@
                     });
 
                     initializeDefaultTour();
-                });
+                // });
 
 
                 function showCouponPop() {

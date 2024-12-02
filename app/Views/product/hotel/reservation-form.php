@@ -211,7 +211,7 @@
                                 <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon">
                             </div>
                             <button type="button" class="btn-order">예약하기</button>
-                            <button type="button" class="btn-default cart">상담 문의하기</button>
+                            <button type="button" class="btn-default cart">장바구니</button>
                             <!-- onclick="location.href='/product/completed-order'" -->
                         </div>
                     </div>

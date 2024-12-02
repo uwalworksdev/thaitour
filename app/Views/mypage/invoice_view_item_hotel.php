@@ -489,7 +489,7 @@ $start_date = $row['start_date'];
 						<td col width="8%" class="subject">영문 성(Last Name)</td>
 						<td col width="12%" class="subject">휴대번호</td>
 						<td col width="12%" class="subject">이메일</td>
-						<td col width="12%" class="subject">해외 전화번호 </td>
+						<td col width="12%" class="subject">여행시 현지 연락처</td>
 
 					</tr>
 					<tr>
@@ -515,7 +515,7 @@ $start_date = $row['start_date'];
 						</td>
 
 						<td class="content">
-							<?= ($row_d['local_phone']) ?>
+							<?= $local_phone ?>
 						</td>
 
 				</tbody>
