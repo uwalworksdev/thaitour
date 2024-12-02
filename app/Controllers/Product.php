@@ -130,8 +130,7 @@ class Product extends BaseController
 
         $listHotel = $this->productModel->findProductHotelPaging([
             'product_code_1' => 1303,
-            'search_product_name' => $search_name,
-            'product_status' => 'sale',
+            'search_txt' => $search_name,
             'is_view' => ($search_cate == "hotel" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
         ], 1000, 1, $orderBy);
 
@@ -141,7 +140,6 @@ class Product extends BaseController
             'is_view' => ($search_cate == "golf" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1302,
             'search_txt' => $search_name,
-            'search_category' => 'product_name'
         ], 1000, 1, $orderBy);
 
         $listGolf['items'] = $this->getSubInfo($listGolf['items']);
@@ -149,7 +147,6 @@ class Product extends BaseController
         $listTour = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "tour" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1301,
-            'search_category' => 'product_name',
             'search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
@@ -158,7 +155,6 @@ class Product extends BaseController
         $listSpa = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "spa" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1325,
-            'search_category' => 'product_name',
             'search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
@@ -167,7 +163,6 @@ class Product extends BaseController
         $listShowTicket = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "show_ticket" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1317,
-            'search_category' => 'product_name',
             'search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
@@ -176,7 +171,6 @@ class Product extends BaseController
         $listRestaurant = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "restaurant" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1320,
-            'search_category' => 'product_name',
             'search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
@@ -185,7 +179,6 @@ class Product extends BaseController
         $listVehicle = $this->productModel->findProductPaging([
             'is_view' => ($search_cate == "vehicle" || $search_cate == "") ? "Y" : "SHOULD_NOT_VIEW",
             'product_code_1' => 1324,
-            'search_category' => 'product_name',
             'search_txt' => $search_name
         ], 1000, 1, $orderBy);
 
@@ -222,7 +215,8 @@ class Product extends BaseController
             ]
         ];
 
-        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'];
+        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'] + $listTour['nTotalCount'] + $listSpa['nTotalCount'] 
+                        + $listShowTicket['nTotalCount'] + $listRestaurant['nTotalCount'] + $listVehicle['nTotalCount'];
 
         return $this->renderView('product/product_search', $data);
     }
@@ -444,7 +438,7 @@ class Product extends BaseController
                 $bestValueProduct[$key]['level_name'] = $fresult9['code_name'];
             }
 
-            $keyWordAll = $this->productModel->getKeyWordAll(1303);
+            $keyWordAll = $this->productModel->getKeyWordAll(1303, 20);
 
             $keyWordActive = array_search($keyword, $keyWordAll) ?? 0;
 

@@ -601,6 +601,11 @@ class ProductModel extends Model
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {
                 $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->groupStart();
+                $builder->like('product_name', $where['search_txt']);
+                $builder->orLike('keyword', $where['search_txt']);
+                $builder->groupEnd();
             }
         }
         if ($where['is_view'] != "") {
@@ -820,6 +825,11 @@ class ProductModel extends Model
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {
                 $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->groupStart();
+                $builder->like('product_name', $where['search_txt']);
+                $builder->orLike('keyword', $where['search_txt']);
+                $builder->groupEnd();
             }
         }
         if ($where['is_view'] != "") {
@@ -1006,6 +1016,11 @@ class ProductModel extends Model
         if ($where['search_txt'] != "") {
             if ($where['search_category'] != "") {
                 $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->groupStart();
+                $builder->like('product_name', $where['search_txt']);
+                $builder->orLike('keyword', $where['search_txt']);
+                $builder->groupEnd();
             }
         }
         if ($where['is_view'] != "") {
@@ -1073,9 +1088,15 @@ class ProductModel extends Model
     }
 
 
-    public function getKeyWordAll($code_no)
+    public function getKeyWordAll($code_no = null, $g_list_rows = 1000)
     {
-        $keyWords = $this->select("keyword")->where("product_code_1", $code_no)->get()->getResultArray();
+        $keyWords = $this->select("keyword");
+
+        if ($code_no) {
+            $keyWords = $keyWords->where("product_code_1", $code_no);
+        }
+
+        $keyWords = $keyWords->where("is_view", "Y")->where("product_status !=", "D")->get()->getResultArray();
         $keyWordsArray = [];
         foreach ($keyWords as $keyWord) {
             $keyWordStr = $keyWord['keyword'];
@@ -1094,7 +1115,7 @@ class ProductModel extends Model
         $uniqueArray = array_keys($countedArray);
 
 
-        return array_slice($uniqueArray, 0, 20);
+        return array_slice($uniqueArray, 0, $g_list_rows);
     }
 
     public function batchUpdate(array $data)
