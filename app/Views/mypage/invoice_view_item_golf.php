@@ -133,14 +133,13 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td col width="*%" class="subject">옵션수량</td>
 						<td col width="15%" class="subject">옵션금액</td>
 					</tr>
+				    <?php foreach ($vehicle as $item) { ?>
 					<tr>
-
 						<td col width="15%" class="content">
 							<span>
 								<?= $order_no ?>
 							</span>
 						</td>
-
 						<td class="content">
 							<span><?= $option['hole_cnt'] ?>홀</span>
 						</td>
@@ -150,8 +149,8 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								<?= $people_adult_cnt ?>인
 							</p>
 						</td>
-
 					</tr>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>
