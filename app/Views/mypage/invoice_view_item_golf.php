@@ -57,7 +57,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 		</p>
 		<!-- 웹 -->
 		<div class="invoice_table invoice_table_new">
-			<h2>예약 정보</h2>
+			<h2>예약 정보...</h2>
 			<table>
 				<colgroup>
 					<col width="15%">
