@@ -100,37 +100,176 @@ define('GOLF_HOURS', ['06', '07', '08', '09', '10', '11', '12', '13', '14', '15'
 
 define('GOLF_MIN', ['00', '12', '24', '36', '48']);
 
-$b2b_notice = [
-    "titles"        => ["작성자", "이메일", "공지글", "등록일", "조회", "제목", "내용"],
-    "names"         => ["writer", "email", "notice_yn", "r_date", "hit", "subject", "contents"],
-    "inputTypes"    => ["text", "text", "checkbox", "text", "text", "text", "summernote"],
-    "widths"        => ["150px"]
-];
+$b2b_notice['titles'][0]        = "작성자";
+$b2b_notice['names'][0]         = "writer";
+$b2b_notice['inputTypes'][0]    = "text";
+$b2b_notice['widths'][0]        = "150px";
 
-$faq = [
-    "titles"        => ["상태", "베스트", "분류", "공지", "제목", "상세정보"],
-    "names"         => ["r_status", "r_flag", "r_category", "r_notice", "r_title", "r_content"],
-    "inputTypes"    => ["select", "checkbox", "select", "checkbox", "text", "summernote"],
-    "widths"        => ["150px", "", "150px"]
-];
+$b2b_notice['titles'][1]        = "이메일";
+$b2b_notice['names'][1]         = "email";
+$b2b_notice['inputTypes'][1]    = "text";
 
-$winner = [
-    "titles"        => ["조회", "제목", "내용"],
-    "names"         => ["hit", "subject", "contents"],
-    "inputTypes"    => ["text", "text", "summernote"],
-    "widths"        => ["150px", "100%", ""]
-];
+$b2b_notice['titles'][2]        = "공지글";
+$b2b_notice['names'][2]         = "notice_yn";
+$b2b_notice['inputTypes'][2]    = "checkbox";
 
-$banner = [
-    "titles"        => ["구분"       , "제목"        , "제목2", "링크"     , "PC 이미지(1200)"  , "모바일 이미지(660)"],
-    "names"         => ["category"  , "subject"     , "describe", "url"     , "ufile6"          , "ufile5"],
-    "inputTypes"    => ["select"    , "text"        , "text", "text"    , "files"           , "files" ],
-    "widths"        => ["150px"     , "100%"        , ""]
-];
+$b2b_notice['titles'][3]        = "등록일";
+$b2b_notice['names'][3]         = "r_date";
+$b2b_notice['inputTypes'][3]    = "text";
+
+$b2b_notice['titles'][4]        = "조회";
+$b2b_notice['names'][4]         = "hit";
+$b2b_notice['inputTypes'][4]    = "text";
+
+$b2b_notice['titles'][5]        = "제목";
+$b2b_notice['names'][5]         = "subject";
+$b2b_notice['inputTypes'][5]    = "text";
+
+$b2b_notice['titles'][6]        = "내용";
+$b2b_notice['names'][6]         = "contents";
+$b2b_notice['inputTypes'][6]    = "summernote";
+
+$faq['titles'][0]        = "상태";
+$faq['names'][0]         = "r_status";
+$faq['inputTypes'][0]    = "select";
+$faq['widths'][0]        = "150px";
+
+$faq['titles'][1]        = "베스트";
+$faq['names'][1]         = "r_flag";
+$faq['inputTypes'][1]    = "checkbox";
+
+$faq['titles'][2]        = "분류";
+$faq['names'][2]         = "r_category";
+$faq['inputTypes'][2]    = "select";
+$faq['widths'][2]        = "150px";
+
+$faq['titles'][3]        = "공지";
+$faq['names'][3]         = "r_notice";
+$faq['inputTypes'][3]    = "checkbox";
+
+$faq['titles'][4]        = "제목";
+$faq['names'][4]         = "r_title";
+$faq['inputTypes'][4]    = "text";
+
+$faq['titles'][5]        = "상세정보";
+$faq['names'][5]         = "r_content";
+$faq['inputTypes'][5]    = "summernote";
+
+$winner['titles'][0]        = "조회";
+$winner['names'][0]         = "hit";
+$winner['inputTypes'][0]    = "text";
+$winner['widths'][0]        = "150px";
+
+$winner['titles'][1]        = "제목";
+$winner['names'][1]         = "subject";
+$winner['inputTypes'][1]    = "text";
+$winner['widths'][1]        = "100%";
+
+$winner['titles'][2]        = "내용";
+$winner['names'][2]         = "contents";
+$winner['inputTypes'][2]    = "summernote";
+
+$banner["titles"][0] = "구분";
+$banner["names"][0] = "category";
+$banner["inputTypes"][0] = "select";
+$banner["widths"][0] = "150px";
+
+$banner["titles"][1] = "제목";
+$banner["names"][1] = "subject";
+$banner["inputTypes"][1] = "text";
+$banner["widths"][1] = "100%";
+
+$banner["titles"][2] = "제목2";
+$banner["names"][2] = "describe";
+$banner["inputTypes"][2] = "text";
+
+$banner["titles"][3] = "링크";
+$banner["names"][3] = "url";
+$banner["inputTypes"][3] = "text";
+
+$banner["titles"][6] = "현황";
+$banner["names"][6] = "status";
+$banner["inputTypes"][6] = "select";
+$banner["widths"][6] = "150px";
+
+$banner["titles"][4] = "PC 이미지(1200)";
+$banner["names"][4] = "ufile6";
+$banner["inputTypes"][4] = "files";
+
+$banner["titles"][5] = "모바일 이미지(660)";
+$banner["names"][5] = "ufile5";
+$banner["inputTypes"][5] = "files";
+
+// event
+// mem_board
+// mem_pds
+// awards
+// main_event
+// hashtag
 
 define("BBS_WRITE_CONFIG", [
-    "b2b_notice" => $b2b_notice,
-    "faq" => $faq,
-    "winner" => $winner,
-    "banner" => $banner
+    "b2b_notice"    => $b2b_notice,
+    "faq"           => $faq,
+    "winner"        => $winner,
+    "banner"        => $banner
+]);
+
+$b2b_notice_list['skin'] = "list";
+$b2b_notice_list['titles'][0] = "제목";
+$b2b_notice_list['names'][0] = "subject";
+$b2b_notice_list['widths'][0] = "*";
+
+
+$faq_list['skin'] = "list";
+$faq_list['titles'][0] = "제목";
+$faq_list['names'][0] = "subject";
+$faq_list['widths'][0] = "*";
+
+$winner_list['skin'] = "list";
+$winner_list['titles'][0] = "제목";
+$winner_list['names'][0] = "subject";
+$winner_list['widths'][0] = "*";
+
+$banner_list['skin'] = "list";    
+$banner_list['titles'][0] = "순위";
+$banner_list['names'][0] = "onum";
+$banner_list["showTypes"][0] = "input";
+$banner_list['widths'][0] = "100px";
+
+$banner_list['titles'][1] = "이미지";
+$banner_list['names'][1] = "ufile5";
+$banner_list["showTypes"][1] = "image";
+$banner_list['widths'][1] = "500px";
+
+$banner_list['titles'][2] = "제목";
+$banner_list['names'][2] = "subject";
+$banner_list['widths'][2] = "*";
+
+$banner_list['titles'][3] = "현황";
+$banner_list['names'][3] = "status";
+$banner_list['widths'][3] = "120px";
+
+$event_list['skin'] = "photo";
+
+$award_list['skin'] = "photo";
+
+$main_event_list['skin'] = "photo";
+
+$hashtag_list['skin'] = "list";
+
+$hashtag_list['titles'][0] = "제목";
+$hashtag_list['names'][0] = "subject";
+$hashtag_list['widths'][0] = "*";
+
+define("BBS_LIST_CONFIG", [
+    "b2b_notice" => $b2b_notice_list,
+    "faq" => $faq_list,
+    "winner" => $winner_list,
+    "banner" => $banner_list,
+    "event" => $event_list,
+    "mem_board" => [],
+    "mem_pds" => [],
+    "awards" => $award_list,
+    "main_event" => $main_event_list,
+    "hashtag" => $hashtag_list
 ]);

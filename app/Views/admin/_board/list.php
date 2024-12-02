@@ -57,13 +57,15 @@
                     </div>
                 </div>
 
-                <?php if (in_array($skin, ['gallery', 'media', 'event']) || $code === 'main_event' || $code === 'awards'): ?>
-                    <?= $this->include('admin/_board/photo') ?>
-                <?php elseif($code == "banner"): ?>
-                    <?= $this->include('admin/_board/skin/banner_list') ?>
-                    <?php else: ?>
-                    <?= $this->include('admin/_board/list1') ?>
-                <?php endif; ?>
+                
+
+                <?php $skin = BBS_LIST_CONFIG[$code]['skin'];
+                    if($skin == "list") {
+                        echo $this->include('admin/_board/list1');
+                    } else {
+                        echo $this->include('admin/_board/photo');
+                    }
+                ?>
 
                 <?= ipageListing($pg, $nPage, $g_list_rows, current_url() . "?scategory=$scategory&search_mode=$search_mode&search_word=$search_word&code=$code&pg=") ?>
             </div>

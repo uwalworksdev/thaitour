@@ -53,7 +53,7 @@ class BoardController extends BaseController
 
         $pg = $this->request->getGet('pg') ?? 1;
 
-        $builder = $this->bbsModel->List($code);
+        $builder = $this->bbsModel->List($code, ['search_word' => $search_word, 'search_mode' => $search_mode, 'category' => $scategory]);
 
         $nTotalCount = $builder->countAllResults(false);
 
@@ -65,6 +65,8 @@ class BoardController extends BaseController
             $row['is_new'] = $this->listNew(24, $row['r_date']);
         }
 
+        $config = $this->bbsConfigModel->where("board_code", $code)->first();
+
         $data = [
             'code' => $code,
             'scategory' => $scategory,
@@ -75,10 +77,11 @@ class BoardController extends BaseController
             'pg' => $pg,
             'nPage' => $nPage,
             'rows' => $rows,
+            'categories' => $this->bbsCategoryModel->getCategoriesByCodeAndStatus($code),
         ];
 
         // Load the view with the data
-        return view('admin/_board/list', $data);
+        return view('admin/_board/list', array_merge($data, $config));
     }
 
     public function board_write($bbs_idx = null)

@@ -812,6 +812,10 @@ div.listBottom table.listTable tbody td.tal {
     padding-left: 15px;
 }
 
+div.listBottom table.listTable tbody td.pd10 {
+    padding: 10px;
+}
+
 div.listBottom table.listTable tbody td span.edit_btn {
     padding: 4px 6px;
     color: #fff;
