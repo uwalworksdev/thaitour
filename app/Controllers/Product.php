@@ -1792,6 +1792,10 @@ class Product extends BaseController
     public function customerForm()
     {
         $data['product_idx']      = $this->request->getVar('product_idx');
+		$data['product_code_1']   = $this->request->getPost('product_code_1'),
+		$data['product_code_2']   = $this->request->getPost('product_code_2'),
+		$data['product_code_3']   = $this->request->getPost('product_code_3') ?? 'default_value'; // 기본값 설정
+
         $data['order_date']       = $this->request->getVar('order_date');
         $data['option_idx']       = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
