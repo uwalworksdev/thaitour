@@ -51,6 +51,13 @@
         <input type="hidden" name="time_line" id="time_line" value="<?=$time_line?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?=$use_coupon_idx?>">
         <input type="hidden" name="final_discount" id="final_discount" value="<?=$final_discount?>">
+        <input type="hidden" name="order_gender_list" id="order_gender_list" value="<?=$order_gender_list?>">
+        <input type="hidden" name="order_user_name" id="order_user_name" value="<?=$order_user_name?>">
+        <input type="hidden" name="order_user_first_name_en" id="order_user_first_name_en" value="<?=$order_user_first_name_en?>">
+        <input type="hidden" name="order_user_last_name_en" id="order_user_last_name_en" value="<?=$order_user_last_name_en?>">
+        <input type="hidden" name="order_user_email" id="order_user_email" value="<?=$order_user_email?>">
+        <input type="hidden" name="local_phone" id="local_phone" value="<?=$local_phone?>">
+        <input type="hidden" name="order_user_phone" id="order_user_phone" value="<?=$order_user_phone?>">
         <div class="main-section tour">
             <div class="body_inner">
                 <div class="container-card">
@@ -193,10 +200,10 @@
                                         <th>미팅장소</th>
                                         <td><?= $start_place?></td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>미팅 시간</th>
                                         <td><?= $metting_time?></td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th>종료 후 내리실 곳</th>
                                         <td><?= $end_place?></td>

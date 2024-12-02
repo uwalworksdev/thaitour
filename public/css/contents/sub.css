@@ -1759,7 +1759,15 @@
 }
 
 .faq_sect .faq_list_wrap {
-    border-top: 1px solid #252525;
+    /* border-top: 1px solid #252525; */
+}
+
+.contact_main_top .faq_sect,.contact_main_top .notice_sect {
+    border-bottom: 1px solid #252525;
+}
+
+.contact_main_top .notice_sect .bs_table {
+    border-top: unset;
 }
 
 .contact_main .cont_ttl {
@@ -3878,8 +3886,8 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .golf-custom-page .prd_name {
-    text-overflow: unset;
-    white-space: unset;
+    /* text-overflow: unset;
+    white-space: unset; */
 }
 
 .golf-custom-page .prd_keywords_cus_span {
@@ -4727,6 +4735,28 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     padding: 20px;
     font-size: 15px;
     line-height: 1.5rem;
+}
+
+.order-form-page .info-table-order td .total_pay {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.order-form-page .info-table-order td .flex.new {
+    gap: 10px;
+}
+
+.order-form-page .info-table-order td .flex.new .total_price_product {
+    font-weight: 700;
+}
+
+.order-form-page .info-table-order td .flex_op {
+    gap: 15px;
+}
+
+.order-form-page .info-table-order td .flex_op .product_option_pay {
+    font-weight: 700;
+    font-weight: 16px;
 }
 
 .order-form-page .info-table-order td.flex_day {
