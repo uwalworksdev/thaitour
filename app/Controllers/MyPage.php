@@ -434,6 +434,7 @@ class MyPage extends BaseController
         $data['home_arrive_date'] = $home_arrive_date;
         $data['start_date'] = $start_date;
         $data['row_d'] = $row_d;
+        $data['local_phone'] = $row['local_phone'];
 
         $data['pg'] = $pg;
 
