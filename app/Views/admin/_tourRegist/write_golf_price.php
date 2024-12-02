@@ -286,9 +286,11 @@
 									async: false,
 									cache: false,
 									success: function(data, textStatus) {
-										message  = data.message;
+										var message = data.message;
+										var s_date  = data.s_date;
+										var e_date  = data.e_date;
 										alert(message);
-										location.reload();
+										location.href='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val()+'&o_idx=&s_date='+s_date+'&e_date='+e_date;
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
