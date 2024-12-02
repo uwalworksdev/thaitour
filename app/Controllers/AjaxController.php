@@ -580,16 +580,16 @@ class AjaxController extends BaseController {
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
 			{
-					 $s_date = $row['s_date']; 
+					 $s_date = $row['golf_date']; 
 			}
 
 			// 골프가격 종료일
 			$sql     =  "SELECT * FROM tbl_golf_price WHERE product_idx = '". $product_idx ."' ORDER BY golf_date DESC LIMIT 0,1";
-			$result  = $this->connect->query($sql);
+			$result  = $db->query($sql);
 			$result  = $result->getResultArray();
 			foreach ($result as $row) 
 			{
-					 $e_date = $row['e_date']; 
+					 $e_date = $row['golf_date']; 
 			}
 
 			$sql_o = "UPDATE tbl_golf_info  SET s_date = '". $s_date."'   
