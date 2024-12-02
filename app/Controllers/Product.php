@@ -215,7 +215,8 @@ class Product extends BaseController
             ]
         ];
 
-        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'];
+        $data['total'] = $listHotel['nTotalCount'] + $listGolf['nTotalCount'] + $listTour['nTotalCount'] + $listSpa['nTotalCount'] 
+                        + $listShowTicket['nTotalCount'] + $listRestaurant['nTotalCount'] + $listVehicle['nTotalCount'];
 
         return $this->renderView('product/product_search', $data);
     }
