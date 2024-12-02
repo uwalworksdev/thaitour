@@ -4,7 +4,7 @@
             <select name="category" class="input_select">
                 <option value="">선택</option>
                 <?php foreach ($categories as $frow): ?>
-                    <option value="<?= $frow['tbc_idx'] ?>" <?= $frow['tbc_idx'] == $category ? 'selected' : '' ?>>
+                    <option value="<?= $frow['tbc_idx'] ?>" <?= $frow['tbc_idx'] == $scategory ? 'selected' : '' ?>>
                         <?= $frow['subject'] ?>
                     </option>
                 <?php endforeach; ?>
@@ -25,48 +25,22 @@
             <colgroup>
                 <col width="5%" />
                 <col width="5%" />
-                <?php if ($is_category == "Y"): ?>
-                    <col width="10%" />
-                <?php endif; ?>
-                <?php if ($code == "news" || $code == "hashtag"): ?>
-                    <col width="30%" />
-                <?php endif; ?>
-                <col width="*" />
-                <?php if ($code == "sns"): ?>
-                    <col width="5%" />
-                    <col width="5%" />
-                    <col width="5%" />
-                <?php endif; ?>
-                <?php if ($skin != "faq"): ?>
-                    <?php if ($code == "sns"): ?>
-                        <col width="8%" />
-                    <?php endif; ?>
-                    <col width="10%" />
-                <?php endif; ?>
+                    <?php
+                    $titles = BBS_LIST_CONFIG[$code]['titles'] ?? [];
+                    foreach ($titles as $key => $val):
+                        $width = BBS_LIST_CONFIG[$code]['widths'][$key];
+                    ?>
+                        <col width="<?=$width?>" />
+                    <?php endforeach; ?>
                 <col width="6%" />
             </colgroup>
             <thead>
                 <tr>
                     <th>선택</th>
                     <th>번호</th>
-                    <?php if ($is_category == "Y"): ?>
-                        <th>구분</th>
-                    <?php endif; ?>
-                    <?php if ($code == "news" || $code == "hashtag"): ?>
-                        <th>사진</th>
-                    <?php endif; ?>
-                    <th>제목</th>
-                    <?php if ($code == "sns"): ?>
-                        <th>인스타</th>
-                        <th>페이스북</th>
-                        <th>유튜브</th>
-                    <?php endif; ?>
-                    <?php if ($skin != "faq"): ?>
-                        <?php if ($code == "sns"): ?>
-                            <th>아이디</th>
-                        <?php endif; ?>
-                        <th>작성일</th>
-                    <?php endif; ?>
+                    <?php foreach ($titles as $key => $val): ?>
+                        <th><?= $val ?></th>
+                    <?php endforeach; ?>
                     <th>관리</th>
                 </tr>
             </thead>
@@ -82,27 +56,18 @@
                     $secureStr = $row['secure_yn'] == "Y" ? "<img src='/img/ico/ico_lock.png'>" : "";
                 ?>
                 <tr>
-                    <td><input type="checkbox" name="bbs_idx[]" value="<?= $row['bbs_idx'] ?>" class="bbs_idx input_check" /></td>
-                    <td><?= $nums ?></td>
-                    <?php if ($is_category == "Y"): ?>
-                        <td><?= $row['category'] ?></td>
-                    <?php endif; ?>
-                    <?php if ($code == "news" || $code == "hashtag"): ?>
-                        <td><img src="../../data/bbs/<?= $row['ufile1'] ?: "panda.jpg" ?>" /></td>
-                    <?php endif; ?>
-                    <td class="<?= $code != "hashtag" ? "tal" : "" ?> bold txt_black">
-                        <?= $rstr ?><a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?scategory=<?= $scategory ?>&search_mode=<?= $search_mode ?>&search_word=<?= $search_word ?>&code=<?= $code ?>&pg=<?= $pg ?>">
-                            <?= $recStr ?> <?= $row['subject'] ?> <?= $secureStr ?> <?= $c_cnt ?>
-                        </a>
+                    <td>
+                        <input type="hidden" name="idx[]" value="<?= $row['bbs_idx'] ?>">    
+                        <input type="checkbox" name="bbs_idx[]" value="<?= $row['bbs_idx'] ?>" class="bbs_idx input_check" />
                     </td>
-                    <?php if ($code == "sns"): ?>
-                        <td><?= $row['url1_chk'] ?></td>
-                        <td><?= $row['url2_chk'] ?></td>
-                        <td><?= $row['url3_chk'] ?></td>
-                    <?php endif; ?>
-                    <?php if ($skin != "faq"): ?>
-                        <td><?= $row['r_date'] ?></td>
-                    <?php endif; ?>
+                    <td><?= $nums ?></td>
+                    <?php foreach ($titles as $key => $val):
+                        $name = BBS_LIST_CONFIG[$code]['names'][$key];
+                        ?>
+                        <td class="pd10">
+                            <?= view("admin/_board/list_field", ['info' => $row, 'key' => $key]) ?>
+                        </td>
+                    <?php endforeach; ?>
                     <td>
                         <a href="/AdmMaster/_bbs/board_write/<?= $row['bbs_idx'] ?>?code=<?= esc($code) ?>"><img src="/images/admin/common/ico_setting2.png"></a>
                         <a href="javascript:del_it('<?= $row['bbs_idx'] ?>');"><img src="/images/admin/common/ico_error.png" alt="삭제" /></a>

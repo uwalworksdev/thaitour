@@ -22,7 +22,7 @@
         <header id="headerContainer">
 
             <div class="inner">
-                <h2><?= $board_name ?></h2>
+                <h2><?= $config['board_name'] ?></h2>
                 <div class="menus">
                     <ul class="last">
                         <li>

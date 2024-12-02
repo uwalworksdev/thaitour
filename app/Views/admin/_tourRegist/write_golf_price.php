@@ -141,7 +141,7 @@
 									<col width="10%">
 									<col width="15%">
 									<col width="15%">
-									<col width="5%">
+									<!--col width="5%"-->
 									<col width="10%">
 									<col width="10%">
 									<col width="15%">
@@ -169,9 +169,9 @@
 											<td style="text-align:center">
 												카트피(원)
 											</td>
-											<td style="text-align:center">
+											<!--td style="text-align:center">
 												마감
-											</td>
+											</td-->
 											<td style="text-align:center">
 												등록일
 											</td>
@@ -187,7 +187,7 @@
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
 											<td style="text-align:center">
-											    <select name="hole_cnt" id="hole_cnt_<?=$item['idx']?>">
+											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_HOLES as $hole) {
 														if($item['hole_cnt'] == $hole) {
@@ -200,7 +200,7 @@
 											    </select>
                                             </td>
 											<td style="text-align:center">
-											    <select name="hour" id="hour_<?=$item['idx']?>">
+											    <select name="hour[]" id="hour_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_HOURS as $hour) {
 														if($item['hour'] == $hour) {
@@ -213,7 +213,7 @@
 											    </select>
                                             </td>
 											<td style="text-align:center">
-											    <select name="minute" id="minute_<?=$item['idx']?>">
+											    <select name="minute[]" id="minute_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_MIN as $minute) {
 														if($item['minute'] == $minute) {
@@ -236,9 +236,9 @@
 											<td style="text-align:center">
 												<input type="text" name="cart_pie_fee[]" id="cart_pie_fee_<?=$item['idx']?>" value="<?=$item['cart_pie_fee']?>" class="price goods_discount_price input_txt" >
 											</td>
-						                    <td style="text-align:center;">
+						                    <!--td style="text-align:center;">
 						                        <input type="checkbox" class="use_yn" name="use_yn[]" id="use_yn_<?=$item['idx']?>" data-idx= "<?=$item['idx']?>" value="<?=$item['golf_date']?>" <?php if($item['use_yn'] == "N") echo "checked";?> >
-						                    </td> 
+						                    </td--> 
 						                    <td style="text-align:center;"><?=$item['reg_date']?></td> 
 						                    <td style="text-align:center;"><?=$item['upd_date']?></td> 
 						                    <td style="text-align:center;">
@@ -286,9 +286,11 @@
 									async: false,
 									cache: false,
 									success: function(data, textStatus) {
-										message  = data.message;
+										var message = data.message;
+										var s_date  = data.s_date;
+										var e_date  = data.e_date;
 										alert(message);
-										location.reload();
+										location.href='/AdmMaster/_tourRegist/write_golf_price?product_idx='+$("#product_idx").val()+'&o_idx=&s_date='+s_date+'&e_date='+e_date;
 									},
 									error:function(request,status,error){
 										alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리

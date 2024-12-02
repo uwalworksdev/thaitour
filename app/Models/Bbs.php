@@ -32,9 +32,11 @@ class Bbs extends Model
             if (!empty($whereArr['search_mode'])) {
                 $builder->like($whereArr['search_mode'], $whereArr['search_word']);
             } else {
+                $builder->groupStart();
                 $builder->orLike('subject', $whereArr['search_word']);
                 $builder->orLike('contents', $whereArr['search_word']);
                 $builder->orLike('writer', $whereArr['search_word']);
+                $builder->groupEnd();
             }
         }
         if (!empty($whereArr['category'])) {

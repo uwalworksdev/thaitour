@@ -132,21 +132,27 @@
                                 </td>
                             </tr>
                             <tr>
+                                    <th>영문 이름(First Name)</th>
+                                    <td>
+                                        <input type="text" id="order_user_first_name_en" name="order_user_first_name_en"
+                                               value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:90%"/>
+                                    </td>
+                                    <th>영문 성(Last Name)</th>
+                                    <td>
+                                        <input type="text" id="order_user_last_name_en" name="order_user_last_name_en"
+                                               value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:90%"/>
+                                    </td>
+                                </tr>
+                            <tr>
                                 <th>휴대전화</th>
                                 <td>
                                     <input type="text" id="order_user_mobile" name="order_user_mobile"
-                                           value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
+                                            value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
                                 </td>
-                                <th>담당자</th>
+                                <th>해외 전화번호</th>
                                 <td>
-                                    <input type="text" id="manager_name" name="manager_name"
-                                           value="<?= $row['manager_name'] ?>" class="input_txt" style="width:20%"/>
-                                    <input type="text" id="manager_phone" name="manager_phone"
-                                           value="<?= $row['manager_phone'] ?>" class="input_txt"
-                                           style="width:20%"/>
-                                    <input type="text" id="manager_email" name="manager_email"
-                                           value="<?= $row['manager_email'] ?>" class="input_txt"
-                                           style="width:20%"/>
+                                    <input type="text" id="local_phone" name="local_phone"
+                                            value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
                                 </td>
                             </tr>
 
@@ -338,8 +344,8 @@
 
                         </table>
 
-                        <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 인원정보</div>
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                        <!-- <div style="font-size:12pt;margin-top:20px;margin-bottom:10px">■ 인원정보</div> -->
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="display: none">
                             <caption>
                             </caption>
                             <colgroup>

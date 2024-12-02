@@ -274,11 +274,11 @@ class TourRegistController extends BaseController
 
         $new_data = [
             'product_idx' => $product_idx,
-            'codes' => $fresult_c,
-            'options' => $options,
-            "golf_info" => $this->golfInfoModel->getGolfInfo($product_idx),
-            'vehicles' => $vehicles,
-            'filters' => $filters
+            'codes'       => $fresult_c,
+            'options'     => $options,
+            "golf_info"   => $this->golfInfoModel->getGolfInfo($product_idx),
+            'vehicles'    => $vehicles,
+            'filters'     => $filters
         ];
 
         $data = array_merge($data, $new_data);

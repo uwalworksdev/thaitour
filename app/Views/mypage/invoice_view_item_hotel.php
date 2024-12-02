@@ -464,9 +464,12 @@ $start_date = $row['start_date'];
 
 		<!-- 예약자 정보 웹 -->
 		<?php
-		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['user_name']}'),    '$private_key') AS user_name 
+		$sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name 
 									   , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),   '$private_key') AS order_user_first_name_en 
+									   , AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key') AS order_user_last_name_en 
 									   , AES_DECRYPT(UNHEX('{$row['order_user_mobile']}'),  '$private_key') AS order_user_mobile 
+									   , AES_DECRYPT(UNHEX('{$row['local_phone']}'),  		'$private_key') AS local_phone 
 									   , AES_DECRYPT(UNHEX('{$row['order_zip']}'),          '$private_key') AS order_zip 
 									   , AES_DECRYPT(UNHEX('{$row['order_addr1']}'),        '$private_key') AS order_addr1 
 									   , AES_DECRYPT(UNHEX('{$row['order_addr2']}'),        '$private_key') AS order_addr2 ";
@@ -482,32 +485,37 @@ $start_date = $row['start_date'];
 				<tbody>
 					<tr>
 						<td class="subject">이름</td>
-						<td col width="8%" class="subject">생년월일</td>
+						<td col width="8%" class="subject">영문 이름(First Name)</td>
+						<td col width="8%" class="subject">영문 성(Last Name)</td>
 						<td col width="12%" class="subject">휴대번호</td>
-						<!-- <td col width="12%" class="subject">해외 전화번호 </td> -->
 						<td col width="12%" class="subject">이메일</td>
+						<td col width="12%" class="subject">해외 전화번호 </td>
 
 					</tr>
 					<tr>
 
 						<td col width="8%" class="content">
-							<?= $row_d['user_name'] ?>
+							<?= $row_d['order_user_name'] ?>
 						</td>
 
 						<td class="content">
-							<?= $row['birthday'] ?>
+							<?= $row_d['order_user_first_name_en'] ?>
+						</td>
+
+						<td class="content">
+							<?= $row_d['order_user_last_name_en'] ?>
 						</td>
 
 						<td class="content">
 							<?= $row_d['order_user_mobile'] ?>
 						</td>
 
-						<!-- <td class="content">
-							<?= ($row['local_phone']) ?>
-						</td> -->
-
 						<td class="content">
 							<?= $row_d['order_user_email'] ?>
+						</td>
+
+						<td class="content">
+							<?= ($row_d['local_phone']) ?>
 						</td>
 
 				</tbody>
@@ -557,7 +565,7 @@ $start_date = $row['start_date'];
 			</table>
 		</div>
 
-		<div class="invoice_table invoice_table_new only_web">
+		<!-- <div class="invoice_table invoice_table_new only_web">
 			<h2>
 				투숙객 정보
 			</h2>
@@ -616,7 +624,7 @@ $start_date = $row['start_date'];
 					?>
 				</tbody>
 			</table>
-		</div>
+		</div> -->
 
 		<?php
 			$seq = 0;
