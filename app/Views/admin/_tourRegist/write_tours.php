@@ -643,6 +643,71 @@
                                     </td>
                                 </tr>
 
+                      <script>
+                            $('.deadline_date').each(function(){
+                                $(this).daterangepicker({
+                                    locale: {
+                                        "format": "YYYY-MM-DD",
+                                        "separator": " ~ ",
+                                        cancelLabel: 'Delete',
+                                    },
+                                    "startDate": $(this).data("start_date"),
+                                    "endDate": $(this).data("end_date"),
+                                    "cancelClass": "btn-danger",
+                                    "minDate": $("#datetest1").val(),
+                                    "maxDate": $("#datetest3").val(),
+                                });
+                            })
+                            $('.deadline_date').on('cancel.daterangepicker', function() {
+                                $(this).remove();
+                            });
+                            $("#btn_add_date_range").click(function(){
+                                console.log($(this));
+                                const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
+                                $(this).before(new_date_range);
+                                console.log(new_date_range);
+                                new_date_range.daterangepicker({
+                                    locale: {
+                                        "format": "YYYY-MM-DD",
+                                        "separator": " ~ ",
+                                        cancelLabel: 'Delete',
+                                    },
+                                    "cancelClass": "btn-danger",
+                                    "minDate": $("#datetest1").val(),
+                                    "maxDate": $("#datetest3").val(),
+                                })
+                                new_date_range.on('cancel.daterangepicker', function() {
+                                    $(this).remove();
+                                });
+                            })
+                        </script>
+                            <style>
+                                .list_value_ {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: start;
+                                    gap: 10px;
+                                    margin-top: 10px;
+                                }
+
+                                .list_value_ .item_ {
+                                    position: relative;
+                                    padding: 10px;
+                                    border: 1px solid #dbdbdb;
+                                }
+
+                                .list_value_ .item_ .remove {
+                                    position: absolute;
+                                    color: #FFFFFF;
+                                    cursor: pointer;
+                                    padding: 0 6px 2px 6px;
+                                    top: -10px;
+                                    background-color: rgba(255, 0, 0, 0.8);
+                                    border-radius: 50%;
+                                    right: -5px;
+                                    border: 1px solid rgba(255, 0, 0, 0.8);
+                                }
+                        </style>
                                 <!-- <tr>
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">
