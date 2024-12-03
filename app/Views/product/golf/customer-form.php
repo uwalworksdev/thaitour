@@ -242,7 +242,7 @@
                             </h3>
                             <div class="item-info-r">
                                 <span>그린피</span>
-                                <span><?= number_format($total_price) ?> 원 (<?= number_format($total_price_baht) ?>원)</span>
+                                <span><?= number_format($total_price) ?> 원 (<?= number_format($total_price_baht) ?>바트)</span>
                             </div>
                             <div class="item-info-r">
                                 <span>캐디피</span>

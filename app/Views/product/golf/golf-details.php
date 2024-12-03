@@ -274,7 +274,7 @@
                         <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
                     </div>
                     <span class="price-text text-gray"><em id="total_final_option_price">0</em> 원 (<em
-                                id="total_final_option_price_baht">0</em>원)</span>
+                                id="total_final_option_price_baht">0</em>바트)</span>
                 </div>
                 <div class="vehicle_list_result" id="vehicle_list_result">
                 </div>
@@ -285,7 +285,7 @@
                 </div-->
                 <div class="item-last-right">
                     <p>합계</p>
-                    <p class="price-text"><em id="last_price">0</em><span> 원(<em id="last_price_baht">0</em>원)</span>
+                    <p class="price-text"><em id="last_price">0</em><span> 원(<em id="last_price_baht">0</em>바트)</span>
                     </p>
                 </div>
                 <button class="btn-price-content" type="button" onclick="handleSubmit()">예약하기</button>
