@@ -25,7 +25,8 @@
         </div>
     </div>
     <div class="prd_price_ko">
-        <?= number_format($item['product_price']) ?> <span> 바트</span>
-        <span class="prd_price_thai"><?= number_format($item['product_price_won']) ?>원</span>
+        <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_thai">
+            <?= number_format($item['product_price']) ?>
+            <span>바트</span></span>
     </div>
 </a>

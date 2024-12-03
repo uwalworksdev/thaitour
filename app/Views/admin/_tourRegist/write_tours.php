@@ -1,8 +1,8 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
     <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
-    <script type="text/javascript" src="/lib/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <style>
@@ -64,6 +64,63 @@
             text-align: center;
         }
     </style>
+
+    <script>
+	$(function(){
+		var clareCalendar1 = {
+            dateFormat : 'yy-m-dd',
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+/* 			changeMonth : true, //월변경가능
+            changeYear : true, //년변경가능 */
+            showMonthAfterYear : true, //년 뒤에 월 표시
+            yearRange : '2023:2050',//2023~2050
+            inline : true,
+            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            dateFormat: 'yy-mm-dd',
+            minDate:0,  
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect : function(dateText, inst) {
+                $("#datepicker1").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
+                })
+            }
+        };
+		
+		var clareCalendar2 = {  
+            dateFormat : 'yy-m-dd',
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+/* 			changeMonth : true, //월변경가능
+            changeYear : true, //년변경가능 */
+            dateFormat: 'yy-mm-dd',
+            showMonthAfterYear : true, //년 뒤에 월 표시
+            yearRange : '2023:2050',//2023~2050
+            inline : true,
+            minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect : function(dateText, inst) {
+                $("#datepicker2").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
+                })
+            }
+        };
+		$("#datepicker1").datepicker(clareCalendar1);
+		$("#datepicker2").datepicker(clareCalendar2);
+		
+	});
+</script>
+
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
         function checkForNumber(str) {
@@ -568,6 +625,89 @@
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <th>예약마감일 지정<?=$deadline_date?></th>
+                                    <td colspan="3">
+                                        <?php
+                                        $deadline_date          = explode(",", $deadline_date);
+                                        $deadline_date			= array_filter($deadline_date);
+                                        
+                                        foreach ($deadline_date as $key => $value) {
+                                            $date_array = explode("~", $value);
+                                            ?>
+                                            <input type="text" name="deadline_date[]" data-start_date="<?=$date_array[0]?>" data-end_date="<?=$date_array[1]?>" class="deadline_date" value="<?=$deadline_date?>" style="width: 200px;" readonly >
+                                        <?php }
+                                        ?>
+                                        <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
+                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
+                                    </td>
+                                </tr>
+
+                      <script>
+                            $('.deadline_date').each(function(){
+                                $(this).daterangepicker({
+                                    locale: {
+                                        "format": "YYYY-MM-DD",
+                                        "separator": " ~ ",
+                                        cancelLabel: 'Delete',
+                                    },
+                                    "startDate": $(this).data("start_date"),
+                                    "endDate": $(this).data("end_date"),
+                                    "cancelClass": "btn-danger",
+                                    "minDate": $("#datetest1").val(),
+                                    "maxDate": $("#datetest3").val(),
+                                });
+                            })
+                            $('.deadline_date').on('cancel.daterangepicker', function() {
+                                $(this).remove();
+                            });
+                            $("#btn_add_date_range").click(function(){
+                                console.log($(this));
+                                const new_date_range = $(`<input type="text" class="deadline_date" name="deadline_date[]" style="width: 200px;" readonly >`);
+                                $(this).before(new_date_range);
+                                console.log(new_date_range);
+                                new_date_range.daterangepicker({
+                                    locale: {
+                                        "format": "YYYY-MM-DD",
+                                        "separator": " ~ ",
+                                        cancelLabel: 'Delete',
+                                    },
+                                    "cancelClass": "btn-danger",
+                                    "minDate": $("#datetest1").val(),
+                                    "maxDate": $("#datetest3").val(),
+                                })
+                                new_date_range.on('cancel.daterangepicker', function() {
+                                    $(this).remove();
+                                });
+                            })
+                        </script>
+                            <style>
+                                .list_value_ {
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: start;
+                                    gap: 10px;
+                                    margin-top: 10px;
+                                }
+
+                                .list_value_ .item_ {
+                                    position: relative;
+                                    padding: 10px;
+                                    border: 1px solid #dbdbdb;
+                                }
+
+                                .list_value_ .item_ .remove {
+                                    position: absolute;
+                                    color: #FFFFFF;
+                                    cursor: pointer;
+                                    padding: 0 6px 2px 6px;
+                                    top: -10px;
+                                    background-color: rgba(255, 0, 0, 0.8);
+                                    border-radius: 50%;
+                                    right: -5px;
+                                    border: 1px solid rgba(255, 0, 0, 0.8);
+                                }
+                        </style>
                                 <!-- <tr>
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">

@@ -80,10 +80,10 @@
                                 <strong class="prd_tit"><?= viewSQ($product['product_name']) ?></strong>
                                 <div class="amount flex__e">
                                     <p class="discount">
-                                        <strong><?= 100 - ((int) ($product['product_price'] / $product['original_price'] * 100)) ?></strong>%
+                                        <strong><?= 100 - ((int) ($product['product_price_won'] / $product['original_price'] * 100)) ?></strong>%
                                     </p>
                                     <p class="price">
-                                        <strong><?= number_format($product['product_price']) ?></strong>원($<?= number_format($product['product_price']) ?>)
+                                        <strong><?= number_format($product['product_price_won']) ?></strong>원($<?= number_format($product['product_price_won']) ?>)
                                     </p>
                                     <p class="cost">~
                                         <?= number_format($product['original_price']) ?>원($<?= number_format($product['original_price']) ?>)

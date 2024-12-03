@@ -2,12 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Libraries\JkBbs;
-use App\Libraries\Lib;
-
-use CodeIgniter\Controller;
-use Config\Database;
-
 
 class BoardController extends BaseController
 {
@@ -133,7 +127,7 @@ class BoardController extends BaseController
                         $ext = explode(".", strtolower($fileName));
                         $newName = $date . $timestamp . '.' . $ext[1];
                         $data["ufile_$i"] = $newName;
-                        write_log("$i - $uploadPath - $newName"); 
+                        write_log("$i - $uploadPath - $newName");
                         $file->move($uploadPath, $newName);
 
                     }
@@ -166,7 +160,8 @@ class BoardController extends BaseController
         return view('admin/_board/view', $data);
     }
 
-    public function bbs_del() {
+    public function bbs_del()
+    {
 
     }
 }
