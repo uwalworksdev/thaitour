@@ -283,7 +283,7 @@
                                         </div>
                                         <div class="wrap-btn">
                                             <span><?= number_format((int)$adultPrice[$key] * (int)$val) ?></span>
-                                            <span> 바트</span>
+                                            <span> 원</span>
                                         </div>
                                     </div>
                                 <?php } ?>

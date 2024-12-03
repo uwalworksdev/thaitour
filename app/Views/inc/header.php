@@ -288,7 +288,7 @@
                                         </div>
                                         <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                         <div class="prd_price_ko">236,100 <span>원</span></div>
-                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                        <div class="prd_price_thai">6,000 <span>원</span></div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -298,7 +298,7 @@
                                         </div>
                                         <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                         <div class="prd_price_ko">236,100 <span>원</span></div>
-                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                        <div class="prd_price_thai">6,000 <span>원</span></div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -308,7 +308,7 @@
                                         </div>
                                         <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                         <div class="prd_price_ko">236,100 <span>원</span></div>
-                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                        <div class="prd_price_thai">6,000 <span>원</span></div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -318,7 +318,7 @@
                                         </div>
                                         <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                         <div class="prd_price_ko">236,100 <span>원</span></div>
-                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                        <div class="prd_price_thai">6,000 <span>원</span></div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -328,7 +328,7 @@
                                         </div>
                                         <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                         <div class="prd_price_ko">236,100 <span>원</span></div>
-                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                        <div class="prd_price_thai">6,000 <span>원</span></div>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -338,7 +338,7 @@
                                         </div>
                                         <div class="prd_name">샹그릴라 호텔 방콕 (짜오프라야강가)</div>
                                         <div class="prd_price_ko">236,100 <span>원</span></div>
-                                        <div class="prd_price_thai">6,000 <span>바트</span></div>
+                                        <div class="prd_price_thai">6,000 <span>원</span></div>
                                     </div>
                                 </div>
                             </div>

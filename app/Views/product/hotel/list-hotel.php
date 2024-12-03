@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="tab_box_area_">
                                     <p class="tab-currency">
-                                        <span class="currency active">원 · </span><span class="currency">바트</span>
+                                        <span class="currency active">원 · </span><span class="currency">원</span>
                                     </p>
 
                                     <div class="slider-container only_web">
@@ -456,7 +456,7 @@
                                     </div>
                                     <div class="item-info">
                                         <div class="item-price-info"><span class="main">236,100</span><span class="text-gray">원
-                                                ~</span> <span class="sub text-gray">6,000바트~</span></div>
+                                                ~</span> <span class="sub text-gray">6,000원~</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -523,7 +523,7 @@
                                     </div>
                                     <div class="item-info">
                                         <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                                class="sub">6,400바트~</span></div>
+                                                class="sub">6,400원~</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -591,7 +591,7 @@
                                     </div>
                                     <div class="item-info">
                                         <div class="item-price-info"><span class="main">253,248</span>원 ~ <span
-                                                class="sub">6,400바트~</span></div>
+                                                class="sub">6,400원~</span></div>
                                     </div>
                                 </div>
                             </div>

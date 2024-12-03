@@ -242,7 +242,7 @@
                             </h3>
                             <div class="item-info-r">
                                 <span>그린피</span>
-                                <span><?= number_format($total_price) ?> 바트 (<?= number_format($total_price_baht) ?>원)</span>
+                                <span><?= number_format($total_price) ?> 원 (<?= number_format($total_price_baht) ?>원)</span>
                             </div>
                             <div class="item-info-r">
                                 <span>캐디피</span>
@@ -255,18 +255,18 @@
                             <?php foreach ($vehicle_arr as $key => $value) { ?>
                                 <div class="item-info-r item-info-r-border-b">
                                     <span>골프장 왕복 픽업 차량<br><?= $value['code_name'] ?> x <?= $value['cnt'] ?>대</span>
-                                    <span><?= number_format($value['price']) ?> 바트 (<?= number_format($value['price_baht']) ?>원)</span>
+                                    <span><?= number_format($value['price']) ?> 원 (<?= number_format($value['price_baht']) ?>바트)</span>
                                     <input type="hidden" name="vehicle_idx[]" value="<?= $value['code_idx'] ?>">
                                     <input type="hidden" name="vehicle_cnt[]" value="<?= $value['cnt'] ?>">
                                 </div>
                             <?php } ?>
                             <div class="item-info-r">
                                 <span>할인금액</span>
-                                <span>- <?= number_format($discount) ?> 바트 (<?= number_format($discount_baht) ?>원)</span>
+                                <span>- <?= number_format($discount) ?> 원 (<?= number_format($discount_baht) ?>바트)</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><?= number_format($final_price) ?> 바트</span>
+                                <span><?= number_format($final_price) ?> 원</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
