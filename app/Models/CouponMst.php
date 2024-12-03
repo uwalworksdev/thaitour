@@ -1,7 +1,6 @@
 <?php
 
 use CodeIgniter\Model;
-
 class CouponMst extends Model
 {
     protected $table = 'tbl_coupon_mst';
@@ -12,7 +11,14 @@ class CouponMst extends Model
         , "ufile1", "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "ufile7", "rfile7"
     ];
 
-    public function getCouponList($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10)
+    private $code;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function getCouponList($s_txt = null, $search_category = null, $pg = 1, $g_list_rows = 10, $is_date = false)
     {
 
         $builder = $this;
@@ -20,6 +26,11 @@ class CouponMst extends Model
 
         if ($s_txt && $search_category) {
             $builder->like($search_category, $s_txt);
+        }
+
+        if($is_date) {
+            $builder->where('STR_TO_DATE(exp_start_day, "%Y-%m-%d") <=', date("Y-m-d"));
+            $builder->where('STR_TO_DATE(exp_end_day, "%Y-%m-%d") >=', date("Y-m-d"));
         }
 
         $nTotalCount = $builder->countAllResults(false);
@@ -51,6 +62,55 @@ class CouponMst extends Model
             'g_list_rows' => $g_list_rows,
             'num' => $num,
         ];
+    }
+
+    public function getCouponListAjax($code = null, $child_code = null, $pg = 1, $g_list_rows = 10)
+    {
+        $code_model = model('App\Models\Code');
+        $builder = $this->db->table('tbl_coupon_mst c1');
+        $builder->select('c1.*, c2.product_code_1, c2.product_code_2');
+        $builder->join('tbl_coupon_product c2', 'c1.idx = c2.coupon_idx', 'left');
+        $builder->where('state !=', 'C');
+
+        if(!empty($code)){
+            $builder->where('c2.product_code_1 =', $code);
+        }
+
+        if(!empty($child_code)){
+            $builder->where('c2.product_code_2 =', $child_code);
+        }
+
+        $builder->orWhere("c2.cp_idx", null);
+
+        $builder->where('STR_TO_DATE(exp_start_day, "%Y-%m-%d") <=', date("Y-m-d"));
+        $builder->where('STR_TO_DATE(exp_end_day, "%Y-%m-%d") >=', date("Y-m-d"));
+        $builder->groupBy("c2.coupon_idx");
+        $nTotalCount = $builder->countAllResults(false);
+
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "") {
+            $pg = 1;
+        }
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $builder->orderBy('idx', 'desc')
+            ->limit($g_list_rows, $nFrom);
+
+        $coupon_list = $builder->get()->getResultArray();
+
+        foreach($coupon_list as $key => $value){
+            $coupon_list[$key]["category_name"] = $code_model->getCodeName($value["product_code_2"]);
+        }
+
+        return $coupon_list;
+        // return [
+        //     'coupon_list' => $coupon_list,
+        //     'nTotalCount' => $nTotalCount,
+        //     'pg' => $pg,
+        //     'nPage' => $nPage,
+        //     'g_list_rows' => $g_list_rows,
+        //     'num' => $num,
+        // ];
     }
 
     public function insertData($data)

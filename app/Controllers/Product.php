@@ -3000,7 +3000,7 @@ class Product extends BaseController
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
-                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price']) . "바트</option>";
+                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price']) . "원</option>";
             }
 
             $msg .= "</select>";
