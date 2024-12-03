@@ -13,9 +13,20 @@
         <div class="coupon_content">
             <div class="top">
                 <p>여행 쿠폰</p>
+                <div class="custom_select_rounded">
+                    <select class="select_custom_ select_code_category">
+                        <?php 
+                            foreach($code_list as $code){
+                        ?>
+                            <option value="<?=$code["code_no"]?>"><?=$code["code_name"]?></option>
+                        <?php 
+                            }
+                        ?>
+                    </select>
+                </div>
             </div>
             <div class="list_tag">
-                <button type="button" class="active tag">전체</button>
+                <!-- <button type="button" class="active tag">전체</button>
                 <button type="button" class="tag">방콕</button>
                 <button type="button" class="tag">파타야</button>
                 <button type="button" class="tag">푸켓</button>
@@ -24,10 +35,10 @@
                 <button type="button" class="tag">후아힌</button>
                 <button type="button" class="tag">카오야이</button>
                 <button type="button" class="tag">칸차나부리</button>
-                <button type="button" class="tag">기타지역</button>
+                <button type="button" class="tag">기타지역</button> -->
             </div>
             <div class="card_cou">
-                <div class="card">
+                <!-- <div class="card">
                     <div class="images">
                         <img src="/images/sub/coupon_img01.png" alt="">
                     </div>
@@ -72,53 +83,8 @@
                         <p class="title">서울 비비큐 보이(Seoul BBQ Boy) 20%
                         할인 쿠폰</p>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="images">
-                        <img src="/images/sub/coupon_img01.png" alt="">
-                    </div>
-                    <div class="text">
-                        <div class="keyword">
-                            <p>기타</p>
-                        </div>
-                        <p class="title">첫 예약 축하 5000포인트 쿠폰</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="images">
-                        <img src="/images/sub/coupon_img02.png" alt="">
-                    </div>
-                    <div class="text">
-                        <div class="keyword">
-                            <p>방콕 후웨이꽝</p>
-                        </div>
-                        <p class="title">꽝씨푸드 10% 할인 쿠폰</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="images">
-                        <img src="/images/sub/coupon_img03.png" alt="">
-                    </div>
-                    <div class="text">
-                        <div class="keyword">
-                            <p>방콕</p>
-                        </div>
-                        <p class="title">해브 어 지드 (Have a zeed) 10% 할인
-                        쿠폰 </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="images">
-                        <img src="/images/sub/coupon_img04.png" alt="">
-                    </div>
-                    <div class="text">
-                        <div class="keyword">
-                            <p>방콕 Phra Khanong</p>
-                        </div>
-                        <p class="title">서울 비비큐 보이(Seoul BBQ Boy) 20%
-                        할인 쿠폰</p>
-                    </div>
-                </div>
+                </div> -->
+                
             </div>
             <div class="add_btn flex_c_c">
                 <button type="button" class="add_card flex_c_c">더보기 +</button>
@@ -142,20 +108,20 @@
                         <div class="list_des">
                             <div class="des flex">
                                 <p>ㆍ대상 :</p>
-                                <span>더투어랩을 통해 예약하신 모든 회원</span>
+                                <span class="target">더투어랩을 통해 예약하신 모든 회원</span>
                             </div>
                             <div class="des flex">
                                 <p>ㆍ사용처 :</p>
-                                <span>프라카농 지점</span>
+                                <span class="location">프라카농 지점</span>
                             </div>
                             <div class="des flex">
                                 <p>ㆍ유의사항 :</p>
-                                <span>서울 비비큐 보이(Seoul BBQ Boy) 1,000바트 이상 매장내 식사 또는
+                                <span class="memo">서울 비비큐 보이(Seoul BBQ Boy) 1,000바트 이상 매장내 식사 또는
                                 방문포장시 20% 할인 쿠폰 (주류, 부가세 제외금액)</span>
                             </div>
                             <div class="des flex">
                                 <p>ㆍ유효기간 :</p>
-                                <span>2023-04-11(화) ~ 2033-06-30(목)</span>
+                                <span class="exp_date">2023-04-11(화) ~ 2033-06-30(목)</span>
                             </div>
                         </div>
                         <div class="info_download">
@@ -195,7 +161,7 @@
                         <p>- 모바일 쿠폰으로 이용 가능합니다.</p>
                     </div>
                 </div>
-                <div class="infomation_map">
+                <!-- <div class="infomation_map">
                     <div class="text">
                         <p>주소 : 4091 Rama IV Rd, Phra Khanong, Khlong Toei, Bangkok 10110</p>
                         <p>전화 : 097-005-0138</p>
@@ -216,31 +182,181 @@
                                 map.invalidateSize();
                             }, 500);
                     </script>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="bg"></div>
     </div>
 </section>
 <script>
-        const buttons = document.querySelectorAll('.list_tag .tag');
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                buttons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-            });
+    const $select = $('.custom_select_rounded .select_code_category');
+
+    function adjustSelectWidth() {
+        const $tempSpan = $('<span>')
+            .css({
+                visibility: 'hidden',
+                position: 'absolute',
+                whiteSpace: 'nowrap',
+            })
+            .text($select.find('option:selected').text())
+            .appendTo('body');
+
+        const newWidth = $tempSpan.outerWidth() + 70;
+        $select.css('width', newWidth);
+        $tempSpan.remove();
+    }
+
+    $select.on('change', adjustSelectWidth);
+
+    adjustSelectWidth();
+    get_code();
+    get_coupon_list();
+
+    $('.custom_select_rounded .select_code_category').on("change", function() {
+        get_code();
+    });
+
+    function formatToYYYYMMDD(dateString) {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+
+        return `${year}-${month}-${day}`;
+    }
+
+    function getDayOfWeekKorean(dateString) {
+        const date = new Date(dateString);
+        const daysKorean = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+        return daysKorean[date.getDay()];
+    }
+
+    function get_coupon_list() {
+        let code_no = $('.custom_select_rounded .select_code_category').val();
+        let child_code = $('.list_tag .tag.active').data("code");
+
+        $.ajax({
+            url: "/ajax/get_coupon_list",
+            type: "GET",
+            data: {
+                code: code_no,
+                child_code: child_code,
+            },
+            success: function(res) {
+                let data = res;
+                let html = ``;
+                data.forEach(element => {
+                    let img = "";
+                    if(element["ufile1"]){
+                        img = "/data/coupon/" + element["ufile1"];
+                    }
+                    html += `<div class="card" data-idx="${element["idx"]}">
+                                <div class="images">
+                                    <img src="${img}" alt="${element["rfile1"]}">
+                                </div>
+                                <div class="text">
+                                    <div class="keyword">
+                                        <p>${element["category_name"]}</p>
+                                    </div>
+                                    <p class="title">${element["coupon_name"]}</p>
+                                </div>
+                            </div>`;
+                });
+
+                $(".card_cou").html(html);
+            }
+        })
+    }
+
+    function get_code() {
+        let code_no = $('.custom_select_rounded .select_code_category').val();
+        $.ajax({
+            url: "/ajax/get_sub_code",
+            type: "GET",
+            data: {
+                code: code_no,
+                depth: 3
+            },
+            success: function(res) {
+                $(".list_tag").empty();
+                let data = res.results;
+                let html = `<button type="button" class="active tag" data-code="">전체</button>`;
+                data.forEach(element => {
+                    html += `<button type="button" class="tag" data-code="${element["code_no"]}">${element["code_name"]}</button>`;
+                });
+                $(".list_tag").html(html);
+
+                get_coupon_list();
+            }
+        });
+    }
+
+    $(".list_tag").on("click", ".tag", function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        get_coupon_list();
+    });
+
+    $(".card_cou").on("click", ".card", function () {
+        let idx = $(this).data("idx");
+
+        $.ajax({
+            url: "/ajax/coupon_view",
+            type: "GET",
+            data: {
+                idx: idx
+            },
+            success: function(res) {
+                let data = res;
+                let avatar_info = "";
+                if(data["ufile1"]){
+                    avatar_info = "/data/coupon/" + data["ufile1"];
+                }
+
+                $(".popup_coupon .popup .avatar_info").html(
+                    `<img src="${avatar_info}" alt="${data["rfile1"]}">`
+                );
+                
+                let exp_start_day = formatToYYYYMMDD(data["exp_start_day"]);
+                let exp_end_day = formatToYYYYMMDD(data["exp_end_day"]);
+                let exp_day = exp_start_day + "(" + getDayOfWeekKorean(exp_start_day) + ")" + " " + exp_end_day + "(" + getDayOfWeekKorean(exp_end_day) + ")";
+                $(".popup_coupon .popup .txt_info .title").text(data["coupon_name"]);
+                $(".popup_coupon .popup .txt_info .target").text(data["member_grade_name"]);
+                $(".popup_coupon .popup .txt_info .location").text(data["location"]);
+                $(".popup_coupon .popup .txt_info .memo").text(data["etc_memo"]);
+                $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);
+
+                let img_slide = ``;
+
+                if(data["cnt_img"] > 0){
+                    for(let i = 2; i <= 7; i++){
+                        if(data["ufile" + i]){
+                            let img_sub = "/data/coupon/" + data["ufile" + i];
+                            img_slide += `
+                                <div class="swiper-slide">
+                                    <img src="${img_sub}" alt="${data["rfile" + i]}">
+                                </div>
+                            `;
+                        }
+                    }  
+                    $(".popup_coupon .popup .infomation_slide .swiper-wrapper").html(img_slide);
+                }else{
+                    $(".popup_coupon .popup .infomation_slide").empty();
+                }
+
+                $(".popup_coupon .popup .infomation_detail").html(data["coupon_contents"]);
+
+            }
         });
 
-        $('.card').on('click', function () {
-                $('.popup_coupon').show();
-                setTimeout(() => {
-                    map.invalidateSize();
-                }, 300)
-            });
+        $('.popup_coupon').show();
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 300);
+    });
 
-            $('.popup_coupon .close, .popup_coupon .bg').on('click', function () {
-                $('.popup_coupon').hide();
-            })
+    $('.popup_coupon .close, .popup_coupon .bg').on('click', function () {
+        $('.popup_coupon').hide();
+    });
 </script>
 <script>
      var swiper = new Swiper(".myslide", {
