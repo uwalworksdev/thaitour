@@ -603,6 +603,7 @@ class Member extends BaseController
                 $data['name'] = $existingMember['user_name'];
                 $data['email'] = $existingMember['user_email'];
                 $data['level'] = $existingMember['user_level'];
+                $data['phone'] = $existingMember['user_mobile'];
 
                 $session->set("member", $data);
 
