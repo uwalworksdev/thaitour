@@ -568,6 +568,24 @@
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <th>예약마감일 지정</th>
+                                    <td colspan="3">
+                                        <?php
+                                        $deadline_date          = explode(",", $golf_info["deadline_date"]);
+                                        $deadline_date			= array_filter($deadline_date);
+                                        
+                                        foreach ($deadline_date as $key => $value) {
+                                            $date_array = explode("~", $value);
+                                            ?>
+                                            <input type="text" name="deadline_date[]" data-start_date="<?=$date_array[0]?>" data-end_date="<?=$date_array[1]?>" class="deadline_date" value="<?=$deadline_date?>" style="width: 200px;" readonly >
+                                        <?php }
+                                        ?>
+                                        <button class="btn btn-primary" type="button" id="btn_add_date_range" style="width: auto;height: auto">+</button>
+                                        <!-- <p>"|" 로 일자를 구분해 주세요  </p> -->
+                                    </td>
+                                </tr>
+
                                 <!-- <tr>
                                     <th>성인/소아/유아 구분</th>
                                     <td colspan="3">
