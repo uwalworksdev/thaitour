@@ -590,12 +590,12 @@ class Member extends BaseController
         $session->set('sns.gubun', 'kakao');
 
         if ($mode == "false" || $mode == "mypage") {
-            $existingMember = $this->member->where('sns_key', $sns_key)->first();
+            $existingMember = $this->member->getBySns($sns_key);
             if ($existingMember) {
                 $num = 2;
             }
         } else {
-            $existingMember = $this->member->where('sns_key', $sns_key)->first();
+            $existingMember = $this->member->getBySns($sns_key);
             if ($existingMember) {
                 $data['id'] = $existingMember['user_id'];
                 $data['idx'] = $existingMember['m_idx'];
@@ -603,6 +603,7 @@ class Member extends BaseController
                 $data['name'] = $existingMember['user_name'];
                 $data['email'] = $existingMember['user_email'];
                 $data['level'] = $existingMember['user_level'];
+                $data['phone'] = $existingMember['user_mobile'];
 
                 $session->set("member", $data);
 

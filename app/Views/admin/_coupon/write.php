@@ -423,6 +423,11 @@
                         $(this).remove();
                     });
                     $("#product_code_2").append("<option value=''>2차분류</option>");
+
+                    $("#product_idx").find('option').each(function () {
+                        $(this).remove();
+                    });
+                    $("#product_idx").append("<option value=''>3차분류</option>");
                 }
 
                 var list = $.parseJSON(json);

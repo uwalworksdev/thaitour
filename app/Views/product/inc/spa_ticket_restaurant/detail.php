@@ -578,8 +578,8 @@
                     <td>
                         <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                             <div class="price">
-                                <span class="text_primary">${convertNum(item_.tour_price)} 바트</span>
-                                (${convertNum(item_.tour_price_baht)}원)
+                                <span class="text_primary">${convertNum(item_.tour_price)} 원</span>
+                                (${convertNum(item_.tour_price_baht)} 바트)
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price}" class="price_in qty_adults_select_" size="4"
@@ -591,8 +591,8 @@
                     <td>
                         <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
                             <div class="price">
-                                <span class="text_primary">${convertNum(item_.tour_price_kids)} 바트</span>
-                                (${convertNum(item_.tour_price_kids_baht)}원)
+                                <span class="text_primary">${convertNum(item_.tour_price_kids)} 원</span>
+                                (${convertNum(item_.tour_price_kids_baht)} 바트)
                             </div>
                             <p class="" style="display: flex; align-items: center; gap: 5px">
                                 <input type="text" value="0" name="mem_cnt2[]" data-price="${item_.tour_price_kids}" class="price_in qty_children_select_" size="4"
