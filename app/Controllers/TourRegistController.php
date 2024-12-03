@@ -646,7 +646,7 @@ class TourRegistController extends BaseController
         return view("admin/_tourRegist/write_spas", $data);
     }
 
-    public function write_tours()
+    public function write_toursx()
     {
         $product_idx = updateSQ($_GET["product_idx"] ?? '');
         $data = $this->getWrite('', '', '1301', '', '');
