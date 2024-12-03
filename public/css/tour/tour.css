@@ -2023,8 +2023,19 @@
 
 .tours-detail .section2 .sec2-item-card .text_title {
     margin: 0 auto;
+}
+
+.tours-detail .section2 .sec2-item-card .text_title h2 {
     font-size: 24px;
     font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.tours-detail .section2 .sec2-item-card .text_title h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #454545;
+    text-align: center;
 }
 
 .tours-detail .section2 .form-group input {
