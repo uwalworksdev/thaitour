@@ -307,6 +307,10 @@
             },
             success: function(res) {
                 let data = res;
+
+                console.log(data);
+                
+
                 let avatar_info = "";
                 if(data["ufile1"]){
                     avatar_info = "/data/coupon/" + data["ufile1"];
@@ -325,9 +329,9 @@
                 $(".popup_coupon .popup .txt_info .memo").text(data["etc_memo"]);
                 $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);
 
-                let img_slide = ``;
-
                 if(data["cnt_img"] > 0){
+                    let img_slide = `<div class="swiper myslide">
+                                        <div class="swiper-wrapper">`;
                     for(let i = 2; i <= 7; i++){
                         if(data["ufile" + i]){
                             let img_sub = "/data/coupon/" + data["ufile" + i];
@@ -338,7 +342,26 @@
                             `;
                         }
                     }  
+                    img_slide += `  </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-pagination"></div>
+                                </div>`;
                     $(".popup_coupon .popup .infomation_slide .swiper-wrapper").html(img_slide);
+
+                    if (swiper instanceof Swiper) {
+                        swiper.destroy(true, true);
+                    }
+
+                    swiper = new Swiper(".myslide", {
+                        navigation: {
+                            nextEl: ".swiper-button-next",
+                            prevEl: ".swiper-button-prev",
+                        },
+                        pagination: {
+                            el: ".swiper-pagination",
+                        },
+                    });
                 }else{
                     $(".popup_coupon .popup .infomation_slide").empty();
                 }
@@ -359,14 +382,15 @@
     });
 </script>
 <script>
-     var swiper = new Swiper(".myslide", {
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-      pagination: {
-        el: ".swiper-pagination",
-      },
+    var swiper;
+    swiper = new Swiper(".myslide", {
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
     });
 </script>
 <?php $this->endSection(); ?>
