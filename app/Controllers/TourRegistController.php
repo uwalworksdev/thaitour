@@ -754,6 +754,7 @@ class TourRegistController extends BaseController
         $product_code_1 = '';
         if ($product_idx) {
             $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
+			write_log($sql);
             $row = $this->connect->query("$sql")->getResultArray()[0];
             $product_code_1 = $row["product_code_1"];
             $product_code_2 = $row["product_code_2"];
