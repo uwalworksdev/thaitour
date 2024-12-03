@@ -740,7 +740,7 @@ $searchTxt  = $SearchText->List()->findAll();
                                         </ul>
                                         <div class="prd_price_ko"><?= number_format($item4['original_price']) ?>
                                             <span> 바트</span></div>
-                                        <div class="prd_price_thai">6,000원</div>
+                                        <div class="prd_price_thai"><?= number_format($item4['product_price_won']) ?>원</div>
                                     </div>
                                 </div>
                             </a>
@@ -780,7 +780,7 @@ $searchTxt  = $SearchText->List()->findAll();
                                         </ul>
                                         <div class="prd_price_ko"><?= number_format($item5['original_price']) ?>
                                             <span> 바트</span></div>
-                                        <div class="prd_price_thai">6,000원</div>
+                                        <div class="prd_price_thai"><?= number_format($item5['product_price_won']) ?>원</div>
                                     </div>
                                 </div>
                             </a>
