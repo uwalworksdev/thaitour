@@ -138,7 +138,7 @@
                                         <?= $tour_orders['time_line'] ?>
                                     </td>
                                 </tr>
-                                <!-- <tr>
+                                <tr>
                                     <th>주문자명</th>
                                     <td>
                                         <input type="text" id="order_user_name" name="order_user_name"
@@ -151,17 +151,29 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>영문 이름(First Name)</th>
+                                    <td>
+                                        <input type="text" id="order_user_first_name_en" name="order_user_first_name_en"
+                                               value="<?= $order_user_first_name_en ?>" class="input_txt" style="width:90%"/>
+                                    </td>
+                                    <th>영문 성(Last Name)</th>
+                                    <td>
+                                        <input type="text" id="order_user_last_name_en" name="order_user_last_name_en"
+                                               value="<?= $order_user_last_name_en ?>" class="input_txt" style="width:90%"/>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>휴대전화</th>
                                     <td>
                                         <input type="text" id="order_user_mobile" name="order_user_mobile"
                                                value="<?= $order_user_mobile ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                    <th>호주/해외 전화번호</th>
+                                    <th>여행시 현지 연락처</th>
                                     <td>
                                         <input type="text" id="local_phone" name="local_phone"
                                                value="<?= $local_phone ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                </tr> -->
+                                </tr>
                                 <tr>
                                     <th>성인신청</th>
                                     <td>
@@ -183,10 +195,14 @@
                                 <tr>
                                     <th>유아신청</th>
                                     <td>
-                                        <?= $people_baby_cnt ?>명
-                                        X
-                                        <?= number_format($people_baby_price / $people_baby_cn) ?>원
-                                        = <?= number_format($people_baby_price) ?>원
+                                        <?php if ($people_baby_price > 0 && $people_baby_cnt > 0) { ?>
+                                            <?= $people_baby_cnt ?>명
+                                            X
+                                            <?= number_format($people_baby_price / $people_baby_cnt) ?>원
+                                            = <?= number_format($people_baby_price) ?>원
+                                        <?php } else {?>
+                                            0원
+                                        <?php } ?>
                                     </td>
                                     <th>전체 옵션</th>
                                     <td>

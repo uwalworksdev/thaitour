@@ -1986,19 +1986,19 @@ class Product extends BaseController
         $data['description'] = $this->request->getVar('description');
         $data['id_kakao'] = $this->request->getVar('id_kakao');
         $data['time_line'] = $this->request->getVar('time_line');
-        $data['email_name'] = $this->request->getPost('email_1') ?? "";
-        $data['email_host'] = $this->request->getPost('email_2') ?? "";
-        $data['order_gender_list'] = $this->request->getPost('companion_gender') ?? "";
-        $data['order_user_name'] = $this->request->getPost('order_user_name') ?? "";
-        $data['order_user_first_name_en'] = $this->request->getPost('order_user_first_name_en') ?? "";
-        $data['order_user_last_name_en'] = $this->request->getPost('order_user_last_name_en') ?? "";
+        $data['email_name'] = $this->request->getVar('email_1') ?? "";
+        $data['email_host'] = $this->request->getVar('email_2') ?? "";
+        $data['order_gender_list'] = $this->request->getVar('companion_gender') ?? "";
+        $data['order_user_name'] = $this->request->getVar('order_user_name') ?? "";
+        $data['order_user_first_name_en'] = $this->request->getVar('order_user_first_name_en') ?? "";
+        $data['order_user_last_name_en'] = $this->request->getVar('order_user_last_name_en') ?? "";
         $data['order_user_email'] = $data['email_name'] . "@" . $data['email_host'];
-        $data['radio_phone'] = $this->request->getPost('radio_phone') ?? "";
-        $data['phone_1'] = $this->request->getPost('phone_1') ?? "";
-        $data['phone_2'] = $this->request->getPost('phone_2') ?? "";
-        $data['phone_3'] = $this->request->getPost('phone_3') ?? "";
-        $data['phone_thai'] = $this->request->getPost('phone_thai') ?? "";
-        $data['local_phone'] = $this->request->getPost('local_phone') ?? "";
+        $data['radio_phone'] = $this->request->getVar('radio_phone') ?? "";
+        $data['phone_1'] = $this->request->getVar('phone_1') ?? "";
+        $data['phone_2'] = $this->request->getVar('phone_2') ?? "";
+        $data['phone_3'] = $this->request->getVar('phone_3') ?? "";
+        $data['phone_thai'] = $this->request->getVar('phone_thai') ?? "";
+        $data['local_phone'] = $this->request->getVar('local_phone') ?? "";
         if ($data['radio_phone'] == "kor") {
             $data['order_user_phone'] = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
         } else {
@@ -2341,6 +2341,62 @@ class Product extends BaseController
         $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
 
         return $this->renderView('tours/tour-details', $data);
+    }
+
+    public function confirmInfo() {
+        $data['product_idx'] = $this->request->getVar('product_idx');
+        $data['product'] = $this->productModel->getProductDetails($data['product_idx']);
+        $data['tours_idx'] = $this->request->getVar('tours_idx');
+        $data['tour'] = $this->tourProducts->find($data['tours_idx']);
+        $data['order_date'] = $this->request->getVar('order_date');
+        $data['time_line'] = $this->request->getVar('time_line');
+        $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
+        $data['people_adult_price'] = $this->request->getVar('people_adult_price');
+        $data['people_kids_cnt'] = $this->request->getVar('people_kids_cnt');
+        $data['people_kids_price'] = $this->request->getVar('people_kids_price');
+        $data['people_baby_cnt'] = $this->request->getVar('people_baby_cnt');
+        $data['people_baby_price'] = $this->request->getVar('people_baby_price');
+        $data['total_pay'] = $this->request->getVar('total_pay');
+        $idx = $this->request->getVar('idx');
+        $data['idx'] = $idx;
+        $data['adult_price_bath'] = round($data['people_adult_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['kids_price_bath'] = round($data['people_kids_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['baby_price_bath'] = round($data['people_baby_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_product'] = $data['people_adult_price'] + $data['people_kids_price'] + $data['people_baby_price'];
+        $data['total_price_product_bath'] = ($data['adult_price_bath']) + ($data['kids_price_bath']) + ($data['baby_price_bath']);
+        $data['adult_price_total'] = ($data['people_adult_price']);
+        $data['kids_price_total'] = ($data['people_kids_price']);
+        $data['baby_price_total'] = ($data['people_baby_price']);
+        $data['tour_product'] = $this->tourProducts->find($data['tours_idx']);
+        $data['tour_info'] = $this->infoProducts->find($data['tour_product']['info_idx']);
+        $data['tour_option'] = [];
+        $data['option_price'] = [];
+        $data['option_price_bath'] = [];
+        $idxPairs = explode(',', $idx);
+
+        foreach ($idxPairs as $pair) {
+
+            list($id, $qty) = explode(':', trim($pair));
+            $id = trim($id); 
+            $qty = (int)trim($qty);
+            
+            $tourOption = $this->optionTours->find($id);
+            if ($tourOption) {
+                $tourOption['qty'] = $qty;
+                $data['tour_option'][] = $tourOption;
+                $data['option_price'][] = $tourOption['option_price'] * $qty;
+                $data['option_price_bath'][] = round(
+                    ($tourOption['option_price'] * $qty) / (float)($this->setting['baht_thai'] ?? 1)
+                );
+            }
+        }
+        $total_option_price_bath = array_sum($data['option_price_bath'] ?? []);
+        $total_option_price = array_sum($data['option_price'] ?? []);
+
+        $data['final_price'] = $data['total_price_product'] + $total_option_price - $data['final_discount'];
+        $data['inital_price'] = $data['total_price_product'] + $total_option_price;
+        $data['final_price_bath'] = $data['total_price_product_bath'] + $total_option_price_bath;
+        return $this->renderView('/product/tour/confirm-info', $data);
     }
 
     public function index9($code_no)
@@ -2944,7 +3000,7 @@ class Product extends BaseController
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
-                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price']) . "바트</option>";
+                $msg .= "<option value='" . $row['idx'] . "|" . $row['option_price'] . "'>" . $row['option_name'] . " +" . number_format($row['option_price']) . "원</option>";
             }
 
             $msg .= "</select>";

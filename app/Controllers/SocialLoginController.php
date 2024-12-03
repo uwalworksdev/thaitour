@@ -64,7 +64,7 @@ class SocialLoginController extends BaseController
                 $mb_uid = 'naver_' . $me_responseArr['response']['id'];
 
 
-                $row = $this->memberModel->where('user_id', $mb_uid)->first();
+                $row = $this->memberModel->getLogin($mb_uid);
                 $mode = substr($state, -3);
                 if ($row) {
                     if ($mode == 'myp') {
@@ -89,6 +89,7 @@ class SocialLoginController extends BaseController
                         $data['name'] = $row['user_name'];
                         $data['email'] = $row['user_email'];
                         $data['level'] = $row['user_level'];
+                        $data['phone'] = $row['user_mobile'];
 
                         session()->set("member", $data);
 
