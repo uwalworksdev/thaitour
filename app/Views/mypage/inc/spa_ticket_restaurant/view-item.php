@@ -80,25 +80,25 @@
                     <td class="content">
                         <p><strong><span id="price_tot">
 									<?= number_format($row['inital_price']) ?>
-								</span></strong> 바트</p>
+								</span></strong> 원</p>
                     </td>
                     <td class="content">
                         <?php if ($row['used_coupon_money'] > 0) { ?>
                             <p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?> 바트
+											<?= number_format($row['used_coupon_money']) ?> 원
 										</span></strong></p>
                         <?php } ?>
 
                         <?php if ($row['used_mileage_money'] > 0) { ?>
                             <p><strong style="color:red">포인트 <span id="point_amt">
-											<?= number_format($row['used_mileage_money']) ?> 바트
+											<?= number_format($row['used_mileage_money']) ?> 원
 										</span></strong></p>
                         <?php } ?>
                     </td>
                     <td class="content">
                         <p><strong><span id="price_tot">
                                 <?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-                            바트</p>
+                            원</p>
                     </td>
                 </tr>
                 </tbody>
@@ -144,7 +144,7 @@
                     <td class="content">
                         <p><strong><span id="price_tot">
 										<?= number_format($row['order_price']) ?>
-									</span></strong> 바트</p>
+									</span></strong> 원</p>
                     </td>
                 </tr>
                 <tr>
@@ -153,7 +153,7 @@
                     <td class="content">
                         <p><strong><span id="price_tot">
 										<?= number_format($row['order_price']) ?>
-									</span></strong> 바트</p>
+									</span></strong> 원</p>
                     </td>
                 </tr>
                 <tr>
@@ -162,13 +162,13 @@
                     <td class="content">
                         <?php if ($row['used_coupon_money'] > 0) { ?>
                             <p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?> 바트
+											<?= number_format($row['used_coupon_money']) ?> 원
 										</span></strong></p>
                         <?php } ?>
 
                         <?php if ($row['used_mileage_money'] > 0) { ?>
                             <p><strong style="color:red">포인트 <span id="point_amt">
-											<?= number_format($row['used_mileage_money']) ?> 바트
+											<?= number_format($row['used_mileage_money']) ?> 원
 										</span></strong></p>
                         <?php } ?>
                     </td>
@@ -179,14 +179,14 @@
                     <td class="content">
                         <?php if ($row['used_coupon_money'] > 0) { ?>
                             <p><strong style="color:red">쿠폰 <span id="coupon_amt">
-											<?= number_format($row['used_coupon_money']) ?> 바트
+											<?= number_format($row['used_coupon_money']) ?> 원
 										</span></strong></p>
                         <?php } ?>
 
                         <?php if ($row['used_mileage_money'] > 0) { ?>
                             <p><strong><span id="price_tot">
                                     <?= number_format($row['deposit_price'] + $row['order_confirm_price']) ?></strong>
-                                바트</p>
+                                원</p>
                         <?php } ?>
                     </td>
                 </tr>
@@ -283,9 +283,9 @@
 
                         <td class="content">
                             <?php if ($row['deposit_method'] == "무통장입금") { ?>
-                                <?= number_format($row['deposit_price']) ?> 바트
+                                <?= number_format($row['deposit_price']) ?> 원
                             <?php } else { ?>
-                                <?= number_format($row['deposit_price']) ?> 바트
+                                <?= number_format($row['deposit_price']) ?> 원
                             <?php }
                             ?>
                         </td>
@@ -316,7 +316,7 @@
                         </td>
 
                         <td class="content">
-                            <?= number_format($row['order_confirm_price']) ?> 바트
+                            <?= number_format($row['order_confirm_price']) ?> 원
                         </td>
 
                         <td class="content">
@@ -342,10 +342,10 @@
                         </td>
                         <td class="content">
                             <?php if ($row['deposit_method'] == "무통장입금") { ?>
-                                <?= number_format($row['deposit_price']) ?> 바트
+                                <?= number_format($row['deposit_price']) ?> 원
                             <?php } else { ?>
-                                <!-- <?= number_format($row['Amt_1']) ?> 바트 -->
-                                <?= number_format($row['deposit_price']) ?> 바트
+                                <!-- <?= number_format($row['Amt_1']) ?> 원 -->
+                                <?= number_format($row['deposit_price']) ?> 원
                             <?php } ?>
                         </td>
 
@@ -378,10 +378,10 @@
 
                         <td class="content">
                             <?php if ($row['confirm_method'] == "무통장입금") { ?>
-                                <?= number_format($row['order_confirm_price']) ?> 바트
+                                <?= number_format($row['order_confirm_price']) ?> 원
                             <?php } else { ?>
-                                <!-- <?= number_format($row['Amt_2']) ?> 바트 -->
-                                <?= number_format($row['order_confirm_price']) ?> 바트
+                                <!-- <?= number_format($row['Amt_2']) ?> 원 -->
+                                <?= number_format($row['order_confirm_price']) ?> 원
                             <?php } ?>
                         </td>
 
