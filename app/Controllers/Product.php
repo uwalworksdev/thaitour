@@ -2080,12 +2080,12 @@ class Product extends BaseController
             $data['ip'] = $this->request->getIPAddress();
             $data['order_gubun'] = "tour";
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_email'] = encryptField($data['order_user_email'], 'encode') ?? '';
-            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
-            $data['order_user_mobile'] = encryptField($data['order_user_phone'], 'encode');
-            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
-            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['local_phone'] = encryptField($data['local_phone'], 'encode')  ?? '';
+            $data['order_user_email'] = $data['order_user_email'] ?? '';
+            $data['order_user_name'] = $data['order_user_name'];
+            $data['order_user_mobile'] = $data['order_user_phone'];
+            $data['order_user_last_name_en'] = $data['order_user_last_name_en'];
+            $data['order_user_first_name_en'] = $data['order_user_first_name_en'];
+            $data['local_phone'] = $data['local_phone']  ?? '';
 
             $data['people_adult_cnt'] = $data['people_adult_cnt'];
             $data['people_kids_cnt'] = $data['people_kids_cnt'];
