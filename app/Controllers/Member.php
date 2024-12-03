@@ -154,6 +154,7 @@ class Member extends BaseController
         $data['name'] = $row['user_name'];
         $data['email'] = $row['user_email'];
         $data['level'] = $row['user_level'];
+        $data['phone'] = $row['user_mobile'];
 
         session()->set("member", $data);
 
