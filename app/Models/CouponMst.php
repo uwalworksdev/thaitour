@@ -84,7 +84,7 @@ class CouponMst extends Model
 
         $builder->where('STR_TO_DATE(exp_start_day, "%Y-%m-%d") <=', date("Y-m-d"));
         $builder->where('STR_TO_DATE(exp_end_day, "%Y-%m-%d") >=', date("Y-m-d"));
-        $builder->groupBy("c2.coupon_idx");
+        $builder->groupBy("c1.idx");
         $nTotalCount = $builder->countAllResults(false);
 
         $nPage = ceil($nTotalCount / $g_list_rows);

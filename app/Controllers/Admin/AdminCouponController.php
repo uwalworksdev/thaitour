@@ -157,14 +157,16 @@ class AdminCouponController extends BaseController
                                 $product_code_1 = $arr[0];
                                 $product_code_2 = $arr[1];
                                 $product_idx = $arr[2];
+                                
                                 $this->couponProduct->insertData([
-                                    "coupon_idx" => $insertId,
+                                    "coupon_idx" => $idx,
                                     "product_idx" => $product_idx,
                                     "product_code_1" => $product_code_1,
                                     "product_code_2" => $product_code_2,
                                 ]);
                             }
                         }
+
                     }
 
                     $message = "등록되었습니다.";
