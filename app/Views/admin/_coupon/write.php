@@ -173,6 +173,15 @@
                                 </tr>
 
                                 <tr>
+                                    <th>최대사용금액</th>
+                                    <td>
+                                        <input type="text" id="max_coupon_price" name="max_coupon_price"
+                                                value="<?= isset($max_coupon_price) ? $max_coupon_price : '' ?>"
+                                                style="width:100px;" class="input_txt onlynum"/> 원
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>발행일수</th>
                                     <td>
                                         <div style="text-align:left;">

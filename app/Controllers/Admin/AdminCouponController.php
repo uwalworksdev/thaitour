@@ -148,7 +148,7 @@ class AdminCouponController extends BaseController
             } else {
                 $data["regdate"] = Time::now('Asia/Seoul')->format('Y-m-d H:i:s');
                 $insertId = $this->couponMst->insertData($data);
-                if($insertId){
+                if(!empty($insertId)){
                     if(!empty($product_code_list)){
                         $str_code = substr($product_code_list, 1, strlen($product_code_list) - 2);
                         $arr_code = explode("||", $str_code);
