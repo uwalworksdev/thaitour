@@ -180,21 +180,21 @@
                     </div>
                     <div>
                         <p class="vehicle_synthetic__ttl">차량가격</p>
-                        <div class="vehicle_all_price"><i id="all_price">0</i><span> 바트 (<i id="all_price_baht">0</i>원)</span></div>
+                        <div class="vehicle_all_price"><i id="all_price">0</i><span> 원 (<i id="all_price_baht">0</i>바트)</span></div>
                         </div>
                     <div class="vehicle_minus">
                         <span class="minus_ico"></span>
                     </div>
                     <div>
                         <p class="vehicle_synthetic__ttl">할인</p>
-                        <div class="vehicle_all_price">0<span> 바트 (0원)</span></div>
+                        <div class="vehicle_all_price">0<span> 원 (0바트)</span></div>
                     </div>
                     <div class="vehicle_equal">
                         <span class="equal_ico"></span>
                     </div>
                     <div>
                         <p class="vehicle_synthetic__ttl">결제예정금액</p>
-                        <div class="vehicle_price"><i id="final_price">0</i><span> 바트 (<i id="final_price_baht">0</i>원)</span></div>
+                        <div class="vehicle_price"><i id="final_price">0</i><span> 원 (<i id="final_price_baht">0</i>바트)</span></div>
                     </div>
                     <div class="vehicle_coupon">
                         <button class="coupon_btn">쿠폰선택</button>
@@ -261,7 +261,7 @@
                             예약시 기재한 일정 외에 미리 알리지 않은 일정을 당일 추가시 비용이 추가가 되며 기사님의 스케쥴에 따라 이용이 어려울 수도 있으니
                             미리 게시판을 통하여 문의하시기 바랍니다.
                         </li>
-                        <li>차량내 흡연, 음주, 안전벨트 미착용등의 위반시 5,000바트 이상의 벌금이 부과되니 주의해 주세요.</li>
+                        <li>차량내 흡연, 음주, 안전벨트 미착용등의 위반시 5,000원 이상의 벌금이 부과되니 주의해 주세요.</li>
                         <li>고급차량(알파드,벤츠)등은 10시간 렌탈로 요청 가능하며, 일일렌탈 12시간으로 예약신청 후 10시간으로 렌탈요청시 견적서 다시 보내드립니다.</li>
                         <li>프리미엄 세단은 벤츠 E클래스 또는 BMW5 시리즈 등 동급으로 배정 됩니다.</li>
                         <li>럭셔리 세단은 벤츠 S클래스 또는 BMW7 시리즈 등 동급으로 배정됩니다.</li>
@@ -583,7 +583,7 @@
                 </td>
                 <td>
                     <div class="vehicle_price">
-                        ${price_str.toLocaleString('ko-KR')}<span> 바트 (${price_won_str.toLocaleString('ko-KR')} 원)</span>
+                        ${price_str.toLocaleString('ko-KR')}<span> 원 (${price_won_str.toLocaleString('ko-KR')} 바트)</span>
                     </div>
                     <div class="vehicle_options">
                         <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>

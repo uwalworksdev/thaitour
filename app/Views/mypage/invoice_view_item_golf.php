@@ -95,7 +95,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td class="content">
 							<p><strong><span id="price_tot">
 									<?= number_format($order_price) ?>
-								</span></strong> 바트</p>
+								</span></strong> 원</p>
 						</td>
 						<td class="content">
 							<?php if ($used_coupon_money > 0) { ?>

@@ -262,7 +262,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a>
                     <a href="#!" class="sub_tour_section6_item">
@@ -289,7 +289,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a>
                     <a href="#!" class="sub_tour_section6_item">
@@ -316,7 +316,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a>
                     <a href="#!" class="sub_tour_section6_item">
@@ -343,7 +343,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a>
                     <a href="#!" class="sub_tour_section6_item">
@@ -370,7 +370,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a>
                     <a href="#!" class="sub_tour_section6_item">
@@ -397,7 +397,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a>
                     <a href="#!" class="sub_tour_section6_item">
@@ -424,7 +424,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a>
                     <a href="#!" class="sub_tour_section6_item">
@@ -451,7 +451,7 @@
                             </div>
                         </div>
                         <div class="prd_price_ko">
-                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>바트)</span></span>
+                            236,100 <span>원</span> <span class="prd_price_thai">(6,000 <span>원)</span></span>
                         </div>
                     </a> -->
             </div>
