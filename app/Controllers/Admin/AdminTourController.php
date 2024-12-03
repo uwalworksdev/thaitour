@@ -137,8 +137,18 @@ class AdminTourController extends BaseController
             $tours_hour = updateSQ($_POST["tours_hour" ?? '']);
             $tours_total_hour = updateSQ($_POST["tours_total_hour" ?? '']);
             $time_line = updateSQ($_POST["time_line" ?? '']);
+            $arr = updateSQ($_POST["deadline_date" ?? '']);
 
-            for ($i = 1; $i <= 7; $i++) {
+            $deadline_date = "";
+            for ($i = 0; $i <count($arr); $i++) {
+				 if($i == 0) {
+                    $deadline_date .= $arr[$i];
+                 } else {
+                    $deadline_date .= ",". $arr[$i];
+                 }
+            }
+
+			for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
                 if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
@@ -334,6 +344,7 @@ class AdminTourController extends BaseController
                             ,tours_hour             = '" . $tours_hour . "'
                             ,tours_total_hour       = '" . $tours_total_hour . "'
                             ,time_line              = '" . $time_line . "'
+							,deadline_date          = '" . $deadline_date ."'
                             ,m_date					= now()
                         where product_idx = '" . $product_idx . "'
                     ";
