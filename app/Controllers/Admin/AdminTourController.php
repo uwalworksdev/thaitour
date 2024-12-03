@@ -137,7 +137,7 @@ class AdminTourController extends BaseController
             $tours_hour = updateSQ($_POST["tours_hour" ?? '']);
             $tours_total_hour = updateSQ($_POST["tours_total_hour" ?? '']);
             $time_line = updateSQ($_POST["time_line" ?? '']);
-            $arr = updateSQ($_POST["deadline_date" ?? '']);
+            $arr = $_POST["deadline_date"];
 
             $deadline_date = "";
             for ($i = 0; $i <count($arr); $i++) {
