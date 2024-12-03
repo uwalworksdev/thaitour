@@ -12,7 +12,6 @@ class AdminCouponController extends BaseController
     private $memberGrade;
     private $code;
     private $product;
-
     private $couponProduct;
     private $db;
     private $uploadPath = FCPATH . "data/coupon/";

@@ -626,10 +626,10 @@
                                 </tr>
 
                                 <tr>
-                                    <th>예약마감일 지정</th>
+                                    <th>예약마감일 지정<?=$deadline_date?></th>
                                     <td colspan="3">
                                         <?php
-                                        $deadline_date          = explode(",", $golf_info["deadline_date"]);
+                                        $deadline_date          = explode(",", $deadline_date);
                                         $deadline_date			= array_filter($deadline_date);
                                         
                                         foreach ($deadline_date as $key => $value) {

@@ -149,7 +149,7 @@
                                                     <?php foreach ($tour_option as $index => $option): ?>
                                                         <div class='flex_op flex'>
                                                              <?= $option['option_name']?>
-                                                             <p class='product_option_pay'> <?= number_format($option_price[$index])?> 바트</p></div>
+                                                             <p class='product_option_pay'> <?= number_format($option_price[$index])?> 원</p></div>
                                                     <?php endforeach; ?>
                                                 </div>
                                             </td>
@@ -161,7 +161,7 @@
                                                     <div class="num_people" id="num_people">
                                                         <?= ($people_adult_cnt + $people_kids_cnt + $people_baby_cnt) . '명 (성인: ' . $people_adult_cnt . ', 아이: ' . $people_kids_cnt . ', 아기: ' . $people_baby_cnt . ')'?>
                                                     </div>
-                                                    <div class="total_price_product"><?= number_format($total_price_product)?> 바트</div>
+                                                    <div class="total_price_product"><?= number_format($total_price_product)?> 원</div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -172,7 +172,7 @@
                                         <tr>
                                             <th>총금액</th>
                                             <td><div class="total_pay" id="total_pay">
-                                            <?= number_format($final_price)?> 바트
+                                            <?= number_format($final_price)?> 원
                                             </div></td>
                                         </tr>
                                         <!-- <tr>
@@ -551,6 +551,31 @@
 
         </script>
         <script>
+        jQuery(document).ready(function () {
+
+            $("#save_id").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#order_user_name").val(`<?=session("member.name")?>`);
+                    const email = `<?=session("member.email")?>`;
+                    const emailArr = email.split("@");
+                    $("#email_1").val(emailArr[0] ?? "");
+                    $("#email_2").val(emailArr[1] ?? "");
+                    const phone = `<?=session("member.phone")?>`;
+                    const phoneArr = phone.split("-");
+                    $("#phone_1").val(phoneArr[0] ?? "");
+                    $("#phone_2").val(phoneArr[1] ?? "");
+                    $("#phone_3").val(phoneArr[2] ?? "");
+                } else {
+                    $("#order_user_name").val("");
+                    $("#email_1").val("");
+                    $("#email_2").val("");
+                    $("#phone_1").val("");
+                    $("#phone_2").val("");
+                    $("#phone_3").val("");
+                }
+            });
+        });
+
              $(".phone").on("input", function () {
                 $(this).val($(this).val().replace(/[^0-9]/g, ""));
             });
