@@ -889,7 +889,7 @@ class TourRegistController extends BaseController
         $sql = "select user_id, AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name from tbl_member where user_level = '2'";
         $mresult = $this->connect->query($sql)->getResultArray();
 
-        $sql_o = " select * from tbl_product_option where status != 'N' ";
+        $sql_o = " select * from tbl_product_option where status != 'N' "; 
         $oresult = $this->connect->query($sql_o)->getResultArray();
 
         $sql_l = " select * from tbl_product_level where status != 'N' ";
