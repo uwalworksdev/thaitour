@@ -2092,12 +2092,12 @@ class Product extends BaseController
             $data['ip'] = $this->request->getIPAddress();
             $data['order_gubun'] = "tour";
             $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_email'] = $data['order_user_email'] ?? '';
-            $data['order_user_name'] = $data['order_user_name'];
-            $data['order_user_mobile'] = $data['order_user_phone'];
-            $data['order_user_last_name_en'] = $data['order_user_last_name_en'];
-            $data['order_user_first_name_en'] = $data['order_user_first_name_en'];
-            $data['local_phone'] = $data['local_phone']  ?? '';
+            $data['order_user_email'] =$data['order_user_email'] ?? '';
+            $data['order_user_name'] =$data['order_user_name'];
+            $data['order_user_mobile'] =$data['order_user_phone'];
+            $data['order_user_last_name_en'] =$data['order_user_last_name_en'];
+            $data['order_user_first_name_en'] =$data['order_user_first_name_en'];
+            $data['local_phone'] =$data['local_phone']  ?? '';
 
             $data['people_adult_cnt'] = $data['people_adult_cnt'];
             $data['people_kids_cnt'] = $data['people_kids_cnt'];
