@@ -271,7 +271,7 @@
                                     <span class="prd_price"><?= number_format($product['product_price']) ?></span> <span
                                             class="ko_m_price y_price">원</span>
                                     <span class="prd_price_thai ko_m_price">(6,000 <span
-                                                class="ko_m_price">원)</span></span>
+                                                class="ko_m_price">바트)</span></span>
                                 </div>
                             </a>
                             <?php $i++ ?>
