@@ -1213,7 +1213,7 @@ class Product extends BaseController
             $hotel_option_convert = [];
 
             $list__gix = "";
-            foreach ($hotel_options as $option) {
+            foreach ($hotel_options as $key => $option) {
                 $sql_count = "SELECT * FROM tbl_room WHERE g_idx = " . $option['o_room'];
 
                 $room = $this->db->query($sql_count)->getRowArray();
@@ -1225,11 +1225,23 @@ class Product extends BaseController
 
                     $sql = "SELECT * FROM tbl_room_options WHERE h_idx = " . $idx . " AND r_idx = " . $room['g_idx'];
                     $room_option = $this->db->query($sql)->getResultArray();
+
+                    foreach ($room_option as $key => $room_op) {
+                        $room_op['r_price_won'] = $room_op['r_price'] * $this->setting['baht_thai'];
+                        $room_op['r_sale_price_won'] = $room_op['r_sale_price'] * $this->setting['baht_thai'];
+                        $room_option[$key] = $room_op;
+                    }
+
                 }
 
                 $room['room_option'] = $room_option;
                 $option['room'] = $room ?? '';
+
+                $option['goods_price1_won'] = $option['goods_price1'] * $this->setting['baht_thai'];
+                $option['goods_price2_won'] = $option['goods_price2'] * $this->setting['baht_thai'];
+                
                 $hotel_option_convert[] = $option;
+
             }
 
             $_arr_categories = explode("|", $categories);
@@ -3203,6 +3215,8 @@ class Product extends BaseController
             list($totalReview, $reviewAverage) = $this->getReviewSummary($hotel['product_idx'], $currentHotelCode);
             $hotel['total_review'] = $totalReview;
             $hotel['review_average'] = $reviewAverage;
+
+            $hotel['product_price_won'] = $hotel['product_price'] * $this->setting['baht_thai'];
 
             return $hotel;
         }, $suggestHotels);

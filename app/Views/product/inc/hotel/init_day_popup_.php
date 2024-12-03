@@ -398,18 +398,17 @@
     }
 
     function renderInputDay(result) {
-        console.log(result);
         result.forEach(item => {
-            const {price, sale_price, idx, day} = item;
+            const {idx, day, price_won, sale_price_won} = item;
 
-            if (day > 0 && price > 0) {
+            if (day > 0 && price_won > 0) {
                 $(`.input_day_qty_${idx}`).each(function() {
                     let inputElem = $(this);
-                    inputElem.closest(".room_op_").find(".hotel_price_day").text(price.toLocaleString('en-US'));
-                    inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price);
-                    inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price.toLocaleString('en-US'));
-                    inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price);
-                    inputElem.val(day).attr('data-price', price).attr('data-sale_price', sale_price);
+                    inputElem.closest(".room_op_").find(".hotel_price_day").text(price_won.toLocaleString('en-US'));
+                    inputElem.closest(".room_op_").find(".hotel_price_day").attr("data-price", price_won);
+                    inputElem.closest(".room_op_").find(".hotel_price_day_sale").text(sale_price_won.toLocaleString('en-US'));
+                    inputElem.closest(".room_op_").find(".totalPrice").attr('data-price', sale_price_won);
+                    inputElem.val(day).attr('data-price', price_won).attr('data-sale_price', sale_price_won);
                     changeDataOptionPriceBk(inputElem);
                 });
             }

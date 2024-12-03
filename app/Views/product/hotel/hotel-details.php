@@ -561,8 +561,8 @@
                                                                        style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                        readonly
                                                                        data-op="<?= $item['idx'] ?>"
-                                                                       data-price="<?= $room_op['r_price'] ?>"
-                                                                       data-sale_price="<?= $room_op['r_sale_price'] ?>"
+                                                                       data-price="<?= $room_op['r_price_won'] ?>"
+                                                                       data-sale_price="<?= $room_op['r_sale_price_won'] ?>"
                                                                        data-id="<?= $room_op['rop_idx'] ?>">
                                                             </div>
                                                         </div>
@@ -574,11 +574,11 @@
 <!--                                                    </td>-->
                                                     <?php
                                                     $isSale = true;
-                                                    if ($room_op['r_sale_price'] == $room_op['r_price']) {
+                                                    if ($room_op['r_sale_price_won'] == $room_op['r_price_won']) {
                                                         $isSale = false;
                                                     }
                                                     if ($isSale) {
-                                                        $percent = ($room_op['r_sale_price'] + $item['goods_price2']) / ($room_op['r_price'] + $item['goods_price1']) * 100;
+                                                        $percent = ($room_op['r_sale_price_won'] + $item['goods_price2_won']) / ($room_op['r_price_won'] + $item['goods_price1_won']) * 100;
                                                         $percent = 100 - $percent;
                                                         $percent = round($percent, 2);
                                                     }
@@ -588,14 +588,14 @@
 
                                                             <div class="price-strike-container">
                                                                 옵션금액: <span class="room_price_day"
-                                                                            data-price="<?= $room_op['r_price'] ?>"></span>
+                                                                            data-price="<?= $room_op['r_price_won'] ?>"></span>
                                                                 <span class="room_price_day_sale"
-                                                                      data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span> 원
+                                                                      data-price="<?= $room_op['r_sale_price_won'] ?>"><?= number_format($room_op['r_sale_price_won']) ?></span> 원
                                                             </div>
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 원</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 원
+                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won']) ?> 원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won']) ?></span> 원
                                                             </span>
                                                             <?php if ($isSale) { ?>
                                                                 <div class="discount">
@@ -614,8 +614,8 @@
                                                             <p>
                                                                 <span class="price totalPrice"
                                                                       id="<?= $room_op['rop_idx'] ?>"
-                                                                      data-price="<?= $item['goods_price2'] ?>">
-                                                                    <?= number_format($room_op['r_sale_price'] + $item['goods_price2']) ?>
+                                                                      data-price="<?= $item['goods_price2_won'] ?>">
+                                                                    <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
                                                                 </span> 원
                                                             </p>
                                                             <button type="button" class="book-button">
@@ -673,8 +673,8 @@
                                                                    style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                    readonly
                                                                    data-op="<?= $item['idx'] ?>"
-                                                                   data-price="<?= $item['goods_price1'] ?>"
-                                                                   data-sale_price="<?= $item['goods_price2'] ?>"
+                                                                   data-price="<?= $item['goods_price1_won'] ?>"
+                                                                   data-sale_price="<?= $item['goods_price2_won'] ?>"
                                                                    data-id="<?= $item["idx"] ?>">
                                                         </div>
                                                     </div>
@@ -686,11 +686,11 @@
 <!--                                                </td>-->
                                                 <?php
                                                 $isSale = true;
-                                                if ($item['goods_price1'] == $item['goods_price2']) {
+                                                if ($item['goods_price1_won'] == $item['goods_price2_won']) {
                                                     $isSale = false;
                                                 }
                                                 if ($isSale) {
-                                                    $percent = $item['goods_price2'] / $item['goods_price1'] * 100;
+                                                    $percent = $item['goods_price2_won'] / $item['goods_price1_won'] * 100;
                                                     $percent = 100 - $percent;
                                                     $percent = round($percent, 2);
                                                 }
@@ -700,8 +700,8 @@
 
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 원</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 원
+                                                                            data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won']) ?> 원</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won']) ?></span> 원
                                                             </span>
                                                         <?php if ($isSale) { ?>
                                                             <div class="discount">
@@ -721,8 +721,8 @@
 
                                                                 <span class="price totalPrice"
                                                                       id="<?= $item['idx'] ?>"
-                                                                      data-price="<?= $item['goods_price2'] ?>">
-                                                                    <?= number_format($item['goods_price2']) ?>
+                                                                      data-price="<?= $item['goods_price2_won'] ?>">
+                                                                    <?= number_format($item['goods_price2_won']) ?>
                                                                 </span> 원
                                                         </p>
                                                         <button type="button" class="book-button">
@@ -1033,8 +1033,8 @@
                                                                                class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                                value="1"
                                                                                data-op="<?= $item['idx'] ?>"
-                                                                               data-price="<?= $room_op['r_price'] ?>"
-                                                                               data-sale_price="<?= $room_op['r_sale_price'] ?>"
+                                                                               data-price="<?= $room_op['r_price_won'] ?>"
+                                                                               data-sale_price="<?= $room_op['r_sale_price_won'] ?>"
                                                                                style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                                readonly
                                                                                data-id="<?= $room_op['rop_idx'] ?>">
@@ -1048,11 +1048,11 @@
 <!--                                                            </td>-->
                                                             <?php
                                                             $isSale = true;
-                                                            if ($room_op['r_sale_price'] == $room_op['r_price']) {
+                                                            if ($room_op['r_sale_price_won'] == $room_op['r_price_won']) {
                                                                 $isSale = false;
                                                             }
                                                             if ($isSale) {
-                                                                $percent = ($room_op['r_sale_price'] + $item['goods_price2']) / ($room_op['r_price'] + $item['goods_price1']) * 100;
+                                                                $percent = ($room_op['r_sale_price_won'] + $item['goods_price2_won']) / ($room_op['r_price_won'] + $item['goods_price1_won']) * 100;
                                                                 $percent = 100 - $percent;
                                                                 $percent = round($percent, 2);
                                                             }
@@ -1062,14 +1062,14 @@
 
                                                                     <div class="price-strike-container">
                                                                         옵션금액: <span class="price-strike room_price_day"
-                                                                                    data-price="<?= $room_op['r_price'] ?>"></span>
+                                                                                    data-price="<?= $room_op['r_price_won'] ?>"></span>
                                                                         <span class="room_price_day_sale"
-                                                                              data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span>원
+                                                                              data-price="<?= $room_op['r_sale_price_won'] ?>"><?= number_format($room_op['r_sale_price_won']) ?></span>원
                                                                     </div>
                                                                     <span class="total">
                                                                         객실금액: <span class="price-strike hotel_price_day"
-                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 원</span>
-                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 원
+                                                                                    data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won']) ?> 원</span>
+                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won']) ?></span> 원
                                                                     </span>
                                                                     <?php if ($isSale) { ?>
                                                                         <div class="discount">
@@ -1086,8 +1086,8 @@
                                                                     <p>
                                                                         <span class="price totalPrice"
                                                                               id="<?= $room_op['rop_idx'] ?>"
-                                                                              data-price="<?= $item['goods_price2'] ?>">
-                                                                            <?= number_format($room_op['r_sale_price'] + $item['goods_price2']) ?>
+                                                                              data-price="<?= $item['goods_price2_won'] ?>">
+                                                                            <?= number_format($room_op['r_sale_price_won'] + $item['goods_price2_won']) ?>
                                                                         </span> 원
                                                                     </p>
                                                                     <button type="button" class="book-button">예약하기
@@ -1156,8 +1156,8 @@
                                                                            class="input_day_qty onlynum input_day_qty_<?= $item['idx'] ?>"
                                                                            value="1"
                                                                            data-op="<?= $item['idx'] ?>"
-                                                                           data-price="<?= $item['goods_price1'] ?>"
-                                                                           data-sale_price="<?= $item['goods_price2'] ?>"
+                                                                           data-price="<?= $item['goods_price1_won'] ?>"
+                                                                           data-sale_price="<?= $item['goods_price2_won'] ?>"
                                                                            style="text-align: center; width: 100%; border: 1px solid #dbdbdb"
                                                                            readonly
                                                                            data-id="<?= $item["idx"] ?>">
@@ -1171,11 +1171,11 @@
 <!--                                                        </td>-->
                                                         <?php
                                                         $isSale = true;
-                                                        if ($item['goods_price1'] == $item['goods_price2']) {
+                                                        if ($item['goods_price1_won'] == $item['goods_price2_won']) {
                                                             $isSale = false;
                                                         }
                                                         if ($isSale) {
-                                                            $percent = $item['goods_price2'] / $item['goods_price1'] * 100;
+                                                            $percent = $item['goods_price2_won'] / $item['goods_price1_won'] * 100;
                                                             $percent = 100 - $percent;
                                                             $percent = round($percent, 2);
                                                         }
@@ -1185,8 +1185,8 @@
 
                                                                     <span class="total">
                                                                         객실금액: <span class="price-strike hotel_price_day"
-                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 원</span>
-                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 원
+                                                                                    data-price="<?= $item['goods_price1_won'] ?>"><?= number_format($item['goods_price1_won']) ?> 원</span>
+                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2_won']) ?></span> 원
                                                                     </span>
                                                                 <?php if ($isSale) { ?>
                                                                     <div class="discount">
@@ -1205,8 +1205,8 @@
                                                                 <p>
                                                                         <span class="price totalPrice"
                                                                               id="<?= $item['idx'] ?>"
-                                                                              data-price="<?= $item['goods_price2'] ?>">
-                                                                            <?= number_format($item['goods_price2']) ?>
+                                                                              data-price="<?= $item['goods_price2_won'] ?>">
+                                                                            <?= number_format($item['goods_price2_won']) ?>
                                                                         </span> 원
                                                                 </p>
                                                                 <button type="button" class="book-button">예약하기</button>
