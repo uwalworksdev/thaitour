@@ -754,7 +754,6 @@ class TourRegistController extends BaseController
         $product_code_1 = '';
         if ($product_idx) {
             $sql = " select * from tbl_product_mst where product_idx = '" . $product_idx . "'";
-			write_log($sql);
             $row = $this->connect->query("$sql")->getResultArray()[0];
             $product_code_1 = $row["product_code_1"];
             $product_code_2 = $row["product_code_2"];
@@ -1043,6 +1042,7 @@ class TourRegistController extends BaseController
             "code_populars" => $code_populars ?? '',
             "available_period" => $available_period ?? '',
             "deadline_time" => $deadline_time ?? '',
+            "deadline_date" => $deadline_date ?? '',
             "product_more" => $product_more ?? '',
             "product_contents_m" => $product_contents_m ?? '',
         ];
