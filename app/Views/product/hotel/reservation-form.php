@@ -238,15 +238,15 @@
                             ?>
                             <div class="item-info-r">
                                 <span>객실 <?= $number_room ?>개 X <?= $number_day ?>박</span>
-                                <span class="font-bold"><?= number_format($last_price) ?>바트</span>
+                                <span class="font-bold"><?= number_format($last_price) ?> 바트</span>
                             </div>
                             <div class="item-info-r item-info-r-border-b">
                                 <span>세금&서비스비용</span>
-                                <span class="font-bold"><?= number_format($extra_cost) ?>바트</span>
+                                <span class="font-bold"><?= number_format($extra_cost) ?> 바트</span>
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><?= number_format($order_price) ?>바트</span>
+                                <span><?= number_format($order_price) ?> 바트</span>
                             </div>
                             <p class="below-des-price">
                                 · 체크인하시려면 3일 전에 숙소로 연락해 주세요<br>· 선택하신 객실 유형의 체크인 시간은 14:00~24:00 사이,
@@ -291,6 +291,29 @@
     </div>
     <script>
         $(document).ready(function () {
+
+            $("#save_id").click(function () {
+                if ($(this).is(":checked")) {
+                    $("#order_user_name").val(`<?=session("member.name")?>`);
+                    const email = `<?=session("member.email")?>`;
+                    const emailArr = email.split("@");
+                    $("#email_1").val(emailArr[0] ?? "");
+                    $("#email_2").val(emailArr[1] ?? "");
+                    const phone = `<?=session("member.phone")?>`;
+                    const phoneArr = phone.split("-");
+                    $("#phone_1").val(phoneArr[0] ?? "");
+                    $("#phone_2").val(phoneArr[1] ?? "");
+                    $("#phone_3").val(phoneArr[2] ?? "");
+                } else {
+                    $("#order_user_name").val("");
+                    $("#email_1").val("");
+                    $("#email_2").val("");
+                    $("#phone_1").val("");
+                    $("#phone_2").val("");
+                    $("#phone_3").val("");
+                }
+            });
+
             $('.item_check_term_').click(function () {
                 $(this).toggleClass('checked_');
                 let input = $(this).find('input');

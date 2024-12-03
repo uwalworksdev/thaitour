@@ -87,7 +87,7 @@
                             <strong>합계</strong>
                         </span>
                         <strong>
-                            <span id="total_sum" class="total_sum">0</span> 원
+                            <span id="total_sum" class="total_sum">0</span> 바트
                         </strong>
                     </p>
                 </div>

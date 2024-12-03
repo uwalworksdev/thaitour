@@ -180,21 +180,21 @@
                     </div>
                     <div>
                         <p class="vehicle_synthetic__ttl">차량가격</p>
-                        <div class="vehicle_all_price"><i id="all_price">0</i><span>원 (<i id="all_price_baht">0</i>바트)</span></div>
+                        <div class="vehicle_all_price"><i id="all_price">0</i><span> 바트 (<i id="all_price_baht">0</i>원)</span></div>
                         </div>
                     <div class="vehicle_minus">
                         <span class="minus_ico"></span>
                     </div>
                     <div>
                         <p class="vehicle_synthetic__ttl">할인</p>
-                        <div class="vehicle_all_price">0<span>원 (0바트)</span></div>
+                        <div class="vehicle_all_price">0<span> 바트 (0원)</span></div>
                     </div>
                     <div class="vehicle_equal">
                         <span class="equal_ico"></span>
                     </div>
                     <div>
                         <p class="vehicle_synthetic__ttl">결제예정금액</p>
-                        <div class="vehicle_price"><i id="final_price">0</i><span>원 (<i id="final_price_baht">0</i>바트)</span></div>
+                        <div class="vehicle_price"><i id="final_price">0</i><span> 바트 (<i id="final_price_baht">0</i>원)</span></div>
                     </div>
                     <div class="vehicle_coupon">
                         <button class="coupon_btn">쿠폰선택</button>
@@ -549,12 +549,12 @@
 
             const price_str = Math.round(products[i]["car_price"]);
 
-            const price_baht_str = Math.round(products[i]["car_price_baht"]);
+            const price_won_str = Math.round(products[i]["car_price_won"]);
 
             let product_arr = $("#product_arr").val().split(",").filter(Boolean);
 
             product_list += 
-            `<tr class="product_${products[i]["cs_idx"]}" data-price="${price_str}" data-price_baht="${price_baht_str}" data-code="${code_no}">
+            `<tr class="product_${products[i]["cs_idx"]}" data-price="${price_str}" data-price_won="${price_won_str}" data-code="${code_no}">
                 <td>
                     <div class="vehicle_image">
                         <div class="img_box img_box_15">
@@ -583,7 +583,7 @@
                 </td>
                 <td>
                     <div class="vehicle_price">
-                        ${price_str.toLocaleString('ko-KR')}<span>원 (${price_baht_str.toLocaleString('ko-KR')}바트)</span>
+                        ${price_str.toLocaleString('ko-KR')}<span> 바트 (${price_won_str.toLocaleString('ko-KR')} 원)</span>
                     </div>
                     <div class="vehicle_options">
                         <label class="vehicle_options__label__vehicle_cnt" for="vehicle_cnt">차량수량</label>
@@ -682,11 +682,11 @@
         $("#product_vehicle_list_selected > tr").each(function() {
             
             const price = Number($(this).data("price")) ?? 0;
-            const price_baht = Number($(this).data("price_baht")) ?? 0;
+            const price_won = Number($(this).data("price_won")) ?? 0;
             const cnt = Number($(this).data("cnt")) ?? 0;
 
             totalPrice += price * cnt;
-            totalPriceBaht += price_baht * cnt;
+            totalPriceBaht += price_won * cnt;
             totalCnt += cnt;
             arr_cnt.push(cnt);
         });

@@ -65,6 +65,8 @@ class MainDispModel extends Model
 
     public function List(int $code_no, string $keyword = null)
     {
+        helper(['setting']);
+        $setting = homeSetInfo();
         $builder = $this;
         $builder->select('tbl_main_disp.*, tbl_product_mst.*');
         $builder->join('tbl_product_mst', 'tbl_main_disp.product_idx = tbl_product_mst.product_idx', 'left');
@@ -75,7 +77,15 @@ class MainDispModel extends Model
 
         $builder->where('tbl_product_mst.is_view', 'Y');
 
-        return $builder;
+        $items = $builder->findAll();
+
+        foreach ($items as $key => $value) {
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $product_price_won = $product_price * $baht_thai;
+            $items[$key]['product_price_won'] = $product_price_won;
+        }
+        return $items;
     }
 }
 

@@ -7,8 +7,8 @@ class CouponMst extends Model
     protected $table = 'tbl_coupon_mst';
     protected $primaryKey = 'idx';
     protected $allowedFields = [
-        "coupon_name", "publish_type", "dc_type", "coupon_pe", "coupon_price"
-        , "exp_start_day", "exp_end_day", "etc_memo", "state", "member_grade", "contents", "regdate"
+        "coupon_name", "publish_type", "dc_type", "coupon_pe", "coupon_price", "max_coupon_price"
+        , "exp_start_day", "exp_end_day", "etc_memo", "state", "member_grade", "coupon_contents", "regdate"
         , "ufile1", "rfile1", "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "ufile7", "rfile7"
     ];
 
@@ -35,6 +35,12 @@ class CouponMst extends Model
 
         $coupon_list = $builder->get()->getResultArray();
 
+        foreach($coupon_list as $key => $value) {
+            $coupon_list[$key]["member_grade_name"] = $this->db->table("tbl_member_grade")
+                                                                ->where("g_idx", $value["member_grade"])
+                                                                ->get()->getRowArray()["grade_name"];
+        }
+
         $num = $nTotalCount - $nFrom;
 
         return [
@@ -59,7 +65,9 @@ class CouponMst extends Model
             ARRAY_FILTER_USE_KEY
         );
 
-        return $this->insert($filteredData);
+        $this->insert($filteredData);
+        return $this->getInsertID();
+
     }
 
     public function updateData($id, $data)

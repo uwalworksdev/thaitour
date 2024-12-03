@@ -11,6 +11,9 @@ class AjaxMainController extends BaseController {
 
     public function get_best()  
 	{
+		helper(['setting']);
+        $setting = homeSetInfo();
+
         $list  = $this->request->getPost('list');
         $code  = $this->request->getPost('code');
         $db    = \Config\Database::connect();
@@ -36,6 +39,13 @@ class AjaxMainController extends BaseController {
  
         $rows  = $db->query($sql)->getResultArray();
 
+		foreach ($rows as $key => $value) {
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $product_price_won = $product_price * $baht_thai;
+            $rows[$key]['product_price_won'] = $product_price_won;
+        }
+
         $msg   = "";
 		foreach ($rows as $item): 
 			     $img_dir   = img_link($item['product_code_1']);  
@@ -53,8 +63,8 @@ class AjaxMainController extends BaseController {
 				 $msg .= '<img class="ico_star" src="/images/ico/ico_star.svg" alt="">';
 				 $msg .= '<span class="star_avg">4.7</span>';
 				 $msg .= '<span class="star_review_cnt">(954)</span></div>';
-				 $msg .= '<div class="prd_price_ko">'. number_format($item['original_price']) .'<span>원</span></div>';
-				 $msg .= '<div class="prd_price_thai">6,000 <span>바트</span></div>';
+				 $msg .= '<div class="prd_price_ko">'. number_format($item['original_price']) .'<span> 바트</span></div>';
+				 $msg .= '<div class="prd_price_thai">'. number_format($item['product_price_won']) .'<span>원</span></div>';
 			     $msg .= '</a>';
 		endforeach;
  
@@ -68,6 +78,9 @@ class AjaxMainController extends BaseController {
 
     public function set_seq()  
 	{
+		helper(['setting']);
+        $setting = homeSetInfo();
+
         $type     = $this->request->getPost('type');
         $code_no  = $this->request->getPost('local');
         $db    = \Config\Database::connect();
@@ -78,6 +91,13 @@ class AjaxMainController extends BaseController {
         write_log("AjaxMainController- ". $sql);
  
         $rows  = $db->query($sql)->getResultArray();
+
+		foreach ($rows as $key => $value) {
+            $product_price = (float)$value['product_price'];
+            $baht_thai = (float)($setting['baht_thai'] ?? 0);
+            $product_price_won = $product_price * $baht_thai;
+            $rows[$key]['product_price_won'] = $product_price_won;
+        }
 
         $msg   = "";
 		$seq   = 0;
@@ -90,8 +110,8 @@ class AjaxMainController extends BaseController {
 			$msg .= '<img src="/data/'. $img_dir .'/'. $item3['ufile1'] .'" alt="main">';
 			$msg .= '</div>';
 			$msg .= '<div class="prd_name">'. $item3['product_name'] .'</div>';
-			$msg .= '<div class="prd_price_ko">'. number_format($item3['original_price']) .'<span>원</span></div>';
-			$msg .= '<div class="prd_price_thai">6,000 <span>바트</span></div>';
+			$msg .= '<div class="prd_price_ko">'. number_format($item3['original_price']) .'<span> 바트</span></div>';
+			$msg .= '<div class="prd_price_thai">'. number_format($item3['product_price_won']) .'<span>원</span></div>';
 			$msg .= '<span class="number_item_label number_one">'. $seq .'</span>';
 			$msg .= '</a>';
 			$msg .= '</div>';

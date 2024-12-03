@@ -16,7 +16,7 @@
 
 function private_key()
 {
-    return "gkdlghwn!@12";
+    return env("PRIVATE_KEY");
 }
 
 function getPolicy($p_idx)

@@ -173,6 +173,15 @@
                                 </tr>
 
                                 <tr>
+                                    <th>최대사용금액</th>
+                                    <td>
+                                        <input type="text" id="max_coupon_price" name="max_coupon_price"
+                                                value="<?= isset($max_coupon_price) ? $max_coupon_price : '' ?>"
+                                                style="width:100px;" class="input_txt onlynum"/> 원
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <th>발행일수</th>
                                     <td>
                                         <div style="text-align:left;">
@@ -207,8 +216,8 @@
                                 <tr>
                                     <th>상태설정</th>
                                     <td>
-                                        <!-- <textarea name="contents" id="contents" rows="10" cols="100" class="input_txt"
-                                            style="width:100%; height:400px; display:none;"><?= viewSQ($contents) ?></textarea>
+                                        <textarea name="coupon_contents" id="coupon_contents" rows="10" cols="100" class="input_txt"
+                                            style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
                                                 var oEditors = [];
 
@@ -217,7 +226,7 @@
 
                                                 nhn.husky.EZCreator.createInIFrame({
                                                     oAppRef: oEditors,
-                                                    elPlaceHolder: "contents",
+                                                    elPlaceHolder: "coupon_contents",
                                                     sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                     htParams: {
                                                         bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -234,7 +243,7 @@
                                                     },
                                                     fCreator: "createSEditor2"
                                                 });
-                                        </script> -->
+                                        </script>
                                     </td>
                                 </tr>
 
@@ -556,9 +565,9 @@
 
         var frm = document.frm;
 
-        // if(typeof oEditors != "undefined") {
-        //     oEditors?.getById["contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
-        // }
+        if(typeof oEditors != "undefined") {
+            oEditors?.getById["coupon_contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
+        }
 
         if (frm.coupon_name.value == "") {
             frm.coupon_name.focus();

@@ -570,6 +570,7 @@ class MyPage extends BaseController
         $data['name'] = $member['user_name'];
         $data['email'] = $member['user_email'];
         $data['level'] = $member['user_level'];
+        $data['phone'] = $member['user_mobile'];
 
         session()->set("member", $data);
         echo "정보수정되었습니다.";

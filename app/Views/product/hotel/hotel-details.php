@@ -590,12 +590,12 @@
                                                                 옵션금액: <span class="room_price_day"
                                                                             data-price="<?= $room_op['r_price'] ?>"></span>
                                                                 <span class="room_price_day_sale"
-                                                                      data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span>바트
+                                                                      data-price="<?= $room_op['r_sale_price'] ?>"><?= number_format($room_op['r_sale_price']) ?></span> 바트
                                                             </div>
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>바트</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>바트
+                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 바트</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 바트
                                                             </span>
                                                             <?php if ($isSale) { ?>
                                                                 <div class="discount">
@@ -700,8 +700,8 @@
 
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day"
-                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>바트</span>
-                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>바트
+                                                                            data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 바트</span>
+                                                                <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 바트
                                                             </span>
                                                         <?php if ($isSale) { ?>
                                                             <div class="discount">
@@ -802,11 +802,11 @@
                                                                 <span class="price_content">30%할인</span>
                                                             </div>
                                                             <div class="price-strike-container">
-                                                                <span class="price-strike">202,043바트</span>
-                                                                <span class="price">160,430</span>바트
+                                                                <span class="price-strike">202,043 바트</span>
+                                                                <span class="price">160,430</span> 바트
                                                             </div>
                                                             <div class="flex-total">
-                                                                <span class="total">총금액: 5,091,454바트</span>
+                                                                <span class="total">총금액: 5,091,454 바트</span>
                                                                 <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                                             </div>
                                                         </div>
@@ -884,11 +884,11 @@
                                                                 <span class="price_content">30%할인</span>
                                                             </div>
                                                             <div class="price-strike-container">
-                                                                <span class="price-strike">202,043바트</span>
-                                                                <span class="price">160,430</span>바트
+                                                                <span class="price-strike">202,043 바트</span>
+                                                                <span class="price">160,430</span> 바트
                                                             </div>
                                                             <div class="flex-total">
-                                                                <span class="total">총금액: 5,091,454바트</span>
+                                                                <span class="total">총금액: 5,091,454 바트</span>
                                                                 <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                                             </div>
                                                         </div>
@@ -1068,8 +1068,8 @@
                                                                     </div>
                                                                     <span class="total">
                                                                         객실금액: <span class="price-strike hotel_price_day"
-                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>바트</span>
-                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>바트
+                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 바트</span>
+                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 바트
                                                                     </span>
                                                                     <?php if ($isSale) { ?>
                                                                         <div class="discount">
@@ -1185,8 +1185,8 @@
 
                                                                     <span class="total">
                                                                         객실금액: <span class="price-strike hotel_price_day"
-                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?>바트</span>
-                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span>바트
+                                                                                    data-price="<?= $item['goods_price1'] ?>"><?= number_format($item['goods_price1']) ?> 바트</span>
+                                                                        <span class="hotel_price_day_sale"><?= number_format($item['goods_price2']) ?></span> 바트
                                                                     </span>
                                                                 <?php if ($isSale) { ?>
                                                                     <div class="discount">
@@ -1243,11 +1243,11 @@
                                                                 <span class="price_content">30%할인</span>
                                                             </div>
                                                             <div class="price-strike-container">
-                                                                <span class="price-strike">202,043바트</span>
-                                                                <span class="price">160,430</span>바트
+                                                                <span class="price-strike">202,043 바트</span>
+                                                                <span class="price">160,430</span> 바트
                                                             </div>
                                                             <div class="flex-total">
-                                                                <span class="total">총금액: 5,091,454바트</span>
+                                                                <span class="total">총금액: 5,091,454 바트</span>
                                                                 <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                                             </div>
                                                             <button class="book-button openPopupBtn">예약하기</button>
@@ -1278,11 +1278,11 @@
                                                                 <span class="price_content">40%할인</span>
                                                             </div>
                                                             <div class="price-strike-container">
-                                                                <span class="price-strike">202,043바트</span>
-                                                                <span class="price">100,430</span>바트
+                                                                <span class="price-strike">202,043 바트</span>
+                                                                <span class="price">100,430</span> 바트
                                                             </div>
                                                             <div class="flex-total">
-                                                                <span class="total">총금액: 5,091,454바트</span>
+                                                                <span class="total">총금액: 5,091,454 바트</span>
                                                                 <span class="details">객실 1개 × 36박 (세금 포함)</span>
                                                             </div>
                                                             <button class="book-button openPopupBtn">예약하기</button>
@@ -1585,7 +1585,7 @@
                                     $discount = $coupon["coupon_pe"] . "%";
                                     $dis = $coupon["coupon_pe"];
                                 } else if ($coupon["dc_type"] == "D") {
-                                    $discount = number_format($coupon["coupon_price"]) . "바트";
+                                    $discount = number_format($coupon["coupon_price"]) . " 바트";
                                     $dis = $coupon["coupon_price"];
                                 } else {
                                     $discount = "회원등급에 따름";
@@ -1627,18 +1627,18 @@
                             <div class="des-above">
                                 <div class="item">
                                     <span class="text-gray">총 주문금액</span>
-                                    <span class="text-gray total_price" data-price="">160,430바트</span>
+                                    <span class="text-gray total_price" data-price="">160,430 바트</span>
                                 </div>
                                 <div class="item">
                                     <span class="text-gray">할인금액</span>
-                                    <span class="text-gray discount" data-price="">16,040바트</span>
+                                    <span class="text-gray discount" data-price="">16,040 바트</span>
                                 </div>
                             </div>
                             <div class="des-below">
                                 <div class="price-below">
                                     <span>최종결제금액</span>
                                     <p class="price-popup"><span class="last_price" data-price="">144,000</span><span
-                                                class="text-gray">바트</span></p>
+                                                class="text-gray"> 바트</span></p>
                                 </div>
                             </div>
                             <button type="button" class="btn_accept_popup">
@@ -1698,7 +1698,7 @@
 
                     total_price = room_op_price_sale + total_price * parseInt(room_qty);
 
-                    $("#popup").find(".total_price").text(total_price.toLocaleString('ko-KR') + "바트");
+                    $("#popup").find(".total_price").text(total_price.toLocaleString('ko-KR') + " 바트");
                     $("#popup").find(".total_price").attr("data-price", total_price);
                     $("#popup").attr("data-price", price);
                     $("#popup").attr("data-roop", room_op_idx);
@@ -1799,7 +1799,7 @@
                         }
                     }
 
-                    $("#popup").find(".discount").text(price_discount.toLocaleString('ko-KR') + "바트");
+                    $("#popup").find(".discount").text(price_discount.toLocaleString('ko-KR') + " 바트");
                     $("#popup").find(".last_price").text(last_price.toLocaleString('ko-KR'));
                     $("#popup").find(".discount").attr("data-price", price_discount);
                     $("#popup").find(".last_price").attr("data-price", last_price);

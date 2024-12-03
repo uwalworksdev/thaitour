@@ -61,9 +61,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
+                                <td class="price">1,467,360 바트</td>
+                                <td class="discount">0 바트</td>
+                                <td class="total">1,230,000 바트</td>
                             </tr>
                             <tr>
                                 <td class="custom-td-product-info">
@@ -82,9 +82,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
+                                <td class="price">1,467,360 바트</td>
+                                <td class="discount">0 바트</td>
+                                <td class="total">1,230,000 바트</td>
                             </tr>
                         </tbody>
                     </table>
@@ -113,7 +113,7 @@
                             <div class="des-space-p">
                                 <div class="des-item">
                                     <span class="space-left">금액</span>
-                                    <span>1,467,360 원</span>
+                                    <span>1,467,360 바트</span>
                                 </div>
                                 <div class="des-item">
                                     <span class="space-left">할인금액</span>
@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="des-item">
                                     <span class="space-left">결제예정금액</span>
-                                    <span>1,230,000 원</span>
+                                    <span>1,230,000 바트</span>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                             <div class="des-space-p">
                                 <div class="des-item">
                                     <span class="space-left">금액</span>
-                                    <span>1,467,360 원</span>
+                                    <span>1,467,360 바트</span>
                                 </div>
                                 <div class="des-item">
                                     <span class="space-left">할인금액</span>
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="des-item">
                                     <span class="space-left">결제예정금액</span>
-                                    <span>1,230,000 원</span>
+                                    <span>1,230,000 바트</span>
                                 </div>
                             </div>
                         </div>
@@ -199,9 +199,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
+                                <td class="price">1,467,360 바트</td>
+                                <td class="discount">0 바트</td>
+                                <td class="total">1,230,000 바트</td>
                             </tr>
                         </tbody>
                     </table>
@@ -230,7 +230,7 @@
                             <div class="des-space-p">
                                 <div class="des-item">
                                     <span class="space-left">금액</span>
-                                    <span>1,467,360 원</span>
+                                    <span>1,467,360 바트</span>
                                 </div>
                                 <div class="des-item">
                                     <span class="space-left">할인금액</span>
@@ -238,7 +238,7 @@
                                 </div>
                                 <div class="des-item">
                                     <span class="space-left">결제예정금액</span>
-                                    <span>1,230,000 원</span>
+                                    <span>1,230,000 바트</span>
                                 </div>
                             </div>
                         </div>
@@ -249,11 +249,11 @@
                 <h3 class="title-cr">선택상품 : 3건</h3>
                 <div class="item-info-cr">
                     <span>예상 합계금액</span>
-                    <span>1,506,360 원</span>
+                    <span>1,506,360 바트</span>
                 </div>
                 <div class="item-info-cr">
                     <span>할일금액</span>
-                    <span>0 원</span>
+                    <span>0 바트</span>
                 </div>
                 <div class="item-info-total-cr">
                     <span>총 결제금액 </span>
@@ -306,9 +306,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
+                                <td class="price">1,467,360 바트</td>
+                                <td class="discount">0 바트</td>
+                                <td class="total">1,230,000 바트</td>
                             </tr>
                         </tbody>
                     </table>

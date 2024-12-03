@@ -1626,7 +1626,7 @@ class Product extends BaseController
             $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
 
             $price = (float)$value['price'];
-            $price_baht = round($price / $baht_thai);
+            $price_baht = round($price * $baht_thai);
             $data['golfVehicles'][$key]['price_baht'] = $price_baht;
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
@@ -1634,7 +1634,7 @@ class Product extends BaseController
 
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float)$value['price'];
-            $price_baht = round($price / $baht_thai);
+            $price_baht = round($price * $baht_thai);
             $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
         }
 
@@ -1665,7 +1665,7 @@ class Product extends BaseController
 
         foreach ($data['coupons'] as $key => $coupon) {
             $coupon_price = (float)$coupon['coupon_price'];
-            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $coupon['coupon_price_baht'] = round($coupon_price * $baht_thai);
             $data['coupons'][$key] = $coupon;
         }
 
@@ -1698,7 +1698,7 @@ class Product extends BaseController
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
             $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-            $option_price_baht = round($option_price / $baht_thai);
+            $option_price_baht = round($option_price * $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
 
@@ -1715,7 +1715,7 @@ class Product extends BaseController
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
             $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-            $option_price_baht = round($option_price / $baht_thai);
+            $option_price_baht = round($option_price * $baht_thai);
             $options[$key]['option_price_baht'] = $option_price_baht;
         }
 
@@ -1742,7 +1742,7 @@ class Product extends BaseController
         $data['hour']             = $hour;
         $data['minute']           = $minute;
         $data['total_price']      = $option_price * $people_adult_cnt;
-        $data['total_price_baht'] = round($data['total_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_baht'] = round($data['total_price'] * (float)($this->setting['baht_thai'] ?? 0));
 
         $total_vehicle_price = 0;
         $total_vehicle_price_baht = 0;
@@ -1753,7 +1753,7 @@ class Product extends BaseController
             if ($value > 0) {
                 $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
                 $info['cnt'] = $value;
-                $info['price_baht'] = round((float)$info['price'] / (float)($this->setting['baht_thai'] ?? 0));
+                $info['price_baht'] = round((float)$info['price'] * (float)($this->setting['baht_thai'] ?? 0));
                 $vehicle_arr[] = $info;
 
                 $total_vehicle_price += $info['price'] * $value;
@@ -1774,10 +1774,10 @@ class Product extends BaseController
             if ($coupon['dc_type'] == "P") {
                 $price = $total_vehicle_price + $data['total_price'];
                 $data['discount'] = $price * ($coupon['coupon_pe'] / 100);
-                $data['discount_baht'] = round((float)$data['discount'] / (float)($this->setting['baht_thai'] ?? 0));
+                $data['discount_baht'] = round((float)$data['discount'] * (float)($this->setting['baht_thai'] ?? 0));
             } else if ($coupon['dc_type'] == "D") {
                 $data['discount'] = $coupon['coupon_price'];
-                $data['discount_baht'] = round((float)$coupon['coupon_price'] / (float)($this->setting['baht_thai'] ?? 0));
+                $data['discount_baht'] = round((float)$coupon['coupon_price'] * (float)($this->setting['baht_thai'] ?? 0));
             }
         }
 
@@ -1986,19 +1986,19 @@ class Product extends BaseController
         $data['description'] = $this->request->getVar('description');
         $data['id_kakao'] = $this->request->getVar('id_kakao');
         $data['time_line'] = $this->request->getVar('time_line');
-        $data['email_name'] = $this->request->getPost('email_1') ?? "";
-        $data['email_host'] = $this->request->getPost('email_2') ?? "";
-        $data['order_gender_list'] = $this->request->getPost('companion_gender') ?? "";
-        $data['order_user_name'] = $this->request->getPost('order_user_name') ?? "";
-        $data['order_user_first_name_en'] = $this->request->getPost('order_user_first_name_en') ?? "";
-        $data['order_user_last_name_en'] = $this->request->getPost('order_user_last_name_en') ?? "";
+        $data['email_name'] = $this->request->getVar('email_1') ?? "";
+        $data['email_host'] = $this->request->getVar('email_2') ?? "";
+        $data['order_gender_list'] = $this->request->getVar('companion_gender') ?? "";
+        $data['order_user_name'] = $this->request->getVar('order_user_name') ?? "";
+        $data['order_user_first_name_en'] = $this->request->getVar('order_user_first_name_en') ?? "";
+        $data['order_user_last_name_en'] = $this->request->getVar('order_user_last_name_en') ?? "";
         $data['order_user_email'] = $data['email_name'] . "@" . $data['email_host'];
-        $data['radio_phone'] = $this->request->getPost('radio_phone') ?? "";
-        $data['phone_1'] = $this->request->getPost('phone_1') ?? "";
-        $data['phone_2'] = $this->request->getPost('phone_2') ?? "";
-        $data['phone_3'] = $this->request->getPost('phone_3') ?? "";
-        $data['phone_thai'] = $this->request->getPost('phone_thai') ?? "";
-        $data['local_phone'] = $this->request->getPost('local_phone') ?? "";
+        $data['radio_phone'] = $this->request->getVar('radio_phone') ?? "";
+        $data['phone_1'] = $this->request->getVar('phone_1') ?? "";
+        $data['phone_2'] = $this->request->getVar('phone_2') ?? "";
+        $data['phone_3'] = $this->request->getVar('phone_3') ?? "";
+        $data['phone_thai'] = $this->request->getVar('phone_thai') ?? "";
+        $data['local_phone'] = $this->request->getVar('local_phone') ?? "";
         if ($data['radio_phone'] == "kor") {
             $data['order_user_phone'] = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
         } else {
@@ -2006,9 +2006,9 @@ class Product extends BaseController
         }
         $idx = $this->request->getVar('idx');
         $data['idx'] = explode(',', $idx);
-        $data['adult_price_bath'] = round($data['people_adult_price'] / (float)($this->setting['baht_thai'] ?? 0));
-        $data['kids_price_bath'] = round($data['people_kids_price'] / (float)($this->setting['baht_thai'] ?? 0));
-        $data['baby_price_bath'] = round($data['people_baby_price'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['adult_price_bath'] = round($data['people_adult_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['kids_price_bath'] = round($data['people_kids_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['baby_price_bath'] = round($data['people_baby_price'] * (float)($this->setting['baht_thai'] ?? 0));
         $data['total_price_product'] = $data['people_adult_price'] + $data['people_kids_price'] + $data['people_baby_price'];
         $data['total_price_product_bath'] = ($data['adult_price_bath']) + ($data['kids_price_bath']) + ($data['baby_price_bath']);
         $data['adult_price_total'] = ($data['people_adult_price']);
@@ -2016,7 +2016,7 @@ class Product extends BaseController
         $data['baby_price_total'] = ($data['people_baby_price']);
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
         $data['final_discount'] = (float)($this->request->getVar('final_discount') ?? 0);
-        $data['final_discount_bath'] = round($data['final_discount'] / (float)($this->setting['baht_thai'] ?? 0));
+        $data['final_discount_bath'] = round($data['final_discount'] * (float)($this->setting['baht_thai'] ?? 0));
 
         $data['product'] = $this->productModel->find($data['product_idx']);
 
@@ -2224,7 +2224,7 @@ class Product extends BaseController
 
         foreach ($data['coupons'] as $key => $coupon) {
             $coupon_price = (float)$coupon['coupon_price'];
-            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $coupon['coupon_price_baht'] = round($coupon_price * $baht_thai);
             $data['coupons'][$key] = $coupon;
         }
 
@@ -2251,13 +2251,13 @@ class Product extends BaseController
             }
 
             $price = (float)$row['tour_price'];
-            $price_baht = round($price / $baht_thai);
+            $price_baht = round($price * $baht_thai);
 
             $price_kids = (float)$row['tour_price_kids'];
-            $price_baht_kids = round($price_kids / $baht_thai);
+            $price_baht_kids = round($price_kids * $baht_thai);
 
             $price_baby = (float)$row['tour_price_baby'];
-            $price_baht_baby = round($price_baby / $baht_thai);
+            $price_baht_baby = round($price_baby * $baht_thai);
 
             $groupedData[$infoIndex]['tours'][] = [
                 'tours_idx' => $row['tours_idx'],
@@ -2341,6 +2341,62 @@ class Product extends BaseController
         $data['reviewCategories'] = $this->getReviewCategories($product_idx) ?? [];
 
         return $this->renderView('tours/tour-details', $data);
+    }
+
+    public function confirmInfo() {
+        $data['product_idx'] = $this->request->getVar('product_idx');
+        $data['product'] = $this->productModel->getProductDetails($data['product_idx']);
+        $data['tours_idx'] = $this->request->getVar('tours_idx');
+        $data['tour'] = $this->tourProducts->find($data['tours_idx']);
+        $data['order_date'] = $this->request->getVar('order_date');
+        $data['time_line'] = $this->request->getVar('time_line');
+        $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
+        $data['people_adult_price'] = $this->request->getVar('people_adult_price');
+        $data['people_kids_cnt'] = $this->request->getVar('people_kids_cnt');
+        $data['people_kids_price'] = $this->request->getVar('people_kids_price');
+        $data['people_baby_cnt'] = $this->request->getVar('people_baby_cnt');
+        $data['people_baby_price'] = $this->request->getVar('people_baby_price');
+        $data['total_pay'] = $this->request->getVar('total_pay');
+        $idx = $this->request->getVar('idx');
+        $data['idx'] = $idx;
+        $data['adult_price_bath'] = round($data['people_adult_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['kids_price_bath'] = round($data['people_kids_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['baby_price_bath'] = round($data['people_baby_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_product'] = $data['people_adult_price'] + $data['people_kids_price'] + $data['people_baby_price'];
+        $data['total_price_product_bath'] = ($data['adult_price_bath']) + ($data['kids_price_bath']) + ($data['baby_price_bath']);
+        $data['adult_price_total'] = ($data['people_adult_price']);
+        $data['kids_price_total'] = ($data['people_kids_price']);
+        $data['baby_price_total'] = ($data['people_baby_price']);
+        $data['tour_product'] = $this->tourProducts->find($data['tours_idx']);
+        $data['tour_info'] = $this->infoProducts->find($data['tour_product']['info_idx']);
+        $data['tour_option'] = [];
+        $data['option_price'] = [];
+        $data['option_price_bath'] = [];
+        $idxPairs = explode(',', $idx);
+
+        foreach ($idxPairs as $pair) {
+
+            list($id, $qty) = explode(':', trim($pair));
+            $id = trim($id); 
+            $qty = (int)trim($qty);
+            
+            $tourOption = $this->optionTours->find($id);
+            if ($tourOption) {
+                $tourOption['qty'] = $qty;
+                $data['tour_option'][] = $tourOption;
+                $data['option_price'][] = $tourOption['option_price'] * $qty;
+                $data['option_price_bath'][] = round(
+                    ($tourOption['option_price'] * $qty) / (float)($this->setting['baht_thai'] ?? 1)
+                );
+            }
+        }
+        $total_option_price_bath = array_sum($data['option_price_bath'] ?? []);
+        $total_option_price = array_sum($data['option_price'] ?? []);
+
+        $data['final_price'] = $data['total_price_product'] + $total_option_price - $data['final_discount'];
+        $data['inital_price'] = $data['total_price_product'] + $total_option_price;
+        $data['final_price_bath'] = $data['total_price_product_bath'] + $total_option_price_bath;
+        return $this->renderView('/product/tour/confirm-info', $data);
     }
 
     public function index9($code_no)
@@ -2627,17 +2683,6 @@ class Product extends BaseController
             $place_start_list = $this->codeModel->getByParentCode(48)->getResultArray();
 
             $place_end_list = $this->codeModel->getByParentCode(49)->getResultArray();
-
-            // foreach($products as $key => $value){
-            //     $osql = "select * from tbl_cars_option where product_code = '" . $value["product_code"] . "'";
-            //     $oresult = $this->db->query($osql);
-            //     $oresult = $oresult->getResultArray();
-            //     $products[$key]["options"] = $oresult;
-            //     $product_price = (float)$value['product_price'];
-            //     $baht_thai = (float)($setting['baht_thai'] ?? 0);
-            //     $product_price_baht = $product_price / $baht_thai;
-            //     $products[$key]['product_price_baht'] = $product_price_baht;
-            // }
 
             $data = [
                 'tab_active' => '7',
@@ -3279,7 +3324,7 @@ class Product extends BaseController
 
         foreach ($coupons as $key => $coupon) {
             $coupon_price = (float)$coupon['coupon_price'];
-            $coupon['coupon_price_baht'] = round($coupon_price / $baht_thai);
+            $coupon['coupon_price_baht'] = round($coupon_price * $baht_thai);
             $coupons[$key] = $coupon;
         }
 

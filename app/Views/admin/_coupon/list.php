@@ -56,7 +56,7 @@
                                 <th>번호</th>
                                 <th>이미지</th>
                                 <th>쿠폰명</th>
-                                <th>발행타입</th>
+                                <th>대상</th>
                                 <th>할인타입</th>
                                 <th>할인율</th>
                                 <th>사용기간</th>
@@ -69,7 +69,7 @@
                                 if ($nTotalCount == 0) {
                             ?>
                                 <tr>
-                                    <td colspan="8" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    <td colspan="9" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                 </tr>
                             <?php
                                 }
@@ -91,19 +91,20 @@
                                     </td>
                                     <td class="tac">
                                         <?php
-                                        switch ($row['publish_type']) {
-                                            case "M" :
-                                                echo "회원가입";
-                                                break;
+                                            // switch ($row['publish_type']) {
+                                            //     case "M" :
+                                            //         echo "회원가입";
+                                            //         break;
 
-                                            case "B" :
-                                                echo "생일쿠폰";
-                                                break;
+                                            //     case "B" :
+                                            //         echo "생일쿠폰";
+                                            //         break;
 
-                                            case "N" :
-                                                echo "일반쿠폰";
-                                                break;
-                                        }
+                                            //     case "N" :
+                                            //         echo "일반쿠폰";
+                                            //         break;
+                                            // }
+                                            echo $row['member_grade_name'];
                                         ?>
                                     </td>
                                     <td class="tac">
@@ -128,7 +129,7 @@
                                         }
                                         ?>
                                     </td>
-                                    <td class="tac">발행일로부터  일</td>
+                                    <td class="tac"><?php echo date("Y-m-d", strtotime($row["exp_start_day"])) . "~" . date("Y-m-d", strtotime($row["exp_end_day"]))?></td>
                                     <td class="tac">
                                         <?php
                                         if ($row["state"] == "Y") {
