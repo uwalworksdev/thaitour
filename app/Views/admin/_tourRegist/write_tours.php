@@ -64,6 +64,63 @@
             text-align: center;
         }
     </style>
+
+    <script>
+	$(function(){
+		var clareCalendar1 = {
+            dateFormat : 'yy-m-dd',
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+/* 			changeMonth : true, //월변경가능
+            changeYear : true, //년변경가능 */
+            showMonthAfterYear : true, //년 뒤에 월 표시
+            yearRange : '2023:2050',//2023~2050
+            inline : true,
+            /*minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            dateFormat: 'yy-mm-dd',
+            minDate:0,  
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect : function(dateText, inst) {
+                $("#datepicker1").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').minDate = moment($("#datepicker1").val());
+                })
+            }
+        };
+		
+		var clareCalendar2 = {
+            dateFormat : 'yy-m-dd',
+            monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월','7월','8월','9월','10월','11월','12월'],
+            dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+/* 			changeMonth : true, //월변경가능
+            changeYear : true, //년변경가능 */
+            dateFormat: 'yy-mm-dd',
+            showMonthAfterYear : true, //년 뒤에 월 표시
+            yearRange : '2023:2050',//2023~2050
+            inline : true,
+            minDate : 0,//현재날짜로 부터 이전 날짜 비활성화 */
+            prevText: '이전달',
+            nextText: '다음달',
+            currentText: '오늘',
+            yearSuffix: '년',
+            onSelect : function(dateText, inst) {
+                $("#datepicker2").val(dateText.split("-")[0]+"-"+dateText.split("-")[1]+"-"+dateText.split("-")[2]+"");
+                $('.deadline_date').each(function () {
+                    $(this).data('daterangepicker').maxDate = moment($("#datepicker2").val());
+                })
+            }
+        };
+		$("#datepicker1").datepicker(clareCalendar1);
+		$("#datepicker2").datepicker(clareCalendar2);
+		
+	});
+</script>
+
 <?php $back_url = "write"; ?>
     <script type="text/javascript">
         function checkForNumber(str) {
