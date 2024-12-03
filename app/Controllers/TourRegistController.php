@@ -874,6 +874,7 @@ class TourRegistController extends BaseController
             $code_populars = $row["code_populars"];
             $available_period = $row["available_period"];
             $deadline_time = $row["deadline_time"];
+            $deadline_date = $row["deadline_date"];
 
             $product_more = $row["product_more"];
             $product_contents_m = $row["product_contents_m"];
@@ -888,7 +889,7 @@ class TourRegistController extends BaseController
         $sql = "select user_id, AES_DECRYPT(UNHEX(user_name), '$private_key') AS user_name from tbl_member where user_level = '2'";
         $mresult = $this->connect->query($sql)->getResultArray();
 
-        $sql_o = " select * from tbl_product_option where status != 'N' ";
+        $sql_o = " select * from tbl_product_option where status != 'N' "; 
         $oresult = $this->connect->query($sql_o)->getResultArray();
 
         $sql_l = " select * from tbl_product_level where status != 'N' ";
@@ -1041,6 +1042,7 @@ class TourRegistController extends BaseController
             "code_populars" => $code_populars ?? '',
             "available_period" => $available_period ?? '',
             "deadline_time" => $deadline_time ?? '',
+            "deadline_date" => $deadline_date ?? '',
             "product_more" => $product_more ?? '',
             "product_contents_m" => $product_contents_m ?? '',
         ];

@@ -42,7 +42,6 @@
             <input type="hidden" name="option_idx[]" id="option_idx[]" value="<?= htmlspecialchars($option['idx']) ?>">
         <?php endforeach; ?>
         <input type="hidden" name="start_place" id="start_place" value="<?=$start_place?>">
-        <input type="hidden" name="metting_time" id="metting_time" value="<?=$metting_time?>">
         <input type="hidden" name="id_kakao" id="id_kakao" value="<?=$id_kakao?>">
         <input type="hidden" name="description" id="description" value="<?=$description?>">
         <input type="hidden" name="end_place" id="end_place" value="<?=$end_place?>">
@@ -51,13 +50,6 @@
         <input type="hidden" name="time_line" id="time_line" value="<?=$time_line?>">
         <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="<?=$use_coupon_idx?>">
         <input type="hidden" name="final_discount" id="final_discount" value="<?=$final_discount?>">
-        <input type="hidden" name="order_gender_list" id="order_gender_list" value="<?=$order_gender_list?>">
-        <input type="hidden" name="order_user_name" id="order_user_name" value="<?=$order_user_name?>">
-        <input type="hidden" name="order_user_first_name_en" id="order_user_first_name_en" value="<?=$order_user_first_name_en?>">
-        <input type="hidden" name="order_user_last_name_en" id="order_user_last_name_en" value="<?=$order_user_last_name_en?>">
-        <input type="hidden" name="order_user_email" id="order_user_email" value="<?=$order_user_email?>">
-        <input type="hidden" name="local_phone" id="local_phone" value="<?=$local_phone?>">
-        <input type="hidden" name="order_user_phone" id="order_user_phone" value="<?=$order_user_phone?>">
         <div class="main-section tour">
             <div class="body_inner">
                 <div class="container-card">
@@ -67,10 +59,10 @@
                                 <h3 class="title-main-c">
                                     여행자 정보 입력
                                 </h3>
-                                <div class="bs-input-check">
+                                <!-- <div class="bs-input-check">
                                     <input type="checkbox" id="save_id" name="save_id" value="Y">
                                     <label for="save_id"> 회원정보와 동일</label>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="form-container">
                                 <?php for($i = 1; $i <= $people_adult_cnt; $i++) { ?>
@@ -318,6 +310,12 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="order_user_name" id="order_user_name" value="<?=$order_user_name?>">
+        <input type="hidden" name="order_user_first_name_en" id="order_user_first_name_en" value="<?=$order_user_first_name_en?>">
+        <input type="hidden" name="order_user_last_name_en" id="order_user_last_name_en" value="<?=$order_user_last_name_en?>">
+        <input type="hidden" name="order_user_email" id="order_user_email" value="<?=$order_user_email?>">
+        <input type="hidden" name="local_phone" id="local_phone" value="<?=$local_phone?>">
+        <input type="hidden" name="order_user_phone" id="order_user_phone" value="<?=$order_user_phone?>">
     </form>
     <div class="popup_wrap place_pop policy_pop">
         <div class="pop_box">
