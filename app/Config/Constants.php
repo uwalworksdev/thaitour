@@ -275,6 +275,6 @@ define("BBS_LIST_CONFIG", [
 ]);
 
 
-$baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off'  ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/';
+$baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off'  ? 'https://' : 'http://') . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost:8080') . dirname($_SERVER['SCRIPT_NAME']) . '/';
 
 defined('BASE_URL') OR define('BASE_URL', $baseUrl);
