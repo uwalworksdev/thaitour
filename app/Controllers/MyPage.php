@@ -380,7 +380,7 @@ class MyPage extends BaseController
 
         $data['listSub'] = $this->orderSubModel->getOrderSub($order_idx);
 
-        $connect = db_connect();
+        $connect     = db_connect();
         $private_key = private_key();
 
         if ($_SESSION["member"]["mIdx"] == "") {
@@ -389,9 +389,9 @@ class MyPage extends BaseController
         }
 
         $order_idx = updateSQ($_GET["order_idx"]);
-        $pg = updateSQ($_GET["pg"]);
+        $pg        = updateSQ($_GET["pg"]);
 
-        $sql = "select * from tbl_order_mst a
+        $sql = "select * from  tbl_order_mst a
 	                           left join tbl_member b on a.m_idx = b.m_idx 
 							   where a.order_idx = '$order_idx' and a.m_idx = '" . $_SESSION["member"]["mIdx"] . "' ";
 
@@ -413,7 +413,7 @@ class MyPage extends BaseController
 
         $start_date = $row['start_date'];
 
-        $sql_d = "SELECT   AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name 
+        $sql_d = "SELECT  AES_DECRYPT(UNHEX('{$row['order_user_name']}'),    '$private_key') AS order_user_name 
                         , AES_DECRYPT(UNHEX('{$row['order_user_email']}'),   '$private_key') AS order_user_email 
                         , AES_DECRYPT(UNHEX('{$row['order_user_first_name_en']}'),   '$private_key') AS order_user_first_name_en 
                         , AES_DECRYPT(UNHEX('{$row['order_user_last_name_en']}'),   '$private_key') AS order_user_last_name_en 
@@ -443,8 +443,15 @@ class MyPage extends BaseController
         if (!empty($gubun)) {
 
             if ($gubun == "golf") {
-                $option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
-                $data['option'] = $this->golfOptionModel->getByIdx($option_idx);
+                //$option_idx = $this->orderOptionModel->getOption($order_idx, "main")[0]["option_idx"];
+                //$data['option'] = $this->golfOptionModel->getByIdx($option_idx);
+
+				$sql_golf = " select * from tbl_order_option where order_idx = '". $order_idx ."' and option_type = 'main' ";
+				$data['option']   = $this->db->query($sql_golf)->getRowArray();
+
+				$sql_golf = " select * from tbl_order_option where order_idx = '". $order_idx ."' and option_type in('main', 'vehicle') order by  option_type asc ";
+				$data['vehicle']   = $this->db->query($sql_golf)->getResultArray();
+
             }
 
             if ($gubun == "spa" || $gubun == "ticket" || $gubun == "restaurant") {

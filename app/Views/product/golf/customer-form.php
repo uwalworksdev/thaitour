@@ -30,6 +30,10 @@
     </div>
     <form action="/product-golf/customer-form-ok" name="order_frm" id="order_frm" method="post" target="hiddenFrame">
         <input type="hidden" name="product_idx" value="<?= $product_idx ?>">
+        <input type="hidden" name="product_code_1" value="<?= $product['product_code_1'] ?>">
+        <input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
+        <input type="hidden" name="product_code_3" value=".">
+        <input type="hidden" name="product_code_4" value="."> 
         <input type="hidden" name="people_adult_cnt" value="<?= $people_adult_cnt ?>">
         <input type="hidden" name="order_date" id="order_date" value="<?= $order_date ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
@@ -50,8 +54,8 @@
                             </div>
                             <h3 class="title-sub-c">예약확정서 이름</h3>
 
-                            <?php for ($i = 1; $i <= $people_adult_cnt; $i++) { ?>
-                                <h3 class="title-sub-c">인원<?= $i ?></h3>
+                            <?php //for ($i = 1; $i <= $people_adult_cnt; $i++) { ?>
+                                <h3 class="title-sub-c">인원</h3>
 
                                 <div class="con-form mb-40">
                                     <div class="form-group">
@@ -61,15 +65,15 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="gender<?= $i ?>">성별(남성/여성)*</label>
-                                        <select name="companion_gender[]" id="gender<?= $i ?>" required
+                                        <label for="gender">성별(남성/여성)*</label>
+                                        <select name="companion_gender[]" id="gender" required
                                                 data-label="성별" class="select-width" id="">
                                             <option value="M">남성</option>
                                             <option value="F">여성</option>
                                         </select>
                                     </div>
                                 </div>
-                            <?php } ?>
+                            <?php //} ?>
 
                             <div class="con-form mb-40">
                                 <div class="form-group">
@@ -220,11 +224,11 @@
                                 </div>
                                 <div class="item-info">
                                     <span>홀수</span>
-                                    <span><?= $option['hole_cnt'] ?>홀</span>
+                                    <span><?= $hole_cnt ?>홀</span>
                                 </div>
                                 <div class="item-info">
                                     <span>티오프시간</span>
-                                    <span><?= $option['hour'] ?>시 <?= $option['minute'] ?>분</span>
+                                    <span><?= $hour ?>시 <?= $minute ?>분</span>
                                 </div>
                                 <div class="item-info">
                                     <span>인원</span>

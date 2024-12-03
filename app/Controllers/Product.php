@@ -1492,7 +1492,7 @@ class Product extends BaseController
 
                 return $this->response->setJSON([
                     'result' => true,
-                    'message' => "주문되었습니다."
+                    'message' => "에약되었습니다."
                 ], 200);
             }
 
@@ -1733,8 +1733,14 @@ class Product extends BaseController
 		foreach ($option as $data) 
 		{
 			     $option_price = $data['option_price'];     
+			     $hole_cnt     = $data['hole_cnt'];     
+			     $hour         = $data['hour'];     
+			     $minute       = $data['minute'];     
 		}
 
+        $data['hole_cnt']         = $hole_cnt;
+        $data['hour']             = $hour;
+        $data['minute']           = $minute;
         $data['total_price']      = $option_price * $people_adult_cnt;
         $data['total_price_baht'] = round($data['total_price'] * (float)($this->setting['baht_thai'] ?? 0));
 
@@ -1785,13 +1791,13 @@ class Product extends BaseController
 
     public function customerForm()
     {
-        $data['product_idx'] = $this->request->getVar('product_idx');
-        $data['order_date'] = $this->request->getVar('order_date');
-        $data['option_idx'] = $this->request->getVar('option_idx');
+        $data['product_idx']      = $this->request->getVar('product_idx');
+        $data['order_date']       = $this->request->getVar('order_date');
+        $data['option_idx']       = $this->request->getVar('option_idx');
         $data['people_adult_cnt'] = $this->request->getVar('people_adult_cnt');
-        $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
-        $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
-        $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
+        $data['vehicle_idx']      = $this->request->getVar('vehicle_idx');
+        $data['vehicle_cnt']      = $this->request->getVar('vehicle_cnt');
+        $data['use_coupon_idx']   = $this->request->getVar('use_coupon_idx');
 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
@@ -1819,19 +1825,19 @@ class Product extends BaseController
     public function customerFormOk()
     {
         try {
-            $data = $this->request->getPost();
-            $data['m_idx'] = session('member.idx') ?? "";
-            $product = $this->productModel->find($data['product_idx']);
-            $data['product_name'] = $product['product_name'];
-            $data['product_code_1'] = $product['product_code_1'];
-            $data['product_code_2'] = $product['product_code_2'];
-            $data['product_code_3'] = $product['product_code_3'];
-            $data['product_code_4'] = $product['product_code_4'];
-            $data['order_no'] = $this->orderModel->makeOrderNo();
-            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
+            $data                     = $this->request->getPost();
+            $data['m_idx']            = session('member.idx') ?? "";
+            $product                  = $this->productModel->find($data['product_idx']);
+            $data['product_name']     = $product['product_name'];
+            $data['product_code_1']   = $product['product_code_1'];
+            $data['product_code_2']   = $product['product_code_2'];
+            $data['product_code_3']   = $product['product_code_3'];
+            $data['product_code_4']   = $product['product_code_4'];
+            $data['order_no']         = $this->orderModel->makeOrderNo();
+            $order_user_email         = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
-            $data['order_r_date'] = date('Y-m-d H:i:s');
-            $data['order_status'] = "W";
+            $data['order_r_date']     = date('Y-m-d H:i:s');
+            $data['order_status']     = "W";
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
@@ -1840,7 +1846,7 @@ class Product extends BaseController
 
             $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
 
-            $data['vehicle_time'] = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
+            $data['vehicle_time']     = $data['vehicle_time_hour'] . ":" . $data['vehicle_time_minute'];
 
             $priceCalculate = $this->golfPriceCalculate(
                 $data['option_idx'],
@@ -1850,15 +1856,15 @@ class Product extends BaseController
                 $data['use_coupon_idx']
             );
 
-            $data['order_price'] = $priceCalculate['final_price'];
-            $data['inital_price'] = $priceCalculate['inital_price'];
+            $data['order_price']     = $priceCalculate['final_price'];
+            $data['inital_price']    = $priceCalculate['inital_price'];
             $data['used_coupon_idx'] = $data['use_coupon_idx'];
             $data['ip'] = $this->request->getIPAddress();
-            $data['order_gubun'] = "golf";
-            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_gubun']     = "golf";
+            $data['code_name']       = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
             $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
             $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
-            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+            $data['order_user_last_name_en']  = encryptField($data['order_user_last_name_en'], 'encode');
 
             if ($data['radio_phone'] == "kor") {
                 $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
@@ -1868,7 +1874,7 @@ class Product extends BaseController
 
             $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
 
-            $data['local_phone'] = encryptField($data['local_phone'], 'encode');
+            $data['local_phone']       = encryptField($data['local_phone'], 'encode');
 
             $this->orderModel->save($data);
 
@@ -1876,22 +1882,33 @@ class Product extends BaseController
 
             foreach ($data['companion_name'] as $key => $value) {
                 $this->orderSubModel->insert([
-                    'order_gubun' => 'adult',
-                    'order_idx' => $order_idx,
-                    'product_idx' => $data['product_idx'],
+                    'order_gubun'     => 'adult',
+                    'order_idx'       => $order_idx,
+                    'product_idx'     => $data['product_idx'],
                     'order_full_name' => encryptField($data['companion_name'][$key], 'encode'),
-                    'order_sex' => $data['companion_gender'][$key],
+                    'order_sex'       => $data['companion_gender'][$key],
                 ]);
             }
 
+			// 골프 그린 데이터 조회
+			$sql_opt     = "SELECT * FROM tbl_golf_price WHERE idx = '". $data['option_idx'] ."' ";
+			$result_opt  = $this->db->query($sql_opt);
+			$golf_opt    = $result_opt->getResultArray();
+            foreach ($golf_opt as $item)
+            {
+                     $hole_cnt = $item['hole_cnt'];      
+                     $hour     = $item['hour'];      
+                     $minute   = $item['minute'];      
+            }
             $this->orderOptionModel->insert([
                 'option_type' => 'main',
-                'order_idx' => $order_idx,
+                'order_idx'   => $order_idx,
                 'product_idx' => $data['product_idx'],
-                'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
-                'option_idx' => $data['option_idx'],
-                'option_tot' => $priceCalculate['total_price'],
-                'option_cnt' => $data['people_adult_cnt'],
+                //'option_name' => $priceCalculate['option']['hole_cnt'] . "홀 / " . $priceCalculate['option']['hour'] . "시간 / " . $priceCalculate['option']['minute'] . "분",
+                'option_name' => $hole_cnt . "홀 / " . $hour . "시/ " . $minute . "분",
+                'option_idx'  => $data['option_idx'],
+                'option_tot'  => $priceCalculate['total_price'],
+                'option_cnt'  => $data['people_adult_cnt'],
                 'option_date' => $data['order_r_date'],
             ]);
 
@@ -1900,12 +1917,12 @@ class Product extends BaseController
                 if ($vehicle) {
                     $this->orderOptionModel->insert([
                         'option_type' => 'vehicle',
-                        'order_idx' => $order_idx,
+                        'order_idx'   => $order_idx,
                         'product_idx' => $data['product_idx'],
                         'option_name' => $vehicle['code_name'],
-                        'option_idx' => $vehicle['code_idx'],
-                        'option_tot' => $vehicle['price'] * $data['vehicle_cnt'][$key],
-                        'option_cnt' => $data['vehicle_cnt'][$key],
+                        'option_idx'  => $vehicle['code_idx'],
+                        'option_tot'  => $vehicle['price'] * $data['vehicle_cnt'][$key],
+                        'option_cnt'  => $data['vehicle_cnt'][$key],
                         'option_date' => $data['order_r_date'],
                     ]);
                 }
@@ -1918,13 +1935,13 @@ class Product extends BaseController
                     $this->coupon->update($data['use_coupon_idx'], ["status" => "E"]);
 
                     $cou_his = [
-                        "order_idx" => $order_idx,
-                        "product_idx" => $data['product_idx'],
-                        "used_coupon_no" => $coupon["coupon_num"] ?? "",
-                        "used_coupon_idx" => $data['use_coupon_idx'],
+                        "order_idx"         => $order_idx,
+                        "product_idx"       => $data['product_idx'],
+                        "used_coupon_no"    => $coupon["coupon_num"] ?? "",
+                        "used_coupon_idx"   => $data['use_coupon_idx'],
                         "used_coupon_money" => $priceCalculate['discount'],
-                        "ch_r_date" => date('Y-m-d H:i:s'),
-                        "m_idx" => session('member.idx')
+                        "ch_r_date"         => date('Y-m-d H:i:s'),
+                        "m_idx"             => session('member.idx')
                     ];
 
                     $this->couponHistory->insert($cou_his);
@@ -1933,7 +1950,7 @@ class Product extends BaseController
 
             return $this->response->setBody("
                 <script>
-                    alert('주문되었습니다');
+                    alert('예약되었습니다');
                     parent.location.href = '/product-golf/completed-order';
                 </script>
             ");
@@ -2143,14 +2160,14 @@ class Product extends BaseController
 
             return $this->response->setBody("
                 <script>
-                    alert('주문되었습니다');
+                    alert('예약되었습니다');
                     parent.location.href = '/product-tours/completed-order';
                 </script>
             ");
         } catch (\Throwable $th) {
             return $this->response->setBody("
                     <script>
-                        alert('주문되지 않습니다');
+                        alert('예약되지 않습니다');
                     </script>
                 ");
         }
@@ -2814,7 +2831,7 @@ class Product extends BaseController
 
                     return $this->response->setJSON([
                         'result' => true,
-                        'message' => "주문되었습니다."
+                        'message' => "예약되었습니다."
                     ], 200);
                 }
 
@@ -2825,7 +2842,7 @@ class Product extends BaseController
             } else {
                 return $this->response->setJSON([
                     'result' => false,
-                    'message' => "주문하시려면 로그인해주세요"
+                    'message' => "예약하시려면 로그인해주세요"
                 ]);
             }
 
