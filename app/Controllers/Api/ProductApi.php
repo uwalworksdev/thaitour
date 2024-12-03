@@ -238,13 +238,17 @@ class ProductApi extends BaseController
 
                     $vst['date'] = $it['goods_date'];
                     $vst['price'] = $it['goods_price1'];
+                    $vst['price_won'] = round($it['goods_price1'] * $this->setting['baht_thai']);
                     $vst['sale_price'] = $it['goods_price2'];
+                    $vst['sale_price_won'] = round($it['goods_price2'] * $this->setting['baht_thai']);
 
                     $lst[] = $vst;
                 }
 
                 $rs['price'] = $price;
+                $rs['price_won'] = round($price * $this->setting['baht_thai']);
                 $rs['sale_price'] = $sale_price;
+                $rs['sale_price_won'] = round($sale_price * $this->setting['baht_thai']);
                 $rs['idx'] = $o_idx;
                 $rs['day'] = $day - 1;
                 $rs['items'] = $lst;

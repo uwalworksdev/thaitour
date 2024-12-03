@@ -329,6 +329,9 @@
                 $(".popup_coupon .popup .txt_info .memo").text(data["etc_memo"]);
                 $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);
 
+                console.log(data["cnt_img"]);
+                
+
                 if(data["cnt_img"] > 0){
                     let img_slide = `<div class="swiper myslide">
                                         <div class="swiper-wrapper">`;
@@ -347,7 +350,9 @@
                                     <div class="swiper-button-prev"></div>
                                     <div class="swiper-pagination"></div>
                                 </div>`;
-                    $(".popup_coupon .popup .infomation_slide .swiper-wrapper").html(img_slide);
+
+
+                    $(".popup_coupon .popup .infomation_slide").html(img_slide);
 
                     if (swiper instanceof Swiper) {
                         swiper.destroy(true, true);
@@ -372,9 +377,9 @@
         });
 
         $('.popup_coupon').show();
-        setTimeout(() => {
-            map.invalidateSize();
-        }, 300);
+        // setTimeout(() => {
+        //     map.invalidateSize();
+        // }, 300);
     });
 
     $('.popup_coupon .close, .popup_coupon .bg').on('click', function () {
