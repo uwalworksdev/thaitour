@@ -207,8 +207,8 @@
                                 <tr>
                                     <th>상태설정</th>
                                     <td>
-                                        <textarea name="contents" id="contents" rows="10" cols="100" class="input_txt"
-                                            style="width:100%; height:400px; display:none;"><?= viewSQ($contents) ?></textarea>
+                                        <textarea name="coupon_contents" id="coupon_contents" rows="10" cols="100" class="input_txt"
+                                            style="width:100%; height:400px; display:none;"><?= viewSQ($coupon_contents) ?></textarea>
                                             <script type="text/javascript">
                                                 var oEditors = [];
 
@@ -217,7 +217,7 @@
 
                                                 nhn.husky.EZCreator.createInIFrame({
                                                     oAppRef: oEditors,
-                                                    elPlaceHolder: "contents",
+                                                    elPlaceHolder: "coupon_contents",
                                                     sSkinURI: "/lib/smarteditor/SmartEditor2Skin.html",
                                                     htParams: {
                                                         bUseToolbar: true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
@@ -557,7 +557,7 @@
         var frm = document.frm;
 
         if(typeof oEditors != "undefined") {
-            oEditors?.getById["contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
+            oEditors?.getById["coupon_contents"]?.exec("UPDATE_CONTENTS_FIELD", []);
         }
 
         if (frm.coupon_name.value == "") {
