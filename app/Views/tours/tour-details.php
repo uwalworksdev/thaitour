@@ -128,13 +128,13 @@
                         <div class="sec2-item-card" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
                                 <h3><?= $tour['tours_subject'] ?></h3>
-                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'])?> 바트</del>
+                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'])?> 원</del>
                             </div>
                             <div class="text-content-2">
                                     <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                                 <div class="price-sub">
-                                    <span class="ps-left text-grey"><?= number_format($tour['price_baht'])?>원</span>
-                                    <span class="ps-right"><?= number_format($tour['tour_price']) ?></span> <span class="text-grey"> 바트</span>
+                                    <span class="ps-left text-grey"><?= number_format($tour['price_baht'])?> 바트</span>
+                                    <span class="ps-right"><?= number_format($tour['tour_price']) ?></span> <span class="text-grey"> 원</span>
                                 </div>
                             </div>
                             <div class="text-content-3">
@@ -195,36 +195,36 @@
                                                 <div class="quantity-info-con">
                                                     <span class="des">성인, Adult (키 120cm 이상1)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?> 바트</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['price_baht'] ?>"><?= number_format($tour['price_baht']) ?>원</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?> 원</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht'] ?>"><?= number_format($tour['price_baht']) ?>바트</span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
-                                                    <button class="decrease" disabled>-</button>
+                                                    <button type="button" class="decrease" disabled>-</button>
                                                     <span class="quantity">0</span>
-                                                    <button class="increase">+</button>
+                                                    <button type="button" class="increase">+</button>
                                                 </div>
                                             </div>
                                             <div class="quantity-container">
                                                 <div class="quantity-info-con">
                                                     <span class="des">아동, Child (키 91~119cm)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 바트</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_kids'] ?>"><?= number_format($tour['price_baht_kids']) ?>원</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 원</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_kids'] ?>"><?= number_format($tour['price_baht_kids']) ?> 바트</span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
-                                                    <button class="decrease" disabled>-</button>
+                                                    <button type="button" class="decrease" disabled>-</button>
                                                     <span class="quantity">0</span>
-                                                    <button class="increase">+</button>
+                                                    <button type="button" class="increase">+</button>
                                                 </div>
                                             </div>
                                             <div class="quantity-container">
                                                 <div class="quantity-info-con">
                                                     <span class="des">유아, baby (키 90cm 이하)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 바트</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_baby'] ?>"><?= number_format($tour['price_baht_baby']) ?>원</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 원</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_baby'] ?>"><?= number_format($tour['price_baht_baby']) ?> 바트 </span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
@@ -329,211 +329,6 @@
                     </div>
                     <button type="button" class="primary-btn-calendar tour" onclick="handleSubmit()">견적/예약하기</button>
                 </div>
-                    <div class="sec2-item-card card-left2" style="display: none">
-                        <div class="flex" style="gap: 20px">
-                            <h3 class="title-main-c">
-                                예약확정서 정보 입력
-                            </h3>
-                            <div class="bs-input-check">
-                                <input type="checkbox" id="save_id" name="save_id" value="Y">
-                                <label for="save_id"> 회원정보와 동일</label>
-                            </div>
-                        </div>
-                        <h3 class="title-sub-c">예약확정서 이름</h3>
-                        <div class="form-group mb-30">
-                            <label for="order_user_name">한국이름</label>
-                            <input type="text" id="order_user_name" name="order_user_name" required data-label="한국이름" placeholder="한국이름 작성해주세요." />
-                        </div>
-                        <div class="con-form mb-40">
-                            <div class="form-group">
-                                <label for="order_user_first_name_en">영문 이름(First Name) *</label>
-                                <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" required data-label="영문 이름" placeholder="영어로 작성해주세요." />
-                            </div>
-                            <div class="form-group">
-                                <label for="order_user_last_name_en">영문 성(Last Name) *</label>
-                                <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required data-label="영문 성" placeholder="영어로 작성해주세요." />
-                            </div>
-                        </div>
-                        <h3 class="title-sub-c">연락처</h3>
-                        <div class="form-group form-cus-select">
-                            <label for="passport-name2">이메일 주소*</label>
-                            <div class="cus-select-group">
-                                <input type="text" id="email_1" name="email_1" required data-label="이메일" placeholder="이메일" />
-                                <span>@</span>
-                                <div class="email-group">
-                                    <input type="text" name="email_2" id="email_2" required data-label="이메일" placeholder="" readonly>
-                                    <select id="" class="select-width" onchange="handleEmail(this.value)">
-                                        <option value="">선택</option>
-                                        <option value="naver.com">naver.com</option>
-                                        <option value="hanmail.net">hanmail.net</option>
-                                        <option value="hotmail.com">hotmail.com</option>
-                                        <option value="nate.com">nate.com</option>
-                                        <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                        <option value="empas.com">empas.com</option>
-                                        <option value="dreamwiz.com">dreamwiz.com</option>
-                                        <option value="freechal.com">freechal.com</option>
-                                        <option value="lycos.co.kr">lycos.co.kr</option>
-                                        <option value="korea.com">korea.com</option>
-                                        <option value="gmail.com">gmail.com</option>
-                                        <option value="hanmir.com">hanmir.com</option>
-                                        <option value="paran.com">paran.com</option>
-                                        <option value="1">직접입력</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="phone_wrap">
-                            <div class="phone_wrap_item form-group spe">
-                                <p>
-                                    <input type="radio" id="test1" name="radio_phone" value="kor" checked>
-                                    <label for="test1">한국번호*</label>
-                                </p>
-                                <div class="form-group form-group-cus-4input">
-                                    <input name="phone_1" maxlength="3" class="phone_kor phone" type="text" id="phone_1" required data-label="한국번호" />
-                                    <span> - </span>
-                                    <input name="phone_2" maxlength="4" class="phone_kor phone" type="text" id="phone_2" required data-label="한국번호" />
-                                    <span> - </span>
-                                    <input name="phone_3" maxlength="4" class="phone_kor phone" type="text" id="phone_3" required data-label="한국번호" />
-                                </div>
-                            </div>
-                            <div class="phone_wrap_item form-group">
-                                <p>
-                                    <input type="radio" id="test2" name="radio_phone" value="thai">
-                                    <label for="test2">태국번호 *</label>
-                                </p>
-                                <div class="form-group">
-                                    <input name="phone_thai" maxlength="10" class="phone_thai phone" type="text" id="phone_thai" disabled required data-label="한국번호" />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group mo_mt-30">
-                            <label for="passport-name2">여행시 현지 연락처</label>
-                            <div class="form-group-flex">
-                                <select id="car-time-hour" class="select-width">
-                                    <option value="01">TH</option>
-                                </select>
-                                <input name="local_phone" class="phone" maxlength="10" type="text" id="local_phone" placeholder="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sec2-item-card order-form-page" style="display: none">
-                        <div class="top_order flex">
-                            <div class="btn_back flex__c">
-                                <img src="/images/ico/arrow_up_icon.png" alt="">
-                                <p>뒤로가기</p>
-                            </div>
-                            <div class="text_title">
-                                <h2><?= viewSQ($product['product_name']) ?></h2>
-                            </div>
-                        </div>
-                        <div class="container-calendar">
-                            <div class="main-order-form">
-                                <div class="main-order-form-container">
-                                    <h1>선택하신 날짜에 즉시확정 예약이 가능합니다.</h1>
-                                    <p class="text-grey">예약 즉시 결제가 가능하며, 엄격하게 관련 예약정책이 발생됩니다.</p>
-                                </div>
-
-                                <h2 class="title-above-tb">예약정보</h2>
-                                <div class="two-table-tb">
-                                    <table class="info-table-order">
-                                        <tr>
-                                            <th>이용일시</th>
-                                            <td class="flex_day">
-                                                <p class="days_choose" id="days_choose"></p>
-                                                <p class="time_lines" id="time_lines"></p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>상품명</th>
-                                            <td class="name_product" id="name_product"><?= $product['product_name']?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>선택옵션</th>
-                                            <td >
-                                                <div class="options" id="product_options"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>총인원</th>
-                                            <td>
-                                                <div class="flex new">
-                                                    <div class="num_people" id="num_people"></div>
-                                                    <div class="total_price_product"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>회원등급 할인</th>
-                                            <td>없음</td>
-                                        </tr>
-                                        <tr>
-                                            <th>총금액</th>
-                                            <td><div class="total_pay"></div></td>
-                                        </tr>
-                                        <!-- <tr>
-                                            <th>쿠폰 적용</th>
-                                            <td class="flex_cou">
-                                                <div class="coupon">
-                                                    <input type="text" name="coupon" value="" class="bs-input discount_spe final_discount" readonly="">
-                                                </div>
-                                                <button type="button" class="btn_coupon_shows flex_c_c" onclick="showCouponPop()">쿠푼적용</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>포인트 사용</th>
-                                            <td class="flex_cou">
-                                                <div class="coupon">
-                                                    <input type="text" name="" id="" value="" class="bs-input discount_spe" readonly="">
-                                                </div>
-                                                <button type="button" class="btn_coupon_shows flex_c_c" onclick="">모두사용</button>
-                                            </td>
-                                        </tr> -->
-                                    </table>
-                                    <div class="">
-                                        <table class="info-table-order info-table-cus-padding">
-                                            <tr>
-                                                <th>미팅장소</th>
-                                                <td>
-                                                    <input type="text" placeholder="호텔명을 영어로 적어주세요(주소불가)" name="start_place" id="start_place">
-                                                    <span class="note">*일반주택은 정확한 건물명, 주소, 태국어 가능한 호스트의 태국 전화번호를 남겨주세요.</span>
-                                                </td>
-                                            </tr>
-                                            <!-- <tr>
-                                                <th>미팅 시간</th>
-                                                <td><input type="text" name="metting_time" id="metting_time"></td>
-                                            </tr> -->
-                                            <tr>
-                                                <th>종료 후 내리실 곳</th>
-                                                <td><input type="text" placeholder="종료 후 내리실 곳 항목은 필수입력입니다." name="end_place" id="end_place"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>카카오톡 아이디</th>
-                                                <td>
-                                                    <input type="text" placeholder="카카오톡 아이디 항목은 선택 입력입니다." name="id_kakao" id="id_kakao">
-                                                    <span class="note">*입력하시면 투어진행업체에서 보다 원활하게 연락을 드릴 수 있습니다.</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>기타 요청</th>
-                                                <td>
-                                                    <span class="lb-tb-cus">원하는 미팅 시간을 적어주세요(15:30분 이후)</span>
-                                                    <textarea class="textarea-tb" rows="5" placeholder="" name="description" id="description">
-                                                </textarea>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                        <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
-                                        <p class="summary-tb2" id="policy_show">본 예약건 취소규정 자세히보기</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="container-below-tb">
-                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">이 상품만 예약하기</button>
-                                <a href="" class="primary-btn-sub tours">장바구니에 담기</a>
-                            </div>
-                        </div>
-                    </div>
             </div>
         </form>
         <h2 class="title-sec3" id="product_des">
@@ -995,7 +790,7 @@
                                     selectedTourIds.push(idx);
                                 }
                                 selectedTourQuantities[idx] = qty;
-                                selectedOption.push(`<div class='flex_op flex'>${optionName} <p class='product_option_pay'>${totalPrice.toLocaleString()}바트</p></div>`);
+                                selectedOption.push(`<div class='flex_op flex'>${optionName} <p class='product_option_pay'>${totalPrice.toLocaleString()}원</p></div>`);
                             }
                         });
 
@@ -1293,6 +1088,7 @@
                         const tourEndDate = tourDateElement.data('end-date');
 
                         const tourPriceText = tourCard.find('.ps-right').text().trim().replace(/,/g, '');
+                        adultTotalPrice = parseFloat(tourPriceText);
                         const tourPrices = parseFloat(tourPriceText) / 10000;
                         const tourPrice = parseFloat(tourPrices.toFixed(1));
 
@@ -1382,10 +1178,8 @@
                     function handleSubmit() {
                         const frm = document.frm;
                         if (checkDateSelected()) {
-                            $('.sec2-item-card, .section2 .title-sec2, .section2 .sec2-date-main, .section2 .sec2-date-sub').hide();
-                            $('.section1').hide();
-                            $('.sec2-item-card.order-form-page, .sec2-item-card.card-left2').show();
 
+                            
                             var selectedDateText = $('#days_choose').text();
                             var dateParts = selectedDateText.split('(')[0].trim();
                             var formattedDate = dateParts.replace(/\./g, '-');
@@ -1395,6 +1189,32 @@
                             var adultTotalPrices = adultTotalPrice;
                             var childTotalPrices = childTotalPrice;
                             var babyTotalPrices = babyTotalPrice;
+                            const selectedTourCard = $('.sec2-item-card.active');
+                            // if (selectedTourCard.length) {
+                            //     const adultPrice = selectedTourCard.find('.quantity-container-fa .quantity-container:nth-child(1) .price').data('price');
+                            //     const childPrice = selectedTourCard.find('.quantity-container-fa .quantity-container:nth-child(2) .price').data('price');
+                            //     const babyPrice = selectedTourCard.find('.quantity-container-fa .quantity-container:nth-child(3) .price').data('price');
+                                
+                            //     adultTotalPrices = adultPrice * adultQuantity;
+                            //     childTotalPrices = childPrice * childQuantity;
+                            //     babyTotalPrices = babyPrice * babyQuantity;
+                                
+                            //     const tourIdx = selectedTourCard.data('tour-index');
+                            //     currentToursIdx = tourIdx;
+
+                            // } else {
+                            //     const firstTourCard = $('.sec2-item-card').first();
+                            //     const adultPrice = firstTourCard.find('.quantity-container-fa .quantity-container:nth-child(1) .price').data('price');
+                            //     const childPrice = firstTourCard.find('.quantity-container-fa .quantity-container:nth-child(2) .price').data('price');
+                            //     const babyPrice = firstTourCard.find('.quantity-container-fa .quantity-container:nth-child(3) .price').data('price');
+                                
+                            //     adultTotalPrices = parseFloat(adultPrice) * adultQuantity;
+                            //     childTotalPrices = parseFloat(childPrice) * childQuantity;
+                            //     babyTotalPrices = parseFloat(babyPrice) * babyQuantity;
+
+                            //     const tourIdx = firstTourCard.data('tour-index');
+                            //     currentToursIdx = tourIdx;
+                            // }
                             var priceOptionTotal = totalCost;
                             var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
                             var selectedTime = $('.select-time-c').val();
@@ -1508,28 +1328,7 @@
         </script>
         <script>
             jQuery(document).ready(function () {
-            
-                $("#save_id").click(function () {
-                    if ($(this).is(":checked")) {
-                        $("#order_user_name").val(`<?=session("member.name")?>`);
-                        const email = `<?=session("member.email")?>`;
-                        const emailArr = email.split("@");
-                        $("#email_1").val(emailArr[0] ?? "");
-                        $("#email_2").val(emailArr[1] ?? "");
-                        const phone = `<?=session("member.phone")?>`;
-                        const phoneArr = phone.split("-");
-                        $("#phone_1").val(phoneArr[0] ?? "");
-                        $("#phone_2").val(phoneArr[1] ?? "");
-                        $("#phone_3").val(phoneArr[2] ?? "");
-                    } else {
-                        $("#order_user_name").val("");
-                        $("#email_1").val("");
-                        $("#email_2").val("");
-                        $("#phone_1").val("");
-                        $("#phone_2").val("");
-                        $("#phone_3").val("");
-                    }
-                });
+        
                 
                 var dim = $('#dim');
                 var popup = $('#popupRoom');
