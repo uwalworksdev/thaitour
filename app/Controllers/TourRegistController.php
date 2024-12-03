@@ -874,6 +874,7 @@ class TourRegistController extends BaseController
             $code_populars = $row["code_populars"];
             $available_period = $row["available_period"];
             $deadline_time = $row["deadline_time"];
+            $deadline_date = $row["deadline_date"];
 
             $product_more = $row["product_more"];
             $product_contents_m = $row["product_contents_m"];
