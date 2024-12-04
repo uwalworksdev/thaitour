@@ -235,27 +235,27 @@
                             </h3>
                             <div class="item-info-r">
                                 <span>성인 X<?=$people_adult_cnt?></span>
-                                <span><?=number_format($people_adult_price)?>원 (<?=number_format($adult_price_bath)?>바트)</span>
+                                <span class="price_long"><?=number_format($people_adult_price)?>원 (<?=number_format($adult_price_bath)?>바트)</span>
                             </div>
                             <div class="item-info-r">
                                 <span>아동 X<?=$people_kids_cnt?></span>
-                                <span><?=number_format($people_kids_price)?>원 (<?=number_format($kids_price_bath)?>바트)</span>
+                                <span class="price_long"><?=number_format($people_kids_price)?>원 (<?=number_format($kids_price_bath)?>바트)</span>
                             </div>
                             <div class="item-info-r">
                                 <span>유아 X<?=$people_baby_cnt?></span>
-                                <span><?=number_format($people_baby_price)?>원 (<?=number_format($baby_price_bath)?>바트)</span>
+                                <span class="price_long"><?=number_format($people_baby_price)?>원 (<?=number_format($baby_price_bath)?>바트)</span>
                             </div>
                             <div class="item-info-r-line"></div>
                             <?php foreach ($tour_option as $key => $option): ?>
                                 <div class="item-info-r">
                                     <span><?=$option['option_name']?></span>
-                                    <span><?=number_format($option_price[$key])?>원 (<?=number_format($option_price_bath[$key])?>바트)</span>
+                                    <span class="price_long"><?=number_format($option_price[$key])?>원 (<?=number_format($option_price_bath[$key])?>바트)</span>
                                 </div>
                             <?php endforeach; ?>
                             <div class="item-info-r-line"></div>
                             <div class="item-info-r red">
                                 <span>쿠폰할인</span>
-                                <span>- <?=number_format($final_discount)?>원 (<?=number_format($final_discount_bath)?>바트)</span>
+                                <span class="price_long">- <?=number_format($final_discount)?>원 (<?=number_format($final_discount_bath)?>바트)</span>
                             </div>
                             <div class="item-info-r red">
                                 <span>포인트</span>
@@ -263,7 +263,7 @@
                             </div>
                             <div class="item-info-r font-bold-cus">
                                 <span>합계</span>
-                                <span><?=number_format($final_price)?>원 (<?= number_format($final_price_bath)?>바트)</span>
+                                <span class="price_long"><?=number_format($final_price)?>원 (<?= number_format($final_price_bath)?>바트)</span>
                             </div>
                             <p class="below-des-price">
                                 · 견적서를 받으신 후 결제해 주시면 결제 확인 후 해당
