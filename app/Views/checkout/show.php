@@ -1,95 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<style>
-    .cus_item_spa_ {
-        margin-bottom: 200px;
-    }
-
-    .cart-item-list .cart-item-list-container .cart-right {
-        width: 320px;
-        border: 1px solid rgb(219, 219, 219);
-        padding: 28px 24px;
-        border-radius: 4px;
-    }
-
-    .customer-form-page .container-card .btn-cancel {
-        font-size: 22px;
-        background-color: #fff;
-        color: #2a459f;
-        border-radius: 5px;
-        padding: 12px 50px;
-        width: 100%;
-        margin-top: 25px;
-        font-weight: bold;
-        height: 66px;
-        border: 1px solid currentColor;
-    }
-
-    .customer-form-page .table-container {
-        border-bottom: none;
-    }
-
-    .customer-form-page .table-container {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        border: 1px solid #ddd;
-    }
-
-    .customer-form-page .table-header {
-        background-color: #f7f7f7;
-        font-weight: bold;
-    }
-
-    .customer-form-page .table-header th:nth-child(1) {
-        width: 451px;
-        text-align: center;
-    }
-
-    .customer-form-page .table-container th,
-    .customer-form-page .table-container td {
-        padding: 19px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-        border-right: 1px solid #ddd;
-    }
-
-    .customer-form-page .table-container th {
-        text-align: center;
-        color: #333;
-    }
-
-    .customer-form-page .product-name {
-        font-size: 20px;
-        font-weight: 500;
-    }
-
-    .customer-form-page .product-price {
-        font-size: 18px;
-        font-weight: 400;
-        vertical-align: middle;
-    }
-
-    .customer-form-page .product-desc {
-        font-size: 16px;
-        margin-top: 5px;
-        text-align: start;
-        line-height: 1.5rem;
-    }
-
-    .customer-form-page .product-discount {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .customer-form-page .text-primary {
-        margin-top: 2px;
-        color: #2a459f;
-    }
-</style>
+<link rel="stylesheet" href="/css/contents/checkout.css">
 <div class="customer-form-page">
     <div class="navigation-section">
         <div class="body_inner">
@@ -147,7 +59,7 @@
                                     <td class="custom-td-product-info">
                                         <div class="product-info">
                                             <div class="product-details">
-                                                <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
+                                                <div class="product-name">[골프] 샹그릴라 호텔 방콕 (차오프라야 강)</div>
                                                 <p class="product-desc text-gray">
                                                     2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
                                                     8,000바트(1인 4,000바트)
@@ -155,43 +67,104 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="price">
+                                    <td class="price" style="color: #333; font-weight: bold;">
                                         345,600원
                                         (8,000바트)
                                     </td>
                                     <td class="discount">
                                         <div class="product-discount">
-                                            0원
+                                            <p style="color: #333; font-weight: bold;">0원</p>
                                             <p class="text-primary">실버회원 회원 할인</p>
                                         </div>
                                     </td>
-                                    <td class="total">1,230,000 원</td>
+                                    <td class="total" style="color: #333; font-weight: bold;">1,230,000 원</td>
                                 </tr>
                                 <tr>
                                     <td class="custom-td-product-info">
                                         <div class="product-info">
                                             <div class="product-details">
-                                                <div class="product-name">아난타라 시암 방콕 호텔</div>
+                                                <div class="product-name">[투어] 아난타라 시암 방콕 호텔</div>
                                                 <p class="product-desc text-gray">
                                                     2025-01-04(토) | 14:30~20:30 | [프로모션] 아유타야 | 오후 성인 1
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="price">
+                                    <td class="price" style="color: #333; font-weight: bold;">
                                         345,600원
                                         (8,000바트)
                                     </td>
                                     <td class="discount">
                                         <div class="product-discount">
-                                            0원
+                                            <p style="color: #333; font-weight: bold;">0원</p>
                                             <p class="text-primary">실버회원 회원 할인</p>
                                         </div>
                                     </td>
-                                    <td class="total">1,230,000 원</td>
+                                    <td class="total" style="color: #333; font-weight: bold;">1,230,000 원</td>
                                 </tr>
                                 </tbody>
                             </table>
+
+                            <div class="table-container custom-mo only_mo">
+                                <div class="item">
+                                    <div class="con-up">
+                                        <div class="text-right-p">
+                                            <h3 class="title-p">
+                                                샹그릴라 호텔 방콕 (차오프라야 강)
+                                            </h3>
+                                            <div class="time-date-p">
+                                                2024.08.10(토)
+                                            </div>
+                                            <p class="des-p">
+                                                디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="des-space-p">
+                                        <div class="des-item">
+                                            <span class="space-left">금액</span>
+                                            <span>1,467,360 원</span>
+                                        </div>
+                                        <div class="des-item">
+                                            <span class="space-left">할인금액</span>
+                                            <span>0원</span>
+                                        </div>
+                                        <div class="des-item">
+                                            <span class="space-left">결제예정금액</span>
+                                            <span>1,230,000 원</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="con-up">
+                                        <div class="text-right-p">
+                                            <h3 class="title-p">
+                                                아난타라 시암 방콕 호텔
+                                            </h3>
+                                            <div class="time-date-p">
+                                                2024.08.10(토)
+                                            </div>
+                                            <p class="des-p">
+                                                54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12 2인 1실 + 전일차량 성인 4 / 아동 2
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="des-space-p">
+                                        <div class="des-item">
+                                            <span class="space-left">금액</span>
+                                            <span>1,467,360 원</span>
+                                        </div>
+                                        <div class="des-item">
+                                            <span class="space-left">할인금액</span>
+                                            <span>0원</span>
+                                        </div>
+                                        <div class="des-item">
+                                            <span class="space-left">결제예정금액</span>
+                                            <span>1,230,000 원</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="card-left2">
@@ -275,7 +248,7 @@
                                         <span> - </span>
                                         <input name="phone_2" maxlength="4" class="phone_kor phone" type="text"
                                                id="phone_2" required="" data-label="한국번호">
-                                        <span> - </span>
+                                        <span class="only_w"> - </span>
                                         <input name="phone_3" maxlength="4" class="phone_kor phone" type="text"
                                                id="phone_3" required="" data-label="한국번호">
                                     </div>
@@ -353,17 +326,23 @@
 
                         <div class="item-info-r">
                             <span>예상 합계금액</span>
-                            <span><span class="textTotalPrice lastPrice">9,966,350</span> 원</span>
+                            <span style="color: #333; font-weight: bold;">
+                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                            </span>
                         </div>
 
-                        <div class="item-info-r">
+                        <div class="item-info-r item-info-r-border-b">
                             <span>할일금액</span>
-                            <span><span class="textTotalPrice lastPrice">9,966,350</span> 원</span>
+                            <span style="color: #333; font-weight: bold;">
+                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                            </span>
                         </div>
 
                         <div class="item-info-r">
-                            <span>총 결제금액</span>
-                            <span><span class="textTotalPrice lastPrice">9,966,350</span> 원</span>
+                            <span style="color: #333; font-weight: bold;">총 결제금액</span>
+                            <span style="color: #333; font-weight: bold;">
+                                <span class="textTotalPrice lastPrice">9,966,350</span> 원
+                            </span>
                         </div>
 
                         <p class="below-des-price">
@@ -437,12 +416,9 @@
         });
 
         $('.tab_box_element_').on('click', function () {
-
             $('.tab_box_element_').removeClass('tab_active_');
 
-
             $(this).addClass('tab_active_');
-
 
             const tabId = $(this).attr('rel');
             $('.tab_content').hide();
@@ -560,6 +536,11 @@
         let parts = number.split(dec_point);
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
         return parts.join(dec_point);
+    }
+</script>
+<script>
+    function completeOrder() {
+        window.location.href = "/checkout/confirm";
     }
 </script>
 <?php $this->endSection(); ?>

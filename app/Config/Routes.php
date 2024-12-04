@@ -545,6 +545,7 @@ $routes->group("cart", static function ($routes) {
 });
 $routes->group("checkout", static function ($routes) {
     $routes->get("show", "CheckoutController::show");
+    $routes->get("confirm", "CheckoutController::confirm");
 });
 $routes->group("qna", static function ($routes) {
     $routes->get("list", "Qna::list");
