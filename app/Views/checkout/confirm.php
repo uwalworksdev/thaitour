@@ -246,27 +246,6 @@
                             체크아웃 시간은 06:00~12:00입니다. <br>
                             · 온수 (지정시간 제공)
                         </p>
-                        <h3 class="title-r label">약관동의</h3>
-                        <div class="item-info-check item_check_term_all_">
-                            <label for="fullagreement">전체동의</label>
-                            <input type="hidden" value="N" id="fullagreement">
-                        </div>
-                        <div class="item-info-check item_check_term_">
-                            <label for="">이용약관 동의(필수)</label>
-                            <input type="hidden" value="N" id="terms">
-                        </div>
-                        <div class="item-info-check item_check_term_">
-                            <label for="">개인정보 처리방침(필수)</label>
-                            <input type="hidden" value="N" id="policy">
-                        </div>
-                        <div class="item-info-check item_check_term_">
-                            <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
-                            <input type="hidden" value="N" id="information">
-                        </div>
-                        <div class="item-info-check item_check_term_">
-                            <label for="guidelines">여행안전수칙 동의(필수)</label>
-                            <input type="hidden" value="N" id="guidelines">
-                        </div>
                         <button class="btn-order btnOrder" onclick="completeOrder();" type="button">
                             예약하기
                         </button>
