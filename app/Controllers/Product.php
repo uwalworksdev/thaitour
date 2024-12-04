@@ -1974,17 +1974,6 @@ class Product extends BaseController
         }
     }
 
-    public function toursFormOkx()  
-    {
-            return $this->response->setBody("
-                <script>
-                    alert('예약되었습니다');
-                    parent.location.href = '/product-golf/completed-order';
-                </script>
-            ");
-
-    }
-
     public function golfCompletedOrder()
     {
         return $this->renderView('product/completed-order', ['return_url' => '/']);
