@@ -6,7 +6,7 @@
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
             <div class="section2" id="product_info">
-                <form name="frm" id="frm" action="/product-tours/customer-form" class="" method="get">
+                <form name="frm" id="frm" action="/product-tours/customer-form" class="" method="post">
                     <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                     <input type="hidden" name="order_date" id="order_date" value="<?= $order_date?>">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="<?= $tours_idx?>">
