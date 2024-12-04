@@ -6,7 +6,7 @@ class Coupon extends Model
 {
     protected $table = 'tbl_coupon';
     protected $primaryKey = 'c_idx';
-    protected $allowedFields = ["coupon_num", "coupon_type", "types", "user_id", "status", "order_memo", "last_idx", "regdate", "enddate", "usedate", "get_issued_yn"];
+    protected $allowedFields = ["coupon_num", "coupon_type", "coupon_mst_idx", "types", "user_id", "status", "order_memo", "last_idx", "regdate", "enddate", "usedate", "get_issued_yn"];
 
     public function getCouponList($user_id)
     {
@@ -98,5 +98,40 @@ class Coupon extends Model
             'g_list_rows' => $g_list_rows,
             'num' => $num,
         ];
+    }
+
+    public function insertData($data)
+    {
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields, $data) {
+                return in_array($key, $allowedFields) && (is_string($data[$key]) || is_numeric($data[$key]));
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->insert($filteredData);
+    }
+
+    public function updateData($id, $data)
+    {
+        $allowedFields = $this->allowedFields;
+
+        $filteredData = array_filter(
+            $data,
+            function ($key) use ($allowedFields, $data) {
+                return in_array($key, $allowedFields) && is_string($data[$key]);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        return $this->update($id, $filteredData);
+    }
+
+    public function deleteData($id)
+    {
+        return $this->delete($id);
     }
 }

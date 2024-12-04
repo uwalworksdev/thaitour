@@ -189,10 +189,16 @@ class AdminOperatorController extends BaseController
         $search_category = updateSQ($_GET["search_category"] ?? '');
         $search_name = updateSQ($_GET["search_name"] ?? '');
 
-        $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price
+        $total_sql = " select c.c_idx, c.coupon_num, c.user_id, c.regdate, c.enddate, c.usedate, c.status, c.types,
+                    COALESCE(s.coupon_name, m.coupon_name) AS coupon_name
+                    , COALESCE(s.dc_type, m.dc_type) AS dc_type
+                    , COALESCE(s.coupon_pe, m.coupon_pe) AS coupon_pe
+                    , COALESCE(s.coupon_price, m.coupon_price) AS coupon_price
 					from tbl_coupon c
 					left outer join tbl_coupon_setting s
 					  on c.coupon_type = s.idx
+                    left outer join tbl_coupon_mst m
+					  on c.coupon_mst_idx = m.idx
 				   where 1=1 and c.status != 'C'  $strSql ";
         $result = $this->connect->query($total_sql);
         $nTotalCount = $result->getNumRows();
@@ -241,11 +247,8 @@ class AdminOperatorController extends BaseController
     public function coupon_write_ok()
     {
         try {
-            $types = updateSQ($_POST["types"]);
             $coupon_type = updateSQ($_POST["coupon_type"]);
             $coupon_cnt = updateSQ($_POST["coupon_cnt"]);
-
-            echo $coupon_type . " / " . $coupon_cnt;
 
             $ok_cnt = 0;
             $er_cnt = 0;

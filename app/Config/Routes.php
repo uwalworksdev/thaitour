@@ -589,6 +589,7 @@ $routes->group("magazines", static function ($routes) {
 
 $routes->group("coupon", static function ($routes) {
     $routes->get("list", "CouponController::list");
+    $routes->post("add_coupon_member", "CouponController::add_coupon_member");
 });
 
 // $routes->group("/package", static function($routes){

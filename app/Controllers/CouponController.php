@@ -9,6 +9,7 @@ use CodeIgniter\I18n\Time;
 class CouponController extends BaseController
 {
     private $couponMst;
+    private $coupon;
     private $memberGrade;
     private $code;
     private $product;
@@ -17,8 +18,10 @@ class CouponController extends BaseController
     {
         helper('my_helper');
         helper('comment_helper');
+        helper('coupon_helper');
 
         $this->couponMst = model("CouponMst");
+        $this->coupon = model("Coupon");
         $this->couponProduct = model("CouponProduct");
         $this->memberGrade = model("MemberGrade");
         $this->code = model("Code");
@@ -72,6 +75,75 @@ class CouponController extends BaseController
         $coupon["member_grade_name"] = $this->memberGrade->where("g_idx", $coupon["member_grade"])->first()["grade_name"];
         $coupon["coupon_contents"] = viewSQ($coupon["coupon_contents"]);
         return $this->response->setJSON($coupon);
+    }
 
+    public function add_coupon_member() {
+
+        try{
+            $coupon_idx = $this->request->getPost("coupon_idx");
+
+            $user_id = session()->get("member")["id"];
+
+            if(empty($user_id)){
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "쿠폰을 적용하려면 로그인하세요."
+                ]);
+            }
+            
+            if(empty($coupon_idx)){
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "제품을 찾을 수 없습니다."
+                ]);
+            }
+
+            if(createCouponMemberChk($coupon_idx, $user_id) >= 1){
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "이 쿠폰을 이미 다운받았습니다."
+                ]);
+            }
+
+            $coupon = $this->couponMst->find($coupon_idx);
+
+            $_couponNum = createCouponNum();
+    
+            while (createCouponChk($_couponNum) >= 1) {
+                $_couponNum = createCouponNum();
+            }
+    
+            $last_idx = createLastIdx();
+
+            $insertId = $this->coupon->insertData([
+                "coupon_num" => $_couponNum,
+                "coupon_mst_idx" => $coupon_idx,
+                "types" => "N",
+                "user_id" => $user_id,
+                "status" => "N",
+                "last_idx" => $last_idx,
+                "regdate" => Time::now('Asia/Seoul', 'en_US')->toDateTimeString(),
+                "enddate" => date("Y-m-d", strtotime($coupon["exp_end_day"]))
+            ]);
+
+            if($insertId){
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "쿠폰이 추가되었습니다."
+                ]);
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "쿠폰이 아직 추가되지 않았습니다."
+                ]);
+            }
+
+        }catch (Exception $e) {
+            return $this->response->setJSON([
+                'result' => false,
+                'message' => $e->getMessage()
+            ]);
+        }
+        
     }
 }
