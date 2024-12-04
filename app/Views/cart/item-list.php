@@ -1,40 +1,40 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<div class="content-sub-product-hotel cart-item-list">
-    <div class="body_inner">
-        <div class="sub-hotel-navigation-container">
-            <div class="navigation-container-prev">
-                <img class="only_web" src="/uploads/icons/icon_home.png" alt="icon_home">
-                <img class="only_mo cus-size-home" src="/uploads/icons/icon_home_mo.png" alt="icon_home">
-                <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
-                <img class="only_mo cus-size-arrow" src="/uploads/icons/arrow_right_mo.png" alt="arrow_right">
-                <span>장바구니</span>
-            </div>
-        </div>
-        <h3 class="title-cart">장바구니</h3>
-        <div class="cart-item-list-container">
-            <div class="cart-left">
-                <div class="header-cart">
-                    <div class="checkbox-group form-group">
-                        <input type="checkbox" id="check_all">
-                        <label class="text-gray" for="check_all">전체선택</label>
-                    </div>
-                    <span>삭제</span>
+    <div class="content-sub-product-hotel cart-item-list">
+        <div class="body_inner">
+            <div class="sub-hotel-navigation-container">
+                <div class="navigation-container-prev">
+                    <img class="only_web" src="/uploads/icons/icon_home.png" alt="icon_home">
+                    <img class="only_mo cus-size-home" src="/uploads/icons/icon_home_mo.png" alt="icon_home">
+                    <img class="only_web" src="/uploads/icons/arrow_right.png" alt="arrow_right">
+                    <img class="only_mo cus-size-arrow" src="/uploads/icons/arrow_right_mo.png" alt="arrow_right">
+                    <span>장바구니</span>
                 </div>
-                <div class="main-cart">
-                    <div class="checkbox-group-2 form-group only_web">
-                        <input type="checkbox" id="group_1" checked>
-                        <label class="font-bold" for="group_1">골프 :<span class="text-red"> 3</span>
-                        </label>
+            </div>
+            <h3 class="title-cart">장바구니</h3>
+            <div class="cart-item-list-container">
+                <div class="cart-left">
+                    <div class="header-cart">
+                        <div class="checkbox-group form-group">
+                            <input type="checkbox" id="check_all">
+                            <label class="text-gray" for="check_all">전체선택</label>
+                        </div>
+                        <span>삭제</span>
                     </div>
-                    <div class="checkbox-group-2 form-group only_mo">
-                        <input type="checkbox" id="group_1_mo" checked>
-                        <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> 3</span>
-                        </label>
-                    </div>
-                    <table class="table-container only_web">
-                        <thead>
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group only_web">
+                            <input type="checkbox" id="group_1" checked>
+                            <label class="font-bold" for="group_1">골프 :<span class="text-red"> 3</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-group-2 form-group only_mo">
+                            <input type="checkbox" id="group_1_mo" checked>
+                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> 3</span>
+                            </label>
+                        </div>
+                        <table class="table-container only_web">
+                            <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
@@ -43,8 +43,8 @@
                                 <th>할인금액</th>
                                 <th>결제예정금액</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
@@ -74,7 +74,8 @@
                                             <div class="product-date">2024.08.10(토)</div>
                                             <div class="product-desc text-gray">54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12<br>
                                                 2인 1실 + 전일차량<br>
-                                                성인 4 / 아동 2</div>
+                                                성인 4 / 아동 2
+                                            </div>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_1_item2">
@@ -86,93 +87,93 @@
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-container custom-mo only_mo">
-                        <div class="item">
-                            <div class="con-up">
-                                <div class="picture-con">
-                                    <img src="/uploads/sub/cart_test_img_01_mo.png" alt="">
-                                    <div class="checkbox-group-2 form-group form-table">
-                                        <input type="checkbox" id="group_1_mo_item_1" checked>
-                                        <label class="font-bold" for="group_1_mo_item_1"></label>
+                            </tbody>
+                        </table>
+                        <div class="table-container custom-mo only_mo">
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/uploads/sub/cart_test_img_01_mo.png" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_1_mo_item_1" checked>
+                                            <label class="font-bold" for="group_1_mo_item_1"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            샹그릴라 호텔 방콕 (차오프라야 강)
+                                        </h3>
+                                        <div class="time-date-p">
+                                            2024.08.10(토)
+                                        </div>
+                                        <p class="des-p">
+                                            디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="text-right-p">
-                                    <h3 class="title-p">
-                                        샹그릴라 호텔 방콕 (차오프라야 강)
-                                    </h3>
-                                    <div class="time-date-p">
-                                        2024.08.10(토)
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span>1,467,360 원</span>
                                     </div>
-                                    <p class="des-p">
-                                        디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
-                                    </p>
+                                    <div class="des-item">
+                                        <span class="space-left">할인금액</span>
+                                        <span>0원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span>1,230,000 원</span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="des-space-p">
-                                <div class="des-item">
-                                    <span class="space-left">금액</span>
-                                    <span>1,467,360 원</span>
-                                </div>
-                                <div class="des-item">
-                                    <span class="space-left">할인금액</span>
-                                    <span>0원</span>
-                                </div>
-                                <div class="des-item">
-                                    <span class="space-left">결제예정금액</span>
-                                    <span>1,230,000 원</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="con-up">
-                                <div class="picture-con">
-                                    <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
-                                    <div class="checkbox-group-2 form-group form-table">
-                                        <input type="checkbox" id="group_1_mo_item_2" checked>
-                                        <label class="font-bold" for="group_1_mo_item_2"></label>
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_1_mo_item_2" checked>
+                                            <label class="font-bold" for="group_1_mo_item_2"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            아난타라 시암 방콕 호텔
+                                        </h3>
+                                        <div class="time-date-p">
+                                            2024.08.10(토)
+                                        </div>
+                                        <p class="des-p">
+                                            54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12 2인 1실 + 전일차량 성인 4 / 아동 2
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="text-right-p">
-                                    <h3 class="title-p">
-                                        아난타라 시암 방콕 호텔
-                                    </h3>
-                                    <div class="time-date-p">
-                                        2024.08.10(토)
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span>1,467,360 원</span>
                                     </div>
-                                    <p class="des-p">
-                                        54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12 2인 1실 + 전일차량 성인 4 / 아동 2
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="des-space-p">
-                                <div class="des-item">
-                                    <span class="space-left">금액</span>
-                                    <span>1,467,360 원</span>
-                                </div>
-                                <div class="des-item">
-                                    <span class="space-left">할인금액</span>
-                                    <span>0원</span>
-                                </div>
-                                <div class="des-item">
-                                    <span class="space-left">결제예정금액</span>
-                                    <span>1,230,000 원</span>
+                                    <div class="des-item">
+                                        <span class="space-left">할인금액</span>
+                                        <span>0원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span>1,230,000 원</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="cart-left only_mo">
-                <div class="main-cart">
-                    <div class="checkbox-group-2 form-group">
-                        <input type="checkbox" id="group_2_mo" checked>
-                        <label class="font-bold" for="group_2_mo">골프 :<span class="text-red"> 3</span>
-                        </label>
-                    </div>
-                    <table class="table-container only_web">
-                        <thead>
+                <div class="cart-left only_mo">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_2_mo" checked>
+                            <label class="font-bold" for="group_2_mo">골프 :<span class="text-red"> 3</span>
+                            </label>
+                        </div>
+                        <table class="table-container only_web">
+                            <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
@@ -181,8 +182,8 @@
                                 <th>할인금액</th>
                                 <th>결제예정금액</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
@@ -203,83 +204,83 @@
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
                             </tr>
-                        </tbody>
-                    </table>
-                    <div class="table-container custom-mo only_mo">
-                        <div class="item">
-                            <div class="con-up">
-                                <div class="picture-con">
-                                    <img src="/uploads/sub/cart_test_img_03_mo.png" alt="">
-                                    <div class="checkbox-group-2 form-group form-table">
-                                        <input type="checkbox" id="group_2_mo_item2" checked>
-                                        <label class="font-bold" for="group_2_mo_item2"></label>
+                            </tbody>
+                        </table>
+                        <div class="table-container custom-mo only_mo">
+                            <div class="item">
+                                <div class="con-up">
+                                    <div class="picture-con">
+                                        <img src="/uploads/sub/cart_test_img_03_mo.png" alt="">
+                                        <div class="checkbox-group-2 form-group form-table">
+                                            <input type="checkbox" id="group_2_mo_item2" checked>
+                                            <label class="font-bold" for="group_2_mo_item2"></label>
+                                        </div>
+                                    </div>
+                                    <div class="text-right-p">
+                                        <h3 class="title-p">
+                                            샹그릴라 호텔 방콕 (차오프라야 강)
+                                        </h3>
+                                        <div class="time-date-p">
+                                            2024.08.10(토)
+                                        </div>
+                                        <p class="des-p">
+                                            디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
+                                        </p>
                                     </div>
                                 </div>
-                                <div class="text-right-p">
-                                    <h3 class="title-p">
-                                        샹그릴라 호텔 방콕 (차오프라야 강)
-                                    </h3>
-                                    <div class="time-date-p">
-                                        2024.08.10(토)
+                                <div class="des-space-p">
+                                    <div class="des-item">
+                                        <span class="space-left">금액</span>
+                                        <span>1,467,360 원</span>
                                     </div>
-                                    <p class="des-p">
-                                        디럭스 연박 프로모션 더블(2룸) /조식포함 성인 4 / 아동 2
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="des-space-p">
-                                <div class="des-item">
-                                    <span class="space-left">금액</span>
-                                    <span>1,467,360 원</span>
-                                </div>
-                                <div class="des-item">
-                                    <span class="space-left">할인금액</span>
-                                    <span>0원</span>
-                                </div>
-                                <div class="des-item">
-                                    <span class="space-left">결제예정금액</span>
-                                    <span>1,230,000 원</span>
+                                    <div class="des-item">
+                                        <span class="space-left">할인금액</span>
+                                        <span>0원</span>
+                                    </div>
+                                    <div class="des-item">
+                                        <span class="space-left">결제예정금액</span>
+                                        <span>1,230,000 원</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="cart-right">
-                <h3 class="title-cr">선택상품 : 3건</h3>
-                <div class="item-info-cr">
-                    <span>예상 합계금액</span>
-                    <span>1,506,360 원</span>
-                </div>
-                <div class="item-info-cr">
-                    <span>할일금액</span>
-                    <span>0 원</span>
-                </div>
-                <div class="item-info-total-cr">
-                    <span>총 결제금액 </span>
-                    <span>1,085400원</span>
-                </div>
-                <p class="info-description-p">
-                    · 상품을 장바구니에 넣은 것만으로는 가능여부<br>
-                    확인이나 예약이 되지 않으며 고객님의<br>
-                    장바구니에 담긴 내용은 관리자도 알 수 없습니다.<br>
-                    · 예약을 접수해주시면<br>
-                    "마이페이지 → 나의 예약현황" 메뉴에서<br>
-                    확인하실 수 있습니다.
-                </p>
-                <button class="btn-cart">예약하기</button>
-            </div>
-        </div>
-        <div class="cart-item-list-container mt-40 only_web">
-            <div class="cart-left">
-                <div class="main-cart">
-                    <div class="checkbox-group-2 form-group">
-                        <input type="checkbox" id="group_2">
-                        <label class="font-bold" for="group_2">골프 :<span class="text-red"> 1</span>
-                        </label>
+                <div class="cart-right">
+                    <h3 class="title-cr">선택상품 : 3건</h3>
+                    <div class="item-info-cr">
+                        <span>예상 합계금액</span>
+                        <span>1,506,360 원</span>
                     </div>
-                    <table class="table-container">
-                        <thead>
+                    <div class="item-info-cr">
+                        <span>할일금액</span>
+                        <span>0 원</span>
+                    </div>
+                    <div class="item-info-total-cr">
+                        <span>총 결제금액 </span>
+                        <span>1,085400원</span>
+                    </div>
+                    <p class="info-description-p">
+                        · 상품을 장바구니에 넣은 것만으로는 가능여부<br>
+                        확인이나 예약이 되지 않으며 고객님의<br>
+                        장바구니에 담긴 내용은 관리자도 알 수 없습니다.<br>
+                        · 예약을 접수해주시면<br>
+                        "마이페이지 → 나의 예약현황" 메뉴에서<br>
+                        확인하실 수 있습니다.
+                    </p>
+                    <button type="button" onclick="fn_checkout();" class="btn-cart">예약하기</button>
+                </div>
+            </div>
+            <div class="cart-item-list-container mt-40 only_web">
+                <div class="cart-left">
+                    <div class="main-cart">
+                        <div class="checkbox-group-2 form-group">
+                            <input type="checkbox" id="group_2">
+                            <label class="font-bold" for="group_2">골프 :<span class="text-red"> 1</span>
+                            </label>
+                        </div>
+                        <table class="table-container">
+                            <thead>
                             <tr class="table-header">
                                 <th>
                                     <span>상품</span>
@@ -288,8 +289,8 @@
                                 <th>할인금액</th>
                                 <th>결제예정금액</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             <tr>
                                 <td class="custom-td-product-info">
                                     <div class="product-info">
@@ -310,18 +311,19 @@
                                 <td class="discount">0 원</td>
                                 <td class="total">1,230,000 원</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             // Check or uncheck all checkboxes when "check_all" is clicked
-            $('#check_all').on('change', function() {
+            $('#check_all').on('change', function () {
                 var isChecked = $(this).is(':checked');
 
                 // Check/uncheck all checkboxes within both desktop and mobile groups
@@ -330,7 +332,7 @@
             });
 
             // Check or uncheck all items within a desktop group when the group checkbox is clicked
-            $('input[id^="group_"]').on('change', function() {
+            $('input[id^="group_"]').on('change', function () {
                 var groupId = $(this).attr('id');
                 var isChecked = $(this).is(':checked');
 
@@ -339,7 +341,7 @@
             });
 
             // Check or uncheck all items within a mobile group when the mobile group checkbox is clicked
-            $('input[id^="group_1_mo"]').on('change', function() {
+            $('input[id^="group_1_mo"]').on('change', function () {
                 var isChecked = $(this).is(':checked');
 
                 // Check/uncheck all items within the specific mobile group
@@ -347,7 +349,7 @@
             });
 
             // Logic to uncheck "check_all" if any individual group or item is unchecked (both desktop and mobile)
-            $('input[type="checkbox"]').on('change', function() {
+            $('input[type="checkbox"]').on('change', function () {
                 if (!$(this).is(':checked')) {
                     $('#check_all').prop('checked', false);
                 }
@@ -366,7 +368,7 @@
             });
 
             // Default: Check all group items when the group checkbox is checked by default on page load (for both desktop and mobile)
-            $('input[id^="group_"], input[id^="group_1_mo"]').each(function() {
+            $('input[id^="group_"], input[id^="group_1_mo"]').each(function () {
                 var groupId = $(this).attr('id');
                 var isChecked = $(this).is(':checked');
 
@@ -376,5 +378,9 @@
                 }
             });
         });
+
+        function fn_checkout() {
+            window.location.href = `/checkout/show`;
+        }
     </script>
-    <?php $this->endSection(); ?>
+<?php $this->endSection(); ?>
