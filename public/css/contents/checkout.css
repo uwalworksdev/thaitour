@@ -1,0 +1,192 @@
+.cus_item_spa_ {
+    padding-bottom: 200px;
+}
+
+.body_inner {
+    overflow: unset;
+}
+
+.customer-form-page .container-card .card-right2 {
+    position: sticky;
+    top: 70px;
+}
+
+.cart-item-list .cart-item-list-container .cart-right {
+    width: 320px;
+    border: 1px solid rgb(219, 219, 219);
+    padding: 28px 24px;
+    border-radius: 4px;
+}
+
+.customer-form-page .container-card .btn-cancel {
+    font-size: 22px;
+    background-color: #fff;
+    color: #2a459f;
+    border-radius: 5px;
+    padding: 12px 50px;
+    width: 100%;
+    margin-top: 25px;
+    font-weight: bold;
+    height: 66px;
+    border: 1px solid currentColor;
+}
+
+.customer-form-page .table-container {
+    border-bottom: none;
+}
+
+.customer-form-page .table-container {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+}
+
+.customer-form-page .table-header {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+.customer-form-page .table-header th:nth-child(1) {
+    width: 451px;
+    text-align: center;
+}
+
+.customer-form-page .table-container th,
+.customer-form-page .table-container td {
+    padding: 20px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.customer-form-page .table-container th {
+    text-align: center;
+    color: #333;
+}
+
+.customer-form-page .product-name {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.customer-form-page .product-price {
+    font-size: 18px;
+    font-weight: 400;
+    vertical-align: middle;
+}
+
+.customer-form-page .product-desc {
+    font-size: 16px;
+    margin-top: 5px;
+    text-align: start;
+    line-height: 1.5rem;
+}
+
+.customer-form-page .product-discount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.customer-form-page .text-primary {
+    margin-top: 2px;
+    color: #2a459f;
+}
+
+.item-info-r-border-b {
+    padding-bottom: 30px;
+    margin-top: 16px;
+    border-bottom: 1px dashed rgb(219, 219, 219);
+    margin-bottom: 24px;
+}
+
+@media screen and (max-width: 850px) {
+    .bs-input-check input[type="checkbox"] + label {
+        font-size: 2.2rem;
+        padding-left: 4rem;
+        line-height: 2rem;
+    }
+
+    .bs-input-check input[type="checkbox"] + label::before {
+        width: 1.1692rem;
+        height: 1.8rem;
+        left: 0rem;
+        top: calc(50% - 0.5rem);
+    }
+
+    .bs-input-check input[type="checkbox"] + label::after {
+        width: 2.2rem;
+        height: 2.2rem;
+    }
+
+    .customer-form-page .form-group-cus-4input input:nth-child(1) {
+        width: 45%;
+    }
+
+    .customer-form-page .form-group-cus-4input input:nth-child(2),
+    .customer-form-page .form-group-cus-4input input:nth-child(3) {
+        width: 45%;
+    }
+
+    .customer-form-page .form-group-cus-4input {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .customer-form-page .table-container {
+        border: unset;
+    }
+
+    .customer-form-page .table-container.custom-mo .item {
+        padding: 2rem 0 5rem 0;
+        border-bottom: 2.1px solid rgb(219, 219, 219);
+    }
+
+    .customer-form-page .table-container.custom-mo .con-up {
+        display: flex;
+        gap: 3rem;
+        align-items: flex-start;
+        padding: 0 2rem;
+    }
+
+    .customer-form-page .table-container.custom-mo .text-right-p {
+        width: 100%;
+    }
+
+    .customer-form-page .table-container.custom-mo .title-p {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+        max-width: 100%;
+    }
+
+    .customer-form-page .table-container.custom-mo .time-date-p {
+        color: #2a459f;
+        margin-bottom: 2rem;
+    }
+
+    .customer-form-page .table-container.custom-mo .des-p {
+        color: #757575;
+    }
+
+    .customer-form-page .table-container.custom-mo .des-space-p {
+        margin-top: 2rem;
+        padding: 0 2rem;
+    }
+
+    .customer-form-page .table-container.custom-mo .des-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+
+    .customer-form-page .table-container.custom-mo .des-item span:nth-child(2) {
+        font-size: 2.8rem;
+        font-weight: 600;
+    }
+}

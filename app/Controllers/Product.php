@@ -1638,20 +1638,16 @@ class Product extends BaseController
             $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
 
             $price = (float)$value['price'];
-            $price_won = round($price * $baht_thai);
-            $data['golfVehicles'][$key]['price_baht'] = $price;
-            $data['golfVehicles'][$key]['price'] = $price_won;
-            $data['golfVehicles'][$key]['price_won'] = $price_won;
+            $price_baht = round($price * $baht_thai);
+            $data['golfVehicles'][$key]['price_baht'] = $price_baht;
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
         }
 
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float)$value['price'];
-            $price_won = round($price * $baht_thai);
-            $golfVehiclesChildren[$key]['price_baht'] = $price;
-            $golfVehiclesChildren[$key]['price'] = $price_won;
-            $golfVehiclesChildren[$key]['price_won'] = $price_won;
+            $price_baht = round($price * $baht_thai);
+            $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
         }
 
         $data['golfVehiclesChildren'] = $golfVehiclesChildren;
@@ -1731,10 +1727,8 @@ class Product extends BaseController
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
             $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-            $option_price_won = round($option_price * $baht_thai);
-            $options[$key]['option_price'] = $option_price_won;
-            $options[$key]['option_price_baht'] = $option_price;
-            $options[$key]['option_price_won'] = $option_price_won;
+            $option_price_baht = round($option_price * $baht_thai);
+            $options[$key]['option_price_baht'] = $option_price_baht;
         }
 
         return view('product/golf/option_list', ['options' => $options]);
@@ -1758,9 +1752,8 @@ class Product extends BaseController
         $data['hole_cnt'] = $hole_cnt;
         $data['hour'] = $hour;
         $data['minute'] = $minute;
-        $data['total_price_baht'] = $option_price * $people_adult_cnt;
-        $price = round($option_price * ($this->setting['baht_thai'] ?? 0));
-        $data['total_price'] = $price * $people_adult_cnt;
+        $data['total_price'] = $option_price * $people_adult_cnt;
+        $data['total_price_baht'] = round($data['total_price'] * (float)($this->setting['baht_thai'] ?? 0));
 
         $total_vehicle_price = 0;
         $total_vehicle_price_baht = 0;
@@ -1771,10 +1764,7 @@ class Product extends BaseController
             if ($value > 0) {
                 $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
                 $info['cnt'] = $value;
-                $info['price_baht'] = $info['price'];
-                $info['price_baht_total'] = $info['price'] * $value;
-                $info['price'] = round((float)$info['price'] * (float)($this->setting['baht_thai'] ?? 0));
-                $info['price_total'] = round((float)$info['price'] * $value);
+                $info['price_baht'] = round((float)$info['price'] * (float)($this->setting['baht_thai'] ?? 0));
                 $vehicle_arr[] = $info;
 
                 $total_vehicle_price += $info['price'] * $value;
@@ -1819,7 +1809,7 @@ class Product extends BaseController
         $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
         $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
-
+ 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
         $date = date("Y.m.d", strtotime($data['order_date']));
@@ -2083,47 +2073,69 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		print_r($_POST); exit;
+		//print_r($_POST); exit;
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
             $product                = $this->productModel->find($data['product_idx']);
-            $data['product_name']   = $product['product_name'];
+
+			$data['product_name']   = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
             $data['product_code_4'] = $product['product_code_4'];
             $data['order_no'] = $this->orderModel->makeOrderNo();
+            $order_user_email = $data['email_1'] . "@" . $data['email_2'];
+            $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
             $data['order_status'] = "W";
+            if ($data['radio_phone'] == "kor") {
+                $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+            } else {
+                $order_user_phone = $data['phone_thai'];
+            }
 
-            $data['used_coupon_idx'] = $data['use_coupon_idx'] ?? '';
-            $data['ip'] = $this->request->getIPAddress();
-            $data['order_gubun'] = "tour";
-            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
-            $data['order_user_email'] = $data['order_user_email'] ?? '';
-            $data['order_user_name'] = $data['order_user_name'];
-            $data['order_user_mobile'] = $data['order_user_phone'];
-            $data['order_user_last_name_en'] = $data['order_user_last_name_en'];
-            $data['order_user_first_name_en'] = $data['order_user_first_name_en'];
-            $data['local_phone'] = $data['local_phone'] ?? '';
+            $data['order_user_phone'] = encryptField($order_user_phone, 'encode');
 
-            $data['people_adult_cnt'] = $data['people_adult_cnt'];
-            $data['people_kids_cnt'] = $data['people_kids_cnt'];
-            $data['people_baby_cnt'] = $data['people_baby_cnt'];
+            $data['used_coupon_idx']   = $data['use_coupon_idx'] ?? '';
+            $data['ip']                = $this->request->getIPAddress();
+            $data['order_gubun']       = "tour";
+            $data['code_name']         = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+
+            $data['people_adult_cnt']  = $data['people_adult_cnt'];
+            $data['people_kids_cnt']   = $data['people_kids_cnt'];
+            $data['people_baby_cnt']   = $data['people_baby_cnt'];
 
             $data['people_adult_price'] = $data['people_adult_price'];
-            $data['people_kids_price'] = $data['people_kids_price'];
-            $data['people_baby_price'] = $data['people_baby_price'];
-            $data['order_price'] = $data['final_price'];
-            $data['inital_price'] = $data['inital_price'];
+            $data['people_kids_price']  = $data['people_kids_price'];
+            $data['people_baby_price']  = $data['people_baby_price'];
+            $data['order_price']        = $data['total_price'];
+            $data['total_price_baht']   = $data['total_price_baht'];
+            $data['order_date']         = $data['order_date'];
+
+            $data['code_name'] = $this->codeModel->getByCodeNo($data['product_code_1'])['code_name'];
+            $data['order_user_name'] = encryptField($data['order_user_name'], 'encode');
+            $data['order_user_first_name_en'] = encryptField($data['order_user_first_name_en'], 'encode');
+            $data['order_user_last_name_en'] = encryptField($data['order_user_last_name_en'], 'encode');
+
+            if ($data['radio_phone'] == "kor") {
+                $order_user_mobile = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
+            } else {
+                $order_user_mobile = $data['phone_thai'];
+            }
+
+            $data['order_user_mobile'] = encryptField($order_user_mobile, 'encode');
+
+            $data['local_phone'] = encryptField($data['local_phone'], 'encode');
+
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
+/*
 
             $adultCount = (int)$data['people_adult_cnt'];
-            $kidsCount = (int)$data['people_kids_cnt'];
-            $babyCount = (int)$data['people_baby_cnt'];
+            $kidsCount  = (int)$data['people_kids_cnt'];
+            $babyCount  = (int)$data['people_baby_cnt'];
             foreach ($data['companion_name'] as $key => $value) {
                 if ($key < $adultCount) {
                     $orderGubun = 'adult';
@@ -2134,16 +2146,16 @@ class Product extends BaseController
                 }
 
                 $companion_email = $data['email_1'][$key] . "@" . $data['email_2'][$key] ?? '';
-                $order_mobile = $data['phone_1'][$key] . "-" . $data['phone_2'][$key] . "-" . $data['phone_3'][$key] ?? '';
+                $order_mobile    = $data['phone_1'][$key] . "-" . $data['phone_2'][$key] . "-" . $data['phone_3'][$key] ?? '';
                 $this->orderSubModel->insert([
-                    'order_gubun' => $orderGubun,
-                    'order_idx' => $order_idx,
-                    'product_idx' => $data['product_idx'],
+                    'order_gubun'     => $orderGubun,
+                    'order_idx'       => $order_idx,
+                    'product_idx'     => $data['product_idx'],
                     'order_full_name' => encryptField($data['companion_name'][$key], 'encode') ?? '',
-                    'order_sex' => $data['companion_gender'][$key] ?? '',
-                    'order_birthday' => $data['order_birthday'][$key] ?? '',
-                    'order_mobile' => encryptField($order_mobile, 'encode') ?? '',
-                    'order_email' => encryptField($companion_email, 'encode') ?? '',
+                    'order_sex'       => $data['companion_gender'][$key] ?? '',
+                    'order_birthday'  => $data['order_birthday'][$key] ?? '',
+                    'order_mobile'    => encryptField($order_mobile, 'encode') ?? '',
+                    'order_email'     => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
 
@@ -2151,20 +2163,20 @@ class Product extends BaseController
             $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
             $orderTourData = [
-                'tours_idx' => $this->request->getPost('tours_idx') ?? '',
-                'order_idx' => $order_idx,
+                'tours_idx'   => $this->request->getPost('tours_idx') ?? '',
+                'order_idx'   => $order_idx,
                 'options_idx' => $optionsIdxString,
                 'product_idx' => $data['product_idx'],
-                'time_line' => $this->request->getPost('time_line') ?? "",
+                'time_line'   => $this->request->getPost('time_line') ?? "",
                 'start_place' => $this->request->getPost('start_place') ?? "",
-                'id_kakao' => $this->request->getPost('id_kakao') ?? "",
+                'id_kakao'    => $this->request->getPost('id_kakao') ?? "",
                 'description' => $this->request->getPost('description') ?? "",
-                'end_place' => $this->request->getPost('end_place') ?? "",
-                'r_date' => date('Y-m-d H:i:s'),
+                'end_place'   => $this->request->getPost('end_place') ?? "",
+                'r_date'      => date('Y-m-d H:i:s'),
             ];
             $result = $this->orderTours->save($orderTourData);
             if (!$result) {
-                log_message('error', 'Lỗi khi lưu vào bảng orderTours: ' . json_encode($orderTourData));
+                log_message('error', '테이블에 저장하는 중 오류가 발생했습니다. orderTours: ' . json_encode($orderTourData));
             }
             // $this->orderTours->save($orderTourData);
 
@@ -2188,7 +2200,7 @@ class Product extends BaseController
                     $this->couponHistory->insert($cou_his);
                 }
             }
-
+*/
 
             return $this->response->setBody("
                 <script>
@@ -2378,6 +2390,8 @@ class Product extends BaseController
 
     public function confirmInfo()
     {
+		//print_r($_GET); exit;
+
         $data['product_idx'] = $this->request->getVar('product_idx');
         $data['product'] = $this->productModel->getProductDetails($data['product_idx']);
         $data['tours_idx'] = $this->request->getVar('tours_idx');
@@ -3030,7 +3044,6 @@ class Product extends BaseController
 
 
             $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ";
-            write_log($sql);
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
@@ -3055,11 +3068,9 @@ class Product extends BaseController
             $moption = $_POST['moption'];
 
             $sql = "SELECT * FROM tbl_tours_moption WHERE code_idx = '$moption' ";
-            write_log($sql);
             $result2 = $this->db->query($sql)->getRowArray();
 
             $sql = "SELECT * FROM tbl_tours_option WHERE idx = '$idx' ";
-            write_log($sql);
             $result = $this->db->query($sql)->getRowArray();
             $result['parent_name'] = $result2['moption_name'];
 
@@ -3083,7 +3094,6 @@ class Product extends BaseController
                             , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
                                 FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE c.c_idx = '" . $idx . "' 
                                 AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
-            write_log($sql);
             $result = $this->db->query($sql)->getRowArray();
 
             return $this->response->setJSON($result, 200);
