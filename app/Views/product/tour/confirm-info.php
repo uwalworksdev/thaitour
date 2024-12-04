@@ -233,7 +233,7 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">이 상품만 예약하기</button>
+                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">예약하기</button>
                                 <a href="" class="primary-btn-sub tours">장바구니에 담기</a>
                             </div>
                         </div>
