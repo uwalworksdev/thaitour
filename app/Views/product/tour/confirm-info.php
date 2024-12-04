@@ -1,7 +1,7 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<?php $setting = homeSetInfo(); ?>
+<?php //$setting = homeSetInfo(); ?>
 
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
