@@ -1974,7 +1974,7 @@ class Product extends BaseController
         }
     }
 
-    public function toursFormOk()  
+    public function toursFormOkx()  
     {
             return $this->response->setBody("
                 <script>
