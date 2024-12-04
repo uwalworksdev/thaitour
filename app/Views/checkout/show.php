@@ -248,7 +248,7 @@
                                         <span> - </span>
                                         <input name="phone_2" maxlength="4" class="phone_kor phone" type="text"
                                                id="phone_2" required="" data-label="한국번호">
-                                        <span class="only_w"> - </span>
+                                        <span> - </span>
                                         <input name="phone_3" maxlength="4" class="phone_kor phone" type="text"
                                                id="phone_3" required="" data-label="한국번호">
                                     </div>
@@ -353,6 +353,28 @@
                             "마이페이지 → 나의 예약현황" 메뉴에서<br>
                             확인하실 수 있습니다.
                         </p>
+
+                        <h3 class="title-r label">약관동의</h3>
+                        <div class="item-info-check item_check_term_all_">
+                            <label for="fullagreement">전체동의</label>
+                            <input type="hidden" value="N" id="fullagreement">
+                        </div>
+                        <div class="item-info-check item_check_term_">
+                            <label for="">이용약관 동의(필수)</label>
+                            <input type="hidden" value="N" id="terms">
+                        </div>
+                        <div class="item-info-check item_check_term_">
+                            <label for="">개인정보 처리방침(필수)</label>
+                            <input type="hidden" value="N" id="policy">
+                        </div>
+                        <div class="item-info-check item_check_term_">
+                            <label for="">개인정보 제3자 제공 및 국외 이전 동의(필수)</label>
+                            <input type="hidden" value="N" id="information">
+                        </div>
+                        <div class="item-info-check item_check_term_">
+                            <label for="guidelines">여행안전수칙 동의(필수)</label>
+                            <input type="hidden" value="N" id="guidelines">
+                        </div>
 
                         <button class="btn-order btnOrder" onclick="completeOrder();" type="button">
                             예약하기
