@@ -1066,6 +1066,7 @@
                                     const formattedDate = formatSelectedDate(date);
                                     $('.days_choose').text(formattedDate);
                                     $('.calendar_txt').text(formattedDate);
+									alert(formattedDate);
                                     $('#order_date').val(formattedDate);
                                 });
                             }
