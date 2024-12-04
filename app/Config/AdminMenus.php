@@ -60,26 +60,32 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourStayController::list', 'TourStayController::write']
                 ],
                 [
-                    'name' => '차량ㆍ가이드',
+                    'name' => '차량 정보관리',
                     'code' => 'B7',
                     'url' => '/AdmMaster/_cars/list',
                     'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
                 ],
                 [
-                    'name' => '룸관리',
+                    'name' => '차량ㆍ가이드',
                     'code' => 'B8',
+                    'url' => '/AdmMaster/_cars/list',
+                    'alias' => ['AdminCarsController::list', 'AdminCarsController::write']
+                ],
+                [
+                    'name' => '룸관리',
+                    'code' => 'B9',
                     'url' => '/AdmMaster/_room/list',
                     'alias' => ['AdminRoomController::list', 'AdminRoomController::write']
                 ],
                 [
                     'name' => '골프 픽업차량',
-                    'code' => 'B9',
+                    'code' => 'B10',
                     'url' => '/AdmMaster/_tourRegist/golf_vehicles',
                     'alias' => ['GolfVehicleController::list', 'GolfVehicleController::write']
                 ],
                 [
                     'name' => '쿠폰상품등록',
-                    'code' => 'B10',
+                    'code' => 'B11',
                     'url' => '/AdmMaster/_coupon/list',
                     'alias' => ['AdminCouponController::list', 'AdminCouponController::write']
                 ],

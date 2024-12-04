@@ -82,6 +82,13 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->post("del", "CodeController::del");
     });
 
+    $routes->group("_cars_category", static function ($routes) {
+        $routes->get("list", "Admin\AdminCarsCategoryController::list");
+        $routes->get("write", "Admin\AdminCarsCategoryController::write");
+        $routes->post("write_ok", "Admin\AdminCarsCategoryController::write_ok");
+        $routes->post("delete", "Admin\AdminCarsCategoryController::delete");
+    });
+
     $routes->group("_tourRegist", static function ($routes) {
         $routes->get("list_hotel", "TourRegistController::list_hotel");
         $routes->get("list_spas", "TourRegistController::list_spas");
