@@ -523,7 +523,7 @@
 
             let html = `<div class="item-right">
                             <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>[name] x [cnt]대</p>
-                            <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
+                            <span class="price-text text-gray">[price] 원 ([price_baht]원)</span>
                         </div>`;
 
             const html2 = $(".vehicle_select").filter(function () {
@@ -686,6 +686,7 @@
 
 
         function handleSubmit() {
+			alert('xxxxxxx');
             $("#frm").submit();
         }
 
