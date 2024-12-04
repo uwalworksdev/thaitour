@@ -86,6 +86,7 @@
     }
 
     .customer-form-page .text-primary {
+        margin-top: 2px;
         color: #2a459f;
     }
 </style>
@@ -125,60 +126,69 @@
                             <h3 class="title-main-c">
                                 예약상세내역
                             </h3>
-                            <table class="table-container">
+
+                            <table class="table-container only_web">
                                 <colgroup>
                                     <col width="x">
-                                    <col width="15%">
-                                    <col width="15%">
-                                    <col width="15%">
+                                    <col width="16%">
+                                    <col width="20%">
+                                    <col width="16%">
                                 </colgroup>
                                 <thead>
                                 <tr class="table-header">
-                                    <th>상품정보</th>
-                                    <th>할인 전 금액</th>
+                                    <th>상품</th>
+                                    <th>금액</th>
                                     <th>할인금액</th>
-                                    <th>결제금액</th>
+                                    <th>결제예정금액</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>
-                                        <p class="product-name">[골프] 로얄 방파인 골프 클럽</p>
-                                        <p class="product-desc">2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
-                                            8,000바트(1인 4,000바트)</p>
+                                    <td class="custom-td-product-info">
+                                        <div class="product-info">
+                                            <div class="product-details">
+                                                <div class="product-name">샹그릴라 호텔 방콕 (차오프라야 강)</div>
+                                                <p class="product-desc text-gray">
+                                                    2024-12-16(월) | 18홀 오전 | 2명 | 티오프요청시간 06:00 | 그린피
+                                                    8,000바트(1인 4,000바트)
+                                                </p>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td class="product-price">
+                                    <td class="price">
                                         345,600원
                                         (8,000바트)
                                     </td>
-                                    <td class="">
+                                    <td class="discount">
                                         <div class="product-discount">
                                             0원
                                             <p class="text-primary">실버회원 회원 할인</p>
                                         </div>
                                     </td>
-                                    <td class="product-price">
-                                        345,600원
-                                        (8,000바트)
-                                    </td>
+                                    <td class="total">1,230,000 원</td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <p>[투어] (아속출발) 아유타야 선셋 리버크루즈 반일 투어</p>
-                                        <p class="product-desc">2025-01-04(토) | 14:30~20:30 | [프로모션] 아유타야 | 오후 성인 1</p>
+                                    <td class="custom-td-product-info">
+                                        <div class="product-info">
+                                            <div class="product-details">
+                                                <div class="product-name">아난타라 시암 방콕 호텔</div>
+                                                <p class="product-desc text-gray">
+                                                    2025-01-04(토) | 14:30~20:30 | [프로모션] 아유타야 | 오후 성인 1
+                                                </p>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td class="product-price">
-                                        39,000원
+                                    <td class="price">
+                                        345,600원
+                                        (8,000바트)
                                     </td>
-                                    <td class="">
+                                    <td class="discount">
                                         <div class="product-discount">
                                             0원
                                             <p class="text-primary">실버회원 회원 할인</p>
                                         </div>
                                     </td>
-                                    <td class="product-price">
-                                        39,000원
-                                    </td>
+                                    <td class="total">1,230,000 원</td>
                                 </tr>
                                 </tbody>
                             </table>
