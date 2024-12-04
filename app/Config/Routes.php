@@ -628,7 +628,7 @@ $routes->get('product-tours/customer-form', 'Product::tourCustomerForm');
 $routes->post('product-tours/customer-form-ok', 'Product::tourFormOk');
 $routes->get('product-tours/completed-order', 'Product::tourCompletedOrder/$1');
 $routes->get('product-tours/tours-list/(:any)', 'Product::index9/$1');
-$routes->get('product-tours/confirm-info', 'Product::confirmInfo');
+$routes->post('product-tours/confirm-info', 'Product::confirmInfo');
 $routes->get('product-tours/(:any)', 'Product::indexTour/$1');
 $routes->get('product-spa/product-booking', 'Product::productBooking');
 $routes->get('product-spa/completed-order', 'Product::spaCompletedOrder');
