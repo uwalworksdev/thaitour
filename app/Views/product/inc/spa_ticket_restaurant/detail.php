@@ -96,8 +96,8 @@
                         <colgroup>
                             <col width="*">
                             <col width="10%">
-                            <col width="25%">
-                            <col width="25%">
+                            <col width="38%">
+                            <col width="38%">
                         </colgroup>
                         <thead>
                         <tr>
@@ -576,7 +576,7 @@
                     <td>${item_.s_station}</td>
                     <td>${txt}</td>
                     <td>
-                        <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                        <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
                             <div class="price">
                                 <span class="text_primary">${convertNum(item_.tour_price_baht)} 원</span>
                                 (${convertNum(item_.tour_price)} 바트)
@@ -589,7 +589,7 @@
                         </div>
                     </td>
                     <td>
-                        <div class="d_flex align_items_center justify_content_start gap-10 price_sl_">
+                        <div class="d_flex align_items_center justify_content_between gap-10 price_sl_">
                             <div class="price">
                                 <span class="text_primary">${convertNum(item_.tour_price_kids_baht)} 원</span>
                                 (${convertNum(item_.tour_price_kids)} 바트)

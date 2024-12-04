@@ -4024,6 +4024,10 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     align-content: center;
 }
 
+.customer-form-page .container-card .item-info-r span.price_long {
+    text-align: right;
+}
+
 .customer-form-page .container-card .item-info-r.red {
     color: red;
 }
