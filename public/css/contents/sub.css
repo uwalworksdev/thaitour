@@ -1762,7 +1762,7 @@
     /* border-top: 1px solid #252525; */
 }
 
-.contact_main_top .faq_sect,.contact_main_top .notice_sect {
+.contact_main_top .faq_sect, .contact_main_top .notice_sect {
     border-bottom: 1px solid #252525;
 }
 
@@ -4015,6 +4015,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin-top: 20px;
     padding: 20px;
+    height: 100%;
 }
 
 .customer-form-page .container-card .item-info-r {
