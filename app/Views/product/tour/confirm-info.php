@@ -6,7 +6,7 @@
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
             <div class="section2" id="product_info">
-                <form name="frm" id="frm" action="/product-tours/customer-form" class="">
+                <form name="frm" id="frm" action="/product-tours/customer-form-ok" class="">
                     <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
                     <input type="hidden" name="order_date" id="order_date" value="<?= $order_date?>">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="<?= $tours_idx?>">
@@ -149,7 +149,7 @@
                                                     <?php foreach ($tour_option as $index => $option): ?>
                                                         <div class='flex_op flex'>
                                                              <?= $option['option_name']?>
-                                                             <p class='product_option_pay'> <?= number_format($option_price[$index])?> 원</p></div>
+                                                             <p class='product_option_pay'> <?= number_format($option_price[$index] * $setting['baht_thai'])?> 원</p></div>
                                                     <?php endforeach; ?>
                                                 </div>
                                             </td>
@@ -233,7 +233,7 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">이 상품만 예약하기</button>
+                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">예약하기</button>
                                 <a href="" class="primary-btn-sub tours">장바구니에 담기</a>
                             </div>
                         </div>

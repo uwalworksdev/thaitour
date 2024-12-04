@@ -159,7 +159,7 @@ class AdminCouponController extends BaseController
                                 $product_idx = $arr[2];
                                 
                                 $this->couponProduct->insertData([
-                                    "coupon_idx" => $idx,
+                                    "coupon_idx" => $insertId,
                                     "product_idx" => $product_idx,
                                     "product_code_1" => $product_code_1,
                                     "product_code_2" => $product_code_2,
