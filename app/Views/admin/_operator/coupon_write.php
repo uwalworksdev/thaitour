@@ -90,7 +90,7 @@ $titleStr = "생성";
                                 </td>
                             </tr>
 
-                            <tr id="direct" style="display:;">
+                            <tr id="direct">
                                 <th>발행매수</th>
                                 <td>
                                     <input type="text" name="coupon_cnt" id="coupon_cnt" class="onlynum"
