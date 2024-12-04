@@ -1177,6 +1177,15 @@
                     // });
 
                     function handleSubmit() {
+
+                    <?php
+                    if (empty(session()->get("member")["id"])) {
+                    ?>
+                    alert("주문하시려면 로그인해주세요!");
+                    location.href='/member/login';
+                    <?php
+                    }
+                    ?>
                         const frm = document.frm;
                         if (checkDateSelected()) {
 
