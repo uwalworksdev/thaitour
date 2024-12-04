@@ -17,7 +17,7 @@ class UserAuth implements FilterInterface
 
             $currentUrl = urlencode($request->getUri());
 
-            return redirect()->to('/member/login?returnUrl=' . $currentUrl)->with('error', '로그인 필요합니다.');
+            return redirect()->to('/member/login?returnUrl=' . $currentUrl)->with('error', '로그인 필요합니다....');
         }
     }
 
