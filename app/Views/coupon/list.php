@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-    <div class="popup_coupon">
+    <div class="popup_coupon" data-coupon_idx="">
         <div class="popup">
             <div class="top flex_e_c">
                 <button type="button" class="close">
@@ -191,7 +191,8 @@
 </section>
 <script>
     const select_cat = $('.custom_select_rounded .select_code_category');
-    var current_page = 1;                        
+    var current_page = 1;   
+
     function adjustSelectWidth() {
         const tempSpan = $('<span>')
             .css({
@@ -233,6 +234,38 @@
         const daysKorean = ['일', '월', '화', '수', '목', '금', '토'];
         return daysKorean[date.getDay()];
     }
+
+    $(".popup_coupon .info_download .btn_down").on("click", function() {
+
+        <?php
+            if(empty(session()->get("member")["id"])){
+        ?>  
+            alert("쿠폰을 적용하려면 로그인하세요.");   
+            return false;   
+        <?php
+            }   
+        ?>
+
+        if (!confirm("이 쿠폰을 추가하시겠습니까?")){
+            return false;
+        }
+
+        let coupon_idx = $(this).closest(".popup_coupon").attr('data-coupon_idx');
+
+        $.ajax({
+            url: "/coupon/add_coupon_member",
+            type: "POST",
+            data: {
+                coupon_idx: coupon_idx
+            },
+            success: function(response) {
+                alert(response.message);
+                if(response.result == true){
+                    location.reload();
+                }
+            }
+        });
+    });
 
     $(".coupon_pagination_btn").on("click", function() {
         current_page += 1;
@@ -345,10 +378,7 @@
                 $(".popup_coupon .popup .txt_info .target").text(data["member_grade_name"]);
                 $(".popup_coupon .popup .txt_info .location").text(data["location"]);
                 $(".popup_coupon .popup .txt_info .memo").text(data["etc_memo"]);
-                $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);
-
-                console.log(data["cnt_img"]);
-                
+                $(".popup_coupon .popup .txt_info .exp_date").text(exp_day);                
 
                 if(data["cnt_img"] > 0){
                     let img_slide = `<div class="swiper myslide">
@@ -393,6 +423,8 @@
 
             }
         });
+
+        $('.popup_coupon').attr("data-coupon_idx", idx);
 
         $('.popup_coupon').show();
         // setTimeout(() => {
