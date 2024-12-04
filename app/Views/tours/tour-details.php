@@ -41,7 +41,7 @@
                     <div class="rating-container">
                         <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                         <span><strong> <?= $product['review_average'] ?></strong></span>
-                        <span>생생리뷰 <strong>(<?= $product['total_review'] ?>)</strong></span>
+                        <span>생생리뷰.. <strong>(<?= $product['total_review'] ?>)</strong></span>
                     </div>
                     <div class="list-icon only_mo">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
@@ -128,13 +128,13 @@
                         <div class="sec2-item-card" data-tour-index="<?= $tour['tours_idx'] ?>">
                             <div class="text-content-1">
                                 <h3><?= $tour['tours_subject'] ?></h3>
-                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'] * $setting['baht_thai'])?>원</del>
+                                <del class="text-grey"><?= number_format($info['info']['tour_info_price'])?> 원</del>
                             </div>
                             <div class="text-content-2">
                                     <span class="text-grey">요일 : <?= implode(', ', $days) ?></span>
                                 <div class="price-sub">
-                                    <span class="ps-left text-grey"><?= number_format($tour['tour_price'])?> 바트</span>
-                                    <span class="ps-right"><?= number_format($tour['price_won']) ?></span> <span class="text-grey">원</span>
+                                    <span class="ps-left text-grey"><?= number_format($tour['price_baht'])?> 바트</span>
+                                    <span class="ps-right"><?= number_format($tour['tour_price']) ?></span> <span class="text-grey"> 원</span>
                                 </div>
                             </div>
                             <div class="text-content-3">
@@ -195,8 +195,8 @@
                                                 <div class="quantity-info-con">
                                                     <span class="des">성인, Adult (키 120cm 이상1)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['price_won'] ?>"><?= number_format($tour['price_won']) ?>원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?>바트</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price'] ?>"><?= number_format($tour['tour_price']) ?> 원</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht'] ?>"><?= number_format($tour['price_baht']) ?>바트</span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
@@ -209,8 +209,8 @@
                                                 <div class="quantity-info-con">
                                                     <span class="des">아동, Child (키 91~119cm)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['price_won_kids'] ?>"><?= number_format($tour['price_won_kids']) ?>원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 바트</span>
+                                                        <span class="price" data-price="<?= $tour['tour_price_kids'] ?>"><?= number_format($tour['tour_price_kids']) ?> 원</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_kids'] ?>"><?= number_format($tour['price_baht_kids']) ?> 바트</span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
@@ -223,14 +223,14 @@
                                                 <div class="quantity-info-con">
                                                     <span class="des">유아, baby (키 90cm 이하)</span>
                                                     <div class="quantity-info">
-                                                        <span class="price" data-price="<?= $tour['price_won_baby'] ?>"><?= number_format($tour['price_won_baby']) ?> 원</span>
-                                                        <span class="currency" data-price-baht="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 바트 </span>
+                                                        <span class="price" data-price="<?= $tour['tour_price_baby'] ?>"><?= number_format($tour['tour_price_baby']) ?> 원</span>
+                                                        <span class="currency" data-price-baht="<?= $tour['price_baht_baby'] ?>"><?= number_format($tour['price_baht_baby']) ?> 바트 </span>
                                                     </div>
                                                 </div>
                                                 <div class="quantity-selector">
-                                                    <button type="button" class="decrease" disabled>-</button>
+                                                    <button class="decrease" disabled>-</button>
                                                     <span class="quantity">0</span>
-                                                    <button type="button" class="increase">+</button>
+                                                    <button class="increase">+</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -925,8 +925,8 @@
                             var totalPrice = quantity * pricePerUnit;
                             var totalPriceBaht = quantity * priceBahtPerUnit;
 
-                            $price.text(number_format(totalPrice) + '원');
-                            $currency.text(number_format(totalPriceBaht) + ' 바트');
+                            $price.text(number_format(totalPrice) + ' 바트');
+                            $currency.text(number_format(totalPriceBaht) + '원');
                         }
                     });
 
@@ -1152,12 +1152,35 @@
                     //         const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
 
+                    //         $('#order_date').val(formattedDate);
+                    //         $('#people_adult_cnt').val(adultCnt);
+                    //         $('#people_kids_cnt').val(childCnt);
+                    //         $('#people_baby_cnt').val(babyCnt);
+                    //         $('#people_adult_price').val(adultTotalPrices);
+                    //         $('#people_kids_price').val(childTotalPrices);
+                    //         $('#people_baby_price').val(babyTotalPrices);
+                    //         $('#tours_idx').val(currentToursIdx);
+                    //         $('#idx').val(idxWithQuantities);
+                    //         $('#time_line').val(selectedTime);
+                    //         $('.time_lines').text(selectedTime);
+                    //         $("#total_price_popup").text(number_format(last_price) + " 바트");
+                    //         $("#total_price").val(last_price);
+                    //         $("#total_pay").text(number_format(last_price) + " 바트");
+                    //         console.log(selectedTourIds.join(','));
+                    //         console.log(currentToursIdx);
+                    //         console.log(adultTotalPrices);
+                    //         console.log(selectedTime);
+                    //         console.log(priceOptionTotal);
+                    //         var productIdx = document.querySelector('input[name="product_idx"]').value;
+                    //         // window.location.href = "/product-tours/confirm-info/" + productIdx;
                     //     }
                     // });
 
                     function handleSubmit() {
                         const frm = document.frm;
                         if (checkDateSelected()) {
+
+                            
                             var selectedDateText = $('#days_choose').text();
                             var dateParts = selectedDateText.split('(')[0].trim();
                             var formattedDate = dateParts.replace(/\./g, '-');
@@ -1168,6 +1191,31 @@
                             var childTotalPrices = childTotalPrice;
                             var babyTotalPrices = babyTotalPrice;
                             const selectedTourCard = $('.sec2-item-card.active');
+                            // if (selectedTourCard.length) {
+                            //     const adultPrice = selectedTourCard.find('.quantity-container-fa .quantity-container:nth-child(1) .price').data('price');
+                            //     const childPrice = selectedTourCard.find('.quantity-container-fa .quantity-container:nth-child(2) .price').data('price');
+                            //     const babyPrice = selectedTourCard.find('.quantity-container-fa .quantity-container:nth-child(3) .price').data('price');
+                                
+                            //     adultTotalPrices = adultPrice * adultQuantity;
+                            //     childTotalPrices = childPrice * childQuantity;
+                            //     babyTotalPrices = babyPrice * babyQuantity;
+                                
+                            //     const tourIdx = selectedTourCard.data('tour-index');
+                            //     currentToursIdx = tourIdx;
+
+                            // } else {
+                            //     const firstTourCard = $('.sec2-item-card').first();
+                            //     const adultPrice = firstTourCard.find('.quantity-container-fa .quantity-container:nth-child(1) .price').data('price');
+                            //     const childPrice = firstTourCard.find('.quantity-container-fa .quantity-container:nth-child(2) .price').data('price');
+                            //     const babyPrice = firstTourCard.find('.quantity-container-fa .quantity-container:nth-child(3) .price').data('price');
+                                
+                            //     adultTotalPrices = parseFloat(adultPrice) * adultQuantity;
+                            //     childTotalPrices = parseFloat(childPrice) * childQuantity;
+                            //     babyTotalPrices = parseFloat(babyPrice) * babyQuantity;
+
+                            //     const tourIdx = firstTourCard.data('tour-index');
+                            //     currentToursIdx = tourIdx;
+                            // }
                             var priceOptionTotal = totalCost;
                             var last_price = adultTotalPrices + childTotalPrices + babyTotalPrices + priceOptionTotal;
                             var selectedTime = $('.select-time-c').val();
@@ -1197,8 +1245,8 @@
                             console.log(selectedTime);
                             console.log(priceOptionTotal);
                             var productIdx = document.querySelector('input[name="product_idx"]').value;
-                            $("#frm").submit();
                         }
+                        $("#frm").submit();
                     }
                     function setCouponArea(isAcceptBtn = false) {
                         const couponActive = $(".item-price-popup.active");
