@@ -1638,16 +1638,20 @@ class Product extends BaseController
             $data['golfVehicles'][$key]['children'] = $this->golfVehicleModel->getByParentAndDepth($value['code_no'], 2)->getResultArray();
 
             $price = (float)$value['price'];
-            $price_baht = round($price * $baht_thai);
-            $data['golfVehicles'][$key]['price_baht'] = $price_baht;
+            $price_won = round($price * $baht_thai);
+            $data['golfVehicles'][$key]['price_baht'] = $price;
+            $data['golfVehicles'][$key]['price'] = $price_won;
+            $data['golfVehicles'][$key]['price_won'] = $price_won;
 
             $golfVehiclesChildren = array_merge($golfVehiclesChildren, $data['golfVehicles'][$key]['children']);
         }
 
         foreach ($golfVehiclesChildren as $key => $value) {
             $price = (float)$value['price'];
-            $price_baht = round($price * $baht_thai);
-            $golfVehiclesChildren[$key]['price_baht'] = $price_baht;
+            $price_won = round($price * $baht_thai);
+            $golfVehiclesChildren[$key]['price_baht'] = $price;
+            $golfVehiclesChildren[$key]['price'] = $price_won;
+            $golfVehiclesChildren[$key]['price_won'] = $price_won;
         }
 
         $data['golfVehiclesChildren'] = $golfVehiclesChildren;
@@ -1727,8 +1731,10 @@ class Product extends BaseController
         foreach ($options as $key => $value) {
             $option_price = (float)$value['option_price'];
             $baht_thai = (float)($this->setting['baht_thai'] ?? 0);
-            $option_price_baht = round($option_price * $baht_thai);
-            $options[$key]['option_price_baht'] = $option_price_baht;
+            $option_price_won = round($option_price * $baht_thai);
+            $options[$key]['option_price'] = $option_price_won;
+            $options[$key]['option_price_baht'] = $option_price;
+            $options[$key]['option_price_won'] = $option_price_won;
         }
 
         return view('product/golf/option_list', ['options' => $options]);
@@ -1752,8 +1758,9 @@ class Product extends BaseController
         $data['hole_cnt'] = $hole_cnt;
         $data['hour'] = $hour;
         $data['minute'] = $minute;
-        $data['total_price'] = $option_price * $people_adult_cnt;
-        $data['total_price_baht'] = round($data['total_price'] * (float)($this->setting['baht_thai'] ?? 0));
+        $data['total_price_baht'] = $option_price * $people_adult_cnt;
+        $price = round($option_price * ($this->setting['baht_thai'] ?? 0));
+        $data['total_price'] = $price * $people_adult_cnt;
 
         $total_vehicle_price = 0;
         $total_vehicle_price_baht = 0;
@@ -1764,7 +1771,10 @@ class Product extends BaseController
             if ($value > 0) {
                 $info = $this->golfVehicleModel->getCodeByIdx($vehicle_idx[$key]);
                 $info['cnt'] = $value;
-                $info['price_baht'] = round((float)$info['price'] * (float)($this->setting['baht_thai'] ?? 0));
+                $info['price_baht'] = $info['price'];
+                $info['price_baht_total'] = $info['price'] * $value;
+                $info['price'] = round((float)$info['price'] * (float)($this->setting['baht_thai'] ?? 0));
+                $info['price_total'] = round((float)$info['price'] * $value);
                 $vehicle_arr[] = $info;
 
                 $total_vehicle_price += $info['price'] * $value;
