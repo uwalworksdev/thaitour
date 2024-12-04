@@ -543,6 +543,9 @@ $routes->group("contact", static function ($routes) {
 $routes->group("cart", static function ($routes) {
     $routes->get("item-list/(:any)", "CartController::itemList/$1");
 });
+$routes->group("checkout", static function ($routes) {
+    $routes->get("show", "CheckoutController::show");
+});
 $routes->group("qna", static function ($routes) {
     $routes->get("list", "Qna::list");
     $routes->get("view", "Qna::view");

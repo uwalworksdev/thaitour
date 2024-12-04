@@ -54,7 +54,7 @@ class AdminMenus extends BaseConfig
                     'alias' => ['TourRegistController::list_golfs', 'TourRegistController::write_golf']
                 ],
                 [
-                    'name' => '숙박정보관리(공통)',
+                    'name' => '호텔정보관리(공통)',
                     'code' => 'B6',
                     'url' => '/AdmMaster/_tourStay/list',
                     'alias' => ['TourStayController::list', 'TourStayController::write']

@@ -6,8 +6,12 @@
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
             <div class="section2" id="product_info">
-                <form name="frm" id="frm" action="/product-tours/customer-form" class="">
+                <form action="/product-tours/customer-form-ok" name="order_frm" id="order_frm" method="post" >
                     <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+					<input type="hidden" name="product_code_1" value="<?= $product['product_code_1'] ?>">
+					<input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
+					<input type="hidden" name="product_code_3" value=".">
+					<input type="hidden" name="product_code_4" value="."> 
                     <input type="hidden" name="order_date" id="order_date" value="<?= $order_date?>">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="<?= $tours_idx?>">
                     <input type="hidden" name="idx" id="idx" value="<?= $idx?>">
@@ -233,7 +237,7 @@
                                 </div>
                             </div>
                             <div class="container-below-tb">
-                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">이 상품만 예약하기</button>
+                                <button type="button" class="primary-btn-calendar tours" onclick="handleSubmit()">예약하기</button>
                                 <a href="" class="primary-btn-sub tours">장바구니에 담기</a>
                             </div>
                         </div>
@@ -461,6 +465,8 @@
             <div class="dim"></div>
         </div>
 
+        <iframe src="" id="hiddenFrame" name="hiddenFrame" style="display: none;" frameborder="0"></iframe>
+
         <script>
             function closePopup() {
                 $(".popup_wrap").hide();
@@ -546,7 +552,7 @@
                     }
                 }
 
-                $("#frm").submit();
+                $("#order_frm").submit();
             }
 
         </script>

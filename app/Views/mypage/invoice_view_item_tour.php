@@ -1,5 +1,6 @@
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
+<?php $setting = homeSetInfo(); ?>
 <?php
 $connect = db_connect();
 $private_key = private_key();
@@ -100,10 +101,10 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$first = true; 
 								foreach ($tour_option as $option): ?>
 									<?php if (!$first): ?> + <?php endif; ?>
-									<?= $option['option_name']?>: <?= number_format($option['option_price']) ?> 바트
+									<?= $option['option_name']?>: <?= number_format($option['option_price'] * $setting['baht_thai']) ?> 바트
 									<?php $first = false; ?>
 								<?php endforeach; ?>
-								= <?= number_format($total_price) ?> 바트
+								= <?= number_format($total_price * $setting['baht_thai']) ?> 바트
 							<?php endif; ?>
 						</td>
 
@@ -115,13 +116,13 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								+
 								<?= number_format($people_baby_price) ?> 바트(유아)
 								+
-								<?= number_format($total_price) ?>
+								<?= number_format($total_price * $setting['baht_thai']) ?>
 								옵션
 								- 
                                 <?= number_format($row_cou['used_coupon_money'])?> 바트(할인쿠폰)
 								= <?= number_format( ($people_adult_price) +
 														($people_kids_price) +
-														($people_baby_price) + $total_price - $row_cou['used_coupon_money'] ) ?>
+														($people_baby_price) + ($total_price * $setting['baht_thai']) - $row_cou['used_coupon_money'] ) ?>
 								바트
 							</p>
 						</td>
@@ -432,37 +433,51 @@ if ($_SESSION["member"]["mIdx"] == "") {
 		</section>
 
 		<!-- 예약자 정보 웹 -->
-		<div class="invoice_table invoice_table_new only_web">
-			<h2>예약자 정보</h2>
-			<table>
-				<colgroup>
-					<col width="8%">
-					<col width="*">
-				</colgroup>
-				<tbody>
-					<tr>
-						<td class="subject">한국이름</td>
-						<td col width="12%" class="subject">휴대번호</td>
-						<td col width="12%" class="subject">이메일</td>
+        <div class="invoice_table invoice_table_new only_web">
+            <h2>예약자 정보</h2>
+            <table>
+                <colgroup>
+                    <col width="8%">
+                    <col width="*">
+                </colgroup>
+                <tbody>
+                <tr>
+                    <td class="subject">이름</td>
+                    <td col width="8%" class="subject">영문 이름(First Name)</td>
+                    <td col width="8%" class="subject">영문 성(Last Name)</td>
+                    <td col width="12%" class="subject">휴대번호</td>
+                    <td col width="12%" class="subject">이메일</td>
+                    <td col width="12%" class="subject">여행시 현지 연락처</td>
 
-					</tr>
-					<tr>
-
-						<td col width="8%" class="content">
-							<?= $order_user_name ?>
+                </tr>
+                <tr>
+                        <td col width="8%" class="content">
+							<?= $row_d['order_user_name'] ?>
 						</td>
 
 						<td class="content">
-							<?= $order_user_mobile ?>
+							<?= $row_d['order_user_first_name_en'] ?>
 						</td>
 
 						<td class="content">
-							<?= $order_user_email ?>
+							<?= $row_d['order_user_last_name_en'] ?>
 						</td>
 
-				</tbody>
-			</table>
-		</div>
+						<td class="content">
+							<?= $row_d['order_user_mobile'] ?>
+						</td>
+
+						<td class="content">
+							<?= $row_d['order_user_email'] ?>
+						</td>
+
+						<td class="content">
+							<?= $local_phone ?>
+						</td>
+
+                </tbody>
+            </table>
+        </div>
 
 		<!-- 예약자 정보 모바일 -->
 
@@ -478,21 +493,42 @@ if ($_SESSION["member"]["mIdx"] == "") {
 					<tr>
 						<td class="subject">이름</td>
 						<td class="content">
-							<?= $order_user_name ?>
+							<?= $row_d['order_user_name'] ?>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="subject">영문 이름(First Name)</td>
+						<td class="content">
+							<?= $row_d['order_user_first_name_en'] ?>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="subject">영문 성(Last Name)</td>
+						<td class="content">
+							<?= $row_d['order_user_last_name_en'] ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">휴대번호</td>
 						<td class="content">
-							<?= $order_user_mobile ?>
+							<?= $row_d['order_user_mobile'] ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td class="subject">이메일</td>
 						<td class="content">
-							<?= $order_user_email ?>
+							<?= $row_d['order_user_email'] ?>
+						</td>
+					</tr>
+
+					<tr>
+						<td class="subject">여행시 현지 연락처</td>
+						<td class="content">
+							<?= $local_phone ?>
 						</td>
 					</tr>
 				</tbody>
