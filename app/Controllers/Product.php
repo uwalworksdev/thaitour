@@ -2189,7 +2189,7 @@ class Product extends BaseController
             return $this->response->setBody("
                     <script>
                         alert('예약되지 않습니다');
-						location.reload();
+						location.href='/product-tours/1301';
                     </script>
                 ");
         }
