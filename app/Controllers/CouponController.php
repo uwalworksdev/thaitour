@@ -101,7 +101,7 @@ class CouponController extends BaseController
             if(createCouponMemberChk($coupon_idx, $user_id) >= 1){
                 return $this->response->setJSON([
                     'result' => false,
-                    'message' => "이 쿠폰을 적용하셨습니다."
+                    'message' => "이 쿠폰을 이미 다운받았습니다."
                 ]);
             }
 

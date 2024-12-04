@@ -21,9 +21,9 @@
                     </ul>
 
                     <ul class="last">
-                        <li><a href="coupon_write" class="btn btn-primary"><span
+                        <!-- <li><a href="coupon_write" class="btn btn-primary"><span
                                         class="glyphicon glyphicon-pencil"></span> <span class="txt">신규등록</span></a>
-                        </li>
+                        </li> -->
                     </ul>
 
                 </div>
