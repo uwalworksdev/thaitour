@@ -548,7 +548,7 @@
                     }
                 }
 
-                $("#frm").submit();
+                $("#order_frm").submit();
             }
 
         </script>
