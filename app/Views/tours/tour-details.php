@@ -1062,11 +1062,11 @@
                                     $('.day').removeClass('active');
                                     $dayDiv.addClass('active');
                                     selectedDate = date;
-									alert('date- '+date);
 
                                     const formattedDate = formatSelectedDate(date);
                                     $('.days_choose').text(formattedDate);
                                     $('.calendar_txt').text(formattedDate);
+                                    $('#order_date').val(formattedDate);
                                 });
                             }
 
