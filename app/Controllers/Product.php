@@ -2073,7 +2073,7 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		print_r($_POST); exit;
+		//print_r($_POST); exit;
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
@@ -2390,6 +2390,8 @@ class Product extends BaseController
 
     public function confirmInfo()
     {
+		print_r($_POST); exit;
+
         $data['product_idx'] = $this->request->getVar('product_idx');
         $data['product'] = $this->productModel->getProductDetails($data['product_idx']);
         $data['tours_idx'] = $this->request->getVar('tours_idx');
