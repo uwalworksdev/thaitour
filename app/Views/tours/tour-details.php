@@ -1226,7 +1226,7 @@
                             const idxWithQuantities = selectedTourIds.map(idx => `${idx}:${selectedTourQuantities[idx]}`).join(',');
 
 
-                            $('#order_date').val(formattedDate);
+                            //$('#order_date').val(formattedDate);
                             $('#people_adult_cnt').val(adultCnt);
                             $('#people_kids_cnt').val(childCnt);
                             $('#people_baby_cnt').val(babyCnt);
