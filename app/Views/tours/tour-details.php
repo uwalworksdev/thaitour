@@ -7,7 +7,7 @@
     <div class="body_inner">
         <form name="frm" id="frm" action="/product-tours/confirm-info" class="">
             <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
-            <input type="text" name="order_date" id="order_date" value="">
+            <input type="hidden" name="order_date" id="order_date" value="">
             <input type="hidden" name="tours_idx" id="tours_idx" value="">
             <input type="hidden" name="idx" id="idx" value="">
             <input type="hidden" id="total_price" value="">
@@ -1066,7 +1066,6 @@
                                     const formattedDate = formatSelectedDate(date);
                                     $('.days_choose').text(formattedDate);
                                     $('.calendar_txt').text(formattedDate);
-									alert(formattedDate);
                                     $('#order_date').val(formattedDate);
                                 });
                             }
