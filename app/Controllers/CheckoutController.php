@@ -13,4 +13,9 @@ class CheckoutController extends BaseController
     {
         return view('checkout/confirm');
     }
+
+    public function bank()
+    {
+        return view('checkout/bank');
+    }
 }

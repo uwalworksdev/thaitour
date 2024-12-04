@@ -1,311 +1,8 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<style>
-    .cus_item_spa_ {
-        margin-bottom: 200px;
-    }
+<link rel="stylesheet" href="/css/contents/confirm.css">
 
-    .customer-form-page .table_container_ {
-        border: none;
-        width: 100%;
-    }
-
-    .customer-form-page .table_container_ tbody {
-        border-top: 1px solid #333333;
-    }
-
-    .customer-form-page .title-main-c {
-        font-size: 22px;
-        letter-spacing: -1px;
-        text-transform: uppercase;
-        color: #252525;
-        font-weight: bold;
-        margin-bottom: 30px;
-    }
-
-    .customer-form-page .table_container_ th,
-    .customer-form-page .table_container_ td {
-        height: 50px;
-        padding: 15px 20px;
-    }
-
-    .customer-form-page .table_container_ .subject_ {
-        border: 1px solid #dbdbdb;
-        border-left: none;
-        background-color: #f7f7f7;
-
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 51px;
-        text-transform: uppercase;
-        color: #252525;
-        font-weight: 500;
-    }
-
-    .customer-form-page .table_container_ .content_ {
-        background-color: #f5f7fa;
-        border: 1px solid #dbdbdb;
-        border-right: none;
-
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 51px;
-        text-transform: uppercase;
-        color: #252525;
-    }
-
-    .customer-form-page .table_container_ label {
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 51px;
-        text-transform: uppercase;
-        color: #252525;
-    }
-
-    .customer-form-page .table_container_ .normal_ {
-        border: 1px solid #dbdbdb;
-        border-right: none;
-        border-left: none;
-    }
-
-    .customer-form-page .payment_info_ {
-        margin-top: 30px;
-        border-radius: 6px;
-        background-color: rgba(255, 255, 255, 0.06);
-        border: 1px solid #2a459f;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .customer-form-page .payment_info_ .payment_first_ {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 30px 30px 20px 30px;
-    }
-
-    .customer-form-page .payment_info_ .warning_icon_ {
-        width: 30px;
-        height: 30px;
-        object-fit: cover;
-    }
-
-    .customer-form-page .payment_info_ .payment_second_ {
-        padding: 20px 20px 20px 0px;
-    }
-
-    .customer-form-page .payment_info_ .payment_first_ p {
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 22px;
-        color: #252525;
-        text-align: center;
-        margin-top: 5px;
-    }
-
-    .customer-form-page .payment_info_ .payment_second_ p {
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 26px;
-        color: #757575;
-    }
-
-    .customer-form-page .payment_info_desc_ {
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 24px;
-        color: #999999;
-        margin-bottom: 50px;
-    }
-
-    .customer-form-page .table_container_ .btn_ {
-        border-radius: 3px;
-        background-color: rgba(42, 69, 159, 0.058823529411764705);
-        border: 1px solid #2a459f;
-        padding: 10px 15px;
-    }
-
-    .customer-form-page .table_container_ .sup_area_ {
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 24px;
-        color: #999999;
-    }
-
-    .customer-form-page .table_container_ .item_number_area_ {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .customer-form-page .table_container_ .item_number_ {
-        width: 100%;
-        max-width: 180px;
-        padding: 20px;
-        border-radius: 3px;
-        background-color: #ffffff;
-        border: 1px solid #dbdbdb;
-    }
-
-    .customer-form-page .table_container_ .item_title_ {
-        margin-top: 10px;
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 1.3;
-        text-transform: uppercase;
-        color: #252525;
-    }
-
-    .customer-form-page .main_cus_ {
-        margin-top: 60px;
-        font-size: 22px;
-        letter-spacing: -1px;
-        line-height: 26px;
-        text-transform: uppercase;
-        color: #252525;
-        font-weight: bold;
-    }
-
-    .customer-form-page .table_container_ .item_number__ {
-        max-width: 280px;
-    }
-
-    .customer-form-page .table_container_ .item_title__ {
-        font-size: 16px;
-        letter-spacing: -1px;
-        line-height: 1.3;
-        text-transform: uppercase;
-        color: #252525;
-    }
-
-    .spa-detail .item-info-check-first {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px 14px;
-        border-radius: 6px;
-        background-color: #f3f3f3;
-        margin-bottom: 20px;
-    }
-
-    .spa-detail .item-info-check-first img {
-        width: 25px;
-        height: 17px;
-    }
-
-    .spa-detail .item-info-check img {
-        width: 25px;
-        height: 17px;
-    }
-
-    .spa-detail .item-info-check {
-        display: flex;
-        justify-content: space-between;
-        border-radius: 6px;
-        padding: 16px 14px;
-        margin: 0 !important;
-        font-size: 15px;
-    }
-
-    .spa-detail .item_check_term_all_,
-    .spa-detail .item_check_term_ {
-        background: url(/uploads/icons/form_check_icon.png) no-repeat right 50% #fff;
-        background-size: 23px 15px;
-    }
-
-    .spa-detail .item_check_term_all_.checked_,
-    .spa-detail .item_check_term_.checked_ {
-        background: url(/images/ico/check_2.png) no-repeat right 50% #fff;
-        background-size: 23px 15px;
-    }
-
-    .spa-detail .item_check_term_all_ label,
-    .spa-detail .item_check_term_ label {
-        font-size: 16px;
-        line-height: 1.3;
-    }
-
-    .spa-detail .item-info-check:hover {
-        background-color: #f3f3f3;
-        cursor: pointer;
-    }
-
-    .spa-detail .below-sub-des {
-        font-size: 15px;
-    }
-
-    .spa-detail .price-right-c .title-r {
-        margin-top: 20px;
-    }
-
-    .content-sub-hotel-detail .section6 .list-label-tag {
-        display: flex;
-        gap: 80px;
-        margin-top: 32px;
-        flex-wrap: wrap;
-    }
-
-    .customer-form-page .card-right2 .title-r {
-        font-size: 18px;
-        letter-spacing: -1px;
-        text-transform: uppercase;
-        color: #252525;
-        font-weight: bold;
-    }
-
-    .customer-form-page .card-right2 .item-info-r {
-
-    }
-
-    .customer-form-page .card-right2 .item-info-r span {
-        font-size: 16px;
-        letter-spacing: -1px;
-        text-transform: uppercase;
-        color: #454545;
-    }
-
-    .customer-form-page .card-right2 .item-info-r span.textPrice_ {
-        font-size: 16px;
-        letter-spacing: 0px;
-        text-transform: uppercase;
-        color: #454545;
-        font-weight: bold;
-    }
-
-    .customer-form-page .card-right2 .item-info-r span.mainPrice_ {
-        font-size: 16px;
-        letter-spacing: -1px;
-        text-transform: uppercase;
-        color: #252525;
-        font-weight: bold;
-    }
-
-    .customer-form-page .card-right2 .below-des-price {
-        margin-top: 20px;
-        font-size: 15px;
-        letter-spacing: -1px;
-        line-height: 20px;
-        color: #999999;
-    }
-
-    .customer-form-page .card-right2 .btn-cancel {
-        margin-top: 20px;
-        display: block;
-        width: 100%;
-        border: 1px solid;
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 60px;
-        border-radius: 4px;
-        color: var(--bs-point);
-        border-color: var(--bs-point) !important;
-    }
-</style>
 <div class="customer-form-page">
     <div class="navigation-section">
         <div class="body_inner">
@@ -371,7 +68,7 @@
                                         <input type="radio" name="inp_radio" value="deposit" id="deposit">
                                         <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
 
-                                        <button class="btn_" type="button">한국계좌번호 보기</button>
+                                        <button class="btn_" type="button" onclick="fn_show_bank();">한국계좌번호 보기</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -424,7 +121,9 @@
                                 <tr class="">
                                     <td class="subject_">총 결제금액</td>
                                     <td class="normal_">
-                                        432,100원
+                                        <p class="price_">
+                                            432,100원
+                                        </p>
                                     </td>
                                 </tr>
                                 <tr class="">
@@ -445,7 +144,9 @@
                                 <tr class="">
                                     <td class="subject_">포인트</td>
                                     <td class="normal_">
-                                        432,100원
+                                       <p class="price_">
+                                           432,100원
+                                       </p>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -712,6 +413,10 @@
 
         checkOrUncheckAll();
     });
+
+    function fn_show_bank() {
+        window.location.href = "/checkout/bank";
+    }
 
     function checkOrUncheckAll() {
         let allChecked = true;

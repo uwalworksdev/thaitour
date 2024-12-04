@@ -1,5 +1,14 @@
 .cus_item_spa_ {
-    margin-bottom: 200px;
+    padding-bottom: 200px;
+}
+
+.body_inner {
+    overflow: unset;
+}
+
+.customer-form-page .container-card .card-right2 {
+    position: sticky;
+    top: 70px;
 }
 
 .cart-item-list .cart-item-list-container .cart-right {
