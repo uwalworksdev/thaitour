@@ -686,7 +686,6 @@
 
 
         function handleSubmit() {
-			alert('xxxxxxx');
             $("#frm").submit();
         }
 

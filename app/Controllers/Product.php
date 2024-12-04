@@ -1981,6 +1981,7 @@ class Product extends BaseController
 
     public function tourCustomerForm()
     {
+		echo "1111111111"; exit;
         $data['product_idx'] = $this->request->getVar('product_idx');
         $data['order_date'] = $this->request->getVar('order_date');
         $data['tours_idx'] = $this->request->getVar('tours_idx');
