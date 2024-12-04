@@ -2073,12 +2073,13 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		print_r($_POST); exit;
+		//print_r($_POST); exit;
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
             $product                = $this->productModel->find($data['product_idx']);
-            $data['product_name']   = $product['product_name'];
+
+			$data['product_name']   = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
@@ -2105,15 +2106,17 @@ class Product extends BaseController
             $data['people_adult_price'] = $data['people_adult_price'];
             $data['people_kids_price'] = $data['people_kids_price'];
             $data['people_baby_price'] = $data['people_baby_price'];
-            $data['order_price'] = $data['final_price'];
+            $data['order_price'] = $data['total_price'];
             $data['inital_price'] = $data['inital_price'];
+            $data['order_date'] = $data['order_date'];
+
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
 
             $adultCount = (int)$data['people_adult_cnt'];
-            $kidsCount = (int)$data['people_kids_cnt'];
-            $babyCount = (int)$data['people_baby_cnt'];
+            $kidsCount  = (int)$data['people_kids_cnt'];
+            $babyCount  = (int)$data['people_baby_cnt'];
             foreach ($data['companion_name'] as $key => $value) {
                 if ($key < $adultCount) {
                     $orderGubun = 'adult';
@@ -3020,7 +3023,6 @@ class Product extends BaseController
 
 
             $sql = "SELECT * FROM tbl_tours_option WHERE product_idx = '$product_idx' AND code_idx = '$code_idx' ";
-            write_log($sql);
             $result = $this->db->query($sql);
             $result = $result->getResultArray();
             foreach ($result as $row) {
@@ -3045,11 +3047,9 @@ class Product extends BaseController
             $moption = $_POST['moption'];
 
             $sql = "SELECT * FROM tbl_tours_moption WHERE code_idx = '$moption' ";
-            write_log($sql);
             $result2 = $this->db->query($sql)->getRowArray();
 
             $sql = "SELECT * FROM tbl_tours_option WHERE idx = '$idx' ";
-            write_log($sql);
             $result = $this->db->query($sql)->getRowArray();
             $result['parent_name'] = $result2['moption_name'];
 
@@ -3073,7 +3073,6 @@ class Product extends BaseController
                             , c.status, c.types, s.coupon_name, s.dc_type, s.coupon_pe, s.coupon_price 
                                 FROM tbl_coupon c LEFT JOIN tbl_coupon_setting s ON c.coupon_type = s.idx WHERE c.c_idx = '" . $idx . "' 
                                 AND status = 'N' AND STR_TO_DATE(enddate, '%Y-%m-%d') >= CURDATE()";
-            write_log($sql);
             $result = $this->db->query($sql)->getRowArray();
 
             return $this->response->setJSON($result, 200);
