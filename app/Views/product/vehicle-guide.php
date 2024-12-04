@@ -301,11 +301,13 @@
                             <colgroup>
                                 <col width="150px">
                                 <col width="*">
+                                <col width="150px">
+                                <col width="*">
                             </colgroup>
                             <tbody>
                             <tr>
                                 <th>미팅 시간</th>
-                                <td>
+                                <td colspan="3">
                                     <div class="meeting_time">
                                         <span class="meeting_time__date">2024-06-28(금)</span>
                                         <select name="hours" id="hours">
@@ -337,7 +339,7 @@
                                 <th>
                                     출발지 <br> (픽업호텔)
                                 </th>
-                                <td>
+                                <td colspan="3">
                                     <div class="departure">
                                         <span class="departure_name"></span>
                                         <input type="text" name="departure_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
@@ -353,7 +355,7 @@
                                 <th>
                                     목적지 <br> (픽업호텔)
                                 </th>
-                                <td>
+                                <td colspan="3">
                                     <div class="destination">
                                         <span class="destination_name"></span>
                                         <input type="text" name="destination_hotel" placeholder="호텔명을 영어로 적어주세요(주소불가)">
@@ -362,13 +364,36 @@
                             </tr>
                             <tr>
                                 <th>기타요철</th>
-                                <td>
+                                <td colspan="3">
                                     <textarea name="order_memo" id="order_memo" class="other_irregularities"></textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <th>전화번호*</th>
+                                <th>한국이름</th>
                                 <td>
+                                    <input type="text" id="order_user_name" name="order_user_name" required="" data-label="한국이름" placeholder="한국이름 작성해주세요.">
+                                </td>
+                                <th>성별(남성/여성)*</th>
+                                <td>
+                                    <select name="companion_gender" id="gender1" style="width: 100%" required="" data-label="성별" class="select-width">
+                                        <option value="M">남성</option>
+                                        <option value="F">여성</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>영문 이름 <br> (First Name) *</th>
+                                <td>
+                                    <input type="text" id="order_user_first_name_en" name="order_user_first_name_en" required="" data-label="영문 이름" placeholder="영어로 작성해주세요.">
+                                </td>
+                                <th>영문 성 <br> (Last Name) *</th>
+                                <td>
+                                    <input type="text" id="order_user_last_name_en" name="order_user_last_name_en" required="" data-label="영문 성" placeholder="영어로 작성해주세요.">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>전화번호*</th>
+                                <td colspan="3">
                                     <div class="phone_number">
                                         <select name="phone1" id="phone1">
                                             <option value="010">010</option>
@@ -383,7 +408,7 @@
                             </tr>
                             <tr>
                                 <th>이메일*</th>
-                                <td>
+                                <td colspan="3">
                                     <div class="contact_email">
                                         <input type="text" name="email_name" id="email_name">
                                         <span>@</span>
