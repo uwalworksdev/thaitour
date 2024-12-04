@@ -416,12 +416,9 @@
         });
 
         $('.tab_box_element_').on('click', function () {
-
             $('.tab_box_element_').removeClass('tab_active_');
 
-
             $(this).addClass('tab_active_');
-
 
             const tabId = $(this).attr('rel');
             $('.tab_content').hide();
@@ -539,6 +536,11 @@
         let parts = number.split(dec_point);
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
         return parts.join(dec_point);
+    }
+</script>
+<script>
+    function completeOrder() {
+        window.location.href = "/checkout/confirm";
     }
 </script>
 <?php $this->endSection(); ?>
