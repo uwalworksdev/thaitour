@@ -8,6 +8,10 @@
             <div class="section2" id="product_info">
                 <form action="/product-tours/customer-form-ok" name="order_frm" id="order_frm" method="post" >
                     <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
+					<input type="hidden" name="product_code_1" value="<?= $product['product_code_1'] ?>">
+					<input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
+					<input type="hidden" name="product_code_3" value=".">
+					<input type="hidden" name="product_code_4" value="."> 
                     <input type="hidden" name="order_date" id="order_date" value="<?= $order_date?>">
                     <input type="hidden" name="tours_idx" id="tours_idx" value="<?= $tours_idx?>">
                     <input type="hidden" name="idx" id="idx" value="<?= $idx?>">
