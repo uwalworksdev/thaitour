@@ -1062,7 +1062,7 @@
                                     $('.day').removeClass('active');
                                     $dayDiv.addClass('active');
                                     selectedDate = date;
-									$("#order_date").val(date);
+									alert('date- '+date);
 
                                     const formattedDate = formatSelectedDate(date);
                                     $('.days_choose').text(formattedDate);
