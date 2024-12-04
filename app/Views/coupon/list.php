@@ -15,6 +15,7 @@
                 <p>여행 쿠폰</p>
                 <div class="custom_select_rounded">
                     <select class="select_custom_ select_code_category">
+                        <option value="">전체</option>
                         <?php 
                             foreach($code_list as $code){
                         ?>
@@ -87,7 +88,7 @@
                 
             </div>
             <div class="add_btn flex_c_c">
-                <button type="button" class="add_card flex_c_c">더보기 +</button>
+                <button type="button" class="add_card flex_c_c coupon_pagination_btn">더보기 +</button>
             </div>
         </div>
     </div>
@@ -189,28 +190,30 @@
     </div>
 </section>
 <script>
-    const $select = $('.custom_select_rounded .select_code_category');
-
+    const select_cat = $('.custom_select_rounded .select_code_category');
+    var current_page = 1;                        
     function adjustSelectWidth() {
-        const $tempSpan = $('<span>')
+        const tempSpan = $('<span>')
             .css({
                 visibility: 'hidden',
                 position: 'absolute',
                 whiteSpace: 'nowrap',
             })
-            .text($select.find('option:selected').text())
+            .text(select_cat.find('option:selected').text())
             .appendTo('body');
 
-        const newWidth = $tempSpan.outerWidth() + 70;
-        $select.css('width', newWidth);
-        $tempSpan.remove();
+        const newWidth = tempSpan.outerWidth() + 70;
+        select_cat.css('width', newWidth);
+        tempSpan.remove();
     }
 
-    $select.on('change', adjustSelectWidth);
+    select_cat.on('change', adjustSelectWidth);
 
-    adjustSelectWidth();
-    get_code();
-    get_coupon_list();
+    $(document).ready(function() {
+        adjustSelectWidth();
+        get_code();
+        get_coupon_list(1);
+    });
 
     $('.custom_select_rounded .select_code_category').on("change", function() {
         get_code();
@@ -227,11 +230,16 @@
 
     function getDayOfWeekKorean(dateString) {
         const date = new Date(dateString);
-        const daysKorean = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+        const daysKorean = ['일', '월', '화', '수', '목', '금', '토'];
         return daysKorean[date.getDay()];
     }
 
-    function get_coupon_list() {
+    $(".coupon_pagination_btn").on("click", function() {
+        current_page += 1;
+        get_coupon_list(current_page);
+    });
+
+    function get_coupon_list(page) {
         let code_no = $('.custom_select_rounded .select_code_category').val();
         let child_code = $('.list_tag .tag.active').data("code");
 
@@ -241,9 +249,11 @@
             data: {
                 code: code_no,
                 child_code: child_code,
+                page: page
             },
             success: function(res) {
-                let data = res;
+                let data = res["coupon_list"];
+                let totalPage = res["nPage"];
                 let html = ``;
                 data.forEach(element => {
                     let img = "";
@@ -263,7 +273,18 @@
                             </div>`;
                 });
 
-                $(".card_cou").html(html);
+                if(page <= 1){
+                    $(".card_cou").html(html);
+                }else{
+                    $(".card_cou").append(html);
+                }
+
+                if(page >= totalPage){
+                    $(".coupon_pagination_btn").hide();
+                }else{
+                    $(".coupon_pagination_btn").show();
+                }
+
             }
         })
     }
@@ -286,14 +307,14 @@
                 });
                 $(".list_tag").html(html);
 
-                get_coupon_list();
+                get_coupon_list(1);
             }
         });
     }
 
     $(".list_tag").on("click", ".tag", function () {
         $(this).addClass("active").siblings().removeClass("active");
-        get_coupon_list();
+        get_coupon_list(1);
     });
 
     $(".card_cou").on("click", ".card", function () {
@@ -307,9 +328,6 @@
             },
             success: function(res) {
                 let data = res;
-
-                console.log(data);
-                
 
                 let avatar_info = "";
                 if(data["ufile1"]){
