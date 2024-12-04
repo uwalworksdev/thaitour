@@ -1,12 +1,12 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
-<?php //$setting = homeSetInfo(); ?>
+<?php $setting = homeSetInfo(); ?>
 
 <div class="content-sub-hotel-detail tours-detail">
     <div class="body_inner">
             <div class="section2" id="product_info">
-                <form action="/product-tours/customer-form-ok" name="order_frm" id="order_frm" method="post" >
+                <form action="/product-tours/customer-form-ok" name="order_frm" id="order_frm" method="post" target="hiddenFrame">
                     <input type="hidden" name="product_idx" value="<?= $product['product_idx'] ?>">
 					<input type="hidden" name="product_code_1" value="<?= $product['product_code_1'] ?>">
 					<input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
