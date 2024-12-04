@@ -1809,7 +1809,7 @@ class Product extends BaseController
         $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
         $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
-
+ 
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
         $date = date("Y.m.d", strtotime($data['order_date']));
@@ -1974,17 +1974,6 @@ class Product extends BaseController
         }
     }
 
-    public function toursFormOkx()  
-    {
-            return $this->response->setBody("
-                <script>
-                    alert('예약되었습니다');
-                    parent.location.href = '/product-golf/completed-order';
-                </script>
-            ");
-
-    }
-
     public function golfCompletedOrder()
     {
         return $this->renderView('product/completed-order', ['return_url' => '/']);
@@ -2084,11 +2073,12 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
+		print_r($_POST); exit;
         try {
             $data = $this->request->getPost();
-            $data['m_idx'] = session('member.idx') ?? "";
-            $product = $this->productModel->find($data['product_idx']);
-            $data['product_name'] = $product['product_name'];
+            $data['m_idx']          = session('member.idx') ?? "";
+            $product                = $this->productModel->find($data['product_idx']);
+            $data['product_name']   = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
@@ -2200,6 +2190,7 @@ class Product extends BaseController
             return $this->response->setBody("
                     <script>
                         alert('예약되지 않습니다');
+						location.href='/product-tours/1301';
                     </script>
                 ");
         }

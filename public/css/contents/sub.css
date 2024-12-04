@@ -5795,6 +5795,7 @@ input[type=checkbox]:checked + .vehicle_options__label__vehicle_prd::after {
 }
 
 .coupon_list .coupon_content .card_cou .card .images img {
+    width: 100%;
     transition: all .5s linear;
 }
 

@@ -185,12 +185,12 @@ class AdminMenus extends BaseConfig
                     'url' => '/AdmMaster/_inquiry/list',
                     'alias' => ['AdminInquiryController::list', 'AdminInquiryController::write']
                 ],
-                [
-                    'name' => '쿠폰생성관리',
-                    'code' => 'E7',
-                    'url' => '/AdmMaster/_operator/coupon_setting',
-                    'alias' => ['AdminOperatorController::coupon_setting', 'AdminOperatorController::coupon_setting_write']
-                ],
+                // [
+                //     'name' => '쿠폰생성관리',
+                //     'code' => 'E7',
+                //     'url' => '/AdmMaster/_operator/coupon_setting',
+                //     'alias' => ['AdminOperatorController::coupon_setting', 'AdminOperatorController::coupon_setting_write']
+                // ],
                 [
                     'name' => '쿠폰사용관리',
                     'code' => 'E8',
