@@ -149,7 +149,7 @@
                                                     <?php foreach ($tour_option as $index => $option): ?>
                                                         <div class='flex_op flex'>
                                                              <?= $option['option_name']?>
-                                                             <p class='product_option_pay'> <?= number_format($option_price[$index])?> 원</p></div>
+                                                             <p class='product_option_pay'> <?= number_format($option_price[$index] * $setting['baht_thai'])?> 원</p></div>
                                                     <?php endforeach; ?>
                                                 </div>
                                             </td>
