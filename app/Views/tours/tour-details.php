@@ -41,7 +41,7 @@
                     <div class="rating-container">
                         <img src="/uploads/icons/star_icon.png" alt="star_icon.png">
                         <span><strong> <?= $product['review_average'] ?></strong></span>
-                        <span>생생리뷰.. <strong>(<?= $product['total_review'] ?>)</strong></span>
+                        <span>생생리뷰 <strong>(<?= $product['total_review'] ?>)</strong></span>
                     </div>
                     <div class="list-icon only_mo">
                         <img src="/uploads/icons/print_icon.png" alt="print_icon">
