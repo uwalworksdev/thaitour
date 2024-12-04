@@ -1181,8 +1181,9 @@
                     <?php
                     if (empty(session()->get("member")["id"])) {
                     ?>
-                    alert("주문하시려면 로그인해주세요!");
+                    alert("에약하시려면 로그인 해주세요!");
                     location.href='/member/login';
+					return false;
                     <?php
                     }
                     ?>
