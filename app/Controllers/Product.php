@@ -2390,7 +2390,7 @@ class Product extends BaseController
 
     public function confirmInfo()
     {
-		print_r($_POST); exit;
+		print_r($_GET); exit;
 
         $data['product_idx'] = $this->request->getVar('product_idx');
         $data['product'] = $this->productModel->getProductDetails($data['product_idx']);
