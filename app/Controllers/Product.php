@@ -1809,7 +1809,7 @@ class Product extends BaseController
         $data['vehicle_idx'] = $this->request->getVar('vehicle_idx');
         $data['vehicle_cnt'] = $this->request->getVar('vehicle_cnt');
         $data['use_coupon_idx'] = $this->request->getVar('use_coupon_idx');
-
+echo "11111111"; exit;
         $daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
         $date = date("Y.m.d", strtotime($data['order_date']));
