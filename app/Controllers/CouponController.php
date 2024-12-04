@@ -37,8 +37,9 @@ class CouponController extends BaseController
     public function get_coupon_list() {
         $code = $this->request->getVar("code");
         $child_code = $this->request->getVar("child_code");
+        $page = $this->request->getVar("page");
 
-        $coupon_list = $this->couponMst->getCouponListAjax($code, $child_code, 1, 8);
+        $coupon_list = $this->couponMst->getCouponListAjax($code, $child_code, $page, 8);
 
         return $this->response->setJSON($coupon_list);
     }

@@ -102,15 +102,13 @@ class CouponMst extends Model
             $coupon_list[$key]["category_name"] = $code_model->getCodeName($value["product_code_2"]);
         }
 
-        return $coupon_list;
-        // return [
-        //     'coupon_list' => $coupon_list,
-        //     'nTotalCount' => $nTotalCount,
-        //     'pg' => $pg,
-        //     'nPage' => $nPage,
-        //     'g_list_rows' => $g_list_rows,
-        //     'num' => $num,
-        // ];
+        return [
+            'coupon_list' => $coupon_list,
+            'nTotalCount' => $nTotalCount,
+            'pg' => $pg,
+            'nPage' => $nPage,
+            'g_list_rows' => $g_list_rows
+        ];
     }
 
     public function insertData($data)
