@@ -269,7 +269,7 @@
                 <div class="item-right">
                     <div class="list-text">
                         <p><span class="text-gray">그린피 : </span><em id="final_option_price">0</em> 원
-                            (1인 <em id="final_option_price_baht">0</em>원 X <em class="final_people_cnt">0</em>인)</p>
+                            (1인 <em id="final_option_price_baht">0</em>바트 X <em class="final_people_cnt">0</em>인)</p>
                         <p><span class="text-gray">캐디피 : </span><em id="final_caddy_fee">그린피에 포함</em></p>
                         <p><span class="text-gray">카트피 : </span><em id="final_cart_pie_fee">그린피에 포함</em></p>
                     </div>
@@ -523,7 +523,7 @@
 
             let html = `<div class="item-right">
                             <p><span class="text-gray">골프장 왕복 픽업 차량 - </span>[name] x [cnt]대</p>
-                            <span class="price-text text-gray">[price] 원 ([price_baht]원)</span>
+                            <span class="price-text text-gray">[price] 원 ([price_baht]바트)</span>
                         </div>`;
 
             const html2 = $(".vehicle_select").filter(function () {
@@ -830,7 +830,7 @@
 
         var sel_Date = getAvailableDates(s_date, e_date, deadline_date_arr);
         const arrDate = sel_Date.split("|");
-        const arrPrice = arrDate.map(x => '<?=round($product['product_price'] / 10000, 1)?>');
+        const arrPrice = arrDate.map(x => '<?=round($product['product_price_won'] / 10000, 1)?>');
 
         function getMonthDatesWithWeekdays(month, year) {
             const monthDatesWithWeekdays = [];
