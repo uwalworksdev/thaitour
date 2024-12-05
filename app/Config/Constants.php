@@ -200,7 +200,31 @@ $banner["titles"][5] = "모바일 이미지(660)";
 $banner["names"][5] = "ufile5";
 $banner["inputTypes"][5] = "files";
 
-// event
+$event['titles'][0]        = "조회";
+$event['names'][0]         = "hit";
+$event['inputTypes'][0]    = "text";
+$event['widths'][0]        = "150px";
+
+$event['titles'][1]        = "제목";
+$event['names'][1]         = "subject";
+$event['inputTypes'][1]    = "text";
+$event['widths'][1]        = "100%";
+
+$event['titles'][2]        = "이벤트 기간";
+$event['names'][2]         = ['s_date', 'e_date'];
+$event['inputTypes'][2]    = "duration";
+
+$event['titles'][3]        = "내용";
+$event['names'][3]         = "contents";
+$event['inputTypes'][3]    = "summernote";
+
+$event['titles'][4]        = "이미지첨부";
+$event['names'][4]         = "ufile6";
+$event['inputTypes'][4]    = "files";
+
+$event['titles'][5]        = "관련상품";
+$event['names'][5]         = "product_list";
+$event['inputTypes'][5]    = "product_pickup";
 // mem_board
 // mem_pds
 // awards
@@ -211,7 +235,8 @@ define("BBS_WRITE_CONFIG", [
     "b2b_notice"    => $b2b_notice,
     "faq"           => $faq,
     "winner"        => $winner,
-    "banner"        => $banner
+    "banner"        => $banner,
+    'event'         => $event
 ]);
 
 $b2b_notice_list['skin'] = "list";

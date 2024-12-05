@@ -1,7 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
-    <link rel="stylesheet" href="/AdmMaster/_common/css/popup.css" type="text/css"/>
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <style>
         #input_file_ko {
             display: inline-block;
@@ -288,106 +288,9 @@
             first_select_all = false;
         })
 
-        function get_code(strs, depth) {
-            $.ajax({
-                type: "GET"
-                , url: "/AdmMaster/_tourRegist/get_code.ajax.php"
-                , dataType: "html" //전송받을 데이터의 타입
-                , timeout: 30000 //제한시간 지정
-                , cache: false  //true, false
-                , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-                , error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , success: function (json) {
-                    //alert(json);
-                    if (depth <= 3) {
-                        $("#product_code_2").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_2").append("<option value=''>2차분류</option>");
-                    }
-                    if (depth <= 4) {
-                        $("#product_code_3").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_3").append("<option value=''>3차분류</option>");
-                    }
-                    if (depth <= 4) {
-                        $("#product_code_4").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_4").append("<option value=''>4차분류</option>");
-                    }
-                    var list = $.parseJSON(json);
-                    var listLen = list.length;
-                    var contentStr = "";
-                    for (var i = 0; i < listLen; i++) {
-                        contentStr = "";
-                        if (list[i].code_status == "C") {
-                            contentStr = "[마감]";
-                        } else if (list[i].code_status == "N") {
-                            contentStr = "[사용안함]";
-                        }
-                        $("#product_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
-                    }
-                }
-            });
-        }
     </script>
     <script>
-        $(function () {
-
-            $('.list_up .btn-list').on('click', function () {
-
-                //$("#pick_select_layer tbody").html('');
-
-                // $('.pick_item_pop02').show();
-
-                let code = $("#bbs_idx").val();
-                var inq_sw = "fst";
-                const product_code_no = '<?= $product_code_no ?>';
-
-                $.ajax({
-
-                    url: "./goods_find.php",
-                    type: "POST",
-                    data: {
-                        "code_no": code,
-                        "inq_sw": inq_sw
-                    },
-                    error: function (request, status, error) {
-                        //통신 에러 발생시 처리
-                        alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                        $("#ajax_loader").addClass("display-none");
-                    }
-                    , complete: function (request, status, error) {
-
-                    }
-                    , success: function (response, status, request) {
-                        if (product_code_no) {
-                            $("#pick_item_search").html(`
-                            <h1><?= $product_code_name ?></h1>
-                        `);
-                        }
-                        $("#id_contents").empty();
-                        $("#id_contents").append(response);
-                        $('.pick_item_pop02').show();
-
-
-                    }
-                });
-
-
-            })
-
-
-            $('.pick_item_pop02 .sel_box .close').on('click', function () {
-                $('.pick_item_pop02').hide()
-            })
-
-        });
+        
 
         function fn_pick_update() {
 
@@ -427,7 +330,7 @@
 
             $.ajax({
 
-                url: "./item_allfind.php",
+                url: "./item_allfind",
                 type: "POST",
                 data: {
                     "code": code,
