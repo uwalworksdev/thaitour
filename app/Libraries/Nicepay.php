@@ -11,7 +11,7 @@ class Nicepay
 
     public function __construct()
     {
-        $this->apiUrl      = "https://api.test.nicepay.co.kr/v1/payments";
+        $this->apiUrl      = "https://sandbox-api.nicepay.co.kr/v1/payments";
         $this->merchantId  = "nicepay00m";
         $this->merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==";
         $this->returnUrl   = "https://thetourlab.com/payment/complete";
