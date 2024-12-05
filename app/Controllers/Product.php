@@ -2073,7 +2073,7 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		//print_r($_POST); exit;
+		print_r($_POST); exit;
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
