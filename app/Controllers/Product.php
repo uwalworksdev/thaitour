@@ -2139,7 +2139,7 @@ class Product extends BaseController
             {
                 $option_idx = explode(":", $idx[$i]);
 
-                $sql        = "SELECT * FROM tbl_tours_option WHERE idx = '". $option_idx[$i] ."' ";
+                $sql        = "SELECT * FROM tbl_tours_option WHERE idx = '". $option_idx[0] ."' ";
                 $result     = $this->db->query($sql);
                 $row        = $result->getRowArray();
  
@@ -2155,6 +2155,7 @@ class Product extends BaseController
 													  , option_date	 =  now()
 													  , option_price = '". $row['option_price'] ."'	
 													  , option_qty   = '". $option_idx[1] ."' ";
+                write_log($sql);
                 $result     = $this->db->query($sql);
             }
 
