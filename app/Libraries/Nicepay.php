@@ -63,6 +63,7 @@ class Nicepay
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 테스트 환경에서는 SSL 검증을 비활성화
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30); // 타임아웃 30초 설정
 
         $response = curl_exec($ch);
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
