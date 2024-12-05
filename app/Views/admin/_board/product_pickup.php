@@ -26,7 +26,6 @@
         <div class="search_box">
 
             <form name="pick_item_search" id="pick_item_search">
-                <input type="hidden" name="upd_code" id="upd_code" value="<?= $code ?>">
                 <?=view("admin/_board/product_code_select", [
                     "product_code_1" => $product_code_1,
                     "product_code_2" => $product_code_2,
@@ -91,4 +90,63 @@
         })
 
     });
+    function search_it() {
+
+        let product_code_1 = $("#product_code_1").val();
+        let product_code_2 = $("#product_code_2").val();
+        let product_code_3 = $("#product_code_3").val();
+        let search_category = $("#search_category").val();
+        let search_txt = $("#search_txt").val();
+
+        $.ajax({
+
+            url: "/AdmMaster/_bbs/item_allfind",
+            type: "POST",
+            data: {
+                "product_code_1": product_code_1,
+                "product_code_2": product_code_2,
+                "product_code_3": product_code_3,
+                "search_category": search_category,
+                "search_txt": search_txt,
+
+            },
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , complete: function (request, status, error) {
+
+            }
+            , success: function (response, status, request) {
+
+                $("#id_contents").empty();
+                $("#id_contents").append(response);
+                $('.pick_item_pop02').show();
+            }
+        });
+    }
+    function fn_pick_update() {
+
+        var f = document.select_pick_frm;
+
+        var pick_data = $(f).serialize();
+        var save_result = "";
+        $.ajax({
+            type: "POST",
+            data: pick_data,
+            url: "/AdmMaster/_bbs/event_update",
+            cache: false,
+            async: false,
+            dataType: "json",
+            success: function (data, textStatus) {
+                var message = data.message;
+                alert(message);
+                location.reload();
+            },
+            error: function (request, status, error) {
+                alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+            }
+        });
+    }
 </script>

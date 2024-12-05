@@ -11,7 +11,8 @@ class BoardController extends BaseController
     private $codeModel;
     private $ProductModel;
     private $bbsCommentModel;
-    private $uploadPath = WRITEPATH . "uploads/bbs/";
+    private $eventDispModel;
+    private $uploadPath = ROOTPATH . "public/data/bbs/";
 
     public function __construct()
     {
@@ -21,6 +22,7 @@ class BoardController extends BaseController
         $this->codeModel = model("Code");
         $this->ProductModel = model("ProductModel");
         $this->bbsCommentModel = model("BbsCommentModel");
+        $this->eventDispModel = model("EventDispModel");
         error_reporting(1);
     }
 
@@ -108,17 +110,22 @@ class BoardController extends BaseController
 
         $data = $this->request->getPost();
 
+        if (!$data['writer']) {
+            $data['writer'] = '관리자';
+        }
+
         for ($i = 1; $i <= 6; $i++) {
             if ($this->request->getPost("del_$i") == "Y") {
-                $data["ufile_$i"] = "";
-                $data["rfile_$i"] = "";
+                $data["ufile$i"] = "";
+                $data["rfile$i"] = "";
 
-            } elseif ($files["ufile$i"]) {
+            }
+            if ($files["ufile$i"]) {
                 $file = $files["ufile$i"];
 
                 if ($file->isValid() && !$file->hasMoved()) {
                     $fileName = $file->getClientName();
-                    $data["rfile_$i"] = $fileName;
+                    $data["rfile$i"] = $fileName;
 
                     if (no_file_ext($fileName) == "Y") {
                         $microtime = microtime(true);
@@ -126,7 +133,7 @@ class BoardController extends BaseController
                         $date = date('YmdHis');
                         $ext = explode(".", strtolower($fileName));
                         $newName = $date . $timestamp . '.' . $ext[1];
-                        $data["ufile_$i"] = $newName;
+                        $data["ufile$i"] = $newName;
                         write_log("$i - $uploadPath - $newName");
                         $file->move($uploadPath, $newName);
 
@@ -136,9 +143,11 @@ class BoardController extends BaseController
         }
 
         if ($bbs_idx) {
+            $data['r_date'] = date("Y-m-d H:i:s");
             $this->bbsModel->update($bbs_idx, $data);
             $msg = "수정완료";
         } else {
+            $data['r_date'] = date("Y-m-d H:i:s");
             $this->bbsModel->insert($data);
             $msg = "등록완료";
         }
@@ -173,7 +182,66 @@ class BoardController extends BaseController
 
     public function item_allfind()
     {
-        
+        $product_code_1  = $_POST['product_code_1'];
+        $product_code_2  = $_POST['product_code_2'];
+        $product_code_3  = $_POST['product_code_3'];
+        $search_category = $_POST['search_category'];
+        $search_txt      = $_POST['search_txt'];
+
+
+        $prdList = $this->ProductModel->findProductPaging([
+            'product_code_1'  => $product_code_1,
+            'product_code_2'  => $product_code_2,
+            'product_code_3'  => $product_code_3,
+            'search_category' => $search_category,
+            'search_txt'      => $search_txt
+        ], 1000, 1)['items'];
+
+        $html = "";
+
+        foreach ($prdList as $key => $row) {
+            $html .= "<tr>
+                        <td><input type='checkbox' name='idx[]' class='idx' value='".$row['product_idx']."'></td>
+                        <td>".viewSQ(html_entity_decode($row['product_name']))."</td>
+                        <td>".$row['product_code']."</td>
+                    </tr>
+                ";
+        }
+
+        return $html;
+
+    }
+
+    public function event_update()
+    {
+        $isrt_code = $this->request->getPost('isrt_code');
+        $idx = $this->request->getPost('idx');
+
+        foreach ($idx as $item) {
+            $this->eventDispModel->insert([
+                'code_no' => $isrt_code,
+                'product_idx' => $item,
+                'status' => "Y",
+            ]);
+        }
+
+        return $this->response->setJSON([
+            'message' => '등록완료'
+        ]);
+
+    }
+
+
+    public function event_dis_delete()
+    {
+        $idx = $this->request->getPost('idx');
+
+        $this->eventDispModel->delete($idx);
+
+        return $this->response->setJSON([
+            'message' => '정상적으로 제외되었습니다.'
+        ]);
+
     }
 
 }

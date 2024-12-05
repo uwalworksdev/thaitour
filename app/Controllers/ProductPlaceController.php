@@ -8,7 +8,7 @@ use Config\CustomConstants as ConfigCustomConstants;
 class ProductPlaceController extends BaseController
 {
     protected $connect;
-    protected $productPlase;
+    protected $productPlace;
 
     public function __construct()
     {
@@ -16,17 +16,19 @@ class ProductPlaceController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
-        $this->productPlase = model("ProductPlace");
+        $this->productPlace = model("ProductPlace");
     }
 
-    public function index()
+    public function list()
     {
         try {
+            $product_idx = updateSQ($_GET['product_idx']);
 
+            $data = $this->productPlace->getByProductId($product_idx);
 
             return $this->response->setJSON([
                 'result' => true,
-                'message' => ""
+                'data' => $data
             ], 200);
         } catch (\Exception $e) {
             return $this->response->setJSON([

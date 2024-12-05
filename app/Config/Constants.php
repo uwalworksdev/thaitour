@@ -225,6 +225,25 @@ $event['inputTypes'][4]    = "files";
 $event['titles'][5]        = "관련상품";
 $event['names'][5]         = "product_list";
 $event['inputTypes'][5]    = "product_pickup";
+
+$magazines['titles'][0]        = "조회";
+$magazines['names'][0]         = "hit";
+$magazines['inputTypes'][0]    = "text";
+$magazines['widths'][0]        = "150px";
+
+$magazines['titles'][1]        = "제목";
+$magazines['names'][1]         = "subject";
+$magazines['inputTypes'][1]    = "text";
+$magazines['widths'][1]        = "100%";
+
+$magazines['titles'][2]        = "내용";
+$magazines['names'][2]         = "contents";
+$magazines['inputTypes'][2]    = "summernote";
+
+$magazines['titles'][3]        = "이미지첨부";
+$magazines['names'][3]         = "ufile1";
+$magazines['inputTypes'][3]    = "files";
+
 // mem_board
 // mem_pds
 // awards
@@ -236,7 +255,8 @@ define("BBS_WRITE_CONFIG", [
     "faq"           => $faq,
     "winner"        => $winner,
     "banner"        => $banner,
-    'event'         => $event
+    'event'         => $event,
+    'magazines'     => $magazines
 ]);
 
 $b2b_notice_list['skin'] = "list";
@@ -286,6 +306,14 @@ $hashtag_list['titles'][0] = "제목";
 $hashtag_list['names'][0] = "subject";
 $hashtag_list['widths'][0] = "*";
 
+
+$magazines_list['skin'] = "list";
+
+$magazines_list['skin'] = "list";
+$magazines_list['titles'][0] = "제목";
+$magazines_list['names'][0] = "subject";
+$magazines_list['widths'][0] = "*";
+
 define("BBS_LIST_CONFIG", [
     "b2b_notice" => $b2b_notice_list,
     "faq" => $faq_list,
@@ -296,7 +324,8 @@ define("BBS_LIST_CONFIG", [
     "mem_pds" => [],
     "awards" => $award_list,
     "main_event" => $main_event_list,
-    "hashtag" => $hashtag_list
+    "hashtag" => $hashtag_list,
+    'magazines' => $magazines_list
 ]);
 
 
