@@ -110,11 +110,11 @@ if ($_SESSION["member"]["mIdx"] == "") {
 
 						<td class="content">
 							<p>
-								<?= number_format($people_adult_price) ?> 바트(성인)
+								<?= number_format($people_adult_price) ?> 바트(성인)<br>
 								+
-								<?= number_format($people_kids_price) ?> 바트(아동)
+								<?= number_format($people_kids_price) ?> 바트(아동)<br>
 								+
-								<?= number_format($people_baby_price) ?> 바트(유아)
+								<?= number_format($people_baby_price) ?> 바트(유아)<br>
 								+
 								<?= number_format($total_price * $setting['baht_thai']) ?>
 								옵션
