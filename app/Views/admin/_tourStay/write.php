@@ -39,7 +39,7 @@
 
         .popup_area_ {
             height: auto;
-            min-height: 50vh;
+            /*min-height: 50vh;*/
             overflow: auto;
             background-color: #FFFFFF;
             width: 100%;
@@ -65,7 +65,7 @@
         }
 
         .popup_content_ {
-
+            margin-top: 20px;
         }
 
         .popup_bottom_ {
@@ -1022,7 +1022,7 @@
                     호텔주변 추천명소 코드 리스트
                 </p>
                 <p>
-                    <button type="button" class="btn_close_"
+                    <button type="button" class="btn_close_" style="background: none"
                             onclick="showOrHidePlace();">X
                     </button>
                 </p>
@@ -1032,64 +1032,62 @@
                       target="hiddenFrame">
                     <input type=hidden name="idx" id="product_place_idx" value="">
                     <input type=hidden name="product_idx" value="<?= $stay_idx ?>">
-                    <div id="contents">
-                        <div class="listWrap_noline">
-                            <div class="listBottom">
-                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
-                                    <caption>
-                                    </caption>
-                                    <colgroup>
-                                        <col width="10%"/>
-                                        <col width="90%"/>
-                                    </colgroup>
-                                    <tbody>
 
-                                    <tr>
-                                        <th>명소</th>
-                                        <td>
-                                            <input type="text" id="product_place_name" name="name" value=""
-                                                   class="input_txt"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>거리</th>
-                                        <td>
-                                            <input type="text" id="product_place_distance" name="distance" value=""
-                                                   class="input_txt"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>유형</th>
-                                        <td>
-                                            <input type="text" id="product_place_type" name="type" value=""
-                                                   class="input_txt"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>이미지</th>
-                                        <td>
-                                            <input type="file" id="product_place_ufile1" name="ufile1" class="input_txt"
-                                                   style="width:20%"/>
-                                            <div class="place_image_" id="place_image_">
+                    <div class="listBottom" style="margin-bottom: 20px">
+                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                            <caption>
+                            </caption>
+                            <colgroup>
+                                <col width="10%"/>
+                                <col width="90%"/>
+                            </colgroup>
+                            <tbody>
 
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>우선순위</th>
-                                        <td>
-                                            <input type="text" id="product_place_onum" name="onum" value=""
-                                                   class="input_txt"
-                                                   style="width:100px"/> (숫자가 높을수록 상위에 노출됩니다.)
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- // listBottom -->
-                        </div>
-                        <!-- // listWrap -->
+                            <tr>
+                                <th>명소</th>
+                                <td>
+                                    <input type="text" id="product_place_name" name="name" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>거리</th>
+                                <td>
+                                    <input type="text" id="product_place_distance" name="distance" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>유형</th>
+                                <td>
+                                    <input type="text" id="product_place_type" name="type" value=""
+                                           class="input_txt"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이미지</th>
+                                <td>
+                                    <input type="file" id="product_place_ufile1" name="ufile1" class="input_txt"
+                                           style="width:20%"/>
+                                    <div class="place_image_" id="place_image_">
+
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>우선순위</th>
+                                <td>
+                                    <input type="text" id="product_place_onum" name="onum" value=""
+                                           class="input_txt"
+                                           style="width:100px"/> (숫자가 높을수록 상위에 노출됩니다.)
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
+                    <!-- // listBottom -->
+
+                    <!-- // listWrap -->
                 </form>
             </div>
             <div class="popup_bottom_">
