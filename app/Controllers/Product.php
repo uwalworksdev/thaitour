@@ -2073,7 +2073,7 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		print_r($_POST); exit;
+		write_log($_POST); 
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
@@ -2131,7 +2131,7 @@ class Product extends BaseController
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
-/*
+
 
             $adultCount = (int)$data['people_adult_cnt'];
             $kidsCount  = (int)$data['people_kids_cnt'];
@@ -2158,7 +2158,7 @@ class Product extends BaseController
                     'order_email'     => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
-
+/*
             $optionsIdx = $this->request->getPost('option_idx');
             $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
