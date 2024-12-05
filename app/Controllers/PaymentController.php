@@ -10,10 +10,10 @@ class PaymentController extends BaseController
 
     public function __construct()
     {
-        $this->apiUrl      = getenv('NICEPAY_API_URL');
-        $this->merchantId  = getenv('NICEPAY_MERCHANT_ID');
-        $this->merchantKey = getenv('NICEPAY_MERCHANT_KEY');
-        $this->returnUrl   = getenv('NICEPAY_RETURN_URL');
+        $this->apiUrl      = "https://api.test.nicepay.co.kr/v1/payments";
+        $this->merchantId  = "nicepay00m";
+        $this->merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==";
+        $this->returnUrl   = "https://thetourlab.com/payment/complete";
     }
 
     // 결제 요청
