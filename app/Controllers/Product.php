@@ -2073,7 +2073,7 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		write_log($_POST); 
+		//print_r($_POST); exit; 
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
@@ -2132,6 +2132,8 @@ class Product extends BaseController
 
             $order_idx = $this->orderModel->getInsertID();
 
+
+            echo $data['idx']; exit;
 
             $adultCount = (int)$data['people_adult_cnt'];
             $kidsCount  = (int)$data['people_kids_cnt'];
