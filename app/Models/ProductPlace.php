@@ -53,14 +53,14 @@ class ProductPlace extends Model
     {
         $sql = " select * from tbl_product_around_place where product_idx = '" . $product_idx . "'";
         write_log($sql);
-        return $this->db->query($sql)->getRowArray();
+        return $this->db->query($sql)->getResultArray();
     }
 
     public function listAll()
     {
         $sql = " select * from tbl_product_around_place order by onum desc, idx desc";
         write_log($sql);
-        return $this->db->query($sql)->getRowArray();
+        return $this->db->query($sql)->getResultArray();
     }
 
     public function insertData($data)

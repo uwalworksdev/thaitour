@@ -39,13 +39,17 @@
 
         .popup_area_ {
             height: auto;
-            max-height: 50vh;
+            min-height: 50vh;
             overflow: auto;
             background-color: #FFFFFF;
             width: 100%;
             max-width: 800px;
             padding: 10px 40px 30px;
             font-size: 14px;
+        }
+
+        .popup_area_xl_ {
+            max-width: 60vw;
         }
 
         .popup_top_ {
@@ -127,6 +131,19 @@
             background-color: #EA353D;
             color: #FFFFFF;
             height: 30px;
+        }
+
+        .btn_add {
+            background-color: #17469E;
+            color: #FFFFFF;
+            margin: 0 0 !important;
+            width: 80px !important;
+            height: 35px !important;
+        }
+
+        .justify-between {
+            align-items: center;
+            justify-content: space-between;
         }
     </style>
 <?php $back_url = "write"; ?>
@@ -214,7 +231,8 @@
                                 <tr>
                                     <th>분류</th>
                                     <td>
-                                        <select id="country_code_1" name="country_code_1" class="input_select" onchange="javascript:get_code(this.value, 3)" style="width:200px">
+                                        <select id="country_code_1" name="country_code_1" class="input_select"
+                                                onchange="javascript:get_code(this.value, 3)" style="width:200px">
                                             <option value="">1차분류</option>
                                             <?php
                                             foreach ($fresult1 as $frow) :
@@ -234,7 +252,8 @@
                                             <?php endforeach; ?>
 
                                         </select>
-                                        <select id="country_code_2" name="country_code_2" class="input_select" onchange="javascript:get_code(this.value, 4)" style="width:200px">
+                                        <select id="country_code_2" name="country_code_2" class="input_select"
+                                                onchange="javascript:get_code(this.value, 4)" style="width:200px">
                                             <option value="">2차분류</option>
                                             <?php
                                             foreach ($fresult2 as $frow) :
@@ -578,39 +597,8 @@
                                     </td>
                                 </tr>
 
-                                <tr>
-                                    <th>호텔주변 추천명소</th>
-                                    <th style="width: 20px">
-                                        <input type="checkbox" id="all_code_populars" class="all_input"
-                                               name="_code_populars" value="Y"/>
-                                        <label for="all_code_populars">
-                                            모두 선택
-                                        </label>
-                                    </th>
-                                    <td colspan="2">
-                                        <?php
-                                        $_arr = explode("|", $code_populars);
-                                        foreach ($fresult8 as $row_r) :
-                                            $find = "";
-                                            for ($i = 0; $i < count($_arr); $i++) {
-                                                if ($_arr[$i]) {
-                                                    if ($_arr[$i] == $row_r['code_no']) $find = "Y";
-                                                }
-                                            }
-                                            ?>
-                                            <input type="checkbox" id="code_populars<?= $row_r['code_no'] ?>"
-                                                   name="_code_populars" class="code_populars"
-                                                   value="<?= $row_r['code_no'] ?>" <?php if ($find == "Y") echo "checked"; ?> />
-                                            <label for="code_populars<?= $row_r['code_no'] ?>">
-                                                <?= $row_r['code_name'] ?>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    </td>
-                                </tr>
-
                                 </tbody>
                             </table>
-
                             <script>
                                 $('#all_code_populars').change(function () {
                                     if ($('#all_code_populars').is(':checked')) {
@@ -645,7 +633,186 @@
                                 })
                             </script>
 
+                            <div class="flex justify-between" style="margin-top:50px;">
+                                <p>
+                                    호텔주변 추천명소
+                                </p>
+                                <button class="btn_add" type="button" onclick="showOrHidePlace()">새로 추가</button>
+                            </div>
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                <caption></caption>
+                                <colgroup>
+                                    <col width="70px"/>
+                                    <col width="*"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    <col width="150px"/>
+                                    <col width="260px"/>
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>코드명</th>
+                                    <th>이미지</th>
+                                    <th>제품 유형</th>
+                                    <th>거리</th>
+                                    <th>관리</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbodyData">
+
+                                </tbody>
+                            </table>
+                            <script>
+                                listPlace();
+
+                                async function listPlace() {
+                                    let apiUrl = `<?= route_to('admin._product_place.list') ?>?product_idx=<?= $stay_idx ?>`;
+                                    try {
+                                        let response = await fetch(apiUrl);
+                                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                                        let data = await response.json();
+                                        renderPlace(data.data);
+                                    } catch (error) {
+                                        console.error('Error fetching hotel data:', error);
+                                    }
+                                }
+
+                                function renderPlace(data) {
+                                    console.log(data)
+                                    let html = '';
+                                    for (let i = 0; i < data.length; i++) {
+                                        let item = data[i];
+                                        let count = i + 1;
+                                        html += `<tr style="height:50px">
+                                                        <td>${count}</td>
+                                                        <td class="tal">${item.name}</td>
+                                                        <td class="tac">
+                                                             <img src="/data/code/${item.ufile}" alt="" style="width: 200px">
+                                                        </td>
+                                                        <td class="tac">${item.type}</td>
+                                                        <td class="tac">${item.distance}</td>
+                                                        <td style="text-align: center">
+                                                            <a href="#!" onclick="deletePlace('${item.idx}');"
+                                                               class="btn btn-default">코드삭제</a>
+                                                            <a href="#!" onclick="editPlace('${item.idx}');"
+                                                               class="btn btn-default">추가등록</a>
+                                                        </td>
+                                                    </tr>`;
+                                    }
+
+                                    $('#tbodyData').html(html);
+                                }
+
+                                function deletePlace(_idx) {
+                                    if (!confirm("코드를 삭제하고 싶을까요?")) {
+                                        return;
+                                    }
+
+                                    let apiUrl = `<?= route_to('admin._product_place.delete') ?>`;
+
+                                    let formData = new FormData();
+                                    formData.append('idx', _idx);
+
+                                    $("#ajax_loader").removeClass("display-none");
+
+                                    $.ajax(apiUrl, {
+                                        type: 'POST',
+                                        data: formData,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (response) {
+                                            console.log(response);
+                                            alert(response.message);
+                                            $("#ajax_loader").addClass("display-none");
+                                            listPlace();
+                                        },
+                                        error: function (request, status, error) {
+                                            alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                                            $("#ajax_loader").addClass("display-none");
+                                        }
+                                    })
+                                }
+
+                                function writePlace() {
+                                    resetPlace();
+                                    let formData = new FormData($('#formPlace')[0]);
+
+                                    let apiUrl = `<?= route_to('admin._product_place.write_ok') ?>`;
+
+                                    $("#ajax_loader").removeClass("display-none");
+
+                                    $.ajax(apiUrl, {
+                                        type: 'POST',
+                                        data: formData,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (response) {
+                                            console.log(response);
+                                            alert(response.message);
+                                            $("#ajax_loader").addClass("display-none");
+                                            showOrHidePlace();
+                                            listPlace();
+                                        },
+                                        error: function (request, status, error) {
+                                            alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                                            $("#ajax_loader").addClass("display-none");
+                                        }
+                                    })
+                                }
+
+                                async function editPlace(_idx) {
+                                    showOrHidePlace();
+
+                                    let apiUrl = `<?= route_to('admin._product_place.detail') ?>?idx=${_idx}`;
+                                    try {
+                                        let response = await fetch(apiUrl);
+                                        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                                        let data = await response.json();
+                                        setPlace(data.data);
+                                    } catch (error) {
+                                        console.error('Error fetching hotel data:', error);
+                                    }
+                                }
+
+                                function resetPlace() {
+                                    $('#product_place_idx').val();
+                                    $('#product_place_name').val();
+                                    $('#product_place_type').val();
+                                    $('#product_place_distance').val();
+                                    $('#product_place_onum').val();
+                                    $('#place_image_').empty();
+                                }
+
+                                function setPlace(data) {
+                                    let idx = data.idx;
+                                    let name = data.name;
+                                    let ufile = data.ufile;
+                                    let type = data.type;
+                                    let distance = data.distance;
+                                    let onum = data.onum;
+
+                                    $('#product_place_idx').val(idx);
+                                    $('#product_place_name').val(name);
+                                    $('#product_place_type').val(type);
+                                    $('#product_place_distance').val(distance);
+                                    $('#product_place_onum').val(onum);
+
+                                    if (ufile) {
+                                        let html = `<img src="/data/code/${ufile}" alt="" style="width: 200px">`;
+                                        $('#place_image_').empty().append(html);
+                                    }
+                                }
+
+                                function showOrHidePlace() {
+                                    $("#popupPlace_").toggleClass('show_');
+                                }
+                            </script>
+
+                            <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                   style="margin-top:50px;">
                                 <caption>
                                 </caption>
                                 <colgroup>
@@ -784,7 +951,7 @@
                 </div>
                 <!-- // contents -->
 
-                <div class="popup_">
+                <div class="popup_" id="popupItem_">
                     <div class="popup_area_">
                         <div class="popup_top_">
                             <p>
@@ -848,6 +1015,90 @@
     </div>
     <!-- // container -->
 
+    <div class="popup_" id="popupPlace_">
+        <div class="popup_area_ popup_area_xl_">
+            <div class="popup_top_">
+                <p>
+                    호텔주변 추천명소 코드 리스트
+                </p>
+                <p>
+                    <button type="button" class="btn_close_"
+                            onclick="showOrHidePlace();">X
+                    </button>
+                </p>
+            </div>
+            <div class="popup_content_">
+                <form name="formPlace" id="formPlace" action="#" method=post enctype="multipart/form-data"
+                      target="hiddenFrame">
+                    <input type=hidden name="idx" id="product_place_idx" value="">
+                    <input type=hidden name="product_idx" value="<?= $stay_idx ?>">
+                    <div id="contents">
+                        <div class="listWrap_noline">
+                            <div class="listBottom">
+                                <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail">
+                                    <caption>
+                                    </caption>
+                                    <colgroup>
+                                        <col width="10%"/>
+                                        <col width="90%"/>
+                                    </colgroup>
+                                    <tbody>
+
+                                    <tr>
+                                        <th>코드명</th>
+                                        <td>
+                                            <input type="text" id="product_place_name" name="name" value=""
+                                                   class="input_txt"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>거리</th>
+                                        <td>
+                                            <input type="text" id="product_place_distance" name="distance" value=""
+                                                   class="input_txt"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>유형</th>
+                                        <td>
+                                            <input type="text" id="product_place_type" name="type" value=""
+                                                   class="input_txt"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>이미지</th>
+                                        <td>
+                                            <input type="file" id="product_place_ufile1" name="ufile1" class="input_txt"
+                                                   style="width:20%"/>
+                                            <div class="place_image_" id="place_image_">
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>우선순위</th>
+                                        <td>
+                                            <input type="text" id="product_place_onum" name="onum" value=""
+                                                   class="input_txt"
+                                                   style="width:100px"/> (숫자가 높을수록 상위에 노출됩니다.)
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- // listBottom -->
+                        </div>
+                        <!-- // listWrap -->
+                    </div>
+                </form>
+            </div>
+            <div class="popup_bottom_">
+                <button type="button" class="" onclick="showOrHidePlace();">취소</button>
+                <button type="button" class="" onclick="writePlace();">확인</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         $('#check_all_').change(function () {
             if ($(this).is(":checked")) {
@@ -858,7 +1109,7 @@
         })
 
         function showOrHide() {
-            $(".popup_").toggleClass('show_');
+            $("#popupItem_").toggleClass('show_');
         }
 
         function removeRoomSelect(el, idx) {
