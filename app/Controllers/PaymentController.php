@@ -39,7 +39,8 @@ class PaymentController extends BaseController
             // 결제 페이지로 리다이렉트
             return redirect()->to($response['nextRedirectUrl']);
         }
-
+        
+		log_message('debug', '나이스페이 응답 데이터: ' . json_encode($response));
         return view('payment_failed', ['message' => $response['message'] ?? '결제 요청 실패']);
     }
 
