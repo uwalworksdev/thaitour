@@ -9,7 +9,7 @@ use Config\CustomConstants as ConfigCustomConstants;
 class AdminProductPlaceController extends BaseController
 {
     protected $connect;
-    protected $productPlase;
+    protected $productPlace;
 
     public function __construct()
     {
@@ -17,7 +17,7 @@ class AdminProductPlaceController extends BaseController
         helper('my_helper');
         helper('alert_helper');
         $constants = new ConfigCustomConstants();
-        $this->productPlase = model("ProductPlace");
+        $this->productPlace = model("ProductPlace");
     }
 
     public function list()
@@ -25,7 +25,7 @@ class AdminProductPlaceController extends BaseController
         try {
             $product_idx = updateSQ($_GET['product_idx']);
 
-            $data = $this->productPlase->getByProductId($product_idx);
+            $data = $this->productPlace->getByProductId($product_idx);
 
             return $this->response->setJSON([
                 'result' => true,
@@ -43,7 +43,7 @@ class AdminProductPlaceController extends BaseController
     {
         try {
             $idx = updateSQ($_GET['idx']);
-            $data = $this->productPlase->getById($idx);
+            $data = $this->productPlace->getById($idx);
 
             return $this->response->setJSON([
                 'result' => true,
@@ -73,8 +73,9 @@ class AdminProductPlaceController extends BaseController
             $file = $this->request->getFile('ufile1');
             $upload = WRITEPATH . '../public/data/code/';
 
+
             if ($idx) {
-                $place = $this->productPlase->getById($idx);
+                $place = $this->productPlace->getById($idx);
 
                 if ($place) {
                     $data = [
@@ -85,13 +86,13 @@ class AdminProductPlaceController extends BaseController
                         'onum' => $onum ?? $place['onum'],
                     ];
 
-                    $this->productPlase->update($idx, $data);
+                    $this->productPlace->update($idx, $data);
 
                     if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                         $newName = $file->getRandomName();
                         $file->move($upload, $newName);
 
-                        $this->productPlase->update($idx, [
+                        $this->productPlace->update($idx, [
                             'ufile1' => $newName,
                             'rfile1' => $file->getClientName()
                         ]);
@@ -107,19 +108,15 @@ class AdminProductPlaceController extends BaseController
                     'r_date' => $r_date
                 ];
 
-                $this->productPlase->insert($data);
-
-                $idx = $this->productPlase->insertID();
-
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $newName = $file->getRandomName();
                     $file->move($upload, $newName);
 
-                    $this->productPlase->update($idx, [
-                        'ufile1' => $newName,
-                        'rfile1' => $file->getClientName()
-                    ]);
+                    $data['ufile'] = $newName;
+                    $data['rfile'] = $file->getClientName();
                 }
+
+                $this->productPlace->insert($data);
 
                 $message = "업데이트가 성공적으로 완료되었습니다.";
             }
@@ -142,7 +139,7 @@ class AdminProductPlaceController extends BaseController
         try {
             $idx = updateSQ($_POST['idx']);
 
-            $del = $this->productPlase->deleteData($idx);
+            $del = $this->productPlace->deleteData($idx);
 
             return $this->response->setJSON([
                 'result' => true,
