@@ -28,7 +28,7 @@ class ProductModel extends Model
         "deposit_cnt", "tours_cate", "yoil_0", "yoil_1", "yoil_2", "yoil_3", "yoil_4", "yoil_5", "yoil_6", "guide_lang", "wish_cnt",
         "order_cnt", "point", "coupon_y", "tour_transport", "adult_text", "kids_text", "baby_text", "product_manager_id", "is_best_value",
         "product_code_list", "product_status", "room_cnt", "addrs", 'product_theme', 'product_bedrooms',
-        'product_type', 'product_promotions', 'product_more', 'product_contents_m',
+        'product_type', 'product_promotions', 'product_more', 'product_contents_m', "min_date", "max_date",
         "latitude", "longitude", "product_points", "code_utilities", "code_services", "code_best_utilities", "code_populars",
         "available_period", "deadline_time", "md_recommendation_yn", "hot_deal_yn", "departure_area", "destination_area", "time_line"
     ];
@@ -198,12 +198,12 @@ class ProductModel extends Model
     public function getAllProductsBySubCode($field, $code)
     {
         return $this->where($field, $code)
-                    ->orLike('product_code_list', $code)
-                    ->where('product_status !=', "D")
-                    ->orderBy('onum', 'desc')
-                    ->orderBy('product_idx', 'desc')
-                    ->get()
-                    ->getResultArray();
+            ->orLike('product_code_list', $code)
+            ->where('product_status !=', "D")
+            ->orderBy('onum', 'desc')
+            ->orderBy('product_idx', 'desc')
+            ->get()
+            ->getResultArray();
     }
 
     public function getTotalProducts($suggest_code)
@@ -671,6 +671,123 @@ class ProductModel extends Model
         return $data;
     }
 
+    public function findProductHotelPagingSpecial($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
+    {
+        helper(['setting']);
+        $setting = homeSetInfo();
+        $builder = $this->db->table('tbl_product_mst AS p');
+        $builder->select('p.*, MIN(STR_TO_DATE(h.o_sdate, "%Y-%m-%d")) AS oldest_date, MAX(STR_TO_DATE(h.o_edate, "%Y-%m-%d")) AS latest_date');
+        $builder->join('tbl_hotel_option AS h', 'p.product_code = h.goods_code', 'left');
+
+        $builder->where([
+            'o_sdate IS NOT NULL' => null,
+            'o_edate IS NOT NULL' => null,
+            'h.option_type' => 'M',
+        ]);
+        $builder->where('o_sdate <>', '');
+        $builder->where('o_edate <>', '');
+
+        $addWhereConditions = function ($field, $value) use ($builder) {
+            if (!empty($value)) {
+                $builder->where($field, $value);
+            }
+        };
+
+        $addGroupConditions = function ($field, $values) use ($builder) {
+            if (!empty($values)) {
+                $values = explode(',', $values);
+                $builder->groupStart();
+                foreach ($values as $index => $value) {
+                    if ($index === 0) {
+                        $builder->like($field, $value);
+                    } else {
+                        $builder->orLike($field, $value);
+                    }
+                }
+                $builder->groupEnd();
+            }
+        };
+
+        $addWhereConditions('product_code_1', $where['product_code_1'] ?? '');
+        $addWhereConditions('product_code_2', $where['product_code_2'] ?? '');
+        $addWhereConditions('product_code_3', $where['product_code_3'] ?? '');
+        $addWhereConditions('is_view', $where['is_view'] ?? '');
+        $addWhereConditions('special_price', $where['special_price'] ?? '');
+        $addWhereConditions('product_status', $where['product_status'] ?? '');
+
+        if (!empty($where['keyword'])) {
+            $builder->like('product_name', $where['keyword']);
+        }
+
+        $addGroupConditions('product_code_list', $where['product_code_list'] ?? '');
+        $addGroupConditions('product_type', $where['search_product_hotel'] ?? '');
+        $addGroupConditions('product_level', $where['search_product_rating'] ?? '');
+        $addGroupConditions('product_promotions', $where['search_product_promotion'] ?? '');
+        $addGroupConditions('product_theme', $where['search_product_topic'] ?? '');
+        $addGroupConditions('product_bedrooms', $where['search_product_bedroom'] ?? '');
+
+        if (!empty($where['price_min']) && !empty($where['price_max'])) {
+            $builder->where('product_price >', $where['price_min']);
+            $builder->where('product_price <', $where['price_max']);
+        }
+
+        if (!empty($where['checkin']) && !empty($where['checkout'])) {
+            $builder->groupStart();
+            $builder->where('STR_TO_DATE(o_sdate, "%Y-%m-%d") >=', date('Y-m-d', strtotime($where['checkin'])));
+            $builder->where('STR_TO_DATE(o_edate, "%Y-%m-%d") <=', date('Y-m-d', strtotime($where['checkout'])));
+            $builder->groupEnd();
+        }
+
+        if (!empty($where['search_txt'])) {
+            $builder->groupStart();
+            if (!empty($where['search_category'])) {
+                $builder->like($where['search_category'], $where['search_txt']);
+            } else {
+                $builder->like('product_name', $where['search_txt']);
+                $builder->orLike('keyword', $where['search_txt']);
+            }
+            $builder->groupEnd();
+        }
+
+        if (!empty($where['day_start'])) {
+            $builder->where('h.o_sdate >=', $where['day_start']);
+        }
+        if (!empty($where['day_end'])) {
+            $builder->where('h.o_edate <=', $where['day_end']);
+        }
+
+        $builder->where('product_status !=', 'D');
+        $builder->groupBy('product_idx');
+
+        $nTotalCount = $builder->countAllResults(false);
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        $pg = $pg ?: 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+
+        $orderBy = $orderBy ?: ['product_idx' => 'DESC'];
+        foreach ($orderBy as $key => $value) {
+            $builder->orderBy($key, $value);
+        }
+
+        $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
+
+        $baht_thai = (float)($setting['baht_thai'] ?? 0);
+        foreach ($items as &$item) {
+            $item['product_price_won'] = (float)$item['product_price'] * $baht_thai;
+        }
+
+        $arr_ = [
+            'items' => $items,
+            'nTotalCount' => $nTotalCount,
+            'nPage' => $nPage,
+            'pg' => (int)$pg,
+            'g_list_rows' => $g_list_rows,
+            'num' => $nTotalCount - $nFrom,
+        ];
+
+        return array_merge($arr_, $where);
+    }
+
     public function findProductHotelPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
         helper(['setting']);
@@ -693,6 +810,18 @@ class ProductModel extends Model
         }
         if ($where['product_code_3'] != "") {
             $builder->where('product_code_3', $where['product_code_3']);
+        }
+
+        if ($where['keyword'] && $where['keyword'] != "") {
+            $builder->like('product_name', $where['keyword']);
+        }
+
+        if ($where['day_start'] && $where['day_start'] != "") {
+            $builder->where('min_date <=', $where['day_start']);
+        }
+
+        if ($where['day_end'] && $where['day_end'] != "") {
+            $builder->where('max_date >=', $where['day_end']);
         }
 
         if ($where['product_code_list']) {
@@ -858,6 +987,11 @@ class ProductModel extends Model
         foreach ($orderBy as $key => $value) {
             $builder->orderBy($key, $value);
         }
+
+//        $sql = $builder->getCompiledSelect();
+//        var_dump($sql);
+//        die();
+
         $items = $builder->limit($g_list_rows, $nFrom)->get()->getResultArray();
 
         foreach ($items as $key => $value) {
@@ -875,6 +1009,11 @@ class ProductModel extends Model
             'search_category' => $where['search_category'],
             'checkin' => $where['checkin'],
             'checkout' => $where['checkout'],
+
+            'keyword' => $where['keyword'],
+            'day_start' => $where['day_start'],
+            'day_end' => $where['day_end'],
+
             'search_product_name' => $where['search_product_name'],
             'search_product_category' => $where['search_product_category'],
             'search_product_hotel' => $where['search_product_hotel'],
@@ -996,7 +1135,7 @@ class ProductModel extends Model
         return $data;
     }
 
-    
+
     public function findProductGolfPaging($where = [], $g_list_rows = 1000, $pg = 1, $orderBy = [])
     {
         helper(['setting']);
@@ -1051,7 +1190,7 @@ class ProductModel extends Model
 
         $builder->where("product_status !=", "D");
         $nTotalCount = $builder->countAllResults(false);
-        $nPage = (int) ceil($nTotalCount / $g_list_rows);
+        $nPage = (int)ceil($nTotalCount / $g_list_rows);
         if ($pg == "") $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
 
@@ -1126,10 +1265,10 @@ class ProductModel extends Model
         foreach ($data as $item) {
             $builder->where('product_idx', $item['product_idx']);
             $builder->update([
-                'is_view'       => $item['is_view'],
-                'product_best'  => $item['product_best'],
+                'is_view' => $item['is_view'],
+                'product_best' => $item['product_best'],
                 'special_price' => $item['special_price'],
-                'onum'          => $item['onum']
+                'onum' => $item['onum']
             ]);
         }
 
