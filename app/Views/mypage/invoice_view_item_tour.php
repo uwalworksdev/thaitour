@@ -101,7 +101,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$first = true; 
 								foreach ($tour_option as $option): ?>
 									<?php if (!$first): ?> + <?php endif; ?>
-									<?= $option['option_name']?>: <?= number_format($option['option_price'] * $setting['baht_thai']) ?> 바트
+									<?= $option['option_name']?>: <?= number_format($option['option_price'] * $setting['baht_thai']) ?> 바트<br>
 									<?php $first = false; ?>
 								<?php endforeach; ?>
 								= <?= number_format($total_price * $setting['baht_thai']) ?> 바트
