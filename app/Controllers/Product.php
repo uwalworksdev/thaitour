@@ -2144,17 +2144,17 @@ class Product extends BaseController
                 $row        = $result->getRowArray();
  
                 $option_tot = $row['option_price'] * $option_idx[1];
-				$sql        = "UPDATE tbl_order_option  SET  
-														option_type  = 'tour'
-													  , order_idx    = '". $order_idx ."'
-													  , product_idx  = '". $product['product_idx'] ."'	
-													  , option_name  = '". $row['option_name'] ."'	
-													  , option_idx	 = '". $option_idx[0] ."'
-													  , option_tot	 = '". $option_tot ."'
-													  , option_cnt	 = '". $option_idx[1] ."'
-													  , option_date	 =  now()
-													  , option_price = '". $row['option_price'] ."'	
-													  , option_qty   = '". $option_idx[1] ."' ";
+				$sql        = "INSERT INTO tbl_order_option  SET  
+															 option_type  = 'tour'
+														   , order_idx    = '". $order_idx ."'
+														   , product_idx  = '". $product['product_idx'] ."'	
+														   , option_name  = '". $row['option_name'] ."'	
+														   , option_idx	  = '". $option_idx[0] ."'
+														   , option_tot	  = '". $option_tot ."'
+														   , option_cnt	  = '". $option_idx[1] ."'
+														   , option_date  =  now()
+														   , option_price = '". $row['option_price'] ."'	
+														   , option_qty   = '". $option_idx[1] ."' ";
                 write_log($sql);
                 $result     = $this->db->query($sql);
             }
