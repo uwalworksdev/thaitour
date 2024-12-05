@@ -26,6 +26,9 @@
                     <input type="hidden" name="time_line" id="time_line" value="<?= $time_line?>">
                     <input type="hidden" name="use_coupon_idx" id="use_coupon_idx" value="">
                     <input type="hidden" name="final_discount" id="final_discount" value="">
+                    <input type="hidden" name="moption" id="moption" value="<?=$moption?>">
+                    <input type="hidden" name="option" id="option" value="<?=$option?>">
+
                     <div class="sec2-item-card card-left2">
                         <div class="flex" style="gap: 20px">
                             <h3 class="title-main-c">

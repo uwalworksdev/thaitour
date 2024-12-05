@@ -2083,7 +2083,7 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		//print_r($_POST); exit;
+		write_log($_POST); 
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
@@ -2141,7 +2141,7 @@ class Product extends BaseController
             $this->orderModel->save($data);
 
             $order_idx = $this->orderModel->getInsertID();
-/*
+
 
             $adultCount = (int)$data['people_adult_cnt'];
             $kidsCount  = (int)$data['people_kids_cnt'];
@@ -2168,7 +2168,7 @@ class Product extends BaseController
                     'order_email'     => encryptField($companion_email, 'encode') ?? '',
                 ]);
             }
-
+/*
             $optionsIdx = $this->request->getPost('option_idx');
             $optionsIdxString = is_array($optionsIdx) ? implode(',', $optionsIdx) : null;
 
@@ -2415,6 +2415,8 @@ class Product extends BaseController
         $data['people_baby_cnt'] = $this->request->getVar('people_baby_cnt');
         $data['people_baby_price'] = $this->request->getVar('people_baby_price');
         $data['total_pay'] = $this->request->getVar('total_pay');
+        $data['moption'] = $this->request->getVar('moption');
+        $data['option'] = $this->request->getVar('option');
         $idx = $this->request->getVar('idx');
         $data['idx'] = $idx;
         $data['adult_price_bath'] = round($data['people_adult_price'] * (float)($this->setting['baht_thai'] ?? 0));
