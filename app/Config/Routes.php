@@ -673,7 +673,6 @@ $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 
 // Nicepay route
-$routes->get('requestPayment',  'PaymentController::requestPayment');
+$routes->get('/payment/request', 'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
-
 ?>
