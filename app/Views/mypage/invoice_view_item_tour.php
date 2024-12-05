@@ -104,7 +104,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 									<?= $option['option_name']?>: <?= number_format($option['option_price'] * $setting['baht_thai']) ?> 바트<br>
 									<?php $first = false; ?>
 								<?php endforeach; ?>
-								= <?= number_format($total_price * $setting['baht_thai']) ?> 바트
+								<!--= <?= number_format($total_price * $setting['baht_thai']) ?> 바트-->
 							<?php endif; ?>
 						</td>
 
