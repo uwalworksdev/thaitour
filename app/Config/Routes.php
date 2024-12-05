@@ -42,6 +42,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
         $routes->get("board_write/(:segment)", "BoardController::board_write/$1");
         $routes->get("board_write", "BoardController::board_write");
+        $routes->get("goods_find", "BoardController::goods_find");
+        $routes->get("item_allfind", "BoardController::item_allfind");
         $routes->post("write_ok/(:segment)", "BoardController::write_ok/$1");
         $routes->post("write_ok", "BoardController::write_ok");
         $routes->get("view", "BoardController::view");

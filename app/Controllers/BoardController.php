@@ -164,4 +164,16 @@ class BoardController extends BaseController
     {
 
     }
+
+    public function goods_find()
+    {
+        $code_no = $_POST['code_no'];
+        $inq_sw = $_POST['inq_sw'];
+    }
+
+    public function item_allfind()
+    {
+        
+    }
+
 }
