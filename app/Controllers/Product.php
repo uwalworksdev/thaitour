@@ -2405,6 +2405,8 @@ class Product extends BaseController
         $data['people_baby_cnt'] = $this->request->getVar('people_baby_cnt');
         $data['people_baby_price'] = $this->request->getVar('people_baby_price');
         $data['total_pay'] = $this->request->getVar('total_pay');
+        $data['moption'] = $this->request->getVar('moption');
+        $data['option'] = $this->request->getVar('option');
         $idx = $this->request->getVar('idx');
         $data['idx'] = $idx;
         $data['adult_price_bath'] = round($data['people_adult_price'] * (float)($this->setting['baht_thai'] ?? 0));
