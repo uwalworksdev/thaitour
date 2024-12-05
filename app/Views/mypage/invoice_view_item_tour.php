@@ -161,7 +161,7 @@ if ($_SESSION["member"]["mIdx"] == "") {
 						<td class="subject">미팅장소</td>
 						<td col width="23%" class="subject">예약시간</td>
 						<!-- <td col width="*%" class="subject">미팅 시간</td> -->
-						<td col width="15%" class="subject">종료 후 내리실 곳.</td>
+						<td col width="15%" class="subject">종료 후 내리실 곳</td>
 						<td col width="15%" class="subject">카카오톡 아이디</td>
 						<td col width="15%" class="subject">기타 요청</td>
 

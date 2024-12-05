@@ -459,6 +459,10 @@ class MyPage extends BaseController
             }
 
             if ($gubun == "tour") {
+
+				$sql_tour = " select * from tbl_order_option where order_idx = '". $order_idx ."' and option_type in('tour') order by opt_idx asc ";
+				$data['tour_option']   = $this->db->query($sql_tour)->getResultArray();
+
                 $data['tour_orders'] = $this->orderTours->findByOrderIdx($order_idx)[0];
                 $optionsIdx = $data['tour_orders']['options_idx'];
 
