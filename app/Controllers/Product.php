@@ -2134,6 +2134,7 @@ class Product extends BaseController
 
 
             $idx   =  explode(",", $data['idx']);
+			write_log($data['idx']);
             for($i=0;$i<count($idx);$i++)
             {
                 $option_idx = explode(":", $idx[$i]);
@@ -2142,13 +2143,13 @@ class Product extends BaseController
                 $result     = $this->db->query($sql);
                 $row        = $result->getRowArray();
  
-                $option_tot = $row['option_name'] * $option_idx[1];
+                $option_tot = $row['option_price'] * $option_idx[1];
 				$sql        = "UPDATE tbl_order_option  SET  
 														option_type  = 'tour'
 													  , order_idx    = '". $order_idx ."'
 													  , product_idx  = '". $product['product_idx'] ."'	
 													  , option_name  = '". $row['option_name'] ."'	
-													  , option_idx	 = '". $option_idx[$i] ."'
+													  , option_idx	 = '". $option_idx[0] ."'
 													  , option_tot	 = '". $option_tot ."'
 													  , option_cnt	 = '". $option_idx[1] ."'
 													  , option_date	 =  now()
