@@ -101,20 +101,20 @@ if ($_SESSION["member"]["mIdx"] == "") {
 								$first = true; 
 								foreach ($tour_option as $option): ?>
 									<?php if (!$first): ?> + <?php endif; ?>
-									<?= $option['option_name']?>: <?= number_format($option['option_price'] * $setting['baht_thai']) ?> 바트
+									<?= $option['option_name']?>: <?= number_format($option['option_tot'] * $setting['baht_thai']) ?> 바트<br>
 									<?php $first = false; ?>
 								<?php endforeach; ?>
-								= <?= number_format($total_price * $setting['baht_thai']) ?> 바트
+								<!--= <?= number_format($total_price * $setting['baht_thai']) ?> 바트-->
 							<?php endif; ?>
 						</td>
 
 						<td class="content">
 							<p>
-								<?= number_format($people_adult_price) ?> 바트(성인)
+								<?= number_format($people_adult_price) ?> 바트(성인)<br>
 								+
-								<?= number_format($people_kids_price) ?> 바트(아동)
+								<?= number_format($people_kids_price) ?> 바트(아동)<br>
 								+
-								<?= number_format($people_baby_price) ?> 바트(유아)
+								<?= number_format($people_baby_price) ?> 바트(유아)<br>
 								+
 								<?= number_format($total_price * $setting['baht_thai']) ?>
 								옵션
