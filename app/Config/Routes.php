@@ -43,9 +43,7 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("board_write/(:segment)", "BoardController::board_write/$1");
         $routes->get("board_write", "BoardController::board_write");
         $routes->get("goods_find", "BoardController::goods_find");
-        $routes->post("item_allfind", "BoardController::item_allfind");
-        $routes->post("event_update", "BoardController::event_update");
-        $routes->post("event_dis_delete", "BoardController::event_dis_delete");
+        $routes->get("item_allfind", "BoardController::item_allfind");
         $routes->post("write_ok/(:segment)", "BoardController::write_ok/$1");
         $routes->post("write_ok", "BoardController::write_ok");
         $routes->get("view", "BoardController::view");
@@ -407,6 +405,12 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post("status/change", "Popup::ListStatusChangeAjax");
         });
     });
+
+    // Nested group for '_magazine'
+    $routes->group("_magazines", function ($routes) {
+        $routes->get("list", "Admin\AdminMagazineController::list", ['as' => "admin._magazines.list"]);
+        $routes->get("write", "Admin\AdminMagazineController::write", ['as' => "admin._magazines.write"]);
+    });
 });
 
 $routes->group("ajax", static function ($routes) {
@@ -450,10 +454,6 @@ $routes->group("api", static function ($routes) {
         $routes->get("get_option", "Api\ProductApi::getDataOption", ['as' => "api.hotel_.get_option"]);
         $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
         $routes->get("get_code", "Api\ProductApi::getCode", ['as' => "api.hotel_.get_code"]);
-    });
-
-    $routes->group("_product_place", function ($routes) {
-        $routes->get("list", "ProductPlaceController::list", ['as' => "api._product_place.list"]);
     });
 });
 
@@ -673,7 +673,7 @@ $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 
 // Nicepay route
-$routes->get('/payment/request',  'PaymentController::requestPayment');
+$routes->get('requestPayment',  'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
 
 ?>
