@@ -1045,7 +1045,7 @@
                                     <tbody>
 
                                     <tr>
-                                        <th>코드명</th>
+                                        <th>명소</th>
                                         <td>
                                             <input type="text" id="product_place_name" name="name" value=""
                                                    class="input_txt"/>
