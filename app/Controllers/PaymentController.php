@@ -1,89 +1,54 @@
 <?php
+
 namespace App\Controllers;
+
+use App\Libraries\Nicepay;
 
 class PaymentController extends BaseController
 {
-    private $apiUrl;
-    private $merchantId;
-    private $merchantKey;
-    private $returnUrl;
+    private $nicepay;
 
     public function __construct()
     {
-        $this->apiUrl      = "https://api.test.nicepay.co.kr/v1/payments";
-        $this->merchantId  = "nicepay00m";
-        $this->merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==";
-        $this->returnUrl   = "https://thetourlab.com/payment/complete";
+        $this->nicepay = new Nicepay();
     }
 
     // 결제 요청
     public function requestPayment()
     {
-        // 상품 정보 (테스트용 데이터)
-        $orderId   = uniqid('ORDER_'); // 주문번호는 고유해야 함
+        $orderId   = uniqid('ORDER_'); // 주문 번호 (고유해야 함)
         $amount    = 10000;            // 결제 금액
-        $orderName = "테스트 상품";
+        $orderName = "테스트 상품";   // 상품 이름
 
-        $data = [
-            "merchantId" => $this->merchantId,
-            "orderId"    => $orderId,
-            "amount"     => $amount,
-            "orderName"  => $orderName,
-            "returnUrl"  => $this->returnUrl,
-        ];
+        $response = $this->nicepay->requestPayment($orderId, $amount, $orderName);
 
-        // API 요청
-        $response = $this->sendRequest($data);
-        log_message('debug', '나이스페이 요청 데이터: ' . json_encode($data));
-
-        if (isset($response['status']) && $response['status'] === 'SUCCESS') {
+        if ($response['statusCode'] === 200 && isset($response['response']['nextRedirectUrl'])) {
             // 결제 페이지로 리다이렉트
-            return redirect()->to($response['nextRedirectUrl']);
+            return redirect()->to($response['response']['nextRedirectUrl']);
         }
-        
-		log_message('debug', '나이스페이 응답 데이터: ' . json_encode($response));
-        return view('payment_failed', ['message' => $response['message'] ?? '결제 요청 실패']);
+
+        // 오류 처리
+        return view('payment_failed', [
+            'message' => $response['response']['message'] ?? '결제 요청 실패',
+        ]);
     }
 
-    // 결제 완료 처리
+    // 결제 완료
     public function completePayment()
     {
-        $transactionId = $this->request->getGet('transactionId'); // 나이스페이로부터 전달받은 거래 ID
+        $transactionId = $this->request->getGet('transactionId'); // 나이스페이로부터 전달된 거래 ID
 
-        $data = [
-            "merchantId" => $this->merchantId,
-            "transactionId" => $transactionId,
-        ];
+        $response = $this->nicepay->approvePayment($transactionId);
 
-        // API 승인 요청
-        $response = $this->sendRequest($data, '/approve');
-
-        if (isset($response['status']) && $response['status'] === 'APPROVED') {
-            return view('payment_success', ['response' => $response]);
+        if ($response['statusCode'] === 200 && isset($response['response']['status']) && $response['response']['status'] === 'APPROVED') {
+            return view('payment_success', ['response' => $response['response']]);
         }
 
-        return view('payment_failed', ['message' => $response['message'] ?? '결제 실패']);
-    }
-
-    // 공통 API 요청 처리 메서드
-    private function sendRequest($data, $endpoint = '')
-    {
-        $url = $this->apiUrl . $endpoint;
-        $headers = [
-            'Content-Type: application/json',
-            'Authorization: Basic ' . base64_encode($this->merchantKey . ":"),
-        ];
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        return json_decode($response, true);
+        // 오류 처리
+        return view('payment_failed', [
+            'message' => $response['response']['message'] ?? '결제 승인 실패',
+        ]);
     }
 }
+
+?>
