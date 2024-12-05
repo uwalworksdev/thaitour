@@ -451,6 +451,10 @@ $routes->group("api", static function ($routes) {
         $routes->get("get_price", "Api\ProductApi::getPriceByDate", ['as' => "api.hotel_.get_price"]);
         $routes->get("get_code", "Api\ProductApi::getCode", ['as' => "api.hotel_.get_code"]);
     });
+
+    $routes->group("_product_place", function ($routes) {
+        $routes->get("list", "ProductPlaceController::list", ['as' => "api._product_place.list"]);
+    });
 });
 
 $routes->get('image/(:segment)/(:segment)', 'ImageController::show/$1/$2');
