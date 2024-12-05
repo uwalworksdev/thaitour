@@ -127,7 +127,8 @@
                     <div class="form_element_">
                         <div class="form_input_">
                             <label for="input_keyword_">여행지</label>
-                            <input type="text" id="input_keyword_" class="input_keyword_" placeholder="호텔 지역을 입력해주세요!">
+                            <input type="text" readonly id="input_keyword_" class="input_keyword_"
+                                   placeholder="호텔 지역을 입력해주세요!">
                         </div>
                         <div class="form_input_multi_">
                             <div class="form_gr_">
@@ -151,7 +152,7 @@
                             <input type="text" style="text-transform: none;" id="input_hotel" class="input_custom_"
                                    placeholder="호텔명을 입력해주세요.">
                         </div>
-                        <button type="button" onclick="search_list();" class="btn_search_">
+                        <button type="button" onclick="searchProduct();" class="btn_search_">
                             검색
                         </button>
                     </div>
@@ -161,7 +162,9 @@
                             <div class="hotel_popup_ttl_">인기 여행지</div>
                             <div class="list_popup_list_">
                                 <?php foreach ($sub_codes as $code_item) : ?>
-                                    <div class="list_popup_item_"><?= $code_item['code_name'] ?></div>
+                                    <div class="list_popup_item_" data-id="<?= $code_item['code_no'] ?>">
+                                        <?= $code_item['code_name'] ?>
+                                    </div>
                                 <?php endforeach; ?>
                             </div>
                         </div>
@@ -174,68 +177,19 @@
         <script>
             $(document).ready(function () {
                 $('.list_popup_item_').click(function () {
-                    let ttl = $(this).text();
-                    $('#input_keyword_').val(ttl);
+                    let ttl = $(this).text().trim();
+                    let idx = $(this).data('id');
+                    $('#input_keyword_').val(ttl).data('id', idx);
                     $('.hotel_popup_').removeClass('show');
                 })
             })
 
-            /* $('#input_day_start_, #input_day_end_').daterangepicker({
-                autoUpdateInput: false,
-                opens: "center",
-                locale: {
-                    format: 'YYYY-MM-DD',
-                    separator: ' - ',
-                    applyLabel: "적용",
-                    cancelLabel: "취소",
-                    fromLabel: "시작일",
-                    toLabel: "종료일",
-                    customRangeLabel: "사용자 정의",
-                    weekLabel: "주",
-                    daysOfWeek: ["일", "월", "화", "수", "목", "금", "토"],
-                    monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-                    firstDay: 1
-                },
-                linkedCalendars: false
-            }).on('apply.daterangepicker', function (ev, picker) {
-                $('#input_day_start_').val(picker.startDate.format('YYYY-MM-DD'));
-                $('#input_day_end_').val(picker.endDate.format('YYYY-MM-DD'));
-                calcDistanceDay();
-                renderPriceData(picker);
-            }).on('show.daterangepicker', function (ev, picker) {
-                renderPriceData(picker);
-            }).on('showCalendar.daterangepicker', function (ev, picker) {
-                renderPriceData(picker);
-            }); */
-
-            function renderPriceData(picker) {
-                $('.drp-calendar td.available').each(function () {
-                    let day = $(this).text().trim();
-                    if (!day) return;
-
-                    let currentYear = picker.startDate.year();
-                    let currentMonth = (picker.startDate.month() + 1).toString().padStart(2, '0');
-                    let fullDate = `${currentYear}-${currentMonth}-${day.padStart(2, '0')}`;
-
-                    let price = prices[fullDate] || "0만";
-
-                    if (!$(this).find('.price-tag').length) {
-                        $(this).append(`<div class="price-tag">${price}</div>`);
-                    }
-                });
-            }
-
-            function calcDistanceDay() {
-                let input_day_start_ = $('#input_day_start_').val();
-                let input_day_end_ = $('#input_day_end_').val();
-
-                let start = new Date(input_day_start_);
-                let end = new Date(input_day_end_);
-
-                let diffInMilliseconds = end - start;
-                let diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
-
-                $('#countDay').text(diffInDays);
+            function searchProduct() {
+                let c_id = $('#input_keyword_').data('id') ?? '';
+                let day_start = $('#input_day_start_').val();
+                let day_end = $('#input_day_end_').val();
+                let keyword = $('#input_hotel').val();
+                window.location.href = '/product-hotel/list-hotel?s_code_no=' + c_id + '&keyword=' + keyword + '&day_start=' + day_start + '&day_end=' + day_end;
             }
         </script>
         <section class="sub_tour_section2">
@@ -251,7 +205,7 @@
                                 }
                                 ?>
                                 <div class="swiper-slide">
-                                    <a href="/product-hotel/list-hotel/<?= $code_item['code_no'] ?>">
+                                    <a href="/product-hotel/list-hotel?s_code_no=<?= $code_item['code_no'] ?>">
                                         <div class="img_box">
                                             <img src="<?= $src ?>" loading="lazy" alt="main">
                                         </div>
@@ -563,7 +517,7 @@
             const checkin = dates[0] ? dates[0].trim() : '';
             const checkout = dates[1] ? dates[1].trim() : '';
             let hotel_name = $("#input_hotel").val();
-            window.location.href = '/product-hotel/list-hotel/<?= $code_no ?>?checkin=' + checkin + '&checkout=' + checkout + '&search_product_name=' + hotel_name;
+            window.location.href = '/product-hotel/list-hotel?s_code_no=<?= $code_no ?>?checkin=' + checkin + '&checkout=' + checkout + '&search_product_name=' + hotel_name;
         }
 
         let page = 1;

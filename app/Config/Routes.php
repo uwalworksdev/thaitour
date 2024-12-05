@@ -128,6 +128,13 @@ $routes->group("AdmMaster", static function ($routes) {
         });
     });
 
+    $routes->group("_product_place", static function ($routes) {
+        $routes->get("list", "Admin\AdminProductPlaceController::list", ['as' => "admin._product_place.list"]);
+        $routes->get("detail", "Admin\AdminProductPlaceController::detail", ['as' => "admin._product_place.detail"]);
+        $routes->post("write_ok", "Admin\AdminProductPlaceController::write", ['as' => "admin._product_place.write_ok"]);
+        $routes->post("delete", "Admin\AdminProductPlaceController::delete", ['as' => "admin._product_place.delete"]);
+    });
+
     $routes->group("_hotel", static function ($routes) {
         $routes->get("list", "Admin\AdminHotelController::list");
         $routes->get("write", "Admin\AdminHotelController::write");
@@ -618,7 +625,7 @@ $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
 $routes->post('vehicle-guide/vehicle-order', 'Product::vehicleOrder/$1');
 $routes->post('filter-vehicle', 'Product::filterVehicle');
 $routes->post('filter-child-vehicle', 'Product::filterChildVehicle');
-$routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');
+$routes->get('product-hotel/list-hotel', 'Product::listHotel');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::hotelDetail/$1');
 $routes->get('product-hotel/customer-form/(:any)', 'Product::index7/$1');
 $routes->get('product-hotel/reservation-form', 'Product::reservationForm');

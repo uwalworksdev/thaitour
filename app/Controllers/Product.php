@@ -930,9 +930,10 @@ class Product extends BaseController
         }
     }
 
-    public function listHotel($code_no)
+    public function listHotel()
     {
         try {
+            $code_no = $this->request->getVar('s_code_no') ?? '';
             $pg = $this->request->getVar('pg') ?? 1;
             $checkin = $this->request->getVar('checkin') ?? "";
             $checkout = $this->request->getVar('checkout') ?? "";
@@ -946,6 +947,9 @@ class Product extends BaseController
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
 
+            $keyword = $this->request->getVar('keyword') ?? "";
+            $day_start = $this->request->getVar('day_start') ?? "";
+            $day_end = $this->request->getVar('day_end') ?? "";
 
             $perPage = 5;
 
@@ -972,6 +976,12 @@ class Product extends BaseController
                 'product_code_list' => $product_code_list,
                 'checkin' => $checkin,
                 'checkout' => $checkout,
+                /* Update search */
+                'keyword' => $keyword,
+                'day_start' => $day_start,
+                'day_end' => $day_end,
+                's_code_no' => $code_no,
+                /* End search */
                 'search_product_name' => $search_product_name,
                 'search_product_category' => $search_product_category,
                 'search_product_hotel' => $search_product_hotel,
