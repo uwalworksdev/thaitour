@@ -20,16 +20,16 @@ class PaymentController extends BaseController
     public function requestPayment()
     {
         // 상품 정보 (테스트용 데이터)
-        $orderId = uniqid('ORDER_'); // 주문번호는 고유해야 함
-        $amount = 10000;            // 결제 금액
+        $orderId   = uniqid('ORDER_'); // 주문번호는 고유해야 함
+        $amount    = 10000;            // 결제 금액
         $orderName = "테스트 상품";
 
         $data = [
             "merchantId" => $this->merchantId,
-            "orderId" => $orderId,
-            "amount" => $amount,
-            "orderName" => $orderName,
-            "returnUrl" => $this->returnUrl,
+            "orderId"    => $orderId,
+            "amount"     => $amount,
+            "orderName"  => $orderName,
+            "returnUrl"  => $this->returnUrl,
         ];
 
         // API 요청
