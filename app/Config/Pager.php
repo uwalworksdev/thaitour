@@ -20,6 +20,7 @@ class Pager extends BaseConfig
         'default_full'   => 'App\Views\Pagers\default_full',
         'default_simple' => 'CodeIgniter\Pager\Views\default_simple',
         'default_head'   => 'CodeIgniter\Pager\Views\default_head',
+        'custom1' => 'App\Views\Pagers\custom1',
     ];
 
     /*

@@ -43,7 +43,9 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("board_write/(:segment)", "BoardController::board_write/$1");
         $routes->get("board_write", "BoardController::board_write");
         $routes->get("goods_find", "BoardController::goods_find");
-        $routes->get("item_allfind", "BoardController::item_allfind");
+        $routes->post("item_allfind", "BoardController::item_allfind");
+        $routes->post("event_update", "BoardController::event_update");
+        $routes->post("event_dis_delete", "BoardController::event_dis_delete");
         $routes->post("write_ok/(:segment)", "BoardController::write_ok/$1");
         $routes->post("write_ok", "BoardController::write_ok");
         $routes->get("view", "BoardController::view");
@@ -404,12 +406,6 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->get("delete", "Popup::ItemDelete");
             $routes->post("status/change", "Popup::ListStatusChangeAjax");
         });
-    });
-
-    // Nested group for '_magazine'
-    $routes->group("_magazines", function ($routes) {
-        $routes->get("list", "Admin\AdminMagazineController::list", ['as' => "admin._magazines.list"]);
-        $routes->get("write", "Admin\AdminMagazineController::write", ['as' => "admin._magazines.write"]);
     });
 });
 

@@ -228,7 +228,13 @@
                 processData: false,
             }).done(function (obj) {
                 alert(obj.message);
-                location.reload();
+
+                if(formData.get("bbs_idx")) {
+                    location.reload();
+                } else {
+                    history.back();
+                }
+
             });
 
         }
@@ -242,7 +248,7 @@
 
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "/AdmMaster/_bbs/bbs_del",
+                url: "<?= route_to('admin.api.bbs.bbs_del') ?>",
                 type: "POST",
                 data: "bbs_idx[]=" + bbs_idx,
                 error: function (request, status, error) {
@@ -256,13 +262,7 @@
                 success: function (response, status, request) {
                     if (response == "OK") {
                         alert("정상적으로 삭제되었습니다.");
-                        setTimeout(function () {
-                            if (code == "banner") {
-                                location.href = "/AdmMaster/_bbsBanner/list.php?code=banner";
-                            } else {
-                                location.href = "board_list.php?code=<?= $code ?>&scategory=<?= $scategory ?>";
-                            }
-                        }, 1000);
+                        history.back();
                         return;
                     } else {
                         alert_("오류가 발생하였습니다!!");
@@ -290,74 +290,6 @@
 
     </script>
     <script>
-        
-
-        function fn_pick_update() {
-
-            var f = document.select_pick_frm;
-
-            var pick_data = $(f).serialize();
-            var save_result = "";
-            $.ajax({
-                type: "POST",
-                data: pick_data,
-                url: "./event_update.ajax.php",
-                cache: false,
-                async: false,
-                success: function (data, textStatus) {
-                    save_result = data;
-                    //alert('save_result- '+save_result);
-                    var obj = jQuery.parseJSON(save_result);
-                    var message = obj.message;
-                    alert(message);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-        }
-
-        function search_it() {
-
-
-            let code = $("#code_").val();
-            let product_code_1 = $("#product_code_1").val();
-            let product_code_2 = $("#product_code_2").val();
-            let product_code_3 = $("#product_code_3").val();
-            let search_category = $("#search_category").val();
-            let search_txt = $("#search_txt").val();
-
-            $.ajax({
-
-                url: "./item_allfind",
-                type: "POST",
-                data: {
-                    "code": code,
-                    "product_code_1": product_code_1,
-                    "product_code_2": product_code_2,
-                    "product_code_3": product_code_3,
-                    "search_category": search_category,
-                    "search_txt": search_txt,
-
-                },
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-
-                }
-                , success: function (response, status, request) {
-
-                    $("#id_contents").empty();
-                    $("#id_contents").append(response);
-                    $('.pick_item_pop02').show();
-                }
-            });
-        }
-
         function goods_del(idx) {
             if (!confirm("선택한 상품을 정말 삭제하시겠습니까?"))
                 return false;
@@ -365,7 +297,7 @@
             var message = "";
             $.ajax({
 
-                url: "./ajax.product_del.php",
+                url: "/AdmMaster/_bbs/event_dis_delete",
                 type: "POST",
                 data: {
                     "idx": idx

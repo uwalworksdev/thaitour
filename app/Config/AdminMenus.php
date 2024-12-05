@@ -152,7 +152,7 @@ class AdminMenus extends BaseConfig
                 [
                     'name' => '매거진 관리',
                     'code' => 'D5',
-                    'url' => '/AdmMaster/_bbs/board_list?code=magazine',
+                    'url' => '/AdmMaster/_bbs/board_list?code=magazines',
                     'alias' => ['BoardController::index', 'BoardController::board_write']
                 ],
             ]
