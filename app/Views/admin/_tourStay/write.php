@@ -40,6 +40,7 @@
         .popup_area_ {
             height: auto;
             /*min-height: 50vh;*/
+            max-height: 60vh;
             overflow: auto;
             background-color: #FFFFFF;
             width: 100%;
@@ -646,16 +647,18 @@
                                     <col width="*"/>
                                     <col width="150px"/>
                                     <col width="150px"/>
-                                    <col width="150px"/>
-                                    <col width="260px"/>
+                                    <col width="120px"/>
+                                    <col width="120px"/>
+                                    <col width="200px"/>
                                 </colgroup>
                                 <thead>
                                 <tr>
                                     <th>번호</th>
-                                    <th>코드명</th>
+                                    <th>명소</th>
                                     <th>이미지</th>
                                     <th>제품 유형</th>
                                     <th>거리</th>
+                                    <th>우선순위</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
@@ -693,6 +696,7 @@
                                                         </td>
                                                         <td class="tac">${item.type}</td>
                                                         <td class="tac">${item.distance}</td>
+                                                        <td class="tac">${item.onum}</td>
                                                         <td style="text-align: center">
                                                             <a href="#!" onclick="deletePlace('${item.idx}');"
                                                                class="btn btn-default">코드삭제</a>
@@ -736,7 +740,6 @@
                                 }
 
                                 function writePlace() {
-                                    resetPlace();
                                     let formData = new FormData($('#formPlace')[0]);
 
                                     let apiUrl = `<?= route_to('admin._product_place.write_ok') ?>`;
@@ -778,12 +781,12 @@
                                 }
 
                                 function resetPlace() {
-                                    $('#product_place_idx').val();
-                                    $('#product_place_name').val();
-                                    $('#product_place_type').val();
-                                    $('#product_place_distance').val();
-                                    $('#product_place_onum').val();
-                                    $('#place_image_').empty();
+                                    $('#product_place_idx').val('');
+                                    $('#product_place_name').val('');
+                                    $('#product_place_type').val('');
+                                    $('#product_place_distance').val('');
+                                    $('#product_place_onum').val('');
+                                    $('#place_image_').empty('');
                                 }
 
                                 function setPlace(data) {
@@ -807,6 +810,7 @@
                                 }
 
                                 function showOrHidePlace() {
+                                    resetPlace();
                                     $("#popupPlace_").toggleClass('show_');
                                 }
                             </script>
