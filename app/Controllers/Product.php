@@ -2145,15 +2145,15 @@ class Product extends BaseController
                 $option_tot = $row['option_name'] * $option_idx[1];
 				$sql        = "UPDATE tbl_order_option  SET  
 														option_type  = 'tour'
-														order_idx    = '". $order_idx ."'
-														product_idx  = '". $product['product_idx'] ."'	
-														option_name  = '". $row['option_name'] ."'	
-														option_idx	 = '". $option_idx[$i] ."'
-														option_tot	 = '". $option_tot ."'
-														option_cnt	 = '". $option_idx[1] ."'
-														option_date	 =  now()
-														option_price = '". $row['option_price'] ."'	
-														option_qty   = '". $option_idx[1] ."' ";
+													  , order_idx    = '". $order_idx ."'
+													  , product_idx  = '". $product['product_idx'] ."'	
+													  , option_name  = '". $row['option_name'] ."'	
+													  , option_idx	 = '". $option_idx[$i] ."'
+													  , option_tot	 = '". $option_tot ."'
+													  , option_cnt	 = '". $option_idx[1] ."'
+													  , option_date	 =  now()
+													  , option_price = '". $row['option_price'] ."'	
+													  , option_qty   = '". $option_idx[1] ."' ";
                 $result     = $this->db->query($sql);
             }
 
