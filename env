@@ -157,7 +157,7 @@ GOOGLE_LOGIN_SECRET = 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
 GOOGLE_REDIRECT_URI = http://localhost:8080/member/google_login
 
 
-NICEPAY_MERCHANT_ID=nicepay00m
-NICEPAY_MERCHANT_KEY=EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==
-NICEPAY_API_URL=https://api.test.nicepay.co.kr/v1/payments  # 테스트 환경 URL
-NICEPAY_RETURN_URL=https://thetourlab.com/payment/complete
+NICEPAY_MERCHANT_ID  = nicepay00m
+NICEPAY_MERCHANT_KEY = EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg==
+NICEPAY_API_URL      = https://api.test.nicepay.co.kr/v1/payments  # 테스트 환경 URL
+NICEPAY_RETURN_URL   = https://thetourlab.com/payment/complete
