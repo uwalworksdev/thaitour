@@ -34,6 +34,7 @@ class PaymentController extends BaseController
 
         // API 요청
         $response = $this->sendRequest($data);
+        log_message('debug', '나이스페이 요청 데이터: ' . json_encode($data));
 
         if (isset($response['status']) && $response['status'] === 'SUCCESS') {
             // 결제 페이지로 리다이렉트
