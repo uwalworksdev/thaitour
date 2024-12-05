@@ -11,6 +11,7 @@ use Exception;
 class Product extends BaseController
 {
     private $bannerModel;
+    protected $productPlace;
     private $productModel;
     private $bbsListModel;
     private $orderModel;
@@ -63,6 +64,7 @@ class Product extends BaseController
         $this->carsOptionModel = model("CarsOptionModel");
         $this->carsSubModel = model("CarsSubModel");
         $this->orderTours = model("OrderTourModel");
+        $this->productPlace = model("ProductPlace");
         helper(['my_helper']);
         $constants = new ConfigCustomConstants();
     }
@@ -1145,6 +1147,9 @@ class Product extends BaseController
             $fsql = 'SELECT * FROM tbl_hotel_option WHERE goods_code = ? and o_room != 0 ORDER BY idx ASC';
             $hotel_options = $this->db->query($fsql, [$hotel['product_code']])->getResultArray();
             $_arr_utilities = $_arr_best_utilities = $_arr_services = $_arr_populars = [];
+
+            $places = [];
+
             if (count($hotel_options) > 0) {
                 $hotel_option = $hotel_options[0];
                 $room_idx = $hotel_option['o_room'];
@@ -1164,6 +1169,10 @@ class Product extends BaseController
 
                     $code_populars = $stay_hotel['code_populars'];
                     $_arr_populars = explode("|", $code_populars);
+
+                    $stay_idx = $stay_hotel['stay_idx'];
+
+                    $places = $this->productPlace->getByProductId($stay_idx);
                 }
             }
 
@@ -1324,6 +1333,7 @@ class Product extends BaseController
                 'hotel_options' => $hotel_option_convert,
                 'coupons' => $c_row,
                 'suggestHotel' => $suggestHotels,
+                'places' => $places,
             ];
 
             $data = array_merge($data, $review_data);

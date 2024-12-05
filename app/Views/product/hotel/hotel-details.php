@@ -144,7 +144,8 @@
                 <div class="rating-container">
                     <img src="/uploads/icons/star_icon_mo.png" alt="star_icon_mo.png">
                     <span><strong> <?= $hotel['review_average'] ?></strong></span>
-                    <span class="page_">생생리뷰 <strong style="color: #000;">(<?= $hotel['total_review'] ?>)</strong></span>
+                    <span class="page_">생생리뷰 <strong
+                                style="color: #000;">(<?= $hotel['total_review'] ?>)</strong></span>
                     <span class="page_"><?= $fresult9['code_name'] ?></span>
                 </div>
                 <?php
@@ -191,7 +192,8 @@
                         <p class="nav-item" onclick="scrollToEl('section3')" style="cursor: pointer">객실</p>
                         <p class="nav-item" onclick="scrollToEl('section4')" style="cursor: pointer">시설&서비스</p>
                         <p class="nav-item" onclick="scrollToEl('section5')" style="cursor: pointer">호텔 정책</p>
-                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">생생리뷰(<?= $hotel['total_review'] ?>개)</p>
+                        <p class="nav-item" onclick="scrollToEl('section6')" style="cursor: pointer">
+                            생생리뷰(<?= $hotel['total_review'] ?>개)</p>
                     </div>
                     <div class="btn-container only_web">
                         <button type="button" onclick="scrollToEl('section3')">
@@ -238,10 +240,10 @@
                     호텔주변 추천명소
                 </h2>
                 <div class="post-list-sec2">
-                    <?php foreach ($fresult8 as $row) : ?>
+                    <?php foreach ($places as $row) : ?>
                         <div class="">
-                            <img src="/data/code/<?= $row['ufile1'] ?>" alt="hotel_thumbnai_1">
-                            <span><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['code_name'] ?>(<?= $row['distance'] ?>)</span>
+                            <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
+                            <span><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?>(<?= $row['distance'] ?>)</span>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -505,14 +507,14 @@
                                             <colgroup>
                                                 <col width="35%">
                                                 <col width="10%">
-<!--                                                <col width="10%">-->
+                                                <!--                                                <col width="10%">-->
                                                 <col width="x">
                                             </colgroup>
                                             <thead>
                                             <tr>
                                                 <th>옵션 상세</th>
                                                 <th>수량</th>
-<!--                                                <th>쿠폰</th>-->
+                                                <!--                                                <th>쿠폰</th>-->
                                                 <th>객실 요금</th>
                                             </tr>
                                             </thead>
@@ -567,11 +569,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-<!--                                                    <td>-->
-<!--                                                        <div class="occupancy">-->
-<!--                                                            <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
-<!--                                                        </div>-->
-<!--                                                    </td>-->
+                                                    <!--                                                    <td>-->
+                                                    <!--                                                        <div class="occupancy">-->
+                                                    <!--                                                            <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </td>-->
                                                     <?php
                                                     $isSale = true;
                                                     if ($room_op['r_sale_price_won'] == $room_op['r_price_won']) {
@@ -590,7 +592,8 @@
                                                                 옵션금액: <span class="room_price_day"
                                                                             data-price="<?= $room_op['r_price_won'] ?>"></span>
                                                                 <span class="room_price_day_sale"
-                                                                      data-price="<?= $room_op['r_sale_price_won'] ?>"><?= number_format($room_op['r_sale_price_won']) ?></span> 원
+                                                                      data-price="<?= $room_op['r_sale_price_won'] ?>"><?= number_format($room_op['r_sale_price_won']) ?></span>
+                                                                원
                                                             </div>
                                                             <span class="total">
                                                                 객실금액: <span class="price-strike hotel_price_day"
@@ -634,12 +637,12 @@
                                             <colgroup>
                                                 <col width="10%">
                                                 <col width="*%">
-<!--                                                <col width="45%">-->
+                                                <!--                                                <col width="45%">-->
                                             </colgroup>
                                             <thead>
                                             <tr>
                                                 <th>수량</th>
-<!--                                                <th>쿠폰</th>-->
+                                                <!--                                                <th>쿠폰</th>-->
                                                 <th>객실 요금</th>
                                             </tr>
                                             </thead>
@@ -679,11 +682,11 @@
                                                         </div>
                                                     </div>
                                                 </td>
-<!--                                                <td>-->
-<!--                                                    <div class="occupancy">-->
-<!--                                                        <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
-<!--                                                    </div>-->
-<!--                                                </td>-->
+                                                <!--                                                <td>-->
+                                                <!--                                                    <div class="occupancy">-->
+                                                <!--                                                        <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+                                                <!--                                                    </div>-->
+                                                <!--                                                </td>-->
                                                 <?php
                                                 $isSale = true;
                                                 if ($item['goods_price1_won'] == $item['goods_price2_won']) {
@@ -976,14 +979,14 @@
                                                     <colgroup>
                                                         <col width="35%">
                                                         <col width="20%">
-<!--                                                        <col width="10%">-->
+                                                        <!--                                                        <col width="10%">-->
                                                         <col width="x">
                                                     </colgroup>
                                                     <thead>
                                                     <tr>
                                                         <th>옵션 상세</th>
                                                         <th>수량</th>
-<!--                                                        <th>쿠폰</th>-->
+                                                        <!--                                                        <th>쿠폰</th>-->
                                                         <th>객실 요금</th>
                                                     </tr>
                                                     </thead>
@@ -1041,11 +1044,11 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-<!--                                                            <td>-->
-<!--                                                                <div class="occupancy">-->
-<!--                                                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
-<!--                                                                </div>-->
-<!--                                                            </td>-->
+                                                            <!--                                                            <td>-->
+                                                            <!--                                                                <div class="occupancy">-->
+                                                            <!--                                                                    <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+                                                            <!--                                                                </div>-->
+                                                            <!--                                                            </td>-->
                                                             <?php
                                                             $isSale = true;
                                                             if ($room_op['r_sale_price_won'] == $room_op['r_price_won']) {
@@ -1105,12 +1108,12 @@
                                                     <colgroup>
                                                         <col width="10%">
                                                         <col width="*%">
-<!--                                                        <col width="35%">-->
+                                                        <!--                                                        <col width="35%">-->
                                                     </colgroup>
                                                     <thead>
                                                     <tr>
                                                         <th>수량</th>
-<!--                                                        <th>쿠폰</th>-->
+                                                        <!--                                                        <th>쿠폰</th>-->
                                                         <th>객실 요금</th>
                                                     </tr>
                                                     </thead>
@@ -1164,11 +1167,11 @@
                                                                 </div>
                                                             </div>
                                                         </td>
-<!--                                                        <td>-->
-<!--                                                            <div class="occupancy">-->
-<!--                                                                <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
-<!--                                                            </div>-->
-<!--                                                        </td>-->
+                                                        <!--                                                        <td>-->
+                                                        <!--                                                            <div class="occupancy">-->
+                                                        <!--                                                                <span class="occupancy_button openPopupBtn">쿠폰적용</span>-->
+                                                        <!--                                                            </div>-->
+                                                        <!--                                                        </td>-->
                                                         <?php
                                                         $isSale = true;
                                                         if ($item['goods_price1_won'] == $item['goods_price2_won']) {
@@ -1500,7 +1503,8 @@
                                         </div>
                                     </div>
                                     <div class="prd_price_ko">
-                                        <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span class="prd_price_ko_sub">
+                                        <?= number_format($item['product_price_won']) ?> <span> 원 ~</span> <span
+                                                class="prd_price_ko_sub">
                                         <?= number_format($item['product_price']) ?>
                                         <span>바트</span></span>
                                     </div>
@@ -2153,4 +2157,22 @@
             </script>
         </div>
     </div>
+    <script>
+       async function listPlace() {
+            let apiUrl = `<?= route_to('api._product_place.list') ?>?product_idx=<?= $hotel['product_idx'] ?>`;
+            try {
+                let response = await fetch(apiUrl);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                let data = await response.json();
+                renderPlace(data.data);
+            } catch (error) {
+                console.error('Error fetching hotel data:', error);
+            }
+        }
+
+        function renderPlace(data) {
+            console.log(data)
+        }
+    </script>
 <?php $this->endSection(); ?>
