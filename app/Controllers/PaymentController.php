@@ -27,6 +27,14 @@ class PaymentController extends BaseController
             return redirect()->to($response['response']['nextRedirectUrl']);
         }
 
+		if ($response['statusCode'] !== 200) {
+			log_message('error', '결제 요청 실패: ' . json_encode($response));
+			return view('payment_failed', [
+				'message'   => $response['response']['message'] ?? '결제 요청 실패',
+				'errorCode' => $response['response']['errorCode'] ?? '알 수 없는 오류',
+			]);
+		}
+
 		log_message('debug', '나이스페이 요청 데이터: ' . $orderId ." - ". $amount ." - ". $orderName);
 		log_message('debug', '나이스페이 응답 데이터: ' . json_encode($response));
 
