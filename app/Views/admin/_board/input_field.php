@@ -64,3 +64,12 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
         <a href="/data/bbs/"><?= $info[$name] ?></a>
     <?php } ?>
 <?php endif; ?>
+
+<?php if ($inputType == "duration"): ?>
+    <input type="text" id="<?=$name[0]?>" name="<?=$name[0]?>" value='<?= $info[$name[0]] ?>' class="datepicker input_txt" style="width:7%;" rel="" style="width:98%" /> ~
+    <input type="text" id="<?=$name[1]?>" name="<?=$name[1]?>" value='<?= $info[$name[1]] ?>' class="datepicker input_txt" style="width:7%" rel="" style="width:98%" />
+<?php endif; ?>
+
+<?php if ($inputType == "product_pickup"): ?>
+    <?=view("admin/_board/product_pickup")?>
+<?php endif; ?>

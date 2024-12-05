@@ -930,10 +930,9 @@ class Product extends BaseController
         }
     }
 
-    public function listHotel()
+    public function listHotel($code_no)
     {
         try {
-            $code_no = $this->request->getVar('s_code_no') ?? '';
             $pg = $this->request->getVar('pg') ?? 1;
             $checkin = $this->request->getVar('checkin') ?? "";
             $checkout = $this->request->getVar('checkout') ?? "";
@@ -947,9 +946,6 @@ class Product extends BaseController
             $price_min = $this->request->getVar('price_min') ?? 0;
             $price_max = $this->request->getVar('price_max') ?? 0;
 
-            $keyword = $this->request->getVar('keyword') ?? "";
-            $day_start = $this->request->getVar('day_start') ?? "";
-            $day_end = $this->request->getVar('day_end') ?? "";
 
             $perPage = 5;
 
@@ -976,12 +972,6 @@ class Product extends BaseController
                 'product_code_list' => $product_code_list,
                 'checkin' => $checkin,
                 'checkout' => $checkout,
-                /* Update search */
-                'keyword' => $keyword,
-                'day_start' => $day_start,
-                'day_end' => $day_end,
-                's_code_no' => $code_no,
-                /* End search */
                 'search_product_name' => $search_product_name,
                 'search_product_category' => $search_product_category,
                 'search_product_hotel' => $search_product_hotel,
@@ -2083,7 +2073,7 @@ class Product extends BaseController
 
     public function tourFormOk()
     {
-		write_log($_POST); 
+		//print_r($_POST); exit; 
         try {
             $data = $this->request->getPost();
             $data['m_idx']          = session('member.idx') ?? "";
@@ -2142,6 +2132,32 @@ class Product extends BaseController
 
             $order_idx = $this->orderModel->getInsertID();
 
+
+            $idx   =  explode(",", $data['idx']);
+			write_log($data['idx']);
+            for($i=0;$i<count($idx);$i++)
+            {
+                $option_idx = explode(":", $idx[$i]);
+
+                $sql        = "SELECT * FROM tbl_tours_option WHERE idx = '". $option_idx[0] ."' ";
+                $result     = $this->db->query($sql);
+                $row        = $result->getRowArray();
+ 
+                $option_tot = $row['option_price'] * $option_idx[1];
+				$sql        = "INSERT INTO tbl_order_option  SET  
+															 option_type  = 'tour'
+														   , order_idx    = '". $order_idx ."'
+														   , product_idx  = '". $product['product_idx'] ."'	
+														   , option_name  = '". $row['option_name'] ."'	
+														   , option_idx	  = '". $option_idx[0] ."'
+														   , option_tot	  = '". $option_tot ."'
+														   , option_cnt	  = '". $option_idx[1] ."'
+														   , option_date  =  now()
+														   , option_price = '". $row['option_price'] ."'	
+														   , option_qty   = '". $option_idx[1] ."' ";
+                write_log($sql);
+                $result     = $this->db->query($sql);
+            }
 
             $adultCount = (int)$data['people_adult_cnt'];
             $kidsCount  = (int)$data['people_kids_cnt'];
