@@ -16,6 +16,7 @@ class PaymentController extends BaseController
     // 결제 요청
     public function requestPayment()
     {
+/*
         $orderId   = uniqid('ORDER_'); // 주문 번호 (고유해야 함)
         $amount    = 10000;            // 결제 금액
         $orderName = "테스트 상품";   // 상품 이름
@@ -37,11 +38,9 @@ class PaymentController extends BaseController
 
 		log_message('debug', '나이스페이 요청 데이터: ' . $orderId ." - ". $amount ." - ". $orderName);
 		log_message('debug', '나이스페이 응답 데이터: ' . json_encode($response));
-
+*/
         // 오류 처리
-        return view('payment_failed', [
-            'message' => $response['response']['message'] ?? '결제 요청 실패',
-        ]);
+        return view('payment_request');
     }
 
     // 결제 완료
