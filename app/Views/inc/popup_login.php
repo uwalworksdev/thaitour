@@ -177,7 +177,7 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/js/kakao.js"></script>
 
-<div class="popup_ show_" id="popupLogin_">
+<div class="popup_" id="popupLogin_">
     <div class="popup_area_">
         <div class="popup_top_">
             <p>
