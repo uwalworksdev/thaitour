@@ -601,8 +601,12 @@ $routes->group("custom_travel", static function ($routes) {
 });
 
 $routes->group("magazines", static function ($routes) {
-    $routes->get("list", "MagazineController::list");
-    $routes->get("detail", "MagazineController::detail");
+    $routes->get("list", "MagazineController::list", ['as' => "api.magazines.list"]);
+    $routes->get("detail", "MagazineController::detail", ['as' => "api.magazines.detail"]);
+    $routes->get("comment", "MagazineController::listComment", ['as' => "api.magazines.list.comment"]);
+    $routes->post("create-comment", "MagazineController::createComment", ['as' => "api.magazines.create.comment"]);
+    $routes->post("update-comment", "MagazineController::updateComment", ['as' => "api.magazines.update.comment"]);
+    $routes->post("delete-comment", "MagazineController::deleteComment", ['as' => "api.magazines.delete.comment"]);
 });
 
 $routes->group("coupon", static function ($routes) {
@@ -673,7 +677,7 @@ $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
 
 // Nicepay route
-$routes->get('/payment/request',  'PaymentController::requestPayment');
+$routes->get('/payment/request', 'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
-$routes->post('/payment/result',  'PaymentController::result');
+$routes->post('/payment/result', 'PaymentController::result');
 ?>
