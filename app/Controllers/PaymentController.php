@@ -40,7 +40,10 @@ class PaymentController extends BaseController
 		log_message('debug', '나이스페이 응답 데이터: ' . json_encode($response));
 */
         // 오류 처리
-        return view('payment_request');
+        //return view('payment_request');
+        $data = "";
+
+		return $this->renderView('payment_request', $data);
     }
 
     // 결제 완료
