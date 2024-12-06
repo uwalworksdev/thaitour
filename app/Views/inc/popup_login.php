@@ -24,7 +24,7 @@
         width: 100%;
         min-width: 800px;
         max-width: 50vw;
-        padding: 10px 40px 30px;
+        padding: 10px 40px 50px;;
         font-size: 14px;
         border: 2px solid #333333;
     }
@@ -63,7 +63,8 @@
         border: 1px solid rgb(204, 204, 204);
     }
 </style>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="/js/kakao.js"></script>
 <div class="popup_" id="popupLogin_">
     <div class="popup_area_">
         <div class="popup_top_">
@@ -140,13 +141,13 @@
 
                             <script>
                                 //네이버 로그인
-                                function fnNaverLogin() {
+                                function fnNaverLogin2() {
                                     location.href = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fmember%2Flogin_naver&state=b4ed7a3e894112a5e45c4befa418c6edlog';
                                 }
                             </script>
 
                             <div class="another_login">
-                                <button type="button" class="another_btn naver" onclick="fnNaverLogin();">
+                                <button type="button" class="another_btn naver" onclick="fnNaverLogin2();">
                                     네이버로그인
                                 </button>
                                 <button type="button" class="another_btn kakao" onclick="loginWithKakao()">
