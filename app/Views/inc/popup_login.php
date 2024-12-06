@@ -23,9 +23,10 @@
         background-color: #FFFFFF;
         width: 100%;
         min-width: 800px;
-        max-width: 80vw;
+        max-width: 50vw;
         padding: 10px 40px 30px;
         font-size: 14px;
+        border: 2px solid #333333;
     }
 
     .popup_top_ {
@@ -67,11 +68,12 @@
     <div class="popup_area_">
         <div class="popup_top_">
             <p>
-                로그인
+                로그인 또는 회원가입
             </p>
             <p>
                 <button type="button" class="btn_close_"
-                        onclick="showOrHideLoginItem();">X
+                        onclick="showOrHideLoginItem();">
+                    <img src="/images/ico/close_icon_popup.png" alt="" style="width: 20px; height: 20px">
                 </button>
             </p>
         </div>
