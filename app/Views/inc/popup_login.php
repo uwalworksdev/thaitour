@@ -62,10 +62,122 @@
         height: 40px;
         border: 1px solid rgb(204, 204, 204);
     }
+
+    .sup_button {
+        background-color: white;
+        color: black;
+        border: 1px solid #dbdbdb;
+        padding: 16px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 12px;
+        width: 100%;
+    }
+
+    .item_login_ {
+        display: none;
+    }
+
+    .item_login_.show_ {
+        display: block;
+    }
+
+    .box_login {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.35);
+        border: 1px solid #dbdbdb;
+        border-radius: 20px;
+    }
+
+    .box_login h4 {
+        font-size: 20px;
+        margin-top: 30px;
+        /*margin-bottom: 10px;*/
+    }
+
+    .input_group_ {
+        margin: 0 0 10px 0;
+    }
+
+    .label_inp_ {
+        margin-top: 20px;
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+
+    .layout_input_ input {
+        font-size: 16px;
+    }
+
+    .box_login p {
+        font-size: 16px;
+        margin: 20px 0;
+    }
+
+    .nomember_wrap {
+        margin-top: 40px;
+    }
+
+    .login_wrap .memx_login p {
+        margin-top: 10px;
+    }
+
+    .nomember_wrap .btn_nomember,
+    .btnNoLogin {
+        width: 100%;
+        border-radius: 10px;
+        padding: 13px 0;
+        font-size: 18px;
+        font-weight: 500;
+        border: 2px solid #474747;
+        background: #fff;
+    }
+
+    .nomember_wrap a {
+        width: 100%;
+        font-size: 18px;
+        cursor: pointer;
+        border: 1px solid #000;
+        margin-top: 10px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 16px 0;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+        font-weight: 500;
+    }
+
+    #btnLoginSupMain {
+        display: none;
+    }
+
+    #btnLoginMain {
+        display: none;
+    }
+
+    #inputMainGroup {
+        display: none;
+    }
+
+    #btnLoginSupMain.show_ {
+        display: block;
+    }
+
+    #btnLoginMain.show_ {
+        display: block;
+    }
+
+    #inputMainGroup.show_ {
+        display: block;
+    }
 </style>
+
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript" src="/js/kakao.js"></script>
-<div class="popup_" id="popupLogin_">
+
+<div class="popup_ show_" id="popupLogin_">
     <div class="popup_area_">
         <div class="popup_top_">
             <p>
@@ -88,10 +200,10 @@
                             <img src="/images/sub/logo_w.png" alt="더투어랩 로고">
                         </picture>
                     </div>
-                    <div class="login_tab">
-                        <button type="button" class="on">회원 로그인</button>
-                        <button type="button">비회원 예약확인</button>
-                    </div>
+                    <!--                    <div class="login_tab">-->
+                    <!--                        <button type="button" class="on">회원 로그인</button>-->
+                    <!--                        <button type="button">비회원 예약확인</button>-->
+                    <!--                    </div>-->
 
                     <section class="login_cont">
 
@@ -107,19 +219,18 @@
                                 <input type="hidden" name="userEmail" id="userEmail" value="">
                                 <input type="hidden" name="gubun" id="gubun" value="">
 
-                                <div class="input-group">
+                                <div class="input-group show_" id="inputMainGroup">
                                     <div class="input-row">
                                         <input type="text" name="user_id" class="bs-input" onkeyup="press_it2()"
                                                placeholder="아이디를 입력하세요." value="">
                                     </div>
                                     <div class="input-row">
-                                        <input type="password" name="user_pw" class="bs-input" onkeyup="press_it2(event)"
+                                        <input type="password" name="user_pw" class="bs-input"
+                                               onkeyup="press_it2(event)"
                                                placeholder="비밀번호를 입력하세요.">
                                     </div>
                                     <div class="input-row save_id flex_b_c">
                                         <div class="bs-input-check">
-                                            <input type="checkbox" id="save_id" name="save_id" value="Y">
-                                            <label for="save_id"> 아이디 저장</label>
                                         </div>
                                         <div class="btn_link">
                                             <a href="/member/login_find_id">아이디/비밀번호 찾기</a>
@@ -127,13 +238,53 @@
                                         </div><!-- .btn_link -->
                                     </div>
 
-
                                 </div>
                                 <div class="btn-wrap">
-                                    <button type="button" class="btn btn-lg btn-point" onclick="login_it2();">로그인
+                                    <button type="button" id="btnLoginMain" class="btn btn-lg btn-point"
+                                            onclick="login_it2();">로그인
+                                    </button>
+
+                                    <button type="button" id="btnLoginSupMain" class="show_ btn btn-lg btn-point"
+                                            onclick="openLogin();">로그인
+                                    </button>
+
+                                    <button type="button" class="sup_button" onclick="openSupLogin();">
+                                        비회원 예약
                                     </button>
                                 </div>
                             </form>
+
+                            <div class="item_login_" id="loginNoAreaMember">
+                                <div class="box_login">
+                                    <h4>비회원 예약 조회 및 로그인</h4>
+                                    <form name="frmLogin_nomember" method="post" action="#">
+                                        <div class="input_group_">
+                                            <label class="label_inp_">이메일 주소</label>
+                                            <div class="layout_input_">
+                                                <input type="text" name="member/email" data-validate="required,email"
+                                                       title="예약시 입력한 이메일 주소" placeholder="예약시 입력한 이메일 주소를 입력해 주세요">
+                                            </div>
+                                            <label class="label_inp_">예약번호</label>
+                                            <div class="layout_input_">
+                                                <input type="text" name="grpno" id="grpno" maxlength="50"
+                                                       data-validate="required,minlength[4]" title="9자리 숫자"
+                                                       placeholder="9자리 숫자로 된 예약번호를 입력해 주세요">
+                                            </div>
+                                        </div>
+                                        <p>※ 비회원 로그인 후 추가 예약이 가능해요.</p>
+                                        <div class="btn_login">
+                                            <button type="button" class="btnNoLogin" onclick="login_nomember_login();">
+                                                로그인
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="nomember_wrap">
+                                    <p>비회원은 포인트 적립, 크레이지 세일 예약, 이벤트 참여, 쿠폰 사용이 불가능해요.</p>
+                                    <a href="#" onclick="submitNoMember();" class="btn_nomember">비회원으로 예약하기</a>
+                                </div>
+                            </div>
 
                             <div class="sns_login_ttl">
                                 <span>SNS 로그인</span>
@@ -217,6 +368,28 @@
 <script>
     function showOrHideLoginItem() {
         $("#popupLogin_").toggleClass('show_');
+    }
+
+    function openLogin() {
+        $("#inputMainGroup").addClass('show_');
+        $("#btnLoginMain").addClass('show_');
+        $("#loginNoAreaMember").removeClass('show_');
+        $("#btnLoginSupMain").removeClass('show_');
+    }
+
+    function openSupLogin() {
+        $("#inputMainGroup").removeClass('show_');
+        $("#btnLoginMain").removeClass('show_');
+        $("#loginNoAreaMember").addClass('show_');
+        $("#btnLoginSupMain").addClass('show_');
+    }
+
+    function submitNoMember() {
+
+    }
+
+    function login_nomember_login() {
+
     }
 
     function go_result2() {
