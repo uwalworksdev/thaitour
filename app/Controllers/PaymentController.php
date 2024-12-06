@@ -41,7 +41,7 @@ class PaymentController extends BaseController
 */
         // 오류 처리
         //return view('payment_request');
-        $data = "";
+        $data[] = "";
 
 		return $this->renderView('payment_request', $data);
     }
