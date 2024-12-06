@@ -72,6 +72,7 @@
         cursor: pointer;
         margin-top: 12px;
         width: 100%;
+        font-size: 18px;
     }
 
     .item_login_ {
@@ -248,7 +249,7 @@
                                             onclick="openLogin();">로그인
                                     </button>
 
-                                    <button type="button" class="sup_button" onclick="openSupLogin();">
+                                    <button type="button" class="sup_button" onclick="openSupLogin(this);">
                                         비회원 예약
                                     </button>
                                 </div>
@@ -371,17 +372,30 @@
     }
 
     function openLogin() {
+        handleLogin();
+    }
+
+    function handleLogin() {
         $("#inputMainGroup").addClass('show_');
         $("#btnLoginMain").addClass('show_');
         $("#loginNoAreaMember").removeClass('show_');
         $("#btnLoginSupMain").removeClass('show_');
     }
 
-    function openSupLogin() {
+    function handleSupLogin() {
         $("#inputMainGroup").removeClass('show_');
         $("#btnLoginMain").removeClass('show_');
         $("#loginNoAreaMember").addClass('show_');
         $("#btnLoginSupMain").addClass('show_');
+    }
+
+    function openSupLogin(el) {
+        let loginNoAreaMember = $("#loginNoAreaMember");
+        if (loginNoAreaMember.hasClass('show_')) {
+            handleLogin();
+        } else {
+            handleSupLogin();
+        }
     }
 
     function submitNoMember() {
