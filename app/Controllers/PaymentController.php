@@ -62,6 +62,11 @@ class PaymentController extends BaseController
             'message' => $response['response']['message'] ?? '결제 승인 실패',
         ]);
     }
+
+	public function result()
+		{
+			return "Payment result handled!";
+		}
 }
 
 ?>
