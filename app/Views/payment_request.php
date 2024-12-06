@@ -16,8 +16,8 @@ $price       = "1004"; // 결제상품금액
 $buyerName   = "나이스"; // 구매자명 
 $buyerTel	 = "01000000000"; // 구매자연락처
 $buyerEmail  = "happy@day.co.kr"; // 구매자메일주소        
-$moid        = "mnoid1234567890"; // 상품주문번호                     
-$returnURL	 = "http://localhost:8080/payResult.php"; // 결과페이지(절대경로) - 모바일 결제창 전용
+$moid        =  time(); // 상품주문번호                     
+$returnURL	 = "https://thetourlab.com/payment_result"; // 결과페이지(절대경로) - 모바일 결제창 전용
 
 /*
 *******************************************************
