@@ -5,6 +5,17 @@
     <script type="text/javascript" src="/lib/momentjs/moment.min.js"></script>
     <script type="text/javascript" src="/lib/daterangepicker/daterangepicker.min.js"></script>
     <style>
+        .text_truncate_ {
+            /*display: -webkit-box !important;*/
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: nowrap;
+            max-height: 4rem;
+            text-overflow: ellipsis;
+            position: relative;
+        }
+
         .main_page_01 .main_visual_content_ {
             z-index: 5;
         }
@@ -243,7 +254,8 @@
                     <?php foreach ($places as $row) : ?>
                         <div class="">
                             <img src="/data/code/<?= $row['ufile'] ?>" alt="hotel_thumbnai_1">
-                            <span><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?>(<?= $row['distance'] ?>)</span>
+                            <p class="text_truncate_"><?php if ($row['type']) { ?> <?= $row['type'] ?>: <?php } ?> <?= $row['name'] ?></p>
+                            <p>(<?= $row['distance'] ?>)</p>
                         </div>
                     <?php endforeach; ?>
                 </div>
