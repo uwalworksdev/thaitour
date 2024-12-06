@@ -1157,6 +1157,16 @@
 
                     function handleSubmit() {
                         const frm = document.frm;
+
+                        <?php
+                        if (empty(session()->get("member")["id"])) {
+                        ?>
+                        showOrHideLoginItem();
+                        return false;
+                        <?php
+                        }
+                        ?>
+
                         if (checkDateSelected()) {
                             var selectedDateText = $('#days_choose').text();
                             var dateParts = selectedDateText.split('(')[0].trim();

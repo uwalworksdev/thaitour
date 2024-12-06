@@ -115,6 +115,7 @@ try {
 <main>
     <?php echo $this->renderSection('content'); ?>
     <?php echo view("inc/sidebar_inc"); ?>
+    <?php echo view("inc/popup_login"); ?>
 </main>
 <?php echo view('inc/footer', ["setting" => $setting]); ?>
 <script>

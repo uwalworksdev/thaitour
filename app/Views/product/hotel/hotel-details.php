@@ -1843,7 +1843,8 @@
                     <?php
                     if (empty(session()->get("member")["id"])) {
                     ?>
-                    alert("주문하시려면 로그인해주세요!");
+                    // alert("주문하시려면 로그인해주세요!");
+                    showOrHideLoginItem();
                     return false;
                     <?php
                     }
