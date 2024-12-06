@@ -17,7 +17,7 @@ $buyerName   = "나이스"; // 구매자명
 $buyerTel	 = "01000000000"; // 구매자연락처
 $buyerEmail  = "happy@day.co.kr"; // 구매자메일주소        
 $moid        =  time(); // 상품주문번호                     
-$returnURL	 = "https://thetourlab.com/payment_result"; // 결과페이지(절대경로) - 모바일 결제창 전용
+$returnURL	 = "https://thetourlab.com/payment/result"; // 결과페이지(절대경로) - 모바일 결제창 전용
 
 /*
 *******************************************************
@@ -56,7 +56,7 @@ function nicepayClose(){
 </script>
 </head>
 <body>
-<form name="payForm" method="post" action="payResult_utf.php">
+<form name="payForm" method="post" action="/payment/result">
 	<table>
 		<tr>
 			<th>결제 수단</th>
