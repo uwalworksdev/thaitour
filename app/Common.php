@@ -941,4 +941,41 @@ function day_after($from_date, $days)
 	return $to_date;
 }
 
+// API CALL foreach 예시
+function jsonRespDump($resp){
+	//global $mid, $merchantKey;
+	$respArr = json_decode($resp);
+	foreach ( $respArr as $key => $value ){
+		/*if($key == "Amt" || $key == "CancelAmt"){
+			$payAmt = $value;
+		}
+		*if($key == "TID"){
+			$tid = $value;
+		}
+		// 승인 응답으로 받은 Signature 검증을 통해 무결성 검증을 진행하여야 합니다.
+		if($key == "Signature"){
+			$paySignature = bin2hex(hash('sha256', $tid. $mid. $payAmt. $merchantKey, true));
+			if($value != $paySignature){
+				echo '비정상 거래! 취소 요청이 필요합니다.</br>';
+				echo '승인 응답 Signature : '. $value. '</br>';
+				echo '승인 생성 Signature : '. $paySignature. '</br>';
+			}
+		}*/
+		echo "$key=". $value."<br />";
+	}
+}
+
+//Post api call
+function reqPost(Array $data, $url){
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);					//connection timeout 15 
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));	//POST data
+	curl_setopt($ch, CURLOPT_POST, true);
+	$response = curl_exec($ch);
+	curl_close($ch);	 
+	return $response;
+}
 ?>
