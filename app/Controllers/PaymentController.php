@@ -65,7 +65,8 @@ class PaymentController extends BaseController
 
 	public function result()
 		{
-			return "Payment result handled!";
+					return $this->renderView('payment_result', $data);
+
 		}
 }
 
