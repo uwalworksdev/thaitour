@@ -1,7 +1,7 @@
 <!-- app/Views/main/home.php -->
 <?php $this->extend('inc/layout_index'); ?>
 <?php $this->section('content'); ?>
-<?=view("inc/popup_main")?>
+<?= view("inc/popup_main") ?>
 <?php
 $keyword = $_GET['keyword'] ?? '';
 
@@ -45,7 +45,7 @@ $list5 = $MainDisp->List("2905");
 
 // 검색어
 $SearchText = model("SearchText");
-$searchTxt  = $SearchText->List()->findAll();
+$searchTxt = $SearchText->List()->findAll();
 
 ?>
 <!-- <link rel="stylesheet" href="/css/contents/main.css"> -->
@@ -65,36 +65,36 @@ $searchTxt  = $SearchText->List()->findAll();
 </style>
 <div class="body_container main_body_container">
     <section class="main_visual">
-        <div class="body_inner">
-            <div class="relative">
-                <div class="main_visual_slider owl-carousel only_web">
-                    <?php foreach ($bannerMain as $item): ?>
-                        <div class="img_box img_box_1 only_web">
-                            <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
-                                alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
-                            <div class="img_box_ttl_main">
-                                <?= viewSQ($item['subject']) ?>
-                                <p class="img_box_txt_main2"><?= viewSQ($item['describe']) ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+        <div class="relative">
+            <div class="main_visual_slider owl-carousel only_web">
+                <?php foreach ($bannerMain as $item): ?>
+                    <div class="img_box img_box_1 only_web">
+                        <img class="only_web" src="/data/bbs/<?= $item['ufile5'] ?>"
+                             alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
+                        <!--                        <div class="img_box_ttl_main">-->
+                        <!--                            --><?php //= viewSQ($item['subject']) ?>
+                        <!--                            <p class="img_box_txt_main2">-->
+                        <?php //= viewSQ($item['describe']) ?><!--</p>-->
+                        <!--                        </div>-->
+                    </div>
+                <?php endforeach; ?>
 
+            </div>
+            <div class="main_visual_slider owl-carousel only_mo">
+                <div class="img_box img_box_1_m  only_mo">
+                    <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
+                         onerror="this.src='/images/main/image.svg'">
                 </div>
-                <div class="main_visual_slider owl-carousel only_mo">
-                    <div class="img_box img_box_1_m  only_mo">
-                        <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
-                             onerror="this.src='/images/main/image.svg'">
-                    </div>
-                    <div class="img_box img_box_1_m only_mo ">
-                        <img class="only_mo" src="/uploads/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
-                             onerror="this.src='/images/main/image.svg'">
-                    </div>
-                    <div class="img_box img_box_1_m only_mo ">
-                        <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
-                             onerror="this.src='/images/main/image.svg'">
-                    </div>
+                <div class="img_box img_box_1_m only_mo ">
+                    <img class="only_mo" src="/uploads/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
+                         onerror="this.src='/images/main/image.svg'">
+                </div>
+                <div class="img_box img_box_1_m only_mo ">
+                    <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
+                         onerror="this.src='/images/main/image.svg'">
                 </div>
             </div>
+
             <div class="swiper-main-tools">
                 <div class="play_pause" id="autoplay-button">
                     <svg id="pause-button" class="pause" width="6" height="10" viewBox="0 0 6 10" fill="none"
@@ -128,7 +128,8 @@ $searchTxt  = $SearchText->List()->findAll();
                         <?php foreach ($bannerTop as $banner): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="" src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>">
+                                    <img class="" src="/uploads/bbs/<?= $banner['ufile5'] ?>"
+                                         alt="<?= $banner['rfile5'] ?>">
                                 </div>
                                 <div class="main_swiper2__text">
                                     <?= $banner['subject'] ?>
@@ -185,6 +186,9 @@ $searchTxt  = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -196,10 +200,10 @@ $searchTxt  = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_1['original_price']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -215,6 +219,9 @@ $searchTxt  = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -226,10 +233,10 @@ $searchTxt  = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_2['original_price']) ?> <span> 원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_2['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -245,6 +252,9 @@ $searchTxt  = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -256,10 +266,10 @@ $searchTxt  = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_3['original_price']) ?> <span> 원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_3['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -275,6 +285,9 @@ $searchTxt  = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -286,10 +299,10 @@ $searchTxt  = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_4['original_price']) ?> <span> 원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_4['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -371,7 +384,7 @@ $searchTxt  = $SearchText->List()->findAll();
             </div>
             <div class="main_section5__words_list" id="searchTxt">
                 <?php foreach ($searchTxt as $item): ?>
-                <a href="#!" class="words_list_item ">#<?=$item['subject']?></a>
+                    <a href="#!" class="words_list_item ">#<?= $item['subject'] ?></a>
                 <?php endforeach; ?>
 
                 <!--a href="#!" class="words_list_item ">#호텔투어</a>
@@ -393,7 +406,7 @@ $searchTxt  = $SearchText->List()->findAll();
                 <div class="main-search-container">
                     <input id="searchInput" type="hidden" class="search-input" placeholder="검색어를 선택해 주세요" value="">
                     <!--i style="cursor: pointer" class="fa fa-search search-icon" id="iconSearchInp"></i-->
-					<button type="button" id="search_go">검색하기</button>
+                    <button type="button" id="search_go">검색하기</button>
                 </div>
             </div>
         </div>
@@ -427,17 +440,19 @@ $searchTxt  = $SearchText->List()->findAll();
                         <?php $seq = 0; ?>
                         <?php foreach ($list2 as $item2): ?>
                             <?php $seq++; ?>
-							<?php $img_dir = img_link($item2['product_code_1']); ?>
+                            <?php $img_dir = img_link($item2['product_code_1']); ?>
                             <div class="swiper-slide">
                                 <a href="<?= getUrlFromProduct($item2) ?>" class="hot_product_list__item">
                                     <div class="img_box img_box_2">
                                         <img src="/data/<?= $img_dir ?>/<?= $item2['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
-                                    <div class="prd_price_ko"><?= number_format($item2['original_price']) ?>
+                                    <div class="prd_price_ko"><?= number_format($item2['product_price_won']) ?>
                                         <span> 원</span></div>
-                                    <div class="prd_price_thai"><?= number_format($item2['product_price_won']) ?> <span>원</span></div>
-                                    <span class="number_item_label number_one"><?= $seq ?></span>
+                                    <div class="prd_price_thai"><?= number_format($item2['product_price']) ?>
+                                        <span>바트</span>
+                                    </div>
+<!--                                    <span class="number_item_label number_one">--><?php //= $seq ?><!--</span>-->
                                 </a>
                             </div>
                         <?php endforeach; ?>
@@ -460,12 +475,12 @@ $searchTxt  = $SearchText->List()->findAll();
     </section>
 
     <script>
-	$(document).ready(function() {
-		$("#search_go").click(function() {
-			location.href='/product_search?search_name='+$("#searchInput").val();
-		});
-	});
-	</script>
+        $(document).ready(function () {
+            $("#search_go").click(function () {
+                location.href = '/product_search?search_name=' + $("#searchInput").val();
+            });
+        });
+    </script>
 
     <script>
         $(document).ready(function () {
@@ -474,121 +489,119 @@ $searchTxt  = $SearchText->List()->findAll();
             var code = "";
             // 클래스가 'my-button'인 요소에 클릭 이벤트 추가
             $('.main_section3__place_btn').on('click', function () {
-				list = $(this).data('list');
+                list = $(this).data('list');
 
-				$('.main_section3__type_btn').each(function (index) {
-					if ($(this).hasClass('active')) {
-						code = $(this).data('code');
-					}
-				});
+                $('.main_section3__type_btn').each(function (index) {
+                    if ($(this).hasClass('active')) {
+                        code = $(this).data('code');
+                    }
+                });
 
-				set_best(list, code);
-			});
+                set_best(list, code);
+            });
 
             $('.main_section3__type_btn').on('click', function () {
-				$('.main_section3__place_btn').each(function (index) {
-					if ($(this).hasClass('active')) {
-						list = $(this).data('list');
-					}
-				});
+                $('.main_section3__place_btn').each(function (index) {
+                    if ($(this).hasClass('active')) {
+                        list = $(this).data('list');
+                    }
+                });
 
-				code = $(this).data('code');
-				set_best(list, code);
-			});
+                code = $(this).data('code');
+                set_best(list, code);
+            });
 
             $('.place_item_hotel').on('click', function () {
-				var local = $(this).data('id');
-				set_hotel_seq(local);
-			});
+                var local = $(this).data('id');
+                set_hotel_seq(local);
+            });
 
             $('.place_item_golf').on('click', function () {
-				var local = $(this).data('id');
-				set_golf_seq(local);
-			});
+                var local = $(this).data('id');
+                set_golf_seq(local);
+            });
 
         });
     </script>
 
     <script>
-    function set_best(list, code) {
-			
-			$.ajax({
-				url: "/ajax/get_best",
-				type: "POST",
-				data: { 
-					      list : list, 
-					      code : code 
-					  },
-			    dataType: "json",
-				success: function(res) {
-					var message  = res.message;
-					$("#best_list_"+list).html(message);
-				},
-				error: function (xhr, status, error) {
-						console.error(xhr.responseText); // 서버 응답 내용 확인
-						alert('Error: ' + error);
-				}			
-			});
+        function set_best(list, code) {
 
-    }
+            $.ajax({
+                url: "/ajax/get_best",
+                type: "POST",
+                data: {
+                    list: list,
+                    code: code
+                },
+                dataType: "json",
+                success: function (res) {
+                    var message = res.message;
+                    $("#best_list_" + list).html(message);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });
 
-	function set_hotel_seq(local) 
-    {
-			$.ajax({
-				url: "/ajax/set_seq",
-				type: "POST",
-				data: { 
-					      type : "hotel", 
-					      local : local 
-					  },
-			    dataType: "json",
-				success: function(res) {
-					var message  = res.message;
-					$("#hotel_list").html(message);
-				},
-				error: function (xhr, status, error) {
-						console.error(xhr.responseText); // 서버 응답 내용 확인
-						alert('Error: ' + error);
-				}			
-			});
-    }
+        }
 
-	function set_golf_seq(local)
-    {
-			$.ajax({
-				url: "/ajax/set_seq",
-				type: "POST",
-				data: { 
-					      type : "golf", 
-					      local : local 
-					  },
-			    dataType: "json",
-				success: function(res) {
-					var message  = res.message;
-					$("#golf_list").html(message);
-				},
-				error: function (xhr, status, error) {
-						console.error(xhr.responseText); // 서버 응답 내용 확인
-						alert('Error: ' + error);
-				}			
-			});
-    }
-	</script>
+        function set_hotel_seq(local) {
+            $.ajax({
+                url: "/ajax/set_seq",
+                type: "POST",
+                data: {
+                    type: "hotel",
+                    local: local
+                },
+                dataType: "json",
+                success: function (res) {
+                    var message = res.message;
+                    $("#hotel_list").html(message);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });
+        }
+
+        function set_golf_seq(local) {
+            $.ajax({
+                url: "/ajax/set_seq",
+                type: "POST",
+                data: {
+                    type: "golf",
+                    local: local
+                },
+                dataType: "json",
+                success: function (res) {
+                    var message = res.message;
+                    $("#golf_list").html(message);
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText); // 서버 응답 내용 확인
+                    alert('Error: ' + error);
+                }
+            });
+        }
+    </script>
 
     <script>
         $('.words_list_item').click(function () {
-			$(this).toggleClass('active');
+            $(this).toggleClass('active');
 
-			var hashTxt  = "";
-			var searhTxt = "";
+            var hashTxt = "";
+            var searhTxt = "";
 
-			$('.words_list_item').each(function (index) {
-				if ($(this).hasClass('active')) {
-					hashTxt  += $(this).text().replace('#', '')+',';
-					//searhTxt = $("#searchInput").val() + hashTxt;
-				}
-			});
-			$("#searchInput").val(hashTxt);
+            $('.words_list_item').each(function (index) {
+                if ($(this).hasClass('active')) {
+                    hashTxt += $(this).text().replace('#', '') + ',';
+                    //searhTxt = $("#searchInput").val() + hashTxt;
+                }
+            });
+            $("#searchInput").val(hashTxt);
 
             //window.location.href = '<?= base_url() ?>?keyword=' + $(this).text().replace('#', '');
         })
@@ -614,7 +627,8 @@ $searchTxt  = $SearchText->List()->findAll();
                 <?php foreach ($bannerMid as $banner): ?>
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
-                            <img src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>" class="only_web">
+                            <img src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>"
+                                 class="only_web">
                         </div>
                         <div class="text-content only_web">
                             <h3><?= viewSQ($banner['subject']) ?></h3>
@@ -656,17 +670,19 @@ $searchTxt  = $SearchText->List()->findAll();
                         <?php $seq = 0; ?>
                         <?php foreach ($list3 as $item3): ?>
                             <?php $seq++; ?>
-							<?php $img_dir = img_link($item3['product_code_1']); ?>
+                            <?php $img_dir = img_link($item3['product_code_1']); ?>
                             <div class="swiper-slide">
                                 <a href="<?= getUrlFromProduct($item3) ?>" class="hot_product_list__item">
                                     <div class="img_box img_box_2">
-                                        <img src="/data/<?=$img_dir?>/<?= $item3['ufile1'] ?>" alt="main">
+                                        <img src="/data/<?= $img_dir ?>/<?= $item3['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
-                                    <div class="prd_price_ko"><?= number_format($item3['original_price']) ?>
+                                    <div class="prd_price_ko"><?= number_format($item3['product_price_won']) ?>
                                         <span> 원</span></div>
-                                    <div class="prd_price_thai"><?= number_format($item3['product_price_won']) ?> <span>원</span></div>
-                                    <span class="number_item_label number_one"><?= $seq ?></span>
+                                    <div class="prd_price_thai"><?= number_format($item3['product_price']) ?>
+                                        <span>바트</span>
+                                    </div>
+<!--                                    <span class="number_item_label number_one">--><?php //= $seq ?><!--</span>-->
                                 </a>
                             </div>
                         <?php endforeach; ?>
@@ -736,11 +752,15 @@ $searchTxt  = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
+                                            <li>
+                                                <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                            </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
-                                        <div class="prd_price_ko"><?= number_format($item4['original_price']) ?>
+                                        <div class="prd_price_ko"><?= number_format($item4['product_price_won']) ?>
                                             <span> 원</span></div>
-                                        <div class="prd_price_thai"><?= number_format($item4['product_price_won']) ?>원</div>
+                                        <div class="prd_price_thai"><?= number_format($item4['product_price']) ?>바트
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -776,11 +796,15 @@ $searchTxt  = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
+                                            <li>
+                                                <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                            </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
-                                        <div class="prd_price_ko"><?= number_format($item5['original_price']) ?>
+                                        <div class="prd_price_ko"><?= number_format($item5['product_price_won']) ?>
                                             <span> 원</span></div>
-                                        <div class="prd_price_thai"><?= number_format($item5['product_price_won']) ?>원</div>
+                                        <div class="prd_price_thai"><?= number_format($item5['product_price']) ?>바트
+                                        </div>
                                     </div>
                                 </div>
                             </a>
@@ -1022,93 +1046,93 @@ $searchTxt  = $SearchText->List()->findAll();
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_1.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_1.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_2.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_2.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_3.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_3.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_4.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_4.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_5.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_5.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_3.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_3.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
                         </a>
                     </div>
                     <div class="swiper-slide">
                         <a href="/magazines/detail?m_idx=1">
-                        <div class="img_box img_box_8 ">
-                            <img src="/uploads/main/main_magazine_4.png" alt="main">
-                            <div class="img_box__shadow"></div>
-                        </div>
-                        <div class="magazine_content">
-                            <div class="magazine_content_txt">
-                                여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                            <div class="img_box img_box_8 ">
+                                <img src="/uploads/main/main_magazine_4.png" alt="main">
+                                <div class="img_box__shadow"></div>
                             </div>
-                        </div>
+                            <div class="magazine_content">
+                                <div class="magazine_content_txt">
+                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>

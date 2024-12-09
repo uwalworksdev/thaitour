@@ -11,7 +11,7 @@ $statusArr = [
 ?>
 
 <?php if ($showType == "image"):
-    $img = "/uploads/bbs/" . $info[$name];
+    $img = "/data/bbs/" . $info[$name];
     ?>
     <?php if ($img != '') { ?>
         <img src="<?= $img ?>" style="width:280px; height:100px;">
