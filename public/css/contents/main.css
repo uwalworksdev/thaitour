@@ -4,7 +4,8 @@
 }
 
 .img_box_1 {
-    padding-top: calc(510% / 1159 * 100);
+    /*padding-top: calc(510% / 1159 * 100);*/
+    padding-top: 524px;
 }
 
 .img_box_2 {
@@ -36,7 +37,7 @@
 }
 
 .swiper-button-main {
-    background-color: rgba(0, 0, 0, 0.502);
+    /*background-color: rgba(0, 0, 0, 0.502);*/
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -49,11 +50,17 @@
 }
 
 .swiper-button-prev-main {
-    left: 0;
+    left: 60px;
+    transform: rotate(180deg);
 }
 
 .swiper-button-next-main {
-    right: 0;
+    right: 60px;
+}
+
+.swiper-button-main img {
+    width: 46px;
+    height: 92px;
 }
 
 .main_swiper {
@@ -103,9 +110,16 @@
     font-weight: bold;
     line-height: 1.25;
     position: absolute;
-    left: 100px;
-    top: 80px;
+    left: 480px;
+    top: 205px;
     z-index: 2;
+}
+
+.swiper-main-tools {
+    position: absolute;
+    bottom: 30px;
+    right: 350px;
+    z-index: 10;
 }
 
 .img_box_txt_main2 {
