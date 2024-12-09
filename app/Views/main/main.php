@@ -386,20 +386,6 @@ $searchTxt = $SearchText->List()->findAll();
                 <?php foreach ($searchTxt as $item): ?>
                     <a href="#!" class="words_list_item ">#<?= $item['subject'] ?></a>
                 <?php endforeach; ?>
-
-                <!--a href="#!" class="words_list_item ">#호텔투어</a>
-                <a href="#!" class="words_list_item ">#5성급호텔</a>
-                <a href="#!" class="words_list_item ">#태국호캉스</a>
-                <a href="#!" class="words_list_item ">#바닷가라운딩</a>
-                <a href="#!" class="words_list_item ">#골프투어</a>
-                <a href="#!" class="words_list_item ">#로컬투어</a>
-                <a href="#!" class="words_list_item ">#5성급호텔</a>
-                <a href="#!" class="words_list_item ">#호텔투어</a>
-                <a href="#!" class="words_list_item ">#태국호캉스</a>
-                <a href="#!" class="words_list_item ">#바닷가라운딩</a>
-                <a href="#!" class="words_list_item ">#호텔투어</a>
-                <a href="#!" class="words_list_item ">#5성급호텔</a>
-                <a href="#!" class="words_list_item ">#호텔투어</a-->
             </div>
 
             <div class="main_hot__search">
@@ -451,9 +437,7 @@ $searchTxt = $SearchText->List()->findAll();
                                         <span> 원</span></div>
                                     <div class="prd_price_thai"><?= number_format($item2['product_price']) ?>
                                         <span>바트</span>
-                                    </div>
-<!--                                    <span class="number_item_label number_one">--><?php //= $seq ?><!--</span>-->
-                                </a>
+                                    </div></a>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -1044,97 +1028,21 @@ $searchTxt = $SearchText->List()->findAll();
             </div>
             <div class="magazine_swiper swiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_1.png" alt="main">
-                                <div class="img_box__shadow"></div>
-                            </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                    <?php foreach ($magazines as $magazine): ?>
+                        <div class="swiper-slide">
+                            <a href="/magazines/detail?m_idx=<?= $magazine['bbs_idx'] ?>">
+                                <div class="img_box img_box_8 ">
+                                    <img src="/data/bbs/<?= $magazine['ufile1'] ?>" alt="main">
+                                    <div class="img_box__shadow"></div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_2.png" alt="main">
-                                <div class="img_box__shadow"></div>
-                            </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
+                                <div class="magazine_content">
+                                    <div class="magazine_content_txt">
+                                        <?= $magazine['subject'] ?>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_3.png" alt="main">
-                                <div class="img_box__shadow"></div>
-                            </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_4.png" alt="main">
-                                <div class="img_box__shadow"></div>
-                            </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_5.png" alt="main">
-                                <div class="img_box__shadow"></div>
-                            </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_3.png" alt="main">
-                                <div class="img_box__shadow"></div>
-                            </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="/magazines/detail?m_idx=1">
-                            <div class="img_box img_box_8 ">
-                                <img src="/uploads/main/main_magazine_4.png" alt="main">
-                                <div class="img_box__shadow"></div>
-                            </div>
-                            <div class="magazine_content">
-                                <div class="magazine_content_txt">
-                                    여름휴가 준비할 때가 왔다. 에이스 오브 후아힌 리조트
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
                 <div class="magazine_swiper__pagination"></div>
             </div>
