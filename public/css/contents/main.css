@@ -835,6 +835,22 @@
     min-width: 65%;
 }
 
+.magazine_item_ {
+    position: relative;
+}
+
+.img_box__shadow,
+.magazine_content {
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.magazine_item_:hover .img_box__shadow,
+.magazine_item_:hover .magazine_content {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 .hot_product_list_swiper_1_btn_prev,
 .hot_product_list_swiper_1_btn_next,

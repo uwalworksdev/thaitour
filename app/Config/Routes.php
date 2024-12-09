@@ -682,4 +682,8 @@ $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api
 $routes->get('/payment/request', 'PaymentController::requestPayment');
 $routes->get('/payment/complete', 'PaymentController::completePayment');
 $routes->post('/payment/result', 'PaymentController::result');
+
+$routes->get('fake-login', 'FakeLogin::index');  // 가상 로그인
+$routes->get('fake-logout', 'FakeLogin::logout'); // 로그아웃
+
 ?>
