@@ -251,8 +251,8 @@ class AdminHotelController extends BaseController
                 // if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
                 //     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 // }
-
-                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} === "N") {
+                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
                     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
 
