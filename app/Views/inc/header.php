@@ -147,6 +147,7 @@
                         <?php //echo isset($tab_7) ? 'active_' : '' 
                         ?><!--" href="/vehicle-guide">차량ㆍ가이드</a></li>-->
                         <?php echo getHeaderTab(); ?>
+                        <li><a class="" href="/mice-page">인센티브</a></li>
                     </ul>
                 </div>
                 <div>
