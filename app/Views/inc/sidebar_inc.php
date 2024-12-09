@@ -68,7 +68,7 @@
         </div>
     </div>
     <div class="icon-wrap-social">
-        <div class="robot-container">
+        <div class="robot-container" onclick="go_link_fn_inc();">
             <img src="/images/ico/robot_icon.png" alt="Scroll to Top">
         </div>
         <div class="scroll-to-top">
@@ -77,51 +77,55 @@
     </div>
 </div>
 <script>
-$(document).ready(function() {
-    const $scrollTopBtn = $('.scroll-to-top');
-
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 100) {
-            $scrollTopBtn.addClass('visible');
-        } else {
-            $scrollTopBtn.removeClass('visible');
-        }
-    });
-
-    $scrollTopBtn.on('click', function() {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 500);
-    });
-
-    const totalSlides = 10; 
-
-    const swiper3 = new Swiper(".side_bar_swipper", {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 20,
-        pagination: {
-            pagination: false, 
-        },
-        navigation: {
-            prevEl: ".side_bar_swipper_btn_prev",
-            nextEl: ".side_bar_swipper_btn_next",
-        },
-        on: {
-            init: function(swiper) {
-                updatePagination(swiper.realIndex);
-            },
-            slideChange: function(swiper) {
-                updatePagination(swiper.realIndex);
-            },
-        },
-    });
-
-    function updatePagination(index) {
-        const currentSlide = index + 1; 
-        $('.pagination_sidebar .current-slide').text(currentSlide);
-        $('.pagination_sidebar span.total-slides').text(totalSlides);
+    function go_link_fn_inc() {
+        window.location.href = "https://channel.io/ko";
     }
 
-});
+    $(document).ready(function () {
+        const $scrollTopBtn = $('.scroll-to-top');
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $scrollTopBtn.addClass('visible');
+            } else {
+                $scrollTopBtn.removeClass('visible');
+            }
+        });
+
+        $scrollTopBtn.on('click', function () {
+            $('html, body').animate({
+                scrollTop: 0
+            }, 500);
+        });
+
+        const totalSlides = 10;
+
+        const swiper3 = new Swiper(".side_bar_swipper", {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: {
+                pagination: false,
+            },
+            navigation: {
+                prevEl: ".side_bar_swipper_btn_prev",
+                nextEl: ".side_bar_swipper_btn_next",
+            },
+            on: {
+                init: function (swiper) {
+                    updatePagination(swiper.realIndex);
+                },
+                slideChange: function (swiper) {
+                    updatePagination(swiper.realIndex);
+                },
+            },
+        });
+
+        function updatePagination(index) {
+            const currentSlide = index + 1;
+            $('.pagination_sidebar .current-slide').text(currentSlide);
+            $('.pagination_sidebar span.total-slides').text(totalSlides);
+        }
+
+    });
 </script>
