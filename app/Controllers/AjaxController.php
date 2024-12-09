@@ -681,6 +681,7 @@ class AjaxController extends BaseController {
     {
 
         $user_id    = "N_". time();
+        $user_name  = "비회원";
 		$m_idx      = time();
         $data       = [];
 
