@@ -681,10 +681,8 @@ class AjaxController extends BaseController {
     {
         $data = [];
 
-        $data['id']    = "N_". time();
-        $data['name']  = "비회원";
-
-        session()->set("member", $data);
+        $user_id    = "N_". time();
+        setcookie("c_userId", $user_id, time() + 86000 * 365, '/');
 
     }
 	
