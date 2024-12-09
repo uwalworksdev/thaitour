@@ -210,8 +210,8 @@
                                     </td>
                                 </tr>
 
-                                <!-- <tr>
-                                    <th rowspan="3">썸네일<br>(600 * 450)</th>
+                                <tr>
+                                    <!-- <th rowspan="3">썸네일<br>(600 * 450)</th>
                                     <td rowspan="3">
                                         <?php for ($i = 1; $i <= 6; $i++) { ?>
                                             <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
@@ -222,14 +222,14 @@
                                                     href="/data/product/<?= ${"ufile" . $i} ?>"
                                                     class="imgpop"><?= ${"rfile" . $i} ?></a><br><br><?php } ?>
                                         <?php } ?>
-                                    </td>
+                                    </td> -->
                                     <th>상품명</th>
                                     <td>
                                         <input type="text" id="product_name" name="product_name"
                                                value="<?= $product_name ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
-                                </tr> -->
+                                </tr>
 
                                 <tr>
                                     <th>간단소개</th>
