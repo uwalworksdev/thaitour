@@ -66,34 +66,38 @@ $searchTxt = $SearchText->List()->findAll();
 <div class="body_container main_body_container">
     <section class="main_visual">
         <div class="relative">
-            <div class="main_visual_slider owl-carousel only_web">
-                <?php foreach ($bannerMain as $item): ?>
-                    <div class="img_box img_box_1 only_web">
-                        <img class="only_web" src="/data/bbs/<?= $item['ufile5'] ?>"
-                             alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
-                        <!--                        <div class="img_box_ttl_main">-->
-                        <!--                            --><?php //= viewSQ($item['subject']) ?>
-                        <!--                            <p class="img_box_txt_main2">-->
-                        <?php //= viewSQ($item['describe']) ?><!--</p>-->
-                        <!--                        </div>-->
-                    </div>
-                <?php endforeach; ?>
-
+            <div class="main_visual_slider  only_web">
+                <div class="swiper-wrapper">
+                    <?php foreach ($bannerMain as $item): ?>
+                        <div class="swiper-slide img_box img_box_1 only_web">
+                            <img class="only_web" src="/data/bbs/<?= $item['ufile5'] ?>"
+                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
+                            <!--                        <div class="img_box_ttl_main">-->
+                            <!--                            --><?php //= viewSQ($item['subject']) ?>
+                            <!--                            <p class="img_box_txt_main2">-->
+                            <?php //= viewSQ($item['describe']) ?><!--</p>-->
+                            <!--                        </div>-->
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
             <div class="main_visual_slider owl-carousel only_mo">
                 <div class="img_box img_box_1_m  only_mo">
-                    <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
+                    <img class="" src="/data/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
                          onerror="this.src='/images/main/image.svg'">
                 </div>
                 <div class="img_box img_box_1_m only_mo ">
-                    <img class="only_mo" src="/uploads/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
+                    <img class="only_mo" src="/data/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
                          onerror="this.src='/images/main/image.svg'">
                 </div>
                 <div class="img_box img_box_1_m only_mo ">
-                    <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
+                    <img class="only_mo" src="/data/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
                          onerror="this.src='/images/main/image.svg'">
                 </div>
             </div>
+
+            <div class="swiper-button swiper-button-next"></div>
+            <div class="swiper-button swiper-button-prev"></div>
 
             <div class="swiper-main-tools">
                 <div class="play_pause" id="autoplay-button">
@@ -110,13 +114,68 @@ $searchTxt = $SearchText->List()->findAll();
                     </svg>
                 </div>
                 <div class="swiper-pagination-main">
-                    <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span
+                    <span class="main_current_slide" id="bnpageCurrent">1</span>&nbsp;/&nbsp;<span
                             class="main_total_slide"><?= count($bannerMain) ?></span>
                     <!-- get total slide from database -->
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        $(document).ready(function () {
+            let isAutoplaying = true;
+            let swiperMainVisual = null;
+
+            if ($(".main_visual_slider").length) {
+                swiperMainVisual = new Swiper(".main_visual_slider", {
+                    loop: true,
+                    autoplay: {
+                        delay: 2000,
+                    },
+                    speed: 800,
+                    navigation: {
+                        nextEl: ".main_visual .swiper-button-next",
+                        prevEl: ".main_visual .swiper-button-prev",
+                    },
+                    on: {
+                        slideChange: function () {
+                            const currentIndex = this.realIndex + 1;
+                            $('#bnpageCurrent').text(currentIndex);
+                            if (!isAutoplaying) {
+                                this.autoplay.start();
+                                isAutoplaying = true;
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.warn("Swiper container not found!");
+            }
+
+            $("#autoplay-button").click(function () {
+                if (!swiperMainVisual) {
+                    console.error("Swiper instance is not initialized!");
+                    return;
+                }
+
+                let $this = $(this);
+                if ($this.hasClass("play")) {
+                    swiperMainVisual.autoplay.start();
+                    isAutoplaying = true;
+                    $this.removeClass("play").addClass("stop");
+                    $("#pause-button").show();
+                    $("#play-button").hide();
+                } else {
+                    swiperMainVisual.autoplay.stop();
+                    isAutoplaying = false;
+                    $this.removeClass("stop").addClass("play");
+                    $("#pause-button").hide();
+                    $("#play-button").show();
+                }
+            });
+        });
+    </script>
 
     <section class="main_section2">
         <div class="body_inner">
@@ -128,7 +187,7 @@ $searchTxt = $SearchText->List()->findAll();
                         <?php foreach ($bannerTop as $banner): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="" src="/uploads/bbs/<?= $banner['ufile5'] ?>"
+                                    <img class="" src="/data/bbs/<?= $banner['ufile5'] ?>"
                                          alt="<?= $banner['rfile5'] ?>">
                                 </div>
                                 <div class="main_swiper2__text">
@@ -612,7 +671,7 @@ $searchTxt = $SearchText->List()->findAll();
                 <?php foreach ($bannerMid as $banner): ?>
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
-                            <img src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>"
+                            <img src="/data/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>"
                                  class="only_web">
                         </div>
                         <div class="text-content only_web">
@@ -702,8 +761,8 @@ $searchTxt = $SearchText->List()->findAll();
     foreach ($bannerBottom as $item_m):
 
         $seq++;
-        if ($seq == 1) $banner_1 = "/uploads/bbs/" . $item_m['ufile5'];
-        if ($seq == 2) $banner_2 = "/uploads/bbs/" . $item_m['ufile5'];
+        if ($seq == 1) $banner_1 = "/data/bbs/" . $item_m['ufile5'];
+        if ($seq == 2) $banner_2 = "/data/bbs/" . $item_m['ufile5'];
 
     endforeach;
     ?>
