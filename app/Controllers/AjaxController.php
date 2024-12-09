@@ -682,6 +682,7 @@ class AjaxController extends BaseController {
         $data = [];
 
         $data['id']    = "N_". time();
+        $data['name']  = "비회원";
 
         session()->set("member", $data);
 
