@@ -892,7 +892,7 @@
                                         <?php 
                                             for($i = 1; $i <= 5; $i++) : 
                                                 // $img = get_img(${"ufile" . $i}, "/data/product/", "640", "480");
-                                                $img = WRITEPATH ."/public/uploads/product/" . ${"ufile" . $i};
+                                                $img =  base_url('writable/uploads/products' . ${"ufile" . $i});
                                         ?>
                                             <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
                                                 <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
