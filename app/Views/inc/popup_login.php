@@ -355,7 +355,7 @@
                                     </button>
 
                                     <button type="button" class="sup_button" id="btnLogin02">
-                                        비회원 예약하기.
+                                        비회원 예약하기
                                     </button>
                                 </div>
                             </form>
@@ -363,6 +363,13 @@
                             <div class="sns_login_ttl">
                                 <span>SNS 로그인</span>
                             </div>
+
+							<script>
+								// jQuery click event
+								$("#btnLogin02").click(function() {
+								    alert('비회원 로그인');
+								});
+							</script>
 
                             <script>
                                 //네이버 로그인
