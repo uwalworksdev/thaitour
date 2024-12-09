@@ -355,7 +355,7 @@
                                     </button>
 
                                     <button type="button" class="sup_button" id="btnLogin02">
-                                        비회원 예약하기
+                                        비회원 예약하기.
                                     </button>
                                 </div>
                             </form>
