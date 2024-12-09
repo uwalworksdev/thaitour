@@ -41,8 +41,8 @@ $(document).ready(function () {
   // });
   const owl = $(".main_visual_slider").owlCarousel({
     loop: true,
-    margin: 20,
-    nav: true,
+    // margin: 20,
+    // nav: true,
     dots: false,
     nav: true,
     autoplay: true,
