@@ -39,15 +39,6 @@ class BbsConfigModel extends Model
             return [
                 'board_name' => $result['board_name'],
                 'board_code' => $result['board_code'],
-                'isCategory' => $result['is_category'],
-                'isSecure' => $result['is_secure'],
-                'isRight' => $result['is_right'],
-                'isReply' => $result['is_reply'],
-                'isComment' => $result['is_comment'],
-                'isRecomm' => $result['is_recomm'],
-                'isNotice' => $result['is_notice'],
-                'skin' => $result['skin'],
-                'is_comment' => $result['is_comment'],
             ];
         } else {
             return false;

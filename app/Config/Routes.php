@@ -42,6 +42,8 @@ $routes->group("AdmMaster", static function ($routes) {
         $routes->get("board_list", "BoardController::index");
         $routes->get("board_write/(:segment)", "BoardController::board_write/$1");
         $routes->get("board_write", "BoardController::board_write");
+        $routes->get("goods_find", "BoardController::goods_find");
+        $routes->get("item_allfind", "BoardController::item_allfind");
         $routes->post("write_ok/(:segment)", "BoardController::write_ok/$1");
         $routes->post("write_ok", "BoardController::write_ok");
         $routes->get("view", "BoardController::view");
@@ -127,6 +129,13 @@ $routes->group("AdmMaster", static function ($routes) {
             $routes->post('del', 'GolfVehicleController::del');
             $routes->post("change", "GolfVehicleController::change_ajax");
         });
+    });
+
+    $routes->group("_product_place", static function ($routes) {
+        $routes->get("list", "Admin\AdminProductPlaceController::list", ['as' => "admin._product_place.list"]);
+        $routes->get("detail", "Admin\AdminProductPlaceController::detail", ['as' => "admin._product_place.detail"]);
+        $routes->post("write_ok", "Admin\AdminProductPlaceController::write", ['as' => "admin._product_place.write_ok"]);
+        $routes->post("delete", "Admin\AdminProductPlaceController::delete", ['as' => "admin._product_place.delete"]);
     });
 
     $routes->group("_hotel", static function ($routes) {
@@ -593,8 +602,12 @@ $routes->group("custom_travel", static function ($routes) {
 });
 
 $routes->group("magazines", static function ($routes) {
-    $routes->get("list", "MagazineController::list");
-    $routes->get("detail", "MagazineController::detail");
+    $routes->get("list", "MagazineController::list", ['as' => "api.magazines.list"]);
+    $routes->get("detail", "MagazineController::detail", ['as' => "api.magazines.detail"]);
+    $routes->get("comment", "MagazineController::listComment", ['as' => "api.magazines.list.comment"]);
+    $routes->post("create-comment", "MagazineController::createComment", ['as' => "api.magazines.create.comment"]);
+    $routes->post("update-comment", "MagazineController::updateComment", ['as' => "api.magazines.update.comment"]);
+    $routes->post("delete-comment", "MagazineController::deleteComment", ['as' => "api.magazines.delete.comment"]);
 });
 
 $routes->group("coupon", static function ($routes) {
@@ -619,7 +632,7 @@ $routes->get('vehicle-guide/(:segment)', 'Product::vehicleGuide/$1');
 $routes->post('vehicle-guide/vehicle-order', 'Product::vehicleOrder/$1');
 $routes->post('filter-vehicle', 'Product::filterVehicle');
 $routes->post('filter-child-vehicle', 'Product::filterChildVehicle');
-$routes->get('product-hotel/list-hotel/(:any)', 'Product::listHotel/$1');
+$routes->get('product-hotel/list-hotel', 'Product::listHotel');
 $routes->get('product-hotel/hotel-detail/(:any)', 'Product::hotelDetail/$1');
 $routes->get('product-hotel/customer-form/(:any)', 'Product::index7/$1');
 $routes->get('product-hotel/reservation-form', 'Product::reservationForm');
@@ -663,4 +676,9 @@ $routes->get('product/get-by-sub-code-tour', 'Product::getProductBySubCodeTour')
 $routes->post('product/sel_moption', 'Product::sel_moption', ['as' => "api.product.sel_moption"]);
 $routes->post('product/sel_option', 'Product::sel_option', ['as' => "api.product.sel_option"]);
 $routes->post('product/processBooking', 'Product::processBooking', ['as' => "api.product.processBooking"]);
+
+// Nicepay route
+$routes->get('/payment/request', 'PaymentController::requestPayment');
+$routes->get('/payment/complete', 'PaymentController::completePayment');
+$routes->post('/payment/result', 'PaymentController::result');
 ?>

@@ -335,7 +335,7 @@ class ProductApi extends BaseController
             $sub_codes = $this->codeModel->where('parent_code_no', $code)->orderBy('onum', 'DESC')->findAll();
 
             $tabLinks = [
-                1303 => "/product-hotel/list-hotel/",
+                1303 => "/product-hotel/list-hotel?s_code_no=",
                 1302 => "/product-golf/list-golf/",
                 1301 => "/product-tours/tours-list/",
             ];

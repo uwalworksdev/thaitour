@@ -40,50 +40,102 @@
                                 결제하기
                             </h3>
 
-                            <table class="table_container_">
-                                <colgroup>
-                                    <col width="20%">
-                                    <col width="20%">
-                                    <col width="60%">
-                                </colgroup>
-                                <tbody>
-                                <tr class="">
-                                    <td class="subject_" rowspan="3">계좌이체 (원화)</td>
-                                    <td class="content_">가상계좌</td>
-                                    <td class="normal_">
-                                        <input type="radio" name="inp_radio" value="inicis" id="inicis">
-                                        <label for="inicis">이니시스</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="content_">실시간 계좌이체</td>
-                                    <td class="normal_">
-                                        <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
-                                        <label for="inicis1">이니시스</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="content_">무통장 입금</td>
-                                    <td class="normal_">
-                                        <input type="radio" name="inp_radio" value="deposit" id="deposit">
-                                        <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
+                            <div class="only_w">
+                                <table class="table_container_">
+                                    <colgroup>
+                                        <col width="20%">
+                                        <col width="20%">
+                                        <col width="60%">
+                                    </colgroup>
+                                    <tbody>
+                                    <tr class="">
+                                        <td class="subject_" rowspan="3">계좌이체 (원화)</td>
+                                        <td class="content_">가상계좌</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="inicis" id="inicis">
+                                            <label for="inicis">이니시스</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content_">실시간 계좌이체</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
+                                            <label for="inicis1">이니시스</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content_">무통장 입금</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="deposit" id="deposit">
+                                            <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
 
-                                        <button class="btn_" type="button" onclick="fn_show_bank();">한국계좌번호 보기</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="subject_">신용카드</td>
-                                    <td class="content_">신용카드 - 일반</td>
-                                    <td class="normal_">
-                                        <input type="radio" name="inp_radio" value="KCP" id="KCP">
-                                        <label for="KCP" style="margin-right: 30px">KCP</label>
+                                            <button class="btn_" type="button" onclick="fn_show_bank();">한국계좌번호 보기</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subject_">신용카드</td>
+                                        <td class="content_">신용카드 - 일반</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="KCP" id="KCP">
+                                            <label for="KCP" style="margin-right: 30px">KCP</label>
 
-                                        <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
-                                        <label for="inicis2">이니시스</label>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                            <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
+                                            <label for="inicis2">이니시스</label>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="only_m">
+                                <table class="table_container_">
+                                    <colgroup>
+                                        <col width="30%">
+                                        <col width="70%">
+                                    </colgroup>
+                                    <tbody>
+                                    <tr class="">
+                                        <td class="subject_" colspan="2">계좌이체 (원화)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content_">가상계좌</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="inicis" id="inicis">
+                                            <label for="inicis">이니시스</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content_">실시간 계좌이체</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="inicis1" id="inicis1">
+                                            <label for="inicis1">이니시스</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content_">무통장 입금</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="deposit" id="deposit">
+                                            <label for="deposit" style="margin-right: 30px">지정계좌 입금</label>
+
+                                            <button class="btn_" type="button" onclick="fn_show_bank();">한국계좌번호 보기</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="subject_" colspan="2">신용카드</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content_">신용카드 - 일반</td>
+                                        <td class="normal_">
+                                            <input type="radio" name="inp_radio" value="KCP" id="KCP">
+                                            <label for="KCP" style="margin-right: 30px">KCP</label>
+
+                                            <input type="radio" name="inp_radio" value="inicis2" id="inicis2">
+                                            <label for="inicis2">이니시스</label>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <div class="payment_info_">
                                 <div class="payment_first_">

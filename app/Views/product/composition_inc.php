@@ -282,6 +282,15 @@
             return false;
         }
 
+        <?php
+        if (empty(session()->get("member")["id"])) {
+        ?>
+        showOrHideLoginItem();
+        return false;
+        <?php
+        }
+        ?>
+
         /* Form submission setup */
         let url = '<?= route_to('api.product.processBooking') ?>';
         let formData = new FormData($('#frm')[0]);

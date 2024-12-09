@@ -1,7 +1,7 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-    <script type="text/javascript" src="/lib/smarteditor/js/HuskyEZCreator.js"></script>
-    <link rel="stylesheet" href="/AdmMaster/_common/css/popup.css" type="text/css"/>
+    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <style>
         #input_file_ko {
             display: inline-block;
@@ -228,7 +228,13 @@
                 processData: false,
             }).done(function (obj) {
                 alert(obj.message);
-                location.reload();
+
+                if(formData.get("bbs_idx")) {
+                    location.reload();
+                } else {
+                    history.back();
+                }
+
             });
 
         }
@@ -242,7 +248,7 @@
 
             $("#ajax_loader").removeClass("display-none");
             $.ajax({
-                url: "/AdmMaster/_bbs/bbs_del",
+                url: "<?= route_to('admin.api.bbs.bbs_del') ?>",
                 type: "POST",
                 data: "bbs_idx[]=" + bbs_idx,
                 error: function (request, status, error) {
@@ -256,13 +262,7 @@
                 success: function (response, status, request) {
                     if (response == "OK") {
                         alert("정상적으로 삭제되었습니다.");
-                        setTimeout(function () {
-                            if (code == "banner") {
-                                location.href = "/AdmMaster/_bbsBanner/list.php?code=banner";
-                            } else {
-                                location.href = "board_list.php?code=<?= $code ?>&scategory=<?= $scategory ?>";
-                            }
-                        }, 1000);
+                        history.back();
                         return;
                     } else {
                         alert_("오류가 발생하였습니다!!");
@@ -288,173 +288,8 @@
             first_select_all = false;
         })
 
-        function get_code(strs, depth) {
-            $.ajax({
-                type: "GET"
-                , url: "/AdmMaster/_tourRegist/get_code.ajax.php"
-                , dataType: "html" //전송받을 데이터의 타입
-                , timeout: 30000 //제한시간 지정
-                , cache: false  //true, false
-                , data: "parent_code_no=" + encodeURI(strs) + "&depth=" + depth //서버에 보낼 파라메터
-                , error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                }
-                , success: function (json) {
-                    //alert(json);
-                    if (depth <= 3) {
-                        $("#product_code_2").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_2").append("<option value=''>2차분류</option>");
-                    }
-                    if (depth <= 4) {
-                        $("#product_code_3").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_3").append("<option value=''>3차분류</option>");
-                    }
-                    if (depth <= 4) {
-                        $("#product_code_4").find('option').each(function () {
-                            $(this).remove();
-                        });
-                        $("#product_code_4").append("<option value=''>4차분류</option>");
-                    }
-                    var list = $.parseJSON(json);
-                    var listLen = list.length;
-                    var contentStr = "";
-                    for (var i = 0; i < listLen; i++) {
-                        contentStr = "";
-                        if (list[i].code_status == "C") {
-                            contentStr = "[마감]";
-                        } else if (list[i].code_status == "N") {
-                            contentStr = "[사용안함]";
-                        }
-                        $("#product_code_" + (parseInt(depth) - 1)).append("<option value='" + list[i].code_no + "'>" + list[i].code_name + "" + contentStr + "</option>");
-                    }
-                }
-            });
-        }
     </script>
     <script>
-        $(function () {
-
-            $('.list_up .btn-list').on('click', function () {
-
-                //$("#pick_select_layer tbody").html('');
-
-                // $('.pick_item_pop02').show();
-
-                let code = $("#bbs_idx").val();
-                var inq_sw = "fst";
-                const product_code_no = '<?= $product_code_no ?>';
-
-                $.ajax({
-
-                    url: "./goods_find.php",
-                    type: "POST",
-                    data: {
-                        "code_no": code,
-                        "inq_sw": inq_sw
-                    },
-                    error: function (request, status, error) {
-                        //통신 에러 발생시 처리
-                        alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                        $("#ajax_loader").addClass("display-none");
-                    }
-                    , complete: function (request, status, error) {
-
-                    }
-                    , success: function (response, status, request) {
-                        if (product_code_no) {
-                            $("#pick_item_search").html(`
-                            <h1><?= $product_code_name ?></h1>
-                        `);
-                        }
-                        $("#id_contents").empty();
-                        $("#id_contents").append(response);
-                        $('.pick_item_pop02').show();
-
-
-                    }
-                });
-
-
-            })
-
-
-            $('.pick_item_pop02 .sel_box .close').on('click', function () {
-                $('.pick_item_pop02').hide()
-            })
-
-        });
-
-        function fn_pick_update() {
-
-            var f = document.select_pick_frm;
-
-            var pick_data = $(f).serialize();
-            var save_result = "";
-            $.ajax({
-                type: "POST",
-                data: pick_data,
-                url: "./event_update.ajax.php",
-                cache: false,
-                async: false,
-                success: function (data, textStatus) {
-                    save_result = data;
-                    //alert('save_result- '+save_result);
-                    var obj = jQuery.parseJSON(save_result);
-                    var message = obj.message;
-                    alert(message);
-                    location.reload();
-                },
-                error: function (request, status, error) {
-                    alert("code = " + request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
-                }
-            });
-        }
-
-        function search_it() {
-
-
-            let code = $("#code_").val();
-            let product_code_1 = $("#product_code_1").val();
-            let product_code_2 = $("#product_code_2").val();
-            let product_code_3 = $("#product_code_3").val();
-            let search_category = $("#search_category").val();
-            let search_txt = $("#search_txt").val();
-
-            $.ajax({
-
-                url: "./item_allfind.php",
-                type: "POST",
-                data: {
-                    "code": code,
-                    "product_code_1": product_code_1,
-                    "product_code_2": product_code_2,
-                    "product_code_3": product_code_3,
-                    "search_category": search_category,
-                    "search_txt": search_txt,
-
-                },
-                error: function (request, status, error) {
-                    //통신 에러 발생시 처리
-                    alert_("code : " + request.status + "\r\nmessage : " + request.reponseText);
-                    $("#ajax_loader").addClass("display-none");
-                }
-                , complete: function (request, status, error) {
-
-                }
-                , success: function (response, status, request) {
-
-                    $("#id_contents").empty();
-                    $("#id_contents").append(response);
-                    $('.pick_item_pop02').show();
-                }
-            });
-        }
-
         function goods_del(idx) {
             if (!confirm("선택한 상품을 정말 삭제하시겠습니까?"))
                 return false;
@@ -462,7 +297,7 @@
             var message = "";
             $.ajax({
 
-                url: "./ajax.product_del.php",
+                url: "/AdmMaster/_bbs/event_dis_delete",
                 type: "POST",
                 data: {
                     "idx": idx

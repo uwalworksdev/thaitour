@@ -13,7 +13,7 @@ class ProductPlace extends Model
     protected $useSoftDeletes = false;
     protected $protectFields = true;
     protected $allowedFields = [
-        "name", "type", "distance", "ufile", "rfile", "product_idx", "r_date",
+        "name", "type", "distance", "ufile", "rfile", "product_idx", "onum","r_date",
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -51,9 +51,16 @@ class ProductPlace extends Model
 
     public function getByProductId($product_idx)
     {
-        $sql = " select * from tbl_product_around_place where product_idx = '" . $product_idx . "'";
+        $sql = " select * from tbl_product_around_place where product_idx = '" . $product_idx . "' order by onum desc, idx desc";
         write_log($sql);
-        return $this->db->query($sql)->getRowArray();
+        return $this->db->query($sql)->getResultArray();
+    }
+
+    public function listAll()
+    {
+        $sql = " select * from tbl_product_around_place order by onum desc, idx desc";
+        write_log($sql);
+        return $this->db->query($sql)->getResultArray();
     }
 
     public function insertData($data)

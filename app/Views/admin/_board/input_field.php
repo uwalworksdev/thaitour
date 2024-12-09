@@ -58,9 +58,22 @@ $width = BBS_WRITE_CONFIG[$code]['widths'][$key];
 
 <?php if ($inputType == "files"): ?>
     <input type="file" name="<?= $name ?>" />
-    <?php if ($info[$name]) { ?>
+    <?php if ($info[$name]) {
+        if(strpos($name, "ufile") !== false) {
+            $fileIndex = str_replace("ufile", "", $name);
+        }
+        ?>
         <br>파일삭제:
-        <input type=checkbox name="del_<?= $i ?>" value='Y'>
-        <a href="/data/bbs/"><?= $info[$name] ?></a>
+        <input type=checkbox name="del_<?=$fileIndex?>" value='Y'>
+        <a href="/data/bbs/<?= $info[$name]?>"><?= $info["rfile$fileIndex"] ?></a>
     <?php } ?>
+<?php endif; ?>
+
+<?php if ($inputType == "duration"): ?>
+    <input type="text" id="<?=$name[0]?>" name="<?=$name[0]?>" value='<?= $info[$name[0]] ?>' class="datepicker input_txt" style="width:110px;" rel="" style="width:98%" /> ~
+    <input type="text" id="<?=$name[1]?>" name="<?=$name[1]?>" value='<?= $info[$name[1]] ?>' class="datepicker input_txt" style="width:110px" rel="" style="width:98%" />
+<?php endif; ?>
+
+<?php if ($inputType == "product_pickup"): ?>
+    <?=view("admin/_board/product_pickup")?>
 <?php endif; ?>

@@ -3,7 +3,6 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use Cassandra\Date;
 use CodeIgniter\Database\Config;
 use stdClass;
 
@@ -25,17 +24,17 @@ class AdminHotelController extends BaseController
 
     public function list()
     {
-        $g_list_rows     = 10;
-        $pg              = updateSQ($_GET["pg"] ?? '');
-        $search_txt      = updateSQ($_GET["search_txt"] ?? '');
+        $g_list_rows = 10;
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $search_txt = updateSQ($_GET["search_txt"] ?? '');
         $search_category = updateSQ($_GET["search_category"] ?? '');
-        $orderBy         = $_GET["orderBy"] ?? "";
+        $orderBy = $_GET["orderBy"] ?? "";
 
         $where = [
-            'search_txt'      => $search_txt,
+            'search_txt' => $search_txt,
             'search_category' => $search_category,
-            'orderBy'         => $orderBy,
-            'product_code_1'  => 1303,
+            'orderBy' => $orderBy,
+            'product_code_1' => 1303,
         ];
 
         $orderByArr = [];
@@ -64,10 +63,10 @@ class AdminHotelController extends BaseController
 
     public function write()
     {
-        $product_idx      = updateSQ($_GET["product_idx"] ?? '');
-        $pg               = updateSQ($_GET["pg"] ?? '');
-        $search_name      = updateSQ($_GET["search_name"] ?? '');
-        $search_category  = updateSQ($_GET["search_category"] ?? '');
+        $product_idx = updateSQ($_GET["product_idx"] ?? '');
+        $pg = updateSQ($_GET["pg"] ?? '');
+        $search_name = updateSQ($_GET["search_name"] ?? '');
+        $search_category = updateSQ($_GET["search_category"] ?? '');
         $s_product_code_1 = updateSQ($_GET["s_product_code_1"] ?? '');
         $s_product_code_2 = updateSQ($_GET["s_product_code_2"] ?? '');
 
@@ -131,37 +130,38 @@ class AdminHotelController extends BaseController
         return view("admin/_hotel/write", $data);
     }
 
-    public function write_options() {
-        $o_idx        = $this->request->getVar("o_idx");
-        $product_idx  = $this->request->getVar("product_idx");
-        $s_date       = $this->request->getVar("s_date");
-        $e_date       = $this->request->getVar("e_date");
+    public function write_options()
+    {
+        $o_idx = $this->request->getVar("o_idx");
+        $product_idx = $this->request->getVar("product_idx");
+        $s_date = $this->request->getVar("s_date");
+        $e_date = $this->request->getVar("e_date");
 
-        $row          = $this->productModel->getById($product_idx);
+        $row = $this->productModel->getById($product_idx);
         $product_name = viewSQ($row["product_name"]);
 
-        $option       = $this->hotelOptionModel->getByIdx($o_idx);
-        $o_sdate      = $option["o_sdate"];
-        $o_edate      = $option["o_edate"];
+        $option = $this->hotelOptionModel->getByIdx($o_idx);
+        $o_sdate = $option["o_sdate"];
+        $o_edate = $option["o_edate"];
 
-        if($s_date) $o_sdate = $s_date;
-        if($e_date) $o_edate = $e_date;
+        if ($s_date) $o_sdate = $s_date;
+        if ($e_date) $o_edate = $e_date;
 
-        if($s_date && $e_date) {
-			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' AND goods_date BETWEEN '$s_date' AND '$e_date' order by goods_date asc";
+        if ($s_date && $e_date) {
+            $fsql = "SELECT * FROM tbl_hotel_price WHERE o_idx = '" . $o_idx . "' AND goods_date BETWEEN '$s_date' AND '$e_date' order by goods_date asc";
         } else {
-			$fsql     = "SELECT * FROM tbl_hotel_price WHERE o_idx = '". $o_idx ."' order by goods_date asc";
+            $fsql = "SELECT * FROM tbl_hotel_price WHERE o_idx = '" . $o_idx . "' order by goods_date asc";
         }
         $roresult = $this->connect->query($fsql);
         $roresult = $roresult->getResultArray();
 
         $data = [
-			'roresult'     => $roresult,
-            'o_idx'        => $o_idx,
-            'product_idx'  => $product_idx,
+            'roresult' => $roresult,
+            'o_idx' => $o_idx,
+            'product_idx' => $product_idx,
             'product_name' => $product_name,
-            'o_sdate'      => $o_sdate,
-            'o_edate'      => $o_edate,
+            'o_sdate' => $o_sdate,
+            'o_edate' => $o_edate,
         ];
 
         return view("admin/_hotel/write_options", $data);
@@ -169,7 +169,7 @@ class AdminHotelController extends BaseController
 
     public function write_ok($product_idx = null)
     {
-		$connect = $this->connect;
+        $connect = $this->connect;
         try {
             $files = $this->request->getFiles();
             $data['product_code_list'] = updateSQ($_POST["product_code_list"] ?? '');
@@ -227,15 +227,15 @@ class AdminHotelController extends BaseController
 
             $data['product_more'] = $dataProductMore;
 
-            $o_idx       = $_POST["o_idx"] ?? [];
-            $o_name      = $_POST["o_name"] ?? [];
-            $o_price1    = $_POST["o_price1"] ?? [];
-            $o_price2    = $_POST["o_price2"] ?? [];
-            $o_sdate     = $_POST["o_sdate"] ?? [];
-            $o_edate     = $_POST["o_edate"] ?? [];
-            $o_room      = $_POST["o_room"] ?? [];
+            $o_idx = $_POST["o_idx"] ?? [];
+            $o_name = $_POST["o_name"] ?? [];
+            $o_price1 = $_POST["o_price1"] ?? [];
+            $o_price2 = $_POST["o_price2"] ?? [];
+            $o_sdate = $_POST["o_sdate"] ?? [];
+            $o_edate = $_POST["o_edate"] ?? [];
+            $o_room = $_POST["o_room"] ?? [];
             $option_type = $_POST["option_type"] ?? [];
-            $o_soldout   = $_POST["o_soldout"] ?? [];
+            $o_soldout = $_POST["o_soldout"] ?? [];
 
             $rop_idx = $_POST["rop_idx"] ?? [];
             $sup_room__idx = $_POST["sup_room__idx"] ?? [];
@@ -260,6 +260,8 @@ class AdminHotelController extends BaseController
                 }
             }
 
+            $min_date = date('Y-m-d');
+            $max_date = date('Y-m-d');
 
             if ($product_idx) {
 
@@ -274,14 +276,21 @@ class AdminHotelController extends BaseController
 
                     if ($row_chk) {
                         // 이미 등록된 옵션이 아니라면...
-                        $item_name    = $o_name[$key] ?? '';
-                        $item_price1  = $o_price1[$key] ?? '';
-                        $item_price2  = $o_price2[$key] ?? '';
-                        $item_sdate   = $o_sdate[$key] ?? '';
-                        $item_edate   = $o_edate[$key] ?? '';
-                        $item_room    = $o_room[$key] ?? '';
-                        $item_type    = $option_type[$key] ?? '';
+                        $item_name = $o_name[$key] ?? '';
+                        $item_price1 = $o_price1[$key] ?? '';
+                        $item_price2 = $o_price2[$key] ?? '';
+                        $item_sdate = $o_sdate[$key] ?? '';
+                        $item_edate = $o_edate[$key] ?? '';
+                        $item_room = $o_room[$key] ?? '';
+                        $item_type = $option_type[$key] ?? '';
                         $item_soldout = $o_soldout[$key] ?? '';
+
+                        if ($item_sdate <= $min_date) {
+                            $min_date = $item_sdate;
+                        }
+                        if ($max_date <= $item_edate) {
+                            $max_date = $item_edate;
+                        }
 
                         if ($row_chk['cnts'] < 1) {
                             $sql_su = "insert into tbl_hotel_option SET
@@ -295,38 +304,37 @@ class AdminHotelController extends BaseController
                                         ,option_type	= '" . $item_type . "'
                                         ,o_soldout		= '" . $item_soldout . "'
                                 ";
-                            write_log("1- ". $sql_su);
+                            write_log("1- " . $sql_su);
                             $this->connect->query($sql_su);
 
-							$sql_opt    = "SELECT LAST_INSERT_ID() AS last_id";
-                            $option     = $this->connect->query($sql_opt)->getRowArray();
+                            $sql_opt = "SELECT LAST_INSERT_ID() AS last_id";
+                            $option = $this->connect->query($sql_opt)->getRowArray();
                             $option_idx = $option['last_id'];
 
-							$dateRange = getDateRange($item_sdate, $item_edate);
+                            $dateRange = getDateRange($item_sdate, $item_edate);
 
-							$ii = -1;
-							foreach ($dateRange as $date) 
-							{ 
-								$ii++;
-						 
-								$goods_date = $dateRange[$ii];
-								$dow        = dateToYoil($goods_date);
+                            $ii = -1;
+                            foreach ($dateRange as $date) {
+                                $ii++;
 
-								$sql_c = "INSERT INTO tbl_hotel_price  SET  
-																	  o_idx        = '". $option_idx ."' 	
-																	 ,goods_code   = '". $data['product_code'] ."' 	
-																	 ,goods_name   = '". $item_name ."'
-																	 ,goods_date   = '". $goods_date ."'
-																	 ,dow 	       = '". $dow ."'
-																	 ,goods_price1 = '". $item_price1 ."' 
-																	 ,goods_price2 = '". $item_price2 ."'
+                                $goods_date = $dateRange[$ii];
+                                $dow = dateToYoil($goods_date);
+
+                                $sql_c = "INSERT INTO tbl_hotel_price  SET  
+																	  o_idx        = '" . $option_idx . "' 	
+																	 ,goods_code   = '" . $data['product_code'] . "' 	
+																	 ,goods_name   = '" . $item_name . "'
+																	 ,goods_date   = '" . $goods_date . "'
+																	 ,dow 	       = '" . $dow . "'
+																	 ,goods_price1 = '" . $item_price1 . "' 
+																	 ,goods_price2 = '" . $item_price2 . "'
 																	 ,use_yn       = ''
-																	 ,o_sdate 	   = '". $item_sdate ."'
-																	 ,o_edate      = '". $item_edate ."'
+																	 ,o_sdate 	   = '" . $item_sdate . "'
+																	 ,o_edate      = '" . $item_edate . "'
 																	 ,reg_date     = now() ";
-								write_log("가격정보-1 : ".$sql_c);
-								$this->connect->query($sql_c);
-							}  
+                                write_log("가격정보-1 : " . $sql_c);
+                                $this->connect->query($sql_c);
+                            }
                         } else {
                             $sql_su = "update tbl_hotel_option SET 
                                          goods_name		= '" . $item_name . "'
@@ -396,24 +404,27 @@ class AdminHotelController extends BaseController
                     }
                 }
 
+                $data['min_date'] = strval($min_date);
+                $data['max_date'] = strval($max_date);
+
+//                var_dump($min_date);
+//                die();
 
                 // 상품 테이블 변경
                 $this->productModel->update($product_idx, $data);
                 //write_log("호텔상품수정 : " . $product_idx);
 
                 // $db = $this->connect->query($sql);
-
-
             } else {
                 // 옵션 등록
                 foreach ($o_idx as $key => $val) {
-                    $item_name    = $o_name[$key] ?? '';
-                    $item_price1  = $o_price1[$key] ?? '';
-                    $item_price2  = $o_price2[$key] ?? '';
-                    $item_sdate   = $o_sdate[$key] ?? '';
-                    $item_edate   = $o_edate[$key] ?? '';
-                    $item_room    = $o_room[$key] ?? '';
-                    $item_type    = $option_type[$key] ?? '';
+                    $item_name = $o_name[$key] ?? '';
+                    $item_price1 = $o_price1[$key] ?? '';
+                    $item_price2 = $o_price2[$key] ?? '';
+                    $item_sdate = $o_sdate[$key] ?? '';
+                    $item_edate = $o_edate[$key] ?? '';
+                    $item_room = $o_room[$key] ?? '';
+                    $item_type = $option_type[$key] ?? '';
                     $item_soldout = $o_soldout[$key] ?? '';
 
                     $sql_su = "insert into tbl_hotel_option SET
@@ -427,41 +438,43 @@ class AdminHotelController extends BaseController
                                     ,option_type	= '" . $item_type . "'
                                     ,o_soldout		= '" . $item_soldout . "'
                             ";
-                    write_log("2- ". $sql_su);
+                    write_log("2- " . $sql_su);
 
-					$this->connect->query($sql_su);
+                    $this->connect->query($sql_su);
 
-					$sql_opt    = "SELECT LAST_INSERT_ID() AS last_id";
-					$option     = $this->connect->query($sql_opt)->getRowArray();
-					$option_idx = $option['last_id'];
+                    $sql_opt = "SELECT LAST_INSERT_ID() AS last_id";
+                    $option = $this->connect->query($sql_opt)->getRowArray();
+                    $option_idx = $option['last_id'];
 
-					$dateRange = getDateRange($item_sdate, $item_edate);
+                    $dateRange = getDateRange($item_sdate, $item_edate);
 
-					$ii = -1;
-					foreach ($dateRange as $date) 
-					{ 
-						$ii++;
-				 
-						$goods_date = $dateRange[$ii];
-						$dow        = dateToYoil($goods_date);
+                    $ii = -1;
+                    foreach ($dateRange as $date) {
+                        $ii++;
 
-						$sql_c = "INSERT INTO tbl_hotel_price  SET  
-															  o_idx        = '". $option_idx ."' 	
-															 ,goods_code   = '". $data['product_code'] ."' 	
-															 ,goods_name   = '". $item_name ."'
-															 ,goods_date   = '". $goods_date ."'
-															 ,dow 	       = '". $dow ."'
-															 ,goods_price1 = '". $item_price1 ."' 
-															 ,goods_price2 = '". $item_price2 ."'
+                        $goods_date = $dateRange[$ii];
+                        $dow = dateToYoil($goods_date);
+
+                        $sql_c = "INSERT INTO tbl_hotel_price  SET  
+															  o_idx        = '" . $option_idx . "' 	
+															 ,goods_code   = '" . $data['product_code'] . "' 	
+															 ,goods_name   = '" . $item_name . "'
+															 ,goods_date   = '" . $goods_date . "'
+															 ,dow 	       = '" . $dow . "'
+															 ,goods_price1 = '" . $item_price1 . "' 
+															 ,goods_price2 = '" . $item_price2 . "'
 															 ,use_yn       = ''
-															 ,o_sdate 	   = '". $item_sdate ."'
-															 ,o_edate      = '". $item_edate ."'
+															 ,o_sdate 	   = '" . $item_sdate . "'
+															 ,o_edate      = '" . $item_edate . "'
 															 ,reg_date     = now() ";
-						write_log("가격정보-2 : ".$sql_c);
-						$this->connect->query($sql_c);
-					}  
+                        write_log("가격정보-2 : " . $sql_c);
+                        $this->connect->query($sql_c);
+                    }
 
                 }
+
+                $data['min_date'] = $min_date;
+                $data['max_date'] = $max_date;
 
                 $data['product_code_1'] = '1303';
 

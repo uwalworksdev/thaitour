@@ -10,7 +10,20 @@ class BbsCommentModel extends Model
 
     protected $primaryKey = 'tbc_idx';
 
+    protected $allowedFields = [
+        "code_no", "code", "bbs_idx", "m_idx", "bfile1", "rfile1", "comment", "ip_address", "r_date", "displays", "writer",
+        "b_ref", "b_level", "b_level_1", "b_level_2", "b_level_3", "b_level_4", "b_step", "b_cmt_sum", "delYN", "reportYN",
+    ];
+
     protected $skipValidation = true;
+
+    public function getList($bbs_idx)
+    {
+        $sql = "SELECT * FROM tbl_bbs_comment WHERE bbs_idx = " . $bbs_idx . " ORDER BY r_date DESC";
+        write_log($sql);
+        return $this->db->query($sql)->getResultArray();
+    }
+
     public function getCommentsWithMemberDetails($bbs_idx, $code, $private_key)
     {
         $sql = "SELECT s1.*, 

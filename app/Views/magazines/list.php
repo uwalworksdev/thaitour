@@ -25,41 +25,43 @@
                     <div class="magazines_list__top_left_">
                         <div class="total_">
                             총 상품
-                            <span class="count_"> 70</span>
+                            <span class="count_"><?=$nTotalCount?></span>
                         </div>
                     </div>
 
                     <div class="magazines_list__top_right_">
                         <div class="form_el_">
-                            <select name="select_sort_" id="select_sort" class="select_sort_">
-                                <option value="">제목</option>
+                            <select name="search_category" id="search_mode_" class="select_sort_">
+                                <option value="subject" <?=$search_mode == "subject" ? "selected" : ""?>>제목</option>
                             </select>
                         </div>
                         <div class="form_el_">
-                            <input type="text" class="input_search_" name="input_search_" id="input_search_"
-                                   placeholder="검색어를 입력해 주세요">
+                            <input type="text" class="input_search_" name="search_txt" id="search_word_"
+                                value="<?=$search_word?>"
+                                placeholder="검색어를 입력해 주세요">
                             <div class="icon_">
-                                <img src="/images/ico/icon_search_23_22.png" alt="" class="icon_search_">
+                                <img role="button" src="/images/ico/icon_search_23_22.png" alt="" class="icon_search_" id="icon_search_">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="magazines_list__content_">
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
-                        <img src="/images/magazines/magazines_list__item_image_01.png" alt=""
-                             class="magazines_list__item_image_">
-                        <div class="magazines_list__item_title_ text_truncate_">
-                            [매거진 100호] 아마리 후아힌 천원대 찬스, 푸른
-                        </div>
-                        <div class="magazines_list__item_desc_">
-                            2024-11-03(일) <span class="src_">|</span> <span class="view_">3885</span>
-                        </div>
-                        <div class="magazines_list__item_author_">
-                            Younn
-                        </div>
-                    </a>
+                    <?php foreach ($magazines as $row) : ?>
+                        <a href="/magazines/detail?m_idx=<?= $row['bbs_idx'] ?>" class="magazines_list__item_">
+                            <img src="/data/bbs/<?= $row['ufile1'] ?>" alt="" class="magazines_list__item_image_">
+                            <div class="magazines_list__item_title_ text_truncate_">
+                                <?= $row['subject'] ?>
+                            </div>
+                            <div class="magazines_list__item_desc_">
+                                <?=date('Y-m-d', strtotime($row['r_date']))?> (<?=dateToYoil($row['r_date'])?>) <span class="src_">|</span> <span class="view_"><?= $row['hit'] ?></span>
+                            </div>
+                            <div class="magazines_list__item_author_">
+                                <?= $row['writer'] ?>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
 
-                    <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
+                    <!-- <a href="/magazines/detail?m_idx=1" class="magazines_list__item_">
                         <img src="/images/magazines/magazines_list__item_image_02.png" alt=""
                              class="magazines_list__item_image_">
                         <div class="magazines_list__item_title_ text_truncate_">
@@ -155,30 +157,19 @@
                         <div class="magazines_list__item_author_">
                             Younn
                         </div>
-                    </a>
+                    </a> -->
                 </div>
-                <div class="pagination_">
-                    <div class="customer-center-page">
-                        <div class="pagination">
-                            <a class="page-link" href="" title="Go to first page">
-                                <img src="/images/community/pagination_prev.png" alt="pagination_prev">
-                            </a>
-                            <a class="page-link" style="margin-right: 24px;" href="" title="Go to previous page">
-                                <img src="/images/community/pagination_prev_s.png" alt="pagination_prev">
-                            </a>
-                            <a class="page-link active" href="" title="Go to page 1"><strong>1</strong></a>
-                            <a class="page-link" href="#" title="Go to page 2">2</a>
-                            <a class="page-link" href="#" title="Go to page 3">3</a>
-                            <a class="page-link" style="margin-left: 24px;" href="#" title="Go to next page">
-                                <img src="/images/community/pagination_next_s.png" alt="pagination_next">
-                            </a>
-                            <a class="page-link" href="#" title="Go to last page">
-                                <img src="/images/community/pagination_next.png" alt="pagination_next">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                <?=$pager?>
             </div>
         </div>
     </main>
+    <script>
+        $("#icon_search_").click(function () {
+            const search_mode = $("#search_mode_").val();
+            const search_word = $("#search_word_").val();
+
+            location.href = "/magazines/list?search_mode=" + search_mode + "&search_word=" + search_word
+
+        })
+    </script>
 <?php $this->endSection(); ?>

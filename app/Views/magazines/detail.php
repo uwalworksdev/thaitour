@@ -1,73 +1,223 @@
 <?php $this->extend('inc/layout_index'); ?>
 
 <?php $this->section('content'); ?>
+    <style>
+        .comment_box .comment_box-details {
+            padding: 20px;
+            background-color: #FFF;
+        }
+    </style>
     <link rel="stylesheet" href="/css/magazines/magazines.css">
     <main id="container" class="sub magazines_page_" style="background-color: #f0f2f5;">
         <div class="inner magazines_area_">
             <div class="magazines_detail_">
                 <div class="magazines_detail__title_">
-                    [매거진 100호] 아마리 후아힌 천원대 찬스, 푸른 산호빛 리조트에서 태국 왕족 같은 휴식
+                    <?= $magazine['subject'] ?>
                 </div>
                 <div class="magazines_detail__desc_">
                     <p class="author_">
-                        Younn
+                        <?= $magazine['writer'] ?>
                     </p>
                     <p class="src_">
                         |
                     </p>
                     <p class="date_">
-                        2024-11-03
+                        <?= date('Y-m-d', strtotime($magazine['r_date'])) ?>
                     </p>
                     <p class="src_">
                         |
                     </p>
                     <p class="more_">
-                        조회수 : 38943160
+                        조회수 : <?= $magazine['hit'] ?>
                     </p>
                 </div>
                 <div class="magazines_detail__content_">
-                    <img src="/images/magazines/detail_image_.png" alt="">
-                    <p class="title_">아마리 후아힌</p>
-                    <p class="title_">(Amari Hua Hin)</p>
+                    <?= viewSQ($magazine['contents']) ?>
+                </div>
+            </div>
 
-                    <p>
-                        이번에 소개해 드릴 숙소는 태국 왕실 휴양지, 후아힌에 위치한 아마리 후아힌 리조트입니다.
-                        아마리 호텔은 태국을 기반으로 동남아시아에 분포된 고급 호텔 브랜드로, 방콕, 파타야, 코사무이 등 태국 내 주요 관광지에만 8개의 호텔을 보유하고 있어요. 모두 각 지역을
-                        대표하는 숙소로 자리매김하고 있는 곳입니다. 태국의 샤마, 오조 호텔과 함께 ONYX 그룹에 의해 체계적으로 관리되며, 준 5성급의 높은 수준을 유지하고 있습니다.
-                    </p>
-                    <p>
-                        아마리 후아힌 리조트는 푸른색의 청량한 디자인과 휴양지 특유의 여유로운 분위기를 만끽할 수 있도록 조성되어 있는데요. 오픈한지 10년이 넘었지만 여전히 현지
-                        여행객들에게도 큰 인기를 끌고 있습니다. 후아힌의 뛰어난 가성비 리조트로 손꼽히며, 고급스러운 서비스와 현대적인 감각을 겸비해 잊지 못할 휴가를 만끽 할 수 있는
-                        곳이에요.
-                    </p>
+            <div class="comment_box" style="margin-top: 50px">
+                <div class="comment_box-top">
+                    <div class="comment_box-count">
+                        <span>댓글</span>
+                        <span id="comment_count">( <span id="r_cmt_cnt">0</span>)</span>
+                    </div>
+                    <?php if (session('member.id')) { ?>
+                        <form action="" name="com_form" id="frm" class="frm">
+                            <input type="hidden" name="r_idx" value="<?= $magazine['bbs_idx'] ?>">
+                            <input type="hidden" name="code" id="code" value="review">
+                            <input type="hidden" name="r_code" id="r_code" value="review">
+                            <div class="comment_box-input flex">
+                            <textarea style="resize:none" class="bs-input" name="comment" id="comment"
+                                      placeholder="댓글을 입력해주세요."></textarea>
+                                <button type="button" onclick="fn_comment()"
+                                        class="btn btn-point btn-lg comment_btn">등록
+                                </button>
+                            </div>
+                        </form>
+                    <?php } ?>
+                </div>
+                <div class="comment_box-details" id="comment_list">
 
-                    <img src="/images/magazines/detail_image_01.png" alt="">
-                    <p>
-                        아마리 후아힌 객실은 총 223개로 8가지 종류로 구분되어 있어요.
-                        기본룸인 디럭스 룸은 비교적 넓은 38㎡ 사이즈로 전망에 따라 힐사이드, 풀뷰. 오션 페이싱으로 나뉘고 1베드 룸과 스위트룸도 전망에 따라 객실을 선택할 수 있습니다.
-                        성수기 기준으로도 디럭스룸이 조식 포함 1박에 10만 원 초반으로 후아힌 준 5성급 호텔 치고는 매우 가성비 있는 가격으로 이용해 볼 수 있는 곳이에요. 신상 호텔 못지않게
-                        깔끔한 마룻바닥과 우드톤 인테리어로 모던하면서 세련된 분위기의 객실입니다.
-                    </p>
-
-                    <img src="/images/magazines/detail_image_02.png" alt="">
-                    <p>
-                        아마리 후아힌은 후아힌 중심부와 가까운 위치에 있어요.
-                        후아힌에서 가장 인기 있는 주말 야시장인 시카다 마켓까지 도보로 5분 거리이고, 호텔 정문 앞에는 편의점, 로컬 마사지 가게가 즐비해 있습니다. 호텔과 연결된 전용 해변은
-                        한적하기 그지없을 거에요.
-                    </p>
-
-                    <img src="/images/magazines/detail_image_03.png" alt="">
-                    <p>
-                        리조트 부지 중앙의 넓고 파란 수영장은 인공 해변 같은 분위기로 조성되어 있습니다. 셔틀을 타고 3분이면 닿을 수 있는 해변가 비치 클럽에도 작은 수영장이 하나 더 있어요.
-                        키즈 클럽과 키즈 액티비티 프로그램도 잘 마련어어 있어 아이가 있는 가족 여행객에게도 부족함 없는 시설입니다.
-                        24시간 피트니스를 이용할 수 있고 리조트 내 스파시설인 브리즈 스파는 모든 아마리 호텔 그룹에서 유명한 부대시설 중 하나에요.
-                        메인 레스토랑인 모자이크에서는 알찬 조식을 제공하고 점심, 저녁식사를 위한 다양한 메뉴를 맛볼 수 있습니다.
-                    </p>
-
-                    <img src="/images/magazines/detail_image_04.png" alt="">
                 </div>
             </div>
         </div>
     </main>
+    <script>
+        listComment();
 
+        async function listComment() {
+            let url = `<?= route_to('api.magazines.list.comment') ?>?bbs_idx=<?= $magazine['bbs_idx'] ?>`;
+            try {
+                let response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+                let data = await response.json();
+                renderComment(data.data);
+            } catch (error) {
+                console.error('Error fetching hotel data:', error);
+            }
+        }
+
+        function renderComment(data) {
+            let r_cmt_cnt = data.length;
+            let comment_list = $("#comment_list");
+            if (r_cmt_cnt == 0) {
+                comment_list.css('display', 'none');
+            } else {
+                comment_list.css('display', 'block');
+            }
+
+            $("#r_cmt_cnt").text(r_cmt_cnt);
+            comment_list.empty();
+            let html = "";
+            for (let i = 0; i < data.length; i++) {
+                let comment = data[i];
+
+                html += `
+                   <div class="comment">
+                        <div class="comment_user" style="margin-left: 0px;">
+                            <div class="comment_user-avatar">
+                                <img src="${comment.ufile1 ?? '/images/profile/avatar.png'}" alt="">
+                            </div>
+                            <div class="comment_user-detail">
+                                <div>
+                                    <div class="comment_user-comment" id="rrp_content_${comment.tbc_idx}">
+                                           ${comment.comment}
+                                    </div>
+                                    <div class="comment_comment-input write_box" id="rrp_edit_${comment.tbc_idx}"
+                                         style="display: none;" tabindex="0" onblur="handleBlurEdit(${comment.tbc_idx})">
+                                        <input type="hidden" value=" ${comment.tbc_idx}">
+                                        <textarea onblur="handleBlurEdit1(${comment.tbc_idx})"
+                                                  style="resize:none" tabindex="0"
+                                                  name="comment" id="contents"
+                                                  placeholder="댓글을 입력해주세요.">${comment.comment}</textarea>
+                                        <button type="button" onclick="handleCmtEditSubmit(event, ${comment.tbc_idx})">수정</button>
+                                    </div>
+                                    <div class="comment_user-content"><span class="comment_user-title"></span><span
+                                                class="comment_user-date"> ${comment.r_date}</span><span
+                                                class="comment_user-type" onclick="showReport('review', '${comment.bbs_idx}', '${comment.tbc_idx}')">신고</span>
+                                    </div>
+                                    <div class="comment_user-operation">
+                                        <button type="button" onclick="handleCmtEdit(event, ${comment.tbc_idx})">수정</button>
+                                        <button type="button" onclick="handleCmtDelete(event, ${comment.tbc_idx})">삭제</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+
+            $('#comment_list').html(html);
+        }
+
+        function handleBlurEdit(idx) {
+
+        }
+
+        function handleBlurEdit1(idx) {
+
+        }
+
+        function handleCmtEditSubmit(event, idx) {
+            event.preventDefault();
+
+            let data = {
+                tbc_idx: idx,
+                comment: $('#contents').val()
+            };
+            let url = `<?= route_to('api.magazines.update.comment') ?>`;
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function (res, status) {
+                    console.log(res);
+                    listComment();
+                },
+                error: function (request, status, error) {
+                    console.error("Error:", request, status, error);
+                    alert("오류 발생: " + (request.responseText || "알 수 없는 오류"));
+                }
+            });
+        }
+
+        function handleCmtEdit(event, idx) {
+            event.preventDefault();
+            $('#rrp_content_' + idx).css('display', 'none');
+            $('#rrp_edit_' + idx).css('display', 'flex');
+        }
+
+        function handleCmtDelete(event, idx) {
+            if (!confirm('댓글을 삭제하시겠습니까?')) {
+                return;
+            }
+            event.preventDefault();
+
+            let data = {
+                tbc_idx: idx,
+            };
+            let url = `<?= route_to('api.magazines.delete.comment') ?>`;
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                success: function (res, status) {
+                    console.log(res);
+                    listComment();
+                },
+                error: function (request, status, error) {
+                    console.error("Error:", request, status, error);
+                    alert("오류 발생: " + (request.responseText || "알 수 없는 오류"));
+                }
+            });
+        }
+
+        function fn_comment() {
+            let frm = new FormData($('#frm')[0]);
+
+            let url = `<?= route_to('api.magazines.create.comment') ?>`;
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: frm,
+                contentType: false,
+                processData: false,
+                success: function (res, status) {
+                    console.log(res);
+                    listComment();
+                },
+                error: function (request, status, error) {
+                    console.error("Error:", request, status, error);
+                    alert("오류 발생: " + (request.responseText || "알 수 없는 오류"));
+                }
+            });
+        }
+    </script>
+
+<?php echo view('inc/popup_inc.php'); ?>
 <?php $this->endSection(); ?>

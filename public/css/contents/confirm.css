@@ -136,6 +136,7 @@
     background-color: rgba(42, 69, 159, 0.058823529411764705);
     border: 1px solid #2a459f;
     padding: 10px 15px;
+    color: #2a459f;
 }
 
 .customer-form-page .table_container_ .sup_area_ {
@@ -313,4 +314,17 @@
     border-radius: 4px;
     color: var(--bs-point);
     border-color: var(--bs-point) !important;
+}
+
+@media screen and (max-width: 850px) {
+    .customer-form-page .table_container_ .subject_ {
+        border-left: 1px solid #dbdbdb;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .customer-form-page .table_container_ .normal_ {
+        border-right: 1px solid #dbdbdb;
+        border-left: 1px solid #dbdbdb;
+    }
 }
