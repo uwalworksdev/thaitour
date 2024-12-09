@@ -1062,7 +1062,7 @@ $links = "list";
                                             <div class="img_add">
                                                 <?php 
                                                     for($i = 1; $i <= 1; $i++) : 
-                                                        $img = get_img_tour(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                        $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                         // $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
                                                     <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
@@ -1087,7 +1087,7 @@ $links = "list";
                                             <div class="img_add">
                                             <?php 
                                                 for($i = 2; $i <= 7; $i++) : 
-                                                    $img = get_img_tour(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
                                                     // $img ="/data/product/" . ${"ufile" . $i};
                                             ?>
                                                 <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
