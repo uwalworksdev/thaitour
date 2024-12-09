@@ -835,6 +835,21 @@
     min-width: 65%;
 }
 
+.img_box__shadow {
+    display: none;
+}
+
+.magazine_content {
+    display: none;
+}
+
+.magazine_item_:hover .img_box__shadow {
+    display: block;
+}
+
+.magazine_item_:hover .magazine_content {
+    display: block;
+}
 
 .hot_product_list_swiper_1_btn_prev,
 .hot_product_list_swiper_1_btn_next,

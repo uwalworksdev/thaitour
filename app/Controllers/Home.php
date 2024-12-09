@@ -25,7 +25,7 @@ class Home extends BaseController
         $codes = $this->CodeModel->getByParentCode('50')->getResultArray();
         $codeBanners = $this->CodeModel->getByParentCode('51')->getResultArray();
 
-        $magazines = $this->bbsModel->List("magazines", [])->limit(5)->get()->getResultArray();
+        $magazines = $this->bbsModel->List("magazines", [])->findAll();
 
         $data = [
             'codes' => $codes,
