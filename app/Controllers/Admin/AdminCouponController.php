@@ -89,7 +89,9 @@ class AdminCouponController extends BaseController
             $files = $this->request->getFiles();
 
             for ($i = 1; $i <= 7; $i++) {
-                if ($this->request->getPost("del_$i") == "Y") {
+                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
                     $data["ufile$i"] = "";
                     $data["rfile$i"] = "";
 

@@ -305,7 +305,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th rowspan=7>썸네일<br>(600 * 450)</th>
+                                    <!-- <th rowspan=7>썸네일<br>(600 * 450)</th>
                                     <td rowspan=7>
                                         <?php for ($i = 1; $i <= 6; $i++) { ?>
                                             <input type="file" name="ufile<?= $i ?>" class="bbs_inputbox_pixel"
@@ -316,15 +316,13 @@
                                                     href="/data/product/<?= ${"ufile" . $i} ?>"
                                                     class="imgpop"><?= ${"rfile" . $i} ?></a><br><br><?php } ?>
                                         <?php } ?>
-                                    </td>
+                                    </td> -->
                                     <th>상품명</th>
                                     <td>
                                         <input type="text" id="product_name" name="product_name"
                                                value="<?= $product_name ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>이용항공</th>
                                     <td>
                                         <input type="text" id="product_air" name="product_air"
@@ -332,6 +330,7 @@
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>간단소개</th>
                                     <td>
@@ -339,22 +338,19 @@
                                                value="<?= $product_info ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>간단일정(사용안함)</th>
                                     <td>
                                         <input type="text" id="product_schedule" name="product_schedule"
                                                value="<?= $product_schedule ?>" class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>여행국가(사용안함)</th>
                                     <td>
                                         <input id="product_country" name="product_country" class="input_txt" type="text"
                                                value="<?= $product_country ?>" style="width:90%"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>최소출발인원(성인)</th>
                                     <td>
                                         <input id="minium_people_cnt" name="minium_people_cnt" class="input_txt"
@@ -362,9 +358,10 @@
                                                value="<?= $minium_people_cnt ?>" style="width:500px"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>마일리지</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input id="product_mileage" name="product_mileage" class="input_txt" type="text"
                                                value="<?= $product_mileage ?>" style="width:50px" maxlength="2"/>% (총
                                         결제비용 %)
@@ -736,7 +733,7 @@
 											<div class="file_input <?=empty(${"tours_ufile" . $i}) ? "" : "applied"?>">
                                                 <input type="file" name='tours_ufile<?=$i?>' id="tours_ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
                                                 <label for="tours_ufile<?=$i?>" <?=!empty(${"tours_ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                <input type="hidden" id="checkImg_<?=$i?>" name="checkImg_<?=$i?>" value="Y">
+                                                <input type="hidden" id="checkImg_tours_<?=$i?>" name="checkImg_tours_<?=$i?>" value="Y">
                                                 <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
                                             </div>
 										<?php 
@@ -745,6 +742,55 @@
 										</div>
 									</td>
 								</tr>
+                                
+                                <tr>
+                                    <th>대표이미지(600X400)</th>
+                                    <td colspan="3">
+
+                                        <div class="img_add">
+                                            <?php 
+                                                for($i = 1; $i <= 1; $i++) : 
+                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                    // $img ="/data/product/" . ${"ufile" . $i};
+                                            ?>
+                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImageMainPreview(this, '<?=$i?>')">
+                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                    <input type="hidden" name="checkImg_<?=$i?>">
+                                                    <button type="button" class="remove_btn" onclick="productImageMainPreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+
+                                                </div>
+                                            <?php 
+                                                endfor; 
+                                            ?>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>서브이미지(600X400) </th>
+                                    <td colspan="3">
+                                        <div class="img_add">
+                                        <?php 
+                                            for($i = 2; $i <= 6; $i++) : 
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                        ?>
+                                            <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImageMainPreview(this, '<?=$i?>')">
+                                                <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                <input type="hidden" name="checkImg_<?=$i?>">
+                                                <button type="button" class="remove_btn" onclick="productImageMainPreviewRemove(this)"></button>
+                                                <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                            </div>
+                                        <?php 
+                                            endfor; 
+                                        ?>
+                                        </div>
+                                    </td>
+                                </tr>
 
                                 <tr style="display:none">
                                     <th>상품내용</th>
@@ -1843,7 +1889,7 @@
     </script>
 
     <script>
-        function productImagePreview(inputFile, onum) {
+    function productImagePreview(inputFile, onum) {
 		if(sizeAndExtCheck(inputFile) == false) {
 			inputFile.value = "";
 			return false;
@@ -1875,6 +1921,37 @@
         checkImgInput.value = 'N'; 
     }
 
+    function productImageMainPreview(inputFile, onum) {
+		if(sizeAndExtCheck(inputFile) == false) {
+			inputFile.value = "";
+			return false;
+		}
+
+		let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+        
+		if(inputFile.files.length > 0) {
+			let imageReader     = new FileReader();
+
+			imageReader.onload = function() {
+				imageTag.style = "background-image:url("+imageReader.result+")";
+				inputFile.closest('.file_input').classList.add('applied');
+				inputFile.closest('.file_input').children[2].value = 'Y';
+			}
+			return imageReader.readAsDataURL(inputFile.files[0]);
+		}
+	}
+
+    function productImageMainPreviewRemove(element) {
+        let inputFile = element.parentNode.querySelector('input[type="file"]');
+        let labelImg = element.parentNode.querySelector('label');
+        let checkImgInput = element.parentNode.querySelector('input[type="hidden"]');
+
+        inputFile.value = "";
+        labelImg.style.backgroundImage = ""; 
+        element.closest('.file_input').classList.remove('applied');
+        
+        checkImgInput.value = 'N'; 
+    }
 
 	function sizeAndExtCheck(input) {
 		let fileSize        = input.files[0].size;

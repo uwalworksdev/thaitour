@@ -150,8 +150,9 @@ class AdminTourController extends BaseController
 
 			for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
-                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
                     $sql = "UPDATE tbl_product_mst SET 
                             ufile" . $i . "='',
                             rfile" . $i . "=''
@@ -172,7 +173,7 @@ class AdminTourController extends BaseController
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["tours_ufile" . $i]) ? $files["tours_ufile" . $i] : null;
             
-                $checkImg = $this->request->getPost("checkImg_" . $i);
+                $checkImg = $this->request->getPost("checkImg_tours_" . $i);
             
                 if (isset($checkImg) && $checkImg == "N") {
                     $existingFile = $connect->query("SELECT tours_ufile$i FROM tbl_product_mst WHERE product_idx='$product_idx'")->getRowArray();

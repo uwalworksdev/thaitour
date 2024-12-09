@@ -22,6 +22,10 @@
             display: inline-block;
             width: 500px;
         }
+
+        .img_add #input_file_ko {
+            display: none;
+        }
     </style>
     <script>
 	$(function(){
@@ -224,7 +228,7 @@
                                                class="input_txt" style="width:90%"/>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th rowspan=8>썸네일<br>(600 * 450)</th>
                                     <td rowspan=8>
                                         <?php for ($i = 1; $i <= 7; $i++) { ?>
@@ -243,10 +247,10 @@
                                                value="<?= $product_info ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th>더투어랩 평가 등급</th>
-                                    <td>
+                                    <td colspan="3">
                                         <select id="star_level" name="star_level" class="input_select">
                                             <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                 <option value="<?= $i ?>" <?php if ($golf_info['star_level'] == $i) {
@@ -262,37 +266,34 @@
                                     <td>
                                         <input id="holes_number" name="holes_number" class="input_txt" type="text" value="<?= $golf_info['holes_number'] ?>" style="width:100%"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>휴무일</th>
                                     <td>
                                         <input id="holidays" name="holidays" class="input_txt" type="text" value="<?= $golf_info['holidays'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>팀당 라운딩 인원</th>
                                     <td>
                                         <input id="num_of_players" name="num_of_players" class="input_txt" type="text" value="<?= $golf_info['num_of_players'] ?>" style="width:100%"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>시내에서 거리 및 이동기간	</th>
                                     <td>
                                         <input id="distance_from_center" name="distance_from_center" class="input_txt" type="text" value="<?= $golf_info['distance_from_center'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>공항에서 거리 및 이동시간</th>
                                     <td>
                                         <input id="distance_from_airport" name="distance_from_airport" class="input_txt" type="text" value="<?= $golf_info['distance_from_airport'] ?>" style="width:100%"/>
                                     </td>
-                                </tr>
-                                <tr>
                                     <th>전동카트</th>
                                     <td>
                                         <input id="electric_car" name="electric_car" class="input_txt" type="text" value="<?= $golf_info['electric_car'] ?>" style="width:100%"/>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>최소출발인원(성인)</th>
                                     <td>
@@ -498,6 +499,54 @@
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>대표이미지(600X400)</th>
+                                    <td colspan="3">
+
+                                        <div class="img_add">
+                                            <?php 
+                                                for($i = 1; $i <= 1; $i++) : 
+                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                    // $img ="/data/product/" . ${"ufile" . $i};
+                                            ?>
+                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                    <input type="hidden" name="checkImg_<?=$i?>">
+                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+
+                                                </div>
+                                            <?php 
+                                                endfor; 
+                                            ?>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>서브이미지(600X400) </th>
+                                    <td colspan="3">
+                                        <div class="img_add">
+                                        <?php 
+                                            for($i = 2; $i <= 7; $i++) : 
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                        ?>
+                                            <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                <input type="hidden" name="checkImg_<?=$i?>">
+                                                <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                            </div>
+                                        <?php 
+                                            endfor; 
+                                        ?>
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -880,6 +929,64 @@
         </div>
 
         <script>
+        function productImagePreview(inputFile, onum) {
+            if(sizeAndExtCheck(inputFile) == false) {
+                inputFile.value = "";
+                return false;
+            }
+
+            let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+
+            if(inputFile.files.length > 0) {
+                let imageReader     = new FileReader();
+
+                imageReader.onload = function() {
+                    imageTag.style = "background-image:url("+imageReader.result+")";
+                    inputFile.closest('.file_input').classList.add('applied');
+                    inputFile.closest('.file_input').children[3].value = 'Y';
+                }
+                return imageReader.readAsDataURL(inputFile.files[0]);
+            }
+        }
+
+        /**
+         * 상품 이미지 삭제
+         * @param {element} button
+         */
+        function productImagePreviewRemove(element) {
+            let inputFile = element.parentNode.children[1];
+            let labelImg = element.parentNode.children[2];
+
+            inputFile.value = "";
+            labelImg.style = "";
+            element.closest('.file_input').classList.remove('applied');
+            element.closest('.file_input').children[3].value = 'N';
+        }
+
+        function sizeAndExtCheck(input) {
+            let fileSize        = input.files[0].size;
+            let fileName        = input.files[0].name;
+
+            // 20MB
+            let megaBite        = 20;
+            let maxSize         = 1024 * 1024 * megaBite;
+
+            if(fileSize > maxSize) {
+                alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+                return false;
+            }
+            
+            let fileNameLength  = fileName.length;
+            let findExtension   = fileName.lastIndexOf('.');
+            let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+            if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+                alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+                return false;
+            }
+
+            return true;
+        }
 		$(document).ready(function () {
 		  // 숫자 전용 입력 처리
 		  $('.numberOnly').on('input', function () {
