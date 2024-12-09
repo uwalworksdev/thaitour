@@ -370,7 +370,7 @@
 
 										$.ajax({
 
-											url: "/ajax//ajax/memberSession",
+											url: "/ajax/memberSession",
 											type: "POST",
 											data: {},
 											success: function(rs) {
