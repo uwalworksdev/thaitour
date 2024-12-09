@@ -61,7 +61,7 @@
 }
 
 .swiper-button-main img {
-    width: 20px;
+    width: 16px;
     height: 32px;
 }
 
@@ -152,6 +152,10 @@
     cursor: pointer;
 }
 
+.relative {
+    overflow: hidden;
+}
+
 .swiper-pagination-main {
     border-style: solid;
     border-width: 1px;
@@ -165,6 +169,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.main_current_slide {
+    color: #FFFFFF;
 }
 
 .main_section2 {

@@ -315,7 +315,7 @@ $searchTxt = $SearchText->List()->findAll();
     <section class="main_section4">
         <div class="body_inner">
             <div class="main_section4_community">
-                <a href="#!" class="community_item">
+                <a href="/community/customer_center/list_notify" class="community_item">
                     <div class="community_item_img">
                         <img src="/images/main/community_ico_1.png" alt="" class="only_web">
                         <img src="/uploads/main/community_ico_1_m.png" alt="" class="only_mo">
@@ -360,7 +360,7 @@ $searchTxt = $SearchText->List()->findAll();
                     </div>
                     <i class="community_item_bread"></i>
                 </a> -->
-                <a href="#!" class="community_item">
+                <a href="/coupon/list" class="community_item">
                     <div class="community_item_img">
                         <img src="/images/main/community_ico_5.png" alt="" class="only_web">
                         <img src="/uploads/main/community_ico_5_m.png" alt="" class="only_mo">
