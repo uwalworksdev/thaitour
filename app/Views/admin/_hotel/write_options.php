@@ -138,9 +138,11 @@
 											</td>
 											<td style="text-align:center">
 												가격(원)
+												<input type="checkbox" name="" id="price_all">전체
 											</td>
 											<td style="text-align:center">
 												우대가격(원)
+												<input type="checkbox" name="" id="sale_price_all">전체
 											</td>
 											<td style="text-align:center">
 												마감
@@ -189,6 +191,20 @@
 							$("#in_s_date").val($("#s_date").val());
 							$("#in_e_date").val($("#e_date").val());
 							$("#priceForm").submit();
+						});
+
+						$('#price_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var price = $('input[name="goods_price1[]"]').first().val();
+								$('.goods_price').val(price);
+							}
+						});
+						
+						$('#sale_price_all').on('click', function() {
+							if ($(this).is(':checked')) {
+								var sale_price = $('input[name="goods_price2[]"]').first().val();
+								$('.goods_discount_price').val(sale_price);
+							}
 						});
 					</script>
 

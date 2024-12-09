@@ -1070,7 +1070,8 @@ $links = "list";
                                                         <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
                                                         <input type="hidden" name="checkImg_<?=$i?>">
                                                         <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                        <span class="img_txt" id="text_ufile<?=$i?>"></span>
+                                                        <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+
                                                     </div>
                                                 <?php 
                                                     endfor; 
@@ -1094,7 +1095,7 @@ $links = "list";
                                                     <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
                                                     <input type="hidden" name="checkImg_<?=$i?>">
                                                     <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                    <span class="img_txt" id="text_ufile<?=$i?>"></span>
+                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
                                                 </div>
                                             <?php 
                                                 endfor; 

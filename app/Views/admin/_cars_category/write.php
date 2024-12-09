@@ -109,47 +109,18 @@
                         </table>
                          
                         <div class="main_depth">
-                            <button type="button" class="btn_01" onclick="add_depth_code(this, 1);">추가</button>
+                            <button type="button" class="btn_01" onclick="add_depth_code(this, 0);">추가</button>
     
                             <div class="depth_1" style="padding-left: 20px;">
                                 <div class="flex__c depth" style="gap: 20px;">
-                                    옵션 
+                                    옵션 1
                                     <div class="flex__c" style="gap: 5px;">
-                                        <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
-                                        <button type="button" class="btn_02" onclick="">-</button>
-                                        <button type="button" class="btn_01" onclick="">+</button>
+                                        <input type="text" name="ca_name" style="width:300px">
+                                        <button type="button" class="btn_02" onclick="remove_depth(this, 1);">-</button>
+                                        <button type="button" class="btn_01" onclick="add_depth_code(this, 1);">+</button>
                                     </div>
                                 </div>
-                                <div class="depth_2" style="padding-left: 20px;">
-                                    <div class="flex__c depth" style="gap: 20px;">
-                                        옵션 
-                                        <div class="flex__c" style="gap: 5px;">
-                                            <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
-                                            <button type="button" class="btn_02" onclick="">-</button>
-                                            <button type="button" class="btn_01" onclick="">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="depth_3" style="padding-left: 20px;">
-                                        <div class="flex__c depth" style="gap: 20px;">
-                                            옵션 
-                                            <div class="flex__c" style="gap: 5px;">
-                                                <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
-                                                <button type="button" class="btn_02" onclick="">-</button>
-                                                <button type="button" class="btn_01" onclick="">+</button>
-                                            </div>
-                                        </div>
-                                        <div class="depth_4" style="padding-left: 20px;">
-                                            <div class="flex__c depth" style="gap: 20px;">
-                                                옵션 
-                                                <div class="flex__c" style="gap: 5px;">
-                                                    <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
-                                                    <button type="button" class="btn_02" onclick="">-</button>
-                                                    <button type="button" class="btn_01" onclick="">+</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>    
+                                
                             </div>                        
                         </div>
                         <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
@@ -208,11 +179,78 @@
 
 <script>
 
+    function add_depth_code(button, depthLevel) {
+
+        const maxDepth = 4;
+
+        if (depthLevel >= maxDepth) {
+            alert('새 레벨을 추가할 수 없습니다. \n 레벨 제한이 4개에 도달했습니다!');
+            return;
+        }
+
+        const parent = button.closest(`.depth_${depthLevel}`) || button.closest('.main_depth');
+        if(!depthLevel){
+            depthLevel = 0;
+        }
+
+        const newDepthLevel = depthLevel + 1;
+        const newDepth = document.createElement('div');
+        newDepth.className = `depth_${newDepthLevel}`;
+        newDepth.style.paddingLeft = '20px';
+        newDepth.innerHTML = `
+            <div class="flex__c depth" style="gap: 20px;">
+                옵션 ${newDepthLevel}
+                <div class="flex__c" style="gap: 5px;">
+                    <input type="text" name="ca_name" style="width:300px">
+                    <button type="button" class="btn_02" onclick="remove_depth(this, ${newDepthLevel});">-</button>
+                    <button type="button" class="btn_01" onclick="add_depth_code(this, ${newDepthLevel});">+</button>
+                </div>
+            </div>
+        `;
+
+        parent.appendChild(newDepth);
+    }
+
+    function remove_depth(button, depthLevel) {
+        if (!confirm('이 레벨과 모든 하위 레벨을 삭제하시겠습니까?')) {
+            return false;
+        }
+
+        const depthToRemove = button.closest(`.depth_${depthLevel}`);
+        if (depthToRemove) {
+            depthToRemove.remove();
+        }
+    }
+
     function send_it_c() {
 
         var frm = document.frm;
 
-        frm.submit();
+        const categories = [];
+
+        // Duyệt qua tất cả các depth
+        $('.main_depth .depth').each(function () {
+            const $this = $(this);
+            const depth = $this.closest('[class^="depth_"]').attr('class').match(/depth_(\d+)/)[1];
+            const ca_name = $this.find('input[name="ca_name"]').val();
+            const parent = $this.closest(`[class^="depth_${depth - 1}"]`).length > 0
+                ? $this.closest(`[class^="depth_${depth - 1}"]`).data('ca_idx')
+                : 0;
+
+            if (ca_name.trim()) {
+                categories.push({
+                    ca_name,
+                    parent_ca_idx: parent || 0,
+                    depth: parseInt(depth),
+                    status: 'Y', // Mặc định trạng thái là hoạt động
+                    is_two_date: 'N', // Mặc định không sử dụng 2 ngày
+                    onum: categories.length + 1, // Tạo thứ tự tự động
+                });
+            }
+        });
+
+        console.log(categories);
+        
     }
 
     function del_it_c(url, g_idx) {
