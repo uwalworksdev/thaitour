@@ -751,31 +751,136 @@ function yoil_convert($day)
     return $yoil;
 }
 
-function GD2_make_thumb($source, $destination, $width, $height)
+// function GD2_make_thumb($source, $destination, $width, $height)
+// {
+//     if (file_exists($source)) {
+//         $image = imagecreatefromjpeg($source);
+
+//         list($original_width, $original_height) = getimagesize($source);
+
+//         if ($original_width > 0 && $original_height > 0) {
+//             $ratio = $original_width / $original_height;
+//             if ($width / $height > $ratio) {
+//                 $width = $height * $ratio;
+//             } else {
+//                 $height = $width / $ratio;
+//             }
+
+//             $thumb = imagecreatetruecolor($width, $height);
+
+//             imagecopyresampled($thumb, $image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
+
+//             imagejpeg($thumb, $destination);
+
+//             imagedestroy($image);
+//             imagedestroy($thumb);
+//         }
+//     }
+// }
+
+function GD2_make_thumb($max_x, $max_y, $dst_name, $src_file)
 {
-    if (file_exists($source)) {
-        $image = imagecreatefromjpeg($source);
+	$img_info = @getimagesize($src_file);
+	$sx = $img_info[0];
+	$sy = $img_info[1];
+	//썸네일 보다 큰가?
+	if ($sx >= $max_x || $sy >= $max_y) {
+		if ($sx > $sy) {
+			$thumb_y = ceil(($sy * $max_x) / $sx);
+			$thumb_x = $max_x;
+		} else {
+			$thumb_x = ceil(($sx * $max_y) / $sy);
+			$thumb_y = $max_y;
+		}
+	} else {
+		$thumb_y = $sy;
+		$thumb_x = $sx;
+	}
+	// JPG 파일인가?
+	if ($img_info[2] == "1") {
+		$_dq_tempFile = basename($src_file);                                //파일명 추출
+		$_dq_tempDir = str_replace($_dq_tempFile, "", $src_file);        //경로 추출
+		$_dq_tempFile = $dst_name;        //경로 + 새 파일명 생성
 
-        list($original_width, $original_height) = getimagesize($source);
+		$_create_thumb_file = true;
+		if (file_exists($_dq_tempFile)) { //섬네일 파일이 이미 존제한다면 이미지의 사이즈 비교
+			$old_img = @getimagesize($_dq_tempFile);
+			if ($old_img[0] != $thumb_x)
+				$_create_thumb_file = true;
+			else
+				$_create_thumb_file = false;
+			if ($old_img[1] != $thumb_y)
+				$_create_thumb_file = true;
+			else
+				$_create_thumb_file = false;
+		}
+		if ($_create_thumb_file) {
+			// 복제
+			$src_img = imagecreatefromgif($src_file);
+			$dst_img = ImageCreateTrueColor($thumb_x, $thumb_y);
+			ImageCopyResampled($dst_img, $src_img, 0, 0, 0, 0, $thumb_x, $thumb_y, $sx, $sy);
+			Imagejpeg($dst_img, $_dq_tempFile, 100);
+			// 메모리 초기화
+			ImageDestroy($dst_img);
+			ImageDestroy($src_img);
+		}
+	}
+	if ($img_info[2] == "2") {
+		$_dq_tempFile = basename($src_file);                                //파일명 추출
+		$_dq_tempDir = str_replace($_dq_tempFile, "", $src_file);        //경로 추출
+		$_dq_tempFile = $dst_name;        //경로 + 새 파일명 생성
 
-        if ($original_width > 0 && $original_height > 0) {
-            $ratio = $original_width / $original_height;
-            if ($width / $height > $ratio) {
-                $width = $height * $ratio;
-            } else {
-                $height = $width / $ratio;
-            }
+		$_create_thumb_file = true;
+		if (file_exists($_dq_tempFile)) { //섬네일 파일이 이미 존제한다면 이미지의 사이즈 비교
+			$old_img = @getimagesize($_dq_tempFile);
+			if ($old_img[0] != $thumb_x)
+				$_create_thumb_file = true;
+			else
+				$_create_thumb_file = false;
+			if ($old_img[1] != $thumb_y)
+				$_create_thumb_file = true;
+			else
+				$_create_thumb_file = false;
+		}
+		if ($_create_thumb_file) {
+			// 복제
+			$src_img = ImageCreateFromjpeg($src_file);
+			$dst_img = ImageCreateTrueColor($thumb_x, $thumb_y);
+			ImageCopyResampled($dst_img, $src_img, 0, 0, 0, 0, $thumb_x, $thumb_y, $sx, $sy);
+			Imagejpeg($dst_img, $_dq_tempFile, 100);
+			// 메모리 초기화
+			ImageDestroy($dst_img);
+			ImageDestroy($src_img);
+		}
+	}
+	if ($img_info[2] == "3") {
+		$_dq_tempFile = basename($src_file);                                //파일명 추출
+		$_dq_tempDir = str_replace($_dq_tempFile, "", $src_file);        //경로 추출
+		$_dq_tempFile = $dst_name;        //경로 + 새 파일명 생성
 
-            $thumb = imagecreatetruecolor($width, $height);
-
-            imagecopyresampled($thumb, $image, 0, 0, 0, 0, $width, $height, $original_width, $original_height);
-
-            imagejpeg($thumb, $destination);
-
-            imagedestroy($image);
-            imagedestroy($thumb);
-        }
-    }
+		$_create_thumb_file = true;
+		if (file_exists($_dq_tempFile)) { //섬네일 파일이 이미 존제한다면 이미지의 사이즈 비교
+			$old_img = @getimagesize($_dq_tempFile);
+			if ($old_img[0] != $thumb_x)
+				$_create_thumb_file = true;
+			else
+				$_create_thumb_file = false;
+			if ($old_img[1] != $thumb_y)
+				$_create_thumb_file = true;
+			else
+				$_create_thumb_file = false;
+		}
+		if ($_create_thumb_file) {
+			// 복제
+			$src_img = imagecreatefrompng($src_file);
+			$dst_img = ImageCreateTrueColor($thumb_x, $thumb_y);
+			ImageCopyResampled($dst_img, $src_img, 0, 0, 0, 0, $thumb_x, $thumb_y, $sx, $sy);
+			Imagejpeg($dst_img, $_dq_tempFile, 100);
+			// 메모리 초기화
+			ImageDestroy($dst_img);
+			ImageDestroy($src_img);
+		}
+	}
 }
 
 function get_img($img, $path, $width, $height, $water = "")
@@ -787,8 +892,10 @@ function get_img($img, $path, $width, $height, $water = "")
     }
     $thumb_img = $thumb_img_path . $img;
     if (!file_exists($thumb_img)) {
-        @GD2_make_thumb($width, $height, $thumb_img, $_SERVER["DOCUMENT_ROOT"] . "/" . $path . "/" . $img);
+        @GD2_make_thumb($width, $height, $thumb_img, $_SERVER["DOCUMENT_ROOT"] . $path . "/" . $img);
     }
+	chmod($_SERVER['DOCUMENT_ROOT'] . $path . "/thum_" . $width . "_" . $height . "/" . $img, 0777);
+
     return $path . "/thum_" . $width . "_" . $height . "/" . $img;
 }
 
