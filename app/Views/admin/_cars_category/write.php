@@ -228,7 +228,6 @@
 
         const categories = [];
 
-        // Duyệt qua tất cả các depth
         $('.main_depth .depth').each(function () {
             const $this = $(this);
             const depth = $this.closest('[class^="depth_"]').attr('class').match(/depth_(\d+)/)[1];
@@ -242,9 +241,9 @@
                     ca_name,
                     parent_ca_idx: parent || 0,
                     depth: parseInt(depth),
-                    status: 'Y', // Mặc định trạng thái là hoạt động
-                    is_two_date: 'N', // Mặc định không sử dụng 2 ngày
-                    onum: categories.length + 1, // Tạo thứ tự tự động
+                    status: 'Y',
+                    is_two_date: 'N',
+                    onum: categories.length + 1,
                 });
             }
         });
