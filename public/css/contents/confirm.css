@@ -315,3 +315,16 @@
     color: var(--bs-point);
     border-color: var(--bs-point) !important;
 }
+
+@media screen and (max-width: 850px) {
+    .customer-form-page .table_container_ .subject_ {
+        border-left: 1px solid #dbdbdb;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .customer-form-page .table_container_ .normal_ {
+        border-right: 1px solid #dbdbdb;
+        border-left: 1px solid #dbdbdb;
+    }
+}
