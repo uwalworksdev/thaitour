@@ -685,10 +685,11 @@ class AjaxController extends BaseController {
 		$m_idx      = time();
         $data       = [];
 
-        $data['id']   = $user_id;
-        $data['name'] = $user_name;
-        $data['idx']  = $m_idx;
-        $data["mIdx"] = $m_idx;
+        $data['id']    = $user_id;
+        $data['name']  = $user_name;
+        $data['idx']   = $m_idx;
+        $data["mIdx"]  = $m_idx;
+		$data['level'] = "99";
 
         session()->set("member", $data);
 
