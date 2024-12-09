@@ -367,7 +367,21 @@
 							<script>
 								// jQuery click event
 								$("#btnLogin02").click(function() {
-								    alert('비회원 로그인');
+								        alert('비회원 로그인');
+										$.ajax({
+											url: "/ajax/memberSession",
+											type: "POST",
+											data: { },
+											dataType: "json",
+											success: function (res) {
+												var message = res.message;
+												location.reload();
+											},
+											error: function (xhr, status, error) {
+												console.error(xhr.responseText); // 서버 응답 내용 확인
+												alert('Error: ' + error);
+											}
+										});
 								});
 							</script>
 

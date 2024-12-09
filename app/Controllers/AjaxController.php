@@ -676,4 +676,15 @@ class AjaxController extends BaseController {
 				]);
 
     }
+
+	public function memberSession()
+    {
+        $data = [];
+
+        $data['id']    = "N_". time();
+
+        session()->set("member", $data);
+
+    }
+	
 }
