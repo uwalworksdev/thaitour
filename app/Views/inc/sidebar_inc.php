@@ -78,7 +78,7 @@
 </div>
 <script>
     function go_link_fn_inc() {
-        window.location.href = "https://channel.io/ko";
+        window.open("https://channel.io/ko", "_blank");
     }
 
     $(document).ready(function () {
