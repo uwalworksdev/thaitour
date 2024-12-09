@@ -1068,7 +1068,7 @@ $links = "list";
                                                     <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
                                                         <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
                                                         <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                        <input type="hidden" class="check_img" name="checkImg_<?=$i?>">
+                                                        <input type="hidden" name="checkImg_<?=$i?>">
                                                         <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
                                                         <span class="img_txt" id="text_ufile<?=$i?>"></span>
                                                     </div>
@@ -1092,7 +1092,7 @@ $links = "list";
                                                 <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
                                                     <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
                                                     <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" class="check_img" name="checkImg_<?=$i?>">
+                                                    <input type="hidden" name="checkImg_<?=$i?>">
                                                     <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
                                                     <span class="img_txt" id="text_ufile<?=$i?>"></span>
                                                 </div>
@@ -1269,7 +1269,7 @@ $links = "list";
 			imageReader.onload = function() {
 				imageTag.style = "background-image:url("+imageReader.result+")";
 				inputFile.closest('.file_input').classList.add('applied');
-				inputFile.closest('.file_input').find(".check_img").value = 'Y';
+				inputFile.closest('.file_input').children[3].value = 'Y';
 			}
 			return imageReader.readAsDataURL(inputFile.files[0]);
 		}
@@ -1280,13 +1280,13 @@ $links = "list";
 	 * @param {element} button
 	 */
 	function productImagePreviewRemove(element) {
-		let inputFile = element.parentNode.children[0];
-		let labelImg = element.parentNode.children[1];
+		let inputFile = element.parentNode.children[1];
+		let labelImg = element.parentNode.children[2];
 
 		inputFile.value = "";
 		labelImg.style = "";
 		element.closest('.file_input').classList.remove('applied');
-		element.closest('.file_input').find(".check_img").value = 'N';
+		element.closest('.file_input').children[3].value = 'N';
 	}
 
 	function sizeAndExtCheck(input) {
