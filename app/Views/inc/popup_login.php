@@ -150,6 +150,14 @@
         font-weight: 500;
     }
 
+    #btnLogin01 {
+
+    }
+
+    #btnLogin02 {
+
+    }
+
     #btnLoginSupMain {
         display: none;
     }
@@ -249,8 +257,12 @@
                                             onclick="openLogin();">로그인
                                     </button>
 
-                                    <button type="button" class="sup_button" onclick="openSupLogin(this);">
+                                    <button type="button" class="sup_button" id="btnLogin01">
                                         비회원 예약확인
+                                    </button>
+
+                                    <button type="button" class="sup_button" id="btnLogin02">
+                                        비회원 예약하기
                                     </button>
                                 </div>
                             </form>
