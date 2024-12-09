@@ -11,9 +11,10 @@
 				$session = session();
 
 				// 가상의 사용자 데이터
+				$id = "N_". time();
 				$userData = [
-					'user_id'   => 12345,  // 가상의 사용자 ID
-					'username'  => 'fake_user',  // 가상의 사용자 이름
+					'id'   => $id,  // 가상의 사용자 ID
+					'name'  => '비회원',  // 가상의 사용자 이름
 					'logged_in' => true,   // 로그인 상태
 				];
 
