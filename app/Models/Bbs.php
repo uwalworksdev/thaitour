@@ -12,9 +12,9 @@ class Bbs extends Model
     protected $primaryKey = 'bbs_idx';
 
     protected $allowedFields = [
-        "code", "category", "category1", "subject", "subject_e", "writer", "email", "user_id", "m_idx", "passwd", "notice_yn", "secure_yn", 
-        "recomm_yn", "contents", "simple", "displays", "hit", "cmt_cnt", "country_code", "url", "s_date", "e_date", "reply", "ufile1", "rfile1", 
-        "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "b_ref", "b_step", "b_level", 
+        "code", "category", "category1", "subject", "subject_e", "writer", "email", "user_id", "m_idx", "passwd", "notice_yn", "secure_yn",
+        "recomm_yn", "contents", "simple", "displays", "hit", "cmt_cnt", "country_code", "url", "s_date", "e_date", "reply", "ufile1", "rfile1",
+        "ufile2", "rfile2", "ufile3", "rfile3", "ufile4", "rfile4", "ufile5", "rfile5", "ufile6", "rfile6", "b_ref", "b_step", "b_level",
         "ip_address", "r_date", "status", "onum", "seq", "encode", "describe"
     ];
 
@@ -23,6 +23,37 @@ class Bbs extends Model
      * * Model 로 페이지네이션 사용용도
      */
     public function List($code, $whereArr = [])
+    {
+        $builder = $this;
+        $builder->select("{$this->table}.*, 
+        (select subject from tbl_bbs_category where tbl_bbs_category.tbc_idx=tbl_bbs_list.category) as scategory,
+        (select count(*) from tbl_bbs_cmt where tbl_bbs_cmt.r_idx=tbl_bbs_list.bbs_idx) as comment_cnt");
+        if (!empty($whereArr['search_word'])) {
+            if (!empty($whereArr['search_mode'])) {
+                $builder->like($whereArr['search_mode'], $whereArr['search_word']);
+            } else {
+                $builder->groupStart();
+                $builder->orLike('subject', $whereArr['search_word']);
+                $builder->orLike('contents', $whereArr['search_word']);
+                $builder->orLike('writer', $whereArr['search_word']);
+                $builder->groupEnd();
+            }
+        }
+        if (!empty($whereArr['category'])) {
+            $builder->where('category', $whereArr['category']);
+        }
+        $builder->where('code', $code);
+        $builder->groupBy("{$this->table}.bbs_idx");
+        $onumCodeArray = ['banner'];
+        if (in_array($code, $onumCodeArray)) {
+            $builder->orderBy("{$this->table}.onum", "DESC");
+        }
+        $builder->orderBy("{$this->table}.bbs_idx", "desc");
+
+        return $builder;
+    }
+
+    public function ListHome($code, $whereArr = [])
     {
         $builder = $this;
         $builder->select("{$this->table}.*, 
@@ -96,17 +127,19 @@ class Bbs extends Model
         $resultArr['result'] = true;
         $resultArr['insertId'] = $insertId;
     }
+
     /**
      * 게시글 업데이트
      * @param int $idx 게시글 식별번호
      * @param string $code 게시글 코드
      * @param array $data 업데이트할 정보
-     * @return boolean 
+     * @return boolean
      */
     public function InfoUpdate($idx, $data)
     {
         return $this->update($idx, $data);
     }
+
     /**
      * 이미지 경로 치환된 내용 재 업데이트
      * @param int $idx 게시판 식별번호
@@ -118,6 +151,7 @@ class Bbs extends Model
         $this->allowedFields = ['content'];
         return $this->update($idx, $data);
     }
+
     /**
      * 우선순위 변경
      */
@@ -127,6 +161,7 @@ class Bbs extends Model
         return $this->where('code', $code)
             ->update($idx, $data);
     }
+
     public function Hit($code, $idx)
     {
         $this->allowedFields = ['hit'];
@@ -134,6 +169,7 @@ class Bbs extends Model
         return $this->where('code', $code)->where('bbs_idx', $idx)
             ->update($idx, ['hit' => $hit + 1]);
     }
+
     public function getLineBanners($category = '123')
     {
         return $this->where('category', $category)->first();
