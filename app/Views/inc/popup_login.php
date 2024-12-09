@@ -22,8 +22,8 @@
         overflow: auto;
         background-color: #FFFFFF;
         width: 100%;
-        min-width: 800px;
-        max-width: 50vw;
+        min-width: 600px;
+        max-width: 40vw;
         padding: 10px 40px 50px;;
         font-size: 14px;
         border: 2px solid #333333;
@@ -250,41 +250,83 @@
                                     </button>
 
                                     <button type="button" class="sup_button" onclick="openSupLogin(this);">
-                                        비회원 예약
+                                        비회원 예약확인
                                     </button>
                                 </div>
                             </form>
 
                             <div class="item_login_" id="loginNoAreaMember">
-                                <div class="box_login">
-                                    <h4>비회원 예약 조회 및 로그인</h4>
-                                    <form name="frmLogin_nomember" method="post" action="#">
-                                        <div class="input_group_">
-                                            <label class="label_inp_">이메일 주소</label>
-                                            <div class="layout_input_">
-                                                <input type="text" name="member/email" data-validate="required,email"
-                                                       title="예약시 입력한 이메일 주소" placeholder="예약시 입력한 이메일 주소를 입력해 주세요">
-                                            </div>
-                                            <label class="label_inp_">예약번호</label>
-                                            <div class="layout_input_">
-                                                <input type="text" name="grpno" id="grpno" maxlength="50"
-                                                       data-validate="required,minlength[4]" title="9자리 숫자"
-                                                       placeholder="9자리 숫자로 된 예약번호를 입력해 주세요">
-                                            </div>
+                                <!--                                <div class="box_login">-->
+                                <!--                                    <h4>비회원 예약 조회 및 로그인</h4>-->
+                                <!--                                    <form name="frmLogin_nomember" method="post" action="#">-->
+                                <!--                                        <div class="input_group_">-->
+                                <!--                                            <label class="label_inp_">이메일 주소</label>-->
+                                <!--                                            <div class="layout_input_">-->
+                                <!--                                                <input type="text" name="member/email" data-validate="required,email"-->
+                                <!--                                                       title="예약시 입력한 이메일 주소" placeholder="예약시 입력한 이메일 주소를 입력해 주세요">-->
+                                <!--                                            </div>-->
+                                <!--                                            <label class="label_inp_">예약번호</label>-->
+                                <!--                                            <div class="layout_input_">-->
+                                <!--                                                <input type="text" name="grpno" id="grpno" maxlength="50"-->
+                                <!--                                                       data-validate="required,minlength[4]" title="9자리 숫자"-->
+                                <!--                                                       placeholder="9자리 숫자로 된 예약번호를 입력해 주세요">-->
+                                <!--                                            </div>-->
+                                <!--                                        </div>-->
+                                <!--                                        <p>※ 비회원 로그인 후 추가 예약이 가능해요.</p>-->
+                                <!--                                        <div class="btn_login">-->
+                                <!--                                            <button type="button" class="btnNoLogin" onclick="login_nomember_login();">-->
+                                <!--                                                로그인-->
+                                <!--                                            </button>-->
+                                <!--                                        </div>-->
+                                <!--                                    </form>-->
+                                <!--                                </div>-->
+                                <!---->
+                                <!--                                <div class="nomember_wrap">-->
+                                <!--                                    <p>비회원은 포인트 적립, 크레이지 세일 예약, 이벤트 참여, 쿠폰 사용이 불가능해요.</p>-->
+                                <!--                                    <a href="#" onclick="submitNoMember();" class="btn_nomember">비회원으로 예약하기</a>-->
+                                <!--                                </div>-->
+                                <div class="input-group">
+                                    <form action="/mypage/trabel_goods_non.php" id="resulrForm" name="frm2"
+                                          method="post" class="login_form02">
+                                        <div class="input-row">
+                                            <input type="text" name="order_no" id="order_no" class="bs-input"
+                                                   placeholder="예약번호를 입력하세요.">
                                         </div>
-                                        <p>※ 비회원 로그인 후 추가 예약이 가능해요.</p>
-                                        <div class="btn_login">
-                                            <button type="button" class="btnNoLogin" onclick="login_nomember_login();">
-                                                로그인
-                                            </button>
+                                        <div class="input-row">
+                                            <input type="text" name="order_user_name" id="order_user_name"
+                                                   class="bs-input" placeholder="이름을 입력하세요.">
+                                        </div>
+                                        <div class="input-row">
+                                            <div class="tel_row">
+                                                <select name="order_user_mobile1" id="order_user_mobile1"
+                                                        class="bs-select">
+                                                    <option value="010">010</option>
+                                                    <option value="011">011</option>
+                                                    <option value="016">016</option>
+                                                    <option value="017">017</option>
+                                                    <option value="018">018</option>
+                                                    <option value="019">019</option>
+                                                </select>
+                                                <span>-</span>
+                                                <input type="tel" name="order_user_mobile2" id="order_user_mobile2"
+                                                       class="bs-input">
+                                                <span>-</span>
+                                                <input type="tel" name="order_user_mobile3" id="order_user_mobile3"
+                                                       class="bs-input">
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
-
-                                <div class="nomember_wrap">
-                                    <p>비회원은 포인트 적립, 크레이지 세일 예약, 이벤트 참여, 쿠폰 사용이 불가능해요.</p>
-                                    <a href="#" onclick="submitNoMember();" class="btn_nomember">비회원으로 예약하기</a>
+                                <div class="btn-wrap">
+                                    <button type="button" class="btn btn-lg btn-point tab_2" onclick="go_result2();">
+                                        예약확인
+                                    </button>
                                 </div>
+
+
+                                <form id="check_pass_form" name="check_pass_form" method="post">
+                                    <input type="hidden" value="" name="check_pass" id="check_pass_input">
+                                </form>
                             </div>
 
                             <div class="sns_login_ttl">
@@ -313,52 +355,6 @@
 
                         </div>
                         <!-- // 회원 // -->
-
-                        <!-- 비회원 -->
-                        <div class="login_box">
-                            <div class="input-group">
-
-
-                                <form action="/mypage/trabel_goods_non.php" id="resulrForm" name="frm2" method="post"
-                                      class="login_form02">
-                                    <div class="input-row">
-                                        <input type="text" name="order_no" id="order_no" class="bs-input"
-                                               placeholder="예약번호를 입력하세요.">
-                                    </div>
-                                    <div class="input-row">
-                                        <input type="text" name="order_user_name" id="order_user_name" class="bs-input"
-                                               placeholder="이름을 입력하세요.">
-                                    </div>
-                                    <div class="input-row">
-                                        <div class="tel_row">
-                                            <select name="order_user_mobile1" id="order_user_mobile1" class="bs-select">
-                                                <option value="010">010</option>
-                                                <option value="011">011</option>
-                                                <option value="016">016</option>
-                                                <option value="017">017</option>
-                                                <option value="018">018</option>
-                                                <option value="019">019</option>
-                                            </select>
-                                            <span>-</span>
-                                            <input type="tel" name="order_user_mobile2" id="order_user_mobile2"
-                                                   class="bs-input">
-                                            <span>-</span>
-                                            <input type="tel" name="order_user_mobile3" id="order_user_mobile3"
-                                                   class="bs-input">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="btn-wrap">
-                                <button type="button" class="btn btn-lg btn-point tab_2" onclick="go_result2();">예약확인
-                                </button>
-                            </div>
-
-
-                            <form id="check_pass_form" name="check_pass_form" method="post">
-                                <input type="hidden" value="" name="check_pass" id="check_pass_input">
-                            </form>
-                        </div>
                     </section>
                 </div>
             </main>
@@ -404,6 +400,28 @@
 
     function login_nomember_login() {
 
+    }
+
+    function login_it2() {
+        if (loginForm2.user_id.value == false) {
+            loginForm2.user_id.focus();
+            alert("아이디을 바르게 입력하셔야 합니다.");
+            return;
+        }
+
+        if (loginForm2.user_pw.value == "") {
+            loginForm2.user_pw.focus();
+            alert("패스워드를 입력하셔야 합니다.");
+            return;
+        }
+
+        $("#loginFrm2").submit();
+    }
+
+    function press_it2() {
+        if (event.keyCode == 13) {
+            login_it2();
+        }
     }
 
     function go_result2() {
@@ -483,27 +501,5 @@
             }
         });
 
-    }
-
-    function login_it2() {
-        if (loginForm2.user_id.value == false) {
-            loginForm2.user_id.focus();
-            alert("아이디을 바르게 입력하셔야 합니다.");
-            return;
-        }
-
-        if (loginForm2.user_pw.value == "") {
-            loginForm2.user_pw.focus();
-            alert("패스워드를 입력하셔야 합니다.");
-            return;
-        }
-
-        $("#loginFrm2").submit();
-    }
-
-    function press_it2() {
-        if (event.keyCode == 13) {
-            login_it2();
-        }
     }
 </script>
