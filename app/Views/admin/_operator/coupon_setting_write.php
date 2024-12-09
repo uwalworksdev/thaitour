@@ -154,7 +154,7 @@ if ($idx) {
                                     <td>
                                         <input type="text" id="coupon_price" name="coupon_price"
                                                value="<?= isset($row) ? $row['coupon_price'] : '' ?>"
-                                               style="width:100px;" class="input_txt onlynum"/> 원
+                                               style="width:100px;" class="input_txt onlynum"/> 바트
                                     </td>
                                 </tr>
 
