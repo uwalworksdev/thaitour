@@ -684,6 +684,12 @@ class AjaxController extends BaseController {
         $user_id    = "N_". time();
         setcookie("c_userId", $user_id, time() + 86000 * 365, '/');
 
+			return $this->response
+				->setStatusCode(200)
+				->setJSON([
+					'status'  => 'success',
+					'message' => '비회원 로그인'
+				]);
     }
 	
 }
