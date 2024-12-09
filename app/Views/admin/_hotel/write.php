@@ -1,9 +1,9 @@
 <?php
 
-use App\Controllers\Admin\AdminHotelController;
+    use App\Controllers\Admin\AdminHotelController;
 
-$formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
-
+    $formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
+    helper("my_helper");
 ?>
 
 <?= $this->extend("admin/inc/layout_admin") ?>
@@ -1036,6 +1036,70 @@ $links = "list";
                             </table>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
+                                style="margin-top:50px;">
+                                <caption>
+                                </caption>
+                                <colgroup>
+                                    <col width="10%" />
+                                    <col width="90%" />
+                                </colgroup>
+                                <tbody>
+
+                                    <tr height="45">
+                                        <td colspan="2">
+                                            이미지 등록
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>대표이미지(600X400)</th>
+                                        <td colspan="3">
+
+                                            <div class="img_add">
+                                                <?php 
+                                                    for($i = 1; $i <= 1; $i++) : 
+                                                        $img = get_img(${"ufile" . $i}, "/public/data/product/", "200", "200");
+                                                ?>
+                                                    <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                        <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                        <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                        <input type="hidden" name="checkImg_<?=$i?>">
+                                                        <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                        <span class="img_txt" id="text_ufile<?=$i?>"></span>
+                                                    </div>
+                                                <?php 
+                                                    endfor; 
+                                                ?>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>서브이미지(600X400) </th>
+                                        <td colspan="3">
+                                            <div class="img_add">
+                                            <?php 
+                                                for($i = 2; $i <= 7; $i++) : 
+                                                    $img = get_img(${"ufile" . $i}, "/public/data/product/", "200", "200");
+                                            ?>
+                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                    <input type="hidden" name="checkImg_<?=$i?>">
+                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                    <span class="img_txt" id="text_ufile<?=$i?>"></span>
+                                                </div>
+                                            <?php 
+                                                endfor; 
+                                            ?>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
                                    style="margin-top:50px;">
                                 <caption>
                                 </caption>
@@ -1089,7 +1153,7 @@ $links = "list";
                                     </tr>
                                 <?php } ?>
                                 </tbody>
-                            </table>
+                            </table> -->
                         </div>
                     </form>
 
@@ -1184,6 +1248,65 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
+<script>
+    function productImagePreview(inputFile, onum) {
+		if(sizeAndExtCheck(inputFile) == false) {
+			inputFile.value = "";
+			return false;
+		}
 
+		let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+
+		if(inputFile.files.length > 0) {
+			let imageReader     = new FileReader();
+
+			imageReader.onload = function() {
+				imageTag.style = "background-image:url("+imageReader.result+")";
+				inputFile.closest('.file_input').classList.add('applied');
+				inputFile.closest('.file_input').children[2].value = 'Y';
+			}
+			return imageReader.readAsDataURL(inputFile.files[0]);
+		}
+	}
+
+	/**
+	 * 상품 이미지 삭제
+	 * @param {element} button
+	 */
+	function productImagePreviewRemove(element) {
+		let inputFile = element.parentNode.children[0];
+		let labelImg = element.parentNode.children[1];
+
+		inputFile.value = "";
+		labelImg.style = "";
+		element.closest('.file_input').classList.remove('applied');
+		element.closest('.file_input').children[2].value = 'N';
+	}
+
+	function sizeAndExtCheck(input) {
+		let fileSize        = input.files[0].size;
+		let fileName        = input.files[0].name;
+
+		// 20MB
+		let megaBite        = 20;
+		let maxSize         = 1024 * 1024 * megaBite;
+
+		if(fileSize > maxSize) {
+			alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+			return false;
+		}
+		
+		let fileNameLength  = fileName.length;
+		let findExtension   = fileName.lastIndexOf('.');
+		let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+		if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+			alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+			return false;
+		}
+
+		return true;
+	}
+</script>
     <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>

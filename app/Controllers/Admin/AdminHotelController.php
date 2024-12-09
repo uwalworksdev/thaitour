@@ -248,7 +248,11 @@ class AdminHotelController extends BaseController
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
-                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                // if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                //     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                // }
+
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} === "N") {
                     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
 

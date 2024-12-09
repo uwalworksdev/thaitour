@@ -7,6 +7,14 @@
     .btn_01 {
         height: 32px !important;
     }
+    .depth_1 {
+        border: 1px solid #ccc;  
+        margin-top: 20px;   
+    }
+
+    .depth {
+        padding: 10px 0;
+    }
 </style>
 <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 <script type="text/javascript" src="/js/admin/tours/write.js"></script>
@@ -100,17 +108,29 @@
                             </tbody>
                         </table>
                          
-                        <button type="button" class="btn_01">추가</button>
-
-                        <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
-                            <!-- <colgroup>
-                                <col width="10%">
-                                <col width="90%">
-                            </colgroup> -->
-                            <tbody>
-                                <tr height="45">
-                                    <th>
-                                        <div class="flex__c" style="gap: 20px;">
+                        <div class="main_depth">
+                            <button type="button" class="btn_01" onclick="add_depth_code(this, 1);">추가</button>
+    
+                            <div class="depth_1" style="padding-left: 20px;">
+                                <div class="flex__c depth" style="gap: 20px;">
+                                    옵션 
+                                    <div class="flex__c" style="gap: 5px;">
+                                        <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
+                                        <button type="button" class="btn_02" onclick="">-</button>
+                                        <button type="button" class="btn_01" onclick="">+</button>
+                                    </div>
+                                </div>
+                                <div class="depth_2" style="padding-left: 20px;">
+                                    <div class="flex__c depth" style="gap: 20px;">
+                                        옵션 
+                                        <div class="flex__c" style="gap: 5px;">
+                                            <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
+                                            <button type="button" class="btn_02" onclick="">-</button>
+                                            <button type="button" class="btn_01" onclick="">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="depth_3" style="padding-left: 20px;">
+                                        <div class="flex__c depth" style="gap: 20px;">
                                             옵션 
                                             <div class="flex__c" style="gap: 5px;">
                                                 <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
@@ -118,6 +138,25 @@
                                                 <button type="button" class="btn_01" onclick="">+</button>
                                             </div>
                                         </div>
+                                        <div class="depth_4" style="padding-left: 20px;">
+                                            <div class="flex__c depth" style="gap: 20px;">
+                                                옵션 
+                                                <div class="flex__c" style="gap: 5px;">
+                                                    <input type="text" name="moption_name" id="moption_name_154" value="옵션 1" style="width:300px">
+                                                    <button type="button" class="btn_02" onclick="">-</button>
+                                                    <button type="button" class="btn_01" onclick="">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>    
+                            </div>                        
+                        </div>
+                        <!-- <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail" style="margin-top:50px;">
+                            <tbody>
+                                <tr height="45">
+                                    <th>
+                                        
                                     </th>
                                 </tr> 
                                 <tr height="45">
@@ -133,7 +172,7 @@
                                     </th>
                                 </tr>                
                             </tbody>
-                        </table>
+                        </table> -->
                     </div>
                 </form>
 
