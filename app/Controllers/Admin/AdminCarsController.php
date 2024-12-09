@@ -144,9 +144,13 @@ class AdminCarsController extends BaseController
             for ($i = 1; $i <= 7; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
 
-                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
                     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
                 }
+                // if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                //     $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+                // }
 
                 if (isset($file) && $file->isValid() && !$file->hasMoved()) {
                     $data["rfile$i"] = $file->getClientName();

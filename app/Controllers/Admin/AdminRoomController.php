@@ -129,14 +129,15 @@ class AdminRoomController extends BaseController
 
             for ($i = 1; $i <= 6; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
-                if (isset(${"del_" . $i}) && ${"del_" . $i} == "Y") {
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
                     $sql = "
-			UPDATE tbl_room SET
-			ufile" . $i . "='',
-			rfile" . $i . "=''
-			WHERE g_idx='$g_idx'
-		";
+                        UPDATE tbl_room SET
+                        ufile" . $i . "='',
+                        rfile" . $i . "=''
+                        WHERE g_idx='$g_idx'
+                    ";
                     $this->connect->query($sql);
 
                 } elseif (isset($file) && $file->isValid() && !$file->hasMoved()) {

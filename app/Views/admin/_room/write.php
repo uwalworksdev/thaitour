@@ -1,24 +1,28 @@
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
 
-    <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
 
 <?php
 
-if ($g_idx && $row) {
-    foreach ($row as $keys => $vals) {
-        //echo $keys . " => " . $vals . "<br/>";
-        ${$keys} = $vals;
+    if ($g_idx && $row) {
+        foreach ($row as $keys => $vals) {
+            //echo $keys . " => " . $vals . "<br/>";
+            ${$keys} = $vals;
 
+        }
     }
-}
-$idx = $g_idx;
-$titleStr = "룸 수정";
-$links = "list";
+    $idx = $g_idx;
+    $titleStr = "룸 수정";
+    $links = "list";
 
 ?>
 
-
+<style>
+    .img_add #input_file_ko {
+        display: none;
+    }
+</style>
     <div id="container">
         <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -155,7 +159,7 @@ $links = "list";
                                 </tr>
 
 
-                                <?php for ($i = 1; $i <= 3; $i++) { ?>
+                                <!-- <?php for ($i = 1; $i <= 3; $i++) { ?>
                                     <tr>
                                         <th>이미지<?= $i ?>(600X400)</th>
                                         <td colspan="3">
@@ -174,7 +178,29 @@ $links = "list";
 
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php } ?> -->
+                                <tr>
+                                    <th>서브이미지(600X400) </th>
+                                    <td colspan="3">
+                                        <div class="img_add">
+                                        <?php 
+                                            for($i = 1; $i <= 3; $i++) : 
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                        ?>
+                                            <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                <input type="hidden" name="checkImg_<?=$i?>">
+                                                <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                            </div>
+                                        <?php 
+                                            endfor; 
+                                        ?>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
@@ -214,6 +240,64 @@ $links = "list";
 
     <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
     <script>
+        function productImagePreview(inputFile, onum) {
+            if(sizeAndExtCheck(inputFile) == false) {
+                inputFile.value = "";
+                return false;
+            }
+
+            let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+
+            if(inputFile.files.length > 0) {
+                let imageReader     = new FileReader();
+
+                imageReader.onload = function() {
+                    imageTag.style = "background-image:url("+imageReader.result+")";
+                    inputFile.closest('.file_input').classList.add('applied');
+                    inputFile.closest('.file_input').children[3].value = 'Y';
+                }
+                return imageReader.readAsDataURL(inputFile.files[0]);
+            }
+        }
+
+        /**
+         * 상품 이미지 삭제
+         * @param {element} button
+         */
+        function productImagePreviewRemove(element) {
+            let inputFile = element.parentNode.children[1];
+            let labelImg = element.parentNode.children[2];
+
+            inputFile.value = "";
+            labelImg.style = "";
+            element.closest('.file_input').classList.remove('applied');
+            element.closest('.file_input').children[3].value = 'N';
+        }
+
+        function sizeAndExtCheck(input) {
+            let fileSize        = input.files[0].size;
+            let fileName        = input.files[0].name;
+
+            // 20MB
+            let megaBite        = 20;
+            let maxSize         = 1024 * 1024 * megaBite;
+
+            if(fileSize > maxSize) {
+                alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+                return false;
+            }
+            
+            let fileNameLength  = fileName.length;
+            let findExtension   = fileName.lastIndexOf('.');
+            let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+            if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+                alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+                return false;
+            }
+
+            return true;
+        }
         function send_it() {
             var frm = document.frm;
 

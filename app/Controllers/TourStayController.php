@@ -487,8 +487,9 @@ class TourStayController extends BaseController
 
             for ($i = 1; $i <= 5; $i++) {
                 $file = isset($files["ufile" . $i]) ? $files["ufile" . $i] : null;
+                ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
 
-                if (isset(${"del_" . $i}) && ${"del_" . $i} === "Y") {
+                if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
                     $sql = "UPDATE tbl_product_stay SET 
                             ufile" . $i . "='',
                             rfile" . $i . "=''

@@ -39,7 +39,7 @@
 					</colgroup>
 					<tbody>
 						<tr height=45>
-							<th>상품정보 [단위 : KRW]</th>
+							<th>상품정보 [단위 : 바트]</th>
 							<td>
 								<div style="margin:10px; display: flex; gap: 5px">
 									<a href="javascript:add_table();" class="btn btn-primary">추가</a>

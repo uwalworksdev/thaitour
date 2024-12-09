@@ -310,6 +310,12 @@ class TourRegistController extends BaseController
 
         $files = $this->request->getFiles();
         for ($i = 1; $i <= 7; $i++) {
+            ${"checkImg_" . $i} = $this->request->getPost("checkImg_" . $i);
+
+            if (isset(${"checkImg_" . $i}) && ${"checkImg_" . $i} == "N") {
+                $this->productModel->update($product_idx, ['ufile' . $i => '', 'rfile' . $i => '']);
+            }
+
             $file = $files['ufile' . $i];
             if ($file->isValid() && !$file->hasMoved()) {
                 $name = $file->getClientName();

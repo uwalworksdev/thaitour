@@ -16,6 +16,11 @@
 
 ?>
 
+<style>
+    .img_add #input_file_ko {
+        display: none;
+    }
+</style>
 <div id="container">
     <div id="print_this"><!-- 인쇄영역 시작 //-->
 
@@ -168,7 +173,7 @@
                                     <td>
                                         <input type="text" id="coupon_price" name="coupon_price"
                                                 value="<?= isset($coupon_price) ? $coupon_price : '' ?>"
-                                                style="width:100px;" class="input_txt onlynum"/> 원
+                                                style="width:100px;" class="input_txt onlynum"/> 바트
                                     </td>
                                 </tr>
 
@@ -269,6 +274,55 @@
                                     <th>대표이미지(600X400)</th>
                                     <td colspan="3">
 
+                                        <div class="img_add">
+                                            <?php 
+                                                for($i = 1; $i <= 1; $i++) : 
+                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                    // $img ="/data/product/" . ${"ufile" . $i};
+                                            ?>
+                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                    <input type="hidden" name="checkImg_<?=$i?>">
+                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+
+                                                </div>
+                                            <?php 
+                                                endfor; 
+                                            ?>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>서브이미지(600X400) </th>
+                                    <td colspan="3">
+                                        <div class="img_add">
+                                        <?php 
+                                            for($i = 2; $i <= 7; $i++) : 
+                                                $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
+                                                // $img ="/data/product/" . ${"ufile" . $i};
+                                        ?>
+                                            <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                <input type="hidden" name="checkImg_<?=$i?>">
+                                                <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                            </div>
+                                        <?php 
+                                            endfor; 
+                                        ?>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- <tr>
+                                    <th>대표이미지(600X400)</th>
+                                    <td colspan="3">
+
                                         <input type="file" name="ufile1" class="bbs_inputbox_pixel"
                                                 style="width:500px;margin-bottom:10px"/>
                                         <?php if (isset($ufile1) && $ufile1 !== "") { ?>
@@ -300,7 +354,7 @@
 
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php } ?> -->
                             </tbody>
                         </table>
                     </div>
@@ -405,6 +459,65 @@
     
 </script>
 <script type="text/javascript">
+    function productImagePreview(inputFile, onum) {
+		if(sizeAndExtCheck(inputFile) == false) {
+			inputFile.value = "";
+			return false;
+		}
+
+		let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+
+		if(inputFile.files.length > 0) {
+			let imageReader     = new FileReader();
+
+			imageReader.onload = function() {
+				imageTag.style = "background-image:url("+imageReader.result+")";
+				inputFile.closest('.file_input').classList.add('applied');
+				inputFile.closest('.file_input').children[3].value = 'Y';
+			}
+			return imageReader.readAsDataURL(inputFile.files[0]);
+		}
+	}
+
+	/**
+	 * 상품 이미지 삭제
+	 * @param {element} button
+	 */
+	function productImagePreviewRemove(element) {
+		let inputFile = element.parentNode.children[1];
+		let labelImg = element.parentNode.children[2];
+
+		inputFile.value = "";
+		labelImg.style = "";
+		element.closest('.file_input').classList.remove('applied');
+		element.closest('.file_input').children[3].value = 'N';
+	}
+
+	function sizeAndExtCheck(input) {
+		let fileSize        = input.files[0].size;
+		let fileName        = input.files[0].name;
+
+		// 20MB
+		let megaBite        = 20;
+		let maxSize         = 1024 * 1024 * megaBite;
+
+		if(fileSize > maxSize) {
+			alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+			return false;
+		}
+		
+		let fileNameLength  = fileName.length;
+		let findExtension   = fileName.lastIndexOf('.');
+		let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+
+		if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+			alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+			return false;
+		}
+
+		return true;
+	}
+    
     function get_code(strs, depth) {
         $.ajax({
             type: "GET"
