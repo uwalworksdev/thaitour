@@ -437,7 +437,8 @@ $searchTxt = $SearchText->List()->findAll();
                                         <span> 원</span></div>
                                     <div class="prd_price_thai"><?= number_format($item2['product_price']) ?>
                                         <span>바트</span>
-                                    </div></a>
+                                    </div>
+                                </a>
                             </div>
                         <?php endforeach; ?>
                     </div>
@@ -666,7 +667,8 @@ $searchTxt = $SearchText->List()->findAll();
                                     <div class="prd_price_thai"><?= number_format($item3['product_price']) ?>
                                         <span>바트</span>
                                     </div>
-<!--                                    <span class="number_item_label number_one">--><?php //= $seq ?><!--</span>-->
+                                    <!--                                    <span class="number_item_label number_one">-->
+                                    <?php //= $seq ?><!--</span>-->
                                 </a>
                             </div>
                         <?php endforeach; ?>
@@ -1029,7 +1031,7 @@ $searchTxt = $SearchText->List()->findAll();
             <div class="magazine_swiper swiper">
                 <div class="swiper-wrapper">
                     <?php foreach ($magazines as $magazine): ?>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide magazine_item_">
                             <a href="/magazines/detail?m_idx=<?= $magazine['bbs_idx'] ?>">
                                 <div class="img_box img_box_8 ">
                                     <img src="/data/bbs/<?= $magazine['ufile1'] ?>" alt="main">
