@@ -13,6 +13,10 @@
         .btn_01 {
             height: 32px !important;
         }
+
+        .img_add #input_file_ko {
+            display: none;
+        }
     </style>
     <script type="text/javascript" src="/smarteditor/js/HuskyEZCreator.js"></script>
     <script type="text/javascript" src="/js/admin/tours/write.js"></script>
