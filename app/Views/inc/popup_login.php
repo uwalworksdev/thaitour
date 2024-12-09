@@ -369,21 +369,20 @@
 								$("#btnLogin02").click(function() {
 
 										$.ajax({
-
 											url: "/ajax/memberSession",
 											type: "POST",
-											data: {},
+											data: {
+												
+											},
 											dataType: "json",
-											async: false,
-											cache: false,
-											success: function(rs) {
-												const data  = JSON.parse(rs);
-												var message = data.message;
+											success: function (res) {
+												var message = res.message;
 												alert(message);
 												location.reload();
 											},
-											error:function(request,status,error){
-												alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+											error: function (xhr, status, error) {
+												console.error(xhr.responseText); // 서버 응답 내용 확인
+												alert('Error: ' + error);
 											}
 										});
 								});
