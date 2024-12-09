@@ -2817,6 +2817,12 @@ class Product extends BaseController
         }
     }
 
+    public function micePage()
+    {
+        return $this->renderView('/community/mice-page');
+    }
+
+
     public function filterVehicle()
     {
         try {
