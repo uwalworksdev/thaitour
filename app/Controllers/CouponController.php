@@ -50,6 +50,8 @@ class CouponController extends BaseController
     public function coupon_view() {
         $idx = $this->request->getVar("idx");
 
+        $user_id = session()->get("member")["id"];
+
         $coupon = $this->couponMst->find($idx);
         $coupon_product = $this->couponProduct->where("coupon_idx", $idx)->findAll();
         $coupon["coupon_product_cnt"] = count($coupon_product);
@@ -74,6 +76,17 @@ class CouponController extends BaseController
 
         $coupon["member_grade_name"] = $this->memberGrade->where("g_idx", $coupon["member_grade"])->first()["grade_name"];
         $coupon["coupon_contents"] = viewSQ($coupon["coupon_contents"]);
+
+        $is_use = false;
+
+        if(!empty($user_id)){
+            if(createCouponMemberChk($idx, $user_id) >= 1){
+                $is_use = true;
+            }
+        }
+
+        $coupon["is_use"] = $is_use;
+
         return $this->response->setJSON($coupon);
     }
 

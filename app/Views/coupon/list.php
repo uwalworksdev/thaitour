@@ -361,6 +361,16 @@
             },
             success: function(res) {
                 let data = res;
+                let text_use = "";
+
+                if(data["is_use"]){
+                    $(".popup_coupon .info_download button p").text("쿠폰 다운로드 완료");
+                    $(".popup_coupon .info_download button").prop('disabled', true);
+                }else{
+                    $(".popup_coupon .info_download button p").text("쿠폰 다운받기");
+                    $(".popup_coupon .info_download button").prop('disabled', false);
+                }
+
 
                 let avatar_info = "";
                 if(data["ufile1"]){
