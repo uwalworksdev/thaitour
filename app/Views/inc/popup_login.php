@@ -367,19 +367,20 @@
 							<script>
 								// jQuery click event
 								$("#btnLogin02").click(function() {
-								        alert('비회원 로그인');
+
 										$.ajax({
-											url: "/ajax/memberSession",
+
+											url: "/ajax//ajax/memberSession",
 											type: "POST",
-											data: { },
-											dataType: "json",
-											success: function (res) {
-												var message = res.message;
+											data: {},
+											success: function(rs) {
+												const data  = JSON.parse(rs);
+												var message = data.message;
+												alert(message);
 												location.reload();
 											},
-											error: function (xhr, status, error) {
-												console.error(xhr.responseText); // 서버 응답 내용 확인
-												alert('Error: ' + error);
+											error:function(request,status,error){
+												alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 											}
 										});
 								});
