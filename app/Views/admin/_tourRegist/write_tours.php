@@ -527,7 +527,7 @@
 
 
                                 <tr>
-                                    <th>기존상품가(단위: KRW)</th>
+                                    <th>기존상품가(단위: 바트)</th>
                                     <td>
                                         <input id="original_price" name="original_price" class="input_txt price"
                                                type="text"
@@ -1194,7 +1194,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th>옵션명</th>
-                                                            <th>가격(단위: KRW)</th>
+                                                            <th>가격(단위: 바트)</th>
                                                             <th>적용</th>
                                                             <th>순서</th>
                                                             <th>삭제</th>

@@ -190,15 +190,15 @@
                                                     구분
                                                 </td>
                                                 <td style="text-align:center">
-                                                    대인가격(원)
+                                                    대인가격(바트)
                                                     <input type="checkbox" name="" id="adult_price">전체
                                                 </td>
                                                 <td style="text-align:center">
-                                                    소인가격(원)
+                                                    소인가격(바트)
                                                     <input type="checkbox" name="" id="kids_price">전체
                                                 </td>
                                                 <td style="text-align:center">
-                                                    경로가격(원)
+                                                    경로가격(바트)
                                                     <input type="checkbox" name="" id="senior_price">전체
                                                 </td>
                                                 <td style="text-align:center">

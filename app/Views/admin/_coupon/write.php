@@ -173,7 +173,7 @@
                                     <td>
                                         <input type="text" id="coupon_price" name="coupon_price"
                                                 value="<?= isset($coupon_price) ? $coupon_price : '' ?>"
-                                                style="width:100px;" class="input_txt onlynum"/> 원
+                                                style="width:100px;" class="input_txt onlynum"/> 바트
                                     </td>
                                 </tr>
 

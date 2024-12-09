@@ -364,6 +364,28 @@
                                 <span>SNS 로그인</span>
                             </div>
 
+							<script>
+								// jQuery click event
+								$("#btnLogin02").click(function() {
+
+										$.ajax({
+
+											url: "/ajax/memberSession",
+											type: "POST",
+											data: {},
+											success: function(rs) {
+												const data  = JSON.parse(rs);
+												var message = data.message;
+												alert(message);
+												location.reload();
+											},
+											error:function(request,status,error){
+												alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
+											}
+										});
+								});
+							</script>
+
                             <script>
                                 //네이버 로그인
                                 function fnNaverLogin2() {

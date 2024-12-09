@@ -435,6 +435,7 @@ $routes->group("ajax", static function ($routes) {
     $routes->post("golf_price_allupdate", "AjaxController::golf_price_allupdate");
     $routes->get("get_coupon_list", "CouponController::get_coupon_list");
     $routes->get("coupon_view", "CouponController::coupon_view");
+    $routes->get("memberSession", "AjaxController::memberSession");
 
 });
 
@@ -624,6 +625,7 @@ $routes->group("coupon", static function ($routes) {
 
 $routes->get('product/(:any)/(:any)', 'Product::index/$1/$2');
 $routes->get('product_search', 'Product::productSearch');
+$routes->get('mice-page', 'Product::micePage');
 $routes->get('ticket/completed-order', 'Product::ticketCompleted');
 $routes->get('ticket/ticket-booking', 'Product::ticketBooking');
 $routes->get('ticket/ticket-detail/(:any)', 'Product::ticketDetail/$1');

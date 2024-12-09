@@ -267,7 +267,7 @@ $links = "list";
                                 <td colspan="3">
                                     <input type="text" name="original_price" id="original_price" class="onlynum"
                                             style="text-align:right;width: 200px;"
-                                            value="<?= $original_price ?? "" ?>"/> 원
+                                            value="<?= $original_price ?? "" ?>"/> 바트
                                 </td>
                             </tr>
 
@@ -276,7 +276,7 @@ $links = "list";
                                 <td colspan="3">
                                     <input type="text" name="product_price" id="product_price" class="onlynum"
                                             style="text-align:right;width: 200px;"
-                                            value="<?= $product_price ?? "" ?>"/> 원
+                                            value="<?= $product_price ?? "" ?>"/> 바트
                                 </td>
                             </tr>
 
