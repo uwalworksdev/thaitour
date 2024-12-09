@@ -18,7 +18,7 @@
 
     .popup_area_ {
         height: auto;
-        max-height: 80vh;
+        max-height: 90vh;
         overflow: auto;
         background-color: #FFFFFF;
         width: 100%;
