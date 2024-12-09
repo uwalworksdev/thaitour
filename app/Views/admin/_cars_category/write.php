@@ -222,33 +222,38 @@
         }
     }
 
+    function buildCategoryTree($container) {
+        const categories = [];
+
+        $container.children('.depth').each(function () {
+            const $this = $(this);
+
+            const ca_name = $this.find('input[name="ca_name"]').val();
+
+            const $childrenContainer = $this.siblings(`[class^="depth_"]`);
+
+            const category = {
+                ca_name: ca_name.trim(),
+                depth: parseInt($this.closest('[class^="depth_"]').attr('class').match(/depth_(\d+)/)[1]),
+                children: []
+            };
+
+            if ($childrenContainer.length > 0) {
+                category.children = buildCategoryTree($childrenContainer);
+            }
+
+            categories.push(category);
+        });
+
+        return categories;
+    }
+
     function send_it_c() {
 
         var frm = document.frm;
 
-        const categories = [];
-
-        $('.main_depth .depth').each(function () {
-            const $this = $(this);
-            const depth = $this.closest('[class^="depth_"]').attr('class').match(/depth_(\d+)/)[1];
-            const ca_name = $this.find('input[name="ca_name"]').val();
-            const parent = $this.closest(`[class^="depth_${depth - 1}"]`).length > 0
-                ? $this.closest(`[class^="depth_${depth - 1}"]`).data('ca_idx')
-                : 0;
-
-            if (ca_name.trim()) {
-                categories.push({
-                    ca_name,
-                    parent_ca_idx: parent || 0,
-                    depth: parseInt(depth),
-                    status: 'Y',
-                    is_two_date: 'N',
-                    onum: categories.length + 1,
-                });
-            }
-        });
-
-        console.log(categories);
+        const treeData = buildCategoryTree($('.main_depth'));
+        console.log(treeData);
         
     }
 
