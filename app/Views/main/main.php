@@ -69,12 +69,13 @@ $searchTxt = $SearchText->List()->findAll();
             <div class="main_visual_slider owl-carousel only_web">
                 <?php foreach ($bannerMain as $item): ?>
                     <div class="img_box img_box_1 only_web">
-                        <img class="only_web" src="/uploads/bbs/<?= $item['ufile5'] ?>"
+                        <img class="only_web" src="/data/bbs/<?= $item['ufile5'] ?>"
                              alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
-                        <div class="img_box_ttl_main">
-                            <?= viewSQ($item['subject']) ?>
-                            <p class="img_box_txt_main2"><?= viewSQ($item['describe']) ?></p>
-                        </div>
+                        <!--                        <div class="img_box_ttl_main">-->
+                        <!--                            --><?php //= viewSQ($item['subject']) ?>
+                        <!--                            <p class="img_box_txt_main2">-->
+                        <?php //= viewSQ($item['describe']) ?><!--</p>-->
+                        <!--                        </div>-->
                     </div>
                 <?php endforeach; ?>
 
@@ -185,6 +186,9 @@ $searchTxt = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -196,10 +200,10 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_1['original_price']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -215,6 +219,9 @@ $searchTxt = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -226,10 +233,10 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_2['original_price']) ?> <span> 원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_2['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -245,6 +252,9 @@ $searchTxt = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -256,10 +266,10 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_3['original_price']) ?> <span> 원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_3['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -275,6 +285,9 @@ $searchTxt = $SearchText->List()->findAll();
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
+                                <li>
+                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
                             <div class="prd_name">
@@ -286,10 +299,10 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_review_cnt">(954)</span>
                             </div>
                             <div class="prd_price_ko">
-                                <?= number_format($item1_4['original_price']) ?> <span> 원</span>
+                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
                             </div>
                             <div class="prd_price_thai">
-                                <?= number_format($item1_4['product_price_won']) ?> <span>원</span>
+                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -434,11 +447,12 @@ $searchTxt = $SearchText->List()->findAll();
                                         <img src="/data/<?= $img_dir ?>/<?= $item2['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
-                                    <div class="prd_price_ko"><?= number_format($item2['original_price']) ?>
+                                    <div class="prd_price_ko"><?= number_format($item2['product_price_won']) ?>
                                         <span> 원</span></div>
-                                    <div class="prd_price_thai"><?= number_format($item2['product_price_won']) ?> <span>원</span>
+                                    <div class="prd_price_thai"><?= number_format($item2['product_price']) ?>
+                                        <span>바트</span>
                                     </div>
-                                    <span class="number_item_label number_one"><?= $seq ?></span>
+<!--                                    <span class="number_item_label number_one">--><?php //= $seq ?><!--</span>-->
                                 </a>
                             </div>
                         <?php endforeach; ?>
@@ -663,11 +677,12 @@ $searchTxt = $SearchText->List()->findAll();
                                         <img src="/data/<?= $img_dir ?>/<?= $item3['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
-                                    <div class="prd_price_ko"><?= number_format($item3['original_price']) ?>
+                                    <div class="prd_price_ko"><?= number_format($item3['product_price_won']) ?>
                                         <span> 원</span></div>
-                                    <div class="prd_price_thai"><?= number_format($item3['product_price_won']) ?> <span>원</span>
+                                    <div class="prd_price_thai"><?= number_format($item3['product_price']) ?>
+                                        <span>바트</span>
                                     </div>
-                                    <span class="number_item_label number_one"><?= $seq ?></span>
+<!--                                    <span class="number_item_label number_one">--><?php //= $seq ?><!--</span>-->
                                 </a>
                             </div>
                         <?php endforeach; ?>
@@ -737,11 +752,14 @@ $searchTxt = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
+                                            <li>
+                                                <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                            </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
-                                        <div class="prd_price_ko"><?= number_format($item4['original_price']) ?>
+                                        <div class="prd_price_ko"><?= number_format($item4['product_price_won']) ?>
                                             <span> 원</span></div>
-                                        <div class="prd_price_thai"><?= number_format($item4['product_price_won']) ?>원
+                                        <div class="prd_price_thai"><?= number_format($item4['product_price']) ?>바트
                                         </div>
                                     </div>
                                 </div>
@@ -778,11 +796,14 @@ $searchTxt = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location-m.png" alt="" class="only_mo">
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
+                                            <li>
+                                                <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                            </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
-                                        <div class="prd_price_ko"><?= number_format($item5['original_price']) ?>
+                                        <div class="prd_price_ko"><?= number_format($item5['product_price_won']) ?>
                                             <span> 원</span></div>
-                                        <div class="prd_price_thai"><?= number_format($item5['product_price_won']) ?>원
+                                        <div class="prd_price_thai"><?= number_format($item5['product_price']) ?>바트
                                         </div>
                                     </div>
                                 </div>
