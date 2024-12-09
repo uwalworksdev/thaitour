@@ -1058,7 +1058,8 @@ $links = "list";
                                             <div class="img_add">
                                                 <?php 
                                                     for($i = 1; $i <= 1; $i++) : 
-                                                        $img = get_img(${"ufile" . $i}, "/public/data/product/", "200", "200");
+                                                        // $img = get_img(${"ufile" . $i}, "/data/product/", "200", "200");
+                                                        $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
                                                     <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
                                                         <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
@@ -1081,7 +1082,8 @@ $links = "list";
                                             <div class="img_add">
                                             <?php 
                                                 for($i = 2; $i <= 7; $i++) : 
-                                                    $img = get_img(${"ufile" . $i}, "/public/data/product/", "200", "200");
+                                                    // $img = get_img(${"ufile" . $i}, "/data/product/", "200", "200");
+                                                    $img ="/data/product/" . ${"ufile" . $i};
                                             ?>
                                                 <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
                                                     <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
