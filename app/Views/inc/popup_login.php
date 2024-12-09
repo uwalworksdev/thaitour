@@ -373,6 +373,9 @@
 											url: "/ajax/memberSession",
 											type: "POST",
 											data: {},
+											dataType: "json",
+											async: false,
+											cache: false,
 											success: function(rs) {
 												const data  = JSON.parse(rs);
 												var message = data.message;
