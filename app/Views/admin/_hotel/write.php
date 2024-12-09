@@ -1,17 +1,21 @@
 <?php
 
-    use App\Controllers\Admin\AdminHotelController;
+use App\Controllers\Admin\AdminHotelController;
 
-    $formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
-    helper("my_helper");
+$formAction = $product_idx ? "/AdmMaster/_hotel/write_ok/$product_idx" : "/AdmMaster/_hotel/write_ok";
+helper("my_helper");
 ?>
 
 <?= $this->extend("admin/inc/layout_admin") ?>
 <?= $this->section("body") ?>
-<link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/admin/popup.css" type="text/css"/>
     <style>
         .btn_01 {
-            height: 32px !important;
+            height: 30px !important;
+            padding: 0px 10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .img_add #input_file_ko {
@@ -818,26 +822,27 @@ $links = "list";
                                                         echo "selected"; ?>>
                                                     <?= $frow["stay_name_eng"] ?></option>
                                             <?php } ?>
-                                        </select> 
+                                        </select>
                                         <!-- <div style="position: relative; width: 285px">
                                             <input type="text" id="hotel_code" name="hotel_code" class="input_select">
                                             <div class="search_hotel" style="position: absolute; top: 5px; right: 5px;">
                                                 <img src="/images/ico/keyword_ic.png" alt="" style="width: 80%">
                                             </div>
                                         </div> -->
-                                            <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
+                                        <span>(호텔을 선택해야 옵션에서 룸을 선택할 수 있습니다.)</span>
                                     </td>
                                 </tr>
 
 
                                 <tr height="45">
                                     <th>
-                                        객실등록
+                                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
+                                            객실등록  <button type="button" id="btn_add_option" class="btn_01">추가</button>
+                                        </div>
                                         <p style="display:block;margin-top:10px;">
-                                            <select name="roomIdx" id="roomIdx" class="input_select">
+                                            <select name="roomIdx" id="roomIdx" class="input_select" style="width: 100%">
 
                                             </select>
-                                            <button type="button" id="btn_add_option" class="btn_01">추가</button>
                                         </p>
                                     </th>
                                     <td>
@@ -881,7 +886,7 @@ $links = "list";
 
                                                         ?>
 
-                                                        <tr>  
+                                                        <tr>
                                                             <td>
                                                                 <input type='hidden' name='o_idx[]'
                                                                        value='<?= $frow3['idx'] ?>'/>
@@ -895,10 +900,14 @@ $links = "list";
                                                                       data-id="<?= $frow3['o_room'] ?>"><?= $frow3['goods_name'] ?></span>
                                                             </td>
                                                             <td>
-                                                                <input type='text' readonly class='s_date datepicker' name='o_sdate[]' value='<?= $frow3['o_sdate'] ?>' style='width:40%' /> ~
-                                                                <input type='text' readonly class='e_date datepicker' name='o_edate[]' value='<?= $frow3['o_edate'] ?>' style='width:40%' />
+                                                                <div style="display: flex; align-items: center; gap: 5px">
+                                                                    <input type='text' readonly class='s_date datepicker' name='o_sdate[]' value='<?= $frow3['o_sdate'] ?>' style='width:35%' /> ~
+                                                                    <input type='text' readonly class='e_date datepicker' name='o_edate[]' value='<?= $frow3['o_edate'] ?>' style='width:35%' />
 
-                                                                <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>" class="btn_01">수정</a>
+                                                                    <a href="/AdmMaster/_hotel/write_options?o_idx=<?= $frow3['idx'] ?>&product_idx=<?=$product_idx?>"
+                                                                       style="text-wrap: nowrap"
+                                                                       class="btn_01">수정</a>
+                                                                </div>
                                                             </td>
                                                             <td>
                                                                 <input type='text' class='onlynum' name='o_price1[]' style="text-align:right;"
@@ -938,12 +947,13 @@ $links = "list";
 
                                 <tr height="45">
                                     <th>
-                                        객실 옵션 추가
+                                        <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between">
+                                            객실 옵션 추가 <button type="button" id="btn_add_option3" class="btn_01">추가</button>
+                                        </div>
                                         <p style="display:block;margin-top:10px;">
                                             <select name="roomIdx2" id="roomIdx2" class="input_select">
 
                                             </select>
-                                            <button type="button" id="btn_add_option3" class="btn_01">추가</button>
                                         </p>
                                     </th>
                                     <td>
@@ -1040,7 +1050,7 @@ $links = "list";
                             </table>
 
                             <table cellpadding="0" cellspacing="0" summary="" class="listTable mem_detail"
-                                style="margin-top:50px;">
+                                   style="margin-top:50px;">
                                 <caption>
                                 </caption>
                                 <colgroup>
@@ -1049,60 +1059,59 @@ $links = "list";
                                 </colgroup>
                                 <tbody>
 
-                                    <tr height="45">
-                                        <td colspan="2">
-                                            이미지 등록
-                                        </td>
-                                    </tr>
+                                <tr height="45">
+                                    <td colspan="2">
+                                        이미지 등록
+                                    </td>
+                                </tr>
 
-                                    <tr>
-                                        <th>대표이미지(600X400)</th>
-                                        <td colspan="3">
+                                <tr>
+                                    <th>대표이미지(600X400)</th>
+                                    <td colspan="3">
 
-                                            <div class="img_add">
-                                                <?php 
-                                                    for($i = 1; $i <= 1; $i++) : 
-                                                        $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                        // $img ="/data/product/" . ${"ufile" . $i};
+                                        <div class="img_add">
+                                            <?php
+                                            for($i = 1; $i <= 1; $i++) :
+                                                // $img = get_img(${"ufile" . $i}, "/data/product/", "200", "200");
+                                                $img ="/data/product/" . ${"ufile" . $i};
                                                 ?>
-                                                    <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
-                                                        <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
-                                                        <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                        <input type="hidden" name="checkImg_<?=$i?>">
-                                                        <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                        <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
-
-                                                    </div>
-                                                <?php 
-                                                    endfor; 
-                                                ?>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>서브이미지(600X400) </th>
-                                        <td colspan="3">
-                                            <div class="img_add">
-                                            <?php 
-                                                for($i = 2; $i <= 7; $i++) : 
-                                                    $img = get_img(${"ufile" . $i}, "/data/product/", "600", "440");
-                                                    // $img ="/data/product/" . ${"ufile" . $i};
-                                            ?>
                                                 <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
                                                     <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
                                                     <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
-                                                    <input type="hidden" name="checkImg_<?=$i?>">
+                                                    <input type="hidden" class="check_img" name="checkImg_<?=$i?>">
                                                     <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
-                                                    <a class="img_txt imgpop" href="<?=$img?>" id="text_ufile<?=$i?>">미리보기</a>
+                                                    <span class="img_txt" id="text_ufile<?=$i?>"></span>
                                                 </div>
-                                            <?php 
-                                                endfor; 
+                                            <?php
+                                            endfor;
                                             ?>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>서브이미지(600X400) </th>
+                                    <td colspan="3">
+                                        <div class="img_add">
+                                            <?php
+                                            for($i = 2; $i <= 7; $i++) :
+                                                // $img = get_img(${"ufile" . $i}, "/data/product/", "200", "200");
+                                                $img ="/data/product/" . ${"ufile" . $i};
+                                                ?>
+                                                <div class="file_input <?=empty(${"ufile" . $i}) ? "" : "applied"?>">
+                                                    <input type="file" name='ufile<?=$i?>' id="ufile<?=$i?>" onchange="productImagePreview(this, '<?=$i?>')">
+                                                    <label for="ufile<?=$i?>" <?=!empty(${"ufile" . $i}) ? "style='background-image:url($img)'" : ""?>></label>
+                                                    <input type="hidden" class="check_img" name="checkImg_<?=$i?>">
+                                                    <button type="button" class="remove_btn" onclick="productImagePreviewRemove(this)"></button>
+                                                    <span class="img_txt" id="text_ufile<?=$i?>"></span>
+                                                </div>
+                                            <?php
+                                            endfor;
+                                            ?>
+                                        </div>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
 
@@ -1212,13 +1221,13 @@ $links = "list";
                                         </thead>
                                         <tbody id="id_content">
                                         <?php
-                                            foreach ($fresult3 as $frow) {
-                                        ?>
-                                        <tr>
-                                            <td class="text-center"><?= $frow["code_no"]?></td>
-                                            <td class="text-center"><?= $frow["stay_name_eng"] ?></td>
-                                            <td class="text-center"> <p onclick="fn_chgRoom('<?= $frow["code_no"] ?>')">[선택]</p></td>
-                                        </tr>
+                                        foreach ($fresult3 as $frow) {
+                                            ?>
+                                            <tr>
+                                                <td class="text-center"><?= $frow["code_no"]?></td>
+                                                <td class="text-center"><?= $frow["stay_name_eng"] ?></td>
+                                                <td class="text-center"> <p onclick="fn_chgRoom('<?= $frow["code_no"] ?>')">[선택]</p></td>
+                                            </tr>
                                         <?php }?>
                                         </tbody>
                                     </table>
@@ -1255,65 +1264,65 @@ $links = "list";
 
         </div><!-- 인쇄 영역 끝 //-->
     </div>
-<script>
-    function productImagePreview(inputFile, onum) {
-		if(sizeAndExtCheck(inputFile) == false) {
-			inputFile.value = "";
-			return false;
-		}
+    <script>
+        function productImagePreview(inputFile, onum) {
+            if(sizeAndExtCheck(inputFile) == false) {
+                inputFile.value = "";
+                return false;
+            }
 
-		let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
+            let imageTag = document.querySelector('label[for="ufile'+onum+'"]');
 
-		if(inputFile.files.length > 0) {
-			let imageReader     = new FileReader();
+            if(inputFile.files.length > 0) {
+                let imageReader     = new FileReader();
 
-			imageReader.onload = function() {
-				imageTag.style = "background-image:url("+imageReader.result+")";
-				inputFile.closest('.file_input').classList.add('applied');
-				inputFile.closest('.file_input').children[3].value = 'Y';
-			}
-			return imageReader.readAsDataURL(inputFile.files[0]);
-		}
-	}
+                imageReader.onload = function() {
+                    imageTag.style = "background-image:url("+imageReader.result+")";
+                    inputFile.closest('.file_input').classList.add('applied');
+                    inputFile.closest('.file_input').find(".check_img").value = 'Y';
+                }
+                return imageReader.readAsDataURL(inputFile.files[0]);
+            }
+        }
 
-	/**
-	 * 상품 이미지 삭제
-	 * @param {element} button
-	 */
-	function productImagePreviewRemove(element) {
-		let inputFile = element.parentNode.children[1];
-		let labelImg = element.parentNode.children[2];
+        /**
+         * 상품 이미지 삭제
+         * @param {element} button
+         */
+        function productImagePreviewRemove(element) {
+            let inputFile = element.parentNode.children[0];
+            let labelImg = element.parentNode.children[1];
 
-		inputFile.value = "";
-		labelImg.style = "";
-		element.closest('.file_input').classList.remove('applied');
-		element.closest('.file_input').children[3].value = 'N';
-	}
+            inputFile.value = "";
+            labelImg.style = "";
+            element.closest('.file_input').classList.remove('applied');
+            element.closest('.file_input').find(".check_img").value = 'N';
+        }
 
-	function sizeAndExtCheck(input) {
-		let fileSize        = input.files[0].size;
-		let fileName        = input.files[0].name;
+        function sizeAndExtCheck(input) {
+            let fileSize        = input.files[0].size;
+            let fileName        = input.files[0].name;
 
-		// 20MB
-		let megaBite        = 20;
-		let maxSize         = 1024 * 1024 * megaBite;
+            // 20MB
+            let megaBite        = 20;
+            let maxSize         = 1024 * 1024 * megaBite;
 
-		if(fileSize > maxSize) {
-			alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
-			return false;
-		}
-		
-		let fileNameLength  = fileName.length;
-		let findExtension   = fileName.lastIndexOf('.');
-		let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
+            if(fileSize > maxSize) {
+                alert("파일용량이 "+megaBite+"MB를 초과할 수 없습니다.");
+                return false;
+            }
 
-		if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
-			alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
-			return false;
-		}
+            let fileNameLength  = fileName.length;
+            let findExtension   = fileName.lastIndexOf('.');
+            let fileExt         = fileName.substring(findExtension, fileNameLength).toLowerCase();
 
-		return true;
-	}
-</script>
+            if(fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && fileExt != ".gif" && fileExt != ".bmp" && fileExt != ".ico") {
+                alert("이미지 파일 확장자만 업로드 할 수 있습니다.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
     <iframe width="0" height="0" name="hiddenFrame22" id="hiddenFrame22" style="display:none;"></iframe>
 <?= $this->endSection() ?>
