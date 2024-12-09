@@ -681,8 +681,13 @@ class AjaxController extends BaseController {
     {
 
         $user_id    = "N_". time();
-		write_log("user_id- ". $user_id);
-        setcookie("c_userId", $user_id, time() + 86000 * 365, '/');
+        $data = [];
+
+        $data['id']   = $user_id;
+        $data['name'] = $user_name;
+
+        session()->set("member", $data);
+
 
         $output = [
             "message"  => "비회원 로그인"
