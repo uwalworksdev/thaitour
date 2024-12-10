@@ -308,7 +308,8 @@
                                 <!-- <img src="/uploads/icons/form_check_icon.png" alt="form_check_icon"> -->
                                 <i></i>
                             </div>
-                            <button class="btn-order" type="button" onclick="handleSubmit()">예약하기</button>
+                            <button class="btn-order" type="button" onclick="handleSubmit('W')">예약하기</button>
+                            <button class="btn-order" type="button" onclick="handleSubmit('B')">장바구니</button>
                         </div>
                     </div>
                 </div>
