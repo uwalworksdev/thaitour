@@ -67,6 +67,13 @@ $searchTxt = $SearchText->List()->findAll();
         }
     }
 </style>
+
+<div class="main_sale_banner">
+    <a href="/time_sale/list">
+        <img src="/images/main/main_sale_img.png" alt="main_sale_img">
+    </a>
+</div>
+
 <div class="body_container main_body_container">
     <section class="main_visual">
         <div class="relative">

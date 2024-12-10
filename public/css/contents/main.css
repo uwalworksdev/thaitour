@@ -36,6 +36,13 @@
     padding-top: calc(310% / 224 * 100);
 }
 
+.main_sale_banner {
+    position: fixed;
+    bottom: 22%;
+    left: 130px;
+    z-index: 99;
+}
+
 .swiper-button-main {
     /*background-color: rgba(0, 0, 0, 0.502);*/
     position: absolute;
@@ -1099,6 +1106,10 @@
 
 @media screen and (max-width: 1440px) {
     .side-bar-inc {
+        display: none;
+    }
+
+    .main_sale_banner {
         display: none;
     }
 }
