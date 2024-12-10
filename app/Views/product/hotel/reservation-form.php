@@ -237,7 +237,7 @@
         .btn_unreadmore_,
         .btn_readmore_ {
             position: absolute;
-            bottom: -32px;
+            bottom: -40px;
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 10px 15px;
