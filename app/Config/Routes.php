@@ -611,6 +611,10 @@ $routes->group("magazines", static function ($routes) {
     $routes->post("delete-comment", "MagazineController::deleteComment", ['as' => "api.magazines.delete.comment"]);
 });
 
+$routes->group("time_sale", static function ($routes) {
+    $routes->get("list", "TimeSaleController::list", ['as' => "api.time_sale.list"]);
+});
+
 $routes->group("coupon", static function ($routes) {
     $routes->get("list", "CouponController::list");
     $routes->post("add_coupon_member", "CouponController::add_coupon_member");
