@@ -558,7 +558,11 @@ class TourRegistController extends BaseController
     public function del_moption($idx)
     {
         $this->golfOptionModel->delete($idx);
-        return $this->response->setJSON(['message' => '삭체되었습니다']);
+
+		$sql_p    = "DELETE FROM tbl_golf_price WHERE o_idx = '$idx' ";
+        $result_p = $db->query($sql_p) or die ($db->error);
+
+		return $this->response->setJSON(['message' => '삭체되었습니다']);
     }
 
     public function write_spas()
