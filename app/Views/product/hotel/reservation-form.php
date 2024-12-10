@@ -87,13 +87,21 @@
         }
 
         .book_cont {
-            height: 0px;
-            overflow: hidden;
+            /*height: 0px;*/
+            /*overflow: hidden;*/
         }
 
         .book_cont.full_ {
-            height: auto;
-            overflow: auto;
+            /*height: auto;*/
+            /*overflow: auto;*/
+        }
+
+        #product_info_card_ {
+            display: none;
+        }
+
+        #product_info_card_.full_ {
+            display: block;
         }
 
         .book_cont table.book_tbl {
@@ -226,18 +234,19 @@
             margin-bottom: 50px;
         }
 
+        .btn_unreadmore_,
         .btn_readmore_ {
-            /*position: absolute;*/
-            /*bottom: -32px;*/
-            /*left: 50%;*/
-            /*transform: translate(-50%, -50%);*/
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translate(-50%, -50%);
             padding: 10px 15px;
             border: 1px solid #dbdbdb;
             background-color: #FFFFFF;
             max-width: 150px;
             z-index: 5;
-            margin-bottom: 20px;
-            /*border-radius: 20px;*/
+            /*margin-bottom: 20px;*/
+            border-radius: 20px;
             box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
             display: flex;
             justify-content: space-between;
@@ -278,7 +287,7 @@
             <form action="product-hotel/reservation-form-insert" name="order_frm" id="order_frm" method="post">
                 <div class="container-card">
                     <div class="">
-                        <div class="card-left2">
+                        <div class="card-left2 card_relative_">
                             <div class="flex" style="gap: 20px">
                                 <h3 class="title-main-c">
                                     예약확정서 정보 입력
@@ -386,13 +395,14 @@
                                            placeholder="">
                                 </div>
                             </div>
+
+                            <div class="btn_readmore_">
+                                <p>상세보기 열기</p>
+                                <img src="/images/svg/chevron-double-down.svg" alt="">
+                            </div>
                         </div>
 
-                        <div class="card-left card_relative_">
-                            <div class="btn_readmore_">
-                                <p id="ttl_readmore_">상세보기 열기</p>
-                                <img src="/images/svg/chevron-double-down.svg" alt="" id="image_readmore_">
-                            </div>
+                        <div class="card-left card_relative_" id="product_info_card_">
                             <div class="book_cont" id="book_cont">
                                 <table class="book_tbl seperateRoom tbl_request" id=""
                                        style="border-bottom:0px;">
@@ -638,6 +648,11 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="btn_unreadmore_">
+                                <p>상세보기 닫기</p>
+                                <img src="/images/svg/chevron-double-up.svg" alt="">
+                            </div>
                         </div>
 
                         <script>
@@ -648,18 +663,30 @@
                             let ttl_close_ = '상세보기 닫기';
 
                             $(document).ready(function () {
+                                // $('.btn_readmore_').click(function () {
+                                //     let book_cont = $('#book_cont');
+                                //     book_cont.toggleClass('full_')
+                                //     let ttl_readmore_ = $('#ttl_readmore_');
+                                //     let image_readmore_ = $('#image_readmore_');
+                                //     if (book_cont.hasClass('full_')) {
+                                //         ttl_readmore_.text(ttl_close_)
+                                //         image_readmore_.attr('src', up_src_)
+                                //     } else {
+                                //         ttl_readmore_.text(ttl_open_)
+                                //         image_readmore_.attr('src', down_src_)
+                                //     }
+                                // })
+
                                 $('.btn_readmore_').click(function () {
-                                    let book_cont = $('#book_cont');
-                                    book_cont.toggleClass('full_')
-                                    let ttl_readmore_ = $('#ttl_readmore_');
-                                    let image_readmore_ = $('#image_readmore_');
-                                    if (book_cont.hasClass('full_')) {
-                                        ttl_readmore_.text(ttl_close_)
-                                        image_readmore_.attr('src', up_src_)
-                                    } else {
-                                        ttl_readmore_.text(ttl_open_)
-                                        image_readmore_.attr('src', down_src_)
-                                    }
+                                    $('#product_info_card_').addClass('full_');
+                                    $(this).css('display', 'none');
+                                    $('.btn_unreadmore_').css('display', 'flex');
+                                })
+
+                                $('.btn_unreadmore_').click(function () {
+                                    $('#product_info_card_').removeClass('full_');
+                                    $(this).css('display', 'none');
+                                    $('.btn_readmore_').css('display', 'flex');
                                 })
                             })
                         </script>
