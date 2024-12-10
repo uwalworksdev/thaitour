@@ -186,8 +186,8 @@
 										<?php foreach ($roresult as $item): ?>
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
-											<td style="text-align:center"><?=$item['hole_cnt']?>
-											    <!--select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>">
+											<td style="text-align:center">
+											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_HOLES as $hole) {
 														if($item['hole_cnt'] == $hole) {
@@ -197,10 +197,10 @@
 														}
 													}
 												?>
-											    </select-->
+											    </select>
                                             </td>
-											<td style="text-align:center"><?=$item['hour']?>
-											    <!--select name="hour[]" id="hour_<?=$item['idx']?>">
+											<td style="text-align:center">
+											    <select name="hour[]" id="hour_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_HOURS as $hour) {
 														if($item['hour'] == $hour) {
@@ -210,10 +210,10 @@
 														}
 													}
 												?>
-											    </select-->
+											    </select>
                                             </td>
-											<td style="text-align:center"><?=$item['minute']?>
-											    <!--select name="minute[]" id="minute_<?=$item['idx']?>">
+											<td style="text-align:center">
+											    <select name="minute[]" id="minute_<?=$item['idx']?>">
 												<?php
 													foreach (GOLF_MIN as $minute) {
 														if($item['minute'] == $minute) {
@@ -223,7 +223,7 @@
 														}
 													}
 												?>
-											    </select-->
+											    </select>
                                             </td>
 											<td style="text-align:center">
 												<input type="hidden" name="idx[]" id="idx" value="<?=$item['idx']?>">
