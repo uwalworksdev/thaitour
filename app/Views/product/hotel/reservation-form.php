@@ -59,6 +59,20 @@
             background-color: #f3f3f3;
             cursor: pointer;
         }
+
+        .summary-tb {
+            font-size: 16px;
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+
+        .summary-tb2 {
+            font-size: 16px;
+            text-decoration: underline;
+            color: #0000cc;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
     </style>
     <div class="customer-form-page reservation-form-cus">
     <div class="navigation-section">
@@ -301,7 +315,7 @@
 
                             .list_type02 .pubcheck {
                                 margin-top: 10px;
-                               padding-right: 30px;
+                                padding-right: 30px;
                             }
                         </style>
 
@@ -627,6 +641,8 @@
                                 · 체크인하시려면 3일 전에 숙소로 연락해 주세요<br>· 선택하신 객실 유형의 체크인 시간은 14:00~24:00 사이,
                                 체크아웃 시간은 06:00~12:00입니다.<br>· 온수 (지정시간 제공)
                             </p>
+                            <p class="summary-tb">*취소규정: 결제 후 취소하시려면 결제하신 금액의 50% 요금이 부과됩니다.</p>
+                            <p class="summary-tb2" id="policy_show">본 예약건 취소규정 자세히보기</p>
                             <h3 class="title-r">약관동의</h3>
                             <div class="item-info-check item_check_term_all_">
                                 <label for="fullagreement">전체동의</label>
@@ -663,6 +679,25 @@
                 <input type="hidden" name="number_day" id="number_day" value="<?= $number_day ?>">
             </form>
         </div>
+    </div>
+
+    <div class="popup_wrap place_pop policy_pop">
+        <div class="pop_box">
+            <button type="button" class="close" onclick="closePopup()"></button>
+            <div class="pop_body">
+                <div class="padding">
+                    <div class="popup_place__head">
+                        <div class="popup_place__head__ttl">
+                            <h2>취소 규정</h2>
+                        </div>
+                    </div>
+                    <div class="popup_place__body">
+                        <?=viewSQ(getPolicy(19))?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dim"></div>
     </div>
     <script>
         $(document).ready(function () {
@@ -1036,5 +1071,14 @@
 
         });
     </script>
+    <script>
+        function closePopup() {
+            $(".popup_wrap").hide();
+            $(".dim").hide();
+        }
 
+        $("#policy_show").on("click", function () {
+            $(".policy_pop, .policy_pop .dim").show();
+        });
+    </script>
 <?php $this->endSection(); ?>
