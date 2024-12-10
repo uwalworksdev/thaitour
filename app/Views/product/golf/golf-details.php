@@ -969,10 +969,9 @@
 
         setSlide(`0${currentMonth}`.slice(-2), currentYear);
 
-        //const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
-        const initDate = $("#firstDate").val();
+        const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
+        //const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
-alert('11111111');
         $(".final_date").text(formatDate(new Date(initDate), "."));
         $("#order_date").val(formatDate(new Date(initDate), "-"));
 
