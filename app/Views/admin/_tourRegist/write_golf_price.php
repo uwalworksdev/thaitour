@@ -161,13 +161,13 @@
 												분
 											</td>
 											<td style="text-align:center">
-												가격(원)
+												가격(THB)
 											</td>
 											<td style="text-align:center">
-												캐디피(원)
+												캐디피(THB)
 											</td>
 											<td style="text-align:center">
-												카트피(원)
+												카트피(THB)
 											</td>
 											<!--td style="text-align:center">
 												마감
