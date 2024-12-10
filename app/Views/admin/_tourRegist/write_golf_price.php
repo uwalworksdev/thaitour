@@ -187,7 +187,7 @@
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
 											<td style="text-align:center">
-											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>">
+											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOLES as $hole) {
 														if($item['hole_cnt'] == $hole) {
