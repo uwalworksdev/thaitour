@@ -23,54 +23,16 @@
                         <span>삭제</span>
                     </div>
                     <div class="main-cart">
-
-                        <div class="checkbox-group-2 form-group only_web">
-                            <input type="checkbox" id="group_1" checked>
-                            <label class="font-bold" for="group_1">호텔 :<span class="text-red"> 3</span>
-                            </label>
-                        </div>
-                        <table class="table-container only_web">
-                            <thead>
-                            <tr class="table-header">
-                                <th>
-                                    <span>상품</span>
-                                </th>
-                                <th>금액</th>
-                                <th>할인금액</th>
-                                <th>결제예정금액</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-							<?php foreach ($result as $item): ?>
-                            <tr>
-                                <td class="custom-td-product-info">
-                                    <div class="product-info">
-                                        <img src="/data/product/<?=$item['ufile1']?>" alt="cart_test_img_01">
-                                        <div class="product-details">
-                                            <div class="product-name"><?=$item['product_name']?></div>
-                                            <div class="product-date">2024.08.10(토)</div>
-                                            <p class="product-desc text-gray"><?=$item['option_name']?></p>
-                                        </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item1">
-                                            <label for="group_1_item1"></label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="price"><?=number_format($item['order_price'])?> 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
-                            </tr>
-		                    <?php endforeach; ?>
-                            </tbody>
-                        </table>
-
                         <div class="checkbox-group-2 form-group only_web">
                             <input type="checkbox" id="group_1" checked>
                             <label class="font-bold" for="group_1">골프 :<span class="text-red"> 3</span>
                             </label>
                         </div>
+                        <div class="checkbox-group-2 form-group only_mo">
+                            <input type="checkbox" id="group_1_mo" checked>
+                            <label class="font-bold" for="group_1_mo">골프 :<span class="text-red"> 3</span>
+                            </label>
+                        </div>
                         <table class="table-container only_web">
                             <thead>
                             <tr class="table-header">
@@ -83,7 +45,6 @@
                             </tr>
                             </thead>
                             <tbody>
-
 							<?php foreach ($result as $item): ?>
                             <tr>
                                 <td class="custom-td-product-info">
@@ -105,29 +66,6 @@
                                 <td class="total">1,230,000 원</td>
                             </tr>
 		                    <?php endforeach; ?>
-
-                            <!--tr>
-                                <td class="custom-td-product-info">
-                                    <div class="product-info">
-                                        <img src="/uploads/sub/cart_test_img_02.png" alt="cart_test_img_02">
-                                        <div class="product-details">
-                                            <div class="product-name">아난타라 시암 방콕 호텔</div>
-                                            <div class="product-date">2024.08.10(토)</div>
-                                            <div class="product-desc text-gray">54홀 골프 패키지1(54 홀 라운딩 + 갤러리아12<br>
-                                                2인 1실 + 전일차량<br>
-                                                성인 4 / 아동 2
-                                            </div>
-                                        </div>
-                                        <div class="form-group-2 cus-checkbox-td">
-                                            <input type="checkbox" id="group_1_item2">
-                                            <label for="group_1_item2"></label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="price">1,467,360 원</td>
-                                <td class="discount">0 원</td>
-                                <td class="total">1,230,000 원</td>
-                            </tr-->
                             </tbody>
                         </table>
                         <div class="table-container custom-mo only_mo">
@@ -210,7 +148,7 @@
                     <div class="main-cart">
                         <div class="checkbox-group-2 form-group">
                             <input type="checkbox" id="group_2_mo" checked>
-                            <label class="font-bold" for="group_2_mo">투어 :<span class="text-red"> 3</span>
+                            <label class="font-bold" for="group_2_mo">골프 :<span class="text-red"> 3</span>
                             </label>
                         </div>
                         <table class="table-container only_web">
