@@ -561,6 +561,7 @@ class TourRegistController extends BaseController
 
 		$db       = $this->connect;
 		$sql_p    = "DELETE FROM tbl_golf_price WHERE o_idx = '$idx' ";
+		write_log($sql_p);
         $result_p = $db->query($sql_p) or die ($db->error);
 
 		return $this->response->setJSON(['message' => '삭체되었습니다']);
