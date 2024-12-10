@@ -65,6 +65,7 @@ class MyPage extends BaseController
         }
 
         $where = ['m_idx' => $_SESSION["member"]["mIdx"]];
+		$where .= $this->whereIn('order_status', ['B']);
 
         if ($s_status) {
             $where['order_status'] = $s_status;
