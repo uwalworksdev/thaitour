@@ -199,7 +199,7 @@ $searchTxt = $SearchText->List()->findAll();
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
-                            <div class="prd_name">
+                            <div class="prd_name" style="margin-top: 14px;">
                                 <?= $item1_1['product_name'] ?>
                             </div>
                             <div class="prd_info">
@@ -1035,11 +1035,11 @@ $searchTxt = $SearchText->List()->findAll();
                                             <span class="eye_cnt">1,248</span>
                                         </div>
                                     </div>
+                                    </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                </div>
                 <button class="swiper-button-prev-main-2 main_section_review_prev_btn_ swiper-button-main-2 review__list_swiper_btn_prev">
                     <img src="/images/ico/ico_prev_slide.svg" alt="" class="ico_prev_slide">
                 </button>
