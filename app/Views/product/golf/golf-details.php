@@ -696,7 +696,7 @@
             }
             ?>
 
-            if($("#people_adult_cnt").val() == null) {
+            if($("#people_adult_cnt").val() == "") {
                alert('인원을 선택하세요.');
 			   $("#people_adult_cnt").focus();
 			   return false;
