@@ -54,8 +54,7 @@
                                         <div class="product-details">
                                             <div class="product-name"><?=$item['product_name']?></div>
                                             <div class="product-date">2024.08.10(토)</div>
-                                            <p class="product-desc text-gray">디럭스 연박 프로모션 더블(2룸) /조식포함<br>
-                                                성인 4 / 아동 2</p>
+                                            <p class="product-desc text-gray"><?=$item['option_name']?></p>
                                         </div>
                                         <div class="form-group-2 cus-checkbox-td">
                                             <input type="checkbox" id="group_1_item1">
