@@ -34,6 +34,7 @@
         <input type="hidden" name="product_code_2" value="<?= $product['product_code_2'] ?>">
         <input type="hidden" name="product_code_3" value=".">
         <input type="hidden" name="product_code_4" value="."> 
+        <input type="hidden" name="order_status" id="order_status" value="">
         <input type="hidden" name="people_adult_cnt" value="<?= $people_adult_cnt ?>">
         <input type="hidden" name="order_date" id="order_date" value="<?= $order_date ?>">
         <input type="hidden" name="option_idx" id="option_idx" value="<?= $option_idx ?>">
@@ -444,20 +445,24 @@
     </script>
     <script>
         function handleSubmit(status) {
+
+			$("#order_status").val(status);
             const frm = document.order_frm;
             let flag = true;
 
-            $("input[required]:not(:disabled)").each(function () {
-                if ($(this).val().trim() == "") {
-                    alert($(this).attr("data-label") + "를 입력하십시오.");
-                    $(this).focus();
-                    flag = false;
-                    return false;
-                }
-            });
+            if(status == "W") {
+					$("input[required]:not(:disabled)").each(function () {
+						if ($(this).val().trim() == "") {
+							alert($(this).attr("data-label") + "를 입력하십시오.");
+							$(this).focus();
+							flag = false;
+							return false;
+						}
+					});
 
-            if (!flag) {
-                return false;
+					if (!flag) {
+						return false;
+					}
             }
 
             if (!($(".item-clause-all").hasClass("click"))) {
