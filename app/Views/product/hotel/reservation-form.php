@@ -217,6 +217,16 @@
                         </div>
 
                         <style>
+                            .book_cont {
+                                height: 600px;
+                                overflow: hidden;
+                            }
+
+                            .book_cont.full_ {
+                                height: auto;
+                                overflow: auto;
+                            }
+
                             .book_cont table.book_tbl {
                                 width: 100%;
                                 margin: 0 auto;
@@ -301,9 +311,15 @@
                                 text-indent: 0 !important;
                             }
 
-                            .list_type02.f_11.f_gray {
+                            .f_14.f_gray {
                                 font-size: 14px;
                                 color: #888;
+                                line-height: 18px;
+                            }
+
+                            .f_14.f_red {
+                                font-size: 14px;
+                                color: #db1717;
                                 line-height: 18px;
                             }
 
@@ -317,10 +333,49 @@
                                 margin-top: 10px;
                                 padding-right: 30px;
                             }
+
+                            .txt_me01,
+                            .product_information_ {
+                                height: 400px;
+                                overflow: auto;
+                            }
+
+                            .txt_me01::-webkit-scrollbar,
+                            .product_information_::-webkit-scrollbar {
+                                width: 4px;
+                                background-color: #F5F5F5;
+                                /*display: none;*/
+                            }
+
+                            .txt_me01::-webkit-scrollbar-thumb,
+                            .product_information_::-webkit-scrollbar-thumb {
+                                background-color: #cccccc;
+                            }
+
+                            .card_relative_ {
+                                position: relative;
+                                margin-bottom: 50px;
+                            }
+
+                            .btn_readmore_ {
+                                position: absolute;
+                                bottom: -20px;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                padding: 10px 15px;
+                                border: 1px solid #dbdbdb;
+                                background-color: #FFFFFF;
+                                z-index: 5;
+                                border-radius: 20px;
+                            }
+
+                            .image_readmore_ {
+
+                            }
                         </style>
 
-                        <div class="card-left2 ">
-                            <div class="book_cont">
+                        <div class="card-left2 card_relative_">
+                            <div class="book_cont" id="book_cont">
                                 <table class="book_tbl seperateRoom tbl_request" id=""
                                        style="border-bottom:0px;">
                                     <colgroup>
@@ -363,184 +418,160 @@
                                         <th>침대구성</th>
                                         <td class="info_ra">
                                             싱글침대 2개 또는 킹사이즈침대 1개
-                                            <span class="f_11 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span>
+                                            <br>
+                                            <span class="f_14 f_red">※ 베드타입은 보장사항이 아닌 요청사항이며, 체크인시 호텔에서 확인해주시기 바랍니다.</span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>중요안내</th>
                                         <td class="info_ra">
-                                            <div>
-                                                <b>체크인 안내</b>
-                                                <p class="s_tit">체크인 15:00 / 체크아웃 정오</p>
-                                                <ul>
-                                                    <li>추가 인원에 대한 요금이 부과될 수 있으며, 이는 숙박 시설 정책에 따라 다릅니다.</li>
-                                                    <li>체크인 시 부대 비용 발생에 대비해 정부에서 발급한 사진이 부착된 신분증과 신용카드, 직불카드 또는 현금으로
-                                                        보증금이
-                                                        필요할 수 있습니다.
-                                                    </li>
-                                                    <li>특별 요청 사항은 체크인 시 이용 상황에 따라 제공 여부가 달라질 수 있으며 추가 요금이 부과될 수 있습니다.
-                                                        또한,
-                                                        반드시 보장되지는 않습니다.
-                                                    </li>
-                                                    <li>이 숙박 시설에서 사용 가능한 결제 수단은 신용카드, 현금입니다.</li>
-                                                    <li>장기 임대를 환영합니다.</li>
-                                                    <li>이 숙박 시설은 안전을 위해 소화기 구급상자 등을 갖추고 있습니다.</li>
-                                                </ul>
-                                                <br>
-                                                이 숙박 시설은 공항에서 교통편을 제공합니다(별도의 요금이 적용될 수 있음). 픽업 서비스를 이용하려면 예약 확인 메일에 나와
-                                                있는
-                                                연락처 정보로 도착 48시간 전 숙박 시설에 연락하여 도착 세부 사항을 알려주시기 바랍니다. 도착 시 프런트 데스크 직원이
-                                                도와드립니다.
-                                            </div>
-                                            <div>
-                                                <b>요금</b>
-                                                <p class="f_gray">※ 숙박 시설에서 다음 요금을 결제하셔야 합니다.</p>
-                                                <dl>
-                                                    <dt>[필수]</dt>
-                                                    <dd></dd>
-                                                    <dt>[선택]</dt>
-                                                    <dd>
-                                                        <ul>
-                                                            <li>뷔페아침 식사 요금: 성인 THB 1047, 어린이 THB 524(대략적인 금액)</li>
-                                                            <li>공항 셔틀 요금: 차량 1대당 THB 3500(편도, 정원 2명)</li>
-                                                            <li>추가 요금 지불 시 이른 체크인 가능(객실 이용 상황에 따라 다름)</li>
-                                                            <li>간이 침대 이용 요금: 1일 기준, THB 2000.0</li>
-                                                        </ul>
-                                                        <p>위 목록에 명시되지 않은 다른 항목이 있을 수 있습니다. 요금 및 보증금은 세전 금액일 수 있으며 변경될 수
-                                                            있습니다. </p></dd>
-                                                </dl>
-                                            </div>
-                                            <div>
-                                                <b>출발 전 알아둘 사항</b>
-                                                <ul>
-                                                    <li>스파 트리트먼트의 경우 사전 예약이 필요합니다. 예약 확인 메일에 나와 있는 연락처 정보로 도착 전에 호텔에
-                                                        연락하여
-                                                        예약하실 수 있습니다.
-                                                    </li>
-                                                    <li>만 3 세 이하 아동 1명은 부모 또는 보호자와 같은 객실에서 침구를 추가하지 않고 이용할 경우 무료로 숙박할 수
-                                                        있습니다.
-                                                    </li>
-                                                    <li>이 숙박 시설은 장애인 안내 동물을 비롯한 모든 반려동물의 출입을 금지하고 있습니다.</li>
-                                                </ul>
+                                            <div class="product_information_">
+                                                <div>
+                                                    <b>체크인 안내</b>
+                                                    <p class="s_tit">체크인 15:00 / 체크아웃 정오</p>
+                                                    <ul>
+                                                        <li>추가 인원에 대한 요금이 부과될 수 있으며, 이는 숙박 시설 정책에 따라 다릅니다.</li>
+                                                        <li>체크인 시 부대 비용 발생에 대비해 정부에서 발급한 사진이 부착된 신분증과 신용카드, 직불카드 또는 현금으로
+                                                            보증금이
+                                                            필요할 수 있습니다.
+                                                        </li>
+                                                        <li>특별 요청 사항은 체크인 시 이용 상황에 따라 제공 여부가 달라질 수 있으며 추가 요금이 부과될 수
+                                                            있습니다.
+                                                            또한,
+                                                            반드시 보장되지는 않습니다.
+                                                        </li>
+                                                        <li>이 숙박 시설에서 사용 가능한 결제 수단은 신용카드, 현금입니다.</li>
+                                                        <li>장기 임대를 환영합니다.</li>
+                                                        <li>이 숙박 시설은 안전을 위해 소화기 구급상자 등을 갖추고 있습니다.</li>
+                                                    </ul>
+                                                    <br>
+                                                    이 숙박 시설은 공항에서 교통편을 제공합니다(별도의 요금이 적용될 수 있음). 픽업 서비스를 이용하려면 예약 확인 메일에
+                                                    나와
+                                                    있는
+                                                    연락처 정보로 도착 48시간 전 숙박 시설에 연락하여 도착 세부 사항을 알려주시기 바랍니다. 도착 시 프런트 데스크 직원이
+                                                    도와드립니다.
+                                                </div>
+                                                <div>
+                                                    <b>요금</b>
+                                                    <p class="f_gray">※ 숙박 시설에서 다음 요금을 결제하셔야 합니다.</p>
+                                                    <dl>
+                                                        <dt>[필수]</dt>
+                                                        <dd></dd>
+                                                        <dt>[선택]</dt>
+                                                        <dd>
+                                                            <ul>
+                                                                <li>뷔페아침 식사 요금: 성인 THB 1047, 어린이 THB 524(대략적인 금액)</li>
+                                                                <li>공항 셔틀 요금: 차량 1대당 THB 3500(편도, 정원 2명)</li>
+                                                                <li>추가 요금 지불 시 이른 체크인 가능(객실 이용 상황에 따라 다름)</li>
+                                                                <li>간이 침대 이용 요금: 1일 기준, THB 2000.0</li>
+                                                            </ul>
+                                                            <p>위 목록에 명시되지 않은 다른 항목이 있을 수 있습니다. 요금 및 보증금은 세전 금액일 수 있으며
+                                                                변경될 수
+                                                                있습니다. </p></dd>
+                                                    </dl>
+                                                </div>
+                                                <div>
+                                                    <b>출발 전 알아둘 사항</b>
+                                                    <ul>
+                                                        <li>스파 트리트먼트의 경우 사전 예약이 필요합니다. 예약 확인 메일에 나와 있는 연락처 정보로 도착 전에 호텔에
+                                                            연락하여
+                                                            예약하실 수 있습니다.
+                                                        </li>
+                                                        <li>만 3 세 이하 아동 1명은 부모 또는 보호자와 같은 객실에서 침구를 추가하지 않고 이용할 경우 무료로
+                                                            숙박할 수
+                                                            있습니다.
+                                                        </li>
+                                                        <li>이 숙박 시설은 장애인 안내 동물을 비롯한 모든 반려동물의 출입을 금지하고 있습니다.</li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
 
-                                    <tr>
-                                        <th>요청사항</th>
-                                        <td>
-                                            <ul class="list_type02">
-                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_connect">
-                                                    <input type="checkbox" name="loc_connect"
-                                                           id="loc_connect" value="Y">
-                                                    <label class="pubcheck" for="loc_connect">
-                                                        커넥팅룸
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_adjoin">
-                                                    <input type="checkbox" name="loc_adjoin"
-                                                           id="loc_adjoin" value="Y">
-                                                    <label class="pubcheck" for="loc_adjoin">
-                                                        인접한룸
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_baby">
-                                                    <input type="checkbox" name="loc_baby"
-                                                           id="loc_baby" value="Y">
-                                                    <label class="pubcheck" for="loc_baby">
-                                                        아기침대
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_high">
-                                                    <input type="checkbox" name="loc_high"
-                                                           id="loc_high" value="Y">
-                                                    <label class="pubcheck" for="loc_high">
-                                                        고층
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_low">
-                                                    <input type="checkbox" name="loc_low"
-                                                           id="loc_low" value="Y">
-                                                    <label class="pubcheck" for="loc_low">
-                                                        저층
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_no_smoke">
-                                                    <input type="checkbox" name="no_smoke"
-                                                           id="no_smoke" value="Y">
-                                                    <label class="pubcheck" for="no_smoke">
-                                                        금연방
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_smoke">
-                                                    <input type="checkbox" name="smoke"
-                                                           id="smoke" value="Y">
-                                                    <label class="pubcheck" for="smoke">
-                                                        흡연방
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_honeymoon">
-                                                    <input type="checkbox" name="honeymoon"
-                                                           id="honeymoon" value="Y">
-                                                    <label class="pubcheck" for="honeymoon">
-                                                        허니문
-                                                    </label>
-                                                </li>
-                                                <li class="bs-input-check fl ml5 mb5" id="li_wheelchair">
-                                                    <input type="checkbox" name="wheelchair"
-                                                           id="wheelchair" value="Y">
-                                                    <label class="pubcheck" for="wheelchair">
-                                                        휠체어
-                                                    </label>
-                                                </li>
-                                            </ul>
-                                            <ul class="list_type02 f_11 f_gray">
-                                                <li>※ 추가요청사항은 확정사항이 아닙니다. 체크인시 호텔에서 확인 해주시기 바랍니다.<br>
-                                                    또한 흡연룸, 커넥팅룸 등이 없는 호텔은 요청사항을 체크하셔도 반영되지 않습니다.
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <label for="requestMemo">기타 요청</label>
-                                        </th>
-                                        <td>
-                                        <textarea class="memo" name="requestMemo" id="requestMemo" rows="10"
-                                                  placeholder="호텔로 직접 전달되므로 반드시 영어로 기재해주세요."></textarea>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th rowspan="2">금액상세</th>
-                                        <td>
-                                            <b>
-                                                총금액: 298,653원
-                                            </b>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div>
-                                                <p>
-                                                    객실금액: <b>253,741 KRW</b>
-                                                    [
-                                                    <span>
-                                                        2024-12-17(화) - 253,741 KRW
-                                                        </span>
-                                                    ] </p>
-                                                <p>
-                                                    세금 및 서비스 요금: <b>44,912 KRW</b></p>
-                                            </div>
-                                            <br>
-                                            <span>※ 조식포함 상품은 조식비가 객실금액에 포함되어 있습니다.</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>총액</th>
-                                        <td>
-                                            <b class="f_orange">298,653원</b>
-                                        </td>
-                                    </tr>
+                                    <!--                                    <tr>-->
+                                    <!--                                        <th>요청사항</th>-->
+                                    <!--                                        <td>-->
+                                    <!--                                            <ul class="list_type02">-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_connect">-->
+                                    <!--                                                    <input type="checkbox" name="loc_connect"-->
+                                    <!--                                                           id="loc_connect" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_connect">-->
+                                    <!--                                                        커넥팅룸-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_adjoin">-->
+                                    <!--                                                    <input type="checkbox" name="loc_adjoin"-->
+                                    <!--                                                           id="loc_adjoin" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_adjoin">-->
+                                    <!--                                                        인접한룸-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_baby">-->
+                                    <!--                                                    <input type="checkbox" name="loc_baby"-->
+                                    <!--                                                           id="loc_baby" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_baby">-->
+                                    <!--                                                        아기침대-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_high">-->
+                                    <!--                                                    <input type="checkbox" name="loc_high"-->
+                                    <!--                                                           id="loc_high" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_high">-->
+                                    <!--                                                        고층-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_loc_low">-->
+                                    <!--                                                    <input type="checkbox" name="loc_low"-->
+                                    <!--                                                           id="loc_low" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="loc_low">-->
+                                    <!--                                                        저층-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_no_smoke">-->
+                                    <!--                                                    <input type="checkbox" name="no_smoke"-->
+                                    <!--                                                           id="no_smoke" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="no_smoke">-->
+                                    <!--                                                        금연방-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_smoke">-->
+                                    <!--                                                    <input type="checkbox" name="smoke"-->
+                                    <!--                                                           id="smoke" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="smoke">-->
+                                    <!--                                                        흡연방-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_honeymoon">-->
+                                    <!--                                                    <input type="checkbox" name="honeymoon"-->
+                                    <!--                                                           id="honeymoon" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="honeymoon">-->
+                                    <!--                                                        허니문-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                                <li class="bs-input-check fl ml5 mb5" id="li_wheelchair">-->
+                                    <!--                                                    <input type="checkbox" name="wheelchair"-->
+                                    <!--                                                           id="wheelchair" value="Y">-->
+                                    <!--                                                    <label class="pubcheck" for="wheelchair">-->
+                                    <!--                                                        휠체어-->
+                                    <!--                                                    </label>-->
+                                    <!--                                                </li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                            <ul class="list_type02 f_14 f_gray">-->
+                                    <!--                                                <li>※ 추가요청사항은 확정사항이 아닙니다. 체크인시 호텔에서 확인 해주시기 바랍니다.<br>-->
+                                    <!--                                                    또한 흡연룸, 커넥팅룸 등이 없는 호텔은 요청사항을 체크하셔도 반영되지 않습니다.-->
+                                    <!--                                                </li>-->
+                                    <!--                                            </ul>-->
+                                    <!--                                        </td>-->
+                                    <!--                                    </tr>-->
+                                    <!--                                    <tr>-->
+                                    <!--                                        <th>-->
+                                    <!--                                            <label for="requestMemo">기타 요청</label>-->
+                                    <!--                                        </th>-->
+                                    <!--                                        <td>-->
+                                    <!--                                        <textarea class="memo" name="requestMemo" id="requestMemo" rows="10"-->
+                                    <!--                                                  placeholder="호텔로 직접 전달되므로 반드시 영어로 기재해주세요."></textarea>-->
+                                    <!--                                        </td>-->
+                                    <!--                                    </tr>-->
                                     </tbody>
                                 </table>
 
@@ -589,7 +620,18 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="btn_readmore_">
+                                더 읽어보세요 <img src="/images/svg/chevron-double-down.svg" alt="" id="image_readmore_">
+                            </div>
                         </div>
+
+                        <script>
+                            let down_src = '/images/svg/chevron-double-down.svg';
+                            let up_src = '/images/svg/chevron-double-up.svg';
+
+
+                        </script>
 
                         <div class="card-left2">
                             <h3 class="title-main-c">
@@ -603,6 +645,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="">
                         <div class="card-right">
                             <?php
@@ -692,7 +735,7 @@
                         </div>
                     </div>
                     <div class="popup_place__body">
-                        <?=viewSQ(getPolicy(19))?>
+                        <?= viewSQ(getPolicy(19)) ?>
                     </div>
                 </div>
             </div>
