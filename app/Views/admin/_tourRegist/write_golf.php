@@ -430,14 +430,14 @@
                                 </tr>
 
                                 <tr>
-                                    <th>기존상품가</th>
+                                    <th>기존상품가(THB)</th>
                                     <td>
                                         <input id="original_price" name="original_price" class="input_txt price"
                                                type="text"
                                                value="<?= $original_price ?>" style="width:90%"/><br/>
                                         <span style="color: gray;">* ex) 상품의 할인 전 금액</span>
                                     </td>
-                                    <th>상품최저가</th>
+                                    <th>상품최저가(THB)</th>
                                     <td>
                                         <input id="product_price" name="product_price" value="<?= $product_price ?>"
                                                class="input_txt price" type="text" style="width:90%"/><br/>
