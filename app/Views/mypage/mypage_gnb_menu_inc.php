@@ -8,7 +8,6 @@
     }
 </style>
 <?php $gubun = chk_member_col(session('member.id'), "gubun"); ?>
-<?php $level = chk_member_col(session('member.level'), "level"); ?>
 
 
 <div class="gnb_menu">
