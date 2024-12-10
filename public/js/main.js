@@ -39,59 +39,59 @@ $(document).ready(function () {
     //   }
     //   isPlaying = !isPlaying;
     // });
-    const owl = $(".main_visual_slider").owlCarousel({
-        loop: true,
-        // margin: 20,
-        // nav: true,
-        dots: false,
-        nav: true,
-        autoplay: true,
-        autoplayHoverPause: true,
-        autoplayTimeout: 5000,
-        smartSpeed: 2000,
-        navText: [
-            `<span class="swiper-button-prev-main swiper-button-main owl-prev">
-           <img src="/img/ico/icon_next_main_slider.png" alt="" class="image_prev_slider_">
-        </span>`,
-            `<span class="swiper-button-next-main swiper-button-main owl-next">
-            <img src="/img/ico/icon_next_main_slider.png" alt="" class="image_next_slider_">
-        </span>`,
-        ],
-        responsive: {
-            0: {
-                items: 1,
-            },
-            600: {
-                items: 1,
-            },
-            1000: {
-                items: 1,
-            },
-        },
-    });
-    const currentSlideIndex = $(".main_current_slide");
-    owl.on("changed.owl.carousel", function (event) {
-        var currentItem = event.item.index - event.relatedTarget._clones.length / 2;
-        var totalItems = event.item.count;
-        if (currentItem < 0) {
-            currentItem = totalItems + currentItem;
-        }
-        currentSlideIndex.text(currentItem + 1);
-    });
-    $("#autoplay-button").click(function () {
-        var $this = $(this);
-        if ($this.hasClass("play")) {
-            owl.trigger("play.owl.autoplay", [3000]);
-            $this.removeClass("play").addClass("stop");
-            $("#pause-button").show();
-            $("#play-button").hide();
-        } else {
-            owl.trigger("stop.owl.autoplay");
-            $this.removeClass("stop").addClass("play");
-            $("#pause-button").hide();
-            $("#play-button").show();
-        }
-    });
+    // const owl = $(".main_visual_slider").owlCarousel({
+    //     loop: true,
+    //     // margin: 20,
+    //     // nav: true,
+    //     dots: false,
+    //     nav: true,
+    //     autoplay: true,
+    //     autoplayHoverPause: true,
+    //     autoplayTimeout: 5000,
+    //     smartSpeed: 2000,
+    //     navText: [
+    //         `<span class="swiper-button-prev-main swiper-button-main owl-prev">
+    //        <img src="/img/ico/icon_next_main_slider.png" alt="" class="image_prev_slider_">
+    //     </span>`,
+    //         `<span class="swiper-button-next-main swiper-button-main owl-next">
+    //         <img src="/img/ico/icon_next_main_slider.png" alt="" class="image_next_slider_">
+    //     </span>`,
+    //     ],
+    //     responsive: {
+    //         0: {
+    //             items: 1,
+    //         },
+    //         600: {
+    //             items: 1,
+    //         },
+    //         1000: {
+    //             items: 1,
+    //         },
+    //     },
+    // });
+    // const currentSlideIndex = $(".main_current_slide");
+    // owl.on("changed.owl.carousel", function (event) {
+    //     var currentItem = event.item.index - event.relatedTarget._clones.length / 2;
+    //     var totalItems = event.item.count;
+    //     if (currentItem < 0) {
+    //         currentItem = totalItems + currentItem;
+    //     }
+    //     currentSlideIndex.text(currentItem + 1);
+    // });
+    // $("#autoplay-button").click(function () {
+    //     var $this = $(this);
+    //     if ($this.hasClass("play")) {
+    //         owl.trigger("play.owl.autoplay", [3000]);
+    //         $this.removeClass("play").addClass("stop");
+    //         $("#pause-button").show();
+    //         $("#play-button").hide();
+    //     } else {
+    //         owl.trigger("stop.owl.autoplay");
+    //         $this.removeClass("stop").addClass("play");
+    //         $("#pause-button").hide();
+    //         $("#play-button").show();
+    //     }
+    // });
 
     $(".main_section3__place_btn").on("click", function () {
         $(".main_section3__place_btn").removeClass("active");

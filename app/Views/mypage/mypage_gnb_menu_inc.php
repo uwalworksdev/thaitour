@@ -66,6 +66,8 @@
         <!-- <li class="<?= $tab_8 ?>">
             <div class="menu_level_1 flex_b_c"><a href="../mypage/visa">나의 호주비자문의</a></div>
         </li> -->
+		
+		<?php if(session("member.level") != "99") { ?>
         <li class="<?= $tab_9 ?>">
             <div class="menu_level_1 has_submenu flex_b_c">
                 <a class="show">정보수정</a>
@@ -83,6 +85,8 @@
  
             </div>
         </li>
+		<?php } ?>
+
         <!-- <li>
             <div class="menu_level_1 flex_b_c"><a class="show_popup" href="#!">현금영수증 발급 안내</a></div>
         </li> -->

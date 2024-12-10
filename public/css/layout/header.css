@@ -24,6 +24,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    font-size: 18px;
 }
 
 .flex_header_top select {
@@ -188,7 +189,10 @@
 }
 
 .flex_header_top a.active_ {
-    color: #17469E;
+    background-color: #17469E;
+    padding: 5px 10px;
+    border-radius: 25px;
+    color: #fff;
 }
 
 .custom_select_rounded {

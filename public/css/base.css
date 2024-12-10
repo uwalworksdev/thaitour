@@ -655,6 +655,51 @@ table thead td {
     top: 0%;
 }
 
+/* Gap css */
+.gap_5 {
+    gap: 5px;
+}
+
+.gap_10 {
+    gap: 10px;
+}
+
+.gap_20 {
+    gap: 20px;
+}
+
+.gap_30 {
+    gap: 30px;
+}
+
+.gap_40 {
+    gap: 40px;
+}
+
+.gap_50 {
+    gap: 50px;
+}
+
+.gap_60 {
+    gap: 60px;
+}
+
+.gap_70 {
+    gap: 70px;
+}
+
+.gap_80 {
+    gap: 80px;
+}
+
+.gap_90 {
+    gap: 90px;
+}
+
+.gap_100 {
+    gap: 100px;
+}
+
 /* End css circle in vision views */
 /* End css circle */
 /* Css padding */
@@ -838,6 +883,18 @@ table thead td {
 
 /* End css margin left */
 
+.text_truncate_ {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: nowrap;
+    max-height: 4rem;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+/* Mobile Responsive */
 @media only screen and (max-width: 850px) {
     .only_m,
     .only_mo,

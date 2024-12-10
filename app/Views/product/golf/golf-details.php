@@ -696,6 +696,12 @@
             }
             ?>
 
+			if($("#people_adult_cnt").val() < 1) {
+               alert('인원을 선택하세요.');
+			   $("#people_adult_cnt").focus();
+			   return false;
+            }
+
             $("#frm").submit();
         }
 

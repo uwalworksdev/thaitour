@@ -16,16 +16,29 @@
     <meta name="naver-site-verification" content="466ef04fc98ddc84f2dc2f63451ef03d71efa5d7">
     <link href="/uploads/setting/<?= $setting['favico'] ?>" rel="icon" type="image/x-icon">
     <link rel="canonical" href="https://happythaitour.com/">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Old version -->
     <script src="/lib/jquery/jquery-2.1.4.min.js"></script>
+    <link rel="stylesheet" href="/lib/swiper-11.1.4/package/swiper-bundle.min.css"/>
+    <script src="/lib/jquery/jquery-ui.min.js"></script>
+    <script src="/lib/swiper-11.1.4/package/swiper-bundle.min.js"></script>
+
+    <!-- New version-->
+    <!--    <link rel="stylesheet" href="/lib/new_swiper/swiper4.5.1.css"/>-->
+    <!--    <link rel="stylesheet" href="/lib/new_swiper/swiper.min.css"/>-->
+    <!---->
+    <!--    <script src="/lib/new_jquery/jquery-2.1.4.min.js"></script>-->
+    <!--    <script src="/lib/new_jquery/jquery-ui.min.js"></script>-->
+    <!---->
+    <!--    <script src="/lib/new_swiper/swiper4.5.1.js"></script>-->
+    <!--    <script src="/lib/new_swiper/swiper.min.js"></script>-->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/lib/swiper-11.1.4/package/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/lib/summernote/summernote-lite.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <script src="/lib/jquery/jquery-ui.min.js"></script>
     <script src="/js/script.js"></script>
-    <script src="/lib/swiper-11.1.4/package/swiper-bundle.min.js"></script>
     <!--    <script src="/lib/slick/slick.js"></script>-->
     <script src="/lib/slick/slick.min.js"></script>
     <script src="/lib/summernote/summernote-lite.js"></script>

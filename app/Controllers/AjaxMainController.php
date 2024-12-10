@@ -56,16 +56,18 @@ class AjaxMainController extends BaseController {
 				 $msg .= '</div>';
 				 $msg .= '<ul class="breadcrumb">';
 				 $msg .= '<li class="breadcrumb_item">방콕</li>';
+				 $msg .= '<li><img src="/img/ico/ico_next_grey_.png" alt=""></li>';
 				 $msg .= '<li class="breadcrumb_item">시암</li>';
 				 $msg .= '</ul>';
-				 $msg .= '<div class="prd_name">'. $item['product_name'] .'</div>';
+				 $msg .= '<div class="prd_name" style="margin-top: 14px;">'. $item['product_name'] .'</div>';
 				 $msg .= '<div class="prd_info">';
 				 $msg .= '<img class="ico_star" src="/images/ico/ico_star.svg" alt="">';
 				 $msg .= '<span class="star_avg">4.7</span>';
 				 $msg .= '<span class="star_review_cnt">(954)</span></div>';
-				 $msg .= '<div class="prd_price_ko">'. number_format($item['original_price']) .'<span> 바트</span></div>';
-				 $msg .= '<div class="prd_price_thai">'. number_format($item['product_price_won']) .'<span>원</span></div>';
-			     $msg .= '</a>';
+				 $msg .= '<div class="d_flex justify_content_start align_items_end gap_10">';
+                 $msg .= '<div class="prd_price_ko">'. number_format($item['product_price_won']) .'<span> 원</span></div>';
+				 $msg .= '<div class="prd_price_thai">'. number_format($item['product_price']) .'<span>바트</span></div>';
+			     $msg .= '</div></a>';
 		endforeach;
  
         $output = [
@@ -110,13 +112,13 @@ class AjaxMainController extends BaseController {
 			$msg .= '<img src="/data/'. $img_dir .'/'. $item3['ufile1'] .'" alt="main">';
 			$msg .= '</div>';
 			$msg .= '<div class="prd_name">'. $item3['product_name'] .'</div>';
-			$msg .= '<div class="prd_price_ko">'. number_format($item3['original_price']) .'<span> 바트</span></div>';
-			$msg .= '<div class="prd_price_thai">'. number_format($item3['product_price_won']) .'<span>원</span></div>';
-			$msg .= '<span class="number_item_label number_one">'. $seq .'</span>';
-			$msg .= '</a>';
+			$msg .= '<div class="d_flex justify_content_start align_items_end gap_10">';
+			$msg .= '<div class="prd_price_ko">'. number_format($item3['product_price_won']) .'<span> 원</span></div>';
+			$msg .= '<div class="prd_price_thai">'. number_format($item3['product_price']) .'<span> 바트</span></div>';
+			$msg .= '</div></a>';
 			$msg .= '</div>';
 		endforeach;
- 
+
         $output = [
             "message"  => $msg
         ];

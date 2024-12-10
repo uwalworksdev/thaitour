@@ -53,6 +53,10 @@ $searchTxt = $SearchText->List()->findAll();
 <link rel="stylesheet" href="/lib/owl-carousel2/owl.theme.default.min.css">
 <script src="/lib/owl-carousel2/owl.carousel.min.js"></script>
 <style>
+    .breadcrumb_item {
+        margin: 0 5px;
+    }
+
     @media screen and (max-width: 850px) {
         .hot_product_list_swiper_pagination_2 .swiper-pagination-bullet {
             scale: 1;
@@ -66,54 +70,58 @@ $searchTxt = $SearchText->List()->findAll();
 <div class="body_container main_body_container">
     <section class="main_visual">
         <div class="relative">
-            <div class="main_visual_slider owl-carousel only_web">
-                <?php foreach ($bannerMain as $item): ?>
-                    <div class="img_box img_box_1 only_web">
-                        <img class="only_web" src="/data/bbs/<?= $item['ufile5'] ?>"
-                             alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
-                        <!--                        <div class="img_box_ttl_main">-->
-                        <!--                            --><?php //= viewSQ($item['subject']) ?>
-                        <!--                            <p class="img_box_txt_main2">-->
-                        <?php //= viewSQ($item['describe']) ?><!--</p>-->
-                        <!--                        </div>-->
-                    </div>
-                <?php endforeach; ?>
-
+            <div class="main_visual_slider  only_web">
+                <div class="swiper-wrapper">
+                    <?php foreach ($bannerMain as $item): ?>
+                        <div class="swiper-slide img_box img_box_1 only_web">
+                            <img class="only_web" src="/data/bbs/<?= $item['ufile5'] ?>"
+                                 alt="<?= $item['rfile5'] ?>" onerror="this.src='/images/main/image.svg'">
+                            <!--                        <div class="img_box_ttl_main">-->
+                            <!--                            --><?php //= viewSQ($item['subject']) ?>
+                            <!--                            <p class="img_box_txt_main2">-->
+                            <?php //= viewSQ($item['describe']) ?><!--</p>-->
+                            <!--                        </div>-->
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
             <div class="main_visual_slider owl-carousel only_mo">
                 <div class="img_box img_box_1_m  only_mo">
-                    <img class="" src="/uploads/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
+                    <img class="" src="/data/bbs/banner_main_bbs1_m.png" alt="<?= $item['rfile5'] ?>"
                          onerror="this.src='/images/main/image.svg'">
                 </div>
                 <div class="img_box img_box_1_m only_mo ">
-                    <img class="only_mo" src="/uploads/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
+                    <img class="only_mo" src="/data/bbs/banner_main_bbs2_m.png" alt="<?= $item['rfile5'] ?>"
                          onerror="this.src='/images/main/image.svg'">
                 </div>
                 <div class="img_box img_box_1_m only_mo ">
-                    <img class="only_mo" src="/uploads/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
+                    <img class="only_mo" src="/data/bbs/banner_main_bbs3_m.png" alt="<?= $item['rfile5'] ?>"
                          onerror="this.src='/images/main/image.svg'">
                 </div>
             </div>
 
-            <div class="swiper-main-tools">
-                <div class="play_pause" id="autoplay-button">
-                    <svg id="pause-button" class="pause" width="6" height="10" viewBox="0 0 6 10" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <rect width="2" height="10" fill="#757575"/>
-                        <rect x="4" width="2" height="10" fill="#757575"/>
-                    </svg>
-                    <svg id="play-button" style="display: none;" class="play" width="8" height="10" viewBox="0 0 8 10"
-                         fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
-                              fill="#757575"/>
-                    </svg>
-                </div>
-                <div class="swiper-pagination-main">
-                    <span class="main_current_slide">1</span>&nbsp;/&nbsp;<span
-                            class="main_total_slide"><?= count($bannerMain) ?></span>
-                    <!-- get total slide from database -->
-                </div>
+            <div class="swiper-button swiper-button-next"></div>
+            <div class="swiper-button swiper-button-prev"></div>
+        </div>
+
+        <div class="swiper-main-tools">
+            <div class="play_pause" id="autoplay-button">
+                <svg id="pause-button" class="pause" width="6" height="10" viewBox="0 0 6 10" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <rect width="2" height="10" fill="#757575"/>
+                    <rect x="4" width="2" height="10" fill="#757575"/>
+                </svg>
+                <svg id="play-button" style="display: none;" class="play" width="8" height="10" viewBox="0 0 8 10"
+                     fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M7.71975 4.48357L0.935104 0.11106C0.532604 -0.105726 0.0715332 -0.0832222 0.0715332 0.694992V9.305C0.0715332 10.0164 0.566176 10.1286 0.935104 9.88894L7.71975 5.51642C7.99904 5.23106 7.99904 4.76893 7.71975 4.48357Z"
+                          fill="#757575"/>
+                </svg>
+            </div>
+            <div class="swiper-pagination-main">
+                <span class="main_current_slide" id="bnpageCurrent">1</span>&nbsp;/&nbsp;<span
+                        class="main_total_slide"><?= count($bannerMain) ?></span>
+                <!-- get total slide from database -->
             </div>
         </div>
     </section>
@@ -128,7 +136,7 @@ $searchTxt = $SearchText->List()->findAll();
                         <?php foreach ($bannerTop as $banner): ?>
                             <div class="swiper-slide">
                                 <div class="img_box img_box_2 img_box_2_m">
-                                    <img class="" src="/uploads/bbs/<?= $banner['ufile5'] ?>"
+                                    <img class="" src="/data/bbs/<?= $banner['ufile5'] ?>"
                                          alt="<?= $banner['rfile5'] ?>">
                                 </div>
                                 <div class="main_swiper2__text">
@@ -187,11 +195,11 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                    <img src="/img/ico/ico_next_grey_.png" alt="">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
-                            <div class="prd_name">
+                            <div class="prd_name" style="margin-top: 14px;">
                                 <?= $item1_1['product_name'] ?>
                             </div>
                             <div class="prd_info">
@@ -199,11 +207,13 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_avg">4.7</span>
                                 <span class="star_review_cnt">(954)</span>
                             </div>
-                            <div class="prd_price_ko">
-                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
-                            </div>
-                            <div class="prd_price_thai">
-                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
+                            <div class="d_flex justify_content_start align_items_end gap_10">
+                                <div class="prd_price_ko">
+                                    <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
+                                </div>
+                                <div class="prd_price_thai">
+                                    <?= number_format($item1_1['product_price']) ?> <span>바트</span>
+                                </div>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -220,7 +230,7 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                    <img src="/img/ico/ico_next_grey_.png" alt="">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -232,11 +242,13 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_avg">4.7</span>
                                 <span class="star_review_cnt">(954)</span>
                             </div>
-                            <div class="prd_price_ko">
-                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
-                            </div>
-                            <div class="prd_price_thai">
-                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
+                            <div class="d_flex justify_content_start align_items_end gap_10">
+                                <div class="prd_price_ko">
+                                    <?= number_format($item1_2['product_price_won']) ?> <span>원</span>
+                                </div>
+                                <div class="prd_price_thai">
+                                    <?= number_format($item1_2['product_price']) ?> <span>바트</span>
+                                </div>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -253,7 +265,7 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                    <img src="/img/ico/ico_next_grey_.png" alt="">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -265,11 +277,13 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_avg">4.7</span>
                                 <span class="star_review_cnt">(954)</span>
                             </div>
-                            <div class="prd_price_ko">
-                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
-                            </div>
-                            <div class="prd_price_thai">
-                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
+                            <div class="d_flex justify_content_start align_items_end gap_10">
+                                <div class="prd_price_ko">
+                                    <?= number_format($item1_3['product_price_won']) ?> <span>원</span>
+                                </div>
+                                <div class="prd_price_thai">
+                                    <?= number_format($item1_3['product_price']) ?> <span>바트</span>
+                                </div>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -286,7 +300,7 @@ $searchTxt = $SearchText->List()->findAll();
                             <ul class="breadcrumb">
                                 <li class="breadcrumb_item">방콕</li>
                                 <li>
-                                    <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                    <img src="/img/ico/ico_next_grey_.png" alt="">
                                 </li>
                                 <li class="breadcrumb_item">시암</li>
                             </ul>
@@ -298,11 +312,13 @@ $searchTxt = $SearchText->List()->findAll();
                                 <span class="star_avg">4.7</span>
                                 <span class="star_review_cnt">(954)</span>
                             </div>
-                            <div class="prd_price_ko">
-                                <?= number_format($item1_1['product_price_won']) ?> <span>원</span>
-                            </div>
-                            <div class="prd_price_thai">
-                                <?= number_format($item1_1['product_price']) ?> <span>바트</span>
+                            <div class="d_flex justify_content_start align_items_end gap_10">
+                                <div class="prd_price_ko">
+                                    <?= number_format($item1_4['product_price_won']) ?> <span>원</span>
+                                </div>
+                                <div class="prd_price_thai">
+                                    <?= number_format($item1_4['product_price']) ?> <span>바트</span>
+                                </div>
                             </div>
                         </a>
                     <?php endforeach; ?>
@@ -432,11 +448,14 @@ $searchTxt = $SearchText->List()->findAll();
                                     <div class="img_box img_box_2">
                                         <img src="/data/<?= $img_dir ?>/<?= $item2['ufile1'] ?>" alt="main">
                                     </div>
-                                    <div class="prd_name"><?= $item3['product_name'] ?></div>
-                                    <div class="prd_price_ko"><?= number_format($item2['product_price_won']) ?>
-                                        <span> 원</span></div>
-                                    <div class="prd_price_thai"><?= number_format($item2['product_price']) ?>
-                                        <span>바트</span>
+                                    <div class="prd_name"><?= $item2['product_name'] ?></div>
+                                    <div class="d_flex justify_content_start align_items_end gap_10">
+                                        <div class="prd_price_ko">
+                                            <?= number_format($item2['product_price_won']) ?> <span>원</span>
+                                        </div>
+                                        <div class="prd_price_thai">
+                                            <?= number_format($item2['product_price']) ?> <span>바트</span>
+                                        </div>
                                     </div>
                                 </a>
                             </div>
@@ -612,7 +631,7 @@ $searchTxt = $SearchText->List()->findAll();
                 <?php foreach ($bannerMid as $banner): ?>
                     <div class="main_section7__banner__item">
                         <div class="img_box img_box_4">
-                            <img src="/uploads/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>"
+                            <img src="/data/bbs/<?= $banner['ufile5'] ?>" alt="<?= $banner['rfile5'] ?>"
                                  class="only_web">
                         </div>
                         <div class="text-content only_web">
@@ -662,10 +681,13 @@ $searchTxt = $SearchText->List()->findAll();
                                         <img src="/data/<?= $img_dir ?>/<?= $item3['ufile1'] ?>" alt="main">
                                     </div>
                                     <div class="prd_name"><?= $item3['product_name'] ?></div>
-                                    <div class="prd_price_ko"><?= number_format($item3['product_price_won']) ?>
-                                        <span> 원</span></div>
-                                    <div class="prd_price_thai"><?= number_format($item3['product_price']) ?>
-                                        <span>바트</span>
+                                    <div class="d_flex justify_content_start align_items_end gap_10">
+                                        <div class="prd_price_ko">
+                                            <?= number_format($item3['product_price_won']) ?> <span>원</span>
+                                        </div>
+                                        <div class="prd_price_thai">
+                                            <?= number_format($item3['product_price']) ?> <span>바트</span>
+                                        </div>
                                     </div>
                                     <!--                                    <span class="number_item_label number_one">-->
                                     <?php //= $seq ?><!--</span>-->
@@ -702,8 +724,8 @@ $searchTxt = $SearchText->List()->findAll();
     foreach ($bannerBottom as $item_m):
 
         $seq++;
-        if ($seq == 1) $banner_1 = "/uploads/bbs/" . $item_m['ufile5'];
-        if ($seq == 2) $banner_2 = "/uploads/bbs/" . $item_m['ufile5'];
+        if ($seq == 1) $banner_1 = "/data/bbs/" . $item_m['ufile5'];
+        if ($seq == 2) $banner_2 = "/data/bbs/" . $item_m['ufile5'];
 
     endforeach;
     ?>
@@ -739,13 +761,17 @@ $searchTxt = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
                                             <li>
-                                                <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                                <img src="/img/ico/ico_next_grey_.png" alt="">
                                             </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
-                                        <div class="prd_price_ko"><?= number_format($item4['product_price_won']) ?>
-                                            <span> 원</span></div>
-                                        <div class="prd_price_thai"><?= number_format($item4['product_price']) ?>바트
+                                        <div class="d_flex justify_content_start align_items_end gap_10">
+                                            <div class="prd_price_ko">
+                                                <?= number_format($item4['product_price_won']) ?> <span>원</span>
+                                            </div>
+                                            <div class="prd_price_thai">
+                                                <?= number_format($item4['product_price']) ?> <span>바트</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -783,13 +809,17 @@ $searchTxt = $SearchText->List()->findAll();
                                             <img src="/uploads/icons/icon-location.png" alt="" class="only_web">
                                             <li class="breadcrumb_item">방콕</li>
                                             <li>
-                                                <img src="/images/ico/ico_next_slide_1.svg" alt="">
+                                                <img src="/img/ico/ico_next_grey_.png" alt="">
                                             </li>
                                             <li class="breadcrumb_item">시암</li>
                                         </ul>
-                                        <div class="prd_price_ko"><?= number_format($item5['product_price_won']) ?>
-                                            <span> 원</span></div>
-                                        <div class="prd_price_thai"><?= number_format($item5['product_price']) ?>바트
+                                        <div class="d_flex justify_content_start align_items_end gap_10">
+                                            <div class="prd_price_ko">
+                                                <?= number_format($item5['product_price_won']) ?> <span>원</span>
+                                            </div>
+                                            <div class="prd_price_thai">
+                                                <?= number_format($item5['product_price']) ?> <span>바트</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1005,15 +1035,15 @@ $searchTxt = $SearchText->List()->findAll();
                                             <span class="eye_cnt">1,248</span>
                                         </div>
                                     </div>
+                                    </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                </div>
-                <button class="swiper-button-prev-main-2 swiper-button-main-2 review__list_swiper_btn_prev">
+                <button class="swiper-button-prev-main-2 main_section_review_prev_btn_ swiper-button-main-2 review__list_swiper_btn_prev">
                     <img src="/images/ico/ico_prev_slide.svg" alt="" class="ico_prev_slide">
                 </button>
-                <button class="swiper-button-next-main-2 swiper-button-main-2 review__list_swiper_btn_next">
+                <button class="swiper-button-next-main-2 main_section_review_next_btn_ swiper-button-main-2 review__list_swiper_btn_next">
                     <img src="/images/ico/ico_next_slide.svg" alt="" class="ico_next_slide">
                 </button>
             </div>
@@ -1072,5 +1102,84 @@ $searchTxt = $SearchText->List()->findAll();
         }
     }
 </script>
+<script>
+    $(document).ready(function () {
+        var isAutoplaying = true;
 
+        var swiperMainVisual = new Swiper(".main_visual_slider", {
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+            },
+            speed: 800,
+            navigation: {
+                nextEl: ".main_visual .swiper-button-next",
+                prevEl: ".main_visual .swiper-button-prev",
+            },
+            on: {
+                slideChange: function () {
+                    const currentIndex = this.realIndex + 1;
+                    $('#bnpageCurrent').text(currentIndex);
+                    if (!isAutoplaying) {
+                        this.autoplay.stop();
+                    } else {
+                        this.autoplay.start();
+                    }
+                }
+            }
+        });
+
+        $(document).on("click", "#autoplay-button", function (e, eSwiperMainVisual) {
+            eSwiperMainVisual = swiperMainVisual;
+            changeAutoPlay(e, eSwiperMainVisual, this);
+        })
+
+        function changeAutoPlay(e, eSwiperMainVisual, el) {
+            if (!eSwiperMainVisual) {
+                console.error("Swiper instance is not initialized!");
+                return;
+            }
+            e.preventDefault();
+            console.log(123);
+            let $this = $(el);
+            if ($this.hasClass("play")) {
+                isAutoplaying = true;
+                // eSwiperMainVisual.autoplay.stop();
+                // isAutoplaying = true;
+                $this.removeClass("play").addClass("stop");
+                $("#pause-button").show();
+                $("#play-button").hide();
+            } else {
+                isAutoplaying = false;
+                // eSwiperMainVisual.autoplay.start();
+                // isAutoplaying = false;
+                $this.removeClass("stop").addClass("play");
+                $("#pause-button").hide();
+                $("#play-button").show();
+            }
+        }
+
+
+        // $("#autoplay-button").click(function () {
+        //     if (!swiperMainVisual) {
+        //         console.error("Swiper instance is not initialized!");
+        //         return;
+        //     }
+        //
+        //     let $this = $(this);
+        //     if ($this.hasClass("play")) {
+        //         isAutoplaying = true;
+        //         $this.removeClass("play").addClass("stop");
+        //         $("#pause-button").show();
+        //         $("#play-button").hide();
+        //     } else {
+        //         isAutoplaying = false;
+        //         $this.removeClass("stop").addClass("play");
+        //         $("#pause-button").hide();
+        //         $("#play-button").show();
+        //     }
+        // });
+    });
+</script>
 <?php $this->endSection(); ?>
