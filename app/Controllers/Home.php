@@ -51,6 +51,11 @@ class Home extends BaseController
 
             $review['list_code_type'] = $list_code_type;
 
+            $sql = "SELECT * FROM tbl_code WHERE code_no = '" . $review['travel_type'] . "' ORDER BY onum ";
+            $code = $this->db->query($sql)->getRowArray();
+
+            $review['code_name'] = $code['code_name'] ?? '가지고 있지 않다';
+
             return $review;
         }, $best_reviews);
 
