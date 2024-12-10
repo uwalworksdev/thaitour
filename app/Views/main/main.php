@@ -124,56 +124,81 @@ $searchTxt = $SearchText->List()->findAll();
 
     <script>
         $(document).ready(function () {
-            let isAutoplaying = true;
-            let swiperMainVisual = null;
+            var isAutoplaying = true;
 
-            if ($(".main_visual_slider").length) {
-                swiperMainVisual = new Swiper(".main_visual_slider", {
-                    loop: true,
-                    autoplay: {
-                        delay: 2000,
-                    },
-                    speed: 800,
-                    navigation: {
-                        nextEl: ".main_visual .swiper-button-next",
-                        prevEl: ".main_visual .swiper-button-prev",
-                    },
-                    on: {
-                        slideChange: function () {
-                            const currentIndex = this.realIndex + 1;
-                            $('#bnpageCurrent').text(currentIndex);
-                            if (!isAutoplaying) {
-                                this.autoplay.start();
-                                isAutoplaying = true;
-                            }
+            var swiperMainVisual = new Swiper(".main_visual_slider", {
+                loop: true,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+                speed: 800,
+                navigation: {
+                    nextEl: ".main_visual .swiper-button-next",
+                    prevEl: ".main_visual .swiper-button-prev",
+                },
+                on: {
+                    slideChange: function () {
+                        const currentIndex = this.realIndex + 1;
+                        $('#bnpageCurrent').text(currentIndex);
+                        if (!isAutoplaying) {
+                            this.autoplay.stop();
+                        } else {
+                            this.autoplay.start();
                         }
                     }
-                });
-            } else {
-                console.warn("Swiper container not found!");
-            }
+                }
+            });
 
-            $("#autoplay-button").click(function () {
-                if (!swiperMainVisual) {
+            $(document).on("click", "#autoplay-button", function (e, eSwiperMainVisual) {
+                eSwiperMainVisual = swiperMainVisual;
+                changeAutoPlay(e, eSwiperMainVisual, this);
+            })
+
+            function changeAutoPlay(e, eSwiperMainVisual, el) {
+                if (!eSwiperMainVisual) {
                     console.error("Swiper instance is not initialized!");
                     return;
                 }
-
-                let $this = $(this);
+                e.preventDefault();
+                let $this = $(el);
                 if ($this.hasClass("play")) {
-                    swiperMainVisual.autoplay.start();
+                    isAutoplaying = true;
+                    // eSwiperMainVisual.autoplay.stop();
                     isAutoplaying = true;
                     $this.removeClass("play").addClass("stop");
                     $("#pause-button").show();
                     $("#play-button").hide();
                 } else {
-                    swiperMainVisual.autoplay.stop();
+                    isAutoplaying = false;
+                    // eSwiperMainVisual.autoplay.start();
                     isAutoplaying = false;
                     $this.removeClass("stop").addClass("play");
                     $("#pause-button").hide();
                     $("#play-button").show();
                 }
-            });
+            }
+
+
+            // $("#autoplay-button").click(function () {
+            //     if (!swiperMainVisual) {
+            //         console.error("Swiper instance is not initialized!");
+            //         return;
+            //     }
+            //
+            //     let $this = $(this);
+            //     if ($this.hasClass("play")) {
+            //         isAutoplaying = true;
+            //         $this.removeClass("play").addClass("stop");
+            //         $("#pause-button").show();
+            //         $("#play-button").hide();
+            //     } else {
+            //         isAutoplaying = false;
+            //         $this.removeClass("stop").addClass("play");
+            //         $("#pause-button").hide();
+            //         $("#play-button").show();
+            //     }
+            // });
         });
     </script>
 
