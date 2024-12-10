@@ -886,7 +886,6 @@
         });
 
         function sel_date(day, date = null) {
-			alert(date);
             if (date) {
                 const newDay = new Date(date).getDay();
                 $(".final_date").text(`${date.replaceAll("-", ".")} (${daysOfWeek[newDay]})`);
@@ -973,7 +972,7 @@
         //const initDate = $(".calendar-swiper-wrapper").find(".day.on a").eq(0).attr("data-date");
         const initDate = $("#firstDate").val();
         $(".calendar-swiper-wrapper").find(".day.on a").eq(0).addClass("on");
-
+alert('11111111');
         $(".final_date").text(formatDate(new Date(initDate), "."));
         $("#order_date").val(formatDate(new Date(initDate), "-"));
 
