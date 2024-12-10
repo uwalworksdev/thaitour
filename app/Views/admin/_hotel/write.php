@@ -617,21 +617,21 @@ $links = "list";
                                 </tr>
 
                                 <tr>
-                                    <th>최초가격(정찰가)</th>
+                                    <th>최초가격(정찰가)(THB)</th>
                                     <td colspan="3">
                                         <input type="text" name="original_price" id="original_price" class="onlynum"
                                                style="text-align:right;width: 200px;"
-                                               value="<?= $original_price ?? "" ?>"/> 바트
+                                               value="<?= $original_price ?? "" ?>"/>  
                                     </td>
 
                                 </tr>
 
                                 <tr>
-                                    <th>판매가격</th>
+                                    <th>판매가격(THB)</th>
                                     <td colspan="3">
                                         <input type="text" name="product_price" id="product_price" class="onlynum"
                                                style="text-align:right;width: 200px;"
-                                               value="<?= $product_price ?? "" ?>"/> 바트
+                                               value="<?= $product_price ?? "" ?>"/>  
                                     </td>
 
                                 </tr>
@@ -872,8 +872,8 @@ $links = "list";
                                                     <tr>
                                                         <th>객실명</th>
                                                         <th>기간</th>
-                                                        <th>가격</th>
-                                                        <th>우대가격</th>
+                                                        <th>가격(THB)</th>
+                                                        <th>우대가격(THB</th>
                                                         <th>삭제</th>
                                                     </tr>
                                                     </thead>

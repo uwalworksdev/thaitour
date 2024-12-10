@@ -161,13 +161,13 @@
 												분
 											</td>
 											<td style="text-align:center">
-												가격(원)
+												가격(THB)
 											</td>
 											<td style="text-align:center">
-												캐디피(원)
+												캐디피(THB)
 											</td>
 											<td style="text-align:center">
-												카트피(원)
+												카트피(THB)
 											</td>
 											<!--td style="text-align:center">
 												마감
@@ -187,7 +187,7 @@
 										<tr style="height:40px">
 											<td style="text-align:center"><?=$item['golf_date']?> [<?=$item['dow']?>]</td>
 											<td style="text-align:center">
-											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>">
+											    <select name="hole_cnt[]" id="hole_cnt_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOLES as $hole) {
 														if($item['hole_cnt'] == $hole) {
@@ -200,7 +200,7 @@
 											    </select>
                                             </td>
 											<td style="text-align:center">
-											    <select name="hour[]" id="hour_<?=$item['idx']?>">
+											    <select name="hour[]" id="hour_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_HOURS as $hour) {
 														if($item['hour'] == $hour) {
@@ -213,7 +213,7 @@
 											    </select>
                                             </td>
 											<td style="text-align:center">
-											    <select name="minute[]" id="minute_<?=$item['idx']?>">
+											    <select name="minute[]" id="minute_<?=$item['idx']?>" disabled>
 												<?php
 													foreach (GOLF_MIN as $minute) {
 														if($item['minute'] == $minute) {

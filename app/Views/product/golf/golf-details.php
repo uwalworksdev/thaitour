@@ -263,8 +263,7 @@
                 <!--button class="btn-price-content-normal" type="button"
                         onclick="showCouponPop()">쿠폰적용
                 </button-->
-                <button class="btn-price-content-normal" type="button" onclick="cartAdd()">장바구니 담기
-                </button>
+                <!--button class="btn-price-content-normal" type="button" onclick="cartAdd()">장바구니 담기</button-->
             </div>
             <div class="right-main" id="booking_area">
                 <div class="item-right">

@@ -1871,7 +1871,7 @@ class Product extends BaseController
             $data = $this->request->getPost();
             $data['m_idx'] = session('member.idx') ?? "";
             $product = $this->productModel->find($data['product_idx']);
-            $data['product_name'] = $product['product_name'];
+            $data['product_name']   = $product['product_name'];
             $data['product_code_1'] = $product['product_code_1'];
             $data['product_code_2'] = $product['product_code_2'];
             $data['product_code_3'] = $product['product_code_3'];
@@ -1880,7 +1880,7 @@ class Product extends BaseController
             $order_user_email = $data['email_1'] . "@" . $data['email_2'];
             $data['order_user_email'] = encryptField($order_user_email, 'encode');
             $data['order_r_date'] = date('Y-m-d H:i:s');
-            $data['order_status'] = "W";
+            //$data['order_status'] = "W";
             if ($data['radio_phone'] == "kor") {
                 $order_user_phone = $data['phone_1'] . "-" . $data['phone_2'] . "-" . $data['phone_3'];
             } else {
