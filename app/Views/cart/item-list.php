@@ -69,6 +69,7 @@
                             </tbody>
                         </table>
                         <div class="table-container custom-mo only_mo">
+						    <?php foreach ($result as $item): ?>
                             <div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
@@ -105,7 +106,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="item">
+		                    <?php endforeach; ?>
+
+                            <!--div class="item">
                                 <div class="con-up">
                                     <div class="picture-con">
                                         <img src="/uploads/sub/cart_test_img_02_mo.png" alt="">
@@ -140,7 +143,7 @@
                                         <span>1,230,000 원</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                 </div>
