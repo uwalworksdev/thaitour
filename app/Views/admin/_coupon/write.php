@@ -182,7 +182,7 @@
                                     <td>
                                         <input type="text" id="max_coupon_price" name="max_coupon_price"
                                                 value="<?= isset($max_coupon_price) ? $max_coupon_price : '' ?>"
-                                                style="width:100px;" class="input_txt onlynum"/> 원
+                                                style="width:100px;" class="input_txt onlynum"/> 바트
                                     </td>
                                 </tr>
 

@@ -226,7 +226,7 @@
 
                                 <tr>
                                     <th>상품분류</th>
-                                    <td>
+                                    <td colspan="3">
                                         <select id="product_code_1" name="product_code_1" class="input_select"
                                                 onchange="javascript:get_code(this.value, 3)">
                                             <option value="">1차분류</option>
@@ -291,7 +291,7 @@
                                             <?php endforeach; ?>
                                         </select>
                                     </td>
-                                    <th>일자</th>
+                                    <!-- <th>일자</th>
                                     <td>
                                         <select id="tour_period" name="tour_period" class="input_select">
                                             <option value="">일자선택</option>
@@ -302,7 +302,7 @@
                                                 </option>
                                             <?php } ?>
                                         </select>
-                                    </td>
+                                    </td> -->
                                 </tr>
                                 <tr>
                                     <!-- <th rowspan=7>썸네일<br>(600 * 450)</th>
@@ -323,15 +323,21 @@
                                                value="<?= $product_name ?>"
                                                class="input_txt" style="width:90%"/>
                                     </td>
-                                    <th>이용항공</th>
+                                    <th>예약시간</th>
+                                    <td>
+                                        <input id="time_line" name="time_line" class="input_txt" type="text"
+                                            value="<?= $time_line ?>" style="width:100%"/><br/>
+                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
+                                    </td>
+                                    <!-- <th>이용항공</th>
                                     <td>
                                         <input type="text" id="product_air" name="product_air"
                                                value="<?= $product_air ?>"
                                                class="input_txt" style="width:90%"/>
-                                    </td>
+                                    </td> -->
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
                                     <th>간단소개</th>
                                     <td>
                                         <input type="text" id="product_info" name="product_info"
@@ -343,9 +349,9 @@
                                         <input type="text" id="product_schedule" name="product_schedule"
                                                value="<?= $product_schedule ?>" class="input_txt" style="width:90%"/>
                                     </td>
-                                </tr>
+                                </tr> -->
 
-                                <tr>
+                                <!-- <tr>
                                     <th>여행국가(사용안함)</th>
                                     <td>
                                         <input id="product_country" name="product_country" class="input_txt" type="text"
@@ -357,16 +363,16 @@
                                                type="text"
                                                value="<?= $minium_people_cnt ?>" style="width:500px"/>
                                     </td>
-                                </tr>
+                                </tr> -->
 
-                                <tr>
+                                <!-- <tr>
                                     <th>마일리지</th>
                                     <td colspan="3">
                                         <input id="product_mileage" name="product_mileage" class="input_txt" type="text"
                                                value="<?= $product_mileage ?>" style="width:50px" maxlength="2"/>% (총
                                         결제비용 %)
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <!-- <tr>
                                     <th>이동방법</th>
                                     <td>
@@ -413,17 +419,12 @@
                                                class="yoil" <?php if (isset($yoil_6) && $yoil_6 == "Y") echo "checked"; ?> >
                                         토요일&nbsp;&nbsp;&nbsp;
                                     </td> -->
-                                    <th>가이드/언어</th>
+                                    <!-- <th>가이드/언어</th>
                                     <td>
                                         <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
                                                value="<?= $guide_lang ?>" style="width:20%"/><br/>
-                                    </td>
-                                    <th>예약시간</th>
-                                    <td>
-                                        <input id="time_line" name="time_line" class="input_txt" type="text"
-                                            value="<?= $time_line ?>" style="width:100%"/><br/>
-                                        <span style="color:red;">검색어는 콤마(,)로 구분하셔서 입력하세요. 입력예)07:50 ~ 13:30, 13:30 ~ 18:30</span>
-                                    </td>
+                                    </td> -->
+                                    
                                 </tr>
                                 <!-- <tr>
                                     <th>시작일</th>

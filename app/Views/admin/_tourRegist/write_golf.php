@@ -319,7 +319,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>베스트여부</th>
+                                    <!-- <th>베스트여부</th>
                                     <td>
                                         <?php foreach ($mresult2 as $row_m) : ?>
                                                 <input type="checkbox" name="product_best"
@@ -328,18 +328,10 @@
                                                     echo "checked";
                                                 } ?>/>
                                         <?php endforeach; ?>
-                                    </td>
+                                    </td> -->
                                     <th>스포츠데이</th>
                                     <td>
                                         <input id="sports_day" name="sports_day" class="input_txt" type="text" value="<?= $golf_info['sports_day'] ?>" style="width:100%"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>가이드/언어</th>
-                                    <td>
-                                        <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
-                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
-                                                style="width:50%"/><br/>
                                     </td>
                                     <th>사용여부</th>
                                     <td>
@@ -354,6 +346,15 @@
                                             </option>
                                         </select>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <!-- <th>가이드/언어</th>
+                                    <td>
+                                        <input id="guide_lang" name="guide_lang" class="input_txt" type="text"
+                                                value="<?= isset($guide_lang) ? $guide_lang : '' ?>"
+                                                style="width:50%"/><br/>
+                                    </td> -->
+                                    
                                 </tr>
                                 <tr>
                                     <th>구분</th>
@@ -402,7 +403,7 @@
                                                 style="width:200px"/> /<input id="email" name="email" class="input_txt"
                                                                             type="text" value="<?= $email ?>"
                                                                             style="width:200px"/>
-                                        <select name="product_manager_id" id="product_manager_sel"
+                                        <!-- <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <?php
                                             foreach ($member_list as $row_member) :
@@ -416,7 +417,7 @@
                                             } ?> >
                                                 안나현팀장
                                             </option>
-                                        </select>
+                                        </select> -->
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
                                     <th>검색키워드</th>

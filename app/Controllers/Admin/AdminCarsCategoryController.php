@@ -12,7 +12,7 @@ class AdminCarsCategoryController extends BaseController
     protected $carsOptionModel;
     protected $carsSubModel;
     protected $codeModel;
-
+    protected $carsCategory;
 
     public function __construct()
     {
@@ -22,6 +22,7 @@ class AdminCarsCategoryController extends BaseController
         $this->carsOptionModel = model("CarsOptionModel");
         $this->carsSubModel = model("CarsSubModel");
         $this->codeModel = model("Code");
+        $this->carsCategory = model("CarsCategory");
     }
 
     public function list()
@@ -61,16 +62,72 @@ class AdminCarsCategoryController extends BaseController
         ]);
     }
 
-    public function write_ok($product_idx = null)
+    public function write_ok($ca_idx = null)
     {
+        // $category_data = $this->request->getPost("category_data");
+
+        // $categories = json_decode($category_data, true);
+
+        // var_dump($categories);
+
         try {
-    
+            $departure_name = $this->request->getPost("departure_name");
+            $destination_name = $this->request->getPost("destination_name");
+            $category_data = $this->request->getPost("category_data");
+            $categories = json_decode($category_data, true);
+
+            if(!empty($departure_name) && !empty($destination_name)){
+
+                $depth_1 = $this->carsCategory->insertData([
+                    "ca_name" => $departure_name,
+                    "parent_ca_idx" => 0,
+                    "depth" => 1,
+                ]);
+
+                if($depth_1){
+                    $depth_2 = $this->carsCategory->insertData([
+                        "ca_name" => $destination_name,
+                        "parent_ca_idx" => $depth_1,
+                        "depth" => 2,
+                    ]);
+
+                    if($depth_2){
+                        $builder = $this->carsCategory;
+                        $this->saveCategoryTree($categories, $depth_2, 3, $builder);
+                    }
+                }
+
+                return $this->response->setJSON([
+                    'result' => true,
+                    'message' => "등록되었습니다."
+                ], 200);
+            }else{
+                return $this->response->setJSON([
+                    'result' => false,
+                    'message' => "누락된 데이터."
+                ], 400);
+            }
 
         } catch (\Exception $e) {
             return $this->response->setJSON([
                 'result' => false,
                 'message' => $e->getMessage()
             ], 400);
+        }
+    }
+
+    public function saveCategoryTree(array $categories, int $parentId, int $depth, $builder)
+    {
+        foreach ($categories as $category) {
+            $currentId = $builder->insertData([
+                'ca_name' => $category['ca_name'],
+                'parent_ca_idx' => $parentId,
+                'depth' => $depth
+            ]);
+
+            if (!empty($category['children'])) {
+                $this->saveCategoryTree($category['children'], $currentId, $depth + 1, $builder);
+            }
         }
     }
 

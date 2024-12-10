@@ -78,7 +78,7 @@
                                 <tr>
                                     <th>출발지역</th>
                                     <td>
-                                        <select id="departure_code" name="departure_code" class="input_select">
+                                        <select id="departure_name" name="departure_name" class="input_select">
                                             <option value="">선택</option>
                                             <?php
                                                 foreach($place_start_list as $code){
@@ -92,7 +92,7 @@
 
                                     <th>도착지역</th>
                                     <td colspan="3">
-                                        <select id="destination_code" name="destination_code" class="input_select">
+                                        <select id="destination_name" name="destination_name" class="input_select">
                                             <option value="">선택</option>
                                             <?php
                                                 foreach($place_end_list as $code){
@@ -115,7 +115,7 @@
                                 <div class="flex__c depth" style="gap: 20px;">
                                     옵션 1
                                     <div class="flex__c" style="gap: 5px;">
-                                        <input type="text" name="ca_name" style="width:300px">
+                                        <input type="text" class="ca_name" style="width:300px">
                                         <button type="button" class="btn_02" onclick="remove_depth(this, 1);">-</button>
                                         <button type="button" class="btn_01" onclick="add_depth_code(this, 1);">+</button>
                                     </div>
@@ -201,7 +201,7 @@
             <div class="flex__c depth" style="gap: 20px;">
                 옵션 ${newDepthLevel}
                 <div class="flex__c" style="gap: 5px;">
-                    <input type="text" name="ca_name" style="width:300px">
+                    <input type="text" class="ca_name" style="width:300px">
                     <button type="button" class="btn_02" onclick="remove_depth(this, ${newDepthLevel});">-</button>
                     <button type="button" class="btn_01" onclick="add_depth_code(this, ${newDepthLevel});">+</button>
                 </div>
@@ -222,34 +222,84 @@
         }
     }
 
+    function buildCategoryTree($container, depth) {
+        const categories = [];
+
+        $container.children('.depth').each(function () {
+            const $this = $(this);
+
+            const ca_name = $this.find('.ca_name').val();
+
+            const $childrenContainer = $this.nextAll(`.depth_${depth + 1}`);
+
+            const category = {
+                ca_name: ca_name.trim(),
+                depth: depth,
+                children: []
+            };
+
+            if ($childrenContainer.length > 0) {
+                
+                category.children = buildCategoryTree($childrenContainer, depth + 1);
+            }
+
+            categories.push(category);
+        });
+
+        return categories;
+    }
+
     function send_it_c() {
 
         var frm = document.frm;
 
-        const categories = [];
+        const treeData = buildCategoryTree($('.depth_1'), 1);
 
-        $('.main_depth .depth').each(function () {
-            const $this = $(this);
-            const depth = $this.closest('[class^="depth_"]').attr('class').match(/depth_(\d+)/)[1];
-            const ca_name = $this.find('input[name="ca_name"]').val();
-            const parent = $this.closest(`[class^="depth_${depth - 1}"]`).length > 0
-                ? $this.closest(`[class^="depth_${depth - 1}"]`).data('ca_idx')
-                : 0;
+        if(frm.departure_name.value == ""){
+            alert("출발지역 선택해주세요!");
+            return false;
+        }
 
-            if (ca_name.trim()) {
-                categories.push({
-                    ca_name,
-                    parent_ca_idx: parent || 0,
-                    depth: parseInt(depth),
-                    status: 'Y',
-                    is_two_date: 'N',
-                    onum: categories.length + 1,
-                });
+        if(frm.destination_name.value == ""){
+            alert("도착지역 선택해주세요!");
+            return false;
+        }
+
+        if(treeData.length <= 0){
+            alert("카테고리를 하나 이상 추가하세요.");
+            return false;
+        }
+
+        var newInput = $('<input>').attr({
+            type: 'hidden',
+            name: 'category_data',
+            value: JSON.stringify(treeData)
+        });
+
+        $("#frm").append(newInput);
+
+        $.ajax({
+            url: '/AdmMaster/_cars_category/write_ok',
+            type: "POST",
+            data: $("#frm").serialize(),
+            error: function (request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+                $("#ajax_loader").addClass("display-none");
+            }
+            , success: function (response, status, request) {
+                $("#ajax_loader").addClass("display-none");
+                alert(response.message);
+                if(response.result == true){
+                    window.location.href = '/AdmMaster/_cars_category/list';
+                }
+
+                return;
+
             }
         });
 
-        console.log(categories);
-        
+        // $("#frm").submit();
     }
 
     function del_it_c(url, g_idx) {
