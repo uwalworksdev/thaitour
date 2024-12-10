@@ -418,10 +418,10 @@
 
                                     <col width="100px"/>
                                     <col width="100px"/>
-                                    <col width="80px"/>
+                                    <!-- <col width="80px"/> -->
                                     <col width="80px"/>
                                     <col width="100px"/>
-                                    <col width="80px"/>
+                                    <!-- <col width="80px"/> -->
                                     <col width="150px"/>
                                     <col width="100px"/>
                                 </colgroup>
@@ -435,10 +435,10 @@
 
                                     <th>상품담당자</th>
                                     <th>사용유무</th>
-                                    <th>베스트</th>
+                                    <!-- <th>베스트</th> -->
                                     <th>특가여부</th>
                                     <th>순위</th>
-                                    <th>예약건수</th>
+                                    <!-- <th>예약건수</th> -->
                                     <th>등록일</th>
                                     <th>관리</th>
                                 </tr>
@@ -448,7 +448,7 @@
                                 if ($nTotalCount == 0) {
                                     ?>
                                     <tr>
-                                        <td colspan=12 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                        <td colspan=11 style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                     </tr>
                                     <?php
                                 }
@@ -500,12 +500,12 @@
                                                 </option>
                                             </select>
                                         </td>
-                                        <td class="tac">
+                                        <!-- <td class="tac">
                                             <input name="is_best" name="product_best_best" class="type_chker"
                                                    id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
                                                    onchange="check_best(<?= $row['product_idx'] ?>)"
                                                    value="Y" <?php if ($row["product_best"] == "Y") echo "checked"; ?> >
-                                        </td>
+                                        </td> -->
                                         <td class="tac">
                                             <input name="special_price_price" class="type_chker"
                                                    id="special_price_price_<?= $row["product_idx"] ?>" type="checkbox"
@@ -523,9 +523,9 @@
                                             <input type="hidden" name="code_idx[]" value="<?= $row["product_idx"] ?>"
                                                    class="input_txt"/>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <?= $row["deposit_cnt"] ?>
-                                        </td>
+                                        </td> -->
                                         <td>
                                             <?= $row["r_date"] ?>
                                         </td>

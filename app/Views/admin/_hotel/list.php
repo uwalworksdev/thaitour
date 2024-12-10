@@ -217,11 +217,11 @@
                                 <col width="*"/>
                                 <!-- <col width="120px" /> -->
                                 <col width="100px"/>
-                                <col width="100px"/>
+                                <!-- <col width="100px"/> -->
                                 <col width="80px"/>
                                 <!--                                <col width="80px"/>-->
                                 <col width="100px"/>
-                                <col width="150px"/>
+                                <!-- <col width="150px"/> -->
                                 <col width="100px"/>
                             </colgroup>
                             <thead>
@@ -234,11 +234,11 @@
                                 <!-- <th>이용항공</th> -->
                                 <!--                                <th>상품담당자</th>-->
                                 <th>사용유무</th>
-                                <th>베스트여부</th>
+                                <!-- <th>베스트여부</th> -->
                                 <!--                                <th>특가여부</th>-->
                                 <th>순위</th>
                                 <th>객실수</th>
-                                <th>등록일</th>
+                                <!-- <th>등록일</th> -->
                                 <th>관리</th>
                             </tr>
                             </thead>
@@ -247,7 +247,7 @@
                             if ($nTotalCount == 0) {
                                 ?>
                                 <tr>
-                                    <td colspan="13" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
+                                    <td colspan="9" style="text-align:center;height:100px">검색된 결과가 없습니다.</td>
                                 </tr>
                                 <?php
                             }
@@ -289,14 +289,14 @@
                                             </option>
                                         </select>
                                     </td>
-                                    <td class="tac">
+                                    <!-- <td class="tac">
                                         <input name="product_best_best" class="type_chker"
                                             <?php if (isset($row["product_best"]) && $row["product_best"] === "Y")
                                                 echo "checked=checked"; ?>
                                                id="product_best_best_<?= $row["product_idx"] ?>" type="checkbox"
                                                onchange="check_best(<?= $row['product_idx'] ?>)"
                                                value="Y">
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <input type="text" name="onum[]" id="onum_<?= $row["product_idx"] ?>"
                                                value="<?= $row['onum'] ?>" style="width:66px;">
@@ -306,9 +306,9 @@
                                     <td>
                                         <?= $row["room_cnt"] ?>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <?= substr($row["r_date"],0,10) ?>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <a href="#!" onclick="prod_update('<?= $row['product_idx'] ?>');"><img
                                                     src="/images/admin/common/ico_setting2.png"></a>&nbsp;
