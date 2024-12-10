@@ -71,6 +71,7 @@
 
 .main_visual_slider {
     position: relative;
+    overflow: hidden;
 }
 
 .main_visual_slider .slide_item {
@@ -117,12 +118,12 @@
     z-index: 2;
 }
 
-.swiper-main-tools {
-    position: absolute;
-    bottom: 30px;
-    right: 350px;
-    z-index: 10;
-}
+/*.swiper-main-tools {*/
+/*    position: absolute;*/
+/*    bottom: 30px;*/
+/*    right: 350px;*/
+/*    z-index: 10;*/
+/*}*/
 
 .img_box_txt_main2 {
     font-size: 22px;
@@ -145,23 +146,23 @@
     border-width: 1px;
     border-color: #dbdbdb;
     border-radius: 50%;
-    /*background-color: #ffffff;*/
-    background-color: unset !important;
+    background-color: #ffffff;
+    /*background-color: unset !important;*/
     width: 34px;
     height: 34px;
     cursor: pointer;
 }
 
 .relative {
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .swiper-pagination-main {
     border-style: solid;
     border-width: 1px;
     border-color: #dbdbdb;
-    /*background-color: #ffffff;*/
-    background-color: unset !important;
+    background-color: #ffffff;
+    /*background-color: unset !important;*/
     border-radius: 16px;
     width: 74px;
     height: 34px;
@@ -172,7 +173,7 @@
 }
 
 .main_current_slide {
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
 }
 
 .main_visual .swiper-button {
@@ -264,6 +265,14 @@
 
 .swiper-button-next-main-2 {
     right: -22px;
+}
+
+.main_section_review_prev_btn_ {
+    top: 110px;
+}
+
+.main_section_review_next_btn_ {
+    top: 110px;
 }
 
 .main_section3 {
