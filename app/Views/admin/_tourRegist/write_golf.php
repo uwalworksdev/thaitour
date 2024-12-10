@@ -810,7 +810,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>주간요금</th>
+                                <th>주간요금(THB)</th>
                                 <td>
                                     <table>
                                         <colgroup>
