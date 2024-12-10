@@ -107,7 +107,7 @@ class AdminCouponController extends BaseController
                             $timestamp = sprintf('%03d', ($microtime - floor($microtime)) * 1000);
                             $date = date('YmdHis');
                             $ext = explode(".", strtolower($fileName));
-                            $newName = $date . $timestamp . '.' . $ext[1];
+                            $newName = $date . $timestamp . uniqid() . '.' . $ext[1];
                             $data["ufile$i"] = $newName; 
                             $file->move($uploadPath, $newName);
                         }

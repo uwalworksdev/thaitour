@@ -277,7 +277,7 @@
                                                 style="width:200px"/> /<input id="email" name="email" class="input_txt"
                                                                               type="text" value="<?= $email ?>"
                                                                               style="width:200px"/>
-                                        <select name="product_manager_id" id="product_manager_sel"
+                                        <!-- <select name="product_manager_id" id="product_manager_sel"
                                                 onchange="change_manager(this.value)">
                                             <?php
                                             foreach ($member_list as $row_member) :
@@ -290,7 +290,7 @@
                                                 echo "selected";
                                             } ?>>서소연 대리
                                             </option>
-                                        </select>
+                                        </select> -->
                                         <br><span style="color: gray;">* ex) 상품등록하는 담당자의 성함/연락처/이메일</span>
                                     </td>
                                     <th>검색키워드</th>
@@ -337,23 +337,44 @@
                                 </script>
 
                                 <tr>
-                                    <th>베스트여부</th>
+                                    <!-- <th>베스트여부</th>
                                     <td>
                                         <input type="checkbox" name="product_best"
                                                id="product_best"
                                                value="Y" <?php if (isset($product_best) && $product_best == "Y") {
                                             echo "checked";
                                         } ?>/>
-                                    </td>
+                                    </td> -->
                                     <th>우선순위</th>
                                     <td>
                                         <input type="text" id="onum" name="onum" value="<?= $onum ?>" class="input_txt"
                                                style="width:80px"/> <span
                                                 style="color: gray;">(숫자가 높을수록 상위에 노출됩니다.)</span>
                                     </td>
+
+                                    <th>단품 메인노출</th>
+                                    <td>
+                                        <input type="checkbox" name="product_type" id="product_type_01"
+                                               value="MD 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "MD 추천") {
+                                            echo "checked";
+                                        } ?> />
+                                        <label for="product_type_01">MD 추천</label>
+
+                                        <input type="checkbox" name="product_type" id="product_type_02"
+                                               value="핫딜 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "핫딜 추천") {
+                                            echo "checked";
+                                        } ?> />
+                                        <label for="product_type_02">핫딜 추천</label>
+
+                                        <input type="checkbox" name="product_type" id="product_type_03"
+                                               value="가성비 추천" <?php if (isset($row["product_type"]) && $row["product_type"] == "가성비 추천") {
+                                            echo "checked";
+                                        } ?> />
+                                        <label for="product_type_03">가성비 추천</label>
+                                    </td>
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
                                     <th>단품 메인노출</th>
                                     <td colspan="3">
                                         <input type="checkbox" name="product_type" id="product_type_01"
@@ -374,7 +395,7 @@
                                         } ?> />
                                         <label for="product_type_03">가성비 추천</label>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 </tbody>
                             </table>

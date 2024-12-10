@@ -286,13 +286,13 @@ $links = "list";
                                         </select>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>객실수</th>
                                     <td colspan="3">
                                         <input type="text" name="room_cnt" value="<?= $room_cnt ?? "" ?>" class="text"
                                                style="width:300px" maxlength="50"/>
                                     </td>
-                                </tr>
+                                </tr> -->
 
                                 <tr>
                                     <th>간략소개</th>

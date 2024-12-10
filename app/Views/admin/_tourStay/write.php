@@ -419,7 +419,7 @@
                                         </select>분
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>서비스</th>
                                     <td>
                                         <input type="text" id="stay_service" name="stay_service"
@@ -458,7 +458,7 @@
                                         <input type="text" id="note" name="note" value="<?= $note ?>" class="input_txt"
                                                placeholder="" style="width:90%"/>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <!--                                <tr>-->
                                 <!--                                    <th>호텔부대시설</th>-->
                                 <!--                                    <td colspan="3">-->
